@@ -32,12 +32,12 @@ Choose a topic from the table of contents to get started on your **Wishful Shrin
     - [5.2 Fridge-related Commands](#52-fridge-related-commands)
         * [5.2.1 Adding an ingredient: `addF`](#add-ingredient)
         * [5.2.2 Listing all ingredients : `fridge`](#list-ingredient)
-        * [5.2.3 Deleting an ingredient : `deleteF`](#delete-ingredient)
-        * [5.2.4 Editing an ingredient: `editF`](#edit-ingredient)
-        * [5.2.5 Getting an ingredient to edit: `editF`](#get-edit-ingredient)
         
         <div style="page-break-after: always;"></div>
         
+        * [5.2.3 Deleting an ingredient : `deleteF`](#delete-ingredient)
+        * [5.2.4 Editing an ingredient: `editF`](#edit-ingredient)
+        * [5.2.5 Getting an ingredient to edit: `editF`](#get-edit-ingredient)
         * [5.2.6 Searching for an Ingredient: `searchF`](#search-ingredient)
         * [5.2.7 Clearing all ingredients : `clearF`](#clear-ingredient)
         <br><br>
@@ -340,6 +340,8 @@ Format: `deleteR INDEX`
     Deleting a recipe **will not** affect the recipes that have been eaten in the consumption list.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `recipes` followed by `deleteR 2` deletes the 2nd recipe in Recipe List.
 * `searchR n/salad` followed by `deleteR 1` deletes the 1st recipe in the result of the `searchR` command.
@@ -383,16 +385,13 @@ Multiple ingredients are separated by `,`.
         format error.
     </div> 
 
+<div style="page-break-after: always;"></div>
+
 * Here are the respective actions required by users depending on different usage of `IMAGE`:
 
   Usage | Action | Example | Outcome
   ---------|-----------------------|---------|---------
   Image from local storage | 1. Specify **absolute path** of the image<br><br> 2. Add **file://** in front of the file path<br><br> 3. Replace **IMAGE** in img/IMAGE with the file path of your image | file:///D:/images/wishful<br>/data/myimage.png | Local image will be displayed
-  
-<div style="page-break-after: always;"></div>
-  
-  Usage | Action | Example | Outcome
-  ---------|-----------------------|---------|---------
   Image from online resources | 1. Make sure the computer is connected to Internet<br><br> 2. Copy the online **image address** | Valid image address which starts with https:// and ends with .jpg or jpeg or png | The image will be downloaded into data folder and displayed
   Sample images | Replace IMAGE in img/IMAGE with the **file path**<br> (refer to this [table](#table) ) | img/images/healthy1.jpg | Sample image is displayed
   Invalid image | NA | 1. Invalid local file path<br><br>2. Invalid URL<br><br>3. No internet connection | Default image will be displayed
@@ -404,9 +403,6 @@ Multiple ingredients are separated by `,`.
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
     Specifying an empty tag prefix: `t/` will clear all tags if any of the specified recipe.
 </div> 
-
-
-<div style="page-break-after: always;"></div>
      
 * You are not allowed to edit a recipe into an already existing recipe in the Recipe List.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
