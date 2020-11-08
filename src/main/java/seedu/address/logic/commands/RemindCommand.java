@@ -30,8 +30,10 @@ public class RemindCommand extends Command {
 
     public static final String MESSAGE_REMIND_ASSIGNMENT_SUCCESS = "Set reminder for Assignment: %1$s";
     public static final String MESSAGE_REMIND_ASSIGNMENTS_SUCCESS = "Mark assignments as done: %1$s";
+
     // for single index
     public static final String MESSAGE_REMINDED_ASSIGNMENT = "This assignment already has reminders set.";
+
     // for multiple indexes
     public static final String MESSAGE_MULTIPLE_REMINDED_ASSIGNMENT = "This assignment already has reminders set: %1$s";
     public static final String MESSAGE_MULTIPLE_REMINDED_ASSIGNMENTS =
@@ -70,7 +72,6 @@ public class RemindCommand extends Command {
                 hasException = true;
                 assignmentsAlreadyReminded.add(targetIndex.getOneBased());
                 continue;
-//                throw new CommandException(String.format(MESSAGE_REMINDED_ASSIGNMENT, assignmentToRemind));
             }
 
             assert(!assignmentToRemind.isReminded());
