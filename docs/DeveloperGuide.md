@@ -1263,23 +1263,20 @@ testers are expected to do more *exploratory* testing.
 
 1. Archiving a Case while all Cases are being shown
     
-	1. Prerequisites: List all cases using the `list case` command. Multiple cases in the list.
+    1. Prerequisites: List all cases using the `list case` command. Multiple cases in the list.
 	
-	1. Test case: `archive case 1`
-        
+    1. Test case: `archive case 1`<br>  
 	Expected: First case is archived. Details of the archived case shown in the result display. 
 	Doing a `list archive` should show the archived case at the bottom of the list of archive cases.
 
-  	1. Test case: `archive case 0`
-        
+    1. Test case: `archive case 0`<br>
 	Expected: No case is archived. Error details shown in the result display. 
 	List of cases remains the same.
+    
+    1. Other incorrect archive commands to try: `archive`, `archive case`, `archive case x` (where x is larger than the list size)<br>
+        Expected: Similar to previous.
 
-  	1. Other incorrect archive commands to try: `archive`, `archive case`, `archive case x` (where x is larger than the list size)
-        
-	Expected: Similar to previous.
-
-	1. Unarchive commands can be tested in a similar fashion, with the prerequisites: List all archived cases using the `list archive` command. Multiple archived cases in the list.
+    1. Unarchive commands can be tested in a similar fashion, with the prerequisites: List all archived cases using the `list archive` command. Multiple archived cases in the list.
 
 ### Undo
 1. Undoing a command
@@ -1289,7 +1286,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `undo`<br>
          Expected: Nothing is undone. Error details shown in the result display. List of cases remains the same.
     
-        1. Test case: `add case t:Ang Murders`, `open case 1` then `undo`<br>
+    1. Test case: `add case t:Ang Murders`, `open case 1` then `undo`<br>
          Expected: The added case is removed from the list. PIVOT returns back to the main page. The details of the undone command is shown in the result display.
     
     1. Test case: `open case 1`, `edit title t:New Title` then `undo`<br>
@@ -1302,8 +1299,8 @@ testers are expected to do more *exploratory* testing.
   	
     1. Test case: `redo`<br>
         Expected: Nothing is redone. Error details shown in the result display. List of cases remains the same.
-
-  	1. Test case: `add case t:Ang Murders`, `undo`, `redo` <br>
+	
+    1. Test case: `add case t:Ang Murders`, `undo`, `redo` <br>
   	    Expected: The added case is removed from the list. The details of the redone command is shown in the result display.
 
     1. Test case: `add case t:Ang Murders`,`undo`, `add case t:Bishan Theft`, `redo` <br>
@@ -1313,27 +1310,27 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a document in a case
 
-  1. Prerequisites: Open a case with `open case INDEX` using a valid INDEX. 
+    1. Prerequisites: Open a case with `open case INDEX` using a valid INDEX. 
 
-  1. Test case: `add doc n:NAME r:REFERENCE`<br>
+    1. Test case: `add doc n:NAME r:REFERENCE`<br>
      Expected: The given NAME and REFERENCE is valid. New document added to the case and shown in the document list.
 
-  1. Test case: `add doc n:NAME r:REFERENCE`<br>
+    1. Test case: `add doc n:NAME r:REFERENCE`<br>
      Expected: The given NAME or REFERENCE is invalid. Error details shown in the result display. New document is not added.
 
 ### Opening a document
 
 1. Opening a document in a case with a document list 
 
-  1. Prerequisites: Open a case with `open case INDEX` using a valid INDEX and list the documents with `list doc`. Multiple documents being shown.
+    1. Prerequisites: Open a case with `open case INDEX` using a valid INDEX and list the documents with `list doc`. Multiple documents being shown.
 
-  1. Test case: `open doc 1`<br>
+    1. Test case: `open doc 1`<br>
      Expected: The reference of document 1 is valid. The document representing this file opens up in the Desktop.
 
-  1. Test case: `open doc 1`<br>
+    1. Test case: `open doc 1`<br>
      Expected: The reference of document 1 does not exist. The document representing this file does not open.Error details shown in the result display.
 
-  1. Test case: `open doc 0`<br>
+    1. Test case: `open doc 0`<br>
      Expected: No document is opened. Error details shown in the result display.
 
 ### Saving data
