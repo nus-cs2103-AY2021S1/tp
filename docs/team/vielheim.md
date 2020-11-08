@@ -3,8 +3,10 @@ layout: page
 title: Terence Ho Wei Yang's Project Portfolio Page
 ---
 
-## Project: PIVOT (Police Investigation Virtual Organisational Tool)
 <div style="page-break-after: always;">
+
+## Project: PIVOT (Police Investigation Virtual Organisational Tool)
+
 PIVOT is a desktop application to assist the police investigators in keeping track of their investigations and relevant information. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20 kLoC.
 
 Given below are my contributions to the project.  
