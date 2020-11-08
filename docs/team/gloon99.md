@@ -55,7 +55,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `meeting add`, `meeting delete`, `meeting edit`, `meeting list` and `timeline` [\#72]()
+    * Added documentation for the features `meeting add`, `meeting delete`, `meeting edit`, `meeting list` and `timeline` (Pull requests [\##181](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/181), [\#276](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/234))
   * Developer Guide:
-    * Added implementation details of the `meeting add`, `meeting delete`, `meeting edit`, `meeting list` and `timeline` features.
+    * Added implementation details of the `meeting add`, `meeting delete`, `meeting edit`, `meeting list` and `timeline` features (Pull request [\##237](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/237) [\#276](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/276))
 
