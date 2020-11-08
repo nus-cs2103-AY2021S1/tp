@@ -35,9 +35,6 @@ public class CreateInventoryRecordCommandParser implements Parser<CreateInventor
         }
 
         String itemDescription = ParserUtil.parseItemDescription(argMultimap.getValue(PREFIX_ITEM_DESCRIPTION).get());
-        if (itemDescription.isEmpty()) {
-            throw new ParseException(CreateInventoryRecordCommand.MESSAGE_INVALID_ITEM_NAME);
-        }
         int quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get());
         double unitCost;
         if (argMultimap.getValue(PREFIX_ITEM_COST).isPresent()) {
