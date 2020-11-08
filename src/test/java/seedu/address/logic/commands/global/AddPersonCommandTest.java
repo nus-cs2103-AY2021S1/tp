@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.project;
+package seedu.address.logic.commands.global;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
