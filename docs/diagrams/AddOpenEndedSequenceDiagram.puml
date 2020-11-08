@@ -3,8 +3,6 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":QuickCacheParser" as QuickCacheParser LOGIC_COLOR
-participant ":AddOpenEndedQuestionCommandParser" as AddOpenEndedQuestionCommandParser LOGIC_COLOR
 participant "t:AddOpenEndedQuestionCommand" as AddOpenEndedQuestionCommand LOGIC_COLOR
 end box
 
@@ -14,38 +12,11 @@ participant ":QuickCache" as QuickCache MODEL_COLOR
 participant "flashcards:UniqueFlashcardList" as Flashcards MODEL_COLOR
 participant "internalList:ObservableList<Flashcard>" as ObservableList MODEL_COLOR
 end box
-[-> LogicManager : execute("test 1 ans/Example answer")
+[-> LogicManager : execute("add q/question ans/answer")
 activate LogicManager
 
-LogicManager -> QuickCacheParser : parseCommand("add q/question ans/ Answer")
-activate QuickCacheParser
+ref over LogicManager, AddOpenEndedQuestionCommand : Parse AddOpenEndedQuestionCommand
 
-create AddOpenEndedQuestionCommandParser
-QuickCacheParser -> AddOpenEndedQuestionCommandParser
-activate AddOpenEndedQuestionCommandParser
-
-AddOpenEndedQuestionCommandParser -> QuickCacheParser
-deactivate AddOpenEndedQuestionCommandParser
-
-QuickCacheParser -> AddOpenEndedQuestionCommandParser : parse("q/question ans/Example Answer")
-activate AddOpenEndedQuestionCommandParser
-
-create AddOpenEndedQuestionCommand
-AddOpenEndedQuestionCommandParser -> AddOpenEndedQuestionCommand
-activate AddOpenEndedQuestionCommand
-
-AddOpenEndedQuestionCommand --> AddOpenEndedQuestionCommandParser : t
-deactivate AddOpenEndedQuestionCommand
-
-AddOpenEndedQuestionCommandParser -> QuickCacheParser : t
-deactivate AddOpenEndedQuestionCommandParser
-
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddOpenEndedQuestionCommandParser -[hidden]-> QuickCacheParser
-destroy AddOpenEndedQuestionCommandParser
-
-QuickCacheParser --> LogicManager : t
-deactivate QuickCacheParser
 
 LogicManager -> AddOpenEndedQuestionCommand : execute()
 activate AddOpenEndedQuestionCommand

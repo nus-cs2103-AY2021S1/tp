@@ -154,9 +154,14 @@ Step 2. The user executes `add q/question...` command to add a flashcard. This w
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, QuickCache will not create the flashcard.
 </div>
 
+The following sequence diagram shows how the Parser operation works:
+
+![AddOpenEndedSequenceDiagram](images/AddOpenEndedParserSequenceDiagram.png)
+
 The following sequence diagram shows how the Add Open Ended Question mechanism works:
 
 ![AddOpenEndedSequenceDiagram](images/AddOpenEndedSequenceDiagram.png)
+
 
 #### Design considerations
 
@@ -181,6 +186,10 @@ Step 2. The user executes `addmcd q/question ans/1 c/first c/second` command to 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, QuickCache will not create the flashcard.
 </div>
+
+The following sequence diagram shows how the parser operation works:
+
+![AddMcqSequenceDiagram](images/AddMcqParserSequenceDiagram.png)
 
 The following sequence diagram shows how the Add Multiple Choice Question mechanism works:
 
@@ -220,6 +229,10 @@ Step 4. The `Index` is then passed to the `OpenCommand`
 Step 5. `OpenCommand#execute` will get the `Flashcard` at the specified `Index` and get its `Question` to be passed to the GUI as part of the `Feedback` attribute within the `CommandResult`.
 
 Step 6. The GUI will then proceed to get the `Question` from `Feedback` and display its choices and question to the user.
+
+The following sequence diagram shows how the parser operation works:
+
+![OpenParserSequenceDiagram](images/OpenParserSequenceDiagram.png)
 
 The following sequence diagram shows how the open operation works:
 
@@ -293,6 +306,10 @@ Step 5. `EditCommand#execute` will then replace the old `Flashcard` in the `mode
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
 </div>
+
+The following sequence diagram shows how the parser operation works:
+
+![EditSequenceDiagram](images/EditParserSequenceDiagram.png)
 
 The following sequence diagram shows how the edit operation works:
 
@@ -541,6 +558,10 @@ Step 5. `StatsCommand#execute` will get the `Flashcard` at the specified `Index`
 
 Step 6. The GUI will then proceed to get the `Statistics` from `Feedback` and display its data in the form of a Pie Chart to the user.
 
+The following sequence diagram shows how the parser operation works:
+
+![StatsParserSequenceDiagram](images/StatsParserSequenceDiagram.png)
+
 The following sequence diagram shows how the stats operation works:
 
 ![StatsSequenceDiagram](images/StatsSequenceDiagram.png)
@@ -585,7 +606,11 @@ Step 7. After execution, `CommandResult` will contain a message indicating that 
 
 Step 7. The user executes `stats 1` command to display the `Statistics` of the first flashcard in the list on the GUI. The user sees that the `Statistics` is reset.
 
-The following sequence diagram shows how the stats operation works:
+The following sequence diagram shows how the parser operation works:
+
+![ClearStatsSequenceDiagram](images/ClearStatsParserSequenceDiagram.png)
+
+The following sequence diagram shows how the Clearstats operation works:
 
 ![ClearStatsSequenceDiagram](images/ClearStatsSequenceDiagram.png)
 
