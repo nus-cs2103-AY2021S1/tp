@@ -7,7 +7,10 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER_DESCRIPTIO
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.commands.exceptions.SerialNumberNotFoundException;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.SerialNumber;
@@ -28,6 +31,7 @@ public class StockViewCommand extends Command {
 
     public static final String MESSAGE_NOTE_DISPLAY_SUCCESS = "Viewing Stock: %1$s";
     public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists.";
+    private static final Logger logger = LogsCenter.getLogger(StockViewCommand.class);
 
     private final SerialNumber serialNumber;
 
@@ -50,12 +54,14 @@ public class StockViewCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws SerialNumberNotFoundException {
+        logger.log(Level.INFO, "Starting to execute stock view command");
 
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         List<Stock> stockList = model.getFilteredStockList();
 
         Stock stockToView = getStockFromSerialNumber(serialNumber, stockList);
 
+        logger.log(Level.INFO, "Finished displaying stock successfully");
         return new CommandResult(generateSuccessMessage(stockToView), null,
                 false, true, stockToView, false, null, false, false);
     }

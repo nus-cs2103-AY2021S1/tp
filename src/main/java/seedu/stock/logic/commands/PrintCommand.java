@@ -9,8 +9,11 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.commons.util.FileUtil;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
@@ -38,6 +41,8 @@ public class PrintCommand extends Command {
 
     public static final String CSV_TAG = ".csv";
 
+    private static final Logger logger = LogsCenter.getLogger(PrintCommand.class);
+
     private final String csvFileName;
 
     public PrintCommand(String fileName) {
@@ -47,6 +52,7 @@ public class PrintCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         assert model != null : "Model cannot be null!";
+        logger.log(Level.INFO, "Starting to execute print command");
 
         ObservableList<Stock> stockBookList = model.getStockBook().getStockList();
         Path csvFilePath = model.getUserPrefs().getCsvFilePath().resolve(csvFileName);
@@ -64,6 +70,7 @@ public class PrintCommand extends Command {
             throw new CommandException(MESSAGE_FAILURE + ex.getMessage());
         }
 
+        logger.log(Level.INFO, "Finished printing stocks successfully");
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

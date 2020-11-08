@@ -44,7 +44,6 @@ public class NoteDeleteCommand extends Command {
             "Stock with given serial number does not exists";
     private static final String MESSAGE_NOTE_INDEX_NOT_FOUND = "Note at index specified is not found.";
     private static final String MESSAGE_STOCK_HAS_NO_NOTE = "Stock specified has no note.";
-
     private static final Logger logger = LogsCenter.getLogger(NoteDeleteCommand.class);
 
     private final SerialNumber serialNumber;
@@ -71,6 +70,7 @@ public class NoteDeleteCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException, SerialNumberNotFoundException {
+        logger.log(Level.INFO, "Starting to execute note delete command");
 
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         List<Stock> stockList = model.getFilteredStockList();
@@ -91,7 +91,9 @@ public class NoteDeleteCommand extends Command {
         model.setStock(stockToDeleteNote, stockWithDeletedNote);
 
         logger.log(Level.INFO, "Valid serial number and note to delete from stock.");
+        logger.log(Level.INFO, "Finished deleting notes successfully");
         return new CommandResult(generateSuccessMessage(stockWithDeletedNote));
+        
     }
 
     /**

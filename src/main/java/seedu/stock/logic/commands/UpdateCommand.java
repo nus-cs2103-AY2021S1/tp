@@ -17,8 +17,11 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER_DESCRIPTIO
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.commons.util.CollectionUtil;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
@@ -32,7 +35,7 @@ import seedu.stock.model.stock.Source;
 import seedu.stock.model.stock.Stock;
 
 /**
- * Updates an existing stock in the stock book.
+ * Updates existing stocks in the stock book.
  */
 public class UpdateCommand extends Command {
 
@@ -61,6 +64,7 @@ public class UpdateCommand extends Command {
     public static final String MESSAGE_DUPLICATE_STOCK = "This stock already exists in the stock book.";
     public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists";
     public static final String MESSAGE_TOO_MANY_QUANTITY_PREFIXES = "You can only use one of the prefix iq/ or nq/";
+    private static final Logger logger = LogsCenter.getLogger(UpdateCommand.class);
 
     private final UpdateStockDescriptor updateStockDescriptor;
 
@@ -89,6 +93,7 @@ public class UpdateCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.log(Level.INFO, "Starting to execute update command");
         requireNonNull(model);
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         List<Stock> lastShownStocks = model.getFilteredStockList();
@@ -107,10 +112,12 @@ public class UpdateCommand extends Command {
             for (String currentSerialNumber : serials) {
                 if (currentSerialNumber.equals(currentStockSerialNumber)) {
                     anyMatches = true;
+                    break;
                 }
             }
 
             if (anyMatches) {
+                assert currentStock != null : "Stock to be updated does not exist";
                 stocksToUpdate.add(currentStock);
             }
         }
@@ -122,6 +129,7 @@ public class UpdateCommand extends Command {
 
         // Update stocks
         for (Stock stockToUpdate: stocksToUpdate) {
+            assert stocksToUpdate != null : "Stock to update not defined";
             Stock updatedStock = createUpdatedStock(stockToUpdate, updateStockDescriptor);
 
             if (!stockToUpdate.isSameStock(updatedStock) && model.hasStock(updatedStock)) {
@@ -132,6 +140,7 @@ public class UpdateCommand extends Command {
             updatedStocks.add(updatedStock);
         }
 
+        logger.log(Level.INFO, "Finished executing update command successfully");
         return new CommandResult(String.format(MESSAGE_UPDATE_STOCK_SUCCESS, stocksAsString(updatedStocks)));
     }
 
@@ -159,7 +168,9 @@ public class UpdateCommand extends Command {
     private static Stock createUpdatedStock(Stock stockToUpdate, UpdateStockDescriptor updateStockDescriptor)
             throws CommandException {
         assert stockToUpdate != null;
+        assert updateStockDescriptor != null;
 
+        logger.log(Level.INFO, "Creating updated stock: " + stockToUpdate);
         Quantity originalQuantity = stockToUpdate.getQuantity();
         Quantity updatedQuantity = updateStockDescriptor.getQuantity().orElse(originalQuantity);
         String lowQuantity = updateStockDescriptor.getLowQuantity().orElse(originalQuantity.getLowQuantity());
@@ -185,6 +196,7 @@ public class UpdateCommand extends Command {
             result.setBookmarked();
         }
 
+        logger.log(Level.INFO, "Successfully updated stock: " + result);
         return result;
     }
 

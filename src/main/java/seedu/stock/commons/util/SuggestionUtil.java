@@ -46,6 +46,9 @@ public class SuggestionUtil {
                 }
             }
         }
-        return dp[str1Length][str2Length];
+
+        int result = dp[str1Length][str2Length];
+        assert result >= 0 : "Invalid edit distance";
+        return result;
     }
 }

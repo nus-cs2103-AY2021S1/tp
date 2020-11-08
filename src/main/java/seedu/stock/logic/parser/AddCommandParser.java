@@ -8,8 +8,11 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.commands.AddCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.Location;
@@ -23,6 +26,7 @@ import seedu.stock.model.stock.Stock;
  * Parses input arguments and creates a new AddCommand object.
  */
 public class AddCommandParser implements Parser<AddCommand> {
+    private static final Logger logger = LogsCenter.getLogger(AddCommandParser.class);
 
     private final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
 
@@ -35,6 +39,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
+        logger.log(Level.INFO, "Starting to parse add command");
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, allPossiblePrefixes);
 
         // Invalid prefixes used in Add command
@@ -66,6 +71,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get().toLowerCase());
 
         Stock stock = new Stock(name, serialNumber, source, updatedQuantity, location);
+        logger.log(Level.INFO, "Finished parsing add command successfully");
         return new AddCommand(stock);
     }
 

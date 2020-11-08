@@ -15,6 +15,9 @@ import seedu.stock.commons.util.SortUtil.Field;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.Stock;
 
+/**
+ * Sorts existing stocks in the stock book.
+ */
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
@@ -52,10 +55,11 @@ public class SortCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        logger.log(Level.INFO, "Starting to execute sort command");
         Comparator<Stock> comparator = isReversed ? SortUtil.generateReverseComparator(fieldToSort)
                 : SortUtil.generateComparator(fieldToSort);
         model.sortFilteredStockList(comparator);
-        logger.log(Level.INFO, "Sorting successful");
+        logger.log(Level.INFO, "Finished sorting successfully");
         return new CommandResult(String.format(MESSAGE_SORT_STOCK_SUCCESS, SortUtil.getFieldDescription(fieldToSort)));
     }
 

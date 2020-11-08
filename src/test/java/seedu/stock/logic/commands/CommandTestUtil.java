@@ -39,16 +39,21 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_APPLE = "apple juice";
     public static final String VALID_NAME_BANANA = "banana bun";
+    public static final String VALID_NAME_PINEAPPLE = "pineapple tart";
     public static final String VALID_SERIAL_NUMBER_APPLE = "ntuc1";
     public static final String VALID_SERIAL_NUMBER_BANANA = "fairprice1";
+    public static final String VALID_SERIAL_NUMBER_PINEAPPLE = "bengawansolo1";
     public static final String VALID_SOURCE_APPLE = "ntuc";
     public static final String VALID_SOURCE_BANANA = "fairprice";
+    public static final String VALID_SOURCE_PINEAPPLE = "bengawansolo";
     public static final String VALID_QUANTITY_APPLE = "2000";
     public static final String VALID_QUANTITY_BANANA = "1000";
+    public static final String VALID_QUANTITY_PINEAPPLE = "123";
     public static final String VALID_LOW_QUANTITY_APPLE = "0";
     public static final String VALID_LOW_QUANTITY_BANANA = "2200";
     public static final String VALID_LOCATION_APPLE = "fruit section, subsection c";
     public static final String VALID_LOCATION_BANANA = "fruits section, subsection b";
+    public static final String VALID_LOCATION_PINEAPPLE = "tart section, subsection a";
     public static final String VALID_FILE_NAME = "test";
     public static final String VALID_SORT_ORDER_ASCENDING = "ascending";
     public static final String VALID_SORT_ORDER_DESCENDING = "descending";
@@ -57,6 +62,7 @@ public class CommandTestUtil {
     public static final String VALID_NOTE_INDEX = "0";
     public static final String VALID_NOTE_APPLE = "Note for apple.";
     public static final String VALID_NOTE_ORANGE = "Note for orange.";
+    public static final String VALID_NOTE_PINEAPPLE = "Fresh from PineappleLand.";
     public static final String FIRST_NOTE_APPLE = "Fresh from AppleLand.";
     public static final String VALID_NOTE_INDEX_SECOND_NOTE_APPLE = "2";
     public static final String SECOND_NOTE_BANANA = "Tuesday";
@@ -66,13 +72,18 @@ public class CommandTestUtil {
 
     public static final String NAME_DESC_APPLE = " " + PREFIX_NAME + VALID_NAME_APPLE;
     public static final String NAME_DESC_BANANA = " " + PREFIX_NAME + VALID_NAME_BANANA;
+    public static final String NAME_DESC_PINEAPPLE = " " + PREFIX_NAME + VALID_NAME_PINEAPPLE;
     public static final String NAME_DESC_BANANA_WITH_WHITESPACES_BETWEEN = " " + PREFIX_NAME + "banana         bun";
     public static final String SERIAL_NUMBER_DESC_APPLE = " " + PREFIX_SERIAL_NUMBER + VALID_SERIAL_NUMBER_APPLE;
     public static final String SERIAL_NUMBER_DESC_BANANA = " " + PREFIX_SERIAL_NUMBER + VALID_SERIAL_NUMBER_BANANA;
+    public static final String SERIAL_NUMBER_DESC_PINEAPPLE = " " + PREFIX_SERIAL_NUMBER
+            + VALID_SERIAL_NUMBER_PINEAPPLE;
     public static final String SOURCE_DESC_APPLE = " " + PREFIX_SOURCE + VALID_SOURCE_APPLE;
     public static final String SOURCE_DESC_BANANA = " " + PREFIX_SOURCE + VALID_SOURCE_BANANA;
+    public static final String SOURCE_DESC_PINEAPPLE = " " + PREFIX_SOURCE + VALID_SOURCE_PINEAPPLE;
     public static final String QUANTITY_DESC_APPLE = " " + PREFIX_QUANTITY + VALID_QUANTITY_APPLE;
     public static final String QUANTITY_DESC_BANANA = " " + PREFIX_QUANTITY + VALID_QUANTITY_BANANA;
+    public static final String QUANTITY_DESC_PINEAPPLE = " " + PREFIX_QUANTITY + VALID_QUANTITY_PINEAPPLE;
     public static final String LOW_QUANTITY_DESC_APPLE = " " + PREFIX_LOW_QUANTITY + VALID_LOW_QUANTITY_APPLE;
     public static final String LOW_QUANTITY_DESC_BANANA = " " + PREFIX_LOW_QUANTITY + VALID_LOW_QUANTITY_BANANA;
     public static final String NEW_QUANTITY_DESC_APPLE = " " + PREFIX_NEW_QUANTITY + VALID_QUANTITY_APPLE;
@@ -81,6 +92,7 @@ public class CommandTestUtil {
     public static final String INCREMENT_QUANTITY_DESC_BANANA = " " + PREFIX_INCREMENT_QUANTITY + VALID_QUANTITY_BANANA;
     public static final String LOCATION_DESC_APPLE = " " + PREFIX_LOCATION + VALID_LOCATION_APPLE;
     public static final String LOCATION_DESC_BANANA = " " + PREFIX_LOCATION + VALID_LOCATION_BANANA;
+    public static final String LOCATION_DESC_PINEAPPLE = " " + PREFIX_LOCATION + VALID_LOCATION_PINEAPPLE;
     public static final String FILE_NAME_DESC = " " + PREFIX_FILE_NAME + VALID_FILE_NAME;
     public static final String SORT_ORDER_ASCENDING_DESC = " " + PREFIX_SORT_ORDER + VALID_SORT_ORDER_ASCENDING;
     public static final String SORT_ORDER_DESCENDING_DESC = " " + PREFIX_SORT_ORDER + VALID_SORT_ORDER_DESCENDING;
@@ -88,6 +100,7 @@ public class CommandTestUtil {
     public static final String NOTE_DESC = " " + PREFIX_NOTE + VALID_NOTE;
     public static final String NOTE_DESC_APPLE = " " + PREFIX_NOTE + VALID_NOTE_APPLE;
     public static final String NOTE_DESC_ORANGE = " " + PREFIX_NOTE + VALID_NOTE_ORANGE;
+    public static final String NOTE_DESC_PINEAPPLE = " " + PREFIX_NOTE + VALID_NOTE_PINEAPPLE;
     public static final String NOTE_INDEX_DESC = " " + PREFIX_NOTE_INDEX + VALID_NOTE_INDEX;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "donje#y"; // '#' not allowed in names
