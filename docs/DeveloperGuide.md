@@ -1004,7 +1004,6 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-
 ## **Appendix D: Non-Functional Requirements**
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -1074,18 +1073,6 @@ testers are expected to do more *exploratory* testing.
     
     1. Test case: `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020`
     <br>Expected: Expected: Student Brendan Tan has been added to the students list.
-    
-    1. Test case: `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214 t/5 1430-1630`
-    <br>Expected: Expected: Student Brendan Tan has been added to the students list.
-    
-    1. Test case: `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020 a/Likes to read a/Likes Algebra`
-    <br>Expected: Expected: Student Brendan Tan has been added to the students list.    
-    
-    1. Test case: `add n/Brendan Tan p/99 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020`
-    <br>Expected: Expected: No student is added as due to invalid phone number. Error details displayed in the result display.
-    
-    1. Test case: `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020`
-    <br>Expected: Expected: No student is added as due to missing year parameter. Error details displayed in the result display.
 
     1. Test case: `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/50/50/2020 a/Likes Algebra`
     <br>Expected: Expected: No student is added as due to invalid payment date. Error details displayed in the result display.
@@ -1097,11 +1084,11 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: At least one student in the students list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First student is deleted from the students list. Details of the deleted student shown in the result display.
+   1. Test case: `delete 1`
+   <br>Expected: First student is deleted from the students list. Details of the deleted student shown in the result display.
 
-   1. Test case: `delete 0`<br>
-      Expected: No student is deleted. Error details shown in the result display.
+   1. Test case: `delete 0`
+   <br>Expected: No student is deleted. Error details shown in the result display.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
