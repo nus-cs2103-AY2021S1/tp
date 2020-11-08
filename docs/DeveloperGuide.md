@@ -95,7 +95,7 @@ the result of the command execution and is passed back to the `Ui`,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deleteacc 1")` API call.
 
-![Interactions Inside the Logic Component for the `deleteacc 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deleteacc 1` Command](images/DeleteAccountSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">
 
@@ -154,7 +154,7 @@ This feature allows the user to delete previously added entries.
 
 #### Implementation
 
-The Find entries feature is facilitated by `DeleteCommand`. It extends `Command` and 
+The Delete entries feature is facilitated by `DeleteCommand`. It extends `Command` and 
 is identified by `CommonCentsParser` and `DeleteCommandParser`. The DeleteCommand interacts 
 with `Account` and the interactions are managed by `ActiveAccount`. As such, it implements the following
 operations: 
@@ -169,8 +169,33 @@ of `ActiveAccount`. `CommandParser` identifies the command word `delete` and cal
 to parse the input into a valid `DeleteCommand`.
 
 * Step 2: `DeleteCommand` starts to be executed. In the execution:
+    * If the user input for category matches that of the _Expense_ keyword, the entry matching the 
+    specified index in the Expense List will be removed.
+    * If the user input for category matches that of the _Revenue_ keyword, the entry matching the 
+    specified index in the Revenue List will be removed.
 
+The following sequence diagram shows how a delete entry operation works:
 
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Some of the interactions with the utility classes,
+such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+of the find entries command.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
+
+#### Design consideration
+Explanation why a certain design is chosen.
+
+##### Aspect: How find entries command is parsed
+* **Choice:** User needs to use prefixes before the keywords.
+    * Pros: 
+        * Easy to implement as the arguments can be tokenized in the event of inputs with multiple arguments.
+        * Allows Parser to filter out invalid commands
+    * Cons: Less convenience for the user. 
 
 
 ### Undo feature
