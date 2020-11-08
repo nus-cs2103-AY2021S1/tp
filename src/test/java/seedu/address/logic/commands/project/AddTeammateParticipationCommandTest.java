@@ -1,10 +1,7 @@
 package seedu.address.logic.commands.project;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_GIT_USERNAME_A;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalGitIndexes.GIT_USERINDEX_FIRST_TEAMMATE;
 import static seedu.address.testutil.TypicalGitIndexes.GIT_USERINDEX_INVALID_TEAMMATE;
@@ -22,27 +19,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.project.Project;
 
 public class AddTeammateParticipationCommandTest {
-
-    @Test
-    public void execute_validGitUserIndex_success() {
-        Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
-        Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        model.enter(project);
-
-        Model expectedModel = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
-        expectedModel.enter(project);
-        Project expectedProject = expectedModel.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        expectedProject.addParticipation(DESC_A);
-        expectedModel.addParticipation(expectedProject.getParticipation(DESC_A.getGitUserNameString()));
-
-        String expectedMessage =
-            String.format(AddTeammateParticipationCommand.MESSAGE_ADD_TEAMMATE_PARTICIPATION_SUCCESS,
-                VALID_TEAMMATE_GIT_USERNAME_A);
-        AddTeammateParticipationCommand addTeammateParticipationCommand =
-            new AddTeammateParticipationCommand(GIT_USERINDEX_FIRST_TEAMMATE);
-
-        assertCommandSuccess(addTeammateParticipationCommand, model, expectedMessage, expectedModel);
-    }
 
     @Test
     public void execute_validGitUserDuplicateParticipation_throwsCommandException() {

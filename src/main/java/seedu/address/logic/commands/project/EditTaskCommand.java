@@ -12,6 +12,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -48,6 +50,7 @@ public class EditTaskCommand extends Command {
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
+    private static final Logger logger = Logger.getLogger("EditTaskCommandLogger");
 
     /**
      * @param index              of the task in the filtered task list to edit
@@ -88,6 +91,7 @@ public class EditTaskCommand extends Command {
                 && model.getTaskToBeDisplayedOnDashboard().get().equals(taskToEdit)) {
             model.enter(editedTask);
         }
+        logger.log(Level.INFO, "Task edited");
 
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
