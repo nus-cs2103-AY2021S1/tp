@@ -252,7 +252,7 @@ For example, if you want to edit the 3rd flashcard in the displayed list, you ca
 
 You have successfully edited a flashcard.
 
-<div markdown="block"class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 :information_source:<br> 
 - You must have at least one edited field which is different from the previous flashcard.
