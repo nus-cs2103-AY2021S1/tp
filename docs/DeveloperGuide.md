@@ -304,7 +304,7 @@ Alternative implementations:
 * Store the SessionList as a JSON field in the existing Taskmaster file
     * Doing it this way would mean that the file would be repeatedly overwritten and any format errors will invalidate the whole file, including the StudentList.
 
-### ClassParticipation
+### Class Participation Score
 
 Author: **Theodore Leebrant**
 * Implement the class in charge of representing the class participation of each student in a session.
@@ -328,7 +328,7 @@ In setting the student's score, TAskmaster needs to comply with the following sp
 * (Extra goal) Able to score all students who are present.
 
 Based on the specification above, the following is the activity diagram when someone were to score a student's participation score:
-![Activity Diagram for Class Participation](images/ClassPartActivity.png)
+![Activity Diagram for Class Participation](images/ScoreActivityDiagram.png)
 
 **Design Considerations**
 
@@ -350,8 +350,8 @@ similar, if not the same sccore. The `mark all` command comes from our observati
 
 * Make `ClassParticipation` a field in `StudentRecord`.  
 This was the initial plan for `StudentRecord`. However, there are advantages to having ClassParticipation as its own class.
-This would support data abstraction as we abstract away lower level data items. The implementer of `StudentRecord` does 
-not need to know the internal details of the implementation of `ClassParticipation`, whether is it an enum (of, let's say
+This would support data abstraction as we abstract away lower level data items, as well as help with decoupling. 
+The implementer of `StudentRecord` does not need to know the internal details of the implementation of `ClassParticipation`, whether is it an enum (of, let's say
 `GREAT, GOOD, AVERAGE, BAD`) or a `double` score as we have chosen to implement. Having a `ClassParticipation` class would
 also support future expansion in the scoring of class participation without going through the internal details of `StudentRecord`.
 
@@ -802,7 +802,7 @@ The below testcases assume that you are in a session and have 7 students inside 
     4. Test case: `score 1 cp/11.4`  
     Expected: No student's score will be changed. An error shows that the input is invalid as it greater than 10.
 
-* Scoring multiple students
+* Scoring multiple students (all students who are present)
     1. Test case: `score all cp/8.2`  
     Expected:  
         * All students who are present are scored 8.2.
