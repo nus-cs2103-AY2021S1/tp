@@ -1,10 +1,10 @@
 package seedu.flashcard.model.flashcard;
 
-import seedu.flashcard.model.tag.Tag;
-
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
+
+import seedu.flashcard.model.tag.Tag;
 
 /**
  * Tests that a {@code Flashcard}'s {@code Tags} matches any of the keywords given.
