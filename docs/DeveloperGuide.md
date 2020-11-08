@@ -1784,14 +1784,14 @@ Step 8. Warenagerr jumps to the **Stock View** tab, where the details of the Sto
 
 #### Sequence Diagram
 The following sequence diagram shows how the Logic of Stock View feature works for Example 1:
-![Stock View Feature Logic Sequence Diagram](images/StockViewFeatureLogicSequenceDiagram.png)
+![Stock View Feature Logic Sequence Diagram](images/StockViewLogicSequenceDiagram.png)
 
 The following sequence diagram shows how the UI of Stock View feature works for Example 1:
-![Stock View Feature UI Sequence Diagram](images/StockViewFeatureUISequenceDiagram.png)
+![Stock View Feature UI Sequence Diagram](images/StockViewUISequenceDiagram.png)
 
 #### Activity Diagram
 The following activity diagram summarizes what happens when the Stock View feature is triggered:
-![Stock View Feature Activity Diagram](images/StockViewFeatureActivityDiagram.png)
+![Stock View Feature Activity Diagram](images/StockViewActivityDiagram.png)
 
 #### Design Consideration
 
