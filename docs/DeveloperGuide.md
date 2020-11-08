@@ -62,7 +62,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete recipe #1`:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ArchitectureSequenceDiagram.png" style="width: 75%" /> <br />
+<img src="images/dg/ArchitectureSequenceDiagram.png" style="width: 75%" /> <br />
 Figure 2: <i>A sequence diagram showing the execution of <code>delete recipe #1</code></i>
 </div>
 
@@ -80,7 +80,7 @@ The *UI* component is responsible for all the user-facing views in the graphical
 The class diagram of the UI component is shown below:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UiClassDiagram.png" /> <br />
+<img src="images/dg/UiClassDiagram.png" /> <br />
 Figure 3: <i>The class diagram of the UI component</i>
 </div>
 
@@ -144,7 +144,7 @@ The *Model* component is responsible for holding the data of the application (eg
 The class diagram of the *Model* component is shown below:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ModelClassDiagram.png" /> <br />
+<img src="images/dg/ModelClassDiagram.png" /> <br />
 Figure 6: <i>The class diagram of the Model component</i>
 </div>
 
@@ -179,7 +179,7 @@ Currently, the Jackson library is used for (de)serialisation.
 The class diagram of the *Storage* component is shown below:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/StorageClassDiagram.png"> <br />
+<img src="images/dg/StorageClassDiagram.png"> <br />
 Figure 8: <i>The class diagram of the Storage component</i>
 </div>
 
@@ -476,7 +476,7 @@ It is mainly supported by `UsageList` and `Usage` in the Model component. `Usage
 
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UsageClassDiagram.png" style="width: 45%"> <br />
+<img src="images/dg/UsageClassDiagram.png" style="width: 45%"> <br />
 Figure 999: <i>Usage component in Model</i>
 </div>
 
@@ -562,7 +562,7 @@ It is executed with `StatsRecipeTopCommand` by parsing `stats recipe top` as the
 
 The sequence diagram below shows the sequence of interactions between `Model` where the UsageList is contained in and the `Logic` components after the user executes StatsRecipeTopCommand with the user input `stats recipe top`.
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/StatsRecipeTopSequenceDiagram.png"> <br />
+<img src="images/dg/StatsRecipeTopSequenceDiagram.png"> <br />
 Figure ???: <i>The sequence diagram of the execution of StatsRecipeTopCommand </i>
 </div>
 
@@ -576,7 +576,7 @@ Figure ???: <i>The sequence diagram of the execution of StatsRecipeTopCommand </
 
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/RecipetopCmdStatsBox.png" style="width: 40%"> <br />
+<img src="images/dg/RecipeTopCmdStatsBox.png" style="width: 40%"> <br />
 Figure 8000. GUI of statistics box after `stats recipe top` command is executed</i>
 </div>
 
@@ -601,29 +601,29 @@ Further details can be seen in the example usage scenario detailing the mechanis
 Step 1. The user launches the application for the first time.
 The `HistoryManager` is initialised with an empty list of `CommandHistory`s, as no commands have been entered, and the `currentIndex` pointer is intialised to 0.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+![UndoRedoState0](images/dg/state/UndoRedoState0.png)
 
 Step 2. The user executes `delete recipe #5` to delete the 5th recipe from the recipe book.
 The model is updated accordingly, and the `DeleteRecipeCommand` is saved by the `HistoryManager` by adding to the `CommandHistory` list, as the command implements the `Undoable` interface.
 The `currentIndex` pointer is also incremented by one, as the application is currently at the state after the `DeleteRecipeCommand` is executed.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+![UndoRedoState1](images/dg/state/UndoRedoState1.png)
 
 Step 3. The user executes `add recipe beef noodles` to add a new recipe.
 Similarly, the model is updated accordingly, and the `AddRecipeCommand` is added to the `CommandHistory` list.
 The `currentIndex` pointer is once again incremented by one.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+![UndoRedoState2](images/dg/state/UndoRedoState2.png)
 
 Step 4. The user now desires to undo the last action, and executes the `undo` command.
 The `undo` command will call `HistoryManager#undo()`, which will decrement the `currentIndex` pointer by one and retrieve the command from the list at the specified index.
 The command's `Undoable#undo()` operation will then be executed.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+![UndoRedoState3](images/dg/state/UndoRedoState3.png)
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+![UndoSequenceDiagram](images/dg/UndoSequenceDiagram.png)
 
 The `redo` command does the opposite — it calls `HistoryManager#redo()`, which executes the command `currentIndex` is pointing to, and increments the `currentIndex` by one.
 
@@ -631,11 +631,11 @@ Step 5. The user then decides to execute the command `list recipes`.
 Commands that do not modify the model, such as `list recipes`, will not be stored by the `HistoryManager` as they cannot be undone.
 Since the `currentIndex` is not pointing to the end of the `CommandHistory` list, all commands starting from the `currentIndex` will be cleared, which in this case is the `add recipe beef noodles` command.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+![UndoRedoState4](images/dg/state/UndoRedoState4.png)
 
 The following activity diagram summarises what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+![CommitActivityDiagram](images/dg/CommitActivityDiagram.png)
 
 #### Design consideration:
 
