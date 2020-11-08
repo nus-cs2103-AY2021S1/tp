@@ -34,7 +34,7 @@ public class SolveQuestionCommand extends QuestionCommand {
             + PREFIX_TEXT + "QUESTION_TEXT\n\n"
             + "Example: "
             + QuestionCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1 "
-            + PREFIX_INDEX + "1 " + PREFIX_TEXT + "They don't.";
+            + PREFIX_INDEX + "1 " + PREFIX_TEXT + "Read your textbook.";
 
     private static Logger logger = Logger.getLogger("Solve Question Log");
 
