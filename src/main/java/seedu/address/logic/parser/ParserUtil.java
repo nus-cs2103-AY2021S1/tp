@@ -24,7 +24,7 @@ import seedu.address.model.task.event.StartDateTime;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index is not a positive integer.";
     public static final String MESSAGE_MISSING_INDEX = "Index is not supplied in the argument.";
 
     /**

@@ -66,7 +66,7 @@ public class Planus implements ReadOnlyPlanus {
      * Replaces the contents of the task list with {@code tasks}.
      * {@code tasks} must not contain duplicate tasks.
      */
-    public void setCalendarTasks(List<Task> tasks) {
+    public void setCalendarList(List<Task> tasks) {
         this.calendarTasks.setCalendarList(tasks);
     }
 
@@ -78,7 +78,7 @@ public class Planus implements ReadOnlyPlanus {
 
         setTasks(newData.getTaskList());
         setLessons(newData.getLessonList());
-        setCalendarTasks(newData.getCalendarList());
+        setCalendarList(newData.getCalendarList());
     }
 
     //// task-level operations

@@ -87,6 +87,10 @@ public class Event extends Task implements TimeSlot {
         return this.startDateTime.getValue().toLocalDate();
     }
     @Override
+    public LocalDateTime getStartTime() {
+        return startDateTime.getValue();
+    }
+    @Override
     public boolean isSameTask(Task otherTask) {
         if (otherTask instanceof Event) {
             return isSameEvent((Event) otherTask);

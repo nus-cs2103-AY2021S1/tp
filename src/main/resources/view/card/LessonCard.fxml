@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" onMouseEntered="#handleMouseIn" onMouseExited="#handleMouseOut" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -26,7 +26,7 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="title" styleClass="cell_big_label" text="\\$title" />
+                <Label fx:id="title" styleClass="cell_big_label" text="\\$title" wrapText="true" />
             </HBox>
          <FlowPane fx:id="tags" />
             <HBox spacing="5.0">
@@ -41,18 +41,18 @@
                     <Label fx:id="time" styleClass="cell_small_label" text="\\$time" />
                 </children>
             </HBox>
-            <HBox spacing="5.0">
-                <children>
+         <VBox>
+            <children>
                     <Label text="Recurrence period:" />
                     <Label fx:id="recurrence" styleClass="cell_small_label" text="\\$recurrence" />
-                </children>
-            </HBox>
-            <HBox fx:id="descriptionHolder" spacing="5.0">
-                <children>
+            </children>
+         </VBox>
+         <VBox fx:id="descriptionHolder">
+            <children>
                     <Label text="Description:" />
                     <Label fx:id="description" styleClass="cell_small_label" text="\\$description" />
-                </children>
-            </HBox>
+            </children>
+         </VBox>
         </VBox>
         <rowConstraints>
             <RowConstraints />
