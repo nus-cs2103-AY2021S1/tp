@@ -633,6 +633,13 @@ Points to take note when viewing session from the Session List:
  | `+[x][unit]` | Sessions within next x time units|
  | `-[x][unit]` | Sessions within past x time units|
  
+ <div markdown="block" class="alert alert-info"> 
+ 
+ :information_source: **Note:**
+  
+ For variable periods, x must be a positive integer below 1 million. Using values 1 million and above may have unintended consequences.
+ 
+ </div>
  
  * The recognized units are as follows:
  <center>Table 3 - List of recognized time units </center>
