@@ -8,10 +8,10 @@ import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_A;
 import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_B;
 import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_C;
 import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_D;
+import static nustorage.logic.commands.CommandTestUtil.EDGE_AMOUNT;
+import static nustorage.logic.commands.CommandTestUtil.EDGE_ID;
 import static nustorage.logic.commands.CommandTestUtil.HAS_INVENTORY_A;
 import static nustorage.logic.commands.CommandTestUtil.HAS_INVENTORY_B;
-import static nustorage.logic.commands.CommandTestUtil.HAS_INVENTORY_C;
-import static nustorage.logic.commands.CommandTestUtil.HAS_INVENTORY_D;
 import static nustorage.logic.commands.CommandTestUtil.ID_A;
 import static nustorage.logic.commands.CommandTestUtil.ID_B;
 import static nustorage.logic.commands.CommandTestUtil.ID_C;
@@ -73,21 +73,35 @@ class JsonAdaptedFinanceRecordTest {
     @Test
     void toModelType_validDetailsC_returnsFinanceRecord() throws Exception {
         JsonAdaptedFinanceRecord testFinanceRecord =
-                new JsonAdaptedFinanceRecord(ID_C, AMOUNT_C, DATE_TIME_C, HAS_INVENTORY_C);
-        assertEquals(new FinanceRecord(ID_C, AMOUNT_C, DATE_TIME_C, HAS_INVENTORY_C), testFinanceRecord.toModelType());
+                new JsonAdaptedFinanceRecord(ID_C, AMOUNT_C, DATE_TIME_C, HAS_INVENTORY_A);
+        assertEquals(new FinanceRecord(ID_C, AMOUNT_C, DATE_TIME_C, HAS_INVENTORY_A), testFinanceRecord.toModelType());
     }
 
     @Test
     void toModelType_validDetailsD_returnsFinanceRecord() throws Exception {
         JsonAdaptedFinanceRecord testFinanceRecord =
-                new JsonAdaptedFinanceRecord(ID_D, AMOUNT_D, DATE_TIME_D, HAS_INVENTORY_D);
-        assertEquals(new FinanceRecord(ID_D, AMOUNT_D, DATE_TIME_D, HAS_INVENTORY_D), testFinanceRecord.toModelType());
+                new JsonAdaptedFinanceRecord(ID_D, AMOUNT_D, DATE_TIME_D, HAS_INVENTORY_B);
+        assertEquals(new FinanceRecord(ID_D, AMOUNT_D, DATE_TIME_D, HAS_INVENTORY_B), testFinanceRecord.toModelType());
+    }
+
+    @Test
+    void toModelType_edgeId_returnsFinanceRecord() throws Exception {
+        JsonAdaptedFinanceRecord testFinanceRecord =
+            new JsonAdaptedFinanceRecord(EDGE_ID, AMOUNT_A, DATE_TIME_D, HAS_INVENTORY_B);
+        assertEquals(new FinanceRecord(EDGE_ID, AMOUNT_A, DATE_TIME_D, HAS_INVENTORY_B), testFinanceRecord.toModelType());
+    }
+
+    @Test
+    void toModelType_edgeAmount_returnsFinanceRecord() throws Exception {
+        JsonAdaptedFinanceRecord testFinanceRecord =
+            new JsonAdaptedFinanceRecord(ID_A, EDGE_AMOUNT, DATE_TIME_D, HAS_INVENTORY_B);
+        assertEquals(new FinanceRecord(ID_A, EDGE_AMOUNT, DATE_TIME_D, HAS_INVENTORY_B), testFinanceRecord.toModelType());
     }
 
     @Test
     void toModelType_invalidAmount_throwsIllegalValueException() {
         JsonAdaptedFinanceRecord testFinanceRecord =
-                new JsonAdaptedFinanceRecord(ID_A, -1, DATE_TIME_D, HAS_INVENTORY_D);
+                new JsonAdaptedFinanceRecord(ID_A, -1, DATE_TIME_D, HAS_INVENTORY_B);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "amount");
         assertThrows(IllegalValueException.class, expectedMessage, testFinanceRecord::toModelType);
     }
