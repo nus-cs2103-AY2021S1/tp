@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.seller.Seller;
 
@@ -63,4 +64,9 @@ public interface SellerModel {
      */
     void updateFilteredSellerList(Predicate<? super Person> predicate);
 
+    /**
+     * Checks the model if there are bidders that are the same as the current seller except
+     * for the seller itself
+     */
+    boolean hasSellerExceptSellerId(Seller editedSeller, SellerId sellerId);
 }

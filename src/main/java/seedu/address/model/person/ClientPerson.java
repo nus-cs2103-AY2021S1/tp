@@ -42,7 +42,8 @@ public abstract class ClientPerson extends Person {
      * @return if the client contains the same information .
      */
     public boolean isSameClient(ClientPerson otherClient) {
-        return otherClient != null && ((this == otherClient)
+        return  otherClient != null
+                && (this == otherClient
                 || this.getName().equals(otherClient.getName())
                 || this.getPhone().equals(otherClient.getPhone()));
     }

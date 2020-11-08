@@ -1,6 +1,7 @@
 package seedu.address.model.bidderaddressbook;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -101,6 +102,11 @@ public class BidderAddressBook implements ReadOnlyBidderAddressBook {
         bidders.remove(key);
     }
 
+    public boolean hasBidderExceptBidderId(Bidder editedBidder, BidderId bidderId) {
+        requireAllNonNull(editedBidder, bidderId);
+        return bidders.containsExceptBidderId(editedBidder, bidderId);
+    }
+
     //// util methods
 
     @Override
@@ -112,6 +118,7 @@ public class BidderAddressBook implements ReadOnlyBidderAddressBook {
     public ObservableList<Bidder> getBidderList() {
         return bidders.asUnmodifiableObservableList();
     }
+
 
     @Override
     public boolean equals(Object other) {

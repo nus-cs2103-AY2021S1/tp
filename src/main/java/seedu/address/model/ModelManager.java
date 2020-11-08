@@ -470,6 +470,12 @@ public class ModelManager implements Model {
         filteredBidders.setPredicate(predicate);
     }
 
+    @Override
+    public boolean hasBidderExceptBidderId(Bidder editedBidder, BidderId bidderId) {
+        requireNonNull(editedBidder);
+        return bidderAddressBook.hasBidderExceptBidderId(editedBidder, bidderId);
+    }
+
     //=========== Seller =============================================================
 
     @Override
@@ -505,7 +511,6 @@ public class ModelManager implements Model {
     @Override
     public void setSeller(Seller target, Seller editedSeller) {
         requireAllNonNull(target, editedSeller);
-
         sellerAddressBook.setSeller(target, editedSeller);
     }
 
@@ -529,6 +534,12 @@ public class ModelManager implements Model {
     public void updateFilteredSellerList(Predicate<? super Person> predicate) {
         requireNonNull(predicate);
         filteredSellers.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean hasSellerExceptSellerId(Seller editedSeller, SellerId sellerId) {
+        requireNonNull(editedSeller);
+        return sellerAddressBook.hasSellerExceptSellerId(editedSeller, sellerId);
     }
 
     //=========== EQUALS =============================================================

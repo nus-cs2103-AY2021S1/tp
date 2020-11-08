@@ -10,7 +10,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bidbook.ReadOnlyBidBook;
 import seedu.address.model.bidderaddressbook.BidderModel;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.person.seller.Seller;
 import seedu.address.model.propertybook.PropertyModel;
 import seedu.address.model.selleraddressbook.SellerModel;
 

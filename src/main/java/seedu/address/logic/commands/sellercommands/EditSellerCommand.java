@@ -65,7 +65,7 @@ public class EditSellerCommand extends Command {
         Seller sellerToEdit = lastShownList.get(index.getZeroBased());
         Seller editedSeller = createEditedSeller(sellerToEdit, editSellerDescriptor);
 
-        if (!sellerToEdit.isSameSeller(editedSeller) || model.hasSeller(editedSeller)) {
+        if (model.hasSellerExceptSellerId(editedSeller, (SellerId) sellerToEdit.getId())) {
             throw new CommandException(MESSAGE_DUPLICATE_SELLER);
         }
 

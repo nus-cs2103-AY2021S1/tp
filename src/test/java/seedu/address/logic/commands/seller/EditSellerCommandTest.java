@@ -135,6 +135,35 @@ public class EditSellerCommandTest {
 
 
     @Test
+    public void execute_sameNameDifferentPhoneUnfilteredList_failure() {
+        String phoneNumberOfFirstSeller = "99999";
+        Index indexLastSeller = Index.fromOneBased(model.getFilteredSellerList().size());
+        Seller lastSeller = model.getFilteredSellerList().get(indexLastSeller.getZeroBased());
+
+        EditSellerDescriptor sellerDescriptor = new EditSellerDescriptorBuilder()
+                .withName(lastSeller.getName().toString())
+                .withPhone(phoneNumberOfFirstSeller).build();
+
+        EditSellerCommand editSellerCommand = new EditSellerCommand(indexLastSeller, sellerDescriptor);
+
+        assertSellerCommandFailure(editSellerCommand, model, EditSellerCommand.MESSAGE_DUPLICATE_SELLER);
+    }
+
+    @Test
+    public void execute_differentNameSamePhoneUnfilteredList_failure() {
+        String nameOfFirstSeller = "Alice Pauline";
+        Index indexLastSeller = Index.fromOneBased(model.getFilteredSellerList().size());
+        Seller lastSeller = model.getFilteredSellerList().get(indexLastSeller.getZeroBased());
+
+        EditSellerDescriptor sellerDescriptor = new EditSellerDescriptorBuilder()
+                .withName(nameOfFirstSeller).withPhone(lastSeller.getPhone().toString()).build();
+
+        EditSellerCommand editSellerCommand = new EditSellerCommand(indexLastSeller, sellerDescriptor);
+
+        assertSellerCommandFailure(editSellerCommand, model, EditSellerCommand.MESSAGE_DUPLICATE_SELLER);
+    }
+
+    @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredSellerList().size() + 1);
         EditSellerDescriptor sellerDescriptor = new EditSellerDescriptorBuilder().withName(VALID_NAME_BOB).build();

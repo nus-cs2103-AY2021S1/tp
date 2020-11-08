@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.bidder;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.bidder.BidderCommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.bidder.BidderCommandTestUtil.DESC_BOB;
@@ -12,6 +13,7 @@ import static seedu.address.logic.commands.bidder.BidderCommandTestUtil.showBidd
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
+import static seedu.address.testutil.seller.TypicalSeller.ALICE;
 import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -26,6 +28,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.bidbook.BidBook;
+import seedu.address.model.id.BidderId;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.propertybook.PropertyBook;
 import seedu.address.testutil.bidder.BidderBuilder;
@@ -79,6 +82,35 @@ public class EditBidderCommandTest {
         expectedModel.setBidder(lastBidder, editedBidder);
 
         assertBidderCommandSuccess(editBidderCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_sameNameDifferentPhoneUnfilteredList_failure() {
+        String phoneNumberOfFirstBidder = "99999";
+        Index indexLastBidder = Index.fromOneBased(model.getFilteredBidderList().size());
+        Bidder lastBidder = model.getFilteredBidderList().get(indexLastBidder.getZeroBased());
+
+        EditBidderDescriptor bidderDescriptor = new EditBidderDescriptorBuilder()
+                .withName(lastBidder.getName().toString())
+                .withPhone(phoneNumberOfFirstBidder).build();
+
+        EditBidderCommand editBidderCommand = new EditBidderCommand(indexLastBidder, bidderDescriptor);
+
+        assertBidderCommandFailure(editBidderCommand, model, EditBidderCommand.MESSAGE_DUPLICATE_BIDDER);
+    }
+
+    @Test
+    public void execute_differentNameSamePhoneUnfilteredList_failure() {
+        String nameOfFirstBidder = "Alice Pauline";
+        Index indexLastBidder = Index.fromOneBased(model.getFilteredBidderList().size());
+        Bidder lastBidder = model.getFilteredBidderList().get(indexLastBidder.getZeroBased());
+
+        EditBidderDescriptor bidderDescriptor = new EditBidderDescriptorBuilder()
+                .withName(nameOfFirstBidder).withPhone(lastBidder.getPhone().toString()).build();
+
+        EditBidderCommand editBidderCommand = new EditBidderCommand(indexLastBidder, bidderDescriptor);
+
+        assertBidderCommandFailure(editBidderCommand, model, EditBidderCommand.MESSAGE_DUPLICATE_BIDDER);
     }
 
     @Test

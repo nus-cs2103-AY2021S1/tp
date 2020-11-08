@@ -1,6 +1,7 @@
 package seedu.address.model.selleraddressbook;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.person.seller.Seller;
 
 /**
@@ -13,5 +14,4 @@ public interface ReadOnlySellerAddressBook {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Seller> getSellerList();
-
 }

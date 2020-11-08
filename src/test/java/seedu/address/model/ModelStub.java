@@ -11,6 +11,7 @@ import seedu.address.model.bidbook.ReadOnlyBidBook;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
 import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.bidder.Bidder;
@@ -222,6 +223,11 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
+    @Override
+    public boolean hasBidderExceptBidderId(Bidder editedBidder, BidderId bidderId) {
+        throw new AssertionError("This method should not be called.");
+    }
+
     // ================= SELLER =================
 
     @Override
@@ -273,6 +279,12 @@ public class ModelStub implements Model {
     public void updateFilteredSellerList(Predicate<? super Person> predicate) {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public boolean hasSellerExceptSellerId(Seller editedSeller, SellerId sellerId) {
+        throw new AssertionError("This method should not be called.");
+    }
+
 
     // ================= BID =================
 
