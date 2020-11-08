@@ -83,7 +83,7 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManagerForExercise storage = new StorageManagerForExercise(exerciseBookStorage, userPrefsStorage);
-        logic = new LogicManagerForExercise(model,storage,null);
+        logic = new LogicManagerForExercise(model, storage, null);
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD
