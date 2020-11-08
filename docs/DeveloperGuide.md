@@ -593,7 +593,7 @@ Use case ends.
 
 **Extensions**
 
-1a. McGymmy notices that there is no command left to undo.
+1a. McGymmy shows the error message that there is no command left to undo.
 
 Use case ends.
 
