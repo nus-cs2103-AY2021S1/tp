@@ -2870,6 +2870,24 @@ testers are expected to do more *exploratory* testing.
        Expected: The stocks in inventory will not be sorted since `random` is an invalid order.
        Error details shown in the status message. Suggestion message will be shown too.
 
+### Suggestion message
+
+1. Generates suggestion message for invalid commands.
+
+    1. Prerequisites: An invalid command format is entered.
+
+    1. Test case: `sor o/ascending by/name`<br>
+       Expected: Unknown command error will be shown, along with the suggestion `sort o/ascending by/name` and
+       `sort` command message usage.
+       
+    1. Test case: `add n/apple s/fairprice q/1000 lq/100`<br>
+       Expected: Invalid command format error will be shown, along with the suggestion 
+       `add n/apple s/fairprice q/1000 l/<location> lq/100` and `add` command message usage.
+    
+    1. Test case: `fin n/apple`<br>
+       Expected: Unknown command error will be shown, along with the suggestion `find n/apple`
+       and `find` command message usage.
+
 ### Generate statistics
 
 1. Generating statistics for a target field.
