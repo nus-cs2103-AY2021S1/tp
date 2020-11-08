@@ -155,4 +155,13 @@ public class UniqueSellerList implements Iterable<Seller> {
         }
         return true;
     }
+
+    /**
+     * Returns true if the list contains a seller that is equivalent to the seller.
+     */
+    public boolean containsExceptSellerId(Seller inCheck, SellerId excludedId) {
+        requireAllNonNull(inCheck, excludedId);
+        return internalList.stream().filter(seller -> !(seller.getId().equals(excludedId)))
+                .anyMatch(inCheck::isSameSeller);
+    }
 }

@@ -82,6 +82,35 @@ public class EditBidderCommandTest {
     }
 
     @Test
+    public void execute_sameNameDifferentPhoneUnfilteredList_failure() {
+        String phoneNumberOfFirstBidder = "99999";
+        Index indexLastBidder = Index.fromOneBased(model.getFilteredBidderList().size());
+        Bidder lastBidder = model.getFilteredBidderList().get(indexLastBidder.getZeroBased());
+
+        EditBidderDescriptor bidderDescriptor = new EditBidderDescriptorBuilder()
+                .withName(lastBidder.getName().toString())
+                .withPhone(phoneNumberOfFirstBidder).build();
+
+        EditBidderCommand editBidderCommand = new EditBidderCommand(indexLastBidder, bidderDescriptor);
+
+        assertBidderCommandFailure(editBidderCommand, model, EditBidderCommand.MESSAGE_DUPLICATE_BIDDER);
+    }
+
+    @Test
+    public void execute_differentNameSamePhoneUnfilteredList_failure() {
+        String nameOfFirstBidder = "Alice Pauline";
+        Index indexLastBidder = Index.fromOneBased(model.getFilteredBidderList().size());
+        Bidder lastBidder = model.getFilteredBidderList().get(indexLastBidder.getZeroBased());
+
+        EditBidderDescriptor bidderDescriptor = new EditBidderDescriptorBuilder()
+                .withName(nameOfFirstBidder).withPhone(lastBidder.getPhone().toString()).build();
+
+        EditBidderCommand editBidderCommand = new EditBidderCommand(indexLastBidder, bidderDescriptor);
+
+        assertBidderCommandFailure(editBidderCommand, model, EditBidderCommand.MESSAGE_DUPLICATE_BIDDER);
+    }
+
+    @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditBidderCommand editBidderCommand = new EditBidderCommand(INDEX_FIRST_PERSON, new EditBidderDescriptor());
         Bidder editedBidder = model.getFilteredBidderList().get(INDEX_FIRST_PERSON.getZeroBased());
