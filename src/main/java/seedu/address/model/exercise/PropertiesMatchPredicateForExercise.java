@@ -40,7 +40,7 @@ public class PropertiesMatchPredicateForExercise implements Predicate<Exercise> 
         }
         if (keywords != null) {
             result = result && (new NameContainsKeywordsPredicateForExercise(keywords).test(exercise)
-            || new DescriptionContainsKeywordsPredicateForExercise(keywords).test(exercise));
+                || new DescriptionContainsKeywordsPredicateForExercise(keywords).test(exercise));
         }
 
         return result;

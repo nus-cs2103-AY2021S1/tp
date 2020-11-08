@@ -39,11 +39,11 @@ public class RecallCommand extends CommandForExercise {
         filteredExercises = model.getFilteredExerciseList();
         for (Exercise exercise : filteredExercises) {
             if (name.fullName.equalsIgnoreCase(exercise.getName().fullName)
-            && (!currentDay.before(exercise.getDate().getActualDate()))) {
+                && (!currentDay.before(exercise.getDate().getActualDate()))) {
                 if (date == null) {
                     date = exercise.getDate();
                 } else {
-                    date = date.isBefore(exercise.getDate())? exercise.getDate() : date;
+                    date = date.isBefore(exercise.getDate()) ? exercise.getDate() : date;
                 }
             }
         }
