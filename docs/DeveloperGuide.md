@@ -389,9 +389,9 @@ Given below is an example usage scenario and how the LoadPresetCommand behaves a
 
 Step 1: The user has selected a vendor with `vendor i`.
 
-Step 2: The user enters the command `load preset sample` to load the preset named sample.
+Step 2: The user enters the command `load preset sample` to load the preset named `sample`.
 
-Step 3: `Storage#readPresetManager()` is executed to retrieve the list of all presets, `presets` from the json file.
+Step 3: `Storage#readPresetManager()` is executed to retrieve the list of all presets, `allLists`,from the presets json file.
 
 Step 4: The preset with the name `sample` for vendor `i` exists and is valid.
 
@@ -417,9 +417,9 @@ Step 1: The user has selected a vendor with `vendor i`.
 
 Step 2: The user has added items with `add i qty`.
 
-Step 3: The user enters the command `save preset sample` to save the preset as named sample.
+Step 3: The user enters the command `save preset sample` to save the preset with the name `sample`.
 
-Step 4: `Storage#readPresetManager()` is executed to retrieve the list of all presets, `presets` from the json file.
+Step 4: `Storage#readPresetManager()` is executed to retrieve the list of all presets, `allLists`, from the presets json file.
 
 Step 5: The preset with the name `sample` for vendor `i` does not exist.
 
@@ -427,9 +427,9 @@ Step 6:  The current order item list, `orderItemList`, is retrieved by executing
 
 Step 7: `orderItemList` is converted to a preset named `sample`.
 
-Step 7: `sample` is added to the vendor index `i` position of `allLists`.
+Step 8: `sample` is added to the vendor index `i` position of `allLists`.
 
-Step 8: `Storage#savePresetManager()` is executed to save the modified `allLists` into the `presets` json file.
+Step 9: `Storage#savePresetManager()` is executed to save the modified `allLists` into the `presets` json file.
 
 
 
@@ -437,6 +437,31 @@ Given below is the activity diagram for SavePresetCommand.
 
 ![SavePresetCommandActivityDiagram](images/SavePresetCommandActivityDiagram.png)
 
+
+
+The following diagram sequence summarises the sequence when the DeletePresetCommand is executed.
+
+![DeletePresetSequenceDiagram](images/DeletePresetCommandSequenceDiagram.png)
+
+Given below is an example usage scenario and how the DeletePresetCommand behaves at each step.
+
+Step 1: The user has selected a vendor with `vendor i`.
+
+Step 2: The user enters the command `delete preset sample` to delete the preset named 'sample' stored in the user's presets json file.
+
+Step 3: `Storage#readPresetManager()` is executed to retrieve the list of all presets, from the presets json file.
+
+Step 4: The preset with the name `sample` for vendor `i` exists.
+
+Step 5: `sample` is removed from the vendor index `i` position of `allLists`.
+
+Step 6: `Storage#savePresetManager()` is executed to save the modified `allLists` into the `presets` json file.
+
+
+
+Given below is the activity diagram for SavePresetCommand.
+
+![SavePresetCommandActivityDiagram](images/SavePresetCommandActivityDiagram.png)
 
 
 
