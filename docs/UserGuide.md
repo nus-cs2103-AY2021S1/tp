@@ -91,6 +91,7 @@ a child level of `PROJECT` and it is definitely not in `PERSON` scope because `P
 Shows a message explaning how to access the help page.
 
 ![help message](images/helpMessage.png)
+
    *Figure 2: Help message popup*
 
 Format: `help`
@@ -99,11 +100,15 @@ Format: `help`
 
 Closes the application for the user.
 
-Format: exit
+Format: `exit`
 
 ### 2.1.3 List all projects in the catalogue `listprojects`
 
 List all projects currently in the project catalogue.
+
+![list_projects](images/listProjects.png)
+
+   *Figure 3: List of projects shows up*
 
 Format: `listprojects`
 - Lists all projects if there are projects in the catalogue
@@ -114,6 +119,10 @@ Example: `listprojects` lists all projects in the catalogue to the user.
 
 List all persons currently in the catalogue.
 
+![list_persons](images/listPersons.png)
+
+   *Figure 4: List of persons shows up*
+
 Format: `listpersons`
 - Lists all persons if there are persons in the catalogue
 
@@ -122,6 +131,14 @@ Example: `listpersons` lists all persons in the catalogue to the user.
 ### 2.1.5 Leave a current page `leave`
 
 Leave the current page and go back to the parent scope (one level up).
+
+![before_leave_person](images/beforeLeavePersonDashboard.png)
+
+   *Figure 5: Before `leave`, a person named Alice Pauline shows on the person dashboard*
+   
+![after_leave_person](images/afterLeavePersonDashboard.png)
+
+   *Figure 6: After `leave`, person dashboard is cleared*
 
 Format: `leave`
 - Leaves the current page (clear the right-most non-empty dashboard) and shifts the scoping status to the parent scope
