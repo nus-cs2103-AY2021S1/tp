@@ -744,8 +744,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`    | Second-time user      | find the emergency contacts of my employees quickly if they are injured | find the person to contact and know what action to take in the shortest time possible |
 | `* * *`    | Second-time user      | set all different ingredients levels to standard default amounts   | easily start using tCheck to track ingredients in my store |
 | `* * *`    | Second-time user      | set different ingredients levels to different default amounts   | be able to use tCheck to track my store's ingredients and their usage levels |
-| `* * *`    | Intermediate user      | input the number of each type of drinks sold into tCheck at the end of the day | obtain the amount of remaining ingredients without doing the calculation   |
-| `* * *`    | Intermediate user      | input the number of each type of drinks sold into tCheck at the end of the day  | obtain the amount of remaining ingredients without doing the calculation   |
+| `* * *`    | Intermediate user      | input the number of each type of drinks sold into tCheck at the end of the day | keep a record of the sales of the drinks |
 | `* * *`    | Intermediate user      | find a specific ingredient consumption  | check an individual ingredient's level quickly   |
 | `* * `    | Intermediate user      | see a ranking of the drinks sold | easily compare and identify the most popular drink in the shop so far   |
 | `* * `    | Intermediate user      | view the list of drinks sold for the day | check that I have input the correct number and see a visual overview of the sales of drinks   |
