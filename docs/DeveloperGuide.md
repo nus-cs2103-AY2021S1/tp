@@ -205,8 +205,7 @@ Step 4. Within `Model`, the method `Model#addModule(Module)` is executed and thi
 Step 5. Once the `Module` has been added to the `internaList`, `AddModuleCommand#execute(Model)` creates an
 `CommandResult` object and the `CommandResult` is returned to `LogicManager`.
 
-> Note
-> There are some differences for the add commands of `TutorialGroup` and `Student` during Step 4.
+> Note: There are some differences for the add commands of `TutorialGroup` and `Student` during Step 4.
 >
 > For `TutorialGroup`:
 > - Within each `Module`, there is a `UniqueTutorialGroupList`.
