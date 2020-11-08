@@ -123,7 +123,7 @@ This is the general flow of events when a command is executed:
 
 For example, this is a sequence diagram showing the deletion of a recipe:
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/dg/seq_delete_recipe.png" style="width: 95%" /> <br />
+<img src="images/dg/DeleteSequenceDiagram.png" style="width: 95%" /> <br />
 Figure 5: <i>A sequence diagram showing the execution of <code>delete recipe #1</code> in the Logic component</i>
 </div>
 
