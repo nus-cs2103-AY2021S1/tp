@@ -35,7 +35,7 @@ title: Developer Guide
         * [3.3.1 Implementation](#331-implementation)
         * [3.3.2 Design Consideration - **List Recipes**](#332-design-consideration-list-recipe)
             * [Aspect 1 : Concern while adding a new feature](#3321-aspect-1)
-            * [Aspect 2: What and how to show recipe information](#3322-aspect-2)
+            * [Aspect 2: What recipe information to show and how to show them](#3322-aspect-2)
         * [3.3.3 Design Consideration - **List Ingredients**](#333-design-consideration-list-ingredient)
              * [Aspect: Concern while adding a new feature](#3331-aspect)
         * [3.3.4 Design Consideration - **List Consumptions**](#334-design-consideration-list-consumption)
@@ -451,7 +451,7 @@ Given below is an example usage scenario and how the mechanism behaves:
 ##### Aspect 1: Concern while adding a new feature <a id="3321-aspect-1"></a>
 * Workflow must be consistent with other commands. <br><br>
 
-##### Aspect 2: What and how to show recipe information. <a id="3322-aspect-2"></a>
+##### Aspect 2: What recipe information to show and how to show them. <a id="3322-aspect-2"></a>
 * **Alternative 1 (*current choice*):** Show all fields and truncate if too long.
   * Pros: Show all relevant fields of all recipes consistently.
   * Cons: More inconvenience to see the full details of each recipe.

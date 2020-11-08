@@ -53,7 +53,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Added support for quantity for ingredients (Pull requests [\#82](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/82))
     * Justification: This feature allow users to better keep track of quantity of ingredients in the fridge. The
-     flexible format of quantity (fraction, decimal or integers followed by units or just a string) allowed
+     flexible format of quantity (fraction, decimal or integers followed by units or just a string) allows
       users to save and adjust ingredient quantities precisely.
       
 * **Documentation**:
