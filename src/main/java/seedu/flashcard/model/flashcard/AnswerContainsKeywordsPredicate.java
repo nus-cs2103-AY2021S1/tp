@@ -15,9 +15,11 @@ public class AnswerContainsKeywordsPredicate implements Predicate<Flashcard> {
 
     @Override
     public boolean test(Flashcard flashcard) {
+        String flashcardAnswer = flashcard.getAnswer().toString().toLowerCase();
+
         return keywords.stream()
                 .anyMatch(keyword ->
-                        flashcard.getAnswer().toString().toLowerCase().contains(keyword.toLowerCase()));
+                        flashcardAnswer.contains(keyword.toLowerCase()));
     }
 
     @Override

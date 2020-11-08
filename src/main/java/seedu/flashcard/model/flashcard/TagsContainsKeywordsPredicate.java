@@ -23,8 +23,8 @@ public class TagsContainsKeywordsPredicate implements Predicate<Flashcard> {
         return keywords.stream()
                 .anyMatch(keyword ->
                         flashcardTags.stream()
-                                .map(tag -> tag.toString())
-                                .anyMatch(tag -> tag.toLowerCase().contains(keyword.toLowerCase())));
+                                .map(tag -> tag.toString().toLowerCase()) //Convert tag to string
+                                .anyMatch(tag -> tag.contains(keyword.toLowerCase())));
     }
 
     @Override
