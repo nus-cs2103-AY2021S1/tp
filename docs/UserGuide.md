@@ -1273,7 +1273,7 @@ edit ingredient <#REF>
 
 Examples:
 - `edit ingredient #4 /tag:add frozen` <br/>
-  This tags the fourth ingredient currently shown in the ingerdient list with **frozen**.
+  This tags the fourth ingredient currently shown in the ingredient list with **frozen**.
 
 - `edit ingredient sprinkles /tag:delete fridge` <br/>
   This removes the tag **fridge** from the ingredient named 'sprinkles'.
