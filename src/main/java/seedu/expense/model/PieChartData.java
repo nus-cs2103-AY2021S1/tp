@@ -43,16 +43,16 @@ public class PieChartData implements ChartDataCollector {
         expenseBook.getTags().forEach(tag -> map.put(tag.toString(), 0.0));
         // map must now contain all existing tags. Assertion here?
         expenseBook.getExpenseList().forEach(expense ->
-                map.put(expense.getTag().toString(), map.get(expense.getTag().toString()) +
-                        expense.getAmount().getDollarAsDoubleValue()));
+                map.put(expense.getTag().toString(), map.get(expense.getTag().toString())
+                        + expense.getAmount().getDollarAsDoubleValue()));
         return map;
     }
 
     @Override
     public String getDataAsString() {
         StringBuilder sb = new StringBuilder();
-        getDataAsMap().entrySet().stream().map(entry -> "[" + entry.getKey() + " : $" +
-                entry.getValue() + "] ").forEach(sb::append);
+        getDataAsMap().entrySet().stream().map(entry -> "[" + entry.getKey() + " : $"
+                + entry.getValue() + "] ").forEach(sb::append);
         return sb.toString();
     }
 }
