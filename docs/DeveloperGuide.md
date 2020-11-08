@@ -5,11 +5,6 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
-Refer to the guide <<SettingUp#, here>>.
-
-Design
---------------------------------------------------------------------------------------------------------------------
-
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -169,9 +164,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 ![Structure of the Model Component](images/modelDiagram/ModelClassDiagram.png)
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address//model/Model.java)
-    
-> Note that the usage of the term `ENTITY` in this section represents any of the following entities in PropertyFree:
-> `Property`, `Seller`, `Bidder`, `Bid` and `Meeting`.
+
+<div markdown="span" class="alert alert-info">:information_source: Note that the usage of the term `ENTITY` represents any of the following entities in PropertyFree:<br>`Property`, `Seller`, `Bidder`, `Bid` and `Meeting`
+</div>  
 
 The `Model`,
 
@@ -192,11 +187,12 @@ The `Model`,
   the UI automatically updates when the data in any of the lists are changed.*
 
 The following segment of the `Model` components further breaks down each `ENTITY` for a more elaborate 
-explanation of each entities' design.
-- Property
+explanation of each entities' design.  
 - Bidder and Seller
+- Property
 - Bid
 - Meeting  
+
 ---
 ### Bidder and Seller 
 The following class diagram depicts how the `Bidder` and `Seller` are created. The `Bidder` and `Seller` both extend from the
@@ -206,7 +202,7 @@ abstract `ClientPerson` which in turn extends from abstract `Person`.
 
 Note that the `CLIENTId` (BidderId / SellerId) design is elaborated in [Id] in the `Property` segment.
 
- ##### Design Considerations
+#### Design Considerations
 
  1. Alternative 1 (current choice): Extending `Bidder` and `Seller` from `ClientPerson`, and `ClientPerson` from `Person`.
     - Pros: 
@@ -246,6 +242,31 @@ The follow class diagram depicts the design behind `Id` and the subclasses: `Sel
 
 ### Property 
 
+{ Start of Property Model section written by: Dianne Loh }
+
+The following class diagram depicts `Property` and its related classes.  
+
+![Property Class Diagram](images/modelDiagram/PropertyModelDiagram.png)
+
+#### Design Considerations
+
+The implementations of `PropertyType` and `Address` are similar as they both are wrapper classes of a String. This implementation is justified because of the following considerations:
+
+1. Alternative 1 (current choice): Implementing `PropertyType` and `Address` as separate classes.
+    - Pros:
+        - Better adherence to the separations of concerns principle by separating code related to `PropertyType` and `Address`
+        - Easier extensibility for the classes to contain more specific attributes. For example, `Address` can be extended to contain more specific attributes, such as road name, block and postal code, etc.  
+    - Cons: 
+        - More code duplication (for now)
+2. Alternative 2: `PropertyType` and `Address` extends from a parent class or are of the same type.  
+    - Pros:
+        - Less code duplication (for now) 
+    - Cons:
+        - Less extensible 
+        - Modifying the behaviour of one type will affect the other 
+        
+{ End of Property Model section written by: Dianne Loh }
+
 ### Bid 
 
 { start of Model Component section written by: Marcus Duigan Xing Yu }
@@ -281,17 +302,74 @@ The following class diagram depicts how a `Bid` is created.
 
 { end of Model Component section written by: Marcus Duigan Xing Yu }
 
+{ start of `model meeting` section written by: Harsha Vardhan  }
+
 ### Meeting 
+The following class diagram depicts how the different types of meetings are being created. The `Admin`, `Paperwork` and `Viewing` meeting types extend from the
+abstract `Meeting`.  
+
+![Meeting Diagram](images/meeting/MeetingModel.png)
+
+As seen from the diagram above there are three main types of Meetings: Admin, Paperwork and viewing. Each of the meeting
+types then contain the attributes of `BidderId`, `PropertyId`, `Venue`, `MeetingDate`, `StartTime` and `EndTime`.
+
+ ##### Design Considerations
+
+ 1. Alternative 1 (current choice): Extending `Admin`, `Paperwork` and `Viewing` from  and abstract `Meeting`.
+    - Pros: 
+        - Neater segmentation of the different meeting types.
+        - Easier extensibility for additional other types of meeting in the future.
+    - Cons: 
+        - Increased code complexity.
+
+ 2. Alternative 2: Identifying the different meeting types through a flag that stores the type of the meeting as a string.
+    - Pros: 
+        - Minimal code will be required as the same class can be used to instantiate the different meetings.
+        - Lesser code complexity.
+        - Less repetition of code.
+    - Cons: 
+        - Prone to lots of errors if the flag keyed in is wrong.
+        
+{ end of `model meeting` section written by: Harsha Vardhan  }
 
 ### Storage component
+{ start of `storage` section written by: Harsha Vardhan  }
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+![Structure of the Storage Component](images/storage/StorageDiagram.png)
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
+* implements all the the different storage types as shown in the diagram above.
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the various storage books we have in json format and read it back.
+
+![Structure of the further details of Storage Component](images/storage/StorageDiagramFurther.png)
+
+The above shows the further implementations of each individual storage component.
+For the storage components,
+* the implementations across the different types of storage is similar.
+* the different JsonABCBookStorage is responsible for saving the datas in json format. For example, 
+let's take a look at PropertyBookStorage. The JsonPropertyBookStorage will store all the data that is 
+associated with property in the file in json format. In the JsonAdaptedProperty, there will be all the attributes
+that are associated with property that will eventually be stored in json format. The other storage books do follow 
+a similar implementation.
+
+#### Design Consideration
+   
+   1. Alternative Implementation 1 (current choice): Have different storage for the different entities.
+        - Pros: Easier to implement and do not require refactoring for the existing code base. The code can be reused 
+        and extended easily for the various entities. It will be easier to debug and find mistakes as when something goes wrong with a 
+        particular entity it will be easier to know which entity is affected.
+        - Cons: There will be a lot of files with repetitive code. 
+        
+   2. Alternative Implementation 2: Use the current AddressBookStorage and modify it to contain the different entities.
+        - Pros: Everything will be in one single folder and it will be easier to access the code. There will not be multiple repeats of the same code
+        across the different files. There will not be heavy edits required to the existing code base.
+        - Cons: The code file might become huge and might become difficult to debug when there is an error.
+
+{ end of `storage` Component section written by: Harsha Vardhan  }
+
 
 ### Common classes
 
@@ -318,7 +396,7 @@ Additional features apart from the above-mentioned feature includes:
 #### 1. Add
 { start of Add section written by: Marcus Duigan Xing Yu}
 
-The `Add` command applies to **all entities** in PropertyFree. Apart from `AddBidCommand`, `AddMeetingCommand` with slight differences in implementation (elaborated below), all other entities follow the same
+The `Add` command applies to **all entities** in PropertyFree. Apart from `AddBidCommand`, `AddMeetingCommand` and `AddPropertyCommand` with slight differences in implementation (elaborated below), all other entities follow the same
 implementation.
 
 1. When the `Add` command is executed by the user, the input it passed into
@@ -351,11 +429,115 @@ adding to the Bidbook as seen in the diagram above.
 by property Id followed by Bid Amount. For further clarification, refer to section 4. Sort for a more in depth description.
 
 { end of Add section written by: Marcus Duigan Xing Yu}
+
+##### 1.2 Add Property  
+
+{ start of Add Property section written by: Dianne Loh }
+
+The implementation of the Add Property feature includes an additional validity check to ensure that the seller id exists. Below is the sequence diagram for the `check validity` frame:  
+
+![Add Property Command Sequence Diagram](images/addCommandDiagram/addPropertyCommandSequenceDiagram.png)
+
+If the check returns false, an `InvalidSellerIdException` is thrown.  
+
+<div markdown="span" class="alert alert-primary">:information_source: Upon adding a property into the `UniquePropertyList`, the `PropertyId` of each property is automatically incremented according to the activity diagram below:
+</div>  
+
+![Add Property Id Management Activity Diagram](images/addCommandDiagram/addPropertyIdManagementActivityDiagram.png)
+
+{ End of Add Property section written by: Dianne Loh }
+
 #### 2. Edit
 
-#### 3. Find
+#### 3. Find  
+
+{ Start of Find section written by: Dianne Loh }  
+
+The `Find` command applies to **all entities** in PropertyFree. There are two implementations of `Find`:  
+1. One-Predicate Implementation (for `Bid`, `Bidder` and `Seller`)
+2. Multi-Predicate Implementation (for `Property` and `Meeting`)  
+
+##### 3.1 One-Predicate Implementation of `FindENTITYCommand` (for `Bid`, `Bidder` and `Seller` only)  
+1. When the `Find` command is executed by the user, the input is passed into `LogicManager` and then parsed in `AddressBookParser`.  
+2. Upon identifying the `COMMAND_WORD` `Find` and the entity from the input `find-ENTITY`, the relevant `FindENTITYCommandParser` is created.  
+3. The `FindENTITYCommandParser` parses the arguments into an `ABCContainsKeywordsPredicate`, where `ABC` represents an attribute, creates a `FindENTITYCommand` with the predicate and returns the command to the `LogicManager`.    
+4. The method `execute(model)` of `FindENTITYCommand` is called, which updates the `filteredENTITY` list in `ModelManager` by setting the predicate.  
+5. The GUI "listens" to the changes in the filtered list and updates its display.  
+7. Finally, a `CommandResult` is returned to `LogicManager` to display the feedback to the user.  
+
+![Find Command Sequence Diagram 1](images/findCommandDiagram/findCommandSequenceDiagram1.png)
+
+##### 3.2 Multiple-Predicate Implementation of `FindENTITYCommand` (for `Property` and `Meeting` only)  
+This implementation differs from the One-Predicate implementation only in steps 3 and 4:  
+
+**Step 3**: The `FindENTITYCommandParser` creates a `FindENTITYDescriptor`.  For each prefix (eg `n/...`) in the input, the `FindENTITYCommandParser` parses the arguments into the relevant `ABCContainsKeywordsPredicate` and sets the `ABCContainsKeywordsPredicate` of the `FindENTITYDescriptor`. The `FindENTITYCommandParser` then creates a `FindENTITYCommand` with the `FindENTITYDescriptor`, which is returned to `LogicManager`.  
+**Step 4**: `execute(model)` of `FindENTITYCommand` gets the composed predicate from `FindENTITYDescriptor` and passes the predicate to `ModelManager` to update the `FilteredENTITY` list.  
+
+![Find Command Sequence Diagram 2](images/findCommandDiagram/findCommandSequenceDiagram2.png)  
+
+<div markdown="span" class="alert alert-primary">:bulb: `AskingPricePredicate` is a special type of `Predicate` that tests if a `Property`'s `askingPrice` passes the `PriceFilter`, whose class diagram is as follows:
+</div>  
+
+![PriceFilter Class Diagram](images/findCommandDiagram/priceFilterClassDiagram.png)  
+
+{ End of Find section written by: Dianne Loh }
 
 #### 4. Sort 
+{ start of Sort section written by: Harsha Vardhan}
+The `Sort` command applies to **Meeting** and **Bids** in PropertyFree. Both `SortMeetingCommand` and the `SortBidCommand`
+follow similar implementations with slight differences. The `SortBidCommand` is slightly different as it has an auto-sort
+feature when bids are added or edited. Below we will look into the implementation of the `SortMeetingCommand`.
+
+The sort meeting feature sorts the meetings based on the different dates of the meetings from the earliest meeting
+to the last meeting in chronological order.
+1. When the `sort-m` command is executed by the user, the input it passed into
+   the `LogicManager` and gets parsed and identified in `AddressBookParser`. 
+2. Upon identifying the relevant `COMMAND_WORD` and by extension the `ENTITY` (through the `-` input)
+   , the corresponding `SortMeetingCommandParser` object is formed. The user input then goes
+   through another level of parsing in `SortMeetingCommandParser`
+3. The `SortMeetingCommandParser` identifies the order in which the meetings are to be sort and creates a 
+ `SortMeetingComparator` comparator object accordingly.
+4. The ```SortMeetingCommandParser``` creates a ```SortMeetingCommand``` with the above comparator. The command
+is returned to the ```LogicManager```.
+5. The ```LogicManager``` calls ```SortMeetingCommand#execute()```, which adds a new duplicate list of meetings that is
+ sorted in chronological order in ```MeetingBook``` via the ```Model``` interface.
+6. Finally, a ```CommandResult``` with the relevant feedback is returned to the ```LogicManager```.
+
+![Sort Feature Sequence Diagram](images/SortSequenceDiagram.png)
+
+
+##### Design Considerations
+ For the `SortMeetingCommand`, we had several considerations that we made on whether to sort the list manually through
+ the `sort-m` command or to automatically sort the list for every meeting that is added or edited.
+  
+ 1. Alternative 1 (current choice): User has the option to sort the list manually in both ascending and descending format.
+ The meeting list will not be automatically sorted when a meeting has been added or changed. 
+ 
+    - Pros: 
+        - If the user types in wrong information for a certain meeting, he is able to see the meeting at the bottom rather 
+        than filtering through a sorted list which makes it easier to fix the error that he has made.
+        - Code will be easier to implement as we so not need to implement the auto sort phase.
+        
+    - Cons: 
+        - User has to manually sort the list, using the `sort-m` command, after keying in the new meetings to obtain an
+        ordered meeting list.
+        
+ 2. Alternative 2: The meeting list will be automatically sorted every time the user makes a new meeting or edits one.
+   
+      - Pros: 
+          - Meetings will always be in chronological order and user does not have to key in any command to sort the list.
+          
+      - Cons: 
+          - If the user adds in a meeting with wrong details to a huge list of meetings, it will be difficult to find the meeting.
+          If the previous method was used the new meting added will be at the bottom of the list. 
+          - The code will be much more complex compared to alternative 1.
+          - User will not be have the ability to sort the list in different orders. 
+
+
+
+
+
+{ end of Sort section written by: Harsha Vardhan}
 
 ##### 4.1 Auto-Sort Feature for add-bid and edit-bid
 { start of Add/Edit auto-sort feature section written by: Marcus Duigan Xing Yu}
@@ -430,7 +612,7 @@ containing the attribute of`sellerId`.
 
 ![Delete Seller Command Sequence Diagram](images/deleteCommandDiagram/deleteSellerCommandSequenceDiagram.png)
 
- ##### Design Considerations
+##### Design Considerations
  
   Due to time constraint we decided to forgo certain attributes and features which would have distinctly separated `Bidder`
   and `Seller` better (such as winning `bidder`). The implementation was designed with future extensions in mind. 
@@ -448,9 +630,20 @@ containing the attribute of`sellerId`.
         - Increases code complexity in `AddressBookParser`
         
 { end of Delete section written by: Kor Ming Soon }
-##### 5.3 Delete Property Command
+
+##### 5.3 Delete Property Command  
+
+{ Start of Delete Property section written by: Dianne Loh }  
+
+The `DeletePropertyCommand` can delete a property by either the index or property id. The `DeletePropertyCommandParser` will parse the user input into either an `Index` or `PropertyId` and create the `DeletePropertyCommand`. If the user is deleting the property by index, then `targetId` will be `null` and vice versa. The sequence diagram is shown below, starting from the creation of `DeletePropertyCommand`.  
+
 ![Delete Property Command Sequence Diagram](images/deleteCommandDiagram/deletePropertyCommandSequenceDiagram.png)
 
+Upon deleting the property, all `Bid`s and `Meeting`s with the same `PropertyId` as the property being deleted will be deleted as well, as seen in the `Cascade delete` sequence diagram below:  
+
+![Cascade Delete Property](images/deleteCommandDiagram/cascadeDeleteProperty.png)
+
+{ End of Delete Property section written by: Dianne Loh }  
 
 #### 6. List
 
@@ -840,17 +1033,7 @@ The following sequence diagram shows the process of executing an ```FindMeetingC
 ![FineMeetingActivityDiagram](images/meeting/FindMeetingActivityDiagram.png)
   
 #### Sort Meeting Feature
-The sort meeting feature sorts the meetings based on the different timings of the meetings from the earliest meeting
-to the last meeting in chronological order.
-1. ```LogicManager``` executes the user input. 
-2. It calls ```AddressBookParser``` to parse the user input, which creates an ```SortMeetingCommandParser```, as 
-identified by the command word "sort-m".
-3. The ```SortMeetingCommandParser``` creates a ```SortMeetingComparator``` comparator object.
-4. The ```SortMeetingCommandParser``` creates a ```SortMeetingCommand``` with the above comparator. The command
-is returned to the ```LogicManager```.
-5. The ```LogicManager``` calls ```SortMeetingCommand#execute()```, which adds a new duplicate list of meetings that is
- sorted in chronological order in ```MeetingBook``` via the ```Model``` interface.
-6. Finally, a ```CommandResult``` with the relevant feedback is returned to the ```LogicManager```.
+
 
 
 --------------------------------------------------------------------------------------------------------------------
