@@ -181,8 +181,6 @@ as the actual input. <br>
   
 * The `|` symbol means the user must provide at least one of the fields separated by the `|`
 
-<div style="page-break-after: always;"></div>
-
 #### 3.1.1 Viewing help : `help`
 
 ##### 3.1.1a `help start`
@@ -425,9 +423,6 @@ Examples:
 * `edit-d 1 n/AARON p/91111233` <br>
 Edits the name and phone number of the 1st item to be `AARON` and `91111233` respectively.
 
-
-<div style="page-break-after: always;"></div>
-
 #### 3.1.5 Locating items or delivery by keywords: `find-i` or `find-d`
 
 Finds items or deliveries whose attributes contain any of the given keywords.
@@ -641,8 +636,6 @@ Example 1: `redo` using [Figure 1](#uiwithannotationpng) as the starting point.
 
 4. You should now see the items cleared again, as shown in [Step 2 of Example 1](#undoExample1Step2) of the `undo` command.
 
-<div style="page-break-after: always;"></div>
-
 #### 3.1.11 Exiting the program: `exit`
 
 Exits the program.
@@ -704,9 +697,6 @@ Look up prices on a 'supplier' database
 
 Notify the user if a certain stock is below threshold
 
-
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
 ## 4. FAQ
 
@@ -720,11 +710,9 @@ You may refer to the [video](#installationvideo) of installation guide.
 **Q**: Help! I've accidentally typed `clear-i` or `clear-d` and wiped all my data! <br>
 **A**: Use the [Undo Command](#3110-undo-last-command-undo) to reset your data back.
 
-
---------------------------------------------------------------------------------------------------------------------
-
 <div style="page-break-after: always;"></div>
 
+--------------------------------------------------------------------------------------------------------------------
 ## 5. Command Summary
 
 #### 5.1 General Commands Summary
