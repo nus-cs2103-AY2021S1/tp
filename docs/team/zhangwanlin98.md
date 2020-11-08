@@ -15,7 +15,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added an assign feature that allows users to assign an appointment to a patient.([\#85](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/85), [\#107](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/107))
     * **Justification**: This feature makes up the signature of the product because it allows the nurse to easily assign an appointment to a patient, which is a must for a medical appointment scheduling application.
 
-<br><br><br><br>
+<br><br>
 
 * **New Feature**: Added a view feature which allows users to view all appointment on a specific date.([\#91](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/91))
     * **Justification**: This feature improves the product significantly since it allows the nurse to view all the appointments on a certain day without scanning through the appointment book.
