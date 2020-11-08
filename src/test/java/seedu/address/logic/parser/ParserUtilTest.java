@@ -55,6 +55,10 @@ public class ParserUtilTest {
     private static final String VALID_INGREDIENT_QUANTITY_6 = "4/55 cups";
     private static final String LEADING_ZEROES_INGREDIENT_QUANTITY_7 = "9/11 cups";
     private static final String VALID_INGREDIENT_QUANTITY_7 = "9/11 cups";
+    private static final String LEADING_ZEROES_INGREDIENT_QUANTITY_10 = "0009/0011 cups";
+    private static final String VALID_INGREDIENT_QUANTITY_10 = "9/11 cups";
+    private static final String LEADING_ZEROES_INGREDIENT_QUANTITY_11 = "9/000011 cups";
+    private static final String VALID_INGREDIENT_QUANTITY_11 = "9/11 cups";
     private static final String VALID_INGREDIENT = VALID_INGREDIENT_NAME + " -" + VALID_INGREDIENT_QUANTITY;
     private static final String VALID_INGREDIENT_1 = VALID_INGREDIENT_NAME + " -" + VALID_INGREDIENT_QUANTITY_1;
     private static final String VALID_TAG_1 = "healthy";
@@ -178,6 +182,10 @@ public class ParserUtilTest {
         assertEquals(VALID_INGREDIENT_QUANTITY_7, ParserUtil.parseQuantity(LEADING_ZEROES_INGREDIENT_QUANTITY_7));
         assertEquals(VALID_INGREDIENT_QUANTITY_8, ParserUtil.parseQuantity(VALID_INGREDIENT_QUANTITY_8));
         assertEquals(VALID_INGREDIENT_QUANTITY_9, ParserUtil.parseQuantity(VALID_INGREDIENT_QUANTITY_9));
+        assertEquals(VALID_INGREDIENT_QUANTITY_10,
+                ParserUtil.parseQuantity(LEADING_ZEROES_INGREDIENT_QUANTITY_10));
+        assertEquals(VALID_INGREDIENT_QUANTITY_11,
+                ParserUtil.parseQuantity(LEADING_ZEROES_INGREDIENT_QUANTITY_11));
 
     }
 
