@@ -1376,7 +1376,7 @@ User can create two types of flashcards - containing open end question or multip
 1. Test Case 1: `open 0`<br>
    Expected: No flashcard is opened. Error details shown in display.
 
-1. Other incorrect `open` commands to try: `open`, `open x` (where x is more than the last index in flashcard list), `open Invalid`
+1. Other incorrect `open` commands to try: `open`, `open x` (where x is more than the last index in flashcard list), `open Invalid`<br>
    Expected: Error message will appear with instructions on how to use the `open` command.
 
 ### F.4 Editing a flashcard
@@ -1384,20 +1384,59 @@ User can create two types of flashcards - containing open end question or multip
 1. Prerequisites: 
 
    1. There is at least one flashcard stored in QuickCache.
-   
+
    1. List flashcards using the `list` command to see the index of the flashcard.
 
-1. Test Case 1: `edit 1`<br>
-   Expected: First flashcard is opened. Details of the question and options (for multiple choice questions) will be displayed.
+   1. For some test cases listed bellow to work, user's first three flashcards should be the same as the sample starting flashcards that was provided.
 
-1. Test Case 1: `edit 0`<br>
+1. Test Case 1: `edit 1 q/Edited quesiton ans/New answer`<br>
+   Expected: The flashcard with index 1 is edited with the specified parameters. The details of the question will be shown in the display window on the side.
+
+1. Test Case 2: `edit 1 t/`<br>
+   Expected: All tags are removed from the flashcard with index 1. The details of the question will be shown in the display window on the side.
+
+1. Test Case 3: `edit 1 t/General t/OEQ`<br>
+   Expected: Specified tags are added to the flashcard with index 1. The details of the question will be shown in the display window on the side.
+
+1. Test Case 4: `edit 1 d/HIGH`<br>
+   Expected: Difficulty level changed to `HIGH` for the flashcard with index 1. The details of the question will be shown in the display window on the side.
+
+1. Test Case 5: `edit 1 d/`<br>
+   Expected: Difficulty tag is removed from the flashcard with index 1. The details of the question will be shown in the display window on the side.<br>
+   :information_source: User can also use `edit 1 d/UNSPECIFIED` to achieve the same result.
+
+1. Test Case 6: `edit 1 c/Choice1`<br>
+   Expected: Error message displayed. Choices should not be provided for open ended questions.
+
+1. Test Case 7: `edit 2 c/Choice1 c/Choice2 c/Choice3 c/Choice4`<br>
+   Expected: The flashcard with index 1 is edited with the specified parameters. The details of the question will be shown in the display window on the side.
+
+1. Test Case 8: `edit 2 c/Choice1 c/Choice1`<br>
+   Expected: Error message displayed. Choices should not be the same.
+
+1. Test Case 9: `edit 2 c/Choice1`<br>
+   Expected: Error message displayed. Number of choices smaller than the answer.
+
+1. Test Case 10: `edit 2 ans/100`<br>
+   Expected: Error message displayed. Number of choices smaller than the answer.
+
+1. Test Case 11: `edit 0`<br>
    Expected: No flashcard is opened. Error details shown in display.
 
-1. Other incorrect `open` commands to try: `open`, `open x` (where x is more than the last index in flashcard list), `open Invalid`
-   Expected: Error message will appear with instructions on how to use the `open` command.
-
+1. Other incorrect `edit` commands to try: `edit`, `edit x` (where x is more than the last index in flashcard list), `edit Invalid`<br>
+   Expected: Error message will appear with instructions on how to use the `edit` command.
 
 ### F.5 Finding flashcards
+
+1. Prerequisites: 
+
+   1. For some test cases listed bellow to work, user should have the sample starting flashcards that was provided stored in QuickCache.
+
+1. Test Case 1: `edit 1 q/Edited quesiton ans/New answer`<br>
+   Expected: The flashcard with index 1 is edited with the specified parameters. The details of the question will be shown in the display window on the side.
+
+1. Test Case 1: `edit 1 q/Edited quesiton ans/New answer`<br>
+   Expected: The flashcard with index 1 is edited with the specified parameters. The details of the question will be shown in the display window on the side.
 
 ### F.6 Deleting flashcards
 
