@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.SalesUpdateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ingredient.Amount;
 import seedu.address.model.ingredient.Ingredient;
@@ -190,6 +191,10 @@ public class ParserUtil {
     public static Integer parseNumberSold(String numberSold) throws ParseException {
         requireNonNull(numberSold);
         String trimmedNumberSold = numberSold.trim();
+        if (StringUtil.isIntegerOverflow(trimmedNumberSold)) {
+            throw new ParseException(SalesUpdateCommand.MESSAGE_MAX_NUM_ALLOWED_EXCEEDED);
+        }
+
         if (!StringUtil.isUnsignedInteger(trimmedNumberSold)) {
             throw new ParseException(MESSAGE_INVALID_NUMBER_SOLD);
         }
