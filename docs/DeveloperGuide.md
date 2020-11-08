@@ -137,7 +137,7 @@ The `Model`,
 
 The `Storage` component,
 
-* can save `Project` objects, `Person` objects, `Task` objects, and their details in json format and read it back.
+* can save `Project`, `Person`, `Task`, `Participation` objects and their details in json format and read it back.
 * can save the main catalogue data in json format and read it back.
 
 ### Common classes
@@ -153,7 +153,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Logging of data
 
-To record data, after each action, we used the`java.util.logging` pckage.  
+To record data, after each action, we used the`java.util.logging` package.  
 
 Logging implements several levels using  to describe at a glance the severity of the message. This allows developers 
 to identify the message at a glance.
