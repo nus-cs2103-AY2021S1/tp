@@ -1519,7 +1519,7 @@ having expiry dates in December 2020.
    Expected: Ingredient **#2** deleted. All current ingredients (after the deletion) shown in the Ingredient View Panel. A confirmation message is displayed at the Command Output box.
 
    1. Test case: `delete ingredient #2 /qty 2`<br>
-   Expected: Quantity of ngredient **#2** reduced by 2. Output display similar to previous. When its quantity decreases to 0, its Ingredient Tile disappears from the Ingredient View Panel.
+   Expected: Quantity of Ingredient **#2** reduced by 2. Output display similar to previous. When its quantity decreases to 0, its Ingredient Tile disappears from the Ingredient View Panel.
 
 1. Deleting an ingredient using ingredient index in a filtered list
    1. Prerequisites: None.
