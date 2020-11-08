@@ -296,6 +296,14 @@ add n/Sprite s/Ntuc q/1000 l/Drinks section lq/5000
 
 You have now added the stock successfully into the stock book. The stock will be added to the bottom
  of the stock table as shown above.
+ 
+<div markdown="block" class="alert alert-warning" markdown="1">
+
+**:warning:**
+You will not be able to add a stock into the stock book if it already exist in the stock book. In Warenager, two stocks are the
+same if they have the same `serial number`, or the same `name` and `source`.
+
+<div>
 
 ### Listing of stock: `list`
 Lists all the stock(s) in the inventory.
@@ -327,7 +335,7 @@ list lt/<list type>
 
 **After input**:
 
-![list_bookmark](images/list/list_bookmark.png)
+![list_bookmark](images/list/list_low.png)
 
 **Step 2.** You can then list out all the stocks that are low in quantity using the command `list lt/low`.
 
@@ -337,7 +345,7 @@ list lt/<list type>
 
 **After input**:
 
-![list_bookmark](images/list/list_low.png)
+![list_bookmark](images/list/list_bookmark.png)
 
 **Step 3.** Lastly, listing out all the stocks using the command `list lt/all`.
 
