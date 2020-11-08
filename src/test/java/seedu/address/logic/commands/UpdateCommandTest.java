@@ -4,10 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_PUSH_UP;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_SIT_UP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PUSH_UP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_SIT_UP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_SIT_UP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_PUSH_UP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GYM;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -58,13 +59,13 @@ class UpdateCommandTest {
         Exercise lastExercise = model.getFilteredExerciseList().get(indexLastExercise.getZeroBased());
 
         ExerciseBuilder exerciseInList = new ExerciseBuilder(lastExercise);
-        Exercise editedExercise = exerciseInList.withName(VALID_NAME_PUSH_UP).withDescription(VALID_DESCRIPTION_PUSH_UP)
-                .withDate(VALID_DATE_PUSH_UP).withCalories(VALID_CALORIES_PUSH_UP).withTags(VALID_TAG_GYM).build();
+        Exercise editedExercise = exerciseInList.withName(VALID_NAME_SIT_UP).withDescription(VALID_DESCRIPTION_SIT_UP)
+                .withDate(VALID_DATE_SIT_UP).withCalories(VALID_CALORIES_SIT_UP).withTags(VALID_TAG_GYM).build();
 
         UpdateCommand.EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder()
-                .withName(VALID_NAME_PUSH_UP)
-                .withDescription(VALID_DESCRIPTION_PUSH_UP)
-                .withDate(VALID_DATE_PUSH_UP).withCalories(VALID_CALORIES_PUSH_UP).withTags(VALID_TAG_GYM).build();
+                .withName(VALID_NAME_SIT_UP)
+                .withDescription(VALID_DESCRIPTION_SIT_UP)
+                .withDate(VALID_DATE_SIT_UP).withCalories(VALID_CALORIES_SIT_UP).withTags(VALID_TAG_GYM).build();
         UpdateCommand updateExerciseCommand = new UpdateCommand(indexLastExercise, descriptor);
 
         String expectedMessage = String.format(UpdateCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);

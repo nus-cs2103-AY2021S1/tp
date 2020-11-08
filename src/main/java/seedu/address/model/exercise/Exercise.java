@@ -110,16 +110,15 @@ public class Exercise {
 
         Exercise otherExercise = (Exercise) other;
 
+        //exercises are uniquely identified by names, descriptions, dates, and tags.
         return otherExercise.getName().equals(getName())
                 && otherExercise.getDescription().equals(getDescription())
                 && otherExercise.getDate().equals(getDate())
-                && otherExercise.getExerciseTags().equals(getExerciseTags())
-                && otherExercise.getMuscleTags().equals(getMuscleTags());
+                && otherExercise.getExerciseTags().equals(getExerciseTags());
     }
 
     /**
-     * Returns true if both exercises of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two exercises.
+     * Returns true if both exercises are identified to be same.
      */
     public boolean isSameExercise(Exercise otherExercise) {
         return equals(otherExercise);

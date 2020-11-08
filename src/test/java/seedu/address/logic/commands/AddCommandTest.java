@@ -199,9 +199,10 @@ public class AddCommandTest {
         }
 
         @Override
-        public void resetTemplate() {
+        public void resetAll() {
             throw new AssertionError("This method should not be called.");
         }
+
     }
 
     /**
