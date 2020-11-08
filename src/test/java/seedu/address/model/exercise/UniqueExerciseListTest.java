@@ -79,7 +79,8 @@ class UniqueExerciseListTest {
     @Test
     public void setExercise_editedExerciseHasSameIdentity_success() {
         uniqueExerciseList.add(PUSH_UP);
-        Exercise editedPushUp = new ExerciseBuilder(PUSH_UP).withDescription(VALID_DESCRIPTION_PUSH_UP)
+        Exercise editedPushUp = new ExerciseBuilder(PUSH_UP)
+                .withDescription(VALID_DESCRIPTION_PUSH_UP)
                 .withTags(VALID_TAG_HOUSE)
                 .build();
         uniqueExerciseList.setExercise(PUSH_UP, editedPushUp);

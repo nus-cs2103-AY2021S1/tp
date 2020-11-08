@@ -2,7 +2,10 @@ package seedu.address.model.exercise;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.math.BigInteger;
 import java.util.Objects;
+
+import seedu.address.logic.parser.exceptions.CaloriesOverflow;
 
 public class Calories {
 
@@ -15,7 +18,7 @@ public class Calories {
      *
      * @param calories A valid input.
      */
-    public Calories(String calories) {
+    public Calories(String calories) throws CaloriesOverflow {
         if (calories == null) {
             value = "0";
         } else {
@@ -27,7 +30,7 @@ public class Calories {
     /**
      * Returns true if a given string is a valid input.
      */
-    public static boolean isValidCalories(String test) {
+    public static boolean isValidCalories(String test) throws CaloriesOverflow {
         if (Objects.isNull(test)) {
             throw new NullPointerException();
         }
@@ -36,8 +39,13 @@ public class Calories {
         try {
             x = Integer.parseInt(test);
         } catch (Exception err) {
-            //Exception rises when test can't be parsed into Integer.
-            return false;
+            try {
+                new BigInteger(test);
+            } catch (Exception e1) {
+                //Test is invalid because it can't be casted into Integer or BigInteger.
+                return false;
+            }
+            throw new CaloriesOverflow();
         }
 
         return x >= 0;

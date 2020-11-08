@@ -15,6 +15,7 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.LogicForExercise;
 import seedu.address.logic.LogicManagerForExercise;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ExerciseBook;
 import seedu.address.model.ExerciseModel;
 import seedu.address.model.ExerciseModelManager;
@@ -83,13 +84,18 @@ public class ExerciseMainApp extends Application {
             exerciseBookOptional = storage.readExerciseBook();
             if (!exerciseBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ExerciseBook");
+                initialData = exerciseBookOptional.get();
+            } else {
+                initialData = SampleDataUtil.getSampleExerciseBook();
             }
-            initialData = exerciseBookOptional.orElseGet(SampleDataUtil::getSampleExerciseBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ExerciseBook");
             initialData = new ExerciseBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty ExerciseBook");
+            initialData = new ExerciseBook();
+        } catch (ParseException e) {
+            logger.warning("");
             initialData = new ExerciseBook();
         }
 

@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.logic.parser.exceptions.CaloriesOverflow;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ExerciseBook;
 import seedu.address.model.ReadOnlyExerciseBook;
 import seedu.address.model.exercise.Calories;
@@ -35,21 +37,30 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
-    private static Exercise[] getSampleExercises() {
-        return new Exercise[]{
-            new Exercise(new seedu.address.model.exercise.Name("Push Up"), new Description("Did 52 within 60 seconds"),
-                    new Date("01-10-2020"), new Calories("100"), getMuscleTagSet("chest"), getExerciseTagSet("gym")),
-            new Exercise(new seedu.address.model.exercise.Name("Sit Up"), new Description("Did 50"),
-                    new Date("01-10-2020"), new Calories("120"), getMuscleTagSet("chest"), getExerciseTagSet("gym")),
-            new Exercise(new seedu.address.model.exercise.Name("2 4km"), new Description("11:30"),
-                    new Date("04-10-2020"), new Calories("100"), getMuscleTagSet("chest"), getExerciseTagSet("gym")),
-            new Exercise(new seedu.address.model.exercise.Name("Pull Up"),
+    private static Exercise[] getSampleExercises() throws ParseException {
+        Exercise[] result;
+        try {
+            result = new Exercise[]{
+                new Exercise(new seedu.address.model.exercise.Name("Push Up"),
+                    new Description("Did 52 within 60 seconds"), new Date("01-10-2020"), new Calories("100"),
+                    getMuscleTagSet("chest"), getExerciseTagSet("gym")),
+                new Exercise(new seedu.address.model.exercise.Name("Sit Up"), new Description("Did 50"),
+                    new Date("01-10-2020"), new Calories("120"), getMuscleTagSet("chest"),
+                    getExerciseTagSet("gym")),
+                new Exercise(new seedu.address.model.exercise.Name("2 4km"), new Description("11:30"),
+                    new Date("04-10-2020"), new Calories("100"), getMuscleTagSet("chest"),
+                    getExerciseTagSet("gym")),
+                new Exercise(new seedu.address.model.exercise.Name("Pull Up"),
                     new Description("20 with Added Weight: 5 kg "), new Date("05-10-2020"),
                     new Calories("100"), getMuscleTagSet("chest"), getExerciseTagSet("gym"))
-        };
+            };
+        } catch (CaloriesOverflow err) {
+            throw new ParseException("Sample Util contains invalid Calories");
+        }
+        return result;
     }
 
-    public static ReadOnlyExerciseBook getSampleExerciseBook() {
+    public static ReadOnlyExerciseBook getSampleExerciseBook() throws ParseException {
         ExerciseBook eb = new ExerciseBook();
         for (Exercise e : getSampleExercises()) {
             eb.addExercise(e);

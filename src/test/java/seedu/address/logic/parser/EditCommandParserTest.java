@@ -43,6 +43,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UpdateCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
@@ -123,22 +124,23 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_EXERCISE;
-        String userInput = targetIndex.getOneBased() + NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP + TAG_DESC_GYM
-                + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP + MUSCLE_DESC_CHEST + MUSCLE_DESC_ARM + TAG_DESC_HOUSE;
+        try {
+            Index targetIndex = INDEX_SECOND_EXERCISE;
+            String userInput = targetIndex.getOneBased() + NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP + TAG_DESC_GYM
+                    + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP + MUSCLE_DESC_CHEST + MUSCLE_DESC_ARM + TAG_DESC_HOUSE;
 
-        UpdateCommand.EditExerciseDescriptor descriptor =
-                new EditExerciseDescriptorBuilder().withName(VALID_NAME_PUSH_UP)
-                                                    .withDescription(VALID_DESCRIPTION_PUSH_UP)
-                                                    .withDate(VALID_DATE_PUSH_UP)
-                                                    .withCalories(VALID_CALORIES_PUSH_UP)
-                                                    .withMuscleTags(VALID_MUSCLE_CHEST, VALID_MUSCLE_ARM)
-                                                    .withTags(VALID_TAG_GYM, VALID_TAG_HOUSE)
-                                                    .build();
+            UpdateCommand.EditExerciseDescriptor descriptor =
+                    new EditExerciseDescriptorBuilder().withName(VALID_NAME_PUSH_UP)
+                            .withDescription(VALID_DESCRIPTION_PUSH_UP).withDate(VALID_DATE_PUSH_UP)
+                            .withCalories(VALID_CALORIES_PUSH_UP).withMuscleTags(VALID_MUSCLE_CHEST, VALID_MUSCLE_ARM)
+                            .withTags(VALID_TAG_GYM, VALID_TAG_HOUSE).build();
 
-        UpdateCommand expectedCommand = new UpdateCommand(targetIndex, descriptor);
+            UpdateCommand expectedCommand = new UpdateCommand(targetIndex, descriptor);
 
-        assertParseSuccess(parser, userInput, expectedCommand);
+            assertParseSuccess(parser, userInput, expectedCommand);
+        } catch (ParseException e) {
+            throw new AssertionError("Execution of test 'parse_allFieldsSpecified_success' should not fail.", e);
+        }
     }
 
     @Test
@@ -178,10 +180,14 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // calories
-        userInput = targetIndex.getOneBased() + CALORIES_DESC_PUSH_UP;
-        descriptor = new EditExerciseDescriptorBuilder().withCalories(VALID_CALORIES_PUSH_UP).build();
-        expectedCommand = new UpdateCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
+        try {
+            userInput = targetIndex.getOneBased() + CALORIES_DESC_PUSH_UP;
+            descriptor = new EditExerciseDescriptorBuilder().withCalories(VALID_CALORIES_PUSH_UP).build();
+            expectedCommand = new UpdateCommand(targetIndex, descriptor);
+            assertParseSuccess(parser, userInput, expectedCommand);
+        } catch (ParseException e) {
+            throw new AssertionError("Execution of command should not fail.", e);
+        }
 
         // muscles worked
         userInput = targetIndex.getOneBased() + MUSCLE_DESC_CHEST;
@@ -205,18 +211,21 @@ public class EditCommandParserTest {
                 + CALORIES_DESC_PUSH_UP + MUSCLE_DESC_CHEST + TAG_DESC_HOUSE
                 + NAME_DESC_SIT_UP + DESCRIPTION_DESC_SIT_UP + DATE_DESC_SIT_UP
                 + CALORIES_DESC_SIT_UP + MUSCLE_DESC_ARM + TAG_DESC_GYM;
+        try {
+            UpdateCommand.EditExerciseDescriptor descriptor =
+                    new EditExerciseDescriptorBuilder().withName(VALID_NAME_SIT_UP)
+                            .withDescription(VALID_DESCRIPTION_SIT_UP)
+                            .withDate(VALID_DATE_SIT_UP)
+                            .withCalories(VALID_CALORIES_SIT_UP)
+                            .withMuscleTags(VALID_MUSCLE_CHEST, VALID_MUSCLE_ARM)
+                            .withTags(VALID_TAG_HOUSE, VALID_TAG_GYM).build();
 
-        UpdateCommand.EditExerciseDescriptor descriptor =
-                new EditExerciseDescriptorBuilder().withName(VALID_NAME_SIT_UP)
-                        .withDescription(VALID_DESCRIPTION_SIT_UP)
-                        .withDate(VALID_DATE_SIT_UP)
-                        .withCalories(VALID_CALORIES_SIT_UP)
-                        .withMuscleTags(VALID_MUSCLE_CHEST, VALID_MUSCLE_ARM)
-                        .withTags(VALID_TAG_HOUSE, VALID_TAG_GYM).build();
+            UpdateCommand expectedCommand = new UpdateCommand(targetIndex, descriptor);
 
-        UpdateCommand expectedCommand = new UpdateCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
+            assertParseSuccess(parser, userInput, expectedCommand);
+        } catch (ParseException e) {
+            throw new AssertionError("Execution of command should not fail.", e);
+        }
     }
 
     @Test
@@ -229,19 +238,23 @@ public class EditCommandParserTest {
         UpdateCommand expectedCommand = new UpdateCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // other valid values specified
-        userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_PUSH_UP + INVALID_NAME_DESC + DATE_DESC_PUSH_UP
-                + CALORIES_DESC_PUSH_UP + NAME_DESC_PUSH_UP
-                + MUSCLE_DESC_CHEST + TAG_DESC_HOUSE;
-        descriptor =
-                new EditExerciseDescriptorBuilder()
-                        .withName(VALID_NAME_PUSH_UP)
-                        .withDescription(VALID_DESCRIPTION_PUSH_UP)
-                        .withCalories(VALID_CALORIES_PUSH_UP).withDate(VALID_DATE_PUSH_UP)
-                        .withMuscleTags(VALID_MUSCLE_CHEST).withTags(VALID_TAG_HOUSE)
-                        .build();
-        expectedCommand = new UpdateCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
+        try {
+            // other valid values specified
+            userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_PUSH_UP + INVALID_NAME_DESC + DATE_DESC_PUSH_UP
+                    + CALORIES_DESC_PUSH_UP + NAME_DESC_PUSH_UP
+                    + MUSCLE_DESC_CHEST + TAG_DESC_HOUSE;
+            descriptor =
+                    new EditExerciseDescriptorBuilder()
+                            .withName(VALID_NAME_PUSH_UP)
+                            .withDescription(VALID_DESCRIPTION_PUSH_UP)
+                            .withCalories(VALID_CALORIES_PUSH_UP).withDate(VALID_DATE_PUSH_UP)
+                            .withMuscleTags(VALID_MUSCLE_CHEST).withTags(VALID_TAG_HOUSE)
+                            .build();
+            expectedCommand = new UpdateCommand(targetIndex, descriptor);
+            assertParseSuccess(parser, userInput, expectedCommand);
+        } catch (ParseException e) {
+            throw new AssertionError("Execution of command should not fail.", e);
+        }
     }
 
     @Test

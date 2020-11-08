@@ -33,6 +33,7 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManagerForExercise;
 import seedu.address.testutil.ExerciseBuilder;
 
+
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
 
@@ -84,7 +85,8 @@ public class LogicManagerTest {
         String addCommand = AddCommand.COMMAND_WORD
                   + NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP + DATE_DESC_PUSH_UP
                   + CALORIES_DESC_PUSH_UP;
-        Exercise expectedExercise = new ExerciseBuilder(PUSH_UP).withTags().withMuscleTags().build();
+        Exercise expectedExercise = new ExerciseBuilder(PUSH_UP)
+                .withTags().withMuscleTags().build();
         ExerciseModelManager expectedModel = new ExerciseModelManager();
         expectedModel.addExercise(expectedExercise);
         String expectedMessage = LogicManagerForExercise.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

@@ -17,6 +17,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ExerciseBook;
 import seedu.address.model.ExerciseModel;
 import seedu.address.model.exercise.Exercise;
@@ -100,13 +101,18 @@ public class CommandTestUtil {
     public static final UpdateCommand.EditExerciseDescriptor DESC_SIT_UP;
 
     static {
-        // Calo
-        DESC_PUSH_UP = new EditExerciseDescriptorBuilder().withName(VALID_NAME_PUSH_UP)
-                .withDescription(VALID_DESCRIPTION_PUSH_UP).withDate(VALID_DATE_PUSH_UP)
-                .withCalories(VALID_CALORIES_PUSH_UP).withTags(VALID_TAG_GYM).build();
-        DESC_SIT_UP = new EditExerciseDescriptorBuilder().withName(VALID_NAME_SIT_UP)
-                .withDescription(VALID_DESCRIPTION_SIT_UP).withDate(VALID_DATE_SIT_UP)
-                .withCalories(VALID_CALORIES_SIT_UP).withTags(VALID_TAG_GYM, VALID_TAG_HOUSE).build();
+        try {
+            DESC_PUSH_UP = new EditExerciseDescriptorBuilder().withName(VALID_NAME_PUSH_UP)
+                    .withDescription(VALID_DESCRIPTION_PUSH_UP).withDate(VALID_DATE_PUSH_UP)
+                    .withCalories(VALID_CALORIES_PUSH_UP).withTags(VALID_TAG_GYM).build();
+
+            DESC_SIT_UP = new EditExerciseDescriptorBuilder().withName(VALID_NAME_SIT_UP)
+                    .withDescription(VALID_DESCRIPTION_SIT_UP).withDate(VALID_DATE_SIT_UP)
+                    .withCalories(VALID_CALORIES_SIT_UP).withTags(VALID_TAG_GYM, VALID_TAG_HOUSE).build();
+        } catch (ParseException err) {
+            //It should not happens since all the inputs are valid.
+            throw new RuntimeException("Execution of command should not fail.");
+        }
     }
 
     /**
@@ -121,7 +127,7 @@ public class CommandTestUtil {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
-        } catch (CommandException | IOException ce) {
+        } catch (CommandException | IOException | ParseException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }

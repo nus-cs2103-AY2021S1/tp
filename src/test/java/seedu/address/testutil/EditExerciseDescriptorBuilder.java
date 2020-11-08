@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.UpdateCommand.EditExerciseDescriptor;
+import seedu.address.logic.parser.exceptions.CaloriesOverflow;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
@@ -69,7 +70,7 @@ public class EditExerciseDescriptorBuilder {
     /**
      * Sets the {@code Calories} of the {@code EditExerciseDescriptor} that we are building.
      */
-    public EditExerciseDescriptorBuilder withCalories(String calories) {
+    public EditExerciseDescriptorBuilder withCalories(String calories) throws CaloriesOverflow {
         descriptor.setCalories(new Calories(calories));
         return this;
     }

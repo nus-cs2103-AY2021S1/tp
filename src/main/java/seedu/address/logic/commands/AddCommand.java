@@ -9,7 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.exceptions.IntegerOverflow;
+import seedu.address.logic.parser.exceptions.CaloriesOverflow;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ExerciseModel;
 import seedu.address.model.exercise.Exercise;
 
@@ -51,7 +52,7 @@ public class AddCommand extends CommandForExercise {
     }
 
     @Override
-    public CommandResult execute(ExerciseModel model) throws CommandException {
+    public CommandResult execute(ExerciseModel model) throws CommandException, ParseException {
         requireNonNull(model);
 
         if (model.hasExercise(toAdd)) {
@@ -59,7 +60,7 @@ public class AddCommand extends CommandForExercise {
         }
 
         if (model.checkOverflow(toAdd)) {
-            throw new IntegerOverflow();
+            throw new CaloriesOverflow();
         }
 
         model.addExercise(toAdd);
