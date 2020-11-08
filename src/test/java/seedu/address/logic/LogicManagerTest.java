@@ -32,8 +32,8 @@ import seedu.address.storage.JsonExerciseBookStorage;
 import seedu.address.storage.JsonGoalBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManagerForExercise;
-import seedu.address.testutil.ExerciseBuilder;
 import seedu.address.storage.StorageManagerForGoal;
+import seedu.address.testutil.ExerciseBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
