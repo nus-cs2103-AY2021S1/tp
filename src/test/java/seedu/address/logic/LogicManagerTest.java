@@ -30,8 +30,10 @@ import seedu.address.model.ReadOnlyExerciseBook;
 import seedu.address.model.UserPrefs;
 //import seedu.address.model.exercise.Exercise;
 import seedu.address.storage.JsonExerciseBookStorage;
+import seedu.address.storage.JsonGoalBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManagerForExercise;
+import seedu.address.storage.StorageManagerForGoal;
 //import seedu.address.testutil.ExerciseBuilder;
 
 public class LogicManagerTest {
@@ -47,9 +49,12 @@ public class LogicManagerTest {
     public void setUp() {
         JsonExerciseBookStorage exerciseBookStorage =
                 new JsonExerciseBookStorage(temporaryFolder.resolve("exerciseBook.json"));
+        JsonGoalBookStorage goalBookStorage =
+                new JsonGoalBookStorage(temporaryFolder.resolve("goalbook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManagerForExercise storage = new StorageManagerForExercise(exerciseBookStorage, userPrefsStorage);
-        logic = new LogicManagerForExercise(model, storage);
+        StorageManagerForGoal goalStorage = new StorageManagerForGoal(goalBookStorage, userPrefsStorage);
+        logic = new LogicManagerForExercise(model, storage, goalStorage);
     }
 
     @Test
@@ -133,7 +138,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        ExerciseModel expectedModel = new ExerciseModelManager(model.getExerciseBook(), new UserPrefs());
+        ExerciseModel expectedModel = new ExerciseModelManager(model.getExerciseBook(), null, new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

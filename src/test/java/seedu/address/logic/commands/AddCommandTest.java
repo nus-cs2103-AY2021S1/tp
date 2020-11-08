@@ -19,9 +19,11 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.ExerciseBook;
 import seedu.address.model.ExerciseModel;
 import seedu.address.model.ReadOnlyExerciseBook;
+import seedu.address.model.ReadOnlyGoalBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Template;
+import seedu.address.model.goal.Goal;
 import seedu.address.testutil.ExerciseBuilder;
 
 public class AddCommandTest {
@@ -91,8 +93,18 @@ public class AddCommandTest {
         }
 
         @Override
+        public Path getGoalBookFilePath() {
+            return null;
+        }
+
+        @Override
         public void setExerciseBookFilePath(Path exerciseBookFilePath) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setGoalBookFilePath(Path goalBookFilePath) {
+
         }
 
         @Override
@@ -106,8 +118,18 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addGoal(Goal goal) {
+
+        }
+
+        @Override
         public void setExerciseBook(ReadOnlyExerciseBook newData) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setGoalBook(ReadOnlyGoalBook goalBook) {
+
         }
 
         @Override
@@ -116,13 +138,28 @@ public class AddCommandTest {
         }
 
         @Override
+        public ReadOnlyGoalBook getGoalBook() {
+            return null;
+        }
+
+        @Override
         public boolean hasExercise(Exercise exercise) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public boolean hasGoal(Goal goal) {
+            return false;
+        }
+
+        @Override
         public void deleteExercise(Exercise target) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteGoal(Goal target) {
+
         }
 
         @Override
@@ -143,6 +180,11 @@ public class AddCommandTest {
         @Override
         public ObservableList<Exercise> getFilteredExerciseList() {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setGoal(Goal target, Goal editedGoal) {
+
         }
 
         @Override

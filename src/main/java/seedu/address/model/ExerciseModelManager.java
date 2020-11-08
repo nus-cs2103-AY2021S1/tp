@@ -15,9 +15,10 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Template;
 import seedu.address.model.exercise.TemplateList;
+import seedu.address.model.goal.Goal;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the exercise book data.
  */
 public class ExerciseModelManager implements ExerciseModel {
     private static final Logger logger = LogsCenter.getLogger(ExerciseModelManager.class);
@@ -25,24 +26,27 @@ public class ExerciseModelManager implements ExerciseModel {
     private final ExerciseBook exerciseBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Exercise> filteredExercises;
+    private final GoalBook goalBook;
     private final FilteredList<Template> filteredTemplates;
 
     /**
      * Initializes a ExerciseModelManager with the given exerciseBook and userPrefs.
      */
-    public ExerciseModelManager(ReadOnlyExerciseBook exerciseBook, ReadOnlyUserPrefs userPrefs) {
+    public ExerciseModelManager(ReadOnlyExerciseBook exerciseBook,
+                                ReadOnlyGoalBook goalBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(exerciseBook, userPrefs);
-        logger.fine("Initializing with address book: " + exerciseBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with exercise book: " + exerciseBook + " and user prefs " + userPrefs);
 
         this.exerciseBook = new ExerciseBook(exerciseBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredExercises = new FilteredList<>(this.exerciseBook.getExerciseList());
+        this.goalBook = new GoalBook(goalBook);
         this.filteredTemplates = new FilteredList<>(this.exerciseBook.getTemplateList());
     }
 
     public ExerciseModelManager() {
-        this(new ExerciseBook(), new UserPrefs());
+        this(new ExerciseBook(), new GoalBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -75,9 +79,21 @@ public class ExerciseModelManager implements ExerciseModel {
     }
 
     @Override
+    public Path getGoalBookFilePath() {
+        return userPrefs.getGoalBookFilePath();
+    }
+
+
+    @Override
     public void setExerciseBookFilePath(Path exerciseBookFilePath) {
         requireNonNull(exerciseBookFilePath);
         userPrefs.setExerciseBookFilePath(exerciseBookFilePath);
+    }
+
+    @Override
+    public void setGoalBookFilePath(Path goalBookFilePath) {
+        requireNonNull(goalBookFilePath);
+        userPrefs.setGoalBookFilePath(goalBookFilePath);
     }
 
     //=========== ExerciseBook ================================================================================
@@ -103,6 +119,7 @@ public class ExerciseModelManager implements ExerciseModel {
         this.exerciseBook.removeExercise(target);
     }
 
+
     @Override
     public void addExercise(Exercise exercise) {
         exerciseBook.addExercise(exercise);
@@ -127,6 +144,40 @@ public class ExerciseModelManager implements ExerciseModel {
         System.out.println("Archived");
     }
 
+    //=========== GoalBook ================================================================================
+    @Override
+    public void setGoalBook(ReadOnlyGoalBook goalBook) {
+        this.goalBook.resetData(goalBook);
+    }
+
+    @Override
+    public void addGoal(Goal goal) {
+        goalBook.addGoal(goal);
+    }
+
+    @Override
+    public boolean hasGoal (Goal goal) {
+        requireNonNull(goal);
+        return goalBook.hasGoal(goal);
+    }
+
+    @Override
+    public ReadOnlyGoalBook getGoalBook() {
+        return goalBook;
+    }
+
+    @Override
+    public void deleteGoal(Goal target) {
+        this.goalBook.removeGoal(target);
+    }
+
+    @Override
+    public void setGoal(Goal target, Goal editedGoal) {
+        requireAllNonNull(target, editedGoal);
+
+        goalBook.setGoal(target, editedGoal);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -138,6 +189,7 @@ public class ExerciseModelManager implements ExerciseModel {
 
         return filteredExercises;
     }
+
 
     @Override
     public ObservableList<Template> getFilteredTemplateList() {
