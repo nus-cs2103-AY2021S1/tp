@@ -22,7 +22,7 @@ Given below are my contributions to the project.
   * What it does: Allows the user to edit a schedule’s details like a schedule’s updated session index, payment status, remark and weight.
   * Justification: This feature improves the product significantly because a user may have changes made to his schedules, therefore the app should provide a way to make update the changes to the schedule.
   * Highlights: This enhancement was similar to the edit session feature. However, the implementation was slightly different form the edit session feature and more variations of parameters were added to this feature. 
-                Much consideration was put into this implementation for ease of usage of this feature, therefore more time was required to create this feature.
+                Much consideration was put into this implementation's design for ease of usage of this feature from the user's end, therefore more time was required to create this feature.
   * Credits: Credits to teammates Bennett and Dhafin for adding additional parameters that can be edited in the feature.
 
 <div style="page-break-after: always;"></div>
@@ -30,7 +30,8 @@ Given below are my contributions to the project.
 * **New Feature**: Added a dynamic header on the right side panel. (Pull requests [\#134](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/134), [\#138](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/138))
   * What it does: Allows the user to have a better idea of the time period searched for when using the “Session View” function.
   * Justification: This feature improves the product significantly because a user can better identify which time period it is referring to.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of JavaFX.
+  * Highlights: This enhancement affects existing commands and commands to be added in future. 
+                It required an good understanding of JavaFX and how it relates to the logic in both Session List panel and the user's input.
                 The implementation too was challenging enough as a new user to JavaFX.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=maguireong&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=maguireong&tabRepo=AY2021S1-CS2103T-T13-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
