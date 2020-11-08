@@ -1273,26 +1273,31 @@ Use case same as UC09: Delete Meeting
 
     Use case ends.
 
-**UC12: Set Time/Date for Consult**
+**UC12: Autocomplete Entity Name (Contact, Module, Meeting)**
 
 **MSS**
 
-1.  User makes request to edit a specific consult
-2.  Modduke accepts request and makes changes to consult
+1.  User makes a request to system to trigger autocomplete.
+2.  Modduke accepts request and enters autocomplete mode and request for text to be autocompleted
+3.  User specifies text to autocomplete.
+4.  Modduke takes user input and returns list of suggestions to user.
+5.  User selects his desired suggestion from list.
+6.  Modduke replaces user's text with autocomplete result.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. Consult Name is missing.
+* 4a. No suggestions available for text entered
 
-  * 1a1. Modduke shows an error message.
+  * 4a1. Modduke shows an empty suggestions list
 
-    Use case ends.
+    Use case resumes from step 3.
 
-* 1b. Consult with the same name already exists.
+* *a. At any time, User chooses to exit autocomplete mode.
 
-  * 1b1. Modduke shows an error message.
+  * *a1. User makes a request to Modduke to exit autocomplete mode.
+  * *a2. Modduke accepts request and exits autocomplete mode.
 
     Use case ends.
 
