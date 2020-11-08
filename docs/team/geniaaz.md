@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Wahab Niaaz's Project Portfolio Page
+title: Muhammad Niaaz Wahab' Project Portfolio Page
 ---
 
 ## Taskmania
