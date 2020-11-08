@@ -1147,11 +1147,11 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisite: List all students using `list` command. View academic data with `toggle` command. First student on the list must have at least one question.
 
-    1. Test case: `question solve 0 i/1`
+    1. Test case: `question delete 0 i/1`
        Expected: No question deleted. Error details shown in status message.
 
-    1. Test case: `question solve 1 i/0`
+    1. Test case: `question delete 1 i/0`
        Expected: Similar to previous.
 
-    1. Test case: `question solve 1 i/QUESTION_INDEX`
+    1. Test case: `question delete 1 i/QUESTION_INDEX`
        Expected: Question at `QUESTION_INDEX` is removed. Details of deleted question included in status message.
