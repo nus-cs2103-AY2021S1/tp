@@ -372,7 +372,7 @@ Command and Parser makes use of Substitutability:
 * `EatRecipeCommand` extends `Command`
 * `EatRecipeCommandParser` implements `Parser<EatRecipeCommand>` <br><br>
 
-The following two diagrams shows how eat recipe operation works when `execute(eatR 1)` is called:
+The following two diagrams shows how eat recipe operation works when `execute("eatR 1")` is called:
 
 The following activity diagram shows how eat recipe operation works.
 ![EatRecipeActivityDiagram](images/implementation/activityDiagrams/EatRecipeCommandActivityDiagram.png)
@@ -520,8 +520,7 @@ remove(key) | `removeRecipe(key)` | `removeIngredient(key)` | `removeConsumption
 </div>
 
 Given below is an example usage scenario and how the mechanism behaves:
-1. User inputs delete command with the item index, to delete that specific item from their respective recipe
- list, fridge or consumption list.
+1. User inputs delete command with the item index, to delete that specific item from their respective recipe, ingredient or consumption list.
 
 1. After successfully parsing the user's input, the `DeleteRecipeCommand#execute(Model model)`, `DeleteIngredientCommand#execute(Model model)` or `DeleteConsumptionCommand#execute(Model model)` method is called.
 
@@ -560,7 +559,7 @@ Command and Parser make use of Substitutability:
 * `EditRecipeCommandParser` implements `Parser<EditRecipeCommand>`
 * `EditIngredientCommandParser` implements `Parser<EditIngredientCommand>` <br><br>
 
-The following two activity diagrams shows how edit operation generally works when a recipe is edited: <br>
+The following two diagrams shows how edit operation generally works when a recipe is edited: <br>
  `execute("editR 1 n/Pea soup")` <br>
  or an ingredient is edited <br>
  `execute("editF 1 i/tomato")`
@@ -840,11 +839,11 @@ Command and Parser make use of Substitutability:
 * `ClearRecipeCommand`, `ClearIngredientCommand` and `ClearConsumptionCommand` extends `Command` <br><br>
 
 The following two diagrams shows how clear operation generally works when clear recipes: <br> 
-`execute(clearR)` <br> 
+`execute("clearR")` <br> 
 or clear fridge: <br>  
-`execute(clearF)` <br> 
+`execute("clearF")` <br> 
 or clear consumptions: <br> 
- `execute(clearC)` is called:
+ `execute("clearC")` is called:
 
 The following activity diagram shows how clear operation generally works.
 ![ClearActivityDiagram](images/implementation/activityDiagrams/ClearCommandActivityDiagram.png)
