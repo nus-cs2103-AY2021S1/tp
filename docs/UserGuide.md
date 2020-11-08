@@ -382,6 +382,7 @@ Example:
 - `edit suspect 1 e:newEmail@mail.com a:New Road Crescent` edits the first suspect in the list with the email 
 `newEmail@mail.com` and the address `New Road Crescent`.
 
+<div style="page-break-after: always;"></div>
 #### Edit an existing victim in the current case: `edit victim VICTIM_NO [n:NAME] [sex:SEX] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Edits the fields of the victim specified with the index in the case that is currently open.
