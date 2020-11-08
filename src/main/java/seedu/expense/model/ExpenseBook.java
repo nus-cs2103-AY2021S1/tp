@@ -278,10 +278,14 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
                 .map(expense -> expense.getTag()).forEach(checkedTagList::add);
 
         if (checkedTagList.size() > 1) {
+            // Show total budget if Expenses of all tags in UniqueTagList passes
+            // predicate from expenses.getFilteredList()
             return "Total";
         } else if (checkedTagList.size() == 1) {
+            // Exactly one tag matches
             return checkedTagList.get(0).toString();
         } else {
+            // No match
             return "Default";
         }
     }
