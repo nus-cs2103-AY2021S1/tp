@@ -57,7 +57,9 @@ LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
 DeleteCommand -> Model : getFilteredAssignmentList()
-Model --> DeleteCommand : List<Assignment> lastShownList
+activate Model
+Model --> DeleteCommand
+deactivate Model
 
 DeleteCommand -> CommandLogic : checkForDuplicatedIndexes({1,2})
 activate CommandLogic

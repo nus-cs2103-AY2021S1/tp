@@ -49,9 +49,6 @@ LogicManager -> ListCommand : execute()
 activate ListCommand
 
 alt numberOfDays.getZeroBased() == 0
-ListCommand -> Model : updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT)
-activate Model
-deactivate Model
 
 else else
 ListCommand -> Model : updateFilteredAssignmentList(showLimitedAssignments())

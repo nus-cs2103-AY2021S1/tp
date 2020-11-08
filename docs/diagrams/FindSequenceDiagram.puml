@@ -54,15 +54,13 @@ activate Model
 Model --> FindCommand
 deactivate Model
 
-FindCommand --> Model : getFilteredAssignmentList()
-activate Model
-
-Model --> FindCommand
-deactivate Model
-
 create CommandResult
 FindCommand -> CommandResult
 activate CommandResult
+
+CommandResult -> Model : getFilteredAssignmentList()
+activate Model
+Model --> CommandResult
 
 CommandResult --> FindCommand
 deactivate CommandResult
