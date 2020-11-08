@@ -50,10 +50,10 @@ fcd -> fcd: getSchoolPredicate()
 fcd -> fcd: getYearPredicate()
 return predicates
 
-
 end box
 
 box "Model" MODEL_COLOR_T1
+
 Participant ":Model" as model MODEL_COLOR
 
 fc -> model++: updateFilteredPersonList(consolidatedPredicates)
@@ -65,6 +65,7 @@ return commandResult
 return commandResult
 return
 destroy fc
+
 end box
 
 @enduml

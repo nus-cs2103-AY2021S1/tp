@@ -18,7 +18,7 @@ public abstract class AttendanceCommand extends Command {
      * @param attendanceList new list of additional attendanceList.
      * @return updated Student.
      */
-    public Student updateStudentAttendance(Student studentToAddAttendance, List<Attendance> attendanceList) {
+    protected Student updateStudentAttendance(Student studentToAddAttendance, List<Attendance> attendanceList) {
         Student updatedStudent = new Student(
                 studentToAddAttendance.getName(),
                 studentToAddAttendance.getPhone(),

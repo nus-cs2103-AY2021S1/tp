@@ -23,17 +23,24 @@
         * [6.2.3 Delete student command](#623-delete-student-command)
         * [6.2.4 Find student command](#624-find-student-command)
         * [6.2.5 Overdue command](#625-overdue-command)
-        * [6.2.6 Sort command](#626-sort-command)
+        * [6.2.6 Detail commands](#626-detail-commands)
+            * [6.2.6.1 Add detail command](#6261-add-detail-command)
+            * [6.2.6.2 Edit detail command](#6262-edit-detail-command)
+            * [6.2.6.3 Delete detail command](#6263-delete-detail-command)
+        * [6.2.7 Sort command](#626-sort-command)
+
     * [6.3 Student academic details features](#63-student-academic-details-features)
-        * [6.3.1 Student questions features](#631-student-questions-features)
+        * [6.3.1 Question commands](#631-question-commands)
             * [6.3.1.1 Add question command](#6311-add-question-command)
             * [6.3.1.2 Solve question command](#6312-solve-question-command)
             * [6.3.1.3 Delete question command](#6313-delete-question-command)
-        * [6.3.2 Student exam features](#632-student-exam-features)
+        * [6.3.2 Exam Commands](#632-exam-commands)
             * [6.3.2.1 Add exam command](#6321-add-exam-command)
             * [6.3.2.2 Delete exam command](#6322-delete-exam-command)
             * [6.3.2.3 Exam Stats command](#6323-exam-stats-command)
-        * [6.3.3 Student attendance features](#633-student-attendance-features)
+        * [6.3.3 Attendance commands](#633-attendance-commands)
+            * [6.3.3.1 Add attendance command](#6331-add-attendance-command)
+            * [6.3.3.2 Delete attendance command](#6332-delete-attendance-command)
     * [6.4 Schedule command](#64-schedule-command)
     * [6.5 Notebook feature](#65-notebook-feature)
 - [7. Documentation](#7-documentation)
@@ -233,7 +240,7 @@ This section describes some key details on how general features are implemented.
 The following describes the flow of how `HelpCommand` is performed.
 
 1. Upon successfully parsing the user input, the `HelpCommand#execute(Model model)` is called.
-2. A `CommandResult` with the `showHelp` field set to true is returned and `MainWindow#handleHelp()` is called.
+2. A `CommandResult` with the `shouldShowHelp` field set to true is returned and `MainWindow#handleHelp()` is called.
 3. A Help display window will be opened showing a link to the User Guide.
 
 <div markdown="block" class="alert alert-info">
@@ -277,17 +284,15 @@ The following explains the design considerations of the `toggle` command.
     
 #### 6.1.3 Exit Command
 
+The following describes the flow of how `ExitCommand` is performed.
+
+1. Upon successfully parsing the user input, the `ExitCommand#execute(Model model)` is called.
+2. A `CommandResult` with the `shouldExit` field set to true is returned and `MainWindow#handleExit()` is called.
+3. **Reeve** is then exited, and the window closes.
+
 ### 6.2 Student administrative details features
 
 This section describes some key details on how administrative details features are implemented.
-
-The student administrative details feature keeps track of essential administrative student details. The feature comprises of the following commands,
-* `AddCommand` - Adds a student into the student list
-* `EditCommand` - Edits the details of a particular student
-* `DeleteCommand` - Deletes a particular student
-* `FindCommand` - Finds students matching certain parameters
-* `OverdueCommand` - Finds students who have overdue payments
-* `ClearCommand` - Deletes all students in the student list
 
 #### 6.2.1 Add Student Command
 
@@ -298,7 +303,7 @@ the added student already exists in the `UniqueStudentList` using the `Model#has
 2. A unique student is defined by `Name`, `Phone`, `School` and `Year`. If a duplicate student is defined,
 a `CommandException` is thrown and the student will not be added.
 3. The `AddCommand#execute(Model model)` also checks if the student to be added has clashing `ClassTime` with other students already in the `UniqueStudentList`.
-4. Two student's `ClassTime` is considered clashing if they overlap either partially or fully. A `CommandException` will be thrown if there are other students with clashing class time.
+4. Two student's `ClassTime` are considered clashing if they overlap either partially or fully. A `CommandException` will be thrown if there are other students with clashing class time.
 5. If the added student is not a duplicate and there are no clashes in class time, then the `Model#addStudent(Student toAdd)` is called to add the student.
 A new `CommandResult` is returned with a success message and the added student.
 6. The student is be added into `UniqueStudentList` and a success message is shown in the result display.
@@ -317,17 +322,16 @@ Figure /__. Sequence Diagram for `AddCommand`
 
 #### 6.2.2 Edit Student Command
 
-The edit student feature allows the tutor to edit a particular student within **Reeve**.
-It is handled by the `EditCommand`.
-
 The following describes the flow of how `EditCommand` is executed.
 
-1. Upon successfully parsing the user input, `EditCommand#execute(Model model)` is called to edit the existing student to the new edited student.
-2. `Model#setStudent(Student student)` is called to replace the student with edited student within the model.
-3. `Model#updateFilteredStudentsList(Predicate<Student> predicate)` is then called to update the student list with the new edited student.
-4. A new `CommandResult` is returned with a successful message indicating that the student has been edited.
-5. The edited student is now shown on the student list.
-
+1. Upon successfully parsing the user input, the `EditCommand#execute(Model model)` is called which checks if the student at the specified position exists.
+2. If there is no student at the specified position, a `CommandException` is thrown and the student is not edited.
+3. If there is such a student, the `EditCommand#execute(Model model)` then creates the edited student, and checks to see if the edited student already exists in the `UniqueStudentList` using the `Model#hasStudent(Student toAdd)`.
+4. If it is a duplicate student, a `CommandException` is thrown and the edited student will not be added.
+5. The `EditCommand#execute(Model model)` also checks if the edited student has clashing `ClassTime` with other students already in the `UniqueStudentList`.
+6. Two student's `ClassTime` are considered clashing if they overlap either partially or fully. A `CommandException` will be thrown if there are other students with clashing class time.
+7. If the edited student is not a duplicate and there are no clashes in class time, then the`Model#setStudent(Student target, Student editedStudent)` is called to replace the outdated student with the edited copy. A new `CommandResult` is returned with a success message showing the newly edited student.
+8. The edited student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
 The following sequence diagram shows how the `EditCommand` execution works.
 
@@ -335,7 +339,7 @@ The following sequence diagram shows how the `EditCommand` execution works.
 
 Figure \___. Sequence diagram for `EditCommand` execution
 
-The following activity diagram summarises the flow of events when `EditCommand` is executed.
+The following activity diagram summarizes the flow of events when the `EditCommand` is executed.
 
 ![EditActivity](images/EditStudentActivityDiagram.png)
 
@@ -396,7 +400,87 @@ The following activity diagram summarises the flow of events when `OverdueComman
 
 Figure 5.1.5.2. Activity diagram for `OverdueCommand` execution
 
-#### 6.2.6 Sort Command
+#### 6.2.6 Detail Commands
+
+The Detail commands keep track of any additional details a tutor wants to add to a student. They comprise of the following commands:
+
+* `AddDetailCommand` - Adds a detail to a specified student.
+* `EditDetailCommand` - Edits a specified detail in a specified student.
+* `DeleteDetailCommand` - Deletes a specified detail from a specified student.
+
+##### 6.2.6.1 Add Detail Command
+
+The following describes the flow of how `AddDetailCommand` is performed.
+
+1. Upon successfully parsing the user input, `AddDetailCommand#execute(Model model)`, and it checks if the student at the specified position exists.
+2. If there is no student at the specified position,  a `CommandException` is thrown and the detail will not be added.
+3. If the student exists, the detail is added to the student's list of details, and `DetailCommand#updateStudentDetail(Student studentToAddDetail, List<Detail> details)` is called to create a modified copy of the student with the new detail.
+4. `Model#setStudent(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the detail added.
+5. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
+
+The following sequence diagram shows how the detail adding operation works.
+
+![AddDetailSequence](images/AddDetailSequenceDiagram.png)
+
+Figure 5.2.1.1. Sequence diagram for `AddDetailCommand` execution
+
+The following activity diagram summarises the flow of events when `AddDetailCommand` is executed.
+
+![AddDetailActivity](images/AddDetailActivityDiagram.png)
+
+Figure 5.2.1.2. Activity diagram for `AddDetailCommand` execution
+
+##### 6.2.6.2 Edit Detail Command
+
+The following describes the flow of how `EditDetailCommand` is performed.
+
+1. Upon successfully parsing the user input, `EditDetailCommand#execute(Model model)`, and it checks if the student at the specified position exists.
+2. If there is no student at the specified position,  a `CommandException` is thrown and the detail will not be edited.
+3. If the student exists, `EditDetailCommand#execute(Model model)` then checks if the detail at the specified position exists.
+4. If there is no detail at the specified position, a `CommandException` is thrown and the detail will not be edited. 
+5. If the detail exists, the newly updated detail is added to the student's list of details, and `DetailCommand#updateStudentDetail(Student studentToEditDetail, List<Detail> details)` is called to create a modified copy of the student with the new detail.
+6. `Student#addQuestion(Question question)` is called to create a modified copy of the student with a newly added question.
+7. `Model#setStudent(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the detail added.
+8. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
+
+The following sequence diagram shows how the detail editing operation works.
+
+![EditDetailSequence](images/EditDetailSequenceDiagram.png)
+
+Figure 5.2.1.1. Sequence diagram for `EditDetailCommand` execution
+
+The following activity diagram summarises the flow of events when `EditDetailCommand` is executed.
+
+![EditDetailActivity](images/EditDetailActivityDiagram.png)
+
+Figure 5.2.1.2. Activity diagram for `EditDetailCommand` execution
+
+##### 6.2.6.3 Delete Detail Command
+
+The following describes the flow of how `DeleteDetailCommand` is performed.
+
+1. Upon successfully parsing the user input, `DeleteDetailCommand#execute(Model model)`, and it checks if the student at the specified position exists.
+2. If there is no student at the specified position,  a `CommandException` is thrown and the detail will not be deleted.
+3. If the student exists, `DeleteDetailCommand#execute(Model model)` then checks if the detail at the specified position exists.
+4. If there is no detail at the specified position, a `CommandException` is thrown and the detail will not be deleted. 
+5. If the detail exists, the detail is removed from the student's list of details, and `DetailCommand#updateStudentDetail(Student studentToDeleteDetail, List<Detail> details)` is called to create a modified copy of the student with detail removed.
+6. `Student#addQuestion(Question question)` is called to create a modified copy of the student with a newly added question.
+7. `Model#setStudent(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the removed detail.
+8. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
+
+The following sequence diagram shows how the detail deleting operation works.
+
+![DeleteDetailSequence](images/DeleteDetailSequenceDiagram.png)
+
+Figure 5.2.1.1. Sequence diagram for `DeleteDetailCommand` execution
+
+The following activity diagram summarises the flow of events when `DeleteDetailCommand` is executed.
+
+![DeleteDetailActivity](images/DeleteDetailActivityDiagram.png)
+
+Figure 5.2.1.2. Activity diagram for `DeleteDetailCommand` execution
+
+#### 6.2.7 Sort Command
 
 This is an explanation of how `SortCommand` works.
 
@@ -419,9 +503,9 @@ The following sequence diagram shows how the `SortCommand` execution works.
 
 This section describes some key details on how academic details features are implemented.
 
-#### 6.3.1 Student questions features
+#### 6.3.1 Question Commands
 
-The student questions feature keeps track of questions raised by a student to his tutor. It comprises of the following commands:
+The Question commmands keep track of questions raised by a student to his tutor. They comprise of the following commands:
 
 * `AddQuestionCommand` - Adds a question to a specified student.
 * `SolveQuestionCommand` - Marks a specified question from a specified student as solved.
@@ -436,7 +520,7 @@ The following describes the flow of how `AddQuestionCommand` is performed.
 3. If the student exists, `AddQuestionCommand#execute(Model model)` checks if the student already has a similar question recorded.
 4. A unique question is defined solely by its `question` and does not take into account if the question has been solved. If a duplicate question is found, a `CommandException` is thrown and the question will not be added.
 5. If the question is not a duplicate, `Student#addQuestion(Question question)` is called to create a modified copy of the student with a newly added question.
-6. `Model#setPerson(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the question added.
+6. `Model#setStudent(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the question added.
 7. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
 The following sequence diagram shows how the question adding operation works.
@@ -460,7 +544,7 @@ The following describes the flow of how `SolveQuestionCommand` is performed.
 3. If the student exists, `SolveQuestionCommand#execute(Model model)` checks if there is a question at the specified position.
 4. If the question does not exist, a `CommandException` is thrown and the question will not be resolved.
 5. If the question exists, `Student#setQuestion(Question target, Question newQuestion)` is called to create a modified copy of the student where the specified question has been replaced with a solved version.
-6. `Model#setPerson(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the question solved.
+6. `Model#setStudent(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the question solved.
 7. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
 The following sequence diagram shows how the question solving operation works.
@@ -484,7 +568,7 @@ The following describes the flow of how `DeleteQuestionCommand` is performed.
 3. If the student exists, `DeleteQuestionCommand#execute(Model model)` checks if there is a question at the specified position.
 4. If the question does not exist, a `CommandException` is thrown and the question will not be resolved.
 5. If the question exists, `Student#deleteQuestion(Question target)` is called to create a modified copy of the student without the specified question.
-6. `Model#setPerson(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the question removed.
+6. `Model#setStudent(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the question removed.
 7. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
 The following sequence diagram shows how the question deletion operation works.
@@ -509,9 +593,9 @@ The downside, however, that this approach is more memory-intensive and possibly 
 
 Having considered that our target audience (one-to-one private tutors) are unlikely to have so much data that this would severely impact performance, we believe that this is worth the trade-off.
 
-#### 6.3.2 Student exam features
+#### 6.3.2 Exam Commands
 
-The student exams feature keeps track of exam records of a student. It comprises of the following commands:
+The Exam commands keep track of exam records of a student. They comprise of the following commands:
 
 * `AddExamCommand` - Adds a exam record to a specified student.
 * `DeleteExamCommand` - Deletes a specified exam record from a specified student.
@@ -533,7 +617,7 @@ The following describes the flow of how `AddExamCommand` is performed.
 4. A unique exam is defined solely by its `examName`. If a duplicate exam is found, a `CommandException` is thrown and the exam will not be added.
 5. If the exam is not a duplicate, `Student#getExams()` is called get the current list of exams of the specified student.
 6. The new exam is added into this current list and a new updated `Student` is created which is exactly the same characteristics of the specified student but with the updated exam list.
-7. `Model#setPerson(Student selectedStudent, Student updatedStudent)` is called to replace the student with the updated copy. A new `CommandResult` is returned with a success message showing the affected student and the exam added.
+7. `Model#setStudent(Student selectedStudent, Student updatedStudent)` is called to replace the student with the updated copy. A new `CommandResult` is returned with a success message showing the affected student and the exam added.
 8. The updated student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
 The sequence(insert image reference here) of how add exam operates is very similar to that of add question.
@@ -547,7 +631,7 @@ The following describes the flow of how `DeleteExamCommand` is performed.
 3. If the student exists, `DeleteExamCommand#execute(Model model)` checks if there is a exam at the specified position.
 4. If the exam does not exist, a `CommandException` is thrown.
 5. If the exam exists, `Student#getExams()` is called get the current list of exams of the specified student.
-6. `Model#setPerson(Student selectedStudent, Student updatedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the exam removed.
+6. `Model#setStudent(Student selectedStudent, Student updatedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the exam removed.
 7. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
 <div markdown="block" class="alert alert-info">
@@ -592,7 +676,60 @@ The following explains the design considerations of the `exam stats` command.
     * Pros: Only one window open at all time.
     * Cons: Unable to compare and reference with student data, harder to implement, can introduce confusion when trying to switch back to the student list panel.
 
-#### 6.3.3 Student attendance features
+#### 6.3.3 Attendance Commands
+
+The Attendance commands keep track of the attendance for a student. They comprise of the following commands:
+
+* `AddAttendanceCommand` - Adds an attendance to a specified student.
+* `DeleteAttendanceCommand` - Deletes a specified attendance from a specified student.
+
+##### 6.3.3.1 Add Attendance Command
+
+The following describes the flow of how `AddAttendanceCommand` is performed.
+
+1. Upon successfully parsing the user input, `AddAttendanceCommand#execute(Model model)`, and it checks if the student at the specified position exists.
+2. If there is no student at the specified position,  a `CommandException` is thrown and the attendance will not be added.
+3. If the student exists, `AddAttendanceCommand#execute(Model model)` then checks if the student has an existing attendance with the input attendance date.
+4. If there is such an attendance, a `CommandException` is thrown and the attendance will not be added.
+5. If there is no such attendance, the attendance is added to the student's list of attendances, and `AttendanceCommand#updateStudentAttendance(Student studentToAddAttendance, List<Attendance> attendances)` is called to create a modified copy of the student with the new attendance.
+4. `Model#setStudent(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the attendance added.
+5. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
+
+The following sequence diagram shows how the attendance adding operation works.
+
+![AddAttendanceSequence](images/AddAttendanceSequenceDiagram.png)
+
+Figure 5.2.1.1. Sequence diagram for `AddAttendanceCommand` execution
+
+The following activity diagram summarises the flow of events when `AddAttendanceCommand` is executed.
+
+![AddAttendanceActivity](images/AddAttendanceActivityDiagram.png)
+
+Figure 5.2.1.2. Activity diagram for `AddAttendanceCommand` execution
+
+##### 6.3.3.2 Delete Attendance Command
+
+The following describes the flow of how `DeleteAttendanceCommand` is performed.
+
+1. Upon successfully parsing the user input, `DeleteAttendanceCommand#execute(Model model)`, and it checks if the student at the specified position exists.
+2. If there is no student at the specified position,  a `CommandException` is thrown and the attendance will not be deleted.
+3. If the student exists, `DeleteAttendanceCommand#execute(Model model)` then checks if the student has an existing attendance with the input attendance date.
+4. If there is no such attendance, a `CommandException` is thrown and the attendance will not be deleted.
+5. If there is such an attendance, the attendance is deleted from the student's list of attendances, and `AttendanceCommand#updateStudentAttendance(Student studentToDeleteAttendance, List<Attendance> attendances)` is called to create a modified copy of the student with attendance removed.
+4. `Model#setStudent(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the attendance deleted.
+5. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
+
+The following sequence diagram shows how the attendance deleting operation works.
+
+![DeleteAttendanceSequence](images/DeleteAttendanceSequenceDiagram.png)
+
+Figure 5.2.1.1. Sequence diagram for `DeleteAttendanceCommand` execution
+
+The following activity diagram summarises the flow of events when `DeleteAttendanceCommand` is executed.
+
+![DeleteAttendanceActivity](images/DeleteAttendanceActivityDiagram.png)
+
+Figure 5.2.1.2. Activity diagram for `DeleteAttendanceCommand` execution
 
 ### 6.4 Schedule Command
 
@@ -805,7 +942,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
    Use case ends.
 
-**UC06: Editing a student's details**
+**UC06: Editing a student's admin details**
 
 **MSS**
 
@@ -913,6 +1050,90 @@ Use cases also assume that whenever an invalid command is entered by the user, R
     * 1c1. Reeve displays a message indicating that sorting means in valid and valid sorting means.
 
       Use case resumes at step 1.
+
+**UC00: Adding an additional detail to a student**
+
+**MSS**
+
+1. User enters a command to list students.
+2. Reeve displays a list of students.
+3. User enters a command to add a detail to a specific student in the list.
+4. Reeve updates the specified student in the list with the newly added detail.
+5. Reeve displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with an invalid student index.
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User inputs a detail in an invalid format.
+    * 3b1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+**UC00: Editing an additional detail in a student**
+
+**MSS**
+
+1. User enters a command to list students.
+2. Reeve displays a list of students.
+3. User enters a command to edit a detail from a specific student in the list.
+4. Reeve updates the specified student in the list with the edited detail.
+5. Reeve displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with an invalid student.
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User provides input with an invalid detail.
+    * 3b1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+**UC00: Deleting an additional detail from a student**
+
+**MSS**
+
+1. User enters a command to list students.
+2. Reeve displays a list of students.
+3. User enters a command to delete a detail from a specific student in the list.
+4. Reeve updates the specified student in the list with the removed detail.
+5. Reeve displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with an invalid student.
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User provides input with an invalid detail.
+    * 3b1. Reeve displays an error message.
+
+      Use case resumes at step 2.
 
 **UC00: Adding a question to a student**
 
@@ -1115,10 +1336,6 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 1. User enters a command to add a note to the notebook.
 2. Reeve saves the note into the notebook and displays a success message
 
-   Use case ends.
-
-**Extensions**
-
 * 1a. User provides input with missing fields.
     * 1a1. Reeve displays an error message.
 
@@ -1153,7 +1370,61 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
 	  Use case resumes at step 1.
 
+**UC00: Adding an attendance record to a student**
 
+**MSS**
+
+1. User enters a command to list students.
+2. Reeve displays a list of students.
+3. User enters a command to add an attendance record to a specific student in the list.
+4. Reeve updates the specified student in the list with the newly added attendance record.
+5. Reeve displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with an invalid student index.
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User inputs attendance with an invalid format.
+    * 3b1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+**UC00: Deleting an attendance record from a student**
+
+**MSS**
+
+1. User enters a command to list students.
+2. Reeve displays a list of students.
+3. User enters a command to delete an attendance record from a specific student in the list.
+4. Reeve updates the specified student in the list with the removed attendance record.
+5. Reeve displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with an invalid student.
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User provides input with an invalid attendance record.
+    * 3b1. Reeve displays an error message.
+
+      Use case resumes at step 2.
 
 ## **Appendix D: Non-Functional Requirements**
 
@@ -1394,5 +1665,87 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `question delete 1 i/0`
        Expected: Similar to previous.
 
-    1. Test case: `question delete 1 i/QUESTION_INDEX`
-       Expected: Question at `QUESTION_INDEX` is removed. Details of deleted question included in status message.
+1. _{ more test cases …​ }_
+
+### F.0 Managing additional details in students
+
+1. Adding details to a student.
+
+    1. Prerequisite: List all students using `list` command. Multiple students present.
+
+    1. Test case: `detail add 1 t/DETAIL_TEXT`
+       Expected: New detail that matches your input `DETAIL_TEXT` added to first student.
+
+    1. Test case: `detail add 0 t/DETAIL_TEXT`
+       Expected: No detail added. Error details shown in status message. List stays the same.
+
+    1. Test case: `detail add 1 t/`
+       Expected: Similar to previous.
+
+    1. Test case: `detail add t/DETAIL_TEXT`
+       Expected: Similar to previous.
+
+1. Editing details for a student.
+
+    1. Prerequisite: List all students using `list` command. Multiple students present. Student to be edited has at least one detail.
+
+    1. Test case: `detail edit 1 i/1 t/DETAIL_TEXT`
+       Expected: New detail that matches your input `DETAIL_TEXT` replaces the first detail for first student.
+
+    1. Test case: `detail edit 0 i/1 t/DETAIL_TEXT`
+       Expected: No detail edited. Error details shown in status message. List stays the same.
+
+    1. Test case: `detail edit 1 i/1 t/`
+       Expected: Similar to previous.
+
+    1. Test case: `detail edit 1 i/ t/DETAIL_TEXT`
+       Expected: Similar to previous.
+
+    1. Test case: `detail edit i/1 t/DETAIL_TEXT`
+       Expected: Similar to previous.
+       
+
+1. Deleting details from a student.
+
+    1. Prerequisite: List all students using `list` command. Multiple students present. Student to be edited has at least one detail.
+       
+    1. Test case: `detail delete 1 i/1`
+       Expected: First detail in first student is deleted.
+           
+    1. Test case: `detail delete 0 i/1`
+       Expected: No detail deleted. Error details shown in status message.
+
+    1. Test case: `detail delete i/1`
+       Expected: Similar to previous.
+       
+    1. Test case: `detail delete`
+           Expected: Similar to previous.
+
+1. Adding attendance to a student.
+
+    1. Prerequisite: List all students using `list` command. Multiple students present.
+
+    1. Test case: `attendance add 1 d/12/02/2020 a/present`
+       Expected: New attendance that matches the input date and status is added to the first student.
+
+    1. Test case: `attendance add 1 d/12/02/2020 a/present f/attentive`
+       Expected: New attendance that matches the input date, status and feedback is added to the first student.
+
+    1. Test case: `attendance add 1 d/12/02/2020 a/pre`
+       Expected: No attendance added. Error details shown in status message. List stays the same.
+
+    1. Test case: `attendance add 1 d/12/02 a/present`
+       Expected: Similar to previous.
+
+1. Deleting attendance record from a student.
+
+    1. Prerequisite: List all students using `list` command. Multiple students present. Student to be edited has at least one attendance record.
+       
+    1. Test case: `attendance delete 1 d/12/02/2020`
+       Expected: Attendance record that has the input date in the first student is deleted.
+           
+    1. Test case: `attendance delete 1 d/12/02`
+       Expected: No attendance deleted. Error details shown in status message.
+
+    1. Test case: `attendance delete d/12/02/2020`
+       Expected: Similar to previous.

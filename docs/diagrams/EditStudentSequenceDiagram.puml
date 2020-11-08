@@ -10,31 +10,27 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
+participant "editedStudent:Student" as Student MODEL_COLOR
 end box
 
-[-> LogicManager : execute("edit")
+[-> LogicManager : execute(...)
 activate LogicManager
 
-LogicManager -> ReeveParser : parseCommand("edit")
+LogicManager -> ReeveParser : parseCommand(...)
 activate ReeveParser
 
 create EditCommandParser
-ReeveParser -> EditCommandParser
+ReeveParser -> EditCommandParser : EditCommandParser()
 activate EditCommandParser
 
-
-EditCommandParser -> ReeveParser
+EditCommandParser --> ReeveParser
 deactivate EditCommandParser
 
-
-ReeveParser -> EditCommandParser : parse()
+ReeveParser -> EditCommandParser : parse(...)
 activate EditCommandParser
 
-EditCommandParser -> EditCommandParser : parseStudent()
-EditCommandParser -> EditCommandParser : parseAdmin()
-
 create Command
-EditCommandParser -> Command
+EditCommandParser -> Command : EditCommand(...)
 activate Command
 
 Command --> EditCommandParser : command
@@ -43,19 +39,29 @@ deactivate Command
 EditCommandParser --> ReeveParser : command
 deactivate EditCommandParser
 
+EditCommandParser -[hidden]> ReeveParser
+destroy EditCommandParser
+
 ReeveParser --> LogicManager : command
 deactivate ReeveParser
 
-LogicManager -> Command : execute()
+LogicManager -> Command : execute(...)
 activate Command
 
-Command -> Model : setStudent()
-activate Model
+Command -> Command : createEditedStudent(...)
+activate Command
 
-Model --> Command
-deactivate Model
+create Student
+Command -> Student : Student(...)
+activate Student
 
-Command -> Model : updateFilteredStudentList()
+Student --> Command : editedStudent
+deactivate Student
+
+Command --> Command : editedStudent
+deactivate Command
+
+Command -> Model : setStudent(studentToEdit, editedStudent)
 activate Model
 
 Model --> Command
@@ -67,6 +73,6 @@ deactivate Command
 Command -[hidden]-> LogicManager
 destroy Command
 
-[<-- LogicManager
+[<-- LogicManager : result
 deactivate LogicManager
 @enduml
