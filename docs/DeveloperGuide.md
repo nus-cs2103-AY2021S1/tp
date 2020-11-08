@@ -295,7 +295,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     <p>
         <img src="images/DeleteSessionActivityDiagram.png" style="width: 50%; height: auto;"/>
     </p>
-    <figcaption>Figure - Delete Session Activity Diagram</figcaption>
+    <figcaption>Figure 12 - Delete Session Activity Diagram</figcaption>
 </figure>
 
 The following diagram shows a possible application state in FitEgo. 
