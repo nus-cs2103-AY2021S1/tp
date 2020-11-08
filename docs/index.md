@@ -1,6 +1,6 @@
 ---
 layout: page
-title: MainCatalogue Level-3
+title: Taskmania
 ---
 
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
@@ -8,10 +8,10 @@ title: MainCatalogue Level-3
 
 ![Ui](images/Ui.png)
 
-**MainCatalogue is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**Taskmania is a desktop application for managing your projects.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-* If you are interested in using MainCatalogue, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing MainCatalogue, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* If you are interested in using Taskmania, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* If you are interested about developing Taskmania, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**
