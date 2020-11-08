@@ -39,9 +39,8 @@ public class DifficultyTest {
 
     @Test
     public void testToString() {
-        String difficultyLevel = "LOW";
-        Difficulty difficulty = new Difficulty(difficultyLevel);
-        assertEquals(difficulty.toString(), "[" + difficultyLevel + "]");
+        Difficulty difficulty = new Difficulty(LOW_DIFFICULTY);
+        assertEquals(difficulty.toString(), "[" + LOW_DIFFICULTY + "]");
     }
 
     @Test
