@@ -18,7 +18,7 @@ What is _Eva_?
 
 Eva is a simple and lightweight desktop application that **handles HR related administrative tasks**, 
 like managing your company staffs and recording details related to recruitment.<br>
-Eva comes with a command line interface (CLI) which is faster than a typical mouse/GUI driven app after you or your staffs get used to it.<br>
+Eva comes with a Command Line Interface (CLI) which is faster than a typical mouse/GUI driven app after you or your staffs get used to it.<br>
 
 We hope that through our app, you and your company will be empowered and able to solve your basic HR needs.<br>
 This user guide will take you through the basics of Eva and help you get moving straightaway.
@@ -191,7 +191,7 @@ Staff commands give you the ability to keep track of your staffs which help you 
 </div>
 
 
-#### 3.3.1. List all staffs : `list`
+#### 3.3.1. List all staff : `list s-`
 
 The staff list panel serves as your primary tool to give you an overview of all the staffs in your company.
 
@@ -221,6 +221,8 @@ Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]�
 
  - A staff can have any number of tags (including 0) <br>
  - A staff can have any number of comments (including 0) <br>
+ - Each staff is uniquely identified by their name. In the event you wish to add 2 staff records with the same name,
+   please ensure that both their phone number and email addresses are different
  
 :bulb: **Tip:**
  - The details of each field can be provided in any order.
@@ -390,6 +392,8 @@ Format: `adda n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG
 
  - An applicant can have any number of tags (including 0) 
  - An applicant can have any number of comments (including 0) 
+ - Each applicant is uniquely identified by their name. In the event you wish to add 2 applicant records with the same name,
+      please ensure that both their phone numbers and email addresses are different
  - The interview date has to be in DD/MM/YYYY format 
  - Once you add an applicant the status would be automatically set as received, if you wish to change it, refer to the feature 
  [setting of application status](#349-set-application-status-setas) below
