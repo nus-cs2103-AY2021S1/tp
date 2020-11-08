@@ -89,6 +89,17 @@ Note how the app contains some sample data.<br>
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
+* In Eva, you can store information about staff and applicants. Information includes details like name, phone number 
+and more. As such, in order to prevent incorrect details from being stored, make sure you follow these guidelines
+on storing these details
+  * Names can be contain only alphanumeric characters and have a character limit of 70 characters.
+  * Phone numbers can only contain numbers, and should be at least 8 digits long.
+  * Emails should be of the format local-part@domain where the local-part should contain alpha numeric characters or 
+    special characters which includes ( !#$%&'*+/=?`{|}~^.- ) excluding the parentheses. The domain name should have 
+    at least 2 characters and contain only alphanumeric with a period or a hyphen for the characters in between if 
+    needed.
+  * Tags can only contain alphanumeric characters. 
+  * All dates should be in the format DD/MM/YYYY. 
 </div>
 
 <div markdown="block" class="alert alert-primary">
