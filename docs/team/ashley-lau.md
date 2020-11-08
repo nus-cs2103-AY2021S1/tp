@@ -51,7 +51,7 @@ Given below are my contributions to the project.
     * Added documentation for the feature `print`. (Pull request [\#156](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/156), [\#277](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/277), [\#286](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/286))
     * Checked documentation for any mistakes and updated them accordingly. (Pull request [\#169](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/169/files), [\#170](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/170/files),
      [\#277](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/277), [\#286](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/286))
-    * Standardised the format of user guide. (Pull request [\#172](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/172/files), [\#286](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/286))
+    * Standardised the format of user guide. (Pull request [\#172](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/172/files), [\#286](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/286), [\#302](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/302))
   * Developer Guide:
     * Added implementation details of the `add` feature. (Pull request [\#162](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/162), [\#269](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/269))
     * Added implementation details of the `print` feature. (Pull request [\#269](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/269))
