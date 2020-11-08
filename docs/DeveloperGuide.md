@@ -597,6 +597,18 @@ Use case ends.
     - 1b1. McGymmy shows an error message.
 
 Use case ends.
+    
+**Use case: UC9 Export a McGymmy data file**
+
+**MSS**
+
+1. User exports his McGymmy file
+2. McGymmy creates a copy of his MyGymmy file in the selected directory
+
+Use case ends.
+
+**Extensions**
+ - 1a. The path to directory is invalid.
     - 1a1. McGymmy shows and error message.
 
 Use case ends.
