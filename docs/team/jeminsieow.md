@@ -27,6 +27,8 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
         * Added description of FixMyAbs (Pull request [\#175](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/175)
+        * Added screenshots of v1.4 application.
+        
     * Developer Guide (Pull request [\#15](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/15), [\#23](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/23), [\#30](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/30)):
         * Added implementation details and diagrams for the `add` feature. 
         * Added implementation details and diagrams for the `addex` feature.
@@ -35,6 +37,10 @@ Given below are my contributions to the project.
         * Added value proposition.
         * Added use cases.
         * Added non-functional requirements.
+        
+    * Other documents (Pull request [\#217](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/217)
+        * Updated README.
+        * Updated Website.
     
 * **Testing**:
     * Wrote tests for all command parsers (Pull request [\#64](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/64))
