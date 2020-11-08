@@ -5,11 +5,9 @@ title: User Guide
 
 ------------------------------------------------------------------------------------------------
 
-# User Guide for Taskmania
-
-Taskmania (based off AB3) is a **desktop app for a project leader to manage team members and tasks** to be finished in a
- software project, optimized for use via a Command Line Interface (CLI) while still having the benefits of a 
- Graphical User Interface (GUI). If you can type fast, Taskmania can allow you to manage your team faster than 
+Taskmania (based off AB3) is a **desktop application for a project leader to manage team members and tasks** to be
+ finished in a software project, optimized for use via a Command Line Interface (CLI) while still having the benefits
+  of a Graphical User Interface (GUI). If you can type fast, Taskmania can allow you to manage your team faster than 
  a traditional point and click interface.
  
 ## Table of contents
@@ -144,7 +142,7 @@ Format: `leave`
 - Leaves the current page (clear the right-most non-empty dashboard) and shifts the scoping status to the parent scope
 - If the app is already in the global, `PERSON_LIST`, or `PROJECT_LIST`, then the command takes no effect
 
-# 2.2 Features in project list scope
+## 2.2 Features in project list scope
 
 ### 2.2.1 Start work on an existing project `startproject`
 
@@ -250,7 +248,7 @@ Note: Please enter a valid repository URL. Taskmania is an offline application a
 
 Example: `edit 1 n/ResidentEvil d/ new horror` changes the name of the first project in the list to **Evil project**, and the description to **new horror**.
 
-# 2.3 Task-related features in project scope
+## 2.3 Task-related features in project scope
 
 ### 2.3.1 Add task to a project `addtask`
 
@@ -409,7 +407,7 @@ Format: `viewtask INDEX `
 
 Example: `viewtask 1` displays all information from task number 1 in the list.
 
-# 2.4 Teammate-related features in project scope
+## 2.4 Teammate-related features in project scope
 
 ### 2.4.1 Create a new teammate in a project `addteammate`
 
@@ -509,7 +507,7 @@ Format: `deleteteammate GITHUB_USERNAME`
 Example: `deleteteammate Lucas97` deletes the teammate with Github username Lucas97, and removes him from any project he
  was in.
 
-# 2.5 Features in person scope
+## 2.5 Features in person scope
 
 ### 2.5.1 Start work on an existing person `startperson`
 Initialises the person specified.
@@ -530,6 +528,13 @@ Examples: `startperson 1` Initialises the first person in the person list.
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that 
 contains the data of your previous Taskmania home folder.
+
+**Q**: Is my data stored in the cloud?<br>
+**A**: No, all your data is stored locally, no need to fear a potential data hack.
+
+**Q**: Do I have to save before exiting the application for my data to to safely backed up on my computer? <br>
+**A**: All your data is saved on your computer as soon as you enter in the command. There is no need to manually save
+ your data.
 
 # 4 Summary
 
