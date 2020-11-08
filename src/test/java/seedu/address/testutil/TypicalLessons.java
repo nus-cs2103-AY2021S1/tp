@@ -2,6 +2,9 @@ package seedu.address.testutil;
 
 import seedu.address.model.lesson.Lesson;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TypicalLessons {
     public static final Lesson LECTURE = new LessonBuilder().withName("Generic Lecture")
             .withTime("01-01-2020 1200").withEndTime("01-01-2020 1400")
