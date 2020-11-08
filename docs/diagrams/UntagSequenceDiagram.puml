@@ -1,0 +1,39 @@
+@startuml
+!include style.puml
+
+participant ":UntagCommand" as UntagCommand LOGIC_COLOR
+participant "model:Model" as Model LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+[-> UntagCommand : execute()
+activate UntagCommand
+
+UntagCommand -> Model : hasTag()
+activate Model
+
+Model --> UntagCommand : true
+deactivate Model
+
+UntagCommand -> Model : deleteTag()
+activate Model
+
+Model --> UntagCommand :
+deactivate Model
+
+UntagCommand -> Model : commitAddressBook()
+activate Model
+
+Model --> UntagCommand :
+deactivate Model
+
+create CommandResult
+UntagCommand --> CommandResult
+activate CommandResult
+
+CommandResult --> UntagCommand :
+deactivate CommandResult
+
+[<- UntagCommand : result
+deactivate UntagCommand
+
+@enduml

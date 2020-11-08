@@ -1,0 +1,57 @@
+@startuml
+!include style.puml
+
+participant ":RetagCommand" as RetagCommand LOGIC_COLOR
+participant "model:Model" as Model LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+[-> RetagCommand : execute()
+activate RetagCommand
+
+RetagCommand -> Model : hasOldTagName()
+activate Model
+
+Model --> RetagCommand : true
+deactivate Model
+
+RetagCommand -> Model : hasNewTagName()
+activate Model
+
+Model --> RetagCommand : false
+deactivate Model
+
+RetagCommand --> RetagCommand : getTagName()
+activate RetagCommand
+
+RetagCommand --> RetagCommand : tagName
+deactivate RetagCommand
+
+RetagCommand --> RetagCommand : getFileAddress()
+activate RetagCommand
+
+RetagCommand --> RetagCommand : fileAddress
+deactivate RetagCommand
+
+RetagCommand -> Model : setTag()
+activate Model
+
+Model --> RetagCommand :
+deactivate Model
+
+RetagCommand -> Model : commitAddressBook()
+activate Model
+
+Model --> RetagCommand :
+deactivate Model
+
+create CommandResult
+RetagCommand --> CommandResult
+activate CommandResult
+
+CommandResult --> RetagCommand :
+deactivate CommandResult
+
+[<- RetagCommand : result
+deactivate RetagCommand
+
+@enduml
