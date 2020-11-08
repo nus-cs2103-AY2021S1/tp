@@ -25,7 +25,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/fh-30.png" width="200px">
 
 [[github](https://github.com/FH-30)]
-[[portfolio](team/francis.md)]
+[[portfolio](team/fh-30.md)]
 
 #### Developer and Test Lead
 * Ensures the testing of the project is done properly and on time.
