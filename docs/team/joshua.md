@@ -3,44 +3,110 @@ layout: page
 title: Joshua's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Joshua Tan - Project Portfolio for QuickCache(tP)
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+### 1. Introduction
 
-Given below are my contributions to the project.
+This document serves as a project portfolio for QuickCache, and outlines my contributions to the project, including the features that I have implemented.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+#### 1.1. About the team
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+My team of five consists of  five Year 2 Computer Science students, all taking the module CS2103T Software Engineering.
 
-* **Code contributed**: [RepoSense link]()
+#### 1.2. About the project
+
+This project was developed as part of the module CS2103T Software Engineering. We were tasked to develop a desktop application (Windows/macOS/Linux) with a Command Line Interface (that is, the program operates via text input from the user, called commands). Additionally, we were required to use an existing application, called AddressBook Level 3, as the starting point for building our application.
+
+My team decided to a create an application that helps students manage their flashcards, test themselves, and view their performance over time. To do so, we incorporated the existing people management features of AddressBook and used it as a starting point to build QuickCache. 
+
+In total, QuickCache took a total of 10 weeks to complete.
+ 
+### 2. Summary of Contributions
+
+My primary role within the team was to manage the documentation and my responsibilities included: the formatting and structure of both
+the UG and DG; checking for the correctness and accuracy of UML diagrams; ensuring proper use of language to communicate our ideas
+clearly to the readers.
+
+In addition, I also helped to develop the application by implementing enhancements.
+
+Given below are my detailed contributions to the project.
+
+#### 2.1 Creation of base classes
+
+I kickstarted the project by creating the `Flashcard` class and other dependencies such as the `Answer`, `Question` and `Tag` classes.
+The design architecture was inspired by the original `AddressBook3` design.
+
+#### 2.2 Creation of `Choice` class
+
+  * What it does: Encapsulates a choice for a multiple choice question within a `Choice` class.
+  * Justification: Following from 2.1, our team decided that it would be a better option to create choices and to encapsulate it within its
+own class instead. This would allow us to be better able to implement our `MultipleChoiceQuestion` class. 
+
+#### 2.3 Delete by Tag [enhancement]
+
+  * What it does: Allows the user to delete all flashcards that contain at least one of the specified tags.
+  * Justification: This feature enhances the existing delete by index mechanism as the user can now mass delete flashcards.
+  * Highlights: This enhancement was slightly challenging to implement as I had to consider whether or not to create a seperate command
+  or to merge together with the original delete by index command. After much deliberation, I decided to merge both functionalities together into
+  the delete command. As a result, I had to tweak the `DeleteCommand` and `DeleteCommandParser` classes accordingly to ensure proper implementation of
+  both features. I also had to design extensive tests to make sure that there wouldn't be any problems from this added enhancement.
+  
+#### 2.4 Find command [enhancement]
+
+  * What it does: Allows the user to search for flashcards based on their tags
+  * Justification: The user would be using our tagging system to label flashcards according to their modules. Hence 
+  a search and filter system is needed to find these flashcards.
+  * Highlights: Implementing this enhancement was pretty straight forward and the test cases were also pretty easy to consider.
+  
+#### 2.5 Improved the GUI
+
+  * What it does: Improves the GUI
+  * Justification: The original GUI was plain and we wanted to design something that was a little different from everyone else.
+  * Highlights: I worked on making changes to the overall layout of the GUI. In addition, I worked with my teammate Xing Jian
+  to pick the colour scheme.
+
+### Code contributions
+
+Click on the following links to view the code that I have contributed:
+
+  * [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=T13&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=joshtyf&tabRepo=AY2021S1-CS2103T-T13-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
+  * [Functional Code](https://github.com/AY2021S1-CS2103T-T13-2/tp/tree/master/src/main/java/quickcache)
+  * [Test Code](https://github.com/AY2021S1-CS2103T-T13-2/tp/tree/master/src/test/java/quickcache)
+
+### Other contributions
+
+The following describes the various other contributions that I have made to the project.
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Managed the overall format and structure of the various documentations excluding javadocs.
+  * Managed 22 issues on Github.
+  * Helped to organise zoom meetings which included reminders and creation of the zoom calls.
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Updated the GUI layout (Pull request [\#214](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/214))
+  * Wrote additional tests for existing features to increase test coverage 
+  (Pull requests [\#235](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/235),
+   [\#234](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/234),
+   [\#60](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/60))
+  * Refactored code to adhere to DRY principle (Example Pull request: [\#167](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/167))
 
 * **Documentation**:
-  * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
-  * Developer Guide:
-    * Added implementation details of the `delete` feature.
 
+  * I was in charge of reviewing every pull request that was related to the documentations 
+  (Examples: Pull requests [\#160](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/160),
+   [\#229](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/229),
+   [\#159](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/159) and many more...)
+  * User Guide:
+    * Added documentation for the features `delete` (Pull request [\#151](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/151))
+    * Planned out the entire format of both the UG
+  * Developer Guide:
+    * Wrote out the implementation for the `delete` feature (Pull request [\#131](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/131))
+    * Helped to reformat and rewrite the entire features section of the DG (Pull request [\#245](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/245))
+    * Ensured the accuracy and correctness of all UML diagrams
+    
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * PRs reviewed (with non-trivial review comments): [\#69](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/69), [\#37](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/37))
+  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S1-CS2103T-T11-2/tp/issues/188), [2](https://github.com/AY2021S1-CS2103T-T11-2/tp/issues/187), [3](https://github.com/AY2021S1-CS2103T-T11-2/tp/issues/186))
 
 * **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+  * Learned how to use plantuml and taught my teammates accordingly
