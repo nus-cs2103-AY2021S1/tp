@@ -209,12 +209,12 @@ public class MainCatalogueParser {
 
         case TaskSorterCommand.COMMAND_WORD:
             switch (status) {
-                case PROJECT:
-                case TASK:
-                case TEAMMATE:
-                    return new TaskSorterCommandParser().parse(arguments);
-                default:
-                    throw new InvalidScopeException(Status.PROJECT, status);
+            case PROJECT:
+            case TASK:
+            case TEAMMATE:
+                return new TaskSorterCommandParser().parse(arguments);
+            default:
+                throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case AddTeammateCommand.COMMAND_WORD:
