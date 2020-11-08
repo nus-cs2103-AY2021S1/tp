@@ -57,15 +57,20 @@ public class AddTeammateCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Project project = model.getProjectToBeDisplayedOnDashboard().get();
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
         model.addPerson(toAdd);
-        toAdd.addProject(project);
-        project.addParticipation(toAdd);
-        model.addParticipation(project.getParticipation(toAdd.getGitUserNameString()));
-        logger.log(Level.INFO, "New Teammate added");
+        switch (model.getStatus()) {
+        case PROJECT:
+        case TEAMMATE:
+        case TASK:
+            Project project = model.getProjectToBeDisplayedOnDashboard().get();
+            toAdd.addProject(project);
+            project.addParticipation(toAdd);
+            model.addParticipation(project.getParticipation(toAdd.getGitUserNameString()));
+        }
+        logger.log(Level.INFO, "New Person added");
 
         return new CommandResult(String.format(MESSAGE_NEW_TEAMMATE_SUCCESS, toAdd.getGitUserNameString()));
     }

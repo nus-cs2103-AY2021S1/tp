@@ -221,14 +221,15 @@ public class MainCatalogueParser {
             }
 
         case AddTeammateCommand.COMMAND_WORD:
-            switch (status) {
+            return new AddTeammateCommandParser().parse(arguments);
+            /* switch (status) {
             case PROJECT:
             case TASK:
             case TEAMMATE:
                 return new AddTeammateCommandParser().parse(arguments);
             default:
                 throw new InvalidScopeException(Status.PROJECT, status);
-            }
+            } */
 
         case AddTeammateParticipationCommand.COMMAND_WORD:
             switch (status) {
