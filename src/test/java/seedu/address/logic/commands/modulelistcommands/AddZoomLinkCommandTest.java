@@ -39,7 +39,7 @@ public class AddZoomLinkCommandTest {
 
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
-        ZoomLinkCommand.ZoomDescriptor validDescriptor = new ZoomDescriptor();
+        ZoomDescriptor validDescriptor = new ZoomDescriptor();
         assertThrows(NullPointerException.class, () -> new AddZoomLinkCommand(null, validDescriptor));
     }
 
