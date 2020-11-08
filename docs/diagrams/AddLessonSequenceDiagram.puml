@@ -13,7 +13,7 @@ create task
 lesson -> task
 task --> lesson
 end
-lesson --> planus
+lesson --> planus: recurringTasks
 loop all tasks created
 planus -> planus: addTask(task)
 return

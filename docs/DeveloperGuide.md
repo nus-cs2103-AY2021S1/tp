@@ -147,17 +147,28 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The classes involved in creating a lesson are `Lesson` and`LessonCommand`. The user inputs the `dayOfTheWeek` , `startTime` and `endTime` of the lesson as well as the `startDate` and `endDate`. The lesson information is then stored in planus.json.
+Creates a lesson via `Lesson` and`LessonCommand`.
 
-`Lesson` implements the following operations:
+A `Lesson`,
+* Contains the following attributes:
+    - `dayOfTheWeek`
+    - `startTime`
+    - `endTime`
+    - `startDate`
+    - `endDate`
+* Stores its information in planus.json.
 
-* `Lesson#createRecurringTasks` — Creates a list of recurring event tasks based on the lesson's details.
+To create a new lesson, PlaNus executes the following steps:
 
-The created tasks are then added to the `Planus#UniqueTaskList` via the `Planus#addTask` method. Together with the tasks, the calendar is also
+Step 1. After user creates a new lesson by entering the relevant command, the parser parsed the fields and pass the fields to
+`LessonCommand`.
+
+Step 2. `LessonCommand` creates a `Lesson` object and calls `Model#addLesson` which will pass the new lesson to `Planus`
+to add to PlaNus. `Planus` then calls `lesson#createRecurringTasks` to create all lesson events associated with the new lesson.
+
+Step 3. The created tasks are then added to the `Planus#UniqueTaskList` via the `Planus#addTask` method. Together with the tasks, the calendar is also
 updated and the new calendar tasks are added to `Planus#Clendar` via the `Planus#addTaskToCalendar` method. Lastly, the newly added lesson is added to
 `Planus#UniqueLessonList` which finishes the state update. 
-
-  <br>
 
 The following sequence diagram describes what happens when `Planus` updates a newly added `lesson`:
 
