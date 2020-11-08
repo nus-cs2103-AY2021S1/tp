@@ -131,7 +131,7 @@ public class TypicalMeetings {
     }
 
     public static List<Meeting> getTypicalMeetings() {
-        return new ArrayList<>(Arrays.asList(CS1100_MEETING, CS2100_MEETING, CS2101_MEETING, CS2102_MEETING));
+        return new ArrayList<>(Arrays.asList(CS2100_MEETING, CS2101_MEETING, CS2102_MEETING));
     }
 
     public static List<Meeting> getTypicalMeetingsWithMembers() {
@@ -144,7 +144,7 @@ public class TypicalMeetings {
 
     public static List<Meeting> getTypicalMeetingsWithDuplicateName() {
         return new ArrayList<>(
-                Arrays.asList(CS1100_MEETING, CS2100_MEETING, CS2101_MEETING, CS2102_MEETING,
+                Arrays.asList(CS2100_MEETING, CS2101_MEETING, CS2102_MEETING,
                         CS2102_MEETING_DUPLICATE_NAME));
     }
 }

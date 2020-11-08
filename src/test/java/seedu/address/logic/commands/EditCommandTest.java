@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
@@ -24,20 +25,26 @@ import static seedu.address.testutil.TypicalPersons.GEORGE;
 import static seedu.address.testutil.TypicalPersons.getEditedTypicalAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.HashSet;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ModuleBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.MeetingBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 /**
@@ -174,9 +181,6 @@ public class EditCommandTest {
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED);
     }
 
-    /**
-     * Edit contact name and meeting containing the contact name will also be edited.
-     */
     @Test
     public void execute_validNameAndNameInOneMeeting_success() {
         Person editedPerson = new PersonBuilder(ALICE).withName("Alicia").build();
@@ -189,6 +193,22 @@ public class EditCommandTest {
                 getTypicalModuleBook(), new UserPrefs());
 
         assertCommandSuccess(editCommand, modelWithMembersInMeetings, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_editContactInSelectedMeeting_updatesSelectedMeeting() throws CommandException {
+        Meeting selectedMeeting = model.getSelectedMeeting();
+
+        Person personToEdit = selectedMeeting.getParticipants().stream().collect(Collectors.toList()).get(0);
+        Person editedPerson = new PersonBuilder(personToEdit).withName("Blah").build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(personToEdit).withName("Blah").build();
+        new EditCommand(personToEdit.getName(), descriptor).execute(model);
+
+        HashSet<Person> members = new HashSet<>();
+        members.add(editedPerson);
+        Meeting expectedMeeting = new MeetingBuilder(selectedMeeting).withMembers(members).build();
+
+        assertEquals(model.getSelectedMeeting(), expectedMeeting);
     }
 
     @Test

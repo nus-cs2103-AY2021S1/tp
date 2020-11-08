@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -12,12 +13,15 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.FullNameMatchesKeywordPredicate;
 import seedu.address.model.person.Person;
 
@@ -52,9 +56,6 @@ public class DeleteCommandTest {
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
-    /**
-     * Delete the contact and meeting containing the contact will be updated.
-     */
     @Test
     public void execute_validNameAndNameInOneMeeting_success() {
         Person personToDelete = ALICE;
@@ -73,6 +74,18 @@ public class DeleteCommandTest {
         expectedModel.updatePersonInMeetingBook(personToDelete);
 
         assertCommandSuccess(deleteCommand, modelWithMembersInMeetings, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_deleteContactInSelectedMeeting_updatesSelectedMeeting() throws CommandException {
+        Meeting selectedMeeting = model.getSelectedMeeting();
+
+        ArrayList<String> name = new ArrayList<>();
+        name.add(selectedMeeting.getParticipants().stream().collect(Collectors.toList()).get(0).getName().toString());
+        new DeleteCommand(new FullNameMatchesKeywordPredicate(name), new ArrayList<>()
+        ).execute(model);
+
+        assertNull(model.getSelectedMeeting());
     }
 
     @Test
