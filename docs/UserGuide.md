@@ -56,6 +56,11 @@ You can follow the steps below to get CliniCal up and running:
 
 1. Double-click the file, `CliniCal.jar` to start the app. The GUI similar to the below should appear in a few seconds. <br>
    ![Ui](images/Ui.png)
+   <p align="center">
+       <img src="images/Ui.png"/>
+       <br>
+       <em style="color:#CC5500">Testing</em>
+   </p>
 
 1. If the GUI does not appear, you may try opening a command terminal in the home folder and enter `java -jar CliniCal.jar`.
 
