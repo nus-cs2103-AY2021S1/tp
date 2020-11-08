@@ -466,6 +466,16 @@ The following activity diagram summarises the flow of events when `DeleteQuestio
 
 Figure 5.2.3.2. Activity diagram for `DeleteQuestionCommand` execution
 
+##### 6.3.1.4 Design considerations
+
+The `Student` class guarantees immutability, including its list of `Question` objects. As such, any operation must return a modified copy instead of directly modifying the base list.
+
+The pros of doing so is that it becomes easier to test and debug as there are fewer mutations to worry about.
+
+The downside, however, that this approach is more memory-intensive and possibly slower, since changing a single question involves recreating the entire list of questions attached to the student.
+
+Having considered that our target audience (one-to-one private tutors) are unlikely to have so much data that this would severely impact performance, we believe that this is worth the trade-off.
+
 #### 6.3.2 Student exam features
 
 The student exams feature keeps track of exam records of a student. It comprises of the following commands:
@@ -619,7 +629,7 @@ Refer to the [DevOps guide](DevOps.md).
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                               | I want to …​                                          | So that I can…​                                                                     |
+| Priority | As a …​                            | I want to …​                                       | So that I can…​                                                                     |
 | -------- | --------------------------------------| ----------------------------------------------------- | ----------------------------------------------------------------------              |
 | `* * *`  | private tutor ready to use Reeve      | view a list of commands and how to use them           | learn how the application works or in case I forgot how some of the commands work   |
 | `* * *`  | private tutor ready to use Reeve      | add my students' details                              | store them and retrieve them whenever I need                                        |
@@ -628,15 +638,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | private tutor                         | view my student's details                             | refer to them when needed                                                           |
 | `* * *`  | private tutor                         | add additional details to each student                | add other miscellaneous details which can allow me to better cater to student needs |
 | `* * *`  | private tutor with many students      | find a student's record                               | retrieve students' data with ease                                                   |
+| `* * *`  | private tutor                         | find students who have not paid their fees            | remind students who have yet to pay me for my services                              |
 | `* * *`  | private tutor who is a long-term user | delete students' data                                 | remove irrelevant data of students who are no longer my tutees                      |
-|  `* *`   | private tutor                         | record my student's questions                         | help them with their queries after the lesson                                       |
+|  `* *`   | private tutor                         | record questions that my students raised              | find the answers to them after the lesson                                           |
+|  `* *`   | private tutor                         | record solutions to the questions raised              | use them as reference for answering future similar questions                        |
+|  `* *`   | private tutor                         | delete questions I do not need anymore                | focus on the questions I need to pay attention to                                   |
 |  `* *`   | private tutor                         | input my student’s school test scores                 | keep track of their progress                                                        |
 |  `* *`   | private tutor                         | track my students' attendance                         | keep track of students' lesson records                                              |
 |  `* *`   | private tutor                         | input feedback to specific lessons                    | improve my capabilities as a tutor                                                  |
-|  `* *`   | private tutor                         | view a list of notes/reminders                        | keep track of key information easily                                                |
-|  `* *`   | private tutor                         | view my tutoring schedule for a particular day        | plan my plans accordingly                                                           |
+|  `* *`   | private tutor                         | view a list of notes/reminders                        | keep track of tasks I have yet to do                                                |
+|  `* *`   | private tutor                         | view my tutoring schedule for a particular day        | plan ahead of my lessons for that day                                               |
 |   `*`    | private tutor                         | view my students' academic progress                   | know which students need more help                                                  |
-|   `*`    | private tutor  ready to use Reeve     | view the type of student details that are displayed   | focus on the details that I am currently concerned with                             |
+|   `*`    | private tutor ready to use Reeve      | view the type of student details that are displayed   | focus on the details that I am currently concerned with                             |
 
 ## **Appendix C: Use Cases**
 
@@ -984,7 +997,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  The response to any use action should become visible within 5 seconds.
-3.  The program should be able to handle at least 100 students.
+3.  The program should be able to handle at least 100 students (in practice, our target audience should not require as high a capacity, but this is a buffer to ensure it will not fail).
 4.  The graphical user interface should be easy to use for non-IT savvy users.
 5.  The program should be able to run even without internet connection.
 
@@ -1042,8 +1055,103 @@ testers are expected to do more *exploratory* testing.
 
 ### F.3 Saving Data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Test case: `data/addressbook.json` missing or deleted<br>
+      Expected: Reeve initialises with sample student data, notebook data is intact.
 
-1. _{ more test cases …​ }_
+   1. Test case: `data/notebook.json` missing or deleted<br>
+      Expected: Reeve initialises with sample notebook data, student data is intact.
+
+1. Dealing with corrupted data files (Student data)
+
+   1. Prerequisite: Ensure `data/addressbook.json` is present. Modify the data using `edit` or `delete` to create `data/addressbook.json` if absent.
+
+   1. Test case: delete a random field from a random student in `addressbook.json`<br>
+      Expected: Reeve initialises with an empty student list.
+
+   1. Test case: duplicate a student's record again in `addressbook.json`<br>
+      Expected: Similar to previous.
+
+   1. Test case: invalid data in `addressbook.json` (e.g add special characters to the "name" field) <br>
+      Expected: Similar to previous.
+
+1. Dealing with corrupted data files (Notebook data)
+
+   1. Prerequisite: Ensure `data/notebook.json` is present. Modify the data using note commands to create `data/notebook.json` if absent.
+
+   1. Test case: "description" field has more than 80 characters<br>
+      Expected: Reeve initialises with an empty notebook.
+
+   1. Test case: "title" field has more than 15 characters<br>
+      Expected: Reeve initialises with an empty notebook.
+
+   1. Test case: duplicate note in `notebook.json`<br>
+      Expected: Similar to previous.
+
+### F.4 Finding students with overdue fees
+
+1. Finding students with overdue fees (i.e last payment date is more than one month ago) while all students are shown.
+
+   1. Prerequisite: Set at least one student's last payment date to within one month of the current date with `edit` command. Multiple students in the list.
+
+   1. Test case: `overdue`<br>
+      Expected: All students except those whose payment date is within one month from the current date are listed. The number of students found is displayed.
+
+1. Finding students with overdue fees while some students are hidden.
+
+   1. Prerequisite: Hide some students with overdue fees with `find` command.
+
+   1. Test case: `overdue`<br>
+      Expected: All students except those whose payment date is within one month from the current date are displayed again. The number of students found is displayed.
+
+### F.5 Managing questions from students
+
+1. Adding questions to a student.
+
+    1. Prerequisite: List all students using `list` command. View academic data with `toggle` command. Multiple students present.
+
+    1. Test case: `question add 1 t/RANDOM_QUESTION`
+       Expected: New unresolved (cross symbol) question whose description matches your input added to first student.
+
+    1. Test case: `question add 0 t/RANDOM_QUESTION`
+       Expected: No question added. Error details shown in status message. List stays the same.
+
+    1. Test case: `question add 1 t/   `
+       Expected: Similar to previous.
+
+    1. Test case: `question add 1 t/SAME_QUESTION_IN_TEST_CASE_2`
+       Expected: Similar to previous.
+
+1. Resolving questions from a student.
+
+    1. Prerequisite: List all students using `list` command. View academic data with `toggle` command. First student on the list must have at least one unresolved question.
+
+    1. Test case: `question solve 1 i/UNSOLVED_QUESTION_INDEX t/   `
+       Expected: No question resolved. Error details shown in status message.
+
+    1. Test case: `question solve 1 i/UNSOLVED_QUESTION_INDEX t/RANDOM_SOLUTION`
+       Expected: Status of question at `UNSOLVED_QUESTION_INDEX` changed to a tick, `RANDOM_SOLUTION` added next to the question text in square brackets (`[]`).
+       Details of the question resolved and student's name included in status message.
+
+    1. Test case: `question solve 0 i/1 t/RANDOM_SOLUTION`
+       Expected: No question resolved. Error details shown in status message.
+
+    1. Test case: `question solve 1 i/0 t/RANDOM_SOLUTION`
+       Expected: Similar to previous.
+
+    1. Test case: `question solve 1 i/INDEX_OF_QUESTION_SOLVED_IN_TEST_CASE_2 t/RANDOM_SOLUTION`
+       Expected: Similar to previous.
+
+1. Deleting questions from a student.
+
+    1. Prerequisite: List all students using `list` command. View academic data with `toggle` command. First student on the list must have at least one question.
+
+    1. Test case: `question delete 0 i/1`
+       Expected: No question deleted. Error details shown in status message.
+
+    1. Test case: `question delete 1 i/0`
+       Expected: Similar to previous.
+
+    1. Test case: `question delete 1 i/QUESTION_INDEX`
+       Expected: Question at `QUESTION_INDEX` is removed. Details of deleted question included in status message.

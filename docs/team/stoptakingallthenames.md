@@ -23,7 +23,7 @@ Given below are my contributions to the project.
 * **Code contribution**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=stoptakingallthenames)
 
 * **Project management**:
-  * Managed releases `v1.2` and `v1.3` (2 releases) on GitHub.
+  * Managed releases `v1.2` to `v1.4` (3 releases) on GitHub.
   * Set up Github repo and issue tracker.
   * Maintained issue tracker.
 
@@ -43,7 +43,8 @@ Given below are my contributions to the project.
     * Included sequence and activity diagrams for the above features.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#60](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/60), [\#62](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/62),
+  * Reviewed PRs (with non-trivial review comments): [\#60](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/60), [\#62](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/62),
     [\#68](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/68), [\#214](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/214)
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/StopTakingAllTheNames/ped/issues/1),
     [2](https://github.com/StopTakingAllTheNames/ped/issues/5), [3](https://github.com/StopTakingAllTheNames/ped/issues/2))
+  * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/390) [2](https://github.com/nus-cs2103-AY2021S1/forum/issues/393))
