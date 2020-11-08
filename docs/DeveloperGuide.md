@@ -156,12 +156,10 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete-m 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete-m 1` Command](images/DeleteMeetingSD.jpg)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 
 ### Model component
 { start of Model Component section written by: Kor Ming Soon }
@@ -351,7 +349,48 @@ adding to the Bidbook as seen in the diagram above.
 by property Id followed by Bid Amount. For further clarification, refer to section 4. Sort for a more in depth description.
 
 { end of Add section written by: Marcus Duigan Xing Yu}
+
 #### 2. Edit
+{ start of Edit section written by: Christopher Mervyn}
+
+The `Edit` command applies to **all entities** in PropertyFree.
+
+1. When the `Edit` command is executed by the user, the input is passed into
+the `LogicManager` and thereafter parsed and identified in `AddressBookParser`. 
+
+2. Upon identifying the relevant `COMMAND_WORD` and by extension the `ENTITY` (through the `-` input)
+, the corresponding `EditENTITYCommandParser` object is formed. The user input then goes
+through another level of parsing in `EditENTITYCommandParser`.
+
+3. The `EditENTITYCommandParser` identifies the parameters corresponding to the user's input, and a new `EditXYZDescriptor` object is formed with the corresponding setXYZ method to be called.
+The `EditXYZDescriptor` will set the parameter as accordance with the user input. 
+and  `EditENTITYCommand`
+
+4. After which, the `EditENTITYCommandParser` will create  a new `EditENTITYCommand` object from the result of the corresponding setXYZ method.
+
+The `EditENTITYCommand` is then encapsulated under `Command` and passed back into the `LogicManager`.
+
+5. The `EditENTITYCommand` calls `execute(model)`. The execution of the command then interacts
+with the `Model` component, and retrieves the unmodifiable view of `ObservableList<ENTITY>`.
+
+6. The `Model` accesses the relevant ENTITYBook and adds the object to the ENTITYBook. The `Ui` then "listens" to the 
+changes in the ENTITYBook and updates the GUI.
+
+7. Finally, `EditENTITYCommand` is then encapsulated as a `CommandResult` and passed into the `LogicManager`.
+
+![Edit Command Sequence Diagram](images/EditXYZSD.jpg)
+
+
+##### 1.1 Edit Entity Validity Check
+
+1. Below is an example of how a meeting object to be edited will ensure that a valid property Id and bidder Id are supplied by the user, this is similar to the add command validity check from above:
+
+![Validity Check Sequence Diagram](images/ValidityCheckSD.jpg)
+
+2. The property Id and bidder Id are checked in their respective unique lists as seen before adding the new edited meeting to the meeting book.
+
+{ end of Edit section written by: Christopher Mervyn}
+
 
 #### 3. Find
 
