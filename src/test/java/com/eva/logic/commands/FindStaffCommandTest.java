@@ -1,6 +1,6 @@
 package com.eva.logic.commands;
 
-import static com.eva.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static com.eva.commons.core.Messages.MESSAGE_STAFFS_LISTED_OVERVIEW;
 import static com.eva.logic.commands.CommandTestUtil.assertChangePanelCommandSuccess;
 import static com.eva.testutil.TypicalPersons.CARL;
 import static com.eva.testutil.TypicalPersons.ELLE;
@@ -62,7 +62,7 @@ public class FindStaffCommandTest {
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_STAFFS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate<Staff> predicate = preparePredicate("some_funny_things");
         FindStaffCommand command = new FindStaffCommand(predicate);
         expectedModel.setPanelState(PanelState.STAFF_LIST);
@@ -73,7 +73,7 @@ public class FindStaffCommandTest {
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_STAFFS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate<Staff> predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindStaffCommand(predicate);
         expectedModel.updateFilteredStaffList(predicate);

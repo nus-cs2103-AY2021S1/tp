@@ -50,7 +50,7 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Set<Comment> commentList = ParserUtil.parseComments(argMultimap.getAllValues(PREFIX_COMMENT));
+        Set<Comment> commentList = ParserUtil.parseAddOrEditComments(argMultimap.getAllValues(PREFIX_COMMENT));
 
         Staff staff = new Staff(name, phone, email, address, tagList, commentList);
 

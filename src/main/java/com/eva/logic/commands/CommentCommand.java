@@ -28,10 +28,7 @@ import com.eva.model.tag.Tag;
 public class CommentCommand extends Command {
 
     public static final String COMMAND_WORD = "comment";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds or delete comment to person"
-            + "To add comment: key in 'addc INDEX c/ ti/TITLE d/DATE desc/DESCRIPTION'\n"
-            + "To delete, key in 'delc INDEX c/ ti/TITLE_TO_DELETE' \n"
-            + "To edit, key in 'editc INDEX c/ ti/TITLE d/DATE desc/NEW_DESCRIPTION'";
+    public static final String MESSAGE_USAGE = "Comment format: c/ ti/TITLE d/DATE desc/DESCRIPTION";
     public static final String MESSAGE_ADD_COMMENT_SUCCESS = "Commented on Person: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the eva database.";
     public static final String MESSAGE_DELETE_COMMENT_SUCCESS = "Deleted comment on Person: %1$s";

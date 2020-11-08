@@ -22,9 +22,9 @@ Given below are my contributions to the project.
 [RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=TheSpaceCuber&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zA=TheSpaceCuber&zR=AY2021S1-CS2103T-W13-1%2Ftp%5Bmaster%5D&zACS=248.18696883852692&zS=2020-08-14&zFS=W13&zU=2020-11-06&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
 
 * **Project management**:
+    - Setup GitHub Organisation
     - Finalised v1.3 release
-
-* **Enhancements to existing features**:
+    - Maintained the issue tracker
 
 * **Documentation**:
     - User Guide
@@ -35,5 +35,5 @@ Given below are my contributions to the project.
         - Adapt delete sequence diagram
 
 * **Community**:
-
-* **Tools**:
+    - PRs reviewed (with non-trivial review comments):  [#46](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/46)
+    - Reported bugs and suggestions for other teams in the class: [#1](https://github.com/TheSpaceCuber/ped/issues/1)

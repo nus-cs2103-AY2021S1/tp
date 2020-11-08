@@ -34,7 +34,7 @@ public class FindStaffCommand extends FindCommand {
         model.setPanelState(PanelState.STAFF_LIST);
         model.updateFilteredStaffList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStaffList().size()),
+                String.format(Messages.MESSAGE_STAFFS_LISTED_OVERVIEW, model.getFilteredStaffList().size()),
                 false, false, true);
     }
 

@@ -58,14 +58,6 @@ Note how the app contains some sample data.<br>
 
 1. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    
-   <div markdown="block" class="alert alert-info">
-   
-   **:information_source: Note:**
-   Eva launches into the `Staff List Panel` by default.
-   However, Eva remembers which list you last looked at and will open at `Applicant List Panel` if you exited the app from there!
-   
-   </div>
-   
    Some example commands you can try:
 
    * **`list a-`** : Lists all applicants, changes the panel to display the applicant list.
@@ -109,7 +101,15 @@ Here are some general information you would need to know about our commands as y
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  
+* Upon the accidental inclusion of fields that are not meant to be repeated, Eva only takes the last parameter entered.<br>
+  e.g. The command `adds n/John Doe n/Alex Yeoh p/98765432 e/email@email.com a/123 test st p/23456789`, will be recognised as `adds n/Alex Yeoh e/email@email.com a/123 test st p/23456789`
 
+</div>
+
+<div markdown="span" class="alert alert-info">
+
+<<<<<<< HEAD
 * In Eva, you can store information about staff and applicants. Information includes details like name, phone number 
 and more. As such, in order to prevent incorrect details from being stored, make sure you follow these guidelines
 on storing these details
@@ -121,6 +121,20 @@ on storing these details
     needed.
   * Tags can only contain alphanumeric characters. 
   * All dates should be in the format DD/MM/YYYY. 
+=======
+In Eva, you can store information about staff and applicants. Information includes details like name, phone number 
+and more. As such, in order to store these details in a neat and tidy manner, be sure to follow these guidelines
+on storing these details:
+
+|   Field    | Constraints   |      Example      |
+|-----------|--------------------|------|
+| **Name**  | can contain only alphanumeric characters and has a character limit of 70 characters.  |  `John Doe`    |
+| **Phone**  | can only contain numbers, and must be between 8 and 20 digits long.     |  `6590018978`    |
+| **Email**  | should be of the format local-part@domain where the local-part should contain alpha numeric characters or special characters which includes ( !#$%&'*+/=?`{&#124;}~^.-_ ) excluding the parentheses. The domain name should have at least 2 characters and contain only alphanumeric with a period or a hyphen for the characters in between if needed. |  `john_doe@email.com`    |
+| **Tag**  | can only contain alphanumeric characters.       |  `hardworking`    |
+| **Date**  | must be in the format `DD/MM/YYYY`            |  6th of July 2020 represented as `06/07/2020`<br> Note: Eva automatically corrects wrong dates like 30/02/2020 and 31/11/2020 to 29/02/2020 and 30/11/2020 respectively.  |
+      
+>>>>>>> master
 </div>
 
 <div markdown="block" class="alert alert-primary">
@@ -133,11 +147,17 @@ You can also find the records in the `data` folder where the `eva.jar` file is l
 
 </div>
 
-Here is a brief overview on how this section is arranged. The first section brings you through the 
+Here is a brief overview on how this section is arranged. 
+
+The first section brings you through the 
 [different panels](#31-eva-gui) you will see in our application. After getting familiar with that, we will share some 
-[general system commands](#32-system-commands) you can use at any point in time. In the third section, 
+[general system commands](#32-system-commands) you can use at any point in time. 
+
+In the third section, 
 we will bring you through the [features we have implemented for staff](#33-staff-commands). 
+
 Following which, you will be introduced to the [features for managing applicant records](#34-applicant-commands). 
+
 Finally, you will learn about [how to add and delete comments to applicants and staff](#35-comment-commands) and 
 [our very own unique script engine](#35-script-engine) (experimental feature). By then, you will definitely become a master in using Eva! 
 So let's get started! 
@@ -148,24 +168,31 @@ Before we dive into the features, let us help you familiarize yourself with our 
 
 As of `v1.4`, Eva currently has four different application panels it can switch between:
 
-* The `Staff List` :
+#### 3.1.1. Staff List :
 
 ![staffListPanel intro](images/ugimages/Intro1.png)
 
-* The `Staff Profile` :
+#### 3.1.2. Staff Profile :
 
 ![staffProfilePanel intro](images/ugimages/Intro2.png)
 
-* The `Applicant List` :
+#### 3.1.3. Applicant List :
 
 ![applicantListPanel intro](images/ugimages/Intro3.png)
 
-* The `Applicant Profile` :
+#### 3.1.4. Applicant Profile :
 
 ![applicantProfilePanel intro](images/ugimages/Intro4.png)
 
 These four panels form the core of our application to be sure to familiarize yourself with them! Once ready, move on to the [Commands](#32-system-commands)!
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**
+Eva launches into the `Staff List Panel` by default.
+However, Eva remembers which list you last looked at and will open at `Applicant List Panel` if you exited the app from there!
+
+</div>
 
 ### 3.2. System Commands
 
@@ -220,7 +247,7 @@ Format: `list s-`
 
 ![listStaff](images/ugimages/ListStaff.png)
 
-#### 3.3.2. Add a staff: `adds`
+#### 3.3.2. Add a staff : `adds`
 
 This command enables you to add a staff record into Eva. A staff record can contain the details listed below:
  - Name*
@@ -244,6 +271,7 @@ Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]�
    please ensure that both their phone number and email addresses are different
 
 <div markdown="block" class="alert alert-primary">
+<<<<<<< HEAD
  
 :bulb: **Tip:**<br>
 
@@ -251,6 +279,17 @@ Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]�
  - In the case of multiple similar prefixes, the description of the last prefix will be used (excluding tags and comments).
  
  </div>
+=======
+
+:bulb: **Tip:** <br>
+
+ - The details of each field can be provided in any order. <br>
+ 
+ - In the case of multiple similar prefixes, the argument of the last prefix will be used (excluding tags and comments).<br>
+ 
+</div>
+
+>>>>>>> master
  
 Examples:
 * To add only the necessary fields <br>
@@ -261,7 +300,7 @@ Examples:
 * To add a tag along with the necessary fields <br>
 `adds n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/12345678 t/Developer`
 
-The image below shows what you would see after executing the second command in the examples given above. 
+The image below shows what you would see after executing the third example given.
 
 ![addStaff](images/ugimages/AddStaff.png)
 
@@ -294,8 +333,14 @@ Example:
 Deletes a staff from Eva. 
 
 <div markdown="block" class="alert alert-danger">
+<<<<<<< HEAD
 :exclamation: **Important!**<br>
 Please take note that this action is irreversible.
+=======
+
+:exclamation: **Please take note that this action is irreversible.**
+
+>>>>>>> master
 </div>
 <br>
 
@@ -351,7 +396,7 @@ Format: `addl INDEX l/d/DATE [d/DATE] [l/d/DATE [d/DATE]]…​`
 </div>
 
 Examples:
-* `list s-` followed by `adll 2 l/d/20/10/2020` adds the leave record with the given date(s) to the 2nd person in the shown list.
+* `list s-` followed by `addl 2 l/d/20/10/2020` adds the leave record with the given date(s) to the 2nd person in the shown list.
 * `find s- Betsy` followed by `addl 1 l/d/20/10/2020` adds the leave to the 1st person in the results of the `find s-` command.
 * `addl 1 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`
 * `addl 2 l/d/10/10/2020 d/08/10/2020 l/d/09/09/2020`
@@ -365,8 +410,9 @@ Should a staff be unable to take their leave and cancels or postpones, Eva allow
 This command removes the record of leave taken by staff, specified by the date given.<br>
 
 <div markdown="block" class="alert alert-danger">
-:exclamation: **Important!**<br>
-Please take note that this action is irreversible.
+
+:exclamation: **Important: Please take note that this action is irreversible.**
+
 </div>
 <br>
 
@@ -391,9 +437,11 @@ Examples:
 In any case that you might want to remove all staff records, you can always use this command. <br>
 This command clears all staff entries from the Eva database. 
 
+
 <div markdown="block" class="alert alert-danger">
-:exclamation: **Important!**<br>
-Please take note that this action is irreversible.
+
+:exclamation: **Important: Please take note that this action is irreversible.**
+
 </div>
 <br>
 
@@ -502,8 +550,9 @@ If you need to remove specific records of applicants, you may use this command. 
 applicant you see on Applicant List, you can remove that applicant's record. 
 
 <div markdown="block" class="alert alert-danger">
-:exclamation: **Important!**<br>
-Please take note that this action is irreversible.
+
+:exclamation: **Important: Please take note that this action is irreversible.**
+
 </div>
 <br>
 Format: `dela INDEX`
@@ -566,9 +615,11 @@ Example:
 
 Deletes an application from an applicant with the specified index under Eva.
 
+
 <div markdown="block" class="alert alert-danger">
-:exclamation: **Important!**<br>
-Please take note that this action is irreversible.
+
+:exclamation: **Important: Please take note that this action is irreversible.**
+
 </div>
 <br>
 
@@ -608,9 +659,11 @@ Example:
 In any case that you might want to remove all applicant records, you can always use this command.
 This command clears all applicant entries from the Eva database.
 
+
 <div markdown="block" class="alert alert-danger">
-:exclamation: **Important!**<br>
-Please take note that this action is irreversible.
+
+:exclamation: **Important: Please take note that this action is irreversible.**
+
 </div>
 <br>
 

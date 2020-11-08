@@ -89,6 +89,6 @@ public class EditCommentCommandParser implements Parser<EditCommentCommand> {
                 throw new ParseException(EditCommentCommand.MESSAGE_EDIT_COMMENT_USAGE);
             }
         }
-        return Optional.of(ParserUtil.parseComments(comments));
+        return Optional.of(ParserUtil.parseAddOrEditComments(comments));
     }
 }

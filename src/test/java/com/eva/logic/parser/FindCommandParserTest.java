@@ -37,6 +37,12 @@ public class FindCommandParserTest {
     }
 
     @Test
+    public void parse_noKeyword_throwsParseException() {
+        assertParseFailure(parser, "s-",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_validArgs_returnsFindApplicantCommand() {
         // no leading and trailing whitespaces
         FindApplicantCommand expectedFindCommand =

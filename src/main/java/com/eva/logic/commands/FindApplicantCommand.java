@@ -35,7 +35,7 @@ public class FindApplicantCommand extends FindCommand {
         model.setPanelState(PanelState.APPLICANT_LIST);
         model.updateFilteredApplicantList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredApplicantList().size()),
+                String.format(Messages.MESSAGE_APPLICANTS_LISTED_OVERVIEW, model.getFilteredApplicantList().size()),
                 false, false, true);
     }
 
