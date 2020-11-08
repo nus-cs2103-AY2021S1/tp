@@ -51,15 +51,21 @@ AddressBook .up.|> ReadOnlyAddressBook
 ModelManager .up.|> Model
 Model .right.> ObservableList
 Model .left.> ReadOnlyUserPrefs
-ModelManager ---> "1" AddressBook
+ModelManager -right--> "1" AddressBook
 ModelManager --left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
+
+ObservableList -[hidden]right-> ReadOnlyAddressBook
 
 AddressBook *--> "1" UniqueList_client
 UniqueList_client ---> "*" Client
 
+UniqueList_client -[hidden]right-> UniqueList_schedule
+
 AddressBook *--> "1" UniqueList_session
 UniqueList_session ---> "*" Session
+
+UniqueList_schedule -[hidden]right-> UniqueList_session
 
 AddressBook *--> "1" UniqueList_schedule
 UniqueList_schedule ---> "*" Schedule
@@ -68,10 +74,7 @@ Client ..|> CheckExisting
 Schedule ..|> CheckExisting
 Session ..|> CheckExisting
 
-Schedule --> "1" Client
-Schedule --> "1" Session
+Schedule -left-> "1" Client
+Schedule -right-> "1" Session
 
-ModelManager ---> Client : has filterable list of >
-ModelManager ---> Schedule : has filterable list of >
-ModelManager ---> Session : has filterable list of >
 @enduml

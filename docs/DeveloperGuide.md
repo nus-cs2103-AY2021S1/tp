@@ -238,6 +238,10 @@ through the configuration file (default: `config.json`)
 
 ### 3.3 Edit Session feature
 
+<div id="f10" >The Edit Session feature allows user to edit a Session.</div>
+
+#### 3.3.1 Implementation
+
 The proposed Edit Session mechanism is facilitated by `Addressbook`.
 
 These operation is exposed in the `Model` interface as `Model#setSession()`.
@@ -274,7 +278,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### 3.4 Delete Session feature
 
-The Delete Session feature allows user to cancel a Session, and delete all Schedules associated to the Session.
+The Delete Session feature allows user to cancel a session, and delete all schedules associated to the session.
 
 #### 3.4.1 Implementation
 
@@ -284,10 +288,8 @@ command is given by:
 ```sdel INDEX [f/]```
 
 When using this command, the `INDEX` should refer to the index shown in the Session List on the right panel.
-The user can follow up with an optional force parameters to delete all Schedules associated to the Session.
-
-These delete operations are exposed in the `Model` interface as `Model#deleteSession`, `Model#deleteSessionAssociatedSchedules`
-and `Model#hasAnyScheduleAssociatedWithSession`.
+By default, the command will not delete the session if there are schedules associated to the session. 
+However, the user can pass in an optional force (`f/`) parameter to delete all schedules associated to the session.
 
 The following activity diagram summarizes what happens when a user executes a new `DeleteSession` command, with the assumption that the user inputs a valid command.
 
@@ -308,7 +310,7 @@ The following diagram shows a possible application state in FitEgo, where 2 clie
 </figure>
 
 In the following sequence diagram, we trace the execution when the user decides to enter the Delete Session command 
-`sdel 1 f/` into FitEgo with the above application state, where the first Session in the Session List is the `enduranceTraining` Session. 
+`sdel 1 f/` into FitEgo with the above application state, where the first session in the Session List is the "enduranceTraining" session. 
 For simplicity, we will refer to this command input as `commandText`. 
 
 <figure id="f14" style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
@@ -329,38 +331,38 @@ For simplicity, we will refer to this command input as `commandText`.
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-The sequence diagram above shows how the `DeleteSessionCommand` is executed in FitEgo. The LogicManager receives user 
+The sequence diagram above shows how the `DeleteSessionCommand` is executed in FitEgo. The `LogicManager` receives user 
 command as commandText and parses it with `AddressBookParser`. It will parse the command and pass the remaining
 arguments to `DeleteSessionCommandParser` to construct a `DeleteSessionCommand`. This `DeleteSessionCommand` is 
 returned to the `LogicManager` which will then executes it with reference to the model argument.
 
-The model will first get the current `FilteredSessionList` instance to get the Session to be deleted. It will then check
-whether there exist any `Schedule` associated to the Session. As there are currently 2 schedules associated to the "enduranceTraining" session in FitEgo and the boolean `isForced` 
+The model will first get the current `FilteredSessionList` instance to get the session to be deleted. It will then check
+whether there exist any schedule associated to the session. As there are currently 2 schedules associated to the "enduranceTraining" session in FitEgo and the boolean `isForced` 
 is set to true, the model will remove them from `AddressBook`. It will then create a `CommandResult` to relay feedback 
-message back to the UI and return control back to `LogicManager`. It will persist these changes by saving it to the storage.
+message back to the UI and return control back to `LogicManager`. It will persist these changes by saving the addressbook to the storage.
 
 #### 3.4.2 Design Considerations
 
 In designing this feature, we had to consider several alternative ways in which we can choose to handle session deletion.
 
-- **Alternative 1 (current choice):** Delete Session only after all associated Schedules are deleted.
+- **Alternative 1 (current choice):** Delete session only after all associated schedules are deleted.
     - Pros: 
         1. Easier to maintain data integrity.
     - Cons:
         1. Extra logic inside the method implementation.
-        2. May have performance issues in terms of response time if there are a lot of Schedules or Sessions stored in FitEgo.
+        2. May have performance issues in terms of response time if there are a lot of schedules or sessions stored in FitEgo.
     
-- **Alternative 2:** Mark Session as deleted and treat Schedules with deleted Session as invalid
+- **Alternative 2:** Mark session as deleted and treat schedules with deleted session as invalid
     - Pros: 
         1. Easier to implement the method. 
         2. No need to handle additional force flag option.
     - Cons: 
-        1. We must keep track of deleted Sessions, which might bloat up the application over time.
+        1. We must keep track of deleted sessions, which might bloat up the application over time.
         2. Harder to maintain data integrity over time.
         
-- **Alternative 3:** Delete the Session without checking for associated Schedules
+- **Alternative 3:** Delete the session without checking for associated schedules
     - Pros: Easy to implement.
-    - Cons: A Schedule might have invalid Session, breaking data integrity.
+    - Cons: A schedule might have invalid session, breaking data integrity.
 
 
 ### 3.5 Add Schedule feature
@@ -435,11 +437,13 @@ On the other hand, invoking `schadd c/1 s/1` will result in an error shown to th
 
 ### 3.6 Edit Schedule feature
 
-The proposed Edit Schedule mechanism is facilitated by `Addressbook`, similar to the Edit Session Command.
-
-This operation is exposed in the `Model` interface as `Model#setSchedule()`.
+The Edit Schedule feature allows user to edit a Schedule that is associated with a Client and a Session.
 
 #### 3.6.1 Implementation
+
+The proposed Edit Schedule mechanism is facilitated by `Addressbook`, similar to the [Edit Session Command](#f10).
+
+This operation is exposed in the `Model` interface as `Model#setSchedule()`.
 
 Similar to the Edit Session mechanism, the example usage scenario below shows how Edit Schedule mechanism behaves:
 
@@ -455,7 +459,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     <figcaption>Figure 20 - Edit Schedule Activity Diagram</figcaption>
 </figure>
 
-#### 3.6.2 Design consideration:
+#### 3.6.2 Design considerations
 
 * **Alternative 1 (current choice):** Retrieve Schedule using Client and Session Index.
   * Pros: Clearer to retrieve.
@@ -642,7 +646,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | trainer                                       | delete a client                | remove entries that I no longer need                                   |
 | `* * *`  | trainer                                       | find a client by name          | locate details of clients without having to go through the entire list |
 | `* * *`  | trainer                                       | tag my client         | I know their allergy / injury history and can advise them an appropriate training / diet schedule |
-| `* * *`  | trainer                                       | create a Session               |                                                                        |
+| `* * *`  | trainer                                       | add a new session               |                                                                        |
 | `* * *`  | trainer                                       | edit a session                 | change the details of a session                                        |
 | `* * *`  | busy fitness trainer                          | filter sessions by time        | view only the upcoming or other important sessions                     |
 | `* * *`  | trainer                                       | delete a session               | cancel all schedules if there is an urgent need                        |
