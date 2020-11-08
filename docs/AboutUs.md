@@ -23,7 +23,7 @@ You can reach us at the email `u_nikhila@comp.nus.edu.sg`
 <img src="images/hou-rui.png" width="200px">
 
 [[github](http://github.com/Hou-Rui)] 
-[[portfolio](team/Hou-Rui.md)]
+[[portfolio](team/hou-rui.md)]
 
 * Role: Developer
 
@@ -40,7 +40,7 @@ You can reach us at the email `u_nikhila@comp.nus.edu.sg`
 <img src="images/isaactin.png" width="200px">
 
 [[github](http://github.com/IsaacTin)]
-[[portfolio](team/IsaacTin.md)]
+[[portfolio](team/isaactin.md)]
 
 * Role: Developer
 
