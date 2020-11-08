@@ -9,7 +9,7 @@
 FixMyAbs is a workout tracker that helps lazy programmers transform their round belly into toned six packs. If you are unmotivated for a workout, FixMyAbs will be your partner in helping you to change your life. 😎
 
 
-For more information, check out the [FixMyAbs Website](ay2021s1-cs2103-f10-3.github.io/tp).
+For more information, check out the [FixMyAbs Website](https://ay2021s1-cs2103-f10-3.github.io/tp).
 
 
 ### Disclaimer

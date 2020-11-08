@@ -196,6 +196,10 @@ Format: `editex <index> [e/exercise] [c/calories per rep]`
 Constraints:
 - Calories must be within range 1-1000 inclusive
 
+Additional information
+- Details of logs that use the edited exercise will be edited as well to match the new exercise
+- This ensures that there is consistency within FixMyAbs
+
 Examples:
 - `editex 2 e/Sit ups` Edits an exercise at index `2` with name `Sit ups`.
 - `editex 3 c/50` Edits an exercise at index `3` with 50 calories per rep.
@@ -217,8 +221,13 @@ Format: `deleteex <index>`
 - The index refers to the index number shown in the list of exercises.
 - The index **must be a positive integer** 1, 2, 3, …
 
+Additional information
+
+- Logs that use the deleted exercise will be deleted as well
+- This ensures that there is consistency within FixMyAbs
+
 Examples:
-- `deleteex 1` deletes the 1st exercise in the exercise list.
+- `deleteex 7` deletes the 7th exercise in the exercise list.
 
 ![Ui](images/screenshots/v1.4deleteex.png)
 
