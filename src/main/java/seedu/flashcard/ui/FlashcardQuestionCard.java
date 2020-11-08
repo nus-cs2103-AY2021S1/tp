@@ -105,7 +105,8 @@ public class FlashcardQuestionCard extends UiPart<Region> {
     }
 
     private Image loadImage(String diagramFilePath) {
-        if (Diagram.isValidFile(diagramFilePath) && Diagram.isValidImageFileType(diagramFilePath)) {
+        if (Diagram.isValidFile(diagramFilePath) && Diagram.hasReadPermission(diagramFilePath)
+                && Diagram.isValidImageFileType(diagramFilePath)) {
             File imageFile = new File(diagramFilePath);
             Image image = new Image(imageFile.toURI().toString());
             return image;

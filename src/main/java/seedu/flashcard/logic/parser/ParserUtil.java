@@ -167,8 +167,11 @@ public class ParserUtil {
         if (!Diagram.isValidFile(trimmedDiagramFilePath)) {
             throw new ParseException(Diagram.MESSAGE_NON_EXISTENT_DIAGRAM_FILE_TYPE);
         }
+        if (!Diagram.hasReadPermission(trimmedDiagramFilePath)) {
+            throw new ParseException(Diagram.MESSAGE_READ_PERMISSION_DENIED);
+        }
         if (!Diagram.isValidImageFileType(trimmedDiagramFilePath)) {
-            throw new ParseException(Diagram.MESSAGE_INVALID_DIAGRAM_FILE_TYPE);
+            throw new ParseException(Diagram.MESSAGE_INVALID_FILE_TYPE);
         }
         return new Diagram(trimmedDiagramFilePath);
     }
@@ -191,8 +194,7 @@ public class ParserUtil {
     /**
      * Checks if all flags passed in contain a valid value.
      */
-    public static boolean areValidFlagValues(List<String> flagValueList,
-                                             String... validFlagValues) throws ParseException {
+    public static boolean areValidFlagValues(List<String> flagValueList, String... validFlagValues) {
         List<String> validFlagValueList = Arrays.asList(validFlagValues);
         boolean areAllValid = flagValueList.stream()
                 .allMatch(x -> validFlagValueList.stream().anyMatch(y -> y.equals(x)));
