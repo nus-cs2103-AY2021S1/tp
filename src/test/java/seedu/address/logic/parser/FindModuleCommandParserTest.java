@@ -9,11 +9,12 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindModuleCommand;
+import seedu.address.logic.parser.modulelistparsers.FindModuleCommandParser;
 import seedu.address.model.module.NameContainsKeywordsPredicate;
 
 public class FindModuleCommandParserTest {
 
-    private FindModuleCommandParser parser = new FindModuleCommandParser();
+    private FindModuleParser parser = new FindModuleParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
