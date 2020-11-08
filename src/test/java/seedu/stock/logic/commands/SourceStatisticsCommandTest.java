@@ -4,6 +4,9 @@ import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.stock.model.Model;
@@ -19,11 +22,22 @@ public class SourceStatisticsCommandTest {
     public void executeValidSourceStatisticsCommand_success() {
         SourceStatisticsCommand sourceStatisticsCommand = new SourceStatisticsCommand();
 
-        String expectedMessage = SourceStatisticsCommand.MESSAGE_SUCCESS;
+        //expected data
+        Map<String, Integer> statisticsData = new HashMap<>();
+        statisticsData.put("cold storage", 1);
+        statisticsData.put("ntuc", 1);
+        statisticsData.put("fairprice", 1);
+        statisticsData.put("giant", 1);
+
+        String[] otherStatisticsData = new String[]{"source"};
+
+        CommandResult expectedResult = new CommandResult(SourceStatisticsCommand.MESSAGE_SUCCESS,
+                statisticsData, false, false, null, true,
+                otherStatisticsData, false, false);
 
         Model expectedModel = model;
 
-        assertCommandSuccess(sourceStatisticsCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(sourceStatisticsCommand, model, expectedResult, expectedModel);
     }
 
 

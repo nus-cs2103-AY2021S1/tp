@@ -81,6 +81,7 @@ public class StockBookParserTest {
         //change to required format
         descriptor.setQuantityAdder(new QuantityAdder("50"));
         descriptor.setQuantity(null);
+        descriptor.setLowQuantity(null);
 
         //build serial numbers to change
         String serialNumbers = descriptor.getSerialNumbers().stream().map(SerialNumber::toString)
@@ -103,6 +104,7 @@ public class StockBookParserTest {
         //change to required format
         descriptor.setQuantity(new Quantity("50"));
         descriptor.setQuantityAdder(null);
+        descriptor.setLowQuantity(null);
 
         //build serial numbers to change
         String serialNumbers = descriptor.getSerialNumbers().stream().map(SerialNumber::toString)
@@ -125,6 +127,7 @@ public class StockBookParserTest {
         //change to required format
         descriptor.setQuantity(null);
         descriptor.setQuantityAdder(null);
+        descriptor.setLowQuantity(null);
 
         //build serial numbers to change
         String serialNumbers = descriptor.getSerialNumbers().stream().map(SerialNumber::toString)
