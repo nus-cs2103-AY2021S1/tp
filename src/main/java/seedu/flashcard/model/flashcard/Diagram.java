@@ -18,6 +18,7 @@ public class Diagram {
     public static final String MESSAGE_INVALID_FILE_TYPE = "Invalid file type. Diagram only supports the following "
             + "image file types: jpg, png, jpeg, bmp";
     public static final String MESSAGE_NON_EXISTENT_DIAGRAM_FILE_TYPE = "Please ensure diagram file exists";
+    public static final String MESSAGE_READ_PERMISSION_DENIED = "Please ensure you have read permissions to the file";
     public static final List<String> SUPPORTED_IMAGE_FILE_TYPE_LIST =
             Arrays.asList(new String[]{"jpg", "png", "jpeg", "bmp"});
 
@@ -39,10 +40,8 @@ public class Diagram {
     public static boolean isValidImageFileType(String path) {
         File file = new File(path);
         try {
-            if (isAcceptedImageFileType(file)) {
-                if (ImageIO.read(file) != null) {
-                    return true;
-                }
+            if (isAcceptedImageFileType(file) && ImageIO.read(file) != null) {
+                return true;
             }
         } catch (IOException exception) {
             return false;
@@ -78,6 +77,14 @@ public class Diagram {
             return false;
         }
         return false;
+    }
+
+    /**
+     * Returns true file has read permission.
+     */
+    public static boolean hasReadPermission(String path) {
+        File file = new File(path);
+        return file.canRead();
     }
 
     @Override
