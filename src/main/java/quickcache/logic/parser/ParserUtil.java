@@ -50,7 +50,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String question} into a {@code Question}.
+     * Parses a {@code String question} into a {@code String}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code question} is invalid.
@@ -88,7 +88,7 @@ public class ParserUtil {
      * Parses a {@code String question} into a {@code Question}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if answer is less than choices and question is invalid.
+     * @throws ParseException question is invalid.
      */
     public static Question parseOpenEndedQuestion(String question, String answer) throws ParseException {
         requireNonNull(question);
@@ -104,7 +104,7 @@ public class ParserUtil {
      * Parses a {@code String question} into a {@code Question}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if answer is less than choices and question is invalid.
+     * @throws ParseException if answer is less than choices or question is invalid or answer is negative.
      */
     public static Question parseMultipleChoiceQuestion(String question, String answer,
                                                        Choice[] choices) throws ParseException {
@@ -192,7 +192,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> choices} into a Choice array.
      */
     public static Choice[] parseChoices(Collection<String> choices) throws ParseException {
         requireNonNull(choices);
