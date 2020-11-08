@@ -27,7 +27,6 @@ UniqueModuleList o--> "*" Module
 
 Module *---> "1" ModuleName
 Module *---> "0..*" Tag
-Module *---> "1" HashMap
 Module *---> "1" ModularCredits
 Module *---> "1" GradeTracker
 Module *---> "0..*" ModuleLesson
