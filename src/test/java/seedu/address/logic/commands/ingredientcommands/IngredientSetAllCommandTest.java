@@ -23,7 +23,7 @@ import seedu.address.model.ingredient.IngredientName;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for SetAllCommand.
  */
-class SetAllCommandTest {
+class IngredientSetAllCommandTest {
 
     private static final Amount MILK_AMOUNT = new Amount("10");
     private static final Amount PEARL_AMOUNT = new Amount("10");
@@ -40,7 +40,7 @@ class SetAllCommandTest {
     @Test
     public void execute_allFieldsSpecified_success() {
 
-        SetAllCommand setAllCommand = new SetAllCommand(MILK_AMOUNT, PEARL_AMOUNT,
+        IngredientSetAllCommand ingredientSetAllCommand = new IngredientSetAllCommand(MILK_AMOUNT, PEARL_AMOUNT,
                 BOBA_AMOUNT, BLACK_TEA_AMOUNT, GREEN_TEA_AMOUNT, BROWN_SUGAR_AMOUNT);
 
         stubBook.addIngredient(new Ingredient(new IngredientName("Milk")));
@@ -65,7 +65,7 @@ class SetAllCommandTest {
 
         ReadOnlyIngredientBook readOnlyToSet = stubBook;
 
-        String expectedMessage = String.format(SetAllCommand.MESSAGE_SUCCESS, stubBook);
+        String expectedMessage = String.format(IngredientSetAllCommand.MESSAGE_SUCCESS, stubBook);
 
         Model expectedModel =
                 new ModelManager(new AddressBook(model.getAddressBook()), model.getSalesBook(),
@@ -81,16 +81,16 @@ class SetAllCommandTest {
         filledBook.addIngredient(new Ingredient(new IngredientName("Brown Sugar")));
         model.setIngredientBook(filledBook);
 
-        assertCommandSuccess(setAllCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(ingredientSetAllCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void equals() {
-        final SetAllCommand standardCommand = new SetAllCommand(MILK_AMOUNT, PEARL_AMOUNT,
+        final IngredientSetAllCommand standardCommand = new IngredientSetAllCommand(MILK_AMOUNT, PEARL_AMOUNT,
                 BOBA_AMOUNT, BLACK_TEA_AMOUNT, GREEN_TEA_AMOUNT, BROWN_SUGAR_AMOUNT);
 
         // same values -> returns true
-        SetAllCommand commandWithSameValues = new SetAllCommand(MILK_AMOUNT, PEARL_AMOUNT,
+        IngredientSetAllCommand commandWithSameValues = new IngredientSetAllCommand(MILK_AMOUNT, PEARL_AMOUNT,
                 BOBA_AMOUNT, BLACK_TEA_AMOUNT, GREEN_TEA_AMOUNT, BROWN_SUGAR_AMOUNT);
 
         assertTrue(standardCommand.equals(commandWithSameValues));
@@ -105,7 +105,7 @@ class SetAllCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new SetAllCommand(new Amount("30"), PEARL_AMOUNT,
+        assertFalse(standardCommand.equals(new IngredientSetAllCommand(new Amount("30"), PEARL_AMOUNT,
                 BOBA_AMOUNT, BLACK_TEA_AMOUNT, GREEN_TEA_AMOUNT, BROWN_SUGAR_AMOUNT)));
 
     }

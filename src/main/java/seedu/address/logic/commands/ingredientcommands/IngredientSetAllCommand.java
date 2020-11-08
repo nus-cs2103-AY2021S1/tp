@@ -25,7 +25,7 @@ import seedu.address.model.ingredient.IngredientName;
 /**
  * Set all ingredients in the ingredient book to different specified amounts.
  */
-public class SetAllCommand extends Command {
+public class IngredientSetAllCommand extends Command {
 
     public static final String COMMAND_WORD = "i-set-all";
 
@@ -62,8 +62,8 @@ public class SetAllCommand extends Command {
     /**
      * Constructs a set all command with the given amounts for all different ingredients.
      */
-    public SetAllCommand(Amount milkAmount, Amount pearlAmount, Amount bobaAmount,
-                         Amount blackTeaAmount, Amount greenTeaAmount, Amount brownSugarAmount) {
+    public IngredientSetAllCommand(Amount milkAmount, Amount pearlAmount, Amount bobaAmount,
+                                   Amount blackTeaAmount, Amount greenTeaAmount, Amount brownSugarAmount) {
         requireAllNonNull(milkAmount, pearlAmount, bobaAmount, blackTeaAmount, greenTeaAmount, brownSugarAmount);
         this.milkAmount = milkAmount;
         this.pearlAmount = pearlAmount;
@@ -80,39 +80,10 @@ public class SetAllCommand extends Command {
         List<Ingredient> lastShownList = model.getFilteredIngredientList();
 
         IngredientBook toSet = new IngredientBook();
-        IngredientBook filledBook = executeHelper(toSet);
+        IngredientBook filledBook = IngredientSetCommand.fillIngredientBookHelper(toSet);
 
-        boolean isNoChange = false;
-        int checker = 0;
-
-        for (int i = 0; i < lastShownList.size(); i++) {
-            IngredientName currentName = lastShownList.get(i).getIngredientName();
-            if (currentName.equals(new IngredientName("Milk"))
-                    && lastShownList.get(i).getAmount().equals(milkAmount)) {
-                checker++;
-            } else if (currentName.equals(new IngredientName("Pearl"))
-                    && lastShownList.get(i).getAmount().equals(pearlAmount)) {
-                checker++;
-            } else if (currentName.equals(new IngredientName("Boba"))
-                    && lastShownList.get(i).getAmount().equals(bobaAmount)) {
-                checker++;
-            } else if (currentName.equals(new IngredientName("Black Tea"))
-                    && lastShownList.get(i).getAmount().equals(blackTeaAmount)) {
-                checker++;
-            } else if (currentName.equals(new IngredientName("Green Tea"))
-                && lastShownList.get(i).getAmount().equals(greenTeaAmount)) {
-                checker++;
-            } else if (currentName.equals(new IngredientName("Brown Sugar"))
-                    && lastShownList.get(i).getAmount().equals(brownSugarAmount)) {
-                checker++;
-            }
-
-            if (checker == lastShownList.size()) {
-                isNoChange = true;
-            }
-        }
-
-        if (isNoChange) {
+        if (noChangeToCurrentAmount(model, milkAmount, pearlAmount, bobaAmount,
+                blackTeaAmount, greenTeaAmount, brownSugarAmount)) {
             throw new CommandException(MESSAGE_NO_CHANGE);
         }
 
@@ -133,16 +104,46 @@ public class SetAllCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, filledBook));
     }
 
-    private static IngredientBook executeHelper(IngredientBook tempBook) {
+    protected static boolean noChangeToCurrentAmount(Model model, Amount milkAmount, Amount pearlAmount,
+                                                     Amount bobaAmount, Amount blackTeaAmount, Amount greenTeaAmount,
+                                                     Amount brownSugarAmount) {
 
-        tempBook.addIngredient(new Ingredient(new IngredientName("Milk")));
-        tempBook.addIngredient(new Ingredient(new IngredientName("Pearl")));
-        tempBook.addIngredient(new Ingredient(new IngredientName("Boba")));
-        tempBook.addIngredient(new Ingredient(new IngredientName("Black Tea")));
-        tempBook.addIngredient(new Ingredient(new IngredientName("Green Tea")));
-        tempBook.addIngredient(new Ingredient(new IngredientName("Brown Sugar")));
-        return tempBook;
+        requireAllNonNull(model, milkAmount, pearlAmount, bobaAmount,
+                blackTeaAmount, greenTeaAmount, brownSugarAmount);
 
+        List<Ingredient> lastShownList = model.getFilteredIngredientList();
+
+        boolean isNoChange = false;
+        int checker = 0;
+
+        for (int i = 0; i < lastShownList.size(); i++) {
+            IngredientName currentName = lastShownList.get(i).getIngredientName();
+            if (currentName.equals(new IngredientName("Milk"))
+                    && lastShownList.get(i).getAmount().equals(milkAmount)) {
+                checker++;
+            } else if (currentName.equals(new IngredientName("Pearl"))
+                    && lastShownList.get(i).getAmount().equals(pearlAmount)) {
+                checker++;
+            } else if (currentName.equals(new IngredientName("Boba"))
+                    && lastShownList.get(i).getAmount().equals(bobaAmount)) {
+                checker++;
+            } else if (currentName.equals(new IngredientName("Black Tea"))
+                    && lastShownList.get(i).getAmount().equals(blackTeaAmount)) {
+                checker++;
+            } else if (currentName.equals(new IngredientName("Green Tea"))
+                    && lastShownList.get(i).getAmount().equals(greenTeaAmount)) {
+                checker++;
+            } else if (currentName.equals(new IngredientName("Brown Sugar"))
+                    && lastShownList.get(i).getAmount().equals(brownSugarAmount)) {
+                checker++;
+            }
+
+            if (checker == lastShownList.size()) {
+                isNoChange = true;
+            }
+        }
+
+        return isNoChange;
     }
 
     @Override
@@ -150,11 +151,11 @@ public class SetAllCommand extends Command {
         if (other == this) {
             return true;
         }
-        if (!(other instanceof SetAllCommand)) {
+        if (!(other instanceof IngredientSetAllCommand)) {
             return false;
         }
 
-        SetAllCommand e = (SetAllCommand) other;
+        IngredientSetAllCommand e = (IngredientSetAllCommand) other;
 
         return milkAmount.equals(e.milkAmount)
                 && pearlAmount.equals(e.pearlAmount)
