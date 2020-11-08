@@ -91,6 +91,7 @@ Given below are my contributions to the project.
     * Added documentation for the feature `stockview`. (Pull request [\#272](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/272))
     
   * Developer Guide:
+    * Vet and maintain DG
     * Added implementation and UML diagrams for the Find and FindExact features. (Pull request [\#163](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/163), [\#165](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/165))
     * Added implementation and UML diagrams for the Note feature. (Pull request [\#290](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/290), [\#294](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/294))
     * Added implementation and UML diagrams for the StockView feature. (Pull request [\#294](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/294))
