@@ -9,7 +9,7 @@ Welcome to the User Guide for Eva!
 
 ## 1. Introduction
 
-<img src="images/ugimages/evalogo.png" alt="Eva logo" width="500" height="500" \>
+<img src="images/ugimages/evalogo.png" alt="Eva logo" width="500" height="500" />
 
 Welcome and thanks for downloading Eva!
 
