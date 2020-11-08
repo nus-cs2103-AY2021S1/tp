@@ -423,7 +423,7 @@ Displays the timeline in a new window.
 
 Format: `timeline`
 
-![Timeline Example](images/TimelineExample.gif)
+![Timeline Window](images/TimelineWindow.gif)
 
 Note(s):
 * Meetings are displayed in chronological order, with the earliest meeting on the left side of the window
