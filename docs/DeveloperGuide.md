@@ -889,7 +889,7 @@ Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 employees without a noticeable sluggishness in performance for typical usage.
-3.  Should be able to respond within 2 second for each operation.
+3.  Should be able to respond within 2 seconds for each operation.
 4.  Should be able to function fully without access to internet.
 5.  Should be for a single user.
 6.  Data files should remain unchanged when transferring from one computer to another.
