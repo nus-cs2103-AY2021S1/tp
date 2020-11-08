@@ -48,23 +48,18 @@ deactivate ProductiveNusParser
 LogicManager -> ListCommand : execute()
 activate ListCommand
 
-alt numberOfDays.getZeroBased() == 0
 
-else else
 ListCommand -> Model : updateFilteredAssignmentList(showLimitedAssignments())
 activate Model
 Model --> ListCommand
 deactivate Model
-
-end
-
 create CommandResult
 ListCommand -> CommandResult
 activate CommandResult
 
 CommandResult -> Model : getFilteredAssignmentList()
 activate Model
-Model --> CommandResult : size of assignment list
+Model --> CommandResult
 deactivate Model
 CommandResult --> ListCommand
 deactivate CommandResult

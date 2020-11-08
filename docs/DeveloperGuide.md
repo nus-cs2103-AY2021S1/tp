@@ -349,17 +349,38 @@ whereas finding assignments by date or time will only display assignments due on
 #### Current Implementation
 
 ##### ListCommandParser Class
-The `ListCommandParser` class implements `Parser<ListCommand>` and it is responsible for parsing input arguments with the `parse` method to create a new `ListCommand` object. Regular Expressions are used to identify the presence of an input argument in `args`, which takes into account all characters and even special characters. If no argument index is found in `args`, a `ListCommand` object which takes in an `Index` of zero base 0 is returned and this 0 value will identify the command as list all assignments.
+The `ListCommandParser` class implements `Parser<ListCommand>` and it is responsible for parsing input arguments with the `parse` method to create a new `ListCommand` object. Regular Expressions are used to identify the presence of an input argument in `args`, which takes into account all characters and even special characters. If no argument index is found in `args`, a `ListCommand` object with an empty constructor is returned, which will identify the command as list all assignments.
 
-If input argument is found, it is then checked with Regular Expressions whether the argument is in the range 1 to 50 inclusive. If it is within range, the string `args` is parsed into an `Index` which is then passed in as the argument to `ListCommand` that is returned.
+If input argument is found, it is then checked with Regular Expressions whether the argument is in the range 1 to 50 inclusive. If it is within range, the string `args` is parsed into an `Index` which is then passed in as the argument to the parameterized constructor of `ListCommand` object that is returned.
 
 ##### ListCommand Class
-The `ListCommand` class extends abstract class `Command` and it is responsible for listing assignments based on the user's input command. It contains static `String` attributes of error messages to be displayed in the event of invalid user input, and an `Index` attribute, `numberOfDays`. The constructor of ListCommand takes in an `Index` and its attribute `numberOfDays` is initialized to this value.
+The `ListCommand` class extends abstract class `Command` and it is responsible for listing assignments based on the user's input command. It contains static `String` attributes of error messages to be displayed in the event of invalid user input, and an `Optional<Index>` attribute, `numberOfDays`. There are overloaded constructors for `ListCommand`, one being empty and the other taking in an `Index` parameter. Within the empty constructor, the `numberOfDays` attribute will be initialized with an empty Optional instance and within the parameterized constructor, `numberOfDays` attribute will be initialized with the Optional of its parameter.
 
-It overrides the method `execute` to return a `CommandResult` object, which provides the result of command execution. In the `execute` method, if the zero base value of `numberOfDays` is 0, a predicate `PREDICATE_SHOW_ALL_ASSIGNMENT` is passed into the `updatedFilteredAssignmentList` method of a `Model` object, `model`. If the zero base value is not 0, `showLimitedAssignments` method with return type `Predicate<Assignment>` is passed into the `updatedFilteredAssignmentList` method. This method uses lambda expressions to filter assignments with deadlines that fall within the number of days window inputted by the user.
+It overrides the method `execute` to return a `CommandResult` object, which provides the result of command execution. In the `execute` method, if `numberOfDays` is empty, a predicate `PREDICATE_SHOW_ALL_ASSIGNMENT` is passed into the `updatedFilteredAssignmentList` method of a `Model` object, `model`. If `numberOfDays` is not empty, `showLimitedAssignments` method with return type `Predicate<Assignment>` is passed into the `updatedFilteredAssignmentList` method. This method uses lambda expressions to filter assignments with deadlines that fall within the number of days window inputted by the user.
 
 ##### Design Considerations
+As the list command allows for users to enter an optional index, we decided that there should be overloaded constructors for this command, one being empty and the other populated with the parameter `Index`. We decided to use `Optional<Index>` as the type for `numberOfDays` attribute in `ListCommand` class so that it can be initialized ...
 
+The following are design considerations we had and its comparisons:
+
+**Consideration 1**: Use of a single constructor which takes in `Index` parameter and pass an `Index` with zero base value 0 into the constructor when all assignments are to be listed.
+
+Pros: 
+* Straightforward way of coding when only one type of constructor is used
+
+Cons: 
+* Bad OOP design
+* It is also not an intuitive way for developers to understand the code in a single glance.
+
+**Consideration 2**: Use of overloaded constructors and `Optional<Index>` for `numberOfDays` attribute in `ListCommand` class
+
+Pros: 
+* Good OOP design
+* Provides flexibility in giving definitions to methods
+* Removes ambiguity and have clearer semantics
+ 
+Cons: 
+* Optional requires a bit different thinking. For example `null` has to get replaced with `Optional.empty()`.
 
 
 #### Usage scenario
