@@ -59,7 +59,7 @@ public class DeleteTeammateCommandTest {
     }
 
     @Test
-    public void execute_InvalidIndexValidPersonNotAddedToList_throwsCommandException() {
+    public void execute_invalidIndexValidPersonNotAddedToList_throwsCommandException() {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
