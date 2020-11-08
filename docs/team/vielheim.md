@@ -3,8 +3,9 @@ layout: page
 title: Terence Ho Wei Yang's Project Portfolio Page
 ---
 
+
 ## Project: PIVOT (Police Investigation Virtual Organisational Tool)
-<div style="page-break-after: always;">
+
 PIVOT is a desktop application to assist the police investigators in keeping track of their investigations and relevant information. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20 kLoC.
 
 Given below are my contributions to the project.  
@@ -25,7 +26,7 @@ Given below are my contributions to the project.
 These enhancements affects existing and future commands. It was carefully designed to integrate with the existing architecture, keeping in mind of future extensions.  
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=Vielheim&tabRepo=AY2021S1-CS2103-F09-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)  
-</div>
+<br>
 
 * **Project management**:
   * **Manage Team Progress and Tasks**:
