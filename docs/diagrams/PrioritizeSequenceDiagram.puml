@@ -48,13 +48,7 @@ deactivate ProductiveNusParser
 LogicManager -> PrioritizeCommand : execute()
 activate PrioritizeCommand
 
-PrioritizeCommand -> Model : setAssignment(assignmentToPrioritise, prioritizedAssignment)
-activate Model
-
-Model --> PrioritizeCommand
-deactivate Model
-
-PrioritizeCommand -> Model : updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT);
+PrioritizeCommand -> Model : setAssignment(toPrioritize, prioritizedAssignment)
 activate Model
 
 Model --> PrioritizeCommand
