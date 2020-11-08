@@ -1,4 +1,4 @@
-#Calo - Setting Up
+# Calo - Setting Up
 
 ## Prerequiste
 1. Java version `11` or higher
@@ -6,10 +6,11 @@
     * [For this guide, only instructions for IntelliJ will be provided.]
  
 | Notes:| If you have disabled the plugins in IntelliJ, go to File > Settings > Plugins to enable them.|
--------------|-------------------
-|
+-------------|-------------------|
 
 ## Setting up the project in your computer
+|exclamation: <b>Caution</b> Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.|
+|-----|
 
 <div markdown="span" class="alert alert-warning">
 :exclamation: <b>Caution</b>
