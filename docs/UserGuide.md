@@ -83,7 +83,7 @@ Important cautions that needs to be known before using the feature.
 
 --------------------------------------------------------------------------------------------------------------------
 # 3. User Interface Overview
-*(Written by Le Hue Man)*
+*(Written by Le Hue Man)* <br>
 
 As you can see, **figure 3-1** below shows the default user interface (UI) of _Common Cents_ with its components.  
 ![annotatedUi](images/commands/annotatedUi.PNG)
@@ -160,7 +160,7 @@ your Entries in Common Cents.
 --------------------------------------------------------------------------------------------------------------------
 
 # 5. Features
-Here are some general notes about the commands in _Common Cents_ 
+Here are some general notes about the commands in _Common Cents_. 
 
 <div markdown="block" class="alert alert-info">
 

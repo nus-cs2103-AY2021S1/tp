@@ -60,10 +60,12 @@ The sections below give more details of each component.
 
 ### UI component
 
+The UI component represents elements directly interacting with the user.
+
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-**API** :
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `AccountListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+
+**API:** The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `AccountListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -302,7 +304,8 @@ Explanation why a certain design is chosen.
   which resulted in more lines of code.
 
 ### Find entries feature 
-*(Written by Le Hue Man)*
+*(Written by Le Hue Man)* <br>
+
 This feature allows the user to find specific existing entries using a given keyword.
   
 #### Implementation
@@ -339,6 +342,10 @@ The following sequence diagram shows how a find entry operation works:
 such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
 of the find entries command.
 </div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
 
 #### Design consideration
 Explanation why a certain design is chosen.

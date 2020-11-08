@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 
 ### Project Design
 
-* **Implemented the storage features in the app.**
+* **Implemented and wrote tests for the storage features in the app.**
   * Justification: The storage feature is crucial in the execution of the app. It has multiple layers and 
   a new layer of logic (Account) as well as subclasses of Entry also needed to be considered during the implementation. 
   * Highlights: While the design was inspired by Addressbook-level3 as mentioned below, the implementation was not easy since the 
@@ -23,23 +23,13 @@ Given below are my contributions to the project.
   * Credits: The storage was inspired by [Addressbook-level3](https://github.com/se-edu/addressbook-level3)
   * Related Pull Request: [\#33](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/33)
   
-* **Designed and implemented the all User Interface (UI) elements of the project.**
-  * Justification: The User Interface, although not graded, is important in keeping group's interests and motivation high. The 
-  use of JavaFX was also not thoroughly taught in the syllabus so it requires a lot of independence in learning to design and
-  implement an intuitive and visually appealing UI. 
-  * Highlights: The code design shares a lot of similarities with that of the Addressbook-level3 but the visual design was modified
-  a lot to match the requirements of the app for the specific target user. 
-  * Credits: The design was inspired by [Addressbook-level3](https://github.com/se-edu/addressbook-level3)
-  * Related Pull Requests: [\#86](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/86), 
-                           [\#150](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/150)
-  
-* **Improved code quality of the project.**
+* **Improved code quality of the command result.**
   * Justification: The Addressbook-level3 used a lot of booleans in its command result's constructor. A factory method was
   created to improve the code quality. 
   * Related Pull Requests: [\#152](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/152).
   
 ### Features
-* **Added the ability to find specific entries.**
+* **Added and wrote tests for the ability to find specific entries.**
   * What it does: allows the user to find specific entries/revenues that have a keyword or a list of keywords.
   * Justification: This feature takes into account that user is used to the separation of expenses and revenues of the app, allowing 
   them to find them separately or find both at the same time. 
@@ -47,10 +37,22 @@ Given below are my contributions to the project.
   need to be considered as well.
   * Related Pull Requests: [\#120](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/120), 
                            [\#124](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/124)
+                           
+* **Improved the existing GUI of the project.**
+  * Justification: The User Interface, although not graded, is important in keeping group's interests and motivation high. The 
+  use of JavaFX was also not thoroughly taught in the syllabus so it requires a lot of independence in learning to design and
+  implement an intuitive and visually appealing UI. 
+  * Highlights: The code design shares a lot of similarities with that of the Addressbook-level3 but the visual design was modified
+  a lot to match the requirements of the app for the specific target user. 
+  * Credits: The layout was inspired by [Addressbook-level3](https://github.com/se-edu/addressbook-level3)
+  * Related Pull Requests: [\#86](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/86), 
+                           [\#150](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/150)
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=lettuceman4&tabRepo=AY2021S1-CS2103T-T13-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
-### Project Management:**
+<div style="page-break-after: always;"></div>
+
+### Project Management:
 
 * **Managed the punctual delivery of deliverables:** Reminded teammates of tasks and their deadlines. Helped with unfinished tasks.
 
@@ -80,6 +82,7 @@ Given below are my contributions to the project.
 
 #### Developer Guide:
   * **Added details to `Storage` section**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#storage-component)
+  * **Added details to `UI` section**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#ui-component)
   * **Added prefaces to all headers**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html)
   * **Added implementation details of the `Find entries` feature**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#find-entries-feature)
   * **Added some details to `Use case` section (use cases for `find`)**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#use-cases)
