@@ -56,7 +56,7 @@ project documents, Coding standards, format of deliverables
 <img src="images/limzeweidennis.png" width="200px">
 
 [[github](https://github.com/LimZeWeiDennis)]
-[[portfolio](team/dennis.md)]
+[[portfolio](team/limzeweidennis.md)]
 
 * Role: Developer
 * Responsibilities: Deadline and Deliverables manager - in charge of making sure that
