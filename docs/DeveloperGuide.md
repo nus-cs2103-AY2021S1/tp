@@ -121,7 +121,23 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the definition book data in json format and read it back.
+* can save the flashcard book data in json format and read it back.
+
+Additionally, the `Storage` component utilises a different mechanism for storing quiz performance data. The `Storage` component saves quiz performance data in text file format instead
+of json format, and it reads it back using a separate set of classes. Hence, quiz performance data is stored and read separately from flashcard book data.
+
+Within the `seedu.address.storage` package, there are several classes that are responsible for loading the performance of previous quiz attempts, and for saving the performance of current quiz attempts. The class diagram below
+shows how these classes are related to one another.
+
+![Performance Storage Class Diagram](images/store0.png)
+
+Below are two sequence diagrams. The first sequence diagram shows the interactions between classes in the `seedu.address.storage` package when quiz performance data is read from
+the text file and converted into a Performance object. The second sequence diagram shows the interactions between classes in the `seedu.address.storage` package when a Performance object
+is converted to data that can be stored in the text file. 
+
+![load Sequence Diagram](images/store8.png)
+
+![save Sequence Diagram](images/store6.png)
 
 ### Common classes
 
