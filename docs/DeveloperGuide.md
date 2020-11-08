@@ -877,3 +877,79 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### Getting help for a command
+
+1. Get help for a command using its command word
+
+    1. Test case: `help students`<br>
+       Expected: A help message describing the purpose of the `students` command and the syntax to use it is shown in the results panel.
+
+1. Find out all commands available
+  
+    1. Test case: `help`<br>
+       Expected: A list of all commands available together with a brief description of the purpose of the command is shown in the results panel.
+  
+1. Try to get help for a non-existent command
+
+    1. Test case: `help <word that is not a command or alias>`<br>
+       Expected: An error message stating that the command does not exist is shown.
+
+1. Get help for a command via an alias
+
+    1. Prerequisites: At least one alias to a command is defined.
+    
+    1. Test case: `help <alias>` eg. if the alias `s` is defined, `help s`. <br>
+       Expected: The help message for the command the alias points to is shown.
+
+### Adding a room
+
+1. Adding a room to an empty ResiReg
+
+    1. Prerequisites: Show all rooms using `rooms`. Make sure there are no rooms.
+    
+    1. Test case: `add-room fl/11 n/100 t/NA`<br>
+       Expected: A new room on the 11th floor, room number 100 and of type NA is added. A message describing the room added is shown.
+       
+    1. Test case: `add-room fl/12 n/100`<br>
+       Expected: No room is added. An error message describing the problem is shown.
+       
+    1. Test case: `add-room fl/12 n/100 t/XY`<br>
+       Expected: Similar to previous.
+
+1. Adding rooms to a ResiReg with some rooms
+
+    1. Prerequisites: ResiReg contains at least one room, and all rooms are shown.
+
+    1. Test case: Add a room with the same floor and room number as an existing room.<br>
+       Expected: No room is added. An error message stating that the room already exists is shown.
+
+### Editing a room
+
+1. Editing a room while all rooms are shown
+
+    1. Prerequisites: Show all rooms using `rooms`. Make sure there is at least 1 room.
+
+    1. Test case: `edit-room 1 t/NN`<br>
+       Expected: The first room in the list has its room type changed to NN. A message describing the edited room is shown in the results panel.
+       
+    1. Test case: `edit-room 1`<br>
+       Expected: No room is edited. An error message describing the problem is shown. 
+       
+    1. Other incorrect `edit-room` commands to try: `edit-room` `edit-room 0 t/NA`, `edit-room x t/NA` (where x is larger than the list size), `edit-room 1 fl/<floor> n/<room_number>` (where `<floor>` and `<room_number>` match an existing room in ResiReg).<br>
+       Expected: Similar to previous.
+
+### Deleting a room
+
+1. Deleting a room while all rooms are shown
+
+    1. Prerequisites: Show all rooms using `rooms`. Make sure there are multiple rooms.
+
+    1. Test case: `delete-room 1`<br>
+       Expected: First room is deleted from the list. Message showing details of deleted room is shown.
+
+    1. Test case: `delete-room 0`<br>
+       Expected: No room is deleted. An error message describing the problem is shown.
+
+    1. Other incorrect delete commands to try: `delete-room`, `delete-room x` (where x is larger than the list size), `delete-room y` (where the room at list position y is allocated to a student).<br>
+       Expected: Similar to previous.
