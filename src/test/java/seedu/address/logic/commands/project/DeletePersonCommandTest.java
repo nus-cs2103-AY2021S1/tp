@@ -2,7 +2,6 @@ package seedu.address.logic.commands.project;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalGitIndexes.GIT_USERINDEX_FIRST_TEAMMATE;
 import static seedu.address.testutil.TypicalGitIndexes.GIT_USERINDEX_SECOND_TEAMMATE;
@@ -24,37 +23,26 @@ import seedu.address.model.project.Project;
  * The tests do not cover invalid Person valid index because invalid person is covered by other test,
  * and would be unnecessary to add here to overlap in testing.
  */
-public class DeleteTeammateCommandTest {
+public class DeletePersonCommandTest {
 
     @Test
-    public void execute_validGitUserIndex_throwsCommandException() {
+    public void execute_validIndexValidPersonNotAddedToList_throwsCommandException() {
+        Person.getAllPeople().clear();
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
-
-        Person person = DESC_A;
-        Model expectedModel = model;
-        project.addParticipation(person);
-
-        Participation participation = project.getParticipation(GIT_USERINDEX_FIRST_TEAMMATE
-            .getGitUserNameString());
-        model.addPerson(person);
-        model.addParticipation(participation);
-
-        DeleteTeammateCommand deleteTeammateCommand = new DeleteTeammateCommand(GIT_USERINDEX_FIRST_TEAMMATE);
-
-        String expectedMessage = String.format(DeleteTeammateCommand.MESSAGE_DELETE_TEAMMATE_SUCCESS,
-            person);
-
-        assertCommandSuccess(deleteTeammateCommand, model, expectedMessage, expectedModel);
+        DeletePersonCommand deletePersonCommand = new DeletePersonCommand(GIT_USERINDEX_FIRST_TEAMMATE);
+        assertThrows(CommandException.class, () -> deletePersonCommand.execute(model)); //
     }
 
-    @Test public void execute_validIndexValidPersonNotAddedToList_throwsCommandException() {
+    @Test
+    public void execute_invalidIndexValidPersonNotAddedToList_throwsCommandException() {
+        Person.getAllPeople().clear();
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
-        DeleteTeammateCommand deleteTeammateCommand = new DeleteTeammateCommand(GIT_USERINDEX_FIRST_TEAMMATE);
-        assertThrows(CommandException.class, () -> deleteTeammateCommand.execute(model)); //
+        DeletePersonCommand deletePersonCommand = new DeletePersonCommand(GIT_USERINDEX_SECOND_TEAMMATE);
+        assertThrows(CommandException.class, () -> deletePersonCommand.execute(model)); //
     }
 
     @Test
@@ -73,12 +61,12 @@ public class DeleteTeammateCommandTest {
 
     @Test
     public void equals() {
-        DeleteTeammateCommand deleteFirst = new DeleteTeammateCommand(
-            GIT_USERINDEX_FIRST_TEAMMATE);
-        DeleteTeammateCommand deleteSecond = new DeleteTeammateCommand(
-            GIT_USERINDEX_FIRST_TEAMMATE);
-        DeleteTeammateCommand deleteThird = new DeleteTeammateCommand(
-            GIT_USERINDEX_SECOND_TEAMMATE);
+        DeletePersonCommand deleteFirst = new DeletePersonCommand(
+                GIT_USERINDEX_FIRST_TEAMMATE);
+        DeletePersonCommand deleteSecond = new DeletePersonCommand(
+                GIT_USERINDEX_FIRST_TEAMMATE);
+        DeletePersonCommand deleteThird = new DeletePersonCommand(
+                GIT_USERINDEX_SECOND_TEAMMATE);
 
         // same object -> returns true
         assertTrue(deleteFirst.equals(deleteFirst));

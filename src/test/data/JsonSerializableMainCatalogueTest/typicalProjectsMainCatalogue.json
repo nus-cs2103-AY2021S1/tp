@@ -21,7 +21,7 @@
         },
         {
           "taskName": "Brainstorm user stories",
-          "description": null,
+          "description": "",
           "publishDate": "26-10-2020",
           "deadline": null,
           "progress": "100.0",
@@ -62,7 +62,7 @@
       "occupied": [
         {
           "taskName": "Write UG",
-          "description": null,
+          "description": "",
           "publishDate": "26-10-2020",
           "deadline": null,
           "progress": "50.0",

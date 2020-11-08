@@ -45,7 +45,8 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
         participation = Optional.empty();
     }
 
-    public MainCatalogue() {}
+    public MainCatalogue() {
+    }
 
     /**
      * Creates an MainCatalogue using the Projects in the {@code toBeCopied}
@@ -133,7 +134,7 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     //// participation-level operations
 
     /**
-     * Returns true if a project with the same identity as {@code project} exists in the main catalogue.
+     * Returns true if a Participation with the same identity as {@code participation} exists in the main catalogue.
      */
     public boolean hasParticipation(Participation participation) {
         requireNonNull(participation);
@@ -165,7 +166,9 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
      * {@code key} must exist in the main catalogue.
      */
     public void removeParticipation(Participation key) {
-        participations.remove(key);
+        if (participations.contains(key)) {
+            participations.remove(key);
+        }
     }
 
     //// project-level operations
