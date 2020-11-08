@@ -280,7 +280,7 @@ Format: `delete-student <index>`
 
 - Deletes the student at the specified `index`, and moves the student to the bin.
 - The index refers to the index number shown in the displayed student list.
-- The index **must be a positive integer** 1, 2, 3, …​
+- The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 

@@ -25,7 +25,7 @@ import static seedu.resireg.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.resireg.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_ROOM;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_SECOND_ROOM;
-import static seedu.resireg.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static seedu.resireg.testutil.TypicalIndexes.INDEX_THIRD_STUDENT;
 
 import org.junit.jupiter.api.Test;
 
@@ -148,7 +148,7 @@ public class EditRoomCommandParserTest {
 
     @Test
     public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_PERSON;
+        Index targetIndex = INDEX_THIRD_STUDENT;
         String userInput = targetIndex.getOneBased() + EMPTY_TAG_DESC;
 
         EditRoomDescriptor descriptor = new EditRoomDescriptorBuilder().withTags().build();
