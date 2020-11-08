@@ -1,4 +1,4 @@
-package seedu.address.model.calories;
+package seedu.address.model.calorie;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,9 +15,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.calorie.Calorie;
-import seedu.address.model.calorie.CalorieLog;
-import seedu.address.model.calorie.DailyCalorie;
 import seedu.address.model.calorie.exceptions.DailyCalorieNotFoundException;
 import seedu.address.model.calorie.exceptions.DuplicateDailyCalorieException;
 

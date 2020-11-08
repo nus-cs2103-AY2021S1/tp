@@ -1,4 +1,4 @@
-package seedu.address.model.calories;
+package seedu.address.model.calorie;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
