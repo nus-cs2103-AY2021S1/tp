@@ -731,22 +731,121 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting one assignment while all assignments are being shown
 
-   1. Prerequisites: List all assingments using the `list` command. Multiple assignments in the list.
+   Prerequisites: List all assignments using the `list` command. Multiple assignments in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
+      Expected: First assignment is deleted from the list. Details of the deleted assignment shown in the Message Box.
+      
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
+      Expected: No assignment is deleted. Error details shown in the Message Box.
+   
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
       
+1. Deleting multiple assignments while all assignments are being shown 
+    
+   Prerequisites: List all assignments using the `list` command. Multiple assignments in the list.
+   
+   1. Test case: `delete 1 2 3`<br>
+      Expected: First, second and third assignment is deleted from the list. Details of the deleted assignments shown in the Message Box.
+            
+   1. Test case: `delete 2 1`<br>
+      Expected: First and second assignment is deleted from the list. Details of the deleted assignments shown in the Message Box.
+   
+   1. Test case: `delete a % ^`<br>
+      Expected: No assignment is deleted. Error details shown in the Message Box.            
+  
+      
 1. Deleting one assignment while some assignments are being shown
-1. Deleting multiple assignments while all assignments are being shown
+
+    Prerequisites: List some assignments using the `list x` command to obtain a filtered list with at least 1 assignment (where x is number of days from current date and time such that only some assignments are shown).
+    
+    1. Test case: `delete 1`<br>
+          Expected: First assignment is deleted from the list. Details of the deleted assignment shown in the Message Box.
+          
+    1. Test case: `delete -1`<br>
+          Expected: No assignment is deleted. Error details shown in the Message Box.
+
+
 1. Deleting multiple assignments while some assignments are being shown
 
-1. _{ more test cases …​ }_
+    Prerequisites: List some assignments using the `list x` command to obtain a filtered list with at least 3 assignments (where x is number of days from current date and time such that only some assignments are shown).
+
+    1. Test case: `delete 1 2 3`<br>
+                Expected: First, second and third assignment is deleted from the list. Details of the deleted assignments shown in the Message Box.
+                           
+
+### Listing assignments
+
+1. List all assignments.
+
+   1. Test case: `list`<br>
+      Expected: All assignments are listed. Message with number of assignments listed is displayed in Message Box.
+      
+   1. Test case: `list 0`<br>
+      Expected: Error details shown in the Message Box.
+      
+1. List assignments with deadlines that fall within current date and time and x number of days later
+   
+   1. Test case: `list 7`<br>
+      Expected: Assignments with deadlines that fall within current date and time and 7 days later is displayed. Message with number of assignments listed is displayed in Message Box.
+            
+   1. Test case: `list 100`<br>
+     Expected: Error details shown in the Message Box.
+   
+   1. Test case: `list a`<br>
+      Expected: Error details shown in the Message Box.           
+ 
+### Finding assignments
+
+1. Finding assignments by name
+
+   Prerequisites: List all assignments using the `list` command. Multiple assignments in the list.
+
+   1. Test case: `find n/Lab`<br>
+      Expected: Assignments with the name "Lab" is displayed. Message with number of assignments listed is displayed in Message Box.
+      
+   1. Test case: `find n/Lab Tutorial`<br>
+      Expected: Assignments with the name "Lab" or "Tutorial" is displayed. Message with number of assignments listed is displayed in Message Box.
+      
+1. Finding assignments by module code
+    
+   Prerequisites: List all assignments using the `list` command. Multiple assignments in the list.
+   
+   1. Test case: `find mod/CS2100`<br>
+      Expected: Assignments with the module code "CS2100" is displayed. Message with number of assignments listed is displayed in Message Box.
+            
+   1. Test case: `find mod/CS2100 CS2103T`<br>
+      Expected: Assignments with the module code "CS2100" or "CS2103T" is displayed. Message with number of assignments listed is displayed in Message Box.
+   
+   1. Test case: `find mod/CS43`<br>
+         Expected: Error details shown in the Message Box.     
+  
+1. Finding assignments by date or time
+
+   Prerequisites: List all assignments using the `list` command. Multiple assignments in the list.
+    
+    1. Test case: `find d/1200`<br>
+       Expected: Assignments with due time "1200" is displayed. Message with number of assignments listed is displayed in Message Box.
+          
+    1. Test case: `find d/13-10-2020`<br>
+       Expected: Assignments with due date "13-10-2020" is displayed. Message with number of assignments listed is displayed in Message Box.
+          
+    1. Test case: `find d/13-10-2020 1200`<br>
+       Expected: Assignments with due date "13-10-2020" or due time "1200" is displayed. Message with number of assignments listed is displayed in Message Box.
+
+1. Finding assignments by priority
+
+    Prerequisites: List all assignments using the `list` command. Multiple assignments in the list.
+
+    1. Test case: `find p/high`<br>
+       Expected: Assignments of HIGH priority is displayed. Message with number of assignments listed is displayed in Message Box.
+              
+    1. Test case: `find p/LOW`<br>
+       Expected: Assignments of LOW priority is displayed. Message with number of assignments listed is displayed in Message Box.
+              
+    1. Test case: `find p/high medium`<br>
+      Expected: Assignments HIGH or MEDIUM priority is displayed. Message with number of assignments listed is displayed in Message Box.
 
 ### Setting reminders for assignments
 
@@ -763,7 +862,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1. Setting reminders for one assignment while some assignments are being shown
-   1. Prerequisites: List some assignments using the `list x` command (where x is number of days from current date such that only some assignments are shown). Multiple assignments in the list. `Your reminders` is empty.
+   1. Prerequisites: List some assignments using the `list x` command (where x is number of days from current date and time such that only some assignments are shown). Multiple assignments in the list. `Your reminders` is empty.
    
    1. Test case: `remind 1` <br>
       Expected: Similar to `remind 1` test case when all assignments are shown.
