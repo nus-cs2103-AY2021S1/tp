@@ -66,25 +66,65 @@ public class MainCatalogueParser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            switch (status) {
+            case PERSON_LIST:
+            case PERSON:
+                throw new InvalidScopeException(Status.PROJECT_LIST, status);
+            default:
+                return new AddCommandParser().parse(arguments);
+            }
 
         case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            switch (status) {
+            case PERSON_LIST:
+            case PERSON:
+                throw new InvalidScopeException(Status.PROJECT_LIST, status);
+            default:
+                return new EditCommandParser().parse(arguments);
+            }
 
         case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            switch (status) {
+            case PROJECT_LIST:
+                return new DeleteCommandParser().parse(arguments);
+            default:
+                throw new InvalidScopeException(Status.PROJECT_LIST, status);
+            }
 
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            switch (status) {
+            case PROJECT_LIST:
+                return new ClearCommand();
+            default:
+                throw new InvalidScopeException(Status.PROJECT_LIST, status);
+            }
 
         case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            switch (status) {
+            case PERSON_LIST:
+            case PERSON:
+                throw new InvalidScopeException(Status.PROJECT_LIST, status);
+            default:
+                return new FindCommandParser().parse(arguments);
+            }
 
         case ListProjectsCommand.COMMAND_WORD:
-            return new ListProjectsCommand();
+            switch (status) {
+            case PERSON:
+                throw new InvalidScopeException(Status.PROJECT_LIST, status);
+            default:
+                return new ListProjectsCommand();
+            }
 
         case ListPersonsCommand.COMMAND_WORD:
-            return new ListPersonsCommand();
+            switch (status) {
+            case PROJECT:
+            case TASK:
+            case TEAMMATE:
+                throw new InvalidScopeException(Status.PERSON_LIST, status);
+            default:
+                return new ListPersonsCommand();
+            }
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -95,9 +135,7 @@ public class MainCatalogueParser {
         case StartProjectCommand.COMMAND_WORD:
             switch (status) {
             case PROJECT_LIST:
-            case TEAMMATE:
             case PROJECT:
-            case TASK:
                 return new StartProjectCommandParser().parse(arguments);
             default:
                 throw new InvalidScopeException(Status.PROJECT_LIST, status);
@@ -116,44 +154,62 @@ public class MainCatalogueParser {
             return new LeaveCommand();
 
         case AssignCommand.COMMAND_WORD:
-            if (status != Status.PROJECT_LIST) {
+            switch (status) {
+            case PROJECT:
+            case TEAMMATE:
+            case TASK:
                 return new AssignCommandParser().parse(arguments);
-            } else {
+            default:
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case AllTasksCommand.COMMAND_WORD:
-            if (status != Status.PROJECT_LIST) {
+            switch (status) {
+            case PROJECT:
+            case TASK:
+            case TEAMMATE:
                 return new AllTasksCommand();
-            } else {
+            default:
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case TaskFilterCommand.COMMAND_WORD:
-            if (status != Status.PROJECT_LIST) {
+            switch (status) {
+            case PROJECT:
+            case TASK:
+            case TEAMMATE:
                 return new TaskFilterCommandParser().parse(arguments);
-            } else {
+            default:
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case TaskSorterCommand.COMMAND_WORD:
-            if (status != Status.PROJECT_LIST) {
-                return new TaskSorterCommandParser().parse(arguments);
-            } else {
-                throw new InvalidScopeException(Status.PROJECT, status);
+            switch (status) {
+                case PROJECT:
+                case TASK:
+                case TEAMMATE:
+                    return new TaskSorterCommandParser().parse(arguments);
+                default:
+                    throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case AddTeammateCommand.COMMAND_WORD:
-            if (status != Status.PROJECT_LIST) {
+            switch (status) {
+            case PROJECT:
+            case TASK:
+            case TEAMMATE:
                 return new AddTeammateCommandParser().parse(arguments);
-            } else {
+            default:
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case AddTeammateParticipationCommand.COMMAND_WORD:
-            if (status != Status.PROJECT_LIST) {
+            switch (status) {
+            case PROJECT:
+            case TASK:
+            case TEAMMATE:
                 return new AddTeammateParticipationCommandParser().parse(arguments);
-            } else {
+            default:
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
@@ -215,5 +271,4 @@ public class MainCatalogueParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }
