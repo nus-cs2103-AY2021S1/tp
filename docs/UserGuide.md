@@ -535,7 +535,7 @@ This command is useful for storing important archives in the `data/snapshots` fo
 to refer to the information of animals that have been deleted long ago. When executed, this command will
 create a snapshot of the current `ZooKeep` book data, saved as a file with the user specified file name.
 
-Please refer to the [FAQ](#6-faq) to find out how to load a snapshot that you have saved.
+Please refer to the [FAQ](#6-faq-aizat) to find out how to load a snapshot that you have saved.
 
 Format: `snap FILE_NAME`
 
