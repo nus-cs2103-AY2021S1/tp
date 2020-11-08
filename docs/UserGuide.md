@@ -82,7 +82,7 @@ From here, you can choose between the different windows to view.
 </div>
 
 
-### Module Features
+### Module Tracker Features
 
 #### Adding a new module: `addmodule`
 
@@ -104,6 +104,7 @@ Creates and add a new completed module to be stored in the system.
   Format: `addcmodule n/NAME mc/MODULAR_CREDITS gp/GRADE_POINT [t/TAG]...`
 
    * Using this command to add a completed module will automatically tag the module as completed.
+   * Completed modules can be modified using `editmodule`. Do note that editing tags will reset all existing tags, therefore in order to keep the completed tag after editing, you must specify the completed tag parameter in the `editmodule` command by adding `t/completed` to your command line exactly.
    * Completed modules added this way will be used for CAP calculation purposes.
 
    Examples:
@@ -124,9 +125,98 @@ Views a module stored in the system.
 
   * The index **must be a positive integer** 1, 2, 3...
 
-  Examples:
+  Example:
    * `viewmodule 1` views the first module in the displayed list.
 
+#### Archiving a module: `archivemodule`
+
+Archives a module in the module list and moves it into archived storage.
+
+Format: `archivemodule` `INDEX`
+
+ * The module archived will be at the `INDEX` position of the currently displayed un-archived list.
+
+ * The index refers to the index number of the module shown on the displayed un-archived module list.
+ 
+ * You can only call this command when viewing the un-archived module list.
+
+ * The index **must be a positive integer** 1, 2, 3...
+
+ Examples:
+ * `archivemodule 1` Archives the first module in the displayed list.
+ * `archivemodule 2` Archives the second module in the displayed list.
+
+#### Un-archiving a module: `unarchivemodule`
+
+Un-Archives a module in the module list and moves it back into current module list storage.
+
+Format: `unarchivemodule` `INDEX`
+
+ * The module un-archived will be at the `INDEX` position of the currently displayed archived list.
+
+ * The index refers to the index number of the module shown on the displayed archived module list.
+ 
+ * You can only call this command when viewing the archived module list.
+
+ * The index **must be a positive integer** 1, 2, 3...
+
+ Examples:
+ * `unarchivemodule 1` Un-Archives the first module in the displayed archived module list.
+ * `unarchivemodule 2` Un-Archives the second module in the displayed archived module list.
+
+#### View-archived modules: `viewarchive`
+
+Allows you to view the archived module list on the display.
+
+Format: `viewarchive`
+
+ * Executing this command will remove the current un-archived module list from display if you are currently viewing it. You can use the `list` command to display the un-archived module list(See next section).
+
+ Examples:
+ * `viewarchive` Views the archived module list on the display.
+
+#### View un-archived modules: `listmodule`
+
+Allows you to view the un-archived module list on the display.
+
+Format: `listmodule`
+
+ * Executing this command will remove the current archived module list from display if you are currently viewing it. You can use the `viewarchive` command to display the archived module list(See previous section).
+
+ Examples:
+ * `list` Views the un-archived module list on the display.
+
+#### Locating modules: `findmodule`
+
+ Finds all modules that fulfil the provided module name search criteria.
+
+ Format: `findmodule [MODULE_NAME_KEYWORDS...]`
+
+  * The search is case-insensitive, e.g. `cs2030` will match `CS2030`.
+
+  * You are allowed to provide multiple search keywords for the module name parameter.
+   
+  * When you are providing module name keywords, separate distinct keywords with a whitespace,
+       e.g. `findmodule CS2030 CS2100` will search for contacts using the 2 distinct keywords `CS2030` and `CS2100`.
+ 
+  * The order of the search keywords does not matter, e.g. `CS2030 CS2100` will match `CS2100 CS2030 `.
+
+  * You should ensure that keywords are not be blank and at least one search parameter should be provided.
+    
+  * Search Parameters:
+
+    * Name
+
+      * Module with a name matching at least one of the name keywords provided will be considered to have fulfilled the module name search criteria.
+
+      * Module name must match your search criteria exactly for module to be displayed, e.g. `cs2030` will match `CS2030` but not `CS20301`.
+      
+
+  Examples:
+
+   * `findmodule n/cs2030` returns the module(if any) with the module name `CS2030`.
+
+   * `findmodule cs2030 cs2100` returns the modules(if any) with the module names `CS2030` or `CS2100`.
 
 #### Adding a zoom link for a specific lesson to a module: `addzoom`
 
@@ -236,6 +326,8 @@ Edits an existing module in the displayed module list with new details.
   * At least **one** of the optional fields `[MODULE_NAME]`, `[MODULAR_CREDITS]` or `[GRADE_POINT]` must be present.
 
   * You can add `[TAG]`s to a module through this command,eg. `Tutorial`.
+   
+  * You can remove all the contact’s tags by typing `t/` without specifying any tags after it.
 
  Examples:
   * `editmodule 1 n/CS2030` edits the `MODULE_NAME` for a module at index `1` to `CS2030`.
@@ -309,59 +401,26 @@ assignments will contain the following fields:
    * `editassignment 1 n/CS2100 %/20 r/0.80` edits the assignment at position `1` of the module `CS2100` with a new
    assignment percentage, `20`% of the final grade, and a new assignment result, `0.80`.
 
-#### Archiving a module: `archivemodule`
+#### Calculating Cumulative Average Point(CAP): `calculatecap`
 
-Archives a module in the module list and moves it into archived storage.
+Calculates the user's CAP based on completed modules
 
-Format: `archivemodule` `INDEX`
+ Format: `calculatecap`
 
- * The module archived will be at the `INDEX` position of the currently displayed un-archived list.
+  Examples:
+  * `calculatecap` calculate the user's cap
 
- * The index refers to the index number of the module shown on the displayed un-archived module list.
+#### Calculating target CAP details: `targetcap`
 
- * The index **must be a positive integer** 1, 2, 3...
+Calculates helpful CAP details based on the target CAP you input
 
- Examples:
- * `archivemodule 1` Archives the first module in the displayed list.
+ Format: `targetcap [tc/TARGET_CAP]`
 
-#### Un-archiving a module: `unarchivemodule`
+  * The target cap refers to the desired CAP input by you
 
-Un-Archives a module in the module list and moves it back into current module list storage.
-
-Format: `unarchivemodule` `INDEX`
-
- * The module un-archived will be at the `INDEX` position of the currently displayed archived list.
-
- * The index refers to the index number of the module shown on the displayed archived module list.
-
- * The index **must be a positive integer** 1, 2, 3...
-
- Examples:
- * `unarchivemodule 1` Un-Archives the first module in the displayed archived module list.
- * `unarchivemodule 2` Un-Archives the second module in the displayed archived module list.
-
-#### View-archived modules: `viewarchive`
-
-Allows you to view the archived module list on the display.
-
-Format: `viewarchive`
-
- * Executing this command will remove the current un-archived module list from display if you are currently viewing it. You can use the `list` command to display the un-archived module list(See next section).
-
- Examples:
- * `viewarchive` Views the archived module list on the display.
-
-#### View un-archived modules: `list`
-
-Allows you to view the un-archived module list on the display.
-
-Format: `list`
-
- * Executing this command will remove the current archived module list from display if you are currently viewing it. You can use the `viewarchive` command to display the archived module list(See previous section).
-
- Examples:
- * `list` Views the un-archived module list on the display.
-
+  Examples:
+  * `targetcap tc/4.5` Calculates CAP achievement required for planned modules in order to achieve target CAP
+  
 ### Todo List Features
 
 Todo List can store all of your tasks that you need to complete. Before you start learning how to use the commands
@@ -835,29 +894,6 @@ Format: `clearcontact`
 * _**Tips :**_ If you accidentally cleared the whole contact list, you can always use the `undo` command
   to restore the list.
 
-
-### CAP Calculator features
-
-#### Calculating Cumulative Average Point(CAP): `calculatecap`
-
-Calculates the user's CAP based on completed modules
-
- Format: `calculatecap`
-
-  Examples:
-  * `calculatecap` calculate the user's cap
-
-#### Calculating target CAP details: `targetcap`
-
-Calculates helpful CAP details based on the target CAP you input
-
- Format: `targetcap [tc/TARGET_CAP]`
-
-  * The target cap refers to the desired CAP input by you
-
-  Examples:
-  * `targetcap tc/4.5` Calculates CAP achievement required for planned modules in order to achieve target CAP
-
 ### Scheduler Features
 
 #### Adding an Event to the Scheduler: `addevent`
@@ -967,9 +1003,9 @@ Action | Format, Examples
 **Archive** | `archivemodule INDEX `<br> e.g. `archivemodule 3`
 **Un-archive** | `unarchivemodule INDEX `<br> e.g. `unarchivemodule 3`
 **View Archived Module List** | `viewarchive `<br> e.g. `viewarchive`
-**View Un-archived Module List** | `list `<br> e.g. `list`
+**View Un-archived Module List** | `listmodule `<br> e.g. `list`
 **Calculate CAP** | `calculatecap` <br> e.g. `calculatecap`
-**Calculate Target CAP details** | `targetcap tc/TARGET_CAP` <br> e.g. `calculatecap 4.5`
+**Calculate Target CAP details** | `targetcap tc/TARGET_CAP` <br> e.g. `targetcap 4.5`
 
 ## Command Summary for ContactList
 
@@ -980,12 +1016,13 @@ Action | Format, Examples
 **FindContact** | `findcontact [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]` <br> e.g. `findcontact n/john`
 **DeleteContact** | `deletcontact INDEX` <br> e.g. `deletecontact`
 
-## Command Summary for TodoList
+## Command summary for Todo List
 
 Action | Format, Examples
--------|-------------------------
+--------|------------------
 
-## Command Summary for Scheduler
+
+## Command summary for Scheduler
 
 Action | Format, Examples
 -------|-------------------------
@@ -995,9 +1032,9 @@ Action | Format, Examples
 **Find Event** | `findevent [n/EVENT_NAME] [d/DATE_TIME]` <br> e.g. `findevent n/CS2103T`
 **View Event** | `viewevent index` <br> e.g. `viewevent 1`
 
-## Command Summary for Common Commands
+## Command summary for general features
 
 Action | Format, Examples
--------|-------------------------
+--------|------------------
 **Undo** | `undo` <br> e.g. `undo`
 **Redo** | `redo` <br> e.g. `redo`
