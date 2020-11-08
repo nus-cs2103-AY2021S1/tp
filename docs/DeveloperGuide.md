@@ -538,7 +538,9 @@ Priorities: High (must have) - `☆ ☆ ☆`, Medium (nice to have) - `* *`, Low
 | \* \*    | OHS admin                | add a new semester                                       | make sure all new bills and allocations are made in the context of the semester.                          |
 | \* \* \* | OHS admin                | view a list of all allocated rooms                       | check which students stay in which rooms.                                                                 |
 | \* \* \* | OHS admin                | edit a room allocation for a student                     | change a student's room allocation and update the room vacancies.                                         |
+| \* \* \* | OHS admin                | add a room                                            | perform admin duties related to the room.                                                              |
 | \*       | OHS admin                | edit a room's type                                       | log upgrades like the installation of an aircon.                                                          |
+| \* \* \* | OHS admin                | delete a room                                         | in case I had erroneously added a room to ResiReg.             |
 | \* \* \* | OHS admin                | add a student to ResiReg                                 | perform admin duties related to the student.                                                              |
 | \* \* \* | OHS admin                | edit the details of an existing student                  | easily correct any typos and update the student details when needed (e.g. faculty).            |
 | \* \* \* | OHS admin                | delete a student                                         | not have to keep track of students not staying in the College.             |
