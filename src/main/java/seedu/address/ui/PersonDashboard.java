@@ -18,6 +18,7 @@ import seedu.address.model.task.Task;
 public class PersonDashboard extends UiPart<Region> {
 
     private static final String FXML = "PersonDashboard.fxml";
+    public static final int WRAPPING_WIDTH = 500;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -60,8 +61,23 @@ public class PersonDashboard extends UiPart<Region> {
         gitUserName.setText("GitHub username: " + this.person.getGitUserNameString());
         phone.setText("Contact number: " + this.person.getPhone().value);
         email.setText("Email: " + this.person.getEmail().value);
-        address.setWrappingWidth(500);
+        address.setWrappingWidth(WRAPPING_WIDTH);
         address.setText("Address: " + this.person.getAddress().value);
+        displayProjects();
+        displayTasks();
+
+    }
+
+    private void displayTasks() {
+        header2.setText("Tasks: ");
+        AtomicInteger index = new AtomicInteger();
+        index.getAndIncrement();
+        tasks.setText(this.person.getTasks().stream()
+                .sorted(Comparator.comparing(Task::getTaskName))
+                .map(Task::getTaskName).reduce("", (a, b) -> a + index.getAndIncrement() + ". " + b + "\n"));
+    }
+
+    private void displayProjects() {
         header1.setText("Projects: ");
         AtomicInteger index = new AtomicInteger();
         index.getAndIncrement();
@@ -69,13 +85,6 @@ public class PersonDashboard extends UiPart<Region> {
                 .sorted(Comparator.comparing(project -> project.getProjectName().fullProjectName))
                 .map(p -> p.getProjectName().fullProjectName)
                 .reduce("", (a, b) -> a + index.getAndIncrement() + ". " + b + "\n"));
-        header2.setText("Tasks: ");
-        AtomicInteger index2 = new AtomicInteger();
-        index2.getAndIncrement();
-        tasks.setText(this.person.getTasks().stream()
-                .sorted(Comparator.comparing(Task::getTaskName))
-                .map(Task::getTaskName).reduce("", (a, b) -> a + index2.getAndIncrement() + ". " + b + "\n"));
-
     }
 
     @Override
