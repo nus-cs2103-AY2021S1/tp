@@ -134,7 +134,7 @@ public class ExerciseModelManager implements ExerciseModel {
         }
         return Optional.empty();
     }
-    
+
 
     @Override
     public void addTemplate(Template template) {

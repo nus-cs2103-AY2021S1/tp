@@ -13,7 +13,6 @@ public class Goal {
 
     public final Calories goal;
     public final Date date;
-    
     public static final Calories DEFAULT_CALORIES = new Calories("0");
 
     /**
@@ -25,14 +24,13 @@ public class Goal {
         this.goal = goal;
         this.date = date;
     }
-    
+
     public Goal(Date date) {
         this.goal = DEFAULT_CALORIES;
         this.date = date;
     }
 
     public Goal updateGoal (Calories calorie) {
-        
         return new Goal(goal.subtract(calorie), this.date);
     }
 

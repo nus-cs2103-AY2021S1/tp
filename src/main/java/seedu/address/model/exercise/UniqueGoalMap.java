@@ -30,7 +30,7 @@ public class UniqueGoalMap {
      * Returns the goal based on date
       * @param date
      * @return Goal
-     */    
+     * */
     public Goal getGoal (Date date) {
         requireNonNull(date);
         return internalMap.get(date);

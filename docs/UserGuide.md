@@ -44,16 +44,16 @@ Calo is a desktop app that is **designed for keeping track of calories burnt thr
 <div markdown="block" class="alert alert-info">
     <b>:information_source: Notes about the command format:</b>
 
-    - Words in `UPPER_CASE` are the parameters to be supplied by the user.  
+    - Words in `UPPER_CASE` are the parameters to be supplied by the user.
     e.g. in `add e/EXERCISE c/CALORIES`, `EXERCISE` is a parameter which can be used as `add e/Push Up c/1000`.
 
-    - Items in square brackets are optional.  
+    - Items in square brackets are optional.
     e.g `e/EXERCISE c/CALORIES [at/DATE]` can be used as `e/Push Up c/1000 at/29-09-2020` or as `e/Push Up c/1000`.
 
-    - Items with `…`​ after them can be used multiple times including zero times.  
+    - Items with `…`​ after them can be used multiple times including zero times.
     e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/gym`, `t/school t/house` etc.
 
-    - Parameters can be in any order.  
+    - Parameters can be in any order.
     e.g. if the command specifies `e/EXERCISE c/CALORIES`, `c/CALORIES e/EXERCISE` is also acceptable.
 
 </div>
@@ -159,20 +159,20 @@ The application will save the data automatically to the default file path after 
 Archive the data into a different file location.
 
 Format: `archive f/FILE_LOCATION\FILE_NAME.json`  
-The format of the file location accept both Absolute and Relative Path.  
-The file name must ends with the extension `.json`   
+The format of the file location accept both Absolute and Relative Path.
+The file name must ends with the extension `.json`
 
 
-Examples:  
-- `archive f/data\file_name.json`  
-- `archive f/C:\Users\user_name\Desktop\FILE_NAME.json`  
+Examples:
+- `archive f/data\file_name.json`
+- `archive f/C:\Users\user_name\Desktop\FILE_NAME.json`
 
 
 <div markdown="block" class="alert alert-info">
     <b> Absolute Path </b>: Path that contains root element, e.g. C:\Users\user_name\Desktop\FILE_NAME.json<br>
     <b> Relative Path </b>: Path will take reference from the file that contains <b>Calo.jar</b> For example, if Calo is inside
     the <mark>C:\Users\UserName\App</mark> and the user entered <mark>data\archived_file.json</mark> as the destination, the archived file will be
-    at <mark>C:\Users\UserName\App\data\archived_file.json</mark>  
+    at <mark>C:\Users\UserName\App\data\archived_file.json</mark>
 </div>
 
 ## 3.11. Recall : `recall`
@@ -198,13 +198,11 @@ Examples:<br>
 ## 3.13. Add an exercise using template : `addt`
 Adds an exercise using template.
 
-<<<<<<< HEAD
-Format: `addt temp/NAME d/DESCRIPTION at/DATE [c/CALORIES]`  
-- The format for the DATE should be in the form of DD-MM-YYYY.     
-=======
+
+Format: `addt temp/NAME d/DESCRIPTION at/DATE [c/CALORIES]`
+- The format for the DATE should be in the form of DD-MM-YYYY.  
 Format: `addt n/NAME at/DATE [c/CALORIES]`
 - The format for the DATE should be in the form of DD-MM-YYYY
->>>>>>> v1.3_official
 
 - The user can input calorie value to overwrite the default calorie value defined by the template. If the user inputs no calories, then the exercise will have the default calorie value in the template.
 
