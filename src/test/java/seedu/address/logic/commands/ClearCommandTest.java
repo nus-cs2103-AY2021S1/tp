@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalExercise.getTypicalExerciseBook;
 
+import java.io.FileNotFoundException;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.ExerciseBook;
@@ -13,7 +15,7 @@ import seedu.address.model.UserPrefs;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyExerciseBook_success() {
+    public void execute_emptyExerciseBook_success() throws FileNotFoundException {
         ExerciseModel model = new ExerciseModelManager();
         ExerciseModel expectedModel = new ExerciseModelManager();
 
