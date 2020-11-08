@@ -1,9 +1,11 @@
 package seedu.cc.testutil;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.cc.commons.core.index.Index;
 import seedu.cc.model.account.Account;
 import seedu.cc.model.account.ActiveAccount;
 import seedu.cc.model.account.Name;
@@ -96,6 +98,11 @@ public class ActiveAccountStub implements ActiveAccount {
     @Override
     public void setRevenue(Revenue target, Revenue editedRevenue) {
 
+    }
+
+    @Override
+    public Entry getEntryAtIndex(Index index, List<? extends Entry> list) {
+        return null;
     }
 
     @Override

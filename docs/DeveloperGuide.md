@@ -289,6 +289,112 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Implications: Extra precaution needs to be implemented, for instance creating copies of account in methods that interacts
   with the accounts to prevent unnecessary changes to accounts in account list. Hence, it resulted in more defensive coding 
   which resulted in more lines of code.
+  
+### Add entries feature 
+
+#### Implementation
+The proposed Edit entries feature is facilitated by `AddCommand`. It extends `Command` and 
+is identified by `CommonCentsParser` and `AddCommandParser`. The AddCommand interacts 
+with `Account` and the interactions are managed by `ActiveAccount`. As such, it implements the following
+operations: 
+* `Account#addExpense(Expense entry)` and `Account#addRevenue(Revenue entry)` — Adds the specified
+revenue or expense entries into the Revenue or Expense list of the current account.
+list to the specified edited expense
+* `Model#setAccount(Account editedAccount)` — Sets the current account in the model as
+the specified edited account after adding an Entry
+
+The operations are exposed in the `ActiveAccount` interface as `ActiveAccount#addExpense` 
+and `ActiveAccount#addRevenue`, and in `Model` as `Model#setAccount`.
+
+Given below is an example usage scenario and how the find entries mechanism behaves 
+at each step.
+
+* Step 1. The user inputs the edit command to edit the entries of a specified index and entry
+type (Expense or Revenue) from current `ActiveAccount`. `CommandParser` identifies the command word `edit`
+and calls `AddCommandParser#parse(String args)` to parse the input into a valid `AddCommand`.
+It will check for compulsory category (to specify whether the entry is an expense or revenue), 
+description and amount, as well as optional tags. It will use these fields to create an Entry
+object to be used in the `AddCommand` constructor.
+
+* Step 2. `AddCommand` starts to be executed. In the execution, 
+    * The added Entry will go through a condition check whether it is a Revenue or Expense.
+    It will call `ActiveAccount#addRevenue` or `ActiveAccount#addExpense` accordingly
+    * It will call on both `ActiveAccount.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES)`
+    and `ActiveAccount.updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE)` to update the User
+    Interface after adding the new Entry.
+    * It will update the current account by calling `Model#setAccount`.
+    
+The following sequence diagram shows how add entry operation works:
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Some of the interactions with the utility classes,
+such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+of the edit entries command.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+![AddActivityDiagram](images/AddActivityDiagram.png)
+
+
+  
+### Edit entries feature 
+  
+#### Implementation
+The proposed Edit entries feature is facilitated by `EditCommand`. It extends `Command` and 
+is identified by `CommonCentsParser` and `EditCommandParser`. The EditCommand interacts 
+with `Account` and the interactions are managed by `ActiveAccount`. As such, it implements the following
+operations: 
+* `Account#setExpense(Expense target, Expense editedExpense)` — Sets the target expense in the expense 
+list to the specified edited expense
+* `Account#setRevenue(Revenue target, Revenue editedRevenue)` — Sets the target revenue in the revenue 
+list to the specified edited revenue
+* `Model#setAccount(Account editedAccount)` — Sets the current account in the model as
+the specified edited account
+
+The operations are exposed in the `ActiveAccount` interface as `ActiveAccount#setExpense` and
+`ActiveAccount#setRevenue`, and in `Model` as `Model#setAccount`.
+
+Given below is an example usage scenario and how the find entries mechanism behaves 
+at each step.
+
+* Step 1. The user inputs the edit command to edit the entries of a specified index and entry
+type (Expense or Revenue) from current `ActiveAccount`. `CommandParser` identifies the command word `edit`
+and calls `EditCommandParser#parse(String args)` to parse the input into a valid `EditCommand`.
+It will check for the desired index, a compulsory category (expense or revenue) and optional
+fields (e.g. description, amount, tags) to create an `EditEntryDescriptor`, a static class
+to help create new `Entry` objects to edit existing ones.
+
+* Step 2. `EditCommand` starts to be executed. In the execution, 
+    * The index of the desired entry to edit will be checked against the revenue list or expense
+    list to see if that index is valid (i.e. within the size of the specified list) and
+    nonzero positive integer
+    * It will use the parsed fields from Step 1 above to create a new `Revenue` or `Expense`
+    object to edit a pre-existing one according to the specified index and Category.
+    * It will call on `ActiveAccount#setRevenue` or `ActiveAccount#setExpense` to modify
+    the specified `Expense` or `Revenue` and update the current account by calling 
+    `Model#setAccount`.
+    
+The following sequence diagram shows how edit entry operation works:
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Some of the interactions with the utility classes,
+such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+of the edit entries command.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+![EditActivityDiagram](images/EditActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Specifying indexes to edit 
+* **Choice:** User needs to specify a category "c/expense" or "c/revenue" instead of just
+specifying index and edited fields alone. 
+    * Pros: 
+        * Easy to implement and can specifically target whether edits want to be made in the
+        revenue list or expense list
+        * Indexes easier to follow, just follow the numbers from the User Interface
+    * Cons: Less convenience for the user, as more typing needs to be done. 
 
 ### Find entries feature 
 

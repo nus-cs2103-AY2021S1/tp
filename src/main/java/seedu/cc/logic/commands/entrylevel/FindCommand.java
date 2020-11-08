@@ -4,13 +4,18 @@ import static seedu.cc.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.cc.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 import static seedu.cc.logic.parser.util.CliSyntax.PREFIX_KEYWORDS;
 
+import java.util.List;
+
 import seedu.cc.commons.core.Messages;
 import seedu.cc.logic.commands.Command;
 import seedu.cc.logic.commands.CommandResult;
 import seedu.cc.logic.commands.CommandResultFactory;
 import seedu.cc.model.Model;
 import seedu.cc.model.account.ActiveAccount;
+import seedu.cc.model.account.entry.Entry;
+import seedu.cc.model.account.entry.Expense;
 import seedu.cc.model.account.entry.ExpenseDescriptionContainsKeywordsPredicate;
+import seedu.cc.model.account.entry.Revenue;
 import seedu.cc.model.account.entry.RevenueDescriptionContainsKeywordsPredicate;
 
 
@@ -72,18 +77,32 @@ public class FindCommand extends Command {
             activeAccount.updateFilteredRevenueList(revenuePredicate);
         }
 
-        boolean noExpenseFoundWithOnlyExpensePredicate =
-            activeAccount.getFilteredExpenseList().size() == 0 && expensePredicate != null && revenuePredicate == null;
-        boolean noRevenueFoundWithOnlyRevenuePredicate =
-            activeAccount.getFilteredRevenueList().size() == 0 && revenuePredicate != null && expensePredicate == null;
-        boolean noEntryFound = activeAccount.getFilteredExpenseList().size() == 0
-                            && activeAccount.getFilteredRevenueList().size() == 0;
+        List<Expense> expenseList = activeAccount.getFilteredExpenseList();
+        List<Revenue> revenueList = activeAccount.getFilteredRevenueList();
 
-        if (noEntryFound || noExpenseFoundWithOnlyExpensePredicate || noRevenueFoundWithOnlyRevenuePredicate) {
+        boolean noExpenseFound =
+            noExpenseFoundWithOnlyExpensePredicate(expenseList);
+        boolean noRevenueFound =
+            noRevenueFoundWithOnlyRevenuePredicate(revenueList);
+        boolean noEntryFound = noEntryInListFound(expenseList) && noEntryInListFound(revenueList);
+
+        if (noEntryFound || noExpenseFound || noRevenueFound) {
             return CommandResultFactory.createDefaultCommandResult(Messages.MESSAGE_EMPTY_FILTERED_LIST);
         } else {
             return CommandResultFactory.createDefaultCommandResult(Messages.MESSAGE_ENTRIES_UPDATED);
         }
+    }
+
+    private boolean noExpenseFoundWithOnlyExpensePredicate(List<? extends Entry> list) {
+        return list.isEmpty() && expensePredicate != null && revenuePredicate == null;
+    }
+
+    private boolean noRevenueFoundWithOnlyRevenuePredicate(List<? extends Entry> list) {
+        return list.isEmpty() && revenuePredicate != null && expensePredicate == null;
+    }
+
+    private boolean noEntryInListFound(List<? extends Entry> list) {
+        return list.isEmpty();
     }
 
     @Override
