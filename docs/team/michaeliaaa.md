@@ -54,7 +54,7 @@ Given below are my contributions to the project.
   * Credits: Adopted similar solution used in existing AB3 codebase: [https://github.com/se-edu/addressbook-level3](https://github.com/se-edu/addressbook-level3)
   * Credits: NIL
   
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=michaeliaaa)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=michaeliaaa&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Documentation**:
   * User Guide:
