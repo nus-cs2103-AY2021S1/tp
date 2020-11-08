@@ -61,21 +61,10 @@ public class CdCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         CurrentPath currentPath = model.getCurrentPath();
-        String absolutePathString;
-        switch (addressType) {
-        case ABSOLUTE:
-            absolutePathString = addressString;
-            break;
-        case CHILD:
-            absolutePathString = currentPath.getAddress().value + "/" + addressString;
-            break;
-        case PARENT:
-            absolutePathString = currentPath.getParentAddress();
-            break;
-        default:
-            throw new CommandException(MESSAGE_UNKNOWN_ADDRESS_TYPE);
-        }
+
+        String absolutePathString = getAbsolutePathString(currentPath);
 
         if (absolutePathString == null && addressType.equals(AddressType.PARENT)) {
             throw new CommandException(MESSAGE_NO_PARENT_PATH);
@@ -111,6 +100,35 @@ public class CdCommand extends Command {
         currentPath.setAddress(newPath);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, canonicalPath));
+    }
+
+    /**
+     * Gets the String of the absolute path.
+     *
+     * @param currentPath the current path of the Internal File Explorer.
+     * @return the absolute path String.
+     * @throws CommandException if the addressType is invalid.
+     */
+    private String getAbsolutePathString(CurrentPath currentPath) throws CommandException {
+        String absolutePathString;
+
+        assert addressType != null;
+
+        switch (addressType) {
+        case ABSOLUTE:
+            absolutePathString = addressString;
+            break;
+        case CHILD:
+            absolutePathString = currentPath.getAddress().value + "/" + addressString;
+            break;
+        case PARENT:
+            absolutePathString = currentPath.getParentAddress();
+            break;
+        default:
+            throw new CommandException(MESSAGE_UNKNOWN_ADDRESS_TYPE);
+        }
+
+        return absolutePathString;
     }
 
     @Override
