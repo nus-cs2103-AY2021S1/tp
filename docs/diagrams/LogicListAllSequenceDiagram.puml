@@ -6,7 +6,6 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":StockBookParser" as StockBookParser LOGIC_COLOR
 participant ":ListCommandParser" as ListCommandParser LOGIC_COLOR
 participant ":ListAllCommand" as ListAllCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -55,7 +54,7 @@ activate SortUtil
 SortUtil --> ListAllCommand
 deactivate SortUtil
 
-ListAllCommand -> Model : sortFilteredStockList()
+ListAllCommand -> Model : sortFilteredStockList(...)
 activate Model
 
 Model --> ListAllCommand

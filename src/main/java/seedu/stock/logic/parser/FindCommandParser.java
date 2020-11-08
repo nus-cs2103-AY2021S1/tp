@@ -54,7 +54,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                     FindCommand.MESSAGE_USAGE));
         }
 
-        if (isDuplicatePrefixPresent(argMultimap, validPrefixesForFind)) {
+        if (ParserUtil.isDuplicatePrefixPresent(argMultimap, validPrefixesForFind)) {
             throw new ParseException(String.format(MESSAGE_DUPLICATE_HEADER_FIELD,
                     FindCommand.MESSAGE_USAGE));
         }
@@ -65,24 +65,6 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         logger.log(Level.INFO, "Finished parsing find command successfully");
         return new FindCommand(predicatesToTest);
-    }
-
-    /**
-     * Returns true if duplicate prefixes are present when parsing command.
-     * @param argumentMultimap map of prefix to keywords entered by user
-     * @param prefixes prefixes to parse
-     * @return boolean true if duplicate prefix is present
-     */
-    private static boolean isDuplicatePrefixPresent(
-            ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-
-        // Check for duplicate prefixes
-        for (Prefix prefix: prefixes) {
-            if (argumentMultimap.getAllValues(prefix).size() >= 2) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**

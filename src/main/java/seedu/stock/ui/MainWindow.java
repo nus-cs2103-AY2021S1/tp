@@ -195,14 +195,13 @@ public class MainWindow extends UiPart<Stage> {
 
             stockViewWindowPlaceholder.getChildren().remove(defaultStockViewPie);
             stockViewWindow = new StockViewWindow(fieldList);
-            stockViewWindowPlaceholder.getChildren().add(stockViewWindow.getRoot());
 
         } else {
 
             stockViewWindow = new StockViewWindow();
-            stockViewWindowPlaceholder.getChildren().add(stockViewWindow.getRoot());
 
         }
+        stockViewWindowPlaceholder.getChildren().add(stockViewWindow.getRoot());
 
     }
 

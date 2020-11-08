@@ -71,10 +71,9 @@ Given below are my contributions to the project.
   * Merged approved pull requests after thorough review and GitHub action checks.
   * Helped team members with any bugs and suggested any possible improvements.
   * Tests code to be merged before reviewing to detect functional flaws.
-  * Some pull requests: [#89](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/89), [#100](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/100),
+  * Here are some pull requests: [#89](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/89), [#100](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/100),
    [#133](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/133), [#136](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/136), [#137](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/137),
    [#143](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/143), [#150](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/150), [#156](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/156)
-  * Here is the link to all the PRs reviewed by me: [PRs](https://github.com/AY2021S1-CS2103T-T15-3/tp/pulls?page=1&q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
   
 * **Documentation**:
   * Responsible for managing documentation quality and content.
@@ -91,6 +90,7 @@ Given below are my contributions to the project.
     * Added documentation for the feature `stockview`. (Pull request [\#272](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/272))
     
   * Developer Guide:
+    * Vet and maintain DG
     * Added implementation and UML diagrams for the Find and FindExact features. (Pull request [\#163](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/163), [\#165](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/165))
     * Added implementation and UML diagrams for the Note feature. (Pull request [\#290](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/290), [\#294](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/294))
     * Added implementation and UML diagrams for the StockView feature. (Pull request [\#294](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/294))
@@ -117,4 +117,5 @@ Given below are my contributions to the project.
    * Created tests for `FindUtil`. (Pull request [\#259](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/259))
    * Created tests for `Note` and `NoteIndex`. (Pull request [\#259](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/259))
    * Created unit tests for predicates package classes `LocationContainsKeywordsPredicate`,
-   `NameContainsKeywordsPredicate`, `SerialNumberContainsKeywordsPredicate` and `SourceContainsKeywordsPredicate`. (Pull request [#\127](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/127))
+   `NameContainsKeywordsPredicate`, `SerialNumberContainsKeywordsPredicate` and `SourceContainsKeywordsPredicate`. (Pull request [\#127](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/127))
+   * Created tests for `ParserUtil` to increase code coverage. (Pull request [\#343](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/343))

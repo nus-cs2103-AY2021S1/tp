@@ -22,7 +22,7 @@ Given below are my contributions to the project.
       stocks. Users can now view the desired stocks quickly and conveniently,
       by using any of the fields (all, bookmark, low) to find stocks that are bookmarked or low in quantity or all stocks
       respectively. 
-      * Highlights: This feature enables the user to view all stocks, or bookmarked stocks or stocks with low quantity.
+      * Highlights: This feature enables the user to view all stocks, or bookmarked stocks or stocks with low quantity. <br>
       
     * **New Feature**: Added the ability to bookmark existing items in the storage. (Pull Request 
     [#150](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/150),
@@ -30,7 +30,7 @@ Given below are my contributions to the project.
       * What it does: Allows the user to bookmark the desired stocks.
       * Justification: This feature improves the user experience as user can bookmark the stocks so as to push the stock
       to the toip of stock for easier viewing.
-      * Highlights: This feature coupled with the list feature allows the user to view all the bookmarked stocks.
+      * Highlights: This feature coupled with the list feature allows the user to view all the bookmarked stocks. <br>
       
     * **New Feature**: Added the ability to unbookmark bookmarked items in the storage. (Pull Request 
     [#150](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/150),
@@ -40,7 +40,7 @@ Given below are my contributions to the project.
       once the user deem the importance of the stock is reduced. This way the other stocks not bookmarked 
       can be seen as well.
       * Highlights: This feature enables the user to unbookmark the stock if the user makes a mistake or when the user
-      deem that the stock is of less importance.  
+      deem that the stock is of less importance.  <br>
       
     * **New Feature**: Added the ability for the user to find help. (Pull Request 
     [#99](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/99), 
@@ -50,7 +50,7 @@ Given below are my contributions to the project.
       * Justification: This feature improves the user experience as the user is able to use this feature to find out more
       about how the commands in Warenager can be used, should the user be unsure of how to use the commands. The help 
       window also allows the user to view the user guide for more detailed help.
-      * Highlights: This feature enables the user to seek help when using Warenager.  
+      * Highlights: This feature enables the user to seek help when using Warenager.  <br>
 
 * **Testing**:
   * Created unit tests for `bookmark` feature (bookmarkCommandParser, bookmarkCommand). (Pull Request 
@@ -63,10 +63,14 @@ Given below are my contributions to the project.
   [#291](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/291))
   * Created integration tests for `unbookmark` feature (unbookmark command). (Pull Request 
   [#155](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/155))
-  * Created unit tests for `help` feature (helpCommandParser).
-  * Improved coverage by creating tests for `LogicManager`.
+  * Created unit tests for `help` feature (helpCommandParser). (Pull Request 
+  [#271](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/271))
+  * Created integration tests for `help` feature (helpCommand).
+  * Improved coverage by creating tests for `LogicManager` and `ArgumentTokenizer`. (Pull Request 
+  [#291](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/291)
+  [#309](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/309))
   * Reviewed other team members' tests and ensure the tests are adequate and working.
-  * Help other team members debug testing when the tests failed and they don't know what causes the tests to fail.
+  * Help other team members debug testing when the tests failed and they don't know what causes the tests to fail. <br>
 
 * **Documentation**:
   * User Guide: (Pull Request 
@@ -79,7 +83,7 @@ Given below are my contributions to the project.
     * Added documentation for the feature `list`.
     * Added documentation for the feature `help`.
     * Added components of GUI into the UG.
-    * Fix markdown formatting errors.
+    * Fix markdown formatting errors. <br>
 
   * Developer Guide: (Pull Request [#281](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/281))
     * Added implementation details of the `bookmark` feature.
@@ -87,18 +91,23 @@ Given below are my contributions to the project.
     * Added implementation details of the `list` feature.
     * Added implementation details of the `help` feature.
     * Added class diagrams for `UI`.
-    * Added UML diagrams for `bookmark`, `unbookmark` feature.
+    * Added UML diagrams for `bookmark`, `unbookmark` feature. <br>
 
 * **UI**:
-  * Came up with the design of the UI (stockTable, resultDisplay, commandBox and enterButton).
-  * Edited the colour scheme using recommendations from groupmates.
-  * Created the table in help window.
-  * Updated the help window to include a clickable link.
+  * Came up with the design of the UI (stockTable, resultDisplay, commandBox and enterButton). (Pull Request 
+  [#114](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/114)
+  [#150](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/150))
+  * Edited the colour scheme using recommendations from groupmates. (Pull Request 
+  [#114](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/114))
+  * Created the table in help window. (Pull Request 
+  [#207](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/207))
+  * Updated the help window to include a clickable link. (Pull Request
+  [#114](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/114)) <br>
   
 * **Git & Repository**:
     * Used GitHub Projects feature to create kanban boards to track user stories.
-    * Used Github commit to inform my groupmates of updated that I did.
-
+    * Used Github commit to inform my groupmates of updated that I did. <br>
+    
 * **Reviews & Merging**:
     * Helped to review pull requests.
-    * Helped to merge approved pull requests after thorough review and GitHub action checks.
+    * Helped to merge approved pull requests after thorough review and GitHub action checks. <br>

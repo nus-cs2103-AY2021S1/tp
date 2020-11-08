@@ -52,7 +52,7 @@ public class FindExactCommandParser implements Parser<FindExactCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindExactCommand.MESSAGE_USAGE));
         }
 
-        if (isDuplicatePrefixPresent(argMultimap, validPrefixesForFindExact)) {
+        if (ParserUtil.isDuplicatePrefixPresent(argMultimap, validPrefixesForFindExact)) {
             throw new ParseException(String.format(MESSAGE_DUPLICATE_HEADER_FIELD, FindExactCommand.MESSAGE_USAGE));
         }
 
@@ -62,24 +62,6 @@ public class FindExactCommandParser implements Parser<FindExactCommand> {
 
         logger.log(Level.INFO, "Finished parsing find exact command successfully");
         return new FindExactCommand(predicatesToTest);
-    }
-
-    /**
-     * Returns true if duplicate prefixes are present when parsing command.
-     * @param argumentMultimap map of prefix to keywords entered by user
-     * @param prefixes prefixes to parse
-     * @return boolean true if duplicate prefix is present
-     */
-    private static boolean isDuplicatePrefixPresent(
-            ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-
-        // Check for duplicate prefixes
-        for (Prefix prefix: prefixes) {
-            if (argumentMultimap.getAllValues(prefix).size() >= 2) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**

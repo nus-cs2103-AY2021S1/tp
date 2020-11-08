@@ -1,6 +1,6 @@
 package seedu.stock.storage;
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.stock.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.stock.commons.exceptions.IllegalValueException;
 import seedu.stock.commons.util.JsonUtil;
-//import seedu.stock.model.SerialNumberSetsBook;
-//import seedu.stock.testutil.TypicalSerialNumberSets;
+import seedu.stock.model.SerialNumberSetsBook;
+import seedu.stock.testutil.TypicalSerialNumberSets;
 
 public class JsonSerializableSerialNumberSetsBookTest {
 
@@ -23,6 +23,16 @@ public class JsonSerializableSerialNumberSetsBookTest {
             TEST_DATA_FOLDER.resolve("invalidSerialNumberSets.json");
     private static final Path DUPLICATE_SERIAL_NUMBER_SET_FILE =
             TEST_DATA_FOLDER.resolve("duplicateSerialNumberSets.json");
+
+    @Test
+    public void toModelType_typicalSerialNumberSetsFile_success() throws Exception {
+        JsonSerializableSerialNumberSetsBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_SERIAL_NUMBER_SETS_FILE,
+                JsonSerializableSerialNumberSetsBook.class).get();
+        SerialNumberSetsBook serialNumberSetsBookFromFile = dataFromFile.toModelType();
+        SerialNumberSetsBook typicalSerialNumberSetsSerialNumberSetsBook =
+                TypicalSerialNumberSets.getTypicalSerialNumberSetsBook();
+        assertEquals(serialNumberSetsBookFromFile, typicalSerialNumberSetsSerialNumberSetsBook);
+    }
 
     @Test
     public void toModelType_invalidSerialNumberSetsFile_throwsIllegalValueException() throws Exception {
