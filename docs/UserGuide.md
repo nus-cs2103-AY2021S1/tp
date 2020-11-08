@@ -211,7 +211,7 @@ This command enables you to add a staff record into Eva. A staff record can cont
 The fields marked with a asterisk (*) are compulsory and have to be provided in the parameters below.
 Without any of these fields, Eva will not accept you input. Tags and Comments can be added with these commands as shown 
 in the examples. To manage leave records for each staff, please refer to the commands 
-[addl](337-record-leave-taken-by-staff-addl) and [dell](338-delete-leave-taken-by-staff-dell)
+[addl](#337-record-leave-taken-by-staff-addl) and [dell](#338-delete-leave-taken-by-staff-dell)
 
 Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]…`
 
@@ -361,8 +361,8 @@ Format: `adda n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG
  - An applicant can have any number of comments (including 0) <br>
  - The interview date has to be in DD/MM/YYYY format <br>
  - The order of inputs does not matter
- - Once you add an applicant the status would be automatically set as received, if you wish to change it, refer to the feature [setting 
- of application status](349-set-application-status-setas) below
+ - Once you add an applicant the status would be automatically set as received, if you wish to change it, refer to the feature 
+ [setting of application status](#349-set-application-status-setas) below
  - :bulb: **Tip** The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later. <br>
 <br>
 
