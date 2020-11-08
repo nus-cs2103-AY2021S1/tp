@@ -123,7 +123,7 @@ title: Developer Guide
     - [6.10 Deleting an eaten recipe](#610-deleting-an-eaten-recipe)
     - [6.11 Getting edit recipe](#611-getting-a-recipe-to-edit)
     - [6.12 Editing a recipe](#612-editing-a-recipe)
-    - [6.13 Getting edit ingredient](#613-getting-ingredient-to-edit)
+    - [6.13 Getting edit ingredient](#613-getting-an-ingredient-to-edit)
     - [6.14 Editing an ingredient](#614-editing-an-ingredient)
     - [6.15 Selecting a recipe](#615-selecting-a-recipe)
     - [6.16 Searching for recipes](#616-searching-for-recipes)
@@ -139,7 +139,7 @@ title: Developer Guide
     - [7.2 Ingredient](#72-ingredient)
     - [7.3 Consumption](#73-consumption)
     <br><br>
-8. [Appendix E: Effort](#8-effort)
+8. [Appendix D: Effort](#8-effort)
 
 <div style="page-break-after: always;"></div>
 
@@ -1774,7 +1774,7 @@ testers are expected to do more *exploratory* testing.
 
 <div style="page-break-after: always;"></div>
 
-# 8. **Appendix E: *Effort*** <a id="8-effort"></a>
+# 8. **Appendix D: *Effort*** <a id="8-effort"></a>
 
 | Term             | Scope/ Measured by                                                                                                                                                                                                                                                        |
 |------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

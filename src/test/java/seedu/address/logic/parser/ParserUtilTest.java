@@ -31,6 +31,9 @@ public class ParserUtilTest {
     //not a valid quantity value
     private static final String INVALID_INGREDIENT_QUANTITY_4 = "0"
             + ".0000000000000000000000000000000000000000000005 g"; //46 decimal places not supported by float
+    private static final String INVALID_INGREDIENT_QUANTITY_5 = "5/0";
+    private static final String INVALID_INGREDIENT_QUANTITY_6 = "0/1";
+
 
     private static final String INVALID_TAG = "#less calories";
 
@@ -38,6 +41,20 @@ public class ParserUtilTest {
     private static final String VALID_INGREDIENT_NAME = "Potato";
     private static final String VALID_INGREDIENT_QUANTITY = "250.0 g";
     private static final String VALID_INGREDIENT_QUANTITY_1 = "0.00000005 g";
+    private static final String VALID_INGREDIENT_QUANTITY_8 = "123 cups";
+    private static final String VALID_INGREDIENT_QUANTITY_9 = "11.11 g";
+    private static final String LEADING_ZEROES_INGREDIENT_QUANTITY_2 = "000000.005 g";
+    private static final String VALID_INGREDIENT_QUANTITY_2 = "0.005 g";
+    private static final String LEADING_ZEROES_INGREDIENT_QUANTITY_3 = "000002.005 g";
+    private static final String VALID_INGREDIENT_QUANTITY_3 = "2.005 g";
+    private static final String LEADING_ZEROES_INGREDIENT_QUANTITY_4 = "000000015 g";
+    private static final String VALID_INGREDIENT_QUANTITY_4 = "15 g";
+    private static final String LEADING_ZEROES_INGREDIENT_QUANTITY_5 = "001.630005 g";
+    private static final String VALID_INGREDIENT_QUANTITY_5 = "1.630005 g";
+    private static final String LEADING_ZEROES_INGREDIENT_QUANTITY_6 = "004/55 cups";
+    private static final String VALID_INGREDIENT_QUANTITY_6 = "4/55 cups";
+    private static final String LEADING_ZEROES_INGREDIENT_QUANTITY_7 = "9/11 cups";
+    private static final String VALID_INGREDIENT_QUANTITY_7 = "9/11 cups";
     private static final String VALID_INGREDIENT = VALID_INGREDIENT_NAME + " -" + VALID_INGREDIENT_QUANTITY;
     private static final String VALID_INGREDIENT_1 = VALID_INGREDIENT_NAME + " -" + VALID_INGREDIENT_QUANTITY_1;
     private static final String VALID_TAG_1 = "healthy";
@@ -50,6 +67,10 @@ public class ParserUtilTest {
     private static final String INVALID_INGREDIENT_2 = VALID_INGREDIENT_NAME + INVALID_INGREDIENT_QUANTITY_2;
     private static final String INVALID_INGREDIENT_3 = VALID_INGREDIENT_NAME + INVALID_INGREDIENT_QUANTITY_3;
     private static final String INVALID_INGREDIENT_4 = VALID_INGREDIENT_NAME + INVALID_INGREDIENT_QUANTITY_4;
+    private static final String INVALID_INGREDIENT_5 = VALID_INGREDIENT_NAME + INVALID_INGREDIENT_QUANTITY_5;
+    private static final String INVALID_INGREDIENT_6 = VALID_INGREDIENT_NAME + INVALID_INGREDIENT_QUANTITY_6;
+
+
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -109,6 +130,9 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseIngredients(INVALID_INGREDIENT_2));
         assertThrows(ParseException.class, () -> ParserUtil.parseIngredients(INVALID_INGREDIENT_3));
         assertThrows(ParseException.class, () -> ParserUtil.parseIngredients(INVALID_INGREDIENT_4));
+        assertThrows(ParseException.class, () -> ParserUtil.parseIngredients(INVALID_INGREDIENT_5));
+        assertThrows(ParseException.class, () -> ParserUtil.parseIngredients(INVALID_INGREDIENT_6));
+
     }
 
     @Test
@@ -138,12 +162,23 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseQuantity(INVALID_INGREDIENT_QUANTITY_2));
         assertThrows(ParseException.class, () -> ParserUtil.parseQuantity(INVALID_INGREDIENT_QUANTITY_3));
         assertThrows(ParseException.class, () -> ParserUtil.parseQuantity(INVALID_INGREDIENT_QUANTITY_4));
+        assertThrows(ParseException.class, () -> ParserUtil.parseQuantity(INVALID_INGREDIENT_QUANTITY_5));
+        assertThrows(ParseException.class, () -> ParserUtil.parseQuantity(INVALID_INGREDIENT_QUANTITY_6));
     }
 
     @Test
     public void parseQuantity_validValueWithoutWhitespace_returnsIngredient() throws Exception {
         assertEquals(VALID_INGREDIENT_QUANTITY, ParserUtil.parseQuantity(VALID_INGREDIENT_QUANTITY));
         assertEquals(VALID_INGREDIENT_QUANTITY_1, ParserUtil.parseQuantity(VALID_INGREDIENT_QUANTITY_1));
+        assertEquals(VALID_INGREDIENT_QUANTITY_2, ParserUtil.parseQuantity(LEADING_ZEROES_INGREDIENT_QUANTITY_2));
+        assertEquals(VALID_INGREDIENT_QUANTITY_3, ParserUtil.parseQuantity(LEADING_ZEROES_INGREDIENT_QUANTITY_3));
+        assertEquals(VALID_INGREDIENT_QUANTITY_4, ParserUtil.parseQuantity(LEADING_ZEROES_INGREDIENT_QUANTITY_4));
+        assertEquals(VALID_INGREDIENT_QUANTITY_5, ParserUtil.parseQuantity(LEADING_ZEROES_INGREDIENT_QUANTITY_5));
+        assertEquals(VALID_INGREDIENT_QUANTITY_6, ParserUtil.parseQuantity(LEADING_ZEROES_INGREDIENT_QUANTITY_6));
+        assertEquals(VALID_INGREDIENT_QUANTITY_7, ParserUtil.parseQuantity(LEADING_ZEROES_INGREDIENT_QUANTITY_7));
+        assertEquals(VALID_INGREDIENT_QUANTITY_8, ParserUtil.parseQuantity(VALID_INGREDIENT_QUANTITY_8));
+        assertEquals(VALID_INGREDIENT_QUANTITY_9, ParserUtil.parseQuantity(VALID_INGREDIENT_QUANTITY_9));
+
     }
 
     @Test

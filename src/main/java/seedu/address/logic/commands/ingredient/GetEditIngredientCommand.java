@@ -3,6 +3,8 @@ package seedu.address.logic.commands.ingredient;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -26,6 +28,8 @@ public class GetEditIngredientCommand extends Command {
 
     public static final String MESSAGE_GET_EDIT_INGREDIENT_SUCCESS = "Ingredient to edit shown: %1$s";
 
+    private static Logger logger = Logger.getLogger("GetEditIngredientLogger");
+
     private final Index toEdit;
 
     public GetEditIngredientCommand(Index toEdit) {
@@ -35,6 +39,7 @@ public class GetEditIngredientCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        logger.log(Level.INFO, "Getting ingredient at position " + toEdit.getOneBased());
         List<Ingredient> lastShownList = model.getFilteredIngredientList();
 
         if (toEdit.getZeroBased() >= lastShownList.size()) {
