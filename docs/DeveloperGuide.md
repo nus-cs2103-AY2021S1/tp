@@ -87,6 +87,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -100,7 +101,7 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-
+<div style="page-break-after: always;"></div>
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -229,6 +230,8 @@ Step 4. The `Index` is then passed to the `OpenCommand`
 Step 5. `OpenCommand#execute` will get the `Flashcard` at the specified `Index` and get its `Question` to be passed to the GUI as part of the `Feedback` attribute within the `CommandResult`.
 
 Step 6. The GUI will then proceed to get the `Question` from `Feedback` and display its choices and question to the user.
+
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram shows how the parser operation works:
 
