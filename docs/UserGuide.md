@@ -285,6 +285,11 @@ Everyone should have permission to access the image path or online image URL you
      --------|--------------|--------|-------------
      <img src="images/healthy1.png" width="150" height="100"> | images/healthy1.jpg | <img src="images/healthy4.png" width="150" height="100"> | images/healthy4.jpg
      <img src="images/healthy2.png" width="150" height="100"> | images/healthy2.jpg | <img src="images/healthy5.png" width="150" height="100"> | images/healthy5.jpg
+
+<div style="page-break-after: always;"></div>
+
+Image | File Path | Image | File Path
+     --------|--------------|--------|-------------
      <img src="images/healthy3.png" width="150" height="100"> | images/healthy3.jpg | <img src="images/healthy6.png" width="150" height="100"> | images/healthy6.jpg
 
 * `INSTRUCTION` will take in a series of instruction text and Wishful Shrinking will automatically separate each
@@ -396,6 +401,9 @@ Multiple ingredients are separated by `,`.
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
     Specifying an empty tag prefix: `t/` will clear all tags if any of the specified recipe.
 </div> 
+
+
+<div style="page-break-after: always;"></div>
      
 * You are not allowed to edit a recipe into an already existing recipe in the Recipe List.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
@@ -404,8 +412,6 @@ Multiple ingredients are separated by `,`.
       versa. If two recipes have the same image, instructions and tags, but different recipe names or ingredient
        names or both, they are not considered duplicate recipes.
 </div>
-
-<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
     Modifying a recipe **will not** affect the recipes that have been eaten in the consumption list.
