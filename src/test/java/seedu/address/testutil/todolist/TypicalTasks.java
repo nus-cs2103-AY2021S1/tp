@@ -1,19 +1,13 @@
 package seedu.address.testutil.todolist;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_LAB05;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_LAB07;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LAB05;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LAB07;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_HIGH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_LAB05;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_LAB07;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_NORMAL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_COMPLETED;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_LAB05;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_LAB07;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LAB05;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LAB07;
 
