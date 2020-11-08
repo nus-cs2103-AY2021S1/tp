@@ -25,8 +25,7 @@ public class EditNoteCommand extends NoteCommand {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = NoteCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": Edits the details of the note identified "
-            + "by the index number used in the displayed notebook. "
+            + ": Edits the details of the note at the specified index. "
             + "Existing values will be overwritten by the input values.\n\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
