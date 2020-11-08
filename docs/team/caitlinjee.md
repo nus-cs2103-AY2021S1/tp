@@ -10,24 +10,24 @@ Wishful Shrinking is a desktop application for managing your diet, keeping track
 Given below are my contributions to the project.
 
 * **New Feature 1**: Added the ability to get recommended recipes. (Pull requests [\#109](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/109))
-  * What it does: allows the user to get recipes whose ingredients are all present in their fridge.
+  * What it does: allows users to get recipes whose ingredients are all present in their fridge.
   * Justification: This feature improves the product significantly because a user can easily search for what recipes they are able to make, with the ingredient that are already present in their fridge.
   * Highlights: This enhancement required an in-depth analysis of design alternatives. The implementation too was challenging as it was a new command that was not very similar to existing commands.
 
-* **New Feature 2**: Added the ability to add ingredients to the user's fridge. (Pull requests [\#41](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/41))
-  * What it does: allows the user to add ingredients to their fridge in Wishful Shrinking.
-  * Justification: This feature improves the product significantly because a user can now save ingredients that they have into the fridge, which is essential in using the `recommend` feature.
+* **New Feature 2**: Added the ability to add ingredients to users' fridge. (Pull requests [\#41](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/41))
+  * What it does: allows users to add ingredients to their fridge in Wishful Shrinking.
+  * Justification: This feature improves the product significantly because users can save ingredients that they have into the fridge, which is essential in using the `recommend` feature.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   * Credits: This feature was refactored from the `add` feature in AddressBook Level 3.
 
-* **New Feature 3**: Added the ability to search for an ingredient in the fridge. (Pull requests [\#47](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/47))
-  * What it does: allows the user to search for an ingredient in the fridge by its name.
+* **New Feature 3**: Added the ability to search for ingredients in the fridge. (Pull requests [\#47](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/47))
+  * What it does: allows users to search for an ingredient in the fridge by its name.
   * Justification: This feature improves the product significantly because a user can now easily search for an ingredient by its name to see whether it is present in the fridge.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   * Credits: This feature was refactored from the `find` feature in AddressBook Level 3.
 
 * **New Feature 4**: Added the ability to delete a consumed recipe in the consumption list. (Pull requests [\#78](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/78))
-  * What it does: allows the user to delete a recipe that they have eaten in the consumption list.
+  * What it does: allows users to delete a consumed recipe from the consumption list.
   * Justification: This feature improves the product significantly because a user can now delete the recipes that they do not want anymore from the consumption list.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   * Credits: This feature was refactored from the `delete` feature in AddressBook Level 3.
@@ -42,9 +42,9 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Added support for tags in recipes (Pull requests [\#85](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/85))
-    * Justification: This feature, which is refactored from the existing tag feature in Address Book 3, allows users to easily tag their favourite recipes, in order to easily filter by them later.
+    * Justification: This feature, which is refactored from the existing tag feature in Address Book 3, allows users to easily tag their favourite recipes to easily filter by them.
   * Added the ability to search for a recipe in the recipe list by its ingredients or tags, in addition to name. (Pull requests [\#109](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/109))
-    * Justification: This feature improves upon the original `find` feature that was originally in AddressBook Level 3, and later implemented in Wishful Shrinking, as it now allows users to search for recipes not only by name, but also by the ingredients it contains, which is essential in recipes, and tags, which are helpful for the user to filter their recipes.
+    * Justification: This feature improves on the original `find` feature in AddressBook Level 3 as it now allows users to search for recipes not only by name, but also by ingredients and tags, making it easier for them to filter their recipes.
   * Wrote additional tests for existing features to increase test coverage from 63.5% to 67.5% (Pull requests [\#246](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/246)) 
 
 * **Documentation**:
