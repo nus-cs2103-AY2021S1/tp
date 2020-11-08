@@ -151,7 +151,7 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    void setMeeting(Meeting target, Meeting editedMeeting);
+    void setMeeting(Meeting target, Meeting editedMeeting) throws CommandException;
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Meeting> getFilteredMeetingList();
