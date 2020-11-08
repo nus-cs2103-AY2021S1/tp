@@ -680,24 +680,27 @@ Refer to the [DevOps guide](DevOps.md).
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                               | I want to …​                                          | So that I can…​                                                                     |
-| -------- | --------------------------------------| ----------------------------------------------------- | ----------------------------------------------------------------------              |
-| `* * *`  | private tutor ready to use Reeve      | view a list of commands and how to use them           | learn how the application works or in case I forgot how some of the commands work   |
-| `* * *`  | private tutor ready to use Reeve      | add my students' details                              | store them and retrieve them whenever I need                                        |
-| `* * *`  | private tutor                         | view my students' preferred tutoring location         | figure out how to get that location                                                 |
-| `* * *`  | private tutor                         | edit my students' personal details                    | update outdated data                                                                |
-| `* * *`  | private tutor                         | view my student's details                             | refer to them when needed                                                           |
-| `* * *`  | private tutor                         | add additional details to each student                | add other miscellaneous details which can allow me to better cater to student needs |
-| `* * *`  | private tutor with many students      | find a student's record                               | retrieve students' data with ease                                                   |
-| `* * *`  | private tutor who is a long-term user | delete students' data                                 | remove irrelevant data of students who are no longer my tutees                      |
-|  `* *`   | private tutor                         | record my student's questions                         | help them with their queries after the lesson                                       |
-|  `* *`   | private tutor                         | input my student’s school test scores                 | keep track of their progress                                                        |
-|  `* *`   | private tutor                         | track my students' attendance                         | keep track of students' lesson records                                              |
-|  `* *`   | private tutor                         | input feedback to specific lessons                    | improve my capabilities as a tutor                                                  |
-|  `* *`   | private tutor                         | view a list of notes/reminders                        | keep track of key information easily                                                |
-|  `* *`   | private tutor                         | view my tutoring schedule for a particular day        | plan my plans accordingly                                                           |
-|   `*`    | private tutor                         | view my students' academic progress                   | know which students need more help                                                  |
-|   `*`    | private tutor  ready to use Reeve     | view the type of student details that are displayed   | focus on the details that I am currently concerned with                             |
+| Priority | As a …​                               | I want to …​                                                    | So that I can…​                                                                  |
+| -------- | --------------------------------------| --------------------------------------------------------------------- | ----------------------------------------------------------------------              |
+| `* * *`  | private tutor ready to use Reeve      | view a list of commands and how to use them                           | learn how the application works or in case I forgot how some of the commands work   |
+| `* * *`  | private tutor ready to use Reeve      | add my students' details                                              | store them and retrieve them whenever I need                                        |
+| `* * *`  | private tutor                         | view my students' preferred tutoring location                         | figure out how to get that location                                                 |
+| `* * *`  | private tutor                         | edit my students' personal details                                    | update outdated data                                                                |
+| `* * *`  | private tutor                         | view my student's details                                             | refer to them when needed                                                           |
+| `* * *`  | private tutor                         | add additional details to each student                                | add other miscellaneous details which can allow me to better cater to student needs |
+| `* * *`  | private tutor with many students      | find a student's record                                               | retrieve students' data with ease                                                   |
+| `* * *`  | private tutor who is a long-term user | delete students' data                                                 | remove irrelevant data of students who are no longer my tutees                      |
+|  `* *`   | private tutor                         | record my student's questions                                         | help them with their queries after the lesson                                       |
+|  `* *`   | private tutor                         | input my student’s school test scores                                 | keep track of their progress                                                        |
+|  `* *`   | private tutor                         | track my students' attendance                                         | keep track of students' lesson records                                              |
+|  `* *`   | private tutor                         | input feedback to specific lessons                                    | improve my capabilities as a tutor                                                  |
+|  `* *`   | private tutor                         | keep track of notes                                                   | store small pieces of information in case I forget                                  |
+|  `* *`   | private tutor                         | view my tutoring schedule for a particular day                        | plan my plans accordingly                                                           |
+|  `* *`   | private tutor                         | be able to view students in alphabetical order                        | look for students easily                                                            |
+|  `* *`   | private tutor                         | be able to my view my students in order of their lesson time          | know which students to prioritise when preparing lessons                            |
+|  `* *`   | private tutor                         | be able to group my students by their year of study                   | look at questions and queries together for one cohort together                      |
+|   `*`    | private tutor                         | view my students' academic progress                                   | know which students need more help                                                  |
+|   `*`    | private tutor ready to use Reeve      | view the type of student details that are displayed                   | focus on the details that I am currently concerned with                             |
 
 ## **Appendix C: Use Cases**
 
@@ -817,7 +820,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
 **MSS**
 
-1.  User enters a command to find all students that match the given search parameter (name, school, year or subject).
+1.  User enters a command to find all students that match the given search parameter (name, school, year).
 2.  Reeve displays all students matching the criteria.
 
     Use case ends.
@@ -845,6 +848,31 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 2. Reeve displays a success message.
 
    Use case ends.
+  
+**UC00: Sorting the list of students**
+
+**MSS**
+
+1.  User enters a command to sort students by a given method (name, class time, year).
+2.  Reeve sorts the list of students by the method.
+3.  Reeve displays the student list in the new order
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User provides input with invalid format.
+    * 1a1. Reeve displays expected format.
+
+      Use case resumes at step 1.
+* 1b. User provides input without a search parameter.
+    * 1a1. Reeve displays a message indicating a search parameter was not provided.
+
+      Use case resumes at step 1.
+* 1c. User provides invalid means to sort students.
+    * 1c1. Reeve displays a message indicating that sorting means in valid and valid sorting means.
+
+      Use case resumes at step 1.
 
 **UC00: Adding a question to a student**
 
@@ -962,62 +990,6 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
     Use case ends.
 
-**UC00: Adding an exam record to a student**
-
-**MSS**
-
-1. User enters a command to list students.
-2. Reeve displays a list of students.
-3. User enters a command to add an exam record to a specific student in the list.
-4. Reeve updates the specified student in the list with the newly added exam record.
-5. Reeve displays a success message.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty.
-
-  Use case ends.
-
-* 3a. User provides input with an invalid student index.
-    * 3a1. Reeve displays an error message.
-
-      Use case resumes at step 2.
-
-* 3b. User inputs an exam record in an invalid format.
-    * 3b1. Reeve displays an error message.
-
-      Use case resumes at step 2.
-
-**UC00: Deleting an exam record from a student**
-
-**MSS**
-
-1. User enters a command to list students.
-2. Reeve displays a list of students.
-3. User enters a command to delete a specific exam record from a specific student in the list.
-4. Reeve updates the specified student in the list with the removed question.
-5. Reeve displays a success message.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty.
-
-  Use case ends.
-
-* 3a. User provides input with an invalid student.
-    * 3a1. Reeve displays an error message.
-
-      Use case resumes at step 2.
-
-* 3b. User provides input with an invalid exam record.
-    * 3b1. Reeve displays an error message.
-
-      Use case resumes at step 2.
-
 **UC00: Displaying exam statistics of a student**
 
 **MSS**
@@ -1039,6 +1011,52 @@ Use cases also assume that whenever an invalid command is entered by the user, R
     * 3a1. Reeve displays an error message.
 
       Use case resumes at step 2.
+
+**UC00: Adding a note to the notebook**
+
+**MSS**
+
+1. User enters a command to add a note to the notebook.
+2. Reeve saves the note into the notebook and displays a success message
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User provides input with missing fields.
+    * 1a1. Reeve displays an error message.
+
+      Use case resumes at step 1.
+
+* 1b. User provides invalid input.
+    * 1b1. Reeve displays an error message and input constraints.
+
+      Use case resumes at step 1.
+
+**UC00: Editing a note in the notebook**
+
+**MSS**
+
+1.  User enters command to edit a specific note in the notebook and provides needed parameters.
+2.  Reeve updates the specified note with the input parameters and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User provides input with invalid index.
+    * 1a1. Reeve displays an error message and requests for input with valid index.
+
+      Use case resumes at step 1.
+* 1b. User provides input without any parameters.
+    * 1b1. Reeve requests for input with parameters.
+
+      Use case resumes at step 1.
+* 1c. User provides input with invalid format.
+	* 1c1. Reeve requests for input with valid format.
+
+	  Use case resumes at step 1.
+
 
 
 ## **Appendix D: Non-Functional Requirements**
