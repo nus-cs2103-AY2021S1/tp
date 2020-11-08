@@ -15,7 +15,8 @@ by Team W12-2
     * [3.6 - Common Classes](#section-36---common-classes)
 * [Section 4 - Implementation](#section-4---implementation)
     * [4.1 - Add Commands - `addMod`, `addTG` and `addStudent`](#section-41---add-commands---addmod-addtg-and-addstudent)
-    * [4.2 - Section 4.2 - Delete Commands - `deleteMod`, `deleteTG` and `deleteStudent`](#section-42---delete-commands---deletemod-deletetg-and-deletestudent)
+    * [4.2 - Delete Commands - `deleteMod`, `deleteTG` and `deleteStudent`](#section-42---delete-commands---deletemod-deletetg-and-deletestudent)
+    * [4.3 - Edit Commands - `editMod`, `editTG` and `editStudent`](#section-43---edit-commands---editmod-edittg-and-editstudent)
 * [Section 5 - Documentation, logging, testing, configuration, dev-ops](#section-5---documentation-logging-testing-configuration-dev-ops)
 * [Section 6 - Appendix](#section-6---appendix)
 
@@ -282,7 +283,7 @@ Step 5. Once the `Module` has been deleted from the `internaList`, `DeleteModule
     - Pros: Easier to implement
     - Cons: More repetitive code
     
-### Section 4.3 - Edit Commands (editMod, editTG, editStudent)
+### Section 4.3 - Edit Commands - `editMod`, `editTG` and `editStudent`
 #### Overview
 
 The Edit command in Trackr enables users to easily edit data types. Users will be able to modify data.
@@ -294,6 +295,38 @@ Each command class extends `Command`.
 Given below is an example of the interaction between the Model and the `EditModuleCommand` of Trackr.
 
 ![EditModuleSequenceDiagram](images/EditModuleSequenceDiagram.png)
+
+Step 1. The user executes `editMod 1 m/CS2100` to edit the first module in the displayed list. The `editMod` command 
+calls `LogicManager#execute(String)`.
+
+Step 2. The contents of the `String` is parsed in `EditModuleCommandParser#parse(String)`. This method creates a new
+`Index` and `EditModuleDescriptor` object with the parsed arguments. An `EditModuleCommand` object is then initialised
+with the `Index` and `EditModuleDescriptor` object.
+
+Step 3. `LogicManager#execute(String)` calls the `EditModuleCommand#execute(Model)` method of the `EditModuleCommand`
+object. The method creates a new `Module` object with the edited fields.
+
+Step 4. Within `Model`, the method `Model#setModule(Module, Module)` is executed and this replaces the current `Module`
+from the `internalList` of `UniqueModuleList` with the edited one.
+
+Step 5. Once the `Module` has been edited in the `internaList`, `DeleteModuleCommand#execute(Model)` creates an
+`CommandResult` object and the `CommandResult` is returned to `LogicManager`.
+
+> Note: There are some differences for the edit commands of `TutorialGroup` and `Student` during Step 4.
+>
+> For `TutorialGroup`:
+> - Within each `Module`, there is an `UniqueTutorialGroupList`.
+> - The `Model` will check if the user is currently in the Tutorial Group View using `Model#isInTutorialGroupView()`.
+> This ensures that there is a target `Module` for the `TutorialGroup` to be edited from.
+> - `Model#setTutorialGroup(TutorialGroup, TutorialGroup)` method then retrieves the `UniqueTutorialGroupList` of the
+> target `Module` and edits the `TutorialGroup` in the `internalList` of the `UniqueTutorialGroupList`.
+>
+> For `Student`:
+> - With each `TutorialGroup`, there is a `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be edited from.
+> - `Model#setStudent(Student, Student)` method then retrieves the `UniqueStudentList` of the target `Module` and
+> `TutorialGroup` and edits the `Student` in the `internalList` of the `UniqueStudentList`.
 
 #### Design Considerations
 **Aspect: List to contain the models**
