@@ -1652,6 +1652,99 @@ testers are expected to do more *exploratory* testing.
 ### Module List
 
 
+
+
+
+
+
+
+
+
+#### Adding a zoom link
+
+1. Prerequisites: List out all modules using the `listmodule` command. Multiple modules in the list.
+
+   1. Test case: `addzoom 1 n/lecture z/https://nus-sg.zoom.us/zoomlink`
+      Expected: A zoom link `https://nus-sg.zoom.us/zoomlink` for the module lesson `lecture` is added to the first module in the displayed module list.
+                Details of the newly created zoom link are shown in the status message.
+
+   1. Test case: `addzoom 0 n/lecture z/https://nus-sg.zoom.us/zoomlink`
+      Expected: No zoom link is added. Error message for invalid command format is shown in the status message.
+      
+   1. Test case: `addzoom x n/lecture z/https://nus-sg.zoom.us/zoomlink` where `x` is larger than the module list size
+      Expected: No zoom link is added. Error message for invalid module index is shown in the status message.
+
+   1. Test case: `addzoom`
+      Expected: No zoom link is added. Error message for invalid command format is shown in the status message.
+   
+   1. Test case: `addzoom 1 n/*** z/https://nus-sg.zoom.us/zoomlink`
+      Expected: No zoom link is added. Error message for invalid module lesson is shown in the status message.
+   
+   1. Test case: `addzoom 1 n/lecture z/https://invalidzoomlink`
+      Expected: No zoom link is added. Error message for invalid zoom link is shown in the status message.
+   
+   1. Test case: `addzoom 1 n/lecture`
+      Expected: No zoom link is added. Error message for invalid command format is shown in the status message.
+
+   1. Test case: `addzoom 1 z/https://nus-sg.zoom.us/zoomlink`
+      Expected: No zoom link is added. Error message for invalid command format is shown in the status message.
+
+
+#### Deleting a zoom link
+
+
+1. Prerequisites: List out all modules using the `listmodule` command. Multiple modules in the list.
+
+   1. Test case: `deletezoom 1 n/lecture`
+      Expected: Deletes the zoom link from the first module in the displayed module list for the module lesson `lecture`.
+                Details of the module lesson and module which the zoom link was deleted from are shown in the status message.
+   
+   1. Test case: `deletezoom 0 n/lecture`
+      Expected: No zoom link is deleted. Error message for invalid command format is shown in the status message.
+         
+   1. Test case: `deletezoom x n/lecture` where `x` is larger than the module list size
+      Expected: No zoom link is deleted. Error message for invalid module index is shown in the status message.
+   
+   1. Test case: `deletezoom`
+      Expected: No zoom link is deleted. Error message for invalid command format is shown in the status message.
+      
+   1. Test case: `deletezoom 1 n/***`
+      Expected: No zoom link is delete. Error message for invalid module lesson is shown in the status message.
+   
+   
+#### Editing a zoom link
+   
+1. Prerequisites: List out all modules using the `listmodule` command. Multiple modules in the list.   
+
+      1. Test case: `editzoom 1 n/lecture z/https://nus-sg.zoom.us/newZoomLink`
+         Expected: The zoom link for the module lesson `lecture` in the first module in the displayed module list is edited to `https://nus-sg.zoom.us/newZoomLink`.
+                   Details of the newly created zoom link are shown in the status message.
+   
+      1. Test case: `editzoom 0 n/lecture z/https://nus-sg.zoom.us/newZoomLink`
+         Expected: No zoom link is edited. Error message for invalid command format is shown in the status message.
+         
+      1. Test case: `editzoom x n/lecture z/https://nus-sg.zoom.us/newZoomLink` where `x` is larger than the module list size
+         Expected: No zoom link is edited. Error message for invalid module index is shown in the status message.
+   
+      1. Test case: `editzoom`
+         Expected: No zoom link is edited. Error message for invalid command format is shown in the status message.
+      
+      1. Test case: `editzoom 1 n/*** z/https://nus-sg.zoom.us/newZoomLink`
+         Expected: No zoom link is edited. Error message for invalid module lesson is shown in the status message.
+      
+      1. Test case: `editzoom 1 n/lecture z/https://invalidzoomlink`
+         Expected: No zoom link is edited. Error message for invalid zoom link is shown in the status message.
+      
+      1. Test case: `editzoom 1 n/lecture`
+         Expected: No zoom link is edited. Error message for invalid command format is shown in the status message.
+   
+      1. Test case: `editzoom 1 z/https://nus-sg.zoom.us/newZoomLink`
+         Expected: No zoom link is added. Error message for invalid command format is shown in the status message.
+
+
+
+
+
 ### Contact List
 
 #### Adding a contact
@@ -1681,6 +1774,17 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `addcontact n/john e/john@gmail.com t/&^*`
       Expected: The contact will not be created. Error message for invalid contact tag is shown in the status message.
 
+   1. Test case: `addcontact`
+      Expected: No contact will be created. Error message for invalid command format is shown in the status message.
+   
+   1. Test case: `addcontact n/john`
+      Expected: No contact will be created. Error message for invalid command format is shown in the status message.
+
+   1. Test case: `addcontact e/john@gmail.com`
+      Expected: No contact will be created. Error message for invalid command format is shown in the status message.
+
+
+
 #### Deleting a contact
 
 1. Deleting a contact while all contacts are being shown.
@@ -1693,8 +1797,11 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `deletecontact 0`
       Expected: No contact is deleted. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
 
-   1. Test case: `delete x` where x is larger that the displayed contact list size
+   1. Test case: `deletecontact x` where x is larger that the displayed contact list size
       Expected:  No contact is deleted. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
+
+   1. Test case: `deletecontact`
+      Expected: No contact is deleted. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
 
 2. Deleting a contact while some contacts are being shown
 
@@ -1706,8 +1813,9 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `deletecontact 0`
       Expected: No contact is deleted. Error message for invalid command format shown in the status message. The contact list remains unchanged.  
    
-   1. Test case: `delete x` where `x` is larger that the displayed contact list size
+   1. Test case: `deletecontact x` where `x` is larger that the displayed contact list size
       Expected:  No contact is deleted. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
+
 
 #### Editing a contact
 
@@ -1749,7 +1857,76 @@ testers are expected to do more *exploratory* testing.
   1. Test case: `editcontact x n/john` where `x` is larger that the displayed contact list size
      Expected: No contact is edited. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
 
+   1. Test case: `editcontact`
+      Expected: No contact is edited. Error message for invalid command format shown in the status message. The contact list remains unchanged.  
+
+
 #### Finding a contact
+
+1. Finding a contact while all contacts are being shown.
+
+   1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
+
+   1. Test case: `findcontact n/john`
+      Expected: All contacts with their name containing the word `john` will be displayed in the contact list panel.
+
+   1. Test case: `findcontact t/friend`
+      Expected: All contacts containing the tag `friend` will be displayed in the contact list panel.
+
+  1. Test case: `findcontact n/john t/friend`
+     Expected: All contacts which fulfil **all** the following criteria will be displayed in the contact list panel.
+        
+        * Contact name contains the word `john`
+        
+        * Contains the tag `friend`
+
+   1. Test case: `findcontact 1 t/john`
+      Expected: No contact will be found. Error message for invalid command format shown in the status message. The displayed contact list remains unchanged.
+   
+   1. Test case: `findcontact n/***`
+      Expected: No contact will be found. Error message for invalid contact name shown in the status message. The displayed contact list remains unchanged.
+
+   1. Test case: `findcontact t/$$`
+      Expected: No contact will be found. Error message for invalid contact tag shown in the status message. The displayed contact list remains unchanged.
+
+   1. Test case: `findcontact`
+      Expected: No contact will be found. Error message for invalid command format shown in the status message. The displayed contact list remains unchanged.
+
+
+#### Clearing all contacts
+
+1. Clearing contact list while all contacts are being shown.
+
+   1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
+
+   1. Test case: `clearcontact`
+      Expected: All contacts cleared, displayed contact list should be empty.
+
+
+2. Clearing contact list while some contacts are being shown.
+
+   1. Prerequisites: List out some contacts using the `findcontact` command. A few contacts in the list.
+   
+   1. Test case: `clearcontact`
+      Expected: All contacts cleared, displayed contact list should be empty.
+
+
+#### Listing all contact
+
+1. Listing all contacts while all contacts are being shown.
+
+   1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
+
+   1. Test case: `listcontact`
+      Expected: Displayed contact list remains unchanged.
+
+
+2. Listing all contacts while some contacts are being shown.
+
+   1. Prerequisites: List out some contacts using the `findcontact` command. A few contacts in the list.
+   
+   1. Test case: `listcontact`
+      Expected: All contacts in the contact list are displayed.
 
 
 
