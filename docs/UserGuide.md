@@ -2,9 +2,6 @@
 layout: page
 title: User Guide
 ---
-
-<div style="page-break-after: always;"></div>
-
 * Table of Contents
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
@@ -40,8 +37,6 @@ Installation Steps:
 1. Ensure you have Java `11` or above installed in your Computer.
 
 1. Download the latest `oneshelf.jar` from [here](https://github.com/AY2021S1-CS2103T-T12-1/tp/releases).
-
-<div style="page-break-after: always;"></div>
 
 1. Copy the file to the folder you want to use as the _home folder_ for this application.
 
@@ -262,6 +257,8 @@ Example 1: Add an item using [Figure 1](#uiwithannotationpng) data set as the st
     Figure 5: Add new item of duck
     <br>
 
+<div style="page-break-after: always;"></div>
+
 4. Press key arrow up on your keyboard to toggle to previous command and press Enter. 
    You should receive an error message, refer to Figure 6:
     <br>
@@ -275,8 +272,6 @@ Example 1: Add an item using [Figure 1](#uiwithannotationpng) data set as the st
     Your command should not pass through as you are not allowed to add an existing item with max quantity and metric.
     
    *Note: If you want to edit the maximum quantity or metric of an existing item, refer to [edit](#edit) feature*
-
-<div style="page-break-after: always;"></div>
 
 5. Repeat step 1 and 2 above but with the command: `add-i n/DUCK q/10 s/NTUC t/perishable`. 
    You can refer to Figure 7 for the expected result:
@@ -712,10 +707,9 @@ Look up prices on a 'supplier' database
 Notify the user if a certain stock is below threshold
 
 
-
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
+--------------------------------------------------------------------------------------------------------------------
 ## 4. FAQ
 
 **Q**: How do I transfer my data to another Computer? <br>
@@ -730,7 +724,6 @@ You may refer to the [video](#installationvideo) of installation guide.
 
 
 --------------------------------------------------------------------------------------------------------------------
-
 
 <div style="page-break-after: always;"></div>
 
