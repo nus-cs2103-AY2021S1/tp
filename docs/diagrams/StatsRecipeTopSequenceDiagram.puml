@@ -30,7 +30,7 @@ activate StatsCommandParser
 
 StatsCommandParser -> CommonParser : getCommandTarget(args)
 activate CommonParser
-CommonParser --> StatsCommandParser : "recipe"
+CommonParser --> StatsCommandParser
 deactivate CommonParser
 
 StatsCommandParser -> StatsCommandParser : parseRecipeStatsCommand(args, "top")
