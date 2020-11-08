@@ -60,7 +60,7 @@ public class FindCommand extends Command {
         return new CommandResult(
             String.format(Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW,
                 model.getFilteredExpenseList().size()),
-            false, false, false
+            false, false, false, false
             );
     }
 

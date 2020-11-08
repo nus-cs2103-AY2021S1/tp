@@ -18,7 +18,7 @@ public class GraphCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_GRAPH_MESSAGE, false, false, true);
+        return new CommandResult(SHOWING_GRAPH_MESSAGE, false, false, false, true);
     }
 
 }

@@ -44,7 +44,7 @@ public class PieChartData implements ChartDataCollector {
         // map must now contain all existing tags. Assertion here?
         expenseBook.getExpenseList().forEach(expense ->
                 map.put(expense.getTag().toString(), map.get(expense.getTag().toString()) +
-                        expense.getAmount().asDouble()));
+                        expense.getAmount().getDollarAsDoubleValue()));
         return map;
     }
 

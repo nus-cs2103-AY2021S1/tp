@@ -10,7 +10,6 @@
   <padding>
     <Insets top="15" right="50" bottom="15" left="50" />
   </padding>
-
   <Label fx:id="budgetHeader">
     <padding>
       <Insets top="0" right="30" bottom="0" left="0" />

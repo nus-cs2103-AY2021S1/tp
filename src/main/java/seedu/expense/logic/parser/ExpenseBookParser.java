@@ -18,6 +18,7 @@ import seedu.expense.logic.commands.DeleteCommand;
 import seedu.expense.logic.commands.EditCommand;
 import seedu.expense.logic.commands.ExitCommand;
 import seedu.expense.logic.commands.FindCommand;
+import seedu.expense.logic.commands.GraphCommand;
 import seedu.expense.logic.commands.HelpCommand;
 import seedu.expense.logic.commands.ListCommand;
 import seedu.expense.logic.commands.RemarkCommand;
@@ -121,6 +122,9 @@ public class ExpenseBookParser {
 
         case ResetAliasCommand.COMMAND_WORD:
             return new ResetAliasCommandParser().parse(arguments);
+
+        case GraphCommand.COMMAND_WORD:
+            return new GraphCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

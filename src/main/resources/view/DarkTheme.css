@@ -391,3 +391,24 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+.chart-legend {
+    -fx-background-color: #515658;
+}
+
+.chart-legend-item {
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+.chart-title {
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+}
+
+.chart-pie-label {
+    -fx-fill: white;
+    -fx-font-family: "Segoe UI Semibold";
+}
