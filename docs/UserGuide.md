@@ -19,12 +19,15 @@ By using our application, you can tag frequently used files/folders with a short
 with a single command. We hope by using our application, you can manage your files with ease. You can
 make your life easier one file at a time, and free up your precious time to spend on things you truly enjoy.
 
+## Table of Contents
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Getting Started
+As a first time user, you might be overwhelmed by the many features that *HelloFile* offers.
+The following subsections will explain to you how to install and start using HelloFile quickly.
 
 ### Installation
 1. Ensure you have [Java 11](https://www.java.com/en/download/) or above installed in your computer. 
@@ -47,19 +50,22 @@ This diagram shows our interface.
 
 ### Basic workflow
 1. Tag important files with the `tag` command for ease of access.<br>
-![Tag](images/screenshots/tag.PNG)
+![Tag](images/screenshots/tag.PNG) <br><br>
 2. When trying to access tagged files, instead of navigating to the file location, simply use the `open` command to access the required files.<br>
-![Open](images/screenshots/open.PNG)
+![Open](images/screenshots/open.PNG) <br><br>
 3. To find the location of tagged files, use the `show` command to get the file path of the file.<br>
-![Show](images/screenshots/show.PNG)
+![Show](images/screenshots/show.PNG) <br><br>
 4. If you have made a happy little accident, you can recover by using `undo` and `redo`.<br>
 ![Undo](images/screenshots/undo.PNG) <br>
-![Redo](images/screenshots/open.PNG) <br>
+![Redo](images/screenshots/open.PNG) <br><br>
 5. To exit the application, either close the application window, or use the `exit` command.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+
+There are many file management features in *HelloFile*.
+We will explain them in detail in this section.
 
 <div markdown="block" class="alert alert-info">
 
@@ -334,25 +340,27 @@ Examples :
 --------------------------------------------------------------------------------------------------------------------
 
 ## Customisation
+*HelloFile* supports user customisation such as themes.
+You can choose a theme from our theme library, so that you can personalise *HelloFile* to your liking.
 
 ### Changing themes
-HelloFile comes in light and dark themes. To change the theme, navigate to the top left-hand corner of the application,
+HelloFile comes with many themes. To change the theme, navigate to the top left-hand corner of the application,
 and select `view`, followed by `theme`. A new pop up window will be shown with available themes along with a quick preview
- as illustrated below.
+as illustrated below.
 ![Fig. 1](images/screenshots/changing_themes.png)
 
 ![Fig. 2](images/screenshots/changing_themes2.png)
 
 ### Changing view sizes
 HelloFile allows you to resize the view of each sub components for a clearer view of tags and folders. You can simply
- drag each view to the size desired.
+drag each view to the size desired.
 ![Fig. 3. Resizing taskbar](images/screenshots/taskbar_resize.png)
 
 ![Fig. 4. Resizing filebar](images/screenshots/filebar_resize.png)
 
 ### Persistent customisation
-All of your customisation options are saved and persists even when you close the application. HelloFile remembers your choices
- so you can spend your time on more productive pursuits.
+Your customisation options (window size and theme) are saved and persist even when you close the application. HelloFile remembers your choices,
+so you can spend your time on more productive pursuits.
 
 --------------------------------------------------------------------------------------------------------------------
 
