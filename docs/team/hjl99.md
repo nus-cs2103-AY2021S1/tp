@@ -30,6 +30,8 @@ PRs: [#117](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/117).
 2. Increased code coverage by writing tests for recipe-related commands, filter feature and attributes involved. ([#176](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/176), [#182](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/182)).
 
 
+
+
 #### Documentation
 
 **User Guide**
@@ -40,7 +42,7 @@ PRs: [#179](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/179).
 
 **Developer Guide**
 
-Added [Use Cases](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/docs/DeveloperGuide.md#a3use-cases) of commands. 
+Added [Use Cases](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/docs/DeveloperGuide.md#a3use-cases) and [Manual Testing Test Cases](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/docs/DeveloperGuide.md#binstructions-for-manual-testing)
 
 PRs: [#33](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/33).
 
