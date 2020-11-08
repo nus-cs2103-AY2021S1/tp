@@ -1,14 +1,10 @@
 package seedu.expense.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.expense.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
@@ -17,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.expense.commons.core.GuiSettings;
 import seedu.expense.logic.commands.exceptions.CommandException;
-import seedu.expense.model.ExpenseBook;
 import seedu.expense.model.Model;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.ReadOnlyUserPrefs;
@@ -26,68 +21,70 @@ import seedu.expense.model.alias.AliasEntry;
 import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.budget.Budget;
 import seedu.expense.model.budget.CategoryBudget;
+import seedu.expense.model.budget.exceptions.CategoryBudgetNotFoundException;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.tag.Tag;
 
-class DeleteCategoryCommandTest {
+public class AliasCommandTest {
 
     @Test
-    public void constructor_nullTag_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new DeleteCategoryCommand(null));
+    public void constructor_nullStrings_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AliasCommand(null, null));
     }
 
     @Test
-    public void execute_categoryAcceptedByModel_deleteSuccessful() throws Exception {
-        DeleteCategoryCommandTest.ModelStubAcceptingTagDeleted modelStub =
-            new DeleteCategoryCommandTest.ModelStubAcceptingTagDeleted();
-        Tag validTag = new Tag("Valid");
-
-        CommandResult commandResult = new DeleteCategoryCommand(validTag).execute(modelStub);
-
-        assertEquals(String.format(DeleteCategoryCommand.MESSAGE_SUCCESS, validTag), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(), modelStub.tags);
+    public void execute_nonAlphabetical_throwsIllegalArgumentException() {
+        ModelStubWithAliasMap modelStub = new ModelStubWithAliasMap();
+        assertThrows(CommandException.class, () -> new AliasCommand("get", "-$").execute(modelStub));
     }
 
     @Test
-    public void execute_invalidTag_throwsCommandException() {
-        Tag validTag = new Tag("Valid");
-        Tag invalidTag = new Tag("Invalid");
-        DeleteCategoryCommand deleteCategoryCommand = new DeleteCategoryCommand(invalidTag);
-        DeleteCategoryCommandTest.ModelStub modelStub = new DeleteCategoryCommandTest.ModelStubWithTag(validTag);
-
-        assertThrows(CommandException.class, String.format(DeleteCategoryCommand.MESSAGE_INVALID_CATEGORY,
-                invalidTag), () -> deleteCategoryCommand.execute(modelStub));
+    public void execute_fromDefaultInsteadOfCustomisedAlias_throwCommandException() throws CommandException {
+        ModelStubWithAliasMap modelStub = new ModelStubWithAliasMap();
+        assertThrows(CommandException.class, () -> new AliasCommand("find", "f").execute(modelStub));
     }
 
     @Test
-    public void equals() {
-        Tag aTag = new Tag("A");
-        Tag bTag = new Tag("B");
-        DeleteCategoryCommand deleteACommand = new DeleteCategoryCommand(aTag);
-        DeleteCategoryCommand deleteBCommand = new DeleteCategoryCommand(bTag);
-
-        // same object -> returns true
-        assertTrue(deleteACommand.equals(deleteACommand));
-
-        // same values -> returns true
-        DeleteCategoryCommand deleteACopy = new DeleteCategoryCommand(aTag);
-        assertTrue(deleteACommand.equals(deleteACopy));
-
-        // different types -> returns false
-        assertFalse(deleteACommand.equals(1));
-
-        // null -> returns false
-        assertFalse(deleteACommand.equals(null));
-
-        // different values -> returns false
-        assertFalse(deleteACommand.equals(deleteBCommand));
+    public void execute_fromDefaultWithNoCustomisedAliasYet_leestBecomesAliasForListCommand()
+            throws CommandException {
+        ModelStubWithAliasMap modelStub = new ModelStubWithAliasMap();
+        new AliasCommand("list", "leest").execute(modelStub);
+        assertTrue(modelStub.getAliasMap().hasAlias(new AliasEntry("leest", "list")));
     }
 
-    /**
-     * A default model stub that have all of the methods failing.
-     */
-    private class ModelStub implements Model {
+    @Test
+    public void equals_sameStrings_true() {
+        assertEquals(new AliasCommand("a", "b"), new AliasCommand("a", "b"));
+    }
+
+    @Test
+    public void execute_duplicateKeywords_throwIllegalArgumentException() {
+        ModelStubWithAliasMap modelStub = new ModelStubWithAliasMap();
+        assertThrows(CommandException.class, () ->
+                new AliasCommand("get", "switch").execute(modelStub)
+        );
+    }
+
+    @Test
+    public void execute_removeSingleAlias_revertBack() throws CommandException {
+        ModelStubWithAliasMap modelStub = new ModelStubWithAliasMap();
+        assertEquals(
+                new CommandResult("Removed alias. [get] is no longer alias for [find]. "),
+                new AliasCommand("get", "find").execute(modelStub)
+        );
+    }
+
+
+    private class ModelStubWithAliasMap implements Model {
+        private AliasMap am;
+
+        ModelStubWithAliasMap() {
+            am = new AliasMap();
+            am.addAlias(new AliasEntry("get", "find"));
+            am.addAlias(new AliasEntry("d", "delete"));
+        }
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -179,11 +176,6 @@ class DeleteCategoryCommandTest {
         }
 
         @Override
-        public CategoryBudget getCategoryBudget(Tag category) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void topupBudget(Amount amount) {
             throw new AssertionError("This method should not be called.");
         }
@@ -210,7 +202,7 @@ class DeleteCategoryCommandTest {
 
         @Override
         public void setAlias(AliasEntry prev, AliasEntry curr) {
-            throw new AssertionError("This method should not be called.");
+            this.am.setAlias(prev, curr);
         }
 
         @Override
@@ -224,74 +216,34 @@ class DeleteCategoryCommandTest {
         }
 
         @Override
-        public void setAliasMap(AliasMap map) {
+        public CategoryBudget getCategoryBudget(Tag category) throws CategoryBudgetNotFoundException {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAliasMap(AliasMap map) {
+            this.am = new AliasMap(map);
         }
 
         @Override
         public void addAlias(AliasEntry entry) {
-            throw new AssertionError("This method should not be called.");
+            this.am.addAlias(entry);
         }
 
         @Override
         public AliasMap getAliasMap() {
-            throw new AssertionError("This method should not be called.");
+            return this.am;
         }
 
         @Override
         public boolean hasAlias(AliasEntry entry) {
-            throw new AssertionError("This method should not be called.");
+            return this.am.hasAlias(entry);
         }
 
         @Override
         public void deleteAlias(AliasEntry entry) {
-            throw new AssertionError("This method should not be called.");
+            this.am.removeAlias(entry);
         }
     }
 
-    /**
-     * A Model stub that contains a single tag.
-     */
-    private class ModelStubWithTag extends DeleteCategoryCommandTest.ModelStub {
-        private final ArrayList<Tag> tags = new ArrayList<>();
-
-        ModelStubWithTag(Tag tag) {
-            requireNonNull(tag);
-            this.tags.add(tag);
-        }
-
-        @Override
-        public boolean hasCategory(Tag toCheck) {
-            return this.tags.contains(toCheck);
-        }
-    }
-
-
-    /**
-     * A Model stub that always accept the expense being deleted.
-     */
-    private class ModelStubAcceptingTagDeleted extends DeleteCategoryCommandTest.ModelStub {
-        final ArrayList<Tag> tags = new ArrayList<>();
-
-        ModelStubAcceptingTagDeleted() {
-            tags.add(new Tag("Valid"));
-        }
-
-        @Override
-        public boolean hasCategory(Tag toCheck) {
-            requireNonNull(toCheck);
-            return tags.stream().anyMatch(toCheck::equals);
-        }
-
-        @Override
-        public void deleteCategory(Tag tag) {
-            requireNonNull(tag);
-            tags.remove(tag);
-        }
-
-        @Override
-        public ReadOnlyExpenseBook getExpenseBook() {
-            return new ExpenseBook();
-        }
-    }
 }

@@ -78,14 +78,14 @@ public class TypicalExpenses {
      */
     public static ExpenseBook getTypicalExpenseBook() {
         ExpenseBook eb = new ExpenseBook();
-        for (Expense expense : getTypicalExpenses()) {
-            eb.addExpense(expense);
-        }
         eb.addCategory(new Tag("Girlfriend"));
         eb.addCategory(new Tag("Shopping"));
         eb.addCategory(new Tag(VALID_TAG_FOOD));
         eb.addCategory(new Tag(VALID_TAG_TRANSPORT));
         eb.getBudgets().topupBudget(new Amount("10"));
+        for (Expense expense : getTypicalExpenses()) {
+            eb.addExpense(expense);
+        }
         return eb;
     }
 

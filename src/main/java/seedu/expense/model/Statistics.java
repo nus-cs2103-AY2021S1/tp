@@ -1,5 +1,7 @@
 package seedu.expense.model;
 
+import seedu.expense.model.expense.Amount;
+
 /**
  * Statistical calculation of an expense book
  */
@@ -10,19 +12,19 @@ public interface Statistics {
      *
      * @return tallied amount
      */
-    double tallyExpenses();
+    Amount tallyExpenses();
 
     /**
      * Returns the tallied filtered budgets amount
      *
      * @return tallied amount
      */
-    double tallyBudgets();
+    Amount tallyBudgets();
 
     /**
      * Tallies the balance of filtered budgets and filtered expenses in the expense book.
      *
      * @return tallied balance of the expense book
      */
-    double tallyBalance();
+    Amount tallyBalance();
 }

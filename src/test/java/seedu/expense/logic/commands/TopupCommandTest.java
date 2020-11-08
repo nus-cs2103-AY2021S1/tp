@@ -26,6 +26,7 @@ import seedu.expense.model.budget.UniqueCategoryBudgetList;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.tag.Tag;
+import seedu.expense.model.tag.UniqueTagList;
 
 public class TopupCommandTest {
 
@@ -35,11 +36,11 @@ public class TopupCommandTest {
     }
 
     @Test
-    void execute_amountAddedToModel_success() {
+    void execute_amountAddedToModel_success() throws Exception {
         ModelStub modelStub = new ModelStub();
         Amount validAmount = new Amount("1");
         CommandResult commandResult = new TopupCommand(validAmount).execute(modelStub);
-        assertEquals(String.format(TopupCommand.MESSAGE_SUCCESS, DEFAULT_TAG.tagName, validAmount.asDouble()),
+        assertEquals(String.format(TopupCommand.MESSAGE_SUCCESS, DEFAULT_TAG.tagName, validAmount),
                 commandResult.getFeedbackToUser());
         assertEquals(validAmount, modelStub.budgets.getAmount());
     }
@@ -74,9 +75,11 @@ public class TopupCommandTest {
     private class ModelStub implements Model {
 
         final UniqueCategoryBudgetList budgets;
+        final UniqueTagList tags;
 
         ModelStub() {
             budgets = new UniqueCategoryBudgetList();
+            tags = new UniqueTagList();
         }
 
         @Override
@@ -170,6 +173,11 @@ public class TopupCommandTest {
         }
 
         @Override
+        public CategoryBudget getCategoryBudget(Tag category) {
+            return budgets.getCategoryBudget(category);
+        }
+
+        @Override
         public void topupBudget(Amount amount) {
             budgets.topupBudget(amount);
         }
@@ -191,7 +199,7 @@ public class TopupCommandTest {
 
         @Override
         public boolean hasCategory(Tag toCheck) {
-            throw new AssertionError("This method should not be called.");
+            return tags.contains(toCheck);
         }
 
         @Override

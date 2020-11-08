@@ -22,8 +22,8 @@ public class SwitchCommand extends Command {
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_TAG + "Food ";
 
-    public static final String MESSAGE_INVALID_CATEGORY = "No such category account:  %1$s";
-    public static final String MESSAGE_SUCCESS = "Category expense switched:  %1$s";
+    public static final String MESSAGE_INVALID_CATEGORY = "No such category account:  %1$s. ";
+    public static final String MESSAGE_SUCCESS = "Category expense switched:  %1$s. ";
 
     private final Tag toMatch;
 

@@ -10,6 +10,7 @@ import seedu.expense.model.alias.AliasEntry;
 import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.budget.Budget;
 import seedu.expense.model.budget.CategoryBudget;
+import seedu.expense.model.budget.exceptions.CategoryBudgetNotFoundException;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.exceptions.CategoryNotFoundException;
@@ -143,6 +144,11 @@ public interface Model {
      * Returns the budget.
      */
     Budget getTotalBudget();
+
+    /**
+     * Returns the category-budget.
+     */
+    CategoryBudget getCategoryBudget(Tag category) throws CategoryBudgetNotFoundException;
 
     /**
      * Adds the given amount to the budget.

@@ -21,7 +21,7 @@ public class AddCategoryCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TAG + "Food";
 
-    public static final String MESSAGE_SUCCESS = "New category added: %s";
+    public static final String MESSAGE_SUCCESS = "New category added: %s ";
     public static final String MESSAGE_DUPLICATE_CATEGORY = "This category already exists in the expense book.";
 
     private final Tag toAdd;
