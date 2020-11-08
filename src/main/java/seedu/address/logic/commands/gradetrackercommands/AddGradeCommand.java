@@ -61,8 +61,9 @@ public class AddGradeCommand extends Command {
         if (module == null) {
             throw new CommandException(MESSAGE_GRADE_NOT_ADDED);
         }
-        module.addGrade(gradeToAdd);
+        Module updatedModule = module.addGrade(gradeToAdd);
         logger.info("Grade has been added: " + gradeToAdd.toString());
+        model.setModule(module, updatedModule);
         model.commitModuleList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, gradeToAdd));
     }

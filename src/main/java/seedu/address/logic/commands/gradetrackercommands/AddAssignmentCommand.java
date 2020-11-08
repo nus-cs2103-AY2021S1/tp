@@ -79,9 +79,10 @@ public class AddAssignmentCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_ASSIGNMENT);
         }
 
-        module.addAssignment(assignmentToAdd);
+        Module updatedModule = module.addAssignment(assignmentToAdd);
         logger.info("Assignment has been added: " + assignmentToAdd.toString());
         module.getGradeTracker().calculateNewGrade();
+        model.setModule(module, updatedModule);
         model.commitModuleList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, assignmentToAdd));
     }

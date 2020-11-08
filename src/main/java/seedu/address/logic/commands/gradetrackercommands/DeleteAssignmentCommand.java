@@ -72,8 +72,9 @@ public class DeleteAssignmentCommand extends Command {
         Assignment assignmentToDelete = gradeTracker.getSortedAssignments().get(targetIndex.getOneBased());
         gradeTracker.removeAssignment(assignmentToDelete);
         gradeTracker.calculateNewGrade();
-        module.setGradeTracker(gradeTracker);
+        Module updatedModule = module.setGradeTracker(gradeTracker);
         logger.info("Assignment has been deleted: " + assignmentToDelete.toString());
+        model.setModule(module, updatedModule);
         model.commitModuleList();
         return new CommandResult(String.format(MESSAGE_DELETE_ASSIGNMENT_SUCCESS, assignmentToDelete, module));
     }
