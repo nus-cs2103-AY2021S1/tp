@@ -21,14 +21,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ExerciseModelManager(getTypicalExerciseBook(), new UserPrefs());
+        model = new ExerciseModelManager(getTypicalExerciseBook(), null, new UserPrefs());
     }
 
     @Test
     public void execute_newExercise_success() {
         Exercise validExercise = new ExerciseBuilder().build();
 
-        ExerciseModel expectedModel = new ExerciseModelManager(model.getExerciseBook(), new UserPrefs());
+        ExerciseModel expectedModel = new ExerciseModelManager(model.getExerciseBook(), null, new UserPrefs());
         expectedModel.addExercise(validExercise);
 
         assertCommandSuccess(new AddCommand(validExercise), model,
