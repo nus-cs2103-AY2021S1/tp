@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":ResiRegParser" as ResiRegParser LOGIC_COLOR
+participant "<<class>>\n:ResiRegParser" as ResiRegParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,15 +16,13 @@ end box
 [-> LogicManager : execute("delete-student 1")
 activate LogicManager
 
-LogicManager -> ResiRegParser : parseCommand("delete-student 1")
+LogicManager -> Model : getCommandWordAliases()
+activate Model
+Model --> LogicManager
+deactivate Model
+
+LogicManager -> ResiRegParser : parseCommand("delete-student 1", \nparserMap)
 activate ResiRegParser
-
-create DeleteCommandParser
-ResiRegParser -> DeleteCommandParser
-activate DeleteCommandParser
-
-DeleteCommandParser --> ResiRegParser
-deactivate DeleteCommandParser
 
 ResiRegParser -> DeleteCommandParser : parse("1")
 activate DeleteCommandParser
@@ -38,9 +36,6 @@ deactivate DeleteCommand
 
 DeleteCommandParser --> ResiRegParser : d
 deactivate DeleteCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> ResiRegParser
-destroy DeleteCommandParser
 
 ResiRegParser --> LogicManager : d
 deactivate ResiRegParser
@@ -63,6 +58,10 @@ deactivate CommandResult
 
 DeleteCommand --> LogicManager : result
 deactivate DeleteCommand
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteCommand -[hidden]-> ResiRegParser
+destroy DeleteCommand
 
 [<--LogicManager
 deactivate LogicManager
