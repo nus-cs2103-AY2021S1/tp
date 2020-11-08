@@ -557,6 +557,8 @@ As the GUI of ProductiveNUS is implemented using JavaFX, Thread safety using syn
 
 A `Timer` object is used alongside `javafx.concurrent.Task` to periodically check `UniqueTaskList` in `ProductiveNus` every second. The `Timer` object has `isDaemon` set to true. If the deadline of the upcoming assignment or the end time of the upcoming lesson has passed, the `updateTasks()` method in `ProductiveNus class` is called. The `Timer` object can be found in the private method `autoUpdateTaskList()` method in `ProductiveNus`, which is called in the `ProductiveNus constructor` when the user runs ProductiveNus.
 
+#### Usage Scenario
+
 Below is an Activity Diagram illustrating the flow of activities when the application starts up.
 
 ![Activity diagram for Auto updating of task list](images/AutoUpdateTaskListActivityDiagram.png)
@@ -566,6 +568,16 @@ Below is an Activity Diagram illustrating the flow of activities when the applic
  **:information_source: Note:**
 Due to limitations of PlantUML, arrows are not able to point towards the branch indicator (represented by a diamond) to represent loops.
 </div>
+ 
+ 1. When the user opens ProductiveNUS, the main JavaFX thread starts running. At approximately the same time, the `Timer` in `ProductiveNus` starts running as well.
+ 1. All user interactions with the GUI are handled by the JavaFX thread. 
+    1. Whenever a user inputs a command, if the command does not exit ProductiveNUS, the JavaFX thread handles any modifications the command entered causes to the GUI.
+    1. If the user inputs the exit command, the JavaFX thread stops running.
+ 1. Concurrently, the `Timer` thread periodically checks if the next task in `Upcoming tasks` has passed.
+    1. If the user does not exit ProductiveNUS, the `Timer` thread checks if the next task has passed (deadline of assignment or end time of lesson is over). If the next task has passed, the task will be removed from `Upcoming tasks`. Else, nothing happens.
+    1. If the user exits ProductiveNUS, the `Timer` thread stops running.
+1. ProductiveNUS closes.
+
 
 ### Adding an assignment feature
 
