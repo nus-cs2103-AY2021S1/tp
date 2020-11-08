@@ -69,6 +69,7 @@ public class AddTeammateCommand extends Command {
             toAdd.addProject(project);
             project.addParticipation(toAdd);
             model.addParticipation(project.getParticipation(toAdd.getGitUserNameString()));
+            break;
         default:
         }
         logger.log(Level.INFO, "New Person added");
