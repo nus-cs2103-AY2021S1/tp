@@ -3,7 +3,7 @@ layout: page
 title: Anikesh's Project Portfolio Page
 ---
 
-## Project: SuperStrikers
+## Project: SupperStrikers
 
 SupperStrikers is a food ordering application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 
