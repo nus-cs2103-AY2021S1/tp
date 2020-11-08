@@ -14,7 +14,7 @@ import quickcache.model.flashcard.Tag;
 
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditFlashcardDescriptor objects.
  */
 public class EditFlashcardDescriptorBuilder {
 
@@ -29,7 +29,7 @@ public class EditFlashcardDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditFlashcardDescriptor} with fields containing {@code flashcard}'s details
      */
     public EditFlashcardDescriptorBuilder(Flashcard flashcard) {
         descriptor = new EditCommand.EditFlashcardDescriptor();
@@ -43,7 +43,7 @@ public class EditFlashcardDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code question} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code question} of the {@code EditFlashcardDescriptor} that we are building.
      */
     public EditFlashcardDescriptorBuilder withQuestion(String question) {
         descriptor.setQuestion(question);
@@ -51,7 +51,7 @@ public class EditFlashcardDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code answer} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code answer} of the {@code EditFlashcardDescriptor} that we are building.
      */
     public EditFlashcardDescriptorBuilder withAnswer(String answer) {
         descriptor.setAnswer(new Answer(answer));
@@ -59,7 +59,7 @@ public class EditFlashcardDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code difficutly} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code difficutly} of the {@code EditFlashcardDescriptor} that we are building.
      */
     public EditFlashcardDescriptorBuilder withDifficulty(String difficulty) {
         descriptor.setDifficulty(new Difficulty(difficulty));
@@ -67,7 +67,7 @@ public class EditFlashcardDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code choices} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code choices} of the {@code EditFlashcardDescriptor} that we are building.
      */
     public EditFlashcardDescriptorBuilder withChoices(Choice[] choices) {
         descriptor.setChoices(choices);
@@ -75,7 +75,7 @@ public class EditFlashcardDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditFlashcardDescriptor}
      * that we are building.
      */
     public EditFlashcardDescriptorBuilder withTags(String... tags) {
@@ -89,7 +89,7 @@ public class EditFlashcardDescriptorBuilder {
     }
 
     /**
-     * Returns an EditFlashcardDescriptor object with no choices for testiong of open ended question.
+     * Returns an EditFlashcardDescriptor object with no choices for testing of open ended question.
      */
     public EditCommand.EditFlashcardDescriptor buildWithNoChoices() {
         EditCommand.EditFlashcardDescriptor finalDescriptor = new EditCommand.EditFlashcardDescriptor();

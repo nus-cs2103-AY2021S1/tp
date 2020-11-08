@@ -4,7 +4,7 @@
     "type" : "OEQ",
     "question" : "Are heparins safe in pregnancy?",
     "choices" : null,
-    "answer" : "yes, they dont cross the placenta",
+    "answer" : "Yes, They dont cross the placenta",
     "tagged" : [ "LSM1301" ],
     "difficulty" : "UNSPECIFIED",
     "statistics" : {
