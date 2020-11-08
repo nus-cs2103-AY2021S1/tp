@@ -58,6 +58,9 @@ public class EditApptCommand extends Command {
      * @param newAppointment The new appointment timing.
      */
     public EditApptCommand(Nric nric, Appointment oldAppointment, Appointment newAppointment) {
+        requireNonNull(nric);
+        requireNonNull(oldAppointment);
+        requireNonNull(newAppointment);
         this.nric = nric;
         this.oldAppointment = oldAppointment;
         this.newAppointment = newAppointment;

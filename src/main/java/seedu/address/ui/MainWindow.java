@@ -12,10 +12,12 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.patient.Patient;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -81,6 +83,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -108,6 +111,16 @@ public class MainWindow extends UiPart<Stage> {
             }
         });
     }
+
+    /**
+     * Updates the appointmentWindow of currently residing in MainWindow
+     *
+     * @param patient
+     */
+    public static void updateAppointmentWindow(Patient patient) {
+        appointmentWindow.setAppointmentWindow(patient);
+    }
+
 
     /**
      * Fills up all the placeholders of this window.
@@ -154,7 +167,6 @@ public class MainWindow extends UiPart<Stage> {
      * Opens Appointment Window.
      */
     public void handleShowAppt() {
-        appointmentWindow.setAppointmentWindow(logic.getFilteredPatientList().get(0));
         if (appointmentWindow.isShowing()) {
             appointmentWindow.focus();
         } else {
@@ -192,19 +204,21 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            String feedback = commandResult.getFeedbackToUser();
+            if (feedback.length() > 100) {
+                feedback = StringUtil.stringBreakerByKeywords(feedback, true,
+                        "Email:", "Appointments", "Medical Record URL: ");
+            }
+
+            resultDisplay.setFeedbackToUser(feedback);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
 
             if (commandResult.isShowAppointment()) {
-                if (logic.getFilteredPatientList().size() != 1) {
-                    logger.info("Parse exception: Patient not found - " + commandText);
-                    throw new ParseException("Patient not found!");
-                } else {
-                    handleShowAppt();
-                }
+                handleShowAppt();
             }
 
             if (commandResult.isExit()) {

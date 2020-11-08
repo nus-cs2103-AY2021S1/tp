@@ -21,6 +21,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ShowMrCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.appointmentcommand.AddApptCommand;
 import seedu.address.logic.commands.appointmentcommand.DeleteApptCommand;
@@ -41,7 +42,7 @@ public class HelpWindow extends UiPart<Stage> {
     private final CommandDescription addCommandDes =
             new CommandDescription(AddCommand.COMMAND_WORD, AddCommand.MESSAGE_USAGE);
     private final CommandDescription clearCommandDes =
-            new CommandDescription(ClearCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD);
+            new CommandDescription(ClearCommand.COMMAND_WORD, ClearCommand.MESSAGE_USAGE);
     private final CommandDescription deleteCommandDes =
             new CommandDescription(DeleteCommand.COMMAND_WORD, DeleteCommand.MESSAGE_USAGE);
     private final CommandDescription editCommandDes =
@@ -49,7 +50,7 @@ public class HelpWindow extends UiPart<Stage> {
     private final CommandDescription findCommandDes =
             new CommandDescription(FindCommand.COMMAND_WORD, FindCommand.MESSAGE_USAGE);
     private final CommandDescription listCommandDes =
-            new CommandDescription(ListCommand.COMMAND_WORD, ListCommand.COMMAND_WORD);
+            new CommandDescription(ListCommand.COMMAND_WORD, ListCommand.MESSAGE_USAGE);
     private final CommandDescription helpCommandDes =
             new CommandDescription(HelpCommand.COMMAND_WORD, HelpCommand.MESSAGE_USAGE);
     private final CommandDescription countCommandDes =
@@ -64,11 +65,13 @@ public class HelpWindow extends UiPart<Stage> {
             new CommandDescription(EditApptCommand.COMMAND_WORD, EditApptCommand.MESSAGE_USAGE);
     private final CommandDescription deleteApptDes =
             new CommandDescription(DeleteApptCommand.COMMAND_WORD, DeleteApptCommand.MESSAGE_USAGE);
+    private final CommandDescription showMrDes =
+            new CommandDescription(ShowMrCommand.COMMAND_WORD, ShowMrCommand.MESSAGE_USAGE);
 
     public final ObservableList<CommandDescription> commandDescriptions = FXCollections
             .observableArrayList(addCommandDes, clearCommandDes, deleteCommandDes, editCommandDes,
                     findCommandDes, listCommandDes, helpCommandDes, countCommandDes, sortCommandDes,
-                    showApptDes, addApptDes, editApptDes, deleteApptDes);
+                    showApptDes, addApptDes, editApptDes, deleteApptDes, showMrDes);
 
     @FXML
     private Button copyButton;
@@ -92,6 +95,7 @@ public class HelpWindow extends UiPart<Stage> {
         moreInfo.setText(MORE_INFO);
         commandDescriptions.sort(Comparator.comparing(CommandDescription::getCommand));
         helpTable.setItems(commandDescriptions);
+        helpTable.getColumns().forEach(col -> col.setSortable(false));
     }
 
     /**

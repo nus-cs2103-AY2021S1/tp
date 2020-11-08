@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.AppointmentCommandParser;
+package seedu.address.logic.parser.appointmentCommandParser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -49,7 +49,7 @@ public class DeleteApptCommandParser implements Parser<DeleteApptCommand> {
         Appointment appointment = new Appointment();
 
         if (argMultimap.getValue(PREFIX_APPOINTMENT).isPresent()) {
-            appointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_APPOINTMENT).get());
+            appointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_APPOINTMENT).get(), true);
         }
         assert !appointment.equals(new Appointment()) : "Appointment should not be empty!";
 

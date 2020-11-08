@@ -11,6 +11,7 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.patient.Appointment;
 import seedu.address.model.patient.Patient;
 
@@ -48,6 +49,8 @@ public class PatientCard extends UiPart<Region> {
     @FXML
     private FlowPane allergies;
     @FXML
+    private Label noAllergiesLabel;
+    @FXML
     private Label numberOfAppointments;
     @FXML
     private Button copyButton;
@@ -62,11 +65,23 @@ public class PatientCard extends UiPart<Region> {
         super(FXML);
         this.patient = patient;
         id.setText(displayedIndex + ". ");
-        name.setText(patient.getName().fullName);
+        name.setText(StringUtil.stringBreaker(patient.getName().fullName, 7, 70, false, 3, ".."));
         nric.setText(patient.getNric().value);
-        phone.setText(patient.getPhone().value);
-        address.setText(patient.getAddress().value);
-        email.setText(patient.getEmail().value);
+        phone.setText(StringUtil.stringBreaker(patient.getPhone().value, 0, 80, false));
+        address.setText(StringUtil.stringBreaker(patient.getAddress().value, 8, 80, false, 5, ".."));
+        String patientEmail = StringUtil.stringBreaker(patient.getEmail().value, 0, 80, false, 4, "..");
+
+        if (patientEmail.isEmpty()) {
+            email.setText("NONE");
+        } else {
+            email.setText(patientEmail);
+        }
+
+        if (patient.getAllergies().isEmpty()) {
+            noAllergiesLabel.setText("NONE");
+        } else {
+            noAllergiesLabel.setText("");
+        }
 
         Set<Appointment> appointmentList = patient.getAppointments();
         int numOfAppts = 0;
@@ -78,7 +93,8 @@ public class PatientCard extends UiPart<Region> {
         numberOfAppointments.setText(Integer.toString(numOfAppts));
         patient.getAllergies().stream()
                 .sorted(Comparator.comparing(allergy -> allergy.allergyName))
-                .forEach(allergy -> allergies.getChildren().add(new Label(allergy.allergyName)));
+                .forEach(allergy -> allergies.getChildren()
+                        .add(new Label(StringUtil.stringBreaker(allergy.allergyName, 8, 80, false))));
     }
 
     @Override

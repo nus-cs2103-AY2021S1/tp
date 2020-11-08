@@ -16,15 +16,16 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ShowMrCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.appointmentcommand.AddApptCommand;
 import seedu.address.logic.commands.appointmentcommand.DeleteApptCommand;
 import seedu.address.logic.commands.appointmentcommand.EditApptCommand;
 import seedu.address.logic.commands.appointmentcommand.ShowApptCommand;
-import seedu.address.logic.parser.AppointmentCommandParser.AddApptCommandParser;
-import seedu.address.logic.parser.AppointmentCommandParser.DeleteApptCommandParser;
-import seedu.address.logic.parser.AppointmentCommandParser.EditApptCommandParser;
-import seedu.address.logic.parser.AppointmentCommandParser.ShowApptCommandParser;
+import seedu.address.logic.parser.appointmentCommandParser.AddApptCommandParser;
+import seedu.address.logic.parser.appointmentCommandParser.DeleteApptCommandParser;
+import seedu.address.logic.parser.appointmentCommandParser.EditApptCommandParser;
+import seedu.address.logic.parser.appointmentCommandParser.ShowApptCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -95,6 +96,9 @@ public class HospifyParser {
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
+        case ShowMrCommand.COMMAND_WORD:
+            return new ShowMrParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

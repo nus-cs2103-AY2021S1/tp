@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.time.LocalDateTime;
 
 import javafx.beans.property.SimpleStringProperty;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.patient.Appointment;
 
 public class AppointmentDescription {
@@ -41,7 +42,7 @@ public class AppointmentDescription {
      * @return
      */
     public String getDescription() {
-        return description.get();
+        return StringUtil.stringBreaker(description.get(), 20, 120, true, 10, "..");
     }
 
     /**

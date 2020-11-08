@@ -72,7 +72,7 @@ public class JsonAdaptedAppointment {
      * @throws IllegalValueException if there were any data constraints violated in the adapted appointment.
      */
     public Appointment toModelType() throws IllegalValueException {
-        if (!Appointment.isValidAppointment(appointmentTime)) {
+        if (!Appointment.isValidDateTime(appointmentTime)) {
             logger.warning("Appointment toModelType Error!");
             throw new IllegalValueException(Appointment.MESSAGE_CONSTRAINTS);
         }

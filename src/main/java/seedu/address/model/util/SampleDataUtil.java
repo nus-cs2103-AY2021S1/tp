@@ -26,7 +26,7 @@ public class SampleDataUtil {
                         new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
                         getAllergySet("shellfish"),
                         getAppointmentSet(
-                                apptString("X - ray", "23/10/2020 12:09"),
+                                apptString("X - ray", "23/10/2020 12:00"),
                                 apptString("Medical screening", "25/11/2020 14:00"),
                                 apptString("Dental appointment", "26/12/2020 13:00")
                         ),
@@ -34,13 +34,15 @@ public class SampleDataUtil {
             new Patient(new Name("Bernice Yu"), new Nric("S0000002A"), new Phone("99272758"),
                         new Email("berniceyu@example.com"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                         getAllergySet("soy", "pollen"), getAppointmentSet(
-                        apptString("Medical screening", "25/11/2020 14:00")
+                            apptString("X - ray", "23/10/2020 12:00"),
+                            apptString("Medical screening", "25/11/2020 14:00")
                 ),
                         new MedicalRecord("www.sample.com/02")),
             new Patient(new Name("Charlotte Oliveiro"), new Nric("S0000003A"), new Phone("93210283"),
                         new Email("charlotte@example.com"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                         getAllergySet("mould"), getAppointmentSet(
-                        apptString("Medical screening", "25/11/2020 14:00")
+                            apptString("X - ray", "23/10/2020 12:09"),
+                            apptString("Medical screening", "25/11/2020 14:00")
                 ),
                         new MedicalRecord("www.sample.com/03")),
             new Patient(new Name("David Li"), new Nric("S0000004A"), new Phone("91031282"),
