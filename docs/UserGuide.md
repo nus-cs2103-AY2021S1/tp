@@ -359,6 +359,8 @@ Outcome:
 
 ![FindByTagCommandScreenshot](images/FindByTagCommandScreenshot.png)
 
+Figure x. A screenshot showing the outcome of an `c-tag-find monday friday` command
+
 #### 3.6 Locating all employees who are available to work today: `c-today`
 
 Finds employees whose tags contain today's day (i.e. `Wednesday`, `Thursday`, etc).
@@ -398,6 +400,8 @@ Outcome:
 
 ![FindByTagTodayCommandScreenshot](images/FindByTagTodayCommandScreenshot.png)
 
+Figure x. A screenshot showing the outcome of an `c-today` command
+
 #### 3.7 Locating all employees who are available to work tomorrow: `c-tomorrow`
 
 Finds employees whose tags contain tomorrow's day (i.e. `Wednesday`, `Thursday`, etc).
@@ -436,6 +440,8 @@ Outcome:
 2. The available manpower for tomorrow will be listed in the Employee Directory inside the _Main View_.
 
 ![FindByTagTomorrowCommandScreenshot](images/FindByTagTomorrowCommandScreenshot.png)
+
+Figure x. A screenshot showing the outcome of an `c-tomorrow` command
 
 #### 3.8 Deleting a person : `c-delete`
 
@@ -498,6 +504,9 @@ Outcome:
 
 ![ArchiveCommandScreenshot](images/ArchiveCommandScreenshot.png)
 
+
+Figure x. Screenshots showing the outcome of an `c-archive 1` command
+
 #### 3.11 Archiving all employees : `c-archive-all`
 
 Archives all employees in the Employee Directory inside the _Main View_.
@@ -530,6 +539,8 @@ Outcome:
 
 ![ArchiveAllCommandScreenshot](images/ArchiveAllCommandScreenshot.png)
 
+Figure x. Screenshots showing the outcome of an `c-archive-all` command
+
 #### 3.12 Listing all archived employees : `c-archive-list`
 
 Shows a list of all archived employees in Employee Directory inside the _Main View_.
@@ -558,6 +569,8 @@ Outcome:
 2. All archived employees will be listed in Employee Directory inside the _Main View_.
 
 ![ArchiveListCommandScreenshot](images/ArchiveListCommandScreenshot.png)
+
+Figure x. A screenshot showing the outcome of an `c-archive-list` command
 
 #### 3.13 Unarchiving an employee : `c-unarchive`
 Unarchives the specified employee from the archived employee list.
@@ -600,6 +613,8 @@ Outcome:
  the _Main View_.
 
 ![UnarchiveCommandScreenshot](images/UnarchiveCommandScreenshot.png)
+
+Figure x. Screenshots showing the outcome of an `c-unarchive 1` command
 
 ### 4. Commands - General <a name="commands-general"></a>
 #### 4.1 Viewing help : `help`
