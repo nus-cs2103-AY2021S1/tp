@@ -14,8 +14,8 @@ public class ScheduleViewCommand extends ScheduleCommand {
     public static final String MESSAGE_INVALID_VIEW_MODE = "Invalid view mode!";
     public static final String MESSAGE_CONSTRAINTS = "Input date should be in the form dd/mm/yyyy, "
             + "and should not be blank";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "\n"
-            + "m/[weekly / daily]\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + "m/[weekly / daily]"
             + "d/[dd/mm/yyyy]\n"
             + "Example: schedule m/weekly d/2/11/2020";
 

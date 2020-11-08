@@ -15,7 +15,6 @@ import java.util.Objects;
  * Guarantees: immutable; is valid as declared in {@link #isValidClassTime(String)}
  */
 public class ClassTime implements Comparable<ClassTime> {
-
     public static final String MESSAGE_CONSTRAINTS = "Class Time should follow the following format:\n"
             + "DAY_OF_WEEK START_TIME-END_TIME (no space between time fields)\n"
             + "DAY_OF_WEEK: Integer (positive) from 1-7 representing Mon-Sun\n"
