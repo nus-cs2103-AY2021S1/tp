@@ -16,7 +16,7 @@ import seedu.address.model.student.academic.exam.Exam;
 public abstract class ExamCommand extends Command {
     public static final String COMMAND_WORD = "exam";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds/deletes an exam "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds, deletes an exam "
             + "or view exam statistics of student "
             + "to/from a student in Reeve.\n\n"
             + "Example:\n"

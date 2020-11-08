@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -22,6 +23,13 @@ public class DeleteQuestionCommand extends QuestionCommand {
     public static final String MESSAGE_SUCCESS = "Question removed from %1$s: %2$s";
     public static final String MESSAGE_BAD_QUESTION_INDEX = "There is no question at this index";
     public static final String COMMAND_WORD = "delete";
+
+    public static final String MESSAGE_USAGE = QuestionCommand.COMMAND_WORD + " " + COMMAND_WORD
+            + ": Deletes a question from a student.\n\n"
+            + "PARAMETERS: INDEX (must be a positive integer) "
+            + PREFIX_INDEX + "QUESTION_INDEX\n\n"
+            + "Example: "
+            + QuestionCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1 " + PREFIX_INDEX + "1";
 
     private static Logger logger = Logger.getLogger("Delete Question Log");
 

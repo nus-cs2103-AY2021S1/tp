@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEXT;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -22,6 +23,14 @@ public class AddQuestionCommand extends QuestionCommand {
     public static final String MESSAGE_SUCCESS = "New question added to student %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_QUESTION = "This student has already asked this question";
     public static final String COMMAND_WORD = "add";
+
+    public static final String MESSAGE_USAGE = QuestionCommand.COMMAND_WORD + " " + COMMAND_WORD
+            + ": Adds a new unresolved question to a student.\n\n"
+            + "PARAMETERS: INDEX (must be a positive integer) "
+            + PREFIX_TEXT + "QUESTION_TEXT\n\n"
+            + "Example: "
+            + QuestionCommand.COMMAND_WORD + " " + COMMAND_WORD
+            + " 1 " + PREFIX_TEXT + "How do birds fly?";
 
     private static Logger logger = Logger.getLogger("Add Question Log");
 
