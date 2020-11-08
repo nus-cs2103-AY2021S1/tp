@@ -12,7 +12,7 @@ import seedu.address.model.module.ZoomLink;
  */
 public abstract class ZoomLinkCommand extends Command {
 
-
+    @Override
     public abstract CommandResult execute(Model model) throws CommandException;
 
     /**
