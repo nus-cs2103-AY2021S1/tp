@@ -557,7 +557,7 @@ Outcome:
 1. The _Result Display_ will show that you add a new employee.
 2. All active employees will be listed in the Employee Directory inside the _Main View_.
 
-![AddEmployeeCommandScreenshot](images/AddEmployeeResult.png)
+![AddEmployeeCommandScreenshot](images/AddEmployeeCommandResult.png)
 
 #### 3.2 Listing all employees in the active list: `c-active-list`
 
