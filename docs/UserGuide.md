@@ -1159,6 +1159,17 @@ using the command `bookmark sn/giant1`. Below shows the desired outcome.
 
 ![bookmark_after](images/bookmark/bookmark.png)
 
+**Step 2.** You want to bookmark multiple stocks with serial numbers `fairprice1` and `ntuc1`. 
+You can bookmark the stock by using the command `bookmark sn/fairprice1 sn/ntuc1`. Below shows the desired outcome.
+
+**Before input:**
+
+![bookmark_multiple_before](images/bookmark/bookmark_multiple_before.png)
+
+**After input:**
+
+![bookmark_multiple](images/bookmark/bookmark_multiple.png)
+
 <div markdown="block" class="alert alert-warning" markdown="1">
 
 **:warning: Nonexistent Stocks**
@@ -1193,12 +1204,25 @@ using the command `bookmark sn/giant1`. Below shows the desired outcome.
 
 **Before input:**
 
-![GUI_component](images/bookmark/unbookmark_before.png)
+![unbookmark_before](images/bookmark/unbookmark_before.png)
 
 
 **After input:**
 
-![GUI_component](images/bookmark/unbookmark.png)
+![unbookmark_after](images/bookmark/unbookmark.png)
+
+**Step 2.** You want to unbookmark multiple stocks with serial numbers `giant1` and `cold storage1`.
+You can unbookmark the stock by using the command `bookmark sn/giant1 sn/cold storage1`. 
+Below shows the desired outcome.
+
+**Before input:**
+
+![unbookmark_multiple_before](images/bookmark/unbookmark_multiple_before.png)
+
+
+**After input:**
+
+![unbookmark_multiple](images/bookmark/unbookmark_multiple.png)
 
 <div markdown="block" class="alert alert-warning" markdown="1">
 
