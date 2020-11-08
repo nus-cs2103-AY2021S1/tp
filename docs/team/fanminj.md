@@ -36,7 +36,7 @@ Interface (GUI). It is written in Java, and currently has over 10kLoC.
 
 - Contributions to the Developer Guide:
     - Added the sequence diagram for the command `addMod`.
-    - Wrote the implementation steps from section 4.1 to section 4.6 and appendix C and D.
+    - Wrote the implementation steps from section 4.1 to section 4.6 and use cases.
 
 - Contributions to team-based tasks:
     - Set up the GitHub team organisation and repo (including creating issue labels and milestones).
