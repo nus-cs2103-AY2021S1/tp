@@ -830,7 +830,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Contact**: A member of a faculty
-* **Contact attribute**: A piece of information associated to a contact, i.e. name, contact, number, email, department, office, remark, tag(s)
+* **Contact attribute**: A piece of information associated to a contact, i.e. name, contact, number, email, department, office
 * **Remark**: A short description of a contact. Remark is an optional contact attribute
 * **Tag**: An optional one-word identifier of a contact. A contact can have multiple tags
 * **Module**: A course held in a college or university. A module can be assigned to a contact
