@@ -38,6 +38,8 @@ package Logic <<Rectangle>> {
 Class HiddenLogic #FFFFFF
 }
 
+Enum KeyboardShortcutsEnum <<enumeration>>
+
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
