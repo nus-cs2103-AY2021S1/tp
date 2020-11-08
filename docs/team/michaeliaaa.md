@@ -10,7 +10,7 @@ CliniCal is a desktop app that allows doctors to manage patient records and sche
 Given below are my contributions to the project.
 
 * **Morphing of AddressBook**:
-  * Refactor Person name to Patient. [\#51](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/51)
+  * Refactor Person to Patient. [\#51](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/51)
 
 * **New Implementation**: Implemented Command History.
   * What it does: Store used commands.
@@ -60,15 +60,18 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for the features `history`, `clearhistory`, `up arrow arrow keys`, `addappt` and `deleteappt`. [\#59](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/59), [\#72](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/72), [\#161](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/161)
     * Did cosmetic tweaks to existing documentation: [\#177](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/177)
+    * Added well-annotated screenshots: [\#263](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/263), [\#264](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/264)
   * Developer Guide:
     * Added glossary. [\#38](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/38)
-    * Added implementation details, diagrams and use cases of the `history`, `clearhistory` and `up down arrow keys` features. [\#100](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/100)
+    * Added implementation details and diagrams for `history`, `clearhistory` and `up down arrow keys` features. [\#100](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/100)
+    * Added use cases for `addappt`, `history`, `clearhistory` and `up down arrow keys` features. [\#100](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/100)
+    * Added manual testing instructions for `addappt` and `deleteappt` features. [\#100](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/100), [\#267](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/267)
     
 * **Project management**:
   * Setup tP Team Organisation and Repo Setup.
         
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): (examples: [\#235](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/235), [\#252](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/252))
+  * PRs reviewed (with non-trivial review comments): [\#235](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/235), [\#252](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/252)
   * Contributed to forum discussions (examples: [3](https://github.com/nus-cs2103-AY2021S1/forum/issues/3), [147](https://github.com/nus-cs2103-AY2021S1/forum/issues/147))
   * Reported bugs and suggestions for other teams in the class (during Practical Dry Run): [Issues link](https://github.com/Michaeliaaa/ped/issues)
 
