@@ -18,6 +18,7 @@ public class GetProfitCommand extends Command {
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireAllNonNull(model, activeAccount);
+        assert (model != null) && (activeAccount != null);
 
         double profits = activeAccount.getProfits();
         return CommandResultFactory.createDefaultCommandResult(MESSAGE_SUCCESS + String.format("%.2f", profits));
