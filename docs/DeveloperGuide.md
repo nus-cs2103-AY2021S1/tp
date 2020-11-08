@@ -287,7 +287,7 @@ The following class diagram depicts how a `Bid` is created.
 The following class diagram depicts how the different types of meetings are being created. The `Admin`, `Paperwork` and `Viewing` meeting types extend from the
 abstract `Meeting`.  
 
-![Id Diagram](images/meeting/MeetingModel.png)
+![Meeting Diagram](images/meeting/MeetingModel.png)
 
 As seen from the diagram above there are three main types of Meetings: Admin, Paperwork and viewing. Each of the meeting
 types then contain the attributes of `BidderId`, `PropertyId`, `Venue`, `MeetingDate`, `StartTime` and `EndTime`.
