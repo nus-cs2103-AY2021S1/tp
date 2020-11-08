@@ -156,7 +156,7 @@ and ```seller``` are created automatically and ***cannot be modified***.
 1. The length of the name of any clients 
 that PropertyFree accepts is of **26 characters or lesser** (including spaces).
 2. The length of the phone number of any clients
-that PropertyFree accepts is of **11 numbers of lesser**.
+that PropertyFree accepts is of **10 numbers or lesser**.
 
 PropertyFree assumes that **all phone numbers are unique**, and as such will not allow duplicates of
 phone number. 

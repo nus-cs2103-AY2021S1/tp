@@ -65,7 +65,7 @@ public class EditBidderCommand extends Command {
         Bidder bidderToEdit = lastShownList.get(index.getZeroBased());
         Bidder editedBidder = createEditedBidder(bidderToEdit, editBidderDescriptor);
 
-        if (!bidderToEdit.isSameBidder(editedBidder) && model.hasBidder(editedBidder)) {
+        if (!bidderToEdit.isSameBidder(editedBidder) || model.hasBidder(editedBidder)) {
             throw new CommandException(MESSAGE_DUPLICATE_BIDDER);
         }
 
