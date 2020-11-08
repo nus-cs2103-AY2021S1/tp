@@ -118,6 +118,14 @@ The `Model`,
 * stores the data in ProductiveNUS.
 * exposes an unmodifiable `ObservableList<Assignment>` and an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
+#### Task, Lesson and Assignment
+`Lesson` and `Assignment` are two important classes in ProductiveNus; `Lesson` stores information about the lessons imported from NUSMods while `Assignment` stores information about the assignments added by the user. 
+
+Since `Lesson` and `Assignment` have several attributes in common, namely `Name`, `Time` and `ModuleCode`, an abstract parent class, `Task`, containing these shared attributes was created.
+
+   !![Relationship between Task, Assignment and Lesson](images/TaskClassDiagram.png)
+   <br/>*Figure X: Class Diagram for Task*
+
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
