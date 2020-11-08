@@ -9,7 +9,7 @@ Welcome to the User Guide for Eva!
 
 ## 1. Introduction
 
-<img src="evalogo.png" alt="Eva logo" width="500" height="500" \>
+<img src="images/ugimages/evalogo.png" alt="Eva logo" width="500" height="500" \>
 
 Welcome and thanks for downloading Eva!
 
@@ -76,6 +76,7 @@ Note how the app contains some sample data.<br>
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
+Here are some information you would need to know about the way to include  
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -134,7 +135,7 @@ As of `v1.4`, Eva currently has four different application panels it can switch 
 
 ![applicantProfilePanel intro](images/ugimages/Intro4.png)
 
-These four panels form the core of our application to be sure to familiarize yourself with them! Once ready, move on to the [Commands](#32-system-commands)!
+These four panels form the core of our application to be sure to familiarize yourself with them!Once ready, move on to the [Commands](#32-system-commands)!
 
 
 ### 3.2. System Commands
