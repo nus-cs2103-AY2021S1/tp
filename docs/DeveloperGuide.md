@@ -605,9 +605,7 @@ The following are the various design choices made regarding the feature and alte
 
 ### 6.5 Notebook feature
 
-This section describes the implementation of the notebook feature and the various commands relating to notebook. The following diagram show the internal structure of a note. (refer to [5.4 Model Component](#54-model-component) for higher-level details about the design)
-
-![NotesModelClassDiagram](images/NotesModelClassDiagram.png)
+This section describes the implementation of the notebook feature and the various commands relating to notebook.
 
 The notebook feature comprises three specific commands extending `NoteCommand`:
 
