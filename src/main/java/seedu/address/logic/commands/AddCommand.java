@@ -69,7 +69,7 @@ public class AddCommand extends CommandForExercise {
         if (optionalGoal.isPresent()) {
             Goal goal = optionalGoal.get();
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd,
-                    burntWeight.toString()) + String.format(MESSAGE_GOAL,goal.getCalories(),goal.getDate()));
+                    burntWeight.toString()) + String.format(MESSAGE_GOAL, goal.getCalories(), goal.getDate()));
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd, burntWeight.toString()));
     }
