@@ -10,18 +10,18 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PEARL;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.ingredientcommands.SetAllCommand;
+import seedu.address.logic.commands.ingredientcommands.IngredientSetAllCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ingredient.Amount;
 
-public class SetAllCommandParser implements Parser<SetAllCommand> {
+public class IngredientSetAllCommandParser implements Parser<IngredientSetAllCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the SetAllCommand
      * and returns an SetAllCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public SetAllCommand parse(String args) throws ParseException {
+    public IngredientSetAllCommand parse(String args) throws ParseException {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MILK, PREFIX_PEARL,
@@ -30,7 +30,8 @@ public class SetAllCommandParser implements Parser<SetAllCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_MILK, PREFIX_PEARL, PREFIX_BOBA,
                 PREFIX_BLACK_TEA, PREFIX_GREEN_TEA, PREFIX_BROWN_SUGAR)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetAllCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    IngredientSetAllCommand.MESSAGE_USAGE));
         }
 
         Amount milkAmount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_MILK).get());
@@ -40,7 +41,8 @@ public class SetAllCommandParser implements Parser<SetAllCommand> {
         Amount greenTeaAmount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_GREEN_TEA).get());
         Amount brownSugarAmount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_BROWN_SUGAR).get());
 
-        return new SetAllCommand(milkAmount, pearlAmount, bobaAmount, blackTeaAmount, greenTeaAmount, brownSugarAmount);
+        return new IngredientSetAllCommand(milkAmount, pearlAmount, bobaAmount,
+                blackTeaAmount, greenTeaAmount, brownSugarAmount);
     }
 
     /**
