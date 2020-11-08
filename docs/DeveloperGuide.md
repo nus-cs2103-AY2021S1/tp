@@ -203,11 +203,16 @@ Step 1. The user launches the application for the first time.
 The `AddressBook` will be initialized with the initial client, session and schedule list.
 
 Step 2. The user executes `sedit 1 g/coolgym` command to edit the first Session in the address book. 
-The `sedit` command calls `Model#setSession()`, causing changes to be made in the address book after the `sedit 1 g/coolgym` command executes.
+The `sedit` command calls `Model#setSession()`, causing changes to be made in the Session List after the `sedit 1 g/coolgym` command executes.
 
 The following sequence diagram shows how the Edit Session operation works:
 
-![EditSessionSequenceDiagram](images/EditSessionSequenceDiagram.png)
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+    <p>
+        <img src="images/EditSessionSequenceDiagram.png" style="width: 25%; height: auto;"/>
+    </p>
+    <figcaption>Figure - Edit Session Sequence Diagram</figcaption>
+</figure>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditSessionCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -331,7 +336,7 @@ The following activity diagram summarizes the decision making process when a use
 
 #### Command Usage Examples
 
-Assume the current state of the displayed Client List, displayed Session List, and Schedules (all Schedules in FitEgo) are as illustrated on the following simplified object diagram:
+Assume the current state of the displayed Client List, displayed Session List, and Schedules (all Schedules in FitEgo) are as illustrated in the following simplified object diagram:
 
  <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
      <p>
@@ -346,13 +351,12 @@ Now, consider two cases of Add Schedule command to be invoked.
 
 Here is what happens when `schadd c/2 s/1` is invoked.
 
-The overall mechanism is similar to [Delete Session](#delete-session-feature), but mainly differs on the method call `parseCommand` and `DeleteSessionCommand#execute(model)`.
+To some extent, the mechanism (on how it involves `LogicManager`, `AddressBookParser`, and saving the changes to `Storage`) is similar to that of [Delete Session](#delete-session-feature), as illustrated in [Delete Session](#delete-session-feature)'s sequence diagram. The main differences are on the method call `parseCommand()` and `DeleteSessionCommand#execute(model)`.
 
-`parseCommand` method call:
-Instead of using `DeleteSessionCommandParser`, it uses `AddScheduleCommandParser` such that it returns an `AddScheduleCommand` object called `a` with Client index `2` and Session index `1`.
+`parseCommand()` method call:
+Instead of using `DeleteSessionCommandParser`, it uses `AddScheduleCommandParser` to parse the argument `c/2 s/1` such that it returns an `AddScheduleCommand` object called `a` with Client index `2` and Session index `1`.
 
-`AddScheduleCommand#execute(model)` will be called instead of `DeleteSessionCommand#execute(model)`:
-This method call can be traced by the following sequence diagram snippet.
+`AddScheduleCommand#execute(model)` will be called instead of `DeleteSessionCommand#execute(model)`. For this particular case, the method call `AddScheduleCommand#execute(model)` can be traced using the following sequence diagram snippet.
 
  <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
      <p>
@@ -362,9 +366,9 @@ This method call can be traced by the following sequence diagram snippet.
  </figure>
  
 As shown in the figure above, first it gets the Client and Session from the filtered (displayed) lists. Then, it checks for existing identical Schedule (Schedule that consists of the same Client and Session) using `hasAnyScheduleAssociatedWithClientAndSession()`. 
-Since for this case it is not found, then create a new Schedule object and add it into the Model using `Model#addSchedule()`. Finally, return the CommandResult to indicate a success.
+Since for this case no identical Schedule is not found, a new Schedule object is created and added into the Model using `Model#addSchedule()`. Finally, it returns the CommandResult to indicate a success.
 
-Thus, `schadd c/2 s/1` will add a Schedule associated with Andy (the second Client in the Client List) and endurance training from 12/12/2020 1400 - 1600 (the first Session in the Session List). The result can be illustrated by the following object diagram, which creates a new Schedule:
+Thus, `schadd c/2 s/1` will add a Schedule associated with Andy (the second Client in the Client List) and endurance training from 12/12/2020 1400 - 1600 (the first Session in the Session List). The result can be illustrated by the following object diagram, which shows a new is created.
 
  <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
      <p>
@@ -386,7 +390,7 @@ This operation is exposed in the `Model` interface as `Model#setSchedule()`.
 Similar to the Edit Session mechanism, the example usage scenario below shows how Edit Schedule mechanism behaves:
 
 The user executes `schedit c/1 s/1 us/2` command to edit the Schedule with the first Session and first Client in the address book. 
-The `schedit` command calls `Model#setSchedule()`, causing changes to be made in the address book after the `schedit c/1 s/1 us/2` command executes.
+The `schedit` command calls `Model#setSchedule()`, causing changes to be made in the address book after the `schedit c/1 s/1 us/2` command executes, meaning that the Schedule is now associated with the second Session.
 
 The following activity diagram summarizes what happens when a user executes a new `EditSchedule` command, with the assumption that the user inputs a valid command:
 
@@ -785,6 +789,7 @@ Use case ends.
  1. FitEgo shows a list of Clients and list of Sessions.
  2. User requests to add a specific Schedule between a specified Client from Client List and Session from Session List.
  3. FitEgo adds the Schedule.
+ 
 Use case ends.
 
 **Extensions**
@@ -795,7 +800,7 @@ Use case ends.
 
     Use case resumes at step 2.
   
-- 2b. The Schedule to be added is overlapping with another Schedule.
+- 2b. The Schedule to be added already exists.
 
   - 2b1. FitEgo shows an error message.
 
@@ -844,7 +849,7 @@ Use case ends.
   
     Use case resumes at step 2.
 
-- 2b. There are no schedules with the specified Client and Session.
+- 2b. There is no Schedule associated with the specified Client and Session.
 
   - 2b1. FitEgo shows an error message.
 

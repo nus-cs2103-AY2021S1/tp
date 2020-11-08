@@ -57,7 +57,6 @@ public class EditScheduleCommandTest {
         for (Client client : getTypicalClients()) {
             ab.addClient(client);
         }
-
         return ab;
     }
 
@@ -89,8 +88,11 @@ public class EditScheduleCommandTest {
         assertEquals(model.getFilteredScheduleList().get(1).getPaymentStatus(), PAYMENT_UNPAID);
     }
 
+    /**
+     * Updating ALICE-GETWELL -> ALICE-ULTRAMAN should succeed because no ALICE-ULTRAMAN exists in typicalAddressBook
+     */
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    public void execute_someFieldsSpecifiedFilteredList_success() {
         Schedule lastSchedule = model.getFilteredScheduleList().get(0);
 
         ScheduleBuilder scheduleInList = new ScheduleBuilder();
@@ -179,8 +181,11 @@ public class EditScheduleCommandTest {
         ScheduleCommandTestUtil.assertCommandFailure(editScheduleCommand, model, expectedMessage);
     }
 
+    /**
+     * Updating ALICE-GETWELL should fail due to {@code outOfBoundIndex}
+     */
     @Test
-    public void execute_invalidUpdatedSessionIndexUnfilteredList_failure() {
+    public void execute_invalidUpdatedSessionIndexFilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredScheduleList().size() + 1);
         EditScheduleDescriptor descriptor = new EditScheduleDescriptorBuilder()
                 .withSessionIndex(INDEX_FIRST_SESSION).withUpdatedSessionIndex(outOfBoundIndex).build();

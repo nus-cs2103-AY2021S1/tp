@@ -72,17 +72,20 @@ public class EditSessionCommand extends Command {
         Session sessionToEdit = lastShownSessionList.get(index.getZeroBased());
         Session editedSession = createEditedSession(sessionToEdit, editSessionDescriptor);
 
+        // Checks for duplicate sessions
         if (!sessionToEdit.isIdentical(editedSession) && model.hasSession(editedSession)) {
             throw new CommandException(MESSAGE_DUPLICATE_SESSION);
         }
 
-        for (int i = 0; i < sessionList.size(); i++) {
-            if (!sessionList.get(i).equals(sessionToEdit)) {
-                if (Interval.isOverlap(sessionList.get(i).getInterval(), editedSession.getInterval())) {
+        // Checks for overlapping sessions
+        for (Session session : sessionList) {
+            if (!session.equals(sessionToEdit)) {
+                if (Interval.isOverlap(session.getInterval(), editedSession.getInterval())) {
                     throw new CommandException(MESSAGE_OVERLAPPING_SESSION);
                 }
             }
         }
+
         model.setSession(sessionToEdit, editedSession);
 
         if (model.hasAnyScheduleAssociatedWithSession(sessionToEdit)) {
@@ -93,15 +96,15 @@ public class EditSessionCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Session} with the details of {@code SessionToEdit}
+     * Creates and returns a {@code Session} with the details of {@code sessionToEdit}
      * edited with {@code editSessionDescriptor}.
      */
     private static Session createEditedSession(Session sessionToEdit, EditSessionDescriptor editSessionDescriptor) {
         assert sessionToEdit != null;
 
         Gym updatedGym = editSessionDescriptor.getGym().orElse(sessionToEdit.getGym());
-        ExerciseType updatedExerciseType = editSessionDescriptor
-                .getExerciseType().orElse(sessionToEdit.getExerciseType());
+        ExerciseType updatedExerciseType = editSessionDescriptor.getExerciseType()
+                .orElse(sessionToEdit.getExerciseType());
         Interval updatedInterval = editSessionDescriptor.getInterval().orElse(sessionToEdit.getInterval());
 
         return new Session(updatedGym, updatedExerciseType, updatedInterval);
