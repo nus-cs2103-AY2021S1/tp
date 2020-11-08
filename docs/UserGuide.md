@@ -74,6 +74,7 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -134,6 +135,8 @@ Example:
 * `add case t:Kovan double murders` creates a new case with the title “Kovan double murders”, the status initialized as an active case.
 * `add case t:Kovan double murders s:Closed` creates a new case with the title “Kovan double murders”, the status initialized as a closed case.
 
+<div style="page-break-after: always;"></div>
+
 #### Delete case: `delete case CASE_NO`
 Deletes the case specified with `CASE_NO` from the currently shown list.
 
@@ -164,6 +167,7 @@ Format:  `archive case CASE_NO`
 Example: 
 * `list case` followed by `archive case 1` archives the 1st case in the currently shown list.
 
+<div style="page-break-after: always;"></div>
 #### Unarchive case in the Archive section: `unarchive case CASE_NO`
 Unarchives the case specified with `CASE_NO` from the currently shown list in the `Archive` section of PIVOT.
 
@@ -198,7 +202,8 @@ Example:
 * `find dhoby bishan` could return cases `Dhoby Ghaut Murder Case` and `Bishan Shopping Theft`, and cases containing `dhoby` or `bishan` in their description
 * `find 91234567 bishan` could return a case with the Victim having Phone number `91234567`, and cases containing `bishan` in their details
 
-<br>
+
+<div style="page-break-after: always;"></div>
 
 ### Investigation Case page
 The commands listed below can only be used in the `Case Page` of the app.
@@ -232,6 +237,7 @@ Format: `add desc d:DESC`
 Example: 
 - `add desc d:Kovan double murders of twins xxx and yyy` adds the description “Kovan double murders of twins xxx and yyy” to the current case.
 
+<div style="page-break-after: always;"></div>
 #### Add document to the current case: `add doc n:NAME r:REFERENCE`
 Adds a new document to the current case with the specified `NAME` and `REFERENCE`.
 - `NAME` is what you would like to call the Document in PIVOT.
