@@ -25,6 +25,8 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String FINDEXACT = "FINDEXACT\n";
     public static final String UPDATE = "UPDATE\n";
     public static final String NOTE = "NOTE\n";
+    public static final String NOTEDELETE = "NOTEDELETE\n";
+    public static final String STOCKVIEW = "STOCKVIEW\n";
     public static final String STATISTICS = "STATISTICS\n";
     public static final String SORT = "SORT\n";
     public static final String BOOKMARK = "BOOKMARK\n";
@@ -32,6 +34,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String PRINT = "PRINT\n";
     public static final String CLEAR = "CLEAR\n";
     public static final String EXIT = "EXIT\n";
+    public static final String TAB = "TAB\n";
 
     public static final String COMMAND_DESCRIPTION = "COMMAND DESCRIPTION";
     public static final String HELP_DESCRIPTION =
@@ -44,17 +47,20 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String DELETE_DESCRIPTION = "delete sn/<serial number> [sn/<serial number>]...";
 
-    public static final String FIND_DESCRIPTION = "find [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>]";
+    public static final String FIND_DESCRIPTION = "find { [n/<name>] [sn/<serial number>] "
+            + "[s/<source>] [l/<location>] }";
 
-    public static final String FINDEXACT_DESCRIPTION = "findexact [n/<name>] [sn/<serial number>]"
-            + " [s/<source>] [l/<location>]";
+    public static final String FINDEXACT_DESCRIPTION = "findexact { [n/<name>] [sn/<serial number>]"
+            + " [s/<source>] [l/<location>] }";
 
     public static final String UPDATE_DESCRIPTION = "update sn/<serial number> [sn/<serial number>]..."
-            + "[iq/<increment value> | nq/<new quantity>] [n/<name>] [s/<source>] [l/<location>] [lq/<low quantity>]";
+            + " [iq/<increment value> | nq/<new quantity>] [n/<name>] [l/<location>] [lq/<low quantity>]";
 
-    public static final String NOTE_DESCRIPTION = "note sn/<serial number> nt/<note>\n"
-            + "noteview sn/<serial number>\n"
-            + "notedelete sn/<serial number> ni/<note index>";
+    public static final String NOTE_DESCRIPTION = "note sn/<serial number> nt/<note>";
+
+    public static final String NOTE_DELETE_DESCRIPTION = "notedelete sn/<serial number> ni/<note index>";
+
+    public static final String STOCK_VIEW_DESCRIPTION = "stockview sn/<serial number>";
 
     public static final String STATISTICS_DESCRIPTION = "stats st/<statistics type>";
 
@@ -69,6 +75,8 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String CLEAR_DESCRIPTION = "clear";
 
     public static final String EXIT_DESCRIPTION = "exit";
+
+    public static final String TAB_DESCRIPTION = "tab";
 
     public static final String DISCLAIMER = "For more information refer to the guide :";
     public static final String USERGUIDE_URL = "https://ay2021s1-cs2103t-t15-3.github.io/tp/UserGuide.html";
@@ -138,6 +146,18 @@ public class HelpWindow extends UiPart<Stage> {
     private Label noteMessage;
 
     @FXML
+    private Label noteDeleteMethod;
+
+    @FXML
+    private Label noteDeleteMessage;
+
+    @FXML
+    private Label stockViewMethod;
+
+    @FXML
+    private Label stockViewMessage;
+
+    @FXML
     private Label statsMethod;
 
     @FXML
@@ -172,6 +192,12 @@ public class HelpWindow extends UiPart<Stage> {
 
     @FXML
     private Label clearMessage;
+
+    @FXML
+    private Label tabMethod;
+
+    @FXML
+    private Label tabMessage;
 
     @FXML
     private Label url;
@@ -211,11 +237,19 @@ public class HelpWindow extends UiPart<Stage> {
         updateMethod.setText(UPDATE);
         updateMessage.setText(UPDATE_DESCRIPTION);
 
-        //Update Method
+        //Note Method
         noteMethod.setText(NOTE);
         noteMessage.setText(NOTE_DESCRIPTION);
 
-        //Update Method
+        //Note Delete Method
+        noteDeleteMethod.setText(NOTEDELETE);
+        noteDeleteMessage.setText(NOTE_DELETE_DESCRIPTION);
+
+        //Stock View Method
+        stockViewMethod.setText(STOCKVIEW);
+        stockViewMessage.setText(STOCK_VIEW_DESCRIPTION);
+
+        //Sort Method
         sortMethod.setText(SORT);
         sortMessage.setText(SORT_DESCRIPTION);
 
@@ -250,6 +284,10 @@ public class HelpWindow extends UiPart<Stage> {
         //Clear Method
         clearMethod.setText(CLEAR);
         clearMessage.setText(CLEAR_DESCRIPTION);
+
+        //Tab method
+        tabMethod.setText(TAB);
+        tabMessage.setText(TAB_DESCRIPTION);
 
         //Disclaimer on where to click
         disclaimer.setText(DISCLAIMER);
