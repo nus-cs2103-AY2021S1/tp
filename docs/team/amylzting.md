@@ -119,3 +119,4 @@ Given below are my contributions to the project.
    * Created tests for `Note` and `NoteIndex`. (Pull request [\#259](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/259))
    * Created unit tests for predicates package classes `LocationContainsKeywordsPredicate`,
    `NameContainsKeywordsPredicate`, `SerialNumberContainsKeywordsPredicate` and `SourceContainsKeywordsPredicate`. (Pull request [\#127](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/127))
+   * Created tests for `ParserUtil` to increase code coverage. (Pull request [\#])

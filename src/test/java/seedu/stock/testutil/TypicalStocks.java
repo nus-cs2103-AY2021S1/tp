@@ -8,6 +8,8 @@ import seedu.stock.commons.core.index.Index;
 import seedu.stock.commons.util.SortUtil;
 import seedu.stock.model.StockBook;
 import seedu.stock.model.stock.Note;
+import seedu.stock.model.stock.NoteIndex;
+import seedu.stock.model.stock.Quantity;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Stock;
 
@@ -57,6 +59,9 @@ public class TypicalStocks {
     public static final Index INDEX_SECOND_STOCK = Index.fromOneBased(2);
     public static final Index INDEX_THIRD_STOCK = Index.fromOneBased(3);
     public static final Index INDEX_FOURTH_STOCK = Index.fromOneBased(4);
+    public static final NoteIndex INDEX_FIRST_NOTE = NoteIndex.fromOneBased("1");
+    public static final Quantity QUANTITY_FIRST_STOCK = ALMOND.getQuantity();
+    public static final Quantity QUANTITY_THIRD_STOCK = BANANA.getQuantity();
     public static final SerialNumber SERIAL_NUMBER_FIRST_STOCK = ALMOND.getSerialNumber();
     public static final SerialNumber SERIAL_NUMBER_SECOND_STOCK = APPLE.getSerialNumber();
     public static final SerialNumber SERIAL_NUMBER_THIRD_STOCK = BANANA.getSerialNumber();
