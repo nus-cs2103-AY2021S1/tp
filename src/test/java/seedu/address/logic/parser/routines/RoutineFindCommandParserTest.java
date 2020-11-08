@@ -22,7 +22,7 @@ public class RoutineFindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsLessonFindCommand() {
+    public void parse_validArgs_returnsRoutineFindCommand() {
 
         RoutineNameContainsKeywordsPredicate predicate = new RoutineNameContainsKeywordsPredicate(
                 Arrays.asList("Leg", "Day"));

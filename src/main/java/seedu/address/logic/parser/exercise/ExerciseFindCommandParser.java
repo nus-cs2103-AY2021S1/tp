@@ -3,6 +3,8 @@ package seedu.address.logic.parser.exercise;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.exercise.ExerciseFindCommand;
 import seedu.address.logic.parser.Parser;
@@ -21,7 +23,13 @@ public class ExerciseFindCommandParser implements Parser<ExerciseFindCommand> {
      */
     public ExerciseFindCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
+
+        Pattern pattern = Pattern.compile("[^A-Za-z0-9]");
+        Matcher matcher = pattern.matcher(trimmedArgs);
         if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExerciseFindCommand.MESSAGE_USAGE));
+        } else if (matcher.find()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExerciseFindCommand.MESSAGE_USAGE));
         }
