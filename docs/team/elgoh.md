@@ -44,9 +44,8 @@ I contributed to the Model section of the developer guide, which documents how `
 
 I helped my teammates with debugging of code and gives them constructive feedback on how to improve our code and functionalities.
 
-### Contributions to Other Projects 
+### Contributions to Other Projects
 
 I helped review bugs for [Team W11-1](https://github.com/AY2021S1-CS2103T-W11-1/tp) as part of the PE dry run, during which I reported about 15 errors ranging from simple UI suggestions to potential programme-breaking bugs.
-
-       
+   
         
