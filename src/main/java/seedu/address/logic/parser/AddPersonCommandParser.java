@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_GIT_USERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_PHONE;
 
-import seedu.address.logic.commands.project.AddTeammateCommand;
+import seedu.address.logic.commands.global.AddPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -21,14 +21,14 @@ import seedu.address.model.person.Phone;
 /**
  * Parses input arguments and creates a new AssignCommand object
  */
-public class AddTeammateCommandParser implements Parser<AddTeammateCommand> {
+public class AddPersonCommandParser implements Parser<AddPersonCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddTeammateCommand
-     * and returns a AddTeammateCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddPersonCommand
+     * and returns a AddPersonCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddTeammateCommand parse(String args) throws ParseException {
+    public AddPersonCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_TEAMMATE_NAME, PREFIX_TEAMMATE_GIT_USERNAME,
@@ -37,7 +37,7 @@ public class AddTeammateCommandParser implements Parser<AddTeammateCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_TEAMMATE_NAME, PREFIX_TEAMMATE_GIT_USERNAME,
             PREFIX_TEAMMATE_PHONE, PREFIX_TEAMMATE_EMAIL, PREFIX_TEAMMATE_ADDRESS)
             || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTeammateCommand
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand
                 .MESSAGE_USAGE));
         }
 
@@ -58,7 +58,7 @@ public class AddTeammateCommandParser implements Parser<AddTeammateCommand> {
             .getValue(PREFIX_TEAMMATE_ADDRESS).get());
 
         Person teammate = new Person(name, gitUserName, phone, email, address);
-        return new AddTeammateCommand(teammate);
+        return new AddPersonCommand(teammate);
     }
 
 }
