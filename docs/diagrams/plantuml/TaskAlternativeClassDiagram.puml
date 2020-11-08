@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Interface ReadOnlyList <<Interface>> {
+    getReadOnlyList(): ObservableList<T>
+}
+
+Package Room <<Rectangle>> {
+    Class Room {
+        +addtask(Task)
+        +deleteTask(Task)
+        +setTask(Task, editedTask: Task)
+    }
+}
+
+Package Task <<Rectangle>> {
+    Class Task
+    Class TaskList
+    Class Description
+    Class DateTimeDue
+}
+
+TaskList -.|> ReadOnlyList
+
+Room *--r> "1" TaskList
+TaskList *--> "*" Task
+Task *--> "1" Description
+Task *--> "0..1" DateTimeDue
+
+Description -[hidden]right-> DateTimeDue
+
+@enduml

@@ -20,19 +20,12 @@
           4.2.4 [Allocate Room](#424-implementation-of-allocateroomcommand)<br>
           4.2.5 [GUI](#425-implementation-of-gui)<br>
     4.3  [Task Feature](#43-task-feature)<br>
-          4.3.1 [Add Task](#431-add-task)<br>
-          4.3.2 [List Task](#432-list-task)<br>
-          4.3.3 [Delete Task](#433-delete-task)<br>
-          4.3.4 [Edit Task](#434-edit-task)<br>
-          4.3.5 [Search Task](#435-search-task)<br>
-    4.4  [Storage Feature(KIV)]<br>
-    4.5  [Logging Feature](#45-logging-feature)<br>
-    4.6  [Miscellaneous Feature](#46-miscellaneous-feature)<br>
-          4.6.1 [Support for Multiple Date-Time Formats](#461-support-for-multiple-date-time-formats)<br>
-    4.7  [Configuration Feature](#47-configuration-feature)<br>
- 5. [Documentation](#5-documentation)<br>
- 6. [Testing(KIV)]<br>
- 7. [Appendix](#7-appendix)<br>
+    4.4  [Logging Feature](#44-logging-feature)<br>
+    4.5  [Configuration Feature](#45-configuration-feature)<br>
+ 5. [Planned Features](#5-planned-features)<br>
+ 6. [Documentation](#6-documentation)<br>
+ 7. [Testing(KIV)]<br>
+ 8. [Appendix](#8-appendix)<br>
     A1. [Product Scope](#a1-product-scope)<br>
     A2. [User Stories](#a2-user-stories)<br>
     A3. [Use Cases](#a3-use-cases)<br>
@@ -190,7 +183,8 @@ Shown below is the Sequence Diagram within the `Logic` component for the API cal
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeletePatientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
-<br>
+<br />
+
 _Written by: Ming De_
 
 
@@ -320,14 +314,16 @@ This section describes some noteworthy details on how certain features are imple
 
 #### 4.1.1 Overview
 
-#### Design of Patient
-A `Patient` object in Covigent contains the following attributes, which is also reflected in Figure xx:
+
+
+#### 4.1.2 Implementation of Patient
+A `Patient` object in Covigent contains the following attributes, which is also reflected in Figure 15:
 1. Name
-2. Temperature
-3. PeriodOfStay
-4. Age
-5. Phone
-6. Comment  
+1. Temperature
+1. PeriodOfStay
+1. Age
+1. Phone
+1. Comment  
 
   <p align="center">
       <img src="images/dg/PatientClassDiagram.png">
@@ -335,8 +331,7 @@ A `Patient` object in Covigent contains the following attributes, which is also 
       <i>Figure 15. Class Diagram for Patient</i>
   </p>
 
-#### Design Considerations for Patient 
-
+#### 4.1.2 Design Considerations for Patient 
 **Aspect: Encapsulation of fields for `Patient` object**
 
 * Option 1: Using primitive data types for `Temperature`, `Age` and `Comment` classes
@@ -351,14 +346,13 @@ This option increases OOP and is aligned to the original design of AddressBook3.
 
 * Option 1: Uniqueness is identified by name, age and phone
 
-Originally, our team intended to define two `Patient` to be equals if they have the same `Name`, `Age` and `Phone`. However, such a design will make it difficult for users of Covigent as they will have to key in all these fields when executing `EditPatientCommand` and `DeletePatientCommand` in order for Covigent to uniquely identify the `Patient` to manipulate. 
+Originally, we intended to define two `Patient` to be equals if they have the same `Name`, `Age` and `Phone`. However, such a design will make it difficult for users of Covigent as they will have to key in all these fields when executing `EditPatientCommand` and `DeletePatientCommand` in order for Covigent to uniquely identify the `Patient` to manipulate. 
 
 * Option 2: Uniqueness is identified by name
 
-Keeping in mind the ease of usage of Covigent for users, our team chose to identify `Patient` uniquely by `Name` only. As such, when users need to manipulate the data of a `Patient`, all they need to input is the `Name`. Furthermore, our team believes that since Covigent is used by small hotels, there is a very low chance of two patients having the same names.
+Keeping in mind the ease of usage of Covigent for users, we chose to identify `Patient` uniquely by `Name` only. As such, when users need to manipulate the data of a `Patient`, all they need to input is the `Name`. Furthermore, we believes that since Covigent is used by small hotels, there is a very low chance of two patients having the same names.
 
 #### Features related to Patient
-
 Having looked at the design of `Patient`, we can now explore the possible features related to `Patient`. In particular, our commands support [create, read, update, delete](#412-create-read-update-delete) and [search](#413-search-patient). 
 
 The features comprise of five commands namely,
@@ -371,7 +365,6 @@ The features comprise of five commands namely,
 _Written by Yun Qing_
 
 #### 4.1.2 Create, Read, Update, Delete
-
 In this section, we will cover the implementation of the manipulation of the `Patient` data. The commands that allow creating, reading, updating and deleting of `Patient` include `AddPatientCommand`, `ListPatientCommand`, `EditPatientCommand` and `DeletePatientCommand`. 
 
 As the `Patient` data are stored in `UniquePatientList`, which ensures the uniqueness of `Patient`, the actual manipulation of the `Patient` data is made in `UniquePatientList` class.
@@ -430,11 +423,10 @@ method.
 **Step 4.** A success message with the edited patient will be appended with the `EditPatientCommand#MESSAGE_EDIT_PATIENT_SUCCESS` constant. A 
 new `CommandResult` will be returned with the message.
 
-_EditPatientCommand Implementation written by Ming De_
+_Written by Ming De_
 
 
 #### 4.1.3 Search Patient
-
 **Implementation**
 The following is a detailed explanation of the operations that `SearchPatientCommand` performs.
 
@@ -469,7 +461,6 @@ As seen in the diagram above, the UniqueRoomList contains a single RoomList obje
 Each Room contains the following member attributes, all of which are non-nullable attributes:
 
 #### Design Considerations for RoomList and Room
-
 **Aspect: Decision on allowing `editRoomCommand` that allows changing of room number to remain**
 
 * Option 1: Do not change the `editRoomCommand`
@@ -487,20 +478,17 @@ Furthermore, to solve the bug that was introduced, we would have to store the co
 cause us to store information in another `.json` file which is unnecessary. Therefore, we decided that the forgoing a
 small function like this would be a better choice.
 
-_Written by Mingde_
+_Written by Ming De_
 
 #### Proposed Implementation
 
 The proposed room feature is facilitated by `RoomList`. It extends `ReadOnlyRoomList` which reads the Room information Json file, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 * `RoomList#addRooms(int num)` — adds the number of which are said to add together and retains infromation previously stored in each room
 * `RoomList#containsRoom(Room toCehck)` - checks whether the given room exists
-* `RoomList#addTaskToRoom(Task task, Room room)` — adds task to the room given.
-* `RoomList#deletesTaskFromRoom(Task task, Room romm)` — deletes task from room given
-* `RoomList#setTaskToRoom(target, editedTask, room)` - sets task to room given
 * `RoomList#clearRoom(Name patientName)` - removes patient from the room
 * `RoomList#setSingleRoom(Room target, Room editedRoom)` - sets the editedRoom to the target room
 
-These operations are exposed in the `Model` interface as `Model#addRooms(int num)`, `Model#hasroom(Room room)`, `Model#addTaskToRoom(Task task, Room room)`, `Model#deleteTaskFromRoom(Task task, Room room)`, `Model#setTaskToRoom(Task target, Task editedTask, Room room)`, `Model#clearRoom(Name patientName)` and `Model#setSingleRoom(Room target, Room editedRoom)` respectivley. 
+These operations are exposed in the `Model` interface as `Model#addRooms(int num)`, `Model#hasroom(Room room)`, `Model#clearRoom(Name patientName)` and `Model#setSingleRoom(Room target, Room editedRoom)` respectivley. 
 
 ### Feature related to Room
 
@@ -606,43 +594,137 @@ we employ the use of `Listeners` that listens for changes and notify the `scroll
 _Written by: Ming De_
 
 ### 4.3 Task Feature
+The task feature in Covigent allows hotel staff to manage and organize time-critical work related to a room in a quarantine facility.
+Every room can be allocated any number of tasks, with each task keeping track of the description of the work and a due date by which
+it should be completed.
 
-The task feature involves the CRUD of `Task` objects.
+It is important to note that Covigent handles tasks on a per-room basis. Tasks not specific to any room (e.g. tasks related to the operations
+of the quarantine facility) are out of scope.
 
-The feature comprises five commands, namely
-* [`AddTaskCommand`](#431-add-task) - Adding tasks
-* [`ListTaskCommand`](#432-list-task) - Listing tasks
-* [`EditTaskCommand`](#433-edit-task) - Editing tasks
-* [`DeleteTaskCommand`](#434-delete-task) - Deleting tasks
-* [`SearchTaskCommand`](#435-search-task) - Searching for tasks
+The task feature in Covigent includes the following:
 
-#### 4.3.1 Add Task 
+* Adding a task to a room
+* Displaying all tasks in the user interface
+* Editing the description and due date of a task
+* Removing a task from a room
+* Filtering tasks based on a criterion and displays the filtered tasks in the user interface (currently on supports filtering by due date)
 
-**Implementation**
-The following is a detailed explanation of the operations that `AddTaskCommand` performs.
+#### 4.3.1 Implementation of Task Feature
+At a higher level, tasks share a composition type relationship with rooms. That is, if a room is deleted, all tasks in that room are similarly deleted.
+We have implemented the task feature based on the class diagram in Figure 22.
+  <p align="center">
+      <img src="images/dg/TaskClassDiagram.png">
+      <br />
+      <i>Figure 22. Class Diagram for Task</i>
+  </p>
 
-**Step 1.** The `AddTaskCommand#execute(Model model)` method is executed and it checks if the `Name` defined when instantiating
-`EditPatientCommand(Name patientToBeEdited, EditPatientDescriptor editPatientDescriptor)` is valid. The `EditPatientDescriptor` holds
-the edited information of the `Patient`.
+Each `Room` contains a `RoomTasks` class, which is a wrapper around `TaskList`.
 
-**Step 2.** A new `Patient` with the updated values will be created and the patient is then searched through `UniquePatientList#internalList`
-using the `Model#hasPatient(Patient patient)` method to check if the patient already exists. If the patient already exists,
-`CommandException` will be thrown with an error message.
+Task-related operations that alter the tasks in a `Room` must be performed through that `Room`.
+The API calls for these operations first proceed to `Room`, which redirects them to `RoomTasks`. To enforce this constraint, `RoomTasks` is not publicly exposed in the API for `Room`
+(i.e. there is no getter for `RoomTasks` in `Room`).
 
-**Step 3.** The newly created `Patient` will replace the existing patient object through the `Model#setPatient(Patient target, Patient editedPatient)`
-method.
+`TaskList` emulates the other `List` classes in Covigent such as `UniquePatientList` and `UniqueRoomList`, exposing only an unmodifiable `ObservableList<Task>`.
+This `ObservableList<Task>` is subsequently returned by `RoomTasks` in the `getReadOnlyList()` method to fulfill its contract with the `ReadOnlyList<Task>` interface.
 
-**Step 4.** A success message with the edited patient will be appended with the `EditPatientCommand#MESSAGE_EDIT_PATIENT_SUCCESS` constant. A 
-new `CommandResult` will be returned with the message.
+##### 4.3.2 Design Considerations
+**Aspect: Retrieving list of tasks from `Room`**
 
-#### 4.3.2 List Task 
+* Option 1: Supplying a getter for `RoomTasks` in `Room`
 
-#### 4.3.3 Edit Task 
+Having a `getRoomTasks()` method to retrieve all the tasks in `Room` greatly enhances convenience, especially when copying the information from one `Room` to another.
+This is because we can use the constructor of `Room` in this manner: `Room copyOfRoom = new Room(..., originalRoom.getRoomTasks()))` (`...` refers to other attributes of `Room` that need to be passed into constructor).
+It is a quick way to transfer tasks between `Room`.
 
-#### 4.3.4 Delete Task 
+However, this option is not optimal from a defensive programming perspective. Because a client can retrieve `RoomTasks` from `Room`, there is potential for abuse.
+The `RoomTasks` object may be passed to some other classes that are not `Room`. Consequently, there is no guarantee that a client will not circumvent `Room` and call an operation that changes its tasks such as `addTask(Task)` directly from `RoomTasks`.
+This destroys the abstraction barrier of `Room` as clients can modify the tasks in it via external means.
+
+* Option 2: Add a `getReadOnlyTasks()` method in `Room` to retrieve an unmodifiable list of tasks from `RoomTasks`
+
+We chose option 2 for Covigent as we thought it was the safer option. Since `RoomTasks` implements `ReadOnlyList<Task>`, `Room` can retrieve and expose it via a `getReadOnlyTasks()` method for clients to access the tasks.
+This is more secure from a defensive programming perspective and respects the abstraction barrier. Without the getter for `RoomTasks`, clients are only allowed to change the tasks in `Room` via its API.
+It ensures that the tasks in a `Room` are not modified without knowledge of `Room`, while providing the flexibility for clients to access the information in them.
+An additional benefit of this option is that it obscures the fact that `Room` depends on `RoomTasks` for its task-related operations, thus strengthening the composition type relationship between tasks and rooms.
+
+With option 2, the operation for copying tasks from one `Room` to another can be performed as such: `Room copyOfRoom = new Room(..., new RoomTasks(originalRoom.getReadOnlyTasks()))`.
+It is probably better for the constructor of `Room` to take in `List<Task>` instead of `RoomTasks` to completely hide the existence of `RoomTasks` from clients.
+This can be considered as part of the improvements to be made to Covigent in the future.
+
+A downside of this option is that the implementor (future programmers of Covigent) must be aware of this design decision and avoid exposing `RoomTasks` through the public API of `Room`.
+Moreover, there is a slight increase in complexity now that `RoomTasks` has to implement `ReadOnlyList<Task>`.
+
+**Aspect: Storing a list of tasks in `Room`**
+
+* Option 1: Using `List<Task>` in `Room`
+
+This option is simple as it does not require any additional classes. However, `Room` has to handle all task-related operations, which violates the single-responsibility principle. 
+Conceptually, we consider `Room` to be a container for a patient and tasks. It should not contain implementations of methods related to patients and tasks.
+
+* Option 2: Using `TaskList` in `Room`
+
+While entirely possible to use `TaskList` to store the tasks in `Room` (see Figure 23), we cannot be certain that `TaskList` will not be used elsewhere in `Covigent` in the future.
+  <p align="center">
+      <img src="images/dg/TaskAlternativeClassDiagram.png">
+      <br />
+      <i>Figure 23. Class Diagram for Task using TaskList</i>
+  </p>
+
+For instance, suppose we want to support a list of tasks for specific patients (instead of rooms). It may not make much sense to use `TaskList` for both patients and rooms as they can have different behaviors.
+Perhaps a maximum of 5 tasks can be assigned to each patient, while there is no limit to the number of tasks that can be assigned to each room.
+Taking that into consideration, we decided to add a wrapper class.
+
+* Option 3: Using an extra class in addition to `TaskList`
+
+We chose option 3 and added a new class `RoomTasks` to `Room`. `RoomTasks` is a wrapper around `TaskList` to support room-specific behavior associated with tasks.
+A simple example is how we can set a maximum number of tasks each `Room` can hold through `RoomTasks` without modifying `TaskList`. In that sense, option 3 respects the open-closed principle.
+
+An alternative is to use a new class that extends from `TaskList`. This would improve polymorphism as methods that work with `TaskList` will also work with the new class.
+However, Liskov substitution principle might be a concern. For instance, if `TaskList` allows an unlimited number of tasks to be stored but `RoomTasks` only allows 500, it would be a violation of Liskov substitution principle.
+As such, we did not choose this alternative.
+
+The disadvantage of using another class is the added complexity as API calls for task-related operations need to be routed from the new class to `TaskList`.
+
+#### 4.3.3 Create, Read, Update, Delete
+In this section, we will cover the implementation of the manipulation of `Task` data. The commands that allow the task-related operations of creating, reading, updating, and deleting of `Task` are `AddTaskCommand`, `ListTaskCommand`, `EditTaskCommand`, and `DeleteTaskCommand` respectively.
+
+The actual manipulation of `Task` data is performed in the `TaskList` class. Some significant methods within `TaskList` that allows the manipulation of `Task` data are shown below:
+
+* `TaskList#add(Task toAdd)` - Adds a `Task` to `TaskList`.
+* `TaskList#setTask(Task target, Task editedTask)` - Replaces a `Task` in `TaskList` with the edited `Task`.
+* `TaskList#remove(Task toRemove)` - Removes a `Task` from `TaskList`.
+* `TaskList#asUnmodifiableObservableList()` - Returns a read-only list containing all `Task` in `TaskList`.
+* `RoomTasks#getTaskWithTaskIndex(Index index)` - Returns the `Task` with the `Index` in the `TaskList`. This method is currently in `RoomTasks` but can be safely refactored into `TaskList`.
+
+These methods in `TaskList` class support the corresponding methods in `RoomTasks`. For clients to perform these operations, `Room` exposes `addTask(Task task)`, `setTask(Task task, Task editedTask)`, and `deleteTask(Task task)` in its public API.
+Calls to these APIs are redirected to `RoomTasks` and eventually `TaskList`.
+
+Since the commands do not directly interact with `Room` but rather the `Model`, the `Model` interface has to expose `addTaskToRoom(Task task, Room room)`, `deleteTaskFromRoom(Task task, Room room)` and `setTaskToRoom(Task task, Task editedTask, Room room)`.
+
+For brevity's sake, we will only illustrate the implementation of the most complex command, `EditTaskCommand`.
+
+**Implementation of EditTaskCommand**
+
+The following is an explanation of the operations that `EditTaskCommand` performs, with the higher level details (`LogicManager` and `CovigentAppParser`) omitted for simplicity.
+
+**Step 1.** The user executes `edittask [room number] [task index] [other attributes to edit]` command to edit the description of a `Task` in a `Room`. An `EditTaskCommandParser` object is created and the `EditTaskCommandParser#parse(String args)` method is called, which helps to parse the different attributes of `Task`. The parse method returns a new `EditTaskCommand` object with the room number, task index, and a descriptor containing the updated values to replace the original.
+
+**Step 2.** The `Room` is retrieved from the list of rooms in Covigent using the `Model#getRoomWithRoomNumber(int roomNumber)` method. If no such `Room` exists, a `CommandException` object will be thrown with an error message.
+
+**Step 3.** The `Task` is retrieved from `RoomTasks` of `Room` using the `Model#getTaskFromRoomWithTaskIndex(Index taskIndex, Room room)` method. If no such `Task` exists, a `CommandException` object will be thrown with an error message.
+
+**Step 4.** The `Task` is edited in `EditTaskCommand` and replaces the original `Task` the room with `Model#setTaskToRoom(Task target, Task editedTask, Room room)`.
+
+**Step 5.** A success message with the new task details will be appended with the `EditTaskCommand#MESSAGE_SUCCESS` constant. A new `CommandResult` will be returned with the message.
+
+The sequence diagram for `EditTaskCommand` can be found below.
+  <p align="center">
+      <img src="images/dg/EditTaskSequenceDiagram.png">
+      <br />
+      <i>Figure 24. Sequence Diagram for EditTaskCommand</i>
+  </p>
 
 #### 4.3.5 Search Task
-
 **Implementation**
 The following is a detailed explanation of the operations that `SearchTaskCommand` performs.
 
@@ -652,12 +734,11 @@ The following is a detailed explanation of the operations that `SearchTaskComman
 
 **Step 3.** If no `task` is found, `CommandException` will be thrown with an error message. 
 
-**Step 4.** If there is at least one task found, the `model`'s `filteredTaskList` is updated with a `dueDatePredicate` using `updateFilteredTaskList`
+**Step 4.** If there is at least one task found, the `model`'s `filteredRoomTaskRecords` is updated with a `dueDatePredicate` using `updateTasksInFilteredRoomTaskRecords`.
 
 **Step 5.** a new `CommandResult` will be returned with the message.
 
-
-### 4.5 Logging Feature
+### 4.4 Logging Feature
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
 
@@ -671,23 +752,23 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 * `INFO` : Information showing the noteworthy actions by the App
 * `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
 
-_Written by Mingde_
+_Written by Ming De_
 
-### 4.6 Miscellaneous Feature
+### 4.5 Configuration Feature
 
-#### 4.6.1 Support for Multiple Date-Time Formats
-
-### 4.7 Configuration Feature
 Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`).
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Documentation
+## 5. Planned Features
+
+This section describes some noteworthy details on how certain features are implemented.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 6. Documentation
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -697,13 +778,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Testing
+## 7. Testing
 
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 7. Appendix
+## 8. Appendix
 
 ### A1. Product scope
 
@@ -744,7 +825,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### A3. Use cases
 
-(For all use cases below, the **System** is`Covigent` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Covigent` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Deletes a patient from a room**
 
@@ -807,13 +888,14 @@ Use case ends.
 
 ### A4. Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 100 patients without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Should work even without internet connection.
-5. Should respond to commands within 3 seconds.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. Should be able to hold up to 100 patients without a noticeable sluggishness in performance for typical usage.
+1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work even without internet connection.
+1. Should respond to commands within 3 seconds.
 
 ### A5. Glossary
+
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Patient**: An individual residing in the quarantine facility
 * **Task**: Task is to be completed by staff of the quarantine facility
@@ -868,12 +950,6 @@ testers are expected to do more *exploratory* testing.
 1. **Allocating a patient to a room in Covigent**
     
     1. Prerequisites: User is viewing the room tab. Patient details has already been input into Covigent. Rooms must already have been initalized.
-
-    1. Test case: `allocateroom 1 n/John Doe`<br>
-    **Expected**: Patient John Doe is allocated to Room #1. Details of the room will be shown in the details panel. 
-
-   1. Test case: `allocateroom n/John Doe`<br>
-    **Expected**: No patient is allocated to room. Error details shown in the result box. 
     
 ### Saving data
 
@@ -905,3 +981,4 @@ testers are expected to do more *exploratory* testing.
         ```
    1. Re-launch the app.<br><br> 
    **Expected**: Go to the Patient tab and the tab should not have any data. `covigentapp.json` still exists.
+
