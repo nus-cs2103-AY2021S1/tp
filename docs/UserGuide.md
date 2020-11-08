@@ -48,7 +48,7 @@ This diagram shows our interface.
 4. Below the *Result Panel* is the *Command History*. It shows your last command entered.
 5. The *Command Box* at the bottom of the app window is at the bottom. You can type your commands here.
 
-### 3.4 Basic workflow
+### 3.4 Basic Workflow
 1. Tag important files with the `tag` command for ease of access.<br>
 ![Tag](images/screenshots/tag.PNG) <br><br>
 2. When trying to access tagged files, instead of navigating to the file location, simply use the `open` command to access the required files.<br>
