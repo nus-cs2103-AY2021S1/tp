@@ -39,7 +39,7 @@ return f
 L -> S : execute(model)
 activate S
 
-S -> M : findBy(predicate)
+S -> M : 
 activate M
 
 M -> B : updateFilteredPatientList(predicate)
@@ -54,7 +54,7 @@ return
 
 S -> R**
 activate R
-return
+return result
 
 return result
 destroy S

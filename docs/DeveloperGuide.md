@@ -145,7 +145,7 @@ In this section, we will be highlighting some key features and how they are bein
 
 ### 4.1 Find by name or NRIC feature (by Cao Qin)
 
-The find feature enables users to find patients by specifying their names(anyone from their first name, middle name or last name) or Nric numbers.
+The find feature enables users to find patients by specifying their names (anyone from their first name, middle name or last name) or Nric numbers.
 
 #### 4.1.1 Implementation
 
@@ -153,6 +153,7 @@ The following are the changes made to achieve this feature:
 
 * A `KeywordPredicate` class is added under the `model/patient` package. 
 * `FindCommand` class is modified to keep a KeywordPredicate object as a filed.
+* `FindCommandParser` class is modified to parser both patients' name and nric number.
 
 Given below is an example usage scenario of this feature using both name and Nric as inputs.
 
