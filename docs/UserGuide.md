@@ -9,7 +9,7 @@ This User Guide is co-written by Josiah, Joshua, Gilbert, Francis and Xingjian. 
 
 --------------------------------------------------------------------------------------------------------------------
 
-##Table of Contents
+## Table of Contents
 
 <link rel="stylesheet" href="UserGuide.css">
 
@@ -158,11 +158,8 @@ Format: `help`
 ### Creating a new flashcard
 You can add a new flashcard to the list.
 
-<div class="alert alert-danger">
-:exclamation:<br>
-
-You cannot have multiple question and answer prefixes.
-
+<div markdown="block" class="alert alert-danger">
+:exclamation: You cannot have multiple question and answer prefixes.
 </div>
 
 <a name="oeq"></a>
@@ -178,13 +175,9 @@ For example, you can enter`add q/Sample Question ans/Sample Answer`
 
     ![addOpenEnded2](images/addOpenEnded2.png)
 
-<div class="alert alert-danger">
-:exclamation:<br>
-
-* You cannot add a flashcard with empty question and empty answer.
-
-* `DIFFICULTY` can only be set to `LOW`, `MEDIUM`, `HIGH` or `UNSPECIFIED`.
-
+<div markdown="block" class="alert alert-danger">
+:exclamation: You cannot add a flashcard with empty question and empty answer. Additionally, <code>DIFFICULTY</code> 
+can only be set to <code>LOW</code>, <code>MEDIUM</code>, <code>HIGH</code> or <code>UNSPECIFIED</code>.
 </div>
 
 <a name="mcq"></a>
@@ -200,15 +193,11 @@ For example, you can enter `addmcq q/Sample Question ans/1  c/Sample Choice c/Sa
 
     ![addMCQ2](images/addMCQ2.png)
 
-<div class="alert alert-danger">
-:exclamation:<br>
+<div markdown="block" class="alert alert-danger">
 
-* You cannot add flashcard with missing question or missing answer or missing choice.
-
-* You should have at least two choices.
-
-* `DIFFICULTY` can only be set to `LOW`, `MEDIUM`, `HIGH` or `UNSPECIFIED`.
-
+:exclamation:
+- You cannot add flashcard with missing question or missing answer or missing choice.
+- <code>DIFFICULTY</code> can only be set to <code>LOW</code>, <code>MEDIUM</code>, <code>HIGH</code> or <code>UNSPECIFIED</code>.
 </div>
 
 <a name="opening-a-flashcard"></a>
@@ -242,6 +231,10 @@ You have successfully opened a flashcard!
 
 You can edit a flashcard that you have created previously.
 
+<div markdown="block" class="alert alert-danger">
+:exclamation: At least one field of the flashcard must be changed!
+</div>
+
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
     ![edit](images/Edit.png)
@@ -257,15 +250,12 @@ For example, if you want to edit the 3rd flashcard in the displayed list, you ca
 
 You have successfully edited a flashcard.
 
-<div class="alert alert-danger">
-:information_source:<br>
-:exclamation: You must have at least one edited field which is different from the previous flashcard.
+<div markdown="block" class="alert alert-info">
 
-* When editing tags, the existing tags of the flashcard will be removed i.e adding of tags is not cumulative.
-
-* You can remove all the flashcard’s tags by typing t/ without specifying any tags after it.
-
-* You can remove the flashcard’s difficulty by typing d/ without specifying any difficulty after it. Or you can manually set it to `d/UNSPECIFIED`.
+:information_source:<br> 
+- When editing tags, the existing tags of the flashcard will be removed i.e adding of tags is not cumulative.
+- You can remove all the flashcard’s tags by typing <code>t/</code> without specifying any tags after it.
+- You can remove the flashcard’s difficulty by typing d/ without specifying any difficulty after it. Or you can manually set it to <code>d/UNSPECIFIED</code>.
 
 </div>
 
@@ -283,7 +273,7 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 <div markdown="block" class="alert alert-info">
 
-:exclamation: You must have at least one find field provided.
+:information_source: You must have at least one find field provided.
 
 </div>
 
@@ -419,9 +409,8 @@ You have successfully deleted all the flashcards with the specified tag(s)!
 
 <a name="clear"></a>
 #### Clearing all entries : `clear`
-Suppose you are in a situation where you want to get rid of all the flashcards in QuickCache. You might find it troublesome to delete each flashcard one-by-one. Instead, you can utilize the clear command to clear all flashcards on QuickCache directly.
 
-Format: `clear`
+Suppose you are in a situation where you want to get rid of all the flashcards in QuickCache. You might find it troublesome to delete each flashcard one-by-one. Instead, you can utilize the clear command to clear all flashcards on QuickCache directly.
 
 <a name="testing-flashcard"></a>
 ### Testing a flashcard
@@ -482,7 +471,7 @@ You have successfully tested yourself on a multiple choice question!
 <a name="displaying-statistics"></a>
 ### Displaying statistics
 
-<div class="alert alert-danger">
+<div markdown="block" class="alert alert-danger">
 :exclamation: You can only show statistics based on index or based on tags but not both!
 </div>
 
@@ -597,12 +586,16 @@ You can export all flashcards from the last displayed list into a file named `FI
 3. Press enter and the file containing the flashcards will be exported into the `export` folder, located in the same directory as `QuickCache.jar`
 
     ![ExportStep3a](./images/ExportStep3a.png)
-
+    
+    Here is the file location on Mac OS.
+    
     ![ExportStep3b](./images/ExportStep3b.png)
 
-    ![ExportStep3bW](./images/ExportStep3bW.png)
-
     ![ExportStep3c](./images/ExportStep3c.png)
+    
+    Here is the file location on Windows.
+    
+    ![ExportStep3bW](./images/ExportStep3bW.png)
 
     ![ExportStep3cW](./images/ExportStep3cW.png)
 
@@ -614,7 +607,8 @@ Voila! You have successfully exported your flashcards into a file.
 
 You can import external flashcards into your local QuickCache as well.
 
-1. Create an `import` folder in the same directory as where `QuickCache.jar` is located.
+1. Create an `import` folder in the same directory as where `QuickCache.jar` is located. The pictures shown are the equivalents 
+for both Mac OS and Windows.
 
     ![ImportStep1](./images/ImportStep1.png)
 
@@ -649,10 +643,9 @@ Good job! You have successfully imported flashcards from an external file.
 
 You can exit QuickCache by using the exit command.
 
-Format: `exit`
-
 <a name="save"></a>
 ### Saving the data
+
 For your convenience, QuickCache data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -660,8 +653,24 @@ For your convenience, QuickCache data are saved in the hard disk automatically a
 <a name="faq"></a>
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous QuickCache home folder.
+**Q**: Why can't I open QuickCache on my device?<br>
+**A**: There are a few potential reasons as to why QuickCache is not opening on your device:
+
+1. You first need to ensure that your device is a **desktop device** as QuickCache is not supported on mobile devices. 
+2. Next, you need to ensure that you have **Java 11 or above** installed on your device. You can refer to this [guide to check your java version](https://superuser.com/questions/1221096/how-do-i-check-what-version-of-java-i-have-installed).
+3. Double clicking QuickCache doesn't work on every desktop device. If you are experiencing problems with this, you can try using terminal or the command prompt to navigate to the folder where `quickcache.jar` is located and then proceeed to execute the following command **`java -jar quickcache.jar`**. Note that if you rename `quickcache.jar` you have to tweak the command accordingly.
+
+**Q**: How do I transfer my flashcards to my friend?<br>
+**A**: You can first [export](#export) the flashcards that are stored in QuickCache into your desired file format. After exporting, you can proceed to send the file to your friend over your favourite messaging application. Upon receving the file, your friend can then proceed to [import](#import) the flashcards into QuickCache.
+
+**Q**: How can I contribute to QuickCache?<br>
+**A**: There are a few ways you can contribute to QuickCache: 
+
+* If you are an investor, you can reach out to us [here](mailto:damith@comp.nus.edu.sg).
+* If you are a developer, we greatly welcome you to contribute to QuickCache by submitting a pull request [here](https://github.com/AY2021S1-CS2103T-T13-2/tp/pulls). You can view QuickCache's source code at this [link](https://github.com/AY2021S1-CS2103T-T13-2/tp).
+
+**Q**: How do I give suggestions or report for bugs on QuickCache?<br>
+**A**: If you have something to suggest to us or experienced any bugs while using QuickCache, we would appreciate it if you post an issue on it [here](https://github.com/AY2021S1-CS2103T-T13-2/tp/issues).
 
 --------------------------------------------------------------------------------------------------------------------
 

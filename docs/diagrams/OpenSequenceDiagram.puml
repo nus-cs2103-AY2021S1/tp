@@ -3,8 +3,6 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":QuickCacheParser" as QuickCacheParser LOGIC_COLOR
-participant ":OpenCommandParser" as OpenCommandParser LOGIC_COLOR
 participant "o:OpenCommand" as OpenCommand LOGIC_COLOR
 end box
 
@@ -17,35 +15,7 @@ end box
 [-> LogicManager : execute("open 1")
 activate LogicManager
 
-LogicManager -> QuickCacheParser : parseCommand("open 1")
-activate QuickCacheParser
-
-create OpenCommandParser
-QuickCacheParser -> OpenCommandParser
-activate OpenCommandParser
-
-OpenCommandParser --> QuickCacheParser
-deactivate OpenCommandParser
-
-QuickCacheParser -> OpenCommandParser : parse(" 1")
-activate OpenCommandParser
-
-create OpenCommand
-OpenCommandParser -> OpenCommand
-activate OpenCommand
-
-OpenCommand --> OpenCommandParser : o
-deactivate OpenCommand
-
-OpenCommandParser --> QuickCacheParser: o
-deactivate OpenCommandParser
-
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-OpenCommandParser -[hidden]-> QuickCacheParser
-destroy OpenCommandParser
-
-QuickCacheParser --> LogicManager : o
-deactivate QuickCacheParser
+ref over LogicManager, OpenCommand : Parse Open Command
 
 LogicManager -> OpenCommand : execute()
 activate OpenCommand
