@@ -1,6 +1,9 @@
 package seedu.flashcard.model.flashcard;
 
+import seedu.flashcard.model.tag.Tag;
+
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 /**
@@ -15,10 +18,13 @@ public class TagsContainsKeywordsPredicate implements Predicate<Flashcard> {
 
     @Override
     public boolean test(Flashcard flashcard) {
+        Set<Tag> flashcardTags = flashcard.getTags();
+
         return keywords.stream()
                 .anyMatch(keyword ->
-                        flashcard.getTags().stream()
-                                .anyMatch(tag -> tag.toString().toLowerCase().contains(keyword.toLowerCase())));
+                        flashcardTags.stream()
+                                .map(tag -> tag.toString())
+                                .anyMatch(tag -> tag.toLowerCase().contains(keyword.toLowerCase())));
     }
 
     @Override
