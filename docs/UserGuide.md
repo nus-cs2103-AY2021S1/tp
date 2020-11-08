@@ -100,7 +100,7 @@ instr/ | INSTRUCTION | Instructions of a recipe
 c/ | CALORIE | Calories of a recipe
 img/ | IMAGE | Image address of a recipe
 t/ | TAG | Recipe tag
-[]()| INDEX | Index of item in the displayed item list
+[]()| INDEX | Index of item in the recent displayed item list
 
 ## 2.3 Format <a id="23-format"></a>
 
@@ -301,7 +301,7 @@ Deletes the specified recipe from the Recipe List.
 Format: `deleteR INDEX`
 
 * Deletes the recipe at the specified `INDEX`.
-* The index refers to the index number shown in the displayed Recipe List.
+* The index refers to the index number shown in the recent displayed Recipe List.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
     Deleting a recipe **will not** affect the recipes that have been eaten in the consumption list.
 </div>
@@ -323,7 +323,7 @@ Format: `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -Q
 [instr/INSTRUCTION[. MORE INSTRUCTIONS]] [t/TAG]...`
 
 * Edits the recipe at the specified `INDEX`.
-* The index refers to the index number shown in the displayed Recipe List.
+* The index refers to the index number shown in the recent displayed Recipe List.
 * `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole` or `i/salt -a pinch`.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
@@ -396,10 +396,11 @@ Insert the editR command concatenated with the information of the specified reci
 Format: `editR INDEX`
 
 * Gets the information of the recipe at the specified `INDEX` and adds it behind the edit recipe command in the command box.
-* The index refers to the index number shown in the displayed Recipe List.
+* The index refers to the index number shown in the recent displayed Recipe List.
 
 Examples:
-* `editR 2` followed by `Enter` will insert the information of the 2nd recipe in the displayed Recipe List into the
+* `editR 2` followed by `Enter` will insert the information of the 2nd recipe in the displayed Recipe List into
+ the
  command box.
 <br><br><br>
 
@@ -414,7 +415,7 @@ Displays the information of a single recipe in full view.
 Format: `selectR INDEX`
 
 * Selects the recipe at the specified `INDEX` to show its full information.
-* The index refers to the index number shown in the displayed Recipe List.
+* The index refers to the index number shown in the recent displayed Recipe List.
 
 Examples:
 * `selectR 1` shows the 1st recipe in full view in the left drawer.
@@ -556,7 +557,7 @@ Deletes the specified ingredient from the Fridge.
 Format: `deleteF INDEX`
 
 * Deletes the ingredient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed Ingredient List.
+* The index refers to the index number shown in the recent displayed Ingredient List.
 
 Examples:
 * `fridge` followed by `deleteF 4` deletes the 4th ingredient in the Fridge.
@@ -574,7 +575,7 @@ Edits the specified ingredient from Fridge.
 Format: `editF INDEX i/INGREDIENT [ -QUANTITY]`
 
 * Edits the ingredient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed Ingredient List.
+* The index refers to the index number shown in the recent displayed Ingredient List.
 * `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole`.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
@@ -612,7 +613,7 @@ The image below is what Wishful Shrinking looks like after you have gotten an in
 Format: `editF INDEX`
 
 * Gets the information of the ingredient at the specified `INDEX` and adds it behind the edit ingredient command in the command box.
-* The index refers to the index number shown in the displayed Ingredient List.
+* The index refers to the index number shown in the recent displayed Ingredient List.
 
 Examples:
 * `editF 1` followed by `Enter` will insert the information of the 1st ingredient in the displayed Ingredient List
@@ -651,9 +652,7 @@ Examples:
 
 Clears all the ingredients in the Fridge.
 
-<br>  The image below is what Wishful Shrinking looks like after you have cleared all ingredients in the Fridge
-. <br
-><br>
+<br>  The image below is what Wishful Shrinking looks like after you have cleared all ingredients in the Fridge. <br><br>
 <img src="images/feature/ingredient/ClearFridgeImage.png" width="550" height="300">
 <br><br><br>
 
@@ -678,7 +677,7 @@ Adds the specified recipe in the Recipe List into the Consumption list.
 Format: `eatR INDEX`
 
 * Adds the recipe at the specified `INDEX` into the Consumption list.
-* The index refers to the index number shown in the displayed Recipe List.
+* The index refers to the index number shown in the recent displayed Recipe List.
 
 Examples:
 * `recipes` followed by `eatR 2` adds the 2nd recipe in the displayed Recipe List into the Consumption list.
@@ -712,7 +711,7 @@ Deletes the specified recipe from consumption list.
 Format: `deleteC INDEX`
 
 * Deletes the recipe at the specified `INDEX`.
-* The index refers to the index number shown in the displayed consumption list.
+* The index refers to the index number shown in the recent displayed consumption list.
 
 Examples:
 * `calories` followed by `deleteC 2` deletes the 2nd recipe in the Consumption List.
