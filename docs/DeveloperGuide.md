@@ -246,10 +246,13 @@ and `Model#hasAnyScheduleAssociatedWithSession`.
 
 The following activity diagram summarizes what happens when a user executes a new `DeleteSession` command, with the assumption that the user inputs a valid command.
 
-![EditSessionSequenceDiagram](images/tracing/EditSessionSequenceDiagram.png)
-<center style="font-style: italic;">Figure - Delete Session Activity Diagram</center>
-
-
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+     <p>
+         <img src="images/DeleteSessionActivityDiagram.png" style="width: 50%; height: auto;"/>
+     </p>
+     <figcaption>Figure - Delete Session Activity Diagram</figcaption>
+ </figure>
+ 
 The following diagram shows a possible application state in FitEgo. 
 
 <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
