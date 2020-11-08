@@ -358,7 +358,6 @@ Outcome:
 2. Employees who are can work on `Monday` or `Friday` will be listed in the Employee Directory inside the _Main View_.
 
 ![FindByTagCommandScreenshot](images/FindByTagCommandScreenshot.png)
-
 Figure x. A screenshot showing the outcome of an `c-tag-find monday friday` command
 
 #### 3.6 Locating all employees who are available to work today: `c-today`
@@ -399,7 +398,6 @@ Outcome:
 2. The available manpower for today will be listed in the Employee Directory inside the _Main View_.
 
 ![FindByTagTodayCommandScreenshot](images/FindByTagTodayCommandScreenshot.png)
-
 Figure x. A screenshot showing the outcome of an `c-today` command
 
 #### 3.7 Locating all employees who are available to work tomorrow: `c-tomorrow`
@@ -440,7 +438,6 @@ Outcome:
 2. The available manpower for tomorrow will be listed in the Employee Directory inside the _Main View_.
 
 ![FindByTagTomorrowCommandScreenshot](images/FindByTagTomorrowCommandScreenshot.png)
-
 Figure x. A screenshot showing the outcome of an `c-tomorrow` command
 
 #### 3.8 Deleting a person : `c-delete`
@@ -502,10 +499,13 @@ Outcome:
 1. The _Result Display_ will show a success message with the employee's name that you have archived.
 2. Alex Yeoh's information will be removed from Employee Directory inside the _Main View_.
 
-![ArchiveCommandScreenshot](images/ArchiveCommandScreenshot.png)
+Before executing:<br>
+![BeforeArchiveCommandScreenshot](images/BeforeArchiveCommandScreenshot.png)
+Figure x. Screenshot showing the view before executing `c-archive 1` command
 
-
-Figure x. Screenshots showing the outcome of an `c-archive 1` command
+After executing:<br>
+![AfterArchiveCommandScreenshot](images/AfterArchiveCommandScreenshot.png)
+Figure x. Screenshot showing the outcome of an `c-archive 1` command
 
 #### 3.11 Archiving all employees : `c-archive-all`
 
@@ -516,8 +516,14 @@ Format: `c-archive-all`
 <div markdown="span" class="alert alert-primary">
 
 **:information_source: Notes about Employee Directory:**<br>
+* All employees who are currently working in the shop are active/unarchived employees. They are stored in the active
+(unarchived) Employee Directory. You may refer to `c-active-list` to view the active(unarchived) Employee Directory
+. <br>
 
-If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
+* All archived employees (refer to `c-archive` to see how to archive an employee) will be stored in the archived
+ Employee Directory. You may refer to `c-archive-list` to view the archived Employee Directory.<br>
+
+* If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
  color label, named as "[Archived]", in front of their names), command `c-active-list` needs to be used first to see a
   list of all your employees. Then, `c-archive-all` can be used to archive all employees.<br>
 
@@ -537,9 +543,14 @@ Outcome:
 1. The _Result Display_ will show a success message.
 2. All employees will be removed from Employee Directory inside the _Main View_.
 
-![ArchiveAllCommandScreenshot](images/ArchiveAllCommandScreenshot.png)
 
-Figure x. Screenshots showing the outcome of an `c-archive-all` command
+Before executing:<br>
+![BeforeArchiveAllCommandScreenshot](images/BeforeArchiveAllCommandScreenshot.png)
+Figure x. Screenshot showing the view before executing `c-archive-all` command
+
+After executing:<br>
+![AfterArchiveAllCommandScreenshot](images/AfterArchiveAllCommandScreenshot.png)
+Figure x. Screenshot showing the outcome of an `c-archive-all` command
 
 #### 3.12 Listing all archived employees : `c-archive-list`
 
@@ -569,7 +580,6 @@ Outcome:
 2. All archived employees will be listed in Employee Directory inside the _Main View_.
 
 ![ArchiveListCommandScreenshot](images/ArchiveListCommandScreenshot.png)
-
 Figure x. A screenshot showing the outcome of an `c-archive-list` command
 
 #### 3.13 Unarchiving an employee : `c-unarchive`
@@ -587,8 +597,13 @@ Employee Directory inside the _Main View_. For example, there are 2 employees li
 <div markdown="span" class="alert alert-primary">
 
 **:information_source: Notes about Employee Directory:**<br>
+* All employees who are currently working in the shop are active/unarchived employees. They are stored in the active
+(unarchived) Employee Directory. You may refer to `c-active-list` to view the active(unarchived) Employee Directory.<br>
 
-If _Employee Directory_ currently shows a list of active/unarchived employees (Archived employees are displayed with a
+* All archived employees (refer to `c-archive` to see how to archive an employee) will be stored in the archived
+ Employee Directory. You may refer to `c-archive-list` to view the archived Employee Directory.<br>
+
+* If _Employee Directory_ currently shows a list of active/unarchived employees (Archived employees are displayed with a
  red color label, named as "[Archived]", in front of their names. While employees in the active/unarchived employee list
   don't have this red label.), command `c-archive-list` needs to be used first to see a list of all your archived
   employees. Then, `c-unarchive INDEX` can be used to unarchive a specified
@@ -612,9 +627,13 @@ Outcome:
 2. Alex Yeoh's information will be removed from the archived employee list shown in Employee Directory inside
  the _Main View_.
 
-![UnarchiveCommandScreenshot](images/UnarchiveCommandScreenshot.png)
+Before executing:<br>
+![BeforeUnarchiveCommandScreenshot](images/BeforeUnarchiveCommandScreenshot.png)
+Figure x. Screenshot showing the view before executing `c-unarchive 1` command
 
-Figure x. Screenshots showing the outcome of an `c-unarchive 1` command
+After executing:<br>
+![AfterUnarchiveCommandScreenshot](images/AfterUnarchiveCommandScreenshot.png)
+Figure x. Screenshot showing the outcome of an `c-unarchive 1` command
 
 ### 4. Commands - General <a name="commands-general"></a>
 #### 4.1 Viewing help : `help`
@@ -651,7 +670,6 @@ tCheck also shows a current month's calendar when you start the application. You
  and hightlight today's date.
  
  ![CalendarScreenshot](images/CalendarScreenshot.png)
- 
  Figure x. Screenshots showing the calendar in tCheck
  
 ## Command summary <a name="command-summary"></a>
@@ -690,7 +708,8 @@ Action | Format, Examples
 **Find available manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
 **Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
 **Clear** | `c-clear`
-**Archive** |  1. **Archive \(1 employee\):**  `c-archive INDEX`<br> e.g., `c-archive 1` <br>2. **Archive \(all employees\):**  `c-archive-all` <br>3. **List all archived data:**  `c-archive-list`</br>
+**Archive an employee** |  `c-archive INDEX`<br> e.g., `c-archive 1`  
+**Archive all employees** |  `c-archive-all` <br>
 **Unarchive** | `c-unarchive INDEX`<br> e.g., `c-unarchive 1` 
 
 ### General
