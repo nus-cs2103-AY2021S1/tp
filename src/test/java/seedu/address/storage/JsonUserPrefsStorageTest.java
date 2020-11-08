@@ -71,7 +71,7 @@ public class JsonUserPrefsStorageTest {
 
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
+        userPrefs.setGuiSettings(new GuiSettings(600, 740, 300, 100));
         userPrefs.setModuleListFilePath(Paths.get("data", "modulelist.json"));
         userPrefs.setArchivedModuleListFilePath(Paths.get("data/archive", "archivedmodulelist.json"));
         userPrefs.setContactListFilePath(Paths.get("data", "contactlist.json"));
