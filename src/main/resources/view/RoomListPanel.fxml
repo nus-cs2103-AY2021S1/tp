@@ -5,11 +5,18 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.geometry.Insets?>
 <HBox stylesheets="@../css/ListPanel.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <VBox maxWidth="350.0" minWidth="200.0" HBox.hgrow="ALWAYS">
       <ListView fx:id="roomListView" onMouseClicked="#handleMouseClick" />
     </VBox>
-    <AnchorPane fx:id="roomDetailsPanelPlaceholder" minWidth="300.0" HBox.hgrow="ALWAYS" />
+    <AnchorPane fx:id="roomDetailsPanelPlaceholder" minWidth="300.0" HBox.hgrow="ALWAYS">
+      <opaqueInsets>
+        <Insets />
+      </opaqueInsets>
+      <HBox.margin>
+        <Insets left="10.0" />
+      </HBox.margin></AnchorPane>
   </children>
 </HBox>
