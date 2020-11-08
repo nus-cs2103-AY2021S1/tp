@@ -13,22 +13,21 @@ else
 Endif
 
 ===B1=== --> "Start Timer"
---> Get next task
+--> Check if user exits
 If "[User exits]" then
 --> [No] "Check deadline of next task"
---> "Get next task"
 "Check deadline of next task" --> If "[current time > deadline of task]" then
     --> [Yes] "Remove task from task list"
-    --> "Check next task"
+    --> "Get next task"
     else
     --> [No] "Do nothing"
-    --> "Check next task"
+    --> "Get next task"
     Endif
+"Get next task" --> "Check if user exits"
 else
 --> [Yes] "Stop Timer"
 --> ===B2===
 EndIf
-'--> ===B2===
-'===B2=== --> "ProductiveNUS closes"
+===B2=== --> "ProductiveNUS closes"
 -->(*)
 @enduml
