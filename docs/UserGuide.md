@@ -351,6 +351,27 @@ Outcome:
 
 ![AddEmployeeCommandScreenshot](images/AddEmployeeResult.png)
 
+#### 3.2 Listing all employees in the active list: `c-active-list`
+
+Lists all employees who are active.
+
+Format: `c-active-list`
+
+Example: 
+Let's say you want to see all active employees in your store, you can follow these instructions:
+
+Steps to list all active employees:
+1. Type `c-active-list` into the _Command Box_.
+1.  Press "Enter" to execute.
+
+Outcome:
+1. The _Result Display_ will show that all employees are listed.
+
+2. All active employees will be listed in the _Main View_.
+
+![ActiveEmployeeListCommand](images/ActiveListResult.png)
+
+
 #### 3.3 Listing all employees who are working today: `c-today`
 
 Shows a list of all active(unarchived) employees whose tags contain today's day (i.e. `Wednesday`, `Tuesday`, etc).
