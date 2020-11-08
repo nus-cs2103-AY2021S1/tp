@@ -197,13 +197,12 @@ the list of cases will be updated to show the full list of cases in `Home` \ `Ar
 
 Format:  `find KEYWORD [MORE_KEYWORDS]`
 
+<div style="page-break-after: always;"></div>
+
 Example:
 * `find Ang` could return cases titled `ang` and `Ang Mo Kio Car Theft`, and cases with a suspect named `Ang`
 * `find dhoby bishan` could return cases `Dhoby Ghaut Murder Case` and `Bishan Shopping Theft`, and cases containing `dhoby` or `bishan` in their description
 * `find 91234567 bishan` could return a case with the Victim having Phone number `91234567`, and cases containing `bishan` in their details
-
-
-<div style="page-break-after: always;"></div>
 
 ### Investigation Case page
 The commands listed below can only be used in the `Case Page` of the app.
@@ -228,6 +227,8 @@ Switches to the `Witness` tab and lists all victims for the current case.
 
 Format: `list witness`
 
+<div style="page-break-after: always;"></div>
+
 #### Add description to the current case: `add desc d:DESC`
 Adds the description of the current case if it does not already have a description. You cannot edit a description of a case that already has a description using this command. Try [Edit Description](#edit-description-of-the-current-case-edit-desc-ddesc) instead.
 
@@ -237,7 +238,6 @@ Format: `add desc d:DESC`
 Example: 
 - `add desc d:Kovan double murders of twins xxx and yyy` adds the description “Kovan double murders of twins xxx and yyy” to the current case.
 
-<div style="page-break-after: always;"></div>
 #### Add document to the current case: `add doc n:NAME r:REFERENCE`
 Adds a new document to the current case with the specified `NAME` and `REFERENCE`.
 - `NAME` is what you would like to call the Document in PIVOT.
