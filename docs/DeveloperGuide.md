@@ -2956,7 +2956,7 @@ unless specified otherwise.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Stock**: Item in the inventory.
-* **Field**: (name, serial number, quantity, location stored, source) of the stock in inventory
+* **Field**: Represents the Name, Serial Number, Quantity, Location stored, Source, Note of the stock in inventory
 
 --------------------------------------------------------------------------------------------------------------------
 

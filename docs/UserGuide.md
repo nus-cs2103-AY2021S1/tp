@@ -49,7 +49,7 @@ To get started using Warenager,
 
 The commands available in the current version of
 Warenager are: add, delete, update, find, findexact, note, notedelete,
-stockview, stats, sort, print, bookmark, unbookmark, list and help.
+stockview, stats, sort, print, bookmark, unbookmark, list, tab and help.
 Refer to the [Commands](#commands) section to for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -62,6 +62,7 @@ Term | Definition
 --------|------------------
 **Command Line Interface (CLI)** | A command-line interface processes commands to a computer program in the form of lines of text. 
 **Graphical User Interface (GUI)** | The graphical user interface is a form of user interface that allows users to interact with electronic devices through graphical icons.
+**Field** | Represents the Name, Serial Number, Quantity, Location stored, Source, Note of the stock in inventory
 **Prefixes** | The field code that are entered during user input, so that Warenager will know what to do. e.g. `q/`, `n/`, `s/`, `sn/`.
 **Parameters** | Parameters are additional fields to key in during user input and provided after a prefix. e.g. `<name>` in `n/<name>`.
 **CSV File** | Comma-Separated Values File. It contains data separated by commas.
@@ -195,7 +196,7 @@ Action | Format, Examples
 **Find** | `find { [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>] }` <br> e.g. `find n/banana sn/SHENGSIONG`
 **FindExact** | `findexact { [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>] }` <br> e.g. `findexact n/banana sn/SHENGSIONG`
 **Note** | `note sn/<serial number> nt/<note>` <br> e.g. `note sn/shengsiong1 nt/chicken will expire soon`
-**NoteDelete** | `notedelete sn/<serial number> ni<note index>` <br> e.g. `notedelete sn/ntuc1 ni/1`
+**NoteDelete** | `notedelete sn/<serial number> ni/<note index>` <br> e.g. `notedelete sn/ntuc1 ni/1`
 **StockView** | `stockview sn/<serial number>` <br> e.g. `stockview sn/ntuc1`
 **Update** | `update sn/<serial number> [sn/<serial number>]... [iq/<increment value> `&#124;` nq/<new quantity>] [n/<name>] [l/<location>] [lq/<low quantity>]` <br> e.g. `update sn/Ntuc1 iq/+50 n/heineken` 
 **Statistics** | `stats st/<statistics type>` <br> e.g. `stats st/source-qd-ntuc`
@@ -1215,8 +1216,6 @@ Unbookmarking a stock that is not bookmarked will also result in an error.
 Using the bookmark input `bookmark sn/fairprice1`,you should expect the following error:
 
 ![bookmark_already_bookmarked](images/bookmark/unbookmark_not.png)
-</div>
-
 </div>
 
 ### Sorting inventory: `sort`
