@@ -205,6 +205,23 @@ Step 4. Within `Model`, the method `Model#addModule(Module)` is executed and thi
 Step 5. Once the `Module` has been added to the `internaList`, `AddModuleCommand#execute(Model)` creates an
 `CommandResult` object and the `CommandResult` is returned to `LogicManager`.
 
+> Note
+> There are some differences for the add commands of `TutorialGroup` and `Student` during Step 4.
+>
+> For `TutorialGroup`:
+> - Within each `Module`, there is a `UniqueTutorialGroupList`.
+> - The `Model` will check if the user is currently in the Tutorial Group View using `Model#isInTutorialGroupView()`.
+> This ensures that there is a target `Module` for the `TutorialGroup` to be added to.
+> - `Model#addTutorialGroup(TutorialGroup)` method then retrieves the `UniqueTutorialGroupList` of the target `Module`
+> and adds the `TutorialGroup` to the `internalList` of the `UniqueTutorialGroupList`.
+>
+> For `Student`:
+> - With each `TutorialGroup`, there is a `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be added to.
+> - `Model#addStudent(Student)` method then retrieves the `UniqueStudentList` of the target `Module` and `TutorialGroup`
+> and adds the `Student` to the `internalList` of the `UniqueStudentList`.
+
 #### Design Considerations
 **Aspect: List to contain the models**
 - Option 1: Generic `UniqueList` that contains the models
