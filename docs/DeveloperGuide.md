@@ -619,9 +619,8 @@ Refer to the [DevOps guide](DevOps.md).
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                               | I want to …​                                          | So that I can…​                                                                     |
+| Priority | As a …​                               | I want to …​                                          | So that I can…​                                                            |
 | -------- | --------------------------------------| ----------------------------------------------------- | ----------------------------------------------------------------------              |
-| `* * *`  | private tutor that is using Reeve for the first time      | view Reeve with sample data           | visualize how Reeve looks like when I use it                                    |
 | `* * *`  | private tutor ready to use Reeve      | view a list of commands and how to use them           | learn how the application works or in case I forgot how some of the commands work   |
 | `* * *`  | private tutor ready to use Reeve      | add my students' details                              | store them and retrieve them whenever I need                                        |
 | `* * *`  | private tutor                         | view my students' preferred tutoring location         | figure out how to get that location                                                 |
@@ -640,6 +639,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |   `*`    | private tutor                         | view my students' academic progress                   | know which students need more help                                                  |
 |   `*`    | private tutor ready to use Reeve      | view the type of student details that are displayed   | focus on the details that I am currently concerned with                             |
 |   `*`    | private tutor that is impatient       | be able to get the command results in a reasonable time | save time                                                                         |
+| `*`      | private tutor that is using Reeve for the first time      | view Reeve with sample data        | visualize how Reeve looks like when I use it                                    |
 
 ## **Appendix C: Use Cases**
 

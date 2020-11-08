@@ -393,7 +393,7 @@ Format: `schedule m/VIEW_MODE d/DATE_TO_VIEW`
 
 :information_source: `VIEW_MODE` can only be either **weekly** or **daily**.
  
-:bulb: The case letters of the input for `VIEW_MODE` does not matter. 
+:bulb: The input for `VIEW_MODE` is case-insensitive. 
 
 :information_source: `DATE_TO_VIEW` must be in the format **dd/mm/yyyy**. For instance, `02/11/2020` refers to the date 2nd November 2020
 
