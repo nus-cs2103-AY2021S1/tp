@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.body.Height;
 import seedu.address.model.body.Weight;
+import seedu.address.model.calorie.Calorie;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.timetable.Day;
 import seedu.address.model.timetable.Duration;
@@ -36,6 +37,8 @@ public class ParserUtilTest {
     private static final String INVALID_WEIGHT_FORMAT = "60.12.3";
     private static final String INVALID_WEIGHT_LIMIT_1 = "10";
     private static final String INVALID_WEIGHT_LIMIT_2 = "1000";
+    private static final String INVALID_CALORIE_FORMAT = "1234.56";
+    private static final String INVALID_CALORIE_LIMIT = "0";
 
     private static final String VALID_LESSON_NAME = "GER1000";
     private static final String VALID_EXERCISE_NAME = "Seated Leg Press";
@@ -45,6 +48,7 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "lower";
     private static final String VALID_HEIGHT = "170";
     private static final String VALID_WEIGHT = "70";
+    private static final String VALID_CALORIE = "1000";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -251,5 +255,26 @@ public class ParserUtilTest {
     public void parseWeight_validWeight_success() throws Exception {
         Weight expectedWeight = new Weight(70);
         assertEquals(expectedWeight, ParserUtil.parseWeight(VALID_WEIGHT));
+    }
+
+    @Test
+    public void parseCalorie_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCalorie(null));
+    }
+
+    @Test
+    public void parseCalorie_invalidCalorieFormat_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCalorie(INVALID_CALORIE_FORMAT));
+    }
+
+    @Test
+    public void parseCalorie_invalidCalorieLimit_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCalorie(INVALID_CALORIE_LIMIT));
+    }
+
+    @Test
+    public void parseCalorie_validCalorie_success() throws Exception {
+        Calorie expectedCalorie = new Calorie(1000);
+        assertEquals(expectedCalorie, ParserUtil.parseCalorie(VALID_CALORIE));
     }
 }

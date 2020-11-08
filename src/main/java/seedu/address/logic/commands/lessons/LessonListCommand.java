@@ -22,4 +22,9 @@ public class LessonListCommand extends Command {
         model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof LessonListCommand;
+    }
 }
