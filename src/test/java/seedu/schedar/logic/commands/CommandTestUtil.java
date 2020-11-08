@@ -21,6 +21,7 @@ import seedu.schedar.model.Model;
 import seedu.schedar.model.TaskManager;
 import seedu.schedar.model.task.Task;
 import seedu.schedar.model.task.TitleOrDescriptionContainsKeywordsPredicate;
+import seedu.schedar.testutil.EditEventDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -62,6 +63,20 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    public static final EditEventCommand.EditEventDescriptor DESC_PROJECT;
+    public static final EditEventCommand.EditEventDescriptor DESC_LECTURE;
+
+    static {
+        DESC_PROJECT = new EditEventDescriptorBuilder().withTitle(VALID_TITLE_PROJECT)
+                .withDescription(VALID_DESCRIPTION_PROJECT).withPriority(VALID_PRIORITY_PROJECT)
+                .withEventDate(VALID_TASKDATE_PROJECT).withEventTime(VALID_TASKTIME_PROJECT)
+                .withTags(VALID_TAG_PROJECT).build();
+        DESC_LECTURE = new EditEventDescriptorBuilder().withTitle(VALID_TITLE_LECTURE)
+                .withDescription(VALID_DESCRIPTION_LECTURE).withPriority(VALID_PRIORITY_LECTURE)
+                .withEventDate(VALID_TASKDATE_LECTURE).withEventTime(VALID_TASKTIME_LECTURE)
+                .withTags(VALID_TAG_LECTURE).build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
