@@ -187,20 +187,40 @@ Figure 4.2 Listing all patients
 
 ### Editing a patient: `edit` (by Cao Qin)
 
-Edits an existing patient in **Hospify**.
+This command allows you to edit an existing patient in **Hospify**.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/ALLERGIES]…​`
 
-* Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Important notes:**<br>
+
+* The meaning of each filed is the same as in `add` command, please refer to [add command](#adding-a-patient-add-by-cedric-lim-jun-wei).
+* `INDEX` refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
+* Except `INDEX`, all other fields are optional.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing allergies, the existing allergies of the patient will be removed i.e adding of allergies is not cumulative.
-* You can remove all the patient’s allergies by typing `t/` without
-    specifying any allergies after it.
+* You are **not allowed** to edit the `NRIC` or `MEDICAL_RECORD_URL` field of a patient to the same as another existing patient's in **Hospify**. However, it is possible to do so for the other fields.
+
+</div>
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing allergies.
+
+When a patient is successfully edited in **Hospify**, a success message will appear in the message box, and the edited patient is updated in the list as shown in figure 5.1 below. <br>
+![Edit patient](images/editPatient.png)
+Figure 5.1 Editing a patient(success scenario)
+
+<div markdown="block" class="alert alert-info">
+
+**:bulb: Tip:**<br>
+
+* You can remove all the patient’s allergies by typing `t/` without
+    specifying any allergies after it.
+    
+</div>
 
 ### Locating patients by name or Nric: `find` (by Gabriel Teo Yu Xiang)
 
@@ -235,8 +255,7 @@ Examples:
 
 Deletes the specified patient from **Hospify**.
 
-Format: `delete INDEX`<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; or `delete NRIC`
+Format: `delete INDEX` or `delete NRIC`
 
 <div markdown="block" class="alert alert-info">
 
@@ -251,27 +270,19 @@ Format: `delete INDEX`<br>
 
 Examples:
 
-scenario 1:
+scenario 1 (delete by index):
 
 * `list`(shown in Figure 2.4 below) followed by `delete 2`(shown in Figure 2.5 below) deletes the 2nd patient in **Hospify**.
 
+  `list` command shows all the patients and their corresponding index.
   ![result for 'list'](images/listResult.png)
   Figure 2.4 result of `list` command
   
+  `delete 2` command deletes the patient with index 2. 
   ![result for 'delete 2'](images/deleteTwoResult.png)
   Figure 2.5 result of `delete 2` command
-  
-scenario 2:
-  
-* `find Oliveiro`(shown in Figure 2.6 below) followed by `delete 1`(shown in Figure 2.7 below) deletes the 1st patient in the results of the `find` command.
 
-  ![result for 'find Oliveiro'](images/findOliveiro.png)
-  Figure 2.6 result of `find Oliveiro` command
-  
-  ![result for 'delete 1'](images/deleteOliveiroResult.png)
-  Figure 2.7 result of `delete 1` command
-
-scenario 3:
+scenario 2 (delete by nric):
 
 * `delete S0000004A`(shown in Figure 2.8 below) deletes `David Li` (whose NRIC is S0000004A).
 
@@ -534,7 +545,7 @@ at **hospify_enquiry@gmail.com** to notify the tech team if it does not open on 
 
 </div>
 
-### Clearing all entries: `clear`
+### Clearing all entries: `clear` (by Cao Qin)
 
 This command helps clear all patients' information from **Hospify**.
 
@@ -548,7 +559,7 @@ Figure 14.5 clear command
 ![clear command result](images/clear%20command%20result.png)
 Figure 14.6 clear command result
 
-### Exiting the program: `exit`
+### Exiting the program: `exit` 
 
 You can exit the program by typing `exit` on the command line. Alternatively, you can close the window directly. Don't worry, either way, your data is automatically saved in the program!
 
