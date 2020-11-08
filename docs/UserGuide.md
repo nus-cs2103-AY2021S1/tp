@@ -116,7 +116,7 @@ on storing these details
   * Names can be contain only alphanumeric characters and have a character limit of 70 characters.
   * Phone numbers can only contain numbers, and should be at least 8 digits long.
   * Emails should be of the format local-part@domain where the local-part should contain alpha numeric characters or 
-    special characters which includes ( !#$%&'*+/=?`{|}~^.- ) excluding the parentheses. The domain name should have 
+    special characters which includes ( !#$%&'*+/=?`{|}~^.-_ ) excluding the parentheses. The domain name should have 
     at least 2 characters and contain only alphanumeric with a period or a hyphen for the characters in between if 
     needed.
   * Tags can only contain alphanumeric characters. 
@@ -234,7 +234,7 @@ This command enables you to add a staff record into Eva. A staff record can cont
 The fields marked with a asterisk (*) are compulsory and have to be provided in the parameters below.
 Without any of these fields, Eva will not accept your input. Tags and comments can be added with this `adds` command as shown 
 in the examples. To manage leave records for each staff, please refer to the commands 
-[addl](#337-record-leave-taken-by-staff-addl) and [dell](#338-delete-leave-taken-by-staff-dell).
+[`addl`](#337-record-leave-taken-by-staff-addl) and [`dell`](#338-delete-leave-taken-by-staff-dell).
 
 Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]…`
 
@@ -437,9 +437,10 @@ This command enables you to add an applicant record into Eva. An applicant recor
  - Application
  
 The fields marked with a asterisk (*) are compulsory and have to be provided in the parameters below.
-Without any of these fields, Eva will not accept your input. Tags and comments can be added with these commands as shown 
-in the examples. To manage application records for each applicant, please refer to the commands 
-[addapp](#347-add-an-application-addapp) and [delapp](#348-delete-an-application-delapp)
+Without any of these fields, Eva will not accept your input. Tags, comments, interview date can be added with this `adda` 
+command as shown in the examples. To manage application records for each applicant, please refer to the commands 
+[`addapp`](#347-add-an-application-addapp) and [`delapp`](#348-delete-an-application-delapp). To manage the application status,
+please refer to the command [`setas`](#349-set-application-status-setas).
 
 Format: `adda n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG]…​[c/COMMENTS]…`
 
@@ -448,6 +449,7 @@ Format: `adda n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG
  - Each applicant is uniquely identified by their name. In the event you wish to add 2 applicant records with the same name,
       please ensure that both their phone numbers and email addresses are different.
  - The interview date has to be in DD/MM/YYYY format.
+ - If you provide 2 interview dates, although optional, the later date will be recorded.
  - Once you add an applicant the status would be automatically set as received, if you wish to change it, refer to the feature 
  [setting of application status](#349-set-application-status-setas) below.
  
