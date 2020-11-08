@@ -329,7 +329,7 @@ list lt/<list type>
 
 ![list_bookmark](images/list/list_bookmark.png)
 
-**Step 2.** We can then list out all the stocks that are low in quantity using the command `list lt/low`.
+**Step 2.** You can then list out all the stocks that are low in quantity using the command `list lt/low`.
 
 **Before input**:
 
@@ -1266,7 +1266,7 @@ the stock with quantity `2`, since `100` is greater than `2`.
 ![sort_step1](images/sort/sort_step1.png)
 
 **Step 2.** In the picture above, the stock is sorted by serial number in ascending order.
-Suppose that we now want to view the stocks by name in ascending order instead. <br>
+Suppose that you now want to view the stocks by name in ascending order instead. <br>
 A valid sort input would be `sort o/ascending by/name`. <br>
 
 **Before input:**
@@ -1279,7 +1279,7 @@ A valid sort input would be `sort o/ascending by/name`. <br>
 ![sort_step3](images/sort/sort_step3.png)
 
 **Step 3.** It is also possible to sort in descending order.
-Suppose that we now want to view the stocks by quantity in descending order. <br>
+Suppose that you now want to view the stocks by quantity in descending order. <br>
 A valid sort input would be `sort o/descending by/quantity`. <br>
 
 **Before input:**
@@ -1424,7 +1424,7 @@ can be found at Warenager's [Developer Guide](https://ay2021s1-cs2103t-t15-3.git
 
 ![suggestion_step1](images/suggestion/suggestion_step1.png)
 
-**Step 2.** Suppose now we want to add a new stock with the following description:
+**Step 2.** Suppose now you want to add a new stock with the following description:
 * name: eggplant
 * source: fairprice
 * quantity: 500
@@ -1433,7 +1433,7 @@ can be found at Warenager's [Developer Guide](https://ay2021s1-cs2103t-t15-3.git
 
 A valid input would be `add n/eggplant s/fairprice q/500 l/vegetable section lq/100`.
 
-But we make a mistake and instead entered `ad n/eggplant sn/fairprice q/500 l/vegetable section lq/100`
+But you make a mistake and instead entered `ad n/eggplant sn/fairprice q/500 l/vegetable section lq/100`
 
 **Before input:**
 
@@ -1444,8 +1444,8 @@ But we make a mistake and instead entered `ad n/eggplant sn/fairprice q/500 l/ve
 ![suggestion_step3](images/suggestion/suggestion_step3.png)
 
 **Step 3.** As shown above, the suggestion `add n/eggplant s/<source> q/500 l/vegetable section lq/100` is generated.
-Now we can amend our input according to the suggested format.
-We now enter a valid input `add n/eggplant s/fairprice q/500 l/vegetable section lq/100`.
+Now you can amend our input according to the suggested format.
+You now enter a valid input `add n/eggplant s/fairprice q/500 l/vegetable section lq/100`.
 
 **Before input:**
 
