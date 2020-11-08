@@ -68,7 +68,7 @@ Format: `help`
 
 ## 3.2. Add exercises : `add`
 
-Add an exercise to the application, with date, calories burnt, muscles worked and tags as optional.
+Adds an exercise to the application, with date, calories burnt, muscles worked and tags as optional.
 
 ![add command message](images/addCommandMessage.png)
 
@@ -76,13 +76,14 @@ Format: `add n/EXERCISE d/DESCRIPTION [at/DATE] [c/CALORIES] [m/MUSCLE]... [t/TA
 
 - The format for the DATE should be in the form of DD-MM-YYYY.
 - If DATE is not provided, the default date will be the current day.
+- Exercises are uniquely identified by names, descriptions, dates, and tags. Duplicate exercises cannot be added to Calo. You may consider including additional information in description (e.g. 2nd time) if you want to do the same exercise more than once a day.
 
 Examples:
 - `add n/running d/10 mins at/31-12-2020 c/100 m/chest m/arm t/home t/gym`
 
 ## 3.3. Update exercises : `update`
 
-Update an existing exercise.
+Updates an existing exercise.
 
 ### Before
 ![before update](images/exerciseBeforeUpdate.png)
