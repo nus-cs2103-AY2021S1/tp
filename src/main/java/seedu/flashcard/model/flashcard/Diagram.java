@@ -16,10 +16,10 @@ public class Diagram {
 
     public static final String MESSAGE_CONSTRAINTS = "Diagram can be defined by a valid relative or absolute path";
     public static final String MESSAGE_INVALID_FILE_TYPE = "Invalid file type. Diagram only supports the following "
-            + "image file types: jpg, png, jpeg, bmp, gif ";
+            + "image file types: jpg, png, jpeg, bmp";
     public static final String MESSAGE_NON_EXISTENT_DIAGRAM_FILE_TYPE = "Please ensure diagram file exists";
     public static final List<String> SUPPORTED_IMAGE_FILE_TYPE_LIST =
-            Arrays.asList(new String[]{"jpg", "png", "jpeg", "bmp", "gif"});
+            Arrays.asList(new String[]{"jpg", "png", "jpeg", "bmp"});
 
     private String diagramFilePath;
 
@@ -39,8 +39,10 @@ public class Diagram {
     public static boolean isValidImageFileType(String path) {
         File file = new File(path);
         try {
-            if (ImageIO.read(file) != null) {
-                return isAcceptedImageFileType(file);
+            if (isAcceptedImageFileType(file)) {
+                if (ImageIO.read(file) != null) {
+                    return true;
+                }
             }
         } catch (IOException exception) {
             return false;
@@ -66,9 +68,14 @@ public class Diagram {
     public static boolean isAcceptedImageFileType(File file) {
         String fileName = file.toString();
         int index = fileName.lastIndexOf('.');
-        if (index > 0) {
-            String extension = fileName.substring(index + 1);
-            return SUPPORTED_IMAGE_FILE_TYPE_LIST.contains(extension);
+        try {
+            if (index > 0) {
+                String extension = fileName.substring(index + 1);
+                String extensionLowerCase = extension.toLowerCase();
+                return SUPPORTED_IMAGE_FILE_TYPE_LIST.contains(extensionLowerCase);
+            }
+        } catch (IndexOutOfBoundsException exception) {
+            return false;
         }
         return false;
     }
