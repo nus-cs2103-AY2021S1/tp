@@ -398,7 +398,7 @@ rather than attempting to perform the redo.
 </div>
 
 Step 6. The user executes `open case 1`, followed by `edit title t:Robbery`. The edit title command calls
-Model#commitPivot(String commandMessage, Undoable command)`. Since the `currentStatePointer` is not pointing at the end
+`Model#commitPivot(String commandMessage, Undoable command)`. Since the `currentStatePointer` is not pointing at the end
 of the `pivotStateList`, all `PivotState` objects after the `currentStatePointer` will be purged. Reason: It
 no longer makes sense to redo the `add case t:Lost Wallet …​` command. This is the behavior that most modern desktop
 applications follow.
@@ -444,7 +444,7 @@ The user inputs the command `archive case 1` and the arguments are passed to the
 If the command is of a valid format, a new `ArchiveCommand` will be created.
 
 <div markdown="span" class="alert alert-info">:information_source: 
-**Note:** When the user provides invalid arguments, such as `archive c 1`, `OpenCommandParser` will raise an error and display the proper command format for the user.
+**Note:** When the user provides invalid arguments, such as `archive c 1`, `ArchiveCommandParser` will raise an error and display the proper command format for the user.
 </div>
 
 Upon invoking `ArchiveCommand#execute()`, the class will extract the `Case` to be archived as specified by the `Index` provided.
