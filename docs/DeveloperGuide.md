@@ -24,12 +24,12 @@ by Team W12-2
     * [4.8 - Exit Command - `exit`](#section-48---exit-command---exit)
     * [4.9 - Data saving and loading](#section-49---data-saving-and-loading)
 * [Section 5 - Documentation, logging, testing, configuration, dev-ops](#section-5---documentation-logging-testing-configuration-dev-ops)
-* [Appendix A - Product Scope]
-* [Appendix B - User Stories]
-* [Appendix C - Use Cases]
-* [Appendix D - Non-Functional Requirements]
-* [Appendix E - Glossary]
-* [Appendix F - Instructions for Manual Testing]
+* [Appendix A - Product Scope](#appendix-a---product-scope)
+* [Appendix B - User Stories](#appendix-b---user-stories)
+* [Appendix C - Use Cases](#appendix-c---use-cases)
+* [Appendix D - Non-Functional Requirements](#appendix-d---non-functional-requirements)
+* [Appendix E - Glossary](#appendix-e---glossary)
+* [Appendix F - Instructions for Manual Testing](#appendix-f---instructions-for-manual-testing)
 
 ---
 
