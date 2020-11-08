@@ -5,7 +5,7 @@ title: New Jun Jie (Jet)'s Project Portfolio Page
 
 ## Project: ResiReg
 
-ResiReg is a desktop residential management application used for managing a residential college such as Cinnamon College. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
+ResiReg is a desktop residential management application used for managing a residential college such as Cinnamon College. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java and has about 20kLoC.
 
 Given below are my contributions to the project.
 
@@ -29,12 +29,12 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added documentation for the Allocation Feature: [\#124](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/124)
-    * Added screenshot examples in the User Guide for the Allocation Feature.
+    * Added screenshot examples in the User Guide for the Allocation Feature: [\#131](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/131)
   * Developer Guide:
     * Added documentation for the Allocation Feature: [\#124](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/124)
     * Added implementation considerations, sequence diagrams and execution steps for the Allocation Feature: [\#130](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/130)
 
 * **Community**:
   * Feature Increment PRs pushed: [\#78](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/78), [\#84](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/84), [\#85](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/85), [\#122](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/121)
-  * Unit Testing PRs pushed: [\#106](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/106), [\#121](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/121)
-  * Contributed to forum discussions (examples: [1](ttps://github.com/AY2021S1-CS2103-T16-3/tp/pull/122))
+  * Unit Testing PRs pushed: [\#106](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/106), [\#121](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/121), [\#179](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/179)
+  

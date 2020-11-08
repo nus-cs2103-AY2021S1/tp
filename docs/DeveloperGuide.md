@@ -77,7 +77,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete-student si/1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -118,9 +118,9 @@ Notes:
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete-student 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("edit-student 1 p/82462157")` API call.
 
-![Interactions Inside the Logic Component for the `delete-student 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `edit-student` Command](images/EditSequenceDiagram.png)
 
 ### Model component
 
