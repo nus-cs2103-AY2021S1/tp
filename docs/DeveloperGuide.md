@@ -1129,10 +1129,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Exit Application
 
-    1. Type `quit' in the command box, and press <kbd>enter</kbd> to exit the application. <br>
+    1. Type `quit` in the command box, and press <kbd>enter</kbd> to exit the application. <br>
        Expected: The window closes and the application exits.
 
 #### B.1.2&ensp;Recall commands previously entered
+
 1. Recalling commands without any prior input
    1. Prerequisites: No commands executed since launch.
    
@@ -1251,21 +1252,18 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: none.
     
     1. Test case: `help`<br>
-    Expected: A general help message is displayed at the Command Output box.
+    Expected: General help message displayed at the Command Output box.
     
     1. Test case: `help add`, `help delete ingredient`<br>
-    Expected: A help message for the specified command is displayed at the Command Output box.   
+    Expected: Help message for the specified command displayed at the Command Output box.   
     
     1. Incorrect help commands to try: `help 0`, `help recipe`, `...` <br>
     Expected: No help message displayed. Error details shown in the Command Output box.
-      
+     
       
 ### B.2&ensp;Managing Recipes
 
 #### B.2.1&ensp;Adding recipes  
-1. Adding a recipe without ingredients, steps and tags
-   1. Prerequisites: None.
-
 1. Adding a recipe
 
    1. Prerequisites: none.
@@ -1280,28 +1278,32 @@ testers are expected to do more *exploratory* testing.
    /step Ready to serve.
    /tag Summer Favourites /tag fruit
    ``````
-      Expected: New recipe added. Details of the added recipe shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
+   Expected: New recipe added. Details of the added recipe shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
 
+1. Adding a recipe without ingredients, steps and tags
+   1. Prerequisites: None.
+   
    1. Test case: `add recipe Cookies and Cream Cake`<br>
-      Expected: Output display similar to previous.
-
+   Expected: Output display similar to previous.
+   
    1. Incorrect add commands to try: `add`, `add recipe`<br>
-      Expected: No recipe is added. Error details shown in the Command Output box. 
+   Expected: No recipe is added. Error details shown in the Command Output box. 
    
 #### B.2.2&ensp;Deleting recipes  
 1. Deleting a recipe using recipe index
    1. Prerequisites: None.
     
    1. Test case: `delete recipe #1`<br>
-      Expected: Recipe #2 deleted. All current recipes (after the deletion) shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
+      Expected: Recipe **#2** deleted. All current recipes (after the deletion) shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
     
    1. Test case: `delete recipe #20` <br>
       Expected: No recipe deleted as the recipe with the given index does not exist. Error details shown in the Command Output box. 
 
 1. Deleting a recipe using recipe index in a filtered list
    1. Prerequisites: None.  
-   1. Test case: Similar to above.
-   1. Expected: Similar to above.
+   
+   1. Test case: Similar to previous.
+      Expected: Similar to previous.
    
 1. Deleting a recipe using recipe name
    1. Prerequisites: None. 
@@ -1333,7 +1335,7 @@ testers are expected to do more *exploratory* testing.
     /step:add:3 The fruit mix is now ready to serve.
     /tag:add cooling /tag:delete fruit
     ``````
-    Expected: Recipe #3 edited. Details of the added recipe shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
+    Expected: Recipe **#3** edited. Details of the added recipe shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
   
 1. Editing a recipe using recipe index in a filtered list
    1. Prerequisites: None. 
@@ -1346,6 +1348,7 @@ testers are expected to do more *exploratory* testing.
    
    1. Test case: `edit recipe Fruit Mix /name Fruit Juice`<br>
       Expected: Similar to above.
+      
    1. Incorrect edit commands to try: `edit`, `edit recipe`, `edit recipe #1`<br>
       Expected: No recipe is edited. Error details shown in the Command Output box. 
       
@@ -1406,7 +1409,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: None. 
    
    1. Test case: `view recipe #1` <br>
-      Expected: Details of the recipe with index **#1** shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
+      Expected: Details of recipe **#1** shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
 
 1. Viewing a recipe using recipe index in a filtered list
    1. Prerequisites: None. 
@@ -1422,7 +1425,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: None. 
    
    1. Test case: `make recipe #1`<br>
-   Expected: Recipe with index **#1** made, if all ingredients needed are in stock. Details of the recipe shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
+   Expected: Recipe **#1** made, if all ingredients needed are in stock. Details of the recipe shown in the Recipe Display Panel. A confirmation message is displayed at the Command Output box.
 
    1. Test case: `make recipe #2`<br>
    Expected: No recipe made, as some ingredients are missing. Error details shown in the Command Output box.
@@ -1442,25 +1445,70 @@ testers are expected to do more *exploratory* testing.
 ### B.3&ensp;Managing Ingredients
 
 #### B.3.1&ensp;Adding ingredients  
-1. Adding an ingredient without quantity, expiry date and tags.
+1. Adding an ingredient.
    1. Prerequisites: None.
+   
+   1. Test case: 
+   ``````
+   add ingredient Vinegar 
+   /qty 550ml
+   /expiry 2021-07-05
+   /tag kitchen /tag sour
+   ``````
+   Expected: New ingredient added. Details of the added ingredient shown in the Ingredient View Panel. A confirmation message is displayed at the Command Output box.
 
-1. Adding an ingredient
+1. Adding an ingredient without quantity, expiry date and tags.
    1. Prerequisites: None. 
+   
+   1. Test case: `add ingredient Chocolate` <br>
+   Expected: Similar to previous.
+   
+1. Updating quantity of an existing ingredient.
+   1. Prerequisites: the ingredient has been created.
+   
+   1. Test case: `add ingredient Apple` <br>
+      Expected: Quantity of Apple increased by 1. A confirmation message is displayed at the Command Output box.
+   
+   1. Test case: `add ingredient Apple /qty 3` <br>
+   Expected: Quantity of Apple increased by 3. A confirmation message is displayed at the Command Output box.
+   
+   1. Test case: `add ingredient Chocolate /qty 50mL` <br>
+      Expected: No ingredient is updated due to incompatible units. Error details shown in the Command Output box.
+      
+   1. Test case: `add ingredient Vinegar` <br>
+      Expected: Similar to previous.
    
 #### B.3.2&ensp;Deleting ingredients  
 1. Deleting an ingredient using ingredient index
    1. Prerequisites: None. 
+   
+   1. Test case: `delete ingredient #2`<br>
+   Expected: Ingredient **#2** deleted. All current ingredients (after the deletion) shown in the Ingredient View Panel. A confirmation message is displayed at the Command Output box.
+    
+   1. Test case: `delete ingredient #2 /qty 2`<br>
+   Expected: Quantity of ngredient **#2** reduced by 2. Output display similar to previous. When its quantity decreases to 0, its Ingredient Tile disappears from the Ingredient View Panel.
 
 1. Deleting an ingredient using ingredient index in a filtered list
    1. Prerequisites: None. 
    
+   1. Test case: Similar to previous. <br>
+      Expected: Similar to previous.
+   
 1. Deleting an ingredient using ingredient name
    1. Prerequisites: None. 
+   
+   1. Test case: `delete ingredient Chocolate` <br>
+      Expected: Ingredient **Chocolate** deleted. Output display similar to previous.
+      
+   1. Incorrect delete commands to try: `delete ingredient`, `delete Chocolate`, `delete Chocolate 3`<br>
+      Expected: No ingredient deleted. Error details shown in the Command Output box.
 
 #### B.3.3&ensp;Editing ingredients  
 1. Editing an ingredient using ingredient index
    1. Prerequisites: None. 
+   
+   1. Test case: `edit ingredient #2 /tag:add Sweet /tag:delete Dairy`<br>
+      Expected: Ingredient **#2** edited. 
 
 1. Editing an ingredient using ingredient index in a filtered list
    1. Prerequisites: None. 
