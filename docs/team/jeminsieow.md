@@ -16,7 +16,7 @@ Given below are my contributions to the project.
         * What it does: It serves as a base to allow the user to create, edit, and delete exercises.
         * Justification: This feature allows the user to create their own exercises which is more user friendly.
         * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required using the current date and time in recording the Logs. This led to challenging design decisions in allowing JUnit tests to run well.
-    * Added the ability to delete exercises (Pull request [\#84](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/84))
+    * Added delete exercises feature (Pull request [\#84](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/84))
         * What it does: allows the user to delete exercises from the exercise list one at a time.
         * Justification: This feature improves usability, as user will be able to remove unwanted exercises, making the list more relevant to them.
 
