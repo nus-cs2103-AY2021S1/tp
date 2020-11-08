@@ -15,7 +15,7 @@ Given below are my contributions to the project.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   * Credits: This feature was built off from the `delete contact` feature in AddressBook Level 3.  
   
-* **New Feature 2**: Added the ability to list all recipes in the recipe list. (Pull request [\#43](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/43))
+* **New Feature 2**: Added the ability to `list all recipes` in the recipe list. (Pull request [\#43](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/43))
   * What it does: Allows the user to view all recipe that they have added previously into recipe list.
   * Justification: This feature improves the product significantly because a user can now delete the recipes that they do not want anymore or have mistakenly added from the consumption list.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
