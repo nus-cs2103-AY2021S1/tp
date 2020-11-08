@@ -88,6 +88,8 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
         Integer oldCalories = exercises.getCaloriesForDay(e.getDate().value);
         Integer valueToAdd = Integer.parseInt(e.getCalories().value);
 
+        oldCalories = oldCalories == null ? 0 : oldCalories;
+
         //Since valueToAdd is always > 0, the given case is true only when an Integer Overflow occurs.
         if (oldCalories + valueToAdd < oldCalories) {
             return true;
@@ -115,6 +117,7 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
         }
 
         Integer currentCaloriesForNewE = exercises.getCaloriesForDay(newE.getDate().value);
+        currentCaloriesForNewE = currentCaloriesForNewE == null ? 0 : currentCaloriesForNewE;
         Integer valueToAdd = Integer.parseInt(newE.getCalories().value);
         if (currentCaloriesForNewE + valueToAdd < 0) {
             return true;

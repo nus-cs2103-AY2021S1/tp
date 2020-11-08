@@ -40,7 +40,7 @@ public class Calories {
             return false;
         }
 
-        return true;
+        return x >= 0;
     }
 
 

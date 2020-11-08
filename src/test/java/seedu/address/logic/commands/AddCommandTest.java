@@ -151,6 +151,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean checkOverflow(Exercise newE) {
+            throw new AssertionError("this method should not be called.");
+        }
+
+        @Override
+        public boolean checkOverflow(Exercise oldE, Exercise newE) {
+            throw new AssertionError("this method should not be called.");
+        }
+
+        @Override
         public void archive(Path path) {
             throw new AssertionError("This method should not be called.");
         }
@@ -185,6 +195,16 @@ public class AddCommandTest {
             } else {
                 caloriesByDay.put(stringDate, intCalories);
             }
+        }
+
+        @Override
+        public boolean checkOverflow(Exercise newE) {
+            return false;
+        }
+
+        @Override
+        public boolean checkOverflow(Exercise oldE, Exercise newE) {
+            return false;
         }
 
         @Override

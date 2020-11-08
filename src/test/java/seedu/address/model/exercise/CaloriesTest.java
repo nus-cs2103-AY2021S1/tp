@@ -21,9 +21,10 @@ public class CaloriesTest {
         assertTrue(Calories.isValidCalories("0"));
         assertTrue(Calories.isValidCalories("1000"));
 
+
         //Partition Testing
         assertFalse(Calories.isValidCalories("-1")); // long number
-        assertFalse(Calories.isValidCalories("1001")); // long number
+        assertFalse(Calories.isValidCalories("2147483648")); // long number
         assertFalse(Calories.isValidCalories("phone")); // non-numeric
         assertFalse(Calories.isValidCalories("")); // empty string
         assertFalse(Calories.isValidCalories(" ")); // spaces only
