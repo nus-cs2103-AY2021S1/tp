@@ -28,7 +28,7 @@ import com.eva.model.tag.Tag;
 public class CommentCommand extends Command {
 
     public static final String COMMAND_WORD = "comment";
-    public static final String MESSAGE_USAGE = "Comment format: c/ ti/TITLE d/DATE desc/DESCRIPTION";
+    public static final String MESSAGE_USAGE = "Comments should contain all 3 fields in the given format.\nFormat: c/ ti/TITLE d/DATE desc/DESCRIPTION";
     public static final String MESSAGE_ADD_COMMENT_SUCCESS = "Commented on Person: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the eva database.";
     public static final String MESSAGE_DELETE_COMMENT_SUCCESS = "Deleted comment on Person: %1$s";
