@@ -158,9 +158,9 @@ This feature allows the user to undo their previous entry-level commands.
 
 #### Implementation
 
-The undo mechanism is facilitated by `ActiveAccountManager` which implements the interface `ActiveAccount`. The `ActiveAccountManager` 
+The undo mechanism is facilitated by `ActiveAccountManager`, which implements the interface `ActiveAccount`, and the `UndoCommand`, which extends `Command`. The `ActiveAccountManager` 
 stores its previous state as an `ActiveAccount` attribute when a entry command is executed. On the other hand, the `ActiveAccount` sets the attribute containing it previous 
-state as its current state when the undo commands is executed. As such, it implements the following operations:
+state as its current state when `UndoCommand` is executed. As such, it implements the following operations:
 
 * `ActiveAccountManager#setPreviousState()` — Saves a copy of the current `ActiveAccountManager` state as an attribute in `ActiveAccountManager`.
 * `ActiveAccountManager#returnToPreviousState()` — Restores the previous `ActiveAccountManager` state from its attribute.
