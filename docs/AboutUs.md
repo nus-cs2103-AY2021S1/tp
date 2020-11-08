@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/chenxj98.png" width="200px">
 
 [[github](https://github.com/ChenXJ98)]
-[[portfolio](team/xingjian.md)]
+[[portfolio](team/chenxj98.md)]
 
 * Role: Developer
 * Responsibilities: GitHub Integration

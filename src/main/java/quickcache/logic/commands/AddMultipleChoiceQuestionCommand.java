@@ -27,7 +27,7 @@ public class AddMultipleChoiceQuestionCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]..."
             + "[" + PREFIX_DIFFICULTY + "DIFFICULTY]\n";
 
-    public static final String MESSAGE_SUCCESS = "New flashcard added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New flashcard added:\n\n%1$s";
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "This flashcard already exists in QuickCache";
 
     private final Flashcard toAdd;

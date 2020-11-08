@@ -20,7 +20,7 @@ public class OpenCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_OPEN_FLASHCARD_SUCCESS = "Opened Flashcard: %1$s";
+    public static final String MESSAGE_OPEN_FLASHCARD_SUCCESS = "Opened Flashcard:\n\n%1$s";
 
     private final Index targetIndex;
 

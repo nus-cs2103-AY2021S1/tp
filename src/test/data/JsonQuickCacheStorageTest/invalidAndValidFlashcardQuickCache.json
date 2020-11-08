@@ -3,7 +3,7 @@
     "type" : "OEQ",
     "question" : "Are heparins safe in pregnancy?",
     "choices" : null,
-    "answer" : "yes, they dont cross the placenta",
+    "answer" : "Yes, They dont cross the placenta",
     "tagged" : [ "LSM1301" ],
     "difficulty" : "UNSPECIFIED",
     "statistics" : {
@@ -14,7 +14,7 @@
     "type" : "INVALID_TYPE",
     "question" : "What is the big downside for LMWH, direct thrombin and anti Xa inhibitors?",
     "choices" : null,
-    "answer" : "no reversal agent",
+    "answer" : "No reversal agent",
     "tagged" : [ "LSM1301" ],
     "difficulty" : "UNSPECIFIED",
     "statistics" : {
