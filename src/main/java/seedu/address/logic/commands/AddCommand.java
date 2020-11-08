@@ -68,8 +68,8 @@ public class AddCommand extends CommandForExercise {
         Optional<Goal> optionalGoal = model.addExercise(toAdd);
         if (optionalGoal.isPresent()) {
             Goal goal = optionalGoal.get();
-            return new CommandResult(String.format(MESSAGE_SUCCESS + MESSAGE_GOAL, toAdd, burntWeight.toString(),
-                    goal.getCalories(), goal.getDate()));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd,
+                    burntWeight.toString()) + String.format(MESSAGE_GOAL,goal.getCalories(),goal.getDate()));
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd, burntWeight.toString()));
     }
