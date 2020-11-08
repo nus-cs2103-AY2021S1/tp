@@ -868,7 +868,7 @@ The list of `FieldContainsKeywordsPredicate` is obtained from parsing
 the user input, to produce either of the following predicates shown
 in the table below, for each `Prefix` and keywords pair.
 
-<div markdown="span" class="alert alert-info">:information_source:
+<div markdown="span" class="alert alert-info" markdown="1">:information_source:
 
 **Note:**
 The user input should contain at least one `Prefix` and keywords to search.
@@ -883,6 +883,7 @@ n/<keywords>       | NameContainsKeywordsPredicate
 s/<keywords>       | SourceContainsKeywordsPredicate
 l/<keywords>       | LocationContainsKeywordsPredicate
 sn/<keywords>      | SerialNumberContainsKeywordsPredicate
+
 
 `FindCommandParser` implements the following important operations:
 
@@ -1414,7 +1415,7 @@ Step 2. The command word `stats` is extracted out in `StockBookParser`, in this 
 Step 3. The remaining user input is the given to the `StatisticsCommandParser` to determine which type of statistics
         the user wants.
 
-Step 4. Inside `StatisticsCommandParser#parse()` method, the header will be dropped, resulting in the remaining user
+Step 4. Inside `StatisticsCommandParser#parse()` method, the header `st/` will be dropped, resulting in the remaining user
         input to be `source`. This matches to the criteria for `SourceStatisticsCommand`, and returning a
         `SourceStatisticsCommand` object.
 
@@ -1423,8 +1424,9 @@ Step 5. The `SourceStatisticsCommand#execute()` is then called by the `Logic Man
         the type of statistics in `otherStatisticsDetails`, in this case will be `source`, for later usage.
 
 Step 6. When the `UiManager` calls the `SourceQuantityDistributionStatisticsCommand#execute()` method, this will invoke
-        `MainWindow#execute()`. This `CommandResult` is of the statistics class, leading to the `MainWindow#handleStatistics()`
-         method call.
+        `MainWindow#executeCommand()`. This will lead to `LogicManager#execute()` which executes the respective Statistics Command.
+        A successful execution of the command will return a `CommandResult` and since this `CommandResult` is of the statistics
+        class, this leads to the `MainWindow#handleStatistics()` method call.
 
 Step 7. `MainWindow#handleStatistics()` will then call the `StatisticsWindow#updateData()` which in turn will determine display the
         data in the desired format, based on the type of statistics from `otherStatisticsDetails` in `CommandResult` from Step 5.
@@ -1439,13 +1441,9 @@ Step 9. Warenager jumps to the **Statistics** tab and the updated piechart is di
 
 Step 1. The user enters `stats st/source-qt-ntuc`. `ntuc` is a valid source that exists in Warenager.
 
-Step 2. The command word `stats` is extracted out in `StockBookParser`, in this case, it matches the `COMMAND_WORD`,
-        which is `stats` in the `StatisticsCommand` class.
+Step 2-3.Same as **Example 1**
 
-Step 3. The remaining user input is the given to the `StatisticsCommandParser` to determine which type of statistics
-        the user wants.
-
-Step 4. Inside `StatisticsCommandParser#parse()` method, the header will be dropped, resulting in the remaining user
+Step 4. Inside `StatisticsCommandParser#parse()` method, the header `st/` will be dropped, resulting in the remaining user
         input to be `source-qt-ntuc`. This matches to the criteria for `SourceQuantityDistributionStatisticsCommand`,
         and returning a `SourceQuantityDistributionStatisticsCommand` object.
 
@@ -1456,8 +1454,9 @@ Step 5. The `SourceQuantityDistributionStatisticsCommand#execute()` is then call
         title for the piechart.
 
 Step 6. When the `UiManager` calls the `SourceQuantityDistributionStatisticsCommand#execute()` method, this will invoke
-        `MainWindow#execute()`. This `CommandResult` is of the statistics class, leading to the `MainWindow#handleStatistics()`
-        method call.
+        `MainWindow#executeCommand()`. This will lead to `LogicManager#execute()` which executes the respective Statistics Command.
+        A successful execution of the command will return a `CommandResult` and since this `CommandResult` is of the statistics
+        class, this leads to the `MainWindow#handleStatistics()` method call.
 
 Step 7. `MainWindow#handleStatistics()` will then call the `StatisticsWindow#updateData()` which in turn will determine display the
         data in the desired format, based on the type of statistics from `otherStatisticsDetails` in `CommandResult` from Step 5.
@@ -1516,6 +1515,134 @@ are more useful when working out the compositions of the data.
 #### Future statistical features
 With the expansion of more data fields for each stock, there will be more varieties of statistics that can be
 shown based on these new fields.
+
+### Delete Feature
+
+The mechanism for delete feature is mainly facilitated by `ParserUtil`, `DeleteCommandParser`, `DeleteCommand` and `Model`
+
+#### ParserUtil
+`ParserUtil` is a class that contains utility methods used for parsing strings in the various Parser classes.
+
+Some important operations implemented here are (for `DeleteCommandParser`):
+
+* `ParserUtil#parseSerialNumbers()`
+  Parses the user input as a string of serialNumbers with `/sn` headers. The parser ensures that the input starts with
+  `/sn` and all the serial numbers are valid, after trimming trailing whitespaces. If the user input is parsed successfully,
+  a `set` of serial numbers will be returned, and throw a `ParseException` otherwise.
+
+#### DeleteCommandParser
+`DeleteCommandParser` class extends `Parser` interface. `DeleteCommandParser` class is tasked with parsing the
+user inputs (without the command word) and generating a new `DeleteCommand`. The main logic of the delete feature is encapsulated here.
+
+`DeleteCommandParser` utilises `ParserUtil#parseSerialNumbers()` to check if all the given serial numbers are
+in valid format. `ParserUtil#parseSerialNumbers()` receives the user input, parses and return a `set` of serial numbers
+if the format is valid, and throw a `ParseException` otherwise. The `DeleteCommandParser` then returns a `DeleteCommand`
+object that stores this `set` of serial numbers and throw a `ParseException` otherwise.
+
+Some important operations implemented here are:
+
+* `DeleteCommandParser#parse()` <br>
+  Parses the user input and returns a new `DeleteCommand` object that stores a `set` of serial numbers.
+  
+#### DeleteCommand
+
+`DeleteCommand` class extends `Command` interface. `DeleteCommand` class is tasked to delete the stock(s) from the stock book
+and creating a new `CommandResult` to be displayed to the user in the user interface.
+
+Some important operations implemented here are:
+
+* `DeleteCommand#execute()`
+  Deletes the stock(s) from the stock book if it is present and returns a new `CommandResult`
+  to be displayed to the user in the user interface. Stocks that are deleted are shown in the status window 
+  and serial numbers that do not map to any stock in Warenager will be shown as well.
+
+#### Example Usage Scenario
+
+Given below is one example usage scenario and explains how the delete feature behaves at each step.
+
+**Example 1: Deleting a stock from the stock book (serial number given is valid and exists)**
+
+Step 1. The user enters `delete sn/ntuc1`.
+
+Step 2. The command word `delete` is extracted out in `StockBookParser`, in this case, it matches the `COMMAND_WORD`,
+        which is `delete` in the `DeleteCommand` class.
+
+Step 3. The remaining user input is the given to the DeleteCommandParser to determine if the user input contains the required fields.
+
+Step 4. Inside `DeleteCommandParser#parse()` method, the remaining user input `sn/ntuc1`, will be parsed by
+        `ParserUtil#parseSerialNumbers()`.
+        
+Step 5.  Inside the `ParserUtil#parseSerialNumbers()` method, the user input will check using the methods
+         `ParserUtil#arePrefixesPresent()` and `ParserUtil#isInvalidPrefixPresent()`methods. In this case,
+         all prefixes are present and there are no invalid prefix. All the prefix `sn/` will be dropped, and the
+         resulting the argument multimap contain only the value `ntuc1`.
+
+Step 6. From the argument multimap, a `set` of serial numbers will be generated. In this case, the set only contains `ntuc1`.
+
+Step 7. The `DeleteCommandParser#parse()` method then proceeds to create a `DeleteCommand` object containing this set of serial
+        numbers.
+
+Step 8. The `DeleteCommand#execute()` is then called by the `Logic Manager`. In this method, there are mainly 2 lists of data
+        to track.<br>
+        1. `unknownSerialNumbers` a list that tracks all the serial numbers that are do not exist in Warenager.<br>
+        2. `stocksDeleted` a list that stores all the stocks that are successfully deleted.
+
+Step 9. The `DeleteCommand#execute()` checks for each **serial number** in the `set`, if the serial number exists in Warenager,
+        and if it does, deletes it and stores in the list of `stocksDeleted`. Else, the serial number will be added in
+        the list of `unknownSerialNumbers`. 
+
+Step 10. `DeleteCommand#execute()` then prints out the respective message, depending on the number of successful deletions of stocks.
+         If **all** of the serial numbers are **found**, it will inform the user which stocks that are deleted, which in this case, all.
+         If **some** of the serial numbers are **found**, it will inform the user that which stocks are deleted and which 
+         serial numbers are not found.
+         If **all** of the serial numbers **not found**, it will inform the user which of the serial numbers are not found, which
+         in this case, all.
+
+**Example 2: Deleting multiple stocks from the stock book (serial number given are valid and exists)**
+Step 1. The user enters `delete sn/ntuc1 sn/ntuc2 sn/ntuc3`.
+
+Step 2-3. Same as **Example 1**
+
+Step 4. Inside `DeleteCommandParser#parse()` method, the remaining user input `sn/ntuc1 sn/ntuc2 sn/ntuc3`,
+        will be parsed by `ParserUtil#parseSerialNumbers()`.
+        
+Step 5.  Inside the `ParserUtil#parseSerialNumbers()` method, the user input will check using the methods
+         `ParserUtil#arePrefixesPresent()` and `ParserUtil#isInvalidPrefixPresent()`methods. In this case,
+         all prefixes are present and there are no invalid prefix. All the prefix `sn/` will be dropped, and the
+         resulting the argument multimap containing the values `ntuc1, ntuc2, ntuc3`.
+
+Step 6. From the argument multimap, a `set` of serial numbers will be generated. In this case, the set
+        contains `ntuc1, ntuc2, ntuc3`.
+        
+Step 7-10. Same as **Example 1**
+
+#### Sequence Diagram
+
+The following sequence diagram shows how the delete feature works for **both examples**:
+
+![Delete Examples](images/DeleteCommandSequenceDiagram.png)
+
+#### Activity Diagram
+
+The following activity diagram summarizes what happens when the delete feature is triggered:
+
+![Delete Activity Diagram](images/DeleteCommandActivityDiagram.png)
+
+#### Design Consideration
+
+##### Aspect: Input format for delete command.
+
+* **Alternative 1 (current implementation):** Stock(s) are deleted by inputting their serial numbers.
+  * Pros: Shorter to type and easier to delete multiple stocks, and each stock has unique serial number. Less prone to 
+          deletion failure and wrong deletion.
+  * Cons: Users may be confused with similar serial numbers since the source part of serial number is the same for stocks
+          that come from the same company.
+
+* **Alternative 2:** Stock(s) are deleted by inputting all their relevant fields.
+  * Pros: Input is similar to `add` (differ only in the command word), may be easier to remember for users.
+  * Cons: Users have to input many details just to delete one single stock, and it is difficult to delete multiple stocks at one go.
+          It is also more prone to deletion failure since one mistake in the stock field entered will lead to invalid deletion.
+          It is also more prone to wrong deletion as some stocks may have similar fields.
 
 ### Sort Feature
 The mechanism for sort feature is facilitated by `SortCommandParser, SortCommand, SortUtil`.
@@ -2897,18 +3024,16 @@ testers are expected to do more *exploratory* testing.
 1. Adding a stock into the inventory.
 
    1. Test case: `n/Banana s/NUS q/9999 l/Fruit Section`<br>
-      Expected: New stock added: Banana SerialNumber: NUS1 Source: NUS Quantity: 9999 Location: Fruit Section.
+      Expected: Stock is added successfully.<br>
       Details of the added stock shown in the status message.
 
    1. Test case: `add n/Banana s/NUS q/9999 l/`<br>
-      Expected: Locations can take any values, and it should not be blank.
-      Error details shown in the status message. Status bar remains the same.
+      Expected: Stock is not added due to empty input for field name `l/`.<br>
+      Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
 
    1. Test case: ` add n/Banana s/NUS q/9999`<br>
-      Expected: Invalid command format!
-      add: Adds a stock to the stock book. Parameters: n/NAME s/SOURCE q/QUANTITY l/LOCATION
-      Example: add n/Umbrella s/Kc company q/100 l/section B,
-      Error details shown in the status message. Status bar remains the same.
+      Expected: Stock is not added due to missing field headers.
+      Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
 
    1. Other incorrect delete commands to try: `add`, `add sn/absdsa` <br>
       Expected: Similar to previous.
@@ -2917,33 +3042,45 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting stocks from a given list.
 
-   1. Test case: `delete sn/1111111`<br>
-      Expected: Stock with the serial number 1111111 is deleted from the inventory.
+   1. Test case: `delete sn/ntuc1`<br>
+      Expected: Stock with the serial number `ntuc1` is deleted from the inventory.<br>
       Details of the deleted stock shown in the status message.
 
-   1. Test case: `delete sn/1111111 sn/11111111`<br>
-      Expected: Stock with the serial number 1111111 is deleted from the inventory.
+   1. Test case: `delete sn/ntuc1 sn/ntuc1`<br>
+      Expected: Stock with the serial number `ntuc1` is deleted from the inventory.<br>
       Duplicate serial number(s) is/are ignored. Details of the deleted stock shown in the status message.
 
-   1. Test case: `delete sn/1111111 sn/22222222`<br>
-      Expected: Both stocks with the serial numbers 1111111 and 22222222 are deleted from the inventory.
+   1. Test case: `delete sn/ntuc1 sn/courts2`<br>
+      Expected: Both stocks with the serial numbers `ntuc1` and `courts2` are deleted from the inventory.<br>
       Details of the deleted stock shown in the status message.
 
-   1. Test case: `delete sn/1111111 sn/33333333` (no stock has the serial number `33333333`) <br>
-      Expected: Only the existing stock with the serial number 1111111 is deleted.
-      Details of this deleted stock shown in the status message.
-      Serial number `33333333` which does not belong to any stock will be shown in status message as well.
+   1. Test case: `delete sn/ntuc1 sn/giant3` (no stock has the serial number `giant3`) <br>
+      Expected: Only the existing stock with the serial number `ntuc1` is deleted.<br>
+      Details of this deleted stock shown in the status message.<br>
+      Serial number `giant3` which does not belong to any stock will be shown in status message as well.
 
-   1. Test case: `delet sn/1111111`<br>
-      Expected: No stock deleted due to unknown command word `delet`.
+   1. Test case: `delet sn/ntuc1`<br>
+      Expected: No stock deleted due to unknown command word `delet`.<br>
       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
       
-   1. Test case: `delete 1111111`<br>
-      Expected: No stock deleted due to invalid format from missing sn/.
+   1. Test case: `delete asd sn/ntuc1`<br>
+      Expected: No stock deleted due to invalid format from input after command word not starting with `sn/`.<br>
+      Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.  
+          
+   1. Test case: `delete ntuc1`<br>
+      Expected: No stock deleted due to invalid format from missing sn/.<br>
+      Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
+      
+   1. Test case: `delete sn/`<br>
+      Expected: No stock deleted due to empty input for field name `sn/`.<br>
+      Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
+      
+   1. Test case: `delete`<br>
+      Expected: No stock deleted due to missing field headers.<br>
       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
 
-   1. Other incorrect delete commands to try: `delete`, `delete sn/absdsa`
-      (where serial number is invalid)<br>
+   1. Other incorrect delete commands to try: `delete sn/absdsa`, `delete sn/3213`<br>
+      (where serial number is invalid. A valid serial number is combined with a valid source and an integer larger than 0).<br>
       Expected: Similar to previous.
 
 ### Finding a stock
@@ -2953,45 +3090,45 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Multiple stocks in the list. Stock exists in inventory.
 
    1. Test case: `find sn/1111111`<br>
-      Expected: Stock of the serial number 1111111 is displayed from the inventory.
+      Expected: Stock of the serial number 1111111 is displayed from the inventory.<br>
       Status message shows success of command.
 
    1. Test case: `find n/umbrella`<br>
-      Expected: All stocks with name containing "umbrella" are displayed from the inventory.
+      Expected: All stocks with name containing "umbrella" are displayed from the inventory.<br>
       Status message shows success of command.
 
    1. Test case: `find l/section 3`<br>
-      Expected: All stocks with storage location containing "section" and "3" are displayed from the inventory.
+      Expected: All stocks with storage location containing "section" and "3" are displayed from the inventory.<br>
       Status message shows success of command.
 
    1. Test case: `find s/company abc`<br>
-      Expected: All stocks with field source containing "company" and "abc" are displayed from the inventory.
+      Expected: All stocks with field source containing "company" and "abc" are displayed from the inventory.<br>
       Status message shows success of command.
 
    1. Test case: `find n/umbrella l/section 3`<br>
          Expected: All stocks with field name containing "umbrella" OR field location containing "section" and "3"
-         are displayed from the inventory.
+         are displayed from the inventory.<br>
          Status message shows success of command.
    
    1. Test case: `find 1111111`<br>
       Expected: No stock found due to invalid format from missing field header
-      either n/, sn/, l/ or s/.
+      either n/, sn/, l/ or s/.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `find n/umbrella n/company abc`<br>
-      Expected: No stock found due to invalid format from duplicate field header of n/.
+      Expected: No stock found due to invalid format from duplicate field header of n/.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `find`<br>
-      Expected: No stock found due to missing field headers.
+      Expected: No stock found due to missing field headers.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `find q/1111`<br>
-      Expected: No stock found due to invalid field header q/.
+      Expected: No stock found due to invalid field header q/.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `find n/`<br>
-      Expected: No stock found due to empty input for field name.
+      Expected: No stock found due to empty input for field name.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
 ### Advanced finding a stock
@@ -3001,45 +3138,45 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Multiple stocks in the list. Stock exists in inventory.
 
    1. Test case: `findexact sn/1111111`<br>
-      Expected: Stock of the serial number 1111111 is displayed from the inventory.
+      Expected: Stock of the serial number 1111111 is displayed from the inventory.<br>
       Status message shows success of command.
 
    1. Test case: `findexact n/umbrella`<br>
-      Expected: All stocks with name containing "umbrella" are displayed from the inventory.
+      Expected: All stocks with name containing "umbrella" are displayed from the inventory.<br>
       Status message shows success of command.
 
    1. Test case: `findexact l/section 3`<br>
-      Expected: All stocks with storage location containing "section" and "3" are displayed from the inventory.
+      Expected: All stocks with storage location containing "section" and "3" are displayed from the inventory.<br>
       Status message shows success of command.
 
    1. Test case: `findexact s/company abc`<br>
-      Expected: All stocks with field source containing "company" and "abc" are displayed from the inventory.
+      Expected: All stocks with field source containing "company" and "abc" are displayed from the inventory.<br>
       Status message shows success of command.
 
    1. Test case: `findexact n/umbrella l/section 3`<br>
       Expected: All stocks with field name containing "umbrella" AND field location containing "section" and "3"
-      are displayed from the inventory.
+      are displayed from the inventory.<br>
       Status message shows success of command.
    
    1. Test case: `findexact 1111111`<br>
       Expected: No stock found due to invalid format from missing field header
-      either n/, sn/, l/ or s/.
+      either n/, sn/, l/ or s/.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `findexact n/umbrella n/company abc`<br>
-      Expected: No stock found due to invalid format from duplicate field header of n/.
+      Expected: No stock found due to invalid format from duplicate field header of n/.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `findexact`<br>
-      Expected: No stock found due to missing field headers.
+      Expected: No stock found due to missing field headers.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `findexact q/1111`<br>
-      Expected: No stock found due to invalid field header q/.
+      Expected: No stock found due to invalid field header q/.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `findexact n/`<br>
-      Expected: No stock found due to empty input for field name.
+      Expected: No stock found due to empty input for field name.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
 ### Updating stocks
@@ -3049,33 +3186,33 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Multiple stocks in the list. `Flower11` and `Flower12` stocks exists in inventory.
 
     1. Test case: `update sn/FLower11 iq/+50`<br>
-       Expected: The stock with serial number Flower11 will have an increase of quantity by 50.
+       Expected: The stock with serial number Flower11 will have an increase of quantity by 50.<br>
        Details of the updated stock is shown in the status message.
 
     1. Test case: `update sn/FLower11 iq/-50`<br>
-       Expected: The stock with serial number Flower11 will have a decrease of quantity by 50.
+       Expected: The stock with serial number Flower11 will have a decrease of quantity by 50.<br>
        Details of the updated stock is shown in the status message.
 
     1. Test case: `update sn/Flower11 nq/2103`<br>
-       Expected: The stock with serial number Flower11 will have a new quantity 2103.
+       Expected: The stock with serial number Flower11 will have a new quantity 2103.<br>
        Details of the updated stock is shown in the status message.
 
-    1. Test case: `update sn/Flower11 n/Rose` <br>
-       Expected: The stock with serial number Flower11 will have a new name Rose.
+    1. Test case: `update sn/Flower11 n/Rose`<br>
+       Expected: The stock with serial number Flower11 will have a new name Rose.<br>
        Details of the updated stock is shown in the status message.
 
-    1. Test case: `update sn/Flower11 l/Vase 3` <br>
-       Expected: The stock with serial number Flower11 will have a new location Vase 3.
+    1. Test case: `update sn/Flower11 l/Vase 3`<br>
+       Expected: The stock with serial number Flower11 will have a new location Vase 3.<br>
        Details of the updated stock is shown in the status message.
 
-    1. Test case: `update sn/FLower11 iq/+50 n/Rose l/Vase 3` <br>
+    1. Test case: `update sn/FLower11 iq/+50 n/Rose l/Vase 3`<br>
        Expected: The stock with serial number Flower11 will have an increase of quantity by 50, a new name Rose,
-       and a new location Vase3
+       and a new location Vase3.<br>
        Details of the updated stock is shown in the status message.
 
-    1. Test case: `update sn/FLower11 sn/Flower12 iq/+50 n/Rose l/Vase 3` <br>
+    1. Test case: `update sn/FLower11 sn/Flower12 iq/+50 n/Rose l/Vase 3`<br>
        Expected: The stock with serial number Flower11 and Flower12 will have an increase of quantity by 50, a new name Rose,
-       and a new location Vase3.
+       and a new location Vase3.<br>
        Details of the updated stock is shown in the status message.
      
     1. Test case: `update` <br>
@@ -3147,22 +3284,22 @@ testers are expected to do more *exploratory* testing.
         is shown.
 
     1. Test case: `stats st/source-qd-fair price` (the source company `fair price` does not exist)<br>
-       Expected: Warenager remains in the current tab. Pie chart is not updated.
+       Expected: Warenager remains in the current tab. Pie chart is not updated.<br>
        Error details shown in the status message. Suggestion message will be shown too.
 
-   1. Other incorrect statistics commands to try: `stats`, `stats st/absdsa`, `stats st/source st/source`
+   1. Other incorrect statistics commands to try: `stats`, `stats st/absdsa`, `stats st/source st/source`<br>
       Expected: Similar to previous.
       
 ### Generating unique serial number
 
 1. Generating serial number for a newly added stock.
 
-    1. Test case: `n/Crabs s/Giant q/99 l/Seafood Section`<br> (source `Giant` has been used `50` times)
-      Expected: New stock added: Crabs SerialNumber: Giant51 Source: Giant Quantity: 99 Location: Seafood Section.
+    1. Test case: `n/Crabs s/Giant q/99 l/Seafood Section` (source `Giant` has been used `50` times)<br>
+      Expected: New stock added: Crabs SerialNumber: Giant51 Source: Giant Quantity: 99 Location: Seafood Section.<br>
       Details of the added stock shown in the status message.
 
-    1. Test case: `n/Peaches s/Market q/500 l/Fruits Section`<br> (source `Market` has never been used)
-      Expected: New stock added: Peaches SerialNumber: Market51 Source: Market Quantity: 500 Location: Fruits Section.
+    1. Test case: `n/Peaches s/Market q/500 l/Fruits Section` (source `Market` has never been used)<br>
+      Expected: New stock added: Peaches SerialNumber: Market51 Source: Market Quantity: 500 Location: Fruits Section.<br>
       Details of the added stock shown in the status message.
 
 ### Adding note to stock
@@ -3170,31 +3307,31 @@ testers are expected to do more *exploratory* testing.
 1. Adding a note to a stock.
 
     1. Test case: `note sn/ntuc1 nt/first note`
-       Expected: Note is added to the stock with serial number ntuc1 and displayed in the notes column for the stock.
+       Expected: Note is added to the stock with serial number ntuc1 and displayed in the notes column for the stock.<br>
        Details of the stock with successful note added is shown in status message.
    
    1. Test case: `note 1111111`<br>
-      Expected: No note added due to invalid format from missing field headers sn/ and nt/.
+      Expected: No note added due to invalid format from missing field headers sn/ and nt/.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `note sn/umbrella1 sn/company1 nt/first note`<br>
-      Expected: No note added due to invalid format from duplicate field header of sn/.
+      Expected: No note added due to invalid format from duplicate field header of sn/.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `note`<br>
-      Expected: No note added due to missing field headers.
+      Expected: No note added due to missing field headers.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `note q/1111`<br>
-      Expected: No note added due to invalid field header q/.
+      Expected: No note added due to invalid field header q/.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `note sn/ntuc1 nt/`<br>
-      Expected: No note added due to empty input for field note.
+      Expected: No note added due to empty input for field note.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
-   1. Other incorrect stock view commands to try: `not`.
-      Expected: No note added due to unknown command.
+   1. Other incorrect stock view commands to try: `not`.<br>
+      Expected: No note added due to unknown command.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
 ### Deleting a note from stock
@@ -3203,94 +3340,94 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `notedelete sn/ntuc1 ni/1`
         Expected: Note with index 1 is deleted from the stock with serial number ntuc1
-        and display is removed from the notes column for the stock.
+        and display is removed from the notes column for the stock.<br>
         Details of the stock with successful note deleted is shown in status message.
 
    1. Test case: `notedelete sn/ntuc1 ni/noninteger`<br>
-      Expected: No note deleted as note index given is not a positive integer.
+      Expected: No note deleted as note index given is not a positive integer.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `notedelete sn/ntuc1 ni/-99`<br>
-      Expected: No note deleted as note index given is not a positive integer.
+      Expected: No note deleted as note index given is not a positive integer.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `notedelete sn/ntuc1 ni/9999`<br>
-      Expected: No note deleted (if stock does not have note with index 9999) as note index given is not found.
+      Expected: No note deleted (if stock does not have note with index 9999) as note index given is not found.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `notedelete 1111111`<br>
-      Expected: No note deleted due to invalid format from missing field headers sn/ and ni/.
+      Expected: No note deleted due to invalid format from missing field headers sn/ and ni/.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `notedelete sn/umbrella1 sn/company1 ni/2`<br>
-      Expected: No note deleted due to invalid format from duplicate field header of sn/.
+      Expected: No note deleted due to invalid format from duplicate field header of sn/.<br>
       Error details shown in the status message. Status bar remains the same.
 
    1. Test case: `notedelete`<br>
-      Expected: No note deleted due to missing field headers.
+      Expected: No note deleted due to missing field headers.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `notedelete q/1111`<br>
-      Expected: No note deleted due to invalid field header q/.
+      Expected: No note deleted due to invalid field header q/.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
    1. Test case: `notedelete sn/ntuc1 ni/`<br>
-      Expected: No note deleted due to empty input for field note index.
+      Expected: No note deleted due to empty input for field note index.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
-   1. Other incorrect note delete commands to try: `notedel`.
-      Expected: No note deleted due to unknown command.
+   1. Other incorrect note delete commands to try: `notedel`.<br>
+      Expected: No note deleted due to unknown command.<br>
       Error details shown in the status message. Suggestion message will be shown too.
 
 ### Toggling between tabs in Warenager
 
 1. Toggle between tabs in Warenager using `tab` command input.
 
-    1. Test case: `tab`<br> (Warenager is currently at a tab that is not the last)
+    1. Test case: `tab` (Warenager is currently at a tab that is not the last)<br>
         Expected: Warenager toggles to the next tab.
         
-    1. Test case: `tab`<br> (Warenager is currently at the last tab)
-       Expected: Warenager toggles back to the first tab.
+    1. Test case: `tab` (Warenager is currently at the last tab)<br>
+       Expected: Warenager toggles back to the first tab.<br>
        Details of the successful toggling between tabs is shown.
        
     1. Test case: `tabss`<br>
        Expected: Warenager jumps back to the **Data** tab, or remains in the **Data** tab if it is
-       already at the tab.
+       already at the tab.<br>
        Error details shown in the status message. Suggestion message will be shown too.
 
-   1. Other incorrect statistics commands to try: `ta`, `tab sn/ntuc1`.
+   1. Other incorrect statistics commands to try: `ta`, `tab sn/ntuc1`.<br>
       Expected: Similar to previous.
 
 ### Viewing details of a stock.
 
 1. Viewing details of a stock.
 
-    1. Test case: `stockview sn/ntuc1`
-        Expected: Warenager toggles to the Stock View tab, the details of the stock
+    1. Test case: `stockview sn/ntuc1`<br>
+        Expected: Warenager toggles to the Stock View tab, the details of the stock<br>
         with serial number ntuc1 is shown.
         
-    1. Test case: `stockview sn/ntuc1 sn/ntuc2`
-            Expected: No stock viewed as duplicate field serial number is entered.
+    1. Test case: `stockview sn/ntuc1 sn/ntuc2`<br>
+            Expected: No stock viewed as duplicate field serial number is entered.<br>
             Error details shown in the status message. Suggestion message will be shown too.
 
-    1. Test case: `stockview sn/ntuc`.
-        Expected: No stock viewed as serial number given is not a valid serial number.
+    1. Test case: `stockview sn/ntuc`.<br>
+        Expected: No stock viewed as serial number given is not a valid serial number.<br>
         Error details shown in the status message. Suggestion message will be shown too.
 
-    1. Test case: `stockview sn/`.
-        Expected: No stock viewed due to invalid command format of empty input for field note index.
+    1. Test case: `stockview sn/`.<br>
+        Expected: No stock viewed due to invalid command format of empty input for field note index.<br>
         Error details shown in the status message. Suggestion message will be shown too.
 
-    1. Test case: `stockview`.
-        Expected: No stock viewed due to invalid command format of missing header in input.
+    1. Test case: `stockview`.<br>
+        Expected: No stock viewed due to invalid command format of missing header in input.<br>
         Error details shown in the status message. Suggestion message will be shown too.
 
     1. Test case: `stockview q/1111`<br>
-        Expected: No stock viewed due to invalid field header q/.
+        Expected: No stock viewed due to invalid field header q/.<br>
         Error details shown in the status message. Suggestion message will be shown too.
           
-    1. Other incorrect stock view commands to try: `stock`, `stockview 1111`.
-          Expected: No stock viewed due to unknown / invalid command format.
+    1. Other incorrect stock view commands to try: `stock`, `stockview 1111`.<br>
+          Expected: No stock viewed due to unknown / invalid command format.<br>
           Error details shown in the status message. Suggestion message will be shown too.
 
 ### Clearing data in Warenager
@@ -3298,31 +3435,31 @@ testers are expected to do more *exploratory* testing.
 1. Clear all the data in Warenager using `clear` command input.
 
     1. Test case: `clear`<br>
-        Expected: Warenager clears its data.
+        Expected: Warenager clears its data.<br>
         Details of the successful clearing is shown.
       
     1. Test case: `clear all`<br>
-       Expected: Warenager does not clear any data.
+       Expected: Warenager does not clear any data.<br>
        Error details shown in the status message. Suggestion message will be shown too.
 
-   1. Other incorrect statistics commands to try: `cle`, `clear sn/ntuc1`
+   1. Other incorrect statistics commands to try: `cle`, `clear sn/ntuc1`<br>
       Expected: Similar to previous.
       
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-    1. While in a Warenager session, delete the json files under `/data` directory.
+    1. While in a Warenager session, delete the json files under `/data` directory.<br>
        Expected: Warenager functions as per normal.
         
-    1. While in a Warenager session, edit the json files under `/data` directory.
+    1. While in a Warenager session, edit the json files under `/data` directory.<br>
        Expected: Warenager ignores any changes in the json files and overwrites them with new
        data based on the uneditted data.
        
-    1. While not in a Warenager session, delete the json files under `/data` directory. Then start Warenager.
+    1. While not in a Warenager session, delete the json files under `/data` directory. Then start Warenager.<br>
        Expected: Warenager accepts the current content of the files as empty and functions as per normal.
               
-    1. While not in a Warenager session, corrupt the json files under `/data` directory. Then start Warenager.
+    1. While not in a Warenager session, corrupt the json files under `/data` directory. Then start Warenager.<br>
        Expected: Warenager senses the corrupted files, replaces them with empty content and functions as per normal.
 
 ## **Appendix: Effort**
