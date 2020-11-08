@@ -816,7 +816,7 @@ For all use cases below, the **System** is the `QuickCache` and the **Actor** is
 2.  QuickCache shows a list of flashcards
 3.  User requests to delete a specific flashcard in the list
 4.  QuickCache deletes the flashcard
-5.  QuickCache updates flashcard save file (UC08)
+5.  QuickCache updates flashcard save file (UC09)
 
     Use case ends.
 
@@ -844,10 +844,11 @@ For all use cases below, the **System** is the `QuickCache` and the **Actor** is
 4.  QuickCache deletes all flashcards that contains the specified tag
 5.  QuickCache updates flashcard save file (UC07)
 6. QuickCache displays a message indicating that all flashcards with the specified tag has been deleted
+7. QuickCache updates flashcard save file (UC09)
 
     Use case ends.
 
-**Use case: UC04 - Create a flashcard with open ended question**
+**Use case: UC05 - Create a flashcard with open ended question**
 
 **Preconditions: User has QuickCache open.**
 
@@ -855,7 +856,7 @@ For all use cases below, the **System** is the `QuickCache` and the **Actor** is
 
 1.  User requests to add a flashcard
 2.  QuickCache adds it to the list
-3.  QuickCache updates flashcard save file (UC08)
+3.  QuickCache updates flashcard save file (UC09)
 4.  User requests to list flashcards
 5.  QuickCache shows the list of flashcards including the recently added flashcard
 
@@ -874,9 +875,14 @@ For all use cases below, the **System** is the `QuickCache` and the **Actor** is
   * 1b1. QuickCache shows an error message.
 
     Use case ends.
+* 1c. User provided more than one question or answer
+
+  * 1c1. QuickCache shows an error message.
+  
+    Use case ends.
 
 
-**Use case: UC05 - Create a flashcard with Multiple choice question**
+**Use case: UC06 - Create a flashcard with Multiple choice question**
 
 **Preconditions: User has QuickCache open.**
 
@@ -884,7 +890,7 @@ For all use cases below, the **System** is the `QuickCache` and the **Actor** is
 
 1.  User requests to add a flashcard
 2.  QuickCache adds it to the list
-3.  QuickCache updates flashcard save file (UC08)
+3.  QuickCache updates flashcard save file (UC09)
 4.  User requests to list flashcards
 5.  QuickCache shows the list of flashcards including the recently added flashcard
 
@@ -904,14 +910,20 @@ For all use cases below, the **System** is the `QuickCache` and the **Actor** is
     
     Use case ends.
 
-* 1c. The choices is empty.
+* 1c. The choices are empty.
 
-  * 1b1. QuickCache shows an error message.
+  * 1c1. QuickCache shows an error message.
     
     Use case ends.
     
+* 1d. User provided more than one question or answer
 
-**Use case: UC06 - Test a single flashcard**
+  * 1d1. QuickCache shows an error message.
+  
+    Use case ends.
+    
+
+**Use case: UC07 - Test a single flashcard**
 
 **Actor: User**
 
@@ -921,6 +933,7 @@ For all use cases below, the **System** is the `QuickCache` and the **Actor** is
 2. QuickCache shows a list of flashcards
 3. User requests to test a specific flashcard in the list with a specific answer
 4. QuickCache displays whether the answer is correct
+5. QuickCache updates the statistics for that flashcard
 
     Use case ends.
 
@@ -939,7 +952,7 @@ For all use cases below, the **System** is the `QuickCache` and the **Actor** is
 
 **System: QuickCache**
 
-**Use case: UC07 - Test a set of flashcards by category**
+**Use case: UC08 - Test a set of flashcards by category**
 
 **Actor: User**
 
@@ -948,7 +961,7 @@ MSS:
 1. User requests to list categories
 2. QuickCache shows a list of categories
 3. User requests to test a specific category in the list
-4. User tests each flashcard on the list (UC06)
+4. User tests each flashcard on the list (UC07)
 5. QuickCache shows the number of successful questions at the end
 
     Use case ends.
@@ -999,7 +1012,7 @@ MSS:
 
 
 
-**Use case: UC08 - Update flashcard save file**
+**Use case: UC09 - Update flashcard save file**
 
 **Actor: QuickCache**
 
@@ -1027,7 +1040,7 @@ MSS:
     Use case resumes from step 2.
 
 
-**Use case: UC09 - Import flashcard data file**
+**Use case: UC10 - Import flashcard data file**
 
 **Actor: User**
 
@@ -1059,108 +1072,61 @@ MSS:
     Use case resumes from step 3.
 
 
-**Use case: UC10 - Add tags during creation of a Flashcard**
+**Use case: UC11 - Add tags during creation of a flashcard**
 
 **Actor: User**
 
 MSS:
 
-1. User creates a flashcard.
-2. QuickCache shows a list of existing tags.
-3. QuickCache asks the user to type in the tags one by one.
-4. User types in the tags one by one.
-5. User signals that he is finished.
-6. QuickCache adds the tags to the flashcard.
+1. User creates a flashcard and specifies the tags associated with it
+2. QuickCache creates the flashcards and adds the tags to it
 
     Use case ends.
 
-**Extensions:**
-
-* 3a. User wishes to remove a tag that he entered.
-
-  * 3a1. User inputs the remove command to remove the tag.
-
-    Use case resumes at step 3.
-
-* 5a. Some of the tags are new tags
-
-  * 5a1. QuickCache stores and remembers the tags.
-
-    Use case ends.
-
-
-**Use case: UC11 - Deleting a tag category**
+**Use case: UC12 - Edit an existing flashcard**
 
 **Actor: User**
 
 MSS:
 
-1. User wants to remove a tag category.
-2. User enters the delete tag command and the name of the tag to be deleted.
-3. QuickCache asks for a confirmation before deleting.
-4. User gives the confirmation.
-5. QuickCache deletes the tag from every Flashcard.
-
-    Use cased ends.
-
-**Extensions:**
-
-* 4a. User does not give confirmation
-
-  * 4a1. QuickCache does not delete anything.
+1. User wants to edit an existing flashcard
+2. User enters new information pertaining to the fields he wants to update flashcard
+4. QuickCache edits the flashcard with the new information
+5. QuickCache updates flashcard save file (UC09)
 
     Use case ends.
 
+**Extensions**
 
-**Use case: UC12 - Edit tags on an existing Flashcard**
+* 1a. The list is empty.
+
+    Use case ends.
+    
+* 2a. The given index in invalid.
+
+  * 2a1. QuickCache shows an error message.
+
+    Use case resumes at step 2.
+    
+* 2b. User provides no field to edit.
+
+  * 2b1. QuickCache shows an error message.
+
+    Use case resumes at step 2.
+
+* 3b. There is no change in the flashcard or the newly edited flashcard is the same as another flashcard.
+
+  * 3b1. QuickCache shows an error message.
+
+    Use case resumes at step 2.    
+
+**Use case: UC13 - Search for flashcards based on tags and/or question**
 
 **Actor: User**
-
-MSS:
-
-1. User wants to add tags on an existing Flashcard
-2. QuickCache asks for the name of the new tag to be added.
-3. User enters the new tag name
-4. QuickCache adds the tag onto the Flashcard
-
-    Use case ends.
-
-**Extensions:**
-
-* 1a. User wants to remove a tag
-
-	* 1a1. User asks QuickCache to list out all the tags
-
-	* 1a2. QuickCache lists out all the tags
-
-	* 1a3. User enters the name of the tag to be removed
-
-	* 1a4. QuickCache removes the tag from the Flashcard
-
-    Use case ends.
-
-* 1b. User wants to edit a tag
-
-	* 1b1. User asks QuickCache to rename a tag
-
-	* 1b2. QuickCache asks for the new name of the tag
-
-	* 1b3. User enters the new name
-
-	* 1b4. QuickCache updates the tag with it's new name.
-
-    Use case ends.
-
-
-**Use case: UC13 - Search for Flashcards based on Tags and/or Question**
-
-**Actor: User**
-
-**Preconditions: User has QuickCache open.**
 
 **MSS**
 
-1. User enters the tags and/or keywords associated with the flashcard he wants to search for
+1. User enters the tags and/or keywords in the question associated with the flashcard he wants to search for
 2. QuickCache filters all existing flashcards based on the tag and/or keywords.
 3. Quickcache displays all the requested flashcards to the user.
 
@@ -1171,11 +1137,10 @@ MSS:
 
 **MSS**
 
-1. User double clicks on QuickCache.jar
-2. QuickCache opens and shows a list of flashcards
-3. User forgets the choices of a flashcard's question
-4. User requests to open a specific flashcard in the list
-5. QuickCache opens the flashcard and displays the choices
+1. QuickCache opens and shows a list of flashcards
+2. User forgets the choices of a flashcard's question
+3. User requests to open a specific flashcard in the list
+4. QuickCache opens the flashcard and displays the choices
 
 	Use case ends.
 
@@ -1186,49 +1151,8 @@ MSS:
   * 4a1. QuickCache shows an error message.
 
     Use case resumes at step 3.
-    
-    
-**Use case: UC15 - Edit a flashcard**
 
-**Actor: User**
-**Preconditions: User has QuickCache open.**
-
-**MSS**
-
-1.  User requests to list flashcards
-2.  QuickCache shows a list of flashcards
-3.  User request to edits a specific flashcard of the list
-4.  QuickCache edits the flashcard
-5.  QuickCache updates flashcard save file (UC08)
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-    Use case ends.
-    
-* 3a. The given index in invalid.
-
-  * 3a1. QuickCache shows an error message.
-
-    Use case resumes at step 2.
-    
-* 3b. There is no change in the flashcard or the newly edited flashcard is the same as another flashcard.
-
-  * 3b1. QuickCache shows an error message.
-
-    Use case resumes at step 2.
-    
-* 3c. User provides no field to edit.
-
-  * 3c1. QuickCache shows an error message.
-
-    Use case resumes at step 2.
-
-
-**Use case: UC16 - Clear statistics of a flashcard**
+**Use case: UC15 - Clear statistics of a flashcard**
 
 **Preconditions: User has QuickCache open.**
 
@@ -1238,7 +1162,7 @@ MSS:
 2.  QuickCache displays statistics of the flashcard
 3.  User clears the statistics of the flashcard
 4.  User requests for statistics of the flashcard
-5.  QuickCache displays reset statistics of the flashcard
+5.  QuickCache displays statistics, that has been reset, of the flashcard
 
     Use case ends.
 
@@ -1250,7 +1174,7 @@ MSS:
 
     Use case resumes at step 1.
 
-**Use case: UC117 - Export flashcard data file**
+**Use case: UC116 - Export flashcard data file**
 
 **Actor: User**
 
