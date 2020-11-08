@@ -4,7 +4,7 @@
 2. [About This Document](#2-about-this-document)<br>
     2.1 [Glossary](#21-glossary)<br>
 	2.2 [Formatting](#22-formatting)<br>
-	2.3 [Command format](#23-command-format)<br>
+	2.3 [Command Format](#23-command-format)<br>
 3. [Getting Started](#3-getting-started)<br>
     3.1 [Setting Up](#31-setting-up)<br>
     3.2 [Using Trackr](#32-using-trackr)<br>
@@ -22,26 +22,21 @@
    --- 4.2.5 [List all Students in a Tutorial Group: `listStudent`](#425-list-all-students-in-a-tutorial-group-liststudent)<br>
    --- 4.2.6 [Show the Attendance of target Student: `viewAttendance`](#426-show-the-attendance-of-target-student-viewattendance)<br>
    --- 4.2.7 [Return to previous view: `prevView`](#427-return-to-previous-view-prevview)<br>
-   4.3 [Module features](#43-module-features)<br>
-   --- 4.2.1 [Add a module: `addMod`](#421-add-a-module-addmod)<br>
-   --- 4.2.2 [Delete a module: `deleteMod`](#422-delete-a-module-deletemod)<br>
-   --- 4.2.3 [Edit a module: `editMod`](#423-edit-a-module-editmod)<br>
-   --- 4.2.4 [Find a module: `findMod`](#424-find-a-module-findmod)<br>
-   --- 4.2.5 [List all modules: `listMod`](#425-list-all-modules-listmod)<br>
-   4.3 [Tutorial group features](#43-tutorial-group-features)<br>
-   --- 4.3.1 [View all tutorial groups in a module: `viewTG`](#431-view-all-tutorial-groups-in-a-module-viewtg)<br>
-   --- 4.3.2 [Add a tutorial group to a module: `addTG`](#432-add-a-tutorial-group-to-a-module-addtg)<br>
-   --- 4.3.3 [Find a tutorial group: `findTG`](#433-find-a-tutorial-group-findtg)<br>
-   --- 4.3.4 [Return to Tutorial Group List: `listTG`](#434-return-to-tutorial-group-list-listtg)<br>
-   --- 4.3.5 [Delete a tutorial group from a module: `deleteTG`](#435-delete-a-tutorial-group-from-a-module-deletetg)<br>
-   --- 4.3.6 [Edit a Tutorial Group: `editTG`](#436-edit-a-tutorial-group-edittg)<br>
-   4.4 [Student features](#44-student-features)<br>
-   --- 4.4.1 [View all students in a tutorial group: `viewStudent`](#441-view-all-students-in-a-tutorial-group-viewstudent)<br>
-   --- 4.4.2 [Add a student: `addStudent`](#442-add-a-student-addstudent)<br>
-   --- 4.4.3 [Delete a student: `deleteStudent`](#443-delete-a-student-deletestudent)<br>
-   --- 4.4.4 [Edit a student: `editStudent`](#444-edit-a-student-editstudent)<br>
-   --- 4.4.5 [Find a student: `findStudent`](#445-find-a-student-findstudent)<br>
-   --- 4.4.6 [List all students in a tutorial group: `listStudent`](#446-list-all-students-in-a-tutorial-group-liststudent)<br>
+   4.3 [Module Features](#43-module-features)<br>
+   --- 4.3.1 [Add a module: `addMod`](#431-add-a-module-addmod)<br>
+   --- 4.3.2 [Delete a module: `deleteMod`](#432-delete-a-module-deletemod)<br>
+   --- 4.3.3 [Edit a module: `editMod`](#433-edit-a-module-editmod)<br>
+   --- 4.3.4 [Find a module: `findMod`](#434-find-a-module-findmod)<br>
+   4.4 [Tutorial Group Features](#44-tutorial-group-features)<br>
+   --- 4.4.1 [Add a tutorial group to a module: `addTG`](#441-add-a-tutorial-group-to-a-module-addtg)<br>
+   --- 4.4.2 [Find a tutorial group: `findTG`](#442-find-a-tutorial-group-findtg)<br>
+   --- 4.4.3 [Delete a tutorial group from a module: `deleteTG`](#443-delete-a-tutorial-group-from-a-module-deletetg)<br>
+   --- 4.4.4 [Edit a Tutorial Group: `editTG`](#444-edit-a-tutorial-group-edittg)<br>
+   4.5 [Student Features](#45-student-features)<br>
+   --- 4.5.1 [Add a student: `addStudent`](#451-add-a-student-addstudent)<br>
+   --- 4.5.2 [Delete a student: `deleteStudent`](#452-delete-a-student-deletestudent)<br>
+   --- 4.5.3 [Edit a student: `editStudent`](#453-edit-a-student-editstudent)<br>
+   --- 4.5.4 [Find a student: `findStudent`](#454-find-a-student-findstudent)<br>
 5. [FAQ](#5-faq)<br>
 6. [Command Summary](#6-command-summary)<br>
    6.1 [General Commands](#61-general-commands) <br>
@@ -285,7 +280,7 @@ Example: `prevView`
 
 ![PrevViewCommand](images/PrevViewCommand.png)
 
-### 4.3 Module features
+### 4.3 Module Features
 
 #### 4.3.1 Add a module: `addMod`
 
@@ -376,7 +371,7 @@ Expected Outcome:
 ![FindModuleCommand](images/FindModuleCommand.png)
 
 
-### 4.4 Tutorial Group features
+### 4.4 Tutorial Group Features
 
 #### 4.4.1 Add a Tutorial Group to a Module: `addTG`
 You can add a Tutorial Group to the Module you are viewing using this command.
@@ -427,7 +422,7 @@ Example: `editTG 3 tg/T04 day/TUE start/08:00 end/10:00`
 
 These are the commands you can use to manage the different `Tutorial Groups` you teach. Now we look at how you can manage your `Students`.
 
-### 4.5 Student features
+### 4.5 Student Features
 
 > You should perform the following features while in the Student view.
 
@@ -437,12 +432,11 @@ Adds a student with your provided details.
 
 Format: `addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...`
 
-Note:
-
-- Students should not share the same student ID within the same tutorial group.
-- Phone numbers should only contain numbers, and it should be at least 3 digits long.
-- Student IDs begin and end with a capital letter and should have 7 digits (e.g. A1243567X).
-- A student can have any number of tags, including 0.
+> Note:
+> - Students should not share the same student ID within the same tutorial group.
+> - Phone numbers should only contain numbers, and it should be at least 3 digits long.
+> - Student IDs begin and end with a capital letter and should have 7 digits (e.g. A1243567X).
+> - A student can have any number of tags, including 0.
 
 Example:
 
@@ -460,11 +454,10 @@ Deletes a student based on the given `INDEX`.
 
 Format: `deleteStudent INDEX`
 
-Note:
-
-- `INDEX` refers to the index number shown in the Student view.
-- `INDEX` must be a positive integer starting from 1.
-- Deleting a student is irreversible.
+> Note:
+> - `INDEX` refers to the index number shown in the Student view.
+> - `INDEX` must be a positive integer starting from 1.
+> - Deleting a student is irreversible.
 
 Example:
 
@@ -482,14 +475,13 @@ Edits a student at the given `INDEX` with the provided details.
 
 Format: `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [id/STUDENT_ID] [t/TAG]...`
 
-Note:
-
-- `INDEX` refers to the index number shown in the Student view.
-- `INDEX` must be a positive integer starting from 1.
-- At least one of the optional fields must be provided.
-- Existing values will be updated to the given values.
-- When you edit the tag(s), the existing tag(s) of the student will be replaced (adding of tag(s) is not cumulative).
-- You may wish to remove all the student's tags by typing `t/` without specifying any tags after it.
+> Note:
+> - `INDEX` refers to the index number shown in the Student view.
+> - `INDEX` must be a positive integer starting from 1.
+> - At least one of the optional fields must be provided.
+> - Existing values will be updated to the given values.
+> - When you edit the tag(s), the existing tag(s) of the student will be replaced (adding of tag(s) is not cumulative).
+> - You may wish to remove all the student's tags by typing `t/` without specifying any tags after it.
 
 Example:
 
@@ -507,12 +499,11 @@ Finds and lists all students in the current Student view whose name contains any
 
 Format: `findStudent KEYWORD [KEYWORD]...`
 
-Note:
-
-- `KEYWORD` is not case-sensitive (e.g. _john_ will match _John_).
-- The search will look for matches, including partial match, in the student's name (e.g. _jo_ will match _John_,
- however, _jhn_ will not match _John_).
-- If no student matching the keyword is found, the Student view will be empty.
+> Note:
+> - `KEYWORD` is not case-sensitive (e.g. _john_ will match _John_).
+> - The search will look for matches, including partial match, in the student's name (e.g. _jo_ will match _John_,
+however, _jhn_ will not match _John_).
+> - If no student matching the keyword is found, the Student view will be empty.
 
 Example:
 
@@ -583,7 +574,6 @@ Command | Description | Compatible View
 
 Command | Description | Compatible View
 --------|--------|--------
-
 `addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...` | Adds a new student to the current Student view | STUDENT
 `deleteStudent INDEX` | Deletes a student from the current Student view | STUDENT
 `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [id/STUDENT_ID] [t/TAG]...` | Edits a student in the current Student view | STUDENT
