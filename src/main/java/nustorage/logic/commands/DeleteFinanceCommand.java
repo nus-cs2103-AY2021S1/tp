@@ -11,7 +11,7 @@ import nustorage.model.Model;
 import nustorage.model.record.FinanceRecord;
 
 /**
- * Deletes an existing finance record from the address book.
+ * Deletes an existing finance record
  */
 public class DeleteFinanceCommand extends Command {
 

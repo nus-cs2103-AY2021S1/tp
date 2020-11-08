@@ -1,7 +1,5 @@
 package nustorage.model;
 
-import java.nio.file.Path;
-
 import nustorage.commons.core.GuiSettings;
 
 /**
@@ -10,7 +8,5 @@ import nustorage.commons.core.GuiSettings;
 public interface ReadOnlyUserPrefs {
 
     GuiSettings getGuiSettings();
-
-    Path getAddressBookFilePath();
 
 }
