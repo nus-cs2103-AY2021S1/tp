@@ -661,7 +661,7 @@ Use case ends.
 
     Steps 2a1-2a2 are repeated until the data entered are correct.
 
-    Use case resumes at 3.
+    Use case resumes from step 3.
 
 **Use case: UC04 - Delete a student**
 
@@ -706,12 +706,12 @@ Use case ends.
     - 3a1. Trackr shows an error message.
     - 3a2. Trackr starts a new save file and overwrites the existing one.
 
-    Use case resumes at step 4.
+    Use case resumes from step 4.
 
 - 3b. The save file does not exist.
     - 3b1. Trackr creates a new save file.
 
-    Use case resumes at step 4.
+    Use case resumes from step 4.
 
 **Use case: UC06 - Search for a student**
 
