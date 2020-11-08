@@ -19,9 +19,6 @@ Given below are my contributions to the project.
     the most, so it is a significant feature.
     * Highlights: This enhancement required the in-depth analysis of the UI and Model component. The implementation was
     also challenging as it involved using many methods/functions from JavaFX which is a relatively new framework for me.
-    Another highlight is the disabling of the command box of the main window when the review window is opened, which is 
-    new kind of feature I have never implemented before and also a very useful one in terms of user experience and eliminating
-    bugs.
 
 * **New Feature 2**: Implementation of review limit (Pull request: [#168](https://github.com/AY2021S1-CS2103T-T15-2/tp/pull/168))
     * What it does: Saving and retrieving of a maximum number of cards that the user wants to review.
