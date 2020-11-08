@@ -13,6 +13,7 @@ public class MeetingDate {
             + " and it should not be blank";
     public static final String MESSAGE_CONSTRAINTS_PAST_DATE = "Meeting Date should be a date from today and should"
             + "not be of a past date";
+    public static final String MESSAGE_CONSTRAINTS_FUTURE_DATE = "Meeting Date should not be past 2050";
 
     /*
      * The first character of the address must not be a whitespace,

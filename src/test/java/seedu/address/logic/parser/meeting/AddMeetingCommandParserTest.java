@@ -36,29 +36,6 @@ import seedu.address.model.meeting.StartTime;
 public class AddMeetingCommandParserTest {
     private AddMeetingCommandParser parser = new AddMeetingCommandParser();
 
-
-    //    @Test
-    //    public void parse_allFieldsPresent_success() {
-    //        Meeting expectedMeeting = new MeetingBuilder(ADMINMEETING01).buildAdmin();;
-    //
-    //        // whitespace only preamble
-    //        assertParseSuccess(parser, PREAMBLE_WHITESPACE + MEETING_TYPE_A + BIDDER_ID_DESC_A
-    //                + PROPERTY_ID_DESC_A + MEETING_VENUE_DESC_A + MEETING_DATE_DESC_A
-    //                + START_TIME_DESC_A + END_TIME_DESC_A, new AddMeetingCommand(expectedMeeting));
-    //
-    //        // multiple property ids - last propertyId accepted
-    //        assertParseSuccess(parser, PREAMBLE_WHITESPACE + MEETING_TYPE_A + BIDDER_ID_DESC_A
-    //                + PROPERTY_ID_DESC_B + PROPERTY_ID_DESC_A + MEETING_VENUE_DESC_A + MEETING_DATE_DESC_A
-    //                + START_TIME_DESC_A + END_TIME_DESC_A, new AddMeetingCommand(expectedMeeting));
-    //
-    //        // multiple bidder ids - last bidder id accepted
-    //        assertParseSuccess(parser, PREAMBLE_WHITESPACE + MEETING_TYPE_A + BIDDER_ID_DESC_B + BIDDER_ID_DESC_A
-    //                + PROPERTY_ID_DESC_A + MEETING_VENUE_DESC_A + MEETING_DATE_DESC_A
-    //                + START_TIME_DESC_A + END_TIME_DESC_A, new AddMeetingCommand(expectedMeeting));
-    //
-    //}
-
-
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE);
