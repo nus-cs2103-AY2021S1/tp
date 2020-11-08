@@ -11,6 +11,6 @@ if () then ([flashcard already exists])
 else ([else])
     : Model add flashcard to the list;
 endif
-:return CommandResult to UI;
+:UI displays results to User;
 stop
 @enduml
