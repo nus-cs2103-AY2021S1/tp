@@ -80,7 +80,9 @@ This section details the notations used to specify the command formats in the [c
   * e.g. input of `2020-01-01` will show up as `01 Jan 2020` as the date, and `13:00` will show up as `13:00` as the time in NUStorage's response box.
 * Parameters can be switched around.
   * They do NOT need to come in the order as specified by the formats.
-  * E.g. `create_item i/iPad q/100` and `create_item q/100 i/iPad` are both accepted.
+    * E.g. `create_item i/iPad q/100` and `create_item q/100 i/iPad` are both accepted.
+  * Exception: commands that require the `INDEX` must have the `INDEX` directly after the command.
+    * E.g. `edit_inventory 1 i/newname` is accepted but NOT `edit_inventory i/newname 1`
 * Range of valid inputs:
   * Paramters that expect an integer must be between `0` and `2147483647`.
 
@@ -192,7 +194,7 @@ Currently, our NUStorage has two records as shown below:
 
 __Format:__ `edit_inventory INDEX [i/ITEM_NAME] [q/QUANTITY] [c/ITEM_COST]`
 
-This allows us to change the item name, quantity and cost of the inventory rececord with the ID `INDEX`. Note that `QUANTITY` is currently limited to a maximum value of `2147483647`.
+This allows us to change the item name, quantity and cost of the inventory rececord with the ID `INDEX`. Note that `QUANTITY` is currently limited to a maximum value of `2147483647` and that `INDEX` must be the **first** parameter for this command.
 
 __Example:__ `edit_inventory 2 i/iPad q/10 c/2000` edits the inventory record at index `2`.
 
@@ -245,7 +247,7 @@ Displays all records in the inventory list.
 
 __Format:__ `update_inventory INDEX q/CHANGE_QUANTITY`
 
-<!-- Note that `QUANTITY` is currently limited to a maximum value of `2147483647`. -->
+<!-- Note that `QUANTITY` is currently limited to a maximum value of `2147483647` and that `INDEX` must be the **first** parameter for this command.-->
 
 __Example:__ `update_inventory 1 q/-5` changes the quantity of the inventory by `-5` and updates corresponding finance record. `CHANGE_QUANTITY` can be of negative value.
 
@@ -350,7 +352,7 @@ Note that this command **can only edit a stand-alone finance record**.
 
 __Format:__ `edit_finance INDEX amt/AMOUNT [at/DATE]`
 
-This allows us to change the amount and date details of the finance record with the `INDEX` ID.
+This allows us to change the amount and date details of the finance record with the `INDEX` ID. Note that `INDEX` must be the **first** parameter for this command.
 
 __Example:__ `edit_finance 1 amt/120`
 
@@ -541,7 +543,7 @@ The following table gives a summary of the [__inventory commands__](#51-inventor
 | __Edit inventory__ | `edit_inventory INDEX i/ITEM_NAME q/QUANTITY`<br> e.g. `edit_inventory 3 i/Lenovo Y50 q/10` |
 | __Find inventory__ | `find_inventory KEYWORD` <br> e.g. `find_inventory ipad` |
 | __List inventory__ | `list_inventory` |
-| __Update Inventory__| `update_inventory` <br> e.g. `update_inventory 1 q/50` |
+| __Update Inventory__| `update_inventory INDEX q/CHANGE_QUANTITY` <br> e.g. `update_inventory 1 q/50` |
 
 ### 6.2. Finance Commands Summary
 
