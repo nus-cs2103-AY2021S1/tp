@@ -19,7 +19,7 @@ public class Status {
 
     /**
      * Constructs a {@code Status}.
-     * @param isCompleted
+     * @param isCompleted a boolean representing whether the status is completed or not.
      */
     public Status(boolean isCompleted) {
         this.isCompleted = isCompleted;

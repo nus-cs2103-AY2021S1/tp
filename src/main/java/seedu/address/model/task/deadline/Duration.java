@@ -40,7 +40,7 @@ public class Duration {
     }
 
     public static boolean isValidDuration(int duration) {
-        return duration >= 0;
+        return duration > 0;
     }
 
     @Override

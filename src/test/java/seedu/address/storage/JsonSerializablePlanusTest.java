@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.Planus;
-import seedu.address.testutil.TypicalTasks;
+import seedu.address.testutil.TypicalPlanus;
 
 public class JsonSerializablePlanusTest {
 
@@ -25,7 +25,7 @@ public class JsonSerializablePlanusTest {
         JsonSerializablePlanus dataFromFile = JsonUtil.readJsonFile(TYPICAL_TASKS_FILE,
                 JsonSerializablePlanus.class).get();
         Planus planusFromFile = dataFromFile.toModelType();
-        Planus typicalTasksPlanus = TypicalTasks.getTypicalPlanus();
+        Planus typicalTasksPlanus = TypicalPlanus.getTypicalTaskOnlyPlanus();
         assertEquals(planusFromFile, typicalTasksPlanus);
     }
 

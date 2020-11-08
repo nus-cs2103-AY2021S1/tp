@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODEL;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODEL;
-import static seedu.address.testutil.TypicalTasks.getTypicalPlanus;
+import static seedu.address.testutil.TypicalPlanus.getTypicalPlanus;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +19,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
+ * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteTaskCommand}.
  */
 public class DeleteTaskCommandTest {

@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -120,6 +121,11 @@ public class Planus implements ReadOnlyPlanus {
      * The task must not already exist in the PlaNus task list.
      */
     public void addLesson(Lesson lesson) {
+        ArrayList<Task> tasksToAdd = lesson.createRecurringTasks();
+        tasksToAdd.forEach(task -> {
+            addTask(task);
+            addTaskToCalendar(task);
+        });
         lessons.add(lesson);
     }
 
@@ -142,16 +148,6 @@ public class Planus implements ReadOnlyPlanus {
         tasks.setTask(target, editedTask);
     }
 
-    /**
-     * Replaces the given lesson {@code target} in the list with {@code editedLesson}.
-     * {@code target} must exist in the PlaNus lesson list.
-     * The lesson identity of {@code editedLesson} must not be the same as another existing lesson in the lesson list.
-     */
-    public void setLesson(Lesson target, Lesson editedLesson) {
-        requireNonNull(editedLesson);
-
-        lessons.setLesson(target, editedLesson);
-    }
     /**
      * Replaces the given task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the PlaNus calendar list.
@@ -239,7 +235,8 @@ public class Planus implements ReadOnlyPlanus {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Planus // instanceof handles nulls
-                && tasks.equals(((Planus) other).tasks));
+                && tasks.equals(((Planus) other).tasks)
+                && lessons.equals(((Planus) other).lessons));
     }
 
     @Override
