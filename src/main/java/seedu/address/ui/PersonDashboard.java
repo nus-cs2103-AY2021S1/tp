@@ -57,15 +57,27 @@ public class PersonDashboard extends UiPart<Region> {
     public PersonDashboard(Optional<Person> person) {
         super(FXML);
         this.person = person.get();
-        personName.setText(this.person.getPersonName().fullPersonName);
-        gitUserName.setText("GitHub username: " + this.person.getGitUserNameString());
+        displayName();
+        displayGitUserName();
+        displayDetailedPersonInfo();
+        displayProjects();
+        displayTasks();
+
+    }
+
+    private void displayDetailedPersonInfo() {
         phone.setText("Contact number: " + this.person.getPhone().value);
         email.setText("Email: " + this.person.getEmail().value);
         address.setWrappingWidth(WRAPPING_WIDTH);
         address.setText("Address: " + this.person.getAddress().value);
-        displayProjects();
-        displayTasks();
+    }
 
+    private void displayGitUserName() {
+        gitUserName.setText("GitHub username: " + this.person.getGitUserNameString());
+    }
+
+    private void displayName() {
+        personName.setText(this.person.getPersonName().fullPersonName);
     }
 
     private void displayTasks() {
