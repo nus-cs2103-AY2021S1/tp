@@ -34,7 +34,7 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 
 [[github](http://github.com/blackonyyx)]
 
-[[portfolio](team/stephentan.md)]
+[[portfolio](team/blackonyyx.md)]
 
 * Role: Developer
 * Responsibilities:
