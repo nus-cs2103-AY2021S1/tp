@@ -801,9 +801,10 @@ Action | Format, Examples
 
 The following table provides the definitions of the various terms used in this User Guide.
 
+Table 3: Glossary of terms
+
 Term | Definition
 --------|------------------
-Basic Details | Details such as name, year, academic level and school of a student.
 Administrative Details | Details such as class venue, class time, tuition fee, last payment date and other details
 Academic Details | Details such as questions, exam records and attendance records
 Detail | Any miscellaneous information regarding a student.
