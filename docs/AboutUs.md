@@ -39,6 +39,7 @@ You can reach our supervisor at `damithc[at]comp.nus.edu.sg`
 <img src="images/maguireong.png" width="200px">
 
 [[github](http://github.com/maguireong)]
+[[Project Portfolio Page (PPP)](team/maguireong.md)]
 
 #### Developer & Integration in-charge
 
