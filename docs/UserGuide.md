@@ -210,7 +210,7 @@ This command enables you to add a staff record into Eva. A staff record can cont
  - Leaves 
  
 The fields marked with a asterisk (*) are compulsory and have to be provided in the parameters below.
-Without any of these fields, Eva will not accept you input. Tags and Comments can be added with these commands as shown 
+Without any of these fields, Eva will not accept your input. Tags and comments can be added with these commands as shown 
 in the examples. To manage leave records for each staff, please refer to the commands 
 [addl](#337-record-leave-taken-by-staff-addl) and [dell](#338-delete-leave-taken-by-staff-dell)
 
@@ -230,6 +230,8 @@ Examples:
 c/ ti/Behaviour d/20/12/2020 desc/Very enthusiastic in meetings`
 * To add a tag along with the necessary fields <br>
 `adds n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/12345678 t/Developer`
+
+The image below shows what you would see after executing the second command in the examples given above. 
 
 ![addStaff](images/ugimages/AddStaff.png)
 
@@ -334,10 +336,13 @@ Examples:
 
 #### 3.3.9. Clear staff database : `clear s-`
 
-Want to get rid of all entries at once?
-This command clears all staff entries from the Eva database.
+In any case that you might want to remove all staff or applicant records, you can always use the `clear` command. <br>
+This command clears all staff entries from the Eva database. 
 
 Format: `clear s-`
+
+The image below shows what you would see after using this command. Notice that there are no more records of staff in the
+Staff List.
 
 ![clearStaff](images/ugimages/ClearStaff.png)
 
@@ -362,23 +367,41 @@ Shows a list of all applicants in Eva.
 
 #### 3.4.2 Add an applicant: `adda`
 
-Adds an applicant to Eva.
+This command enables you to add an applicant record into Eva. An applicant record can contain the details listed below:
+ - Name*
+ - Phone Number*
+ - Email*
+ - Address*
+ - Tags
+ - Comments
+ - Interview Date
+ - Application Status
+ - Application
+ 
+The fields marked with a asterisk (*) are compulsory and have to be provided in the parameters below.
+Without any of these fields, Eva will not accept your input. Tags and comments can be added with these commands as shown 
+in the examples. To manage application records for each applicant, please refer to the commands 
+[addapp](#347-add-an-application-addapp) and [delapp](#348-delete-an-application-delapp)
 
 Format: `adda n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG]…​[c/COMMENTS]…`
 
- - An applicant can have any number of tags (including 0) <br>
- - An applicant can have any number of comments (including 0) <br>
- - The interview date has to be in DD/MM/YYYY format <br>
- - The order of inputs does not matter
+ - An applicant can have any number of tags (including 0) 
+ - An applicant can have any number of comments (including 0) 
+ - The interview date has to be in DD/MM/YYYY format 
  - Once you add an applicant the status would be automatically set as received, if you wish to change it, refer to the feature 
  [setting of application status](#349-set-application-status-setas) below
+ - :bulb: **Tip:** The details of each field can be provided in any order. 
  - :bulb: **Tip** The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later. <br>
 <br>
 
 Examples:
-* `adda n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/22/11/2020`
-* `adda n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/92345678 t/Developer
-    c/ ti/Working Ethics d/10/10/2010 desc/Good`
+* To add an applicant without an interview date 
+`adda n/Vicky Santana p/98765432 e/vsc@xample.com a/John street, block 123, #01-01`
+* To add an applicant with an interview date 
+`adda n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/22/11/2020`
+* To add an applicant with tags and comments
+ `adda n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 
+ p/92345678 t/Developer c/ ti/Working Ethics d/10/10/2010 desc/Good`
 
 ![addApplicant](images/ugimages/AddApplicant.png)
 
