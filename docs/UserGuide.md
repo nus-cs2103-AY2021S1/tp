@@ -468,13 +468,13 @@ Examples:
 
 #### 5.2.7 Listing all patients: `list`
 
+View a list of all your patients in the patient database.
+
 <p align="center">
     <img src="images/listExample.png"/>
     <br>
     <em style="color:#CC5500">Example of List Command</em>
 </p>
-
-View a list of all your patients in the patient database.
 
 Format: `list`
 
@@ -487,9 +487,13 @@ Format: `list`
 
 #### 5.2.8 Viewing patient profile: `profile`
 
-![example of add appointment](images/profileExample.png)
-
 Display the patient's profile in a separate window.
+
+<p align="center">
+    <img src="images/profileExample.png"/>
+    <br>
+    <em style="color:#CC5500">Example of Profile Window</em>
+</p>
 
 Format: `profile INDEX`
 
@@ -516,9 +520,13 @@ These visitation logs store the following as a short summary of a patient's visi
 
 #### 5.3.1 Adding a new visitation log for patient: `addvisit`
 
-![example of add visit](images/addVisitExample.png)
-
 Display a new window to add a new visitation log for the specified patient.
+
+<p align="center">
+    <img src="images/addVisitExample.png"/>
+    <br>
+    <em style="color:#CC5500">Example of Add Visit Command</em>
+</p>
 
 Format: `addvisit INDEX [vd/VISIT_DATE]`
 
@@ -552,9 +560,13 @@ Format: `addvisit INDEX [vd/VISIT_DATE]`
 
 #### 5.3.2 Editing patient's visitation log: `editvisit`
 
-![example of edit visit](images/editVisitExample.png)
-
 Display a new window to edit the visitation log for a specified patient.
+
+<p align="center">
+    <img src="images/editVisitExample.png"/>
+    <br>
+    <em style="color:#CC5500">Example of Edit Visit Command</em>
+</p>
 
 Format: `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]`
 
@@ -595,9 +607,13 @@ Format: `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]`
 
 #### 5.3.3 Deleting patient's visitation log: `deletevisit`
 
-![example of delete visit](images/deleteVisitExample.png)
-
 Delete the patient's visitation log.
+
+<p align="center">
+    <img src="images/deleteVisitExample.png"/>
+    <br>
+    <em style="color:#CC5500">Example of Delete Visit Command</em>
+</p>
 
 Format: `deletevisit INDEX i/VISIT_INDEX`
 
@@ -617,9 +633,13 @@ Patient Appointment commands help you manage your upcoming patient appointments.
 
 #### 5.4.1 Adding an appointment: `addappt`
 
-![example of add appointment](images/addApptExample.png)
-
 Add a new appointment for the specified patient to the appointment database.
+
+<p align="center">
+    <img src="images/addApptExample.png"/>
+    <br>
+    <em style="color:#CC5500">Example of Add Appointment Command</em>
+</p>
 
 Format: `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION`
 
@@ -656,9 +676,13 @@ Example: You want to add an appointment with the first patient on the list.
 
 #### 5.4.2 Editing an appointment: `editappt`
 
-![example of edit appointment](images/editApptExample.png)
-
 Edit the specified appointment in the appointment database.
+
+<p align="center">
+    <img src="images/editApptExample.png"/>
+    <br>
+    <em style="color:#CC5500">Example of Edit Appointment Command</em>
+</p>
 
 Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_START_TIME] [d/DURATION]`
 
@@ -701,9 +725,13 @@ Example: You want to reschedule the first appointment in the appointment list.
 
 #### 5.4.3 Deleting an appointment: `deleteappt`
 
-![example of delete appointment](images/DeleteApptExample.png)
-
 Delete the specified appointment from the appointment database.
+
+<p align="center">
+    <img src="images/deleteApptExample.png"/>
+    <br>
+    <em style="color:#CC5500">Example of Delete Appointment Command</em>
+</p>
 
 Format: `deleteappt INDEX`
 
