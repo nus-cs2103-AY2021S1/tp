@@ -35,20 +35,9 @@ This table below illustrates what each formatting means.
 | `[g/ALLERGY]…` | Words with `…` after them| Parameters that can be input multiple times including 0 times|`g/sulfa g/zyrtec` or `g/levocetirizine `|
 | [Blue underline](#2-about-this-document)| Blue words that show underline on mouse-over| A clickable hyperlink, to either an external webpage or other parts of this User Guide|[1. Introduction](#1-introduction)|
 
-[**SOME OF THE CONTENTS INSIDE THE TABLE ABOVE AND THE NOTE BELOW SEEMS TO BE REDUNDANT**]
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [g/ALLERGY]` can be used as `n/John Doe g/penicillin` or as `n/John Doe`.
-
-* Items with `…` after them can be used multiple times including zero times.<br>
-  e.g. `[g/ALLERGY]…` can be used as ` ` (i.e. 0 times), `g/penicillin`, `g/sulfa g/aspirin` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -107,13 +96,13 @@ If you wish to start afresh, enter the `clear` command to clear all entries from
 
 ![Overview Tab Layout](images/overviewLayout.png)
 
-This would be the home page of CliniCal, where the appointment list would be on the left, and the calendar view on the right.
+This would be the main screen of CliniCal, where the appointment list would be on the left, and the calendar view on the right.
 
 * The index used to access each appointment is shown next to the patient's name.
 
-* On the left, you would be able to view all upcoming appointments with the follow details under each appointment:
+* On the left, you would be able to view all upcoming appointments and each appointment contains the following details:
     * Patient Name
-    * NRIC
+    * Patient NRIC
     * Date and Time of Appointment
     * Duration of Appointment
 
@@ -132,13 +121,24 @@ This would be the home page of CliniCal, where the appointment list would be on 
 
 ![Patient Tab Layout](images/patientLayout.png)
 
-This tab shows you the patient database and the details of each patient, together with a summary of each visit.
+This tab shows you the patient database and the details of each patient, together with the most recent visit date.
 
 * The index used to access each patient is shown next to the patient's name.
 
+* Each patient contains the following details:
+    * Name
+    * Allergies (if applicable)
+    * Phone Number
+    * NRIC
+    * Address
+    * Email
+    * Sex
+    * Blood Type
+    * Most Recent Visit Date (if applicable)
+
 * The sample data in the figure above indicates that Bernice Yu has the <span style="color:red">red</span> color tag, meaning that Bernice Yu has high priority and requires close monitoring and follow-up actions. You are free to assign any color to any patient.
 
-* Refer to [**Patient Commands**](#52-patient-commands) for more details on how to add a patient!
+* Refer to the section on [**Patient Commands**](#52-patient-commands) for more details on how to add a patient!
 
 ### 4.3 Profile Window
 
@@ -146,7 +146,7 @@ This tab shows you the patient database and the details of each patient, togethe
 
 This window shows you the individual patient profile picture and personal details in an easy to read manner.
 
-* It also contains details of each visit stored in visitation logs sorted by descending date order in DD/MM/YYYY format (i.e. The most recent visit will appear at the top). 
+* If applicable, the profile contains details of each visit stored in visitation logs sorted by descending date order in DD/MM/YYYY format (i.e. The most recent visit will appear at the top). 
 
 * The index used to access each visitation log is also shown after the words 'Visitation Log'.
 
@@ -155,7 +155,7 @@ This window shows you the individual patient profile picture and personal detail
     * Prescription
     * Comments
 
-* Refer to [**Patient Visitation Commands**](#53-patient-visitation-commands) for more details on how to add a visit!
+* Refer to the section on [**Patient Visitation Commands**](#53-patient-visitation-commands) for more details on how to add a visit!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -252,9 +252,9 @@ Add a new patient to the patient database.
 
 Format: `add n/NAME p/PHONE_NUMBER ic/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
 
-Examples:
-* `add n/John Doe p/98765432 ic/S3857462J e/johnd@example.com a/Pickle street, block 123, #01-01` Adds a new patient named 'John Doe' with the respective fields.
-* `add n/Betsy Crowe ic/G7667353B e/betsycrowe@example.com a/Newgate Prison p/1234567 g/penicillin` Adds a new patient named 'Betsy Crowe' with the respective fields.
+Example: You want to add a new patient with specific personal details.
+
+Step 1: Input `add n/Betsy Yu ic/G7667353B e/betsyyu@example.com a/Newgate Prison p/1234567 g/penicillin s/F` into the command box and press <kbd>Enter</kbd>.
 
 <div markdown="block" class="alert alert-info">
 
