@@ -24,8 +24,8 @@ public class ArchiveCommand extends Command {
 
     public static final String MESSAGE_ARCHIVE_PERSON_SUCCESS = "Archived Employee: %1$s";
     public static final String MESSAGE_PERSON_ALREADY_ARCHIVED = "This employee has already been archived!"
-            + "\nOnly employees in active(unarchived) list can be archived."
-            + "\nTo view all active(unarchived) employees, use command 'c-active-list'.";
+            + "\nOnly employees in active (unarchived) list can be archived."
+            + "\nTo view all active (unarchived) employees, use command 'c-active-list'.";
 
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX_ARCHIVE = "The employee index provided is "
             + "invalid."
