@@ -160,7 +160,7 @@ your Entries in Common Cents.
 --------------------------------------------------------------------------------------------------------------------
 
 # 5. Features
-Here are some general notes about the commands in _Common Cents_ 
+Here are some general notes about the commands in _Common Cents_. 
 
 <div markdown="block" class="alert alert-info">
 
