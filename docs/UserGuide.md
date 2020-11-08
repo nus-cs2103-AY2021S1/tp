@@ -5,7 +5,7 @@ title: User Guide
 * Table of Contents
     * [Introduction](#introduction)
     * [Quick start](#quick-start)
-    * [About](#about)
+    * [About This Document](#about)
     * [Features](#features)
         * [Commands - Sales Tracking](#commands-sales-tracking)
         * [Commands - Ingredients Tracking](#commands-ingredients-tracking)
@@ -477,7 +477,7 @@ Example:
 Let's say you want to add an employee called John Doe to the Employee Directory. His phone number is 98765432. His emergency contact is 81234567. His address is Blk 123 ABC Road. Assume he is a part-time employee, and he only can work on Friday. So you want to indicate these two characteristics in tCheck. You can assign him two labels, "Friday" and "PartTime" so that you can use find-employees-by-tags features (refer to `c-tag-find` for more details) to find a group of employees by their tag(s).You can follow these instructions:
 
 1. Type `c-add n/John Doe p/98765432 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime` into the _Command Box_.
-1.  Press "Enter" to execute.
+1. Press "Enter" to execute.
 
 
 Outcome:
@@ -488,7 +488,7 @@ Outcome:
 
 #### 3.2 Listing all employees in the active list: `c-active-list`
 
-Lists all employees who are active.
+Lists all employees who are active. 
 
 Format: `c-active-list`
 
