@@ -13,7 +13,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_DURATION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODEL;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_DURATION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_MODEL;
-import static seedu.address.testutil.TypicalTasks.getTypicalPlanus;
+import static seedu.address.testutil.TypicalPlanus.getTypicalPlanus;
 
 import org.junit.jupiter.api.Test;
 
@@ -42,7 +42,7 @@ public class DoneCommandTest {
         }
         DoneCommand doneCommand = new DoneCommand(indexes, durations);
 
-        String expectedMessage = String.format(DoneCommand.buildMessage(tasksToDone));
+        String expectedMessage = DoneCommand.buildMessage(tasksToDone);
 
         ModelManager expectedModel = new ModelManager(model.getPlanus(), new UserPrefs());
         expectedModel.markAsDone(tasksToDone, durations);
@@ -60,7 +60,7 @@ public class DoneCommandTest {
         }
         DoneCommand doneCommand = new DoneCommand(indexes, durations);
 
-        String expectedMessage = String.format(DoneCommand.buildMessage(tasksToDone));
+        String expectedMessage = DoneCommand.buildMessage(tasksToDone);
 
         ModelManager expectedModel = new ModelManager(model.getPlanus(), new UserPrefs());
         expectedModel.markAsDone(tasksToDone, durations);

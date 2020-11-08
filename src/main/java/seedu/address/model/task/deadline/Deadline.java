@@ -178,6 +178,9 @@ public class Deadline extends Task {
      */
     @Override
     public int compareTo(Task otherTask) {
+        if (otherTask == this) {
+            return 0;
+        }
         if (otherTask instanceof Event) {
             if (((Event) otherTask).isEnded()) {
                 return -1;
@@ -192,6 +195,9 @@ public class Deadline extends Task {
         }
         //otherTask instanceof Deadline
         Deadline deadline = (Deadline) otherTask;
+        if (deadline.equals(this)) {
+            return 0;
+        }
         if (this.isDone() == deadline.isDone()) {
             if (deadline.isDeadlineDateTimeFilled() && deadlineDateTime.isFilled) {
                 return getDeadlineDateTimeValue().compareTo(deadline.getDeadlineDateTimeValue());

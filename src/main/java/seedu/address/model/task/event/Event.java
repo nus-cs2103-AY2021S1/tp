@@ -176,7 +176,13 @@ public class Event extends Task implements TimeSlot {
      */
     @Override
     public int compareTo(Task otherTask) {
+        if (otherTask == this) {
+            return 0;
+        }
         if (otherTask instanceof Event) {
+            if (otherTask.equals(this)) {
+                return 0;
+            }
             if (this.isEnded() == ((Event) otherTask).isEnded()) {
                 return getEndDateTimeValue().compareTo(((Event) otherTask).getEndDateTimeValue());
             }

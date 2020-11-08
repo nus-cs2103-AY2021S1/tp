@@ -16,6 +16,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.Planus;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.lesson.LessonContainsKeywordsPredicate;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
@@ -183,4 +184,19 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredTaskList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the lessons at the given {@code targetIndex} in the
+     * {@code model}'s lesson list.
+     */
+    public static void showLessonAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredLessonList().size());
+
+        Lesson lesson = model.getFilteredLessonList().get(targetIndex.getZeroBased());
+        final String[] splitTitle = lesson.getTitle().title.split("\\s+");
+        LessonContainsKeywordsPredicate predicate = new LessonContainsKeywordsPredicate();
+        predicate.setKeyword(PREFIX_TITLE, splitTitle[0]);
+        model.updateFilteredLessonList(predicate);
+
+        assertEquals(1, model.getFilteredLessonList().size());
+    }
 }
