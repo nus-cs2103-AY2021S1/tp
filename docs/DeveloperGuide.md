@@ -834,7 +834,9 @@ It stores the details to edit the meeting with and each non-empty field value wi
 
 ### Viewing a Specific Meeting's Agendas and Notes
 
-#### Implementation:
+![MeetingViewExample](images/MeetingViewExample.gif)
+
+#### Implementation
 
 The mechanism to view a specific meeting's agendas and notes is primarily facilitated by the `ViewMeetingCommand`. It
 extends `Command` and implements the `execute` operation:
@@ -855,15 +857,16 @@ selected meeting field in the `ModelManager` before creating a `CommandResult` w
 
  ![ViewMeetingSequenceDiagram](images/ViewMeetingSequenceDiagram.png)
 
-When the Logic signals that an update is required, the following update method in `MainWindow` is invoked to update the
+When the Logic signals that an update is required, the following method in `MainWindow` is invoked to update the
 selected meeting user interface:
 
 ```
-public void update() {
-    logger.info("UI update triggered");
-    if (logic.getSelectedMeeting() == null) {
+public void updateSelectedMeeting() {
+    logger.info("UI update selected meeting triggered");
+    if (logic.getSelectedMeeting() == null && selectedMeetingPlaceholder.getChildren().size() > 0) {
         selectedMeetingPlaceholder.getChildren().remove(0);
-    } else {
+    }
+    if (logic.getFilteredMeetingList().size() != 0 && logic.getSelectedMeeting() != null) {
         MeetingDetailsPanel selectedMeeting = new MeetingDetailsPanel(logic.getSelectedMeeting(),
                 logic.getFilteredMeetingList().indexOf(logic.getSelectedMeeting()) + 1);
         if (selectedMeetingPlaceholder.getChildren().size() == 1) {
@@ -875,16 +878,9 @@ public void update() {
 }
 ```
 
-Given below is a object diagram of the initial state of the application. If the `MeetingBook` is not empty, the
-`selectedMeeting` field in `ModelManager` will be set to the first meeting in the `MeetingBook`. Otherwise, it will be
-set to null. Note that on the first launch, the `MeetingBook` is guaranteed to have sample data with the first meeting
-being CS2100 Report Discussion. Irrelevant details have been omitted from the diagram.
+Given below is the class diagram representing the structure of this implementation.
 
-![ViewMeetingInitialStateObjectDiagram](images/ViewMeetingInitialStateObjectDiagram.png)
-
-Given below is the object diagram after the `meeting view m/CS2103 n/Weekly Meeting` command is executed.
-
-![ViewMeetingFinalObjectDiagram](images/ViewMeetingFinalObjectDiagram.png)
+ ![ViewMeetingClassDiagram](images/ViewMeetingClassDiagram.png)
 
 #### Design Considerations:
 
@@ -965,6 +961,23 @@ The following commands affect the `TimelineWindow`:
 * `AddMeetingCommand`
 * `EditMeetingCommand`
 * `DeleteMeetingCommand`
+
+### Theme switch feature
+
+![ThemeSwitchExample](images/ThemeSwitchExample.gif)
+
+#### Implementation
+
+The mechanism to view switch to light theme is facilitated by `LightThemeCommand` while the mechanism to switch to dark theme is facilitated by `DarkThemeCommand`. Both
+extends `Command` and implements the `execute` operation. Additionally, the theme switch can also be activated by the `F2` and `F3` keys or using the mouse to click the menu options.
+
+Given below is the sequence diagram when the `light` command is entered. The dark command has the same sequence diagram except that light is replaced with dark and `setStylesheet(Themes.DARK_THEME)` is called instead of `setStylesheet(Themes.LIGHT_THEME)`.
+
+![SwitchThemeSequenceDiagram](images/SwitchThemeSequenceDiagram.png)
+
+Since the UI has 3 separate windows: MainWindow, HelpWindow and TimelineWindow, these windows need to check the current theme and select the right stylesheet to used. Given below is the sequence diagram when the `help` command is issued to illustrate how the help window selects the right theme. The other 2 windows follow similar logic.
+
+![HelpWindowActivityDiagram](images/HelpWindowActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 

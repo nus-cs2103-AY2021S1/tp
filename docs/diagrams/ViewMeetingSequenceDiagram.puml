@@ -30,12 +30,12 @@ else isExit
     activate ui UI_COLOR
     deactivate ui UI_COLOR
 else isTriggerUpdate
-    ui-> ui : update()
+    ui-> ui : updateSelectedMeeting()
     activate ui UI_COLOR
     deactivate ui UI_COLOR
 else else
 end
 
-ui--[UI_COLOR]> user
+ui--[UI_COLOR]> user : update selected meeting 
 deactivate ui
 @enduml
