@@ -605,6 +605,7 @@ _{More to be added}_
 
 1. User keys in command to view the tutorial groups of a specific module.
 2. Trackr displays the list of tutorial groups and shows a confirmation message.
+
 Use case ends.
 
 **Extensions**
@@ -612,7 +613,9 @@ Use case ends.
 - 1a. Trackr detects an error in the command parameter.
     - 1a1. Trackr displays an error message and proper command format.
     - 1a2. User enters a new parameter.
+
     Steps 1a1-1a2 are repeated until the parameter entered are correct.
+
     Use case resumes from step 2.
 
 **Use case: UC02 - View all students within a tutorial group of a module**
@@ -621,17 +624,21 @@ Use case ends.
 
 **MSS**
 
-1. User keys in command to view the students of a specific tutorial group.
-2. Trackr displays the list of students and shows a confirmation message.
+1. User requests to view all tutorial groups within a module (UC01).
+2. User keys in command to view the students of a specific tutorial group.
+3. Trackr displays the list of students and shows a confirmation message.
+
 Use case ends.
 
 **Extensions**
 
-- 1a. Trackr detects an error in the command parameter.
-    - 1a1. Trackr displays an error message and proper command format.
-    - 1a2. User enters a new parameter.
-    Steps 1a1-1a2 are repeated until the parameter entered are correct.
-    Use case resumes from step 2.
+- 2a. Trackr detects an error in the command parameter.
+    - 2a1. Trackr displays an error message and proper command format.
+    - 2a2. User enters a new parameter.
+
+    Steps 2a1-2a2 are repeated until the parameter entered are correct.
+
+    Use case resumes from step 3.
 
 **Use case: UC03 - Add a student**
 
@@ -643,6 +650,7 @@ Use case ends.
 2. User enters the student data.
 3. Trackr adds the student to the displayed list.
 4. Trackr shows a message with the added student's details.
+
 Use case ends.
 
 **Extensions**
@@ -650,7 +658,9 @@ Use case ends.
 - 2a. Trackr detects that the data entered is in the wrong format.
     - 2a1. Trackr displays an error message and proper command format.
     - 2a2. User enters new data.
+
     Steps 2a1-2a2 are repeated until the data entered are correct.
+
     Use Case resumes at 3.
 
 **Use case: UC04 - Delete a student**
@@ -663,6 +673,7 @@ Use case ends.
 2. User enters command to delete a specific student in the displayed list.
 3. Trackr deletes the student from the displayed list.
 4. Trackr shows a message with the deleted student's details.
+
 Use case ends.
 
 **Extensions**
@@ -673,7 +684,9 @@ Use case ends.
 - 2a. Trackr detects an error in the command parameter.
     - 2a1. Trackr displays an error message and proper command format.
     - 2a2. User enters a new parameter.
+
     Steps 2a1-2a2 are repeated until the parameter entered are correct.
+
     Use case resumes from step 3.
 
 **Use case: UC05 - Loading a save file**
@@ -684,6 +697,7 @@ Use case ends.
 2. Trackr attempts to read the save file.
 3. Trackr successfully parses the save file and loads the lists of modules on it.
 4. User can start using the application.
+
 Use case ends.
 
 **Extensions**
@@ -691,10 +705,12 @@ Use case ends.
 - 3a. The save file is corrupted or in the wrong format.
     - 3a1. Trackr shows an error message.
     - 3a2. Trackr starts a new save file and overwrites the existing one.
+
     Use case resumes at step 4.
 
 - 3b. The save file does not exist.
     - 3b1. Trackr creates a new save file.
+
     Use case resumes at step 4.
 
 **Use case: UC06 - Search for a student**
@@ -706,11 +722,13 @@ Use case ends.
 1. User requests to view all students within a tutorial group of a module (UC02).
 2. User enters the find command with keyword(s) to search for a specific student in the list.
 3. Trackr displays a list of student(s) with name(s) that match the keyword(s).
+
 Use case ends.
 
 **Extensions**
 
 - 1a. The list is empty.
+
 Use case ends.
 
 **Use case: UC07 - Edit a student's details**
@@ -723,17 +741,21 @@ Use case ends.
 2. User enters the edit command with new student details for a specific student in the list.
 3. Trackr edits the student in the displayed list.
 4. Trackr shows a message with the edited student's details.
+
 Use case ends.
 
 **Extensions**
 
 - 1a. The list is empty.
+
 Use case ends.
 
 - 2a. Trackr detects an error in the command.
     - 2a1. Trackr displays an error message and proper command format.
     - 2a2. User enters new command.
+
     Steps 2a1-2a2 are repeated until the parameter entered are correct.
+
     Use case resumes from step 3.
 
 ---
