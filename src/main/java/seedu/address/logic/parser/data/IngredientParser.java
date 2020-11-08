@@ -54,10 +54,6 @@ public class IngredientParser {
         requireNonNull(args);
         ArgumentMultimap argMultimapQuantity =
                 ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY);
-        //if (!argMultimapQuantity.getPreamble().isEmpty()) {
-        //  throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-        //  AddIngredientCommand.MESSAGE_USAGE));
-        //}
         //getting from an Optional.empty throws the no such elem exception
         try {
             return ParserUtil.parseQuantity(argMultimapQuantity.getValue(PREFIX_QUANTITY).get());
