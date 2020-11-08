@@ -1,0 +1,31 @@
+@startuml
+!include ./style.puml
+
+Participant ":LogicManager" as logic LOGIC_COLOR
+Participant ":Statistics" as stats LOGIC_COLOR
+Participant ":StatisticsData" as std LOGIC_COLOR
+
+activate logic
+[-> logic: execute(model)
+activate stats
+logic -> stats: generateStatistics(countStartDate, now)
+create std
+stats -> std
+activate std
+stats -> stats: updateTimeTakenForTasks(...)
+activate stats
+stats -> std: addTag(currentTag)
+std --> stats
+stats -> std: addTaskTime(currentTag, timeTakenForTask)
+std --> stats
+return
+stats -> stats: updateTimeTakenForLessons(...)
+
+activate stats
+stats -> std: addTag(currentTag)
+std --> stats
+stats -> std: addLessonTime(currentTag, timeTakenForLesson)
+std --> stats
+return
+stats --> logic
+@enduml

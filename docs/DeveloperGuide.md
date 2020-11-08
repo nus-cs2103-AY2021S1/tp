@@ -217,13 +217,9 @@ The `StatisticsData` class contains the methods to store and retrieve informatio
 
   <br>
 
-The following activity diagram summarises when the data analysis chart and data is being updated in the UI:
+The following sequence diagram describes how statistics data is updated when user enters a command.
 
-
-
-The following sequence diagram describes what happens when the user keys in the `done` command:
-
-
+![StatsDataSequenceDiagram](images/StatsDataSequenceDiagram.png)
 
 #### Design consideration:
 
