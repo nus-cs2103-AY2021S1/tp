@@ -2,6 +2,7 @@ package seedu.taskmaster.model;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Predicate;
 
 import javafx.beans.property.SimpleObjectProperty;
@@ -26,6 +27,10 @@ public interface Model {
 
     /** {@code Predicate} that always evaluates to true */
     Predicate<StudentRecord> PREDICATE_SHOW_ALL_STUDENT_RECORDS = unused -> true;
+
+    /** {@code Predicate} that shows present students */
+    Predicate<StudentRecord> PREDICATE_SHOW_ALL_PRESENT_STUDENT_RECORDS = studentRecord ->
+            studentRecord.getAttendanceType().equals(AttendanceType.PRESENT);
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -87,6 +92,11 @@ public interface Model {
      * Changes the currentSession to a Session with that name.
      */
     void changeSession(SessionName sessionName);
+
+    /**
+     * Switches TAskmaster to student list view.
+     */
+    void showStudentList();
 
     /**
      * Returns true if {@code session} exists in the session list.
@@ -177,6 +187,11 @@ public interface Model {
      * Updates the corresponding attendance statuses with the Attendances in the given list.
      */
     void updateStudentRecords(List<StudentRecord> studentRecords);
+
+    /**
+     * Updates the filter of the filtered student list to show a random student.
+     */
+    void showRandomStudent(Random random);
 
     /**
      * Clears the attendance statuses of all students in the student list.

@@ -17,7 +17,7 @@ public class MarkAllCommand extends MarkCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks attendances of all students in the student list.\n"
             + "Parameters: "
-            + PREFIX_ATTENDANCE_TYPE + "ATTENDANCE_TYPE (must be 'present' or 'absent') \n"
+            + PREFIX_ATTENDANCE_TYPE + "ATTENDANCE_TYPE (must be 'present', 'absent' or 'no_record') \n"
             + "Example: " + COMMAND_WORD + PREFIX_ATTENDANCE_TYPE + "present";
 
     public static final String MESSAGE_MARK_ALL_SUCCESS = "Marked all students as %1$s";

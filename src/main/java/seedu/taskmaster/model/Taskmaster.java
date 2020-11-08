@@ -83,7 +83,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         requireNonNull(newData);
         setStudents(newData.getStudentList());
         setSessions(newData.getSessionList());
-        currentSession = new SimpleObjectProperty<>();
+        currentSession.setValue(null);
     }
 
     /* Session-Level Operations */
@@ -103,7 +103,6 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      */
     public void addSession(Session session) {
         sessions.add(session);
-        currentSession.setValue(session);
     }
 
     /**
@@ -111,8 +110,15 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * created session with name {@code sessionName}.
      */
     public void changeSession(SessionName sessionName) {
-        assert sessions.contains(sessionName) || sessionName == null;
-        currentSession.setValue(sessionName == null ? null : sessions.get(sessionName));
+        assert sessions.contains(sessionName);
+        currentSession.setValue(sessions.get(sessionName));
+    }
+
+    /**
+     * Switches {@code Taskmaster} to the student list view.
+     */
+    public void showStudentList() {
+        currentSession.setValue(null);
     }
 
     /**
@@ -390,6 +396,14 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         }
 
         currentSession.get().updateStudentRecords(studentRecords);
+    }
+
+    public boolean inSession() {
+        return !this.currentSession.isNull().get();
+    }
+
+    public SessionName currentSessionName() {
+        return this.currentSession.get().getSessionName();
     }
 
     @Override

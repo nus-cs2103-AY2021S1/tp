@@ -16,11 +16,13 @@ import seedu.taskmaster.logic.commands.EditCommand;
 import seedu.taskmaster.logic.commands.ExitCommand;
 import seedu.taskmaster.logic.commands.FindCommand;
 import seedu.taskmaster.logic.commands.HelpCommand;
-import seedu.taskmaster.logic.commands.ListCommand;
+import seedu.taskmaster.logic.commands.ListRecordsCommand;
+import seedu.taskmaster.logic.commands.ListStudentsCommand;
 import seedu.taskmaster.logic.commands.LowestScoreCommand;
 import seedu.taskmaster.logic.commands.MarkCommand;
 import seedu.taskmaster.logic.commands.NewSessionCommand;
 import seedu.taskmaster.logic.commands.ParticipationCommand;
+import seedu.taskmaster.logic.commands.RandomStudentCommand;
 import seedu.taskmaster.logic.parser.exceptions.ParseException;
 
 /**
@@ -65,8 +67,11 @@ public class TaskmasterParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListStudentsCommand.COMMAND_WORD:
+            return new ListStudentsCommand();
+
+        case ListRecordsCommand.COMMAND_WORD:
+            return new ListRecordsCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -82,6 +87,9 @@ public class TaskmasterParser {
 
         case LowestScoreCommand.COMMAND_WORD:
             return new LowestScoreCommand();
+
+        case RandomStudentCommand.COMMAND_WORD:
+            return new RandomStudentCommand();
 
         case NewSessionCommand.COMMAND_WORD:
             return new NewSessionCommandParser().parse(arguments);

@@ -23,7 +23,7 @@ public class MarkCommand extends Command {
             + ": Marks attendance of the student identified by the "
             + "index number used in the displayed student list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_ATTENDANCE_TYPE + "ATTENDANCE_TYPE (must be 'present' or 'absent') \n"
+            + PREFIX_ATTENDANCE_TYPE + "ATTENDANCE_TYPE (must be 'present', 'absent' or 'no_record') \n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_ATTENDANCE_TYPE + "present";
     public static final String MESSAGE_MARK_STUDENT_SUCCESS = "Marked %1$s as %2$s";
 
