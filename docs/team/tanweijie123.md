@@ -5,9 +5,10 @@ title: Tan Wei Jie's Project Portfolio Page
 
 ## Project: FitEgo
 
-FitEgo is a desktop scheduling application catered for personal, recreational, sports and competitive instructors.
-They may use this software to ease the hassle of managing clients and their schedule. The user interacts with it mainly using CLI,
-and it has a GUI created with JavaFX.
+FitEgo is a desktop application for fitness instructors to schedule, and keep track of his/her customers' progress and payments in one place. 
+It is faster compared to manually tracking administrative matters using alternative software like Excel and Google Calendar. The user interacts with it using a CLI, and it has a GUI created with JavaFX. 
+
+It is written in Java, and has about 23 kLoC.
 
 Given below are my contributions to the project.
 
