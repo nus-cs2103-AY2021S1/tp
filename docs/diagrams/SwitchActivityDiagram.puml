@@ -1,0 +1,11 @@
+@startuml
+start
+:User executes switch command;
+if () then ([active semester is Semester 1])
+:Switch active semester to Semester 2;
+else ([else])
+:Switch active semester to Semester 1;
+endif
+:Update GUI to show update;
+stop
+@enduml
