@@ -38,6 +38,7 @@ import seedu.address.logic.parser.modulelistparsers.DeleteModuleParser;
 import seedu.address.logic.parser.modulelistparsers.DeleteZoomLinkParser;
 import seedu.address.logic.parser.modulelistparsers.EditModuleParser;
 import seedu.address.logic.parser.modulelistparsers.EditZoomLinkParser;
+import seedu.address.logic.parser.modulelistparsers.FindModuleCommandParser;
 import seedu.address.logic.parser.modulelistparsers.TargetCapCalculatorParser;
 import seedu.address.logic.parser.modulelistparsers.UnarchiveModuleParser;
 import seedu.address.logic.parser.modulelistparsers.ViewModuleParser;
