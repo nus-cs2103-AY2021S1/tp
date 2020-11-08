@@ -17,14 +17,13 @@ Below are my contributions to the project.
 
 ### Enhancements to existing features
 
-* I was responsible for implementing the following features of NUStorage:
-- Inventory
-    - List Inventory Class
-    - Update Inventory Class
+I was responsible for implementing the following features of NUStorage:
 
-* Added panels to allow for the viewing of inventory records during the preliminary stages of the project 
-
-* Added test cases to improve code coverage
+* Inventory
+  * List Inventory class
+  * Update Inventory class
+* Added panels to allow for the viewing of inventory records during the preliminary stages of the project.
+* Added test cases to improve code coverage.
 
 ### Documentation
 

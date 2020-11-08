@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import nustorage.logic.parser.ParserUtil;
-import nustorage.logic.parser.exceptions.ParseException;
 import nustorage.model.record.InventoryRecord;
 
 public class InventoryRecordBuilder {
@@ -35,6 +33,7 @@ public class InventoryRecordBuilder {
     }
 
     /**
+     * Initializes the InventoryRecordBuilder with the data of the {@code InventoryRecord}supplied.
      * Initializes the InventoryRecordBuilder with the data of {@code recordToCopy}.
      */
     public InventoryRecordBuilder(InventoryRecord recordToCopy) {
@@ -46,6 +45,9 @@ public class InventoryRecordBuilder {
     }
 
     /**
+     * Sets the name of the inventory record that we are building and returns it
+     * @param itemName the name to set the record we are building to
+     * @return the builder object
      * Sets the {@code name} of the {@code Inventory Record} that we are building.
      */
     public InventoryRecordBuilder withName(String itemName) {
@@ -54,7 +56,7 @@ public class InventoryRecordBuilder {
     }
 
     /**
-     * Sets the record's unit cost and returns the record.
+     * Sets the record's unit cost and returns the builder.
      * @param cost updated cost of inventory record.
      * @return Inventory record builder
      */
@@ -64,20 +66,12 @@ public class InventoryRecordBuilder {
     }
 
     /**
-     * Sets the {@code datetime} of the {@code Inventory Record} that we are building.
+     * Sets the record's quantity and returns the builder
+     * @param quantity updated quantity of the inventory record
+     * @return the updated InventoryRecordBuilder
      */
     public InventoryRecordBuilder withQuantity(int quantity) {
         this.quantity = quantity;
-        return this;
-    }
-
-    /**
-     * sets a specific finance ID to the builder
-     * @param financeId the finance ID to be set
-     * @return the builder with the updated finance ID
-     */
-    public InventoryRecordBuilder withFinanceId(int financeId) {
-        this.financeId = financeId;
         return this;
     }
 
