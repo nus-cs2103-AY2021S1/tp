@@ -78,7 +78,6 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 ![Structure of the UI Components](images/UiComponentsClassDiagram.png)
 
-<div style="page-break-after: always;"></div>
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
@@ -86,6 +85,8 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 * Listens for changes to `State` data so that the UI can be updated with the modified data.
+
+<div style="page-break-after: always;"></div>
 
 The example for observing states is illustrated with the Sequence Diagram below.
 The `MainWindow` observes the `UiStateManager` for any changes to its internal state.
@@ -481,6 +482,8 @@ a `Index` of the `Case` to be unarchived. It implements the `UnarchiveCommand#ex
 The Sequence Diagram below shows how the `UnarchiveCommand` works.
 
 ![UnarchiveSequenceDiagram](images/UnarchiveSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 The `unarchive case` command works in a similar manner to the `archive case` command, 
 except that it sets the newly created `Case` object's `archiveStatus` as `ArchiveStatus.DEFAULT` before
