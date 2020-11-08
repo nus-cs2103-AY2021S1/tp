@@ -537,6 +537,7 @@ Examples:
  all `lettuce`, `onion` and `tomato` in your Fridge.
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
 
 ### 5.1.10 Clearing all recipes : `clearR` <a id="clear-recipe"></a>
 Contributed by: Tian Yong
@@ -620,6 +621,9 @@ Format: `deleteF INDEX`
 
 Examples:
 * `fridge` followed by `deleteF 4` deletes the 4th ingredient in the Fridge.
+
+<div style="page-break-after: always;"></div>
+
 * `searchF peanut` followed by `deleteF 1` deletes the 1st ingredient in the results of the `searchF` command.
 <br><br><br>
 
@@ -637,6 +641,9 @@ Format: `editF INDEX i/INGREDIENT [ -QUANTITY]`
 * Edits the ingredient at the specified `INDEX`.
 * The index refers to the index number shown in the recent displayed Ingredient List.
 * `INGREDIENT` can take in an optional `Quantity` e.g. `i/Tomato -2 whole`.
+
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 `QUANTITY` is separated with a mandatory space before `-`. After the dash, it accepts quantity in the format of
  -NUMBER STRING e.g. `-54.0 kilograms` or STRING e.g. `-a pinch`. NUMBER only accept up to 10 digits, including a
