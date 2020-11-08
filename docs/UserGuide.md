@@ -80,7 +80,11 @@ This section details the notations used to specify the command formats in the [c
   * e.g. input of `2020-01-01` will show up as `01 Jan 2020` as the date, and `13:00` will show up as `13:00` as the time in NUStorage's response box.
 * Parameters can be switched around.
   * They do NOT need to come in the order as specified by the formats.
-  * E.g. `create_item i/iPad q/100` and `create_item q/100 i/iPad` are both accepted.
+    * E.g. `create_item i/iPad q/100` and `create_item q/100 i/iPad` are both accepted.
+  * Exception: commands that require the `INDEX` must have the `INDEX` directly after the command.
+    * E.g. `edit_inventory 1 i/newname` is accepted but NOT `edit_inventory i/newname 1`
+* Range of valid inputs:
+  * Paramters that expect an integer must be between `0` and `2147483647`.
 
 </div>
 
@@ -107,61 +111,101 @@ Commands in this section are best executed when you are in the inventory tab. If
 
 #### 5.1.1. Add items to inventory: `create_inventory`
 
-Creates and stores a new inventory record into the inventory list.
+NUStorage allows you to add and save a new inventory record.
+
+**:information_source: What this command does:**
+
+The `create_inventory` command creates and stores a new inventory record into the inventory list.
+
+**:information_source: Using the command:** Below are instructions on how to use the `create_inventory` command.
 
 __Format:__ `create_inventory i/ITEM_NAME q/QUANTITY [c/ITEM_COST]`
 
-__Example:__ `create_inventory i/iphone q/10 c/20` to create a new inventory record of item `iphone` and quantity `10`. A finance record with the total amount (QUANTITY * ITEM_COST) will also be created.
+This creates a new inventory record for the item `[ITEM_NAME]` of quantity `[QUANTITY]`. Note that `QUANTITY` is currently limited to a maximum value of `2147483647`.
 
+For the `[ITEM_COST]` parameter:
+
+* If given, then a finance record is created automatically with a total amount of `ITEM_COST * QUANTITY`.
+* If left empty, then an **empty** finance record is created with an amount of `0`.
+
+__Example:__ `create_inventory i/iphone q/10 c/20`
+
+This creates a new inventory record of item `iphone` and quantity `10`. A finance record with the total amount of `200` will also be created.
+
+Enter the example command into the command box as shown below:
 ![Add inventory command example](images/commands/create_inventory_command.png)
 
-__Result:__ item `iphone` of quantity `10` is added to the inventory.
-
+__Result:__ Inventory record for the item `iphone` of quantity `10` is added to the inventory.
 ![Add inventory result example](images/commands/create_inventory_result.png)
 
-__Result:__ corresponding finance record of total cost `200` is added to the inventory.
-
+A corresponding finance record of total cost `200` is added to the finance account.
 ![Add inventory result example](images/commands/create_inventory_finance_record_result.png)
 
 ---
 
 #### 5.1.2. Remove items from inventory: `delete_inventory`
 
-Removes the specified record from the inventory list.
+Previously in the [Add Inventory Records](#511-add-items-to-inventory-create_inventory) section, we have crearte a new inventory record, and its accompanying finance recod. Now, let's try to delete from NUStorage using `delete_inventory`.
+
+If you are reading this section without having read the previous section, please ensure that your NUStorage application has at least one inventory record stored. If you are unclear on how to do so, refer to the [Adding inventory records](#511-add-items-to-inventory-create_inventory) section.
+
+For the purpose of this section, we have created two other inventory records, you can add them in if you wish to. Our NUStorage has three records as shown below:
+![Inventory tab with three records](images/inventory_withThreeRecords.jpg)
+
+**:information_source: What this command does:**
+
+`delete_inventory` allows us to delete a inventory record currently stored within NUStorage.
+
+**:information_source: Using the command:** Below are instructions on how to use the `delete_inventory` command.
 
 __Format:__ `delete_inventory INDEX`
 
-__Example:__ `delete_inventory 1` deletes the inventory record at index `1`.
+This allows us to delete the inventory record wiuth the ID of `INDEX`.
 
-![Delete inventory command example](images/commands/delete_inventory_command.png)
+__Example:__ `delete_inventory 1` deletes the inventory record with index `1`.
 
-__Result:__ record at index `1` is removed from the inventory.
+Enter the sample command into the command box as shown below:
+![Delete inventory command example](images/commands/delete_inventory_command.jpg)
 
-![Delete inventory result example](images/commands/delete_inventory_result.png)
+__Result:__ The inventory record at index `1` is removed from the inventory list.
+![Delete inventory result example](images/commands/delete_inventory_result.jpg)
 
-__Result:__ Deleted the corresponding finance record.
-
-![Delete inventory result example](images/commands/delete_finance_from_inventory_result.png)
+The corresponding finance record is also deleted.
+![Delete inventory result example](images/commands/delete_finance_from_inventory_result.jpg)
 
 ---
 
 #### 5.1.3. Edit record in inventory: `edit_inventory`
 
-Edits the item name, quantity or unit cost of the specified record in the inventory list.
+Previously in the [Delete inventory records](#512-remove-items-from-inventory-delete_inventory) section, we have deleted one of our inventory records. For this section, ensure that you have at least one inventory record.
+
+If you are reading this section without having read the previous section, please ensure that your NUStorage application has at least one inventory record stored. If you are unclear on how to do so, refer to the [Adding inventory records](#511-add-items-to-inventory-create_inventory) section.
+
+We will proceed with our example from the previous section with two records in NUStorage, you can add them in if you wish to.
+
+Currently, our NUStorage has two records as shown below:
+![Inventory with two records](images/inventory_withTwoRecords.jpg)
+
+**:information_source: What this command does:**
+
+`edit_inventory` allows us to edit the item name, quantity or unit cost of the specified record in the inventory list.
+
+**:information_source: Using the command:** Below are instructions on how to use the `delete_inventory` command.
 
 __Format:__ `edit_inventory INDEX [i/ITEM_NAME] [q/QUANTITY] [c/ITEM_COST]`
 
+This allows us to change the item name, quantity and cost of the inventory rececord with the ID `INDEX`. Note that `QUANTITY` is currently limited to a maximum value of `2147483647` and that `INDEX` must be the **first** parameter for this command.
+
 __Example:__ `edit_inventory 2 i/iPad q/10 c/2000` edits the inventory record at index `2`.
 
-![Edit inventory command example](images/commands/edit_inventory_command.png)
+Enter the sample command into the command box as shown below:
+![Edit inventory command example](images/commands/edit_inventory_command.jpg)
 
-__Result:__ item name changed from `iphone 12` to `iPad`, quantity changed from `100` to `10` and unit cost from `1000` to `2000`.
+__Result:__ Inventory record's item name changed from `iphone 12` to `iPad`, quantity changed from `100` to `10` and unit cost from `1000` to `2000`.
+![Edit inventory result example](images/commands/edit_inventory_result.jpg)
 
-![Edit inventory result example](images/commands/edit_inventory_result.png)
-
-__Result:__ updated corresponding finance record with a total cost of `20000`.
-
-![Edit inventory result example](images/commands/edit_inventory_finance_result.png)
+The corresponding finance record is also updated to reflect the new total cost of `20000`.
+![Edit inventory result example](images/commands/edit_inventory_finance_result.jpg)
 
 ---
 
@@ -202,6 +246,8 @@ __Result:__ lists all inventory records.
 Displays all records in the inventory list.
 
 __Format:__ `update_inventory INDEX q/CHANGE_QUANTITY`
+
+<!-- Note that `QUANTITY` is currently limited to a maximum value of `2147483647` and that `INDEX` must be the **first** parameter for this command.-->
 
 __Example:__ `update_inventory 1 q/-5` changes the quantity of the inventory by `-5` and updates corresponding finance record. `CHANGE_QUANTITY` can be of negative value.
 
@@ -259,7 +305,7 @@ __Result:__ Finance record of amount `$30000` on `3rd March 2020` is added to th
 
 #### 5.2.2. Delete finance records: `delete_finance`
 
-Previously, in the [Add Finance Records](#521-add-finance-records-add_finance) section, we have created a finance record. Now, lets try to delete it from NUStorage using `delete_finance`.
+Previously, in the [Add Finance Records](#521-add-finance-records-add_finance) section, we have created a finance record. Now, let's try to delete it from NUStorage using `delete_finance`.
 
 If you are reading this section without having read the previous section, please ensure that your NUStorage application has at least one finance record stored. If you are unclear on how to do so, refer to the [Adding finance records](#521-add-finance-records-add_finance) section.
 
@@ -306,7 +352,7 @@ Note that this command **can only edit a stand-alone finance record**.
 
 __Format:__ `edit_finance INDEX amt/AMOUNT [at/DATE]`
 
-This allows us to change the amount and date details of the finance record with the `INDEX` ID.
+This allows us to change the amount and date details of the finance record with the `INDEX` ID. Note that `INDEX` must be the **first** parameter for this command.
 
 __Example:__ `edit_finance 1 amt/120`
 
@@ -475,7 +521,7 @@ __Result:__ Tabs switched.
 Undo or redo the previous command.
 
 __Format:__ `undo` or `redo`
-  
+
 __Example:__ `undo` or `redo`
 
 __Result:__ The previous command is undone / redone.
@@ -497,7 +543,7 @@ The following table gives a summary of the [__inventory commands__](#51-inventor
 | __Edit inventory__ | `edit_inventory INDEX i/ITEM_NAME q/QUANTITY`<br> e.g. `edit_inventory 3 i/Lenovo Y50 q/10` |
 | __Find inventory__ | `find_inventory KEYWORD` <br> e.g. `find_inventory ipad` |
 | __List inventory__ | `list_inventory` |
-| __Update Inventory__| `update_inventory` <br> e.g. `update_inventory 1 q/50` |
+| __Update Inventory__| `update_inventory INDEX q/CHANGE_QUANTITY` <br> e.g. `update_inventory 1 q/50` |
 
 ### 6.2. Finance Commands Summary
 

@@ -58,12 +58,12 @@ public class AddFinanceCommandTest {
         // null -> returns false
         assertFalse(addFinanceCommand1.equals(null));
 
-        // different person -> returns false
+        // different finance records -> returns false
         assertFalse(addFinanceCommand1.equals(addFinanceCommand2));
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the finance record being added.
      */
     private class ModelStubAcceptingFinanceRecordAdded extends ModelStub {
         final ArrayList<FinanceRecord> financeRecordAdded = new ArrayList<>();

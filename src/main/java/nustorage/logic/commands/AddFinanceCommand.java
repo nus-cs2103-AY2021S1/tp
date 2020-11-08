@@ -9,7 +9,7 @@ import nustorage.model.Model;
 import nustorage.model.record.FinanceRecord;
 
 /**
- * Adds a finance record to the address book.
+ * Adds a finance record
  */
 public class AddFinanceCommand extends Command {
 

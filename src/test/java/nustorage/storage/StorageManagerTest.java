@@ -1,6 +1,12 @@
 package nustorage.storage;
 
 
+import static nustorage.logic.commands.CommandTestUtil.AMOUNT_B;
+import static nustorage.logic.commands.CommandTestUtil.COST_1;
+import static nustorage.logic.commands.CommandTestUtil.HAS_INVENTORY_A;
+import static nustorage.logic.commands.CommandTestUtil.ID_A;
+import static nustorage.logic.commands.CommandTestUtil.ITEM_NAME_1;
+import static nustorage.logic.commands.CommandTestUtil.QUANTITY_1;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.file.Path;
@@ -10,7 +16,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import nustorage.commons.core.GuiSettings;
+import nustorage.model.FinanceAccount;
+import nustorage.model.Inventory;
+import nustorage.model.ReadOnlyFinanceAccount;
+import nustorage.model.ReadOnlyInventory;
 import nustorage.model.UserPrefs;
+import nustorage.model.record.FinanceRecord;
+import nustorage.model.record.InventoryRecord;
 
 
 public class StorageManagerTest {
@@ -20,14 +32,20 @@ public class StorageManagerTest {
 
     private StorageManager storageManager;
 
+    private Path prefsFilePath;
+    private Path financeFilePath;
+    private Path inventoryFilePath;
+
 
     @BeforeEach
     public void setUp() {
-        // JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
+        prefsFilePath = getTempFilePath("prefs");
+        financeFilePath = getTempFilePath("finance");
+        inventoryFilePath = getTempFilePath("inventory");
 
-        JsonFinanceAccountStorage financeAccountStorage = new JsonFinanceAccountStorage(getTempFilePath("finance"));
-        JsonInventoryStorage inventoryStorage = new JsonInventoryStorage(getTempFilePath("inventory"));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(prefsFilePath);
+        JsonFinanceAccountStorage financeAccountStorage = new JsonFinanceAccountStorage(financeFilePath);
+        JsonInventoryStorage inventoryStorage = new JsonInventoryStorage(inventoryFilePath);
 
         storageManager = new StorageManager(financeAccountStorage, inventoryStorage, userPrefsStorage);
     }
@@ -35,6 +53,12 @@ public class StorageManagerTest {
 
     private Path getTempFilePath(String fileName) {
         return testFolder.resolve(fileName);
+    }
+
+
+    @Test
+    public void getUserPrefsFilePath_returnsCorrectPath() {
+        assertEquals(prefsFilePath, storageManager.getUserPrefsFilePath());
     }
 
 
@@ -52,22 +76,36 @@ public class StorageManagerTest {
         assertEquals(original, retrieved);
     }
 
-    // @Test
-    // public void addressBookReadSave() throws Exception {
-    //     /*
-    //      * Note: This is an integration test that verifies the StorageManager is properly wired to the
-    //      * {@link JsonAddressBookStorage} class.
-    //      * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
-    //      */
-    //     AddressBook original = getTypicalAddressBook();
-    //     storageManager.saveAddressBook(original);
-    //     ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-    //     assertEquals(original, new AddressBook(retrieved));
-    // }
 
-    // @Test
-    // public void getAddressBookFilePath() {
-    //     assertNotNull(storageManager.getAddressBookFilePath());
-    // }
+    @Test
+    public void getInventoryFilePath_returnsCorrectPath() {
+        assertEquals(inventoryFilePath, storageManager.getInventoryFilePath());
+    }
+
+
+    @Test
+    public void inventoryReadSave() throws Exception {
+        Inventory original = new Inventory();
+        original.addInventoryRecord(new InventoryRecord(ITEM_NAME_1, QUANTITY_1, COST_1));
+        storageManager.saveInventory(original);
+        ReadOnlyInventory retrieved = storageManager.readInventory().get();
+        assertEquals(original, retrieved);
+    }
+
+
+    @Test
+    public void getFinanceFilePath_returnsCorrectPath() {
+        assertEquals(financeFilePath, storageManager.getFinanceAccountFilePath());
+    }
+
+
+    @Test
+    public void financeReadSave() throws Exception {
+        FinanceAccount original = new FinanceAccount();
+        original.addFinanceRecord(new FinanceRecord(ID_A, AMOUNT_B, HAS_INVENTORY_A));
+        storageManager.saveFinanceAccount(original);
+        ReadOnlyFinanceAccount retrieved = storageManager.readFinanceAccount().get();
+        assertEquals(original, retrieved);
+    }
 
 }

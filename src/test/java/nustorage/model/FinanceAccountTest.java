@@ -42,8 +42,8 @@ public class FinanceAccountTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
+    public void resetData_withDuplicateFinanceRecords_throwsDuplicateFinanceRecordException() {
+        // Two finance records with the same identity fields
         FinanceRecord record = new FinanceRecordBuilder(RECORD_A).build();
         FinanceRecord editedRecord = new FinanceRecordBuilder(RECORD_A).build();
         List<FinanceRecord> newRecords = Arrays.asList(record, editedRecord);
@@ -58,12 +58,12 @@ public class FinanceAccountTest {
     }
 
     @Test
-    public void hasFinanceRecord_financeRecordNotInAddressBook_returnsFalse() {
+    public void hasFinanceRecord_financeRecordNotPresent_returnsFalse() {
         assertFalse(finance.hasFinanceRecord(RECORD_A));
     }
 
     @Test
-    public void haFinanceRecord_financeRecordInFinanceAccount_returnsTrue() {
+    public void haFinanceRecord_financeRecordPresent_returnsTrue() {
         finance.addFinanceRecord(RECORD_A);
         assertTrue(finance.hasFinanceRecord(RECORD_A));
     }

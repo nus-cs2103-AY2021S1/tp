@@ -26,6 +26,11 @@ The architecture diagram given below shows the high-level design of the software
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
+NUStorage implements the following design patterns:
+
+* Model-View-Controller (MVC) for UI components, with Observer pattern between Model and View
+* Facade pattern for Logic, Model and Storage components
+* Command pattern for commands
 
 Given below is a quick overview of each of the components.
 
@@ -221,35 +226,35 @@ The storage component comprises three different sections:
 
 This section describes some noteworthy details on how certain key features are implemented as well as their design considerations.
 
-### 3.1. Add Records Command Feature
+### 3.1. Add/Create Records Command Feature
 
-This section explains the implementation of the `Add record command` feature. As the implementation of adding Inventory / Finance Records are very similar, this section will focus only be on the implementation of the adding of __Inventory Records__.
+This section explains the implementation of the `Add/Create record command` feature. The Finance Records uses the `Add record command` feature while the Inventory Records uses the `Create record command` feature. As the implementation of adding Finance Records and creating Inventory Records are very similar, this section will focus only on the implementation of the creation of __Inventory Records__.
 
-The Add Inventory command results in an inventory record added to the list. All but one field in the record must be provided by the user, which are: Item Description and Quantity. There is one optional field, Cost, which when provided, creates a Finance Record that is linked to the Inventory Record reflecting said cost.
+The Create Inventory command results in an inventory record created in the list. All but one field in the record must be provided by the user, which are: Item Description and Quantity. There is one optional field, Cost. Every Inventory Record that is created creates its own Finance Record and both records are linked.
 
-This is done through the use of the `ParserUtil#parseItemDescription` and `ParserUtil#parseQuantity` methods inside the `nustorage.parser` package, which checks and extracts the item description and quantity (as well as cost if the field is filled) from the commadn string.
+This is done through the use of the `ParserUtil#parseItemDescription` and `ParserUtil#parseQuantity` methods inside the `nustorage.parser` package, which checks and extracts the item description and quantity (as well as cost if the field is filled) from the command string.
 
-If the compulsory fields are valid, `AddInventoryRecordCommandParser` creates an `AddInventoryRecordCommand` object. The Sequence Diagram below (figure 12) shows how the `AddInventoryRecordCommand` object is created.
+If the compulsory fields are valid, `CreateInventoryRecordCommandParser` creates an `CreateInventoryRecordCommand` object. The Sequence Diagram below (figure 12) shows how the `CreateInventoryRecordCommand` object is created.
 
-Take a look at the Logic Class Diagram in the [Logic Component](#233-logic-component) section of the DG, where `AddInventoryRecordCommandParser` is represented as 'XYZCommandParser' in the diagram for a better understanding.
+Take a look at the Logic Class Diagram in the [Logic Component](#233-logic-component) section of the DG, where `CreateInventoryRecordCommandParser` is represented as 'XYZCommandParser' in the diagram for a better understanding.
 
 ![AddInventoryRecordSequenceDiagram](images/AddInventoryRecordSequenceDiagram.png)<br>
-Figure 12. Sequence Diagram for the Add Inventory command.
+Figure 12. Sequence Diagram for the Create Inventory command.
 
-The `AddInventoryRecordCommand` has been successfully created and its `execute` method would be called by `LogicManager#execute`, which then called by `MainWindow#executeCommand`. Below is another sequence diagram that depicts the interactions between `LogicManager`, `AddInventoryRecordCommand`, `ModelManager` as well as `Storage`, when `AddInventoryRecordCommand#execute` is called.
+The `CreateInventoryRecordCommand` has been successfully created and its `execute` method would be called by `LogicManager#execute`, which then called by `MainWindow#executeCommand`. Below is another sequence diagram that depicts the interactions between `LogicManager`, `CreateInventoryRecordCommand`, `ModelManager` as well as `Storage`, when `CreateInventoryRecordCommand#execute` is called.
 
 ![inventoryCommandExecuteSequenceDiagram](images/AddInventoryCommandExecuteSequenceDiagram.png)<br>
-Figure 13. Sequence Diagram for `AddInventoryRecordCommand#execute()`
+Figure 13. Sequence Diagram for `CreateInventoryRecordCommand#execute()`
 
-As you can see, the Inventory Record, as well as a Finance Record (if the cost field was filled), is added into NUStorage's [Model Component](#234-model-component). In addition, the updated lists of Inventory Records and Finance Records are saved into the [Storage Component](#235-storage-component) of NUStorage. At the end of the operation, a `CommandResult` object is returned in which we will use for UI purposes.
+As you can see, the Inventory Record, as well as a Finance Record, is added into NUStorage's [Model Component](#234-model-component). In addition, the updated lists of Inventory Records and Finance Records are saved into the [Storage Component](#235-storage-component) of NUStorage. At the end of the operation, a `CommandResult` object is returned in which we will use for UI purposes.
 
 Now, all there is left is to display a message to the user informing him/her about the status of their command input, as well as the created inventory / finance records. The `CommandResult` object returned previously is now used to create a new `CommandBox` object, which is used to display items on NUStorage's UI. This happens when `UiManager#fillInnerParts()` is called. Refer to [Figure 20](#35-ui-sequence-diagram) at the end of section 3 for the sequence diagram for UI.
 
-With this, the Add Inventory Record command fully finishes executing and NUStorage's UI displays the status messages for the user to see.
+With this, the Create Inventory Record command fully finishes executing and NUStorage's UI displays the status messages for the user to see.
 
 ### 3.2. Edit Records Command Feature
 
-This section explains the implementation of the `Edit Record command` feature. As the implementation of editing Inventory / Finance Records are similar, this secion will focus only on the implementation of the editing of __Finance Records__.
+This section explains the implementation of the `Edit Record command` feature. As the implementation of editing Inventory / Finance Records are similar, this section will focus only on the implementation of the editing of __Finance Records__.
 
 The Edit Finance command results in the specified finance record being modified. This command requires a compulsory field Index to specify which record is to be edited. Furthermore, at least one field in the command must be provided: Amount, Date or Time.
 
@@ -275,9 +280,9 @@ With this, the Edit Finance Record command fully finishes executing and NUStorag
 
 ### 3.3. Delete Records Command Feature
 
-This section explains the implementation of the `Delete Record command` feature. As the implementation of editing Inventory / Finance Records are similar, this secion will focus only on the implementation of the deletion of __Inventory Records__.
+This section explains the implementation of the `Delete Record command` feature. As the implementation of deleting Inventory / Finance Records are similar, this secion will focus only on the implementation of the deletion of __Inventory Records__.
 
-The Delete Inventory command results in the specified inventory record being removed from the application. This command requires a compulsory field Index to specify which record is to be edited.
+The Delete Inventory command results in the specified inventory record, as well as the finance record linked to it, being removed from the application. This command requires a compulsory field Index to specify which record is to be deleted.
 
 This is done through the use of the `ParserUtil#parseIndex` method inside the `nustorage.parser` package, which checks and extracts the index fields from the command string.
 
@@ -288,20 +293,20 @@ Take a look at the Logic Class diagram in the [Logic Component](#233-logic-compo
 ![DeleteInventoryRecordSequenceDiagram](images/DeleteInventoryRecordSequenceDiagram.png)<br>
 Figure 16. Sequence Diagram for the Delete Inventory command.
 
-The `DeleteInventoryRecordCommand` has been successfully created and its `execute` method would be called by `LogicManager#execute`, which then called by `MainWindow#executeCommand`. Below is another sequence diagram that depicts the interactions between `LogicManager`, `EditFinanceCommand`, `ModelManager` as well as `Storage`, when `EditFinanceCommand#execute` is called.
+The `DeleteInventoryRecordCommand` has been successfully created and its `execute` method would be called by `LogicManager#execute`, which then called by `MainWindow#executeCommand`. Below is another sequence diagram that depicts the interactions between `LogicManager`, `DeleteInventoryCommand`, `ModelManager` as well as `Storage`, when `DeleteInventoryCommand#execute` is called.
 
 ![DeleteInventoryRecordCommandExecuteSequenceDiagram](images/DeleteInventoryRecordCommandExecuteSequenceDiagram.png)<br>
 Figure 17. Sequence Diagram for `DeleteInventoryRecordCommand#execute()`
 
-As you can see, the original Finance Record in NUStorage's [Model Component](#234-model-component) has now been updated with the new values. In addition, the updated list of Finance Records is saved into the [Storage Component](#235-storage-component) of NUStorage. At the end of the operation, a `CommandResult` object is returned in which we will use for UI purposes.
+As you can see, the original Inventory Record, along with the Finance record linked to it, in NUStorage's [Model Component](#234-model-component) has now been deleted. In addition, the updated list of Inventory and Finance Records are saved into the [Storage Component](#235-storage-component) of NUStorage. At the end of the operation, a `CommandResult` object is returned in which we will use for UI purposes.
 
-Now, all there is left is to display a message to the user informing him/her about the status of their command input, as well as the edited finance records. The `CommandResult` object returned previously is now used to create a new `CommandBox` object, which is used to display items on NUStorage's UI. This happens when `UiManager#fillInnerParts()` is called. Refer to [Figure 20](#35-ui-sequence-diagram) at the end of section 3 for the sequence diagram for UI.
+Now, all there is left is to display a message to the user informing him/her about the status of their command input, as well as the deleted inventory records. The `CommandResult` object returned previously is now used to create a new `CommandBox` object, which is used to display items on NUStorage's UI. This happens when `UiManager#fillInnerParts()` is called. Refer to [Figure 20](#35-ui-sequence-diagram) at the end of section 3 for the sequence diagram for UI.
 
-With this, the Edit Finance Record command fully finishes executing and NUStorage's UI displays the status messages for the user to see.
+With this, the Delete Inventory Record command fully finishes executing and NUStorage's UI displays the status messages for the user to see.
 
 ### 3.4. List Records Command Feature
 
-This section explains the implementation of the List Records command feature. As the implementation of listing Inventory / Finance records are very similar, in this section we will only be going through the implementation of Listing Inventory Records.
+This section explains the implementation of the List Records command feature. As the implementation of listing Inventory / Finance records are very similar, in this section we will only be going through the implementation of the listing of __Inventory Records__.
 
 The List Inventory command results in all stored inventory records to be listed on NUStorage's GUI. There are no fields to be filled by the user, only the command `list_inventory` is required to carry out and execute the command.
 
@@ -346,7 +351,7 @@ Figure 20. Sequence Diagram for `UiManager#start()
 * prefer desktop apps over other traditional modes of managing inventories/finances, such as pen and paper
 * can type fast
 * is reasonably comfortable using CLI apps
-* Proficient in english to allow them to check the user guide when they are having trouble with the app
+* proficient in english to allow them to check the user guide when they are having trouble with the app
 
 **Value proposition**: manage inventories and finances faster than the typical paper and pen
 
@@ -370,25 +375,25 @@ For all use cases (unless specified otherwise):
 * The **System** is `NUStorage`
 * The **Actor** is `User`
 
-#### 5.3.1. Use case: Add an inventory item
+#### 5.3.1. Use case: Create an inventory record
 
 **MSS**
 
 1. User requests to list inventory
 2. NUStorage shows the inventory list
-3. User requests to add a specific inventory item into the list
-4. NUStorage adds the item to the list
+3. User requests to create a specific inventory record into the list
+4. NUStorage creates the record in the list
 
    __Use case ends.__
 
-#### 5.3.2. Use case: Remove an inventory item
+#### 5.3.2. Use case: Remove an inventory record
 
 **MSS**
 
 1. User requests to list inventory
 2. NUStorage shows the inventory list
-3. User requests to remove a specific inventory item into the list
-4. NUStorage removes the item from the list at the specified index
+3. User requests to remove a specific inventory record from the list
+4. NUStorage removes the record from the list at the specified index
 
 **Extensions**
 
@@ -419,7 +424,7 @@ For all use cases (unless specified otherwise):
 
 1. User requests to list finances
 2. NUStorage shows the finance record list
-3. User requests to remove a specific financial record into the list
+3. User requests to remove a specific financial record from the list
 4. NUStorage removes the record from the list at the specified index
 
 **Extensions**
@@ -440,6 +445,8 @@ For all use cases (unless specified otherwise):
 
 1. User requests to list finances / inventories
 2. NUStorage shows the finance record / inventory list
+
+**Extensions**
 
 * 2a. The list is empty.
 
@@ -504,50 +511,52 @@ testers are expected to do more *exploratory* testing.
 
    1. NUStorage automatically saves any changes made to records while the application is in use. Closing and re-opening the application will not result in any data loss.
 
-### 6.2. Adding a Record
+### 6.2. Adding/Creating a Record
 
-1. Adding a financial/inventory record.
+1. Adding/Creating a financial/inventory record.
 
    1. Prerequisites: None.
 
-   2. Test case: `add_inventory i/MacBook q/10`<br>
-     Expected: An inventory item 'MacBook' is added with the quantity of 10. Details of the added record shown in the status message.
-
-   3. Test case: `add_finance amt/1000 at/2020-09-09`
+   2. Test case: `add_finance amt/1000 at/2020-09-09`<br>
      Expected: A finance record of an increase by $1000.00 is added, time-stamped at 09 SEP 2020. Details of the added record shown in status message.
 
-   4. Test case: `add_inventory i/Iphone q/100 c/10`
-     Expected: An inventory item 'Iphone' is added with the quantity of 10, along with a financial record depicting the record with the cost of '10' for each 'Iphone'. Details of the added record shown in status message.
+   3. Test case: `create_inventory i/MacBook q/10`<br>
+     Expected: An inventory item 'MacBook' is created with the quantity of 10. Details of the added record shown in the status message.
 
-   5. Other incorrect add commands to try: `add`, `add_record`, `add_inventory i/MacBook` `add_finance amt/1000 at/2020-13-13` <br>
-     Expected: No record is added. Error details shown in the status message.
+   4. Test case: `create_inventory i/Iphone q/100 c/10`<br>
+     Expected: An inventory item 'Iphone' is created with the quantity of 100 and the cost of 10 for each 'Iphone', along with a financial record depicting the record with the total cost of 'Iphone'. Details of the added record shown in status message.
+
+   5. Other incorrect add commands to try:<br>
+     `add`, `add_record`, `add_inventory i/MacBook`, `add_finance amt/1000 at/2020-13-13` <br>
+     Expected: No record is added/created. Error details shown in the status message.
 
 ### 6.3. Deleting a Record
 
 1. Deleting a record while all inventory/financial records are being shown.
 
-   1. Prerequisites: List all inventory/financial records using the `list_inventory` or `list_finance` commands respectively. Multiple records in the list.
+   1. Prerequisites: List all inventory/financial records using the `list_inventory` or `list_finance` commands respectively. Multiple records in the list. Ensure that the financial record to be deleted is not linked to an inventory record. Otherwise, delete the record from the Inventory side.
 
    2. Test case: `delete_finance 1`<br>
    Expected: First finance record is deleted from the list. Details of the deleted record shown in the status message.
 
    3. Test case: `delete_inventory 2`<br>
-   Expected: Second inventory record is deleted from the list. Details for the deleted record shown in the status message.
+   Expected: Second inventory record, along with the financial record linked to it, is deleted from the list. Details for the deleted record shown in the status message.
 
    4. Test case: `delete_inventory 0`<br>
    Expected: No record is deleted. Error details shown in the status message.
 
-   5. Other incorrect delete commands to try: `delete_finance `, `delete_inventory x`, `delete 1`<br>
+   5. Other incorrect delete commands to try:<br>
+   `delete_finance `, `delete_inventory x`, `delete 1`<br>
    Expected: No record is added. Error details shown in the status message.
 
 ### 6.4. Editing a Record
 
 1. Editing a record while all inventory/financial records are being shown.
 
-   1. Prerequisites: List all inventory/financial records using the `list_inventory` or `list_finance` commands respectively. Multiple records in the list.
+   1. Prerequisites: List all inventory/financial records using the `list_inventory` or `list_finance` commands respectively. Multiple records in the list. Ensure that the financial record to be edited is not linked to an inventory record. Otherwise, edit the record from the Inventory side.
 
    2. Test case: `edit_inventory 1 i/Pasta q/100`<br>
-   Expected: The first inventory record's item and quantity are changed to 'Pasta' and '100' respectively. Details for the edited record shown in the status message.
+   Expected: The first inventory record's item and quantity are changed to 'Pasta' and '100' respectively, along with the financial record linked to it being edited as well. Details for the edited record shown in the status message.
 
    3. Test case: `edit_finance 2 amt/3000 at/2021-01-02`<br>
    Expected: The second finance record's amount and date are changed to '3000' and '02 January 2021' respectively. Details for the edited record shown in the status message.
@@ -563,7 +572,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Listing all inventory/finance records
 
-   1. Prerequisites: None. In order for the application to display record cards, ensure that you already have some inventory/finance records saved.
+   1. Prerequisites: None. In order for the application to display records in the table, ensure that you already have some inventory/finance records saved.
 
    2. Test case: `list_inventory`<br>
       Expected: All saved inventory records are listed horizontally below the status bar.
@@ -583,10 +592,10 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Have at least 1 or more inventory/finance records saved.
 
    2. Test case: `find_inventory phone`<br>
-   Expected: All saved inventory records with the word 'phone' in its description/id are listed horizontally below the status bar. If there are no such records, then there will be no records listed.
+   Expected: All saved inventory records with the word 'phone' in its description are listed horizontally below the status bar. If there are no such records, then there will be no records listed.
 
-   3. Test case: `find_finance 1000`<br>
-   Expected: All saved finance records with the number '1000' in its amount/id are listed horizontally below the status bar. If there are no such records, then there will be no records listed.
+   3. Test case: `find_finance id/1000`<br>
+   Expected: All saved finance records with the ids containing '1000' are listed horizontally below the status bar. If there are no such records, then there will be no records listed.
 
    4. Test case: `find finance 1000`<br>
    Expected: No records will be displayed. Error details shown in the status message.
@@ -607,6 +616,7 @@ testers are expected to do more *exploratory* testing.
 
 3. Saving inventory as items instead of records<br>
    1. Currently, NUStorage saves inventory as records. For business that constantly deals with the same set of items daily, it might seem tiresome to constantly have to add inventory records of the same item.
+
    2. Thus, we plan to implement a feature that allows users to 'save' a certain inventory item for reuse, allowing them to only have to type the quantity when adding records.
 
 ## 8. Glossary and Terms
@@ -614,4 +624,3 @@ testers are expected to do more *exploratory* testing.
 * **Mainstream OS**: Windows, Linux, MacOS
 * **Inventory**: An item that a user wishes to record. An inventory item can refer to any existing object.
 * **Finance**: A record that allows a user to monitor his earnings and spending.
-
