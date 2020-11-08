@@ -129,7 +129,9 @@ This section describes some noteworthy details on how we implement certain featu
 is a class that stores tags. It contains a compulsory `TagName`, a `FileAddress` and an optional `Label`. `TagName` must 
 contain at least 1 alphanumeric word, and must be unique. `FileAddress` must contain a valid file path
 (i.e passing a file path like `C:\Windows\..` is valid for Windows and `./home/...` is valid for Linux).`FileAddress` 
-can take in a relative path or absolute path.
+can take in a relative path or absolute path.<br>
+This is the class diagram for Tag <br>
+![TagClassDiagram](images/TagClassDiagram.png)
 
 ### Data Structure: Label
 [Label](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/label/Label.java)
