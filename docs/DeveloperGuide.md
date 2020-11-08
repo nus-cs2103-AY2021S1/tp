@@ -937,8 +937,12 @@ and `SourceContainsKeywordsPredicate`, which inherit and implement the method
 * For all `FieldContainsKeywordsPredicate`, if keyword given is an
  empty string, method test() evaluates to false.
 
-Note: For any `FieldContainsKeywordsPredicate#test()` to return true,
+<div markdown="span" class="alert alert-info">:information_source: 
+
+For any `FieldContainsKeywordsPredicate#test()` to return true,
  field of `Stock` must contain ALL keywords in the list.
+
+</div>
 
 `FieldContainsKeywordsPredicate` implements the following important operations:
 * `FieldContainsKeywordsPredicate#test()` -
