@@ -18,7 +18,7 @@ Given below are my contributions to the project.
   on the tP Code Dashboard.
 
 * **Features and Enhancements Implemented**
-  * **New Feature**: Added the ability to update existing stocks in the inventory.
+  * **New Feature**: Added the ability to update existing stocks in the inventory. (Pull request [\#101](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/101))
     * What it does: Allows the user to update the details of the desired stock.
     
     * Justification: This feature improves the user experience as user can easily edit the details of
@@ -31,7 +31,7 @@ Given below are my contributions to the project.
     the increment quantity in update was the most challenging thing in this feature since a helper class to
     abstract and encapsulate the process of adding value to a quantity was needed.
 
-  * **New Feature**: Added the ability to sort existing stocks in the inventory.
+  * **New Feature**: Added the ability to sort existing stocks in the inventory. (Pull request [\#151](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/151))
     * What it does: Allows the user to sort the stocks in the inventory by the field the user wants.
     
     * Justification: This feature improves the user experience as the user can list the existing stocks by
@@ -42,7 +42,7 @@ Given below are my contributions to the project.
     adaptation to the `ModelManager` was needed in order to sort the internal `FilteredList` inside `ModelManager`.
     Another thing that is challenging is to generate different comparators for different fields.
   
-  * **New Feature**: Added the ability to suggest correct commands to the user.
+  * **New Feature**: Added the ability to suggest correct commands to the user. (Pull request [\#133](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/133))
     * What it does: Suggests the correct command format to the user if the command user input is in the wrong format.
     
     * Justification: This feature improves the user experience as the user can view and type the correct command form
