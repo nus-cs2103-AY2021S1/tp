@@ -58,7 +58,8 @@ Given below are my contributions to the project. <br><br>
     * Did cosmetic tweaks to User Guide and ensured phrasing used was consistent and accurate: [\#178](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/178)
   * Developer Guide:
     * Added implementation details and diagrams for the `addF`, `deleteC`, `recommend` and `searchR` features: [\#118](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/118) [\#266](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/266)
-    * Did cosmetic tweaks to Developer Guide and ensured phrasing used was consistent and accurate: [\#259](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/259) <br><br>
+    * Did cosmetic tweaks to Developer Guide and ensured phrasing used was consistent and accurate: [\#259](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/259)
+    * Added Instructions for Manual Testing section in Developer Guide: [\#282](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/282) <br><br>
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#117](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/117), [\#115](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/115), [\#175](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/175), [\#173](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/173)
