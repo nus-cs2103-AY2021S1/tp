@@ -40,16 +40,16 @@ public class ParserUtilTest {
     private static final String VALID_NAME = "Ratatouille";
     private static final String VALID_INGREDIENT_NAME = "Potato";
     private static final String VALID_INGREDIENT_QUANTITY = "250.0 g";
-    private static final String VALID_INGREDIENT_QUANTITY_1 = "0.00000005 g";
+    private static final String VALID_INGREDIENT_QUANTITY_1 = "0.0000005 g";
     private static final String VALID_INGREDIENT_QUANTITY_8 = "123 cups";
     private static final String VALID_INGREDIENT_QUANTITY_9 = "11.11 g";
-    private static final String LEADING_ZEROES_INGREDIENT_QUANTITY_2 = "000000.005 g";
-    private static final String VALID_INGREDIENT_QUANTITY_2 = "0.005 g";
-    private static final String LEADING_ZEROES_INGREDIENT_QUANTITY_3 = "000002.005 g";
-    private static final String VALID_INGREDIENT_QUANTITY_3 = "2.005 g";
-    private static final String LEADING_ZEROES_INGREDIENT_QUANTITY_4 = "000000015 g";
-    private static final String VALID_INGREDIENT_QUANTITY_4 = "15 g";
-    private static final String LEADING_ZEROES_INGREDIENT_QUANTITY_5 = "001.630005 g";
+    private static final String LEADING_ZEROES_INGREDIENT_QUANTITY_2 = "000000.005g";
+    private static final String VALID_INGREDIENT_QUANTITY_2 = "0.005g";
+    private static final String LEADING_ZEROES_INGREDIENT_QUANTITY_3 = "000002.005g";
+    private static final String VALID_INGREDIENT_QUANTITY_3 = "2.005g";
+    private static final String LEADING_ZEROES_INGREDIENT_QUANTITY_4 = "000000015g";
+    private static final String VALID_INGREDIENT_QUANTITY_4 = "15g";
+    private static final String LEADING_ZEROES_INGREDIENT_QUANTITY_5 = "01.630005 g";
     private static final String VALID_INGREDIENT_QUANTITY_5 = "1.630005 g";
     private static final String LEADING_ZEROES_INGREDIENT_QUANTITY_6 = "004/55 cups";
     private static final String VALID_INGREDIENT_QUANTITY_6 = "4/55 cups";
@@ -73,8 +73,6 @@ public class ParserUtilTest {
     private static final String INVALID_INGREDIENT_4 = VALID_INGREDIENT_NAME + INVALID_INGREDIENT_QUANTITY_4;
     private static final String INVALID_INGREDIENT_5 = VALID_INGREDIENT_NAME + INVALID_INGREDIENT_QUANTITY_5;
     private static final String INVALID_INGREDIENT_6 = VALID_INGREDIENT_NAME + INVALID_INGREDIENT_QUANTITY_6;
-
-
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -191,7 +189,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseQuantity_validValueWithWhitespace_returnsTrimmedIngredient() throws Exception {
-        String quantityWithWhitespace = WHITESPACE + VALID_INGREDIENT_QUANTITY + WHITESPACE;
+        String quantityWithWhitespace = " " + VALID_INGREDIENT_QUANTITY + " ";
         assertEquals(VALID_INGREDIENT_QUANTITY, ParserUtil.parseQuantity(quantityWithWhitespace));
     }
 
