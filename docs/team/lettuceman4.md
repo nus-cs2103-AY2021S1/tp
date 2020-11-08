@@ -55,7 +55,7 @@ Given below are my contributions to the project.
 
 <div style="page-break-after: always;"></div>
 
-### Project Management:
+### Project Management
 
 * **Managed the punctual delivery of deliverables:** Reminded teammates of tasks and their deadlines. Helped with unfinished tasks.
 

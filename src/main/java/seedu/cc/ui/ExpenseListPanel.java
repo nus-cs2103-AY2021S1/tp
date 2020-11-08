@@ -14,6 +14,7 @@ import seedu.cc.model.account.entry.Expense;
 
 public class ExpenseListPanel extends UiPart<Region> {
     private static final String FXML = "ExpenseListPanel.fxml";
+    private static final String EXPENSE_STRING = "Expenses";
     private final Logger logger = LogsCenter.getLogger(ExpenseListPanel.class);
 
     @FXML
@@ -27,7 +28,7 @@ public class ExpenseListPanel extends UiPart<Region> {
      */
     public ExpenseListPanel(ObservableList<Expense> expenses) {
         super(FXML);
-        expenseLabel.setText("Expenses");
+        expenseLabel.setText(EXPENSE_STRING);
         expenseLabel.setTextAlignment(TextAlignment.CENTER);
         expenseListView.setItems(expenses);
         expenseListView.setCellFactory(listView -> new ExpenseListViewCell());
