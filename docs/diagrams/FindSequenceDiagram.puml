@@ -39,7 +39,7 @@ return f
 L -> S : execute(model)
 activate S
 
-S -> M : 
+S -> M :
 activate M
 
 M -> B : updateFilteredPatientList(predicate)
