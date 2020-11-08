@@ -114,10 +114,6 @@ public class AddTaskParserTest {
         assertParseFailure(parser, INVALID_TASK_NAME_DESC + TAG_DESC_CS2100 + PRIORITY_DESC_LAB05
                 + DATE_DESC_LAB05 + TAG_DESC_LAB, TaskName.MESSAGE_CONSTRAINTS);
 
-        // invalid name with whitespaces only
-        assertParseFailure(parser, "n/  " + TAG_DESC_CS2100 + PRIORITY_DESC_LAB05
-            + DATE_DESC_LAB05 + TAG_DESC_LAB, TaskName.MESSAGE_CONSTRAINTS);
-
         // invalid tag
         assertParseFailure(parser, NAME_DESC_LAB05 + INVALID_TAG_DESC + PRIORITY_DESC_LAB05
                 + DATE_DESC_LAB05 + TAG_DESC_LAB, Tag.MESSAGE_CONSTRAINTS);
