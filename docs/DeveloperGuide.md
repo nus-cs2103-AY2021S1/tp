@@ -1069,3 +1069,25 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+
+### F.00 Schedule
+
+1. Viewing schedule of classes
+
+    1. Prerequisites: There are students stored in Reeve currently with non-overlapping class times.
+    
+    2. Test case: `schedule m/weekly d/02/11/2020`
+       Expected: Shows the schedule of classes in the whole week of 02/11/2020.
+       
+    3. Test case: `schedule m/daily d/02/11/2020`
+       Expected: Shows the schedule of classes in the day of 02/11/2020.
+       
+    4. Test case: `schedule m/dAiLy d/02/11/2020`
+       Expected: Shows the schedule successfully as the case letters of the view mode does not matter.
+    
+    5. Test case: `schedule m/day d/02/11/2020`
+       Expected: Displays error message indicating invalid view mode.
+       
+    6. Test case: `schedule m/weekly d/02-11-2020`
+       Expected: Displays error message indicating invalid date format.
