@@ -605,6 +605,8 @@ Examples:
 * `addF i/banana -3/4 cups, green peas -200g, salmon fish`
 <br><br><br>
 
+<div style="page-break-after: always;"></div>
+
 ### 5.2.2 Listing all ingredients : `fridge` <a id="list-ingredient"></a>
 Contributed by: Olivia
 
@@ -616,6 +618,8 @@ Contributed by: Olivia
 
 Format: `fridge`
 <br><br><br>
+
+<div style="page-break-after: always;"></div>
 
 ### 5.2.3 Deleting an ingredient : `deleteF` <a id="delete-ingredient"></a>
 Contributed by: Olivia
@@ -633,11 +637,10 @@ Format: `deleteF INDEX`
 
 Examples:
 * `fridge` followed by `deleteF 4` deletes the 4th ingredient in the Fridge.
-
-<div style="page-break-after: always;"></div>
-
 * `searchF peanut` followed by `deleteF 1` deletes the 1st ingredient in the results of the `searchF` command.
 <br><br><br>
+
+<div style="page-break-after: always;"></div>
 
 ### 5.2.4 Editing an ingredient: `editF` <a id="edit-ingredient"></a>
 Contributed by: Olivia
@@ -711,8 +714,6 @@ Format: `searchF KEYWORD [ MORE KEYWORDS]`
 * The search is case-insensitive. e.g `peanut` will match `Peanut`.
 * The search will match partial keywords. e.g. `tomat` will match `tomato`.
 * The order of the keywords does not matter. e.g. Peanut Butter will match Butter with Peanut.
-
-<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
     Ingredient quantity is not taken into account when determining whether two ingredients matches.
