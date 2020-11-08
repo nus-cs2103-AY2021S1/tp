@@ -21,7 +21,18 @@ public class EditTaskDescriptor {
     private Priority priority;
     private Date date;
 
-    public EditTaskDescriptor() {}
+    // boolean to indicate if a field should be deleted
+    // cannot be null to avoid NullPointerException
+    private boolean isPriorityDeleted;
+    private boolean isDateDeleted;
+
+    /**
+     * Constructs an EditTaskDescriptor.
+     */
+    public EditTaskDescriptor() {
+        isPriorityDeleted = false;
+        isDateDeleted = false;
+    }
 
     /**
      * Copy constructor.
@@ -32,13 +43,17 @@ public class EditTaskDescriptor {
         setTags(toCopy.tags);
         setPriority(toCopy.priority);
         setDate(toCopy.date);
+        setIsPriorityDeleted(toCopy.isPriorityDeleted);
+        setIsDateDeleted(toCopy.isDateDeleted);
     }
 
     /**
-     * Returns true if at least one field is edited.
+     * Returns true if at least one field is edited or deleted.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, tags, priority, date);
+        boolean isAnyNonNull = CollectionUtil.isAnyNonNull(name, tags, priority, date);
+        boolean isAnyDeleted = isPriorityDeleted || isDateDeleted;
+        return isAnyNonNull || isAnyDeleted;
     }
 
     public void setName(TaskName name) {
@@ -80,6 +95,22 @@ public class EditTaskDescriptor {
 
     public Optional<Date> getDate() {
         return Optional.ofNullable(date);
+    }
+
+    public boolean getIsPriorityDeleted() {
+        return this.isPriorityDeleted;
+    }
+
+    public void setIsPriorityDeleted(boolean bool) {
+        this.isPriorityDeleted = bool;
+    }
+
+    public boolean getIsDateDeleted() {
+        return this.isDateDeleted;
+    }
+
+    public void setIsDateDeleted(boolean bool) {
+        this.isDateDeleted = bool;
     }
 
     @Override

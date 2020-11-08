@@ -7,6 +7,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -15,14 +17,15 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.EventList;
 import seedu.address.model.ReadOnlyEventList;
 import seedu.address.model.event.Event;
+import seedu.address.model.tag.Tag;
 import seedu.address.storage.JsonEventListStorage;
 import seedu.address.testutil.event.EventUtil;
 
 public class JsonEventListStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "Event", "JsonEventListStorageTest");
-
     @TempDir
     public Path testFolder;
+    private Set<Tag> tags = new HashSet<Tag>();
 
     @Test
     public void readEventList_nullFilePath_throwsNullPointerException() {
@@ -72,7 +75,8 @@ public class JsonEventListStorageTest {
         assertEquals(original, new EventList(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        Event event = new Event(EventUtil.makeEventName("CS2100 homework"), EventUtil.makeEventTime("2-2-2002 1200"));
+        Event event = new Event(EventUtil.makeEventName("CS2100 homework"),
+                EventUtil.makeEventTime("2-2-2002 1200"), tags);
         original.addEvent(event);
         original.removeEvent(EventUtil.VALID_EVENT);
         jsonEventListStorage.saveEventList(original, filePath);
@@ -80,7 +84,8 @@ public class JsonEventListStorageTest {
         assertEquals(original, new EventList(readBack));
 
         // Save and read without specifying file path
-        Event event2 = new Event(EventUtil.makeEventName("CS2100 homework"), EventUtil.makeEventTime("3-2-2002 1200"));
+        Event event2 = new Event(EventUtil.makeEventName("CS2100 homework"),
+                EventUtil.makeEventTime("3-2-2002 1200"), tags);
         original.addEvent(event2);
         jsonEventListStorage.saveEventList(original); // file path not specified
         readBack = jsonEventListStorage.readEventList().get(); // file path not specified

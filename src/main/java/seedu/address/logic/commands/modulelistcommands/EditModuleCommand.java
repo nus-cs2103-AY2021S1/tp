@@ -119,9 +119,4 @@ public class EditModuleCommand extends Command {
         return index.equals(e.index)
                 && editModuleDescriptor.equals(e.editModuleDescriptor);
     }
-
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

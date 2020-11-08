@@ -35,8 +35,4 @@ public class UndoCommand extends Command {
                 || (other instanceof UndoCommand); // instanceof handles nulls
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

@@ -21,7 +21,7 @@
       <VBox prefWidth="148.0" GridPane.columnIndex="1">
          <children>
             <Label style="-fx-font-size: 8;" />
-            <Label fx:id="remainingDays" style="-fx-font-size: 12;" text="\\$remainingDays" wrapText="true" />
+            <Label fx:id="remainingDays" style="-fx-font-size: 12; -fx-text-fill: lightgrey;" text="\\$remainingDays" wrapText="true" />
             <Label style="-fx-font-size: 5;" />
             <ProgressBar fx:id="progressBar" prefWidth="131.0" progress="0.0">
                <VBox.margin>

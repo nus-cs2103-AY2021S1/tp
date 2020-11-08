@@ -17,19 +17,26 @@ import seedu.address.model.tag.Tag;
  * Guarantees: non-null field values are validated, immutable.
  */
 public class Task {
+    // non-null
     private final TaskName name;
+    // non-null
     private final Set<Tag> tags = new HashSet<>();
+    // optional
     private final Priority priority;
+    // optional
     private final Date date;
+    // non-null
     private final Status status;
 
     // unrelated field to the user
-
+    // non-null
     private final LocalDate dateCreated;
 
     /**
-     * Initial constructor to avoid having null as arguments.
-     * Should be only used to add a new task.
+     * Constructs a task with a name.
+     * Setting the fields should be done using the setters.
+     * By default the {@code status} is set to {@code Status.NOT_COMPLETED}.
+     * By default the {@code dateCreated} is set to {@code LocalDate.now()}.
      *
      * @param name name of the task
      */
@@ -52,7 +59,7 @@ public class Task {
      * @param status status of the task
      * @param dateCreated date creation of the task
      */
-    public Task(TaskName name, Set<Tag> tags, Priority priority, Date date, Status status, LocalDate dateCreated) {
+    private Task(TaskName name, Set<Tag> tags, Priority priority, Date date, Status status, LocalDate dateCreated) {
         requireAllNonNull(name, status);
         this.name = name;
         this.tags.addAll(tags);
@@ -63,6 +70,7 @@ public class Task {
     }
 
     public Optional<TaskName> getName() {
+        assert this.name != null;
         return Optional.of(this.name);
     }
 
@@ -104,8 +112,12 @@ public class Task {
     }
 
     public Optional<LocalDate> getDateCreated() {
-        assert dateCreated != null;
+        assert this.dateCreated != null;
         return Optional.of(dateCreated);
+    }
+
+    public Task setDateCreated(LocalDate dateCreated) {
+        return new Task(this.name, this.tags, this.priority, this.date, status, dateCreated);
     }
 
     /**
@@ -248,7 +260,7 @@ public class Task {
      */
     public String getPriorityForUi() {
         if (this.priority == null) {
-            return "-  -  -  -";
+            return "No Priority";
         }
         switch(priority) {
         case HIGH:
@@ -258,7 +270,7 @@ public class Task {
         case LOW:
             return "★★";
         default:
-            return "-  -  -  -";
+            return "No Priority";
         }
     }
 
@@ -269,7 +281,7 @@ public class Task {
      */
     public String getDateForUi() {
         if (this.date == null) {
-            return "-   -   -   -";
+            return "No Deadline";
         } else {
             return this.date.toString();
         }

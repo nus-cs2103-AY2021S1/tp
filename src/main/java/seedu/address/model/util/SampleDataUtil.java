@@ -12,9 +12,16 @@ import seedu.address.model.contact.Contact;
 // import seedu.address.model.contact.ContactName;
 // import seedu.address.model.contact.Email;
 // import seedu.address.model.contact.Telegram;
-import seedu.address.model.module.*;
+import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.grade.*;
+import seedu.address.model.module.ModuleLesson;
+import seedu.address.model.module.ModuleName;
+import seedu.address.model.module.ZoomLink;
+import seedu.address.model.module.grade.Assignment;
+import seedu.address.model.module.grade.AssignmentName;
+import seedu.address.model.module.grade.AssignmentPercentage;
+import seedu.address.model.module.grade.AssignmentResult;
+import seedu.address.model.module.grade.GradeTracker;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -43,6 +50,9 @@ public class SampleDataUtil {
         };
     }
 
+    /**
+     * Generates list of sample modules
+     */
     public static Module[] getSampleModules() {
         GradeTracker gradeTrackerCompleted = new GradeTracker(5.0);
         GradeTracker gradeTrackerWithAssignments = new GradeTracker();
@@ -51,19 +61,35 @@ public class SampleDataUtil {
         Module CS2030 = new Module(new ModuleName("CS2030"),
                 getZoomLinkMap(new ModuleLesson("Lecture"), new ZoomLink("https://nus-sg.zoom.us/CS2030")),
                 gradeTrackerCompleted, getTagSet("CoreModule"), new ModularCredits(4));
-        Module CS2101 = new Module(new ModuleName("CS2030"),
+        Module CS2101 = new Module(new ModuleName("CS2101"),
                 getZoomLinkMap(new ModuleLesson("Lecture"), new ZoomLink("https://nus-sg.zoom.us/CS2101")),
                 gradeTrackerWithAssignments, getTagSet("CoreModule"), new ModularCredits(4));
-        Module CS2105 = new Module(new ModuleName("CS2030"),
+        Module CS2105 = new Module(new ModuleName("CS2105"),
                 getZoomLinkMap(new ModuleLesson("Lecture"), new ZoomLink("https://nus-sg.zoom.us/CS2105")),
                 gradeTrackerWithAssignments, getTagSet("CoreModule"), new ModularCredits(4));
-        Module CS1101S = new Module(new ModuleName("CS2030"), getZoomLinkMap(new ModuleLesson("Lecture"),
+        Module CS1101S = new Module(new ModuleName("CS1101S"), getZoomLinkMap(new ModuleLesson("Lecture"),
                 new ZoomLink("https://nus-sg.zoom.us/CS2101")),
                 gradeTrackerWithAssignments, getTagSet("CoreModule"), new ModularCredits(4));
-        Module IS1103 = new Module(new ModuleName("CS2030"),
+        Module IS1103 = new Module(new ModuleName("IS1103"),
                 getZoomLinkMap(new ModuleLesson("Lecture"), new ZoomLink("https://nus-sg.zoom.us/CS2101")),
                 gradeTrackerWithAssignments, getTagSet("CoreModule"), new ModularCredits(4));
         return new Module[] {CS2030, CS2101, CS2105, CS1101S, IS1103
+        };
+    }
+
+    /**
+     * Generates list of sample archived modules
+     */
+    public static Module[] getSampleArchivedModules() {
+        GradeTracker gradeTrackerCompleted = new GradeTracker(5.0);
+        GradeTracker gradeTrackerWithAssignments = new GradeTracker();
+        gradeTrackerWithAssignments.addAssignment(new Assignment(new AssignmentName("Quiz1"),
+                new AssignmentPercentage(15), new AssignmentResult(70)));
+        Module ES2660 = new Module(new ModuleName("ES2660"),
+                getTagSet("FluffModule", "Completed"), new ModularCredits(4));
+        Module CS3230 = new Module(new ModuleName("CS3230"),
+                getTagSet("CoreModule", "Completed"), new ModularCredits(4));
+        return new Module[] {ES2660, CS3230
         };
     }
 
@@ -77,13 +103,26 @@ public class SampleDataUtil {
         return null;
     }
 
+    /**
+     * Returns a ReadOnlyModuleList version of sample modules
+     */
     public static ReadOnlyModuleList getSampleModuleList() {
         ModuleList sampleMl = new ModuleList();
         for (Module sampleModule : getSampleModules()) {
             sampleMl.addModule(sampleModule);
         }
-        // return sampleAb;
-        return null;
+        return sampleMl;
+    }
+
+    /**
+     * Returns a ReadOnlyModuleList version of sample archived modules
+     */
+    public static ReadOnlyModuleList getSampleArchivedModuleList() {
+        ModuleList sampleMl = new ModuleList();
+        for (Module sampleModule : getSampleArchivedModules()) {
+            sampleMl.addModule(sampleModule);
+        }
+        return sampleMl;
     }
 
     /**

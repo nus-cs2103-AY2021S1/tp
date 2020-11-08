@@ -98,8 +98,4 @@ public class DeleteZoomLinkCommand extends Command {
                 && lesson.equals(command.lesson);
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }
