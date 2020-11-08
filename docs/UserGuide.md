@@ -49,6 +49,7 @@ Objectives of PlaNus:
 --------------------------------------------------------------------------------------------------------------------
 
 ## Set-up
+(Done by: Gabriella)
 
 1. Ensure you have Java 11 or above installed in your computer.
 2. Download the latest planus.jar from **[here](https://github.com/AY2021S1-CS2103T-T12-3/tp/releases/)**.
@@ -95,13 +96,14 @@ This section shows features that deal with the general functionality of PlaNus a
 
 
 ### 1.1 Show all commands : `help`
+(Done by: Gabriella)
 
 Shows the user a link to the user guide.
 
 Format: `help`
 
 1. Type in `help` into the command box.
-2. A pop-up window with some sample commands and a link to the user guide will appear.
+2. A pop-up window with some sample commands and a link to the user guide will appear as shown below.
 
     ![help message](images/HelpMessage.png)
 
@@ -109,6 +111,7 @@ Format: `help`
 <br>
 
 ### 1.2 Clear the program : `clear`
+(Done by: Gabriella)
 
 Users can clear all the tasks in the PlaNus.
 
@@ -125,6 +128,7 @@ Format: `clear`
 <br>
 
 ### 1.3 Exit the program : `exit`
+(Done by: Gabriella)
 
 Users can exit PlaNus.
 
@@ -143,6 +147,7 @@ creating, reading, updating and deleting a task. A task can be either a
 `event` or `deadline`. <br>
 
 ### 2.1 List all tasks : `list-task`
+(Done by: Beining)
 
 Shows the user a list of all the tasks in PlaNus.
 
@@ -159,6 +164,7 @@ To show all tasks currently stored in PlaNus, users can do the following:
 <br>
 
 ### 2.2 Add a deadline : `deadline`
+(Done by: Beining)
 
 
 Users can add a deadline to PlaNus.
@@ -199,6 +205,7 @@ E.g. `deadline title:Return book title:Borrow book datetime:02-01-2020 18:00` is
 <br>
 
 ### 2.3 Add an event : `event`
+(Done by: Beining)
 
 Users can add an event.
 <br>
@@ -242,6 +249,7 @@ E.g. `event title:Project meeting title:Group meeting date:07-11-2020 from:09:00
 <br>
 
 ### 2.4 Mark a deadline as done : `done`
+(Done by: Beining)
 
 Users can mark a specified deadline in PlaNus as done.
 
@@ -280,6 +288,7 @@ users can do the following:
 <br>
 
 ### 2.5 Edit a task : `edit-task`
+(Done by: Gangwei)
 
 Users can edit a task by a set of attributes given below.
 
@@ -350,6 +359,7 @@ E.g. `edit-task title:play games title:watch tv` is not allowed as the `title` a
 <br>
 
 ### 2.6 Find a task by an attribute : `find-task`
+(Done by: Gangwei)
 
 Users can find a task by a set of attributes given below.
 
@@ -398,6 +408,7 @@ Other examples:
 
 
 ### 2.7 Delete a task : `delete-task`
+(Done by: Gangwei)
 
 Users can delete the specified task from PlaNus.
 
@@ -437,6 +448,7 @@ This section shows features that a user can use to manage lessons. A lesson happ
 recurring manner that have a start and end time, and a start and end date.
 
 ### 3.1 List all lessons :`list-lesson`
+(Done by: Gangwei)
 
 Shows the user a list of all the lessons in PlaNus.
 
@@ -452,6 +464,7 @@ To show all lessons currently stored in PlaNus, users can do the following:
 
 
 ### 3.2 Add a lesson : `lesson`
+(Done by: Zijian)
 
 Users can add a lesson to PlaNus.
 
@@ -496,6 +509,7 @@ E.g. `lesson title:Tutorial title:Lecture tag:CS2103T day:Monday from:10:00 to:1
 <br>
 
 ### 3.3 Edit a lesson : `edit-lesson`
+(Done by: Zijian)
 
 Users can edit a lesson in PlaNus. When a lesson is edited, all the occurrences of the particular lesson will be updated.
 
@@ -546,6 +560,7 @@ E.g. `edit-lesson 1 title:tutorial 1 title:tutorial 2` is not allowed as the `ti
 <br>
 
 ### 3.4 Find a lesson : `find-lesson`
+(Done by: Zijian)
 
 Users can find a lesson by a set of attributes given below.
 
@@ -596,6 +611,7 @@ Other examples include:
 <br>
 
 ### 3.5 Delete a Lesson : `delete-lesson`
+(Done by: Zijian)
 
 Users can delete a specified set of lessons from PlaNus.
 
@@ -635,6 +651,7 @@ for more information. Sample usage:
 <br>
 
 ## 4. Calendar View
+(Done by: Marcus and Gangwei)
 
 **Change to Calendar View**
 
@@ -671,6 +688,7 @@ Users can change the application view back to standard view (displayed when the 
 <br>
 
 ## 5. Data Analysis
+(Done by: Marcus)
 
 Users can use the pie chart and list of modules to visualise how much time is spent on each module. Each module is 
 denoted by the `tag` on its task/lesson.
