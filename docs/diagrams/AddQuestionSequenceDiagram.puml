@@ -57,11 +57,11 @@ deactivate Student
 AddQuestionCommand -> Model : setStudent(student, copy)
 activate Model
 
-Student -[hidden]-> Model
-destroy Student
-
 Model --> AddQuestionCommand
 deactivate Model
+
+Student -[hidden]-> Model
+destroy Student
 
 AddQuestionCommand --> LogicManager : result
 deactivate AddQuestionCommand
