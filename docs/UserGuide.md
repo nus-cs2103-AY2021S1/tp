@@ -18,7 +18,7 @@ What is _Eva_?
 
 Eva is a simple and lightweight desktop application that **handles HR related administrative tasks**, 
 like managing your company staffs and recording details related to recruitment.<br>
-Eva comes with a command line interface (CLI) which is faster than a typical mouse/GUI driven app after you or your staffs get used to it.<br>
+Eva comes with a Command Line Interface (CLI) which is faster than a typical mouse/GUI driven app after you or your staffs get used to it.<br>
 
 We hope that through our app, you and your company will be empowered and able to solve your basic HR needs.<br>
 This user guide will take you through the basics of Eva and help you get moving straightaway.
@@ -114,7 +114,7 @@ You can also find the records in the `data` folder where the `eva.jar` file is l
 
 </div>
 
-Here is a brief overview on how this document is arranged. The first section brings you through the 
+Here is a brief overview on how this section is arranged. The first section brings you through the 
 [different panels](#31-eva-gui) you will see in our application. After getting familiar with that, we will share some 
 [general system commands](#32-system-commands) you can use at any point in time. In the third section, 
 we will bring you through the [features we have implemented for staff](#33-staff-commands). 
@@ -191,7 +191,7 @@ Staff commands give you the ability to keep track of your staffs which help you 
 </div>
 
 
-#### 3.3.1. List all staffs : `list`
+#### 3.3.1. List all staff : `list s-`
 
 The staff list panel serves as your primary tool to give you an overview of all the staffs in your company.
 
@@ -221,6 +221,8 @@ Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]�
 
  - A staff can have any number of tags (including 0) <br>
  - A staff can have any number of comments (including 0) <br>
+ - Each staff is uniquely identified by their name. In the event you wish to add 2 staff records with the same name,
+   please ensure that both their phone number and email addresses are different
  
 :bulb: **Tip:**
  - The details of each field can be provided in any order.
@@ -232,7 +234,7 @@ Examples:
 `adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * To add a comment along with the necessary fields <br>
 `adds n/Kristina Ryan e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/12345678
-c/ ti/Behaviour d/20/12/2020 desc/Very enthusiastic in meetings`
+ c/ ti/Behaviour d/20/12/2020 desc/Very enthusiastic in meetings`
 * To add a tag along with the necessary fields <br>
 `adds n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/12345678 t/Developer`
 
@@ -267,6 +269,11 @@ Example:
 #### 3.3.5. Delete a staff: `dels`
 
 Deletes a staff from Eva. 
+
+<div markdown="block" class="alert alert-danger">
+Please take note that this action is irreversible.
+</div>
+<br>
 
 Format: `dels INDEX`
 
@@ -333,6 +340,11 @@ Should a staff be unable to take their leave and cancels or postpones, Eva allow
 
 This command removes the record of leave taken by staff, specified by the date given.<br>
 
+<div markdown="block" class="alert alert-danger">
+Please take note that this action is irreversible.
+</div>
+<br>
+
 Format: `dell INDEX d/DATE`
 
 <div markdown="block" class="alert alert-info">
@@ -353,6 +365,11 @@ Examples:
 
 In any case that you might want to remove all staff records, you can always use this command. <br>
 This command clears all staff entries from the Eva database. 
+
+<div markdown="block" class="alert alert-danger">
+Please take note that this action is irreversible.
+</div>
+<br>
 
 Format: `clear s-`
 
@@ -402,6 +419,8 @@ Format: `adda n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG
 
  - An applicant can have any number of tags (including 0) 
  - An applicant can have any number of comments (including 0) 
+ - Each applicant is uniquely identified by their name. In the event you wish to add 2 applicant records with the same name,
+      please ensure that both their phone numbers and email addresses are different
  - The interview date has to be in DD/MM/YYYY format 
  - Once you add an applicant the status would be automatically set as received, if you wish to change it, refer to the feature 
  [setting of application status](#349-set-application-status-setas) below
@@ -514,11 +533,16 @@ Example:
 
 Deletes an application from an applicant with the specified index under Eva.
 
+<div markdown="block" class="alert alert-danger">
+Please take note that this action is irreversible.
+</div>
+<br>
+
 Format: `delapp INDEX`
 
 <div markdown="span" class="alert alert-info">
 
-:note: **Note:** `delapp` replaces the current application of the target applicant with a blank application. <br>
+**:information_source: Note:** `delapp` replaces the current application of the target applicant with a blank application. <br>
 
 </div>
 
@@ -569,7 +593,7 @@ Commands to add, delete and edit comments on staff or applicants
 
 <div markdown="block" class="alert alert-primary">
 
-:info: **Important:** <br>
+**:information_source: Important:** <br>
 
 * Comment Commands take index reference from which type of person user is viewing. <br>
 
