@@ -19,7 +19,7 @@ import seedu.address.model.project.Project;
  */
 public class AddTeammateParticipationCommand extends Command {
 
-    public static final String COMMAND_WORD = "addpart";
+    public static final String COMMAND_WORD = "addtoproject";
     public static final String MESSAGE_ADD_TEAMMATE_PARTICIPATION_SUCCESS = "New Teammate added: %1$s";
     public static final String MESSAGE_TEAMMATE_PARTICIPATION_PRESENT = "Teammate already present in project";
 

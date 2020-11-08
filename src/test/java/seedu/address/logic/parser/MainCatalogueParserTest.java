@@ -18,6 +18,11 @@ import static seedu.address.testutil.TypicalGitIndexes.GIT_USERINDEX_FIRST_TEAMM
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalTasks.TASK_A;
+import static seedu.address.testutil.TypicalTasks.TASK_A_DEADLINE;
+import static seedu.address.testutil.TypicalTasks.TASK_A_NAME;
+import static seedu.address.testutil.TypicalTasks.TASK_A_PROGRESS;
+import static seedu.address.testutil.TypicalTasks.TASK_B_NAME;
 
 import java.util.Arrays;
 import java.util.List;
@@ -43,8 +48,8 @@ import seedu.address.logic.commands.project.AddTeammateCommand;
 import seedu.address.logic.commands.project.AddTeammateParticipationCommand;
 import seedu.address.logic.commands.project.AllTasksCommand;
 import seedu.address.logic.commands.project.AssignCommand;
+import seedu.address.logic.commands.project.DeletePersonCommand;
 import seedu.address.logic.commands.project.DeleteTaskCommand;
-import seedu.address.logic.commands.project.DeleteTeammateCommand;
 import seedu.address.logic.commands.project.DeleteTeammateParticipationCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
 import seedu.address.logic.commands.project.TaskFilterCommand;
@@ -57,11 +62,14 @@ import seedu.address.model.Status;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.NameContainsKeywordsPredicate;
 import seedu.address.model.project.Project;
+import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.ProjectUtil;
+import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TaskUtil;
 
 public class MainCatalogueParserTest {
@@ -95,10 +103,10 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_deleteTeammate() throws Exception {
         GitUserIndex gitUserIndex = new GitUserIndex(VALID_TEAMMATE_GIT_USERNAME_A);
-        DeleteTeammateCommand command =
-            (DeleteTeammateCommand) parser.parseCommand(DeleteTeammateCommand.COMMAND_WORD + " "
-                + VALID_TEAMMATE_GIT_USERNAME_A, Status.PROJECT);
-        assertEquals(new DeleteTeammateCommand(gitUserIndex), command);
+        DeletePersonCommand command =
+            (DeletePersonCommand) parser.parseCommand(DeletePersonCommand.COMMAND_WORD + " "
+                + VALID_TEAMMATE_GIT_USERNAME_A, Status.PERSON_LIST);
+        assertEquals(new DeletePersonCommand(gitUserIndex), command);
     }
 
     @Test
@@ -128,7 +136,7 @@ public class MainCatalogueParserTest {
         EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(project).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PROJECT.getOneBased() + " " + ProjectUtil.getEditProjectDescriptorDetails(descriptor),
-            Status.PROJECT_LIST);
+                Status.PROJECT_LIST);
         assertEquals(new EditCommand(INDEX_FIRST_PROJECT, descriptor), command);
     }
 
@@ -184,6 +192,23 @@ public class MainCatalogueParserTest {
             AssignCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + " "
                 + ALICE.getGitUserName(), Status.PROJECT);
         assertEquals(new AssignCommand(INDEX_FIRST_TASK, ALICE.getGitUserNameString()), command);
+    }
+
+    @Test
+    public void parseCommand_addTask() throws Exception {
+        AddTaskCommand command = (AddTaskCommand) parser.parseCommand(
+                AddTaskCommand.COMMAND_WORD + " " + TASK_A_NAME + TASK_A_PROGRESS
+                        + TASK_A_DEADLINE, Status.PROJECT);
+        assertEquals(new AddTaskCommand(new TaskBuilder(TASK_A).withTaskDescription(null).build()), command);
+    }
+
+    @Test
+    public void parseCommand_editTask() throws Exception {
+        EditTaskCommand.EditTaskDescriptor descriptor =
+                new EditTaskDescriptorBuilder().withTaskName(SampleDataUtil.getTask1().get(0)).build();
+        EditTaskCommand command = (EditTaskCommand) parser.parseCommand(
+                EditTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + TASK_B_NAME, Status.PROJECT);
+        assertEquals(new EditTaskCommand(INDEX_FIRST_TASK, descriptor), command);
     }
 
     @Test

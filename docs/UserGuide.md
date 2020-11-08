@@ -5,11 +5,9 @@ title: User Guide
 
 ------------------------------------------------------------------------------------------------
 
-# User Guide for Taskmania
-
-Taskmania (based off AB3) is a **desktop app for a project leader to manage team members and tasks** to be finished in a
- software project, optimized for use via a Command Line Interface (CLI) while still having the benefits of a 
- Graphical User Interface (GUI). If you can type fast, Taskmania can allow you to manage your team faster than 
+Taskmania (based off AB3) is a **desktop application for a project leader to manage team members and tasks** to be
+ finished in a software project, optimized for use via a Command Line Interface (CLI) while still having the benefits
+  of a Graphical User Interface (GUI). If you can type fast, Taskmania can allow you to manage your team faster than 
  a traditional point and click interface.
  
 ## Table of contents
@@ -65,18 +63,34 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 
 **:information_source: Notes about scoping:**<br>
 
+Each command has a restriction on the scope that it can be run. 
+Scopes include `PROJECT_LIST`, `PERSON_LIST`, `PROJECT`, `PERSON`, `TASK`, `TEAMMATE`.
 The hierarchy of command scoping is as follows:
 * global
-    * `PROJECT_LIST`
+    * `PROJECT_LIST` 
       * `PROJECT`
-        * `TASK`
+        * `TASK` 
         * `TEAMMATE`
     * `PERSON_LIST`
       * `PERSON`
 
-<br>A lower-level scope always belongs to any parent scopes. For example, if the app is currently in `PROJECT`
-scope, it is also in the `PROJECT_LIST` scope. However, it is not necessarily in `TASK` scope because `TASK` is
-a child level of `PROJECT` and it is definitely not in `PERSON` scope because `PERSON` is parallel to `PROJECT`.
+<br>
+
+A command may be valid in some scopes or another. For example, `startperson ` command can only be run under
+`PERSON_LIST` or `PERSON` scope, otherwise there will be an exception.
+The hierarchy list is above only aims to give you an overview of the meanings of the scopes, 
+and in most cases a command that is valid in a parent scope would be valid in any descendant scopes, but may not always be true.
+
+The scope can be told from the user interface as follows: 
+
+Scope | Left panel | Middle panel | Right panel
+--------|------------------|-------|----------
+`PROJECT_LIST` | project list | empty | empty
+`PERSON_LIST` | person list | empty | empty
+`PROJECT` | project list | project dashboard | empty
+`PERSON` | person list | person dashboard | empty
+`TASK` | project list | project dashboard | task dashboard
+`TEAMMATE` | project list | project dashboard | teammate dashboard
 
 </div>
 
@@ -90,6 +104,8 @@ a child level of `PROJECT` and it is definitely not in `PERSON` scope because `P
 
 Shows a message explaning how to access the help page.
 
+Valid scopes: all.
+
 ![help message](images/helpMessage.png)
 
    *Figure 2: Help message popup*
@@ -100,37 +116,15 @@ Format: `help`
 
 Closes the application for the user.
 
+Valid scopes: all.
+
 Format: `exit`
 
-### 2.1.3 List all projects in the catalogue `listprojects`
-
-List all projects currently in the project catalogue.
-
-![list_projects](images/listProjects.png)
-
-   *Figure 3: List of projects shows up*
-
-Format: `listprojects`
-- Lists all projects if there are projects in the catalogue
-
-Example: `listprojects` lists all projects in the catalogue to the user.
-
-### 2.1.4 List all persons in the catalogue `listpersons`
-
-List all persons currently in the catalogue.
-
-![list_persons](images/listPersons.png)
-
-   *Figure 4: List of persons shows up*
-
-Format: `listpersons`
-- Lists all persons if there are persons in the catalogue
-
-Example: `listpersons` lists all persons in the catalogue to the user.
-
-### 2.1.5 Leave a current page `leave`
+### 2.1.3 Leave a current page `leave`
 
 Leave the current page and go back to the parent scope (one level up).
+
+Valid scopes: all.
 
 ![before_leave_person](images/beforeLeavePersonDashboard.png)
 
@@ -144,11 +138,43 @@ Format: `leave`
 - Leaves the current page (clear the right-most non-empty dashboard) and shifts the scoping status to the parent scope
 - If the app is already in the global, `PERSON_LIST`, or `PROJECT_LIST`, then the command takes no effect
 
-# 2.2 Features in project list scope
+### 2.1.4 List all projects in the catalogue `listprojects`
+
+List all projects currently in the project catalogue.
+
+Valid scopes: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`, `PERSON_LIST`.
+
+![list_projects](images/listProjects.png)
+
+   *Figure 3: List of projects shows up*
+
+Format: `listprojects`
+- Lists all projects if there are projects in the catalogue
+
+Example: `listprojects` lists all projects in the catalogue to the user.
+
+### 2.1.5 List all persons in the catalogue `listpersons`
+
+List all persons currently in the catalogue.
+
+Valid scopes: `PROJECT_LIST`, `PERSON_LIST`, `PERSON`.
+
+![list_persons](images/listPersons.png)
+
+   *Figure 4: List of persons shows up*
+
+Format: `listpersons`
+- Lists all persons if there are persons in the catalogue
+
+Example: `listpersons` lists all persons in the catalogue to the user.
+
+# 2.2 Projects management
 
 ### 2.2.1 Start work on an existing project `startproject`
 
 Initialises the project specified.
+
+Valid scopes: `PROJECT_LIST`, `PROJECT`.
 
 ![start_project](images/startProject.png)
 
@@ -164,6 +190,8 @@ Examples: `startproject 2` Initialises the second project in the project list.
 ### 2.2.2 Add a new project to the catalogue `add`
 
 Adds a project to the project list.
+
+Valid scopes: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![add_project](images/addProject.png)
 
@@ -194,6 +222,8 @@ Adds a new project with the
 
 Deletes a project and all associated information from the project catalogue.
 
+Valid scopes: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`.
+
 ![delete_project](images/deleteProject.png)
 
    *Figure 9: The project named `The Blair project` is deleted and removed from the project list*
@@ -208,6 +238,8 @@ Examples: `delete 2` deletes the second project from the catalogue.
 ### 2.2.4 Locate projects by keyword `find`
 
 Finds projects whose names contain the given keywords.
+
+Valid scope: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![find_project](images/findProject.png)
 
@@ -228,6 +260,8 @@ Note: Please use `listprojects` command to return to the complete project list.
 ### 2.2.5 Edits details of a project `edit`
 
 Updates the details of a project.
+
+Valid scope: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![edit_project](images/editProject.png)
 
@@ -250,11 +284,13 @@ Note: Please enter a valid repository URL. Taskmania is an offline application a
 
 Example: `edit 1 n/ResidentEvil d/ new horror` changes the name of the first project in the list to **Evil project**, and the description to **new horror**.
 
-# 2.3 Task-related features in project scope
+# 2.3 Tasks management within a project
 
 ### 2.3.1 Add task to a project `addtask`
 
 Creates a new task and adds it to the current project.
+
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![add_task](images/addTask.png)
 
@@ -273,6 +309,8 @@ Example: `addtask tn/Do User Guide tp/30 td/29-02-2020 00:00:00` creates a task 
 
 Assigns a task to a teammate within a project.
 
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
+
 ![assign_task](images/assign.png)
 
    *Figure 14: The task named `Do User Guide` is assigned to `LucasTai98`*
@@ -288,6 +326,8 @@ Example: `assign 1 Lucas98` assigns task number 1 in the list to user *Lucas98*.
 ### 2.3.3 Edit task to a project `edittask`
 
 Edits the indicated task in a project.
+
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![edit_task](images/editTask.png)
 
@@ -308,6 +348,8 @@ Example: `edittask 2 tn/Finish project` changes the name of task 2 in the list t
 ### 2.3.4 Delete a task from the project `deletetask`
 
 Deletes a task and all associated information from the project.
+
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![delete_task](images/deleteTask.png)
 
@@ -333,6 +375,8 @@ Filter tasks in the task list by various task attributes:
 ![filter](images/filter.png)
 
    *Figure 17: The task list is filtered by `ta/LucasTai98` and only the task assigned to `LucasTai98` is shown on filtered task list*
+
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 Format: `filter (ta/ASSIGNEE_GITHUB_USERNAME)||(tn/KEYWORD [MORE_KEYWORDS]...)||(td/DEADLINE)||(start/START_DATE end/END_DATE)||(tp/TASK_PROGRESS)||(done/DONE_STATUS)` 
 
@@ -363,6 +407,8 @@ Example: `filter tn/CS2103T` finds all the tasks whose task names contain the ke
 
 Lists all tasks in the task list of the project.
 
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
+
 ![all_tasks](images/allTasks.png)
 
    *Figure 18: The full task list is shown*
@@ -379,6 +425,10 @@ Sort tasks in the task list by various task's attributes in ascending/descending
   - by progress - `tp/`
   - by task's name - `tn/`
   - by done status - `done/` (when a task's progress is 100, it is "done")
+
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
+
+Format: `sort (sa/)||(sd/) (td/)||((tp/)||(tn/)||(done/)` 
   - User may choose the sorting order (`sa/` for ascending order and `sd/` for descending order)
   - User may choose one attribute of task to sort the task list
 
@@ -399,6 +449,8 @@ Example: `sort sa/ td/` sorts the task list by task deadline in ascending order.
 
 View all the details of a task, beyond the little information given in the project view.
 
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
+
 ![view_task](images/viewTask.png)
 
    *Figure 21: The task 1 is shown on the task dashboard*
@@ -409,11 +461,13 @@ Format: `viewtask INDEX `
 
 Example: `viewtask 1` displays all information from task number 1 in the list.
 
-# 2.4 Teammate-related features in project scope
+# 2.4 Teammate and person management within a project
 
 ### 2.4.1 Create a new teammate in a project `addteammate`
 
 Creates a new teammate in a project with all the relevant fields contained in it.
+
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![add_teammate](images/addTeammate.png)
 
@@ -438,6 +492,8 @@ Example: `addteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/1
 
 Add an existing teammate to the current project.
 
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
+
 ![add_part](images/addPart.png)
 
    *Figure 23: The existing person named `Holsey Mood` is added to the project and shown on the teammate list*
@@ -449,6 +505,8 @@ Example: `addtoproject Lucas98` adds Lucas98 to the current project that the use
 ### 2.4.3 Remove a teammate from a project `deletefromproject`
 
 Removes an existing teammate from the current project.
+
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![delete_part](images/deletePart.png)
 
@@ -465,6 +523,8 @@ Example: `deletefromproject Lucas98` removes Lucas98 from the current project.
 ### 2.4.4 Edit a teammate’s details `editteammate`
 
 Update the information of a teammate.
+
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![edit_teammate](images/editTeammate.png)
 
@@ -484,6 +544,8 @@ Example: `editteammate LucasTai98 mn/LucasTai ma/5 Hacker Way` changes the name 
 
 View all of a specific teammate's details.
 
+Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
+
 ![view_teammate](images/viewTeammate.png)
 
    *Figure 27: The teammate with github user name `LucasTai98` is shown on the teammate dashboard*
@@ -495,6 +557,8 @@ Example: `viewteammate Lucas98` displays all the information about the teammate 
 ### 2.4.6 Delete a teammate `deleteteammate`
 
 Delete all of a specific teammate's details, as well as remove teammate from all projects teammate was a part of.
+
+Valid scopes: `PERSON_LIST`.
 
 ![delete_teammate](images/deleteTeammate.png)
 
@@ -509,10 +573,11 @@ Format: `deleteteammate GITHUB_USERNAME`
 Example: `deleteteammate Lucas97` deletes the teammate with Github username Lucas97, and removes him from any project he
  was in.
 
-# 2.5 Features in person scope
+### 2.4.7 Start work on an existing person `startperson`
 
-### 2.5.1 Start work on an existing person `startperson`
 Initialises the person specified.
+
+Valid scopes: `PERSON_LIST`, `PERSON`.
 
 ![start_persom](images/startPerson.png)
 
@@ -531,36 +596,42 @@ Examples: `startperson 1` Initialises the first person in the person list.
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that 
 contains the data of your previous Taskmania home folder.
 
+**Q**: Is my data stored in the cloud?<br>
+**A**: No, all your data is stored locally, no need to fear a potential data hack.
+
+**Q**: Do I have to save before exiting the application for my data to to safely backed up on my computer? <br>
+**A**: All your data is saved on your computer as soon as you enter in the command. There is no need to manually save
+ your data.
+
 # 4 Summary
 
-Action | Format, Examples | Scope
---------|------------------|-------
-**Get Help** | `help` | global scope
-**Exit application** | `exit` | global scope
-**Show all projects** | `listprojects` | global scope 
-**Show all persons** | `listpersons` | global scope 
-**Leave a view** | `leave` | global scope
-**Start a project** | `startproject INDEX`<br> e.g., `startproject 3` | project_list scope
-**Start a person** | `startperson INDEX`<br> e.g., `startperson 3` | person_list scope
-**Add** | `add n/PROJECT_NAME dl/DEADLINE ru/REPO_URL d/PROJECT_DESCRIPTION [tg/TAGS]... `   eg, `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/challenging` | global scope
-**Delete project** | `delete INDEX` <br> e.g. `delete 2` | global scope
-**Find KEYWORD** | `find KEYWORD` <br> e.g. `find read` | global scope
-**edit** | `edit [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESCRIPTION] [tg/TAGS...] ` eg, `edit n/Resident Evil project /d new horror`| global scope
-**Add Task** | `addtask n/TASK_NAME tp/TASK_PROGRESS td/TASK_DEADLINE ` eg, `addtask n/Do User Guide tp/30 td/29-02-2020 00:00:00` | project scope
-**Assign A Task To A Teammate** | `assign INDEX NAME` <br> e.g. `assign 1 Niaaz` | project scope
-**Edit task details** | `edittask INDEX [n/TASK_NAME[ [tp/TASK_PROGRESS] [td/TASK_DEADLINE] ` eg, `edittask 3 tn/Finish project status/true` | project scope
-**Delete a task** | `deletetask INDEX` <br>e.g. `deletetask 1` | project scope 
-**Filter tasks** | <code>filter (ta/ASSIGNEE_GITHUB_USERNAME)&#124;&#124;(tn/KEYWORD [MORE_KEYWORDS]...)&#124;&#124;(td/DEADLINE)&#124;&#124;(start/START_DATE end/END_DATE)&#124;&#124;(tp/TASK_PROGRESS)&#124;&#124;(done/DONE_STATUS)</code> <br>e.g. `filter tn/CS2103T` | project scope
-**Show all the tasks** | `alltasks` | project scope 
-**Sort tasks** | <code>sort (sa/)&#124;&#124;(sd/) (td/)&#124;&#124;(tp/)&#124;&#124;(tn/)&#124;&#124;(done/)</code> <br>e.g. `sort sa/ td/` | project scope 
-**View Details of A Task** | `viewtask INDEX` <br> e.g. `viewtask 1` | project scope
-**Create a new teammate** | `newteammate mn/TEAMMATE_NAME mg/GITHUB_USERNAME mp/PHONE_NUMBER me/EMAIL ma/ADDRESS` e.g. `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road` | project scope
-**Add a teammate to a project** | `addtoproject GITHUB_USERNAME` e.g. `addtoproject LucasTai98` | project scope
-**Remove a teammate from a project** | `deletefromproject GITHUB_USERNAME` e.g. `deletefromproject LucasTai98` | project
- scope
-**Edit teammate details** | `editteammate GITHUB_USERNAME [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]` e.g. `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way`|
-**View a teammate’s details** | `viewteammate GITHUB_USERNAME` e.g. `viewteammate Lucas98`| project scope
-**Delete a teammate** | `deleteteammate GITHUB_USERNAME` e.g. `deleteteammate Lucas98` | project scope
+Action | Format, Examples | Scope: | `PROJECT_LIST` | `PERSON_LIST` | `PROJECT` | `PERSON` | `TASK` | `TEAMMATE`
+--------|------------------|-------|---------------|---------------|-------------|--------|--------|------------
+**Get Help** | `help` |                                                                                                                                                                                                                                                          | √ | √ | √ | √ | √ | √
+**Exit application** | `exit` |                                                                                                                                                                                                                                                  | √ | √ | √ | √ | √ | √
+**Leave a view** | `leave` |                                                                                                                                                                                                                                                     | √ | √ | √ | √ | √ | √
+**Show all projects** | `listprojects` |                                                                                                                                                                                                                                         | √ | √ | √ |   | √ | √
+**Show all persons** | `listpersons` |                                                                                                                                                                                                                                           | √ | √ |   | √ |   |
+**Start a project** | `startproject INDEX`<br> e.g., `startproject 3` |                                                                                                                                                                                                          | √ |   | √ |   |   |
+**Start a person** | `startperson INDEX`<br> e.g., `startperson 3` |                                                                                                                                                                                                             |   | √ |   | √ |   |
+**Add project** | `add n/PROJECT_NAME dl/DEADLINE ru/REPO_URL d/PROJECT_DESCRIPTION [tg/TAGS]... `   eg, `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/challenging` |                                                        | √ |   | √ |   | √ | √
+**Delete project** | `delete INDEX` <br> e.g. `delete 2` |                                                                                                                                                                                                                       | √ |   | √ |   | √ | √
+**Find KEYWORD** | `find KEYWORD` <br> e.g. `find read` |                                                                                                                                                                                                                        | √ |   | √ |   | √ | √
+**Edit Project** | `edit [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESCRIPTION] [tg/TAGS...] ` eg, `edit n/Resident Evil project /d new horror`|                                                                                                                   | √ |   | √ |   | √ | √
+**Add Task** | `addtask n/TASK_NAME tp/TASK_PROGRESS td/TASK_DEADLINE ` eg, `addtask n/Do User Guide tp/30 td/29-02-2020 00:00:00` |                                                                                                                                             |   |   | √ |   | √ | √
+**Assign A Task To A Teammate** | `assign INDEX NAME` <br> e.g. `assign 1 Niaaz` |                                                                                                                                                                                               |   |   | √ |   | √ | √
+**Edit task details** | `edittask INDEX [n/TASK_NAME[ [tp/TASK_PROGRESS] [td/TASK_DEADLINE] ` eg, `edittask 3 tn/Finish project status/true` |                                                                                                                                   |   |   | √ |   | √ | √
+**Delete a task** | `deletetask INDEX` <br>e.g. `deletetask 1` |                                                                                                                                                                                                                 |   |   | √ |   | √ | √
+**Filter tasks** | <code>filter (ta/ASSIGNEE_GITHUB_USERNAME)&#124;&#124;(tn/KEYWORD [MORE_KEYWORDS]...)&#124;&#124;(td/DEADLINE)&#124;&#124;(start/START_DATE end/END_DATE)&#124;&#124;(tp/TASK_PROGRESS)&#124;&#124;(done/DONE_STATUS)</code> <br>e.g. `filter tn/CS2103T` |   |   |   | √ |   | √ | √
+**Show all the tasks** | `alltasks` |                                                                                                                                                                                                                                            |   |   | √ |   | √ | √
+**Sort tasks** | <code>sort (sa/)&#124;&#124;(sd/) (td/)&#124;&#124;(tp/)&#124;&#124;(tn/)&#124;&#124;(done/)</code> <br>e.g. `sort sa/ td/` |                                                                                                                                   |   |   | √ |   | √ | √
+**View Details of A Task** | `viewtask INDEX` <br> e.g. `viewtask 1` |                                                                                                                                                                                                           |   |   | √ |   | √ | √
+**Create a new teammate** | `newteammate mn/TEAMMATE_NAME mg/GITHUB_USERNAME mp/PHONE_NUMBER me/EMAIL ma/ADDRESS` e.g. `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road` |                                                                   |   |   | √ |   | √ | √
+**Add a teammate to a project** | `addtoproject GITHUB_USERNAME` e.g. `addtoproject LucasTai98` |                                                                                                                                                                                |   |   | √ |   | √ | √
+**Remove a teammate from a project** | `deletefromproject GITHUB_USERNAME` e.g. `deletefromproject LucasTai98` |                                                                                                                                                                 |   |   | √ |   | √ | √
+**Edit teammate details** | `editteammate GITHUB_USERNAME [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]` e.g. `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way`|                                                                                                  |   |   | √ |   | √ | √
+**View a teammate’s details** | `viewteammate GITHUB_USERNAME` e.g. `viewteammate Lucas98`|                                                                                                                                                                                      |   |   | √ |   | √ | √
+**Delete a teammate** | `deleteteammate GITHUB_USERNAME` e.g. `deleteteammate Lucas98` |                                                                                                                                                                                         |   | √ |   |   |   | 
 
 # 5 Glossary
 
