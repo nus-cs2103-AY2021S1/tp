@@ -153,6 +153,7 @@ Figure 6: <i>The class diagram of the Model component</i>
 The Model component:
 * Stores a `UserPref` object that represents the user's preferences.
 * Stores the recipe and ingredient book data.
+* Stores the recipe and ingredient usage list data.
 * Exposes an `ObservableList` of both `Recipe` and `Ingredient`, for UI component to observe and update its graphical interface.
 
 
@@ -185,9 +186,11 @@ Figure 8: <i>The class diagram of the Storage component</i>
 **Interface**: [`Storage.java`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/storage/Storage.java)
 
 As mentioned above, the `Storage` component:
-* Saves and loads `UserPref`.
-* Saves and loads the *Recipe Book* and the *Ingredient Book*.
-* Saves and loads the *Recipe Usage List* and the *Ingredient Usage List*.
+* Saves and loads `UserPref` objects in json format and read it back.
+* Saves and loads the `RecipeBook` objects in json format and read it back.
+* Saves and loads the `IngredientBook` objects in json format and read it back.
+* Saves and loads the `RecipeUsage` objects in json format and read it back.
+* Saves and loads the `IngredientUsage` objects in json format and read it back.
 
 Each component is saved in a separate file with its file path specified in UserPref.
 Each entity (eg. `Recipe`, `IngredientSet`) that needs to be saved has a corresponding `JsonAdapted{X}` class in the `chopchop.storage` package. This adapter class is responsible for converting, using Jackson, the 'normal' objects to a string representation (or to another adapter class), and to convert this string representation back to a 'normal' object.
