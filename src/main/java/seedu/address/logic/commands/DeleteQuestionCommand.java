@@ -26,7 +26,7 @@ public class DeleteQuestionCommand extends QuestionCommand {
 
     public static final String MESSAGE_USAGE = QuestionCommand.COMMAND_WORD + " " + COMMAND_WORD
             + ": Deletes a question from a student.\n\n"
-            + "PARAMETERS: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_INDEX + "QUESTION_INDEX\n\n"
             + "Example: "
             + QuestionCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1 " + PREFIX_INDEX + "1";

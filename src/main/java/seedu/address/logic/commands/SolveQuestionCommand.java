@@ -29,7 +29,7 @@ public class SolveQuestionCommand extends QuestionCommand {
 
     public static final String MESSAGE_USAGE = QuestionCommand.COMMAND_WORD + " " + COMMAND_WORD
             + ": Resolves a question from a student.\n\n"
-            + "PARAMETERS: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_INDEX + "QUESTION_INDEX "
             + PREFIX_TEXT + "QUESTION_TEXT\n\n"
             + "Example: "

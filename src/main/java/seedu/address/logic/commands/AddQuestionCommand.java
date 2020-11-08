@@ -26,7 +26,7 @@ public class AddQuestionCommand extends QuestionCommand {
 
     public static final String MESSAGE_USAGE = QuestionCommand.COMMAND_WORD + " " + COMMAND_WORD
             + ": Adds a new unresolved question to a student.\n\n"
-            + "PARAMETERS: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_TEXT + "QUESTION_TEXT\n\n"
             + "Example: "
             + QuestionCommand.COMMAND_WORD + " " + COMMAND_WORD
