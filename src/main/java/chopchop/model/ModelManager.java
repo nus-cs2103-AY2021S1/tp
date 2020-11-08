@@ -292,6 +292,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public List<Pair<String, String>> getRecipesMadeBetween(LocalDateTime after, LocalDateTime before) {
+        return this.recipeUsageList.getUsagesBetween(after, before);
+    }
+
+    @Override
+    public List<Pair<String, String>> getIngredientsUsedBetween(LocalDateTime after, LocalDateTime before) {
+        return this.ingredientUsageList.getUsagesBetween(after, before);
+    }
+
+    @Override
     public void addRecipeUsage(Recipe recipe) {
         RecipeUsage usage = new RecipeUsage(recipe.getName(), LocalDateTime.now());
         this.recipeUsageList.add(usage);
