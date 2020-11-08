@@ -506,7 +506,7 @@ Use case ends.
 
 **Extensions**
 - 1a. The format of add method is invalid.
-    - 1a1. McGymmy shows an error message.
+    - 1a1. McGymmy shows an error message.<br>
     Use case ends.
 
 **Use case: UC03 Delete food**
@@ -615,14 +615,12 @@ Use case ends
 **MSS**
 1. User requests to find (filter) food items based on certain criteria.
 2. McGymmy shows an updated list based on the filter criteria.
-
 Use case ends.
 
 **Extensions**
 - 1a. The format of find method is invalid.
    - 1a1. McGymmy shows an error message.
-
-Use case ends.
+    Use case ends.
     
 **Use case: UC09 Clear**
 
@@ -648,7 +646,7 @@ Use case ends.
 
 **Extensions**
  - 1a. The format for the save file is invalid.
-    - 1a1. McGymmy shows an error message.
+    - 1a1. McGymmy shows an error message.<br>
     Use case ends.
  - 1b. The path to the save file is invalid.
     - 1b1. McGymmy shows an error message.<br>
@@ -709,8 +707,8 @@ Use case ends.
 
 **Extensions**
 
-1a. McGymmy shows the error message that there is no command left to undo.<br>
-Use case ends.
+- 1a. McGymmy shows the error message that there is no command left to undo.<br>
+    Use case ends.
 
 **Use case: UC15 List all macro commands**
 
