@@ -109,19 +109,7 @@ Here are some general information you would need to know about our commands as y
 
 <div markdown="span" class="alert alert-info">
 
-<<<<<<< HEAD
-* In Eva, you can store information about staff and applicants. Information includes details like name, phone number 
-and more. As such, in order to prevent incorrect details from being stored, make sure you follow these guidelines
-on storing these details
-  * Names can be contain only alphanumeric characters and have a character limit of 70 characters.
-  * Phone numbers can only contain numbers, and should be at least 8 digits long.
-  * Emails should be of the format local-part@domain where the local-part should contain alpha numeric characters or 
-    special characters which includes ( !#$%&'*+/=?`{|}~^.-_ ) excluding the parentheses. The domain name should have 
-    at least 2 characters and contain only alphanumeric with a period or a hyphen for the characters in between if 
-    needed.
-  * Tags can only contain alphanumeric characters. 
-  * All dates should be in the format DD/MM/YYYY. 
-=======
+
 In Eva, you can store information about staff and applicants. Information includes details like name, phone number 
 and more. As such, in order to store these details in a neat and tidy manner, be sure to follow these guidelines
 on storing these details:
@@ -134,7 +122,6 @@ on storing these details:
 | **Tag**  | can only contain alphanumeric characters.       |  `hardworking`    |
 | **Date**  | must be in the format `DD/MM/YYYY`            |  6th of July 2020 represented as `06/07/2020`<br> Note: Eva automatically corrects wrong dates like 30/02/2020 and 31/11/2020 to 29/02/2020 and 30/11/2020 respectively.  |
       
->>>>>>> master
 </div>
 
 <div markdown="block" class="alert alert-primary">
@@ -271,15 +258,6 @@ Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]�
    please ensure that both their phone number and email addresses are different
 
 <div markdown="block" class="alert alert-primary">
-<<<<<<< HEAD
- 
-:bulb: **Tip:**<br>
-
- - The details of each field can be provided in any order.
- - In the case of multiple similar prefixes, the description of the last prefix will be used (excluding tags and comments).
- 
- </div>
-=======
 
 :bulb: **Tip:** <br>
 
@@ -288,8 +266,6 @@ Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]�
  - In the case of multiple similar prefixes, the argument of the last prefix will be used (excluding tags and comments).<br>
  
 </div>
-
->>>>>>> master
  
 Examples:
 * To add only the necessary fields <br>
@@ -333,14 +309,9 @@ Example:
 Deletes a staff from Eva. 
 
 <div markdown="block" class="alert alert-danger">
-<<<<<<< HEAD
-:exclamation: **Important!**<br>
-Please take note that this action is irreversible.
-=======
 
-:exclamation: **Please take note that this action is irreversible.**
+:exclamation: **Important!: Please take note that this action is irreversible.**
 
->>>>>>> master
 </div>
 <br>
 
