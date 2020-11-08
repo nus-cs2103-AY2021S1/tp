@@ -508,15 +508,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to add a label to a tag.
 2. HelloFile adds the label to the tag.
 
+    Use case ends.
+
 **Extensions**
 
 * 2a. HelloFile cannot find the tag entered.
 
     * 2a1. HelloFile prompts the user that the tag cannot be found.
     
+        Use case resumes from step 1.
+    
 * 2b. HelloFile detects the label entered to be invalid.
 
     * 2b1. HelloFile prompts the user that the label entered is invalid.
+    
+        Use case resumes from step 1.
 
 <br />
 
@@ -530,15 +536,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to remove a specific label of a tag.
 2. HelloFile removes the label from the tag.
 
+    Use case ends.
+
 **Extensions**
 
 * 2a. HelloFile cannot find the tag entered.
 
     * 2a1. HelloFile prompts the user that the tag cannot be found.
     
+        Use case resumes from step 1.
+    
 * 2b. HelloFile detects that the tag does not have the label.
 
     * 2b1. HelloFile prompts the user that the label cannot be found on the tag.
+    
+        Use case resumes from step 1.
 
 <br />
 
@@ -552,11 +564,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to undo the last command executed.
 2. HelloFile resets the state of the app to the state before the execution of the last command.
 
+    Use case ends.
+    
 **Extensions**
 
 * 2a. HelloFile detects that there is no past command to be undo.
 
     * 2a1. HelloFile prompts the user that there is no command to be undo.
+    
+        Use case resumes from step 1.
 
 <br />
 
@@ -570,11 +586,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to redo an undo command executed.
 2. HelloFile resets the state of the app to the state before the execution of the last undo command.
 
+    Use case ends.
+
 **Extensions**
 
 * 2a. HelloFile detects that there is no undo command to be redo.
 
     * 2a1. HelloFile prompts the user that there is no undo commands to be redo.
+    
+        Use case resumes from step 1.
 
 <br />
 
