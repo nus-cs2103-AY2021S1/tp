@@ -141,6 +141,8 @@ The `Model`,
 The detailed class diagram for the investigation case package is shown below. 
 ![Investigation Case Class Diagram](images/InvestigationCaseClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -150,6 +152,8 @@ The detailed class diagram for the investigation case package is shown below.
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save Pivot's data in json format and read it back.
+
+<div style="page-break-after: always;"></div>
 
 ### State component
 
