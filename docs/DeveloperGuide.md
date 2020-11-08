@@ -344,6 +344,10 @@ such as `CommandResult` and `Storage` are left out of the sequence diagram as th
 of the find entries command.
 </div>
 
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
 #### Design consideration
 Explanation why a certain design is chosen.
 
