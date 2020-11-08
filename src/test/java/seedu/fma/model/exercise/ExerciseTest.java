@@ -51,6 +51,6 @@ public class ExerciseTest {
 
     @Test
     void testToString() {
-        assertEquals("Flying kicks\nCalories per rep: 15", EXERCISE_A.toString());
+        assertEquals("Name: Flying kicks\nCalories per rep: 15", EXERCISE_A.toString());
     }
 }

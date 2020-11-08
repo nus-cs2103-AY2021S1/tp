@@ -53,6 +53,16 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseName_emptySpaces_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName("     "));
+    }
+
+    @Test
+    public void parseName_emptyString_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(""));
+    }
+
+    @Test
     public void parseName_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME));
     }
