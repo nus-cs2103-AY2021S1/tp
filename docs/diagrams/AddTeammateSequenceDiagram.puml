@@ -4,8 +4,8 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":MainCatalogueParser" as MainCatalogueParser LOGIC_COLOR
-participant ":AddTeammateCommandParser" as NewTeammateCommandParser LOGIC_COLOR
-participant ":AddTeammateCommand" as NewTeammateCommand LOGIC_COLOR
+participant ":AddTeammateCommandParser" as AddTeammateCommandParser LOGIC_COLOR
+participant ":AddTeammateCommand" as AddTeammateCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -14,7 +14,7 @@ participant ":Model" as Model MODEL_COLOR
 participant "Electrek:Project" as Project MODEL_COLOR
 end box
 
-[-> LogicManager : execute("newteammate...")
+[-> LogicManager : execute("addteammate...")
 activate LogicManager
 
 LogicManager -> Model: getStatus()
@@ -23,59 +23,59 @@ activate Model
 Model --> LogicManager: status
 deactivate Model
 
-LogicManager -> MainCatalogueParser : parseCommand("newteammate...", status)
+LogicManager -> MainCatalogueParser : parseCommand("addteammate...", status)
 activate MainCatalogueParser
 
-create NewTeammateCommandParser
-MainCatalogueParser -> NewTeammateCommandParser
-activate NewTeammateCommandParser
+create AddTeammateCommandParser
+MainCatalogueParser -> AddTeammateCommandParser
+activate AddTeammateCommandParser
 
-NewTeammateCommandParser --> MainCatalogueParser
-deactivate NewTeammateCommandParser
+AddTeammateCommandParser --> MainCatalogueParser
+deactivate AddTeammateCommandParser
 
-MainCatalogueParser -> NewTeammateCommandParser : parse("newteammate...")
-activate NewTeammateCommandParser
+MainCatalogueParser -> AddTeammateCommandParser : parse("addteammate...")
+activate AddTeammateCommandParser
 
-create NewTeammateCommand
-NewTeammateCommandParser -> NewTeammateCommand
-activate NewTeammateCommand
+create AddTeammateCommand
+AddTeammateCommandParser -> AddTeammateCommand
+activate AddTeammateCommand
 
-NewTeammateCommand --> NewTeammateCommandParser : teammate
-deactivate NewTeammateCommand
+AddTeammateCommand --> AddTeammateCommandParser : teammate
+deactivate AddTeammateCommand
 
-NewTeammateCommandParser --> MainCatalogueParser : teammate
-deactivate NewTeammateCommandParser
+AddTeammateCommandParser --> MainCatalogueParser : teammate
+deactivate AddTeammateCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-NewTeammateCommandParser -[hidden]-> MainCatalogueParser
-destroy NewTeammateCommandParser
+AddTeammateCommandParser -[hidden]-> MainCatalogueParser
+
 
 MainCatalogueParser --> LogicManager : teammate
 deactivate MainCatalogueParser
 
-LogicManager -> NewTeammateCommand : execute()
-activate NewTeammateCommand
+LogicManager -> AddTeammateCommand : execute()
+activate AddTeammateCommand
 
-NewTeammateCommand -> Model : getProjectToBeDisplayedOnDashboard().get()
+AddTeammateCommand -> Model : getProjectToBeDisplayedOnDashboard().get()
 activate Model
 
-Model --> NewTeammateCommand : Electrek
+Model --> AddTeammateCommand : Electrek
 deactivate Model
 
-NewTeammateCommand -> Project : addProject(project)
+AddTeammateCommand -> Project : addProject(project)
 activate Project
 
-Project --> NewTeammateCommand :
+Project --> AddTeammateCommand :
 deactivate Project
 
 create CommandResult
-NewTeammateCommand -> CommandResult
+AddTeammateCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> NewTeammateCommand
+CommandResult --> AddTeammateCommand
 deactivate CommandResult
 
-NewTeammateCommand --> LogicManager : result
-deactivate NewTeammateCommand
+AddTeammateCommand --> LogicManager : result
+deactivate AddTeammateCommand
 
 [<--LogicManager
 deactivate LogicManager
