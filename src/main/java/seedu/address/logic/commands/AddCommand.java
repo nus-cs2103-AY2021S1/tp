@@ -12,7 +12,6 @@ import java.util.Optional;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ExerciseModel;
-import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Weight;
 import seedu.address.model.goal.Goal;
@@ -69,8 +68,8 @@ public class AddCommand extends CommandForExercise {
         Optional<Goal> optionalGoal = model.addExercise(toAdd);
         if (optionalGoal.isPresent()) {
             Goal goal = optionalGoal.get();
-            return new CommandResult(String.format(MESSAGE_SUCCESS + MESSAGE_GOAL,toAdd,burntWeight.toString(),
-                    goal.getCalories(),goal.getDate()));
+            return new CommandResult(String.format(MESSAGE_SUCCESS + MESSAGE_GOAL, toAdd, burntWeight.toString(),
+                    goal.getCalories(), goal.getDate()));
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd, burntWeight.toString()));
     }

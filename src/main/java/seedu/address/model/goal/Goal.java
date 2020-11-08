@@ -1,7 +1,5 @@
 package seedu.address.model.goal;
 
-import com.sun.javafx.geom.AreaOp;
-
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 
@@ -11,9 +9,9 @@ import seedu.address.model.exercise.Date;
  */
 public class Goal {
 
+    public static final Calories DEFAULT_CALORIES = new Calories("0");
     public final Calories goal;
     public final Date date;
-    public static final Calories DEFAULT_CALORIES = new Calories("0");
 
     /**
      * Constructs a {@code Goal}.
@@ -25,6 +23,10 @@ public class Goal {
         this.date = date;
     }
 
+    /**
+     * Creates a default goal with 0 calories at a particular date.
+     * @param date
+     */
     public Goal(Date date) {
         this.goal = DEFAULT_CALORIES;
         this.date = date;
