@@ -35,9 +35,9 @@ Given below are my contributions to the project.
   * Maintained issue tracker by setting up milestones, label and triaging bugs
 
 * **Enhancements to existing features**:
-  * Wrote most of the tests for session model (PR: [\#140](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/140))
-  * Adapted saving to storage to include session objects (PR: [\#72](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/72)) 
   * Repurposed tag to keep track of allergies / injury history (PR: [\#46](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/46))
+  * Adapted saving to storage to include session objects (PR: [\#72](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/72)) 
+  * Wrote most of the tests for session model (PR: [\#140](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/140))
 
 * **Documentation**:
   * User Guide:
@@ -56,4 +56,8 @@ Given below are my contributions to the project.
 
 * **Tools**:
   * Integrated a new Github plugin (PlantUML) to the team repo.
+  
+* **Community**:
+    * PRs reviewed (with non-trivial review comments): [\#101](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/101), [\#230](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/230), [\#231](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/231)                                           
+    * Reported bugs and suggestions for Group [CS2103T-T15-4](https://ay2021s1-cs2103t-t15-4.github.io/tp/UserGuide.html) on CATcher.
 
