@@ -18,7 +18,11 @@ Another major goal is to better help developers extend McGymmy to improve on its
 :bulb: **Tip:** This indicates that the following text consists of tips to better utilise MG
 
 </div>
+<div markdown="span" class="alert alert-info">
+
 :information_source: **Note:** This indicates important notes for current feature we are looking at<br>
+
+</div>
 
 ## 3. A little note from the developers
 
@@ -388,9 +392,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![Structure of the Macro Component](images/MacroClassDiagram.png)
 
+<div markdown="span" class="alert alert-info">
+
 As with the other class diagram for the *Logic* component above, we omit some details in the above diagram for clarity.
 
-Macros are a way for users to create shortcuts to run several commands in succession, with arguments. For more information please refer to the user guide.
+</div>
+
+Macros are a way for users to create shortcuts to run several commands in succession, with arguments. For more information please refer to the [user guide](https://ay2021s1-cs2103t-w17-3.github.io/tp/UserGuide.html).
 
 There are two 'parts' to the macro component:
 
@@ -407,12 +415,13 @@ A short description of the process including the parsing of macros is as follows
 1. If command word is `macro`, return a `NewMacroCommand` (which will create a new `macro` when executed).
 2. Else if command word is an existing macro, call the `asCommandInstance` method in the `MacroRunner` class to create a `CommandExecutable` from the macro and return that.
 3. Else hand over to primitive command parser.
+4. Else, a CommandException will be thrown
 
 #### 7.5.2 Structure of the macro classes
 
 The main data objects for macros are the `Macro` and `MacroList` classes. These are stored in the `Model`.
 
-`Macro` is an immutable container containing data such as the name, arguments to and commands to execute in the macro as strings.
+`Macro` is an immutable container containing data such as the name, as well as arguments and commands that would be executed in the macro as strings.
 
 `MacroList` is an immutable container of `Macro`s.
 
@@ -421,9 +430,9 @@ Lastly, the `MacroRunner` utility class in the `Logic` component is responsible 
 #### 7.5.3 Execution of macros
 
 Here we detail what exactly happens in each macro's `toCommandExecutable` object.
-Throughout this section, we will use the following macro as an example: `macro test a;add -n \a breakfast 200`.
+Throughout this section, we will use the following macro as an example: `macro test a;add -n \a breakfast -c 200`.
 
-1. Parameters supplied by the user are substituted into the macro's lines using regular expressions. For the example if the user enters `test -a rice`, `rice` will be substituted into the `\a` part of `add -n \a breakfast 200` to obtain `add -n rice breakfast 200`;
+1. Parameters supplied by the user are substituted into the macro's lines using regular expressions. For the example if the user enters `test -a rice`, `rice` will be substituted into the `\a` part of `add -n \a breakfast -c 200` to obtain `add -n rice breakfast -c 200`;
 2. Pass the list of strings to a new instance of `PrimitiveCommandParser` to get a list of `Command`s. If a `ParseException` occurs, we recast it as a `CommandException` and re-throw it.
 3. Execute all these `Command`s in sequence, and return a new `CommandResult` created from concatenating the respective `CommandResults` returned by the `Command`s. If a `CommandException` occurs in this sequence, that exception is thrown with the added message listing the commands that have executed successfully, and commands that have yet to be executed.
 
@@ -431,10 +440,10 @@ Below is a sequence diagram summarizing the main interactions.
 
 ![Sequence diagram for macro](images/MacroSequenceDiagram.png)
 
-#### 7.5.3 Additional considerations for this implementation
-Alternatively could have done the parsing/compiling on creation of the macro so we don't need to use another parser during execution.
-That is, each macro instance could contain its own `ParameterSet` which could then be used by its callee functions.
-This implementation is considerably more involved hence we proceeded with the current implementation.
+##### 7.5.4 Aspect: How undo executes
+
+* **Alternative 1:** done the parsing/compiling on creation of the macro so we don't need to use another parser during execution.
+  * Cons: More involved and prone to bugs
 
 --------------------------------------------------------------------------------------------------------------------
 
