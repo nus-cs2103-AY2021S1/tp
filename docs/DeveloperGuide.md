@@ -2800,7 +2800,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Updating a stock from the inventory.
 
-    1. Prerequisites: Multiple stocks in the list. Stocks exists in inventory.
+    1. Prerequisites: Multiple stocks in the list. `Flower11` and `Flower12` stocks exists in inventory.
 
     1. Test case: `update sn/FLower11 iq/+50`<br>
        Expected: The stock with serial number Flower11 will have an increase of quantity by 50.
@@ -2814,23 +2814,35 @@ testers are expected to do more *exploratory* testing.
        Expected: The stock with serial number Flower11 will have a new quantity 2103.
        Details of the updated stock is shown in the status message.
 
-    1. Test case: `update sn/Flower11 n/Rose`
+    1. Test case: `update sn/Flower11 n/Rose` <br>
        Expected: The stock with serial number Flower11 will have a new name Rose.
        Details of the updated stock is shown in the status message.
 
-    1. Test case: `update sn/Flower11 l/Vase 3`
+    1. Test case: `update sn/Flower11 l/Vase 3` <br>
        Expected: The stock with serial number Flower11 will have a new location Vase 3.
        Details of the updated stock is shown in the status message.
 
-    1. Test case: `update sn/FLower11 iq/+50 n/Rose l/Vase 3`
+    1. Test case: `update sn/FLower11 iq/+50 n/Rose l/Vase 3` <br>
        Expected: The stock with serial number Flower11 will have an increase of quantity by 50, a new name Rose,
        and a new location Vase3
        Details of the updated stock is shown in the status message.
 
-    1. Test case: `update sn/FLower11 sn/Flower12 iq/+50 n/Rose l/Vase 3`
+    1. Test case: `update sn/FLower11 sn/Flower12 iq/+50 n/Rose l/Vase 3` <br>
        Expected: The stock with serial number Flower11 and Flower12 will have an increase of quantity by 50, a new name Rose,
        and a new location Vase3.
        Details of the updated stock is shown in the status message.
+     
+    1. Test case: `update` <br>
+       Expected: No stock updated due to invalid command format.
+       Error details shown in the status message. Suggestion message will be shown too.
+    
+    1. Test case: `update sn/Flower13` <br>
+       Expected: No stock updated due to stock not found.
+       Error details shown in the status message. Suggestion message will be shown too.
+    
+    1. Test case: `update sn/Flower11 sn/Flower13 n/Rose` <br>
+       Expected: No stock updated due to stock `Flower13` not found.
+       Error details shown in the status message. Suggestion message will be shown too.
 
 ### Generate statistics
 
