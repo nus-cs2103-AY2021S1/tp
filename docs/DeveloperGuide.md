@@ -138,41 +138,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Implemented\] Import timetable feature
-The user can import information about their lessons into ProductiveNUS using their NUSMods timetable URL.
-
-#### Reasons for implementation:
-Users may find it inconvenient to constantly refer to their NUSMods timetable whenever they want to check if they are
-available on a specific date and time. By giving users the option to add their lesson information into ProductiveNUS,
-it will help increase the user's convenience as all their academic related schedule can be found in one place.
-
-ProdutiveNUS can also better schedule the user's work with their timetable information available, avoiding any clashes
-in schedule.
-
-#### Current implementation:
-- The import command is a typical command used in ProductiveNUS. It extends `Command` and overrides the method `execute`
-in `CommandResult`. `ImportCommandParser` implements `Parser<ImportCommand>` and it parses the user's input to return an
-`ImportCommand` object. The constructor of `ImportCommand` takes in the prefix url/ and the user's NUSMods timetable
-url.
-
-- A call to `TimetableRetriever` will be made. `TimetableRetriever` takes the user's timetable data which was parsed by
-`ImportCommandParser` and makes a HTTP GET request to NUSMods API. NUSMods sends `TimetableRetriever` the relevant JSON
-data. The data is parsed and returns as a list of `Lessons`.
-
-The following sequence diagram shows the sequence when LogicManager executes `import` command.
-![Interactions Inside the Logic Component for the `import url/URL` Command](images/ImportSequenceDiagram.png)
-
-1. The `execute` method of `LogicManager` is called when a user keys in an input into the application and `execute`
-takes in the input.
-2. The `parseCommand` method of `ProductiveNusParser` parses the user input and returns an initialized
-`ImportCommandParser` object and further calls the `parse` method of this object to identify the URL in the user input.
-3. It calls the `TimetableUrlParser` with the URL and it returns a `TimetableData` object.
-4. `ImportCommandParser` returns an `ImportCommand` object.
-5. There is return call to `LogicManager` which then calls the overridden `execute` method of `ImportCommand`.
-6. The `execute` method of `ImportCommand` will call the `retrieveLessons` method from `TimetableRetriever`, which
- returns a list of lessons to be added.
-7. The `execute` method returns a `CommandResult` object.
-
 ### \[Implemented\] Schedule an assignment
 
 The user can input a deadline and expected time for an assignment to get a suggested start time and end time to work on the assignment.
@@ -210,6 +175,50 @@ A usage scenario would be when a user wants to schedule an assignment.
 3. If user input is valid, it returns a `ScheduleCommand` object, which takes in a predicate. (`ExpectedHours` in this example user input)
 4. There is return call to `LogicManager` which then calls the overridden `execute` method of `ScheduleCommand`.
 6. The `execute` method returns a `ScheduleResult` object.
+
+### Import timetable feature
+The user can import information about their lessons into ProductiveNUS using their NUSMods timetable URL.
+Added lessons can be found in the `Upcoming Tasks` section of ProductiveNUS.
+
+It implements the following operations:
+* `import url/https://nusmods.com/timetable/sem-1/share?CS2100=TUT:01&EC1301=TUT:S28` - Adds an NUSMods semester 1 timetable
+ consisting of CS2100 tutorial 01 lessons and EC1301 tutorial S28 lessons.
+
+#### Reasons for implementation:
+Users may find it inconvenient to constantly refer to their NUSMods timetable whenever they want to check if they are
+available on a specific date and time. By giving users the option to add their lesson information into ProductiveNUS,
+it will help increase the user's convenience as all their academic related schedule can be found in one place.
+
+As a student user, the following scenario is likely:
+- The user wants to import their timetable so that they can better schedule their assignments with their lesson timings taken into account.
+
+ProductiveNUS can also better schedule the user's work with their timetable information available, avoiding any clashes
+in schedule.
+
+#### Current implementation:
+- The import command is a typical command used in ProductiveNUS. It extends `Command` and overrides the method `execute`
+in `CommandResult`. `ImportCommandParser` implements `Parser<ImportCommand>` and it parses the user's input to return an
+`ImportCommand` object. The constructor of `ImportCommand` takes in the prefix url/ and the user's NUSMods timetable
+url.
+
+- A call to `TimetableRetriever` will be made. `TimetableRetriever` takes the user's timetable data which was parsed by
+`ImportCommandParser` and makes a HTTP GET request to NUSMods API. NUSMods sends `TimetableRetriever` the relevant JSON
+data. The data is parsed and returns as a list of `Lessons`.
+
+#### Usage Scenario
+
+The following is the usage scenario of when a user imports an NUSMods timetable.
+
+1. The `execute` method of `LogicManager` is called when a user keys in an input into the application and `execute` takes in the input.
+1. The `parseCommand` method of `ProductiveNusParser` parses the user input and returns an initialized `ImportCommandParser` object and further calls the `parse` method of this object to identify the URL in the user input.
+1. It calls the `TimetableUrlParser` with the URL and it returns a `TimetableData` object.
+1. `ImportCommandParser` returns an `ImportCommand` object.
+1. There is return call to `LogicManager` which then calls the overridden `execute` method of `ImportCommand`.
+1. The `execute` method of `ImportCommand` will call the `retrieveLessons` method from `TimetableRetriever`, which returns a list of lessons to be added.
+1. The `execute` method returns a `CommandResult` object.
+
+The following sequence diagram shows the sequence when LogicManager executes `import` command.
+![Interactions Inside the Logic Component for the `import url/URL` Command](images/ImportSequenceDiagram.png)
 
 ### Find by specific fields feature
 
@@ -329,6 +338,39 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 1. The `setAssignment` method of `Model` is repeatedly called, once for each `Index` in `List<Index>`. In this case, the loop terminates after 2 times.
 1. A `CommandResult` object is returned from `execute()`.
 
+### Prioritize assignments feature
+The user can set priorities for a single assignment.
+Prioritized assignments will have a coloured tag in the assignment list section in ProductiveNUS.
+
+It implements the following operations:
+* `prioritize 1 p/LOW` - Sets a low priority (green tag) for the 1st assignment in the displayed assignment list.
+* `prioritize 2 p/MEDIUM` - Sets a medium priority (orange tag) for the 2nd assignment in the displayed assignment list.
+* `prioritize 3 p/HIGH` - Sets a high priority (red tag) for the 3rd assignment in the displayed assignment list.
+
+#### Reasons for Implementation
+It is likely that the user will want to categorise their assignments into different priorities, each are of different
+importance. This way it is easier for the user to plan our their schedule, possibly allocating more time to assignments
+that are of greater priority.
+
+#### Current Implementation
+- The prioritize command extends abstract class `Command` and overrides the method `execute` in `CommandResult`.
+- `PrioritizeCommandParser` implements `Parser<PrioritizeCommand>` and it parses the user's input to return a `PrioritizeCommand` object.
+- The constructor of `PrioritizeCommand` takes in `Index` and `Priority`.
+
+#### Usage Scenario
+The following is a usage scenario of when the user wants to set a high priority for the 3rd assignment in their displayed assignment list.
+
+1. `execute("prioritize 3 p/HIGH")` of `LogicManager` calls the `parseCommand` method of `ProductiveNusParser`.
+1. `parseCommand("prioritize 3 p/HIGH")` parses the String `"prioritize 3 p/HIGH"` and returns an initialized `PrioritizeCommandParser` object. 
+1. `parseCommand("prioritize 3 p/HIGH")` calls the `parse` method in `PrioritizeCommandParser` and checks if index and priority input are valid.
+1. If the index and priority are valid, it returns a `PrioritizeCommand` object, which takes in `Index` `3` and `Priority` `HIGH`.
+1. There is return call to `LogicManager` which then calls the overridden `execute` method of `PrioritizeCommand`.
+1. The `execute` method of `PrioritizeCommand` will call the `setAssignment` method of `Model` to update the assignment with the new priority.
+1. The `updateFilteredAssignmentList` method of the `Model` is then called to display all assignments in the assignment list.
+1. A `CommandResult` object is returned from `execute()`.
+
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("prioritize 3 p/HIGH")` API call.
+![Interactions Inside the Logic Component for the `prioritize 3 p/HIGH` Command](images/PrioritizeSequenceDiagram.png)
 
 ### List by days feature
 
@@ -520,8 +562,10 @@ Below is an Activity Diagram illustrating the flow of activities when the applic
 ![Activity diagram for Auto updating of task list](images/AutoUpdateTaskListActivityDiagram.png)
 <br/>*Figure X: Activity diagram for automated updating of UniqueTaskList*
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Due to limitations of PlantUML, arrows are not able to point towards the branch indicator (represented by a diamond) to represent loops.
-
+<div markdown="span" class="alert alert-info">
+ **:information_source: Note:**
+Due to limitations of PlantUML, arrows are not able to point towards the branch indicator (represented by a diamond) to represent loops.
+</div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -680,6 +724,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.
 
         Use case ends.
+
+**Use case: UC06 - Prioritize assignment**
+
+**MSS**
+
+1. User requests to prioritize an assignment HIGH.
+2. ProductiveNUS sets a HIGH priority to the assignment.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User requests to prioritize an assignment with an invalid Priority such as VERY HIGH.
+    * 1a1. ProductiveNUS shows an error message.
+
+        Use case ends.
     
 ### Non-Functional Requirements
 
@@ -703,9 +763,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
+<div markdown="span" class="alert alert-info">
+ **:information_source: Note:**
+These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
 </div>
 
 ### Launch and shutdown
@@ -844,6 +904,14 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `find p/high medium`<br>
       Expected: Assignments HIGH or MEDIUM priority is displayed. Message with number of assignments listed is displayed in Message Box.
 
+### Importing timetable
+
+1. Importing a timetable for the first time
+    1. Test case: `import url/www.google.com`<br>
+       Expected: No lessons imported. Error details shown in the status message.
+    1. Test case: `import url/https://nusmods.com/timetable/sem-1/share?CS2100=TUT:01&EC1301=TUT:S28`<br>
+       Expected: The corresponding lessons imported. Success message shown in the status message. Imported lessons are shown in the task list.
+
 ### Setting reminders for assignments
 
 1. Setting reminders for assignments while all assignment are being shown
@@ -973,4 +1041,4 @@ Furthermore, JavaFX has its own set of classes for multithreading implementation
 
 ### Achievements
 #### JavaFx
-We have successfully imeplented multithreading with JavaFX applications in order to enhance the functionalities of ProductiveNUS.
+We have successfully implemented multithreading with JavaFX applications in order to enhance the functionality of ProductiveNUS.
