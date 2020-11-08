@@ -345,14 +345,16 @@ tag(s) by editing employee's information feature (Refer to `c-edit` command).<br
 </div>
 
 Example:
+
 Let's say you want to find out who is available to work on `Monday` or `Friday`. In this case, the two 
 keywords are `Monday` and `Friday`. You can follow these instructions:
 
-Steps to find employees who are available to work on `Monday` or `Friday`:
+
 1. Type `c-tag-find monday friday` into the _Command Box_.
 2. Press "Enter" to execute.
 
 Outcome:
+
 1. The _Result Display_ will show the total number of employees who are can work on `Monday` or `Friday`.
 
 2. Employees who are can work on `Monday` or `Friday` will be listed in the Employee Directory inside the _Main View_.
@@ -381,14 +383,15 @@ tag(s) by editing employee's information feature (Refer to `c-edit` command).<br
 </div>
 
 Example:
+
 Let's say today is `Thursday`. You want to find out who are the available manpower for today. 
 You can follow these instructions:
 
-Steps to find today's available manpower:
 1. Type `c-today` into the _Command Box_.
 2. Press "Enter" to execute.
 
 Outcome:
+
 1. The _Result Display_ will show 3 information:
     
     a. Today's day. (e.g. Today is THURSDAY.)
@@ -396,6 +399,7 @@ Outcome:
     b. Total number of employees who are available today.
     
     c. The success message.
+    
 2. The available manpower for today will be listed in the Employee Directory inside the _Main View_.
 
 ![FindByTagTodayCommandScreenshot](images/FindByTagTodayCommandScreenshot.png)
@@ -422,14 +426,15 @@ tag(s) by editing employee's information feature (Refer to `c-edit` command).<br
 </div>
 
 Example:
+
 * Let's say tomorrow is `Friday`. You want to find out who are the available manpower for tomorrow. 
 You can follow these instructions:
 
-Steps to find tomorrow's available manpower:
 1. Type `c-tomorrow` into the _Command Box_.
 2. Press "Enter" to execute.
 
 Outcome:
+
 1. The _Result Display_ will show 3 information:
     
     a. Tomorrow's day. (e.g. Tomorrow is FRIDAY.)
@@ -488,6 +493,7 @@ If _Employee Directory_ currently shows a list of archived employees (archived e
 </div>
 
 Example:
+
 Let's say one of your employees, Alex Yeoh, is no longer working in your bubble tea shop. But he may come back
 to work again in the future. You, as a store manager, want to remove him from your employee directory without
 permanently deleting his information, so that you can retrieve/move back his information to your
@@ -499,6 +505,7 @@ can follow these instructions:
 
 
 Outcome:
+
 1. The _Result Display_ will show a success message with the employee's name that you have archived.
 2. Alex Yeoh's information will be removed from Employee Directory inside the _Main View_.
 
@@ -535,11 +542,11 @@ Format: `c-archive-all`
 </div>
 
 Example:
+
 Let's say after you familiarize yourself with tCheck, you want to remove all sample data in employee directory. But
  you don't want to permanently delete those data, so that you can use them as a reference in the future. To archive
   all employees, you can follow these instructions:
 
-Steps to archive all employees in the sample data:
 1. Type `c-archive-all` into the _Command Box_.
 2. Press "Enter" to execute.
 
@@ -575,14 +582,15 @@ Archived employees will be shown with a red color label, named as "[Archived]", 
 </div>
 
 Example:
+
 Let's say you want to see an archived employee's information. You can follow these instructions:
 
-Steps to see archived employees:
 1. Type `c-archive-list` into the _Command Box_.
 2. Press "Enter" to execute.
 
 
 Outcome:
+
 1. The _Result Display_ will show a success message.
 2. All archived employees will be listed in Employee Directory inside the _Main View_.
 
@@ -620,17 +628,19 @@ Employee Directory inside the _Main View_. For example, there are 2 employees li
 </div>
 
 Example:
+
 Let's say one of your ex-employees, Alex Yeoh, is now rehired to work in your bubble tea shop. Since he worked in
  the store before, and you archived his data when he left last time. Now, instead of typing his information again and
   use `c-add` command to add him into your employee directory. You can just unarchive him
  and move his data to your employee directory. You can follow these instructions:
 
-Steps to unarchive the first employee, Alex Yeoh, in the archived employee list:
+
 1. Type `c-unarchive 1` into the _Command Box_.
 2. Press "Enter" to execute.
 
 
 Outcome:
+
 1. The _Result Display_ will show a success message with the employee's name that you have unarchived.
 2. Alex Yeoh's information will be removed from the archived employee list shown in Employee Directory inside
  the _Main View_.
@@ -676,6 +686,7 @@ tCheck also shows a current month's calendar when you start the application. You
 
  
  Example:
+ 
  Let's say today is 8-Nov-2020, when you start tCheck, the calendar inside _Main View_ will show November's calendar,
  and hightlight today's date.
  
