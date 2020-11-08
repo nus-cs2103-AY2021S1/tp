@@ -1,0 +1,19 @@
+@startuml
+!include style.puml
+
+start
+
+:User enters a clear
+command in the command box;
+
+:TrackrParser parses the user input;
+
+:ClearCommand is excuted;
+
+:All existing modules, tutorial groups
+and students are deleted from Trackr;
+
+:returns feedback to user;
+
+stop
+@enduml

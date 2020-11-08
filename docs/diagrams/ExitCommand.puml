@@ -1,0 +1,16 @@
+@startuml
+!include style.puml
+
+start
+
+:User enters an exit
+command in the command box;
+
+:TrackrParser parses the user input;
+
+:ExitCommand is excuted;
+
+:Trackr window closes;
+
+stop
+@enduml

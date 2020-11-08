@@ -313,6 +313,13 @@ The following activity diagram summarizes how data from the Json file is read an
 
 ---
 
+## Section 5.2 - Tutorial Group Features
+In this section you will find all features related to Tutorial Groups and how they are implemented.   
+   
+The commands are: `addTG`, `editTG`, `findTG` and `deleteTG`. 
+
+cuz
+
 ## **Section 5 - Documentation, logging, testing, configuration, dev-ops**
 
 -   [Documentation guide](Documentation.md)
@@ -329,13 +336,19 @@ The following activity diagram summarizes how data from the Json file is read an
 
 **Target user profile**:
 
+-   Teaching Assistants(TAs) across NUS
 -   has a need to manage a significant number of students
+-   manages different students across different modules
+-   wants to keep track of individual students
+-   wants to keep track of module and tutorial details
 -   prefer desktop apps over other types
 -   can type fast
 -   prefers typing to mouse interactions
 -   is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:   
+-   Manage your Modules, Tutorial Groups and Students all in one place in an efficient and straightforward manner
+-   Breeze through your admin work with Trackr, so you can focus on the work that really matters
 
 ### User stories
 
@@ -525,7 +538,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+1. Deleting a person while all persons are shown
 
 1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
