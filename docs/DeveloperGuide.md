@@ -235,21 +235,6 @@ The following activity diagram summarizes what happens when a user executes a de
   * Pros : Dean does not have to memorise all the module code, can simply delete based on what is shown in the module list.
   * Cons : Less intuitive.
 
-####  Deleting a module from the module list
-
-  a. Prerequisites:  Delete a module from the module list using the `delmod` command. There are only 3 modules with module codes `CS2103`, `CS2100`, `CS1010S` in FaculType.
-
-  b. Test case: `delmod m/CS2103`
-  Expected: Module with module code `CS2103` would be deleted from the module list.
-
-  c. Test case: `delmod m/CS1101S`
-  Expected: No module is deleted from the module list since `CS1101S` is not a module that exists in the module list. Error details shown in the status message. Status bar remains the same.
-
-  d. Test case: `delmod m/CS2103 m/CS2100`
-  Expected: No module is deleted from the module list because `delmod` does not allow for multiple deletions. Error details shown in the status message. Status bar remains the same.
-
-  { more test cases ... }
-
 ### Assign feature
 
 #### Implementation
@@ -293,28 +278,6 @@ The following activity diagram summarizes what happens when a user executes a un
 
 ![UnassignActivityDiagram](images/UnassignActivityDiagram.png)
 
-#### Unassigning a certain instructor from one or more modules
-a. Prerequisites : Unassign all instructors from all modules using the `unassignall` command. There are only 3 modules with module codes `CS2103`, `CS2100`, `CS1010S` in FaculType.
-Contact on index `1` is an instructor of module with module code `CS2103` and `CS2100`, while contact on index `2` is an instructor of module with module code `CS2100` and `CS1010S`.
-
-b. Test case : `unassign 1 m/CS2103 m/CS2100`<br>
-Expected : First contact is unassigned from both CS2103 and CS2100 modules. First contact is no longer an instructor of CS2103 nor CS2100 module.
-
-c. Test case : `unassign 2 m/CS2103 m/CS2100`<br>
-Expected : No contact is unassigned from any modules because instructor on index `2` is not an instructor of module `CS2103`.
-
-d. Test case : `unassign 0 m/CS1010S`<br>
-Expected : No contact is unassigned from any modules. Error details shown in the status message. Status bar remains the same.
-
-e. Test case : `unassign 1 m/CS3230`<br>
-Expected : No contact is unassigned from any modules. Error details shown in the status message. Status bar remains the same.
-
-f. Other incorrect unassign commands to try : `unassign`, `unassign x m/y` (where x is larger that the list size or is not an instructor of module y), `unassign a m/b` (where b does not exist in FaculType)<br>
-Expected : Similar to previous.
-
-{ more test cases ... }
-
-
 ### Unassignall feature
 
 The assign feature is facilitated by `UnassignallCommand` and `UnassignallCommandParser`.
@@ -328,7 +291,6 @@ The following sequence diagram shows how the unassignall operation works:
 The following activity diagram summarizes what happens when a user executes a unassignall command:
 
 ![UnassignallActivityDiagram](images/UnassignallActivityDiagram.png)
-
 
 #### Design consideration:
 
@@ -353,19 +315,7 @@ These operations are exposed in the `Model` interface as `Model#clearContacts()`
 
 The following sequence diagram shows how the cclear operation works:
 
-![UndoRedoState0](images/ClearContactsSequenceDiagram.png)
-
-Clearing all contacts from the contact list
-
-a. Prerequisites : Clear all contacts from contact list using `cclear` There are 3 contacts with names `Andre Taulani`, `Bayu Skak`, `Cak Lontong` in FaculType.
-
-b. Test case : `cclear` <br>
-Expected : Success message saying "All contacts deleted"
-
-c. Test case : `cclear` on an empty contact list <br>
-Expected : Error message saying "Contact list is already empty".
-
-{ more test cases ... }
+![CclearSequenceDiagram](images/CclearSequenceDiagram.png)
 
 ### Clear all modules feature
 
@@ -377,19 +327,7 @@ It implements the following operations:
 These operations are exposed in the `Model` interface as `Model#clearMod()` and `UniqueModuleList` class as `UniqueModuleList#clearAll()`
 The following sequence diagram shows how the mclear operation works:
 
-![UndoRedoState0](images/MclearCommandSequenceDiagram.png)
-
-Clearing all modules from the module list
-
-a. Prerequisites : Clear all modules from module list using `mclear` There are 3 modules with module codes `CS2100`, `CS2101`, `CS2102` in FaculType.
-
-b. Test case : `mclear` <br>
-Expected : Success message saying "All modules deleted"
-
-c. Test case : `mclear` on an empty module list <br>
-Expected : Error message saying "Module list is already empty".
-
-{ more test cases ... }
+![MclearSequenceDiagram](images/MclearSequenceDiagram.png)
 
 ### Switch active semester feature
 
@@ -909,15 +847,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Contact**: A member of a faculty
-* **Contact attribute**: A piece of information associated to a contact, i.e. name, contact, number, email, department, office, remark, tag(s)
-* **Remark**: A short description of a contact. Remark is an optional contact attribute
-* **Tag**: An optional one-word identifier of a contact. A contact can have multiple tags
-* **Module**: A course held in a college or university. A module can be assigned to a contact
-* **Module attribute**: A piece of information associated to a module, i.e. module code, module name
-* **Module code**: A shorter unique identifier of a module
-* **Module name**: An identifier for a module that is more descriptive than the module code
-* **Instructor** : A faculty member who teaches a particular module
-* **Assignment**: A module handled by a contact. Assignment links a contact with a module. Once linked, the contact can be considered an instructor
+* **Contact attribute**: A piece of information associated to a contact, i.e. name, contact, number, email, department, office.
+* **Remark**: A short description of a contact. A remark is optional.
+* **Tag**: An optional one-word identifier of a contact. A contact can have multiple tags.
+* **Module**: A course held in a college or university. A module can be assigned to a contact.
+* **Module attribute**: A piece of information associated to a module, i.e. module code, module name.
+* **Module code**: A shorter unique identifier of a module.
+* **Module name**: An identifier for a module that is more descriptive than the module code.
+* **Instructor** : A contact who instructs a particular module.
+* **Assignment**: A module handled by a contact. Assignment links a contact with a module. Once linked, the contact can be considered an instructor.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -944,8 +882,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a contact
 
 1. Deleting a contact while all contacts are being shown
@@ -956,44 +892,78 @@ testers are expected to do more *exploratory* testing.
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No contact is deleted. Error details shown in the status message.
+      Expected: No contact is deleted. Error details shown in the status message. 
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Deleting a contact while contacts are being filtered
+    
+   1. Prerequisites: Filter contacts by attributes using the `find` command. Other prerequisites are similar to previous.
 
+   1. Test cases similar to previous.
+   
 ### Finding a contact
 
-1. Finding a contact while all contacts are being shown
+1. Prerequisites: List all contacts using the `list` or `clist` command. Multiple contacts in the list.
 
-   1. Prerequisites: List all contacts using the `list` or `clist` command. Multiple contacts in the list.
+1. Test case: `find n/Alice d/Math`<br>
+   Expected: All contacts that has "Alice" in their name, and "Math" in their department are shown.
 
-   1. Test case: `find n/Alice d/Math`<br>
-      Expected: All contacts that has "Alice" in their name, and "Math" in their department are shown.
+1. Test case: `find n/`<br>
+   Expected: No contacts filtered. Error details shown in the status message. 
 
-   1. Test case: `find n/`<br>
-      Expected: No contacts filtered. Error details shown in the status message.
+1. Other incorrect find commands to try: `find p/abcdef`, `find`, `find Alice`, `...`
+   Expected: Similar to previous.
 
-   1. Other incorrect find commands to try: `find p/abcdef`, `find`, `find Alice`, `...`
-      Expected: Similar to previous.
+### Clearing all contacts from the contact list
 
-1. _{ more test cases …​ }_
+1. Prerequisites : List all contacts using the `list` or `clist` command.
+
+1. Test case : `cclear` <br>
+Expected : Success message saying "All contacts deleted"
+
+1. Test case : `cclear` on an empty contact list <br>
+Expected : Error message saying "Contact list is already empty".
+
+### Clearing all modules from the module list
+
+1. Prerequisites : List all modules using the `list` or `mlist` command.
+
+1. Test case : `mclear` <br>
+Expected : Success message saying "All modules deleted"
+
+1. Test case : `mclear` on an empty module list <br>
+Expected : Error message saying "Module list is already empty".
+
+### Deleting a module from the module list
+
+1. Prerequisites:  List all modules using the `list` or `mlist` command.
+Delete a module from the module list using the `delmod` command. There are only 3 modules with module codes `CS2103`, `CS2100`, `CS1010S` in FaculType.
+
+1. Test case: `delmod m/CS2103`
+Expected: Module with module code `CS2103` would be deleted from the module list.
+
+1. Test case: `delmod m/CS1101S`
+Expected: No module is deleted from the module list since `CS1101S` is not a module that exists in the module list. Error details shown in the status message. 
+
+1. Test case: `delmod m/CS2103 m/CS2100`
+Expected: No module is deleted from the module list because `delmod` does not allow for multiple deletions. Error details shown in the status message. 
 
 ### Assigning a contact to one or more modules
 
 1. Assigning a contact while all contacts are being shown
 
-   1. Prerequisites: List all contacts and modules in the active semester using the `list` command. Active semester only has modules with module codes `CS1010`, `CS2103`, `CS2100`. 
+   1. Prerequisites: List all contacts and modules in the active semester using the `list` command. There are only 3 modules in the active semester with module codes `CS2103`, `CS2100`, `CS1010S`.
    Contact on index `1` is not an instructor of any module, while contact on index `2` is an instructor of modules with module codes `CS2103` and `CS2100`.
 
-   1. Test case : `assign 1 m/CS1010`<br>
-      Expected: First contact is assigned to the CS1010 module. Name of contact shown in module card.
+   1. Test case : `assign 1 m/CS1010S`<br>
+      Expected: First contact is assigned to the CS1010S module. Name of contact shown in module card.
       
    1. Test case : `assign 1 m/CS2103 m/CS2100`<br>
       Expected: First contact is assigned to both CS2103 and CS2100 modules. Name of contact shown in module cards.
 
-   1. Test case: `assign 2 m/CS2103 m/CS1010`<br>
+   1. Test case: `assign 2 m/CS2103 m/CS1010S`<br>
       Expected: No contacts assigned to any modules. Error details shown in the status message.
       
    1. Test case: `assign 0 m/CS2103 m/CS2100`<br>
@@ -1007,12 +977,38 @@ testers are expected to do more *exploratory* testing.
 
 1. Assigning a contact while contacts are being filtered
     
-   1. Prerequisites: Filter contacts by attributes using the `find` command. Other prerequisites are similar to previous.
+   1. Prerequisites: Filter contacts by attributes using the `find` command and list all modules using the `mlist` command. Other prerequisites are similar to previous.
 
    1. Test cases similar to previous.  
 
-1. _{ more test cases …​ }_
+### Unassigning a contact from one or more modules
 
+1. Unassigning a contact while all contacts are being shown
+
+    1. Prerequisites : List all contacts and modules using the `list` command. There are only 3 modules in the active semester with module codes `CS2103`, `CS2100`, `CS1010S`.
+    Contact on index `1` is an instructor of module with module code `CS2103` and `CS2100`, while contact on index `2` is an instructor of module with module code `CS2100` and `CS1010S`.
+
+    1. Test case : `unassign 1 m/CS2103 m/CS2100`<br>
+    Expected : First contact is unassigned from both CS2103 and CS2100 modules. First contact is no longer an instructor of CS2103 nor CS2100 module. Name of contact removed from module cards.
+
+    1. Test case : `unassign 2 m/CS2103 m/CS2100`<br>
+    Expected : No contact is unassigned from any modules because instructor on index `2` is not an instructor of module `CS2103`.
+
+    1. Test case : `unassign 0 m/CS1010S`<br>
+    Expected : No contact is unassigned from any modules. Error details shown in the status message. 
+
+    1. Test case : `unassign 1 m/CS3230`<br>
+    Expected : No contact is unassigned from any modules. Error details shown in the status message. 
+
+    1. Other incorrect unassign commands to try : `unassign`, `unassign x m/y` (where x is larger that the list size or is not an instructor of module y), `unassign a m/b` (where b does not exist in FaculType)<br>
+    Expected : Similar to previous.
+
+1. Unassigning a contact while contacts are being filtered
+
+   1. Prerequisites: Filter contacts by attributes using the `find` command and list all modules using the `mlist` command. Other prerequisites are similar to previous.
+
+   1. Test cases similar to previous.
+   
 ### Switching the active semester
 
 1. Prerequisites: Active semester is Semester 1.
@@ -1025,14 +1021,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Other incorrect assign commands to try: `switch switch`
    Expected: Similar to previous.
-         
-1. _{ more test cases …​ }_
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
 

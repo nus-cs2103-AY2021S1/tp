@@ -63,6 +63,7 @@ public class ArgumentMultimap {
         return getValue(new Prefix("")).orElse("");
     }
 
+    //@author erinmayg
     /**
      * Throws a {@code ParseException} if there is a duplicate prefix.
      */
@@ -73,6 +74,15 @@ public class ArgumentMultimap {
                 throw new ParseException(String.format(MESSAGE_DUPLICATE_PREFIX, p));
             }
         }
+    }
+    //@author erinmayg
+
+    /**
+     * Returns true if one of the prefixes has an {@code Optional} value in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean areAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     /**
