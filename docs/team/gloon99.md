@@ -29,7 +29,7 @@ Given below are my contributions to the project.
   Additionally, it allows any mistakes made when adding the meeting to be rectified.
   * Highlights: This enhancement affects existing commands and commands to be added in future.
   All the constraints of person and module has to also be accomodated for, and therefore required in-depth understanding of how those features are implemented.
-  * Credits: Code inspiration was taken from AB3's existing edit contact feature. 
+  * Credits: Code inspiration was taken from AB3's existing edit contact feature.
 
 * **New Feature**: Added a timeline feature so that users can view their meetings in a visual form
   * What it does: Users are able to visualise their meetings in a timeline format.
@@ -49,7 +49,7 @@ Given below are my contributions to the project.
 * **Project management**:
   * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
 
-* **Enhancements to existing features**: 
+* **Enhancements to existing features**:
   * Wrote tests for the meeting model, meeting add, meeting delete and meeting edit (Pull requests [\#233](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/233), [\#234](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/234))
   * Made minor tweaks to timeline GUI for light and dark mode to make it more aesthetically pleasing (Pull request [\##260](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/260))
 

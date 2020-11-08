@@ -16,7 +16,7 @@ Given below are my contributions to the project.
   * Highlights: Because the feature does not follow the existing AB3 command pattern, this enhancement required some preliminary research into the JavaFX's
   TextField library to figure out how to trigger and execute autocompletion. As such it required an in-depth analysis of design alternatives, and a lot of time
   doing trial and error with different implementations. Additionally, the implementation required an understanding of the JavaFx's event handling mechanisms which
-  was challenging especially when it came to dealing with edge cases. 
+  was challenging especially when it came to dealing with edge cases.
   * Credits: Took inspiration from the zsh autocomplete function.
 
 * **New Feature**: Fuzzy Find Completion TextField Module (Pull Requests [\#236](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/236))
@@ -24,7 +24,7 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly compared to the autocomplete function released in v1.3 because the command prefix for Autocomplete may be unintuitive to fill in for some users
   and also there was a lack of a GUI to show available suggestions. This feature greatly improves the UX.
   * Highlights: While searching online, found a very interesting solution on Stack Overflow (Link stated in credits), however it was not just a plug and play solution as the solution only supported
-  the autocompletion of only 1 word for the whole field and it is not ideal for Modduke. So in coming up with a solution, I made this new Fuzzy Find Completion (fzf) module that injects fzf capabilities to a JavaFx TextField. 
+  the autocompletion of only 1 word for the whole field and it is not ideal for Modduke. So in coming up with a solution, I made this new Fuzzy Find Completion (fzf) module that injects fzf capabilities to a JavaFx TextField.
   It was quite a difficult task because I wanted the menu to appear right at caret's position where the FZF was triggered and also allow users to continue to use the arrow keys to navigate the fzf suggestions. The most arduous part of this implementation
   was finetuning how the fzf was triggered and how to properly detect the "query" with which the suggestions will be generated on. This includes edge cases where users activate fzf in the middle of a String of text.
   Additionally, setting up testFx and getting it to work was also very time-consuming.
@@ -48,7 +48,7 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added implementation details of the `Autocomplete` feature. [\#161](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/161) , [\#271](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/271)
     * Added implementation details of the `Fuzzy Find Completion` feature. [\#278](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/278)
-    
+
 * **Tools**:
   * Integrated a TestFx to the project ([\#249](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/249))
 

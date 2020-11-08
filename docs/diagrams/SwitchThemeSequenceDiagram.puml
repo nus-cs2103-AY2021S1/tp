@@ -35,7 +35,7 @@ else triggerLightTheme
 else triggerDarkTheme
     ui-> ui : setStyleSheet(Themes.DARK_THEME)
     activate ui UI_COLOR
-    deactivate ui UI_COLOR    
+    deactivate ui UI_COLOR  
 else else
 end
 

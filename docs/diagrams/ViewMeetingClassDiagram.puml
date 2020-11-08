@@ -47,7 +47,7 @@ package Logic <<Rectangle>> {
     class "ViewMeetingCommandParser" as ViewMeetingCommandParser {
         +parse(args: String): ViewMeetingCommand
     }
-    
+
     class "{abstract}\nCommand" as Command {
     }
 }

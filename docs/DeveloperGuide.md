@@ -161,9 +161,9 @@ the autocomplete mode. And secondly, `prefix` which refers to the string that wi
 
 #### Structure of Autocomplete
 
-The autocomplete mechanism is facilitated by `AutocompleteModule` which can be attached to a JavaFX `TextField`. 
-An instance of `AutocompleteModule` will must be binded to one `TextField` object which will be enhanced with Autocomplete capabilities. 
-`AutocompleteModule` will setup the relevant listeners to its attached `TextField` object and will internally store and managed the `isAutocompleteMode` and `hasSetPrefix` states. 
+The autocomplete mechanism is facilitated by `AutocompleteModule` which can be attached to a JavaFX `TextField`.
+An instance of `AutocompleteModule` will must be binded to one `TextField` object which will be enhanced with Autocomplete capabilities.
+`AutocompleteModule` will setup the relevant listeners to its attached `TextField` object and will internally store and managed the `isAutocompleteMode` and `hasSetPrefix` states.
 This feature also makes use of the `Suggestions` class to facilitate suggestion generation based on given `prefix`. Below is a class diagram representing this structure.
 
 ![Structure of the UI Component](images/AutocompleteClassDiagram.png)
@@ -248,8 +248,8 @@ This feature is actually an improvement from autocomplete which was inspired fro
 Having visual feedback and improving flexibility of the search were the focus of this feature, however despite serving similar purposes
 we have decided to split this into two features because we want to position the `Autocomplete` feature as an entity-specific autocompletion, while our `Fuzzy Find` feature is a search-everywhere feature.
 
-The Fzf feature is facilitated by the `FzfModule` class which adopts the `TextField` module structure 
-similar to that in the `AutocompleteModule` class where we have the `FzfModule` class latching onto a TextField 
+The Fzf feature is facilitated by the `FzfModule` class which adopts the `TextField` module structure
+similar to that in the `AutocompleteModule` class where we have the `FzfModule` class latching onto a TextField
 enhancing it with Fzf capabilities. You can refer to the Autocomplete section to find out more, but to sum it up, upon attaching the module
 to a given `textfield` instance, the module instance will attach the relevant listeners to the `textfield` and manage the logic and state of the feature.
 
@@ -265,9 +265,9 @@ Besides the differences in trigger points and exit points, the biggest differenc
 feature, the query is calculated from the caret position of the last character in the `commandPrefix` to the end of string.
 
 ![ac query](./images/acQuery.png)
- 
-This inevitably has some drawbacks which forces us to disallow autocompletion from the middle of the section. To support a truly dynamic `query` field, 
-one would have to track the caret position of the start and end positions of the query, and would have to update the position accordingly to any given keystroke (e.g. Backspace or when user jumps the caret position). 
+
+This inevitably has some drawbacks which forces us to disallow autocompletion from the middle of the section. To support a truly dynamic `query` field,
+one would have to track the caret position of the start and end positions of the query, and would have to update the position accordingly to any given keystroke (e.g. Backspace or when user jumps the caret position).
 
 However, thankfully for us JavaFx already supports such a component out of the box : `TextField`. Below is a sequence diagram showing how
 `FzfModule` updates its query field using the `TextField` component.
@@ -1039,7 +1039,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | NUS Student                                | Create meetings with professors                                                                                          | Track when I have set up meetings with professors and TA’s                                                         |
 | `* * *`  | NUS Student taking many modules            | Create modules                                                                                                           | Add new modules whenever needed                                                                                    |
 | `* * *`  | NUS Student taking many modules            | View relevant groups of contacts by modules                                                                              | I can easily keep track of contact details of individuals in different modules                                     |
-| `* * `   | Lazy Typist                                | Be able to autocomplete my commands                                                                                      | Reduce time spent writing commands 
+| `* * `   | Lazy Typist                                | Be able to autocomplete my commands                                                                                      | Reduce time spent writing commands                                                                                 |
 | `* * `   | User with easily strained eyes             | Switch between light and dark mode                                                                                       | Reduce eye strain when using the application during different times of the day                                     |
 | `*   `   | NUS Student                                | Hide private contact details                                                                                             | Minimize chances of someone else seeing them by accident                                                           |
 | `*   `   | Student who likes to personalise stuff     | Customise the layout of the App                                                                                          | I can organise relevant information in personalised way that I find easy to access                                 |
@@ -1124,7 +1124,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3b1. Modduke shows an error message.
 
     Use case resumes at step 2.
-    
+
 **UC04: View Contacts**
 
 **MSS**
@@ -1133,13 +1133,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Modduke shows a list of contacts
 
  Use case ends.
- 
+
 **Extensions**
 
 * 2a. The list is empty.
 
     Use case ends.
- 
+
 **UC0X: Find Contacts**
 
 Same as View Contacts Use Case except only contacts that match the given parameters are listed.
@@ -1172,7 +1172,7 @@ Same as View Contacts Use Case except only contacts that match the given paramet
   * 3b1. Modduke shows an error message.
 
     Use case resumes at step 2.
-    
+
 **UC0X: Delete Tags of a Contact**
 
 **MSS**
@@ -1211,7 +1211,7 @@ Same as View Contacts Use Case except only contacts that match the given paramet
 2.  Modduke deletes all existing contacts.
 
  Use case ends.
- 
+
 
 **UC08: Add Meeting**
 
@@ -1229,25 +1229,25 @@ Same as View Contacts Use Case except only contacts that match the given paramet
   * 1a1. Modduke shows an error message.
 
     Use case ends
-    
+
 * 1b. Given module does not exist in Modduke.
 
   * 1b1. Modduke shows an error message.
 
-    Use case ends    
+    Use case ends
 
 * 1c. Meeting with the same combination of module and meeting name already exists.
 
   * 1c1. Modduke shows an error message.
 
     Use case ends.
-    
+
 * 1d. Meeting with the same date and time already exists.
 
   * 1d1. Modduke shows an error message.
 
     Use case ends.
-    
+
 * 1e. Participants indicated are not in given module.
 
   * 1e1. Modduke shows an error message.
@@ -1262,7 +1262,7 @@ Same as View Contacts Use Case except only contacts that match the given paramet
 2.  Modduke accepts request and makes changes to meeting
 
     Use case ends.
-    
+
 **Extensions**
 
 * 1a. Specified combination of module and meeting does not exist.
@@ -1270,7 +1270,7 @@ Same as View Contacts Use Case except only contacts that match the given paramet
   * 1a1. Modduke shows an error message.
 
     Use case ends
-    
+
 **UC08: Edit Meeting**
 
 **MSS**
@@ -1287,12 +1287,12 @@ Same as View Contacts Use Case except only contacts that match the given paramet
   * 1a1. Modduke shows an error message.
 
     Use case ends
-    
+
 * 1b. Given module does not exist in Modduke.
 
   * 1b1. Modduke shows an error message.
 
-    Use case ends    
+    Use case ends
 
 * 1c. Specified combination of module and meeting does not exist.
 
@@ -1305,7 +1305,7 @@ Same as View Contacts Use Case except only contacts that match the given paramet
   * 1d1. Modduke shows an error message.
 
     Use case ends.
-    
+
 * 1e. Edited meeting results in the same date and time as an existing meeting exists.
 
   * 1e1. Modduke shows an error message.
@@ -1324,9 +1324,9 @@ Same as View Contacts Use Case except only contacts that match the given paramet
 
 1.  User chooses to view details of a meeting
 2.  Modduke accepts request and displays both agendas and notes for the selected meeting
-    
+
     Use case ends.
-    
+
 **Extensions**
 
 * 1a. Modduke detects invalid command format.
@@ -1334,13 +1334,13 @@ Same as View Contacts Use Case except only contacts that match the given paramet
   * 1a1. Modduke gives an alert for the invalid command format.
 
     Use case ends
-    
+
 * 1b. User enters a meeting that does not exist.
 
   * 1b1. Modduke shows a message informing user that the meeting provided is not in the meeting list.
 
-    Use case ends  
-    
+    Use case ends
+
 
 **UC10: List Meetings**
 
@@ -1350,7 +1350,7 @@ Same as View Contacts Use Case except only contacts that match the given paramet
 2.  Modduke accepts request and displays all meetings
 
     Use case ends.
-    
+
 **UC08: View Meeting**
 
 Use case same as UC09: Delete Meeting
@@ -1377,7 +1377,7 @@ Use case same as UC09: Delete Meeting
   * 1b1. Modduke shows an error message.
 
     Use case ends.
-    
+
 **UC11: Copy Contact Information**
 
 **MSS**
@@ -1413,7 +1413,7 @@ Use case same as UC09: Delete Meeting
 6.  Modduke replaces user's text with autocomplete result.
 
     Use case ends.
-    
+
 **UC13: Switch to light theme**
 
 **Guarantees**
@@ -1508,30 +1508,30 @@ testers are expected to do more *exploratory* testing.
 ### Copying a contact's information
 
 1. Copying a contact while all contacts are being shown
-    
+
     1. Prerequisites: List all contacts using the `contact list` command. Multiple contacts in the list.
-    
+
     1. Test case: `copy phone n/Alex Yeoh`<br>
        Expected: Clipboard should have phone number of Contact Alex Yeoh.
-    
+
     1. Test case: `copy email t/colleagues`<br>
        Expected: Clipboard should have email addresses of all Contacts with colleague tag.
-    
+
     1. Test case: `copy email m/CS1100`<br>
        Expected: Clipboard should have email addresses of all Contacts in the CS1100 Module.
-       
+
     1. Test case: `copy email n/Alex Yeoh n/Bernice Yu t/prof m/CS1102`<br>
        Expected: Clipboard should have email addresses of Contacts Alex Yeoh and Bernice Yu, all Contacts with the prof tag and all Contacts in the CS1102 Module.
-    
+
     1. Other incorrect copy commands to try: `copy email`, `copy email n/x` (where x is a name not in the list of contacts), `copy phone t/y` (where y is a tag not in the list of contacts), `copy phone m/z` (where z is a module not in the list of modules)<br>
        Expected: Status message will be an error message.
-       
+
 ### Autocomplete Feature
 
 1. Trigger Autocomplete Mode
 
     1. Enter 'cn/' into command box.<br/>Expected: Text should turn orange
-        
+
 1. Generating Suggestions<br/>
 _Assuming you have a contact named "Alex Yeoh", else feel free to use any prefix you like given that the contact exists_
     1. Type in "alex" and press `Tab`<br/>
@@ -1546,19 +1546,19 @@ _Assuming you have a contact named "Alex Yeoh", else feel free to use any prefix
 1. Trigger Fzf Mode
     1. In the command box, press `Ctrl` + `Space`<br/>
     Expected: A menu should pop up given that user has atleast 1 entry in either Contact, Module or Meeting.
-    
+
 1. Generating Suggestions
     1. Type some text<br/>
     Expected: The menu should show suggestions that contain given text. If text enter by user is not empty but has no appropriate suggestions, menu should be hidden.
-    
+
 1. Navigating Suggestions
     1. Use `Up` or `Down` arrow keys to navigate suggestions<br/>
     Expected: User should be allowed to navigate suggestions.
-    
+
 1. Locking in a Suggestion
     1. Press `Enter` to lock in your suggestion<br/>
     Expected: Menu should be removed and the result should appear in command box.
- 
+
 
 ### Viewing a selected meeting details
 
@@ -1582,4 +1582,3 @@ _Assuming you have a contact named "Alex Yeoh", else feel free to use any prefix
 
    1. Test case: `dark` <br>
       Expected: Application should switch to dark theme and status message should say "Dark theme set successfully."
-          

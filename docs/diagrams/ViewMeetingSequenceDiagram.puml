@@ -36,6 +36,6 @@ else isTriggerUpdate
 else else
 end
 
-ui--[UI_COLOR]> user : update selected meeting 
+ui--[UI_COLOR]> user : update selected meeting
 deactivate ui
 @enduml
