@@ -560,6 +560,8 @@ User data automatically saves when there is a change in data.
 |**add victim**         | `add victim n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`                         |
 |**add witness**        | `add witness n:NAME sex:SEX p:PHONE [e:EMAIL] [a:ADDRESS]`                        |
 
+<div style="page-break-after: always;"></div>
+
 | Edit Commands         | Format                                                                            |
 | --------------------- | ----------------------------------------------------------------------------------|
 |**edit title**         | `edit title t:TITLE`                                                              |
