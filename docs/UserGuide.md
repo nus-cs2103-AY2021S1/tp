@@ -638,7 +638,11 @@ tCheck also shows a current month's calendar when you start the application. You
  
  </div>
  
- {Screenshot}
+ Example:
+ Let's say today is 8-Nov-2020, when you start tCheck, the calendar inside _Main View_ will show November's calendar,
+ and hightlight today's date.
+ 
+ ![CalendarScreenshot](images/CalendarScreenshot.png)
  
 ## Command summary <a name="command-summary"></a>
 
