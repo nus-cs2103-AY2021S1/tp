@@ -42,7 +42,7 @@ Given below are my contributions to the project.
     adaptation to the `ModelManager` was needed in order to sort the internal `FilteredList` inside `ModelManager`.
     Another thing that is challenging is to generate different comparators for different fields.
   
-  * **New Feature**: Added the ability to suggest correct commands to the user. (Pull requests [\#133](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/133), [\#187](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/187))
+  * **New Feature**: Added the ability to suggest correct commands to the user. (Pull requests [\#133](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/133), [\#187](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/187), [\#261](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/261))
     * What it does: Suggests the correct command format to the user if the command user input is in the wrong format.
     
     * Justification: This feature improves the user experience as the user can view and type the correct command form
@@ -65,7 +65,7 @@ Given below are my contributions to the project.
   * Used GitHub Projects feature to create kanban boards to track user stories. ([Link](https://github.com/AY2021S1-CS2103T-T15-3/tp/projects/1))
   * Manager and maintainer of project repository.
   * Provided help to team members about Git, GitHub, and forking workflow.
-  * Setup codecov for the team to track coverage for tests (Pull request [\#69](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/69))
+  * Setup codecov for the team to track coverage for tests (Pull requests [\#69](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/69), [\#301](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/301))
   * Managed the issue tracker: [Link to issues created](https://github.com/AY2021S1-CS2103T-T15-3/tp/issues?q=is%3Aissue+is%3Aclosed+author%3Aaudreyfelicio)
 
 * **Reviews & Merging**:
@@ -73,15 +73,15 @@ Given below are my contributions to the project.
   * All PRs reviewed: [Link to PRs reviewed](https://github.com/AY2021S1-CS2103T-T15-3/tp/pulls?page=2&q=is%3Apr+reviewed-by%3Aaudreyfelicio+is%3Aclosed)
 
 * **Bugs & Forums**:
-  * Fixed bugs in update feature (Pull request [\#258](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/258))
+  * Fixed bugs in update feature (Pull requests [\#222](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/222), [\#258](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/258))
   * Fixed bugs in suggestion feature (Pull request [\#261](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/261))
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AudreyFelicio/ped/issues/1), [2](https://github.com/AudreyFelicio/ped/issues/2), [3](https://github.com/AudreyFelicio/ped/issues/3), [4](https://github.com/AudreyFelicio/ped/issues/4), [5](https://github.com/AudreyFelicio/ped/issues/5), [6](https://github.com/AudreyFelicio/ped/issues/6), [7](https://github.com/AudreyFelicio/ped/issues/7), [8](https://github.com/AudreyFelicio/ped/issues/8), [9](https://github.com/AudreyFelicio/ped/issues/9), [10](https://github.com/AudreyFelicio/ped/issues/10))
 
 * **Testing**:
-  * Created unit tests for `update` feature (update command parser, update command). (Pull request [\#112](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/112))
-  * Created integration tests for `update` feature (update command). (Pull request [\#112](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/112))
-  * Created unit tests for `suggestion` feature (suggestion command parser, suggestion util, suggestion command). (Pull requests [\#190](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/190), [\#192](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/192))
-  * Created integration tests for `suggestion` feature (suggestion command). (Pull request [\#192](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/192))
+  * Created unit tests for `update` feature (update command parser, update command). (Pull requests [\#112](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/112), [\#254](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/254), [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284))
+  * Created integration tests for `update` feature (update command). (Pull request [\#112](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/112), [\#254](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/254), [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284))
+  * Created unit tests for `suggestion` feature (suggestion command parser, suggestion util, suggestion command). (Pull requests [\#190](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/190), [\#192](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/192), [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284))
+  * Created integration tests for `suggestion` feature (suggestion command). (Pull requests [\#192](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/192), [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284))
   * Created unit tests for `sort` feature (sort command parser, sort util, sort command). (Pull requests [\#188](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/188), [\#189](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/189))
   * Created integration tests for `sort` feature (sort command). (Pull request [\#189](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/189))
   * Improved coverage by creating tests for `QuantityAdder` and `ModelManager`. (Pull request [\#264](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/264))
