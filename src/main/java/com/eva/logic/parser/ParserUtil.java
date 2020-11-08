@@ -38,7 +38,7 @@ import com.eva.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX =
-            "Please enter a valid index! Index is not a non-zero unsigned integer.";
+            "Please enter a valid index! Index must be a non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be

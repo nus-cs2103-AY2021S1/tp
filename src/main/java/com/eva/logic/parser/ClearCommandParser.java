@@ -41,7 +41,7 @@ public class ClearCommandParser implements Parser<ClearCommand> {
 
         if (argMultimap.getValue(PREFIX_STAFF).isPresent() && isEmptyPrefix(argMultimap, PREFIX_STAFF)) {
             return new ClearCommand(PREFIX_STAFF);
-        } else if (argMultimap.getValue(PREFIX_APPLICANT).isPresent() && isEmptyPrefix(argMultimap, PREFIX_STAFF)) {
+        } else if (argMultimap.getValue(PREFIX_APPLICANT).isPresent() && isEmptyPrefix(argMultimap, PREFIX_APPLICANT)) {
             return new ClearCommand(PREFIX_APPLICANT);
         } else {
             throw new ParseException(

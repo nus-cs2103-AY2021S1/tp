@@ -9,7 +9,7 @@ Welcome to the User Guide for Eva!
 
 ## 1. Introduction
 
-![Eva Logo](images/ugimages/evalogo.png)
+<img src="evalogo.png" alt="Eva logo" width="500" height="500" \>
 
 Welcome and thanks for downloading Eva!
 
@@ -130,7 +130,7 @@ As of `v1.4`, Eva currently has four different application panels it can switch 
 
 ![applicantListPanel intro](images/ugimages/Intro3.png)
 
-* The `Staff Profile` :
+* The `Applicant Profile` :
 
 ![applicantProfilePanel intro](images/ugimages/Intro4.png)
 
@@ -167,7 +167,7 @@ As mentioned earlier in [Features](#3-features), there is no need to manually sa
 
 ### 3.3. Staff commands
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**<br>
 
@@ -259,7 +259,7 @@ This command records the leave taken by a staff in the Eva Database. <br>
 
 Format: `addl INDEX l/d/DATE [d/DATE] [l/d/DATE [d/DATE]]…​`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**<br>
 
@@ -392,7 +392,7 @@ Edits general details of an applicant from eva (excluding application status)
 
 Format: `edita INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [c/COMMENT] [id/INTERVIEW_DATE]`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:** <br>
 
@@ -414,7 +414,7 @@ Format: `addapp INDEX [filepath]`
 
  - An applicant should be created prior to the addition of its application.
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:** <br>
 
@@ -472,7 +472,7 @@ Example:
 
 Commands to add, delete and edit comments on staff or applicants
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :info: **Important:** <br>
 

@@ -30,7 +30,7 @@ public class AddLeaveCommand extends Command {
             + "Parameters: "
             + "INDEX (must be a positive integer) "
             + PREFIX_LEAVE + PREFIX_DATE + "LEAVE START DATE "
-            + PREFIX_DATE + "LEAVE END DATE (optional)"
+            + PREFIX_DATE + "LEAVE END DATE (optional)\n"
             + "Example: " + COMMAND_WORD
             + " 1 "
             + PREFIX_LEAVE + PREFIX_DATE + "08/10/2020 "

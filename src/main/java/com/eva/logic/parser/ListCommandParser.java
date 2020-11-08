@@ -37,7 +37,7 @@ public class ListCommandParser implements Parser<ListCommand> {
 
         if (argMultimap.getValue(PREFIX_STAFF).isPresent() && isEmptyPrefix(argMultimap, PREFIX_STAFF)) {
             return new ListCommand(true);
-        } else if (argMultimap.getValue(PREFIX_APPLICANT).isPresent() && isEmptyPrefix(argMultimap, PREFIX_STAFF)) {
+        } else if (argMultimap.getValue(PREFIX_APPLICANT).isPresent() && isEmptyPrefix(argMultimap, PREFIX_APPLICANT)) {
             return new ListCommand(false);
         } else {
             throw new ParseException(
