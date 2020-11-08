@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+
+Class ModelManager
+Class IngredientBook
+Interface ReadOnlyIngredientBook <<interface>>
+
+Package Ingredient {
+Class Ingredient
+Class IngredientName
+Class Amount
+Class UniqueIngredientList
+}
+
+
+UniqueIngredientList o--> "6" Ingredient
+Ingredient *--> "1" IngredientName
+Ingredient *--> "1" Amount
+ModelManager o--> "1" IngredientBook
+IngredientBook ..|> ReadOnlyIngredientBook
+IngredientBook *--> "1" UniqueIngredientList
+
+
+ModelManager -->"*" Ingredient : filtered ingredient list
+@enduml

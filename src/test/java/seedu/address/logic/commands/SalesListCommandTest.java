@@ -2,9 +2,6 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,12 +19,17 @@ public class SalesListCommandTest {
     private Model model;
     private Model expectedModel;
 
+    private SalesRecordEntry entryOne = new SalesRecordEntry(Drink.BSBM, 50);
+    private SalesRecordEntry entryTwo = new SalesRecordEntry(Drink.BSBBT, 30);
+    private SalesRecordEntry entryThree = new SalesRecordEntry(Drink.BSBGT, 70);
+
     @BeforeEach
     public void setUp() {
         model = new ModelManager(new AddressBook(), new SalesBook(),
                 new IngredientBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), model.getSalesBook(),
+        expectedModel = new ModelManager(model.getAddressBook(), new SalesBook(),
                 model.getIngredientBook(), new UserPrefs());
+
     }
 
     @Test
@@ -36,15 +38,16 @@ public class SalesListCommandTest {
     }
 
     @Test
-    public void execute_nonEmptySalesBook_successMessage() {
-        SalesRecordEntry entry = new SalesRecordEntry(Drink.BSBGT, 30);
-        List<SalesRecordEntry> newList = Collections.singletonList(entry);
-        model.getSalesBook().setRecord(newList);
-        expectedModel = new ModelManager(model.getAddressBook(), model.getSalesBook(),
-                model.getIngredientBook(), new UserPrefs());
-        String expectedMessage = String.format(SalesListCommand.MESSAGE_SUCCESS, model.getSalesBook());
+    public void execute_nonEmptySalesBook_displayInSortedOrderSuccessMessage() {
+        model.addSalesRecordEntry(entryOne);
+        model.addSalesRecordEntry(entryTwo);
+        model.addSalesRecordEntry(entryThree);
+
+        String expectedMessage = SalesListCommand.MESSAGE_SUCCESS;
+        expectedModel.addSalesRecordEntry(entryThree);
+        expectedModel.addSalesRecordEntry(entryOne);
+        expectedModel.addSalesRecordEntry(entryTwo);
+
         assertCommandSuccess(new SalesListCommand(), model, expectedMessage, expectedModel);
     }
-
-
 }

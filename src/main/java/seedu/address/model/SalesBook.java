@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashMap;
 import java.util.List;
@@ -88,7 +89,7 @@ public class SalesBook implements ReadOnlySalesBook {
             Optional<Integer> userInput = Optional.ofNullable(sales.get(key));
             Integer toReplace = 0;
             if (!isEmptySalesRecord()) {
-                toReplace = record.getSalesEntry(key).getNumberSold();
+                toReplace = record.getNumberSoldOfEntry(key);
             }
             Integer changedValue = userInput.orElse(toReplace);
             newRecord.put(key, changedValue);
@@ -114,6 +115,10 @@ public class SalesBook implements ReadOnlySalesBook {
     }
 
     //// util methods
+    public void setSalesRecordEntry(SalesRecordEntry newAmount) {
+        requireAllNonNull(newAmount);
+        record.setSalesEntry(newAmount);
+    }
 
     /**
      * Returns an unmodifiable view of the list of sales records.

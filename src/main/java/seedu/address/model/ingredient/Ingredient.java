@@ -2,13 +2,19 @@ package seedu.address.model.ingredient;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Represents ALL ingredient that is tracked by tCheck.
  * OOP development plan : Each ingredient can be extracted out to make the design more OOP.
  */
 public class Ingredient {
+
+    public static final String BOBA = "Boba";
+    public static final String PEARL = "Pearl";
+    public static final String BROWN_SUGAR = "Brown Sugar";
 
     // Identity field
     private final IngredientName ingredientName;
@@ -42,13 +48,22 @@ public class Ingredient {
         this.ingredientName = ingredientName;
     }
 
+    /**
+     * Returns the amount of the ingredient.
+     * @return the amount of the ingredient.
+     */
     public Amount getAmount() {
         return this.amount;
     }
 
+    /**
+     * Returns the ingredient name of the ingredient.
+     * @return the ingredient name of the ingredient.
+     */
     public IngredientName getIngredientName() {
         return this.ingredientName;
     }
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -60,6 +75,83 @@ public class Ingredient {
         return otherIngredient != null
                 && otherIngredient.getIngredientName().equals(getIngredientName())
                 && otherIngredient.getAmount().equals(getAmount());
+    }
+
+    /**
+     * Returns true if the ingredient is a solid ingredient.
+     * @return true if the ingredient is a solid ingredient, false otherwise.
+     */
+    public boolean isSolidIngredient() {
+        Set<String> ingredientNames = new HashSet<>();
+        ingredientNames.add(BOBA);
+        ingredientNames.add(PEARL);
+        ingredientNames.add(BROWN_SUGAR);
+        String ingredientName = this.getIngredientNameAsString();
+
+        if (ingredientNames.contains(ingredientName)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Returns true if the ingredient is in shortage, which is when their levels fall below the default level.
+     * @return true if the ingredient is in shortage, false otherwise.
+     */
+    public boolean isIngredientInShortage() {
+        if (this.isSolidIngredient()) {
+            return isSolidIngredientInShortage();
+        } else {
+            return isLiquidIngredientInShortage();
+        }
+    }
+
+    /**
+     * Returns true if the solid ingredient is in shortage.
+     * @return true if the solid ingredient is in shortage, false otherwise.
+     */
+    public boolean isSolidIngredientInShortage() {
+        Amount amountOfIngredient = this.getAmount();
+        if (amountOfIngredient.isSolidBelowRestockLevel()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Returns true if the liquid ingredient is in shortage.
+     * @return true if the liquid ingredient is in shortage, false otherwise.
+     */
+    public boolean isLiquidIngredientInShortage() {
+        Amount amountOfIngredient = this.getAmount();
+        if (amountOfIngredient.isLiquidBelowRestockLevel()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Returns the amount needed for the ingredient to reach its restock level which is the default level.
+     * @return the amount needed for the ingredient to reach its restock level.
+     */
+    public String amountNeededToReachRestockLevel() {
+        Amount amountOfIngredient = this.getAmount();
+        if (this.isSolidIngredient()) {
+            return amountOfIngredient.solidAmountToReachRestockLevel();
+        } else {
+            return amountOfIngredient.liquidAmountToReachRestockLevel();
+        }
+    }
+
+    /**
+     * Returns the string format of the ingredient name.
+     * @return the string format of the ingredient name.
+     */
+    public String getIngredientNameAsString() {
+        return ingredientName.toString();
     }
 
     /**

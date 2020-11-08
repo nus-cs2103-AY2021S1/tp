@@ -29,7 +29,7 @@ public class SalesFindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         assert model != null;
-        model.updateFilteredSalesList(predicate);
+        model.updateFilteredSalesRecordList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_DRINKS_LISTED_OVERVIEW, model.getFilteredSalesRecordList().size()));
     }

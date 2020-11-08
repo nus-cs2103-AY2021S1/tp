@@ -44,7 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/persdre.png" width="200px">
 
 [[github](http://github.com/persdre)]
-[[portfolio](team/wangqian.md)]
+[[portfolio](team/persdre.md)]
 
 * Role: Developer & Code Quality Reviewer
 * Responsibilities: Develop & Check code quality

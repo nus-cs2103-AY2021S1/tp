@@ -51,7 +51,6 @@ public class UniqueSalesRecordList implements Iterable<SalesRecordEntry> {
     public void add(SalesRecordEntry toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            // if it exists, then replace it with the new entry
             setSalesEntry(toAdd);
         } else {
             internalList.add(toAdd);
@@ -73,7 +72,7 @@ public class UniqueSalesRecordList implements Iterable<SalesRecordEntry> {
 
         assert index > -1;
 
-        internalList.set(index, newEntry); // replace with the new entry
+        internalList.set(index, newEntry);
     }
 
     /**
@@ -92,6 +91,19 @@ public class UniqueSalesRecordList implements Iterable<SalesRecordEntry> {
         assert index > -1;
 
         return internalList.get(index);
+    }
+
+    /**
+     * Returns the number of {@Code drink} sold as recorded in the
+     * SalesRecordEntry of the {@Code drink} in the list.
+     *
+     * @param drink the drink type to search for
+     * @return the number of that drink type sold as recorded in the list
+     */
+    public int getNumberSoldOfEntry(Drink drink) {
+        requireNonNull(drink);
+        SalesRecordEntry entry = getSalesEntry(drink);
+        return entry.getNumberSold();
     }
 
     /**

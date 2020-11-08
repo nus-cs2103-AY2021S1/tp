@@ -14,7 +14,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.ingredient.Ingredient;
-import seedu.address.model.ingredient.IngredientName;
 import seedu.address.model.person.Person;
 
 /**
@@ -131,7 +130,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setIngredientBook(ReadOnlyIngredientBook ingredientBook) {
-        this.ingredientBook.setData(ingredientBook);
+        this.ingredientBook.setIngredientsData(ingredientBook);
     }
 
     @Override
@@ -148,13 +147,6 @@ public class ModelManager implements Model {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
-    }
-
-    //Added here
-    @Override
-    public boolean hasIngredient(Ingredient ingredient) {
-        requireNonNull(ingredient);
-        return ingredientBook.hasIngredient(ingredient);
     }
 
     @Override
@@ -199,7 +191,7 @@ public class ModelManager implements Model {
     @Override
     public void addSalesRecordEntry(SalesRecordEntry salesRecordEntry) {
         salesBook.addSalesRecordEntry(salesRecordEntry);
-        updateFilteredSalesList(PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY);
+        updateFilteredSalesRecordList(PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY);
     }
 
     @Override
@@ -214,13 +206,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, newAmount);
 
         ingredientBook.setIngredient(target, newAmount);
-    }
-
-    @Override
-    public Ingredient findIngredientByName(IngredientName ingredientName) {
-        requireNonNull(ingredientName);
-
-        return ingredientBook.findIngredientByName(ingredientName);
     }
 
     @Override
@@ -273,7 +258,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredSalesList(Predicate<SalesRecordEntry> predicate) {
+    public void updateFilteredSalesRecordList(Predicate<SalesRecordEntry> predicate) {
         requireNonNull(predicate);
         filteredSalesRecordList.setPredicate(predicate);
     }

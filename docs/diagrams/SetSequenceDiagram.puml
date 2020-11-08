@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":tCheckParser" as tCheckParser LOGIC_COLOR
 participant "s:SetCommand" as SetCommand LOGIC_COLOR
 
 end box
@@ -17,18 +17,18 @@ end box
 [-> LogicManager : execute(i-set i/Milk m/100)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(i-set i/Milk m/100)
-activate AddressBookParser
+LogicManager -> tCheckParser : parseCommand(i-set i/Milk m/100)
+activate tCheckParser
 
 create SetCommand
-AddressBookParser -> SetCommand
+tCheckParser -> SetCommand
 activate SetCommand
 
-SetCommand --> AddressBookParser
+SetCommand --> tCheckParser
 deactivate SetCommand
 
-AddressBookParser --> LogicManager : s
-deactivate AddressBookParser
+tCheckParser --> LogicManager : s
+deactivate tCheckParser
 
 LogicManager -> SetCommand : execute()
 activate SetCommand
