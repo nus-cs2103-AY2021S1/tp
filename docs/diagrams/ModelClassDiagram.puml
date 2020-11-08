@@ -5,24 +5,39 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyTrackr <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class Trackr
+Class ReadOnlyTrackr
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
+Package Module {
+Class Module
+Class ModuleId
+Class UniqueModuleList
+}
+
+Package TutorialGroup {
+Class TutorialGroup
+Class TutorialGroupId
+Class DayOfWeek
+Class TimeOfDay
+Class UniqueTutorialGroupList
+}
+
+Package Student {
+Class Student
 Class Email
 Class Name
 Class Phone
-Class UniquePersonList
+Class StudentId
+Class UniqueStudentList
 }
+
 
 Package Tag {
 Class Tag
@@ -32,25 +47,36 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Trackr .up.|> ReadOnlyTrackr
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" Trackr
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Trackr *--> "1" UniqueModuleList
+UniqueModuleList o--> "*" Module
+Module *--> ModuleId
+
+Module *--> "1" UniqueTutorialGroupList
+UniqueTutorialGroupList o--> "*" TutorialGroup
+TutorialGroup *--> TutorialGroupId
+TutorialGroup *--> DayOfWeek
+TutorialGroup *--> "2" TimeOfDay
+
+TutorialGroup *--> "1" UniqueStudentList
+UniqueStudentList o--> "*" Student
+Student *--> Name
+Student *--> Phone
+Student *--> Email
+Student *--> StudentId
+Student *--> "*" Tag
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
 
-ModelManager -->"1" Person : filtered list
+ModelManager -->"1" Module : filtered list
+ModelManager -->"1" TutorialGroup : filtered list
+ModelManager -->"1" Student : filtered list
+
 @enduml
