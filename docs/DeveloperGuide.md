@@ -347,7 +347,7 @@ The following activity diagram summarizes the flow of events when the `EditComma
 
 Figure \___. Activity diagram for `EditCommand` execution
 
-### 6.2.3 Delete Student Command
+#### 6.2.3 Delete Student Command
 
 The following describes the flow of how `DeleteCommand` is performed.
 
@@ -362,7 +362,7 @@ the specified `Index` is a valid index based on the `UniqueStudentList`, in the 
 
 </div>
 
-### 6.2.4 Find Student Command
+#### 6.2.4 Find Student Command
 
 This is an explanation of how `FindCommand` works.
 

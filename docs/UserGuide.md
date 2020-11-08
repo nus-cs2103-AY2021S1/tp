@@ -39,10 +39,10 @@
     + [3.4.3 Recording attendance of a student: `attendance` (By: Vaishak)](#343-recording-attendance-of-a-student-attendance-by-vaishak)
         + [3.4.3.1 Adding an attendance record to a student: `attendance add`](#3431-adding-an-attendance-record-to-a-student-attendance-add)
         + [3.4.3.2 Deleting an attendance record for a student: `attendance delete`](#3432-deleting-an-attendance-record-for-a-student-attendance-delete)
-  * [3.6 Notebook feature (By: Choon Siong)](#36-notebook-feature-by-choon-siong)
-    + [3.6.1 Adding a note: `note add`](#361-adding-a-note-note-add)
-    + [3.6.2 Editing a note: `note edit`](#362-editing-a-note-note-edit)
-    + [3.6.3 Deleting a note: `note delete`](#363-deleting-a-note-note-delete)
+  * [3.5 Notebook feature (By: Choon Siong)](#35-notebook-feature-by-choon-siong)
+    + [3.5.1 Adding a note: `note add`](#351-adding-a-note-note-add)
+    + [3.5.2 Editing a note: `note edit`](#352-editing-a-note-note-edit)
+    + [3.5.3 Deleting a note: `note delete`](#353-deleting-a-note-note-delete)
 - [4. Command summary](#4-command-summary)
 - [5. Glossary](#5-glossary)
 - [6. FAQ](#6-faq)
@@ -431,10 +431,6 @@ To view schedule:
 
 1.  Type `schedule m/weekly d/02/11/2020` into the command box as shown in figure __ . Press `Enter` to execute the command.
 
-    <div markdown="block" class="alert alert-info">
-    :exclamation: Do not input command word as "Schedule" with a capital "S". Reeve will not recognise the command word.
-    </div>
-
     ![Schedule Step 1](images/ScheduleStep1.png)
     Figure __ Shows the schedule command input keyed into the command box.
 
@@ -714,14 +710,14 @@ Format: `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`
 Example:
 * `attendance delete 1 d/19/04/2020` deletes the attendance with the date 19 Apr 2020 from the 1st student in the displayed students list in **Reeve**.
 
-### 3.6 Notebook feature (By: Choon Siong)
+### 3.5 Notebook feature (By: Choon Siong)
 
 You can store notes containing small amounts of information inside the notebook. This is useful when you want to store information or details that is not related to any student and cannot do so anywhere else in Reeve. You should see the notes on the bottom right hand side of Reeve similar to the display shown below.
 
 ![Location of notes panel](images/screenshots/Notes.png)
 
 
-#### 3.6.1 Adding a note `note add`
+#### 3.5.1 Adding a note `note add`
 
 You can add a note to the notebook for the information you want to store.
 
@@ -739,7 +735,7 @@ Example:
     ![Adding a note](images/screenshots/Adding a note.png)
 
 
-#### 3.6.2 Editing a note `note edit`
+#### 3.5.2 Editing a note `note edit`
 
 You can edit a note that is inside the notebook to update the information inside.
 
@@ -753,7 +749,7 @@ Example:
     * Assuming the previous note was the first note, you can use `note edit 1 d/review marking`
        to change the note to remind yourself to review the marking.
    
-#### 3.6.3 Deleting a note `note delete`
+#### 3.5.3 Deleting a note `note delete`
 
 You can delete a note from the notebook when the information is no longer needed.
 
