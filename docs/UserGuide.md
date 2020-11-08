@@ -340,7 +340,7 @@ Points to take note when adding a client's information:
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A client can have any number of tags (including 0). Each tag can include
 alphanumeric characters or hyphen (`-`), but you are not allowed to start or end
-a tag with a hyphen. 
+a tag with a hyphen. You can use this tag feature to document client's injury history or allergies.
 </div>
 
 <div markdown="block" class="alert alert-warning">
