@@ -592,6 +592,11 @@ Use case ends.
 
 **Extensions**
  - 1a. The format for the save file is invalid.
+    - 1a1. McGymmy shows an error message.
+ - 1b. The path to the save file is invalid.
+    - 1b1. McGymmy shows an error message.
+
+Use case ends.
     - 1a1. McGymmy shows and error message.
 
 Use case ends.
