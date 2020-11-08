@@ -25,7 +25,7 @@ import seedu.address.logic.commands.project.AddTeammateParticipationCommand;
 import seedu.address.logic.commands.project.AllTasksCommand;
 import seedu.address.logic.commands.project.AssignCommand;
 import seedu.address.logic.commands.project.DeleteTaskCommand;
-import seedu.address.logic.commands.project.DeleteTeammateCommand;
+import seedu.address.logic.commands.project.DeletePersonCommand;
 import seedu.address.logic.commands.project.DeleteTeammateParticipationCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
 import seedu.address.logic.commands.project.EditTeammateCommand;
@@ -270,7 +270,7 @@ public class MainCatalogueParser {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
-        case DeleteTeammateCommand.COMMAND_WORD:
+        case DeletePersonCommand.COMMAND_WORD:
             switch (status) {
             case PERSON_LIST:
                 return new DeleteTeammateCommandParser().parse(arguments);
