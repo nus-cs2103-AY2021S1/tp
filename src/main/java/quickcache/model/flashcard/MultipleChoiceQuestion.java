@@ -106,6 +106,9 @@ public class MultipleChoiceQuestion implements Question {
      * @return option as an {@code Answer}.
      */
     public Answer getAnswerFromIndex(Index index) {
+        if (index.getZeroBased() >= choices.length) {
+            throw new IllegalArgumentException("Index given is greater than the number of choices");
+        }
         Choice choice = choices[index.getZeroBased()];
         return new Answer(choice.getValue());
     }
