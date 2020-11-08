@@ -298,17 +298,17 @@ The following activity diagram summarizes what happens when a user executes a ne
     <figcaption>Figure 12 - Delete Session Activity Diagram</figcaption>
 </figure>
 
-The following diagram shows a possible application state in FitEgo. 
+The following diagram shows a possible application state in FitEgo, where 2 clients, Andy and John, are scheduled to a same session.
 
 <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
     <p>
-        <img src="images/tracing/DeleteSessionObjectDiagram.png" style="width: 80%; height: auto;"/>
+        <img src="images/DeleteSessionObjectDiagram.png" style="width: 50%; height: auto;"/>
     </p>
     <figcaption>Figure 13 - A possible application state</figcaption>
 </figure>
 
 In the following sequence diagram, we trace the execution when the user decides to enter the Delete Session command 
-`sdel 1 f/` into FitEgo with the above scenario, where the first Session in the Session List is the `enduranceTraining` Session. 
+`sdel 1 f/` into FitEgo with the above application state, where the first Session in the Session List is the `enduranceTraining` Session. 
 For simplicity, we will refer to this command input as `commandText`. 
 
 <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
@@ -344,7 +344,6 @@ message back to the UI and return control back to `LogicManager`. It will persis
 In designing this feature, we had to consider several alternative ways in which we can choose to handle session deletion.
 
 - **Alternative 1 (current choice):** Delete Session only after all associated Schedules are deleted.
-    
     - Pros: 
         1. Easier to maintain data integrity.
     - Cons:
@@ -352,7 +351,6 @@ In designing this feature, we had to consider several alternative ways in which 
         2. May have performance issues in terms of response time if there are a lot of Schedules or Sessions stored in FitEgo.
     
 - **Alternative 2:** Mark Session as deleted and treat Schedules with deleted Session as invalid
-    
     - Pros: 
         1. Easier to implement the method. 
         2. No need to handle additional force flag option.
@@ -361,7 +359,6 @@ In designing this feature, we had to consider several alternative ways in which 
         2. Harder to maintain data integrity over time.
         
 - **Alternative 3:** Delete the Session without checking for associated Schedules
-
     - Pros: Easy to implement.
     - Cons: A Schedule might have invalid Session, breaking data integrity.
 
