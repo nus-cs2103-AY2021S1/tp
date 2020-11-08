@@ -515,9 +515,8 @@ Use case ends.
 1. User requests to list food. (UC01)
 2. McGymmy shows a list of food.
 3. User request to delete a specific food on the list.
-4. McGymmy deletes the food.
-
-Use case ends
+4. McGymmy deletes the food.<br>
+Use case ends.
 
 **Extensions**
 - 2a. The list is empty.<br>
@@ -626,7 +625,6 @@ Use case ends.
 1. User filters list (UC06).
 2. User requests to clear the displayed list.
 3. McGymmy deletes all food items in the current displayed list.
-
 Use case ends.
 
 **Extensions**
