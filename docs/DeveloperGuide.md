@@ -19,6 +19,7 @@ by Team W12-2
     * [4.3 - Edit Commands - `editMod`, `editTG` and `editStudent`](#section-43---edit-commands---editmod-edittg-and-editstudent)
     * [4.4 - Find Commands - `findMod`, `findTG` and `findStudent`](#section-44---find-commands---findmod-findtg-and-findstudent)
     * [4.5 - List Commands - `listMod`, `listTG` and `listStudent`](#section-45---list-commands---listmod-listtg-and-liststudent)
+    * [4.6 - View Commands - `viewTG` and `viewStudent`](#section-46---view-commands---viewtg-and-viewstudent)
 * [Section 5 - Documentation, logging, testing, configuration, dev-ops](#section-5---documentation-logging-testing-configuration-dev-ops)
 * [Section 6 - Appendix](#section-6---appendix)
 
@@ -434,7 +435,7 @@ all the modules within Trackr.
 Step 5. `ListModuleCommand#execute(Model)` creates a `CommandResult` object and the `CommandResult` is returned to
 `LogicManager`.
 
-> Note: There are some differences for the add commands of `TutorialGroup` and `Student` during Step 4.
+> Note: There are some differences for the list commands of `TutorialGroup` and `Student` during Step 4.
 >
 > For `TutorialGroup`:
 > - Within each `Module`, there is an `UniqueTutorialGroupList`.
@@ -459,10 +460,10 @@ Step 5. `ListModuleCommand#execute(Model)` creates a `CommandResult` object and 
     - Pros: Easier to implement
     - Cons: More repetitive code
     
-### Section 4.6 - View Commands (viewTG, viewStudent)
+### Section 4.6 - View Commands - `viewTG` and `viewStudent`
 #### Overview
 
-The Vieww command in Trackr enables users to easily navigate between the different views: Module View, Tutorial Group View and Student View.
+The View command in Trackr enables users to easily navigate between the different views: Module View, Tutorial Group View and Student View.
 
 #### Implementation
 Each View command for `TutorialGroup`, and `Student` is split into `ViewTutorialGroupCommand`, and `ViewStudentCommand`, respectively. Note that there
@@ -471,6 +472,31 @@ is no View command for `Module`. Each command class extends `Command`.
 Given below is an example of the interaction between the Model and the `ViewTutorialGroupCommand` of Trackr.
 
 ![ViewTGSequenceDiagram](images/ViewTutorialGroupCommandSequenceDiagram.png)
+
+Step 1. The user executes `viewTG 1` to view the tutorial groups of the first module within the Module View. The
+`viewTG` command calls `LogicManager#execute(String)`.
+
+Step 2. The contents of the `String` is parsed in `ViewTutorialGroupCommandParser#parse(String)`. This method creates a
+new `Index` object with the parsed arguments. A `ViewTutorialGroupCommand` object is then initialised with this `Index`
+object.
+
+Step 3. `LogicManager#execute(String)` calls the `ViewTutorialGroupCommand#execute(Model)` method of the
+`ViewTutorialGroupCommand` object.
+
+Step 4. Within `Model`, the method `Model#setViewToTutorialGroup(Module)` is executed and this displays all the tutorial
+groups of the target `Module`.
+
+Step 5. `ViewTutorialGroupCommand#execute(Model)` creates a `CommandResult` object and the `CommandResult` is returned
+to `LogicManager`.
+
+> Note: There are some differences for the view command of `Student` during Step 4.
+>
+> For `Student`:
+> - Within each `TutorialGroup`, there is an `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be viewed from.
+> - `Model#setViewToStudent(TutorialGroup)` method then displays all the students of the target `Module` and 
+> `TutorialGroup`.
 
 #### Design Considerations
 **Aspect: List to contain the models**
