@@ -5,7 +5,7 @@ title: Jerry Ho's Project Portfolio Page
 
 ## Project: ProductiveNUS
 
-ProductiveNUS is a desktop application created for School of Computing students studying in the National University of Singapore (NUS) to manage and schedule their academic tasks more effecively.
+ProductiveNUS is a desktop application targeted at Computing students of National University of Singapore (NUS) to help them manage and schedule their academic tasks efficiently. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
@@ -41,4 +41,4 @@ Given below are my contributions to the project.
 * **Community**:
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/223), [2](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/222), [3](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/217), [4](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/219), [5](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/220), [6](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/221), [7](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/216), [8](https://github.com/AY2021S1-CS2103T-W10-1/tp/issues/218))
   * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/359))
-  
+
