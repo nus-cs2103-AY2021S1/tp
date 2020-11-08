@@ -76,6 +76,8 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T09-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T09-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
+User inputs will influence how fitNUS UI will look like. For example, adding calories by `calorie_add c/1500` will cause the CalorieGraph UI component to update in real time.
+
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
@@ -90,7 +92,7 @@ The `UI` component,
 
 1. `Logic` uses the `FitNusBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a new Exercise into fitNUS).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -110,12 +112,19 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the fitNUS data.
-* exposes an unmodifiable `ObservableList<Exercise>`, `ObservableList<Routine>` and `ObservableList<Lesson>`  that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores fitNUS data.
+* exposes an unmodifiable
+    * `ObservableList<Exercise>`
+    * `ObservableList<Routine>`
+    * `ObservableList<Lesson>`
+    * `ObservableList<Body>`
+    * `ObservableList<DailyCalorie>`
+
+    that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FitNus`, which `Person` references. This allows `FitNus` to only require one `Tag` object per unique `Tag`, instead of each `Lesson` or `Exercise` needing their own `Tag` object.<br>
 
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
@@ -181,6 +190,45 @@ the Routine object and returns it as an argument in the `RoutineCreateCommand`.
 Given below is the sequence diagram showing how the routine creation command is executed:
 
 ![Routine Create](./images/RoutineAddSequenceDiagram.png)
+
+Given below is the activity diagram a user will go through when creating a routine in fitNUS.
+
+![Routine create activity](./images/RoutineCreateActivityDiagram.png)
+
+#### Design Considerations
+
+##### Aspect: Whether to create a Routine and add exercises simultaneously in the same command
+
+* **Alternative 1 (Current implementation)**: No, there should be a seperate command to add Exercise into Routine
+
+    * Pros: Better abstraction by seperating the logic of creating a Routine, and storing Exercise in Routine.
+    * Cons: User has to input another command.
+
+* **Alternative 2**: Yes, have a single command to create a Routine and add multiple Exercise to it at the same time.
+
+    * Pros: Saves time for user, typing one long chain.
+    * Cons: Increases coupling between Routine and Exercise.
+
+Alternative 1 was chosen for the command to add an Exercise to a Routine to be seperate. This is due to the fact that
+ we wanted to adhere to the Seperation of Concerns Principle. Even though, it comes at the cost of user's time, we
+  believe that the trade-off to gain lower coupling and prevent ripple effects across fitNUS.
+
+##### Aspect: Whether to implement Tag for Routine
+
+* **Alternative 1 (Current implementation)**: No, there is no Tag function for Routine.
+
+    * Pros: UI is a lot more concise and condensed..
+    * Cons: User might not understand everything about a Routine.
+
+* **Alternative 2**: Yes, we should implement a Tag feature for Routine.
+
+    * Pros: Allow users to understand more about the Routine at a glance.
+    * Cons: Cluttering of the UI.
+
+Alternative 1 was chosen to not support Tag for Routine. The UI has a lot of information at the moment, and adding Tag
+ to Routine would only serve to confuse the user. Furthermore, users are able to glean which Exercise is in the Routine
+  from the UI as of now, and adding Tag would only clutter up the RoutineListCard. A Routine can store many Exercise and
+  this is the more important information to display, over Tag.
 
 ### Add Routine to Timetable
 
@@ -357,14 +405,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | busy student                               | add workout routines into my schedule | have the time to exercise
 | `* * *`  | student                                    | delete a workout routine       | keep my schedule up-to-date
 | `* * *`  | varsity NUS athlete                        | customise my routine               | better target specific muscle groups
-| `* * *`  | health-conscious individual                 | log my BMI              | keep better track of my health.
+| `* * *`  | health-conscious individual                 | log my BMI              | keep better track of my health./
+| `* * *`  | student looking to lose weight                       | keep track of my weekly calorie intake               | visualise my weight loss journey
+| `* * *`  | seasoned gym-goer                       | save my routines somewhere              | change my weekly routines with ease if programmes get boring
+| `* * *`  | varsity NUS athlete                        | search for keywords in my exercises              | quickly get inspiration for new routines
+| `* * *`  | varsity NUS athlete                        | search for keywords in my routines             | get similar inspirations from existing routines that I know of.
+| `* * *`  | varsity NUS athlete                        | search for keywords in my exercises              | quickly get inspiration for new routines
+| `* * `  | health-conscious NUS student                        | know how many calories I burned from my workout               | better keep track of my health
+| `* * `  | student just getting into fitness                        | be recommended workouts that are beginner-friendly               | better manage my expectations
+| `* * `  | professional NUS bodybuilder                       | keep notes on my workout such as my personal records               | track my progression and plan for future sessions
+| `*`  | time conscious student                      | have a timer when I work out             | better plan my time
+| `*`  | NUS student                       | check calories of popular food on fitNUS               | keep better records of my macros
+| `*`  | NUS student                        | know which bus I can take to the nearest gym               | -
 
 
 ### Use cases
 
 (For all use cases below, the **System** is the `fitNUS` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Create a new routine**
+**Use case 1 (C1): Create a new routine**
 
 **MSS**
 
@@ -383,7 +442,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Delete a routine**
+**Use case 2 (C2): Delete a routine**
 
 **MSS**
 
@@ -406,15 +465,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add exercise to routine**
+**Use case 3 (C3): Add exercise to routine**
 
 **MSS**
 
 1.  User requests to list routines
 2.  fitNUS shows a list of routines
-3.  User requests to view exercises in a specific routine
-4.  fitNUS shows a list exercises in that specific routine
-5.  User adds the exercise
+3.  User adds the exercise to a routine
 
     Use case ends.
 
@@ -424,27 +481,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given exercise name does not exist.
 
     * 3a1. fitNUS shows an error message.
 
       Use case resumes at step 2.
 
-* 5a. The given exercise name already exists.
+* 3b. The given routine name does not exist.
 
-    * 5a1. fitNUS shows an error message.
+    * 3b1. fitNUS shows an error message.
 
-      Use case resumes at step 4.
+      Use case resumes at step 2.
 
-**Use case: Delete exercise from routine**
+**Use case 4 (C4): Delete exercise from routine**
 
 **MSS**
 
 1.  User requests to list routines
 2.  fitNUS shows a list of routines
-3.  User requests to view exercises in a specific routine
-4.  fitNUS shows a list exercises in that specific routine
-5.  fitNUS deletes the exercise
+3.  fitNUS deletes the exercise
 
     Use case ends.
 
@@ -454,19 +509,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+
+* 3a. The given exercise to delete is invalid.
 
     * 3a1. fitNUS shows an error message.
 
       Use case resumes at step 2.
 
-* 5a. The given index of exercise to delete is invalid.
+* 3b. The given routine is invalid.
 
-    * 5a1. fitNUS shows an error message.
+    * 3a1. fitNUS shows an error message.
 
-      Use case resumes at step 4.
+      Use case resumes at step 2.
 
-**Use case: List all routines in fitNUS**
+**Use case 5 (C5): List all routines in fitNUS**
 
 **MSS**
 
@@ -487,12 +543,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-* 1b.   No routine exists within fitNUS.
-    * 1b1.  fitNUS informs the user that there are no routines to view.
-
-      Use case ends.
-
-**Use case: Add completed routine to schedule**
+**Use case 6 (C6): Add completed routine to schedule**
 
 **MSS**
 
@@ -520,7 +571,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 3.
 
-**Use case: Delete routine from schedule**
+**Use case 7 (C7): Delete routine from schedule**
 
 **MSS**
 
@@ -543,7 +594,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: View timetable**
+**Use case 8 (C8): View timetable**
 
 **MSS**
 
@@ -557,8 +608,77 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-*{More to be added}*
+**Use case 9 (C10): Add Calories**
 
+**MSS**
+
+1.  User inputs calories increment into fitNUS.
+
+**Extensions**
+
+* 1a.   User inputs too large of a number.
+    * 1a1.  fitNUS informs the user that the input is too large.
+
+      Use case ends.
+
+* 1b.   User inputs 0.
+    * 1b1.  fitNUS informs the user that the input is incorrect.
+
+      Use case ends.
+
+**Use case 8 (C10): Minus calories**
+
+**MSS**
+
+1.  User inputs calories decrement into fitNUS.
+
+**Extensions**
+
+* 1a.   User inputs a number larger than the current count.
+    * 1a1.  fitNUS informs the user that the input will cause the count to be negative.
+
+      Use case ends.
+
+* 1b.   User inputs 0.
+    * 1b1.  fitNUS informs the user that the input is incorrect.
+
+      Use case ends.
+
+**Use case 8 (C11): Set height**
+
+**MSS**
+
+1.  User inputs his/her height into fitNUS.
+
+**Extensions**
+
+* 1a.   User inputs an impossibly large number or small number.
+    * 1a1.  fitNUS informs the user that the input is too large.
+
+      Use case ends.
+
+* 1b.   User inputs a negative number.
+    * 1b1.  fitNUS informs the user that the input is incorrect.
+
+      Use case ends.
+
+**Use case 8 (C112): Set weight**
+
+**MSS**
+
+1.  User inputs his/her weight into fitNUS.
+
+**Extensions**
+
+* 1a.   User inputs an impossibly large number or small number.
+    * 1a1.  fitNUS informs the user that the input is too large.
+
+      Use case ends.
+
+* 1b.   User inputs a negative number.
+    * 1b1.  fitNUS informs the user that the input is incorrect.
+
+      Use case ends.
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -569,6 +689,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 confuse anyone.
 6. The system should remember the details entered by the user during the session, and be carried forward to the next time.
 7. Schedule should be clear and easy to read for the user, and not display too much information at once.
+8. Calorie graph must be easy to read and understand for all users.
+9. fitNUS GUI must be able to fit any screensize or proportions meaningfully.
 
 *{More to be added}*
 
@@ -603,9 +725,13 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Adding a Routine
 
-### Deleting a Routine
+   1. Test case: `routine_create r/Leg Workout`<br>
+      Expected: Creates a Routine called "Leg Workout"
+
+   1. Other incorrect delete commands to try: `routine_create`, `routine_create r/EXISTING_ROUTINE`, `...`<br>
+      Expected: Similar to previous.
 
 1. Deleting a Routine
 
@@ -618,6 +744,72 @@ testers are expected to do more *exploratory* testing.
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `routine_delete`, `routine_delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+1. Setting user weight
+
+   1. Test case: `weight w/70`<br>
+      Expected: Updates user's weight to 70kg. GUI will reflect this change as well. BMI on GUI will recalculate.
+
+   1. Test case: `weight w/300`<br>
+      Expected: Weight does not update or change on GUI. Error will be shown for an unrealistic weight for a user.
+
+   1. Other incorrect delete commands to try: `weight w/0`, `weight w/-1`, `...`<br>
+      Expected: Similar to previous.
+
+1. Setting user height
+
+   1. Test case: `weight h/170`<br>
+      Expected: Updates user's height to 170cm. GUI will reflect this change as well. BMI on GUI will recalculate.
+
+   1. Test case: `weight w/370`<br>
+      Expected: Height does not update or change on GUI. Error will be shown for an unrealistic height for a user.
+
+   1. Other incorrect delete commands to try: `height w/10`, `height w/-1`, `...`<br>
+      Expected: Similar to previous.
+
+1. Setting user height
+
+   1. Test case: `weight h/170`<br>
+      Expected: Updates user's height to 170cm. GUI will reflect this change as well. BMI on GUI will recalculate.
+
+   1. Test case: `weight w/370`<br>
+      Expected: Height does not update or change on GUI. Error will be shown for an unrealistic height for a user.
+
+   1. Other incorrect delete commands to try: `height w/10`, `height w/-1`, `...`<br>
+      Expected: Similar to previous.
+
+1. Setting user height
+
+   1. Test case: `height h/170`<br>
+      Expected: Updates user's height to 170cm. GUI will reflect this change as well. BMI on GUI will recalculate.
+
+   1. Test case: `height w/370`<br>
+      Expected: Height does not update or change on GUI. Error will be shown for an unrealistic height for a user.
+
+   1. Other incorrect delete commands to try: `height w/10`, `height w/-1`, `...`<br>
+      Expected: Similar to previous.
+
+1. Adding calorie count
+
+   1. Test case: `calorie_add c/1500`<br>
+      Expected: Increases calorie count for today by 1500. GUI will reflect this change as well in Calorie Graph.
+
+   1. Test case: `calorie_add c/2147483648`<br>
+      Expected: Error will be thrown because this value is bigger than what Java can handle. Calorie Graph and today's calorie count will not update.
+
+   1. Other incorrect delete commands to try: `calorie_add c/-1`, `calorie_add c/0`, `...`<br>
+      Expected: Similar to previous.
+
+1. Deducting calorie count
+
+   1. Test case: `calorie_minus c/1500`<br>
+      Expected: Decreases calorie count for today by 1500. GUI will reflect this change as well in Calorie Graph.
+
+   1. Test case: `calorie_minus c/2147483648`<br>
+      Expected: Error will be thrown because this value is bigger than what Java can handle. Calorie Graph and today's calorie count will not update.
+
+   1. Other incorrect delete commands to try: `calorie_add c/-1`, `calorie_add c/0`, `...`<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_

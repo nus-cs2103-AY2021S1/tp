@@ -15,16 +15,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.LessonAddCommand;
-import seedu.address.logic.commands.LessonListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.lessons.LessonAddCommand;
+import seedu.address.logic.commands.lessons.LessonListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyFitNus;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Lesson;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.model.lesson.Lesson;
+import seedu.address.storage.JsonFitNusStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.LessonBuilder;
@@ -40,10 +40,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("fitNUS.json"));
+        JsonFitNusStorage fitNusStorage =
+                new JsonFitNusStorage(temporaryFolder.resolve("fitNUS.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(fitNusStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -68,8 +68,8 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonFitNusIoExceptionThrowingStub
-        JsonAddressBookStorage fitNusStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionfitNUS.json"));
+        JsonFitNusStorage fitNusStorage =
+                new JsonFitNusIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionfitNUS.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(fitNusStorage, userPrefsStorage);
@@ -85,8 +85,8 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredLessonList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredLessonList().remove(0));
     }
 
     /**
@@ -125,7 +125,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getFitNus(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -145,13 +145,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonFitNusIoExceptionThrowingStub extends JsonFitNusStorage {
+        private JsonFitNusIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveFitNus(ReadOnlyFitNus addressBook, Path filePath) throws IOException {
+        public void saveFitNus(ReadOnlyFitNus fitNus, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

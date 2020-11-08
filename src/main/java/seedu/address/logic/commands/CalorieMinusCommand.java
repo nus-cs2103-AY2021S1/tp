@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.calorie.Calorie;
 
 /**
  * Adds an Daily Calorie to fitNUS.
@@ -24,13 +25,13 @@ public class CalorieMinusCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Calories successfully deducted: %1$s" + "\nToday's calories are: ";
     public static final String MESSAGE_FAILURE = "You are deducting a sum that is greater than today's calories!";
 
-    private final int toDeduct;
+    private final Calorie toDeduct;
 
     /**
      * Creates an CalorieMinusCommand to add the specified {@code DailyCalorie}
      */
-    public CalorieMinusCommand(int calories) {
-        toDeduct = calories;
+    public CalorieMinusCommand(Calorie calorie) {
+        toDeduct = calorie;
     }
 
     @Override
@@ -39,11 +40,11 @@ public class CalorieMinusCommand extends Command {
 
         int todayCalories = model.getCalories();
 
-        if (todayCalories < toDeduct) {
+        if (todayCalories < toDeduct.getCalorie()) {
             throw new CommandException(MESSAGE_FAILURE);
         }
         model.minusCalories(toDeduct);
-        todayCalories -= toDeduct;
+        todayCalories -= toDeduct.getCalorie();
         return new CommandResult(String.format(MESSAGE_SUCCESS + todayCalories, toDeduct));
     }
 
@@ -51,7 +52,7 @@ public class CalorieMinusCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof CalorieMinusCommand // instanceof handles nulls
-                && toDeduct == (((CalorieMinusCommand) other).toDeduct));
+                && toDeduct.equals(((CalorieMinusCommand) other).toDeduct));
     }
 }
 

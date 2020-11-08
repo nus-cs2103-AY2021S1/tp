@@ -6,51 +6,58 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.person.Exercise;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Routine;
+import seedu.address.model.FitNus;
+import seedu.address.model.exercise.Exercise;
+import seedu.address.model.routine.Routine;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.Name;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Routine} objects to be used in tests.
  */
 public class TypicalRoutines {
 
     public static final Routine LEG_DAY = new Routine(new Name("Leg Day"));
     public static final Routine UPPER_BODY = new Routine(new Name("Upper Body"));
 
-    private TypicalRoutines() {} // prevents instantiation
+    private TypicalRoutines() {
+    } // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code FitNus} with all the typical routines.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static FitNus getTypicalFitNus() {
+        FitNus fn = new FitNus();
         for (Routine routine : getTypicalRoutines()) {
-            ab.addRoutine(routine);
+            fn.addRoutine(routine);
         }
-        return ab;
+        return fn;
     }
 
+
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code FitNus} with all the typical routines.
      */
-    public static AddressBook getPopulatedAddressBook() {
-        AddressBook ab = new AddressBook();
-        for (Routine routine : getRoutinesWithExercise()) {
-            ab.addRoutine(routine);
+    public static FitNus getPopulatedFitNus() {
+        FitNus fn = new FitNus();
+        Set<Tag> typicalTags = new HashSet<>();
+        typicalTags.add(new Tag("Dumbbell"));
+        Exercise squats = new Exercise(new Name("Squats"), new HashSet<>());
+        Exercise bicep = new Exercise(new Name("Bicep Curls"), typicalTags);
+
+        if (!LEG_DAY.hasExercise(squats)) {
+            LEG_DAY.addExercise(squats);
         }
-        return ab;
+
+        if (!UPPER_BODY.hasExercise(bicep)) {
+            UPPER_BODY.addExercise(bicep);
+        }
+
+        fn.addRoutine(LEG_DAY);
+        fn.addRoutine(UPPER_BODY);
+        return fn;
     }
     public static List<Routine> getTypicalRoutines() {
-        return new ArrayList<Routine>(Arrays.asList(LEG_DAY, UPPER_BODY));
-    }
-    public static List<Routine> getRoutinesWithExercise() {
-        LEG_DAY.addExercise(new Exercise(new Name("Squats"), new HashSet<>()));
-        Set<Tag> typicalTags = new HashSet<Tag>();
-        typicalTags.add(new Tag("Dumbbell exercise"));
-        UPPER_BODY.addExercise(new Exercise(new Name("Bicep Curls"), typicalTags));
-        return new ArrayList<Routine>(Arrays.asList(LEG_DAY, UPPER_BODY));
+        return new ArrayList<>(Arrays.asList(LEG_DAY, UPPER_BODY));
     }
 }

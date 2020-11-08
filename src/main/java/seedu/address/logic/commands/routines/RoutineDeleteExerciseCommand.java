@@ -8,9 +8,9 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Exercise;
-import seedu.address.model.person.Routine;
-import seedu.address.model.person.exceptions.ExerciseNotFoundException;
+import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.exceptions.ExerciseNotFoundException;
+import seedu.address.model.routine.Routine;
 
 /**
  * Deletes an exercise from a routine in fitNUS.
@@ -55,7 +55,7 @@ public class RoutineDeleteExerciseCommand extends Command {
         }
 
         try {
-            model.deleteExerciseToRoutine(routine, exercise);
+            model.deleteExerciseFromRoutine(routine, exercise);
             return new CommandResult(String.format(String.format(MESSAGE_DELETE_EXERCISE_SUCCESS,
                     routine), exercise));
         } catch (ExerciseNotFoundException e) {

@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddHeightCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Height;
+import seedu.address.model.body.Height;
 
 public class AddHeightCommandParser implements Parser<AddHeightCommand> {
 
@@ -23,6 +23,8 @@ public class AddHeightCommandParser implements Parser<AddHeightCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_HEIGHT)
                 || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddHeightCommand.MESSAGE_USAGE));
+        } else if (argMultimap.getAllValues(PREFIX_HEIGHT).size() != 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddHeightCommand.MESSAGE_USAGE));
         }
 

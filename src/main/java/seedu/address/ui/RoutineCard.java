@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Routine;
+import seedu.address.model.routine.Routine;
 
 /**
  * An UI component that displays information of a {@code Exercise}.
@@ -21,7 +21,7 @@ public class RoutineCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on FitNus level 4</a>
      */
 
     public final Routine routine;
@@ -32,12 +32,6 @@ public class RoutineCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
-    @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
     @FXML
     private FlowPane tags;
 
@@ -72,4 +66,3 @@ public class RoutineCard extends UiPart<Region> {
                 && routine.equals(card.routine);
     }
 }
-

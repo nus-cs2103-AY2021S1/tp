@@ -10,7 +10,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Routine;
+import seedu.address.model.routine.Routine;
 
 /**
  * Deletes a routine identified using it's displayed index from fitNUS.

@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.person.Lesson;
+import seedu.address.model.FitNus;
+import seedu.address.model.lesson.Lesson;
 
 /**
  * A utility class containing a list of {@code Lesson} objects to be used in tests.
@@ -41,14 +41,14 @@ public class TypicalLessons {
     private TypicalLessons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical lessons.
+     * Returns an {@code FitNus} with all the typical lessons.
      */
-    public static AddressBook getTypicalFitNus() {
-        AddressBook ab = new AddressBook();
+    public static FitNus getTypicalFitNus() {
+        FitNus fn = new FitNus();
         for (Lesson lesson : getTypicalLessons()) {
-            ab.addLesson(lesson);
+            fn.addLesson(lesson);
         }
-        return ab;
+        return fn;
     }
 
     public static List<Lesson> getTypicalLessons() {

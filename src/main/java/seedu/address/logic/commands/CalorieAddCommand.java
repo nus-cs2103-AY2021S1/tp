@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.calorie.Calorie;
 
 /**
  * Adds a DailyCalorie to fitNUS.
@@ -24,13 +25,13 @@ public class CalorieAddCommand extends Command {
     public static final String MESSAGE_FAILURE = "The calories that you are adding is too large! fitNUS is unable to "
             + "calculate such large values.";
 
-    private final int toAdd;
+    private final Calorie toAdd;
 
     /**
      * Creates an CalorieAddCommand to add the specified {@code DailyCalorie}
      */
-    public CalorieAddCommand(int calories) {
-        toAdd = calories;
+    public CalorieAddCommand(Calorie calorie) {
+        toAdd = calorie;
     }
 
     @Override
@@ -38,12 +39,12 @@ public class CalorieAddCommand extends Command {
         requireNonNull(model);
         int todayCalories = model.getCalories();
 
-        if (todayCalories > Integer.MAX_VALUE - toAdd) {
+        if (todayCalories > Integer.MAX_VALUE - toAdd.getCalorie()) {
             throw new CommandException(MESSAGE_FAILURE);
         }
 
         model.addCalories(toAdd);
-        todayCalories += toAdd;
+        todayCalories += toAdd.getCalorie();
         return new CommandResult(String.format(MESSAGE_SUCCESS + todayCalories, toAdd));
     }
 
@@ -51,7 +52,7 @@ public class CalorieAddCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof CalorieAddCommand // instanceof handles nulls
-                && toAdd == (((CalorieAddCommand) other).toAdd));
+                && toAdd.equals(((CalorieAddCommand) other).toAdd));
     }
 }
 

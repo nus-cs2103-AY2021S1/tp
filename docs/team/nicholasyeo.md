@@ -34,13 +34,13 @@ wholesome user experience.
   * What it does: Allows the user to add existing Routines or Lessons in fitNUS into their timetable by creating a Slot.
   The Timetable class has a list of Slots, where each Slot encapsulates an Activity, the Day and Duration.
   * Justification: This is a core feature of fitNUS and allows users to have the flexibility of adding Routines/Lessons
-  to any day and time slot of their choice in their timetable. This allows users to integrate their workout sessions 
+  to any day and time slot of their choice in their timetable. This allows users to integrate their workout sessions
   into their lesson timetable. To allow the adding of either Routine or Lesson into a Slot, both the Routine and Lesson
   classes extend from the parent Activity class.
   * Highlights: Implementing Timetable and Slot classes required a deep understanding of how the original AB3 functioned.
   Furthermore, the Slot class stores Routines or Lessons and it requires both classes to be implemented well before
   Slot can properly encapsulate them.
-  
+
 * **New Feature**: Added the ability to store height and weight in fitNUS.
   * What it does: Allows the user to store his height and weight so that he can keep track of his fitness progress.
   * Justification: Such a feature improves our application significantly as it helps users to better track their fitness
@@ -56,7 +56,7 @@ wholesome user experience.
 
 * **Enhancements to existing features**:
   * Wrote test cases for Timetable, Slot, Activity, Day, Duration as well as its relevant command and parser classes.
-  
+
 ## Contributions to the team-based tasks:
 
 * Contributed to the planning and designing of the display and layout of fitNUS.

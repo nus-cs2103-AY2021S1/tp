@@ -5,42 +5,37 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Body;
-import seedu.address.model.person.DailyCalorie;
-import seedu.address.model.person.Exercise;
-import seedu.address.model.person.Height;
-import seedu.address.model.person.Lesson;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Routine;
-import seedu.address.model.person.Slot;
-import seedu.address.model.person.Weight;
+import seedu.address.model.body.Body;
+import seedu.address.model.body.Height;
+import seedu.address.model.body.Weight;
+import seedu.address.model.calorie.Calorie;
+import seedu.address.model.calorie.DailyCalorie;
+import seedu.address.model.exercise.Exercise;
+import seedu.address.model.lesson.Lesson;
+import seedu.address.model.routine.Routine;
+import seedu.address.model.timetable.Slot;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /**
-     * {@code Predicate} that always evaluate to true
-     */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
-    /**
-     * {@code Predicate} that always evaluate to true
+     * {@code Predicate} that always evaluate to true.
      */
     Predicate<Exercise> PREDICATE_SHOW_ALL_EXERCISES = unused -> true;
 
     /**
-     * {@code Predicate} that always evaluate to true
+     * {@code Predicate} that always evaluate to true.
      */
     Predicate<Routine> PREDICATE_SHOW_ALL_ROUTINES = unused -> true;
 
     /**
-     * {@code Predicate} that always evaluate to true
+     * {@code Predicate} that always evaluate to true.
      */
     Predicate<Lesson> PREDICATE_SHOW_ALL_LESSONS = unused -> true;
 
     /**
-     * {@code Predicate} that always evaluate to true
+     * {@code Predicate} that always evaluate to true.
      */
     Predicate<DailyCalorie> PREDICATE_SHOW_ALL_LOGS = unused -> true;
 
@@ -65,35 +60,24 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' fitNUS file path.
      */
-    Path getAddressBookFilePath();
+    Path getFitNusFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' fitNUS file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setFitNusFilePath(Path fitNusFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces fitNUS data with the data in {@code fitNus}.
      */
-    void setAddressBook(ReadOnlyFitNus addressBook);
+    void setFitNus(ReadOnlyFitNus fitNus);
 
     /**
-     * Returns the AddressBook
+     * Returns the fitNUS.
      */
-    ReadOnlyFitNus getAddressBook();
-
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    boolean hasPerson(Person person);
-
-    /**
-     * Deletes the given person.
-     * The person must exist in the address book.
-     */
-    void deletePerson(Person target);
+    ReadOnlyFitNus getFitNus();
 
     /**
      * Deletes the given exercise.
@@ -108,37 +92,14 @@ public interface Model {
     void deleteLesson(Lesson target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
-     */
-    void addPerson(Person person);
-
-    /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    void setPerson(Person target, Person editedPerson);
-
-    /**
-     * Returns an unmodifiable view of the filtered person list
-     */
-    ObservableList<Person> getFilteredPersonList();
-
-    /**
-     * Returns an unmodifiable view of the filtered exercise list
+     * Returns an unmodifiable view of the filtered exercise list.
      */
     ObservableList<Exercise> getFilteredExerciseList();
 
     /**
-     * Returns an unmodifiable view of the filtered lesson list
+     * Returns an unmodifiable view of the filtered lesson list.
      */
     ObservableList<Lesson> getFilteredLessonList();
-
-    /**
-     * Returns an unmodifiable view of the filtered body list
-     */
-    ObservableList<Body> getFilteredBody();
 
     /**
      * Returns an unmodifiable view of the filtered slot list
@@ -146,16 +107,14 @@ public interface Model {
     ObservableList<Slot> getFilteredSlotList();
 
     /**
-     * Returns an unmodifiable view of the filtered slot list, filtered by the chosen day
+     * Returns an unmodifiable view of the filtered slot list, filtered by the chosen day.
      */
     ObservableList<Slot> getFilteredSlotList(String day);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
+     * Returns an unmodifiable view of the filtered body list
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    ObservableList<Body> getFilteredBody();
 
     /**
      * Updates the filter of the filtered calorie log to filter by the given {@code predicate}.
@@ -191,7 +150,7 @@ public interface Model {
 
     /**
      * Replaces the given exercise {@code target} with {@code editedExercise}.
-     * {@code target} must exist in FitNUS.
+     * {@code target} must exist in fitNUS.
      * The exercise identity of {@code editedExercise} must not be the same as another existing exercise in FitNUS.
      */
     void setExercise(Exercise target, Exercise editedExercise);
@@ -215,11 +174,6 @@ public interface Model {
     void addExerciseToRoutine(Routine r, Exercise e);
 
     /**
-     * List out all the routines in fitNUS.
-     */
-    String listRoutines();
-
-    /**
      * Updates the filter of the filtered routine list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
@@ -227,8 +181,8 @@ public interface Model {
     void updateFilteredRoutineList(Predicate<Routine> predicate);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the target routine.
+     * The routine must exist in the fitNUS.
      */
     void deleteRoutine(Routine target);
 
@@ -253,19 +207,19 @@ public interface Model {
 
     /**
      * Adds the given lesson.
-     * {@code lesson} must not already exist in timetable.
+     * {@code lesson} must not already exist in fitNUS.
      */
     void addLesson(Lesson lesson);
 
     /**
-     * Replaces the given person {@code target} with {@code editedLesson}.
+     * Replaces the given body {@code target} with {@code editedLesson}.
      * {@code target} must exist in FitNUS.
      * The lesson identity of {@code editedLesson} must not be the same as another existing lesson in FitNUS.
      */
     void setLesson(Lesson target, Lesson editedLesson);
 
     /**
-     * Returns an unmodifiable view of the filtered person list
+     * Returns an unmodifiable view of the filtered body list
      */
     ObservableList<Routine> getFilteredRoutineList();
 
@@ -290,13 +244,13 @@ public interface Model {
      * {@code routine} must already exist within fitNUS.
      * {@code exercise} must already exist within fitNUS.
      */
-    void deleteExerciseToRoutine(Routine routine, Exercise exercise);
+    void deleteExerciseFromRoutine(Routine routine, Exercise exercise);
 
     void viewRoutine(Routine routineToView);
 
-    void addCalories(int calories);
+    void addCalories(Calorie calorie);
 
-    void minusCalories(int calories);
+    void minusCalories(Calorie calorie);
 
     ObservableList<DailyCalorie> getFilteredDailyCalorie();
 

@@ -7,21 +7,21 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.DailyCalorie;
-import seedu.address.model.person.Person;
+import seedu.address.model.calorie.DailyCalorie;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link DailyCalorie}.
  */
 class JsonAdaptedDailyCalorie {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "DailyCalorie's %s field is missing!";
+    public static final String INVALID_CALORIE_MESSAGE_FORMAT = "DailyCalorie's calorie field is incorrect!";
 
     private final String date;
     private final String calories;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedDailyCalorie} with the given daily calorie details.
      */
     @JsonCreator
     public JsonAdaptedDailyCalorie(@JsonProperty("date") String date,
@@ -31,7 +31,7 @@ class JsonAdaptedDailyCalorie {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code DailyCalorie} into this class for Jackson use.
      */
     public JsonAdaptedDailyCalorie(DailyCalorie source) {
         date = source.getDate().toString();
@@ -39,9 +39,9 @@ class JsonAdaptedDailyCalorie {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted daily calorie object into the model's {@code DailyCalorie} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted daily calorie.
      */
     public DailyCalorie toModelType() throws IllegalValueException {
 
@@ -53,9 +53,17 @@ class JsonAdaptedDailyCalorie {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate modelLocalDate = LocalDate.parse(date, formatter);
         DailyCalorie modelDailyCalorie = new DailyCalorie(modelLocalDate);
-        int modelCalories = Integer.parseInt(calories);
+        int modelCalories;
+        try {
+            modelCalories = Integer.parseInt(calories);
+        } catch (NumberFormatException e) {
+            throw new IllegalValueException(INVALID_CALORIE_MESSAGE_FORMAT);
+        }
+
+        if (modelCalories < 0) {
+            throw new IllegalValueException(INVALID_CALORIE_MESSAGE_FORMAT);
+        }
         modelDailyCalorie.addCalories(modelCalories);
         return modelDailyCalorie;
     }
-
 }

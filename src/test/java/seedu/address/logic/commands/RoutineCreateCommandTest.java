@@ -15,18 +15,18 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.routines.RoutineCreateCommand;
-import seedu.address.model.AddressBook;
+import seedu.address.model.FitNus;
 import seedu.address.model.ReadOnlyFitNus;
-import seedu.address.model.person.Routine;
+import seedu.address.model.routine.Routine;
 
 public class RoutineCreateCommandTest {
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullRoutine_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new RoutineCreateCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_routineAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingRoutines modelStub = new ModelStubAcceptingRoutines();
 
         CommandResult commandResult = new RoutineCreateCommand(LEG_DAY).execute(modelStub);
@@ -36,7 +36,7 @@ public class RoutineCreateCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateRoutine_throwsCommandException() {
         RoutineCreateCommand command = new RoutineCreateCommand(LEG_DAY);
         ModelStub modelStub = new ModelStubWithRoutine(LEG_DAY);
 
@@ -103,8 +103,8 @@ public class RoutineCreateCommandTest {
         }
 
         @Override
-        public ReadOnlyFitNus getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyFitNus getFitNus() {
+            return new FitNus();
         }
     }
 

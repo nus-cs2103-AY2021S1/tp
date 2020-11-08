@@ -35,13 +35,13 @@ wholesome user experience.
   * Justification: This is a core feature of fitNUS and allows users to add a list of exercises into fitNUS. This will enable
   the user to create routines based on the exercises added, and subsequently add these routines to their timetable.
   * Highlights: Implementing the exercise class and its relevant commands required a clear understanding of how parsing
-   and storage functioned in the original AB3. Understanding of how fitNUS retrieves data from the data file is also 
+   and storage functioned in the original AB3. Understanding of how fitNUS retrieves data from the data file is also
    needed in order to ensure that commands work as intended.
-  
+
 * **New Feature**: Added the feature allowing users to switch between the home screen and timetable screen
   * What it does: Allows the user view his timetable on a separate screen from his exercises, routines, lessons, calorie and
   BMI tracker.
-  * Justification: This user-centric feature greatly improves user experience by providing more space to display the timetable. 
+  * Justification: This user-centric feature greatly improves user experience by providing more space to display the timetable.
   This organizes the UI and makes it more convenient for users to find their next activity for the day.
   * Highlights: The implementation of multiple tabs required a solid understanding of how AB3 uses FXML to display the GUI. Furthermore,
   did independent research to learn how tabs work in FXML, as well as how to integrate tabs into the current GUI.
@@ -55,7 +55,7 @@ wholesome user experience.
   * Updated the GUI to display exercises, routines and lessons added into 3 columns for ease of viewing.
   * Updated the GUI to display routines and lessons inside timeslots in a weekly timetable. The timeslots
   are sorted by the time each activity occurs.
-  
+
 ## Contributions to the team-based tasks:
 
 * Contributed to the planning and designing of the display and layout of fitNUS.

@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Exercise;
+import seedu.address.model.exercise.Exercise;
 
 /**
  * Panel containing the list of exercises.

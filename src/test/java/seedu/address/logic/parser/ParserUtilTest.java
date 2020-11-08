@@ -4,8 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_LESSON;
 
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,25 +16,35 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.body.Height;
+import seedu.address.model.body.Weight;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.timetable.Day;
+import seedu.address.model.timetable.Duration;
+import seedu.address.model.util.Name;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_LESSON_NAME = "GER@1000";
+    private static final String INVALID_EXERCISE_NAME = "Seated Leg Pr&ss";
+    private static final String INVALID_DAY = "random";
+    private static final String INVALID_DURATION_FORMAT = "1600 - 1800";
+    private static final String INVALID_DURATION_ORDER = "1800-1600";
+    private static final String INVALID_TAG = "#priority";
+    private static final String INVALID_HEIGHT_FORMAT = "123.45.6";
+    private static final String INVALID_HEIGHT_LIMIT_1 = "10";
+    private static final String INVALID_HEIGHT_LIMIT_2 = "1000";
+    private static final String INVALID_WEIGHT_FORMAT = "60.12.3";
+    private static final String INVALID_WEIGHT_LIMIT_1 = "10";
+    private static final String INVALID_WEIGHT_LIMIT_2 = "1000";
 
-    private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
-    private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_LESSON_NAME = "GER1000";
+    private static final String VALID_EXERCISE_NAME = "Seated Leg Press";
+    private static final String VALID_DURATION = "1600-1800";
+    private static final String VALID_DAY = "monday";
+    private static final String VALID_TAG_1 = "priority";
+    private static final String VALID_TAG_2 = "lower";
+    private static final String VALID_HEIGHT = "170";
+    private static final String VALID_WEIGHT = "70";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -48,12 +60,21 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseIndex_validInput_success() throws Exception {
+    public void parseLessonIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_LESSON, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_LESSON, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseExerciseIndex_validInput_success() throws Exception {
+        // No whitespaces
+        assertEquals(INDEX_FIRST_EXERCISE, ParserUtil.parseIndex("1"));
+
+        // Leading and trailing whitespaces
+        assertEquals(INDEX_FIRST_EXERCISE, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
@@ -62,90 +83,76 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME));
+    public void parseLessonName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_LESSON_NAME));
     }
 
     @Test
-    public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+    public void parseLessonName_validValueWithoutWhitespace_returnsLessonName() throws Exception {
+        Name expectedName = new Name(VALID_LESSON_NAME);
+        assertEquals(expectedName, ParserUtil.parseName(VALID_LESSON_NAME));
     }
 
     @Test
-    public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+    public void parseLessonName_validValueWithWhitespace_returnsTrimmedLessonName() throws Exception {
+        String lessonNameWithWhitespace = WHITESPACE + VALID_LESSON_NAME + WHITESPACE;
+        Name expectedLessonName = new Name(VALID_LESSON_NAME);
+        assertEquals(expectedLessonName, ParserUtil.parseName(lessonNameWithWhitespace));
     }
 
     @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+    public void parseExerciseName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_EXERCISE_NAME));
     }
 
     @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
+    public void parseExerciseName_validValueWithoutWhitespace_returnsExerciseName() throws Exception {
+        Name expectedName = new Name(VALID_EXERCISE_NAME);
+        assertEquals(expectedName, ParserUtil.parseName(VALID_EXERCISE_NAME));
     }
 
     @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+    public void parseExerciseName_validValueWithWhitespace_returnsTrimmedExerciseName() throws Exception {
+        String exerciseNameWithWhitespace = WHITESPACE + VALID_EXERCISE_NAME + WHITESPACE;
+        Name expectedExerciseName = new Name(VALID_EXERCISE_NAME);
+        assertEquals(expectedExerciseName, ParserUtil.parseName(exerciseNameWithWhitespace));
     }
 
     @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    public void parseDay_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDay((String) null));
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+    public void parseDay_unknownDay_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDay(INVALID_DAY));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+    public void parseDay_validDay_success() throws Exception {
+        Day expectedDay = Day.MONDAY;
+        assertEquals(expectedDay, ParserUtil.parseDay(VALID_DAY));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
+    public void parseDuration_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDuration((String) null));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+    public void parseDuration_invalidDurationFormat_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuration(INVALID_DURATION_FORMAT));
     }
 
     @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    public void parseDuration_invalidDurationOrder_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuration(INVALID_DURATION_ORDER));
     }
 
     @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
-    }
-
-    @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
-    }
-
-    @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    public void parseDuration_validDuration_success() throws Exception {
+        Duration expectedDuration = new Duration(LocalTime.of(16, 0), LocalTime.of(18, 0));
+        assertEquals(expectedDuration, ParserUtil.parseDuration(VALID_DURATION));
     }
 
     @Test
@@ -189,8 +196,60 @@ public class ParserUtilTest {
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
         Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+        Set<Tag> expectedTagSet = new HashSet<>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseHeight_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseHeight(null));
+    }
+
+    @Test
+    public void parseHeight_invalidHeightFormat_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseHeight(INVALID_HEIGHT_FORMAT));
+    }
+
+    @Test
+    public void parseHeight_invalidHeightLowerLimit_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseHeight(INVALID_HEIGHT_LIMIT_1));
+    }
+
+    @Test
+    public void parseHeight_invalidHeightUpperLimit_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseHeight(INVALID_HEIGHT_LIMIT_2));
+    }
+
+    @Test
+    public void parseHeight_validHeight_success() throws Exception {
+        Height expectedHeight = new Height(170);
+        assertEquals(expectedHeight, ParserUtil.parseHeight(VALID_HEIGHT));
+    }
+
+    @Test
+    public void parseWeight_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseWeight(null));
+    }
+
+    @Test
+    public void parseWeight_invalidWeightFormat_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseWeight(INVALID_WEIGHT_FORMAT));
+    }
+
+    @Test
+    public void parseWeight_invalidWeightLowerLimit_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseWeight(INVALID_WEIGHT_LIMIT_1));
+    }
+
+    @Test
+    public void parseWeight_invalidWeightUpperLimit_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseWeight(INVALID_WEIGHT_LIMIT_2));
+    }
+
+    @Test
+    public void parseWeight_validWeight_success() throws Exception {
+        Weight expectedWeight = new Weight(70);
+        assertEquals(expectedWeight, ParserUtil.parseWeight(VALID_WEIGHT));
     }
 }

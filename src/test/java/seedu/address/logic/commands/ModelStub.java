@@ -8,15 +8,15 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyFitNus;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Body;
-import seedu.address.model.person.DailyCalorie;
-import seedu.address.model.person.Exercise;
-import seedu.address.model.person.Height;
-import seedu.address.model.person.Lesson;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Routine;
-import seedu.address.model.person.Slot;
-import seedu.address.model.person.Weight;
+import seedu.address.model.body.Body;
+import seedu.address.model.body.Height;
+import seedu.address.model.body.Weight;
+import seedu.address.model.calorie.Calorie;
+import seedu.address.model.calorie.DailyCalorie;
+import seedu.address.model.exercise.Exercise;
+import seedu.address.model.lesson.Lesson;
+import seedu.address.model.routine.Routine;
+import seedu.address.model.timetable.Slot;
 
 public class ModelStub implements Model {
 
@@ -31,27 +31,53 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public GuiSettings getGuiSettings() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public GuiSettings getGuiSettings() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
+    public void setFitNusFilePath(Path fitNusFilePath) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void addPerson(Person person) {
+    public Path getFitNusFilePath() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setFitNus(ReadOnlyFitNus newData) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ReadOnlyFitNus getFitNus() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+
+    @Override
+    public void setExercise(Exercise target, Exercise editedExercise) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setLesson(Lesson target, Lesson editedLesson) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public double getBmi() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public int getCalories() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -66,7 +92,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public boolean hasRoutine(Routine r) {
+    public void addLesson(Lesson lesson) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -76,17 +102,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public String listRoutines() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void updateFilteredRoutineList(Predicate<Routine> predicate) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void deleteRoutine(Routine target) {
+    public void addSlotToTimetable(Slot slot) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -101,37 +117,22 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public double getBmi() {
+    public void addCalories(Calorie calories) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void addLesson(Lesson lesson) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ObservableList<Routine> getFilteredRoutineList() {
-        return null;
-    }
-
-    @Override
-    public void setAddressBook(ReadOnlyFitNus newData) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ReadOnlyFitNus getAddressBook() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public boolean hasPerson(Person person) {
+    public void minusCalories(Calorie calories) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public boolean hasExercise(Exercise exercise) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean hasRoutine(Routine r) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -151,22 +152,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void addSlotToTimetable(Slot slot) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void deleteSlotFromTimetable(Slot slot) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public void deleteExercise(Exercise target) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteRoutine(Routine target) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -176,22 +167,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
+    public void deleteExerciseFromRoutine(Routine routine, Exercise exercise) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void setExercise(Exercise target, Exercise editedExercise) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void setLesson(Lesson target, Lesson editedLesson) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public Lesson retrieveLesson(Lesson lesson) {
+    public void deleteSlotFromTimetable(Slot slot) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -201,7 +182,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void deleteExerciseToRoutine(Routine routine, Exercise exercise) {
+    public Lesson retrieveLesson(Lesson lesson) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -211,12 +192,27 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void addCalories(int calories) {
+    public ObservableList<Exercise> getFilteredExerciseList() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void minusCalories(int calories) {
+    public ObservableList<Routine> getFilteredRoutineList() {
+        return null;
+    }
+
+    @Override
+    public ObservableList<Lesson> getFilteredLessonList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Slot> getFilteredSlotList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Slot> getFilteredSlotList(String day) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -231,48 +227,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public int getCalories() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ObservableList<Exercise> getFilteredExerciseList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ObservableList<Lesson> getFilteredLessonList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public ObservableList<Body> getFilteredBody() {
-        throw new AssertionError("This method should not be called.");
-
-    }
-
-    @Override
-    public ObservableList<Slot> getFilteredSlotList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ObservableList<Slot> getFilteredSlotList(String day) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void updateFilteredCalorieLog(Predicate<DailyCalorie> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -282,8 +237,17 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void updateFilteredRoutineList(Predicate<Routine> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void updateFilteredLessonList(Predicate<Lesson> predicate) {
         throw new AssertionError("This method should not be called.");
     }
-}
 
+    @Override
+    public void updateFilteredCalorieLog(Predicate<DailyCalorie> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+}

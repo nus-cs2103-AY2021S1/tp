@@ -10,9 +10,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Exercise;
-import seedu.address.model.person.Name;
+import seedu.address.model.exercise.Exercise;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.Name;
 
 /**
  * Jackson-friendly version of {@link Exercise}.
@@ -25,7 +25,7 @@ class JsonAdaptedExercise {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedExercise} with the given person details.
+     * Constructs a {@code JsonAdaptedExercise} with the given body details.
      */
     @JsonCreator
     public JsonAdaptedExercise(@JsonProperty("name") String name,
@@ -68,5 +68,4 @@ class JsonAdaptedExercise {
         final Set<Tag> modelTags = new HashSet<>(exerciseTags);
         return new Exercise(modelName, modelTags);
     }
-
 }
