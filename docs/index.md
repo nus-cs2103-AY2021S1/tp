@@ -3,8 +3,8 @@ layout: page
 title: Supper Strikers
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
+![Java CI](https://github.com/AY2021S1-CS2103-T16-1/tp/workflows/Java%20CI/badge.svg)
+[![codecov](https://codecov.io/gh/AY2021S1-CS2103-T16-1/tp/branch/master/graph/badge.svg?token=CJKQa8CATW)](https://codecov.io/gh/AY2021S1-CS2103-T16-1/tp)
 
 ![Ui](images/Ui.png)
 
