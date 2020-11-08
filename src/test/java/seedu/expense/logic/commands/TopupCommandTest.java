@@ -3,6 +3,7 @@ package seedu.expense.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.expense.logic.commands.CommandTestUtil.VALID_TAG_FOOD;
 import static seedu.expense.model.ExpenseBook.DEFAULT_TAG;
 import static seedu.expense.testutil.Assert.assertThrows;
 
@@ -14,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.expense.commons.core.GuiSettings;
+import seedu.expense.logic.commands.exceptions.CommandException;
 import seedu.expense.model.Model;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.ReadOnlyUserPrefs;
@@ -36,13 +38,39 @@ public class TopupCommandTest {
     }
 
     @Test
-    void execute_amountAddedToModel_success() throws Exception {
+    void execute_nonNegativeAmountAddedToModel_success() throws Exception {
         ModelStub modelStub = new ModelStub();
+
+        Amount validAmount0 = new Amount("0");
+        CommandResult commandResult0 = new TopupCommand(validAmount0).execute(modelStub);
+        assertEquals(String.format(TopupCommand.MESSAGE_SUCCESS, DEFAULT_TAG.tagName, validAmount0),
+                commandResult0.getFeedbackToUser());
+        assertEquals(validAmount0, modelStub.budgets.getAmount());
+
+        Amount validAmount1 = new Amount("1");
+        CommandResult commandResult1 = new TopupCommand(validAmount1).execute(modelStub);
+        assertEquals(String.format(TopupCommand.MESSAGE_SUCCESS, DEFAULT_TAG.tagName, validAmount1),
+                commandResult1.getFeedbackToUser());
+        assertEquals(validAmount1, modelStub.budgets.getAmount());
+    }
+
+    @Test
+    void execute_negativeAmountAddedToModel_throwsCommandException() {
+        ModelStub modelStub = new ModelStub();
+        assertThrows(CommandException.class, () -> new TopupCommand(new Amount("-0.01")).execute(modelStub));
+    }
+
+    @Test
+    void execute_validAmountAddedToCategoryBudget_success() throws Exception {
+        ModelStub modelStub = new ModelStub();
+        Tag validTag = new Tag(VALID_TAG_FOOD);
         Amount validAmount = new Amount("1");
-        CommandResult commandResult = new TopupCommand(validAmount).execute(modelStub);
-        assertEquals(String.format(TopupCommand.MESSAGE_SUCCESS, DEFAULT_TAG.tagName, validAmount),
+        modelStub.addCategory(validTag);
+        CommandResult commandResult = new TopupCommand(validAmount, validTag).execute(modelStub);
+        assertEquals(String.format(TopupCommand.MESSAGE_SUCCESS, VALID_TAG_FOOD, validAmount),
                 commandResult.getFeedbackToUser());
-        assertEquals(validAmount, modelStub.budgets.getAmount());
+        assertEquals(validAmount, modelStub.budgets.getCategoryBudget(validTag).getAmount());
+
     }
 
     @Test
@@ -199,7 +227,8 @@ public class TopupCommandTest {
 
         @Override
         public void addCategory(Tag tag) {
-            throw new AssertionError("This method should not be called.");
+            tags.add(tag);
+            budgets.add(new CategoryBudget(tag));
         }
 
         @Override
