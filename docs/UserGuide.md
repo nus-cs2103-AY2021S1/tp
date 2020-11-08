@@ -388,7 +388,7 @@ Multiple ingredients are separated by `,`.
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
     Specified fields will permanently override existing values with the new values- the edit is not cumulative
     . Typing `editR INDEX` and then hitting `Enter` will insert the information of the recipe at the specified
-     `INDEX` into the command box, letting you directly modify the existing recipe. Refer to 
+     `INDEX` into the command box, letting you directly modify the existing recipe. 
 </div> 
 
 Examples:
