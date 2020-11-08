@@ -9,9 +9,11 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalTasks.TASK_A_DEADLINE;
+import static seedu.address.testutil.TypicalTasks.TASK_A_DESCRIPTION;
 import static seedu.address.testutil.TypicalTasks.TASK_A_NAME;
 import static seedu.address.testutil.TypicalTasks.TASK_A_PROGRESS;
 import static seedu.address.testutil.TypicalTasks.TASK_B_DEADLINE;
+import static seedu.address.testutil.TypicalTasks.TASK_B_DESCRIPTION;
 import static seedu.address.testutil.TypicalTasks.TASK_B_NAME;
 import static seedu.address.testutil.TypicalTasks.TASK_B_PROGRESS;
 
@@ -29,24 +31,28 @@ public class AddTaskCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Task expectedTask = new TaskBuilder(TypicalTasks.TASK_A).withTaskDescription(null).build();
+        Task expectedTask = new TaskBuilder(TypicalTasks.TASK_A).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + TASK_A_NAME + TASK_A_DEADLINE
-                + TASK_A_PROGRESS, new AddTaskCommand(expectedTask));
+                + TASK_A_PROGRESS + TASK_A_DESCRIPTION, new AddTaskCommand(expectedTask));
 
         // multiple task names - last name accepted
         assertParseSuccess(parser, TASK_B_NAME + TASK_A_NAME + TASK_A_DEADLINE
-                + TASK_A_PROGRESS, new AddTaskCommand(expectedTask));
+                + TASK_A_PROGRESS+ TASK_A_DESCRIPTION, new AddTaskCommand(expectedTask));
 
 
         // multiple deadlines - last deadline accepted
         assertParseSuccess(parser, TASK_A_NAME + TASK_B_DEADLINE + TASK_A_DEADLINE
-                + TASK_A_PROGRESS, new AddTaskCommand(expectedTask));
+                + TASK_A_PROGRESS+ TASK_A_DESCRIPTION, new AddTaskCommand(expectedTask));
 
         // multiple progress - last progress accepted
         assertParseSuccess(parser, TASK_A_NAME + TASK_A_DEADLINE + TASK_B_PROGRESS
-                + TASK_A_PROGRESS, new AddTaskCommand(expectedTask));
+                + TASK_A_PROGRESS+ TASK_A_DESCRIPTION, new AddTaskCommand(expectedTask));
+
+        // multiple descriptions - last description accepted
+        assertParseSuccess(parser, TASK_A_NAME + TASK_A_DEADLINE + TASK_B_PROGRESS
+                + TASK_A_PROGRESS+TASK_B_DESCRIPTION+ TASK_A_DESCRIPTION, new AddTaskCommand(expectedTask));
     }
 
     @Test
@@ -56,10 +62,6 @@ public class AddTaskCommandParserTest {
         assertParseFailure(parser, SampleDataUtil.getValidTask().get(0) + TASK_A_DEADLINE
                         + TASK_A_PROGRESS, expectedMessage);
 
-        // missing deadline prefix
-        assertParseFailure(parser, TASK_A_NAME + SampleDataUtil.getValidTask().get(2)
-                        + TASK_A_PROGRESS, expectedMessage);
-
         // missing progress prefix
         assertParseFailure(parser, TASK_A_NAME + TASK_A_DEADLINE
                         + SampleDataUtil.getValidTask().get(3), expectedMessage);
@@ -67,7 +69,7 @@ public class AddTaskCommandParserTest {
 
         // all prefixes missing
         assertParseFailure(parser, SampleDataUtil.getValidTask().get(0) + SampleDataUtil.getValidTask().get(2)
-                        + SampleDataUtil.getValidTask().get(3), expectedMessage);
+                        + SampleDataUtil.getValidTask().get(3) + SampleDataUtil.getValidTask().get(1), expectedMessage);
     }
 
     @Test
