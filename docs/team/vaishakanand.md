@@ -12,9 +12,9 @@ Given below are my contributions to the project.
 
 * **New Feature implemented**: Added the **details** feature to **Reeve**.
   * What it does: Allows the user to add, edit or delete any additional details to a student.
-  * Justification: This feature would help tutors significantly as it allows them to add details that have not been 
+  * Justification: This feature would help tutors significantly as it allows them to add details that have not been
   covered by the other fields, to students.
-  
+
 * **New Feature implemented**: Added the **attendance** feature to **Reeve**.
   * What it does: Allows the user to track (add or delete) the attendance of students in lessons.
   * Justification: An attendance tracking feature helps to ease one of a tutor's many required tasks. This is helps them
@@ -24,7 +24,7 @@ Given below are my contributions to the project.
   * Added the `Academic` class to restructure `Student`.
   * Added the `ClassTime` and `ClassVenue` that are required fields in `Student`.
   * Adapted the `edit` command to work with the new structure of `Student` in **Reeve**.
-  
+
 * **Code contribution**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=vaishakanand)
 
 * **Project management**:
@@ -42,4 +42,3 @@ Given below are my contributions to the project.
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#71](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/71), [\#77](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/77), [#56](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/56)
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/VaishakAnand/ped/issues/5), [2](https://github.com/VaishakAnand/ped/issues/2), [3](https://github.com/VaishakAnand/ped/issues/3))
-
