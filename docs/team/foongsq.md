@@ -28,13 +28,13 @@ Given below are my contributions to the project.
     * Highlights: I implemented the review limit in such a way that it can accept a range of integer inputs from 1 to 
     `Integer.MAX_VALUE` and also valid string inputs such as `all`. 
 
-<div style="page-break-after: always;"></div>
 * **New Feature 3**: Implementation of character limit for question, answer and deck names (Pull request: [#172](https://github.com/AY2021S1-CS2103T-T15-2/tp/pull/172))
     * What it does: Limits the number of characters that users can input for question, answer and deck names to 140 
     characters.
     * Justification: This feature is important as it affects some of the UI decisions we made. Some examples include
     how to handle overflow in the content we want to display, and the sizing of the different windows.
 
+<div style="page-break-after: always;"></div>
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=foongsq&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
