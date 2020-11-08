@@ -24,7 +24,7 @@ import seedu.address.model.task.Task;
 
 public class CompleteTaskCommandTest {
 
-    // first index of todo list is completed, second index is not completed
+    // first index of todo list is not completed, second index is not completed
     private ModelManager model = new ModelManager(
             new ModuleList(),
             new ModuleList(),
