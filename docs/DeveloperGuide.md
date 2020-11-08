@@ -133,7 +133,7 @@ shows how these classes are related to one another.
 
 Below are two sequence diagrams. The first sequence diagram shows the interactions between classes in the `seedu.address.storage` package when quiz performance data is read from
 the text file and converted into a Performance object. The second sequence diagram shows the interactions between classes in the `seedu.address.storage` package when a Performance object
-is converted to data that can be stored in the text file. 
+is converted to data that can be stored in the text file.
 
 ![load Sequence Diagram](images/store8.png)
 
@@ -251,7 +251,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * wants a way to study 2040 concepts in a condensed format
 * wants a way to use fragmented time for effective revision
 
-**Value proposition**: 
+**Value proposition**:
 This product can help students with memory retention of various concepts and formulae in CS2040S. Students can utilize fragmented time to enhance learning.
 This product can help with a quick review of concepts for students to check their understanding. Questions are neatly segmented into different topics for better organisation.
 Concepts and definitions are organised according to different levels of priority for the student to allocate his studying time wisely.

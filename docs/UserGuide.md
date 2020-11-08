@@ -41,11 +41,11 @@ DSAce is a **desktop app for creating flashcards and practising quiz questions f
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. <br>
 
    ![Ui](images/Ui1.png)
-   
+
    **NOTE:** DSAce is used for storing flashcards that have a name, definition, tags, and priority level. Whenever the app is started up, the user will not be able to view the definitions of all the flashcards. This is
    so that the flashcards can be used as practice for remembering CS2040S definitions. Hence, in order to view or hide the definitions, the user must use the flashcard flip feature. To learn more about this
    feature, go to this [section](#flipping-a-flashcard--flip).
-   
+
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
@@ -117,13 +117,13 @@ the flashcard or quiz interface, and secondly, by clicking on the `performance` 
 
 * Words in `UPPER_CASE` are parameters that must be specified by the user. <br>
   e.g. in `add n/NAME`, `NAME` is a parameter.
-  
+
 * Parameters enclosed in square brackets are optional. <br>
   e.g. in `add n/NAME [t/HIGH]`, `HIGH` is an optional parameter.
 
 * Parameters can be in any order. <br>
   e.g. if the command specifies `n/NAME d/DEFINITION`, `d/DEFINITION n/NAME` is also acceptable.
-  
+
 * Commands are case-sensitive unless stated otherwise.
 
 </div>
