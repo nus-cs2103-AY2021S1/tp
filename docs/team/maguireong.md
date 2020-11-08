@@ -12,22 +12,22 @@ It is written in Java, and has about 23 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to edit a session created by the user.
+* **New Feature**: Added the ability to edit a session created by the user. (Pull request [\#83](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/83))
   * What it does: Allows the user to edit a session’s details like a session’s gym name, exercise type, start time and duration.
   * Justification: This feature improves the product significantly because a client may have changes made to his/her workout session, therefore the app should provide a way to make changes to the session.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives.
                 It builds the foundation for edit features in FitEgo. The implementation was challenging as it required changes to existing commands.
 
-* **New Feature**: Added the ability to edit a schedule created by the user.
+* **New Feature**: Added the ability to edit a schedule created by the user. (Pull request [\#91](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/91))
   * What it does: Allows the user to edit a schedule’s details like a schedule’s updated session index, payment status, remark and weight.
   * Justification: This feature improves the product significantly because a user may have changes made to his schedules, therefore the app should provide a way to make update the changes to the schedule.
   * Highlights: This enhancement was similar to the edit session feature. However, the implementation was slightly different form the edit session feature and more variations of parameters were added to this feature. 
                 Much consideration was put into this implementation for ease of usage of this feature, therefore more time was required to create this feature.
-  * Credits: {Credits to teammates Bennett and Dhafin for adding additional parameters that can be edited in the feature}
+  * Credits: Credits to teammates Bennett and Dhafin for adding additional parameters that can be edited in the feature.
 
 <div style="page-break-after: always;"></div>
 
-* **New Feature**: Added a dynamic header on the right side panel.
+* **New Feature**: Added a dynamic header on the right side panel. (Pull request [\#134](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/134), [\#138](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/138))
   * What it does: Allows the user to have a better idea of the time period searched for when using the “Session View” function.
   * Justification: This feature improves the product significantly because a user can better identify which time period it is referring to.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of JavaFX.
@@ -45,13 +45,16 @@ Given below are my contributions to the project.
 * **Documentation**:
   *	User Guide:
         * Added documentation for the features Add Client [\#45](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/45), Edit Session and Edit Schedule features. [\#153](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/153)
-        * Reformat User Guide to ensure consistency.
+        * Reformat User Guide to ensure consistency. [\#231](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/231), [\#267](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/267)
     
   * Developer Guide:
-    * Added implementation details of the Add Client [\#45](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/45), Edit Session and Edit Schedule features. [\#153](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/153)
-    * Reformat User Guide to ensure consistency.
+    * Added Use Case, UML diagrams, description and implementation details of the Add Client [\#45](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/45), Edit Session and Edit Schedule features. [\#153](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/153)
+    * Reformat User Guide to ensure consistency. [\#231](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/231), [\#267](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/267)
     
-* **Community**:
+* **Review or mentoring contributions**:
+  * Discuss design and implementation details with group mates.
   * PRs reviewed (with non-trivial review comments): [\#96](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/96), [\#139](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/139), 
-                                                    [\#137](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/137), [\#97](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/97)
+                                                     [\#137](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/137), [\#97](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/97)
+  
+* **Community**:
   * Reported bugs and suggestions for Group [CS2103T-W12-2](https://ay2021s1-cs2103t-w12-2.github.io/tp/UserGuide.html) on CATcher.
