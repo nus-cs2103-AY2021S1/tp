@@ -345,11 +345,7 @@ These operations are exposed in the `Model` interface as `Model#clearContacts()`
 
 The following sequence diagram shows how the cclear operation works:
 
-![CclearSequenceDiagram](images/ClearContactsSequenceDiagram.png)
-
-The follow activity diagram summarizes what happens when a user executes a Cclearcommand:
-
-![CclearActivityDiagram](images/CclearActivityDiagram.png)
+![UndoRedoState0](images/ClearContactsSequenceDiagram.png)
 
 Clearing all contacts from the contact list
 
@@ -373,11 +369,7 @@ It implements the following operations:
 These operations are exposed in the `Model` interface as `Model#clearMod()` and `UniqueModuleList` class as `UniqueModuleList#clearAll()`
 The following sequence diagram shows how the mclear operation works:
 
-![MclearSequenceDiagram](images/MclearCommandSequenceDiagram.png)
-
-The follow activity diagram summarizes what happens when a user executes a Mclearcommand:
-
-![MclearActivityDiagram](images/MclearAcitivityDiagram.png)
+![UndoRedoState0](images/MclearCommandSequenceDiagram.png)
 
 Clearing all modules from the module list
 
@@ -538,7 +530,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                    | add a new contact                  |                                                                                      |
 | `* * *`  | user                    | delete a contact                   | remove entries that I no longer need                                                 |
 | `* * *`  | user                    | find a contact by attributes       | locate details of contacts without having to go through the entire list              |
-| `* * *`  | forgetful user          | add remarks to contacts            | remember certain details about them                                                  |
+| `* * *`  | forgetful user          | add remarks to contacts            | remember certain details about them                                                  | 
 | `* * *`  | faculty leader          | store a contact's office           | keep track of where to find them                                                     |
 | `* * *`  | faculty leader          | store a contact's department       | keep track of their respective field                                                 |
 | `* * *`  | faculty leader          | edit a contact's office            | keep the data up to date                                                             |
@@ -553,7 +545,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | faculty leader          | unassign all instructors from all modules | update the record of instructors when there are syllabus restructuring        |
 | `* * *`  | user                    | clear all contacts                  |                                                                                     |
 | `* * *`  | faculty leader          | clear all modules                   | discard all previous semester's information                                         |
-| `* * *`  | faculty leader          | be able to switch semester easily   | shift semester without having to reassign all instructors                           |
+| `* * *`  | faculty leader          | be able to switch semester easily   | shift semester without having to reassign all instructors                           | 
 
 *{More to be added}*
 
@@ -724,7 +716,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *   3a. The user's keywords are invalid.
 
     * 3a1. FaculType shows an error message.
-
+    
       Use case resumes at step 2.
 
 **Use case: Find module(s)**
@@ -838,7 +830,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6.  FaculType updates the instructor list of the modules.
 
    Use case ends.
-
+ 
 **Extensions**
 
 *   2a. The contact list is empty.
