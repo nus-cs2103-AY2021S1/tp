@@ -283,19 +283,19 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 
 
 
-## Zoom Link Management
+## 3.1.4  Module zoom link management feature
 
-As Cap 5 Buddy is designed to suit the needs of SoC students during the transition to online learning,
-it is crucial to design features which allows efficient management of zoom links which are widely used during
+As Cap 5 Buddy is designed to be a module tracking application for SoC students,
+it is crucial to design features which allows efficient management of zoom links which are widely used by modules during
 online learning. However, it is worth noting that these features can be easily modified to manage any website links,
-showcasing the usefulness of these features beyond online learning.
+showcasing the usefulness of these features for tracking module related details beyond online learning.
 
 The section below provides details of the implementation of each zoom link related function and design considerations
 of these features.
 
 #### Details of implementation
 
-##### Add zoom link feature
+##### 3.1.4.1  Add zoom link feature
 
 This feature creates and adds a new `ZoomLink` for a `ModuleLesson` into a specific `Module`, if the 
 zoom link does not already exist in the module. Each `ModuleLesson` in a `Module` is only allowed to have one `ZoomLink`.
@@ -311,21 +311,31 @@ This feature is facilitated by the following classes:
       `ModuleLesson` into the `Module` encapsulated in `Model`
       
 Given below is an example usage scenario and how the mechanism for adding zoom links behaves at each step:
+
 Step 1. `LogicManager` receives the user input `addzoom 1 n/Lecture z/https://nus-sg.zoom.us/link` from `Ui`
+
 Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `AddZoomLinkParser`
+
 Step 3. Additionally, `ModuleListParser` will call the `AddZoomLinkParser#parse()` method to parse the command arguments
+
 Step 4. This creates an `AddZoomLinkCommand` using a `ZoomDescriptor` object that encapsulates the `ZoomLink` and `ModuleLesson` to be added
+
 Step 5. `AddZoomLinkCommand#execute()` will be invoked by `LogicManager` to create
         the updated `Module` with the added `ZoomLink` and `ModuleLesson` by calling the `Module#addZoomLink()` method
+
 Step 5. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target module with the updated module containing the newly added zoom link
+
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to add a zoom link works:
 ![AddZoomLinkSequenceDiagram](images/AddZoomLinkCommandSequenceDiagram.png)
+Fig 3.1.4 Sequence diagram for the execution of `AddZoomLinkCommand`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddZoomLinkCommand` and `AddZoomLinkParser` should end 
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<br>
 
 The following activity diagram summarizes what happens when a user executes the `AddZoomLinkCommand`:
 ![AddZoomLinkActivityDiagram](images/AddZoomLinkCommandActivityDiagram.png)
@@ -351,7 +361,8 @@ The following activity diagram summarizes what happens when a user executes the 
 Alternative 1 was chosen since it followed OOP principles which is a good practice in a SE project. Also, it provides
 greater flexibility for expansion of the project.
 
-##### Delete zoom link feature
+
+##### 3.1.4.2  Delete zoom link feature
 
 This feature deletes an existing zoom link from a module using the module lesson that is mapped to the
 target zoom link.
@@ -365,12 +376,19 @@ This feature is facilitated by the following classes:
       using the unique module lesson that is mapped to the target zoom link.  
       
 Given below is an example usage scenario and how the mechanism for deleting zoom links behaves at each step:
+
 Step 1. `LogicManager` receives the user input `deletezoom 1 n/Lecture` from `Ui`
-Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `DeleteZoomLinkParser`
+
+Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create a `DeleteZoomLinkParser`
+
 Step 3. Additionally, `ModuleListParser` will call the `DeleteZoomLinkParser#parse()` method to parse the command arguments
+
 Step 4. This creates a `DeleteZoomLinkCommand` and `DeleteZoomLinkCommand#execute()` will be invoked by `LogicManager` 
-Step 5. This deletes the target zoom link identified by its unique module lesson using the `Module#deleteZoomLink()` method.
+
+Step 5. This deletes the target zoom link identified by its unique module lesson using the `Module#deleteZoomLink()` method
+
 Step 6. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target module with the updated module
+
 Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
 
 
@@ -387,14 +405,14 @@ Step 7. A `CommandResult` from the command execution is returned to `LogicManage
 * **Alternative 2:** Each module lesson can be mapped to multiple zoom links
   * Pros: This creates more freedom and flexibility for users to add multiple zoom links for the same lesson.
   * Cons: Locating the specific zoom link to remove is tedious as we have to iterate through the list of zoom links that are mapped to the module lesson. 
-          Additionally, we need to implement a mechanism to allow users to specify the exact zoom link to be deleted since using the module
-          name is not sufficient.
+          Additionally, we need to implement a mechanism to allow users to specify the exact zoom link to be deleted since using the module lesson
+          is not sufficient.
 
 Alternative 1 was chosen as it was significantly simpler to implement and did not violate any key design principles.
 We also took into consideration the fact that it is unlikely for a single lesson to have multiple zoom links.
 
 
-##### Edit zoom link feature
+##### 3.1.4.3  Edit zoom link feature
 
 This feature edits an existing zoom link in a module using the module lesson that is mapped to the
 target zoom link.
@@ -403,7 +421,7 @@ This feature is facilitated by the following classes:
 
   * `EditZoomLinkParser`:
     * It implements `EditZoomLinkParser#parse()` to validate and parse the module index, module lesson and edited zoom link provided by the user.
-      This creates a `ZoomDescriptor` object that stores the zoom link details needed for the edit zoom link command.
+      This creates a `ZoomDescriptor` object that encapsulates the zoom link details needed for the edit zoom link command.
     
   * `ZoomDescriptor`  
     * It stores and encapsulates the `ZoomLink` and `ModuleLesson` objects which will be used to execute the command to edit the zoom link 
@@ -413,17 +431,25 @@ This feature is facilitated by the following classes:
    
 
 Given below is an example usage scenario and how the mechanism for editing zoom links behaves at each step:
+
 Step 1. `LogicManager` receives the user input `editzoom 1 n/Lecture z/https://nus-sg.zoom.us/newLink` from `Ui`
+
 Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `EditZoomLinkParser`
+
 Step 3. Additionally, `ModuleListParser` will call the `EditZoomLinkParser#parse()` method to parse the command arguments
+
 Step 4. This creates an `EditZoomLinkCommand` using a `ZoomDescriptor` object that encapsulates the edited zoom link
+
 Step 5. `EditZoomLinkCommand#execute()` will be invoked by `LogicManager` to create
         the updated `Module` with the edited `ZoomLink` by calling the `Module#editZoomLink()` method
+
 Step 5. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target module with the updated module containing the edited zoom link
+
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`   
 
-The sequence diagram of how the operation to edit a zoom link works is similar to the one in figure ?.?, 
+The sequence diagram of how the operation to edit a zoom link works is similar to the one in figure [3.3](#module-list-features), 
 except that the respective parser and command classes are `EditZoomLinkParser` and `EditZoomLinkCommand`
+
 
 ##### Design consideration:
 
@@ -433,16 +459,16 @@ except that the respective parser and command classes are `EditZoomLinkParser` a
                      since the two commands have very similar implementations.
 
   * Pros: Reduces the amount of code that has to be written, as well as the number of classes that have to be implemented. 
-  * Cons: Violates the **Single Responsibility Principle** since the same parser and command classes have 2 separate responsibilities and have to perform 2 different operations.
+  * Cons: Violates the **Single Responsibility Principle** since the same parser and command class have 2 separate responsibilities and have to perform 2 different operations.
 
 * **Alternative 2 (current choice):** Implement the `EditZoomLink` command separately.
 
   * Pros: Adheres to the Single Responsibility Principle and it is easier to implement the function since we do not need to handle 
-          2 separate commands at the same time.
+          2 separate commands in the same parser and command classes.
   * Cons: Repetition of code may occur.
   
 Alternative 2 was chosen since it was a good practice to follow key designing principles. Using alternative 1 would complicate
-the implementation of the command since we had to handle 2 different cases and this can increase the occurrences of bugs.
+the implementation of the command since we had to handle 2 different commands within the same class and this can increase the difficulty of testing and debugging.
 
 
 ##### Aspect: Data structure to support zoom link commands
@@ -463,21 +489,21 @@ the implementation of the command since we had to handle 2 different cases and t
   * Cons: The process of checking for duplicate module lessons and zoom links in the module is more tedious.
 
 Alternative 1 was chosen since checking for duplicate zoom links occurs frequently during the execution of 
-zoom link related commands.
+zoom link related commands. 
 
 
 
 
-### 3.2 Contact List Management
+### 3.2 Contact list management feature
 
 As a module tracking system, Cap 5 Buddy allows users to manage a list of module-related contacts with ease.
-This is especially important since being enrolled in numerous modules results in the need to keep track of
+This is especially important since being enrolled in numerous modules can result in the need to keep track of
 numerous contacts, each with different contact details.
 
 The section below provides details of the implementation of each Contact List function and design considerations
 of these features.
 
-#### Contact List Commands
+#### Contact list features
 
 Below is a list of all `Contact` related features:
 
@@ -485,6 +511,11 @@ Below is a list of all `Contact` related features:
 2. Delete a contact: Deletes a pre-existing contact from the contact list
 3. Edit a contact: Edits a pre-existing contact in the contact list
 4. Find a contact: Search for contacts using different search parameters
+5. Mark a contact as important: 
+6. Sort the contact list:
+7. List out all contacts in the contact list
+8. Clear the contact list:
+
 
 Given below is the class diagram of the `Contact` class:
 
@@ -492,9 +523,9 @@ Given below is the class diagram of the `Contact` class:
 
 Figure ?.? Class Diagram for Contact class
 
-#### Details of implementation
+####  Details of implementation
 
-##### Add contact feature
+##### 3.2.1  Add contact feature
 
 This feature creates and adds a new `Contact` into the contact list if the contact does not already exist. 
 
@@ -507,11 +538,17 @@ This feature is facilitated by the following classes:
    * It implements `AddContactCommand#execute()` which executes the addition of the new contact into `Model`.
 
 Given below is an example usage scenario and how the mechanism for adding contact behaves at each step:
+
 Step 1. `LogicManager` receives the user input `addcontact n/John e/john@gmail.com te/@johndoe` from `Ui`
+
 Step 2. `LogicManager` calls `ContactListParser#parseCommand()` to create an `AddContactParser`
+
 Step 3. Additionally, `ContactListParser` will call the `AddContactParser#parse()` method to parse the command arguments
+
 Step 4. This creates an `AddContactCommand` and `AddContactCommand#execute()` will be invoked by `LogicManager` to excecute the command to add the contact
+
 Step 5. The `Model#addContact()` operation exposed in the `Model` interface is invoked to add the new contact
+
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to add a contact works:
@@ -522,8 +559,9 @@ Figure ?.? Sequence diagram for the execution of `AddContactCommand`
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<br>
 
-The following activity diagram summarizes what happens when a user executes the `AddContactCommand`:
+The following activity diagram summarizes what happens when a user executes `AddContactCommand`:
 ![AddContactCommandActivityDiagram](images/Contact/AddContactCommandActivityDiagram.png)
 Figure ?.? Activity diagram representing the execution of `AddContactCommand`
 
@@ -533,8 +571,8 @@ Figure ?.? Activity diagram representing the execution of `AddContactCommand`
 
 * **Alternative 1 (current choice):** Require `ContactName` and `Email` to be mandatory fields that must be provided, while leaving `Telegram` as an optional field
   * Pros: This caters to certain contacts who do not have a `Telegram` field, providing more flexibility for users when creating contacts.
-  * Cons: This can complicate the process of checking if 2 contacts are the same since we need to consider if the `Telegram` field of a contact 
-          is present before the comparison is performed. 
+  * Cons: This implementation of contact related methods can become complicated since we need to consider if the `Telegram` field of a contact 
+          is present before any operation is performed. 
 
 * **Alternative 2:** Require `ContactName`, `Email` and `Telegram` to be mandatory fields
   * Pros: The process of checking if 2 contacts are the same by comparing all 3 contact fields will be simpler.
@@ -544,43 +582,55 @@ Alternative 1 was chosen since it provides users with greater freedom when creat
 mandatory can restrict users when adding contacts, hindering user experience.
 
 
-#### Delete Contact Feature
+#### 3.2.2  Delete Contact Feature
 
 The delete contact feature deletes a pre-existing `Contact` using the index of the contact on the displayed contact list.
 This feature is facilitated by the following classes: 
 
   * `DeleteContactParser`:
-    * It implements `DeleteContactParser#parse()` to parse and validate the contact ID
+    * It implements `DeleteContactParser#parse()` to parse and validate the contact index 
 
   * `DeleteContactCommand`:
     * It implements `DeleteContactCommand#execute()` to delete the `Contact` from `Model`
 
-After the user input has been parsed by `DeleteContactParser`, `LogicManager` will execute the delete operation by invoking
-`DeleteContactCommand#execute()`. This deletes the target contact by invoking the `Model#deleteContact()` method exposed in the `Model` interface.
+Given below is an example usage scenario and how the mechanism for deleting contact behaves at each step:
+
+Step 1. `LogicManager` receives the user input `deletecontact 1` from `Ui`
+
+Step 2. `LogicManager` calls `ContactListParser#parseCommand()` to create a `DeleteContactParser`
+
+Step 3. Additionally, `ContactListParser` will call the `DeleteContactParser#parse()` method to parse the command arguments
+
+Step 4. This creates a `DeleteContactCommand` and `DeleteContactCommand#execute()` will be invoked by `LogicManager` to delete the target contact
+
+Step 5. The `Model#deleteContact()` operation exposed in the `Model` interface is invoked to delete the target contact from `Model`
+
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to delete a contact works:
 ![DeleteContactSequenceDiagram](images/Contact/DeleteContactCommandSequenceDiagram.png)
+Fig 
 
 #### Design consideration:
 
-##### Aspect: Method to delete contact
+##### Aspect: Mechanism to delete contacts
 
 * **Alternative 1 (current choice):** Delete a contact based on its index in the displayed contact list
   * Pros: Using the contact index allows us to uniquely identify the target contact to delete, reducing the room for possible error
-  * Cons: The target contact to be deleted might not be displayed on the contact list and hence the contact index might not be
+  * Cons: The target contact which the user wants to delete might not be displayed on the contact list and hence the contact index might not be
           readily available. This can inconvenience users who have to search for the contact to retrieve the contact index.
 
-* **Alternative 2:** Delete a contact based on the contact name
+* **Alternative 2:** Delete a contact using the contact name
   * Pros: It can make the deletion process simpler for **users** who can provide the name of the contact without having to execute more commands.
   * Cons: This can complicate the deletion process since contacts with the same name is a possibility. If there are multiple
           contacts with the same provided name, more information of the target contact has to be provided by the user,
           creating more inconvenience for the user as well.
 
-Alternative 1 was chosen since it guarantees a unique contact would be provided in every case. This ensures the
-contact deletion process is safe and the correct contact is deleted, minimising the room for potential errors.  
+Alternative 1 was chosen since it guarantees a unique contact would be provided in every case. This ensures that the
+target contact can be accurately identified and deleted, minimising the room for potential errors or bugs.  
 
 
-#### Edit Contact Feature
+#### 3.2.3  Edit Contact Feature
 
 The edit contact feature edits a pre-existing contact in the contact list using contact details provided by the users.
 This feature is facilitated by the following classes:
@@ -589,21 +639,41 @@ This feature is facilitated by the following classes:
     * It implements `EditContactParser#parse()` to parse and validate the provided contact details and contact index
 
   * `EditContactDescriptor`:
-    * It stores the contact details which will be used to edit the target contact
+    * It encapsulates the contact details which will be used to edit the target contact
 
   * `EditContactCommand`:
     * It implements `EditContactCommand#execute()` to edit the contact in `Model`
+    
+    
+![EditContactDescriptorClassDiagram](images/Contact/EditContactDescriptorClassDiagram.png) 
+Fig ?.? Class diagram describing the `EditContactDescriptor` class
 
 Given below is an example usage scenario and how the mechanism for editing contact behaves at each step:
+
 Step 1. `LogicManager` receives the user input `editcontact 1 n/John te/@johndoe` from `Ui`
+
 Step 2. `LogicManager` calls `ContactListParser#parseCommand()` to create an `EditContactParser`
+
 Step 3. Additionally, `ContactListParser` will call the `EditContactParser#parse()` method to parse the command arguments
+
 Step 4. This creates an `EditContactCommand` and `EditContactCommand#execute()` will be invoked by `LogicManager` to edit the target contact
+
 Step 5. The `Model#setContact()` operation exposed in the `Model` interface is invoked to replace the target contact with the edited contact
+
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to edit a contact works:
 ![EditContactSequenceDiagram](images/Contact/EditContactCommandSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddContactCommand` and `AddContactParser` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+<br>
+
+The following activity diagram summarizes what happens when a user executes `EditContactCommand`:
+![EditContactCommandActivityDiagram](images/Contact/EditContactCommandActivityDiagram.png)
+Fig ?.? Activity diagram for the execution of `EditContactCommand`
 
 
 #### Design consideration:
@@ -623,25 +693,26 @@ Given below is the sequence diagram of how the operation to edit a contact works
 Alternative 1 was chosen as it would make future changes to any class easier and less error-prone, 
 hence increasing the ease of maintenance, since there was less coupling between the 2 classes.
 
-##### Aspect: Implementation of `EditContactCommand`
 
-* **Alternative 1 (current choice):** 
+##### Aspect: How to implement `EditContactCommand`
+
+* **Alternative 1 (current choice):** Implement a separate `EditContactCommand` without reusing other command classes
   * Pros: Reduces coupling between the command classes and `EditContactCommand` can be implemented without restrictions,
           or a need to consider how it might affect the other command classes
   * Cons: Additional methods have to be implemented to replace the target contact with the edited contact
 
 * **Alternative 2:** Reuse `DeleteContactCommand` to delete the target contact and `AddContactCommand` to add the edited contact
-  * Pros: Reusing other commands would make the implementation of `EditContactCommand` simpler and easier
-  * Cons: It increases coupling between the 3 commands and this can cause issues in `EditContactCommand` if either 
+  * Pros: Reusing other commands would make the implementation of `EditContactCommand` simpler and more straightforward
+  * Cons: It increases coupling between the 3 commands and this can cause issues to `EditContactCommand` if either 
           `DeleteContactCommand` or `AddContactCommand` developed bugs or errors. Also, it might affect performance since 
           executing `EditContactCommand` will execute 2 other commands.
 
-Alternative 1 was chosen since it gave more freedom with regard to the implementation of `EditContactCommand` since
+Alternative 1 was chosen since it gave more freedom in regard to the implementation of `EditContactCommand` since
 we were not restricted to reusing other commands. Less coupling between the classes meant that changes in one class would 
 less likely require changes to other classes.
 
 
-#### Find Contact Feature
+#### 3.2.4  Find Contact Feature
 
 The find contact feature is important since sieving through all contacts to search for a specific contact can be 
 tedious and not user-friendly. Finding contacts using one search parameter is not meaningful 
@@ -662,9 +733,9 @@ This feature is facilitated by the following classes:
   * `FindContactCriteria`:
     * It encapsulates all the predicates which will be used to test for matching contacts
     * It implements the following operations:
-      * `FindContactCriteria#addPredicate():` Adds a new predicate into the list of predicates 
+      * `FindContactCriteria#addPredicate()` to add a new predicate into the list of predicates 
          to test for matching contacts
-      * `FindContactCriteria#getFindContactPredicate():` To compose all the predicates into a single predicate
+      * `FindContactCriteria#getFindContactPredicate()` to compose all the predicates into a single predicate
 
     * Predicate objects that can be stored in `FindContactCriteria`:
       * `ContactNameContainsKeywordsPredicate`:
@@ -677,21 +748,35 @@ This feature is facilitated by the following classes:
       filtered contact list in `Model` using the predicate from `FindContactCriteria`
 
 Given below is an example usage scenario and how the mechanism for finding contact behaves at each step:
+
 Step 1. `LogicManager` receives the user input `findcontact n/John t/friend` from `Ui`
+
 Step 2. `LogicManager` calls `ContactListParser#parseCommand()` to create a `FindContactParser`
+
 Step 3. Additionally, `ContactListParser` will call the `FindContactParser#parse()` method to parse the command arguments
+
 Step 4. This creates a `FindContactCriteria` that encapsulates the created `Predicate` objects to test for matching contacts
+
 Step 4. Additionally, a `FindContactCommand` is created and `FindContactCommand#execute()` will be invoked by `LogicManager` to find matching contacts
+
 Step 5. The `Model#updateFilteredContactList()` operation exposed in the `Model` interface is invoked to update the displayed contact list 
         using the predicate from `FindContactCriteria`
+
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to find contact works:
 ![FindContactCommandSequenceDiagram](images/Contact/FindContactCommandSequenceDiagram.png)
-Fig ??
+Fig ?? Sequence diagram for the execution of `FindContactCommand`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddContactCommand` and `AddContactParser` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+<br>
 
 Given below is the sequence diagram showing the interaction between `FindContactParser` and `FindContactCriteria`:
 ![FindContactCriteriaSequenceDiagram](images/Contact/FindContactCriteriaSequenceDiagram.png)
+Fig ?.? Sequence diagram describing the interaction between `FindContactParser` and `FindContactCriteria`
 
 
 #### Design consideration:
@@ -710,7 +795,7 @@ Given below is the sequence diagram showing the interaction between `FindContact
   * Cons: It is tedious to compose the predicates into a single predicate as we have to check each individual field and 
           determine if it is null of if the predicate exists. 
 
-##### Aspect: Implementation of `FindContactCommand` 
+##### Aspect: How to implement `FindContactCommand` 
 
 * **Alternative 1 :** Implement separate find contact commands for each possible search parameter. In this case, to find contacts, 
                       we can create a command to find contacts by name, and another to find by tags.
@@ -725,7 +810,6 @@ Given below is the sequence diagram showing the interaction between `FindContact
           accurate searches by combining multiple search parameters.
   * Cons: Increases the complexity of implementing `FindContactParser` which has to validate and parse multiple search 
           parameters provided.
-
 
 
 
@@ -838,21 +922,21 @@ This feature is facilitated by the following classes:
   * `FindTaskCriteria`:
     * It encapsulates all the predicates which will be used to test for matching tasks
     * It implements the following operations:
-      * `FindTaskCriteria#addPredicate():` Adds a new predicate into the list of predicates 
-        to test for matching contacts
-      * `FindTaskCriteria#getFindTaskPredicate():` To compose all the predicates into a single predicate
+      * `FindTaskCriteria#addPredicate()` to add a new predicate into the list of predicates 
+        to test for matching tasks
+      * `FindTaskCriteria#getFindTaskPredicate()` to compose all the predicates into a single predicate
         
   * Predicate objects that can be stored in `FindTaskCriteria`:
     * `TaskNameContainsKeywordsPredicate`:
       * Tests if the name of a given task matches at least one of the name keywords provided (case-insensitive)
-    * `ContactContainsTagsPredicate`:
+    * `TaskContainsTagsPredicate`:
       * Tests if a given task contains at least one of the search tags provided (case-insensitive)
     * `TaskMatchesDatePredicate`:
       * Tests if the date of a given task matches the search date exactly.
     * `TaskMatchesPriorityPredicate`:
-      * Tests if the priority of a given task matches the search priority exactly.
+      * Tests if the priority of a given task matches the search priority exactly (case-insensitive)
     * `TaskMatchesStatusPredicate`:
-      * Tests if the status of a given task matches the search status exactly.
+      * Tests if the status of a given task matches the search status exactly (case-insensitive)
   
 Given below is the class diagram describing the `FindTaskCriteria` class:
 ![FindTaskCriteriaClassDiagram](images/FindTaskCriteriaClassDiagram.png)
@@ -878,6 +962,7 @@ Step 5. The `Model#updateFilteredTodoList()` operation exposed in the `Model` in
 
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
+The following activity diagram summarizes what happens when a user executes `FindTaskCommand`
 ![FindTaskCommandActivityDiagram](images/FindTaskCommandActivityDiagram.png)
 
 #### Design consideration:
@@ -886,13 +971,13 @@ Step 6. A `CommandResult` from the command execution is returned to `LogicManage
 
 * **Alternative 1 :** Allow users to provide 0 search parameters, in which case the find task command does not perform any operation.
   
-  * Pros: Implementation of the command is simpler as we do not need to check if at least one search parameter was provided.
+  * Pros: Implementation of the command is simpler and straightforward as we do not need to check if at least one search parameter was provided.
   * Cons: The command does not perform any meaningful operation.
   
 * **Alternative 2 (current choice):** Handle instances when no search parameter was provided using exceptions and inform users that at least one parameter is required.
 
-  * Pros: Ensures that users are aware of any constraints related to the command.
-  * Cons: The implementation of the command is slighly more complex since exception handling is required and 
+  * Pros: Ensures that users are aware of all the constraints related to the command.
+  * Cons: The implementation of the command is more complex since exception handling is required and 
           we need to check if at least one search parameter was provided.
 
 Alternative 2 was chosen as it conformed with the standard practice of handling errors using exception. Moreover, it removes any room for 
@@ -993,6 +1078,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | calculate my cumulative average point   | plan my academic progress for the future      |
 | `* *`    | user                                       | add graded assignments       | add the information of the assignments that contributed to my grade      |
 |          | contact list                               |                                | |
+| `* * *`  | user                                       | add module contacts            | keep track of all contact details   |
+| `* * *`  | user                                       | delete a contact               | prevent unnecessary contacts from accumulating |
+| `* * *`  | user                                       | edit a contact                 | update contact details whenever they are changed |
+| `* * *`  | user                                       | find a contact                 | retrieve the necessary contact easily     |
 | `* *`    | user                                       | edit my graded assignments     | update the information of the assignments I have completed     |
 | `* *`    | user                                       | delete graded assignments      | remove the assignments that are do not contribute to my grade anymore|
 | `*`      | user who is overloading                    | sort modules by name           | locate a module easily                                 |
@@ -1019,6 +1108,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 ## Contact list use cases
+
+**Use case
 
 
 ## Todo list use cases
@@ -1563,6 +1654,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Contact List
 
+####
 
 ### Todo List
 
