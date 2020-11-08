@@ -26,6 +26,11 @@ The architecture diagram given below shows the high-level design of the software
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
+NUStorage implements the following design patterns:
+
+* Model-View-Controller (MVC) for UI components, with Observer pattern between Model and View
+* Facade pattern for Logic, Model and Storage components
+* Command pattern for commands
 
 Given below is a quick overview of each of the components.
 
@@ -514,7 +519,7 @@ testers are expected to do more *exploratory* testing.
 
    2. Test case: `add_finance amt/1000 at/2020-09-09`<br>
      Expected: A finance record of an increase by $1000.00 is added, time-stamped at 09 SEP 2020. Details of the added record shown in status message.
-     
+
    3. Test case: `create_inventory i/MacBook q/10`<br>
      Expected: An inventory item 'MacBook' is created with the quantity of 10. Details of the added record shown in the status message.
 
@@ -611,7 +616,7 @@ testers are expected to do more *exploratory* testing.
 
 3. Saving inventory as items instead of records<br>
    1. Currently, NUStorage saves inventory as records. For business that constantly deals with the same set of items daily, it might seem tiresome to constantly have to add inventory records of the same item.
-   
+
    2. Thus, we plan to implement a feature that allows users to 'save' a certain inventory item for reuse, allowing them to only have to type the quantity when adding records.
 
 ## 8. Glossary and Terms
@@ -619,4 +624,3 @@ testers are expected to do more *exploratory* testing.
 * **Mainstream OS**: Windows, Linux, MacOS
 * **Inventory**: An item that a user wishes to record. An inventory item can refer to any existing object.
 * **Finance**: A record that allows a user to monitor his earnings and spending.
-
