@@ -47,6 +47,7 @@ public class AddCompletedModuleCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
         model.addModule(toAdd);
+        model.commitModuleList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
