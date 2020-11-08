@@ -25,6 +25,7 @@ public class TagMatchesKeywordsPredicate implements Predicate<Item> {
 
     @Override
     public boolean test(Item item) {
+        requireNonNull(item);
         return keywords.stream()
                 .anyMatch(keyword -> item.getTags()
                         .stream()

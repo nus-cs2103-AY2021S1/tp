@@ -75,9 +75,6 @@ Usecase ends.
 2a1. `inv` returns a `CommandUnsuccessful` message to user<br>
 2a2. User inputs new data<br>
 Steps 2a1-2a2 repeat until data is correct, or user enters a different command.
-
-2b. `inv` detects that the item being crafted does not exist as of yet<br>
-2b1. `inv` creates a new item with the appropriate fields, or if not, the default fields<br>
 Usecase resumes from step 3 normally
 
 #### Usecase 4: List items
@@ -96,6 +93,29 @@ Usecase resumes from step 3 normally
 3a. `inv` does not contain any items<br>
 3a1. Returns a empty List of items<br>
 Usecase end
+
+#### Usecase 5: Crafts items
+- Software System: Inventoryinator (`inv`)
+- Use Case UC5 - Craft items
+- Precondition: Inventoryinator is running, with item a, b and c added in system (UC1)
+- With also added recipe r where items a + b -> c (UC3)
+- Actor: User<br>
+
+**MSS:**
+1. User enters order to craft **n** of item c from recipe r, with items a, b
+2. `inv` validates existance of items a, b, c, and retrieves recipe r
+3. `inv` validates quantities of items a, b and evaluates whether **n** of item c can be crafted.
+4. `inv` updates the quantities of items a, b and c and returns a message of success.
+
+**Extension:**
+
+2a. `inv` does not have one of items a, b or c<br>
+2a1. `inv` returns a `CommandUnsuccessful` message to the user<br>
+Usecase ends.
+
+3a. `inv` does not have enough quantity of items a or b to craft n quantities of c.
+3a1. `inv` returns a `CommandUnsuccessful` message to the user<br>
+Usecase ends.
 
 ### Workflow Usecases
 

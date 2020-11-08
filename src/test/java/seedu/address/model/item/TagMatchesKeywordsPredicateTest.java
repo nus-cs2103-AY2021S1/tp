@@ -23,6 +23,12 @@ public class TagMatchesKeywordsPredicateTest {
     }
 
     @Test
+    public void test_nullTest_throwsNullPointerException() {
+        TagMatchesKeywordsPredicate predicate = new TagMatchesKeywordsPredicate(Collections.singletonList("Apple"));
+        assertThrows(NullPointerException.class, () -> predicate.test(null));
+    }
+
+    @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
