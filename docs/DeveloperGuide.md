@@ -549,6 +549,71 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Command History
+
+The command history helps users to keep track of previously-entered commands. This allows the users to easily edit and re-run previously run commands. Users can browse between previously run commands by pressing on the <kbd>↑</kbd> and <kbd>↓</kbd> keys in the command box.
+
+#### Implementation
+
+The feature is implemented via `CommandHistory`, which internally, maintains a list of previously run commands stored as a list of `String`, as well as a integer pointer that keeps track of which command the user is focused on.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** `CommandHistory` only saves the commands that are run during the current user-session, to memory. That is, the command history will not persist after the application is exited.
+</div>
+
+`CommandHistory` is implemented following the Singleton design pattern, because the application should only have one command history, and hence should only allow for the instantiation of one command history.
+
+On application launch, `CommandHistory` is initialised with an empty list, for its internal command storage mechanism. The pointer will also be set to the size of the list, so that the pointer will always point at the last-run command.
+
+Whenever a command is run, regardless of whether it is a valid or invalid command, the command will be added to `CommandHistory`, and the pointer will be set to the size of the list again.
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Note:** This makes the pointer be a out-of-bounds index of the internal list of commands. However, this is planned and intentional, as the accessor methods for the list will never access out-of-bounds indices.
+</div>
+
+When the command box is focused and whenever the user presses the <kbd>↑</kbd> key, `CommandHistory` will try to fetch the previous command. When fetching the previous command, it first checks if the history is empty. If the history is empty, the text in the command box will not be modified. However, if the history is not empty, the previous command will be returned and be set as the command box command, and the pointer will be set to point at the previous command of the previous command.
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Note:** Fetching the previous command also "rolls-over" the pointer to the most-recently run command if the least-recently run command is already pointed it. This also ensures that we will never access invalid list indices.
+</div>
+
+Likewise for when the command box is focused and whenever the user presses the <kbd>↓</kbd> key, `CommandHistory` will try to fetch the next command. When fetching the next command, it first checks if the history is empty. If the history is empty, the text in the command box will not be modified. However, if the history is not empty, the next command will be returned and be set as the command box command, and the pointer will be set to point at the next command of the next command.
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Note:** Same as before, fetching the next command also "rolls-over" the pointer to the least-recently run command if the most-recently run command is already pointed it. This also ensures that we will never access invalid list indices.
+</div>
+
+Additionally, whenever a previous/next command is successfully fetched and set as the command box text, the command box cursor will also be set to be at the end of the command, to provide greater ease in editing the remembered commands.
+
+Note that the behavior of `CommandHistory` is also changes depending on whether the last-run command is parsed successfully. The default behavior of the command box is to retain the errored command if it cannot be parsed correctly instead of wiping the errored command. In this case, it would provide an inferior user experience if the user presses <kbd>↑</kbd>, and realises that the same command (the errored command) is fetched from the command history, as the user will see no visual change. To avoid this, if there is a command parsing failure, we shift the pointer to point at the previous-run command instead of the most-recent run command.
+
+The activity diagram below provides a summary of the command history mechanism:
+
+![CommandHistoryActivityDiagram](images/CommandHistoryActivityDiagram.png)
+
+#### Design Considerations
+
+##### Aspect: Browsing behaviour of command history when at the ends
+
+Two possible behaviours were considered when designing the interaction of the command history, when the pointer has reached the ends of the history (i.e. when the pointer is at the least-recent and most-recent commands)
+
+* **Alternative 1 (current choice):** At the ends, "roll-over" at advance the pointer to the other end
+  * Pros:
+    * Easy to implement
+    * Less bug-prone (since you will never access out-of-bounds indices)
+  * Cons:
+    * Might feel a little unintuitive for the user if they press <kbd>↓</kbd> and end up at the least-recent command
+    * Does not follow the behaviour of common CLI tools like the Unix shell
+
+* **Alternative 2:** Limit the command history from advancing, at the ends
+  * Pros:
+    * Might provide a more natural user experience
+  * Cons:
+    * More bug-prone
+    * More difficult to implement
+
+Alternative 1 was chosen as it suited our development timeline better, and was less prone to bugs. This will be a tech-debt that we will take on and track. There are plans to refactor this code to Alternative 2 sometime in the future, as it will provide a more consistent and intuitive experience for our user.
+
 ---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
