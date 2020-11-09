@@ -14,7 +14,8 @@ if () then ([command is a edit
     if () then ([command
     affects
     selected meeting])
-        :Update selected meeting;
+        :Set the selected meeting to be the
+        meeting with updated details;
     else([else])
     endif
     :CommandResult is created
