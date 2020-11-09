@@ -1,18 +1,9 @@
 ---
 layout: page
 title: Christopher Leo Mervyn's Project Portfolio Page
----
+---  
 
-## Project: PropertyFree
-
-Given below are my contributions to the project.
-
-Overview:
-
-This document is a project portfolio that documents all contributions made to PropertyFree's development by Christopher.
-___
-
-## Description of Project:
+#### Description of Project:
 
 PropertyFree is a real estate management application meant for property agents to organize their properties and meetings more efficiently.
 Other application can keep track of meetings and schedules but there are relatively few applications that help track properties 
@@ -20,16 +11,8 @@ and associate them with meetings with clients.
 
 For our project we hope to make it more streamlined for agents to keep track of their property and have clear information about those properties
 and there clients.
-___
 
-##Developers of PropertyFree:
-
-PropertyFree is developed by a group of second year Computer Science Students from the School of Computing, National
-University if Singapore. This was developed for the team projects assignment fro the module CS2103 and is a
-brown-field project adapting from existing projects.
-___
-
-## My Contributions to PropertyFree
+#### My Contributions to PropertyFree
 
 * **Sort Meeting Feature**: Added a command to sort meetings either ascendingly or descendingly based on the meeting date.
 * What it does: allows the user to sort the meetings in the meeting book according to the date of the meeting.
