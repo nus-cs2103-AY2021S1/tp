@@ -27,13 +27,21 @@ public class CommandResult {
     private final boolean showBudgetDisplay;
 
     /**
+     * Graph window should be shown to user.
+     */
+    private final boolean showGraph;
+
+    /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showBudgetDisplay) {
+
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showBudgetDisplay,
+                         boolean showGraph) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.showBudgetDisplay = showBudgetDisplay;
+        this.showGraph = showGraph;
     }
 
     /**
@@ -41,7 +49,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, true);
+        this(feedbackToUser, false, false, true, false);
     }
 
     public String getFeedbackToUser() {
@@ -60,6 +68,10 @@ public class CommandResult {
         return showBudgetDisplay;
     }
 
+    public boolean isShowGraph() {
+        return showGraph;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -75,12 +87,13 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
-                && showBudgetDisplay == otherCommandResult.showBudgetDisplay;
+                && showBudgetDisplay == otherCommandResult.showBudgetDisplay
+                && showGraph == otherCommandResult.showGraph;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, showBudgetDisplay);
+        return Objects.hash(feedbackToUser, showHelp, exit, showBudgetDisplay, showGraph);
     }
 
 }

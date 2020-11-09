@@ -14,7 +14,8 @@ public class CommandResultTest {
 
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, false, true)));
+
+        assertTrue(commandResult.equals(new CommandResult("feedback", false, false, true, false)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -29,13 +30,13 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("different")));
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, true)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, true, false)));
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, true)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, true, false)));
 
         //different shoBudgetDisplay value -> return false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, false)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, false, false)));
     }
 
     @Test
@@ -49,12 +50,12 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false, true).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false, true, false).hashCode());
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, true).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, true, false).hashCode());
 
         //different showBudgetDisplay value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false, false, false).hashCode());
     }
 }

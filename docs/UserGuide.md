@@ -78,12 +78,22 @@ Bamboo (v1.3) is a **simple desktop app for managing personal finance, optimized
     - Command: `sort`
     - [API](#sort)
 
-1. **Map Command Keyword**
-    - Maps user-specified keyword to existing command.
+1. **Add Command Shortcut**
+    - Maps user-specified shortcut to existing command.
     - Command: `alias`
     - [API](#alias)
 
-1. **Help command**
+1. **Reset Command Shortcuts**
+    - Removes all user-specified command shortcuts.
+    - Command: `resetAlias`
+    - [API](#resetAlias)
+
+1. **Graph Command**
+    - Opens a window that displays a pie chart representing categorical expenses.
+    - Command: `graph`
+    - [API](#graph)
+
+1. **Help Command**
     - Renders a help link to the commands in User Guide
     - Command: `help`
     - [API](#help)
@@ -248,21 +258,46 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     _Budget balance displayed here is the budget for the "Food" category_
 
 1. **Map Command Keyword `alias`** <a name="alias"></a>
-    - Maps user-specified keyword to existing command.
+    - Maps user-specified shortcut to existing command.
     - Original command keyword will still function as before.
     - Input Restrictions:
         - The 2 commands specified cannot be the same.
         - New command cannot be a keyword that is already being used.
         - Original command must exist.
+        - Length of shortcut must not exceed 10 characters long.
+        - Shortcut may consist of only case-sensitive alphabetical characters.
     - Format: `alias <original_command> <new_command>`
     - Example: `alias add spent`
+    - Reversing the two parameters will remove the particular shortcut from the command.
+    - Each command may only have up to one shortcut at each time.
+    - Example: `alias spent add`
 
     ![alias_example](./images/ug_example/alias_example.PNG)
     _Map "spent" to "add" command_
 
     ![alias_example_2](./images/ug_example/alias_example_2.PNG)
-    _"spent" keyword now functions as "add"_
+    _"spent" keyword can now function as "add"_
 
+    ![alias_example_3](./images/ug_example/alias_example_3.PNG)
+    _"spent" keyword can no longer function as "add"_
+        
+1. **Reset Command Shortcuts `resetAlias`** <a name="resetAlias"></a>
+    - Removes all existing shortcuts defined by user.
+    - Format: `resetAlias`
+    - Example: `resetAlias`
+    
+    ![resetAlias_example](./images/ug_example/resetAlias_example.PNG)
+    
+1. **Graph Command `graph`** <a name="graph"></a>
+    - Opens a window that displays a pie chart representing categorical expenses.
+    - Format: `graph`
+    - Example: `graph`
+    - Note: The pie chart does not update dynamically. 
+      If a command that edits the ExpenseBook is entered while the graph window is open, the pie chart will not be updated.
+      User must re-enter the graph command to update the pie chart accordingly.
+    
+    ![graph_example](./images/ug_example/graph_example.PNG)
+    
 1. **Display Help `help`** <a name="help"></a>
     - Displays a help link to the User Guide, which comprehensively covers Bamboo's commands.
     - Format: `help`
@@ -321,4 +356,6 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 | **AddCat**    | `addCat t/<category>`<br> e.g., `addCat t/Food`                                                                                                                  |
 | **DeleteCat** | `deleteCat t/<category>` <br> e.g., `deleteCat t/Food`                                                                                                           |
 | **Alias**     | `alias <original_command> <new_command>` <br> e.g., `alias add spent`                                                                                            |
+| **resetAlias**| `resetAlias`                                                                                                                                                     |
+| **Graph**     | `graph`                                                                                                                                                     |
 | **Help**      | `help`                                                                                                                                                           |

@@ -1,15 +1,14 @@
 package seedu.expense.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.expense.logic.commands.CommandTestUtil.VALID_TAG_FOOD;
+import static seedu.expense.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
 import static seedu.expense.model.ExpenseBook.DEFAULT_TAG;
 import static seedu.expense.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
@@ -18,7 +17,6 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.expense.commons.core.GuiSettings;
 import seedu.expense.logic.commands.exceptions.CommandException;
-import seedu.expense.model.ExpenseBook;
 import seedu.expense.model.Model;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.ReadOnlyUserPrefs;
@@ -27,66 +25,121 @@ import seedu.expense.model.alias.AliasEntry;
 import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.budget.Budget;
 import seedu.expense.model.budget.CategoryBudget;
+import seedu.expense.model.budget.UniqueCategoryBudgetList;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.tag.Tag;
-import seedu.expense.testutil.ExpenseBuilder;
+import seedu.expense.model.tag.UniqueTagList;
 
-public class AddCommandTest {
+public class ReduceCommandTest {
 
     @Test
-    public void constructor_nullExpense_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullAmount_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new ReduceCommand(null));
     }
 
     @Test
-    public void execute_expenseAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingExpenseAdded modelStub = new ModelStubAcceptingExpenseAdded();
-        Expense validExpense = new ExpenseBuilder().build();
+    void execute_nonNegativeAmountReducedFromModel_success() throws Exception {
+        ModelStub modelStub = new ModelStub();
+        Amount validAmount0 = new Amount("0");
+        Amount validAmount1 = new Amount("1");
+        Amount validAmount2 = new Amount("2");
+        Amount validAmount3 = new Amount("3");
+        modelStub.topupBudget(validAmount3);
 
-        CommandResult commandResult = new AddCommand(validExpense).execute(modelStub);
+        CommandResult commandResult0 = new ReduceCommand(validAmount0).execute(modelStub);
+        assertEquals(String.format(ReduceCommand.MESSAGE_SUCCESS, DEFAULT_TAG.tagName, validAmount3),
+                commandResult0.getFeedbackToUser());
+        assertEquals(validAmount3, modelStub.budgets.getAmount());
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validExpense), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validExpense), modelStub.expensesAdded);
+        CommandResult commandResult1 = new ReduceCommand(validAmount1).execute(modelStub);
+        assertEquals(String.format(ReduceCommand.MESSAGE_SUCCESS, DEFAULT_TAG.tagName, validAmount2),
+                commandResult1.getFeedbackToUser());
+        assertEquals(validAmount2, modelStub.budgets.getAmount());
+
+        CommandResult commandResult2 = new ReduceCommand(validAmount2).execute(modelStub);
+        assertEquals(String.format(ReduceCommand.MESSAGE_SUCCESS, DEFAULT_TAG.tagName, validAmount0),
+                commandResult2.getFeedbackToUser());
+        assertEquals(validAmount0, modelStub.budgets.getAmount());
+
+        CommandResult commandResult3 = new ReduceCommand(validAmount3).execute(modelStub);
+        assertEquals(String.format(ReduceCommand.MESSAGE_INSUFFICIENT_BUDGET, DEFAULT_TAG.tagName),
+                commandResult3.getFeedbackToUser());
+        assertEquals(validAmount0, modelStub.budgets.getAmount());
     }
 
     @Test
-    public void execute_duplicateExpense_throwsCommandException() {
-        Expense validExpense = new ExpenseBuilder().build();
-        AddCommand addCommand = new AddCommand(validExpense);
-        ModelStub modelStub = new ModelStubWithExpense(validExpense);
-
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_EXPENSE, () -> addCommand.execute(modelStub));
+    void execute_negativeAmountReducedFromModel_throwsCommandException() {
+        ModelStub modelStub = new ModelStub();
+        assertThrows(CommandException.class, () -> new ReduceCommand(new Amount("-0.01")).execute(modelStub));
     }
 
     @Test
-    public void equals() {
-        Expense alice = new ExpenseBuilder().withDescription("Alice").build();
-        Expense bob = new ExpenseBuilder().withDescription("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+    void execute_validAmountReducedFromCategoryBudget_success() throws Exception {
+        ModelStub modelStub = new ModelStub();
+        Tag validTag = new Tag(VALID_TAG_FOOD);
+        Amount validAmount1 = new Amount("1");
+        Amount validAmount2 = new Amount("2");
+        modelStub.addCategory(validTag);
+        modelStub.topupCategoryBudget(validTag, validAmount2);
+        CommandResult commandResult = new ReduceCommand(validAmount1, validTag).execute(modelStub);
+        assertEquals(String.format(ReduceCommand.MESSAGE_SUCCESS, VALID_TAG_FOOD, validAmount1),
+                commandResult.getFeedbackToUser());
+        assertEquals(validAmount1, modelStub.budgets.getCategoryBudget(validTag).getAmount());
+    }
+
+    @Test
+    void execute_validAmountReducedFromNonExistentCategoryBudget_throwsCommandException() {
+        ModelStub modelStub = new ModelStub();
+        assertThrows(CommandException.class, () -> new ReduceCommand(new Amount("1"),
+                new Tag(VALID_TAG_FOOD)).execute(modelStub));
+    }
+
+    @Test
+    void equals() {
+        Amount toReduceOne = new Amount("1");
+        Amount toReduceTwo = new Amount("2");
+        ReduceCommand reduceCommandOne = new ReduceCommand(toReduceOne);
+        ReduceCommand reduceCommandTwo = new ReduceCommand(toReduceTwo);
+
+        Tag foodTag = new Tag(VALID_TAG_FOOD);
+        Tag transportTag = new Tag(VALID_TAG_TRANSPORT);
+        ReduceCommand reduceFood = new ReduceCommand(toReduceOne, foodTag);
+        ReduceCommand reduceTransport = new ReduceCommand(toReduceOne, transportTag);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(reduceCommandOne.equals(reduceCommandOne));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        ReduceCommand reduceOneCopy = new ReduceCommand(toReduceOne);
+        assertTrue(reduceCommandOne.equals(reduceOneCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(reduceCommandOne.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(reduceCommandOne.equals(null));
 
-        // different expense -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different amount -> returns false
+        assertFalse(reduceCommandOne.equals(reduceCommandTwo));
+
+        // different categories -> returns false
+        assertFalse(reduceFood.equals(reduceTransport));
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A Model stub with a budget that can be topped up.
      */
     private class ModelStub implements Model {
+
+        final UniqueCategoryBudgetList budgets;
+        final UniqueTagList tags;
+
+        ModelStub() {
+            budgets = new UniqueCategoryBudgetList();
+            tags = new UniqueTagList();
+        }
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -174,37 +227,38 @@ public class AddCommandTest {
 
         @Override
         public Budget getTotalBudget() {
-            throw new AssertionError("This method should not be called.");
+            return budgets;
         }
 
         @Override
         public CategoryBudget getCategoryBudget(Tag category) {
-            throw new AssertionError("This method should not be called.");
+            return budgets.getCategoryBudget(category);
         }
 
         @Override
         public void topupBudget(Amount amount) {
-            throw new AssertionError("This method should not be called.");
+            budgets.topupBudget(amount);
         }
 
         @Override
         public void topupCategoryBudget(Tag category, Amount amount) {
-            throw new AssertionError("This method should not be called.");
+            budgets.topupCategoryBudget(category, amount);
         }
 
         @Override
         public boolean categoryBudgetHasAmount(Tag category, Amount amount) {
-            throw new AssertionError("This method should not be called.");
+            return budgets.categoryBudgetHasAmount(category, amount);
         }
 
         @Override
         public void reduceCategoryBudget(Tag category, Amount amount) {
-            throw new AssertionError("This method should not be called.");
+            budgets.reduceCategoryBudget(category, amount);
         }
 
         @Override
         public void addCategory(Tag tag) {
-            throw new AssertionError("This method should not be called.");
+            tags.add(tag);
+            budgets.add(new CategoryBudget(tag));
         }
 
         @Override
@@ -214,11 +268,16 @@ public class AddCommandTest {
 
         @Override
         public boolean hasCategory(Tag toCheck) {
+            return tags.contains(toCheck);
+        }
+
+        @Override
+        public void switchCategory(Tag category) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAlias(AliasEntry prev, AliasEntry curr) {
+        public void setAlias(AliasEntry prev, AliasEntry next) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -228,22 +287,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public void switchCategory(Tag category) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setAliasMap(AliasMap map) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addAlias(AliasEntry entry) {
+        public AliasMap getAliasMap() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public AliasMap getAliasMap() {
+        public void addAlias(AliasEntry entry) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -257,53 +311,4 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
     }
-
-    /**
-     * A Model stub that contains a single expense.
-     */
-    private class ModelStubWithExpense extends ModelStub {
-        private final Expense expense;
-
-        ModelStubWithExpense(Expense expense) {
-            requireNonNull(expense);
-            this.expense = expense;
-        }
-
-        @Override
-        public boolean hasExpense(Expense expense) {
-            requireNonNull(expense);
-            return this.expense.isSameExpense(expense);
-        }
-    }
-
-    /**
-     * A Model stub that always accept the expense being added.
-     */
-    private class ModelStubAcceptingExpenseAdded extends ModelStub {
-        final ArrayList<Expense> expensesAdded = new ArrayList<>();
-        final Tag tag = DEFAULT_TAG;
-
-        @Override
-        public boolean hasExpense(Expense expense) {
-            requireNonNull(expense);
-            return expensesAdded.stream().anyMatch(expense::isSameExpense);
-        }
-
-        @Override
-        public void addExpense(Expense expense) {
-            requireNonNull(expense);
-            expensesAdded.add(expense);
-        }
-
-        @Override
-        public boolean hasCategory(Tag toCheck) {
-            return toCheck.equals(tag);
-        }
-
-        @Override
-        public ReadOnlyExpenseBook getExpenseBook() {
-            return new ExpenseBook();
-        }
-    }
-
 }
