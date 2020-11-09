@@ -127,10 +127,33 @@ The `Model`,
 
 #### Contact List
 
+
+<p aligin="center"><img src ="images/ContactListDiagram.png" border="1px solid black"></p>
+
+**Contact package** : [`seedu.address.model.contact`](https://github.com/AY2021S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/model/contact)
+
+**Contact** class: [`Contact.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/contact/Contact.java)
+
+It encapsulates the following classes:
+
+ * `ContactName`
+ * `Email`
+ * `Telegram`
+ * `Set<Tag>`
+ * boolean `isImportant`
+
+
+**ContactList class** : [`ContactList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/ContactList.java)
+
+* Wraps all data i.e. `Contact` at the contact list level
+* Stores all the `Contact` in memory
+* Stores a `UniqueContactList`
+* Duplicate `Contact` are not allowed in `UniqueContactList`
+
 #### Todo List
 
 #### Scheduler
-<p aligin="center"><img src ="images/EventListClassDiagram.png" border="1px solid black"></p>p>
+<p aligin="center"><img src ="images/EventListClassDiagram.png" border="1px solid black"></p>
 
 ##### EventList class
 **EventList class** : [`EventList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/EventList.java)
@@ -218,26 +241,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 * Stores a UniqueModuleList
 * Duplicate Modules are not allowed
 
-
-## Contact List
-
-![Structure of the Contact List Component](images/ContactListDiagram.png)
-
-#### Contact class
-
-**Contact package** : [`seedu.address.model.contact`](https://github.com/AY2021S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/model/contact)
-
-* Contact is a container class that stores :
-  * Name of a contact
-  * Email of a contact
-  * Telegram of a contact
-#### ContactList class
-**ContactList class** : [`ContactList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/ContactList.java)
-
-* Wraps all data i.e. Contacts at the contact list level
-* Stores Contacts in memory
-* Stores a UniqueContactList
-* Duplicate Contacts are not allowed
 
 ## Todo List
 
