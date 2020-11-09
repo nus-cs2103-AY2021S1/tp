@@ -88,7 +88,7 @@ You may want to familarise yourself with them before moving on to the next secti
 
 Figure 2 shows the GUI of **tCheck**, annotated with descriptions for all components of the GUI.
 
-<img src="images/tCheckInfographic.png" width="1000" height="600" />
+<img src="images/tCheckInfographic.png" width="1000"/>
 Figure 2 - Annotated GUI of tCheck
 
 #### 2.2. General Symbols and Syntax 
@@ -353,10 +353,10 @@ Outcome:
 
 Before the execution:
 
-<img src="images/IngredientSetCommand.png" width="850" height="595" />
+![IngredientSetCommand](images/IngredientSetCommand.png)
 Figure above shows tCheck's GUI during the command is being entered.
 
-<img src="images/IngredientSetCommandResultDisplay.png" width="850" height="595" />
+![IngredientSetCommandResultDisplay](images/IngredientSetCommandResultDisplay.png)
 Figure above showing tCheck's GUI after pressing "Enter". Note that the amount for Milk is updated in Ingredient Tracker section inside the _Main View_.
 
 #### 2.2 Setting all ingredients' levels to different specified amounts : `i-set-all`
