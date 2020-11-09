@@ -49,7 +49,7 @@ To get started using Warenager,
 
 The commands available in the current version of
 Warenager are: add, delete, update, find, findexact, note, notedelete,
-stockview, stats, sort, print, bookmark, unbookmark, list, tab and help.
+stockview, stats, sort, print, bookmark, unbookmark, list, tab, help, clear, and exit.
 Refer to the [Commands](#commands) section to for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -62,7 +62,7 @@ Term | Definition
 --------|------------------
 **Command Line Interface (CLI)** | A command-line interface processes commands to a computer program in the form of lines of text. 
 **Graphical User Interface (GUI)** | The graphical user interface is a form of user interface that allows users to interact with electronic devices through graphical icons.
-**Field** | Represents the Name, Serial Number, Quantity, Location stored, Source, Note of the stock in inventory
+**Field** | Represents the Name, Serial Number, Quantity, Location stored, Source, Note of the stock in inventory.
 **Prefixes** | The field code that are entered during user input, so that Warenager will know what to do. e.g. `q/`, `n/`, `s/`, `sn/`.
 **Parameters** | Parameters are additional fields to key in during user input and provided after a prefix. e.g. `<name>` in `n/<name>`.
 **CSV File** | Comma-Separated Values File. It contains data separated by commas.
@@ -85,9 +85,9 @@ Label | Meaning
 **:information_source: Brief summary of features:**<br>
 
 Note: Stocks possess these fields: Name, Serial Number, Source, Quantity, Location etc. <br>
-(These stock details are presented in a drop down window.)
+(These stock details are presented in a drop down window)
 
-* **Adding** stocks: Unique serial number is generated based on the stock item and source company.
+* **Adding** stocks: Unique serial number is generated based on the stock item and source company
 * **Deleting** stocks
 * **Updating** stock fields
 * **Searching** for stocks by
@@ -97,16 +97,16 @@ Note: Stocks possess these fields: Name, Serial Number, Source, Quantity, Locati
     * location stored in warehouse
 * Adding / Deleting **optional notes** to stocks
 * **Viewing** all details of a stock
-* **Bookmarking** stocks: e.g. often used stocks, search bookmark<item>.
-* **Print** to generate CSV file for printing of stock list.
-* **Clear** to clear **all** existing data in Warenager.
-* **Tab** to toggle between tabs in Warenager.
-* **Listing** all stocks in Warenager.
-* **Suggesting** valid command formats when an invalid command is entered.
-* **Sorting** all stocks according to the field and order specified by the user.
-* **Storage** into CSV and JSON files.
+* **Bookmarking** stocks: e.g. often used stocks, search bookmark<item>
+* **Print** to generate CSV file for printing of stock list
+* **Clear** to clear **all** existing data in Warenager
+* **Tab** to toggle between tabs in Warenager
+* **Listing** all stocks in Warenager
+* **Suggesting** valid command formats when an invalid command is entered
+* **Sorting** all stocks according to the field and order specified by the user
+* **Storage** into CSV and JSON files
 * Upon start up of the Warenager application, stocks are by default displayed according to the order
-in `stockbook.json`.
+in `stockbook.json`
 
 </div>
 
@@ -267,6 +267,14 @@ The optional field low quantity will be set to 0 if not present in the input.
 
 </div>
 
+<div markdown="block" class="alert alert-warning" markdown="1">
+
+**:warning:**
+You will not be able to add a stock into the stock book if it already exist in the stock book. In Warenager, two stocks are the
+same if they have the same `serial number`, or the same `name` and `source`.
+
+</div>
+
 <h4>Format</h4>
 
 ```
@@ -296,6 +304,41 @@ add n/Sprite s/Ntuc q/1000 l/Drinks section lq/5000
 
 You have now added the stock successfully into the stock book. The stock will be added to the bottom
  of the stock table as shown above.
+ 
+<div markdown="block" class="alert alert-warning">
+
+**:warning: Below are some cases where `add` command does not work:**
+
+You should see an error message describing what went wrong and the correct format for the `add` command.
+
+Stocks that exist in Warenager cannot be added. Using the same input in the step 1,
+`add n/orange s/shengshiong q/1300 l/fruits section`, you should expect the following:
+
+![addStockExample3](images/addStockExample3.png)
+
+Invalid add command formats will also result in an error.<br>
+For example, the input `adds n/orange s/shengshiong q/1300 l/fruits section` will lead in an error as shown below
+as the keyword `add` is misspelt.
+
+![addStockExample4](images/addStockExample4.png)
+
+The input `add n/orange q/1300 l/fruits section` will lead in an error as shown below as the compulsory fields with `s/` is missing.
+
+![addStockExample5](images/addStockExample5.png)
+
+The input `add n/orange.big s/shengshiong q/1300 l/fruits section` will lead in an error as shown below as the name contains a symbol and thus is invalid. This is
+also true for inputs with no name like `add n/ s/shengshiong q/1300 l/fruits section`.
+
+![addStockExample6](images/addStockExample6.png)
+
+The `add n/apple s/shengshiong q/1300 l/fruits section ni/0` will lead in an error as shown below even though we have supplied all the required
+prefixes. This is because the prefix `ni/` is not allowed in add commands, and it is not just limited to `ni/`. In add
+commands, only the prefix `/n`, `/s`, `/q`, `/l`, `/lq` are allowed.
+
+![addStockExample7](images/addStockExample7.png)
+
+</div>
+
 
 ### Listing of stock: `list`
 Lists all the stock(s) in the inventory.
@@ -327,7 +370,7 @@ list lt/<list type>
 
 **After input**:
 
-![list_bookmark](images/list/list_bookmark.png)
+![list_bookmark](images/list/list_low.png)
 
 **Step 2.** You can then list out all the stocks that are low in quantity using the command `list lt/low`.
 
@@ -337,7 +380,7 @@ list lt/<list type>
 
 **After input**:
 
-![list_bookmark](images/list/list_low.png)
+![list_bookmark](images/list/list_bookmark.png)
 
 **Step 3.** Lastly, listing out all the stocks using the command `list lt/all`.
 
@@ -493,6 +536,7 @@ The links provided are for reference if you do not know how to use the respectiv
 `add n/pineapple tart s/cold storage l/fruits section c q/300`
 
 The 3 stocks added should appear in your `Data` tab as shown in the image below.
+
 ![add-before-find](images/find/find-step-2-addstocks.png)
 
 Let's find the stock with **name that contains `apple` or source that contains `cold`**.
@@ -502,6 +546,7 @@ the keywords you searched for and how many stocks were found.<br>
 In this case, the two stocks with names `apple juice` and `pineapple tart` would be found.
 
 **After input:**
+
 ![find-step-2](images/find/find-step-3.png)
 
 You have successfully used the `find` command.
@@ -512,13 +557,15 @@ Let's add an additional field into the search.
 The same two stocks as in Step 2 should be found as they still match `n/apple`. 
 
 **After input:**
+
 ![find-step-3](images/find/find-step-4.png)
 
 You are now done with the guided tutorial for `find`.
 
 <div markdown="block" class="alert alert-warning">
 
-**:warning:** Below are some cases where `find` command does not work:
+**:warning: Below are some cases where `find` command does not work:**
+
 You will see an error message describing what went wrong
 and the correct command format for the `find` command.
 
@@ -528,6 +575,7 @@ let's try finding by **entering nothing** as a keyword.
 Type `find n/` into the command box and enter. You will see that no stocks will be found.
 
 **After input:**
+
 ![find-step-4](images/find/find-step-5.png)
 
 Let's try finding with an **invalid prefix**: `nt/` for the `find` command.
@@ -535,6 +583,7 @@ Let's try finding with an **invalid prefix**: `nt/` for the `find` command.
 Type `find nt/apple` into the command box and enter. 
 
 **After input:**
+
 ![find-step-5](images/find/find-step-6.png)
 
 Let's try finding with a **duplicate** valid prefix for the `find` command.
@@ -542,7 +591,9 @@ Let's try finding with a **duplicate** valid prefix for the `find` command.
 Type `find n/apple n/pineapple` into the command box and enter.
 
 **After input:**
+
 ![find-step-6](images/find/find-step-7.png)
+
 </div>
 
 ### Find exact stocks from inventory: `findexact`
@@ -622,6 +673,7 @@ If you are continuing from the above `find` command tutorial, you may skip step 
 `add n/pineapple tart s/cold storage l/fruits section c q/300`
 
 The 3 stocks added should appear in your `Data` tab as shown in the image below.
+
 ![add-before-findexact](images/find/find-step-2-addstocks.png)
 
 Let's find the stock with **name that contains `apple` and source that contains `cold`**.
@@ -631,6 +683,7 @@ the keywords you searched for and how many stocks were found.<br>
 In this case, only one stock, with the name `pineapple tart`, would be found.
 
 **After input:**
+
 ![findexact-step-2](images/find/findexact-step-3.png)
 
 You have successfully used the `findexact` command.
@@ -641,13 +694,15 @@ Let's add an additional field into the search.
 No stock should be found as there is no stock with the location unknown.
 
 **After input:**
+
 ![findexact-step-3](images/find/findexact-step-4.png)
 
 You are now done with the guided tutorial for `findexact`.
 
 <div markdown="block" class="alert alert-warning">
 
-**:warning:** Cases where the `findexact` command does not work are the same as those in
+**:warning:** 
+Cases where the `findexact` command does not work are the same as those in
 the warning section in the [`find` command](#find-stocks-from-inventory-find) section,
 with the replacement of the `find` command with the `findexact` command.
 
@@ -783,6 +838,7 @@ Let's add a note to stock with name Apple juice.
 added to the stock with name Apple juice at note index 1 in the Notes column.
 
 **After input:**
+
 ![note-step-2](images/note/note-step-2.png)
 
 Let's add different note to the same stock as in Step 2.
@@ -791,6 +847,7 @@ Let's add different note to the same stock as in Step 2.
 You will see the note added to the stock with name Apple juice at note index 2 in the Notes column.
 
 **After input:**
+
 ![note-step-3](images/note/note-step-3.png)
 
 Let's add a note to a different stock from that in Steps 1 and 2.
@@ -799,13 +856,15 @@ Let's add a note to a different stock from that in Steps 1 and 2.
 You will see the note added to the stock with name Pineapple tart at note index 1 in the Notes column.
 
 **After input:**
+
 ![note-step-4](images/note/note-step-4.png)
 
 You are now done with the guided tutorial for `note`.
 
 <div markdown="block" class="alert alert-warning">
 
-**:warning:** Below are some cases where `note` command does not work:
+**:warning: Below are some cases where `note` command does not work:**
+
 You should see an error message describing what went wrong and the correct format for the `note` command.
 
 Continuing from the steps from the guided example above, 
@@ -813,6 +872,7 @@ Let's try **entering nothing** as a note.
 Type `note sn/ntuc1 nt/` into the command box and enter.
 
 **After input:**
+
 ![note-step-5](images/note/note-step-5.png)
 
 Let's try adding a note to an **unknown** serial number.
@@ -820,6 +880,7 @@ Let's try adding a note to an **unknown** serial number.
 Type `note sn/unknown1 nt/note` in the command box and enter.
 
 **After input:**
+
 ![note-step-6](images/note/note-step-6.png)
 
 Let's try adding a note but with an **invalid prefix**: `n/` for the `note` command.
@@ -827,6 +888,7 @@ Let's try adding a note but with an **invalid prefix**: `n/` for the `note` comm
 Type `note sn/ntuc1 nt/valid note n/invalid` into the command box.
 
 **After input:**
+
 ![note-step-7](images/note/note-step-7.png)
 
 Let's try adding a note but with a **duplicate** valid prefix for the `note` command.
@@ -834,6 +896,7 @@ Let's try adding a note but with a **duplicate** valid prefix for the `note` com
 Type `note sn/ntuc1 nt/first note nt/second note` into the command box and enter.
 
 **After input:**
+
 ![note-step-8](images/note/note-step-8.png)
 
 </div>                        
@@ -863,10 +926,6 @@ notedelete sn/ntuc1 ni/1
 
 <h4>Below is a guided example for deleting notes from stocks:</h4>
 
-**Step 1.** Start with these stocks in your stock book in your `Data` tab as shown in the image below.
-
-![notedelete-step-1](images/note/notedelete-step-1.png)
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source:** You may skip Step 1 and use the stocks that have notes already in your stockbook.
@@ -877,6 +936,10 @@ Use the `list lt/all` command to show all the stocks in the stock book in the `D
 
 </div>
 
+**Step 1.** Start with these stocks in your stock book in your `Data` tab as shown in the image below.
+
+![notedelete-step-1](images/note/notedelete-step-1.png)
+
 Let's delete a note from the stock with name Pineapple tart.
 
 **Step 2.** Type `notedelete sn/cold storage1 ni/2` into the command box and enter. 
@@ -884,6 +947,7 @@ You will see that the note at note index 2, `pineapple tarts for CNY`
 of the stock with serial number `coldstorage1` has been deleted.
 
 **After input:**
+
 ![notedelete-step-2](images/note/notedelete-step-2.png)
 
 You have successfully used the `notedelete` command.
@@ -894,13 +958,15 @@ Let's try deleting all the notes from the stock with serial number `ntuc1` with 
 You will see that all the notes of the stock with serial number `ntuc1` has been deleted.
 
 **After input:**
+
 ![notedelete-step-3](images/note/notedelete-step-3.png)
 
 You are now done with the guided tutorial for `notedelete`.
 
 <div markdown="block" class="alert alert-warning">
 
-**:warning:** Below are some cases where `notedelete` command does not work:
+**:warning: Below are some cases where `notedelete` command does not work:**
+
 You should see an error message describing what went wrong and the correct format for the `notedelete` command.
 
 Continuing from the steps from the guided example above, 
@@ -909,6 +975,7 @@ Let's try deleting a note from an **unknown** serial number.
 Type `notedelete sn/unknown1 ni/1` in the command box and enter.
 
 **After input:**
+
 ![notedelete-unknown](images/note/notedelete-step-4.png)
 
 Let's try deleting a note but with an **invalid prefix**: `n/` for the `notedelete` command.
@@ -916,6 +983,7 @@ Let's try deleting a note but with an **invalid prefix**: `n/` for the `notedele
 Type `notedelete sn/cold storage1 ni/1 n/invalid` into the command box.
 
 **After input:**
+
 ![notedelete-invalid](images/note/notedelete-step-5.png)
 
 Let's try deleting a note but with a **duplicate** valid prefix for the `notedelete` command.
@@ -923,6 +991,7 @@ Let's try deleting a note but with a **duplicate** valid prefix for the `notedel
 Type `notedelete sn/cold storage1 ni/1 ni/2` into the command box and enter.
 
 **After input:**
+
 ![notedelete-duplicate](images/note/notedelete-step-6.png)
 
 Let's try deleting a note with an **invalid note index**. You will see that the note
@@ -931,6 +1000,7 @@ index for the stock could not be found.
 Type `notedelete sn/cold storage1 ni/10` into the command box and enter.
 
 **After input:**
+
 ![notedelete-invalidnoteindex](images/note/notedelete-step-7.png)
 
 Let's try deleting a note from a stock **without notes**. You will see that
@@ -939,6 +1009,7 @@ you cannot delete a note as the stock does not have notes.
 Type `notedelete sn/ntuc1 ni/1` into the command box and enter.
 
 **After input:**
+
 ![notedelete-nonotes](images/note/notedelete-step-8.png)
 
 </div>
@@ -979,6 +1050,7 @@ Let's see what the `Stock View` tab looks like first before using the `stockview
 look as shown in the image below.
 
 **Clicking into the `Stock View` tab:**
+
 ![stockview-step-0](images/stockview/stockview-step-0.png)
 
 <div markdown="block" class="alert alert-info">
@@ -999,6 +1071,7 @@ Let's view the stock with serial number `COLD STORAGE1`.
 You will be brought to the `Stock View` tab with the stock details shown as in the image below.
 
 **After input:**
+
 ![stockview-step-2](images/stockview/stockview-step-2.png)
 
 You have successfully used the `stockview` command.
@@ -1013,9 +1086,11 @@ the `Stock View` tab and you will see that the information for the stock that wa
 has been updated.
 
 **After input:**
+
 ![stockview-step-3](images/stockview/stockview-step-3.png)
 
 **Clicking back to the `Stock View` tab:**
+
 ![stockview-step-3-2](images/stockview/stockview-step-3-2.png)
 
 <div markdown="block" class="alert alert-info">
@@ -1035,9 +1110,11 @@ You should be brought back to the `Data` tab with the stock deleted. Click back 
 is no longer in your stock book.
 
 **After input:**
+
 ![stockview-step-4](images/stockview/stockview-step-4.png)
 
 **Clicking back to the `Stock View` tab:**
+
 ![stockview-step-4-2](images/stockview/stockview-step-4-2.png)
 
 <div markdown="block" class="alert alert-info">
@@ -1050,7 +1127,8 @@ You are now done with the guided tutorial for `stockview`.
 
 <div markdown="block" class="alert alert-warning">
 
-**:warning:** Below are some cases where `stockview` command does not work:
+**:warning: Below are some cases where `stockview` command does not work:**
+
 You should see an error message describing what went wrong and the correct format for the `stockview` command.
 
 Continuing from the steps from the guided example above, 
@@ -1059,6 +1137,7 @@ Let's try deleting a note from an **unknown** serial number.
 Type `stockview sn/unknown1` in the command box and enter.
 
 **After input:**
+
 ![stockview-unknown](images/stockview/stockview-step-5.png)
 
 Let's try viewing a stock but with an **invalid prefix**: `n/` for the `stockview` command.
@@ -1066,6 +1145,7 @@ Let's try viewing a stock but with an **invalid prefix**: `n/` for the `stockvie
 Type `stockview sn/ntuc1 n/invalid` into the command box and enter.
 
 **After input:**
+
 ![stockview-invalid](images/stockview/stockview-step-6.png)
 
 Let's try viewing a stock but with a **duplicate** valid serial number prefix.
@@ -1073,6 +1153,7 @@ Let's try viewing a stock but with a **duplicate** valid serial number prefix.
 Type `stockview sn/ntuc1 sn/ntuc2` into the command box and enter.
 
 **After input:**
+
 ![stockview-duplicate](images/stockview/stockview-step-7.png)
 
 </div>
@@ -1088,7 +1169,7 @@ stats st/<statistics type>
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: The valid statistics types that can be provided and what the respective statistics describes are**
+**:information_source: The valid statistics types that can be provided and what the respective statistics describes are:**
 
 **Statistics type** | **What the statistics describes**
 ------| --------
@@ -1100,12 +1181,13 @@ stats st/<statistics type>
 <h4>Examples</h4>
 
 ```
-stats st/source, stats st/source-qd-abc ("abc" is an existing source company)
+stats st/source
+stats st/source-qd-abc ("abc" is an existing source company)
 ```
 
 <h4>Below is a guided example for displaying statistics:</h4>
 
-Start Warenager. Suppose you want to display source statistics. After the input, you should notice that
+**Step 1.** Start Warenager. Suppose you want to display source statistics. After the input, you should notice that
 the title in the statistics window as highlighted corresponds to the type of statistics shown.<br>
 The valid statistics input would be `stats st/source`.
 
@@ -1118,7 +1200,7 @@ The valid statistics input would be `stats st/source`.
 
 ![statistics_step2](images/statistics/statistics_step2.png)
 
-Now suppose you want to display source statistics for the source company `courts`. After the input, you
+**Step 2.** Now suppose you want to display source statistics for the source company `courts`. After the input, you
 should notice that the title in the statistics window as highlighted now corresponds to the source company `courts`.<br>
 The valid statistics input would be `stats st/source-qd-courts`.
 
@@ -1152,7 +1234,7 @@ bookmark sn/<serial number> [sn/<serial number>]...
 
 <h4>Below is a guided example for viewing a stock:</h4>
 
-**Step 1.** You want to bookmark the stock with serial number `giant1`. You can bookmark the stock by
+**Step 1.** Let's say you want to bookmark the stock with serial number `giant1`. You can bookmark the stock by
 using the command `bookmark sn/giant1`. Below shows the desired outcome.
 
 **Before input:**
@@ -1163,7 +1245,7 @@ using the command `bookmark sn/giant1`. Below shows the desired outcome.
 
 ![bookmark_after](images/bookmark/bookmark.png)
 
-**Step 2.** You want to bookmark multiple stocks with serial numbers `fairprice1` and `ntuc1`. 
+**Step 2.** Let's say you want to bookmark multiple stocks with serial numbers `fairprice1` and `ntuc1`. 
 You can bookmark the stock by using the command `bookmark sn/fairprice1 sn/ntuc1`. Below shows the desired outcome.
 
 **Before input:**
@@ -1203,8 +1285,8 @@ unbookmark sn/<serial number> [sn/<serial number>]...
 
 <h4>Below is a guided example for viewing a stock:</h4>
 
-**Step 1.** You want to unbookmark the stock with serial number `giant1`. You can unbookmark the stock by
-using the command `bookmark sn/giant1`. Below shows the desired outcome.
+**Step 1.** Let's say you want to unbookmark the stock with serial number `giant1`. You can unbookmark the stock by
+using the command `unbookmark sn/giant1`. Below shows the desired outcome.
 
 **Before input:**
 
@@ -1215,8 +1297,8 @@ using the command `bookmark sn/giant1`. Below shows the desired outcome.
 
 ![unbookmark_after](images/bookmark/unbookmark.png)
 
-**Step 2.** You want to unbookmark multiple stocks with serial numbers `giant1` and `cold storage1`.
-You can unbookmark the stock by using the command `bookmark sn/giant1 sn/cold storage1`. 
+**Step 2.** Let's say you want to unbookmark multiple stocks with serial numbers `giant1` and `cold storage1`.
+You can unbookmark the stock by using the command `unbookmark sn/giant1 sn/cold storage1`. 
 Below shows the desired outcome.
 
 **Before input:**
@@ -1240,7 +1322,7 @@ you should expect the following error:
 **:warning: Not Bookmarked Stocks**
 
 Unbookmarking a stock that is not bookmarked will also result in an error.
-Using the bookmark input `bookmark sn/fairprice1`,you should expect the following error:
+Using the bookmark input `unbookmark sn/fairprice1`, you should expect the following error:
 
 ![bookmark_already_bookmarked](images/bookmark/unbookmark_not.png)
 </div>
@@ -1488,7 +1570,7 @@ Generates a CSV file that contains all stocks.
 
 <div markdown="block" class="alert alert-info">
 
-CSV file will be named according to the input, and the file name
+**:information_source:** CSV file will be named according to the input, and the file name
 can only contain alphanumeric characters. You may want to sort the stocks using `sort` command
 to sort the stock in their preferred order as mentioned [earlier](#sorting-inventory-sort) before converting it into the CSV file. The CSV file is saved
 to `[root directory]/data/userInput.csv` after successfully executing the command.
@@ -1611,7 +1693,7 @@ which is the **Stock view** tab.
 
 <div markdown="block" class="alert alert-warning" markdown="1">
 
-**:warning:**<br>
+**:warning:**
 Note that the above example used is a new Warenager session. If you have already used the `stats` command
 input at least once in your current Warenager session, you should see the latest piechart viewed when you
 are in **Statistics** tab.

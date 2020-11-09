@@ -76,7 +76,7 @@ All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
 For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/ui/MainWindow.java)
-is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/resources/view/MainWindow.fxml).
 
 1. The user enters a command into  the CommandBox.
 1. The `UI` component then executes the user commands using the `Logic` component.
@@ -385,11 +385,12 @@ with the given serialNumbers as argument if the user input is a valid `BookmarkC
 Some important operations implemented here are:
 * `BookmarkCommandParser#parse()` returns BookmarkCommand to be executed.
 
-#### Example Usage Scenerio 
+#### Example Usage Scenario 
 
-Given Below is one example usage scenerio and explains how the add feature behaves at each step. It is assumed
+Given below is one example usage scenerio and explains how the add feature behaves at each step. It is assumed
 that the stock with serial number `fairprice1` exists in the stock book.
-**Example 1:Bookmarking a stock present in the stock book that is not already bookmarked**
+
+**Example 1: Bookmarking a stock present in the stock book that is not already bookmarked**
 
 Step 1. The user enters `bookmark sn/fairprice1` into the command box.
 
@@ -437,12 +438,12 @@ The following activity diagram summarizes what happens when the bookmark feature
 
 ##### Aspect:How does a stock get bookmarked
 
-* Alternative 1(current implementation):make a temporary copy then replace original with copy
+* **Alternative 1(current implementation):** make a temporary copy then replace original with copy
     * Pros: Eliminates the possibility of original data getting lost. If a bookmarking is unsuccessful then only the copy
       will be affected and not the original data.
     * Cons: Slower than just directly change the stock fields in the `StockBook` as we need to make a copy of the current
       stock, update the copy, and replace the original with the copy.
-* Alternative 2:directly changing `Stock` isBookmarked field in `StockBook`
+* **Alternative 2:** directly changing `Stock` isBookmarked field in `StockBook`
     * Pros: Will be significantly faster than making a copy since we directly change the `Stock` itself.
     * Cons: At a risk of data corruption. Interrupting the update midway will cause the `Stock` currently undergoing the
       update to be corrupted as the original data that has been bookmarked will be lost, but some fields may not be already
@@ -477,18 +478,19 @@ with the given serialNumbers as argument if the user input is a valid `Unbookmar
 Some important operations implemented here are:
 * `UnbookmarkCommandParser#parse()` returns BookmarkCommand to be executed.
 
-#### Example Usage Scenerio 
+#### Example Usage Scenario 
 
-Given Below is one example usage scenerio and explains how the add feature behaves at each step. It is assumed
+Given below is one example usage scenario and explains how the add feature behaves at each step. It is assumed
 that the stock with serial number `fairprice1` exists in the stock book and is already bookmarked.
-**Example 1:Bookmarking a stock present in the stock book that is not already bookmarked**
+
+**Example 1: Bookmarking a stock present in the stock book that is not already bookmarked**
 
 Step 1. The user enters `unbookmark sn/fairprice1` into the command box.
 
 Step 2. The command word `unbookmark` is extracted out in the `StockBookParser` and checked if it matches any
 valid command word.
 
-Step 3. `bookmark` is a valid command word. User input prefixes ,and their values are being passed down to
+Step 3. `unbookmark` is a valid command word. User input prefixes ,and their values are being passed down to
 `UnbookmarkCommandParser#parse()`
 
 Step 4. `UnbookmarkCommandParser#parse()` will check if the prefixes `sn/` exists as it is compulsory.
@@ -529,12 +531,12 @@ The following activity diagram summarizes what happens when the bookmark feature
 
 ##### Aspect:How does a stock get bookmarked
 
-* Alternative 1(current implementation):make a temporary copy then replace original with copy
+* **Alternative 1(current implementation):** make a temporary copy then replace original with copy
     * Pros: Eliminates the possibility of original data getting lost. If a unbookmarking is unsuccessful then only the copy
       will be affected and not the original data.
     * Cons: Slower than just directly change the stock fields in the `StockBook` as we need to make a copy of the current
       stock, update the copy, and replace the original with the copy.
-* Alternative 2:directly changing `Stock` isBookmarked field in `StockBook`
+* **Alternative 2:** directly changing `Stock` isBookmarked field in `StockBook`
     * Pros: Will be significantly faster than making a copy since we directly change the `Stock` itself.
     * Cons: At a risk of data corruption. Interrupting the update midway will cause the `Stock` currently undergoing the
       update to be corrupted as the original data that has been bookmarked will be lost, but some fields may not be already
@@ -643,12 +645,12 @@ Given below are some example usage scenarios and how the suggestion mechanism be
 
 **Example 1: Unknown command word**
 
-Step 1. The user enters `updt n/Milk s/Fairprice` which contains an unknown command word `updt`.
+Step 1. The user enters `updt n/Milk nq/100` which contains an unknown command word `updt`.
 
 Step 2. The command word `updt` is extracted out in `StockBookParser` and checked if it matches any valid command word.
 
 Step 3. The command word `updt` does not match any valid command word. It is then passed down to `SuggestionCommandParser`
-along with `n/Milk s/Fairprice` and `SuggestionCommandParser#parse()` is invoked.
+along with `n/Milk nq/100` and `SuggestionCommandParser#parse()` is invoked.
 
 Step 4. Inside `SuggestionCommandParser#parse()` method, the closest command word to `updt` will be inferred.
 The inference uses the minimum edit distance heuristic. `SuggestionCommandParser#parse()` will
@@ -666,8 +668,8 @@ first if the compulsory prefix exist. In this case the compulsory prefix which i
 
 Step 8. All prefixes the user entered that is valid for `update` command and its arguments are nonempty will then
 be appended to the suggestion message. If there exist prefix whose argument is empty, then `SuggestionCommandParser#generateUpdateSuggestion()`
-will fill the argument with a default value. In this case, prefixes `n/ s/` are present and their arguments are nonempty.
-`n/Milk s/Fairprice` is then added to the suggestion message.
+will fill the argument with a default value. In this case, prefixes `n/ nq/` are present and their arguments are nonempty.
+`n/Milk nq/100` is then added to the suggestion message.
 
 Step 9. Lastly `SuggestionCommandParser#generateUpdateSuggestion()` will append the usage message for `update` command.
 
@@ -676,13 +678,13 @@ to be displayed as its argument.
 
 Step 11. `SuggestionCommand` is executed and produces a new `CommandResult` to display the message to the user.
 
-Step 12. The suggestion `update sn/<serial number> n/Milk s/Fairprice` is displayed to the user along with what kind of
+Step 12. The suggestion `update sn/<serial number> nq/100 n/milk` is displayed to the user along with what kind of
 error and the message usage information. In this case the error is `unknown command` and the message usage is from
 `UpdateCommand`.
 
 **Example 2: Invalid command format**
 
-Step 1. The user enters `update n/Milk s/` which contains a valid command word `update`.
+Step 1. The user enters `update n/Milk nq/` which contains a valid command word `update`.
 
 Step 2. The command word `update` is extracted out in `StockBookParser` and checked if it matches any valid command word.
 
@@ -713,8 +715,8 @@ first if the compulsory prefix exist. In this case the compulsory prefix which i
 Step 11. All prefixes the user entered that is valid for `update` command and its arguments are nonempty will then
 be appended to the suggestion message. If there exist prefix whose argument is empty, then `SuggestionCommandParser#generateUpdateSuggestion()`
 will fill the argument with a default value. In this case, the prefix `n/` is present and its argument is nonempty.
-`n/Milk` is then added to the suggestion message. The prefix `s/` is present, but its argument is empty.
-`s/<source>` is then added to the suggestion message.
+`n/Milk` is then added to the suggestion message. The prefix `nq/` is present, but its argument is empty.
+`nq/<new quantity>` is then added to the suggestion message.
 
 Step 12. Lastly `SuggestionCommandParser#generateUpdateSuggestion()` will append the usage message for `update` command.
 
@@ -723,7 +725,7 @@ to be displayed as its argument.
 
 Step 14. `SuggestionCommand` is executed and produces a new `CommandResult` to display the message to the user.
 
-Step 15. The suggestion `update sn/<serial number> n/Milk s/<source>` is displayed to the user along with what kind of
+Step 15. The suggestion `update sn/<serial number> nq/<new quantity> n/milk` is displayed to the user along with what kind of
 error and the message usage information. In this case the error is `Invalid command format` and the message usage is from
 `UpdateCommand`.
 
@@ -756,7 +758,7 @@ There are three types of editing operations:
 * **Substitution**: <br>
   Change a character in the string into another different character. Substitution has a cost of 3. It is more expensive
   to substitute than inserting or deleting a character. However, the cost is less than two times the cost of
-  either insertion or deletion, so that it is cheaper to substitute rather than deleting and then inserting.
+  either insertion or deletion, so that it is cheaper to substitute rather than deleting and then inserting. <br>
   Example: `prey -> pray` and `like -> lime`.
 
 The smaller the minimum edit distance between two strings, the more similar they are.
@@ -771,7 +773,7 @@ Suppose there are two strings:
 Define `D(i, j)` to be the minimum edit distance between the first `i` characters of `X` and the first `j` characters of `Y`.
 
 Now if the character at position `i` in `X` equals the character at position `j` in `Y`, then simply <br>
-`D(i, j) = D(i - 1, j - 1)` <br>
+`D(i, j) = D(i - 1, j - 1)`. <br>
 
 Else, if they are not the same, consider doing all possible editing operations:
 * **Insertion**: <br>
@@ -801,7 +803,7 @@ In all possible editing operations, the value `D(i, j)` can only change to:
 * `D(i - 1, j - 1) + 3`
 
 Since we want to find the minimum edit distance, <br>
-`D(i, j) = min(D(i - 1, j) + 1, D(i, j - 1) + 1, D(i - 1, j - 1) + 3)`.
+`D(i, j) = min(D(i - 1, j) + 2, D(i, j - 1) + 2, D(i - 1, j - 1) + 3)`.
 
 Since it is a recursion, the algorithm is implemented using bottom-up dynamic programming to improve speed
 by remembering already computed states. The current implementation do the following steps:
@@ -1031,18 +1033,18 @@ The following activity diagram summarizes what happens when
 matches user input if the stock's field contains all of the keywords entered. <br>
 (eg. For `find n/ this is a banana`, stock matches user input if it contains
 all keywords `this`, `is`, `a`, `banana`)
- * Pros: Results in a more accurate matching of stocks to user input.
- * Cons: User has to be careful not to input irrelevant terms along with terms
- that match with the stock's field, else the stock intended will not show up.
+   * Pros: Results in a more accurate matching of stocks to user input.
+   * Cons: User has to be careful not to input irrelevant terms along with terms
+   that match with the stock's field, else the stock intended will not show up.
 
 * **Alternative 2:** For any field prefix, a stock matches user input
 if the stock's field contains at least one of the keywords entered. <br>
 (eg. For `find n/ this is a banana`, stock matches user input if it contains
 at least one of `a`, `this`, `is`, `banana`.)
- * Pros: More flexible as desired stock will be displayed with at least
- one matching keyword, even when irrelevant keywords are entered.
- * Cons: A less accurate list of matching stocks is displayed as more stocks will
- match with the keywords since the search criteria is less rigid.
+   * Pros: More flexible as desired stock will be displayed with at least
+   one matching keyword, even when irrelevant keywords are entered.
+   * Cons: A less accurate list of matching stocks is displayed as more stocks will
+   match with the keywords since the search criteria is less rigid.
 
 ##### Aspect: Input format for find command.
 
@@ -1115,11 +1117,11 @@ The command word matches `COMMAND_WORD`: `note` in the `NoteCommand` class.
 
 Step 4. The remaining user input is passed to the `NoteCommandParser` where within the
 `NoteCommandParser#parse()` method, the respective `ParserUtil#parseSerialNumber()` and
-`ParserUtil#parseNote` methods are called to generate a `Serial Number` of the stock
+`ParserUtil#parseNote` methods are called to generate a `SerialNumber` of the stock
 and `Note` to add to stock.
 
 Step 5. The `NoteCommandParser#parse()` method then returns a `NoteCommand`,
-constructed with the `Serial Number` of stock and `Note` to add to stock. 
+constructed with the `SerialNumber` of stock and `Note` to add to stock. 
 
 Step 6. `LogicManager#execute()` then calls `NoteCommand#execute()` method,
 with current `Model` as argument. Within this method call, `Stock#addNote()` adds the note to the stock,
@@ -1145,8 +1147,8 @@ Upon successful parsing, `NoteDeleteCommand` object generated will then be passe
 If the user inputs do not conform to the valid format specified for the `NoteDeleteCommand`,
 an exception is thrown and no `NoteDeleteCommand` object will be created.
 
-If the `Serial Number` of stock is not found in Warenager's data,
-an error message is shown to prompt the user that Warenager cannot find the `Serial Number` given.
+If the `SerialNumber` of stock is not found in Warenager's data,
+an error message is shown to prompt the user that Warenager cannot find the `SerialNumber` given.
 
 `NoteDeleteCommandParser` implements the following important operations:
 
@@ -1210,7 +1212,7 @@ with current `Model` as argument. Within this method call, `Stock#deleteNote()` 
 at the index specified by the `NoteIndex` from the stock,
 and the `Model` is updated with the stock with the deleted note.
 
-Step 7. The result of the note delete command is stored in the returning `CommandResult`object
+Step 7. The result of the note delete command is stored in the returning `CommandResult` object
 and displayed with `ResultDisplay`.
 
 Step 8. User views the new `StockListPanel` with the filtered stock list.
@@ -1249,23 +1251,23 @@ The below aspects are the design considerations for the Note feature in adding a
 ##### Aspect: Representation of notes for a stock
 * **Alternative 1 (current implementation):** Multiple notes can be added to a stock and
 each note is indexed. <br>
-* Pros: Allows user to add multiple notes to stock while maintaining the ability to clearly
-differentiate between the different notes. With indexed notes, users are able to reference
-specific notes in command and delete the specific note.
-* Cons: Users may not want the indexing, as it may seem like a priority ranking for the notes.
+  * Pros: Allows user to add multiple notes to stock while maintaining the ability to clearly
+  differentiate between the different notes. With indexed notes, users are able to reference
+  specific notes in command and delete the specific note.
+  * Cons: Users may not want the indexing, as it may seem like a priority ranking for the notes.
 
 * **Alternative 2:** Multiple notes can be added to a stock and each note is denoted by bullet point. <br>
-* Pros: Allows user to add multiple notes to stock while maintaining ability to clearly differentiate
-between the different notes.
-* Cons: Unable to reference a specific note in command and unable to clearly reference a certain note
-to be deleted, but will still be able to delete all notes.
+  * Pros: Allows user to add multiple notes to stock while maintaining ability to clearly differentiate
+  between the different notes.
+  * Cons: Unable to reference a specific note in command and unable to clearly reference a certain note
+  to be deleted, but will still be able to delete all notes.
 
 * **Alternative 3:** A stock can only have one note, but each time a note is added, it replaces
 the previous note. <br>
-* Pros: Allows user to quickly replace notes with just one command.
-* Cons: Users are unable to add multiple notes to the same stock and differentiate between the notes.
-Each time the user wants to add on to a note, the user has to retype the entire note again with the
-added details.
+  * Pros: Allows user to quickly replace notes with just one command.
+  * Cons: Users are unable to add multiple notes to the same stock and differentiate between the notes.
+  Each time the user wants to add on to a note, the user has to retype the entire note again with the
+  added details.
 
 ##### Aspect: Input format for note and notedelete commands.
 
@@ -1312,7 +1314,11 @@ Some of the more important operations implemented here are:
   This is a further abstracted method that reads the input string and determines what is the correct statistical type
   command that the user wants.
 
+<div markdown="block" class="alert alert-warning">
+
 :warning: It is to note that some child classes requires parameters in their constructors for their respective purposes.
+
+</div>
 
 #### StatisticsCommand
 
@@ -1414,7 +1420,7 @@ Step 9. Warenager jumps to the **Statistics** tab and the updated piechart is di
 
 Step 1. The user enters `stats st/source-qt-ntuc`. `ntuc` is a valid source that exists in Warenager.
 
-Step 2-3.Same as **Example 1**
+Step 2-3. Same as **Example 1**.
 
 Step 4. Inside `StatisticsCommandParser#parse()` method, the header `st/` will be dropped, resulting in the remaining user
         input to be `source-qt-ntuc`. This matches to the criteria for `SourceQuantityDistributionStatisticsCommand`,
@@ -1572,9 +1578,10 @@ Step 10. `DeleteCommand#execute()` then prints out the respective message, depen
          in this case, all.
 
 **Example 2: Deleting multiple stocks from the stock book (serial number given are valid and exists)**
+
 Step 1. The user enters `delete sn/ntuc1 sn/ntuc2 sn/ntuc3`.
 
-Step 2-3. Same as **Example 1**
+Step 2-3. Same as **Example 1**.
 
 Step 4. Inside `DeleteCommandParser#parse()` method, the remaining user input `sn/ntuc1 sn/ntuc2 sn/ntuc3`,
         will be parsed by `ParserUtil#parseSerialNumbers()`.
@@ -1587,7 +1594,7 @@ Step 5.  Inside the `ParserUtil#parseSerialNumbers()` method, the user input wil
 Step 6. From the argument multimap, a `set` of serial numbers will be generated. In this case, the set
         contains `ntuc1, ntuc2, ntuc3`.
         
-Step 7-10. Same as **Example 1**
+Step 7-10. Same as **Example 1**.
 
 #### Sequence Diagram
 
@@ -1690,7 +1697,7 @@ The utilities provided inside are:
   Generates a comparator based on quantity field. It will compare two quantity `q1`, `q2` and have the same exact
   behaviour as `SortUtil#generateNameComparator()`. This method by default sort by quantity in ascending order.
 
-* `SortUtl#generateGeneralComparator()` <br>
+* `SortUtil#generateGeneralComparator()` <br>
   Generates a comparator based on serial number field and whether the stocks are bookmarked or low on quantity.
   It will assign points to stock if they are bookmarked or low on quantity. Bookmarked stocks receive higher
   points than stocks on low quantity. Stocks with larger points will be first on the resulting list.
@@ -1746,12 +1753,12 @@ The following activity diagram summarizes what happens when the sort feature is 
 
 ##### Aspect: Sorting order
 
-* **Alternative 1 (current implementation):** ascending and descending are both supported
+* **Alternative 1 (current implementation):** Ascending and descending are both supported
   * Pros: Gives more flexibility to the user. Sometimes user may want to view in ascending order, sometimes
   user may also want to view in descending order.
   * Cons: A slightly longer command format will be needed as user needs to pass in a prefix for the order.
 
-* **Alternative 2:** only allow ascending order.
+* **Alternative 2:** Only allow ascending order.
   * Pros: A shorter command format for user to type in. Only need to specify the field to be sorted.
   * Cons: Gives less flexibility to the user. Less variation in behaviors.
 
@@ -1856,10 +1863,10 @@ The command word matches `COMMAND_WORD`: `stockview` in the `StockViewCommand` c
 
 Step 4. The remaining user input is passed to the `StockViewCommandParser` where within the
 `StockViewCommandParser#parse()` method, the `ParserUtil#parseSerialNumber()`  method is called
-to return a valid `Serial Number` of the stock. 
+to return a valid `SerialNumber` of the stock. 
 
 Step 5. The `StockViewCommandParser#parse()` method then returns a `StockViewCommand`,
-constructed with the `Serial Number` of stock. 
+constructed with the `SerialNumber` of stock. 
 
 Step 6. When `MainWindow#fillInnerParts()` is called by `UIManager#start()`, `MainWindow#executeCommand()` is called.
 The `LogicManager#execute()` then calls `StockViewCommand#execute()` method. 
@@ -1869,17 +1876,20 @@ returning `CommandResult`object and displayed with `ResultDisplay`.
 Step 7. Within `MainWindow#executeCommand()`, `MainWindow#handleStockView()` is called. Within this method call, `MainWindow#updateStockView()` which creates a `StockViewWindow` and update the details of the Stock
 to be displayed in the **Stock View** tab.
 
-Step 8. Warenagerr jumps to the **Stock View** tab, where the details of the Stock are displayed.
+Step 8. Warenager jumps to the **Stock View** tab, where the details of the Stock are displayed.
 
 #### Sequence Diagram
 The following sequence diagram shows how the Logic of Stock View feature works for Example 1:
+
 ![Stock View Feature Logic Sequence Diagram](images/StockViewLogicSequenceDiagram.png)
 
 The following sequence diagram shows how the UI of Stock View feature works for Example 1:
+
 ![Stock View Feature UI Sequence Diagram](images/StockViewUISequenceDiagram.png)
 
 #### Activity Diagram
 The following activity diagram summarizes what happens when the Stock View feature is triggered:
+
 ![Stock View Feature Activity Diagram](images/StockViewActivityDiagram.png)
 
 #### Design Consideration
@@ -1887,27 +1897,27 @@ The following activity diagram summarizes what happens when the Stock View featu
 ##### Aspect: Retention of information in the Stock View tab
 * **Alternative 1 (current implementation):** When user clicks away from the Stock View tab, information
 of the stock that was viewed is retained in the Stock View tab. <br>
- * Pros: User is able to click back to the Stock View tab to re-view the information that was viewed before.
-User does not have to retype the command to view the same stock.
- * Cons: User may want to clean away the Stock View tab after viewing. 
+  * Pros: User is able to click back to the Stock View tab to re-view the information that was viewed before.
+  User does not have to retype the command to view the same stock.
+  * Cons: User may want to clean away the Stock View tab after viewing. 
 
 * **Alternative 2:** When user clicks away from the Stock View tab, the information displayed in the
 Stock View tab is cleared.
- * Pros: User is able to have a cleaned Stock View tab, after leaving the Stock View tab.
- * Cons: User is unable to refer back to the information that was viewed previously and would have to retype the command.
+  * Pros: User is able to have a cleaned Stock View tab, after leaving the Stock View tab.
+  * Cons: User is unable to refer back to the information that was viewed previously and would have to retype the command.
  
 ##### Aspect: Updating of information of stock of the stock viewed
 * **Alternative 1 (current implementation):** For any updates to the stock that is being viewed,
 the information displayed under 'Stock View' tab is automatically updated. <br>
- * Pros: When user clicks back to the 'Stock View' tab after updating, adding notes or deleting notes
-from the stock that was viewed, the stock's information displayed in the Stock View tab is updated.
- * Cons: User may want to view the information that was before the update.
+  * Pros: When user clicks back to the 'Stock View' tab after updating, adding notes or deleting notes
+  from the stock that was viewed, the stock's information displayed in the Stock View tab is updated.
+  * Cons: User may want to view the information that was before the update.
  
 * **Alternative 2:** For any updates to the stock that is being viewed,
 the information displayed under 'Stock View' tab is not updated. <br>
- * Pros: User is able to see the information before the update.
- * Cons: If user wants to view the information after the update, user has to retype the command to view
-the same stock.
+  * Pros: User is able to see the information before the update.
+  * Cons: If user wants to view the information after the update, user has to retype the command to view
+  the same stock.
 
 ### Print Feature
 
@@ -1925,10 +1935,13 @@ Some important operations implemented here are:
 * `PrintCommand#execute()`
   Creates a CSV file and writes all stocks in the stock book into this file and returns a new `CommandResult`
   to be displayed to the user in the user interface.
+
 * `PrintCommand#makeFileCreationTime()` <br>
   Creates the file creation time of the CSV file.
+
 * `PrintCommand#makeTitleHeader()`
   Creates the header for the CSV file.
+
 * `PrintCommand#printStock()`
   Converts the stock into a string to be stored in the CSV file.
   
@@ -1944,8 +1957,10 @@ Some important operations implemented here are:
 
 * `PrintCommandParser#parse()` <br>
   Returns `Printcommand` to be executed.
+
 * `PrintCommandParser#arePrefixesPresent()` <br>
   Returns true if all required prefixes are present in the user input.
+
 * `PrintCommandParser#doesPrefixesAppearOnce()` <br>
   Returns true if all required prefixes appear only once in the user input.
 
@@ -1972,13 +1987,13 @@ Step 5. The `PrintCommandParser#parse()` method then proceeds to check if the us
 Step 6. `PrintCommand#execute()` is then called by the `Logic Manager`. In this method, an observable stock book will
  be retrieved from the `Model`. 
 
-Step 7. `PrintCommand#execute()` then calls `FileUtil#createIfMissing()` method to create a csv file with a file name corresponding to the user input
+Step 7. `PrintCommand#execute()` then calls `FileUtil#createIfMissing()` method to create a CSV file with a file name corresponding to the user input
  in `[root directory of Warenager]/data/userinput.csv`.
  
 Step 8. `PrintCommand#execute()` then calls `PrintCommand#makeFileCreationTime()`, `PrintCommand#makeTitleHeader()` to create the
  file creation time and headers for the fields in stock and stores them in the CSV file.
 
-Step 9. `PrintCommand#execute()` then calls `PrintCommand#printStock()` to get string of the stock to be stored in the csv file,
+Step 9. `PrintCommand#execute()` then calls `PrintCommand#printStock()` to get string of the stock to be stored in the CSV file,
  and stores this string into the CSV file. This step is repeated for all stocks in the stock book.
  
 Step 10. `PrintCommand#execute()` then returns a new `CommandResult` to be displayed to the user.
@@ -2757,19 +2772,19 @@ unless specified otherwise.
 **Extensions**
 * 2a. The command word user provided is not valid.
 
-    * 2a1. Warenager calculates the most related command word to suggest.
+    * 2a1. Warenager prepares to suggest the closest valid command word along with all the valid compulsory prefixes.
 
     Use case resumes at step 3.
 
 * 2b. The command word provided is valid, but the prefixes are not.
 
-    * 2b1. Warenager prepares to suggest the command word along with only the valid prefixes.
+    * 2b1. Warenager prepares to suggest the command word along with all the valid compulsory prefixes.
 
     Use case resumes at step 3.
 
 * 2c. The command word provided is valid, but the some prefixes are missing.
 
-    * 2c1. Warenager prepares to suggest the command word along with only the missing prefixes.
+    * 2c1. Warenager prepares to suggest the command word along with all the valid compulsory prefixes.
 
     Use case resumes at step 3.
 
@@ -2796,7 +2811,7 @@ unless specified otherwise.
 
     Use case ends.
 
-* 2c. Both the order and field user provided is not valid.
+* 2c. Both the order and field user provided are not valid.
 
     * 2c1. Warenager will generate command suggesstion for the user (Use case 19).
 
@@ -2998,7 +3013,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Stock is not added due to empty input for field name `l/`.<br>
       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
 
-   1. Test case: ` add n/Banana s/NUS q/9999`<br>
+   1. Test case: `add n/Banana s/NUS q/9999`<br>
       Expected: Stock is not added due to missing field headers.
       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
       
@@ -3154,36 +3169,36 @@ testers are expected to do more *exploratory* testing.
 
 1. Updating a stock from the inventory.
 
-    1. Prerequisites: Multiple stocks in the list. `Flower11` and `Flower12` stocks exists in inventory.
+    1. Prerequisites: Multiple stocks in the list. Stocks with serial numbers `Flower11` and `Flower12` exist in inventory.
 
     1. Test case: `update sn/FLower11 iq/+50`<br>
-       Expected: The stock with serial number Flower11 will have an increase of quantity by 50.<br>
+       Expected: The stock with serial number `Flower11` will have an increase of quantity by `50`.<br>
        Details of the updated stock is shown in the status message.
 
     1. Test case: `update sn/FLower11 iq/-50`<br>
-       Expected: The stock with serial number Flower11 will have a decrease of quantity by 50.<br>
+       Expected: The stock with serial number `Flower11` will have a decrease of quantity by `50`.<br>
        Details of the updated stock is shown in the status message.
 
     1. Test case: `update sn/Flower11 nq/2103`<br>
-       Expected: The stock with serial number Flower11 will have a new quantity 2103.<br>
+       Expected: The stock with serial number `Flower11` will have a new quantity `2103`.<br>
        Details of the updated stock is shown in the status message.
 
     1. Test case: `update sn/Flower11 n/Rose`<br>
-       Expected: The stock with serial number Flower11 will have a new name Rose.<br>
+       Expected: The stock with serial number `Flower11` will have a new name `Rose`.<br>
        Details of the updated stock is shown in the status message.
 
     1. Test case: `update sn/Flower11 l/Vase 3`<br>
-       Expected: The stock with serial number Flower11 will have a new location Vase 3.<br>
+       Expected: The stock with serial number `Flower11` will have a new location `Vase 3`.<br>
        Details of the updated stock is shown in the status message.
 
     1. Test case: `update sn/FLower11 iq/+50 n/Rose l/Vase 3`<br>
-       Expected: The stock with serial number Flower11 will have an increase of quantity by 50, a new name Rose,
-       and a new location Vase3.<br>
+       Expected: The stock with serial number `Flower11` will have an increase of quantity by `50`, a new name `Rose`,
+       and a new location `Vase 3`.<br>
        Details of the updated stock is shown in the status message.
 
     1. Test case: `update sn/FLower11 sn/Flower12 iq/+50 n/Rose l/Vase 3`<br>
-       Expected: The stock with serial number Flower11 and Flower12 will have an increase of quantity by 50, a new name Rose,
-       and a new location Vase3.<br>
+       Expected: The stock with serial number `Flower11` and `Flower12` will have an increase of quantity by `50`, a new name `Rose`,
+       and a new location `Vase 3`.<br>
        Details of the updated stock is shown in the status message.
      
     1. Test case: `update` <br>
@@ -3197,6 +3212,56 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `update sn/Flower11 sn/Flower13 n/Rose` <br>
        Expected: No stock updated due to stock `Flower13` not found.
        Error details shown in the status message. Suggestion message will be shown too.
+
+### Bookmarking Stocks
+1. Bookmarking a stock from the inventory.
+
+    1. Prerequisites: The stocks are not bookmarked before.
+    
+    1. Test case: `bookmark sn/ntuc1` <br> 
+       Expected: The stock with serialNumber `ntuc1` will be bookmarked.
+       Success message will be shown and stock with serialNumber `ntuc1` is being pushed to the top of the list.
+       
+    1. Test case: `bookmark asdg sn/ntuc1` <br>
+       Expected: Not stock bookmarked due to invalid format from input after command word not starting with `sn/`.
+       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
+       
+    1. Test case: `bookmark sn/ntuc999` <br> 
+       Expected: If there is no stock with serialNumber `ntuc999`, no stocks will be bookmarked, else same as previous.
+       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
+       
+    1. Test case: `bookmark sn` <br> 
+       Expected: No stock bookmarked due to empty input for field name`sn/`.
+       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
+    
+    1. Test case: `bookmark` <br>
+       Expected: No stock bookmarked due to missing field headers.
+       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
+
+### Unbookmarking Stocks
+1. Unbookmarking a stock from the inventory.
+
+    1. Prerequisites: The stocks are bookmarked before.
+    
+    1. Test case: `unbookmark sn/ntuc1` <br> 
+       Expected: The stock with serialNumber `ntuc1` will be unbookmarked.
+       Success message will be shown and stock with serialNumber `ntuc1` is being pushed to the top of the list.
+       
+    1. Test case: `unbookmark asdg sn/ntuc1` <br>
+       Expected: Not stock unbookmarked due to invalid format from input after command word not starting with `sn/`.
+       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
+       
+    1. Test case: `unbookmark sn/ntuc999` <br> 
+       Expected: If there is no stock with serialNumber `ntuc999`, no stocks will be unbookmarked, else same as previous.
+       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
+       
+    1. Test case: `unbookmark sn` <br> 
+       Expected: No stock unbookmarked due to empty input for field name`sn/`.
+       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
+    
+    1. Test case: `unbookmark` <br>
+       Expected: No stock unbookmarked due to missing field headers.
+       Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
 
 ### Sorting stocks
 
@@ -3277,7 +3342,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a note to a stock.
 
-    1. Test case: `note sn/ntuc1 nt/first note`
+    1. Test case: `note sn/ntuc1 nt/first note` <br>
        Expected: Note is added to the stock with serial number ntuc1 and displayed in the notes column for the stock.<br>
        Details of the stock with successful note added is shown in status message.
    
@@ -3309,7 +3374,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a note from stock.
 
-    1. Test case: `notedelete sn/ntuc1 ni/1`
+    1. Test case: `notedelete sn/ntuc1 ni/1` <br>
         Expected: Note with index 1 is deleted from the stock with serial number ntuc1
         and display is removed from the notes column for the stock.<br>
         Details of the stock with successful note deleted is shown in status message.

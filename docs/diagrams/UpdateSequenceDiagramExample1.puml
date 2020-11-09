@@ -30,6 +30,13 @@ deactivate UpdateCommandParser
 StockBookParser -> UpdateCommandParser : parse(args)
 activate UpdateCommandParser
 
+create UpdateStockDescriptor
+UpdateCommandParser -> UpdateStockDescriptor
+activate UpdateStockDescriptor
+
+UpdateStockDescriptor --> UpdateCommandParser
+deactivate UpdateStockDescriptor
+
 create UpdateCommand
 UpdateCommandParser -> UpdateCommand
 activate UpdateCommand
