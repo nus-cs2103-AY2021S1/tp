@@ -1,0 +1,21 @@
+@startuml
+scale max 500 height
+
+start
+
+:User executes find command;
+:QuickCache parses the user input;
+if () then ([input is valid])
+    :Create predicate based on
+    specified tags and specified keywords;
+    :Filter the model to get flashcards with
+    both the specified tags
+    and keywords using the predicate;
+    :Command result is passed to UI;
+else ([else])
+    :Throw CommandException;
+    :UI catches CommandException;
+endif
+    :UI displays filtered flashcard list to User;
+stop
+@enduml
