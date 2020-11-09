@@ -48,21 +48,6 @@ public class FlipCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
-        showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
-
-        Flashcard flashcardToFlip = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
-        FlipCommand flipCommand = new FlipCommand(INDEX_FIRST_FLASHCARD);
-
-        String expectedMessage = flipCommand.generateSuccessMessage(flashcardToFlip);
-
-        Model expectedModel = new ModelManager(model.getFlashcardBook(), new UserPrefs());
-        expectedModel.flipFlashcard(flashcardToFlip);
-
-        assertCommandSuccess(flipCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
 

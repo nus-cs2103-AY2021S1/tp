@@ -241,12 +241,12 @@ Format: `edit INDEX [n/NAME] [d/DEFINITION] [t/TAG] [p/PRIORITY]`
 * You can remove all the tags of a specific flashcard by typing `t/` without specifying any tags after it.
 
 Examples:
-* `list` followed by `edit 1 n/BubbleSort d/Average case: O(n^2)` edits the name and definition of the first
+* `edit 1 n/BubbleSort d/Average case: O(n^2)` edits the name and definition of the first
  flashcard to
    be `BubbleSort` and `Average case: O(n^2)` respectively.
-* `list` followed by `edit 2 n/SelectionSort t/` edits the name of the second flashcard to be `SelectionSort` and
+* `edit 2 n/SelectionSort t/` edits the name of the second flashcard to be `SelectionSort` and
  removes all of its existing tags.
-* `list` followed by `edit 3 p/high` edits the priority of the third flashcard to be `high`.
+* `edit 3 p/high` edits the priority of the third flashcard to be `high`.
 
 Note:
 - If multiple tags are edited, `t/` must be specified for each and every tag e.g `t/sorting t/midterm`
@@ -293,7 +293,7 @@ Format: `flip INDEX`
   results of the `edit` command will be displayed as a message to the user.
 
 Examples:
-* `list` followed by `flip 2` flips the second flashcard in the flashcard list.
+* `flip 2` flips the second flashcard in the flashcard list.
 
 ### Deleting a flashcard : `delete`
 
@@ -314,7 +314,7 @@ Examples:
 ### Checking performance : `performance`
 
 Examples:
-* `list` followed by `delete 2` deletes the second flashcard in the list.
+* `delete 2` deletes the second flashcard in the list.
 
 ### Clearing all entries : `clear`
 

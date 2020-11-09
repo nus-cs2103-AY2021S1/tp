@@ -27,12 +27,6 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/definition/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/definition/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
-
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
-
 The rest of the App consists of four components.
 
 * [**`UI`**](#ui-component): The UI of the App.
