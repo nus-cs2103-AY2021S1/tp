@@ -275,7 +275,34 @@ using the template and returns a new AddCommand object. The parse method in AddT
 of creating a new template and returns a new AddTemplateCommand object.
 The template list is stored in the data file folder as a txt file.
 
-### 4.4. Updating an exercise
+### 4.4. GoalBook
+Author: Nauman Sajid
+Calo has been designed to ensure that a user is accountable for this own progress. A key aspect of this accountability is
+ensuring that the user sets clear goals and meets them. To achieve this we have created a goalBook which is similar
+to the exerciseBook. The goalBook helps the user track and update his goals.
+
+
+#### 4.4.1. Implementation
+The goalBook is implemented via a `HashMap` which makes it distinct from an ExerciseBook. The goal command creates a 
+goal with the `Key` being the `Date` and the `Value` being an `Calorie` goal. The goalBook is updated whenever an exercise
+is added or deleted for a particular Date.
+
+
+#### 4.4.2. Design Consideration
+
+*Aspect*: Should the goalBook be separate from the Exercise Book?
+
+Alternative 1 (current choice): Separate. 
+Pros: Ensures SRP principle.
+
+
+Alternative 2: Joint Book.
+Pros: Fewer files.
+
+*Reason for option 1*:   
+Option 1 allows easier debugging. As the goal Book has been seperated from the Exercise Book.
+
+### 4.5. Updating an exercise
 
 Author: Lee Wei Min
 
@@ -286,7 +313,7 @@ updates an existing exercise, where all fields are optional but at least one fie
 be specified. For more details, please refer to the [update section](https://ay2021s1-cs2103t-w17-2.github.io/tp/UserGuide.html#33-update-exercises--update) of the user guide
 </div>
 
-#### 4.4.1. Implementation
+#### 4.5.1. Implementation
 
 We will use the following example command: `update 1 d/30 c/260 m/chest t/home`.
 
@@ -320,7 +347,7 @@ of commandResult should be joined to the side of the box representing the comman
 Due to a limitation of PlantUML, it is not possible to do so here.
 </div>
 
-#### 4.4.2. Design Considerations
+#### 4.5.2. Design Considerations
 
 ===== Aspect: Process of updating the new data in `model`
 
@@ -348,7 +375,7 @@ The following activity diagram summarizes what happens when a user executes an `
 
 ![UndoRedoState5](images/UpdateActivityDiagram.png)
 
-### 4.5. Searching for specific `exercise`
+### 4.6. Searching for specific `exercise`
 
 (Xinyi)
 
@@ -365,7 +392,7 @@ Meanwhile, the `recall` command allows users to search for the most recent exerc
 The above commands rely on `FindCommand` and `RecallCommand` objects respectively. Objects of both classes use a `Predicate<Exercise>` object to filter through the `Exercise` list,
 and the exercises that evaluate the predicates to be true will be listed in GUI Exercise List.
 
-#### 4.5.1. Implementation
+#### 4.6.1. Implementation
 
 To search via the user-specified `Exercise` attributes, We use `FindCommandParser` to create the `PropertiesMatchPredicate` with all the user inputs. This predicate returns true only when the exercise matches all the given fields.
 This predicate is then used to construct a new `FindCommand` object, which changes the GUI display when executed.
@@ -404,7 +431,7 @@ It then returns a new CommandResult object reflecting the status of the executio
 
 The `recall` command therefore searches for the most recent exercise with the specified name in the existing Exercise List and then displays the relevant search results in the GUI.
 
-#### 4.5.2. Design considerations
+#### 4.6.2. Design considerations
 
 ##### Aspect: Case-sensitivity for user inputs
 * **Alternative 1 (current choice):** The inputs for `Name`, `Description`, and `Keyword` are case-insensitive.
