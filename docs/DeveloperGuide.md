@@ -957,7 +957,6 @@ Fig ??
 Given below is the sequence diagram showing the interaction between `FindContactParser` and `FindContactCriteria`:
 ![FindContactCriteriaSequenceDiagram](images/Contact/FindContactCriteriaSequenceDiagram.png)
 
-
 #### Design consideration:
 
 ##### Aspect: Storing of predicates in `FindContactCriteria`
@@ -990,7 +989,45 @@ Given below is the sequence diagram showing the interaction between `FindContact
   * Cons: Increases the complexity of implementing `FindContactParser` which has to validate and parse multiple search 
           parameters provided.
 
+#### Sort Contacts Feature
 
+The sort contact feature allows the user to sort the contacts based on name lexicographically
+from the lowest to the highest value.
+
+In addition this feature also supports the operation of reversing the list. The order will be the opposite of the order
+given above.
+
+This feature is facilitated by the following classes:
+  * `SortContactParser`:
+    * It implements `SortContactParser#parse()` to parse and validate the user input
+    * It creates comparator objects using the command arguments and reversing it if necessary
+
+  * `SortContactCommand`:
+    * It implements `SortContactCommand#execute()` to sort the `ContactList` in `Model`
+    * It sorts the `ContactList` by invoking `Model#updateSortedContactList()`
+
+  * `ContactComparatorByName`:
+    * It implements `Comparator#compare()` to compare 2 contacts based on their name
+
+Given below is an example usage scenario and how the mechanism for sorting contacts behaves at each step:
+
+Step 1. `LogicManager` receives the user input `sortcontact` from `Ui`
+
+Step 2. `LogicManager` calls `ContactListParser#parseCommand()` to create a `FindContactParser`
+
+Step 3. Then, `ContactListParser` will call the `SortContactParser#parse()` method to parse the command arguments
+
+Step 4. This creates the `ContactComparatorByName` based on the command arguments (if it's reversed or not)
+
+Step 4. Finally, a `SortContactCommand` is created and `SortContactCommand#execute()` will be invoked by `LogicManager`
+
+Step 5. The `Model#updateSortedContactList()` operation exposed in the `Model` interface is invoked to update the displayed todo list
+by updating the `Model#sortedContactList` with the new comparator.
+
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+In addition, if the user wants to reverse order, the `ContactComparatorByName` will be updated in the `SortContactParser#parse()`
+using the built-in java method `Comparator#reversed()`.
 
 
 
