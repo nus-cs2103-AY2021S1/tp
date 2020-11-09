@@ -619,6 +619,7 @@ Given below is an example usage scenario and how the calculate net profits mecha
 
 The following sequence diagram shows how a calculate net profits operation works: 
 
+<div style="page-break-after: always;"></div>
 ![CalculateProfitSequenceDiagram](images/CalculateProfitSequenceDiagram.png)
 
 <div markdown="block" class="alert alert-info">
