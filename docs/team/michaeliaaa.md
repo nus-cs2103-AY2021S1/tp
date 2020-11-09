@@ -31,7 +31,7 @@ Given below are my contributions to the project.
   * Highlights: Highly user-centric and is extremely convenient to use. A lot of my peers who tested our application really liked this feature and I use it a lot during testing and documentations. 
   Requires understanding of JavaFX's KeyEvent and KeyCode.
   * Credits: 
-    * The implementation of such feature is inspired by: [BillBoard](https://github.com/AY1920S1-CS2103T-F12-4/main/blob/master/)
+    * The implementation of such feature is inspired by: [BillBoard](https://github.com/AY1920S1-CS2103T-F12-4/main/)
     * For understanding of KeyEvent and KeyCode:  [KeyEvent](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/input/KeyEvent.html), [KeyCode](https://docs.oracle.com/javafx/2/api/javafx/scene/input/KeyCode.html)
 
 * **New Feature**: Clear command history
@@ -54,7 +54,7 @@ Given below are my contributions to the project.
   * Credits: Adopted similar solution used in existing AB3 codebase: [https://github.com/se-edu/addressbook-level3](https://github.com/se-edu/addressbook-level3)
   * Credits: NIL
   
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=michaeliaaa&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=michaeliaaa)
 
 * **Documentation**:
   * User Guide:
