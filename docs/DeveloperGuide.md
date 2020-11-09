@@ -562,6 +562,10 @@ The GUI will change the content of some of its placeholders to display the `Stat
 
 ##### Usage
 
+The following activity diagram summarizes what happens when a user executes stats command on a specified flashcard:
+
+![StatsActivityDiagram](images/StatsActivityDiagram.png)
+
 Given below is an example usage scenario and how the Displaystats mechanism behaves at each step.
 
 Step 1. The user launches the application after a few times of using the `TestCommand` feature. The `QuickCache` will be initialized with the existing QuickCache state.
@@ -605,6 +609,10 @@ The `ClearStatsCommand` class will replace the `Flashcard` at the specified `Ind
 
 ##### Usage
 
+The following activity diagram summarizes what happens when a user executes clearstats command on a specified flashcard:
+
+![ClearStatsActivityDiagram](images/ClearStatsActivityDiagram.png)
+
 Given below is an example usage scenario and how the Clearstats mechanism behaves at each step.
 
 Step 1. The user launches the application after a few times of using the `TestCommand` feature. The `QuickCache` will be initialized with the existing QuickCache state.
@@ -625,6 +633,10 @@ Step 6. `ClearStatsCommand#execute` will get the `Flashcard` at the specified `I
 Step 7. After execution, `CommandResult` will contain a message indicating that it has cleared the `Statistics` of the `Flashcard` on the specified index.
 
 Step 7. The user executes `stats 1` command to display the `Statistics` of the first flashcard in the list on the GUI. The user sees that the `Statistics` is reset.
+
+The following sequence diagram shows how the parser operation works:
+
+![ClearStatsSequenceDiagram](images/ClearStatsParserSequenceDiagram.png)
 
 The following sequence diagram shows how the Clearstats mechanism works:
 
