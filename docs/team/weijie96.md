@@ -32,7 +32,7 @@ Given below are my contributions to the project.
     An initial detailed proposal was suggested to save the archive in a separate `.json` file, using appropriate additional classes and methods.
     However, this would be very time-consuming as care needs to be taken to ensure that the implementation of the reading and saving of the 2 different storages, and updating of the models are correct.
     Given the tight timeline and limitations of a 3-person team, the current implementation of storing the active and archived clients in the same file was decided instead.
-    More details of the analysis can be found in the Developer Guide [here](../DeveloperGuide.md#aspect--how-archive-executes).
+    More details of the analysis can be found in the Developer Guide [here](../DeveloperGuide.md#aspect-how-archive-executes).
     5. The feature is complete, as both archiving and unarchiving (the reverse) are implemented, in addition to viewing the archive.
   
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=WeiJie96&tabRepo=AY2021S1-CS2103-T16-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
