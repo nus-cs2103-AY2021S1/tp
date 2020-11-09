@@ -80,7 +80,7 @@ Figure 1: Class Diagram of Logic Component.
 
 ### 2.2. Interactions between Architectural Components
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_inventory 1`.
 
 ![Architecture sequence diagram](images/ArchitectureSequenceDiagram.png)
 Figure 2: Sequence diagram for executing the command `delete 1`.
