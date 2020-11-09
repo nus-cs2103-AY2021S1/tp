@@ -79,7 +79,7 @@ During v1.2b, there was a bug in the code which was causing the test cases in `J
 <div style="page-break-after: always;"></div>
 
 * **My Contributions to User Guide**
-  * I added documentation for remind, unremind and automated features and enhancements under features. I also added the icon usages, command syntax, as well as date and time format under About segment. I also helped to fix any formatting errors found in the User Guide. 
+  * I added documentation for remind, unremind and automated features and enhancements under features. I also added icon usages, command syntax, as well as date and time format sections under About segment. I also helped to fix any formatting errors found in the User Guide. 
   [\#94](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/94), 
   [\#128](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/128), 
   [\#150](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/150), 
