@@ -62,7 +62,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete recipe #1`:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/dg/ArchitectureSequenceDiagram.png" style="width: 75%" /> <br />
+<img src="images/dg/ArchitectureSequenceDiagram.png" style="width: 95%" /> <br />
 Figure 2: <i>A sequence diagram showing the execution of <code>delete recipe #1</code></i>
 </div>
 
@@ -99,14 +99,14 @@ The `UI` component:
 The following activity diagram shows the general flow of events for the Ui component when the application is launched:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="diagrams/ui/UiLauchActivityDiagram.png" style="width: 45%"> <br />
+<img src="diagrams/ui/UiLauchActivityDiagram.png" style="width: 65%"> <br />
 Figure 3.2: <i>An activity diagram for the Ui during application launch</i>
 </div>
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user issues the command `list ingredients`:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/dg/UiSequenceDiagram.png" style="width: 75%" /> <br />
+<img src="images/dg/UiSequenceDiagram.png" style="width: 95%" /> <br />
 Figure 3.3: <i>A sequence diagram showing the execution of <code>list ingredients</code></i>
 </div>
 
@@ -177,7 +177,7 @@ Of note in the Model component are the `Recipe` and `Ingredient` classes; below 
 Figure 5.2: <i>The class diagram for Recipes and Ingredients</i>
 </div>
 
-Note that an instance of `Recipe` only stores `IngredientReferences` to the ingredients it uses, and not the actual `Ingredients` themselves — since the actual instance of the ingredient that will be used by the recipe is indeterminate.
+Note that an instance of `Recipe` only stores `IngredientReference`s to the ingredients it uses, and not the actual `Ingredient`s themselves — since the actual instance of the ingredient that will be used by the recipe is indeterminate.
 
 Only when a recipe is made are the references resolved to their actual ingredient.
 
@@ -352,7 +352,7 @@ This feature allows the user to quickly type in commands and complete long recip
 The main brains of the tab completer lies in determining which <i>kind</i> of item to complete (eg. a command name or a recipe name), and it can be (roughly) represented by the activity diagram below:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="diagrams/logic/act-tabcomplete.png" style="width: 45%"> <br />
+<img src="diagrams/logic/act-tabcomplete.png" style="width: 65%"> <br />
 Figure 8: <i>A high-level activity diagram for the tab completer</i>
 </div>
 
@@ -557,7 +557,7 @@ It is executed with an object of `StatsRecipeTopCommand` which is created after 
 
 The sequence diagram below shows the sequence of interactions between the `Model` and the `Logic` components after the user command `stats recipe top` is executed.
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/dg/StatsRecipeTopSequenceDiagram.png"> <br />
+<img src="images/dg/StatsRecipeTopSequenceDiagram.png" style="width: 95%"> <br />
 Figure 12.1 <i>The sequence diagram of the execution of StatsRecipeTopCommand </i>
 </div>
 
@@ -628,7 +628,7 @@ Figure 13.4: <i>The state of HistoryManager after command "undo"</i>
 The following sequence diagram shows how the undo operation works:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/dg/UndoSequenceDiagram.png"> <br />
+<img src="images/dg/UndoSequenceDiagram.png" style="width: 95%"> <br />
 Figure 13.5: <i>A sequence diagram for an <code>undo</code> command</i>
 </div>
 
@@ -646,7 +646,7 @@ Figure 13.6: <i>The state of HistoryManager after command "list recipes"</i>
 The following activity diagram summarises what happens when a user executes a new command:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/dg/CommitActivityDiagram.png"> <br />
+<img src="images/dg/CommitActivityDiagram.png" style="width: 65%"> <br />
 Figure 13.7: <i>An activity diagram for the undo/redo feature</i>
 </div>
 
@@ -1466,7 +1466,7 @@ having expiry dates in December 2020.
    1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop.
 
    1. Test case: `view recipe #1`<br>
-      Expected: The recipe **#1** `Apple Tart` is displayed.
+      Expected: The recipe #1 `Apple Tart` is displayed.
 
 1. Viewing a recipe using recipe index in a filtered list
     1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop.
@@ -1544,10 +1544,10 @@ having expiry dates in December 2020.
     1. Prerequisites: the ingredient has been added to the ingredient list.
    
     1. Test case: `add ingredient Apple` <br>
-       Expected: The quantity of the existing ingredient **Apple** increases by 1. The ingredient tile of Apple in the Ingredient Display Panel is updated.
+       Expected: The quantity of the existing ingredient `Apple` increases by 1. The ingredient tile of `Apple` in the Ingredient Display Panel is updated.
    
     1. Test case: `add ingredient Apple /qty 3` <br>
-       Expected: The quantity of the existing ingredient **Apple** increases by 3. The ingredient tile of Apple in the Ingredient Display Panel is updated.
+       Expected: The quantity of the existing ingredient `Apple` increases by 3. The ingredient tile of Apple in the Ingredient Display Panel is updated.
    
     1. Test Case: `add ingredient Apple /qty 2ounce` <br>  
        Expected: No ingredient is updated as the unit provided is unknown. Error details shown in the Command Output box.
@@ -1563,20 +1563,20 @@ having expiry dates in December 2020.
     1. Prerequisites: the ingredient has been added to the ingredient list, with or without any tag.
     
     1. Test case: `add ingredient Apple /qty 12 /tag Healthy /tag Sweet` <br>
-          Expected: New tags **Healthy** and **Sweet** are added to ingredient **Apple**'s current tag list, while the quantity of **Apple** increases by 12.
+          Expected: New tags `Healthy` and `Sweet` are added to ingredient `Apple`'s current tag list, while the quantity of `Apple` increases by 12.
 
 1. Adding expiry date to an existing ingredient
 
     1. Prerequisites: the ingredient has been added to the ingredient list, with or without and expiry date.
     
     1. Test case: `add ingredient Apple /qty 12 /expiry 2020-12-31 /expiry 2020-12-01` <br>
-      Expected: The earliest expiry date **2020-12-01** is added to ingredient **Apple**. The quantity of **Apple** increases by 12.
+      Expected: The earliest expiry date `2020-12-01` is added to ingredient `Apple`. The quantity of `Apple` increases by `12`.
       
     1. Test case: `add ingredient Apple /qty 2 /expiry 2020-11-25` <br>
-      Expected: The current expiry date **2020-12-01** of ingredient **Apple** is replaced by the earlier new expiry date **2020-11-25**. The quantity of **Apple** increases by 2.
+      Expected: The current expiry date `2020-12-01` of ingredient `Apple` is replaced by the earlier new expiry date `2020-11-25`. The quantity of `Apple` increases by `2`.
       
     1. Test case: `add ingredient Apple /qty 2 /expiry 2022-10-28` <br>
-      Expected: The current expiry date **2020-12-01** of ingredient **Apple** stays the same as it is earlier than the new date provided. The quantity of **Apple** still increases by 2.   
+      Expected: The current expiry date `2020-12-01` of ingredient `Apple` stays the same as it is earlier than the new date provided. The quantity of `Apple` still increases by `2`.   
       
 #### B.3.2&ensp;Deleting ingredients  
 
@@ -1584,22 +1584,22 @@ having expiry dates in December 2020.
    1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop.
     
    1. Test case: `delete ingredient #10`<br>
-      Expected: The ingredient **#10** `Ginger Root` is deleted from the ingredient list. 
+      Expected: The ingredient #10 `Ginger Root` is deleted from the ingredient list. 
     
    1. Test case: `delete ingredient #20`<br>
       Expected: No ingredient deleted as the ingredient with the given index does not exist. Error details shown in the Command Output box. 
       
    1. Test case: `delete ingredient #1 /qty 3`<br>
-      Expected: The quantity of ingredient **#1** decreases by 3 and becomes 5.
+      Expected: The quantity of ingredient `#1` decreases by 3 and becomes 5.
       
    1. Test case: `delete ingredient #1 /qty 8`<br>
-      Expected: The quantity of ingredient **#1** decreases by 8 and becomes 0. The ingredient disappears from the ingredient list.    
+      Expected: The quantity of ingredient `#1` decreases by 8 and becomes 0. The ingredient disappears from the ingredient list.    
       
    1. Test case: `delete ingredient #1 /qty 10`<br>
-      Expected: No ingredient deleted as the quantity of ingredient **#1** in stock is not sufficient for the deletion. Error details shown in the Command Output box.    
+      Expected: No ingredient deleted as the quantity of ingredient `#1` in stock is not sufficient for the deletion. Error details shown in the Command Output box.    
    
    1. Test case: `delete ingredient #1 /qty 10mL`<br>   
-      Expected: No ingredient is updated due to incompatible units **Count** and **mL**. Error details shown in the Command Output box.
+      Expected: No ingredient is updated due to incompatible units `Count` and `mL`. Error details shown in the Command Output box.
       
    1. Test case: `delete ingredient #1 /qty 10ounce`<br>   
       Expected: No ingredient is updated as the unit provided is unknown. Error details shown in the Command Output box.
@@ -1635,10 +1635,10 @@ having expiry dates in December 2020.
    1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop. 
    
    1. Test case: `edit ingredient #1 /tag:add Sweet`<br>
-      Expected: The ingredient **#1** is edited. A new tag **Sweet** is added to its current tag list.
+      Expected: The ingredient `#1` is edited. A new tag `Sweet` is added to its current tag list.
       
    1. Test case: `edit ingredient #1 /tag:delete low calorie`<br>
-      Expected: The ingredient **#1** is edited. The existing tag **Dairy** is removed from its current tag list.
+      Expected: The ingredient `#1` is edited. The existing tag `Dairy` is removed from its current tag list.
     
    1. Incorrect edit commands to try: `edit`, `edit ingredient`, `edit ingredient #1`<br>
       Expected: No ingredient is edited. Error details shown in the Command Output box. 
@@ -1648,13 +1648,13 @@ having expiry dates in December 2020.
    1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop. 
    
    1. Test Case: `find ingredient Flour`, followed by `edit ingredient #1 /tag:add kitchen /tag:delete carbohydrate`<br>
-      Expected: The new tag **Sweet** is added to ingredient **Flour**, while its existing tag **carbohydrate** is removed.
+      Expected: The new tag `Sweet` is added to ingredient `Flour`, while its existing tag `carbohydrate` is removed.
    
 1. Editing an ingredient using ingredient name
    1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop. 
     
    1. Test case: `edit ingredient Flour /tag:add kitchen /tag:delete carbohydrate`<br>
-   Expected: The ingredient **Flour** is edited. A new tag **kitchen** is added while the tag **carbohydrate** is removed.
+   Expected: The ingredient `Flour` is edited. A new tag `kitchen` is added while the tag `carbohydrate` is removed.
 
    1. Incorrect edit commands to try out: `edit ingredient Flour` <br>
    Expected: No ingredient is edited. Error details shown in the Command Output box.
@@ -1665,13 +1665,13 @@ having expiry dates in December 2020.
    1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop. 
    
    1. Test case: `filter ingredient /name sugar` <br>
-   Expected: The ingredients **Brown Sugar** and **Granulated Sugar** are to be displayed.
+   Expected: The ingredients `Brown Sugar` and `Granulated Sugar` are to be displayed.
    
    1. Test case: `filter ingredient /expiry 2020-12-01` <br>
-      Expected: The ingredient **Butter**, **Cream** and **Egg** are to be displayed.
+      Expected: The ingredient `Butter`, `Cream` and `Egg` are to be displayed.
       
    1. Test case: `filter ingredient /tag bakery /tag sweet` <br>
-      Expected: The ingredients **Brown Sugar**, **Granulated Sugar**, **Honey** and **Vanilla Extract** are to be displayed.
+      Expected: The ingredients `Brown Sugar`, `Granulated Sugar`, `Honey` and `Vanilla Extract` are to be displayed.
 
    1. Test case: 
       ``````
@@ -1680,7 +1680,7 @@ having expiry dates in December 2020.
       /expiry 2021-12-10 /expiry 2020-12-31
       /tag sweet /tag bakery
       ``````
-      Expected: The ingredient **Vanilla Extract**, which matches all specified criteria, is to be displayed.
+      Expected: The ingredient `Vanilla Extract`, which matches all specified criteria, is to be displayed.
     
    1. Incorrect filter commands to try: `filter`, `filter ingredient`, `filter ingredient /name`, `...`(where any search term is empty) <br>
       Expected: No ingredient is filtered. Error details shown in the Command Output box.   
@@ -1691,10 +1691,10 @@ having expiry dates in December 2020.
    1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop. 
    
    1. Test case: `find ingredient sugar`
-      Expected: The ingredients **Brown Sugar** and **Granulated Sugar** are to be displayed.
+      Expected: The ingredients `Brown Sugar` and `Granulated Sugar` are to be displayed.
 
    1. Test case: `find ingredient sugar vanilla`
-      Expected: The ingredients **Brown Sugar**, **Granulated Sugar** and **Vanilla Extract** are to be displayed.
+      Expected: The ingredients `Brown Sugar`, `Granulated Sugar` and `Vanilla Extract` are to be displayed.
     
    1. Incorrect find commands to try: `find`, `find ingredient` <br>
       Expected: No ingredient is found. Error details shown in the Command Output box.   
