@@ -338,6 +338,9 @@ Here below is an example usage scenario and how the `assign` feature works at ea
 
 2. The input is handled by the `LogicManager#execute(String)`, which then calls and passes the input to the `NuudleParser#parseCommand(String)` method.
 
+<div style="page-break-after: always;"></div>
+
+{:start="3"}
 3. `NuudleParser` finds out the command word `assign` in the user input and creates an `AssignCommandParser`to parse the input according to the format specified for `AssignCommand`.
 
 4. `AssignCommandParser` parses the user input and checks the input validation for correct types (eg. `Integer` for `Index` and alphanumeric characters for `Name`) via the `AssignCommandParser#parser(String)` method.
