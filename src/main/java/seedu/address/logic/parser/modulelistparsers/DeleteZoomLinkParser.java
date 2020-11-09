@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.modulelistcommands.DeleteZoomLinkCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -17,28 +19,30 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleLesson;
 
 /**
- * Parses input arguments and creates a new DeleteZoomLinkCommand object
+ * Parses input arguments and creates a new DeleteZoomLinkCommand object.
  */
 public class DeleteZoomLinkParser implements Parser<DeleteZoomLinkCommand> {
+
+    private final Logger logger = LogsCenter.getLogger(DeleteZoomLinkCommand.class);
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteZoomLinkCommand
      * and returns a DeleteZoomLinkCommand object for execution.
+     *
      * @throws ParseException If the user input does not conform the expected format.
      */
     public DeleteZoomLinkCommand parse(String args) throws ParseException {
         requireNonNull(args);
+        logger.info("Parsing the command arguments: " + args);
 
-        ArgumentTokenizer tokenizer =
-                new ArgumentTokenizer(args, PREFIX_NAME);
+        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME);
         ArgumentMultimap argMultimap = tokenizer.tokenize();
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || argMultimap.getPreamble().isBlank()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteZoomLinkCommand.MESSAGE_USAGE));
         }
 
-        assert argMultimap.getValue(PREFIX_NAME).isPresent() : "Argument for PREFIX_NAME must be present";
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -47,6 +51,7 @@ public class DeleteZoomLinkParser implements Parser<DeleteZoomLinkCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteZoomLinkCommand.MESSAGE_USAGE), pe);
 
         }
+
         ModuleLesson lesson = ParserUtil.parseModuleLesson(argMultimap.getValue(PREFIX_NAME).get());
         return new DeleteZoomLinkCommand(index, lesson);
     }

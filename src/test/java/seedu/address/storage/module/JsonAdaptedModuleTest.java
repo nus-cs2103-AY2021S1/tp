@@ -35,7 +35,7 @@ public class JsonAdaptedModuleTest {
     private static final String VALID_MC = CS2030.getModularCredits().toString();
     static {
         CS2030.getAllLinks().forEach((key, link) -> VALID_ZOOM_LINKS
-                .add(new JsonAdaptedZoomLink(key.getLesson(), link.getLink())));
+                .add(new JsonAdaptedZoomLink(key.toString(), link.toString())));
     }
     @Test
     public void toModelType_validModuleDetails_returnsModule() throws Exception {

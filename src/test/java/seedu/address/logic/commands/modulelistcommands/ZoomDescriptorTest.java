@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOM_LINK_CS210
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.modulelistcommands.ZoomLinkCommand.ZoomDescriptor;
 import seedu.address.testutil.ZoomDescriptorBuilder;
 
 public class ZoomDescriptorTest {

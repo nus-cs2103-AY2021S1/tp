@@ -1,6 +1,9 @@
 package seedu.address.logic.commands.todolistcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.logging.Logger;
 
@@ -12,19 +15,22 @@ import seedu.address.model.Model;
 import seedu.address.model.task.FindTaskCriteria;
 
 /**
- * Finds and lists all tasks in the TodoList whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Encapsulates methods and information to find and list all tasks in the todolist
+ * which match the given predicate.
  */
 public class FindTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "findtask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks which match all "
-            + "the specified search parameters provided (case-insensitive) "
+            + "the specified search parameters (case-insensitive) "
             + "and displays them as a list with index numbers.\n"
             + "At least one of the following search parameters must be provided: \n"
-            + "Parameters: [n/TASK_NAME] [d/TASK_DATE] [p/TASK_PRIORITY] [s/TASK_STATUS] [t/TASK_TAG]...\n"
-            + "Example: " + COMMAND_WORD + " n/lab t/easy t/cs2103T";
+            + "Parameters: [n/NAME_KEYWORDS] [d/TASK_DATE] [p/TASK_PRIORITY] [s/TASK_STATUS] [t/TAG_KEYWORDS]\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "lab quiz "
+            + PREFIX_PRIORITY + "high "
+            + PREFIX_TAG + "easy cs2103T";
 
     private final Logger logger = LogsCenter.getLogger(FindTaskCommand.class);
 
@@ -34,12 +40,14 @@ public class FindTaskCommand extends Command {
     private final FindTaskCriteria findTaskCriteria;
 
     /**
-     * Creates and initialises a new FindTaskCommand object.
+     * Creates and initialises a new FindTaskCommand object to find tasks that match all the
+     * specified search parameters.
      *
-     * @param findTaskCriteria FindTaskCriteria that encapsulates a list of predicates to test a task with.
+     * @param findTaskCriteria FindTaskCriteria object that encapsulates a list of predicates to test a task with.
      */
     public FindTaskCommand(FindTaskCriteria findTaskCriteria) {
         requireNonNull(findTaskCriteria);
+        requireNonNull(findTaskCriteria.getFindTaskPredicate());
         logger.info("Executing FindTaskCommand");
         this.findTaskCriteria = findTaskCriteria;
     }

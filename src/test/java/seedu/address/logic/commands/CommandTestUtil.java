@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.contactlistcommands.EditContactDescriptor;
+import seedu.address.logic.commands.contactlistcommands.EditContactCommand.EditContactDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
 import seedu.address.logic.commands.todolistcommands.EditTaskDescriptor;
@@ -66,6 +66,7 @@ public class CommandTestUtil {
     public static final String VALID_MODULENAME_CS2030 = "CS2030";
     public static final String VALID_MODULENAME_CS2103T = "CS2103T";
     public static final String VALID_MODULENAME_ES2660 = "ES2660";
+    public static final String INVALID_MODULENAME_CSA200 = "CSA200";
 
     public static final String VALID_TAG_CORE_MODULE = "Core";
     public static final String VALID_TAG_UNGRADED_MODULE = "Ungraded";
@@ -167,12 +168,16 @@ public class CommandTestUtil {
     // ================================== GradeTrackerTest ===================================== //
     public static final String VALID_ASSIGNMENT_NAME_1 = "Quiz 1";
     public static final String VALID_ASSIGNMENT_NAME_2 = "Oral Presentation 2";
+    public static final String INVALID_ASSIGNMENT_NAME = "Quiz 2(@b)";
     public static final double VALID_ASSIGNMENT_PERCENTAGE_1 = 10;
     public static final double VALID_ASSIGNMENT_PERCENTAGE_2 = 20;
-    public static final double VALID_ASSIGNMENT_RESULT_1 = 0.8;
-    public static final double VALID_ASSIGNMENT_RESULT_2 = 0.9;
-    public static final double VALID_GRADE_1 = 0.9;
-    public static final double VALID_GRADE_2 = 0.9;
+    public static final double INVALID_ASSIGNMENT_PERCENTAGE = -1;
+    public static final double VALID_ASSIGNMENT_RESULT_1 = 70;
+    public static final double VALID_ASSIGNMENT_RESULT_2 = 90;
+    public static final double INVALID_ASSIGNMENT_RESULT = -1;
+    public static final double VALID_GRADE_1 = 90;
+    public static final double VALID_GRADE_2 = 85;
+    public static final double INVALID_GRADE = -1;
 
     static {
         VALID_ZOOMLINKS_CS2030.put(new ModuleLesson(VALID_MODULE_LESSON_LECTURE), new ZoomLink(VALID_ZOOM_LINK_CS2030));

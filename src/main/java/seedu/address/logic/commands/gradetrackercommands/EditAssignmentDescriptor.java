@@ -74,8 +74,8 @@ public class EditAssignmentDescriptor {
         EditAssignmentDescriptor e = (EditAssignmentDescriptor) other;
 
         return getAssignmentName().equals(e.getAssignmentName())
-                && getAssignmentPercentage() == e.getAssignmentPercentage()
-                && getAssignmentResult() == e.getAssignmentResult();
+                && getAssignmentPercentage().equals(e.getAssignmentPercentage())
+                && getAssignmentResult().equals(e.getAssignmentResult());
     }
 }
 

@@ -30,6 +30,16 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
+     * Returns the user prefs' GUI settings.
+     */
+    GuiSettings getGuiSettings();
+
+    /**
+     * Set the user prefs' GUI settings.
+     */
+    void setGuiSettings(GuiSettings guiSettings);
+
+    /**
      * Returns the AddressBook.
      *
      * @see seedu.address.model.Model#getModuleList()
@@ -44,23 +54,20 @@ public interface Logic {
      */
     Path getModuleListFilePath();
 
+
+    //===== ContactList =================================================
     /**
-     * Returns the user prefs' GUI settings.
+     * Returns the user pref's contact list file path.
      */
-    GuiSettings getGuiSettings();
+    Path getContactListFilePath();
 
     /**
-     * Set the user prefs' GUI settings.
-     */
-    void setGuiSettings(GuiSettings guiSettings);
-
-    /**
-     * Returns the Contact List.
+     * Returns the ContactList.
      */
     ReadOnlyContactList getContactList();
 
     /**
-     * Returns an unmodifiable list of filtered contacts.
+     * Returns an unmodifiable view of the filtered list of contacts.
      */
     ObservableList<Contact> getFilteredContactList();
 
@@ -74,11 +81,6 @@ public interface Logic {
      */
     ObservableList<Task> getFilteredTodoList();
 
-    /**
-     * Returns the file Path of the Contact List.
-     * @return Path of contact list.
-     */
-    public Path getContactListFilePath();
 
     public ReadOnlyEventList getEventList();
 
