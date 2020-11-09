@@ -6,11 +6,11 @@ title: User Guide
 ## Introduction
 
 Do you even find yourself struggling to manage all the different kinds of module information that you have to track? Are there too 
-many modules, contacts, tasks and events to remember? Well, do not worry, CAP5BUDDY is here to help.
+many modules, contacts, tasks and events to remember? Well, do not worry, CAP5Buddy is here to help.
 
-Cap 5 Buddy is a desktop application that helps NUS SoC students to keep track of their module details efficiently.
+CAP5Buddy is a desktop application that helps NUS SoC students to keep track of their module details efficiently.
 It helps you to centralize key module details, contacts and information while following your study progress. It is optimized for use via a Command Line Interface (CLI), while still having the 
-benefits of a Graphical User Interface (GUI). If you can type fast, Cap 5 Buddy can help you manage your module 
+benefits of a Graphical User Interface (GUI). If you can type fast, CAP5Buddy can help you manage your module 
 details and information more efficiently than traditional GUI apps.
 
 
@@ -25,12 +25,12 @@ details and information more efficiently than traditional GUI apps.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `cap5buddy.jar` from [here](https://github.com/AY2021S1-CS2103T-F12-3/tp/releases).
+1. Download the latest `CAP5Buddy.jar` from [here](https://github.com/AY2021S1-CS2103T-F12-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ Cap 5 Buddy application.
+1. Copy the file to the folder you want to use as the _home folder_ for the CAP5Buddy application.
 
 1. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. <br>
-   ![GUI](images/OverallGUISnapShot.png)
+![GUI](images/ui.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -123,8 +123,6 @@ Expected Outcome:
   Other helpful example(s):
 
    * `addmodule n/CS2103T t/Coremodule` creates and adds the module CS2103T with the tag _CoreModule_.
-
-<p aligin="center"><img src="images/AddEventExample.png" border="2px solid black"></p>
 
 #### Adding a new completed module: `addcmodule`
 
@@ -258,7 +256,7 @@ Format: `listmodule`
 
   Example:
 
-   * `findmodule n/cs2030` returns the module(if any) with the module name `CS2030`.
+   * `findmodule cs2030` returns the module(if any) with the module name `CS2030`.
 
    Expected Outcome: 
    
@@ -565,7 +563,7 @@ To be implemented:
 
 
   Example of usage:
-   * `deleteassignment 2 n/CS2100` deletes the assignment at position `2` of the module `CS2100`.
+   * `deleteassignment 1 n/CS2100` deletes the assignment at position `1` of the module `CS2100`.
    
 #### Adding a grade to a module: `addgrade`
 
@@ -590,7 +588,7 @@ To be implemented:
 
 #### Calculating Cumulative Average Point(CAP): `calculatecap`
 
-Calculates the user's CAP based on completed modules
+Calculates your CAP based on completed modules
 
  Format: `calculatecap`
 
@@ -607,10 +605,6 @@ Calculates helpful CAP details based on the target CAP you input
 
   Example:
   * `targetcap tc/4.5` Calculates CAP achievement required for planned modules in order to achieve target CAP
-
-Expected Outcome: 
- 
-![FindContact](images/contact/FindContactUG.PNG)
 
 ### Todo List Features
 
@@ -880,22 +874,6 @@ Format: `listtask`
 
 * _**Tips :**_ You can use `listtask` to go back to the original list after
   performing a `findtask` or `sorttask` command.
-
-#### Archiving a task: `archivetask` **(To be implemented)**
-
-Archives a task from the list.
-
-Format: `archivetask` `INDEX`
-
-* You can get the `INDEX` from the current displayed list under the `Tasks` tab.
-
-* `INDEX` must be a **positive integer**.
-
-Examples:
-
-* `archivetask 1` archive the first task.
-
-* `archivetask 2` archive the second task.
 
 #### Clearing the list: `cleartask`
 
@@ -1284,7 +1262,7 @@ Format: `help`
 
 * _**Tips :**_ If you accidentally cleared the whole list, you can always use the `undo` command
   to restore the list.
---------------------------------------------------------------------------------------------------------------------
+  
 
 ## FAQ
 
