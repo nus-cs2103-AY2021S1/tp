@@ -31,6 +31,14 @@ public class Grade {
         return test >= 0 && test <= 100;
     }
 
+    /**
+     * Returns the string of the grades as a two decimal point form.
+     * @return
+     */
+    public String toDisplay() {
+        return String.format("%.2f", gradeResult);
+    }
+
     @Override
     public String toString() {
         return Double.toString(this.gradeResult);
