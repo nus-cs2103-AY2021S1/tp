@@ -273,28 +273,26 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
     @Override
     public String getBudgetBarLabel() {
         ArrayList<Tag> checkedTagList = new ArrayList<>();
-        tags.getTags().stream().map(tag -> getGenericExpenseWithTag(tag))
+        tags.getTags().stream().map(tag -> Expense.getGenericExpenseWithTag(tag))
                 .filter(expense -> expenses.getFilteredList().getPredicate().test(expense))
                 .map(expense -> expense.getTag()).forEach(checkedTagList::add);
-
-        if (checkedTagList.size() > 1) {
-            // Show total budget if Expenses of all tags in UniqueTagList passes
-            // predicate from expenses.getFilteredList()
-            return "Total";
-        } else if (checkedTagList.size() == 1) {
-            // Exactly one tag matches
-            return checkedTagList.get(0).toString();
-        } else {
-            // No match
-            return "Default";
-        }
+        return getBudgetLabelFromList(checkedTagList);
     }
 
     //// util methods
 
-    private Expense getGenericExpenseWithTag(Tag tag) {
-        return new Expense(new Description(Description.CLASS_NAME), new Amount(0), new Date(),
-                null, tag);
+    private String getBudgetLabelFromList(ArrayList<Tag> list) {
+        if (list.size() > 1) {
+            // Show total budget if Expenses of all tags in UniqueTagList passes
+            // predicate from expenses.getFilteredList()
+            return "Total";
+        } else if (list.size() == 1) {
+            // Exactly one tag matches
+            return list.get(0).toString();
+        } else {
+            // No match
+            return "Default";
+        }
     }
 
     @Override

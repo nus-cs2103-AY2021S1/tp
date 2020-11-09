@@ -56,6 +56,13 @@ public class Amount implements Comparable<Amount> {
     }
 
     /**
+     * Returns new generic Amount instance for some internal functions.
+     */
+    public static Amount getGenericAmount() {
+        return new Amount(0);
+    }
+
+    /**
      * Converts an amount (rounded to two decimal places) into cents.
      */
     private static BigDecimal toCents(BigDecimal amount) {
