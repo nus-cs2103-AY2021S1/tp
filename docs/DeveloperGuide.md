@@ -62,7 +62,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete recipe #1`:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/dg/ArchitectureSequenceDiagram.png" style="width: 75%" /> <br />
+<img src="images/dg/ArchitectureSequenceDiagram.png" style="width: 95%" /> <br />
 Figure 2: <i>A sequence diagram showing the execution of <code>delete recipe #1</code></i>
 </div>
 
@@ -557,7 +557,7 @@ It is executed with an object of `StatsRecipeTopCommand` which is created after 
 
 The sequence diagram below shows the sequence of interactions between the `Model` and the `Logic` components after the user command `stats recipe top` is executed.
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/dg/StatsRecipeTopSequenceDiagram.png"> <br />
+<img src="images/dg/StatsRecipeTopSequenceDiagram.png" style="width: 95%"> <br />
 Figure 12.1 <i>The sequence diagram of the execution of StatsRecipeTopCommand </i>
 </div>
 
@@ -628,7 +628,7 @@ Figure 13.4: <i>The state of HistoryManager after command "undo"</i>
 The following sequence diagram shows how the undo operation works:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/dg/UndoSequenceDiagram.png"> <br />
+<img src="images/dg/UndoSequenceDiagram.png" style="width: 95%"> <br />
 Figure 13.5: <i>A sequence diagram for an <code>undo</code> command</i>
 </div>
 
