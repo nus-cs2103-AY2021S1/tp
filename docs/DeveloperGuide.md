@@ -431,7 +431,7 @@ Given below is an example usage scenario that shows how the resetting all ingred
 each step.
 
 Step 1. The user, a store manager of the bubble tea brand, T-Sugar, launches tCheck for the second time. 
-The `IngredientBook` is loaded, containing data stored in the `IngredientBook` data file. In this case,
+The `IngredientBook` is loaded, containing data read from the `IngredientBook` data file. In this case,
 The `UniqueIngredientList` in `IngredientBook` contains the six pre-defined ingredients, namely `Milk`, `Pearl`, 
 `Boba`, `Black Tea` , `Green Tea` and `Brown Sugar`, with an amount of 0 for all ingredients except `Milk`, which 
 has an amount of 5 in units of litres.
@@ -442,17 +442,17 @@ the `IngredientBook`. The `i-reset-all` command then checks the list of ingredie
 levels of all ingredient types are already zero before the `i-reset-all` command is going to make any change to 
 the ingredients. Since all ingredients' levels are already zero except `Milk`, the `i-reset-all` command 
 calls `Model#setIngredient(Ingredient target, Ingredient newAmount)`, causing the ingredient `target`, which is `Milk`, 
-to be replaced by the ingredient `newAmount` with the same ingredient name and a zero ingredient's level.
+to be replaced by the ingredient `newAmount` which has the same ingredient name and a zero ingredient's level.
 
 <div markdown="span" class="alert alert-info">:information_source: **Notes:** If there are multiple ingredients that 
 have non-zero ingredient's levels, `Model#setIngredient(Ingredient target, Ingredient newAmount)` will be called 
-multiple times, each time to replace an ingredient with a new ingredient with the same ingredient name and a zero 
+multiple times, each time replacing one of these ingredients with a new ingredient that has the same ingredient name and a zero 
 ingredient's level.
 </div>
 
 The following sequence diagram shows how the resetting all ingredients' levels operation works, assuming that the 
 `i-reset-all` command calls `Model#setIngredient(Ingredient target, Ingredient newAmount)` only once. This happens when 
-only one ingredient before the execution of the `i-reset-all` command. 
+only one ingredient has a non-zero ingredient's level before the execution of the `i-reset-all` command. 
 
 ![Reset all Ingredients' Levels Sequence Diagram](images/IngredientResetAllSequenceDiagram.png)
 
