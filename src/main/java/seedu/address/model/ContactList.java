@@ -44,7 +44,6 @@ public class ContactList implements ReadOnlyContactList {
      */
     public void resetData(ReadOnlyContactList newData) {
         requireNonNull(newData);
-
         setContact(newData.getContactList());
     }
 
@@ -63,6 +62,7 @@ public class ContactList implements ReadOnlyContactList {
      * The contact must not already exist in the contact list.
      */
     public void addContact(Contact m) {
+        requireNonNull(m);
         contacts.add(m);
     }
     /**
@@ -97,7 +97,6 @@ public class ContactList implements ReadOnlyContactList {
     @Override
     public String toString() {
         return contacts.asUnmodifiableObservableList().size() + " contacts";
-        // TODO: refine later
     }
 
     @Override

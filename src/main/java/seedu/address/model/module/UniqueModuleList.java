@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.contact.exceptions.ContactNotFoundException;
-import seedu.address.model.contact.exceptions.DuplicateContactException;
+import seedu.address.model.module.exceptions.DuplicateModuleException;
+import seedu.address.model.module.exceptions.ModuleNotFoundException;
 
 /**
  * A list of modules that enforces uniqueness between its elements and does not allow nulls.
@@ -43,7 +43,7 @@ public class UniqueModuleList implements Iterable<Module> {
     public void add(Module toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateContactException();
+            throw new DuplicateModuleException();
         }
         internalList.add(toAdd);
     }
@@ -53,19 +53,19 @@ public class UniqueModuleList implements Iterable<Module> {
      * {@code target} must exist in the list.
      * The module identity of {@code editedModule} must not be the same as another existing module in the list.
      */
-    public void setModule(Module target, Module editedPodule) {
-        requireAllNonNull(target, editedPodule);
+    public void setModule(Module target, Module editedModule) {
+        requireAllNonNull(target, editedModule);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new ContactNotFoundException();
+            throw new ModuleNotFoundException();
         }
 
-        if (!target.isSameModule(editedPodule) && contains(editedPodule)) {
-            throw new DuplicateContactException();
+        if (!target.isSameModule(editedModule) && contains(editedModule)) {
+            throw new DuplicateModuleException();
         }
 
-        internalList.set(index, editedPodule);
+        internalList.set(index, editedModule);
     }
 
     /**
@@ -75,7 +75,7 @@ public class UniqueModuleList implements Iterable<Module> {
     public void remove(Module toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new ContactNotFoundException();
+            throw new ModuleNotFoundException();
         }
     }
 
@@ -91,7 +91,7 @@ public class UniqueModuleList implements Iterable<Module> {
     public void setModules(List<Module> modules) {
         requireAllNonNull(modules);
         if (!modulesAreUnique(modules)) {
-            throw new DuplicateContactException();
+            throw new DuplicateModuleException();
         }
 
         internalList.setAll(modules);

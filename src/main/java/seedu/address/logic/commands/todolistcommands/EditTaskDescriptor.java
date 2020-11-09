@@ -1,6 +1,9 @@
 package seedu.address.logic.commands.todolistcommands;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.tag.Tag;
@@ -14,11 +17,22 @@ import seedu.address.model.task.TaskName;
  */
 public class EditTaskDescriptor {
     private TaskName name;
-    private Tag tag;
+    private Set<Tag> tags;
     private Priority priority;
     private Date date;
 
-    public EditTaskDescriptor() {}
+    // boolean to indicate if a field should be deleted
+    // cannot be null to avoid NullPointerException
+    private boolean isPriorityDeleted;
+    private boolean isDateDeleted;
+
+    /**
+     * Constructs an EditTaskDescriptor.
+     */
+    public EditTaskDescriptor() {
+        isPriorityDeleted = false;
+        isDateDeleted = false;
+    }
 
     /**
      * Copy constructor.
@@ -26,16 +40,20 @@ public class EditTaskDescriptor {
      */
     public EditTaskDescriptor(EditTaskDescriptor toCopy) {
         setName(toCopy.name);
-        setTag(toCopy.tag);
+        setTags(toCopy.tags);
         setPriority(toCopy.priority);
         setDate(toCopy.date);
+        setIsPriorityDeleted(toCopy.isPriorityDeleted);
+        setIsDateDeleted(toCopy.isDateDeleted);
     }
 
     /**
-     * Returns true if at least one field is edited.
+     * Returns true if at least one field is edited or deleted.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, tag, priority, date);
+        boolean isAnyNonNull = CollectionUtil.isAnyNonNull(name, tags, priority, date);
+        boolean isAnyDeleted = isPriorityDeleted || isDateDeleted;
+        return isAnyNonNull || isAnyDeleted;
     }
 
     public void setName(TaskName name) {
@@ -46,12 +64,21 @@ public class EditTaskDescriptor {
         return Optional.ofNullable(name);
     }
 
-    public void setTag(Tag tag) {
-        this.tag = tag;
+    /**
+     * Sets {@code tags} to this object's {@code tags}.
+     * A defensive copy of {@code tags} is used internally.
+     */
+    public void setTags(Set<Tag> tags) {
+        this.tags = (tags != null) ? new HashSet<>(tags) : null;
     }
 
-    public Optional<Tag> getTag() {
-        return Optional.ofNullable(tag);
+    /**
+     * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     * Returns {@code Optional#empty()} if {@code tags} is null.
+     */
+    public Optional<Set<Tag>> getTags() {
+        return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
     }
 
     public void setPriority(Priority priority) {
@@ -70,6 +97,22 @@ public class EditTaskDescriptor {
         return Optional.ofNullable(date);
     }
 
+    public boolean getIsPriorityDeleted() {
+        return this.isPriorityDeleted;
+    }
+
+    public void setIsPriorityDeleted(boolean bool) {
+        this.isPriorityDeleted = bool;
+    }
+
+    public boolean getIsDateDeleted() {
+        return this.isDateDeleted;
+    }
+
+    public void setIsDateDeleted(boolean bool) {
+        this.isDateDeleted = bool;
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -86,7 +129,7 @@ public class EditTaskDescriptor {
         EditTaskDescriptor e = (EditTaskDescriptor) other;
 
         return getName().equals(e.getName())
-            && getTag().equals(e.getTag())
+            && getTags().equals(e.getTags())
             && getPriority().equals(e.getPriority())
             && getDate().equals(e.getDate());
     }

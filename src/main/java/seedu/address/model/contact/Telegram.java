@@ -1,5 +1,8 @@
 package seedu.address.model.contact;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents a Contact's telegram in the contact list.
  * Guarantees: immutable; is valid as declared in {@link #isValidTelegram(String)}
@@ -7,8 +10,11 @@ package seedu.address.model.contact;
 public class Telegram {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Telegram username should be at least 5 characters long and should only contain "
-                    + "alphanumeric characters and underscore, and it should not be blank";
+            "Telegram username should adhere to the following requirements: \n"
+                    + "1. Start with the \"@\" symbol\n"
+                    + "2. Contain at least 5 characters not including the \"@\" symbol \n"
+                    + "3. Contain only alphanumeric characters and underscore \n"
+                    + "4. Should not be blank";
 
     /**
      * Constraints for a telegram username as specified by the Telegram application.
@@ -16,16 +22,18 @@ public class Telegram {
     public static final String USERNAME_REGEX = "[a-zA-Z0-9_]{5,}";
     public static final String VALIDATION_REGEX = "@" + USERNAME_REGEX;
 
-    /** Telegram username. */
-    public final String telegramUsername;
+    /** String containing the telegram of a contact. */
+    private final String telegram;
 
     /**
      * Creates and initialises a new Telegram object.
      *
-     * @param telegramUsername Telegram username.
+     * @param telegram Telegram username.
      */
-    public Telegram(String telegramUsername) {
-        this.telegramUsername = telegramUsername;
+    public Telegram(String telegram) {
+        requireNonNull(telegram);
+        checkArgument(isValidTelegram(telegram), MESSAGE_CONSTRAINTS);
+        this.telegram = telegram;
     }
 
     /**
@@ -37,19 +45,19 @@ public class Telegram {
 
     @Override
     public String toString() {
-        return this.telegramUsername;
+        return this.telegram;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Telegram // instanceof handles nulls
-                && this.telegramUsername.equals(((Telegram) other).telegramUsername)); // state check
+                && this.telegram.equals(((Telegram) other).telegram)); // state check
     }
 
     @Override
     public int hashCode() {
-        return this.telegramUsername.hashCode();
+        return this.telegram.hashCode();
     }
 
 }

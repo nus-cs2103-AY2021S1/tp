@@ -16,12 +16,10 @@ public class ListTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateSortedTodoList(null);
         model.updateFilteredTodoList(PREDICATE_SHOW_ALL_TASKS);
+        model.commitTodoList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

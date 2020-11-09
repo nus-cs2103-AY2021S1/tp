@@ -5,12 +5,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.grade.Grade;
 
 public class AddGradeCommand extends Command {
@@ -23,19 +26,23 @@ public class AddGradeCommand extends Command {
             + PREFIX_GRADE + " GRADE "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2100 "
-            + PREFIX_GRADE + "0.90";
+            + PREFIX_GRADE + "90.00";
 
     public static final String MESSAGE_SUCCESS = "New grade %1$s added.";
     public static final String MESSAGE_GRADE_NOT_ADDED = "Module to add to not found.";
 
-    private final String moduleToAdd;
+    private final Logger logger = LogsCenter.getLogger(AddGradeCommand.class);
+
+    private final ModuleName moduleToAdd;
     private final Grade gradeToAdd;
 
     /**
      * Creates an AddAssignmentCommand to add the specified {@code Grade}
      */
-    public AddGradeCommand(String moduleToAdd, Grade grade) {
+    public AddGradeCommand(ModuleName moduleToAdd, Grade grade) {
+        requireNonNull(moduleToAdd);
         requireNonNull(grade);
+        logger.info("Adding a grade: " + grade.toString());
         this.moduleToAdd = moduleToAdd;
         this.gradeToAdd = grade;
     }
@@ -46,7 +53,7 @@ public class AddGradeCommand extends Command {
         Module module = null;
         List<Module> lastShownList = model.getFilteredModuleList();
         for (Module eachModule : lastShownList) {
-            if (eachModule.getName().fullName.equals(moduleToAdd)) {
+            if (eachModule.getName().equals(moduleToAdd)) {
                 module = eachModule;
                 break;
             }
@@ -55,11 +62,26 @@ public class AddGradeCommand extends Command {
             throw new CommandException(MESSAGE_GRADE_NOT_ADDED);
         }
         module.addGrade(gradeToAdd);
+        logger.info("Grade has been added: " + gradeToAdd.toString());
+        model.commitModuleList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, gradeToAdd));
     }
 
     @Override
-    public boolean isExit() {
-        return false;
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddGradeCommand)) {
+            return false;
+        }
+
+        // state check
+        AddGradeCommand command = (AddGradeCommand) other;
+        return moduleToAdd.equals(command.moduleToAdd)
+                && gradeToAdd.equals(command.gradeToAdd);
     }
 }

@@ -1,0 +1,9 @@
+{
+  "events" : [ {
+    "name" : "Test",
+    "dateTime" : "2020-02-01T12:00"
+  }, {
+    "name" : "Test",
+    "dateTime" : "2020-02-01T12:00"
+  } ]
+}

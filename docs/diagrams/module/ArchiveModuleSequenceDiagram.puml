@@ -1,0 +1,72 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ModuleListParser" as ModuleListParser LOGIC_COLOR
+participant ":ArchiveModuleParser" as ArchiveModuleParser LOGIC_COLOR
+participant "a:ArchiveModuleCommand" as ArchiveModuleCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("archivemodule 1")
+activate LogicManager
+
+LogicManager -> ModuleListParser : parseCommand("archivemodule 1")
+activate ModuleListParser
+
+create ArchiveModuleParser
+ModuleListParser -> ArchiveModuleParser
+activate ArchiveModuleParser
+
+ArchiveModuleParser --> ModuleListParser
+deactivate ArchiveModuleParser
+
+ModuleListParser -> ArchiveModuleParser : parse("1")
+activate ArchiveModuleParser
+
+create ArchiveModuleCommand
+ArchiveModuleParser -> ArchiveModuleCommand
+activate ArchiveModuleCommand
+
+ArchiveModuleCommand --> ArchiveModuleParser : command
+deactivate ArchiveModuleCommand
+
+ArchiveModuleParser --> ModuleListParser : command
+deactivate ArchiveModuleParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ArchiveModuleParser -[hidden]-> ModuleListParser
+destroy ArchiveModuleParser
+
+ModuleListParser --> LogicManager : command
+deactivate ModuleListParser
+
+LogicManager -> ArchiveModuleCommand : execute()
+activate ArchiveModuleCommand
+
+ArchiveModuleCommand -> Model : archiveModule(Module)
+activate Model
+
+Model --> ArchiveModuleCommand
+deactivate Model
+
+create CommandResult
+ArchiveModuleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ArchiveModuleCommand
+deactivate CommandResult
+
+ArchiveModuleCommand --> LogicManager : result
+deactivate ArchiveModuleCommand
+
+ArchiveModuleCommand -[hidden]-> LogicManager : result
+destroy ArchiveModuleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -1,0 +1,9 @@
+{
+  "contacts" : [ {
+    "name" : "Alice Pauline",
+    "email" : "alice@example.com",
+    "telegram" : "@",
+    "tagged" : [ "friends" ],
+    "isImportant" : false
+  }]
+}
