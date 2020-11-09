@@ -309,6 +309,7 @@ Examples:
 
 To mark the first deadline in the current task list as done and recording the time spent on it as 50 minutes,
 users can do the following:
+
 1) Type in the command box the following command:
 
    * `done 1:50`
