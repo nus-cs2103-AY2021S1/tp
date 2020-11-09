@@ -325,7 +325,7 @@ the Logic should only receive events and control the Model and the Model should 
 **Other code design rules applied**
 * A function/method should only do what it's expected to do (which should be inferable from its name), and in no ways should it surprise the caller.
 * Most code snippets that can be reused between classes will be abstracted out to the common Utility classes.
-* And design rules from the module's website: https://nus-cs2103-ay2021s1.github.io/website/se-book-adapted/chapters/codeQuality.html#code-quality
+* And design rules from the module's [website](https://nus-cs2103-ay2021s1.github.io/website/se-book-adapted/chapters/codeQuality.html#code-quality)
 
 ----
 #### **Feature Design Considerations** <a name="feat-des-cons"></a>
@@ -943,6 +943,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 10. The app should be for a single user i.e. (not a multi-user product).
 11. The app should be able to start up sufficiently fast (<5s).
 12. The app should not crash in the event of invalid user input
+13. The app should be able to handle 150 tasks, lessons, contacts and modules in total without a noticeable performance degradation.
 
 ## **Appendix E: Glossary** <a name="appen-e"></a>
 | **Term** | **Explanation** |
@@ -1249,7 +1250,7 @@ The code quality of the repo has been maintained at a high standard throughout t
 
 At the final stage of the project, the code has also gone through 3 different static analysis tool: 
 * IntelliJ's inspection tool (with many additional warnings turned on)
-* SpotBugs (https://spotbugs.readthedocs.io/en/stable/) 
-* PMD (https://pmd.github.io)
+* [SpotBugs](https://spotbugs.readthedocs.io/en/stable/)
+* [PMD](https://pmd.github.io)
 
 All warnings received by the three app have been looked into and necessary fixes have been done to ensure a high-quality codebase.
