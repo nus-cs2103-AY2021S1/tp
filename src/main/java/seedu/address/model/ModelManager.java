@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,34 +12,36 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.patient.MedicalRecord;
+import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the Hospify data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final HospifyBook hospifyBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given hospify and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyHospifyBook hospify, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(hospify, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with Hospify: " + hospify + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.hospifyBook = new HospifyBook(hospify);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPatients = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPatients = new FilteredList<>(this.hospifyBook.getPatientList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new HospifyBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,50 +69,67 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getHospifyFilePath() {
+        return userPrefs.getHospifyFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setHospifyFilePath(Path hospifyFilePath) {
+        requireNonNull(hospifyFilePath);
+        userPrefs.setHospifyFilePath(hospifyFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== HospifyBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setHospifyBook(ReadOnlyHospifyBook hospifyBook) {
+        this.hospifyBook.resetData(hospifyBook);
     }
 
     @Override
-    public boolean hasPerson(Patient patient) {
+    public ReadOnlyHospifyBook getHospifyBook() {
+        return hospifyBook;
+    }
+
+    @Override
+    public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
-        return addressBook.hasPerson(patient);
+        return hospifyBook.hasPatient(patient);
     }
 
     @Override
-    public void deletePerson(Patient target) {
-        addressBook.removePerson(target);
+    public boolean hasPatientWithNric(Nric nric) {
+        requireNonNull(nric);
+        return hospifyBook.hasPatientWithNric(nric);
     }
 
     @Override
-    public void addPerson(Patient patient) {
-        addressBook.addPerson(patient);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public boolean hasPatientWithMrUrl(MedicalRecord url) {
+        requireNonNull(url);
+        return hospifyBook.hasPatientWithMrUrl(url);
     }
 
     @Override
-    public void setPerson(Patient target, Patient editedPatient) {
+    public void deletePatient(Patient target) {
+        hospifyBook.removePatient(target);
+    }
+
+    @Override
+    public void addPatient(Patient patient) {
+        hospifyBook.addPatient(patient);
+        updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+    }
+
+    @Override
+    public void setPatient(Patient target, Patient editedPatient) {
         requireAllNonNull(target, editedPatient);
 
-        addressBook.setPerson(target, editedPatient);
+        hospifyBook.setPatient(target, editedPatient);
+    }
+
+    @Override
+    public int count() {
+        return hospifyBook.count();
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -119,14 +139,22 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Patient> getFilteredPersonList() {
+    public ObservableList<Patient> getFilteredPatientList() {
         return filteredPatients;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Patient> predicate) {
+    public void updateFilteredPatientList(Predicate<Patient> predicate) {
         requireNonNull(predicate);
         filteredPatients.setPredicate(predicate);
+    }
+
+    /**
+     * Sorts the patientList based on the predicate in ascending order.
+     */
+    @Override
+    public void sort(Comparator<Patient> comparator) {
+        hospifyBook.sort(comparator);
     }
 
     @Override
@@ -143,7 +171,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return hospifyBook.equals(other.hospifyBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPatients.equals(other.filteredPatients);
     }

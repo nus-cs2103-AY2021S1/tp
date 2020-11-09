@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox id="cardPane" fx:id="cardPane" prefWidth="600.0" stylesheets="@Hospify.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+    </columnConstraints>
+    <VBox alignment="CENTER_LEFT" onMouseClicked="#onDoubleClick" styleClass="list-pill-cell" GridPane.columnIndex="0">
+      <padding>
+        <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+      </padding>
+      <HBox spacing="5">
+        <Label fx:id="id" styleClass="cell_big_label">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+      </HBox>
+         <FlowPane hgap="3.0" rowValignment="TOP" vgap="3.0">
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+            <children>
+            <Label fx:id="allergiesLabel" styleClass="card_label_important" text="ALLERGIES:" />
+            <Label fx:id="noAllergiesLabel" />
+            <FlowPane fx:id="allergies" hgap="5.0" vgap="3.0" />
+            </children>
+         </FlowPane>
+         <FlowPane hgap="3.0">
+            <children>
+            <Label fx:id="nricLabel" styleClass="card_label" text="NRIC:" />
+            <Label fx:id="nric" styleClass="cell_small_label" text="\$nric" />
+            </children>
+         </FlowPane>
+         <FlowPane hgap="3.0">
+            <children>
+            <Label fx:id="phoneLabel" styleClass="card_label" text="PHONE:" />
+            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+            </children>
+         </FlowPane>
+         <FlowPane hgap="3.0" prefWrapLength="150.0" rowValignment="TOP">
+            <children>
+            <Label fx:id="addressLabel" styleClass="card_label" text="ADDRESS:" />
+            <Label fx:id="address" styleClass="cell_small_label" text="\$address">
+                  <FlowPane.margin>
+                     <Insets top="2.0" />
+                  </FlowPane.margin></Label>
+            </children>
+         </FlowPane>
+         <FlowPane hgap="3.0" rowValignment="TOP">
+            <children>
+            <Label fx:id="emailLabel" styleClass="card_label" text="EMAIL:" />
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email">
+                  <FlowPane.margin>
+                     <Insets top="2.0" />
+                  </FlowPane.margin></Label>
+            </children>
+         </FlowPane>
+         <SplitPane dividerPositions="0.29797979797979796">
+           <items>
+             <AnchorPane minHeight="0.0">
+                  <children>
+                     <HBox alignment="CENTER_LEFT" layoutY="6.800000190734863" AnchorPane.leftAnchor="0.0">
+                        <children>
+                            <Label text="UPCOMING APPOINTMENT(s): ">
+                                <font>
+                                    <Font name="Consolas Bold" size="11.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="numberOfAppointments" alignment="CENTER" contentDisplay="CENTER">
+                                <font>
+                                    <Font name="Consolas Bold" size="12.0" />
+                                </font>
+                            </Label>
+                        </children>
+                     </HBox>
+                  </children></AnchorPane>
+             <AnchorPane minHeight="0.0" minWidth="0.0">
+                  <children>
+                     <HBox prefHeight="34.0" spacing="5.0" AnchorPane.rightAnchor="20.0">
+                        <children>
+                            <Label fx:id="copyButtonNotification" contentDisplay="CENTER">
+                                <font>
+                                    <Font name="Consolas Bold" size="12.0" />
+                                </font>
+                              <HBox.margin>
+                                 <Insets top="6.8" />
+                              </HBox.margin>
+                            </Label>
+                           <Button id="pill-button" fx:id="copyButton" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#copyUrl" prefHeight="33.0" prefWidth="126.0" text="MR URL" />
+                        </children>
+                     </HBox>
+                  </children>
+               </AnchorPane>
+           </items>
+         </SplitPane>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+    </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+      <HBox.margin>
+         <Insets right="10.0" top="10.0" />
+      </HBox.margin>
+      <padding>
+         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      </padding>
+  </GridPane>
+</HBox>

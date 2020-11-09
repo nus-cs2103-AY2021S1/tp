@@ -1,0 +1,49 @@
+@startuml
+sprite $rake [16x16/8] {
+0000000000000000
+0000000jj0000000
+0000000jj0000000
+0005555jj5555000
+000jjeejjeejj000
+000jj00jj00jj000
+000jj00jj00jj000
+0000000000000000
+}
+start
+:User enters command starting with `add`;
+
+:Hospify parses & interprets the command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+
+if () then ([command format is invalid])
+    :ParseException is thrown;
+
+else ([command format is valid])
+    :AddCommand created & executed;
+        if () then ([conflict with existing patients])
+        :DuplicateException is thrown <$rake>;
+        else ([no conflicts])
+        :Patient is added into Hospify;
+        :Success message is displayed;
+        endif
+endif
+stop
+
+partition "DuplicateException is thrown" {
+start
+if () then ([model.hasPatient()])
+    :DuplicatePatientException is thrown;
+
+else ([NRIC field or MR URL field is duplicated])
+    if () then ([model.hasPatientWithNric()])
+        :DuplicateNricException is thrown;
+    else ([model.hasPatientWithMrUrl()])
+        :DuplicateMrUrlException is thrown;
+    endif
+endif
+stop
+
+@enduml

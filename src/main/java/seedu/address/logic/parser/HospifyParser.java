@@ -9,12 +9,23 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CountCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ShowMrCommand;
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.appointmentcommand.AddApptCommand;
+import seedu.address.logic.commands.appointmentcommand.DeleteApptCommand;
+import seedu.address.logic.commands.appointmentcommand.EditApptCommand;
+import seedu.address.logic.commands.appointmentcommand.ShowApptCommand;
+import seedu.address.logic.parser.appointmentCommandParser.AddApptCommandParser;
+import seedu.address.logic.parser.appointmentCommandParser.DeleteApptCommandParser;
+import seedu.address.logic.parser.appointmentCommandParser.EditApptCommandParser;
+import seedu.address.logic.parser.appointmentCommandParser.ShowApptCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -47,11 +58,20 @@ public class HospifyParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
+        case AddApptCommand.COMMAND_WORD:
+            return new AddApptCommandParser().parse(arguments);
+
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
+        case EditApptCommand.COMMAND_WORD:
+            return new EditApptCommandParser().parse(arguments);
+
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+        case DeleteApptCommand.COMMAND_WORD:
+            return new DeleteApptCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -67,6 +87,18 @@ public class HospifyParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case CountCommand.COMMAND_WORD:
+            return new CountCommand();
+
+        case ShowApptCommand.COMMAND_WORD:
+            return new ShowApptCommandParser().parse(arguments);
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
+
+        case ShowMrCommand.COMMAND_WORD:
+            return new ShowMrParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

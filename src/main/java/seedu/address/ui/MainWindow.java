@@ -12,10 +12,12 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.patient.Patient;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -23,6 +25,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
+    protected static AppointmentWindow appointmentWindow;
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -31,7 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private PatientListPanel patientListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -66,6 +69,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        appointmentWindow = new AppointmentWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -78,6 +83,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -107,16 +113,26 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Updates the appointmentWindow of currently residing in MainWindow
+     *
+     * @param patient
+     */
+    public static void updateAppointmentWindow(Patient patient) {
+        appointmentWindow.setAppointmentWindow(patient);
+    }
+
+
+    /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
+        personListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHospifyFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -147,6 +163,17 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens Appointment Window.
+     */
+    public void handleShowAppt() {
+        if (appointmentWindow.isShowing()) {
+            appointmentWindow.focus();
+        } else {
+            appointmentWindow.show();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -160,11 +187,12 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        appointmentWindow.hide();
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public PatientListPanel getPersonListPanel() {
+        return patientListPanel;
     }
 
     /**
@@ -176,10 +204,21 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            String feedback = commandResult.getFeedbackToUser();
+            if (feedback.length() > 100) {
+                feedback = StringUtil.stringBreakerByKeywords(feedback, true,
+                        "Email:", "Appointments", "Medical Record URL: ");
+            }
+
+            resultDisplay.setFeedbackToUser(feedback);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowAppointment()) {
+                handleShowAppt();
             }
 
             if (commandResult.isExit()) {
