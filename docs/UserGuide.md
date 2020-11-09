@@ -31,6 +31,7 @@ Jarvis is a desktop app for CS1101S Teaching Assistants (Avengers), optimized fo
         * [6.1.2 Notes about Jarvis' relationship with Source Academy](#612-notes-about-jarvis-relationship-with-source-academy)
         * [6.1.3 Notes about Tasks](#613-notes-about-tasks)
         * [6.1.4 Notes about truncation](#614-notes-about-truncation)
+        * [6.1.5 Notes about Summary feature](#615-notes-about-summary-feature)
     - [6.2 Viewing help : `help`](#62-viewing-help--help)
     - [6.3 Adding Information : `add`](#63-adding-information--add)
         * [6.3.1 Adding Consultations : `add -c`](#631-adding-consultations---c)
@@ -283,10 +284,10 @@ You will have to edit them using the [Editing Student Information](#642-editing-
    <br> e.g. if the command specifies `t/TELEGRAM e/EMAIL` and the user enters `t/TELEGRAM t/TELEGRAM2 e/EMAIL e/EMAIL2 e/EMAIL3`, Jarvis recognizes the input as `t/TELEGRAM2 e/EMAIL3`.
 
 #### 6.1.2 Notes about Jarvis' relationship with Source Academy
-   * Students’ names that are under the Avenger will be fetched automatically from [sourceacademy.nus.edu.sg](sourceacademy.nus.edu.sg) upon startup.
+   * Students’ names that are under the Avenger will be fetched automatically from [https://sourceacademy.nus.edu.sg](https://sourceacademy.nus.edu.sg) upon startup.
    * LumiNUS username and passwords will be stored in plaintext.
 
-#### 6.1.3 Notes about `Tasks`
+#### 6.1.3 Notes about Tasks
    * Each `Task` you create, be it `Todo`, `Event` or `Deadline`, there will be an unique Task ID assigned to each of them, so
    that there will be no 2 of the same ID in your Task List at any point of time. The Task ID is reflected as
    <br>eg. D1, E5, T21
@@ -299,12 +300,11 @@ You will have to edit them using the [Editing Student Information](#642-editing-
    
 #### 6.1.5 Notes about Summary feature
    * As mentioned above under the section explaining the top bar, the `Summary` feature is updated when Jarvis is
-   launched and after a user command is successfully executed. As such, the values in the `Summary
-   ` will remain the same, even if
+   launched and after a user command is successfully executed. As such, the values in the `Summary` will remain the same, even if
    the current time has passed the date and time of a `Consultation` or `Mastery Check`. Also, if a `Mission` or
    `Quest` is graded while Jarvis is open, the number of ungraded `Mission` and `Quests` will remain the same.
    * To get the updated values, simply re-start Jarvis or type in a command and hit the enter key on your keyboard.
-   * The `Summary` feature will display all `Task`s stored in Jarvis, regardless of a `Deadline` or `Event`'s date and
+   * The `Summary` feature will display all `Tasks` stored in Jarvis, regardless of a `Deadline` or `Event`'s date and
     time. This is in contrast to `Consultations` and `Mastery Checks` where only the upcoming ones are included in
     the count.
 
@@ -317,7 +317,7 @@ Shows a message explaining how to access the help page.
 
 #### 6.3.1 Adding `Consultations` : `-c`
 
-Adds a `Consultation` session with a `Student` at a specific `date` and `time`.
+Adds a `Consultation` session with a `Student` at a specific date and time.
 <br>**Format: `add -c NAME d/YYYY-MM-DD t/HH:MM`**
 
 ![AddConsultations](images/userguide/addConsultation.png)
@@ -343,12 +343,13 @@ Adds a `Mastery Check` session with a `Student` at a specific `date` and `time`.
 * `add -mc John Doe d/2020-09-20 t/13:30`
 * `add -mc Mary Jane d/2021-01-02 t/09:15`
 
-<br>⚠️ Notes:
-* When you add a `Mastery Check` for a future date while displaying only past `Mastery Checks`, make sure to enter `view -mc` to view the complete list to check if the `Mastery Check` has been added correctly.
-* Similarly, when you add a `Mastery Check` for a past date while displaying only future `Mastery Check`, make sure to enter `view -mc`.
-* `NAME` does not have to correspond to an existing student; this is so that the tutor may freely use any nicknames or other identifiers as they see fit. However, it may not be left empty.
-* Because date and time is considered in order, the d/ prefix must come earlier than t/.
-* When a `Mastery Check` is first added, a `FAIL` default value will be assigned.
+<div markdown="block" class="alert alert-info">
+When you add a `Mastery Check` for a future date while displaying only past `Mastery Checks`, make sure to enter `view -mc` to view the complete list to check if the `Mastery Check` has been added correctly.
+Similarly, when you add a `Mastery Check` for a past date while displaying only future `Mastery Check`, make sure to enter `view -mc`.
+`NAME` does not have to correspond to an existing student; this is so that the tutor may freely use any nicknames or other identifiers as they see fit. However, it may not be left empty.
+Because date and time is considered in order, the d/ prefix must come earlier than t/.
+When a `Mastery Check` is first added, a `FAIL` default value will be assigned.
+</div>
 
 #### 6.3.3 Adding `Todos` : `-t`
 
@@ -366,7 +367,7 @@ The way to input is similar to the screenshot of adding `Mastery Check` above, o
 
 #### 6.3.4 Adding `Events` : `-e`
 
-Adds your personal `Event` with a `description`, to attend at a specific `date` and `time`.
+Adds your personal `Event` with a `description`, to attend at a specific date and time.
 <br>**Format: `add -e DESCRIPTION d/YYYY-MM-DD t/HH:MM`**
 
 <br>✏️ Examples:
@@ -375,12 +376,12 @@ Adds your personal `Event` with a `description`, to attend at a specific `date` 
 
 <div markdown="block" class="alert alert-info">
 
-An `Event` requires extra `date` and `time` specifications in order to create. The way to input is similar to the screenshot of adding `Mastery Check` above.
+An `Event` requires extra date and time specifications in order to create. The way to input is similar to the screenshot of adding `Mastery Check` above.
 </div>
 
 #### 6.3.5 Adding `Deadlines` : `-d`
 
-Adds your personal `Deadline` with a `description`, to complete by a specific `date` and `time`.
+Adds your personal `Deadline` with a `description`, to complete by a specific date and time.
 <br>**Format: `add -d DESCRIPTION d/YYYY-MM-DD t/HH:MM`**
 
 <br>✏️ Examples:
@@ -389,7 +390,7 @@ Adds your personal `Deadline` with a `description`, to complete by a specific `d
 
 <div markdown="block" class="alert alert-info">
 
-Similar to `Event`, a `Deadline` requires extra `date` and `time` specifications in order to create. You can refer to the screenshot of adding `Mastery Check` above for a real-life example of how the command would look like.
+Similar to `Event`, a `Deadline` requires extra date and time specifications in order to create. You can refer to the screenshot of adding `Mastery Check` above for a real-life example of how the command would look like.
 </div>
 
 
@@ -438,10 +439,11 @@ Edits the score of a `Mastery Check` session with a `Student`.
 * `edit -mc 1 s/0`
 * `edit -mc 3 s/1`
 
-<br>⚠️ Notes:
-* Do note that the `SCORE` parameter can only be 0 or 1, according to the actual restrictions of `Mastery Check` pass/fail in CS1101S.
-* The `INDEX` parameter should be a non-zero unsigned integer that is a valid index currently displayed along with the target `Mastery Check`.
-* Jarvis allows editing to the same value; even if no values are actually updated by the command, it will display a success message.
+<div markdown="block" class="alert alert-info">
+Do note that the `SCORE` parameter can only be 0 or 1, according to the actual restrictions of `Mastery Check` pass/fail in CS1101S.
+The `INDEX` parameter should be a non-zero unsigned integer that is a valid index currently displayed along with the target `Mastery Check`.
+Jarvis allows editing to the same value; even if no values are actually updated by the command, it will display a success message.
+</div>
 
 ### 6.5 Deleting Information : `delete`
 
