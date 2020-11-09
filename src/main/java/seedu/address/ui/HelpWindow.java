@@ -54,7 +54,7 @@ public class HelpWindow extends UiPart<Stage> {
     private final CommandDescription helpCommandDes =
             new CommandDescription(HelpCommand.COMMAND_WORD, HelpCommand.MESSAGE_USAGE);
     private final CommandDescription countCommandDes =
-            new CommandDescription(CountCommand.COMMAND_WORD, CountCommand.MESSAGE_UASGE);
+            new CommandDescription(CountCommand.COMMAND_WORD, CountCommand.MESSAGE_USAGE);
     private final CommandDescription sortCommandDes =
             new CommandDescription(SortCommand.COMMAND_WORD, SortCommand.MESSAGE_USAGE);
     private final CommandDescription showApptDes =

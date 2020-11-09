@@ -22,7 +22,7 @@ public class Appointment {
             "Description length should not exceed 300 characters.";
     public static final String MISSING_TIMING =
             "Appointment timing is missing!";
-    public static final String TIME_RANGE_CONSTRAINTS = "Time entered cannot be earlier than system time!";
+    public static final String TIME_RANGE_CONSTRAINTS = "Time entered cannot be earlier than local system time!";
     private final String description;
     private final LocalDateTime time;
 
@@ -80,7 +80,7 @@ public class Appointment {
     /**
      * Returns appointment time in a formatted string.
      *
-     * @param localDateTime
+     * @param localDateTime date and time of the appointment.
      * @return date and time formatted to stipulated format.
      */
     public static String getAppointmentTimeString(LocalDateTime localDateTime) {
@@ -109,7 +109,7 @@ public class Appointment {
      * Returns true if description length is less than or equal to 300.
      */
     public static boolean isValidDescription(String description) {
-        return description.length() <= 10;
+        return description.length() <= 300;
     }
 
     /**

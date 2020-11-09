@@ -20,7 +20,7 @@ public class ShowMrCommand extends Command {
     public static final String COMMAND_WORD = "showMr";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Open the medical record of a patient in your system's default browser\n"
+            + ": Opens the medical record of a patient in your system's default browser.\n"
             + "Parameters: NRIC\n"
             + "Example: " + COMMAND_WORD + " S1234567A\n";
 
@@ -41,7 +41,7 @@ public class ShowMrCommand extends Command {
 
         try {
             String url = model.getFilteredPatientList().get(0).getMedicalRecord().value;
-            if (!url.startsWith("https://") || !url.startsWith("http://")) {
+            if (!url.startsWith("http")) {
                 url = "https://" + url;
             }
             Desktop.getDesktop().browse(new URL(url).toURI());

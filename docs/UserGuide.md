@@ -2,12 +2,12 @@
 layout: page
 title: User Guide
 ---
-
+![Hospify logo](images/hospify/hospify_200x200.png)
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-## Introduction
+## 1. Introduction
 
 Hello, fellow clinic administrative staff.
 
@@ -27,7 +27,7 @@ To navigate around this user guide, you may use the hyperlinks provided at the t
 
 1. **:warning: Important:** - represents important warnings
 
-## Quick start
+## 2. Quick start
 
 In this section, we will be going through the process of installing **Hospify** on your computer and some of the necessary pre-requisites. Before we start the installation, please ensure that you have Java `11` or above installed in your Computer. If not, you may download Java `11` from [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
 
@@ -41,6 +41,12 @@ There are many versions of Java `11` listed. Select the correct version based on
     
     ![Hospify download page](images/Hospify%20download%20page.png)
     Figure 1.1 **Hospify** download page
+    
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+The actual download page may differ slightly from the one shown in Figure 1.1 as we are constantly updating Hospify to better serve your needs! Do not worry, just click on the same `hospify.jar` as shown above, to download the latest version of **Hospify**.
+</div>
 
 1. Copy the file to the folder you want to use as the _home folder_ for the **Hospify** app.
 
@@ -51,7 +57,7 @@ There are many versions of Java `11` listed. Select the correct version based on
 
 1. You can now try typing your very first command in the command box and press `Enter` to execute it! Not sure what to type? Try typing **`help`** and pressing `Enter`. A help window as shown in figure 1.3 below should appear.<br>
     
-    ![Help window](images/cleanHelpWindow.PNG)
+    ![Help window](images/IntroHelpWindow.PNG)
     Figure 1.3 Help window
     
    Now, you can try out some other commands:
@@ -66,11 +72,11 @@ There are many versions of Java `11` listed. Select the correct version based on
 
    * **`exit`** : Exits the app.
 
-1. You can refer to the [Features](#features) below for a list of all the commands available and the details of each command.
+1. You can refer to the [Features](#3-features) below for a list of all the commands available and the details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 3. Features
 
 In this section, we will be looking at a series of commands that **Hospify** supports, how you can use these commands, why these commands may be helpful to you and the expected outcomes of executing these commands. You may refer to the table of contents at the top of this page to skip to the specific command that you are interested in.
 
@@ -91,16 +97,17 @@ In this section, we will be looking at a series of commands that **Hospify** sup
   e.g. if the command specifies `n/NAME ic/ NRIC p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME ic/S1234567A` is also acceptable.
 </div>
 
-### Displaying usage instructions: `help` (by Peh Jun Siang)
+### 3.1 Displaying usage instructions: `help` (by Peh Jun Siang)
 
-The `help` command shows the list of all the commands and their usages with examples supported by **Hospify**.
+The `help` command shows you the list of all the commands and their usages with examples supported by **Hospify**.
 
 Format: `help`
 
-After executing the `help`, the **sizable Help Window** pops up as shown below. The commands are sorted alphabetically.
+After executing `help`, the **sizable Help Window** pops up as shown below in **Figure 2.1**. The commands are sorted alphabetically.
 
-![tp_help_command](images/helpWindow.PNG)\
-Figure 1.1 Help window
+![tp_help_command](images/helpWindow.PNG)
+
+Figure 2.1 Sizable Help Window
 
 <div markdown="block" class="alert alert-primary">
 
@@ -111,7 +118,7 @@ for the commands.
 
 </div>
 
-### Adding a patient: `add` (by Cedric Lim Jun Wei)
+### 3.2 Adding a patient: `add` (by Cedric Lim Jun Wei)
 
 This is a core and basic feature of **Hospify**. This command allows you to add a new patient to **Hospify**. Start by typing the command word `add`, followed by the following items:
 
@@ -147,9 +154,9 @@ Format: `add n/NAME ic/NRIC p/PHONE_NUMBER [e/EMAIL] a/ADDRESS mr/MEDICAL_RECORD
 * The `NAME` (upper limit of 100 characters) and `ALLERGIES` (upper limit of 100 characters) field should contain alphanumeric characters.
 * The `NRIC` field should start with an alphabet, followed by 7 digits, before ending with another alphabet.
 * The `PHONE_NUMBER` field should contain a number that is between 3 and 15 digits (inclusive) long.
-* The `EMAIL` field should contain a valid email address (for more information on email validity, please refer to the [Command Summary](#command-summary)).
+* The `EMAIL` field should contain a valid email address (for more information on email validity, please refer to the [Command Summary](#5-command-summary)).
 * The `ADDRESS` (upper limit of 200 characters) field can contain any word or number.
-* The `MEDICAL_RECORD` field should contain a valid url (for more information on url validity, please refer to the [Command Summary](#command-summary)).
+* The `MEDICAL_RECORD` field should contain a valid url (for more information on url validity, please refer to the [Command Summary](#5-command-summary)).
 
 <div markdown="block" class="alert alert-info">
 
@@ -167,9 +174,9 @@ When a patient is successfully added to **Hospify**, a success message will appe
 ![Add patient](images/AddPatient.PNG)
 Figure 3.1 Adding a patient (success scenario)
 
-### Listing all patients: `list` (by Cedric Lim Jun Wei)
+### 3.3 Listing all patients: `list` (by Cedric Lim Jun Wei)
 
-This command allows you to display the complete list of patients recorded in **Hospify**. This may be useful after you have used the [`find`](#locating-patients-by-name-or-nric-find-by-gabriel-teo-yu-xiang) command (which displays a partial list of patients) and you wish to revert back to the complete list of patients again.
+This command allows you to display the complete list of patients recorded in **Hospify**. This may be useful after you have used the [`find`](#35-locating-patients-by-name-or-nric-find-by-gabriel-teo-yu-xiang) command (which displays a partial list of patients) and you wish to revert back to the complete list of patients again.
 
 To use the command, simply type in `list` on the command line with no additional parameters.
 
@@ -185,34 +192,47 @@ With the help of the `list` command, we can revert back to the complete list of 
 ![List patients](images/ListPatient2.PNG)
 Figure 4.2 Listing all patients
 
-### Editing a patient: `edit` (by Cao Qin)
+### 3.4 Editing a patient: `edit` (by Cao Qin)
 
-This command allows you to edit an existing patient in **Hospify**.
+This command allows you to edit an existing patient in **Hospify**, it is especially useful when the patients' information changes and you want to update it in the system. 
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/ALLERGIES]…​`
+To use this command, simply type in `edit` and the fields of the patient you want to edit, as specified by the format below.
+
+Format: `edit INDEX [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [mr/MEDICAL_RECORD_URL] [t/ALLERGIES]…​`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+* The meaning of each field in the above format is the same as in the `add` command, you can refer to the [**`add` command**](#32-adding-a-patient-add-by-cedric-lim-jun-wei).
+For your convenience, specifications for each field are also provided below.
+
+</div>
+
+* The `INDEX` refers to the index number of the patient as shown in the displayed patient list, and it **must be a positive integer**, such as 1, 2, 3, …​
+* The `NRIC` field should start with an alphabet, followed by 7 digits, before ending with another alphabet.
+* The `NAME` and `ALLERGIES` fields should only contain alphanumeric characters, and they have an upper limit of 100 characters. 
+* The `PHONE_NUMBER` field should contain a number that is between 3 and 15 digits (inclusive) long.
+* The `EMAIL` field should contain a valid email address (to find more information on email validation, please check the [Command Summary](#5-command-summary)).
+* The `ADDRESS` field should only contain alphanumeric characters, and its total length should not exceed 200 characters.
+* The `MEDICAL_RECORD_URL` field should contain a valid URL (to find more information on URL validation, please check the [Command Summary](#5-command-summary)).
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Important notes:**<br>
 
-* The meaning of each filed is the same as in `add` command, please refer to [add command](#adding-a-patient-add-by-cedric-lim-jun-wei).
-* `INDEX` refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
-* Except `INDEX`, all other fields are optional.
+* Except for the `INDEX` field, all other fields are optional.
 * At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
+* After editing a field, the old value of that field will be deleted from the system and replaced by the new input value.
 * When editing allergies, the existing allergies of the patient will be removed i.e adding of allergies is not cumulative.
-* You are **not allowed** to edit the `NRIC` or `MEDICAL_RECORD_URL` field of a patient to the same as another existing patient's in **Hospify**. However, it is possible to do so for the other fields.
+* You are **not allowed** to edit the `NRIC` or `MEDICAL_RECORD_URL` field of a patient to the same as another existing patient's in **Hospify**. However, it is possible to do so for other fields.
 
 </div>
 
+To help you better understand how to use the `edit` command, here are some examples below.
+
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing allergies.
-
-When a patient is successfully edited in **Hospify**, a success message will appear in the message box, and the edited patient is updated in the list as shown in figure 5.1 below. <br>
-![Edit patient](images/editPatient.png)
-Figure 5.1 Editing a patient(success scenario)
-
+*  `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` edits the name of the 2nd patient to be `Betsy Crower` and clears all existing allergies.
 <div markdown="block" class="alert alert-info">
 
 **:bulb: Tip:**<br>
@@ -222,7 +242,12 @@ Figure 5.1 Editing a patient(success scenario)
     
 </div>
 
-### Locating patients by name or Nric: `find` (by Gabriel Teo Yu Xiang)
+When a patient is successfully edited in **Hospify**, a success message will appear in the message box, and the edited patient will be updated in the list as shown in figure 5.1 below. <br>
+![Edit patient](images/editPatient.png)
+Figure 5.1 Editing a patient(success scenario)
+
+
+### 3.5 Locating patients by name or Nric: `find` (by Gabriel Teo Yu Xiang)
 
 This command allows you to find patients whose names contain any of the given keywords or NRICs.
 
@@ -243,53 +268,61 @@ Format: `find KEYWORD [MORE_KEYWORDS] [NRIC] [MORE_NRICs]`
 * Only full NRICs will be matched e.g. `S12345` will not match `S1234567A`
 </div>
 
+After executing the command, a message will appear showing the number of patients found, as well as the patients in the list displayed as shown in figures 6.1 and 6.2 below.
+
 Examples:
-* `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+  Figure 6.1 Finding patients `Alex Yeoh` and `David Li`
 
 * `find bernice s0000003a` returns `Bernice Yu`, `Charlotte Oliveiro`
   ![result for 'find bernice s0000003a'](images/findbernices0000003aResult.png)
+  Figure 6.2 Finding patients `Bernice Yu` and `Charlotte Oliveiro`
 
-### Deleting a patient: `delete` (by Cao Qin)
+### 3.6 Deleting a patient: `delete` (by Cao Qin)
 
-Deletes the specified patient from **Hospify**.
+This command allows you to delete a specific patient from **Hospify**. As a converse of `add` command, `delete` command might 
+be useful when you find a patient's information will no longer be used in the system and want to remove it. 
+
+To use this command, simply type in `delete` and the `INDEX` or `NRIC` of the patient you want to delete, as specified in the format below. 
 
 Format: `delete INDEX` or `delete NRIC`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: About the format of `delete` command:**<br>
-* Deletes the patient at the specified `INDEX` or `NRIC`
-* The `INDEX` refers to the index number shown in the displayed patient list.
-* The `INDEX` **must be a positive integer** 1, 2, 3, …​
-* The `NRIC` refers to the `NRIC` of the patient to be deleted.
+**:information_source: Notes about `delete` command:**<br>
+* `delete` command deletes the patient at the specified `INDEX` or `NRIC`.
+* The `INDEX` refers to the index number of the patient as shown in the displayed patient list, and it must be a **positive integer**, such as 1, 2, 3, …​
+* The `NRIC` refers to the `NRIC` field of the patient to be deleted. It should start with an alphabet, followed by 7 digits, before ending with another alphabet.
 * The `NRIC` entered is **case-insensitive**. e.g. `s1234567a` will match `S1234567A`
 * Only full `NRIC`s will be matched e.g. `S12345` will **not** match `S1234567A`
+* When a patient is successfully deleted from **Hospify**, a success message will appear in the message box, and the deleted patient will disappear from the displayed patient list.
 </div>
+
+To help you get more familiar with the `delete` command, here are some examples of using this command, as shown below.
 
 Examples:
 
 scenario 1 (delete by index):
 
-* `list`(shown in Figure 2.4 below) followed by `delete 2`(shown in Figure 2.5 below) deletes the 2nd patient in **Hospify**.
+* `list`(shown in Figure 7.1 below) followed by `delete 2`(shown in Figure 7.2 below) deletes the 2nd patient in **Hospify**'s patient list.
 
   `list` command shows all the patients and their corresponding index.
   ![result for 'list'](images/listResult.png)
-  Figure 2.4 result of `list` command
+  Figure 7.1 result of `list` command
   
   `delete 2` command deletes the patient with index 2. 
   ![result for 'delete 2'](images/deleteTwoResult.png)
-  Figure 2.5 result of `delete 2` command
+  Figure 7.2 result of `delete 2` command
 
 scenario 2 (delete by nric):
 
-* `delete S0000004A`(shown in Figure 2.8 below) deletes `David Li` (whose NRIC is S0000004A).
+* `delete S0000004A`(shown in Figure 7.3 below) deletes `David Li` (whose NRIC is S0000004A).
 
   ![result for 'delete S0000004A'](images/deleteDavidResult.png)
-  Figure 2.8 result of `delete S0000004A` command
+  Figure 7.3 result of `delete S0000004A` command
 
-### Counting total number of patients: `count` (by Chong Jia Le)
+### 3.7 Counting total number of patients: `count` (by Chong Jia Le)
 
 This command allows you to see the total number of patients recorded in **Hospify**.
 
@@ -308,16 +341,16 @@ Format: `count`
 Example:
 
 ![Count example](images/CountExample.PNG)
+Figure 8.1 Result of `count` command
 
-### Sorting the patients: `sort` (by Chong Jia Le)
+### 3.8 Sorting the patients: `sort` (by Chong Jia Le)
 
 This function allows you to sort the patients in **Hospify**. The sort can be performed by either name or NRIC and it will be sorted in ascending order.
 Using this command after you have used the `find` command, which displays a partial list of patient, would allow you to sort the partial list.
 
 To use this command, simply type in `sort` on the command line followed by either `name` or `NRIC` depending on how you want the patients to be sorted.
 
-Format: `sort name`<br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; or `sort NRIC`
+Format: `sort name` or `sort NRIC`
 
 Examples:
 
@@ -325,48 +358,55 @@ Examples:
 
     1. Initially, list of patients is not sorted by name as seen below:
         
-        ![Sort Nric example](images/SortNric.PNG)
+        ![Sort Nric example](images/SortNric0.png)
+        Figure 9.1 List of patients not sorted by name
         
     2. After user inputs `sort name` list is sorted as seen below:
         
         ![Sort Name example](images/SortName.PNG)
+        Figure 9.2 List of patients after `sort name`
 
 * Performing `sort NRIC` would result in the patients to be sorted by their NRIC in ascending order, as shown in the steps below.
     
     1. Initially, list of patients is not sorted by NRIC as seen below:
         
-        ![Sort Nric example](images/SortName.PNG)
+        ![Sort Nric example](images/SortName0.png)
+        Figure 9.3 List of patients not sorted by NRIC
     
     2. After user inputs `sort NRIC` list is sorted as seen below:
         
         ![Sort Name example](images/SortNric.PNG)
+        Figure 9.4 List of patients after `sort NRIC`
         
 * Performing `find amy` followed by `sort name` would result in the app displaying all patients whose names contain `amy` sorted in alphabetical order by their name.
     
     1. `find amy` is performed resulting in the application showing only patients whose names contain `amy` as shown below:
   
         ![Sort Find example 1](images/SortFind.PNG)
+        Figure 9.5 Partial list of patients after `find amy`
         
     2. After the user inputs `sort name`, the partial list is sorted as seen below:
         
         ![Sort Find example 2](images/SortFind2.PNG)
+        Figure 9.6 Partial list of patients after `sort name`
         
-### Showing Appointments of a Patient: `showAppt` (by Peh Jun Siang)
+### 3.9 Showing Appointments of a Patient: `showAppt` (by Peh Jun Siang)
 
 The `showAppt` command shows you all the appointments of a patient in a table for ease of viewing.
 Unlike other commands, you can click on the patient's information to show the appointments **without needing to enter any commands**.
 
-###### 1. Using the `GUI`
+###### 3.9.1 Using the `GUI`
 You can simply **double click** on the patient to display all the appointments of that patient.
 
 ![show appointments via gui](images/showAppt/showAppt_gui.PNG)
-Figure X Show appointments via GUI
-###### 2. Using the `Command Line`
+Figure 10.1 Show appointments via GUI
+
+###### 3.9.2 Using the `Command Line`
 If the number of patients is too large, it might be difficult to find the patient's information to click.
 In that case, you can use the command line to show the patient's appointments.
 
 ![show appointments via command line](images/showAppt/showAppt_input.PNG)\
-Figure X Show appointments via Command Line
+Figure 10.2 Show appointments via Command Line
 
 Format: `showAppt NRIC`
 
@@ -375,10 +415,10 @@ Example: `showAppt S1234567A`
 The **Appointment window should pop up** after successfully running the command either through the `GUI` or the `Command Line` shown below.
 
 ![Appointment Window](images/showAppt/showAppt_window.PNG)
-Figure X Appointments window with appointments of patient
+Figure 10.3 Appointments window with appointments of patient
 
 <div markdown="span" class="alert alert-primary">
-**:bulb: Tip:** You can **click on the **DATE** header** to sort the appointments from earliest to latest or latest to earliest.
+**:bulb: Tip:** You can click on the **DATE** header to sort the appointments from earliest to latest or latest to earliest.
 </div>
 
 <div markdown="span" class="alert alert-warning">
@@ -386,14 +426,14 @@ Figure X Appointments window with appointments of patient
 </div>
 
 <div markdown="span" class="alert alert-info">
-**:information_source: Notes:** `showAppt` takes in only **ONE** NRIC of the patient to show.
+**:information_source: Note:** `showAppt` takes in only **ONE** NRIC of the patient to show.
 </div>
 
-### Adding an Appointment: `addAppt` (by Gabriel Teo Yu Xiang)
+### 3.10 Adding an Appointment: `addAppt` (by Gabriel Teo Yu Xiang)
 
 This command allows you to schedule an `Appointment` for a patient in **Hospify**.
 
-Format: `addAppt NRIC appt/DATE TIME d/DESCRIPTION`
+Format: `addAppt NRIC appt/DATE TIME [d/DESCRIPTION]`
 
 * `NRIC` represents the `NRIC` of the patient you are adding an `Appointment` to.
 * `DATE` and `TIME` represent the date and time of the `Appointment` respectively.
@@ -404,6 +444,11 @@ Format: `addAppt NRIC appt/DATE TIME d/DESCRIPTION`
 
 **:warning: Important:** `DATE` and `TIME` parameters must be specified in the following formats:
 
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** The appointment description is **optional** and may be left out
 </div>
 
 - **Date format:**
@@ -419,18 +464,19 @@ Format | Example
 HH:mm | 20:00
 
 Examples:
-* `addAppt S1234567A appt/25/12/2020 15:00 d/Foot Therapy`
+* `addAppt S1234567A appt/25/12/2020 15:00`
 * `addAppt S0000001A appt/28/09/2022 20:00 d/Eye Check-up`
 
-When an `Appointment` is successfully added to a patient, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in the figure below.<br>
+When an `Appointment` is successfully added to a patient, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in figure 11.1 below.<br>
 
 ![result for 'add appointment'](images/addAppt.png)
+Figure 11.1 Adding an appointment (success scenario)
 
-### Editing an Appointment: `editAppt` (by Gabriel Teo Yu Xiang)
+### 3.11 Editing an Appointment: `editAppt` (by Gabriel Teo Yu Xiang)
 
 This command allows you to edit an existing `Appointment` for a patient in **Hospify**.
 
-Format: `editAppt NRIC oldappt/DATE TIME newappt/DATE TIME`
+Format: `editAppt NRIC oldappt/DATE TIME newappt/DATE TIME [d/DESCRIPTION]`
 
 <div markdown="block" class="alert alert-info">
 
@@ -441,21 +487,26 @@ Format: `editAppt NRIC oldappt/DATE TIME newappt/DATE TIME`
 * The old `Appointment` timing is preceded by a `oldappt/` prefix
 
 * The new `Appointment` timing is preceded by a `newappt/` prefix
+
+* The new `Appointment` description is **optional**  
+i.e. you can choose whether or not to edit the description
 </div>
 
 * The `Appointment` to edit must be an existing appointment of the patient.
-* Only the date and timing of the `Appointment` can be changed. The name/description cannot be changed.
 * `NRIC` represents the `NRIC` of the patient whose `Appointment` you are editing.
-* `DATE` and `TIME` formats follow the same format as specified in the [`addAppt`](#adding-an-appointment-addappt-by-gabriel-teo-yu-xiang) command section.
+* `DATE` and `TIME` formats follow the same format as specified in the [`addAppt`](#310-adding-an-appointment-addappt-by-gabriel-teo-yu-xiang) command section.
+* `DESCRIPTION` represents the description of the new `Appointment` to be changed to.
 
 Examples:
 * `editAppt S0000001A oldappt/28/09/2022 20:00 newappt/30/09/2022 15:00`
+* `editAppt S1234567A oldappt/25/12/2020 20:00 newappt/10/01/2021 14:00 d/Revisit`
 
-When an `Appointment` is successfully edited, a success message will appear in the message box as shown in the figure below.<br>
+When an `Appointment` is successfully edited, a success message will appear in the message box as shown in figure 12.1 below.<br>
 
 ![result for 'edit appointment'](images/editAppt.png)
+Figure 12.1 Editing an appointment (success scenario)
 
-### Deleting an Appointment: `deleteAppt` (by Gabriel Teo Yu Xiang)
+### 3.12 Deleting an Appointment: `deleteAppt` (by Gabriel Teo Yu Xiang)
 
 This command allows you to delete an existing `Appointment` for a patient in **Hospify**.
 
@@ -465,18 +516,19 @@ Format: `deleteAppt NRIC appt/DATE TIME`
 * The `Appointment` name/description does not need to be specified, since **Hospify** does not allow multiple appointments of the same timing for the same patient, and every appointment will have a unique timing.
 * `NRIC` represents the `NRIC` of the patient whose `Appointment` you are deleting.
 * `DATE` and `TIME` represent the date and time of the `Appointment` to be deleted.
-* `DATE` and `TIME` formats follow the same format as specified in the [`addAppt`](#adding-an-appointment-addappt-by-gabriel-teo-yu-xiang) command section.
+* `DATE` and `TIME` formats follow the same format as specified in the [`addAppt`](#310-adding-an-appointment-addappt-by-gabriel-teo-yu-xiang) command section.
 
-Examples:
+Example:
 * `deleteAppt S0000001A appt/28/09/2022 20:00`
 
-When an `Appointment` is successfully deleted, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in the figure below.<br>
+When an `Appointment` is successfully deleted, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in figure 13.1 below.<br>
 
 ![result for 'delete appointment'](images/deleteAppt.png)
+Figure 13.1 Deleting an appointment (success scenario)
 
-### Using the Medical Record feature: `mr/` (by Cedric Lim Jun Wei)
+### 3.13 Using the Medical Record feature: `mr/` (by Cedric Lim Jun Wei)
 
-By now we have learnt that we can [`add`](#adding-a-patient-add-by-cedric-lim-jun-wei) and [`edit`](#editing-a-patient-edit-by-cao-qin) patients by including the `mr/MEDICAL_RECORD_URL` field. Recall that this is a compulsory field for the `add` command while it is an optional field for the `edit` command and we can summarise the command formats as shown below.
+By now we have learnt that we can [`add`](#32-adding-a-patient-add-by-cedric-lim-jun-wei) and [`edit`](#34-editing-a-patient-edit-by-cao-qin) patients by including the `mr/MEDICAL_RECORD_URL` field. Recall that this is a compulsory field for the `add` command while it is an optional field for the `edit` command and we can summarise the command formats as shown below.
 
 Format: `add n/NAME …​ mr/MEDICAL_RECORD_URL …​` or `edit INDEX …​ [mr/MEDICAL_RECORD_URL] …​`
 
@@ -517,9 +569,9 @@ In the following example, we will be using [Google Docs](https://docs.google.com
 
 The example we have just discussed uses the `add` command. The usage of the `MEDICAL_RECORD_URL` field in `edit` works in the same way as described in the `add` example as well.
 
-Another method to access the online medical record of the patient directly (without the copy-and-paste mechanism) is shown in the `showMr` command section below.
+Another method to access the online medical record of the patient directly (without the copy-and-paste mechanism) is shown in the [`showMr`](#314-show-medical-record-directly-showmr-by-peh-jun-siang) command section below.
 
-### Show medical record directly: `showMr` (by Peh Jun Siang)
+### 3.14 Show medical record directly: `showMr` (by Peh Jun Siang)
 We understand that it might be quite a hassle to copy the URL and paste it in your browser manually. Therefore, we
 implemented a short cut so that you can open up your default browser with the URL to the medical record directly from **Hospify** with the `showMr`
 command!
@@ -529,12 +581,12 @@ Example: `showMr s1234567A`
 
 Running the command as shown below will open your computer's **default browser** with the patient's medical record.
 ![showMr command](images/showMrExample.PNG)
-Diagram X Using the `showMr` command to open patient's medical record.
+Figure 15.1 Using the `showMr` command to open patient's medical record.
 
 <div markdown="block" class="alert alert-warning">
 
 In the unlikely event that `showMr` command does not open up the medical record in your default browser,
-use the **manual method** described in [the above section](#using-the-medical-record-feature-mr-by-cedric-lim-jun-wei)
+use the **manual method** described in [the above section](#313-using-the-medical-record-feature-mr-by-cedric-lim-jun-wei)
 on the medical record feature.
 
 **:warning: Important:** - Check that your URL is valid if the medical record does not open on your browser.
@@ -545,60 +597,74 @@ at **hospify_enquiry@gmail.com** to notify the tech team if it does not open on 
 
 </div>
 
-### Clearing all entries: `clear` (by Cao Qin)
+### 3.15 Clearing all entries: `clear` (by Cao Qin)
 
-This command helps clear all patients' information from **Hospify**.
+This command allows you to clear all patients' information from **Hospify**. It is very useful when you want to clear all the sample data in the system and start using **Hospify** in your own clinic!
+
+To use this command, simply type in `clear`, and all the patients' information will be removed from the system.
 
 Format: `clear`
 
+To help you understand this command, here is an example of using it, as shown below.
+
 Example: 
-execute `clear`(shown in Figure 14.5 below) command will empty the patients' list (shown in Figure 14.5 below).
+
+execute `clear`(shown in Figure 16.1 below) command will empty the patient list (shown in Figure 16.2 below).
+
 ![clear command](images/clear%20command.png)
-Figure 14.5 clear command
+Figure 16.1 clear command
 
 ![clear command result](images/clear%20command%20result.png)
-Figure 14.6 clear command result
+Figure 16.2 clear command result
 
-### Exiting the program: `exit` 
+### 3.16 Exiting the program: `exit` 
 
 You can exit the program by typing `exit` on the command line. Alternatively, you can close the window directly. Don't worry, either way, your data is automatically saved in the program!
 
 Format: `exit`
 
-### Saving the data
+### 3.17 Saving the data
 
 **Hospify** data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ (Peh Jun Siang)
+## 4. FAQ (by Peh Jun Siang)
 
 In this section, we will be looking at some of the frequently asked questions from our users.
 
+<div markdown="block" class="alert alert-info">
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the **data file** with the `hospify.json` 
 that is in the **data file** of your other computer.
-* **Step 1.** Go into the **data file** in the previous home directory of the **Hospify** app.\
+
+* **Step 1.** Go into the **data file** in the previous home directory of the **Hospify** app.<br />
 ![data file](images/faq/data_file.PNG)
-Figure 4.1.1 Go to the **Data File**
+Figure 17.1.1 Go to the **Data File**
+
 * **Step 2.** Transfer the `hospify.json` file to your other computer through a flash drive or
 the web and paste the `hospify.json` file in the **data file** of your new **Hospify** app.
 ![replace json file](images/faq/replace_json.PNG)
-Figure 4.1.2 Replace `hospify.json` file
+Figure 17.1.2 Replace `hospify.json` file
+</div>
 
-**Q**: I cannot run the `JAR` file! How do I get the program to run?<br/>
+<div markdown="block" class="alert alert-info">
+**Q**: I cannot run the `JAR` file! How do I get the program to run?<br />
 **A**: Check if you have at least `Java 11` installed on your Computer.
-* On **Windows**\
-    **Step 1.** Open up **Command Prompt** by searching for **command prompt** in the task bar shown below.\
-![windows search command prompt](images/faq/search_commandPrompt.PNG)\
-Figure 4.2.1 Windows search for command prompt\
-    **Step 2.** Type the command `java -version` to check for the version.
-![windows java version](images/faq/windows_javaVersion.PNG)\
-Figure 4.2.2 Check windows java version
+
+* On **Windows**
+    
+    **Step 1.** Open up **Command Prompt** by searching for **command prompt** in the task bar shown below.<br />
+![windows search command prompt](images/faq/search_commandPrompt.PNG)<br />
+Figure 17.2.1 Windows search for command prompt
+    
+    **Step 2.** Type the command `java -version` to check for the version.<br />
+![windows java version](images/faq/windows_javaVersion.PNG)<br />
+Figure 17.2.2 Check windows java version
 
 <div markdown="block" class="alert alert-warning">
 **:warning: Important:** Ensure that the java version is at least `11`. If your version is less than `11`, 
-scroll down to the **:information_source: Notes** to the view the download link.
+scroll down to the **:information_source: Note** to the view the download link.
 
 After verifying that you have at least `java 11` installed, double click on the `hospify.jar` to run the app.
 
@@ -606,21 +672,23 @@ If it still does not run, type the command `java -jar hospify.jar` in the comman
 containing your `hospify.jar` file shown below.
 
 ![running jar from windows prompt](images/faq/windows_runJar.PNG)
-Figure 4.2.3 Running jar from windows prompt
+Figure 17.2.3 Running jar from windows prompt
 
 </div>
 
-* On **MAC**\
-**Step 1.** Open up **Terminal** by searching for **terminal** in the search bar shown below.\
-![mac search bar](images/faq/mac_search.PNG)\
-Figure 4.2.4 mac search bar\
-**Step 2.** Type the command `java -version` to check for the version shown below.
-![mac java version](images/faq/mac_javaVersion.PNG)\
-Figure 4.2.5 Mac java version command
+* On **MAC**
+
+**Step 1.** Open up **Terminal** by searching for **terminal** in the search bar shown below.<br />
+![mac search bar](images/faq/mac_search.PNG)<br />
+Figure 17.2.4 mac search bar
+
+**Step 2.** Type the command `java -version` to check for the version shown below.<br />
+![mac java version](images/faq/mac_javaVersion.PNG)<br />
+Figure 17.2.5 Mac java version command
 
 <div markdown="block" class="alert alert-warning">
 **:warning: Important:** Ensure that the java version is at least `11`. If your version is less than `11`,
-scroll down to the **:information_source: Notes** to the view the download link.
+scroll down to the **:information_source: Note** to the view the download link.
 
 After verifying that you have at least `java 11` installed, double click on the `hospify.jar` to run the app.
 
@@ -628,46 +696,60 @@ If it still does not run, type the command `java -jar hospify.jar` in the **TERM
 containing your `hospify.jar` file. 
 
 ![running jar from Mac prompt](images/faq/mac_runJar.PNG)
-Figure 4.2.6 Running jar from Mac terminal
+Figure 17.2.6 Running jar from Mac terminal
 </div>
 
 <div markdown="block" class="alert alert-primary">
-**:information_source: Notes:** If your java version is **less than 11**, download from
+**:information_source: Note:** If your java version is **less than 11**, download from
  the official Java website [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
 </div>
 
-**Q**: How do I get the latest version of **Hospify**?\
+</div>
+
+<div markdown="block" class="alert alert-info">
+**Q**: How do I get the latest version of **Hospify**?<br />
 **A**: As of the latest version, **Hospify** does not support updating within the application. In order to get the
- latest version, go to the **GitHub releases** [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases/tag/v1.3) to download the latest version.\
-![download jar](images/faq/download_jar.PNG)\
-Figure 4.3.1 Download latest jar file
+ latest version, go to the **GitHub releases** 
+ [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases/tag/v1.3) to download the latest version.<br />
+![download jar](images/faq/download_jar.PNG)<br />
+Figure 17.3.1 Download latest jar file
+</div>
 
-**Q**: My question is not listed in the FAQ. What should I do?\
+<div markdown="block" class="alert alert-info">
+**Q**: My question is not listed in the FAQ. What should I do?<br />
 **A**: For inquires, please send email to our developer team at **hospify_enquiry@gmail.com**.
-
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 5. Command summary
 
 In this section, we have summarised all the commands and their formats into a table for easy reference. The commands are arranged in alphabetical order. Additionally, you may refer to the specific requirements of a valid email and url (for the `Medical Record` feature) if you are encountering problems with using these fields.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME ic/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho ic/S1234567A p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME ic/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS mr/MEDICAL_RECORD_URL [t/TAG]…​` <br> e.g., `add n/James Ho ic/S1234567A p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 mr/www.samplerecord/100 t/shellfish`
+**Add Appointment** | `addAppt NRIC appt/DATE TIME [d/DESCRIPTION]` <br> e.g., `addAppt S1234567A appt/30/12/2020 18:00 d/foot surgery`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`<br> `delete NRIC`<br> e.g., `delete S1234567A`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ic/NRIC] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com ic/S1234567A`
-**Find** | `find KEYWORD [MORE_KEYWORDS] [NRIC] [MORE_NRICs]`<br> e.g., `find James Jake`<br> e.g., `find Curry Davis Heskey S1234567A`
-**List** | `list`
-**Help** | `help`
 **Count** | `count`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`<br> `delete NRIC`<br> e.g., `delete S1234567A`
+**Delete Appointment** | `deleteAppt NRIC appt/DATE TIME` <br> e.g., `deleteAppt S1234567A appt/30/12/2020 18:00`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ic/NRIC] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com ic/S1234567A`
+**Edit Appointment** | `editAppt NRIC oldappt/DATE TIME newappt/DATE TIME [d/DESCRIPTION]` <br> e.g., `editAppt S1234567A oldappt/30/12/2020 18:00 newappt/27/11/2020 20:30 d/Revisit`
+**Exit** | `exit`
+**Find** | `find KEYWORD [MORE_KEYWORDS] [NRIC] [MORE_NRICs]`<br> e.g., `find James Jake`<br> e.g., `find Curry Davis Heskey S1234567A`
+**Help** | `help`
+**List** | `list`
+**Show Appointment** | `showAppt NRIC` or double click on patient <br> e.g., `showAppt S1234567A`
+**Show Medical Record** | `showMr NRIC` or double click `MR URL` button to copy the url and paste onto web browser manually <br> e.g., `showMr S1234567A`
+**Sort** | `sort name` or `sort NRIC` 
+
 
 * Valid email format
 
     * Emails should be of the format local-part@domain.topleveldomain
-    * The local-part (upper limit of 64 characters) only contains alphanumeric characters or special characters including !#$%&'*+/=?`{}~^.-
-    * The domain should be between 2 and 256 characters long (inclusive), start and end with alphanumeric characters, and consist of alphanumeric characters, a period or a hyphen for the characters in between, if any
+    * The local-part (upper limit of 64 characters) only contains alphanumeric characters or special characters including !#$%&'*+/=?`{}~^.- and the vertical line symbol
+    * The domain should be between 2 and 255 characters long (inclusive), start and end with alphanumeric characters, and consist of alphanumeric characters, a period or a hyphen for the characters in between, if any
     * The top level domain should be between 2 and 6 (inclusive) characters long and only contain alphabets<br>
     
 * Valid URL format

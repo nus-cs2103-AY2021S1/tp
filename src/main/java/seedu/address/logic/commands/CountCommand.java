@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 public class CountCommand extends Command {
     public static final String COMMAND_WORD = "count";
 
-    public static final String MESSAGE_UASGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Shows the total number of patients in record.\n"
             + "Example: " + COMMAND_WORD;
 
