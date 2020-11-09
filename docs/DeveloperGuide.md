@@ -341,6 +341,11 @@ The Delete By Index mechanism deletes the flashcard at the specified index of th
 
 ##### Usage
 
+The following activity diagram briefly summarizes what happens when a user executes the delete command to delete
+flashcards by tags:
+
+![DeleteByIndexActivityDiagram](images/DeleteByIndexActivityDiagram.png)
+
 Given below is an example usage scenario and how the Delete By Index mechanism behaves at each step.
 
 Step 1. The user launches the application.
@@ -381,6 +386,11 @@ at least one of the specified tags will be deleted.
 It works by filtering for the flashcards in the `model` and deleting them one by one.
 
 ##### Usage
+
+The following activity diagram briefly summarizes what happens when a user executes the delete command to delete
+flashcards by tags:
+
+![DeleteByTagActivityDiagram](images/DeleteByTagActivityDiagram.png)
 
 Given below is an example usage scenario and how the Delete By Tag mechanism behaves at each step.
 
