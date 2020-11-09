@@ -1295,6 +1295,7 @@ Basic instructions to test _entry-level_ commands of _Common Cents_.
 
    1. Prerequisites: Delete the existing `CommonCents.json` file in the `data` folder. Use the default data. 
    
+   <div style="page-break-after: always;"></div>
    1. Test case: `find c/expense k/canvas`<br>
         Expected: 
         * Expense list is updated with only 1 expense that has the description `canvas` inside. 
