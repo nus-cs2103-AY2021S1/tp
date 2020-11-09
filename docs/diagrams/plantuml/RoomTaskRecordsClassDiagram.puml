@@ -1,0 +1,25 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package RoomTaskRecords <<Rectangle>>{
+
+Class RoomTaskRecords
+Interface ReadOnlyList <<Interface>>
+
+Package RoomTaskRecords {
+Class RoomTaskRecords
+Class RoomTaskAssociation
+Class Task
+Class Room
+}
+
+RoomTaskRecords .left.|> ReadOnlyList
+
+RoomTaskRecords *--> "*" RoomTaskAssociation
+
+RoomTaskAssociation *-->"1" Task
+RoomTaskAssociation *--> "1" Room
+@enduml

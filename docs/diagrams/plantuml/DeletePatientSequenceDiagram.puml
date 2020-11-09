@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CovigentAppParser" as CovigentAppParser LOGIC_COLOR
+participant ":DeletePatientCommandParser" as DeletePatientCommandParser LOGIC_COLOR
+participant "d:DeletePatientCommand" as DeletePatientCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("deletepatient alex")
+activate LogicManager
+
+LogicManager -> CovigentAppParser : parseCommand("deletepatient 1")
+activate CovigentAppParser
+
+create DeletePatientCommandParser
+CovigentAppParser -> DeletePatientCommandParser
+activate DeletePatientCommandParser
+
+DeletePatientCommandParser --> CovigentAppParser
+deactivate DeletePatientCommandParser
+
+CovigentAppParser -> DeletePatientCommandParser : parse("alex")
+activate DeletePatientCommandParser
+
+create DeletePatientCommand
+DeletePatientCommandParser -> DeletePatientCommand
+activate DeletePatientCommand
+
+DeletePatientCommand --> DeletePatientCommandParser : d
+deactivate DeletePatientCommand
+
+DeletePatientCommandParser --> CovigentAppParser : d
+deactivate DeletePatientCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeletePatientCommandParser -[hidden]-> CovigentAppParser
+destroy DeletePatientCommandParser
+
+CovigentAppParser --> LogicManager : d
+deactivate CovigentAppParser
+
+LogicManager -> DeletePatientCommand : execute()
+activate DeletePatientCommand
+
+DeletePatientCommand -> Model : deletePatient(alex)
+activate Model
+
+Model --> DeletePatientCommand
+deactivate Model
+
+create CommandResult
+DeletePatientCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeletePatientCommand
+deactivate CommandResult
+
+DeletePatientCommand --> LogicManager : result
+deactivate DeletePatientCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

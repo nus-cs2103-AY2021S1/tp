@@ -22,7 +22,11 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Updated the GUI color scheme
   * Improved the GUI by adding in a panel to display information
-  * Wrote additional tests for features created
+  * Added CSS file for the details panel which was later reused by others.
+  
+* **Testing**:
+  * Added unit tests for the `allocateRoomParser`, `editPatientCommand`, and `editPatientCommandParser` features.
+  * Added integration tests for `allocateRoomCommand`, `editPatientCommand`.
 
 * **Documentation**:
   * User Guide:
@@ -32,8 +36,11 @@ Given below are my contributions to the project.
     * Added implementation details of the `allocateroom` and `logging` features
     * Added implementation details of GUI
     * Added/updated UML diagrams for `Logic Component`, `allocateroom`, `UI` implementation
+    * Helped with formatting for the entire developer guide
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#10](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/10), [\#26](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/26),
-   [\#27](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/27), [\#69](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/69), [\#80](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/80),
-   [\#84](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/84), [\#99](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/99)
+  * PRs reviewed (with non-trivial review comments): [\#10](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/10),
+  [\#26](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/26), [\#27](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/27),
+  [\#69](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/69), [\#80](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/80),
+  [\#84](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/84), [\#99](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/99)
+  * Reported bugs and provided suggestions for StonksBook, a project by another teams in the class: [link](https://github.com/leemingde/ped/issues)

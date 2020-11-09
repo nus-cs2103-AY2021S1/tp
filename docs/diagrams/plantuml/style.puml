@@ -38,6 +38,8 @@ skinparam BackgroundColor #FFFFFFF
 skinparam Shadowing false
 
 skinparam Class {
+    AttributeFontColor #FFFFFF
+    AttributeIconSize 0
     FontColor #FFFFFF
     BorderThickness 1
     BorderColor #FFFFFF
@@ -71,5 +73,5 @@ skinparam DefaultTextAlignment center
 skinparam packageStyle Rectangle
 
 hide footbox
-hide members
+hide empty members
 hide circle

@@ -1,0 +1,43 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package PatientRecords <<Rectangle>>{
+Class PatientRecords
+Interface ReadOnlyList <<Interface>>
+
+Package Patient {
+Class Patient
+Class Name
+Class Phone
+Class Age
+Class PeriodOfStay
+Class Temperature
+Class Comment
+Class UniquePatientList
+}
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> PatientRecords
+
+PatientRecords .left.|> ReadOnlyList
+
+PatientRecords *--> "1" UniquePatientList
+UniquePatientList o--> "*" Patient
+Patient *--> "1" Name
+Patient *--> "1" Phone
+Patient *--> "1" Age
+Patient *--> "1" PeriodOfStay
+Patient *--> "1" Temperature
+Patient *--> "0..1" Comment
+
+Name -[hidden]right-> Phone
+Phone -[hidden]right-> Age
+Age -[hidden]right-> PeriodOfStay
+PeriodOfStay -[hidden]right->Temperature
+Temperature -[hidden]right->Comment
+
+@enduml

@@ -14,7 +14,7 @@ import seedu.address.model.ReadOnlyList;
 import seedu.address.model.room.RoomTasks;
 import seedu.address.model.task.Task;
 
-//@@author itssodium
+
 /**
  * Reads data from storage data files and imports them into RoomTasks
  */
