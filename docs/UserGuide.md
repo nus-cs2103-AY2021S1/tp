@@ -92,7 +92,7 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 4. Double-click the file to start the app. The GUI similar to the below figure (Figure 1) should appear in a few seconds. Note how the app contains some sample data.
 
 ![Ui](images/Ui.png)
-<div align="center">Figure 1: <strong>Reeve</strong> GUI<br></div>
+<div align="center">Figure 1: <strong>Reeve</strong> GUI</div><br>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -115,7 +115,7 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 This section serves to help you understand the layout of **Reeve**. Please refer to the figure below (Figure 2) for help.
 
 ![Reeve's Layout](images/ReeveLayout.png)
-<div align="center">Figure 2: <strong>Reeve's</strong> Layout<br></div>
+<div align="center">Figure 2: <strong>Reeve's</strong> Layout</div><br>
 
 1. **Menu**
 
@@ -188,12 +188,12 @@ Example:
     * If you have not entered the `toggle` command, you should see a screen similar to the one below (Figure 4).
 
     ![ToggleCommandExpectedOutcomeBeforeUG](images/ToggleCommandExpectedOutcomeBeforeUG.png)
-    <div align="center">Figure 4: Before entering toggle command<br></div>
+    <div align="center">Figure 4: Before entering toggle command</div><br>
 
     * After entering the `toggle` command, you will switch to displaying academic details of students as shown below (Figure 5).
 
     ![ToggleCommandExpectedOutcomeAfterUG](images/ToggleCommandExpectedOutcomeAfterUG.png)
-    <div align="center">Figure 5: After entering toggle command<br></div>
+    <div align="center">Figure 5: After entering toggle command</div><br>
     
 #### 3.2.3 Exiting the program: `exit`
 
@@ -248,7 +248,7 @@ Examples:
     * You should see a screen similar to the one shown below (Figure 6).
 
     ![AddCommandExpectedOutcomeUG](images/AddCommandExpectedOutcomeUG.png)
-    <div align="center">Figure 6: After entering add command<br></div>
+    <div align="center">Figure 6: After entering add command</div><br>
 
 * Also, if you want to add a student with multiple additional details.
     * You can use something like `add n/John Doe p/98765432 s/Woodlands Secondary School y/s 2 v/347 Woodlands Ave 3, Singapore 730347 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
@@ -299,7 +299,7 @@ Expected Outcome:
 The following figure (Figure 7) shows the expected outcome after executing the above example.
 
 ![EditCommandExpectedOutcome](images/EditCommandExpectedOutcome.png)
-<div align="center">Figure 7: After entering edit command<br></div>
+<div align="center">Figure 7: After entering edit command</div><br>
 
 #### 3.3.4 Locating students: `find` (By: Choon Siong)
 
@@ -373,7 +373,7 @@ Expected Outcome:
 The following figure (Figure 8) shows the expected result after entering the command `overdue`.
 
 ![OverdueExpectedOutcome](images/OverdueExpectedOutcome.png)
-<div align="center">Figure 8: After entering overdue command<br></div>
+<div align="center">Figure 8: After entering overdue command</div><br>
 
 #### 3.3.8 Managing details for a student: `detail` (By: Vaishak)
 
@@ -406,7 +406,7 @@ Expected Outcome:
 The following figure (Figure 9) shows the expected outcome after executing the above example.
 
 ![AddDetailExpectedOutcome](images/AddDetailExpectedOutcome.png)
-<div align="center">Figure 9: After entering add detail command<br></div>
+<div align="center">Figure 9: After entering add detail command</div><br>
 
 #### 3.3.8.2 Editing a detail: `detail edit`
 
@@ -425,7 +425,7 @@ Expected Outcome:
 The following figure (Figure 10) shows the expected outcome after executing the above example.
 
 ![EditDetailExpectedOutcome](images/EditDetailExpectedOutcome.png)
-<div align="center">Figure 10: After entering edit detail command<br></div>
+<div align="center">Figure 10: After entering edit detail command</div><br>
 
 #### 3.3.8.3 Deleting a detail: `detail delete`
 
@@ -444,7 +444,7 @@ Expected Outcome:
 The following figure (Figure 11) shows the expected outcome after executing the above example.
 
 ![DeleteDetailExpectedOutcome](images/DeleteDetailExpectedOutcome.png)
-<div align="center">Figure 11: After entering delete detail command<br></div>
+<div align="center">Figure 11: After entering delete detail command</div><br>
 
 #### 3.3.9 Viewing lesson schedule: `schedule` (By: Alex)
 
@@ -470,12 +470,12 @@ To view schedule:
 1.  Type `schedule m/weekly d/02/11/2020` into the command box as shown in Figure 12 . Press `Enter` to execute the command.
 
     ![Schedule Step 1](images/ScheduleStep1.png)
-    <div align="center">Figure 12: Shows the schedule command input keyed into the command box<br></div>
+    <div align="center">Figure 12: Shows the schedule command input keyed into the command box</div><br>
 
 2.  The schedule panel, as labelled in Figure 13, will appear with all your classes for the week of 2nd November 2020 populated.
 
     ![Schedule Step 2](images/ScheduleStep2.png)
-    <div align="center">Figure 12: Shows the schedule panel in the weekly format<br></div>
+    <div align="center">Figure 12: Shows the schedule panel in the weekly format</div><br>
 
 3.  You can easily view you classes for the week. The Date bar labelled in the Figure __ below shows the day of the week as well as the date for your reference.
     The Time bar in Figure __ shows the time in 24-hour clock format with 1-hour intervals. 
@@ -485,7 +485,7 @@ To view schedule:
     With the date, time and name of student shown in one view, you could plan your classes without a hassle.
 
     ![Schedule Step 3](images/ScheduleStep3.png)
-    <div align="center">Figure 13: Shows various component of your schedule<br></div>
+    <div align="center">Figure 13: Shows various component of your schedule</div><br>
 
 <div markdown="block" class="alert alert-info">
 :information_source: You could also click on the **Schedule** tab in the **Menu** to open or close the schedule. 
@@ -547,7 +547,7 @@ Expected Outcome:
 The following figure (Figure 14) shows the result of recording "How do I pass CS2101?" as a new question from Bernice Yu.
 
 ![QuestionAddExpectedOutcome](images/QuestionAddExpectedOutcome.png)
-<div align="center">Figure 14: After entering add question command<br></div>
+<div align="center">Figure 14: After entering add question command</div><br>
 
 ##### 3.4.1.2 Resolving a question: `question solve`
 
@@ -578,7 +578,7 @@ Expected Outcome:
 The following figure (Figure 15) shows the result of resolving Bernice's second question.
 
 ![QuestionSolveExpectedOutcome](images/QuestionSolveExpectedOutcome.png)
-<div align="center">Figure 15: After entering solve question command<br></div>
+<div align="center">Figure 15: After entering solve question command</div><br>
 
 ##### 3.4.1.3 Deleting a question: `question delete`
 
@@ -602,7 +602,7 @@ Expected Outcome:
 The following figure (Figure 16) shows the result of deleting Bernice's second question.
 
 ![QuestionDeleteExpectedOutcome](images/QuestionDeleteExpectedOutcome.png)
-<div align="center">Figure 16: After entering delete question command<br></div>
+<div align="center">Figure 16: After entering delete question command</div><br>
 
 #### 3.4.2 Recording exams of a student: `exam` (By: Hogan)
 
@@ -654,7 +654,7 @@ Example:
     * You should see a screen similar to the one below (Figure 17) after entering the above command.
 
     ![AddExamCommandExpectedOutcomeUG](images/AddExamCommandExpectedOutcomeUG.png)
-    <div align="center">Figure 17: After entering add exam command<br></div>
+    <div align="center">Figure 17: After entering add exam command</div><br>
 
 ##### 3.4.2.2 Deleting an exam record for a student: `exam delete`
 
@@ -677,13 +677,13 @@ Example:
     * For instance, if your current list looks similar to the figure below (Figure 18).
 
     ![DeleteExamExpectedOutcomeBefore](images/DeleteExamExpectedOutcomeBefore.png)
-    <div align="center">Figure 18: Before entering delete exam command<br></div>
+    <div align="center">Figure 18: Before entering delete exam command</div><br>
 
     * You can use `exam delete 1 i/1` to delete the first exam record on the first student in the displayed student list on the main panel. 
     * You should see that you have successfully deleted the first exam record of the first student as shown below (Figure 19) after entering the above command.
 
     ![DeleteExamExpectedOutcomeAfter](images/DeleteExamExpectedOutcomeAfter.png)
-    <div align="center">Figure 19: After entering delete exam command<br></div>
+    <div align="center">Figure 19: After entering delete exam command</div><br>
 
 ##### 3.4.2.3 Viewing exam statistics of a student: `exam stats`
 
@@ -706,7 +706,7 @@ Examples:
     * You should see a screen similar to the one below (Figure 20) when the above command is entered.
 
     ![ExamStatsCommandExpectedOutcomeUG](images/ExamStatsCommandExpectedOutcomeUG.png)
-    <div align="center">Figure 20: Before entering exam stats command<br></div>
+    <div align="center">Figure 20: Before entering exam stats command</div><br>
 
 <div markdown="block" class="alert alert-info">
 
@@ -744,7 +744,7 @@ Expected Outcome:
 The following figure (Figure 21) shows the expected outcome after executing the above example.
 
 ![AddAttendanceExpectedOutcome](images/AddAttendanceExpectedOutcome.png)
-<div align="center">Figure 21: After entering add attendance command<br></div>
+<div align="center">Figure 21: After entering add attendance command</div><br>
 
 ##### 3.4.3.2 Deleting an attendance record for a student: `attendance delete`
 
@@ -762,7 +762,7 @@ Expected Outcome:
 The following figure (Figure 22) shows the expected outcome after executing the above example.
 
 ![DeleteAttendanceExpectedOutcome](images/DeleteAttendanceExpectedOutcome.png)
-<div align="center">Figure 22: After entering delete attendance command<br></div>
+<div align="center">Figure 22: After entering delete attendance command</div><br>
 
 ### 3.5 Notebook feature (By: Choon Siong)
 
@@ -770,7 +770,7 @@ You can store notes containing small amounts of information inside the notebook.
 You should see the notes on the bottom right hand side of Reeve similar to the display shown below (Figure 23).
 
 ![Location of notes panel](images/screenshots/Notes.png)
-<div align="center">Figure 23: Location of Notes panel<br></div>
+<div align="center">Figure 23: Location of Notes panel</div><br>
 
 #### 3.5.1 Adding a note `note add`
 
@@ -789,7 +789,7 @@ Example:
     * You should see a screen similar to the screen below (Figure 24) when the above command is entered.
     
     ![Adding a note](images/screenshots/Adding a note.png)
-    <div align="center">Figure 24: After entering add note command<br></div>
+    <div align="center">Figure 24: After entering add note command</div><br>
 
 #### 3.5.2 Editing a note `note edit`
 
