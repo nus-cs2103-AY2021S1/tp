@@ -129,7 +129,7 @@ Symbol | Meaning
 
 1. Ensure you have Java 11 or above installed in your Computer.
 
-1. Download the latest _`jarvis.jar`_ and the _`chrome_driver.zip`_ from [here](https://github.com/AY2021S1-CS2103T-W11-2/tp/releases/tag/v1.4).
+1. Download the latest _`[CS2103T-W11-2][Jarvis].jar`_ and the _`chrome_driver.zip`_ from [here](https://github.com/AY2021S1-CS2103T-W11-2/tp/releases/tag/v1.4).
 If the file downloaded does not show as _`chrome_driver.zip`_, rename the file to _`chrome_driver.zip`_ before proceeding. Unzip the zip file. Place all 3 unzipped files into a folder called _`chrome_driver`_. 
 It is crucial to have the Chrome Driver in order for Jarvis to start up. If the GUI does not launch,
 please check that you have installed the correct driver in the _`chrome_driver`_ folder:
@@ -142,9 +142,9 @@ please check that you have installed the correct driver in the _`chrome_driver`_
 1. Copy both file and folder to the directory you want to use as the _home directory_ for your Jarvis.
 
 1. There are two options for launching Jarvis.
-    1. Double-click the `jarvis.jar` file to start the app.
-    1. Launch Jarvis from the Windows Command Prompt or MacOS command line by navigating to the directory containing `jarvis.jar`,
-    then typing the command `java -jar jarvis.jar`
+    1. Double-click the `[CS2103T-W11-2][Jarvis].jar` file to start the app.
+    1. Launch Jarvis from the Windows Command Prompt or MacOS command line by navigating to the directory containing `[CS2103T-W11-2][Jarvis].jar`,
+    then typing the command `java -jar [CS2103T-W11-2][Jarvis].jar`
 
     <br>
     
