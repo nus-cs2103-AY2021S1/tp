@@ -818,7 +818,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. tCheck is unable to find the entered ingredient name.
 
-  * 2a1. tCheck requests the user to re-enter the command with correct ingredient name.
+  * 2a1. tCheck requests the user to re-enter the command with a correct ingredient name.
   
   * 2a2. User enters a new ingredient name.
   
@@ -828,7 +828,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2b. tCheck detects an invalid amount value entered.
 
-  * 2b1. tCheck requests the user to re-enter the command with valid parameter for amount.
+  * 2b1. tCheck requests the user to re-enter the command with a valid parameter for amount.
   
   * 2b2. User enters a new amount for the ingredient.
   
@@ -840,7 +840,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 2c1. tCheck requests the user to re-enter the command with all necessary fields.
   
-  * 2c2. User enters new a command with necessary fields.
+  * 2c2. User enters a new command with the necessary fields.
   
   Steps 2c1-2c2 are repeated until a valid command with all necessary fields is entered.
 
