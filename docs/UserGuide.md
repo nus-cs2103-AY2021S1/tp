@@ -158,19 +158,19 @@ Before we dive into the features, let us help you familiarize yourself with our 
 
 As of `v1.4`, Eva currently has four different application panels it can switch between:
 
-#### 3.1.1. Staff List :
+#### 3.1.1. Staff List
 
 ![staffListPanel intro](images/ugimages/Intro1.png)
 
-#### 3.1.2. Staff Profile :
+#### 3.1.2. Staff Profile
 
 ![staffProfilePanel intro](images/ugimages/Intro2.png)
 
-#### 3.1.3. Applicant List :
+#### 3.1.3. Applicant List
 
 ![applicantListPanel intro](images/ugimages/Intro3.png)
 
-#### 3.1.4. Applicant Profile :
+#### 3.1.4. Applicant Profile
 
 ![applicantProfilePanel intro](images/ugimages/Intro4.png)
 
@@ -775,26 +775,26 @@ Example Scenario:
 
 | Action          | Format, Examples                                                                                                                                        |
 |-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **ListStaff**  | `list s-`   
-| **AddStaff**    | `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
-| **FindStaff**   | `find s- KEYWORD [MORE_KEYWORDS]`<br> e.g., `find s- James Jake`                                                                 |
+| **List Staff**  | `list s-`   
+| **Add Staff**    | `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
+| **Find Staff**   | `find s- KEYWORD [MORE_KEYWORDS]`<br> e.g., `find s- James Jake`                                                                 |
 | **View**        | `view INDEX`<br> e.g., `view 2`                                                                                            |
-| **DeleteStaff** | `dels INDEX`<br> e.g., `dels 1`         
-| **EditStaff**   | `edits INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edits 2 n/James Lee e/jameslee@example.com` |
-| **AddLeave**    | `addl INDEX l/d/DATE [d/DATE]` <br> e.g., `addl 2 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`                                                   |
-| **DeleteLeave** | `dell INDEX d/DATE`<br> e.g., `dell 1 d/10/10/2020`                                                                                       |
-| **ClearStaffDatabase** | `clear s-`         |
+| **Delete Staff** | `dels INDEX`<br> e.g., `dels 1`         
+| **Edit Staff**   | `edits INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edits 2 n/James Lee e/jameslee@example.com` |
+| **Add Leave**    | `addl INDEX l/d/DATE [d/DATE]` <br> e.g., `addl 2 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`                                                   |
+| **Delete Leave** | `dell INDEX d/DATE`<br> e.g., `dell 1 d/10/10/2020`                                                                                       |
+| **Clear Staff Database** | `clear s-`         |
 
 ### 5.3. Applicant
 
 | Action                | Format, Examples                                                                                                 |
 |-----------------------|--------------------------------------------------------------------------------------------|
 | **List** | `list a-`   
-| **AddApplicant**      | `adda` <br> e.g., `adda n/John Doe p/98765432 e/jd@example.com a/John street, block 123, #01-01` |
+| **Add Applicant**      | `adda` <br> e.g., `adda n/John Doe p/98765432 e/jd@example.com a/John street, block 123, #01-01` |
 | **Find** | `find a- KEYWORD [MORE_KEYWORDS]`<br> e.g., `find a- James Jake`                                                                 |
 | **View** | `view INDEX`<br> e.g., `view 2`                                                                                            |
-| **DeleteApplicant**   | `dela` <br> e.g., `dela 1`                                                                       |
-| **AddApplication**    | `addapp INDEX [filepath]` <br> e.g., `addapp 1 C:\Users\Public\Downloads\resume.txt`             |
-| **DeleteApplication** | `delapp INDEX` <br> e.g., `delapp 1`                                                       |
-| **SetAppStatus**      | `setas INDEX as/NEW_APPLICATION_STATUS` <br> e.g., `setas 1 as/processing`                               |
-| **ClearApplicantDatabase** | `clear a-`         |
+| **Delete Applicant**   | `dela` <br> e.g., `dela 1`                                                                       |
+| **Add Application**    | `addapp INDEX [filepath]` <br> e.g., `addapp 1 C:\Users\Public\Downloads\resume.txt`             |
+| **Delete Application** | `delapp INDEX` <br> e.g., `delapp 1`                                                       |
+| **Set AppStatus**      | `setas INDEX as/NEW_APPLICATION_STATUS` <br> e.g., `setas 1 as/processing`                               |
+| **Clear Applicant Database** | `clear a-`         |
