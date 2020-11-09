@@ -55,5 +55,5 @@ Protein -[hidden]right-> Carbohydrate
 Carbohydrate -[hidden]right-> Fat
 Fat -[hidden]right-> Date
 
-ModelManager -->"1" Food : filteredFoodItems
+ModelManager --> Food : filteredFoodItems
 @enduml

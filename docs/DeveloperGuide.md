@@ -146,15 +146,6 @@ The `Model`,
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">
-   
-:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `McGymmy`, which `Food` references. This allows `McGymmy` to only require one `Tag` object per unique `Tag`, instead of each `Food` needing their own `Tag` object.<br>
-
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
-
 ### 6.5 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -603,7 +594,7 @@ Use case ends.
 <br>
 - 1a. User passes a command as argument into help command.
     - 1a1. Help will show the argument to the command, and the usage of the command.<br>
-    Use case end.<br>
+    Use case ends.<br>
 - 1b. User passes an invalid command as argument into help command.<br>
     - 1b1. McGymmy will throw an error.<br>
     Use case ends.<br>
@@ -661,7 +652,7 @@ Use case ends.
 2. McGymmy shows a list of food.
 3. User request to remove tag from a specific food on the list.
 4. McGymmy removes the tag from the food.<br>
-Use case ends
+Use case ends.
 
 **Extensions**
 - 2a. The list is empty.<br>
