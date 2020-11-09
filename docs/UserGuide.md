@@ -126,22 +126,21 @@ Specifically, this section covers:
 6. [Statistics Box](#StatisticsBox)
 7. [Recipe Tile](#RecipeTiles)
 8. [Ingredient Tile](#IngredientTiles)
-9. [Recipe Name](#RecipeName)
-10. [Recipe Tags](#RecipeTags)
-11. [Recipe Ingredients](#RecipeIngredients)
-12. [Recipe Steps](#RecipeSteps)
-13. [Menu Bar](#MenuBar)
+9. [Recipe View](#RecipeView)
+
+First, here is the overview of the components of the recipe list view in ChopChop, which you will be greeted with when first
+starting the application:
 
 <a name="Figure-1-2"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/recipe_panel_description.png" width="95%" /> <br />
-Figure 1.2: <i>The Recipe View Panel of ChopChop.</i>
+Figure 1.2: <i>The Recipe List Panel of ChopChop.</i>
 </div>
 
 <a name="CommandBox"></a>
 ### 4.1&ensp;Command Box
 {:.no_toc}
-ChopChop does your bidding by listening to your commands — the `Command Box` is where you type your textual commands.
+ChopChop does your bidding by listening to your commands — the *Command Box* is where you type your textual commands.
 After typing your commands, press <kbd>enter</kbd> to input the command. You can also use the <kbd>up</kbd> and <kbd>down</kbd> arrow keys to navigate through the history of commands you've typed previously.
 
 To learn about the commands you can use, check out our [command summary](#CommandSummary) for a quick overview or our [commands](#Commands) for a detailed list.
@@ -152,35 +151,35 @@ If you have yet to check out ChopChop's [tab completion](#TabCompletion) section
 <a name="CommandOutput"></a>
 ### 4.2&ensp;Command Output
 {:.no_toc}
-ChopChop will always display textual responses to the commands you input — the `Command Output` is where you can view the responses.
+ChopChop will always display textual responses to the commands you input — the *Command Output* is where you can view the responses.
 
 
 
 <a name="RecipeButton"></a>
 ### 4.3&ensp;Recipe Button
 {:.no_toc}
-ChopChop is able to display all of your recipes as [Recipe Tiles](#RecipeTiles) in the `Main Display Area` as shown in [figure 1.2](#Figure-1-2) when you press the `Recipes` button. The 4 buttons at the bottom of our GUI will take on a darker shade when they are currently selected.
+ChopChop is able to display all of your recipes as [Recipe Tiles](#RecipeTiles) in the *Main Display Area* as shown in [figure 1.2](#Figure-1-2) when you press the *Recipes* button. The 4 buttons at the bottom of our GUI will take on a darker shade when they are currently selected.
 
 
 
 <a name="IngredientButton"></a>
 ### 4.4&ensp;Ingredient Button
 {:.no_toc}
-ChopChop is able to display all of your ingredients as [Ingredient Tiles](#IngredientTiles) in the `Main Display Area` as shown in [figure 1.3](#Figure-1-3) when you press the `Ingredients` button.
+ChopChop is able to display all of your ingredients as [Ingredient Tiles](#IngredientTiles) in the *Main Display Area* as shown in [figure 1.3](#Figure-1-3) when you press the *Ingredients* button.
 
 
 
 <a name="RecommendationButton"></a>
 ### 4.5&ensp;Recommendation Button
 {:.no_toc}
-ChopChop is able to recommend you recipes to cook if you want it to! The recipes that are recommended will be displayed as [Recipe Tiles](#RecipeTiles) in the `Main Display Area` when you press the `Recommendations` button.
+ChopChop is able to recommend you recipes to cook if you want it to! The recipes that are recommended will be displayed as [Recipe Tiles](#RecipeTiles) in the *Main Display Area* when you press the *Recommendations* button.
 
 
 
 <a name="StatisticsBox"></a>
 ### 4.6&ensp;Statistics Box
 {:.no_toc}
-ChopChop is able to produce statistics based on the food you make! To view your ingredient or recipe usage statistics, simply input into the `Command Box` one of the `stats` [commands available](#GroupStatsCommands).
+ChopChop is able to produce statistics based on the food you make! To view your ingredient or recipe usage statistics, simply input into the *Command Box* one of the [`stats` commands](#GroupStatsCommands) available.
 
 
 
@@ -188,7 +187,7 @@ ChopChop is able to produce statistics based on the food you make! To view your 
 <a name="RecipeTiles"></a>
 ### 4.7&ensp;Recipe Tiles
 {:.no_toc}
-ChopChop is able to show you your recipes in the form of tiles — simply click on a tile to view the detailed information about the selected recipe in the `Main Display Area`, as shown in [figure 1.4](#Figure-1-4).
+ChopChop is able to show you your recipes in the form of tiles — simply click on a tile to view the detailed information about the selected recipe in the *Main Display Area*, as shown in [figure 1.4](#Figure-1-4).
 
 
 
@@ -197,61 +196,38 @@ ChopChop is able to show you your recipes in the form of tiles — simply click 
 {:.no_toc}
 ChopChop is able to show you your ingredients in the form of tiles, as shown in [figure 1.3](#Figure-1-3). In each tile, there are 5 components:
 
-1. The `Index` shows the index of the ingredient for easier referencing.
-2. The `Expiry Date` of the ingredient.
-3. The `Quantity` of the ingredient.
-4. The `Ingredient Name` of the ingredient.
-5. The `Tags` associated with the ingredient.
-
-Note: if the tags are too long, some graphical glitches might occur. This will be fixed in the next version!
-
+1. The *Index* shows the index of the ingredient for easier referencing.
+2. The *Expiry Date* of the ingredient.
+3. The *Quantity* of the ingredient.
+4. The *Ingredient Name* of the ingredient.
+5. The *Tags* associated with the ingredient.
 
 <a name="Figure-1-3"></a>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/ingredient_panel_description.png" width="95%" /> <br />
-Figure 1.3: <i>The Ingredient View Panel of ChopChop.</i>
+Figure 1.3: <i>The Ingredient List Panel of ChopChop.</i>
 </div>
+
+When showing the expiry date, ChopChop only displays the earliest expiry date out of all the ingredient *sets* that exist. For example, if you have *500 ml* of milk expiring on the 11th of November and *1.5 l* expiring on the 19th, the expiry date will be shown as the 11th.
+
+Note: if the tags are too long, some graphical glitches might occur. This will be fixed in the next version!
+
+
+<a name="RecipeView"></a>
+### 4.9&ensp;Recipe View
+{:.no_toc}
+
+When clicking on a recipe or [`view`](#ViewRecipeCommand)-ing it, ChopChop will show the full details of the recipe. In this view, you can see the entirety of the recipe:
+1. The *Name* of the recipe
+2. The *Tags* associated with the recipe
+3. The *Ingredients* used by the recipe (along with their quantities)
+4. The *Steps* involved in making the recipe
 
 <a name="Figure-1-4"></a>
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/recipe_display_description.png" width="95%" /> <br />
-Figure 1.4: <i>The Recipe Display Panel of ChopChop.</i>
+<img src="images/ug/recipe_view_description.png" width="95%" /> <br />
+Figure 1.4: <i>The Recipe View Panel of ChopChop.</i>
 </div>
-
-
-
-<a name="RecipeName"></a>
-### 4.9&ensp;Recipe Name
-{:.no_toc}
-ChopChop displays the name of the recipe here.
-
-
-
-<a name="RecipeTags"></a>
-### 4.10&ensp;Recipe Tags
-{:.no_toc}
-ChopChop displays the tags associated with this recipe here.
-
-
-
-<a name="RecipeIngredients"></a>
-### 4.11&ensp;Recipe Ingredients
-{:.no_toc}
-ChopChop displays the ingredients you need in the recipe here. The format of the display is the `Ingredient`, follow by the `(Quantity)`.
-
-
-
-<a name="RecipeSteps"></a>
-### 4.12&ensp;Recipe Steps
-{:.no_toc}
-ChopChop lists down the steps you can take to create the dish here.
-
-
-
-<a name="MenuBar"></a>
-### 4.13&ensp;Menu Bar
-{:.no_toc}
-ChopChop provides two buttons here — `File` and `Help`. Click the `exit` option under `File` to exit ChopChop, and if you want to view this User Guide, you can click the `help` option under `Help`.
 
 
 
