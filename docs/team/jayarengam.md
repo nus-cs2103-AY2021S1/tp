@@ -42,7 +42,6 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added documentation for above implemented features.
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
   * Developer Guide:
     * Added implementation details for Storage
     * Updated Use Cases for new features
