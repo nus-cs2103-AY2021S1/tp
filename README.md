@@ -2,7 +2,7 @@
 
 # TrackIt@NUS
 
-![Ui](docs/images/UG/Ui.png)
+![Ui](docs/images/Ui.png)
 
 TrackIt@NUS is an all-in-one desktop application for NUS students to manage their modules, tasks and lessons in school. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you type fast, TrackIt@NUS can improve your efficiency in managing your tasks and classes over using traditional GUI apps.
 

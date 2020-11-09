@@ -1,5 +1,3 @@
-# TrackIt@NUS - User Guide
-
 ![Logo](images/UG/trackit-logo.png)
 
 By: `Team W13-4` Since: `Aug 2020` License: `MIT`
@@ -7,7 +5,7 @@ By: `Team W13-4` Since: `Aug 2020` License: `MIT`
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Quick Start](#quick-start)
-3. [About](#about)
+3. [Format and Usage](#about)
     * 3.1 [Common Symbols](#common-symbols)
     * 3.2 [Command Format](#command-format)
     * 3.3 [Duplicate Parameters](#duplicate-parameters)
@@ -50,13 +48,12 @@ By: `Team W13-4` Since: `Aug 2020` License: `MIT`
 
 Welcome to the **TrackIt@NUS** user-guide!
 
-Do you struggle having to use multiple apps to balance your school life? Do you waste precious time just trying
- to find the information you need in the many apps you use? Well, look no further. Our application, **TrackIt@NUS** is an
-  all-in-one solution for a busy student like you to manage and organize your life, helping you to *Track Less, and
-   Live More.*
+Are you struggling to use many different applications to manage your school work?
+Having to toggle between NUSMODS, LumiNUS and your own to-do list to find your school work can be a real hassle. If you happen to be feel this way, then you are in luck! 
+**TrackIt@NUS** is a all-in-one desktop app for you to manage your modules, lessons, tasks, and contacts. 
+It boasts a beautiful *upcoming view* and *module view* so that busy student like you to to easily organize your school life, helping you to *Track Less, and Live More.*
 
-TrackIt@NUS is a desktop app for managing modules, lessons, tasks, and contacts, tailored to the needs of NUS students and
-  optimized for use via a [**Command Line Interface (CLI)**](#glossary) while still having the benefits of a
+**TrackIT@NUS** is optimized for use via a [**Command Line Interface (CLI)**](#glossary) while still having the benefits of a
    [**Graphical User Interface (GUI)**](#glossary). If you can type fast, you will be able to manage your academic
     and social commitments much more efficiently than by using other traditional GUI apps.
 
@@ -74,15 +71,16 @@ What are you waiting for? Head on to [Section 2, **Quick Start**](#quick-start) 
  are now on the main page of TrackIt@NUS.
 Note how the app contains some sample data. <br><br>
 
-![Ui](images/UG/Ui.png)
+![Ui](images/Ui.png)
 <br> _Figure 1 - GUI of TrackIt@NUS_
 
-At the bottom of the screen, type your command in the Command Box and press `Enter` on your keyboard to execute it
-. Try typing `help` and pressing `Enter` to navigate to the Help Tab!<br>
+Before you start using the TrackIt@NUS, you can first get familiarised with the app's [Format and Usage](#about), as well as it's [Application Layout](#layout).
+Once you are ready to type your first command, you can type in the Command Box at the bottom of the screen and press `Enter` on your keyboard to execute it.
+Try typing `help` and pressing `Enter` to navigate to the Help Tab!<br>
  
 For details on the commands you can use, please refer to [Section 5 - Features](#features).
 
-## 3. About <a name="about"></a>
+## 3. Format and Usage <a name="about"></a>
 
 There are many things you can use TrackIt@NUS for. We have structured this document so it is easy for you to find
  what you need. In the [Common Symbols](#common-symbols), [Command Format](#command-format), and [Commands and their
@@ -102,12 +100,13 @@ There are many things you can use TrackIt@NUS for. We have structured this docum
 Since **TrackIt@NUS** is a *CLI* application, knowing how to use commands is important. The following section shows you how to interpret and use commands in the app. All commands follow similar formats as outlined below and examples will be provided to help you understand their usage. Examples of commands and their formats will be written in `code-blocks`.
 
 The table below explains some important technical terms. An example will be provided to help you visualize these terms.
+
 | **Technical Term** | **Explanation** |
-| ------------------ | --------------- |
+| --------- | --------------- |
 | Command type | Depending on whether you are dealing with a Module, Task, Lesson or Contact, the type is `M`, `T`, `L` or `C` respectively. |
 | Command word | The first word of the command. It determines the action the app should carry out. |
 | Parameter | The word or group of words following the command word. They are values given to a command to perform the specified action. |
-| Prefix | 	The word that at the start of a parameter. It distinguishes one parameter from another.|
+| Prefix | 	The word that at the start of a parameter. It distinguishes one parameter from another. |
 
 <br>Example: `M add m/CODE n/MODULE_NAME`<br>
 <br>Breakdown:<br>
@@ -134,7 +133,7 @@ You can specify the same parameter more than once in each command. Depending on 
  
  | **Parameter** | **Explanation** | **Example** |
  | -------------| ---------------- | ----------- |
- |Could be used multiple times| **All occurrences** will be used when executing the command|In the `add contact`command, you can create a contact with **multiple tags.**<br><br>You can input multiple tags by chaining them:<br>`t/CS1101S t/TA`<br><br>This will give a contact these tags.|
+ |Could be used multiple times| **All occurrences** will be used when executing the command|In the `add contact`command, you can create a contact with **multiple tags.**<br><br>You can input multiple tags by chaining them:<br>`t/CS1101S t/TA`<br><br>This will give a contact these tags. |
  | Can only be used once | Only the **last occurrence** will be used when executing the command. | On executing `M add m/CS2103T n/Favourite Mod n/Software Engineering`, you will create a module with the name `Software Engineering`, and the name `SE` will be ignored. | 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -145,13 +144,20 @@ This section gives you a **brief overview** of the **layout** of TrackIt@NUS, an
 ![Layout](images/UG/Layout.png)
 _Figure 2 - Layout of TrackIt@NUS_
 
-TrackIt@NUS is mainly divided into **four** carefully designed `tabs`:
+TrackIT@NUS's layout includes **4 main section**:
+*  `Side Panel` : This is where you can easily navigate between different tabs which will be displayed on `Current View`.
+*  `Current View` : This is where you see the display based on the current tab of the `Side Panel`.
+*  `Command Box` : This is where you type in your commands.
+*  `Result Display` : This is where the result message of your commands will show.
+
+Within the `Side Panel`, there are **4 carefully designed `tabs`** :
 * The `Upcoming tab` 
 * The `Contacts tab`
 * The various `Module tabs` 
 * The `Help tab`
 
-The `Side panel` on the left section allows you to **easily navigate** between the `tabs`. When you switch to a different `tab`, the new `tab` will be highlighted in **blue** in the `Side panel`. To run a command, simply type a command in the `Command box` and TrackIt@NUS will inform you about the outcome in the `Result display`.
+The `Side panel` on the left section allows you to **easily navigate** between the `tabs`. When you switch to a different `tab`, the new `tab` will be highlighted in **blue** in the `Side panel`.
+The `Current Display` will show the display of the new `tab`.
 
 ### 4.1 Upcoming Tab <a name="upcomingtab"></a>
 Built with a **clean UI**, the `Upcoming tab` is what you will see when you first run TrackIt@NUS! You get to see an **overview** of all your **upcoming lessons** for the week, as well as the **list of tasks that are due soon**. With the `Upcoming tab`, you don't have to worry about missing any lessons or deadlines anymore!
@@ -162,7 +168,7 @@ _Figure 3 - Layout of Upcoming Tab_
 In the `Upcoming tab`, there are **three** main `sections` arranged in **chronological order**:
 1. The `Overdue section` is colored &#x1F534; to **warn** you about the **incomplete tasks** that are **past their deadline**. These tasks will remain there until you delete them, so remember to complete them as soon as possible!
 
-2. The next seven `Daily sections` shows your daily **Lessons** and **Tasks** for the **next 7 days**. This is where you can start planning your schedule for the day.
+2. The next 7 `Daily sections` shows your daily **Lessons** and **Tasks** for the **next 7 days**. This is where you can start planning your schedule for the day.
 
 3. The `Future section` shows the **Tasks** that are only due **at least 7 days later**, so these are tasks that you don't have to worry too much about for now.
 
@@ -212,10 +218,11 @@ Module is the first thing you need to create when you start using the app, becau
 
 ### 5.1.1 Module Command Parameters <a name="module-command-parameter"></a>
 Here are the parameters used in the Module feature:
+
 | **Parameter** | **Description** | **Example** |
-| --------------| ----------------| ----------- |
-| `CODE`| Refers to the unique code given to the module. | `CS2103T` |
-| `NAME`| Refers to the module name. | `Software Engineering` |
+| -------------- | ---------------- | ----------- |
+| `CODE` | Refers to the unique code given to the module. | `CS2103T` |
+| `NAME` | Refers to the module name. | `Software Engineering` |
 
 ### 5.1.2 Add a Module `M add` <a name="module-add"></a>
 
@@ -287,9 +294,9 @@ Lectures, tutorials, labs, lectures, lectures, recitations, lectures... Sometime
 
 While TrackIt@NUS can't do much to make those lessons disappear, it can, at the very least, make sure you won't miss any of them!
 
-To view all your lessons (classes) for the next week, simply click on the upcoming tab, which sorts your lessons by day, and you will see something like the screenshot below, with lessons in the red outline.
+To view all your lessons (classes) for the next week, simply click on the [Upcoming Tab](#upcomingtab), which sorts your lessons by day, and you will see something like the screenshot below, with lessons in the red outline.
 
-To view the lessons of a specific module, click on any of the module tabs and you will see something like the screenshot below, with lessons in the red outline.
+To view the lessons of a specific module, click on any of the [Module Tabs](#moduletabs) and you will see something like the screenshot below, with lessons in the red outline.
 
 :information_source: As of v1.4, only weekly lessons are supported. Biweekly and monthly lessons may be added in subsequent versions.
 
@@ -297,10 +304,11 @@ You can also perform commands on the lessons as explained below.
 
 ### 5.2.1 Lesson Command Parameters <a name="lesson-command-parameters"></a>
 Here are the parameters used in the Module feature:
+
 | **Parameter** | **Description** | **Example** |
 | --------------| ----------------| ----------- |
 | `INDEX` | Indicates the position of an item in a list. The specified `INDEX` must be **within the range** of the number of items in the list. | `1` refers to the first item in a list |
-| `CODE`| Refers to the unique code given to the module.<br><br>You can personalise this and give it your own code. However, we recommend you use the module’s official code. | `CS2103T` |
+| `CODE` | Refers to the unique code given to the module.<br><br>You can personalise this and give it your own code. However, we recommend you use the module’s official code. | `CS2103T` |
 | `TYPE` | Refers to the type of lesson.| `lecture`/`lec` - lecture<br>`tutorial`/`tut` - tutorial<br>`laboratory`/`lab` - laboratory<br>`recitation`/`rec` - recitation<br>`sectional`/`sec` - sectional |
 | `DATE` | Indicates the weekly timing of a lesson. Must be in `ddd H:mm-H:mm` and 24-hour time format. | `mon 12:00-14:00` |
 | `ADDRESS` | Indicates where a lesson is held.<br> :information_source: unfortunately, Zoom links are still not supported. Refer to [FAQ](#faq) for more details. | `COM1-0215` |
@@ -341,6 +349,7 @@ Format: `L edit INDEX [m/CODE] [t/TYPE] [d/DATE] [a/ADDRESS]`
 however, at least one parameter must be provided (i.e. `L edit 1` is not a valid command).
 
 Example: To change the lesson timing to 5pm-6pm, follow these instructions. 
+
 | **Parameter** | **Example** |
 |---------------|-|
 | `INDEX` | `1` |
@@ -376,10 +385,10 @@ _Figure 12 - Example outcome of deleting a lesson_
 ## 5.3 Task <a name="task"></a> 
 
 Managing all your tasks can be so stressful! TrackIt@NUS helps alleviate that stress with our built-in Task Manager
-:information_source: To view all your tasks, simply click on the upcoming tab as shown below.
+:information_source: To view all your tasks, simply click on the [Upcoming Tab](#upcomingtab) as shown below.
 
 
-This sorts all your tasks by date. To view module-specific tasks, click on any of the module tabs as shown below.
+This sorts all your tasks by date. To view module-specific tasks, click on any of the [Module Tabs](#moduletabs) as shown below.
 
 
 :information_source: All module-specific tasks are shown in the upcoming tab, but not vice versa.
@@ -388,6 +397,7 @@ You can also perform commands on the tasks as explained below.
 
 ### 5.3.1 Task Command Parameters <a name="task-command-parameters"></a>
 Here are the parameters used in the Task feature:
+
 | **Parameter** | **Description** | **Example** |
 | --------------| ----------------| ----------- |
 | `INDEX` | Indicates the position of an item in a list. The specified `INDEX` must be **within the range** of the number of items in the list. | `1` - refers to the first item in a list |
@@ -404,6 +414,7 @@ After a day of school you realise that you now have a few more tasks to complete
 Format: `T add n/NAME d/DATE [m/CODE] [r/REMARK]`
 
 Example: To add a task "MA1101R Assignment 1 due on 1 November 2020, covering Chapters 1-3" into TrackIt@NUS, follow these instructions.
+
 | **Parameter** | **Example** |
 | ------------- | - |
 | `NAME`| `Assignment 1` |
@@ -482,6 +493,7 @@ To view all contacts from all modules, as well as any contacts that are not asso
 
 ### 5.4.1 Contact Command Parameters <a name="contact-command-parameters"></a>
 Here are the parameters used in the Contact feature:
+
 | **Parameter** | **Description** | **Example** |
 | --------------| ----------------| ----------- |
 | `INDEX` | Indicates the position of an item in a list. The specified `INDEX` must be **within the range** of the number of items in the list. | `1` - refers to the first item in a list |
@@ -499,6 +511,7 @@ Format: `C add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]...`
 * Duplicate email addresses (2 or more contacts with the same email address) can exist within TrackIt@NUS, so please always ensure that you are entering the correct email address. 
 
 Examples: To add a new contact John Doe, your MA1101R TA, follow these instructions.
+
 | **Parameter** | **Example** |
 | ------------- | - |
 | `NAME`| `John Doe` |
@@ -526,6 +539,7 @@ however, at least one parameter must be provided (i.e. `C edit 1` is not a valid
 
 
 Example: To change John Doe's name to Johnny Depp, follow these instructions.
+
 | **Parameter** | **Example** |
 |---------------| - |
 | `INDEX` | `2` |
@@ -600,6 +614,7 @@ A: It is meant for you to add `contacts` that **may not be taking** the same mod
 
 
 ## 7. Glossary <a name="glossary"></a>
+
 | **Term** | **Explanation** |
 | -- | ----- |
 | Command Line Interface (CLI) | This refers to a **text-based** user interface to view and manage computer files. Click [here](https://en.wikipedia.org/wiki/Command-line_interface) for more information!|
@@ -615,24 +630,24 @@ A: It is meant for you to add `contacts` that **may not be taking** the same mod
 
 | Command | Format | Example |
 | -- | -------- | -------- |
-| **add** | `M add m/MODULE_CODE n/NAME` | `M add m/CS1231S n/Discrete Structures` |
-| **edit**| `M edit MODULE_CODE [m/NEW_MODULE_CODE] [n/NAME]` | `M edit CS1231S m/CS1231` |
-| **delete** | `M delete MODULE_CODE` | `M CS1231` |
+| **add** | `M add m/CODE n/NAME` | `M add m/CS1231S n/Discrete Structures` |
+| **edit**| `M edit CODE [m/NEW_CODE] [n/NAME]` | `M edit CS1231S m/CS1231` |
+| **delete** | `M delete CODE` | `M delete CS1231` |
 
 ### Lesson <a name="lesson-commands"></a>
 
 | Command | Format | Example |
 | -- | ------ | ------ |
-| **add** | `L add m/MODULE_CODE t/TYPE d/DATE a/ADDRESS` | `L add m/CS2103T t/tutorial d/Wed 14:00-15:00 a/COM1` |
-| **edit** | `L edit INDEX [m/MODULE_CODE] [t/TYPE] [d/DATE] [a/ADDRESS]` | `L edit 1 a/LT17` |
+| **add** | `L add m/CODE t/TYPE d/DATE a/ADDRESS` | `L add m/CS2103T t/tutorial d/Wed 14:00-15:00 a/COM1` |
+| **edit** | `L edit INDEX [m/CODE] [t/TYPE] [d/DATE] [a/ADDRESS]` | `L edit 1 a/LT17` |
 | **delete** | `L delete INDEX` | `L delete 1` |
 
 ### Task <a name="task-commands"></a>
 
 | Command | Format | Example |
 | -- | ------ | ------ |
-| **add** | `T add n/NAME d/DATE [m/MODULE_CODE] [r/REMARK]` | `T add n/Assignment 1 d/20/11/2020 r/Focus on Chapters 1-3` |
-| **edit** | `T edit INDEX [n/NAME] [d/DATE] [m/MODULE_CODE] [r/REMARK]` | `T edit 1 n/Finish Assignment` |
+| **add** | `T add n/NAME d/DATE [m/CODE] [r/REMARK]` | `T add n/Assignment 1 d/20/11/2020 r/Focus on Chapters 1-3` |
+| **edit** | `T edit INDEX [n/NAME] [d/DATE] [m/CODE] [r/REMARK]` | `T edit 1 n/Finish Assignment` |
 | **delete** | `T delete INDEX` | `T delete 1` |
 
 ### Contact <a name="contact-commands"></a>

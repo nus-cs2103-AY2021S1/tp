@@ -1,4 +1,4 @@
-# TrackIt@NUS - Developer Guide
+![Logo](images/UG/trackit-logo.png)
 
 By: `Team W13-4` Since: `Aug 2020` License: `MIT`
 
@@ -6,28 +6,37 @@ By: `Team W13-4` Since: `Aug 2020` License: `MIT`
 1. [**Introduction**](#introduction)
 2. [**Setting up**](#setup)
 3. [**Design**](#design)
-    1. [Architecture](#architecture)
-    2. [UI Component](#ui)
-        1. [Upcoming Tab](#upcoming-tab)
-        2. [Module Tab](#module-tab)
-        3. [Contact Tab](#contact-tab)
-    3. [Logic Component](#logic)
-    4. [Model Component](#model)
-    5. [Storage Component](#storage)
-    6. [Common Classes](#common)
+    * 3.1. [Architecture](#architecture)
+    * 3.2. [UI Component](#ui)
+        * 3.2.1. [Upcoming Tab](#upcoming-tab)
+        * 3.2.2. [Module Tab](#module-tab)
+    * 3.3. [Logic Component](#logic)
+    * 3.4. [Model Component](#model)
+    * 3.5. [Storage Component](#storage)
+    * 3.6. [Common Classes](#common)
 4. [**Implementation**](#implementation)
-    1. [Overview](#overview)
-        1. [Code Design Considerations](#code-des-cons)
-        2. [Feature Design Considerations](#feat-des-cons)
-    2. [Module Manager](#module-manager)
-    3. [Lesson Manager](#lesson-manager)
-    4. [Task Manager](#task-manager)
-    5. [Contact Manager](#contact-manager)
-    6. [Logging](#logging)
-    7. [Configuration](#config)
+    * 4.1. [Overview](#overview)
+        * 4.1.1. [Code Design Considerations](#code-des-cons)
+        * 4.1.2. [Feature Design Considerations](#feat-des-cons)
+    * 4.2. [Module Manager](#module-manager)
+        * 4.2.1 [Current Implementation](#module-manager-implementation)
+    * 4.3. [Lesson Manager](#lesson-manager)
+        * 4.3.1 [Rationale](#lesson-manager-rationale)
+        * 4.3.2 [Current Implementation](#lesson-manager-implementation)
+    * 4.4. [Task Manager](#task-manager)
+        * 4.4.1 [Rationale](#task-manager-rationale)
+        * 4.4.2 [Current Implementation](#task-manager-implementation)
+        * 4.4.3 [Design Considerations](#task-manager-design)
+    * 4.5. [Contact Manager](#contact-manager)
+        * 4.5.1 [Rationale](#contact-manager-rationale)
+        * 4.5.2 [Current Implementation](#contact-manager-implementation)
+        * 4.5.3 [Design Considerations](#cotnact-manager-design)
+    * 4.6. [Logging](#logging)
+        * 4.6.1 [Loggin Levels](#logging-levels)
+    * 4.7. [Configuration](#config)
 5. [**Documentation**](#documentation)
 6. [**Testing**](#testing)
-7. [**Dev Ops**](#devops)<br>
+7. [**Dev Ops**](#devops)<br><br>
 [**Appendix A: Product Scope**](#appen-a) <br>
 [**Appendix B: User Stories**](#appen-b) <br>
 [**Appendix C: Use Cases**](#appen-c) <br>
@@ -37,17 +46,17 @@ By: `Team W13-4` Since: `Aug 2020` License: `MIT`
 [**Appendix G: Effort**](#appen-g) <br>
 --------------------------------------------------------------------------------------------------------------------
 
-## **Introduction** <a name="introduction"></a>
+## **1. Introduction** <a name="introduction"></a>
 
 **TrackIt@NUS** is a desktop application for managing modules, lessons, tasks, and contacts, tailored to the needs of
  NUS students. It focuses on the _Command Line Interface (CLI)_ while providing users with a simple and clean
-  _Graphical User Interface (GUI)_. The main interaction with **TrackIt@NUS** will be done via commands.
+  _Graphical User Interface (GUI)_. The main iteraction with **TrackIt@NUS** will be done via commands.
 
 **TrackIt@NUS** is an all-in-one solution for busy NUS students. The information that can be managed by **TrackIt@NUS** includes:
 
 * Modules
 * Lessons (for each module)
-* Tasks 
+* Tasks
 * Contacts
 
 By combining these 4 core functions into a single app, we are able to deliver a unique user experience tailored to
@@ -69,22 +78,22 @@ Any help on the development of TrackIt@NUS would be greatly appreciated, and the
 The purpose of this Developer Guide is to help you understand the design and implementation of **TrackIt@NUS** so
  that you can get started on your contributions to the app.
 
-## **Setting up, getting started** <a name="setup"></a>
+## **2. Setting up, getting started** <a name="setup"></a>
 
 Refer to the guide [here](./SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design** <a name="design"></a>
+## **3. Design** <a name="design"></a>
 
 In this section, you will learn about the general design and structure TrackIt@NUS. Subsequently, this section will
  also describe and explain how each component in TrackIt@NUS works individually. TrackIt@NUS is coded using the
   [_Object Oriented Programming_](#oop) paradigm and it follows the [_Facade Pattern_](#facade-p) and [_Command
    Pattern_](#command-p) in software design.
 
-### **Architecture** <a name="architecture"></a>
+### **3.1 Architecture** <a name="architecture"></a>
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+<img src="images/ArchitectureDiagram.png" width="450"/>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -134,43 +143,42 @@ Another *Sequence Diagram* below shows how the components interact with each oth
 The sections below give more details of each component.
 
 
-### **UI Component** <a name="ui"></a>
+### **3.2 UI Component** <a name="ui"></a>
 
 The Class Diagram below shows how the `UI` components and sections interact with one another.
 
 ![UiClassDiagram.png](images/UiClassDiagram.png)
+_Figure - Structure of the `Ui` component_
 
-The UI consists of a `MainWindow` that is made up of parts e.g. `SidePanel`, `StatusBarFooter`, `CommandBox
-` etc. All these, including the MainWindow, inherit from the abstract UiPart class. The UI also consist of 4 main
- components: `UpcomingTab`, `ModuleTab`, `ContactTab` and `HelpTab`. Each of these components consist of
-  several other classes as well. More details of this will be provided in the [sub-sections](#upcoming-tab).
+The UI consists of a `MainWindow` that is made up of parts such as `SidePanel`, `StatusBarFooter`, `CommandBox
+` as shown in the *Class Diagram* above. All these, including the MainWindow, inherit from the abstract `UiPart` class. The UI also consist of 4 main
+ components:
+  1. The `UpcomingTab`
+  2. The various `ModuleTab`
+  3. The `ContactTab`
+  4. The `HelpTab` 
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching .fxml files that
- are in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in
-  `MainWindow.fxml`.
+Each of these components may also consist of smaller parts known as cards. A card is a UI component that contains information that is shown to the user. e.g. A `TaskCard` will contain information about a particular task. More details can be found in the respective [sub-sections](#upcoming-tab).
 
-The UI component,
+The `UI` component uses **[JavaFx](#javafx)** UI framework. The layout of these UI parts are defined in matching `.fxml`  files that are in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in `MainWindow.fxml`.
+
+Each of these tabs consists of one or more List Panels and its respective Card. In each List Panel, the `Graphics` component of each of the List Cells is defined by the respective Card.
+
+The UI component:
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-#### **Upcoming Tab** <a name="upcoming-tab"></a>
+#### **3.2.1. Upcoming Tab** <a name="upcoming-tab"></a>
 
 The *Class Diagram* below shows how the components in the `Upcoming Tab` interact with each other.
 ![UiUpcomingTabClassDiagram](images/UiUpcomingTabClassDiagram.png)
 
 :information_source: All the `ListPanels` and `Cards` inherit from the abstract `UiPart` class.
 
-The UI contains 4 types of `Tabs`:
-1. The `Upcoming Tab`
-2. `Module Tabs`
-3. The `Contacts Tab`
-4. The `Help Tab`
+##### Responsibilities**
+The `Upcoming Tab` consists of a list of an `UpcomingSectionCard` for the Overdue section, 7 `UpcomingSectionDayCards` to represent each day of the next week, and finally another `UpcomingSectionCard` for the Future section. Each `UpcomingSectionCard` comprises of a `TaskPanel` and each `UpcomingSectionDayCard` comprises of a `TaskPanel` and a `LessonPanel`.
 
-Each of these tabs consists of one or more List Panels and its respective Card. In each List Panel, the `Graphics
-` component of each of the List Cells is defined by the respective Card.
-The `Contacts Tab` and `Help Tab` follow the same structure as the *Class Diagram* above.
-
-#### **Module Tab** <a name="module-tab"></a>
+#### **3.2.2. Module Tab** <a name="module-tab"></a>
 
 ![UiModuleTabClassDiagram.png](images/UiModuleTabClassDiagram.png)
 
@@ -180,12 +188,10 @@ This module tab consist of three panels (`LessonListPanel`, `TaskListPanel`, `Co
  corresponding cards (`LessonCard`, `TaskCard`, `ContactCard`). In all of the panels, the graphics of each of the
   `ListCell` is defined by the respective Cards.
   
-  The `ContactTab` and `HelpTab` both follow a similar structure as the above class diagram, except that they each
-   consist of 1 single panel.
-   
-#### **Contact Tab** <a name="contact-tab"></a>
+  The `ContactTab` and `HelpTab` both follow a **similar structure** as the above class diagram, except that they each
+   consist of **1 single panel instead of 3**.
 
-### **Logic Component** <a name="logic"></a>
+### **3.3. Logic Component** <a name="logic"></a>
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -206,7 +212,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 ` should end at the destroy marker (X) but due to a limitation in PlantUML, the lifeline continues to the end of the diagram
 </div>
 
-### **Model Component** <a name="model"></a>
+### **3.4. Model Component** <a name="model"></a>
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -224,7 +230,7 @@ The `Model`,
 * These lists can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change
 * Does not depend on any of the other three components.
 
-### **Storage Component** <a name="storage"></a>
+### **3.5. Storage Component** <a name="storage"></a>
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -234,19 +240,19 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the app's data in json format and read it back.
 
-### **Common Classes** <a name="common"></a>
+### **3.6. Common Classes** <a name="common"></a>
 
 The `commons` package contains classes used by multiple other components in the `trackitnus.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation** <a name="implementation"></a>
+## **4. Implementation** <a name="implementation"></a>
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### **Overview** <a name="overview"></a>
+### **4.1. Overview** <a name="overview"></a>
 
-#### **Code Design Considerations** <a name="code-des-cons"></a>
+#### **4.1.1. Code Design Considerations** <a name="code-des-cons"></a>
 ----
 **All commands in TrackIt@NUS follow a similar execution flow.**
 
@@ -262,15 +268,18 @@ In addition, this will make our code base much more organised, and hence make it
  learn and contribute.
  
 Another design challenge was how to manage our predicates. TrackIt@NUS makes use of many different predicates to
- allow users to view specific tasks, lessons, and contacts. For example, users can view module-specific tasks
+ allow users to view specific tasks, lessons, and contacts. For exmaple, users can view module-specific tasks
  , contacts, and lessons. They can also view overdue tasks and future tasks (tasks where the deadline is more than a
   week away). To manage all these predicates, we had 2 options:
+
 
 |  | Pros | Cons |
 | ---- | ----- | ------- |
 | **Option 1 (current choice):** Extract each the predicates into their own unique class | Increases code maintainability and testability. Now as a developer you exactly where to find each predicate. Makes use of the DRY principle and improves abstraction because you no longer need to interact with the actual lambda or test function, simply call the predicate. | Makes code more verbose as each predicate can simply be declared using a single lambda. |
 | **Option2:** Declare each predicate using a single lambda in the ModelManager class. No predicate will have a class. | Makes code shorter and simpler to read. No need to create a class when you can simply declare a predicate with a lambda. | Need to duplicate such code when using ModelStubs for testing. This will violate the DRY principle. |
-----
+
+--------
+
 **All classes of Logic & Model at the same level will have similar structures**
 
 ![ContactCodeTaskLessonClassDiagram](images/ContactCodeTaskLessonClassDiagram.png)
@@ -328,7 +337,7 @@ the Logic should only receive events and control the Model and the Model should 
 * And design rules from the module's [website](https://nus-cs2103-ay2021s1.github.io/website/se-book-adapted/chapters/codeQuality.html#code-quality)
 
 ----
-#### **Feature Design Considerations** <a name="feat-des-cons"></a>
+#### **4.1.2. Feature Design Considerations** <a name="feat-des-cons"></a>
 
 The entire app follows a simple principle: the app should behave in the way most normal users expect it to behave. 
 
@@ -420,7 +429,9 @@ We have put in a lot of effort to make the command syntax unified, means that al
 This will relieve our users from the mental burden of having to remember different syntax for different commands. Although there are only 14 commands to get used to, having to remember all 14 of them will be a huge barrier for our new potential users and also, it will put an unnecessary mental burden on the users of our app.
 
 ----
+
 **Other small feature considerations**
+
 |  | Rationale |
 | ---- | ----- |
 | No limit on length of phone number | We have looked at Android's and iOS's contact app and no app imposes limits on the length of phone number |
@@ -428,7 +439,7 @@ This will relieve our users from the mental burden of having to remember differe
 | Minimal restriction on lessons' time | We believe that the app should provide users full control over their schedule (for example overlapping lesson time) to cater to a wide range of different users' needs. Moreover, it's the user's own benefits to input maintain a correct lesson schedule |
 | Edit/Delete modules by code | Editing/Deleting modules is an action that users will rarely do (maybe a few times every semester). We believe the UI shouldn't be cluttered by some info that users will only need once every semester, so we have decided to omit the Index for modules to make the UI cleaner | 
 
-### **Module Manager** <a name="module-manager"></a>
+### 4.2 **Module Manager** <a name="module-manager"></a>
 
 TrackIt@NUS allows users to keep track of all modules that he/she is taking. Module (or more exactly module's code) is
  the link between Lesson, Task and Contact. The following diagram illustrates their relationship:
@@ -446,7 +457,7 @@ TrackIt@NUS allows users to keep track of all modules that he/she is taking. Mod
  * `M delete CS2030` to delete the CS2030 module
  
 
-#### Current Implementation
+#### 4.2.1 Current Implementation
 
 In this section, we will outline the key operations of the Module Manager, namely:
 * `AddModuleCommand`
@@ -532,7 +543,7 @@ The following Sequence Diagram will illustrate the above steps in greater detail
 
 ![Edit Module Sequence Diagram](images/EditModuleSequenceDiagram.png)
 
-### **Lesson Manager** <a name="lesson-manager"></a>
+### **4.3. Lesson Manager** <a name="lesson-manager"></a>
 
 TrackIt@NUS allows users to keep track of their weekly lessons. The lesson manager is one of TrackIt@NUS's basic components.
 
@@ -545,16 +556,16 @@ The common commands for the lesson manager include:
 TrackIt@NUS also gives users a better understanding of their lessons by allowing users to view lessons in certain 
 categories. Users can view lessons specific to a module and lessons on a specific day.
 
- #### Rationale
+ #### 4.3.1 Rationale <a name="lesson-manager-rationale"></a>
  
- Lessons are an integral part of any student's day-to-day life. Hence, TrackIt@NUS includes a lesson manager for students to 
+Lessons are an integral part of any student's day-to-day life. Hence, TrackIt@NUS includes a lesson manager for students to 
  keep track of their lessons. Each lesson must belong to a unique module. When users click into a specific module tab, 
  they can see the lessons belonging to that module.
    
 :warning: The module must exist (i.e. there must be a module with the specified `CODE`), otherwise, the `add` and
  `edit` commands will not work.
  
- #### Current Implementation
+ #### 4.3.2 Current Implementation <a name="lesson-manager-implementation"></a>
  
  In this section, we will outline the key operations of the Lesson Manager, namely:
  * `AddLessonCommand`
@@ -621,7 +632,7 @@ categories. Users can view lessons specific to a module and lessons on a specifi
  
  ![Get Module Lessons Sequence Diagram](images/GetModuleLessonsSequenceDiagram.png)
 
-### **Task Manager** <a name="task-manager"></a>
+### 4.4 **Task Manager** <a name="task-manager"></a>
 
 TrackIt@NUS allows users to keep track of his/her tasks. The task manager is one of TrackIt@NUS's basic components.
 
@@ -635,7 +646,7 @@ TrackIt@NUS also gives users a better understanding of their tasks by allowing u
  categories. Users can view overdue tasks, tasks on a specific day, future tasks (tasks that have deadlines more than
   a week away), and specific module tasks.
  
- #### Rationale
+ #### 4.4.1 Rationale <a name="task-manager-rationale"><a/>
  
  Tasks are an integral part of any student's day-to-day life. Hence, TrackIt@NUS includes a task manager for students to 
  keep track of all their tasks. To better support NUS students, a task can either belong to a module or not. When
@@ -650,7 +661,7 @@ TrackIt@NUS also gives users a better understanding of their tasks by allowing u
  
 :bulb: To remove a task from a module, simply type `T edit INDEX m/` (use the `m/` prefix but leave the `CODE` parameter empty).
 
-#### Current Implementation
+#### 4.4.2 Current Implementation <a name="task-manager-implementation"><a/>
 
 In this section, we will outline the key operations of the Task Manager, namely:
 * `AddTaskCommand`
@@ -720,7 +731,7 @@ This is the sequence diagram of `getModuleTasks`.
 `getOverdueTasks`, `getDayUpcomingTasks`, and `getFutureTasks` are all implemented in very similar ways. In fact, the
  only differences are the predicates used.
 
-#### Design Considerations
+#### 4.4.3 Design Considerations <a name="task-manager-design"><a/>
 
 As mentioned, a task may or may not belong to a module. In the case it does not, we store the module code as
  null. A task also may or may not have a remark. In the case it does not, we store the remark as the empty
@@ -733,7 +744,7 @@ The original AB3 implementation of edit commands, which would default to the ori
  field was null, would not be sufficient. Hence, we added 2 additional boolean variables - `isRemarkChanged` and
   `isCodeChanged`, to know whether users wanted to remove the existing module code or remark.
  
-### **Contact Manager** <a name="contact-manager"></a>
+### 4.5 **Contact Manager** <a name="contact-manager"></a>
 
 TrackIt@NUS allows users to manage their contacts. The contact manager is one of TrackIt@NUS's basic components.
 
@@ -745,7 +756,7 @@ The common commands for the contact manager include:
  
 We will also elaborate on one more key operation that is used in the module tabs, namely `getModuleContacts`.
  
- #### Rationale
+ #### 4.5.1 Rationale <a name="contact-manager-rationale"></a>
  
  Managing contacts is an essential part of any student's life. Hence, TrackIt@NUS includes a contact manager for students to 
  keep track of all their contacts. To better support NUS students, a contact can hold any number (can be 0) of tags. If a tag matches 
@@ -753,7 +764,7 @@ We will also elaborate on one more key operation that is used in the module tabs
     
 :bulb: To remove all tags from a contact, simply type `C edit INDEX t/` (use the `t/` prefix but do not provide any tag).
 
-#### Current Implementation
+#### 4.5.2 Current Implementation <a name="contact-manager-implementation"></a>
 
 In this section, we will outline the key operations of the Contact Manager, namely:
 * `AddContactCommand`
@@ -818,7 +829,7 @@ This is the sequence diagram of `getModuleContacts`.
 
 ![Get Module Contacts Sequence Diagram](images/GetModuleContactsSequenceDiagram.png)
 
-#### Design Considerations
+#### 4.5.2 Design Considerations <a name="contact-manager-design"></a>
 
 A number of fields in a contact (namely phone number and e-mail address) are optional. In the case they are not specified, 
  we store them as null. Similar to tasks, we wanted users to be able to remove any optional field simply by 
@@ -830,7 +841,7 @@ The original AB3 implementation of edit commands, which would default to the ori
  field was null, would not be sufficient. Hence, we added 2 additional boolean variables - `isPhoneChanged` and 
   `isEmailChanged`, to know whether users wanted to remove the existing phone number and/or e-mail address.
 
-### **Logging** <a name="logging"></a>
+### 4.6 **Logging** <a name="logging"></a>
 
 * We are using `java.util.logging` package for logging.
 * The `LogsCenter` class is used to manage the logging levels and logging destinations
@@ -840,28 +851,28 @@ The original AB3 implementation of edit commands, which would default to the ori
  [Configuration](#config) for more info)
 * When choosing a level for a log message, follow the conventions stated below
 
-#### Logging Levels
+#### 4.6.1 Logging Levels <a name="logging-levels"></a>
 
 * `SEVERE`: A critical problem detected which may cause the termination of the application
 * `WARNING`: Can continue, but with caution
 * `INFO`: Information showing the noteworthy actions by the App
 * `FINE`: Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size
 
-### **Configuration** <a name="config"></a>
+### **4.7. Configuration** <a name="config"></a>
 
 Certain properties of the application can be controlled (e.g user preferences file location, logging level) through the configuration file (default: `config.json`).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation** <a name="documentation"></a>
+## **5. Documentation** <a name="documentation"></a>
 
 Refer to the guide [here](./Documentation.md)
 
-## **Testing** <a name="testing"></a>
+## **6. Testing** <a name="testing"></a>
 
 Refer to the guide [here](./Testing.md)
 
-## **Dev Ops** <a name="devops"></a>
+## **7. Dev Ops** <a name="devops"></a>
 
 Refer to the guide [here](./DevOps.md)
 
@@ -893,41 +904,543 @@ Refer to the guide [here](./DevOps.md)
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                                                   | So that I can…​                                                        |
-| -------- | -------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | student              | have all modules' important dates in one place                         | never miss any event                                                   |
-| `* * *`  | student              | have information (name, description, time) about any important dates   | always know what to prepare                                            |
-| `* * *`  | student              | have all the tutorial/lab details (Zoom link, time) in one place       | easily find them when I need it                                        |
-| `* * *`  | forgetful student    | find the grading structure of a module                                 | better revise for each assignment / mid-term / exam                    |
-| `* *`    | student              | have all the module descriptions in one place                          | read them if I need to                                                 |
-| `*`      | struggling student   | access the contact information of my TA/Prof                           | ask question or schedule a consultation                                |
+| -------- | -------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `* * *`  | student              | get an overview of the upcoming tasks I have                           | plan my schedule for the day                                      |
+| `* * *`  | 'last-minute' student | have my tasks sorted in order of deadlines                            | prioritise which task to do first to not miss any deadlines       |
+| `* * *`  | student              | get the timings of my upcoming lessons                                 | avoid missing or coming late for my lessons                       |
+| `* * *`  | student              | get the timings of my upcoming lessons                                 | remind myself to complete the relevant tasks and necessary revision before lesson   |
+| `* * *`  | hardworking student  | track pending tasks of a specific module                               | plan the things to do while studying for that module              |
+| `* * *`  | student              | view the lessons I have for a specific module                          | make the necessary preparation and revision for that module       |
+| `* * *`  | lazy student         | include weekly recurring lessons                                       | save the trouble of adding the same lessons every week            |
+| `* * *`  | struggling student   | quickly access the contact information of my TA/Prof                   | easily contact them for help                                      |
+| `* * *`  | careless student     | edit the details of my tasks, modules, lessons and contacts            | rectify mistakes I made                                           |
+| `* * *`  | student              | delete any tasks when they are completed                               | focus better on the tasks that have yet to be completed           |
+| `* * *`  | student              | delete any contacts                                                    | no longer have details of contacts that I no longer need          |
+| `* * *`  | student              | delete any modules after I am done reading them                        | remove the relevant tasks and lessons that I no longer need       |
+| `* * `   | new user             | access a built-in help guide                                           | get familiarised to the commands that I can use quickly           |
+| `* * `   | forgetful user       | view the commands summary without referring to the user guide          | find the commands that I need quickly                             |
+| `* * `   | forgetful student    | group my friends by those that are taking the same modules as I am     | share resources or ask for help much more easily                  |
+| `* *`    | organised student    | assign priority ratings to my tasks                                    | know what has to be done first <br> (coming in v1.5)                                   | 
+| `* * `   | clumsy student       | receive a warning message when I try to add lessons that clash         | prevent clashes in my schedule <br> (coming in v1.5)              |
+| `*`      | student              | set biweekly or monthly recurring lessons                              | keep track of some lessons that may be biweekly or monthly <br> (coming in v1.5)        | 
+| `*`      | student              | edit a task's remarks without having to retype the entire remark        | make small changes much more easily <br> (coming in v1.5)        |
+| `*`      | student              | be able to sort my contacts by other parameters                         | find relevant contacts more easily <br> (coming in v1.5)         |
+| `*`      | design-centric user  | customise the colors tag of each module                                 | associate modules with the colours that I prefer <br> (coming in v1.5)         |
+| `*`      | active command line user | switch between the different views using command line                   | view the information in the different views with greater ease <br> (coming in v1.5)   |
+| `*`      | user                 | be able to set reminders that might not be related to a module          | make use of the calendar function to organize not just my school work but my own life |
+
+
 
 ## **Appendix C: Use cases** <a name="appen-c"></a>
 
 (For all use cases below, the **System** is the `TrackIt@NUS` application and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Find the grading structure of a module**
+### Navigation
+```
+Use case: UC01 - Viewing the Upcoming tab
+Actor: User
 
-**MSS**
+MSS:
+   1.  User requests to go to the Upcoming tab
+   2.  TrackIt@NUS switches to the Upcoming tab, where user can view all upcoming lessons and tasks
+   Use case ends.
+```
+```    
+Use case: UC02 - Viewing the Contacts tab
+Actor: User
 
-1.  User requests to list the modules
-2.  TrackIt@NUS shows a list of all modules
-3.  User requests to find the grading structure of a module in the list
-4.  TrackIt@NUS shows the requested grading structure
+MSS:
+   1.  User requests to go to the Contacts tab
+   2.  TrackIt@NUS switches to the Contacts tab, where user can view all contacts
+   Use case ends.
+```
+```
+Use case: UC03 - Viewing the Help tab
+Actor: User
 
+MSS:
+   1.  User requests to view the help tab
+   2.  TrackIt@NUS opens the help window showing the list of commands and their explanations
+   Use case ends.
+```
+```
+Use case: UC04 - Going to a different tab
+Actor: User
+
+MSS:
+   1.  User requests to go to a different tab
+   2.  TrackIt@NUS switches to the requested tab
+   Use case ends.
+```
+```
+Use case: UC05 - Exiting the App
+Actor: User
+
+MSS:
+   1.  User requests to exit the app
+   2.  TrackIt@NUS closes the app window
     Use case ends.
+```
+### Module
 
-**Extensions**
+```
+Use Case: UC06 - Adding a Module
+Actor: User
 
-* 2a. The list is empty.
+Preconditions: Module must not already exist in the app.
+Guarantees: Updated module list with the requested module added.
 
-  Use case ends.
+MSS:
+   1.  User requests to add a new module
+   2.  TrackIt@NUS adds the requested module
+   Use case ends.
 
-* 3a. The given index (or module name) is invalid.
+Extensions
+   1a. The given module code already exists in the app
+      1a1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1b. The given module code is invalid
+      1b1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1c. The given module name is invalid
+      1c1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+```
+```
+Use Case: UC07 - Editing a Module
+Actor: User
 
-    * 3a1. TrackIt@NUS shows an error message.
+Preconditions: Module must exist in the app.
+Guarantees: Updated module list with the requested module edited.
 
-      Use case resumes at step 2.
+MSS:
+   1.  User requests to edit an existing module
+   2.  TrackIt@NUS replaces the original module with the edited one
+   Use case ends.
+    
+Extensions:
+   1a. The given module code does not exist in the app
+      1a1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1b. The given module code is invalid
+      1b1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1c. The given module name is invalid
+      1c1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+```
+```
+Use Case: UC08 - Deleting a Module
+Actor: User
 
+Preconditions: Module must exist in the app.
+Guarantees: Updated module list with the requested module removed.
+
+MSS:
+   1.  User requests to delete an existing module
+   2.  TrackIt@NUS deletes the module
+   Use case ends.
+    
+Extensions:
+   1a. The given module does not exist in the app
+      1a1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+```
+### Lesson
+
+```
+Use Case: UC09 - Adding a Lesson
+Actor: User
+
+Preconditions: Module must exist in the app.
+Guarantees: Updated lesson list with the requested lesson added.
+
+MSS:
+   1.  User requests to add a lesson
+   2.  TrackIt@NUS adds the requested lesson
+   Use case ends.
+    
+Extensions:
+   1a. The given module code does not exist
+      1a1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1b. The given module code is invalid
+      1b1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1c. The given lesson already exists in the app
+      1c1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1d. The given start time is after the end time
+      1d1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1e. The given address is too long (> 20 characters)
+      1e1. TrackIt@NUS shows an error message  
+      Use case resumes at step 1.
+```      
+```
+Use Case: UC10 - Editing a Lesson
+Actor: User
+
+Preconditions: Lesson must exist in the app.
+Guarantees: Updated lesson list with the requested lesson edited.
+
+MSS:
+   1.  User requests to edit a lesson
+   2.  TrackIt@NUS replaces the original lesson with the edited lesson
+   Use case ends.
+
+Extensions
+   1a. The given module code does not exist
+      1a1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1b. The given module code is invalid
+      1b1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1c. The given lesson already exists in the app
+      1c1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1d. The given start time is after the end time
+      1d1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1e. The given address is too long (> 20 characters)
+      1e1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+        
+   1f. No field is provided to edit
+      1f1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+        
+   1g. The requested lesson does not exist (provided index is invalid)
+      1g1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+```
+```
+Use Case: UC11 - Deleting a Lesson
+Actor: User
+
+Preconditions: Lesson must exist in the app.
+Guarantees: Updated lesson list with the requested lesson removed.
+ 
+MSS:
+   1.  User requests to delete a lesson
+   2.  TrackIt@NUS deletes the requested lesson
+   Use case ends.
+  
+Extensions:  
+   1g. The requested lesson does not exist (provided index is invalid)
+      1g1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+```
+```
+Use Case: UC12 - View a module's lessons
+Actor: User
+
+Preconditions: Module must exist in the app.
+Guarantees: Show's all the module's lessons.
+ 
+MSS:
+   1.  User views a module's page
+   2.  TrackIt@NUS shows all the module's lessons
+   Use case ends.
+    
+Extensions
+   1a. The given module code does not exist
+      1a1. User cannot view the module's page
+      Use case ends.
+      
+   1b. The given module does not have any lessons
+      1b1. TrackIt@NUS shows no lessons
+      Use case resumes at step 1.
+```
+```
+Use Case: UC13 - View a certain day's lessons
+Actor: User
+
+Guarantees: Shows a certain day's lessons.
+MSS:
+   1.  User views the Upcoming tab
+   2.  TrackIt@NUS shows every day's lessons for the next week
+   Use case resumes at step 1.
+    
+Extensions:
+   1a. The given day does not have any lessons
+      1a1. TrackIt@NUS shows no lessons for that day
+      Use case ends.
+```
+
+### Task
+```
+Use Case: UC14 - Adding a Task
+Actor: User
+
+Preconditions: Requested task does not currently exist in the app.
+Guarantees: Updated task list with the requested task added.
+
+MSS:
+   1.  User requests to add a task
+   2.  TrackIt@NUS adds the requested task
+   Use case ends.
+    
+Extensions
+
+   1a. The given task already exists in the app
+      1a1. ackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1b. The given date is in the wrong format (must be in `dd/mm/yyyy`)
+      1b1.TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1c. The given name is invalid
+      1c1.TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+```
+```
+Use Case: UC15 - Adding a Task to a Module
+Actor: User
+
+Preconditions: Module must exist in the app.
+Guarantees: Updated task list with the requested task added.
+
+
+MSS:
+   1.  User requests to add a task to a specific module
+   2.  TrackIt@NUS adds the requested task to the specified module
+   Use case ends.
+
+Extensions:
+   1a. The given task already exists in the app
+      1a1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1b. The given module is in the wrong format
+      1b1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1c. The given name is invalid
+      1c1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+```
+```
+Use Case: UC16 - Editing a Task
+Actor: User
+
+Preconditions: Task exists in the app.
+Guarantees: Updated task list with the requested task edited.
+
+MSS:
+   1.  User requests to edit a task
+   2.  TrackIt@NUS edits he requested task
+   Use case ends.
+    
+Extensions:
+   1a. The edited task already exists in the app
+      1a1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1b. The given name is invalid
+      1b1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1c. The given date is in the wrong format
+      1c1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+```    
+```
+Use Case: UC16 - Editing a Task to belong to another Module
+Actor: User
+
+Preconditions: Module exists in the app.
+Guarantees: Updated task list with the requested task's module field changed.
+
+MSS:
+   1.  User requests to change a task to another module
+   2.  TrackIt@NUS moves the requested task to the specified module
+   Use case ends.
+    
+Extensions:
+   1a. The edited task already exists in the app
+      1a1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+```
+```
+Use Case: UC17 - Editing a Task not to belong to any Module
+Actor: User
+
+Preconditions: Task exists in the app.
+
+Guarantees: Updated task list with the requested task not belonging to any module.
+
+MSS:
+   1.  User requests to remove the module field from the task
+   2.  TrackIt@NUS removes the module field from the task
+   Use case ends.
+
+Extensions:
+   1a. The edited task already exists in the app
+      1c1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+```
+```
+Use Case: UC17 - Deleting a Task
+Actor: User
+
+Preconditions: Task exists in the app.
+Guarantees: Updated task list with the requested task removed.
+
+MSS:
+   1.  User requests to delete task
+   2.  TrackIt@NUS deletes the requested task
+   Use case ends.
+  
+Extensions:
+   1a. The requested task does not exist (provided index is invalid)
+      1a1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+```        
+```
+Use Case: UC18 - View a day's Tasks
+Actor: User
+
+Guarantees: Show's all that day's tasks.
+
+MSS:
+   1.  User views the Upcoming tab
+   2.  TrackIt@NUS show every day's tasks for the next week
+   Use case ends.
+  
+Extensions:
+   1a. The given day does not have any tasks
+      1a1. TrackIt@NUS shows no tasks for that day
+      Use case ends.
+```
+```
+Use Case: UC19 - Viewing a Module's Task
+Actor: User
+
+Preconditions: Module exists in the app.
+Guarantees: Shows all the tasks that belong the specified module.
+
+MSS:
+   1.  User views the requested module's page
+   2.  TrackIt@NUS shows all the tasks that belong to the specified module
+   Use case ends.
+  
+Extensions:  
+   1a. The requested module does not exist
+      1a1. User cannot view the module's page
+      Use case ends.
+
+   1b. The requested module does not have any tasks
+      1b1. TrackIt@NUS shows no tasks
+      Use case ends.
+```
+### Contact
+```
+Use Case: UC20 - Adding a Contact
+Actor: User
+
+Preconditions: Contact must not already exist in the app.
+Guarantees: Updated contact list with the requested contact added.
+
+MSS:
+   1.  User requests to add contact
+   2.  TrackIt@NUS adds the requested contact
+   Use case ends.
+  
+Extensions:  
+   1a. The requested contact already exists in the app
+      1.a.1 TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1b. The provided name is invalid (wrong format)
+      1b1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1c. The provided email is invalid (wrong format)
+      1c1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1c. The provided phone number is invalid (wrong format)
+      1c1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+```     
+```
+Use Case: UC21 - Editing a Contact
+Actor: User
+
+Preconditions: Contact must exist in the app.
+Guarantees: Updated contact list with the requested contact edited.
+
+MSS:
+   1.  User requests to edit contact
+   2.  TrackIt@NUS edit the requested contact
+   Use case ends.
+  
+Extensions:
+   1a. The edited contact already exists in the app
+      1a1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1b. The provided name is invalid (wrong format)
+      1b1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1c. The provided email is invalid (wrong format)
+      1c1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+      
+   1c. The provided phone number is invalid (wrong format)
+      1c1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+```
+```
+Use Case: UC22 - Deleting a Contact
+Actor: User
+
+Preconditions: Contact must exist in the app.
+Guarantees: Updated contact list with the requested contact removed.
+
+MSS:
+   1.  User requests to delete contact
+   2.  TrackIt@NUS removes the requested contact
+   Use case ends.
+  
+Extensions: 
+        
+   1a. The requested contact does not exists in the app (index provided is invalid)
+      1a1. TrackIt@NUS shows an error message
+      Use case resumes at step 1.
+```
+```
+Use Case: UC23 - View a Module's Contacts
+Actor: User
+
+Preconditions: Module must exist in the app.
+Guarantees: Shows all contacts associated with the requested module
+
+MSS:
+   1.  User views any module page
+   2.  TrackIt@NUS shows the module's contact
+   Use case ends.
+  
+Extensions:        
+   1a. The requested module does not exist in the app 
+      1a1. User cannot view the module page
+      Use case ends.
+```
 ## **Appendix D: Non-Functional Requirements** <a name="appen-d"></a>
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -946,6 +1459,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 13. The app should be able to handle 150 tasks, lessons, contacts and modules in total without a noticeable performance degradation.
 
 ## **Appendix E: Glossary** <a name="appen-e"></a>
+
 | **Term** | **Explanation** |
 | --------- | --------------- |
 | **Mainstream OS** <a name="oop"></a> | Windows, Linux, Unix, OS-X |
@@ -1254,3 +1768,6 @@ At the final stage of the project, the code has also gone through 3 different st
 * [PMD](https://pmd.github.io)
 
 All warnings received by the three app have been looked into and necessary fixes have been done to ensure a high-quality codebase.
+
+--------------------------------------------------------------------------------------------------------------------
+![Logo](images/UG/trackit-footer.png)

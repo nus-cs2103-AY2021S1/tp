@@ -17,8 +17,7 @@ activate DeleteModuleCommand
 'getModule
 DeleteModuleCommand -> Model : getModule(code)
 activate Model
-Model -> TrackIter : getModule(code)
-TrackIter --> Model : moduleToDelete
+Model -> TrackIter : getModuleList(code)
 Model --> DeleteModuleCommand : moduleToDelete
 deactivate Model
 'end
@@ -26,13 +25,18 @@ deactivate Model
 'getModuleTask
 DeleteModuleCommand -> Model : getModuleTasks(code)
 activate Model
-Model -> TrackIter : updateFilteredTaskList(pTask)
-Model -> TrackIter : getFilteredTaskList(pTask)
+Model -> Model : updateFilteredTaskList(pTask)
+activate Model
+Model --> Model
+deactivate Model
+Model -> Model : getFilteredTaskList(pTask)
+activate Model
 note right
 pTask: predicate to only shows tasks
 that are associated with the module
 end note
-TrackIter --> Model : tasksToDelete
+Model --> Model : tasksToDelete
+deactivate Model
 Model --> DeleteModuleCommand : tasksToDelete
 deactivate Model
 'end
@@ -49,13 +53,18 @@ end
 'getModuleLesson
 DeleteModuleCommand -> Model : getModuleLessons(code)
 activate Model
-Model -> TrackIter : updateFilteredLessonList(pLesson)
-Model -> TrackIter : getFilteredLessonList(pLesson)
+Model -> Model : updateFilteredLessonList(pLesson)
+activate Model
+Model --> Model
+deactivate Model
+Model -> Model : getFilteredLessonList(pLesson)
+activate Model
 note right
 pLesson: predicate to only shows lessons
 that are associated with the module
 end note
-TrackIter --> Model : lessonsToDelete
+Model --> Model : lessonsToDelete
+deactivate Model
 Model --> DeleteModuleCommand : lessonsToDelete
 deactivate Model
 'end

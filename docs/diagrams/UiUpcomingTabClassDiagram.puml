@@ -7,9 +7,15 @@ skinparam classBackgroundColor UI_COLOR
 package UpcomingTab <<Rectangle>>{
 
 Class UpcomingPanel
-Class CalendarSection
-Class CalendarSectionCard
-Class DayCard
+Class UpcomingSectionDayCard
+Class UpcomingSectionCard
+Class LessonListPanel
+Class TaskListPanel
+Class OverdueFutureTaskCard
+Class UpcomingTaskCard
+Class UpcomingLessonCard
+Class TaskCard
+Class LessonCard
 
 }
 
@@ -24,20 +30,31 @@ Class HiddenLogic #FFFFFF
 Class HiddenOutside #FFFFFF
 MainWindow *--> UpcomingPanel
 
-UpcomingPanel *--> DayCard
-UpcomingPanel *--> CalendarSection
+UpcomingPanel *--> UpcomingSectionDayCard
+UpcomingPanel *--> UpcomingSectionCard
 
-CalendarSection --> CalendarSectionCard
+UpcomingSectionCard --> TaskListPanel
+UpcomingSectionDayCard --> TaskListPanel
+UpcomingSectionDayCard --> LessonListPanel
+
+TaskListPanel --> OverdueFutureTaskCard
+TaskListPanel --> UpcomingTaskCard
+LessonListPanel --> UpcomingLessonCard
+
+OverdueFutureTaskCard --|> TaskCard
+UpcomingTaskCard --|> TaskCard
+UpcomingLessonCard --|> LessonCard
+
+TaskCard ..> Model
+LessonCard ..> Model
+
 
 'DayCard -down-|> UiPart
 'CalendarSectionCard -down-|> UiPart
 
-DayCard ..> Model
-CalendarSectionCard ..> Model
-
-
-DayCard ---> Logic
-CalendarSectionCard --> Logic
+UpcomingPanel ----> Logic
+UpcomingSectionDayCard ----> Logic
+UpcomingSectionCard ---> Logic
 
 'UpcomingTab -[hidden]left- Logic
 'UpcomingTab -[hidden]left- Model

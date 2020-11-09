@@ -3,6 +3,7 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
+skinparam linetype polyline
 
 package ModuleTab <<Rectangle>>{
 
@@ -43,7 +44,7 @@ ContactCard ..> Model
 
 TaskCard ---> Logic
 LessonCard --> Logic
-ContactCard --> Logic
+ContactCard -> Logic
 
 ModuleTab -[hidden]left- Logic
 ModuleTab -[hidden]left- Model
