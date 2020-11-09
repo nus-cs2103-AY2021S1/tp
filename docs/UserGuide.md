@@ -270,6 +270,12 @@ Enters quiz mode and disables all commands in flashcard mode.
 
 Format: `enter quiz`
 
+* Quiz mode is now active.
+* You can now only use commands relevant to the quiz interface.
+
+Examples:
+* `enter quiz`
+
 ### Checking performance : `performance`
 
 Opens a new window of performance where historical attempts are stored.
@@ -293,6 +299,12 @@ Format: `exit`
 Starts an attempt of the set of questions.
 
 Format: `start attempt`
+
+* An attempt is started.
+* You can now answer the quiz questions.
+
+Examples:
+* `start attempt`
 
 ### Answering quiz questions : `answer`
 

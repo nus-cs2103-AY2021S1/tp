@@ -55,6 +55,10 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `start attempt`.
+
+<img src="images/ArchitectureSequenceDiagramQuiz.png" width="574" />
+
 The sections below give more details of each component.
 
 ### UI component
@@ -92,6 +96,11 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("start attempt")` API call.
+
+![Interactions Inside the Logic Component for the `start attempt` Command](images/StartAttemptSequenceDiagram.png)
+
 
 ### Model component
 
