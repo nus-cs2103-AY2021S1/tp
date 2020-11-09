@@ -11,7 +11,7 @@
 * [3.4. Storage Component](#35-storage-component)
 * [3.4. Common Class](#36-common-classes)
 
-4.[ Implementation](#4-implementation) 
+4.[ Implementation](#4-implementation)  
 5.[ Documentation, Logging and Testing](#5-documentation-logging-testing-configuration-dev-ops)  
 6.[ Appendix A: Requirements](#6-appendix-a-requirements)  
 7.[ Appendix B: User Stories](#7-appendix-b-user-stories)  
