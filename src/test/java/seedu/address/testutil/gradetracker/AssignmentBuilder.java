@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.gradetracker;
 
 import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.AssignmentName;
@@ -8,7 +8,7 @@ import seedu.address.model.module.grade.AssignmentResult;
 public class AssignmentBuilder {
     public static final String DEFAULT_ASSIGNMENT_NAME = "Quiz 1";
     public static final double DEFAULT_ASSIGNMENT_PERCENTAGE = 10;
-    public static final double DEFAULT_ASSIGNMENT_RESULT = 0.8;
+    public static final double DEFAULT_ASSIGNMENT_RESULT = 80;
 
     private AssignmentName assignmentName;
     private AssignmentPercentage assignmentPercentage;

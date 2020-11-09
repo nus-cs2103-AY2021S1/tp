@@ -45,11 +45,11 @@ public class TypicalModules {
 
     // Modules with assignments
     public static final Module CS2030_WITH_ASSIGNMENT = new ModuleBuilder().withName("CS2030")
-            .withAssignment("Quiz 1", 10, 0.8).build();
+            .withAssignment("Quiz 1", 10, 80).build();
     public static final Module CS2101_WITH_ASSIGNMENT = new ModuleBuilder().withName("CS2101")
-            .withAssignment("Quiz 2", 20, 0.9).build();
+            .withAssignment("Quiz 2", 20, 90).build();
     public static final Module CS2105_WITH_ASSIGNMENT = new ModuleBuilder().withName("CS2105")
-            .withAssignment("Lab 1", 5, 1).build();
+            .withAssignment("Lab 1", 5, 100).build();
 
     private TypicalModules() {} // prevents instantiation
 
