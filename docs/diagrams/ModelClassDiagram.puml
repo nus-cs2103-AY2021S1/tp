@@ -5,52 +5,76 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyCanoeCoach <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class CanoeCoach
+Class ReadOnlyCanoeCoach
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
+Package Student {
+Class Student
+Class Id
 Class Email
 Class Name
+Class AcademicYear
 Class Phone
-Class UniquePersonList
+Class Day
+Class UniqueStudentList
+Class Attendance
+}
+
+Package Training {
+Class Training
+Class UniqueTrainingList
 }
 
 Package Tag {
 Class Tag
 }
-}
+
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+
+
+CanoeCoach .up.|> ReadOnlyCanoeCoach
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" CanoeCoach
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+CanoeCoach *--> "1" UniqueStudentList
+UniqueStudentList o--> "*" Student
+Student *--> "1  " Id
+Student *--> "1 " Name
+Student *--> "1 " Phone
+Student *--> "1 " Email
+Student *--> "1 " AcademicYear
+Student *-> "*" Attendance
+Student *--> "            5" Day
+Student *--> "*" Tag
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Phone -[hidden]right-> AcademicYear
+AcademicYear -[hidden]right-> Email
 
-ModelManager -->"1" Person : filtered list
+CanoeCoach *-[hidden]-> "1" UniqueTrainingList
+CanoeCoach *-[hidden]-> "1" UniqueTrainingList
+CanoeCoach *-[hidden]-> "1" UniqueTrainingList
+CanoeCoach *-[hidden]-> "1" UniqueTrainingList
+CanoeCoach *--> "1 " UniqueTrainingList
+UniqueTrainingList o--> "*" Training
+UniqueTrainingList o-[hidden]-> "*" Training
+Training ---> Student
+
+ModelManager -->"1" Student :  filtered list
+ModelManager -->"1" Training :  filtered list
+
 @enduml

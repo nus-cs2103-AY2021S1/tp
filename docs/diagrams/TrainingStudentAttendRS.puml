@@ -1,0 +1,21 @@
+@startuml
+hide circle
+
+Class Training {
+
+}
+
+Class Student {
+}
+
+Class Attendance {
+trainingTime
+isMarked
+marks()
+unmarks()
+}
+
+Training --right> "*" Student
+Student --right> "*" Attendance
+
+@enduml
