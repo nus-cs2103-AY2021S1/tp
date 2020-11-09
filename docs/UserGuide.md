@@ -289,7 +289,8 @@ Format: `done INDEX:TIME_TAKEN...`
 * There are two type of tasks, event and deadline.
   * Only a deadline can be marked as done through this command, an error message will be shown if the user attempts to mark an event as done.
 * After the user has marked a deadline as done, the user cannot edit the deadline or undo the done command anymore.
-  </div>
+
+</div>
 
 Examples:
 
@@ -329,7 +330,8 @@ Format: `edit-task INDEX ATTRIBUTE_1:NEW_VALUE ATTRIBUTE_2:NEW_VALUE ...`
 * If different fields are provided in the command, all the provided fields of the specified task will be updated.
 * If a deadline has a status of **complete**, it cannot be edited.
 * Fields that the user can modify differ by the type of task(Event or Deadline) the user is trying to modify.
-  </div>
+
+</div>
 
   * Available attributes for both deadline and event in 4 include:
     * `title:` edits the title of the specified task
@@ -380,7 +382,8 @@ Other examples:
 
 * Multiple inputs of the same attribute is not allowed. 
   E.g. `edit-task title:play games title:watch tv` is not allowed as the `title` attribute is input twice.
-  </div>
+  
+</div>
 
 <br>
 
@@ -400,7 +403,8 @@ Format: `find-task ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...`
 * If the user provides different attributes in the command, tasks that match all attributes will be displayed.
 
 * If the user provides multiple search phrases of the same attribute in the command, tasks that match any of the search phrases will be displayed.
-  </div>
+
+</div>
 
 Available attributes in v1.4 include:
 
@@ -516,7 +520,8 @@ Format: `lesson title:TITLE tag:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME
 
 * The format of day in `day:DAY` must be as follows (case-insensitive):
   * Monday, Tuesday, ..., Sunday
-    </div>
+  
+</div>
 
 Examples:
 
@@ -543,7 +548,8 @@ time analysis.
 
 * Multiple inputs of the same attribute is not allowed. 
   E.g. `lesson title:Tutorial title:Lecture tag:CS2103T day:Monday from:10:00 to:12:00 start:10-08-2020 end:10-12-2020` is not allowed as the `title` attribute is input twice.
-  </div>
+
+</div>
 
 <br>
 
@@ -564,7 +570,8 @@ Format: `edit-lesson INDEX [title:TITLE] [tag:MODULE_CODE] [desc:DESCRIPTION] [d
 
 * The format of day in `day:DAY` must be as follows (case-insensitive):
   * Monday, Tuesday, ..., Sunday
-    </div>
+
+</div>
 
 * Edit a lesson in PlaNus
   * The values of the specified lesson will be changed to the new values specified in the `edit-lesson` command.
@@ -597,7 +604,8 @@ time analysis is also updated.
 
 * Multiple inputs of the same attribute is not allowed. 
   E.g. `edit-lesson 1 title:tutorial 1 title:tutorial 2` is not allowed as the `title` attribute is input twice.
-  </div>
+
+</div>
 
 <br>
 
@@ -617,7 +625,8 @@ Format: `find-lesson ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...`
 * If the user provides different attributes in the command, lesson that match all attributes will be displayed.
 
 * If the user provides multiple search phrases of the same attribute in the command, lessons that match any of the search phrases will be displayed.
-  </div>
+
+</div>
 
 Available attributes in v1.4 include:
 
@@ -779,7 +788,8 @@ Therefore, the **time analysis for the week** will show that the **time spent on
 
 * In the next iteration:
   * A breakdown of time spent on each module in the **past week** and of **all time** is displayed.
-    </div>
+
+</div>
 
 <br>
 
