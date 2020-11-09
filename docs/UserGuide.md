@@ -3,14 +3,17 @@ layout: page
 title: User Guide
 ---
 
-## 1. Introduction
+## Introduction
 
-Do you even find yourself struggling to manage all the different kinds of module information 
+Do you even find yourself struggling to manage all the different kinds of module information that you have to track? Are there too 
+many modules, contacts, tasks and events to remember? Well, do not worry, CAP5BUDDY is here to help.
 
 Cap 5 Buddy is a desktop application that helps NUS SoC students to keep track of their module details efficiently.
 It helps you to centralize key module details, contacts and information while following your study progress. It is optimized for use via a Command Line Interface (CLI), while still having the 
 benefits of a Graphical User Interface (GUI). If you can type fast, Cap 5 Buddy can help you manage your module 
 details and information more efficiently than traditional GUI apps.
+
+
 
 * Table of Contents
 {:toc}
@@ -18,7 +21,7 @@ details and information more efficiently than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. Quick start
+## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -31,7 +34,7 @@ details and information more efficiently than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3.  Navigating the GUI
+## Navigating the GUI
 
 ![GUI](images/OverallGUISnapShotWithLabels.png)
 
@@ -61,7 +64,7 @@ Here is where all of the items that are added into the application can be found.
 From here, you can choose between the different windows to view.
 
 
-## 4.  Features
+## Features
 
 Some common symbols that can be found in the user guide and their meanings:
 
@@ -104,14 +107,15 @@ Some common symbols that can be found in the user guide and their meanings:
 
 Creates and add a new module to be stored in the system.
 
-  Format: `addmodule` `n/MODULE_NAME`
+  Format: `addmodule n/MODULE_NAME [t/TAG]...` 
 
-  * You can only key in the module code for the `MODULE_NAME`.
+  * You can only key in the module code for the `MODULE_NAME`. Invalid module codes, such as `CS2103TT` will not be accepted.
 
   * The module code you input must be **capitalised**, eg. `cs2103t` will be rejected while `CS2103T` is correct.
 
-   Example:
-   * `addmodule n/CS2103T` creates and add the module CS2103T with no zoom link.
+   Examples :
+   * `addmodule n/CS2103T` creates and adds the module CS2103T.
+   * `addmodule n/CS2103T t/Coremodule` creates and adds the module CS2103T with the tag _CoreModule_.
 
 #### Adding a new completed module: `addcmodule`
 
@@ -131,15 +135,19 @@ Creates and add a new completed module to be stored in the system.
 
 #### Viewing a module: `viewmodule`
 
-Views a module stored in the system.
+Displays a snapshot of a module stored in the system.
 
  Format: `viewmodule` `INDEX`
-
+    
   * The module viewed will be at the `INDEX` position of the current displayed list.
 
   * The index refers to the index number of the module shown on the displayed module list.
 
   * The index **must be a positive integer** 1, 2, 3...
+  
+  * Clicking on the `ZoomLink` displayed(if any) will copy the `ZoomLink` into your clipboard.
+  
+  * Note that the displayed snapshot is not updated when the module being displayed is changed.
 
   Example:
    * `viewmodule 1` views the first module in the displayed list.
@@ -319,6 +327,7 @@ e.g. `Mon-Lecture` and `Wed-Lecture`.
   
   ![AddZoom](images/Module/AddZoomUG.PNG)
 
+
 #### Editing a zoom link of a specific lesson in a module: `editzoom`
 
 Edits a zoom link of a specific lesson in a module.
@@ -330,6 +339,8 @@ Edits a zoom link of a specific lesson in a module.
    * The index refers to the index number of the module shown on the displayed module list.
 
    * The index **must be a positive integer** 1, 2, 3...
+   
+   * `LESSON_NAME` refers to the name of the lesson which the target zoom link to be edited belongs to.
 
    * `LESSON_NAME` refers to the name of the module lesson which contains the zoom link to be edited.
    
@@ -431,6 +442,15 @@ Edits an existing module in the displayed module list with new details.
 
  To be implemented:
   * We are working on adding the functionality to edit the zoom links for the module for each lesson.
+
+#### Clearing the module list: `clearmodule`
+
+Clears all un-archived modules.
+
+Format: `clearmodule`
+
+* _**Tips :**_ If you accidentally cleared the whole module list, you can always use the `undo` command
+  to restore the module list.
 
 #### What is an Assignment ? : `Assignment`
 Each assignment is stored under a module and represents the cumulative results achieved for that module. Your
@@ -1018,7 +1038,7 @@ Expected Outcome:
 
 Sorts the list based on the name of the contact lexicographically.
 
-Format: `sorttask` `[r]`
+Format: `sortcontact` `[r]`
 
 * `r` indicates if the sorted list should have reversed order.
 
@@ -1153,7 +1173,7 @@ Undoes the previous user command
 
  * The `undo` feature currently has not been extended to Scheduler commands
 
-  Examples:
+  Example:
   * `undo`
 
 #### Redo previous user command: `redo`
@@ -1164,9 +1184,29 @@ Redoes the previously undone user command
 
   * The `redo` feature currently has not been extended to Scheduler commands
 
-  Examples:
+  Example:
   * `redo`
 
+#### Exiting the application: `exit`
+
+Exits CAP5Buddy
+
+Format: `exit`
+
+  Example:
+  * `exit`
+
+#### Getting help : `help`
+
+Opens the help window
+
+Format: `help`
+
+  Example:
+  * `help`
+
+* _**Tips :**_ If you accidentally cleared the whole list, you can always use the `undo` command
+  to restore the list.
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -1194,10 +1234,11 @@ Action | Format, Examples
 **View Module** | `viewmodule INDEX`<br> e.g. `viewmodule 2`
 **Delete Module** | `deletemodule INDEX`<br> e.g. `deletemodule 3`
 **Edit Module** | `editmodule INDEX n/NEW_NAME [mc/MODULAR_CREDITS] [gp/GRADE_POINT] [t/TAG]...`<br> e.g. `editmodule 2 n/CS2103T gp/4.5`
+**Clear Module List** | `clearmodule`<br> e.g. `clearmodule`
 **Add Zoom to module** | `addzoom INDEX n/LESSON_NAME z/ZOOM_LINK` <br> e.g. `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/uascya367yfy`
 **Add Assignment** | `addassignment n/MODULE_NAME a/ASSIGNMENT_NAME %/ASSIGNMENT_PERCENTAGE r/ASSIGNMENT_RESULT` <br> e.g. `addassignment n/CS2100 a/Quiz 1 %/5.0 r/0.80`
-**Archive** | `archivemodule INDEX `<br> e.g. `archivemodule 3`
-**Un-archive** | `unarchivemodule INDEX `<br> e.g. `unarchivemodule 3`
+**Archive Module** | `archivemodule INDEX `<br> e.g. `archivemodule 3`
+**Un-archive Module** | `unarchivemodule INDEX `<br> e.g. `unarchivemodule 3`
 **View Archived Module List** | `viewarchive `<br> e.g. `viewarchive`
 **View Un-archived Module List** | `listmodule `<br> e.g. `list`
 **Calculate CAP** | `calculatecap` <br> e.g. `calculatecap`
@@ -1212,8 +1253,10 @@ Action | Format, Examples
 **Find Contact** | `findcontact [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]` <br> e.g. `findcontact n/john`
 **Delete Contact** | `deletcontact INDEX` <br> e.g. `deletecontact`
 **List Contacts** | `listcontact`
-**Sort Contacts** |
-**Mark Contact as Important** |
+**Sort Contacts** | `sortcontact`
+**Mark Contact as Important** | `importantcontact INDEX` <br> e.g. `importantcontact 1`
+**Mark Contact as unimportant | `resetcontact INDEX` <br> `resetcontact 1`
+**Clear Contact**  | `clearcontact`
 
 
 ## Command summary for Todo List
@@ -1238,3 +1281,5 @@ Action | Format, Examples
 --------|------------------
 **Undo** | `undo` <br> e.g. `undo`
 **Redo** | `redo` <br> e.g. `redo`
+**Exit** | `exit` <br> e.g. `exit`
+**Help** | `help` <br> e.g. `help`

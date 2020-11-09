@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.modulelistcommands.EditZoomLinkCommand;
-import seedu.address.logic.commands.modulelistcommands.ZoomDescriptor;
+import seedu.address.logic.commands.modulelistcommands.ZoomLinkCommand.ZoomDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -20,7 +20,7 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EditZoomLinkCommand object
+ * Parses input arguments and creates a new EditZoomLinkCommand object.
  */
 public class EditZoomLinkParser implements Parser<EditZoomLinkCommand> {
 
@@ -34,19 +34,18 @@ public class EditZoomLinkParser implements Parser<EditZoomLinkCommand> {
      */
     public EditZoomLinkCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        logger.info("The user input is: " + args);
+        logger.info("Parsing command arguments: " + args);
 
         ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME, PREFIX_ZOOM_LINK);
         ArgumentMultimap argMultimap = tokenizer.tokenize();
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ZOOM_LINK)
-                || argMultimap.getPreamble().isEmpty()) {
+                || argMultimap.getPreamble().isBlank()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditZoomLinkCommand.MESSAGE_USAGE));
         }
 
         Index index;
-
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {

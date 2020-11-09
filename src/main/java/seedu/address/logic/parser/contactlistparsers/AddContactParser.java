@@ -35,11 +35,12 @@ public class AddContactParser implements Parser<AddContactCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddContactCommand
      * and returns an AddContactCommand object for execution.
+     *
      * @throws ParseException If the user input does not conform the expected format.
      */
     public AddContactCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        logger.info("The user input is: " + args);
+        logger.info("Parsing the command arguments: " + args);
 
         ArgumentTokenizer tokenizer =
                 new ArgumentTokenizer(args, PREFIX_NAME, PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_TAG);
@@ -47,11 +48,9 @@ public class AddContactParser implements Parser<AddContactCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddContactCommand.MESSAGE_USAGE));
         }
-
-        assert argMultimap.getValue(PREFIX_NAME).isPresent() : "Argument for PREFIX_NAME must be present";
-        assert argMultimap.getValue(PREFIX_EMAIL).isPresent() : "Argument for PREFIX_EMAIL must be present";
 
         Contact contact;
         ContactName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());

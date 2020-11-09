@@ -23,6 +23,11 @@
          <Label fx:id="modularCredits" layoutX="25.0" layoutY="71.0" styleClass="cell_small_label" text="\\$modularCredits" textFill="WHITE" />
          <Label fx:id="gradePoints" layoutX="25.0" layoutY="33.0" styleClass="cell_small_label" text="\\\\$gradePoints" textFill="WHITE" />
     </VBox>
+      <Label fx:id="grade" text="Label" GridPane.halignment="RIGHT">
+         <GridPane.margin>
+            <Insets right="6.0" />
+         </GridPane.margin>
+      </Label>
       <rowConstraints>
          <RowConstraints />
       </rowConstraints>
