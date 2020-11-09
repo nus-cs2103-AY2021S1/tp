@@ -13,6 +13,7 @@ create std
 stats -> std
 stats -> stats: updateTimeTakenForTasks(...)
 activate stats
+loop all tasks in the time period that are not lessons
 stats -> std: addTag(currentTag)
 activate std
 std --> stats
@@ -20,11 +21,13 @@ deactivate std
 stats -> std: addTaskTime(currentTag, timeTakenForTask)
 activate std
 std --> stats
+end
 deactivate std
 return
-stats -> stats: updateTimeTakenForLessons(...)
 
+stats -> stats: updateTimeTakenForLessons(...)
 activate stats
+loop all lessons in the time period
 stats -> std: addTag(currentTag)
 activate std
 std --> stats
@@ -33,6 +36,7 @@ stats -> std: addLessonTime(currentTag, timeTakenForLesson)
 activate std
 std --> stats
 deactivate std
+end
 return
 stats --> logic
 deactivate stats
