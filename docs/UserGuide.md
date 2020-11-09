@@ -927,9 +927,9 @@ Figure 12.2: <i>Only one recipe matched all the provided criteria</i>
 </div>
 
 Note the following:
-- `ginger` found the ingredient <b>ginger root</b>
-- `baked` found the tag <b>home baked</b>
-- `men` and `bread` found the name <b>Gingerbread Men</b>
+- `ginger` found the ingredient *Ginger Root*
+- `baked` found the tag *home baked*
+- `men` and `bread` found the name *Gingerbread Men*
 
 To reset the search filter or go back to the full recipe view, you can click the Recipes button or run the `list recipes` command.
 
@@ -1200,7 +1200,7 @@ Examples:
   This matches *bitter melon* and *dark chocolate*, assuming they are the only ingredients tagged with *bitter taste*.
 
 - `filter ingredient /tag frequently used /tag sweet` <br />
-  This matches *sugar*, if it is the only ingredient tagged <i>both</i> *frequently used* and *sweet*.
+  This matches *sugar*, if it is the only ingredient tagged **both** *frequently used* and *sweet*.
 
 - `filter ingredient /expiry 2020-12-01 /expiry 2020-10-31 /expiry 2023-01-01` <br />
   This matches *apple*, if it is the only ingredient expiring before *2020-10-31*. Note that only the earliest date is considered here (in this case, 31st October 2020), and the rest are ignored.
