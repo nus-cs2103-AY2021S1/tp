@@ -38,7 +38,10 @@ You can reach him at the email `damithch@comp.nus.edu.sg`.
 [[portfolio](team/sc-arecrow.md)]
 
 * Role: Developer
-* Responsibilities: Testing
+* Responsibilities:
+    * Implementing `StudentRecordList`, `StudentRecord`, `MarkCommand`
+    * Overall bug fixing and testing
+    * Project management: Issues and PR reviews
 
 ### Lim Jin Feng
 
