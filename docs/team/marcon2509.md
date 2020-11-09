@@ -12,15 +12,10 @@ and there clients.
 
 #### My Contributions to PropertyFree
 
-* **Add Bid Feature**: Added the ability to add a bid to a list of bids. Pull request: [#76](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/76)
-  * What it does: allows the user to add a bid for a property with a link to a property Id and a bidder Id.
+* **Add/Edit/List/Delete Bid Feature**: Added the ability to add/edit/list/delete a bid in a list of bids. Pull request: [#76](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/76), [#161](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/161), [#76](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/76), [#161](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/161)
+  * What it does: allows the user to manage a bid for a property with a link to a property Id and a bidder Id.
   * Justification: This feature is a necessary feature to allow the user to manage bids for a property.
   * Highlights: The add-bid feature will automatically slot the bid in Alpha numeric order so the displayed list is always organized.
-  
-* **Edit Bid Feature**: Added the ability to edit a bid in the list of bids. Pull request: [#161](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/161)
-  * What it does: allows the user to edit a bid by changing the details of the bid.
-  * Justification: This feature greatly improves the user convenience by allowing the user to correct mistakes in a bid rather than deleting the bid.
-  * Highlights: The edit-bid feature will automatically slot the bid in Alpha numeric order so the displayed list is always organized.
   
 * **Find Bid Feature**: Added the ability to find a specific bid in the list of bids. Pull request: [#161](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/161)
   * What it does: allows the user to find a bid based on keywords specified.
@@ -31,17 +26,7 @@ and there clients.
   * What it does: displays the property, bidder, seller, bid lists in a presentable manner.
   * Justification: This feature greatly improves the user convenience by allowing the user to easily switch between lists.
   * Highlights: the tabs automatically switch to a tab if the command used is related to the tab.
-  
-* **Delete Bid Feature**: Added the ability to delete a specific bid from the list of bids. Pull request: [#161](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/161)
-  * What it does: allows the user to delete a bid based on the index in the list.
-  * Justification: This feature is a necessary feature to allow the user to remove a bid once it is not necessary.
-  * Highlights: the delete bid command can only delete based on the index. 
-  
-* **List Bid Feature**: Added the ability to display the list of bids. Pull request: [#76](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/76)
-  * What it does: allows the user to display the list of bids.
-  * Justification: This feature is a necessary feature to allow the user navigate to the list of bids or clear the filtered bids list.
-  * Highlights: the list bid command will change the tab to the bid list.
-  
+    
 * **Auto-Sort Feature**: Added the ability to automatically sort the bid list without the need of a command. Pull request: [#200](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/200)
   * What it does: allows the user to always obtain a sorted bid list
   * Justification: This feature greatly improves the user convenience by allowing the user to always have a sorted list.
