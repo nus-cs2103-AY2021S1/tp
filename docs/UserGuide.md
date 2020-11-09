@@ -875,7 +875,7 @@ Expected Output:
 The index will only correspond to the original list, NOT the filtered list (when used in find).
 
 
-## Calendar Navigation Features
+# Calendar Navigation Features
 
 Calendar navigation features are commands which help the agent to navigate through the calendar. There are only two commands `next` and `prev` which aim to better serve agents who are more inclined with command line interface. 
 
