@@ -32,7 +32,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added introduction and list of features covered in the application. [\#19](https://github.com/AY2021S1-CS2103-T14-2/tp/pull/19)
+    * Contributed to introduction and list of features covered in the application. [\#19](https://github.com/AY2021S1-CS2103-T14-2/tp/pull/19)
   * Developer Guide:
     * Added implementation details of the `flip` flashcard feature. (TBC)
 

@@ -7,29 +7,29 @@ DSAce is a **desktop app for creating flashcards and practising quiz questions f
 
 ## Table of Contents
 * [Quick start](#quick-start)
-* [Features](#features)
+* [Introduction](#introduction)
    * [General Commands](#general-commands)
       * [**`help`** : Viewing help.](#viewing-help--help)
       * [**`exit`** : Exiting the program.](#exiting-the-program--exit)
-   * [Flashcard Commands](#flashcard-management)
+   * [Flashcard Commands](#flashcard-commands)
       * [**`add`** : Adding a flashcard.](#adding-a-flashcard--add)
       * [**`list`** : Listing all flashcards.](#listing-all-flashcards--list)
       * [**`sort`** : Sorting all flashcards.](#sorting-all-flashcards--sort)
       * [**`edit`** : Editing a flashcard.](#editing-a-flashcard--edit)
       * [**`find`** : Locating flashcards by name/tag/priority.](#locating-flashcards-by-nametagpriority-find)
-      * [**`delete`** : Deleting a flashcard.](#deleting-a-flashcard--delete)
       * [**`flip`** : Flipping a flashcard.](#flipping-a-flashcard--flip)
+      * [**`delete`** : Deleting a flashcard.](#deleting-a-flashcard--delete)
       * [**`clear`** : Clearing all flashcards.](#clearing-all-entries--clear)
    * [Quiz Commands](#quiz-commands)
       * [**`enter quiz`** : Entering Quiz mode.](#entering-quiz-mode--enter-quiz)
-      * [**`start attempt`** : Starts a quiz attempt.](#entering-quiz-mode--start-attempt)
-      * [**`answer`**: Answers a question in the quiz.](#entering-quiz-mode--answer)
-      * [**`end attempt`** : Ends a quiz attempt.](#entering-quiz-mode--end-attempt)
+      * [**`start attempt`** : Starts a quiz attempt.](#starting-an-attempt--start-attempt)
+      * [**`answer`**: Answers a question in the quiz.](#answering-a-quiz-question--answer)
+      * [**`end attempt`** : Ends a quiz attempt.](#ending-an-attempt--end-attempt)
       * [**`leave quiz`** : Leaving Quiz mode.](#leaving-quiz-mode--leave-quiz)
    * [Performance Commands](#performance-commands)
       * [**`performance`** : Opening performance interface.](#checking-performance--performance)
-      * [**`view`** : Viewing previous an attempt result.](#viewing-a-specific-historical-attempt--view)
-      * [**`list`** : List past quiz attempts.](#listing-historical-attempts-results--list)
+      * [**`view`** : Viewing previous an attempt result.](#viewing-the-results-of-a-specific-quiz-attempt--view)
+      * [**`list`** : List past quiz attempts.](#listing-past-attempt-results--list)
    * [Saving the data.](#saving-the-data)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
@@ -85,7 +85,7 @@ DSAce is a **desktop app for creating flashcards and practising quiz questions f
       * **`answer`** `1 a/true` : Answers the first quiz question in the displayed quiz question list.
 
       * **`end attempt`**: Ends the current quiz attempt. <br/>
-      
+
       `start attempt`, `answer`, and `end attempt` are commands that are valid only in the quiz interface.
 
    * **`leave quiz`** : Leaves Quiz mode.
@@ -95,7 +95,7 @@ DSAce is a **desktop app for creating flashcards and practising quiz questions f
      * **`view`** `1` : Views the results of the first quiz attempt.
 
      * **`list`** : Lists all past quiz attempts. <br/>
-     
+
      `view` and `list` are the only valid commands in the performance interface.
 
    * **`exit`** : Exits the app.
@@ -109,7 +109,7 @@ DSAce is a **desktop app for creating flashcards and practising quiz questions f
 
 
 --------------------------------------------------------------------------------------------------------------------
-
+## Introduction
 
 <div markdown="block" class="alert alert-info">
 
@@ -153,7 +153,7 @@ is shown in the image below. Note that the performance interface can be accessed
 
 </div>
 
-## Flashcard interface
+## General Commands
 <div markdown="block" class="alert alert-info">
 Only commands listed in this section are valid in the flashcard interface.
 </div>
@@ -165,6 +165,20 @@ Opens up a help window containing a link to the user guide.
 ![help message](images/helpMessage.png)
 
 Format: `help`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+Note: `exit` only works in the main window, which is the interface for Flashcard and Quiz modes. Hence,
+it does not work in the popup window of Performance.
+
+## Flashcard Commands
+<div markdown="block" class="alert alert-info">
+Only commands listed in this section are valid in the flashcard mode.
+</div>
 
 ### Adding a flashcard : `add`
 
@@ -260,18 +274,6 @@ Examples:
 * `find n/Heap p/medium` returns `Heaps`
 * `find n/Heap p/low` or `find n/Chaining t/metal` returns no flashcards because not all conditions are satisfied
 
-### Deleting a flashcard : `delete`
-
-Deletes the specified flashcard from the flashcard list.
-
-Format: `delete INDEX`
-
-* Deletes the flashcard at the specified `INDEX`.
-* The index refers to the index number associated with the deleted flashcard, as shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the second flashcard in the list.
 
 ### Flipping a flashcard : `flip`
 
@@ -293,11 +295,38 @@ Format: `flip INDEX`
 Examples:
 * `list` followed by `flip 2` flips the second flashcard in the flashcard list.
 
+### Deleting a flashcard : `delete`
+
+Deletes the specified flashcard from the flashcard list.
+
+Format: `delete INDEX`
+
+* Deletes the flashcard at the specified `INDEX`.
+* The index refers to the index number associated with the deleted flashcard, as shown in the displayed flashcard list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+* Quiz mode is now active.
+* You can now only use commands relevant to the quiz interface.
+
+Examples:
+* `enter quiz`
+
+### Checking performance : `performance`
+
+Examples:
+* `list` followed by `delete 2` deletes the second flashcard in the list.
+
 ### Clearing all entries : `clear`
 
 Removes all flashcards from the flashcard list.
 
 Format: `clear`
+
+## Quiz Commands
+<div markdown="block" class="alert alert-info">
+</div>
+
+Note: Our current implementation does not include adding custom quiz questions.
 
 ### Entering Quiz mode : `enter quiz`
 
@@ -305,29 +334,20 @@ Enters the quiz interface and disables commands from the flashcard interface.
 
 Format: `enter quiz`
 
-### Checking performance : `performance`
-
-Opens the performance interface where the list of past quiz attempts are stored.
-
-Format: `performance`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-## Quiz interface
-
-<div markdown="block" class="alert alert-info">
-Only commands listed in this section are valid in the quiz interface.
-</div>
+Note: `enter quiz` and `start attempt` have been designed to be separate commands as this leaves the app
+open for extension (i.e easier to implement more commands specific to quiz mode)
 
 ### Starting an attempt : `start attempt`
 
 Starts a new quiz attempt.
 
 Format: `start attempt`
+
+* An attempt is started.
+* You can now answer the quiz questions.
+
+Examples:
+* `start attempt`
 
 ### Answering a quiz question : `answer`
 
@@ -364,7 +384,7 @@ Format: `performance`
 
 * When `performance` is entered, all past quiz attempts are displayed to the user. For each attempt, the timestamp
  representing the time at which the attempt was started, as well as the number of correct responses out of the total
-  number of responses submitted for that particular attempt are displayed. 
+  number of responses submitted for that particular attempt are displayed.
 
 ### Viewing help : `help`
 
@@ -380,25 +400,19 @@ Leaves the quiz interface and and disables all commands from the quiz interface.
 
 Format: `leave quiz`
 
-### Exiting application : `exit`
 
-Exits the program.
-
-Format: `exit`
-
-## Performance interface
+## Performance Commands
 
 <div markdown="block" class="alert alert-info">
 Only commands listed in this section are valid in the performance interface.
 The performance interface is a separate window from the flashcard and quiz interfaces.
 </div>
 
-### Listing past attempt results: `list`
+### Checking performance : `performance`
 
-Shows a list of all past quiz attempts and the result statistic for each attempt. The result statistic consists of
- the number of correct responses out of the total number of responses submitted for each attempt.
+Opens the performance interface where the list of past quiz attempts are stored.
 
-Format: `list`
+Format: `performance`
 
 ### Viewing the results of a specific quiz attempt : `view`
 
@@ -408,22 +422,22 @@ an incorrect answer and a green option indicates a correct answer.
 For example, in the image displayed below, the correct answer to the first question is `true`, and the first question
  was correctly answered by the user. On the other hand, the correct answer to the second question is 25, which is
   option `4`, but the user submitted an incorrect answer,  option `3`.
-  
+
   ![attempt result](images/attemptResult.png)
-  
+
 Format: `view INDEX`
 
 Example: `view 1`
 
 ![view message](images/view_attempt.png)
 
-### Viewing help : `help`
+### Listing past attempt results : `list`
 
-Shows a message containing the link to the user guide.
+Shows a list of all past quiz attempts and the result statistic for each attempt. The result statistic consists of
+ the number of correct responses out of the total number of responses submitted for each attempt.
 
-![help message](images/helpMessage.png)
+Format: `list`
 
-Format: `help`
 
 
 ### Saving the data
