@@ -64,6 +64,7 @@ ___
 * **Project management**:
   * Managed release `v1.3` on GitHub
   * Managed the issue tracker on GitHub
+  * Creation of labels for clearer segmentation of issues and pull request
 
 * **Documentation**:
   * User Guide:

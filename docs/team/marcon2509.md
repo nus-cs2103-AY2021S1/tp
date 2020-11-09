@@ -70,6 +70,8 @@ ___
 
 * **Project management**:
   * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
+  * Integration of `CodeCov` 
+  * Managed overall UserGuide.md to ensure standardization and proper formatting
 
 * **Enhancements to existing features**:
   * Wrote additional tests for existing bid features to increase coverage
@@ -78,6 +80,7 @@ ___
 * **Documentation**:
   * User Guide:
     * Added documentation for the bid features
+    * Added table of command summary for easier reference
     * Did cosmetic tweaks to existing documentation of all bid features
     * Reviewed and standardized entire user guide
   * Developer Guide:
