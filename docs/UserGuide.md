@@ -587,6 +587,8 @@ Shows the `Missions` that you have not yet graded.
 
 ![ViewUngradedMissions](images/userguide/viewUngradedMission.png)
 
+<div style="page-break-after: always;"></div>
+
 #### 6.6.5 Viewing deadline for `Quests` : `-q`
 
 Shows the deadline for the current `Quests`.
@@ -619,6 +621,8 @@ Shows all past `Consultation` sessions.
 <div markdown="block" class="alert alert-info">
 * When the `Consultation` time is the same as the local time (year, month, date, hour, and minute all equal), it is considered to have occurred in the past.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### 6.6.9 Viewing upcoming `Consultations`: `-cu`
 
@@ -654,6 +658,8 @@ Shows all past `Mastery Check` sessions.
 <div markdown="block" class="alert alert-info">
 * When the `Mastery Check` time is the same as the local time (year, month, date, hour, and minute all equal), it is considered to have occurred in the past.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### 6.6.12 Viewing upcoming `Mastery Checks` : `-mcu`
 
