@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Template {
-    public static final String filePath = "data/template.txt";
+    public static final String FILE_PATH = "data/template.txt";
 
     private String name;
     private Integer calories;
@@ -177,7 +177,7 @@ public class Template {
      * @throws IOException
      */
     public static void writeToFile(List<Template> lists) throws IOException {
-        FileWriter fw = new FileWriter(filePath);
+        FileWriter fw = new FileWriter(FILE_PATH);
         String textToAdd = "";
 
         for (int i = 0; i < lists.size(); i++) {
@@ -190,7 +190,7 @@ public class Template {
     }
 
     public static String getFilePath() {
-        return filePath;
+        return FILE_PATH;
     }
 
     @Override

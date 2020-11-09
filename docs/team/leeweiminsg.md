@@ -1,11 +1,13 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Lee Wei Min's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: Calo
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Calo is a desktop app that is designed for keeping track of calories burnt throughout the day. It is optimized for use via a Command Line Interface (CLI) while still having Graphical User Interface (GUI).
+
+We built Calo upon the [Address Book Level 3 (AB3) project](https://github.com/nus-cs2103-AY1920S1/addressbook-level3).
 
 Given below are my contributions to the project.
 
