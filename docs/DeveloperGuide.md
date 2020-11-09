@@ -1312,7 +1312,9 @@ MSS:
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
@@ -1356,12 +1358,18 @@ User can create two types of flashcards - containing open end question or multip
 
    1. Test Case 5: `add q/Test OEQ 1 ans/Test ans 1 d/Invalid Difficulty`<br>
       Expected: QuickCache responds with an error message indicating that difficulty field is invalid. Flashcard is not added.<br>
+      <div markdown="block" class="alert alert-info">
+      
       :information_source: Note that flashcards containing similar questions and answers but different difficulty are treated as different flashcards.
-
+      
+      </div>
    1. Some incorrect `add` commands with missing fields to try: `add`, `add q/ ans/Test ans 1`, `add q/Test OEQ 1 ans/`, `add q/Test OEQ 1 ans/Test ans 1 t/`<br>
       Expected: QuickCache responds with an error message and no flashcard is added.<br>
+      <div markdown="block" class="alert alert-info">
+      
       :information_source: Empty field for difficulty `d/` is accepted and flashcard difficulty is set to unspecified.
-   
+      
+      </div>
    1. Some incorrect `add` commands with duplicate prefix to try: `add q/Test OEQ 1 q/Test OEQ 2 ans/Test ans 1`, `add q/Test OEQ 1 ans/Test ans 1 ans/Test ans 2`, `add q/Test OEQ 1 ans/Test ans 1 d/LOW d/HIGH`<br>
       Expected: QuickCache responds with an error message and no flashcard is added.
 
@@ -1380,19 +1388,29 @@ User can create two types of flashcards - containing open end question or multip
    
    1. Test Case 4: `addmcq q/Test MCQ 1 ans/1 c/Choice1 c/Choice2 t/Invalid Tag`<br>
       Expected: QuickCache responds with an error message indicating that tag field is invalid. Flashcard is not added.<br>
+      <div markdown="block" class="alert alert-info">
+      
       :information_source: Note that flashcards containing similar questions and answers but different tags are treated as different flashcards.
-
+        
+      </div>
+      
    1. Test Case 5: `addmcq q/Test MCQ 1 ans/1 c/Choice1 c/Choice2 d/Invalid Difficulty`<br>
       Expected: QuickCache responds with an error message indicating that difficulty field is invalid. Flashcard is not added.<br>
+      <div markdown="block" class="alert alert-info">
+      
       :information_source: Note that flashcards containing similar questions and answers but different difficulty are treated as different flashcards.
-   
+      
+      </div>
    1. Test Case 6: `addmcq q/Test MCQ 1 ans/3 c/Choice1 c/Choice2`<br>
       Expected: QuickCache responds with an error message indicating that ans field is invalid. Flashcard is not added.
 
    1. Some incorrect `addmcq` commands with missing fields to try: `addmcq`, `addmcq q/ ans/1 c/Choice1`, `addmcq q/Test MCQ 1 ans/ c/Choice1`, `addmcq q/Test MCQ 1 ans/1 c/`<br>
       Expected: QuickCache responds with an error message and no flashcard is added.<br>
+      <div markdown="block" class="alert alert-info">
+      
       :information_source: Empty field for difficulty `d/` is accepted and flashcard difficulty is set to unspecified.
    
+      </div>
    1. Some incorrect `addmcq` commands with duplicate prefix to try: `addmcq q/Test MCQ 1 q/Test MCQ 2 ans/1 c/Choice1 c/Choice2`, `addmcq q/Test MCQ 1 ans/1 ans/2 c/Choice1 c/Choice2`<br>
       Expected: QuickCache responds with an error message and no flashcard is added.
 
@@ -1516,8 +1534,11 @@ There are 2 ways to delete flashcards – by index or by tags.
 
    1. Test Case 1: `test 1 ans/Singapore`<br>
       Expected: Checks if answer provided matches with the answer stored in the open ended question within the first flashcard. Users starting off with the sample questions will expect test to be correct. Flashcard statistics will be updated.<br>
-      :information_source: Answers are not case sensitive.
+      <div markdown="block" class="alert alert-info">
 
+      :information_source: Answers are not case sensitive.
+    
+      </div>
    1. Test Case 2: `test 1 ans/`<br>
       Expected: Error message will appear as answer cannot be blank. Flashcard statistics will not be updated.
 
@@ -1525,8 +1546,11 @@ There are 2 ways to delete flashcards – by index or by tags.
 
    1. Test Case 1: `test 2 o/2`<br>
       Expected: Checks if option provided matches with the option stored in the multiple choice question within the second flashcard. Users starting off with the sample questions will expect test to be correct. Flashcard statistics will be updated.<br>
-      :information_source: Answers are not case sensitive.
+      <div markdown="block" class="alert alert-info">
 
+      :information_source: Answers are not case sensitive.
+      
+      </div>
    1. Test Case 2: `test 1 o/`<br>
       Expected: Error message will appear as option cannot be blank. Flashcard statistics will not be updated.
 
@@ -1595,9 +1619,12 @@ User can choose to import or export their data
    
    1. Test case 1: `import my-flashcard.json`<br>
       Expected: Flashcards within the file will be imported in your local QuickCache.<br>
+      <div markdown="block" class="alert alert-info">
+      
       :information_source: Flashcards that has previously been imported and has not been modified will be ignored. Flashcards that already exists will not be imported as well.
 
-
+      </div>
+      
 ### F.11 Saving data
 
 1. Dealing with missing data file
