@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.gradetrackercommands.EditAssignmentCommand;
-import seedu.address.logic.commands.gradetrackercommands.EditAssignmentDescriptor;
+import seedu.address.logic.commands.gradetrackercommands.EditAssignmentCommand.EditAssignmentDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;

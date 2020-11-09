@@ -14,7 +14,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.gradetrackercommands.AddAssignmentCommand;
 import seedu.address.logic.commands.gradetrackercommands.DeleteAssignmentCommand;
 import seedu.address.logic.commands.gradetrackercommands.EditAssignmentCommand;
-import seedu.address.logic.commands.gradetrackercommands.EditAssignmentDescriptor;
+import seedu.address.logic.commands.gradetrackercommands.EditAssignmentCommand.EditAssignmentDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.grade.Assignment;
