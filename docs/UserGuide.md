@@ -71,7 +71,6 @@ This section details the notations used to specify the command formats in the [c
     * `amt/200 at/2020-04-10 18:00`
     * `amt/200 at/2020-04-10`
     * `amt/200 at/18:00`
-    * `amt/200 at/2020-04-10`
     * `amt/200`
   * Notice that the `AMOUNT` field is compulsory.
 * Inputs that require date and time have specific formats.
@@ -332,7 +331,7 @@ The following sections detail the commands related to finance storage in alphabe
 Commands in this section are best executed when you are in the finance tab.
 If you do not know how to switch to the finance tab, please refer to the [switch between tabs](#534-switch-tabs-switch) section for more information.
 
-**NOTE:** Some of these commands only work for [stand-alone finance records](#8-glossary-and-terms) (i.e. finance records that are not attached to any inventory records).
+**NOTE:** Some commands only work for [stand-alone finance records](#8-glossary-and-terms) (i.e. finance records that are not attached to any inventory records).
 
 #### 5.2.1. Add finance records: `add_finance`
 
@@ -354,7 +353,9 @@ __Format:__ `add_finance amt/AMOUNT [at/DATE] [TIME]`
 
 This creates a new finance record of amount `AMOUNT`. If `DATE` and `TIME` are specified, the finance record would reflect that `DATE` and `TIME` in the record.
 
-**NOTE:** If the Date and Time fields are not specified, they will default to the current location's Date and Time.
+**NOTE:** 
+- If the Date and Time fields are not specified, they will default to the current location's Date and Time.
+- The Amount field will be rounded to the nearest 2 decimal place. 
 
 __Example:__ `add_finance amt/30000 at/2020-03-03`
 
@@ -423,6 +424,8 @@ __Format:__ `edit_finance INDEX amt/AMOUNT [at/DATE]`
 
 This allows us to change the amount and date details of the finance record with the `INDEX` ID.
 Note that `INDEX` must be the **first** parameter for this command.
+
+**NOTE:** The Amount field will be rounded to the nearest 2 decimal place. 
 
 __Example:__ `edit_finance 1 amt/120`
 

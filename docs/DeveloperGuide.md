@@ -554,7 +554,7 @@ For all use cases (unless specified otherwise):
 
   __Use case ends.__
 
-#### 5.3.6. Use case: Save finance / inventory records
+#### 5.3.6. Use case: Save finance/inventory records
 
 **MSS**
 
