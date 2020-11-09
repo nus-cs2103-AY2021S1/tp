@@ -411,7 +411,7 @@ Figure Set Ingredients' levels - 3.
 tCheck allows the user to reset the ingredient's levels of all ingredient types to zero. The command to use this 
 feature is:
   
-* `i-reset-all` — Resets the ingredients' levels of all ingredient types to zero.
+* `i-reset-all` — Resets the ingredient's levels of all ingredient types to zero.
   
 #### Implementation
   
@@ -439,8 +439,8 @@ has an amount of 5 in units of litres.
 Step 2. The user executes the `i-reset-all` command to reset the ingredient's levels of all ingredient types to zero. 
 The `i-reset-all` command calls `Model#getFilteredIngredientList()`, which returns the list of ingredients recorded by 
 the `IngredientBook`. The `i-reset-all` command then checks the list of ingredients to see whether the ingredient's 
-levels of all ingredient types are already at zero before the `i-reset-all` command is going to make any change to 
-the ingredients. Since all ingredients' levels are already at zero except `Milk`, the `i-reset-all` command 
+levels of all ingredient types are already zero before the `i-reset-all` command is going to make any change to 
+the ingredients. Since all ingredients' levels are already zero except `Milk`, the `i-reset-all` command 
 calls `Model#setIngredient(Ingredient target, Ingredient newAmount)`, causing the ingredient `target`, which is `Milk`, 
 to be replaced by the ingredient `newAmount` with the same ingredient name and a zero ingredient's level.
 
@@ -452,7 +452,7 @@ ingredient's level.
 
 The following sequence diagram shows how the resetting all ingredients' levels operation works, assuming that the 
 `i-reset-all` command calls `Model#setIngredient(Ingredient target, Ingredient newAmount)` only once. This happens when 
-only one ingredient's level is not at zero before the execution of the `i-reset-all` command. 
+only one ingredient before the execution of the `i-reset-all` command. 
 
 ![Reset all Ingredients' Levels Sequence Diagram](images/IngredientResetAllSequenceDiagram.png)
 
@@ -462,7 +462,7 @@ the lifeline reaches the end of diagram.
 </div>
 
 The following activity diagram summarises what happens when a user executes the `i-reset-all` command.
-Note that as shown in the activity diagram, if the ingredient's levels of all ingredient types are at zero 
+Note that as shown in the activity diagram, if the ingredient's levels of all ingredient types are zero 
 before the execution of the `i-reset-all` command, an error message will be shown to the user.
 
 ![Reset all Ingredients' Levels Activity Diagram](images/IngredientResetAllActivityDiagram.png)
@@ -472,14 +472,14 @@ before the execution of the `i-reset-all` command, an error message will be show
 ##### Aspect: How resetting all ingredients' levels executes
   
   * **Alternative 1 (current choice):** Loop through the list of ingredients twice, the first time to check if all 
-  ingredients' levels are at zero, the second time to replace each ingredient that has a non-zero ingredient's 
+  ingredients' levels are zero, the second time to replace each ingredient that has a non-zero ingredient's 
   level with a new ingredient which has the same ingredient name and a zero ingredient's level.
     * Pros: Easier to implement.
     * Cons: Execution of the command may require the creation of one or more new ingredients, which may increase the 
     time required for the operation.
     
   * **Alternative 2:** Loop through the list of ingredients twice, the first time to check if all ingredients' levels are 
-  already at zero, the second time to update the ingredient's level of the ingredients to zero if the ingredients 
+  already zero, the second time to update the ingredient's level of the ingredients to zero if the ingredients 
   have non-zero ingredient's levels.
     * Pros: Clear implementation. Do not lead to creation of new ingredient objects.
     * Cons: Less easy to implement.
@@ -1004,17 +1004,17 @@ testers are expected to do more *exploratory* testing.
       
 ### Resetting all ingredients' levels to zero
 
-1. Resetting all ingredients' levels to zero when not all ingredients' levels are at zero
+1. Resetting all ingredients' levels to zero when not all ingredients have zero ingredient's levels
 
    1. Test case: `i-reset-all`<br>
-      Expected: All ingredients' levels are now at zero. A success message is shown in the _Result Display_.
+      Expected: All ingredients' levels are now zero. A success message is shown in the _Result Display_.
 
 
-1. Resetting all ingredients' levels to zero when all ingredients' levels are already at zero 
+1. Resetting all ingredients' levels to zero when all ingredients have zero ingredient's levels
 
    1. Test case: `i-reset-all`<br>
-      Expected: All ingredients'levels are still at zero. An error message is shown in the _Result Display_ explaining  
-      that all ingredients' levels are already at zero, before the execution of the `i-reset-all` command.
+      Expected: All ingredients'levels are still zero. An error message is shown in the _Result Display_ explaining  
+      that all ingredients' levels are already zero, before the execution of the `i-reset-all` command.
 
 ### Setting an ingredient's level to a specified amount
 

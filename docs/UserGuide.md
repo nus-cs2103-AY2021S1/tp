@@ -311,7 +311,7 @@ Format: `s-rank`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about ingredients:**<br>
+**:information_source: Notes about ingredients<a name="commands-ingredients-tracking-notes-about-ingredients"></a>:**<br>
 
 * Unit of measurement for ingredients:<br>
    * Unit for solid items / jelly (Pearl, Boba and Brown Sugar) : **KG**<br>
@@ -426,7 +426,7 @@ Format: `i-list`
 
 Example:
 
-Let's say you want to list all the ingredients. 
+Let's say you want to see the list of all the ingredients.
 You can follow these instructions:
 
 1. Type `i-list` into the _Command Box_.
@@ -442,7 +442,7 @@ Outcome:
 Figure x. A screenshot showing the outcome of an `i-list` command
 
 #### 2.5 Finding ingredients by keywords : `i-find`
-Finds all ingredients that contain the KEYWORD(s) in their names.
+Finds all ingredients that contain one or more keywords in their names.
 
 Format: `i-find KEYWORD [MORE_KEYWORDS]`
 
@@ -472,11 +472,12 @@ the ingredient `Brown Sugar`.
 Figure x. A screenshot showing the outcome of an `i-find` command
 
 #### 2.6 Resetting all ingredients' levels to zero : `i-reset-all`
-Resets the ingredients' levels of all ingredient types to zero.
+Resets the ingredient's levels of all ingredient types to zero.
 
 Format: `i-reset-all`
 
-Let's say you want to reset all ingredients' levels to zero, and the ingredient's levels are not currently all at zero.
+Let's say you want to reset all ingredients' levels to zero when one or more ingredients have 
+non-zero ingredient's levels.
 You can follow these instructions:
 
 1. Type ` i-reset-all` into the _Command Box_.
@@ -485,7 +486,8 @@ You can follow these instructions:
 Outcome:
 
 1. The _Result Display_ will show a success message.
-2. You can now see that tCheck has updated all the ingredients' levels to zero in the Ingredient Tracker inside the _Main View_.
+2. You can now see that all ingredients' levels are zero in the Ingredient Tracker inside 
+the _Main View_.
 
 ![IngredientResetAllCommandScreenshot](images/IngredientResetAllCommandScreenshot.png)
 
@@ -500,13 +502,13 @@ Format: `i-restock`
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**<br>
-Refer to the "Notes about ingredients" below the [Commands - Ingredients Tracking](#commands-ingredients-tracking)
+Refer to the "Notes about ingredients" [Commands - Ingredients Tracking - Notes about ingredients](#commands-ingredients-tracking-notes-about-ingredients)
 for details on the pre-determined default levels of different types of ingredients.
 </div>
 
 Example: 
 
-Let's say you want to find out which ingredients you need to restock.
+Let's say you want to see a list of ingredients that you need to restock.
 You can follow these instructions:
 
 1. Type ` i-restock` into the _Command Box_.
