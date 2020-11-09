@@ -22,8 +22,8 @@ Refer to [Quick Start](#QuickStart) for a short tutorial on how to set up Bamboo
 2. Download the latest Bamboo Release `ExpenseBook.jar` [here](https://github.com/AY2021S1-CS2103-W14-3/tp/releases/tag/v1.3).
 3. Copy the file to the folder you want to use as the home directory for Bamboo.
 4. Double-click the file to start the app. It should open in a new window.  
-    OR Navigate to the directory on terminal and run `java -jar <FILENAME>.jar`.
-5. Type in commands with arguements in the command input box above, and press `Enter` to execute them.
+    OR Navigate to the directory on terminal and run `java -jar ExpenseBook.jar`.
+5. Type in commands with arguments in the command input box above, and press `Enter` to execute them.
 6. Use the `help` command to find out the list of commands available, or we'd recommend checking out the 
 [Features](#Features) section for a comprehensive guide!
 7. Let's grow our wealth together!
@@ -185,7 +185,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Works only in complement with [remark](#remark)
     - Format: `-r <remark>`
     - Restrictions: Remarks can be up to 200 characters long.
-    - Example: `edit t/Food`, `find -d Coffee t/Food`
+    - Example: `remark 1 -r impulse spending`, `remark 2 -r emergency`
 
 1. **alias** <a name="alias"></a>
     - "Also known as" for commands.
