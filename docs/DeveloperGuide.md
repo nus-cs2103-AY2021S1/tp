@@ -547,6 +547,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
+
+<div style="page-break-after: always;"></div>
+
 * 1a. MediBook detects an invalid username, password, name or MCR.
     *1a1. MediBook shows an error message.
     *1a2. User requests to create an account again with edited inputs.
