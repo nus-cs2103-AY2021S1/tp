@@ -8,11 +8,10 @@ title: Kor Ming Soon's Project Portfolio Page
 PropertyFree is a real estate management application meant for property agents to organize their properties and meetings more efficiently.
 Other application can keep track of meetings and schedules but there are relatively few applications that help track properties 
 and associate them with meetings with clients. For our project we hope to make it more streamlined for agents to keep track of their property and have clear information about those properties
-and their clients.  
+and their clients. 
 
-#### My Contributions to PropertyFree
+##### My Contributions to PropertyFree: Bidder and Seller Functions [(RepoSense link)](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=kormingsoon&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-##### Bidder and Seller Functions
 * **New Feature**: Implemented the `Add` function for `Bidder` and `Seller`
   * **What it does**: allows the user to add and `Bidder` and `Seller`, who are the clients engaged by the user (a Property Agent).
   
@@ -38,10 +37,8 @@ and their clients.
   
   * **Highlights**:
    My implementation of the `Edit` function prevents any clients from having the same name or same phone number 
-      
-##### User Interface Functions
-
-Major edits mostly done in `.fxml` to fit the look to PropertyFree.
+      [(RepoSense link)](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=kormingsoon&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+##### My Contributions to PropertyFree: User Interface Functions [(RepoSense link)](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=kormingsoon&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **New Feature**: Implemented the `AutoTab` switching function for PropertyFree
   * **What it does**: Changes the tab from entity to entity depending on the command executed by the user.
