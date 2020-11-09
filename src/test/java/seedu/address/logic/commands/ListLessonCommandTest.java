@@ -29,12 +29,16 @@ public class ListLessonCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListLessonCommand(), model, ListLessonCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(ListLessonCommand.MESSAGE_SUCCESS, false,
+                false, true, false);
+        assertCommandSuccess(new ListLessonCommand(), model, expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showLessonAtIndex(model, INDEX_FIRST_MODEL);
-        assertCommandSuccess(new ListLessonCommand(), model, ListLessonCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(ListLessonCommand.MESSAGE_SUCCESS, false,
+                false, true, false);
+        assertCommandSuccess(new ListLessonCommand(), model, expectedCommandResult, expectedModel);
     }
 }

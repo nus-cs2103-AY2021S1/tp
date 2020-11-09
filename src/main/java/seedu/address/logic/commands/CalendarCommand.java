@@ -8,11 +8,10 @@ import seedu.address.model.Model;
 public class CalendarCommand extends Command {
 
     public static final String COMMAND_WORD = "calendar";
-
-    public static final String SHOWING_HELP_MESSAGE = "Opened calendar";
+    public static final String MESSAGE_SUCCESS = "Opened calendar!";
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, false, false, false, true);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, false, true);
     }
 }

@@ -7,6 +7,9 @@ import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import seedu.address.model.task.Task;
 
+/*
+Code adapted from AY2021S1-CS2103T-F12-2/tp (https://github.com/AY2021S1-CS2103T-F12-2/tp)
+ */
 public class ScheduleUiUtil {
 
     // This part needs to synchronize with TimeScaleCell
