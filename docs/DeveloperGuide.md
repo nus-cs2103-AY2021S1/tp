@@ -21,12 +21,12 @@ It is optimized for use via a Command Line Interface (CLI) while still having th
     - [3.5 Storage component](#35-storage-component)
     - [3.6 Scraper component](#36-scraper-component)
     - [3.7 Common classes](#37-common-classes)
-<div style="page-break-after: always;"></div>
 4. [Implementation](#4-implementation)
     - [4.1 Login](#41-login)
         * [4.1.1 What is the login process](#411-what-is-the-login-process)
         * [4.1.2 Structure of login process](#412-structure-of-login-process)
         * [4.1.3 Path Diagram of login process](#413-path-diagram-of-login-process)
+        <div style="page-break-after: always;"></div>
         * [4.1.4 Sequence Diagram of login process](#414-sequence-diagram-of-login-process)
     - [4.2 View Command](#42-view-command)
         * [4.2.1 What is ViewCommand](#421-what-is-viewcommand)
