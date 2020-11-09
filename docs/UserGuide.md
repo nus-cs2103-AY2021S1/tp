@@ -52,8 +52,9 @@ These messages are meant to alert you of certain consequences involved in the fe
 
 1. Copy the file to the folder you want to use as the _home folder_ for Eva.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. 
-Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. If you face any issues, refer to our [Frequently Asked Questions (FAQ) Section](#4-faq) 
+below. The GUI similar to the below should appear in a few seconds. 
+Note how the app contains some sample data.<br> 
    ![Ui](images/Ui.png)
 
 1. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -70,7 +71,7 @@ Note how the app contains some sample data.<br>
 
    * **`dels`**` 3` : Deletes the 3rd staff shown in the staff list.
    
-   * **`addl`**` 2 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020` : Adds two leave records with dates `08/10/2020 to 10/10/2020` and `20/10/2020` to the 2nd staff shown in the current list.
+   * **`addl`**` 1 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020` : Adds two leave records with dates `08/10/2020 to 10/10/2020` and `20/10/2020` to the 1st staff shown in the current list.
 
    * **`dell`**` 1 10/10/2020` : Deletes the leave record containing the date `10/10/2020` from the 1st person in the current list.
 
@@ -120,10 +121,10 @@ on storing and accessing these details as shown in the table below.
 <table>
 <tr><th>Field</th><th>Constraints</th><th>Example</th></tr>
 <tr><td><code><strong>NAME</strong></code></td><td>can contain only alphanumeric characters, cannot be blank, and has a character limit of 70 characters.</td><td><code>John Doe</code></td></tr>
-<tr><td><code><strong>EMAIL</strong></code></td><td>should be of the format local-part@domain <br>where the local-part should contain alphanumeric characters or special characters which includes the characters !#$%&'*+/=?`{&#124;}~^.-_ <br>The domain name should have at least 2 characters and contain only alphanumeric with a period or a hyphen for the characters in between if needed.</td><td>john_Doe12345@example123.com</td></tr>
+<tr><td><code><strong>EMAIL</strong></code></td><td>should be of the format local-part@domain <br>where the local-part should contain alphanumeric characters or special characters which includes the characters !#$%&'*+/=?`{&#124;}~^.-_ <br>The domain name should have at least 2 characters and contain only alphanumeric with a period or a hyphen for the characters in between if needed.</td><td><code>john_Doe12345@example123.com</code></td></tr>
 <tr><td><code><strong>PHONE</strong></code></td><td>can only contain numbers, and must be between 8 and 20 digits long. </td><td><code>6590018978</code> </td></tr>
 <tr><td><code><strong>TAG</strong></code></td><td> can only contain alphanumeric characters, cannot be blank, and has a character limit of 25 characters.</td><td><code>hardworking</code></td></tr>
-<tr><td><code><strong>INDEX</strong></code></td><td>The index of the staff or applicant<br> <br> It must be a valid index number.</td><td><code>2</code> this index will represent the staff/applicant with index-2 in the displayed list.</td></tr>
+<tr><td><code><strong>INDEX</strong></code></td><td>The index of the staff or applicant<br> <br> It must be a valid index number.</td><td><code>2</code> <br>Note: This index will represent the staff/applicant with index-2 in the displayed list.</td></tr>
 <tr><td><code><strong>DATE</strong></code></td><td>must be in the format <code>DD/MM/YYYY</code></td><td><code>06/07/2020</code> represents the 6th of July 2020<br> Note: Eva automatically corrects wrong dates like <code>30/02/2020</code> and <code>31/11/2020</code> to <code>29/02/2020</code> and <code>30/11/2020</code> respectively.</td></tr>
 </table>
 
@@ -156,7 +157,7 @@ So let's get started!
 
 Before we dive into the features, let us help you familiarize yourself with our GUI!
 
-As of `v1.4`, Eva currently has four different application panels it can switch between:
+As of `v1.4`, Eva currently has four different panels it can switch between:
 
 #### 3.1.1. Staff List : `Staff List Panel`
 
@@ -174,13 +175,13 @@ As of `v1.4`, Eva currently has four different application panels it can switch 
 
 ![applicantProfilePanel intro](images/ugimages/Intro4.png)
 
-These four panels form the core of our application to be sure to familiarize yourself with them! Once ready, move on to the [Commands](#32-system-commands)!
+These four panels form the core of Eva to be sure to familiarize yourself with them! Once ready, move on to the [Commands](#32-system-commands)!
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**
-Eva launches into the `Staff List Panel` by default.
-However, Eva remembers which list you last looked at and will open at `Applicant List Panel` if you exited the app from there!
+Eva launches into the [`Staff List Panel`](#311-staff-list--staff-list-panel) by default.
+However, Eva remembers which list you last looked at and will open at [`Applicant List Panel`](#313-applicant-list--applicant-list-panel) if you exited the app from there!
 
 </div>
 
@@ -216,7 +217,7 @@ As mentioned earlier in [Features](#3-features), there is no need to manually sa
 
 Staff commands give you the ability to keep track of your staffs which help you make business and manpower decisions.
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Note:** <br>
 
@@ -241,7 +242,13 @@ The image below shows what you would see after executing this example.
 
 #### 3.3.2. Add a staff : `adds`
 
-This command enables you to add a staff record into Eva. A staff record can contain the details listed below:
+This command enables you to add a staff record into Eva. 
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** <br>
+
+A staff record can contain the details listed below:
  - Name*
  - Phone Number*
  - Email*
@@ -255,12 +262,12 @@ Without any of these fields, Eva will not accept your input. Tags and comments c
 in the examples. To manage leave records for each staff, please refer to the commands 
 [`addl`](#337-record-leave-taken-by-staff-addl) and [`dell`](#338-delete-leave-taken-by-staff-dell).
 
-Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]…`
-
  - A staff can have any number of tags (including 0) <br>
  - A staff can have any number of comments (including 0) <br>
  - Each staff is uniquely identified by their name. In the event you wish to add 2 staff records with the same name,
    please ensure that both their phone number and email addresses are different
+
+</div>
 
 <div markdown="block" class="alert alert-primary">
 
@@ -271,6 +278,8 @@ Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]�
  - In the case of multiple similar prefixes, the argument of the last prefix will be used (excluding tags and comments).<br>
  
 </div>
+
+Format: `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]…`
  
 Examples:
 * To add only the necessary fields <br>
@@ -325,7 +334,6 @@ Deletes a staff from Eva.
 Please take note that this action is irreversible.**
 
 </div>
-<br>
 
 Format: `dels INDEX`
 
@@ -342,16 +350,16 @@ The image below shows what you would see after executing the last example given.
 
 Edits general details of a staff from eva (excluding leave taken)
 
-Format: `edits INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [t/TAG] [c/COMMENT]`
+Format: `edits INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [t/TAG] [c/ ti/COMMENT_TITLE d/COMMENT_DATE desc/NEW_DESCRIPTION]`
 
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**<br>
 
 * Only description of comments can be edited. Title and Date cannot be edited.
-
-* Please note that comments format is `c/ ti/TITLE_OF_COMMENT_TO_EDIT d/DATE_OF_COMMENT_TO_EDIT desc/NEW_DESCRIPTION_OF_COMMENT` 
  
+* In the case of multiple similar prefixes, the description of the last prefix will be used (excluding tags and comments).
+
 </div>
 
 Example:
@@ -365,8 +373,6 @@ The image below shows what you would see after executing the last example given.
 
 
 #### 3.3.7. Record leave taken by staff: `addl`
-
-Need to record down when your staffs are taking leaves?
 
 This command records the leave taken by a staff in the Eva Database. <br>
 
@@ -390,10 +396,10 @@ Examples:
 * `list s-` followed by `addl 2 l/d/20/10/2020` adds the leave record with the given date(s) to the 2nd person in the shown list.
 * `find s- Betsy` followed by `addl 1 l/d/20/10/2020` adds the leave to the 1st person in the results of the `find s-` command.
 * `addl 1 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`
-* `addl 7 09/09/2020`
+* `addl 7 l/d/09/09/2020`
 * `addl 7 l/d/10/10/2020 d/08/10/2020`
 
-The image below shows what you would see after executing the last example given. Notice how the leave appears on the ui.
+The image below shows what you would see after executing the last example given above. Notice how the leave appears on Betsy's record.
 
 ![addLeave](images/ugimages/AddLeave.png)
 
@@ -409,7 +415,6 @@ This command removes the record of leave taken by staff, specified by the date g
 Please take note that this action is irreversible.**
 
 </div>
-<br>
 
 Format: `dell INDEX d/DATE`
 
@@ -424,7 +429,7 @@ Examples:
 * `list s-` followed by `dell 2 d/09/10/2020` deletes the leave record of which the given date coincides with from the 2nd person in shown list.
 * `find s- Betsy` followed by `dell 1 d/09/10/2020` deletes the leave from the 1st person in the results of the `find s-` command.
 
-The image below shows what you would see after executing the example given. Notice how the leave disappears from the ui.
+The image below shows what you would see after executing the last example given above. Notice how the leave is deleted from Betsy's record.
 
 ![deleteLeave](images/ugimages/DeleteLeave.png)
 
@@ -433,14 +438,12 @@ The image below shows what you would see after executing the example given. Noti
 In any case that you might want to remove all staff records, you can always use this command. <br>
 This command clears all staff entries from the Eva database. 
 
-
 <div markdown="block" class="alert alert-danger">
 
 :exclamation: **Important! <br> 
 Please take note that this action is irreversible.**
 
 </div>
-<br>
 
 Format: `clear s-`
 
@@ -451,7 +454,7 @@ Staff List.
 
 ### 3.4. Applicant commands
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 :information_source: **Note:**<br>
 
@@ -464,7 +467,7 @@ Staff List.
 
 #### 3.4.1. List all applicants : `list a-`
 
-This is an essential command for you to use when you wish to see the records of all applicants or even make changes to them.
+The applicant list panel serves as your primary tool to give you an overview of all the applicants in your company.
 
 Format: `list a-`
 
@@ -474,7 +477,14 @@ The image below shows what you would see when you execute this command.
 
 #### 3.4.2 Add an applicant: `adda`
 
-This command enables you to add an applicant record into Eva. An applicant record can contain the details listed below:
+This command enables you to add an applicant record into Eva. 
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:**<br>
+
+An applicant record can contain the details listed below:
+
  - Name*
  - Phone Number*
  - Email*
@@ -491,8 +501,6 @@ command as shown in the examples. To manage application records for each applica
 [`addapp`](#347-add-an-application-addapp) and [`delapp`](#348-delete-an-application-delapp). To manage the application status,
 please refer to the command [`setas`](#349-set-application-status-setas).
 
-Format: `adda n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG]…​[c/COMMENTS]…`
-
  - An applicant can have any number of tags (including 0).
  - An applicant can have any number of comments (including 0).
  - Each applicant is uniquely identified by their name. In the event you wish to add 2 applicant records with the same name,
@@ -501,30 +509,34 @@ Format: `adda n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG
  - Once you add an applicant the status would be automatically set as received, if you wish to change it, refer to the feature 
  [setting of application status](#349-set-application-status-setas) below.
  
+</div>
  
  <div markdown="block" class="alert alert-primary">
  :bulb: **Tip:**
  -  In the case of multiple similar prefixes, the description of the last prefix will be used (excluding tags and comments).
  -  The details of each field can be provided in any order. 
- - The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later. 
+ - The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later.
+  
 </div>
 
+Format: `adda n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG]…​[c/COMMENTS]…`
+
 Examples:
-* To add an applicant without an interview date 
+* To add an applicant without an interview date <br>
 `adda n/Vicky Santana p/98765432 e/vsc@xample.com a/John street, block 123, #01-01`
-* To add an applicant with an interview date 
-`adda n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/22/11/2020`
-* To add an applicant with tags and comments
+* To add an applicant with tags and comments <br>
  `adda n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 
  p/92345678 t/Developer c/ ti/Working Ethics d/10/10/2010 desc/Good`
+* To add an applicant with an interview date <br>
+`adda n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/22/11/2020`
 
-The image below shows what you would see after executing the second command in the examples given above.
+The image below shows what you would see after executing the last example given above.
 
 ![addApplicant](images/ugimages/AddApplicant.png)
 
 #### 3.4.3. Find an applicant : `find a-`
 
-Shows a list of staffs whose name contains one of the given names.
+Shows a list of applicants whose name contains one of the given names.
 
 Format `find FIND_TYPE- KEYWORD`
 
@@ -533,7 +545,7 @@ Examples:
 
 * `find a- Yu`
 
-The image below shows what you would see after executing the last example given.
+The image below shows what you would see after executing the last example given above.
 
 ![findApplicant](images/ugimages/FindApplicant.png)
 
@@ -561,7 +573,7 @@ applicant you see on Applicant List, you can remove that applicant's record.
 Please take note that this action is irreversible.**
 
 </div>
-<br>
+
 Format: `dela INDEX`
 
 Example:
@@ -575,15 +587,13 @@ The image below shows what you would see after executing this example. Notice ho
 
 Edits general details of an applicant from eva (excluding application status)
 
-Format: `edita INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [c/COMMENT] [id/INTERVIEW_DATE]`
+Format: `edita INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [id/INTERVIEW_DATE] [c/ ti/COMMENT_TITLE d/COMMENT_DATE desc/NEW_DESCRIPTION]`
 
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**<br>
 
 * Only description of comments can be edited. Title and Date cannot be edited.
-
-* Please note that comments format is `c/ ti/TITLE_OF_COMMENT_TO_EDIT d/DATE_OF_COMMENT_TO_EDIT desc/NEW_DESCRIPTION_OF_COMMENT` 
 
 * In the case of multiple similar prefixes, the description of the last prefix will be used (excluding tags and comments).
  
@@ -594,7 +604,7 @@ Example:
 * `edita 1 id/ 10/10/2010`
 * `edita 2 p/98762345`
 
-The image below shows what you would see after executing the last example given.
+The image below shows what you would see after executing the last example given above.
 
 ![editApplicant](images/ugimages/EditApplicant.png)
 
@@ -623,7 +633,7 @@ Example:
 * `addapp 1 data/resume.txt`
 * `addapp 1 sample`
 
-The image below shows what you would see after executing the last example given.
+The image below shows what you would see after executing the last example given above.
 
 ![addApplication](images/ugimages/AddApplication.png)
 
@@ -638,7 +648,6 @@ Deletes an application from an applicant with the specified index under Eva.
 Please take note that this action is irreversible.**
 
 </div>
-<br>
 
 Format: `delapp INDEX`
 
@@ -660,23 +669,29 @@ The image below shows what you would see after executing this example.
 We understand that the process of hiring new talent requires multiple stages and this can be tracked using the
 application status. You can use this command to change the status of any applicant at any time.
 
-Format: `setas INDEX as/NEW_APPLICATION_STATUS`
+<div markdown="span" class="alert alert-info">
 
-- Application status can only be any one from the following: 
+**:information_source: Note:** <br>
+
+Application status can only be any one from the following: 
   - received
   - processing
   - accepted
   - rejected
   
+  </div>
+  
+Format: `setas INDEX as/NEW_APPLICATION_STATUS`
+
 Example:
 * `setas 1 as/received`
 * `setas 3 as/accepted`
 
-The image below shows what you would see after executing the last example given.
+The image below shows what you would see after executing the last example given above.
 
 ![setApplicationStatus](images/ugimages/SetApplicationStatus.png)
 
-#### 3.4.10 Clear applicant database: `clear`
+#### 3.4.10 Clear applicant database: `clear a-`
 
 In any case that you might want to remove all applicant records, you can always use this command.
 This command clears all applicant entries from the Eva database.
@@ -688,7 +703,6 @@ This command clears all applicant entries from the Eva database.
 Please take note that this action is irreversible.**
 
 </div>
-<br>
 
 Format: `clear a-`
 
@@ -702,7 +716,7 @@ Applicant List.
 
 Commands to add, delete and edit comments on staff or applicants
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Note:** <br>
 
@@ -724,13 +738,13 @@ Commands to add, delete and edit comments on staff or applicants
 
 Adds a comment to a staff/applicant under eva depending on which panel you are in
 
-Format: `addc INDEX c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/DESCRIPTIONS`
+Format: `addc INDEX c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/DESCRIPTION`
 
 Example:
 * `addc 1 c/ ti/Working Ethics d/10/10/2010 desc/Good`
 * `addc 2 c/ ti/Punctuality d/10/10/2020 d/This applicant as a problem with punctuality`
 
-The image below shows what you would see after executing the last example given.
+The image below shows what you would see after executing the last example given above.
 
 ![addComment](images/ugimages/AddComment.png)
 
@@ -744,8 +758,6 @@ Deletes a comment from a staff/applicant under eva depending on which panel you 
 Please take note that this action is irreversible.**
 
 </div>
-<br>
-
 
 Format: `delc INDEX c/ ti/TITLE_OF_COMMENT_TO_DELETE`
 
@@ -753,7 +765,7 @@ Example:
 * `delc 1 c/ ti/Working Ethics`
 * `delc 2 c/ ti/Punctuality`
 
-The image below shows what you would see after executing the last example given.
+The image below shows what you would see after executing the last example given above.
 
 ![deleteComment](images/ugimages/DeleteComment.png)
 
@@ -761,7 +773,7 @@ The image below shows what you would see after executing the last example given.
 
 Edits the description of a comment on a staff.
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Note:** <br>
 
@@ -775,7 +787,7 @@ Example:
 * `editc 1 c/ ti/Working Ethics d/10/10/2010 desc/Quite Bad`
 * `editc 3 c/ti/Review d/10/10/2010 desc/Suitable to be team leader due to experience in marketing`
 
-The image below shows what you would see after executing the last example given.
+The image below shows what you would see after executing the last example given above.
 
 ![editComment](images/ugimages/EditComment.png)
 
@@ -814,7 +826,7 @@ Example Scenario:
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Eva home folder.
 
 **Q**: I can't run the app by double clicking! What do I do?<br>
-**A**: Open terminal and traverse to the directory the `eva.jar` file is in. Then type the command `java -jar Eva.jar`.
+**A**: Open terminal and traverse to the directory the `Eva.jar` file is in. Then type the command `java -jar Eva.jar`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -822,24 +834,24 @@ Example Scenario:
 
 ### 5.1. System
 
-| Action    | Format, Examples   |
-|-----------|--------------------|
-| **Help**  | `help`             |
-| **Exit**  | `exit`             |
-| **Load**  | `load`             |
+| Action                    | Format, Examples   |
+|---------------------------|--------------------|
+| **Help**                  | `help`             |
+| **Exit**                  | `exit`             |
+| **Load** (experimental)   | `load`             |
 
 ### 5.2. Staff
 
 | Action          | Format, Examples                                                                                                                                        |
 |-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **List Staff**  | `list s-`   
-| **Add Staff**    | `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
-| **Find Staff**   | `find s- KEYWORD [MORE_KEYWORDS]`<br> e.g., `find s- James Jake`                                                                 |
-| **View**        | `view INDEX`<br> e.g., `view 2`                                                                                            |
-| **Delete Staff** | `dels INDEX`<br> e.g., `dels 1`         
-| **Edit Staff**   | `edits INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edits 2 n/James Lee e/jameslee@example.com` |
-| **Add Leave**    | `addl INDEX l/d/DATE [d/DATE]` <br> e.g., `addl 2 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`                                                   |
-| **Delete Leave** | `dell INDEX d/DATE`<br> e.g., `dell 1 d/10/10/2020`                                                                                       |
+| **Add Staff**    | `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g. `adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
+| **Find Staff**   | `find s- KEYWORD [MORE_KEYWORDS]`<br> e.g. `find s- James Jake`                                                                 |
+| **View**        | `view INDEX`<br> e.g. `view 2`                                                                                            |
+| **Delete Staff** | `dels INDEX`<br> e.g. `dels 1`         
+| **Edit Staff**   | `edits INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.`edits 2 n/James Lee e/jameslee@example.com` |
+| **Add Leave**    | `addl INDEX l/d/DATE [d/DATE]` <br> e.g. `addl 2 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`                                                   |
+| **Delete Leave** | `dell INDEX d/DATE`<br> e.g. `dell 1 d/10/10/2020`                                                                                       |
 | **Clear Staff Database** | `clear s-`         |
 
 ### 5.3. Applicant
@@ -847,11 +859,11 @@ Example Scenario:
 | Action                | Format, Examples                                                                                                 |
 |-----------------------|--------------------------------------------------------------------------------------------|
 | **List** | `list a-`   
-| **Add Applicant**      | `adda` <br> e.g., `adda n/John Doe p/98765432 e/jd@example.com a/John street, block 123, #01-01` |
-| **Find** | `find a- KEYWORD [MORE_KEYWORDS]`<br> e.g., `find a- James Jake`                                                                 |
-| **View** | `view INDEX`<br> e.g., `view 2`                                                                                            |
-| **Delete Applicant**   | `dela` <br> e.g., `dela 1`                                                                       |
-| **Add Application**    | `addapp INDEX [filepath]` <br> e.g., `addapp 1 C:\Users\Public\Downloads\resume.txt`             |
-| **Delete Application** | `delapp INDEX` <br> e.g., `delapp 1`                                                       |
-| **Set AppStatus**      | `setas INDEX as/NEW_APPLICATION_STATUS` <br> e.g., `setas 1 as/processing`                               |
+| **Add Applicant**      | `adda` <br> e.g. `adda n/John Doe p/98765432 e/jd@example.com a/John street, block 123, #01-01` |
+| **Find** | `find a- KEYWORD [MORE_KEYWORDS]`<br> e.g. `find a- James Jake`                                                                 |
+| **View** | `view INDEX`<br> e.g. `view 2`                                                                                            |
+| **Delete Applicant**   | `dela` <br> e.g. `dela 1`                                                                       |
+| **Add Application**    | `addapp INDEX [filepath]` <br> e.g. `addapp 1 C:\Users\Public\Downloads\resume.txt`             |
+| **Delete Application** | `delapp INDEX` <br> e.g. `delapp 1`                                                       |
+| **Set AppStatus**      | `setas INDEX as/NEW_APPLICATION_STATUS` <br> e.g. `setas 1 as/processing`                               |
 | **Clear Applicant Database** | `clear a-`         |
