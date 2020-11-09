@@ -611,9 +611,9 @@ increased.
 Compared with the original implementation, this feature adds emergency contact information of the employee. It can help
 the user to contact some staff when emergency situation happens. The command is:
 
-- `edit INDEX [n/NAME] [p/PHONE] [e/EMERGENCY_CONTACT] [t/TAG] …​​`
+- `c-edit INDEX [n/NAME] [p/PHONE] [e/EMERGENCY_CONTACT] [t/TAG] ...`
 
-#### Completed Implementation
+#### Implementation
 
 The completed edit employee's contact information is facilitated by `AddressBook`. It implements `ReadOnlyAddressBook`
 interface and offers method to edit the application's `AddressBook`. Particularly, it changes Person's constructor and
@@ -624,11 +624,11 @@ Given below is an example usage scenario and how the edit mechanism behaves at e
 Step 1: The user launches the application for the first time. Because now there isn't any information in addressbook.
 The user can't edit now.
 
-Step 2: The user executes `add n/Betsy Crowe e/81234567 p/1234567 t/morning shift t/part-time`. The `add` command calls
+Step 2: The user executes `c-add n/Betsy Crowe e/81234567 p/91234567 t/morning shift t/part-time`. The `add` command calls
 `Model#addPerson()` to add Besty's information in the `AddressBook`. The updated `AddressBook` is stored in
 `addressbook.json`.
 
-Step 3: The user executes `edit 1 n/Besty Crowe e/54749110 p/1234567 t/morning shift t/part-time` to change Besty Crowe's
+Step 3: The user executes `c-edit 1 n/Besty Crowe e/84749110 p/81234567 t/morning shift t/part-time` to change Besty Crowe's
 phone number. This`edit` command calls `Model#setPerson()` to replace the original Besty Crowe's information in the
 `Addressbook`, causing the updated `Addressbook` to be stored in `addressbook.json`, overwriting the former one.
 
