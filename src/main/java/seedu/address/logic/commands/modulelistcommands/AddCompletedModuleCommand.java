@@ -12,6 +12,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 
+/**
+ * Encapsulates methods and information to add a module into the module list.
+ */
 public class AddCompletedModuleCommand extends Command {
     public static final String COMMAND_WORD = "addcmodule";
 
@@ -33,7 +36,9 @@ public class AddCompletedModuleCommand extends Command {
     private final Module toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Module}
+     * Creates and initialises a new AddCompletedModuleCommand for the addition of a new module into the module list.
+     *
+     * @param module Module to be added.
      */
     public AddCompletedModuleCommand(Module module) {
         requireNonNull(module);

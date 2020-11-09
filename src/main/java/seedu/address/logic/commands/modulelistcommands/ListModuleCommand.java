@@ -8,7 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Encapsulates methods and information to display module list.
  */
 public class ListModuleCommand extends Command {
 

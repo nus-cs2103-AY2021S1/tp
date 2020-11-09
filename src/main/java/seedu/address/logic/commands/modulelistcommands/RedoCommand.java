@@ -8,7 +8,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.exceptions.VersionedListException;
 
-
+/**
+ * Encapsulates methods and information to redo previously undone command.
+ */
 public class RedoCommand extends Command {
     public static final String COMMAND_WORD = "redo";
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -16,9 +18,6 @@ public class RedoCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_REDO_COMMAND_SUCCESS = "Undone command has been redone";
-    public RedoCommand() {
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

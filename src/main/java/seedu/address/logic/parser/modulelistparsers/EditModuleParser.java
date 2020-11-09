@@ -14,7 +14,6 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
-import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -46,30 +45,11 @@ public class EditModuleParser implements Parser<EditModuleCommand> {
                     EditModuleCommand.MESSAGE_USAGE), pe);
         }
 
-        EditModuleDescriptor editModuleDescriptor = new EditModuleDescriptor();
-
-
-        /*if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editModuleDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
-        }
-
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editModuleDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-        }*/
+        EditModuleCommand.EditModuleDescriptor editModuleDescriptor = new EditModuleCommand.EditModuleDescriptor();
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editModuleDescriptor::setTags);
-
-        /*if (!editModuleDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
-        }
-        */
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editModuleDescriptor.setModuleName(ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        /*
-        if (argMultimap.getValue(PREFIX_ZOOM_LINK).isPresent()) {
-            editModuleDescriptor.setZoomLink(ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM_LINK).get()));
-        }
-        */
         if (argMultimap.getValue(PREFIX_MODULAR_CREDITS).isPresent()) {
             editModuleDescriptor.setModularCredits(ParserUtil
                     .parseModularCredits(argMultimap.getValue(PREFIX_MODULAR_CREDITS).get()));

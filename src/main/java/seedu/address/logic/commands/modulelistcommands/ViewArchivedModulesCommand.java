@@ -9,7 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Lists all modules in the archived module list to the user.
+ * Encapsulates methods and information to display all modules in the archived module list to the user.
  */
 public class ViewArchivedModulesCommand extends Command {
     public static final String COMMAND_WORD = "viewarchive";

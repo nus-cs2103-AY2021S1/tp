@@ -19,7 +19,7 @@ import seedu.address.model.module.ZoomLink;
 import seedu.address.ui.DisplayZoomLink;
 
 /**
- * Lists all modules in the module list to the user.
+ * Encapsulates methods and information to display details for a specified module to the user.
  */
 public class ViewModuleCommand extends Command {
 
@@ -35,10 +35,13 @@ public class ViewModuleCommand extends Command {
     private Index index;
 
     /**
-     * Creates a ViewCommand to view the specified {@code Module}
+     * Creates and initialises a new ViewModuleCommand for detailed display of a specified module.
+     *
+     * @param targetIndex Index object encapsulating the index of the target module in the filtered displayed
+     *                    module list.
      */
-    public ViewModuleCommand(Index index) {
-        this.index = index;
+    public ViewModuleCommand(Index targetIndex) {
+        this.index = targetIndex;
     }
 
     @Override

@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModuleList;
 
 /**
- * Clears the module list.
+ * Encapsulates methods and information to clear module list.
  */
 public class ClearModuleCommand extends Command {
 

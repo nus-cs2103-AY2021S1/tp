@@ -13,7 +13,8 @@ import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 
 /**
- * Deletes a module identified using it's displayed index from the address book.
+ * Encapsulates methods and information to delete a module identified using it's displayed index from the
+ * module list.
  */
 public class DeleteModuleCommand extends Command {
 
@@ -28,6 +29,12 @@ public class DeleteModuleCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates and initialises a new DeleteModuleCommand for the deletion of a module in the module list.
+     *
+     * @param targetIndex Index object encapsulating the index of the target module in the filtered displayed
+     *                    module list.
+     */
     public DeleteModuleCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
