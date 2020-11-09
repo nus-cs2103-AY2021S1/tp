@@ -105,7 +105,8 @@ public class DoneCommandTest {
         String expectedMessage = String.format(DoneCommand.MESSAGE_MARK_ASSIGNMENT_AS_DONE_SUCCESS,
                 assignmentsToMarkDone);
 
-        Model expectedModel = new ModelManager(model.getProductiveNus(), new UserPrefs(), null);
+        Model expectedModel = new ModelManager(
+                model.getProductiveNus(), new UserPrefs(), null, model.getFilteredAssignments());
         expectedModel.setAssignment(model.getFilteredAssignmentList().get(0), assignmentToMarkDone);
 
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);

@@ -49,7 +49,7 @@ public class CommandTestUtil {
     public static final String INVALID_MODULE_CODE_DESC = " "
             + PREFIX_MODULE_CODE; // empty string not allowed for module code
     public static final String INVALID_REMIND_DESC = " " + "remin"; // wrong spelling
-    public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "average"; // invalid priority
+    public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "LO"; // invalid priority
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 

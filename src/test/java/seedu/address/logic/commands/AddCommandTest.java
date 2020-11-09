@@ -56,26 +56,42 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Assignment cs1231SHomework = new AssignmentBuilder().withName("CS1231S Homework").build();
-        Assignment cs2103TTutorial = new AssignmentBuilder().withName("CS2103T Tutorial").build();
-        AddCommand addCs1231SHomeworkCommand = new AddCommand(cs1231SHomework);
-        AddCommand addCs2103TTutorialCommand = new AddCommand(cs2103TTutorial);
+        Assignment CS1231SHomework = new AssignmentBuilder().withName("CS1231S Homework").build();
+        Assignment cs1231SHomework = new AssignmentBuilder().withName("cs1231s homework").build();
+        Assignment CS2103TTutorial = new AssignmentBuilder().withName("CS2103T Tutorial").build();
+        Assignment CS2030Homework = new AssignmentBuilder().withName("Homework").withModuleCode("CS2030").build();
+        Assignment CS1010Homework = new AssignmentBuilder().withName("Homework").withModuleCode("CS1010").build();
+
+
+
+        AddCommand addCS1231SHomeworkCommand = new AddCommand(CS1231SHomework);
+        AddCommand addCs1231sHomeworkCommand = new AddCommand(cs1231SHomework);
+        AddCommand addCS2103TTutorialCommand = new AddCommand(CS2103TTutorial);
+        AddCommand addCS2030HomeworkCommand = new AddCommand(CS2030Homework);
+        AddCommand addCS1010HomeworkCommand = new AddCommand(CS1010Homework);
+
 
         // same object -> returns true
-        assertTrue(addCs1231SHomeworkCommand.equals(addCs1231SHomeworkCommand));
+        assertTrue(addCS1231SHomeworkCommand.equals(addCS1231SHomeworkCommand));
 
         // same values -> returns true
-        AddCommand addCs1231SHomeworkCommandCopy = new AddCommand(cs1231SHomework);
-        assertTrue(addCs1231SHomeworkCommand.equals(addCs1231SHomeworkCommandCopy));
+        AddCommand addCs1231SHomeworkCommandCopy = new AddCommand(CS1231SHomework);
+        assertTrue(addCS1231SHomeworkCommand.equals(addCs1231SHomeworkCommandCopy));
+
+        // same name different caps -> returns true
+        assertTrue(addCS1231SHomeworkCommand.equals(addCs1231sHomeworkCommand));
+
+        // same name different module -> returns false
+        assertFalse(addCS2030HomeworkCommand.equals(addCS1010HomeworkCommand));
 
         // different types -> returns false
-        assertFalse(addCs1231SHomeworkCommand.equals(1));
+        assertFalse(addCS1231SHomeworkCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addCs1231SHomeworkCommand.equals(null));
+        assertFalse(addCS1231SHomeworkCommand.equals(null));
 
         // different assignment -> returns false
-        assertFalse(addCs1231SHomeworkCommand.equals(addCs2103TTutorialCommand));
+        assertFalse(addCS1231SHomeworkCommand.equals(addCS2103TTutorialCommand));
     }
 
     /**

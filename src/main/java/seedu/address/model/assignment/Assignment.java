@@ -115,11 +115,11 @@ public class Assignment extends Task {
         return Objects.hash(super.getName(), getDeadline(), super.getModuleCode());
     }
 
-    // TODO: Consider printing Remind as well
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append("\n")
+                .append(getName())
                 .append(" Deadline: ")
                 .append(getDeadline())
                 .append(" Module: ")

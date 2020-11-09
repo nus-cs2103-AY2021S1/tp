@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSIGNMENT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +76,6 @@ public class DoneCommand extends Command {
             Assignment assignmentMarkedDone = createAssignmentMarkedDone(assignmentToMarkDone);
 
             model.setAssignment(assignmentToMarkDone, assignmentMarkedDone);
-            model.updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT);
             assignmentsToMarkDone.add(assignmentToMarkDone);
         }
 
@@ -110,8 +108,6 @@ public class DoneCommand extends Command {
         Remind updatedRemind = assignmentToMarkAsDone.getRemind();
         Schedule updatedSchedule = assignmentToMarkAsDone.getSchedule();
         Priority priority = assignmentToMarkAsDone.getPriority();
-        // TODO: following method (and method in createRemindedCommand violates Law of Demeter.
-        //  might have to think of another way to do this after this iteration
         Done done = assignmentToMarkAsDone.getDone().markAsDone();
 
         return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedRemind, updatedSchedule,

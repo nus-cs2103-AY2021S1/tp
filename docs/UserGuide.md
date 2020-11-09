@@ -51,7 +51,7 @@ All commands and their examples are demarcated with `markups`. `Markups` appear 
   e.g `n/NAME_OF_ASSIGNMENT [remind]` can be used as `n/Assignment 2 remind` or as `n/Assignment 2`.
 
 
-* Parameters can be in any order.<br>
+* Parameters can be in any order unless otherwise stated.<br>
   e.g. if the command specifies `n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT`, `d/DEADLINE_OF_ASSIGNMENT n/NAME_OF_ASSIGNMENT` is also acceptable.
   
 * All instances of `INDEX` **must be a positive integer**.<br>
@@ -121,6 +121,8 @@ simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. All the informatio
 
  **:clipboard: Pointers to note:**<br>
 * `DEADLINE_OF_ASSIGNMENT` must be in the format dd-MM-yyyy and time in the format HHmm (24-hour).
+* `[remind]` has to be the last parameter. For example, `add n/Lab report d/23-04-2020 1230 mod/CS2100 remind p/HIGH` will not be accepted. Instead, you should enter `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH remind`.
+* The assignment that you are adding has to be unique and it cannot already exist in your assignment list. 
 </div>
 
 <div markdown="span" class="alert alert-success">
@@ -130,7 +132,7 @@ If the lab report assignment is of **high priority**, you can enter `add n/Lab r
 
 More examples:
 * `add n/Lab report d/23-04-2020 1230 mod/CS2100 remind`
-* `add n/Lab report d/30-04-2020 1230 mod/CS2100`
+* `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH remind`
 
 
 <div style="page-break-after: always;"></div>
@@ -146,7 +148,7 @@ Here is an example with steps for you to follow:
 1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the Command Box which corresponds to their indexes in the assignment list.
 
 ![DeleteCommand1](images/DeleteCommandDiagram1.png)
-*Figure 4: User input and location of assignment indexes*
+*Figure 4: `delete 1 3` inputted by user and location of assignment indexes*
 
 
 2) You have successfully deleted both assignments from the assignment list, and they are no longer displayed.
@@ -251,17 +253,17 @@ You can find your assignments based on keywords you enter. The types of keywords
 <div markdown="span" class="alert alert-success">
 
 **:bulb: Tip:**
-If your assignment list is really long, the `find` command comes in handy as it  filters the list based on assignments u want to see!
+If your assignment list is really long, this command comes in handy as it filters the list based on assignments u want to see!
 </div>
 
 This is the table of prefixes used:
 
 | Prefix | Syntax | Example |
 |-|-|-|
-| `n/` | n/NAME_OF_ASSIGNMENT | - `n/Tutorial` |
-| `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT | - `mod/ST2334` |
-| `d/` | d/DUE_DATE_OR_TIME_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
-| `p/` | p/PRIORITY_OF_ASSIGNMENT | - `p/HIGH` |
+| `n/` | n/NAME_OF_ASSIGNMENT [MORE_NAME_OF_ASSIGNMENT] | - `n/Tutorial` |
+| `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT [MORE_MODULE_CODE_OF_ASSIGNMENT] | - `mod/ST2334` |
+| `d/` | d/DUE_DATE_OR_TIME_OF_ASSIGNMENT [MORE_DUE_DATE_OR_TIME_OF_ASSIGNMENT] | - `d/24-10-2020 1300` |
+| `p/` | p/PRIORITY_OF_ASSIGNMENT [MORE_PRIORITY_OF_ASSIGNMENT] | - `p/HIGH` |
 
 <div markdown="block" class="alert alert-primary">
 
@@ -324,13 +326,13 @@ Here is an example with steps for you to follow:
 1) To edit the name of the assignment with the first index in the assignment list to "Statistics Lab", you can simply key in `edit 1 n/Statistics Lab` in the Command Box. 
 
 ![EditCommand1](images/EditCommand1.png)
-*Figure 12: `edit 1 n/Statistics Lab` inputted by user*
+*Figure 12: `edit 1 n/Statistics Lab` inputted by user and location of assignment index*
 
 2) The name of the assignment is changed to "Statistics Lab".
 
 3) A message that indicates details of the edited assignment is displayed in the Message Box.
 
-![EditCommand2](images/EditCommand2.png)
+![EditCommand2](images/EditCommandDiagram2.png)
 *Figure 13: The displayed message and the edited assignment*
 
 More examples: 
@@ -425,7 +427,7 @@ You can use the `INDEX` of the assignment as shown in your assignment list to se
 
 For example, `prioritize 1 p/LOW` will set a low priority tag for the first assignment in your assignment list.
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary"> 
   
 **:clipboard: Pointers to note:**<br>
 * The `INDEX` must be found in your assignment list.
@@ -471,7 +473,7 @@ the command line based on the indexes labelled in the figure.
    
 2) The two assignments will be marked as done and each assignment will have a green tick displayed as labelled in the figure. 
 
-   ![UserGuideDoneCommandTicksAdded](images/UserGuideDoneCommandTicksAdded.PNG)
+   ![UserGuideDoneCommandTicksAdded](images/UserGuideDoneCommandTicks.PNG)
    *Figure 23: Added ticks labelled*
 
 3) A message that includes the information of the assignments marked as done will be displayed in the Command Box.
@@ -482,7 +484,7 @@ the command line based on the indexes labelled in the figure.
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
 * At least one index must be present. For example, `done` without any index is invalid.
-* The indexes **must be found in your assignment list**
+* The indexes **must be found in your assignment list**.
 * The indexes **must not be duplicated**. For example, `done 4 4` is invalid.
 </div>
 
@@ -496,7 +498,7 @@ Format: `undone INDEX`
 You can unmark assignments that you have previously marked as done by specifying the assignment `INDEX` as shown in your
  list.
 
-You can unmark `one` done assignment at a time. Here is an example with steps to follow:
+You can unmark `one` done assignment at a time. Here is an example with steps for you to follow:
 
 1) If you have **accidentally** marked the assignment with the name "Essay" as done,
 you can simply enter `undone 2` into the command line based on the index labelled in the figure.
@@ -509,16 +511,16 @@ you can simply enter `undone 2` into the command line based on the index labelle
    ![UserGuideUndoneCommandTickRemoval](images/UserGuideUndoneCommandTickRemoval.PNG)
    *Figure 26: Deleted green tick labelled*
 
-3) A message that includes the information of your assignment marked as undone will be displayed in the Command Box.
+3) A message that includes the information of your assignment marked as not done will be displayed in the Command Box.
 
    ![UserGuideUndoneCommandSuccess](images/UserGuideUndoneCommandSuccess.PNG)
    *Figure 27: Message shown in Command Box labelled*
    
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
-* Assignments are marked as not done **by default**
+* Assignments are marked as **not done by default**.
 * The index must be present. For example, `undone` without any index is invalid.
-* The index **must be found in your assignment list**
+* The index **must be found in your assignment list**.
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -542,17 +544,14 @@ Here is an example with steps to follow:
 
 1) You want to schedule assignments with the name "CS2106 Lab" as shown in the figure below with an expected hour of 5 hours
 and need to be done by a week from now (although the actual deadline is longer).
-
     ![UserGuideScheduleCommand](images/UserGuideScheduleCommand.PNG)
     *Figure 28: Assignment to schedule*
 
 2) You can simply enter `schedule 3 hrs/5 af/01-01-2020 0000 by/23-12-2020 2359` into the command box.
-
     ![UserGuideScheduleCommandInput](images/UserGuideScheduleCommandInput.PNG)
     *Figure 29: Command inputted by user*
 
 3) The suggested time slot will be displayed in the assignment card.
-    
     ![UserGuideScheduleCommandResult](images/UserGuideScheduleCommandResult.PNG)
     *Figure 30: Message shown in Command Box and suggested schedule displayed in the assignment card*
 
@@ -606,14 +605,12 @@ You can undo all previous commands one at a time if you make mistakes in command
 Here is an example with steps to follow:
 
 1) You accidentally delete the first assignment by entering `delete 1` command.
-
     ![UserGuideUndoCommandDeleteInput](images/UserGuideUndoCommandDeleteInput.PNG)
     *Figure 33: Delete the first assignment*
     ![UserGuideUndoCommandDeleteResult](images/UserGuideUndoCommandDeleteResult.PNG)
     *Figure 34: Result after deleting the first assignment*
     
 2) You can enter `undo` to undo the `delete 1` command.
-
     ![UserGuideUndoCommandInput](images/UserGuideUndoCommandInput.PNG)
     *Figure 35: Undo the delete command*
     ![UserGuideUndoCommandResult](images/UserGuideUndoCommandResult.PNG)
@@ -714,16 +711,16 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: 
+**Q: How do I transfer my data to another Computer?**<br>
+**A:** 
 1. Install the app in your other computer and start the app.
 2. Notice that a data file named `addressbook.json` is created under the `/data` folder.
 3. Close the app in your other computer.
 4. Overwrite the newly created data file with the data file from your previous computer.
 5. All your existing data has been successfully transferred!
 
-**Q**: I am not free during the time that my assignment has been scheduled. How do I reschedule?<br>
-**A**:
+**Q: I am not free during the time that my assignment has been scheduled. How do I reschedule?**<br>
+**A:**
 You can reschedule by using the schedule command on that assignment again.<br>
 
 1. Type the schedule command into the Command Box with the index of the assignment that you want to reschedule. You can refer to the diagram below.<br>
@@ -744,7 +741,7 @@ You can paste the command into the command box after step 2 and repeat step 1-2 
 
 <div style="page-break-after: always;"></div>
 
-**Q**: I double-clicked the productivenus.jar file but the app is not starting. What should I do?<br>
+**Q: I double-clicked the productivenus.jar file but the app is not starting. What should I do?**<br>
 **A**: This is most likely caused by the *Security and Privacy Settings* of your operating system. You can either
 modify your *Security and Privacy Settings* (depends on your operating system) to accept
 anonymous files or run ProductiveNUS with the `Command Prompt`.

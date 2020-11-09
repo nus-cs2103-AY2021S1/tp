@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSIGNMENT;
 
 import java.util.List;
 
@@ -58,7 +57,6 @@ public class UndoneCommand extends NegateCommand {
         Assignment undoneAssignment = createUndoneAssignment(assignmentToMarkAsUndone);
 
         model.setAssignment(assignmentToMarkAsUndone, undoneAssignment);
-        model.updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT);
         return new CommandResult(String.format(MESSAGE_MARK_ASSIGNMENT_AS_UNDONE_SUCCESS, undoneAssignment));
     }
 
