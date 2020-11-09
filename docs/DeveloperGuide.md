@@ -1010,8 +1010,9 @@ edited or deleted as well.
 We envisioned fitNUS to be more of a "visual" product, where users will feel that the product is intuitive to use and
 the interface is lean. We are proud and sure that we have achieved this goal, despite not knowing any JavaFX before
 CS2103T.  We are especially proud of the calorie graph that is on the homepage that dynamically updates as the user
-enters calories as well as the timetable tab that is able to concisely display the user's routines and lessons.
-
+enters calories as well as the timetable tab that is able to concisely display the user's routines and lessons. 
+We spent a considerable amount of time on independent learning to understand how the graph and tabs can be implemented, 
+and how to best integrate these components into fitNUS.
 
 ### 4. Conclusion
 
