@@ -36,10 +36,10 @@ Given below are my contributions to the project.
     * Added implementation of storage component. Added feature implementation of adding a session. [\#125](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/125)
     * Added feature implementation of participate and presence. Add use cases. [\#236](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/236)
   * About Us:
-    * Edited personal information  [\#41](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/134)
+    * Edited personal information  [\#41](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/41)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#117](https://github.com/AY2021S1-CS2103T-W16-4/tp/pull/117)
-  * Contributed to forum discussions (examples: [#41](https://github.com/nus-cs2103-AY2021S1/forum/issues/41), [#265](https://github.com/nus-cs2103-AY2021S1/forum/issues/265))
-  * Reported bugs and suggestions for other teams in the class (examples: [#231](https://github.com/AY2021S1-CS2103T-T13-4/tp/issues/231))
+  * Contributed to forum discussions (examples: [\#41](https://github.com/nus-cs2103-AY2021S1/forum/issues/41), [\#265](https://github.com/nus-cs2103-AY2021S1/forum/issues/265))
+  * Reported bugs and suggestions for other teams in the class (examples: [\#231](https://github.com/AY2021S1-CS2103T-T13-4/tp/issues/231))
 
