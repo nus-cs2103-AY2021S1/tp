@@ -493,7 +493,7 @@ Format: `deleteAppt NRIC appt/DATE TIME`
 * `DATE` and `TIME` represent the date and time of the `Appointment` to be deleted.
 * `DATE` and `TIME` formats follow the same format as specified in the [`addAppt`](#310-adding-an-appointment-addappt-by-gabriel-teo-yu-xiang) command section.
 
-Examples:
+Example:
 * `deleteAppt S0000001A appt/28/09/2022 20:00`
 
 When an `Appointment` is successfully deleted, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in figure 13.1 below.<br>

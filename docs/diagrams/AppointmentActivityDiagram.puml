@@ -1,0 +1,41 @@
+@startuml
+sprite $rake [16x16/8] {
+0000000000000000
+0000000jj0000000
+0000000jj0000000
+0005555jj5555000
+000jjeejjeejj000
+000jj00jj00jj000
+000jj00jj00jj000
+0000000000000000
+}
+start
+:User adds a new appointment to patient A;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+:User decides to show the appointments of patient A;
+if () then ([user uses GUI])
+    :User double clicks on patient card display;
+else ([user uses command line])
+    :User uses showAppt command on command line;
+endif
+:Patient appointments are displayed;
+:User decides to edit an appointment of patient A <$rake>;
+:User decides to delete the appointment;
+stop
+partition "User decides to edit an appointment of patient A" {
+start
+if () then ([user only needs to
+reschedule appointment])
+    :User only specifies old
+    and new appointment timings;
+else ([user needs to reschedule and
+change appointment description])
+    :User specifies old and new appointment
+    timings, as well as new appointment description;
+endif
+stop
+}
+@enduml
