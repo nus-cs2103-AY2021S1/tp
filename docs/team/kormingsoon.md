@@ -73,7 +73,7 @@ and their clients.
   [\#150](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/150),
   )
   * Contributed to forum discussions (examples: 
-  [\#172 Guide on PR to Master](https://github.com/nus-cs2103-AY2021S1/forum/issues/172), 
+  [\#172](https://github.com/nus-cs2103-AY2021S1/forum/issues/172), 
   [\#153](https://github.com/nus-cs2103-AY2021S1/forum/issues/153), 
   [\#207](https://github.com/nus-cs2103-AY2021S1/forum/issues/207),
   [\#213](https://github.com/nus-cs2103-AY2021S1/forum/issues/213))
