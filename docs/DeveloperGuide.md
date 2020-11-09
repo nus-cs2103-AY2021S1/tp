@@ -1237,6 +1237,7 @@ ambiguity by ensuring all constraints related to the command are made known to t
 ### 3.4 Event list management feature
 
 ### Add Event Feature
+![Add Event Sequence Diagram](images/AddEventSequenceDiagram.png)
 
 #### Implementation
 The way this feature is currently implemented is similar to that of AB3. In the `Logic` component, we are using a specialised parser called
