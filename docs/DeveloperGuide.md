@@ -12,6 +12,14 @@
 * [3.4. Common Class](#36-common-classes)
 
 4.[ Implementation](#4-implementation)  
+* [4.1. Archive Command](#41-archive-command)
+* [4.2. Calories Graph](#42-displaying-graph-of-calories-burnt)
+* [4.3. Template](#43-template)
+* [4.4. GoalBook](#44-goalbook)
+* [4.5. Update Command](#45-updating-an-exercise)
+* [4.6. Search for specific Exercise](#46-searching-for-specific-exercise)
+
+
 5.[ Documentation, Logging and Testing](#5-documentation-logging-testing-configuration-dev-ops)  
 6.[ Appendix A: Requirements](#6-appendix-a-requirements)  
 7.[ Appendix B: User Stories](#7-appendix-b-user-stories)  
@@ -156,7 +164,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## 4. Implementation
 
-### 4.1. Archive
+### 4.1. Archive Command
 (Phyo Han)  
 
 Since Calo always stores all the exercises that the user did in the past, it is always a good idea to archive past exercises
@@ -356,7 +364,7 @@ Due to a limitation of PlantUML, it is not possible to do so here.
 
 #### 4.5.2. Design Considerations
 
-===== Aspect: Process of updating the new data in `model`
+Aspect: Process of updating the new data in `model`
 
 * **Alternative 1 (Current choice)**: Replace `Exercise` to be updated in `UniqueExerciseList` of `ExerciseBook` with another `Exercise` object containing the updated data.
   * Pros: Atomic updates.
@@ -369,7 +377,7 @@ Due to a limitation of PlantUML, it is not possible to do so here.
   * Pros: Will use less memory (no new `Exercise` object will be created)
   * Cons:If an error occurs in the middle of the process, the fields which were updated would not recover the original values.
 
-#### Summary
+#### 4.5.3. Summary
 
 The following activity diagram summarizes what happens when a user executes an `update` command:
 
