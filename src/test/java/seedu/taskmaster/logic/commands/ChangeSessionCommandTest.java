@@ -37,7 +37,7 @@ public class ChangeSessionCommandTest {
         String expectedMessage = String.format(ChangeSessionCommand.MESSAGE_SUCCESS, existingSession.getSessionName());
         Model expectedModel = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         expectedModel.addSession(existingSession);
-        model.changeSession(null);
+        model.showStudentList();
         ChangeSessionCommand changeSessionCommand = new ChangeSessionCommand(existingSession.getSessionName());
         assertCommandSuccess(changeSessionCommand, model, expectedMessage, expectedModel);
     }

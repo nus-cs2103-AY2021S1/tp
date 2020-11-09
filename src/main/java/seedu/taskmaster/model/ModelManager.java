@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
@@ -21,6 +20,7 @@ import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.record.StudentRecordEqualsPredicate;
 import seedu.taskmaster.model.session.Session;
 import seedu.taskmaster.model.session.SessionName;
+import seedu.taskmaster.model.session.exceptions.NoPresentInSessionException;
 import seedu.taskmaster.model.session.exceptions.NoSessionException;
 import seedu.taskmaster.model.session.exceptions.NoSessionSelectedException;
 import seedu.taskmaster.model.student.NusnetId;
@@ -137,14 +137,10 @@ public class ModelManager implements Model {
      */
     @Override
     public void changeSession(SessionName sessionName) {
-        if (sessionName == null) {
-            filteredStudentRecords = null;
-            studentRecordPredicate = PREDICATE_SHOW_ALL_STUDENT_RECORDS;
-            updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-            taskmaster.changeSession(null);
-            return;
-        } else if (taskmaster.inSession() && sessionName.equals(taskmaster.currentSessionName())) {
-            filteredStudentRecords.setPredicate(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
+        requireNonNull(sessionName);
+
+        if (taskmaster.inSession() && sessionName.equals(taskmaster.currentSessionName())) {
+            updateFilteredStudentRecordList(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
         } else {
             /*
              * Note that the implementation of this method requires that the filteredStudentRecords field is updated
@@ -152,15 +148,21 @@ public class ModelManager implements Model {
              * it must be loaded first.
              */
             assert taskmaster.hasSession(sessionName);
-            studentRecordPredicate = PREDICATE_SHOW_ALL_STUDENT_RECORDS;
             // Update filteredStudentRecords before Session is changed.
+            studentRecordPredicate = PREDICATE_SHOW_ALL_STUDENT_RECORDS;
             filteredStudentRecords = new FilteredList<>(taskmaster.getSession(sessionName).getStudentRecords());
 
             taskmaster.changeSession(sessionName);
         }
+    }
 
-
-
+    /**
+     * Switches TAskmaster to student list view.
+     */
+    @Override
+    public void showStudentList() {
+        filteredStudentRecords = null;
+        taskmaster.showStudentList();
     }
 
     @Override
@@ -223,33 +225,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void scoreAllStudents(List<StudentRecord> students, double score) {
-        List<NusnetId> nusnetIds = students
-                .stream()
-                .map(StudentRecord::getNusnetId)
-                .collect(Collectors.toList());
-
-        taskmaster.scoreAllStudents(nusnetIds, score);
+    public void scoreAllStudents(double score) {
+        taskmaster.scoreAllStudents(score);
+        updateFilteredStudentRecordList(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
     }
 
     @Override
-    public void markAllStudentRecords(List<StudentRecord> studentRecords, AttendanceType attendanceType) {
-        List<NusnetId> nusnetIds = studentRecords
-                .stream()
-                .map(StudentRecord::getNusnetId)
-                .collect(Collectors.toList());
-
-        taskmaster.markAllStudentRecords(nusnetIds, attendanceType);
-    }
-
-    @Override
-    public void clearAttendance() {
-        taskmaster.clearAttendance();
-    }
-
-    @Override
-    public void updateStudentRecords(List<StudentRecord> studentRecords) {
-        taskmaster.updateStudentRecords(studentRecords);
+    public void markAllStudents(AttendanceType attendanceType) {
+        taskmaster.markAllStudentRecords(attendanceType);
+        updateFilteredStudentRecordList(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
     }
 
     //=========== Filtered Student List Accessors =============================================================
@@ -267,6 +251,7 @@ public class ModelManager implements Model {
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+        taskmaster.showStudentList();
     }
 
     /**
@@ -278,6 +263,7 @@ public class ModelManager implements Model {
         if (taskmaster.getSessionList().size() == 0) {
             throw new NoSessionException();
         }
+
         if (getCurrentSession().isNull().get()) {
             throw new NoSessionSelectedException();
         }
@@ -305,14 +291,25 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredStudentRecordList(Predicate<StudentRecord> predicate) {
         requireNonNull(predicate);
+        if (!taskmaster.inSession()) {
+            throw new NoSessionSelectedException();
+        }
+
         studentRecordPredicate = predicate;
         filteredStudentRecords.setPredicate(predicate);
     }
 
     @Override
     public void showRandomStudent(Random random) {
-        StudentRecord randomRecord = taskmaster.getRandomStudentRecord(random);
-        updateFilteredStudentRecordList(new StudentRecordEqualsPredicate(randomRecord));
+        FilteredList<StudentRecord> temp = new FilteredList<>(taskmaster.getStudentRecordList());
+        temp.setPredicate(PREDICATE_SHOW_ALL_PRESENT_STUDENT_RECORDS);
+        try {
+            int index = random.nextInt(temp.size());
+            StudentRecord randomRecord = temp.get(index);
+            updateFilteredStudentRecordList(new StudentRecordEqualsPredicate(randomRecord));
+        } catch (IllegalArgumentException e) {
+            throw new NoPresentInSessionException();
+        }
     }
 
     @Override
