@@ -26,14 +26,14 @@ import seedu.address.testutil.EditFlashcardDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_BUBBLE_SORT = "bubble sort"; //different flashcard name from Bubble Sort
-    public static final String VALID_NAME_HEAPING = "heaping";
+    public static final String VALID_NAME_BUBBLE_SORTING = "bubble sorting";
+    public static final String VALID_NAME_HEAPSORT = "heaping";
     public static final String VALID_DEFINITION_BUBBLE_SORT = "<definition placeholder 1>";
     public static final String VALID_DEFINITION_HEAPING = "<definition placeholder 2>";
     public static final String VALID_TAG_DIFFICULT = "difficult";
     public static final String VALID_TAG_FINAL = "final";
-    public static final String NAME_DESC_BUBBLE_SORT = " " + PREFIX_TITLE + VALID_NAME_BUBBLE_SORT;
-    public static final String NAME_DESC_HEAPING = " " + PREFIX_TITLE + VALID_NAME_HEAPING;
+    public static final String NAME_DESC_BUBBLE_SORT = " " + PREFIX_TITLE + VALID_NAME_BUBBLE_SORTING;
+    public static final String NAME_DESC_HEAPING = " " + PREFIX_TITLE + VALID_NAME_HEAPSORT;
     public static final String DEFINITION_DESC_BUBBLE_SORT = " " + PREFIX_DEFINITION + VALID_DEFINITION_BUBBLE_SORT;
     public static final String DEFINITION_DESC_HEAPING = " " + PREFIX_DEFINITION + VALID_DEFINITION_HEAPING;
     public static final String TAG_DESC_FINAL = " " + PREFIX_TAG + VALID_TAG_FINAL;
@@ -58,10 +58,10 @@ public class CommandTestUtil {
     public static final EditCommand.EditFlashcardDescriptor DESC_HEAPING;
 
     static {
-        DESC_BUBBLE_SORT = new EditFlashcardDescriptorBuilder().withName(VALID_NAME_BUBBLE_SORT)
+        DESC_BUBBLE_SORT = new EditFlashcardDescriptorBuilder().withName(VALID_NAME_BUBBLE_SORTING)
                 .withDefinition(VALID_DEFINITION_BUBBLE_SORT)
                 .withTags(VALID_TAG_FINAL).build();
-        DESC_HEAPING = new EditFlashcardDescriptorBuilder().withName(VALID_NAME_HEAPING)
+        DESC_HEAPING = new EditFlashcardDescriptorBuilder().withName(VALID_NAME_HEAPSORT)
                 .withDefinition(VALID_DEFINITION_HEAPING)
                 .withTags(VALID_TAG_DIFFICULT, VALID_TAG_FINAL).build();
     }
@@ -130,7 +130,7 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the flashcard at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
+    public static void showFlashcardAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredFlashcardList().size());
         Flashcard flashcard = model.getFilteredFlashcardList().get(targetIndex.getZeroBased());
         final String[] splitName = flashcard.getTitle().fullTitle.split("\\s+");

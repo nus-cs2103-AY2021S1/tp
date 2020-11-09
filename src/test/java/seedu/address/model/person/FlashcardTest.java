@@ -3,7 +3,7 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEFINITION_HEAPING;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_HEAPING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_HEAPSORT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIFFICULT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FINAL;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -35,7 +35,7 @@ public class FlashcardTest {
         assertTrue(editedBubbleSort.isSameFlashcard(BUBBLE_SORT));
 
         // different name -> returns false
-        editedBubbleSort = new FlashcardBuilder(BUBBLE_SORT).withTitle(VALID_NAME_HEAPING).build();
+        editedBubbleSort = new FlashcardBuilder(BUBBLE_SORT).withTitle(VALID_NAME_HEAPSORT).build();
         assertFalse(BUBBLE_SORT.isSameFlashcard(editedBubbleSort));
 
         // same name, different attributes -> returns true
@@ -73,7 +73,7 @@ public class FlashcardTest {
         assertFalse(BUBBLE_SORT.equals(HEAPING));
 
         // different name -> returns false
-        Flashcard editedBubbleSort = new FlashcardBuilder(BUBBLE_SORT).withTitle(VALID_NAME_HEAPING).build();
+        Flashcard editedBubbleSort = new FlashcardBuilder(BUBBLE_SORT).withTitle(VALID_NAME_HEAPSORT).build();
         assertFalse(BUBBLE_SORT.equals(editedBubbleSort));
 
         // different address -> returns false

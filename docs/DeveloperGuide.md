@@ -296,8 +296,6 @@ Concepts and definitions are organised according to different levels of priority
 Students can bookmark where they left off and resume going through the questions later.
 Students can organise (specify the sequence) the flashcards as well.
 
-
-
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -326,113 +324,175 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`  | user studying for a test                   | add in T/F questions 			 | be better prepared for more types of questions                            |
 
 
-Use Cases
-(For all use cases below, the **System** is the `DSAce` and the **Actor** is the `user`, unless specified otherwise)
+### Use Cases
+For all use cases below, `DSAce` is the **System** and the `User` is the **Actor**.
 
 **Use case: Delete a flashcard**
 
 **MSS**
 
-1.  User requests to list flashcards
-2.  DSAce shows a list of flashcards
-3.  User requests to delete a specific flashcard in the list
-4.  DSAce deletes the flashcard
-
-   Use case ends.
+1.  User requests to view the flashcard list.
+2.  DSAce displays the entire flashcard list.
+3.  User requests to delete a particular flashcard by specifying its index in the flashcard list.
+4.  DSAce deletes the specified flashcard from the flashcard list and displays the updated flashcard list. <br/>
+    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+1a. The flashcard list is empty. <br/>
+1a1. DSAce does not display any flashcards. <br/>
+Use case ends.
 
- Use case ends.
-
-* 3a. The given index is invalid.
-
-  * 3a1. DSAce shows an error message.
-
-     Use case resumes at step 2.
+3a. User specifies an invalid index. <br/>
+3a1. DSAce displays an error message. <br/>
+3a2. User specifies a new index. <br/>
+3a3. DSAce verifies the new index. <br/>
+Steps 3a2-3a3 are repeated until the specified index is valid. <br/>
+Use case resumes from step 4.
 
 **Use case: Add a flashcard**
 
 **MSS**
 
-1.  User requests to add a flashcards
-2.  DSAce adds the flashcard
-
-   Use case ends.
+1. User requests to add a new flashcard by specifying attributes of the flashcard to be added.
+2. DSAce creates the flashcard and adds it to the flashcard list. DSAce displays the updated flashcard list. <br/>
+Use case ends.
 
 **Extensions**
 
-* 1a. The given input is invalid.
-
-  * 1a1. DSAce shows an error message.
+1a. The new flashcard already exists in the flashcard list. <br/>
+1a1. DSAce displays an error message. <br/>
+1a2. User re-specifies the attributes of the flashcard to be added. <br/>
+1a3. DSAce verifies the new attributes. <br/>
+Steps 1a2-1a3 are repeated until the flashcard attributes specified does not coincide with that of an existing flashcard. <br/>
+Use case resumes from step 2.
 
 **Use case: Edit a flashcard**
 
 **MSS**
 
-1.  User requests to list flashcards to determine if the flashcard to be edited already exists
-2.  DSAce shows a list of flashcards
-3.  User requests to edit a specific flashcard in the list by providing the detail to be edited
-4.  DSAce edits the flashcard
-
-   Use case ends.
+1. User requests to view the flashcard list.
+2. DSAce displays the entire flashcard list.
+3. User requests to edit a particular flashcard by specifying its index in the flashcard list, as well as the new
+ attributes
+of the flashcard to be edited.
+4. DSAce edits the specified flashcard and displays the updated flashcard list. <br/>
+Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+1a. The flashcard list is empty. <br/>
+1a1. DSAce does not display any flashcards. <br/>
+Use case ends.
 
- Use case ends.
+3a. User specifies an invalid index. <br/>
+3a1. DSAce displays an error message. <br/>
+3a2. User specifies a new flashcard index. <br/>
+3a3. DSAce verifies the new index. <br/>
+Steps 3a2-3a3 are repeated until the specified index is valid. <br/>
+Use case resumes from step 4.
 
-* 3a. The given index is invalid.
-
-  * 3a1. DSAce shows an error message.
-
-     Use case resumes at step 2.
-
-* 3b. The given input is invalid.
-
-  * 3b1. DSAce shows an error message.
-
-     Use case resumes at step 2.
+3b. The edited flashcard already exists in the flashcard list. <br/>
+3b1. DSAce displays an error message. <br/>
+3b2. User re-specifies the attributes of the flashcard to be edited. <br/>
+3b3. DSAce verifies the new attributes. <br/>
+Steps 3b2-3b3 are repeated until the edited flashcard does not coincide with any existing flashcard. <br/>
+Use case resumes from step 4.
 
 **Use case: Take a quiz**
 
 **MSS**
 
-1.  User requests to see the list of quiz topics available for study
-2.  DSAce shows a list of quiz topics
-3.  User requests the topics to be covered in the quiz questions
-4.  DSAce displays one question
-5.  User inputs their answer for the displayed question
-Use case loops through steps 4 and 5 until the quiz runs out of questions or the user inputs a stop command
-6.  DSAce shows overall score and a list of questions with their marks
-7.  User can request to view a particular question using the index
-8.  DSAce displays the question, user’s answer and the correct answer
-Use case loops through 7 and 8 upon user request until user inputs exit command
-
-   Use case ends.
+1. User requests to take a quiz.
+2. DSAce displays the quiz interface.
+3. User requests to begin a quiz attempt.
+4. DSAce begins a new quiz attempt and indicates to the user that an attempt has started.
+5. User inputs an answer for a specified question from the displayed question list.
+6. DSAce records the result in the performance interface. <br/>
+Steps 5-6 are repeated until the user requests to end the current quiz attempt.
+7. DSAce ends the current quiz attempt and indicates to the user that the current attempt has ended. <br/>
+8. User requests to end the quiz. <br/>
+9. DSAce displays the flashcard interface. <br/>
+Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+1a. User is already in the quiz interface. <br/>
+1a1. DSAce displays an error message. <br/>
+Use case resumes from step 2.
 
- Use case ends.
+3a. There is already an ongoing quiz attempt that has not ended yet. <br/>
+3b. DSAce displays an error message. <br/>
+Use case resumes from step 5.
 
-* 3a. The user input topic index is invalid.
+5a. User specifies an invalid question index. <br/>
+5a1. DSAce displays an error message. <br/>
+5a2. User enters a new question index. <br/>
+5a3. DSAce verifies the new index. <br/>
+Steps 5a2-5a3 are repeated until the question index specified is valid. <br/>
+Use case resumes from step 6.
 
-  * 3a1. DSAce shows an error message.
+5b. User specifies an invalid answer to a specified question. <br/>
+5b1. DSAce displays an error message. <br/>
+5b2. User enters a new answer. <br/>
+5b3. DSAce verifies the new answer. <br/>
+Steps 5b2-5b3 are repeated until the answer specified is valid. <br/>
+Use case resumes from step 6.
 
-     Use case resumes at step 2.
+6a. There is no ongoing quiz attempt to be concluded. <br/>
+6a1. DSAce displays an error message. <br/>
+Use case resumes from step 8.
 
-* 5a. The user input answer is invalid.
+6b. User ends the current quiz attempt without answering any questions. </br>
+6b1. DSAce ends the current quiz attempt but does not save the results of the attempt in the performance interface. <br/>
+Use case resumes from step 8.
 
-  * 5b1. DSAce shows an error message.
+**Use case: view quiz performance**
 
-     Use case resumes at step 4.
+**MSS**
 
-*{More to be added}*
+1. User requests to view his/her quiz performance.
+2. DSAce displays all the past quiz attempts in the performance interface.
+3. User requests to view the results of a specific quiz attempt.
+4. DSAce displays the results of the specified quiz attempt.
+5. User requests to view the entire quiz attempt list.
+6. DSAce displays the entire quiz attempt list. <br/>
+Use case ends.
 
+**Use case: study flashcards**
+
+**MSS**
+
+1. User requests to view the flashcard list.
+2. DSAce displays the entire flashcard list.
+3. User requests to flip a particular flashcard by specifying its index in the flashcard list.
+4. DSAce displays the entire flashcard list, with the specified flashcard being flipped.
+5. User requests to sort the flashcard list by priority and specifies whether the order is ascending or descending.
+6. DSAce displays the flashcard list that is sorted by priority, according to the order specified by the user.
+7. User requests to find certain flashcard(s) by specifying attributes belonging to the flashcard(s) of interest.
+8. DSAce displays the flashcards that user has requested for. <br/>
+Use case ends.
+
+**Extensions**
+   
+1a. The flashcard list is empty. <br/>
+1a1. DSAce does not display any flashcards. <br/>
+Use case ends.
+	 
+3a. The user specifies an invalid index. <br/>
+3a1. DSAce displays an error message. <br/>
+3a2. User specifies a new index. <br/>
+3a3. DSAce verifies the new index. <br/>
+Steps 3a2 to 3a3 are repeated until the index specified is correct. <br/>
+Use case resumes from step 4.
+   
+5a. The user does not specify whether the flashcard is to be sorted in ascending or descending order of priority. <br/>
+5a1. DSAce displays the flashcard list that is sorted in ascending order of priority. <br/>
+Use case resumes from step 7.
+   
+7a. There are no flashcards in the flashcard list that fulfill the user's specifications. <br/>
+7a1. DSAce does not display any flashcards. <br/>
+Use case ends.
 
 ### Non-Functional Requirements
 

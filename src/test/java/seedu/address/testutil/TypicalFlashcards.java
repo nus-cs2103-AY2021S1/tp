@@ -2,8 +2,8 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEFINITION_BUBBLE_SORT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEFINITION_HEAPING;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BUBBLE_SORT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_HEAPING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BUBBLE_SORTING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_HEAPSORT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIFFICULT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FINAL;
 
@@ -49,9 +49,9 @@ public class TypicalFlashcards {
                 .withPriority("").build();
 
     // Manually added - Flashcard's details found in {@code CommandTestUtil}
-    public static final Flashcard AMY = new FlashcardBuilder().withTitle(VALID_NAME_BUBBLE_SORT)
+    public static final Flashcard BUBBLE_SORTING = new FlashcardBuilder().withTitle(VALID_NAME_BUBBLE_SORTING)
             .withDefinition(VALID_DEFINITION_BUBBLE_SORT).withPriority("").withTags(VALID_TAG_FINAL).build();
-    public static final Flashcard BOB = new FlashcardBuilder().withTitle(VALID_NAME_HEAPING)
+    public static final Flashcard HEAPING_SORT = new FlashcardBuilder().withTitle(VALID_NAME_HEAPSORT)
             .withDefinition(VALID_DEFINITION_HEAPING).withPriority("")
             .withTags(VALID_TAG_DIFFICULT, VALID_TAG_FINAL).build();
 
