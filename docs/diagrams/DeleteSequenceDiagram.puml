@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":LogBookParser" as LogBookParser LOGIC_COLOR
+participant ":FixMyAbsParser" as FixMyAbsParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute("delete 1")
 activate LogicManager
 
-LogicManager -> LogBookParser : parseCommand("delete 1")
-activate LogBookParser
+LogicManager -> FixMyAbsParser : parseCommand("delete 1")
+activate FixMyAbsParser
 
 create DeleteCommandParser
-LogBookParser -> DeleteCommandParser
+FixMyAbsParser -> DeleteCommandParser
 activate DeleteCommandParser
 
-DeleteCommandParser --> LogBookParser
+DeleteCommandParser --> FixMyAbsParser
 deactivate DeleteCommandParser
 
-LogBookParser -> DeleteCommandParser : parse("1")
+FixMyAbsParser -> DeleteCommandParser : parse("1")
 activate DeleteCommandParser
 
 create DeleteCommand
@@ -36,14 +36,14 @@ activate DeleteCommand
 DeleteCommand --> DeleteCommandParser : d
 deactivate DeleteCommand
 
-DeleteCommandParser --> LogBookParser : d
+DeleteCommandParser --> FixMyAbsParser : d
 deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> LogBookParser
+DeleteCommandParser -[hidden]-> FixMyAbsParser
 destroy DeleteCommandParser
 
-LogBookParser --> LogicManager : d
-deactivate LogBookParser
+FixMyAbsParser --> LogicManager : d
+deactivate FixMyAbsParser
 
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand

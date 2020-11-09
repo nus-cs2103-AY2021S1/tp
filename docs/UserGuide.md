@@ -59,12 +59,15 @@ If you are unmotivated for a workout, FixMyAbs will be your partner in helping y
 
 - Exercise names are case-insensitive and whitespace-insensitive.<br>
   e.g. `Sit ups`, `SITUPS`, and `S i T u P   s` are all recognised as the same exercise.
+  
+- If there are multiple parameters for a single tag e.g. `c/sad` and `c/happy` in `add e/Sit ups r/10 c/sad c/happy`,
+the last one will take precedent, i.e. `c/happy`
 
 </div>
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 Format: `help`
 
@@ -296,3 +299,4 @@ Exercise log data are saved in the hard disk automatically after any command tha
 | **Find**   | `find <keywords in logs>`                         | e.g. `find pushups`                   |
 | **Help**   | `help`                         | e.g. `help`                   |
 | **Exit**   | `exit`                                    | e.g. `exit`
+
