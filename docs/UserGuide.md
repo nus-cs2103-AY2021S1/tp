@@ -643,7 +643,6 @@ The image below shows what you would see after executing the last example given 
 
 Deletes an application from an applicant with the specified index under Eva.
 
-
 <div markdown="block" class="alert alert-danger">
 
 :exclamation: **Important! <br>
@@ -651,13 +650,13 @@ Please take note that this action is irreversible.**
 
 </div>
 
-Format: `delapp INDEX`
-
 <div markdown="span" class="alert alert-info">
 
 **:information_source: Note:** `delapp` replaces the current application of the target applicant with a blank application. <br>
 
 </div>
+
+Format: `delapp INDEX`
 
 Example:
 * `delapp 1`
