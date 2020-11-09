@@ -57,4 +57,10 @@ deactivate CommandResult
 
 deactivate AddScheduleCommand
 
+AddScheduleCommand -[hidden]-> AddScheduleCommand : command
+
+|||
+
+destroy AddScheduleCommand
+
 @enduml

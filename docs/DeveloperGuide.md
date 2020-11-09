@@ -13,6 +13,7 @@ Made with **fitness instructors** in mind, **FitEgo** is a **desktop program** t
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-before: always"></div>
 
 ## 1 **Setting up, getting started**
 
@@ -44,12 +45,13 @@ Additional information.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-before: always"></div>
 
 ## 2 **Design**
 
 ### 2.1 Architecture
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/ArchitectureDiagram.png" width="450" />
     </p>
@@ -84,7 +86,7 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/LogicClassDiagram.png"/>
     </p>
@@ -95,7 +97,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `cdel 1`.
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:50%; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/ArchitectureSequenceDiagram.png"/>
     </p>
@@ -106,7 +108,7 @@ The sections below give more details of each component.
 
 ### 2.2 UI component
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/UiClassDiagramP3.png" style="width: 50%"/>
     </p>
@@ -115,7 +117,7 @@ The sections below give more details of each component.
 
 The UiComponents package in the above diagram has the following classes. 
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/UiClassDiagramP2.png"/>
     </p>
@@ -138,7 +140,7 @@ The `UI` component interacts with these external API:
 
 ### 2.3 Logic component
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/LogicClassDiagram.png"/>
     </p>
@@ -156,7 +158,7 @@ The `UI` component interacts with these external API:
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("cdel 1")` API call.
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/DeleteClientSequenceDiagram.png"/>
     </p>
@@ -166,9 +168,11 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteClientCommandParser` and `DeleteClientCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-before: always"></div>
+
 ### 2.4 Model component
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/ModelClassDiagram.png"/>
     </p>
@@ -177,7 +181,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 The figure above gives the overall architecture of the Model component.
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/ModelClassDiagram2.png"/>
     </p>
@@ -199,7 +203,7 @@ The `Model`,
 
 ### 2.5 Storage component
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/StorageClassDiagram.png"/>
     </p>
@@ -217,6 +221,7 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-before: always"></div>
 
 ## 3 **Implementation**
 
@@ -247,6 +252,8 @@ e.g. print the actual list instead of just its size
 Certain properties of the application can be controlled(e.g. user prefs file location, logging level), 
 through the configuration file (default: `config.json`)
 
+<div style="page-break-before: always"></div>
+
 ### 3.3 Edit Session feature
 
 <div id="f10" >The Edit Session feature allows user to edit a Session.</div>
@@ -267,8 +274,10 @@ The `sedit` command calls `Model#setSession()`, causing changes to be made in th
 
 The following sequence diagram shows how the Edit Session operation works:
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
+    <p>
         <img src="images/EditSessionSequenceDiagram.png"/>
+    </p>
     <figcaption>Figure 10 - Edit Session Sequence Diagram</figcaption>
 </figure>
 
@@ -278,12 +287,14 @@ The following sequence diagram shows how the Edit Session operation works:
 
 The following activity diagram summarizes what happens when a user executes a new `EditSession` command, with the assumption that the user inputs a valid command:
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/EditSessionActivityDiagram.png"/>
     </p>
     <figcaption>Figure 11 - Edit Session Activity Diagram</figcaption>
 </figure>
+
+<div style="page-break-before: always"></div>
 
 ### 3.4 Delete Session feature
 
@@ -302,7 +313,7 @@ However, the user can pass in an optional force (`f/`) parameter to delete all s
 
 The following activity diagram summarizes what happens when a user executes a new `DeleteSession` command, with the assumption that the user inputs a valid command.
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/DeleteSessionActivityDiagram.png" style="width: 50%; height: auto;"/>
     </p>
@@ -311,7 +322,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 The following diagram shows a possible application state in FitEgo, where 2 clients, Andy and John, are scheduled to a same session.
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/DeleteSessionObjectDiagram.png" style="width: 50%; height: auto;"/>
     </p>
@@ -329,14 +340,14 @@ For simplicity, we will refer to this command input as `commandText`.
     <figcaption>Figure 14 - Delete Session Sequence Diagram</figcaption>
 </figure>
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/DeleteSessionParseArgsRef.png"/>
     </p>
     <figcaption>Figure 15 - Delete Session Parse Args Ref Sequence Diagram</figcaption>
 </figure>
  
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteSessionCommand` 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteSessionCommand` and `DeleteSessionCommandParser` 
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -373,6 +384,7 @@ In designing this feature, we had to consider several alternative ways in which 
     - Pros: Easy to implement.
     - Cons: A schedule might have invalid session, breaking data integrity.
 
+<div style="page-break-before: always"></div>
 
 ### 3.5 Add Schedule feature
 
@@ -390,7 +402,7 @@ When using this command, the `CLIENT_INDEX` should refer to the index shown in t
 
 The following activity diagram summarizes the decision making process when a user executes a new `AddSchedule` command.
 
- <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+ <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
      <p>
          <img src="images/AddScheduleActivityDiagram.png" style="width: 70%; height: auto;"/>
      </p>
@@ -421,19 +433,22 @@ Instead of using `DeleteSessionCommandParser`, it uses `AddScheduleCommandParser
 
 `AddScheduleCommand#execute(model)` will be called instead of `DeleteSessionCommand#execute(model)`. For this particular case, the method call `AddScheduleCommand#execute(model)` can be traced using the following sequence diagram snippet.
 
- <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+ <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
      <p>
-         <img src="images/AddScheduleExecuteRef.png" style="width: 95%; height: auto;"/>
+         <img src="images/AddScheduleExecuteRef.png" style="width: 100%; height: auto;"/>
      </p>
      <figcaption>Figure 18 - Sequence diagram snippet for <code>AddScheduleCommand#execute(model)</code></figcaption>
  </figure>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddScheduleCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
  
 As shown in the figure above, first it gets the Client and Session from the filtered (displayed) lists. Then, it checks for existing identical Schedule (Schedule that consists of the same Client and Session) using `hasAnyScheduleAssociatedWithClientAndSession()`. 
 Since for this case no identical Schedule is not found, a new Schedule object is created and added into the Model using `Model#addSchedule()`. Finally, it returns the CommandResult to indicate a success.
 
 Thus, `schadd c/2 s/1` will add a Schedule associated with Andy (the second Client in the Client List) and endurance training from 12/02/2020 1400 - 1600 (the first Session in the Session List). The result can be illustrated by the following object diagram, which shows a new Schedule is created.
 
- <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+ <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
      <p>
          <img src="images/OverlappingScheduleObjectDiagram1.png" style="width: 85%; height: auto;"/>
      </p>
@@ -443,6 +458,8 @@ Thus, `schadd c/2 s/1` will add a Schedule associated with Andy (the second Clie
 **Case 2:** `schadd c/1 s/1`
 
 On the other hand, invoking `schadd c/1 s/1` will result in an error shown to the user as an identical Schedule already exists. [Here](#f17), John is already scheduled to the endurance training Session from 12/02/2020 1400 - 1600.
+
+<div style="page-break-before: always"></div>
 
 ### 3.6 Edit Schedule feature
 
@@ -461,7 +478,7 @@ The `schedit` command calls `Model#setSchedule()`, causing changes to be made in
 
 The following activity diagram summarizes what happens when a user executes a new `EditSchedule` command, with the assumption that the user inputs a valid command:
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/EditScheduleActivityDiagram.png" style="width: 25%; height: auto;"/>
     </p>
@@ -479,6 +496,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Easier to retrieve.
   * Cons: Implementation is more confusing as User there's a conflict between Index and user-typed String index.
 
+<div style="page-break-before: always"></div>
 
 ### 3.7 View Client's Weight feature
 
@@ -495,12 +513,14 @@ at the start of every session. Thus, to get the weight change over time, a list 
 
 In the following sequence diagram, we trace the execution starting from when the user calls `cview 1` until when the UI is updated with Client View.
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/ClientViewWeightSequenceDiagram.png" alt="ClientViewWeightSequenceDiagram" style="align-content: center" />
     </p>
     <figcaption>Figure 21 - Client View Weight Generate Sequence Diagram</figcaption>
 </figure>
+
+<div style="page-break-before: always"></div>
 
 <div markdown="block" class="alert alert-info"> 
 
@@ -514,6 +534,8 @@ is a CommandResult object, within which, contains a Supplier which returns a Pan
 As shown in the "alt" frame, the chart is added into the tab pane if there are associated schedule and the weight (if present within the `Schedule` object)
 will be added into the line chart. Otherwise, the `Weight` tab will be removed instead of showing an empty chart.  
 
+<div style="page-break-before: always"></div>
+
 #### 3.7.2 Design Considerations
 In designing this weight tracking feature, we had considered several alternative ways in which we can store and retreive the weight. 
 
@@ -524,6 +546,8 @@ In designing this weight tracking feature, we had considered several alternative
 * **Alternative 2:** Stores a list of `Weight` within the `Client` object
   * Pros: Do not require a schedule in order to track weight. 
   * Cons: Lesser information about the weight (schedule's exercise, remarks, time, etc) is stored.  
+
+<div style="page-break-before: always"></div>
 
 ### 3.8 View Session by period feature
 
@@ -547,7 +571,7 @@ must follow the format `(+/-)#(D/W/M/Y)`.
 
 The following activity diagram summarizes what happens when a user executes a new View Session command.
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/ViewSessionActivityDiagram.png" style="height: auto;"/>
     </p>
@@ -557,14 +581,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 In the following sequence diagram, we trace the execution when the user decides to enter the View Session command 
 `sview p/week` into FitEgo.
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/ViewSessionSequenceDiagram.png" alt="ViewSessionSequenceDiagram" style="align-content: center" />
     </p>
     <figcaption>Figure 23 - View Session Sequence Diagram</figcaption>
 </figure>
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/ViewSessionParserRef.png" alt="ViewSessionParserRef" style="align-content: center" />
     </p>
@@ -585,7 +609,7 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 
 1. Command result is passed to `MainWindow` to indicate a successful execution. `MainWindow` will then update the `RightSideBar`.
 
-    <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+    <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/ViewSessionUpdateRightSideBarRef.png" alt="ViewSessionUpdateRightSideBarRefSequenceDiagram" style="align-content: center" />
     </p>
@@ -613,6 +637,7 @@ In designing this feature, we had to consider several alternative ways in which 
          This also increases chances of errors made in implementation.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-before: always"></div>
 
 ## 4 **Documentation, logging, testing, configuration, dev-ops**
 
@@ -641,6 +666,7 @@ In designing this feature, we had to consider several alternative ways in which 
 He can spend more time on his clients/his routine rather than manually using alternative software like Excel to track
 administrative matters.
 
+<div style="page-break-before: always"></div>
 
 ### 5.2 User stories
 
@@ -672,6 +698,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                                          | change software background between light and dark mode | customise my experience                        |
 | `*`      | trainer focused on coaching pre-NS teen       | track client's date of birth   | adjust the fitness intensity depending on IPPT period                  |
 
+<div style="page-break-before: always"></div>
 
 ### 5.3 Use cases
 
@@ -989,6 +1016,7 @@ from your previous machine to your new machine.
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-before: always"></div>
 
 ## 6 **Appendix B: Instructions for manual testing**
 
@@ -1154,7 +1182,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
 
 
 ---
-
+<div style="page-break-before: always"></div>
 
 ## 7 **Appendix C: Efforts**
 ### Effort
@@ -1164,7 +1192,7 @@ We believe that the effort to develop FitEgo is at least twice of that of AB3. B
 
 We think that the difficulty level for developing FitEgo was quite high because there are many entities involved (Client, Session, and Schedule) compared to AB3 that only has Person. Schedule is an association class, which needs integration testing and some changes needed to be made when the Schedule-related features were added. New panels and windows such as Client List, Session List, settings window, and Client detail view were also created. Such changes in the UI were very challenging.
 
-Our team wrote around 23k LoC, 30 pages of User Guide and 50 pages of Developer Guide.
+Our team spent about 700 hours in total (~20 hours a week) to write around 23k LoC, 30 pages of User Guide and 50 pages of Developer Guide.
 
 ### Challenges Faced 
 

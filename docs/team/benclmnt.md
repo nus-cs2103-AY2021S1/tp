@@ -29,7 +29,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added the feature to customize a client's profile picture. (relevant [commit](https://github.com/AY2021S1-CS2103T-T13-3/tp/commit/542d5e26919e01944dc99fd09ec9c3532e1da21f))
   * What it does: This feature allows the user to add their client's pictures in the `data` folder. If there is no picture provided, FitEgo will fall back to a default picture. 
   
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=benclmnt&tabRepo=AY2021S1-CS2103T-T13-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=test-code)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&until=2020-11-09&tabAuthor=benclmnt&tabRepo=AY2021S1-CS2103T-T13-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
   * Managed all releases `v1.1` - `v1.3` (4 releases) on GitHub
