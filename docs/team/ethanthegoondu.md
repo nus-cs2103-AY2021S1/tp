@@ -10,7 +10,7 @@ title: Ethan Rozario's Project Portfolio Page
 
 Trackr is an application for teaching assistants (TAs) who prefer to use a desktop application for managing their
 student records. It is uses a Command Line Interface (CLI), while still retaining the benefits of a Graphical User
-Interface (GUI). It is written in Java, and currently has over 10kLoC.
+Interface (GUI). Our application was build using Java with IntelliJ as our IDE of choice, it currently has over 15kLoC.
 
 ### Summary of Contributions
 
