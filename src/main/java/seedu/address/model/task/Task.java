@@ -156,6 +156,16 @@ public class Task implements Comparable<Task> {
         return assignees.contains(assignee.getPerson().toString());
     }
 
+    public boolean hasAssigneeOfName(String assignee) {
+        return assignees.contains(assignee);
+    }
+
+    public void removeAssigneeOfName(String assignee){
+        if(hasAssigneeOfName(assignee)) {
+            assignees.remove(assignee);
+        }
+    }
+
     public boolean hasAnyAssignee() {
         return !assignees.isEmpty();
     }
