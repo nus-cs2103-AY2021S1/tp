@@ -32,7 +32,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Added a flags parser to parse users' commands with flags
-  * Wrote additional tests for existing features to increase coverage (Pull requests [\#170](), [\#181]())
+  * Wrote additional tests for existing features to increase coverage (Pull requests [\#170](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/170), [\#181](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/181))
 
 * **Documentation**:
   * User Guide:
