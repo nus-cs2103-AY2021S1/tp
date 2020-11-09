@@ -808,7 +808,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
  1.  User requests to list Clients.
  2.  FitEgo shows a list of Clients.
- 3.  User requests to view a specific Client in the list
+ 3.  User requests to view a specific Client in the list.
  4.  FitEgo shows the Client's profile. <br/> Use case ends.
 
 **Extensions**
@@ -1114,7 +1114,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
       Expected: The right panel only displays Sessions with start time from 0000hrs today to 2359hrs the next day. <br>
       Indication that Session List has been successfully updated is shown in the status message.
 
-   1. Other incorrect View Session commands to try: `sview`, `sview p/+2s` (where unit of time is not d/m/y), `...` <br>
+   1. Other incorrect View Session commands to try: `sview`, `sview p/+2s` (where unit of time is not d/m/y) <br>
       Expected: View of Session List is unchanged. <br>
       Error details shown in the status message.
       
