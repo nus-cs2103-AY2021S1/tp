@@ -18,8 +18,12 @@ If you would like to take part in developing Inventoryinator, this Developer Gui
 and provide an overview of the implementation of the features and components. You may use the table of
 contents below to easily navigate to sections in this document.
 
+<div style="page-break-after: always;"></div>
+
 * Table of Contents
 {:toc}
+
+<div style="page-break-after: always;"></div>
 
 ## Documentation, logging, testing, configuration, dev-ops
 
@@ -44,6 +48,8 @@ Refer to the guide [UserGuide](UserGuide.md).
 
 This section will elaborate on the design and software patterns applied in Inventoryinator.
 
+<div style="page-break-after: always;"></div>
+
 ### Architecture
 
 This application applies the [MVC pattern](https://www.tutorialspoint.com/design_pattern/mvc_pattern.html).
@@ -52,6 +58,8 @@ This application applies the [MVC pattern](https://www.tutorialspoint.com/design
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 Given below is a quick overview of each component.
+
+<div style="page-break-after: always;"></div>
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-F13-1/tp/blob/master/src/main/java/seedu/address/Main.java)
 and [`MainApp`](https://github.com/AY2021S1-CS2103T-F13-1/tp/blob/master/src/main/java/seedu/address/MainApp.java).
@@ -74,6 +82,8 @@ Each of the four components,
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding
 API `interface` mentioned in the previous point.
 
+<div style="page-break-after: always;"></div>
+
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface
 and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
@@ -87,6 +97,8 @@ The *Sequence Diagram* below shows how the components interact with each other
 ![architecture](images/commandseqdiagrams/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -108,6 +120,8 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 The Logic component of Inventoryinator applies a [command](https://refactoring.guru/design-patterns/command) behavioural design pattern. 
@@ -127,12 +141,16 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `deli -n bob's toenail` Command](images/commandseqdiagrams/DeleteItemSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 ![Structure of the Model Sub-components](images/ModelSubClassDiagram.png)
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-F13-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+
+<div style="page-break-after: always;"></div>
 
 The `Model`,
 
@@ -142,6 +160,7 @@ The `Model`,
  be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -158,6 +177,8 @@ The `Storage` component,
 ### Common classes
 
 Classes used by multiple components are stored in the `seedu.address.commons` package.
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -186,10 +207,14 @@ Using the current `Quantity` and the user-input, it calculates an updated `Quant
 constructs and executes an `EditItemCommand` to replace the `Item`'s `Quantity` with the
 updated value.
 
+<div style="page-break-after: always;"></div>
+
 The sequence diagram for the execution of an `AddQuantityToItemCommand` is as follows:
 
 The `Item` with name banana is denoted as `itemBanana`, and the original quantity assumed to be `20`.
 ![AddQuantityToItemCommandSequenceDiagram](images/commandseqdiagrams/AddQuantityToItemCommandSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### View detailed item feature
 
@@ -212,6 +237,8 @@ This is the sequence diagram of view detailed item command:
 
 ![ViewDetailedItemSequenceDiagram](images/commandseqdiagrams/ViewDetailedItemSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Reasoning behind current implementation
 
 View detailed item was first implemented with the idea of changing GUI on demand, but we eventually realised due to
@@ -232,6 +259,8 @@ the sequence of command flow (as well as the sequence diagram). However, the amo
 to implement such an association class, as well as the additional need for testing and debugging this new association
 class, might ironically lead to bigger time wastage than looking through each class involved in the execution of the
 view command.
+
+<div style="page-break-after: always;"></div>
 
 ### Delete Item Feature
 
@@ -275,6 +304,8 @@ Initial user input is shown in full, but as the system transforms the input,
 
 ![DeleteItemSequenceDiagram](images/commandseqdiagrams/DeleteItemSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Alternative Implementation and Reasoning against its implementation
 
 One problem with the current implementation is that there is a deep coupling between
@@ -287,6 +318,8 @@ However, the facade design pattern applied to `ModelManager` also prevents exces
 
 Hence refraining from this implementation reduces the size of the class significantly,
  improving readability of the code and preventing `ModelManager` from entailing extra responsibility.
+
+<div style="page-break-after: always;"></div>
 
 ### List item/recipe feature
 
@@ -316,6 +349,8 @@ The following sequence diagram shows how the list items operation works:
 The following sequence diagram shows how the list recipes operation works:
 ![ListRecipeSequenceDiagram](images/commandseqdiagrams/ListRecipeSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Reasoning behind current implementation
 In the existing AB3 structure, `Model` and `Logic` cannot communicate directly, which means we could not change the GUI
 during execution of the command. Therefore, `CommandResult` was augmented to contain the relevant display mode, and pass
@@ -331,6 +366,8 @@ which all require CLI input, switching to usage of the mouse would not be conven
 is also more extensible, as we can easily mix and match items and recipes to display by filtering the item and recipe
 lists in the command as required, rather than constructing a new scene from scratch. The implementation here was then
 adapted to implement the view detailed item command easily, and could also be useful for future developments and extensions.
+
+<div style="page-break-after: always;"></div>
 
 ### Find items feature
 
@@ -348,6 +385,8 @@ The `FindItemCommand` object facilitates this feature. The search keys are parse
 
 The following sequence diagram illustrates how the find items command works.
 ![FindItemSequenceDiagram](images/commandseqdiagrams/FindItemSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Undo/redo feature
 
@@ -433,6 +472,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Design consideration:
 
 ##### Aspect: How undo & redo executes
@@ -448,6 +489,8 @@ The following activity diagram summarizes what happens when a user executes a ne
           is popped, and the command is run.
   * Cons: Harder to implement as each command has to be negated individually. This has considerably
           many edge cases to consider.
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -493,6 +536,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | user                                       | simulate crafting              | easily find out if I have enough items to make what I want             |
 | `*`      | user                                       | clear all items                | clear this inventory of items to use it to track another game          |
 | `*`      | user                                       | clear all recipes              | clear the clutter in my inventory                                      |
+
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
