@@ -272,6 +272,11 @@ Everyone should have permission to access the image path or online image URL you
   ---------|-----------------------|---------|---------
   Image from local storage | 1. Specify **absolute path** of the image<br><br> 2. Add **file://** in front of the file path<br><br> 3. Replace **IMAGE** in img/IMAGE with the file path of your image | file:///D:/images/wishful<br>/data/myimage.png | Local image will be displayed
   Image from online resources | 1. Make sure the computer is connected to Internet<br><br> 2. Copy the online **image address** | Valid image address which starts with https:// and ends with .jpg or jpeg or png | The image will be downloaded into data folder and displayed
+  
+  <div style="page-break-after: always;"></div>
+  
+  Usage | Action | Example | Outcome
+  ---------|-----------------------|---------|---------
   Sample images | Replace IMAGE in img/IMAGE with the **file path**<br> (refer to table [below](#table) ) | img/images/healthy1.jpg | Sample image is displayed
   Invalid image | NA | 1. Invalid local file path<br><br>2. Invalid URL<br><br>3. No internet connection when adding an online image <br><br> 4. Wishful Shrinking doesn't have permission to access the folder or website | Default image will be displayed
   No image input | NA | NA | Default image will be displayed since `IMAGE` is **OPTIONAL FIELD**
@@ -283,6 +288,11 @@ Everyone should have permission to access the image path or online image URL you
      --------|--------------|--------|-------------
      <img src="images/healthy1.png" width="150" height="100"> | images/healthy1.jpg | <img src="images/healthy4.png" width="150" height="100"> | images/healthy4.jpg
      <img src="images/healthy2.png" width="150" height="100"> | images/healthy2.jpg | <img src="images/healthy5.png" width="150" height="100"> | images/healthy5.jpg
+     
+     <div style="page-break-after: always;"></div>
+     
+     Image | File Path | Image | File Path
+     --------|--------------|--------|-------------
      <img src="images/healthy3.png" width="150" height="100"> | images/healthy3.jpg | <img src="images/healthy6.png" width="150" height="100"> | images/healthy6.jpg
 
 * `INSTRUCTION` will take in a series of instruction text and Wishful Shrinking will automatically separate each
@@ -375,6 +385,14 @@ Multiple ingredients are separated by `,`.
        If you copy and paste an image url, make sure there is no new line automatically added that can trigger a
         format error.
     </div> 
+    
+* `INSTRUCTION` will take in a series of instruction text and Wishful Shrinking will automatically separate each
+ step of the instruction based on the end of a sentence, indicated by a `.`.
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
+   Wishful Shrinking numbers each instruction step after separating the input instruction by the position(s) of
+    `.` so there is no need to number the instructions. Instructions are separated by one full stop, 
+    Wishful Shrinking will remove consecutive full stops if present.
+</div> 
 
 <div style="page-break-after: always;"></div>
 
@@ -902,6 +920,11 @@ Features | Format, Examples
 **Delete recipe** | `deleteR INDEX`<br> e.g. `deleteR 3`
 **Edit recipe** | `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]] [c/CALORIES] [img/IMAGE] [instr/INSTRUCTION[. MORE INSTRUCTIONS]] [t/TAG]...` <br> e.g. `editR` 2 n/Apple salad i/apple
 **Get edit recipe info** | `editR INDEX`<br> e.g. `editR 2`
+
+<div style="page-break-after: always;"></div>
+
+Features | Format, Examples
+--------|------------------
 **Select recipe** | `selectR INDEX`<br> e.g. `selectR 3`
 **Close recipe drawer**| `close`
 **Search for recipe** | `searchR [i/INGREDIENT [ MORE INGREDIENTS]] [n/NAME [ MORE NAMES]] [t/TAG [ MORE TAGS]]`<br> e.g. `searchR` i/lettuce tomato, `searchR` n/salad, `searchR` t/healthy
@@ -916,6 +939,11 @@ Features | Format, Examples
 **List ingredients in the Fridge** | `fridge`
 **Delete ingredient from the Fridge** | `deleteF INDEX`<br> e.g. `deleteF` 3
 **Edit ingredient in the Fridge** | `editF INDEX i/INGREDIENTS [ -QUANTITY]`<br> e.g. `editF` 3 i/apple sauce -20.0g
+
+<div style="page-break-after: always;"></div>
+
+Features | Format, Examples
+--------|------------------
 **Get edit ingredient info** | `editF INDEX`<br> e.g. `editF 2`
 **Search for ingredient in the Fridge** | `searchF KEYWORD [ MORE KEYWORDS]`<br> e.g. `searchF` avocado
 **Clear all ingredients from the Fridge** | `clearF`
