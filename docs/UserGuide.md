@@ -39,10 +39,10 @@
    4.6 [Attendance Features](#46-attendance-features)<br>
    --- 4.6.1 [Add attendance: `addAttendance`](#461-add-attendance-addattendance)<br>
    --- 4.6.2 [Delete attendance: `deleteAttendance`](#462-delete-attendance-deleteattendance)<br>
-   --- 4.6.3 [View all attendance of a Student: `viewAttendance`](#463-view-all-attendance-of-a-student-viewattendance)<br>
-   --- 4.6.4 [Show Students who fall below an attendance score: `attendanceBelow`](#464-show-students-who-fall-below-an-attendance-score-attendancebelow)<br>
-   --- 4.6.5 [Edit a Student's participation: `editParticipation`](#465-edit-a-students-participation-editparticipation)<br>
-   --- 4.6.6 [Show Students who fall below a participation score: `participationBelow`](#466-show-students-who-fall-below-a-participation-score-participationbelow)<br>
+   --- 4.6.3 [View all attendance of a student: `viewAttendance`](#463-view-all-attendance-of-a-student-viewattendance)<br>
+   --- 4.6.4 [Show students who fall below an attendance score: `attendanceBelow`](#464-show-students-who-fall-below-an-attendance-score-attendancebelow)<br>
+   --- 4.6.5 [Edit a student's participation: `editParticipation`](#465-edit-a-students-participation-editparticipation)<br>
+   --- 4.6.6 [Show students who fall below a participation score: `participationBelow`](#466-show-students-who-fall-below-a-participation-score-participationbelow)<br>
 5. [FAQ](#5-faq)<br>
 6. [Command Summary](#6-command-summary)<br>
    6.1 [General Commands](#61-general-commands) <br>
@@ -50,6 +50,7 @@
    6.3 [Module Commands](#63-module-commands)<br>
    6.4 [Tutorial Group Commands](#64-tutorial-group-commands)<br>
    6.5 [Student Commands](#65-student-commands)<br>
+   6.6 [Attendance Commands](#66-attendance-commands)<br>
 
 ## 1. Introduction
 
@@ -164,6 +165,7 @@ Shows a message explaining how to access the user guide.
 Format: `help`
 
 > Note
+>
 > - You can perform this command in ANY view.
 
 Example: `help`
@@ -214,6 +216,7 @@ Example:
 - Lists all modules in Trackr.
     - `listMod`
     
+
 Expected Outcome:
 
 ![ListModuleCommand](images/ListModuleCommand.png)
@@ -240,6 +243,7 @@ Lists all tutorial groups in the Tutorial Group view.
 Format: `listTG`
 
 > Note: 
+>
 > - You should perform this command in the Tutorial Group view.
 
 Example: 
@@ -262,6 +266,7 @@ Example:
 - Changes the view to Student view and shows the student list of tutorial group at index 1.
     - `viewStudent 1`
     
+
 Expected Outcome:
 ![ViewStudentCommand](images/ViewStudentCommand.png)
 
@@ -271,6 +276,7 @@ Lists all students in the Student view.
 Format: `listStudent`
 
 > Note: 
+>
 > - You should perform this command in the Student view.
 
 Example: 
@@ -286,6 +292,7 @@ Returns to the previous view.
 Format: `prevView`
 
 > Note: 
+>
 > - You can perform this command in ANY view but MODULE is the last View.
 
 Example: `prevView`
@@ -464,6 +471,7 @@ Example:
 
     - `findTG T03`
     
+
 Expected Outcome:
 
 ![FindTutorialGroupCommand](images/findTG.png)
@@ -568,7 +576,7 @@ Expected Outcome:
 
 > You should perform the following features while in the Student view.
 
-#### 4.6.1 Add Attendance: `addAttendance`
+#### 4.6.1 Add attendance: `addAttendance`
 
 Adds the attendance of a student for specific week(s). Can also be seen as marking a student as 'present' for specific week(s).
 
@@ -602,15 +610,15 @@ Format: `deleteAttendance INDEX week/WEEK_NUMBER [week/WEEK_NUMBER]...`
 
 Example:
 
-- Deletes the attendance of the first student on the student list for `WEEK_NUMBER` _6_.
+- Deletes the attendance of the first student on the student list for `WEEK_NUMBER` _3_.
 
-  - `deleteAttendance 1 week/6`
+  - `deleteAttendance 1 week/3`
 
 Expected Outcome:
 
 ![DeleteAttendanceCommand](images/DeleteAttendanceCommand.png)
 
-#### 4.6.3 View all attendance of a Student: `viewAttendance`
+#### 4.6.3 View all attendance of a student: `viewAttendance`
 
 Shows the attendance of target student by specifying the week(s) that the student has attended.
 
@@ -629,7 +637,7 @@ Example:
 Expected Outcome:
 ![ViewAttendanceCommand](images/ViewAttendanceCommand.png)
 
-#### 4.6.4 Show Students who fall below an attendance score: `attendanceBelow`
+#### 4.6.4 Show students who fall below an attendance score: `attendanceBelow`
 
 Finds and lists all students in the current Student view whose attendance score falls below the provided score.
 
@@ -649,7 +657,7 @@ Example:
 Expected Outcome:
 ![AttendanceBelowCommand](images/AttendanceBelowCommand.png)
 
-#### 4.6.5 Edit a Student's participation: `editParticipation`
+#### 4.6.5 Edit a student's participation: `editParticipation`
 
 Edits the participation score of a student by adding to or deducting from their existing score by the provided score.
 
@@ -666,12 +674,12 @@ Format: `editParticipation INDEX score/PARTICIPATION_SCORE`
 Example:
 
 - Adds 10 score to the first student on the student list.
-  - `editParticipation 1 10`
+  - `editParticipation 1 score/10`
 
 Expected Outcome:
 ![EditParticipationCommand](images/EditParticipationCommand.png)
 
-#### 4.6.6 Show Students who fall below a participation score: `participationBelow`
+#### 4.6.6 Show students who fall below a participation score: `participationBelow`
 
 Finds and lists all students in the current Student view whose participation score falls below the provided score.
 
@@ -689,7 +697,7 @@ Example:
   - `participationBelow 35`
 
 Expected Outcome:
-![AttendanceBelowCommand](images/AttendanceBelowCommand.png)
+![ParticipationBelowCommand](images/ParticipationBelowCommand.png)
 
 
 ## 5. FAQ
@@ -754,3 +762,14 @@ Command | Description | Compatible View
 `deleteStudent INDEX` | Deletes a student from the current Student view | STUDENT
 `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [id/STUDENT_ID] [t/TAG]...` | Edits a student in the current Student view | STUDENT
 `findStudent KEYWORD` | Finds student(s) whose name(s) contain the keyword in the current Student view | STUDENT
+
+### 6.6 Attendance Commands
+
+| Command                                                      | Description                                                  | Compatible View |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | --------------- |
+| `addAttendance INDEX week/WEEK_NUMBER [week/WEEK_NUMBER]...` | Adds the attendance of a student for specific week(s)        | STUDENT         |
+| `deleteAttendance INDEX week/WEEK_NUMBER [week/WEEK_NUMBER]...` | Deletes the attendance of a student for specific week(s)     | STUDENT         |
+| `viewAttendance INDEX`                                       | Shows the attendance of target student by specifying the week(s) that the student has attended | STUDENT         |
+| `attendanceBelow UPPER_BOUND`                                | Finds and lists all students in the current Student view whose attendance score falls below the provided score | STUDENT         |
+| `editParticipation INDEX score/PARTICIPATION_SCORE`          | Edits the participation score of a student by adding to or deducting from their existing score by the provided score | STUDENT         |
+| `participationBelow UPPER_BOUND`                             | Finds and lists all students in the current Student view whose participation score falls below the provided score. | STUDENT         |
