@@ -32,6 +32,7 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=wilinetan)
 
+<br>
 <div style="page-break-after: always;"></div>
 
 * **Project management**:
