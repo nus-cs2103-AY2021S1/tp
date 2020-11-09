@@ -14,7 +14,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to add and delete schedules. (Pull Request [#81](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/81), [#96](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/96))
   * What it does: allows the user to create and delete schedules. A schedule contains information about a client and the attended session.
-  * Justification: This feature is core to the product because the user needs to be able to associate a client to a session. This is necessary for the later enhancements (implemented by other members) in the project such as the ability of tracking the sessions attended by a client and tracking which clients will attend a session.
+  * Justification: This feature is core to the product because the user needs to be able to associate a client to a session. This is necessary for the other enhancements in the project such as the ability of tracking the sessions attended by a client and tracking which clients will attend a session.
   * Highlights: Before implementing this feature, a `Schedule` model must be implemented first. When implementing the `Schedule` model (which is then implemented as an association class of client and session) and how it should be stored in the storage, in-depth design analysis were needed. Creating the test cases were also challenging since it needs to test the integration with `Client` and `Session` objects.
 
 * **New Feature**: Added the payment tracking feature (PR [#137](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/137))
