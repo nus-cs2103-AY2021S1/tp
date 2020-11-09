@@ -106,7 +106,7 @@ We have highlighted several features below that we feel are reflective of our de
 ## 2. About the User Guide
 This section aims to remind you of the important parts to take note of while reading the user guide.
 
-### 2.1. Symbols
+### 2.1 Symbols
 When reading this user guide, various symbols may appear occasionally to draw your attention to important information.
 The meaning for each symbol is as follows:
 
@@ -121,7 +121,7 @@ Symbol | Meaning
 
 1. Ensure you have Java 11 or above installed in your Computer.
 
-1. Download the latest _`jarvis.jar`_ and your operating system's _Chrome Driver_ from [here](https://github.com/AY2021S1-CS2103T-W11-2/tp/releases/tag/v1.3).
+1. Download the latest _`jarvis.jar`_ and your operating system's _Chrome Driver_ from [here](https://github.com/AY2021S1-CS2103T-W11-2/tp/releases/tag/v1.4).
 It is crucial to have the Chrome Driver in order for Jarvis to start up. If the GUI does not launch,
 please check that you have installed the correct driver:
     1. Windows: chromedriver.exe
@@ -148,11 +148,11 @@ please check that you have installed the correct driver:
 1. Type the command in the command box and press Enter to execute it. E.g. typing help and pressing Enter will open the help window.
    Some example commands you can try:
    * `view -s:  Lists all Students.`
-   * `view -s John Doe: Lists information about a Student named John Doe.`
+   * `view -s NAME: Lists information about a Student named John Doe.`
    * `add -t DESCRIPTION: Adds a Todo task with specified description.`
    * `edit -s STUDENT_ID: Edits Student's Name, Email, Telegram.`
    * `exit: Exits the app.`
-
+<br/>
 1. Refer to the [Features](#6-features) below for details of each command.
 
 1. Do note that the sample data displayed on initial startup of Jarvis will not be saved. This means that subsequent launches of Jarvis will only contain user-inputted data.
@@ -167,6 +167,8 @@ this box.
 
 ### 4.1 UI Layout
 
+   ![Jarvis](images/userguide/uiLayout.png)
+
    * The user interface is split into five separate segments.
         1. Top bar - Passive information, such as a summary for the user, greeting message, week number, topic for
          the week and today's date is presented to the user. An explanation on each information can be found below.
@@ -174,9 +176,11 @@ this box.
         1. Feedback Box - The feedback shown to the user for a given inputted command.
         1. Information Panel - A detailed list on the information stored within Jarvis.
         1. Tab Switcher - A tab switcher for browsing through the different types of information stored in Jarvis.
-   ![Jarvis](images/userguide/uiLayout.png)
 
 #### 4.1.1 Top Bar
+    
+   ![Jarvis](images/userguide/topBar.png)
+
    * The top bar includes the following components.
         1. Summary information - A quick summary indicating the number of ungraded `Missions` and `Quests`, upcoming
            `Consultations` and `Mastery Checks` as well as all `Tasks` in Jarvis. Do note that graded `Missions` and
@@ -192,8 +196,6 @@ this box.
         1. Shortcut icons - These icons are positioned here for your convenience to quickly navigate to Source Academy
          with the blue diamond on the left, and Jarvis' user guide with the white book icon on the right.
         1. Jarvis logo.
-
-   ![Jarvis](images/userguide/topBar.png)
 
 #### 4.1.2 Command Box
 
@@ -213,8 +215,7 @@ this box.
 
    * The tab switcher contains clearly marked tabs: `Student`, `Mission`, `Quest`, `Consultation`, `Mastery Check`, `Task`.
    * `Todo`, `Event` and `Deadline` are all variants of `Task`.
-   * Clicking on each tab will give you the information you require for that field.
-   * The icons correspond respectively to the Source Academy and User Guide (this) websites.
+   * Clicking on each tab will give you the information you require for that field.  
 
 <br>
  > ⚠️ The core features of Jarvis are based on `Students`, `Missions`, `Quests`, `Consultations`, `Mastery Checks` and
@@ -240,7 +241,9 @@ The following is the prompt upon first login, you are prompted to key in your So
 ![NoLoginDetails](images/userguide/loginPrompt.png)
 
 ### 5.1 Prompt
-   * The prompt contains the format of the edit command to be keyed in. The format is reinstated below for clarity.
+The prompt contains the format of the edit command to be keyed in. The format is reinstated below for clarity.
+
+![LoginUsernamePasswordInput](images/userguide/editLoginDetails.png)
 
 To log in, simply edit your login details with the following command:
 <br>**Format: `edit -l u/LUMINUS_USERNAME p/LUMINUS_PASSWORD`**
@@ -248,8 +251,6 @@ To log in, simply edit your login details with the following command:
 * `edit -l u/nusstu\e1234567 p/testpassword`
 
 An example of the command being inputted:
-
-![LoginUsernamePasswordInput](images/userguide/editLoginDetails.png)
 
 ### 5.2 Updated Details Summary
 Within the red rectangle box, Jarvis will notify you if the login was successful and the login information entered.
