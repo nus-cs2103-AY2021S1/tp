@@ -1,19 +1,21 @@
----
-layout: page
-title: Vaishak's Project Portfolio Page
+# Vaishak Anand - Project Portfolio
+
+## PROJECT: Reeve
+
 ---
 
-## Project: Reeve
+## Overview
 
 Reeve is a desktop companion application for one-on-one private tutors designed to help them better manage their students' academic and administrative needs.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
-Given below are my contributions to the project.
+## Summary of Contributions
 
 * **New Feature implemented**: Added the **details** feature to **Reeve**.
   * What it does: Allows the user to add, edit or delete any additional details to a student.
   * Justification: This feature would help tutors significantly as it allows them to add details that have not been
-  covered by the other fields, to students.
+  covered by the other fields, to students. This gives the tutor some flexibility to customise each student as he / she
+  sees fit.  
 
 * **New Feature implemented**: Added the **attendance** feature to **Reeve**.
   * What it does: Allows the user to track (add or delete) the attendance of students in lessons.
@@ -28,17 +30,17 @@ Given below are my contributions to the project.
 * **Code contribution**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=vaishakanand)
 
 * **Project management**:
-  * Managed release `v1.3` on GitHub
+  * Managed releases `v1.1` - `v1.4` on GitHub
   * Helped to remind team of various deliverables
 
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `edit` ([\#37](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/37)) , `detail` ([\#102](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/102)) and `attendance` ([\#129](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/129)).
     * Added Table of Contents ([\#129](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/129)).
-    * Updated order and content of Command summary ([\#147](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/147))
+    * Updated the order, and content of Command summary ([\#147](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/147))
   * Developer Guide:
-    * Added implementation details of the `edit` ([\#113](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/113)), `detail` (to be added) and `attendance` (to be added) features.
+    * Added implementation details of the `edit` ([\#113](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/113)), `detail` ([\#229](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/229)) and `attendance` ([\#229](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/229)) features.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#71](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/71), [\#77](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/77), [#56](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/56)
+  * Reviewed PRs (with non-trivial review comments): [\#71](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/71), [\#77](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/77), [\#56](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/56)
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/VaishakAnand/ped/issues/5), [2](https://github.com/VaishakAnand/ped/issues/2), [3](https://github.com/VaishakAnand/ped/issues/3))
