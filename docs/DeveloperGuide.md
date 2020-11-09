@@ -1,4 +1,5 @@
 # Covigent - Developer Guide
+
 1. [Preface](#1-preface)
 2. [Setting Up](#2-setting-up)
 3. [Design](#3-design)<br>
@@ -11,8 +12,8 @@
  4. [Implementation](#4-implementation)<br>
     4.1  [Patient Feature](#41-patient-feature)<br>
           4.1.1 [Overview](#411-overview)<br>
-          4.1.2 [Implementation](#412-implementation)<br>
-          4.1.3 [Design Considerations](#413-design-considerations)<br>
+          4.1.2 [Implementation](#412-implementation)<br>
+          4.1.3 [Design Considerations](#413-design-considerations)<br>
           4.1.4 [Create, Read, Update, Delete](#414-create-read-update-delete)<br>
           4.1.5 [Search](#415-search)<br>
     4.2  [Room Feature](#42-room-feature)<br>
@@ -21,9 +22,9 @@
           4.2.3 [Design Considerations](#423-design-considerations)<br>
           4.2.4 [Create, Read, Update](#424-create-read-update)<br>
     4.3  [Task Feature](#43-task-feature)<br>
-          4.3.1 [Overview](#431-overview)<br>
-          4.3.2 [Implementation](#432-implementation)<br>
-          4.3.3 [Design Considerations](#433-design-considerations)<br>
+          4.3.1 [Overview](#431-overview)<br>
+          4.3.2 [Implementation](#432-implementation)<br>
+          4.3.3 [Design Considerations](#433-design-considerations)<br>
           4.3.4 [Create, Read, Update, Delete](#434-create-read-update-delete)<br>
           4.3.5 [Search](#435-search)<br>
     4.4  [Logging Feature](#44-logging-feature)<br>
@@ -43,7 +44,7 @@
 
 Covigent is a desktop management application that helps to keep track of the information of quarantined individuals and the tasks to be done by the staff of a small hotel that has been converted to a quarantine facility.
 
-The Covigent Developer Guide is designed to illustrate and identify the high level architecture systems used to design and implement the Covigent application. The document contains an overall view of the system hierarchy, logical views of the system components, and a process view of the system’s communication. We hope that this Developer Guide serves you well in understanding and maintaining the Covigent application. 
+The Developer Guide for Covigent v1.4 is designed to illustrate and identify the high level architecture systems used to design and implement the Covigent application. The document contains an overall view of the system hierarchy, logical views of the system components, and a process view of the system’s communication. We hope that this Developer Guide serves you well in understanding and maintaining the Covigent application. 
 
 The link to the GitHub repository can be found [here](https://github.com/AY2021S1-CS2103T-W12-1/tp).
 
