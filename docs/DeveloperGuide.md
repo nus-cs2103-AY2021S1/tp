@@ -350,7 +350,7 @@ With this, the Edit Finance Record command fully finishes executing and NUStorag
 
 ---
 
-### 3.4 Find Records Command Feature
+### 3.4. Find Records Command Feature
 
 This section explains the implementation of the Find Record command feature.
 As the implementation of finding Inventory / Finance Records are similar, this section will focus only on the implementation of the finding of __Inventory Records__.
