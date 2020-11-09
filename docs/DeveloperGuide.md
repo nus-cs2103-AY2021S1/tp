@@ -1227,50 +1227,298 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### F.1 Launch and shutdown
 
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file<br>
+       Expected: Shows the GUI with a set of sample flashcards. The window size may not be optimum but can be adjusted.
 
-1. Saving window preferences
+1. Shutdown after adding flashcards into QuickCache
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   1. Type `exit` to exit the application
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   1. Re-launch the app by double-clicking the jar file<br>
+       Expected: The data of all the flashcards is retained.
 
-1. _{ more test cases … }_
+### F.2 Creating a flashcard
 
-### Deleting a flashcard
+User can create two types of flashcards - containing open end question or multiple choice question.
+
+1. Creating a flashcard with open ended question
+
+   1. Prerequisites: The flashcard you are creating should not already be in QuickCache.
+   
+   1. Test Case 1: `add q/Test OEQ 1 ans/Test ans 1`<br>
+      Expected: The flashcard with the specified parameters will be added to the list of flashcards. The details of the question will be shown in the display window on the side.
+   
+   1. Test Case 2: `add q/Test OEQ 2 ans/Test ans 2 t/OEQ t/test d/LOW`<br>
+      Expected: The flashcard with the specified parameters will be added to the list of flashcards together with its two tags `OEQ`, `test` and difficulty level `LOW` shown. The details of the question will be shown in the display window on the side.
+
+   1. Test Case 3: `add q/Test OEQ 1 ans/Test ans 1`<br>
+      Expected: QuickCache responds with an error message indicating that the flashcard already exists (added in Test Case 1). Flashcard is not added.
+   
+   1. Test Case 4: `add q/Test OEQ 1 ans/Test ans 1 t/Invalid Tag`<br>
+      Expected: QuickCache responds with an error message indicating that tag field is invalid. Flashcard is not added.
+      :information_source: Note that flashcards containing similar questions and answers but different tags are treated as different flashcards.
+
+   1. Test Case 5: `add q/Test OEQ 1 ans/Test ans 1 d/Invalid Difficulty`<br>
+      Expected: QuickCache responds with an error message indicating that difficulty field is invalid. Flashcard is not added.
+      :information_source: Note that flashcards containing similar questions and answers but different difficulty are treated as different flashcards.
+
+   1. Some incorrect `add` commands with missing fields to try: `add`, `add q/ ans/Test ans 1`, `add q/Test OEQ 1 ans/`, `add q/Test OEQ 1 ans/Test ans 1 t/`<br>
+      Expected: QuickCache responds with an error message and no flashcard is added.<br>
+      :information_source: Empty field for difficulty `d/` is accepted and flashcard difficulty is set to unspecified.
+   
+   1. Some incorrect `add` commands with duplicate prefix to try: `add q/Test OEQ 1 q/Test OEQ 2 ans/Test ans 1`, `add q/Test OEQ 1 ans/Test ans 1 ans/Test ans 2`, `add q/Test OEQ 1 ans/Test ans 1 d/LOW d/HIGH`<br>
+      Expected: QuickCache responds with an error message and no flashcard is added.
+
+1. Creating a flashcard with multiple choice question
+
+   1. Prerequisites: The flashcard you are creating should not already be in QuickCache.
+   
+   1. Test Case 1: `addmcq q/Test MCQ 1 ans/1 c/Choice1 c/Choice2`<br>
+      Expected: The flashcard with the specified parameters will be added to the list of flashcards. The details of the question will be shown in the display window on the side.
+   
+   1. Test Case 2: `addmcq q/Test MCQ 2 ans/1 c/Choice1 c/Choice2 t/MCQ t/test d/LOW`<br>
+      Expected: The flashcard with the specified parameters will be added to the list of flashcards together with its two tags `MCQ`, `test` and difficulty level `LOW` shown. The details of the question will be shown in the display window on the side.
+
+   1. Test Case 3: `addmcq q/Test MCQ 1 ans/1 c/Choice1 c/Choice2`<br>
+      Expected: QuickCache responds with an error message indicating that the flashcard already exists (added in Test Case 1). Flashcard is not added.
+   
+   1. Test Case 4: `addmcq q/Test MCQ 1 ans/1 c/Choice1 c/Choice2 t/Invalid Tag`<br>
+      Expected: QuickCache responds with an error message indicating that tag field is invalid. Flashcard is not added.
+      :information_source: Note that flashcards containing similar questions and answers but different tags are treated as different flashcards.
+
+   1. Test Case 5: `addmcq q/Test MCQ 1 ans/1 c/Choice1 c/Choice2 d/Invalid Difficulty`<br>
+      Expected: QuickCache responds with an error message indicating that difficulty field is invalid. Flashcard is not added.
+      :information_source: Note that flashcards containing similar questions and answers but different difficulty are treated as different flashcards.
+   
+   1. Test Case 6: `addmcq q/Test MCQ 1 ans/3 c/Choice1 c/Choice2`<br>
+      Expected: QuickCache responds with an error message indicating that ans field is invalid. Flashcard is not added.
+
+   1. Some incorrect `addmcq` commands with missing fields to try: `addmcq`, `addmcq q/ ans/1 c/Choice1`, `addmcq q/Test MCQ 1 ans/ c/Choice1`, `addmcq q/Test MCQ 1 ans/1 c/`<br>
+      Expected: QuickCache responds with an error message and no flashcard is added.<br>
+      :information_source: Empty field for difficulty `d/` is accepted and flashcard difficulty is set to unspecified.
+   
+   1. Some incorrect `addmcq` commands with duplicate prefix to try: `addmcq q/Test MCQ 1 q/Test MCQ 2 ans/1 c/Choice1 c/Choice2`, `addmcq q/Test MCQ 1 ans/1 ans/2 c/Choice1 c/Choice2`<br>
+      Expected: QuickCache responds with an error message and no flashcard is added.
+
+### F.3 Opening a flashcard
+
+1. Prerequisites: 
+
+   1. There is at least one flashcard stored in QuickCache.
+   
+   1. List flashcards using the `list` command to see the index of the flashcard.
+
+1. Test Case 1: `open 1`<br>
+   Expected: First flashcard is opened. Details of the question and options (for multiple choice questions) will be displayed.
+
+1. Test Case 1: `open 0`<br>
+   Expected: No flashcard is opened. Error details shown in display.
+
+1. Other incorrect `open` commands to try: `open`, `open x` (where x is more than the last index in flashcard list), `open Invalid`<br>
+   Expected: Error message will appear with instructions on how to use the `open` command.
+
+### F.4 Editing a flashcard
+
+1. Prerequisites: 
+
+   1. There is at least one flashcard stored in QuickCache.
+
+   1. List flashcards using the `list` command to see the index of the flashcard.
+
+   1. For some test cases listed bellow to work, user's first three flashcards should be the same as the sample starting flashcards that was provided.
+
+1. Test Case 1: `edit 1 q/Edited quesiton ans/New answer`<br>
+   Expected: The flashcard with index 1 is edited with the specified parameters. The details of the question will be shown in the display window on the side.
+
+1. Test Case 2: `edit 1 t/`<br>
+   Expected: All tags are removed from the flashcard with index 1. The details of the question will be shown in the display window on the side.
+
+1. Test Case 3: `edit 1 t/General t/OEQ`<br>
+   Expected: Specified tags are added to the flashcard with index 1. The details of the question will be shown in the display window on the side.
+
+1. Test Case 4: `edit 1 d/HIGH`<br>
+   Expected: Difficulty level changed to `HIGH` for the flashcard with index 1. The details of the question will be shown in the display window on the side.
+
+1. Test Case 5: `edit 1 d/`<br>
+   Expected: Difficulty tag is removed from the flashcard with index 1. The details of the question will be shown in the display window on the side.<br>
+   :information_source: User can also use `edit 1 d/UNSPECIFIED` to achieve the same result.
+
+1. Test Case 6: `edit 1 c/Choice1`<br>
+   Expected: Error message displayed. Choices should not be provided for open ended questions.
+
+1. Test Case 7: `edit 2 c/Choice1 c/Choice2 c/Choice3 c/Choice4`<br>
+   Expected: The flashcard with index 1 is edited with the specified parameters. The details of the question will be shown in the display window on the side.
+
+1. Test Case 8: `edit 2 c/Choice1 c/Choice1`<br>
+   Expected: Error message displayed. Choices should not be the same.
+
+1. Test Case 9: `edit 2 c/Choice1`<br>
+   Expected: Error message displayed. Number of choices smaller than the answer.
+
+1. Test Case 10: `edit 2 ans/100`<br>
+   Expected: Error message displayed. Number of choices smaller than the answer.
+
+1. Test Case 11: `edit 0`<br>
+   Expected: No flashcard is opened. Error details shown in display.
+
+1. Other incorrect `edit` commands to try: `edit`, `edit x` (where x is more than the last index in flashcard list), `edit Invalid`<br>
+   Expected: Error message will appear with instructions on how to use the `edit` command.
+
+### F.5 Finding flashcards
+
+Users can fins flashcards both through keywords using the `q/` prefix and through tags using the `t/` prefix.
+
+1. Prerequisites: For some test cases listed bellow to work, user should have the sample starting flashcards that was provided stored in QuickCache.
+
+1. Test Case 1: `find q/Sample`<br>
+   Expected: Finds all flashcards containing the keyword `Sample` (not case sensative) in its question. Found flashcards will be listed out.
+
+1. Test Case 2: `find q/Sample q/Singapore`<br>
+   Expected: Finds all flashcards containing the keyword `Sample` and `Singapore` (not case sensative) in its question. Found flashcards will be listed out.
+
+1. Test Case 3: `find t/OEQ`<br>
+   Expected: Finds all flashcards containing the tag `OEQ` (case sensative). Found flashcards will be listed out.
+
+1. Test Case 4: `find q/Sample t/OEQ t/General`<br>
+   Expected: Finds all flashcards containing the tags `OEQ` and `General` (case sensative) and keyword `Sample` (not case sensative) in its question. Found flashcards will be listed out.
+
+1. Other incorrect `find` commands to try: `find`, `find Something`, `find q/`, `find t/`<br>
+   Expected: Error message will appear with instructions on how to use the `find` command.
+
+### F.6 Deleting flashcards
 
 There are 2 ways to delete flashcards – by index or by tags.
 
+1. Prerequisites: List all flashcards using the `list` command. There is at least one flashcard stored in QuickCache.
+
 1. Deleting a flashcard by index
 
-   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list.
-
-   1. Test case: `delete 1`<br>
+   1. Test Case 1: `delete 1`<br>
       Expected: First flashcard is deleted from the list. Details of the deleted flashcard shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No flashcard is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test Case 2: `delete 0`<br>
+      Expected: No flashcard is deleted. Error details shown in the display.
 
-   1. Test case: `delete t/MCQ`<br>
+1. Deleting flashcards through tags
+
+   1. Test Case 1: `delete t/MCQ`<br>
       Expected: All flashcards with the tag `MCQ` is deleted
 
-   1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size), `delete 1 t/MCQ` <br>
+   1. Other incorrect `delete` commands to try: `delete`, `delete x` (where x is larger than the list size), `delete 1 t/MCQ` <br>
       Expected: Error message will appear with instructions on how to use the delete command.
 
-### Saving data
+1. Clearing all flashcards
 
-1. Dealing with missing/corrupted data files
+   1. Test Case 1: `clear`
+      Expected: All flashcards deleted from QuickCache.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+### F.7 Testing a flashcard
 
-1. _{ more test cases … }_
+1. Prerequisites: List all flashcards using the `list` command. There is at least one flashcard stored in QuickCache.
+
+1. Testing flashcard containing open ended question
+
+   1. Test Case 1: `test 1 ans/Singapore`<br>
+      Expected: Checks if answer provided matches with the answer stored in the open ended question within the first flashcard. Users starting off with the sample questions will expect test to be correct. Flashcard statistics will be updated.<br>
+      :information_source: Answers are not case sensitive.
+
+   1. Test Case 2: `test 1 ans/`<br>
+      Expected: Error message will appear as answer cannot be blank. Flashcard statistics will not be updated.
+
+1. Testing flashcard containing multiple choice question
+
+   1. Test Case 1: `test 2 o/2`<br>
+      Expected: Checks if option provided matches with the option stored in the multiple choice question within the second flashcard. Users starting off with the sample questions will expect test to be correct. Flashcard statistics will be updated.<br>
+      :information_source: Answers are not case sensitive.
+
+   1. Test Case 2: `test 1 o/`<br>
+      Expected: Error message will appear as option cannot be blank. Flashcard statistics will not be updated.
+
+   1. Other incorrect `test` commands to try: `test`, `test x ans/...` (where x is 0 or larger than the list size)<br>
+      Expected: Error message will appear with instructions on how to use the test command.
+
+### F.8 Displaying statistics
+
+There are 2 ways to display statistics of flashcards – by index or by tags.
+
+1. Prerequisites: For some test cases listed bellow to work, user should have the sample starting flashcards that was provided stored in QuickCache.
+
+1. Displaying statistics of a flashcard by index
+
+   1. Test Case 1: `stats 1`<br>
+      Expected: Display statistics of the first flashcard.
+
+   1. Test Case 2: `stats 0`<br>
+      Expected: No flashcard statistics. Error details shown in display.
+
+   1. Other incorrect `stats` commands to try: `stats`, `stats x` (where x is more than the last index in flashcard list), `stats Invalid`<br>
+      Expected: Error message will appear with instructions on how to use the `stats` command.
+
+1. Displaying statistics of flashcards through tags
+
+   1. Test Case 1: `stats t/MCQ`<br>
+      Expected: Display statistics of all flashcards containing tag `MCQ`.
+
+   1. Test Case 2: `stats t/MCQ t/CS2103`<br>
+      Expected: Display statistics of all flashcards containing tags `MCQ` and `CS2103`.
+
+   1. Test Case 3: `stats t/`<br>
+      Expected: Error message will appear on display. Tags cannot be empty.
+
+### F.9 Clearing statistics in a flashcard
+
+1. Prerequisites: 
+
+   1. There is at least one flashcard stored in QuickCache.
+   
+   1. List flashcards using the `list` command to see the index of the flashcard.
+
+1. Test Case 1: `clearstats 1`<br>
+   Expected: Statistics for the first flashcard is cleared.
+
+1. Test Case 1: `clearstats 0`<br>
+   Expected: No flashcard statistics is cleared. Error details shown in display.
+
+1. Other incorrect `clearstats` commands to try: `clearstats`, `clearstats x` (where x is more than the last index in flashcard list), `clearstats Invalid`<br>
+   Expected: Error message will appear with instructions on how to use the `clearstats` command.
+
+### F.10 Sharing flashcards
+
+User can choose to import or export their data
+
+1. Export data
+
+   1. Prerequisites: Data file present within QuickCache.
+   
+   1. Test case 1: `export my-flashcard.json`<br>
+      Expected: File containing the flashcards will be exported into the export folder, located in the same directory as QuickCache.jar.
+
+1. Import data
+
+   1. Prerequisites: Create an import folder in the same directory as where QuickCache.jar is located. Place the file that you want to import in the import folder. For testing purposes, we will name this file as `my-flashcard.json`.
+   
+   1. Test case 1: `import my-flashcard.json`<br>
+      Expected: Flashcards within the file will be imported in your local QuickCache.<br>
+      :information_source: Flashcards that has previously been imported and has not been modified will be ignored. Flashcards that already exists will not be imported as well.
+
+
+### F.11 Saving data
+
+1. Dealing with missing data file
+
+   1. Users can simulate missing data file by deleting the json file in the data folder in the same directory as where QuickCache.jar.<br>
+      Expected: Upon restart, QuickCache will create a new data file in the data folder containing the sample flashcards for the user.
+
+1. Dealing with corrupted data files
+
+   1. Users can simulate corrupted data file by deleting parts of the json file in the data folder in the same directory as where QuickCache.jar.<br>
+      Expected: Upon restart, QuickCache will create a new empty data file in the data folder.
 
 ## **Appendix: Effort** ##
 
