@@ -8,11 +8,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -166,4 +168,77 @@ public class EditAssignmentCommand extends Command {
                 && editAssignmentDescriptor.equals(e.editAssignmentDescriptor);
     }
 
+    /**
+     * Stores the details to edit the assignment with. Each non-empty field value will replace the
+     * corresponding field value of the assignment.
+     */
+    public static class EditAssignmentDescriptor {
+        private AssignmentName assignmentName;
+        private AssignmentPercentage assignmentPercentage;
+        private AssignmentResult assignmentResult;
+
+        public EditAssignmentDescriptor() {}
+
+        /**
+         * Copy constructor.
+         */
+        public EditAssignmentDescriptor(EditAssignmentDescriptor toCopy) {
+            setAssignmentName(toCopy.assignmentName);
+            setAssignmentPercentage(toCopy.assignmentPercentage);
+            setAssignmentResult(toCopy.assignmentResult);
+        }
+
+        /**
+         * Returns true if at least one field is edited.
+         */
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(assignmentName, assignmentPercentage, assignmentResult);
+        }
+
+        public void setAssignmentName(AssignmentName assignmentName) {
+            this.assignmentName = assignmentName;
+        }
+
+        public Optional<AssignmentName> getAssignmentName() {
+            return Optional.ofNullable(assignmentName);
+        }
+
+        public void setAssignmentPercentage(AssignmentPercentage assignmentPercentage) {
+            this.assignmentPercentage = assignmentPercentage;
+        }
+
+        public Optional<AssignmentPercentage> getAssignmentPercentage() {
+            return Optional.ofNullable(assignmentPercentage);
+        }
+
+        public void setAssignmentResult(AssignmentResult assignmentResult) {
+            this.assignmentResult = assignmentResult;
+        }
+
+        public Optional<AssignmentResult> getAssignmentResult() {
+            return Optional.ofNullable(assignmentResult);
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof EditAssignmentDescriptor)) {
+                return false;
+            }
+
+            // state check
+            EditAssignmentDescriptor e = (EditAssignmentDescriptor) other;
+
+            return getAssignmentName().equals(e.getAssignmentName())
+                    && getAssignmentPercentage().equals(e.getAssignmentPercentage())
+                    && getAssignmentResult().equals(e.getAssignmentResult());
+        }
+    }
 }
+
+

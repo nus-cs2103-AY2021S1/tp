@@ -41,7 +41,7 @@ Given below are my contributions to the project.
   * **Justification:** This feature enhances the product significantly as module contacts are vital information
                    that users access on a regular basis. As users are enrolled in numerous lessons, the number of contacts to track can be overwhelming.                
   * **Highlights:**
-    * This feature requires development in all the components of Cap 5 Buddy: `Logic`, `Model`, `Storage` and `Ui`. As such,
+    * This feature requires development in all the components of Cap5Buddy: `Logic`, `Model`, `Storage` and `Ui`. As such,
       in-depth analysis of how the components interacted with each other was required. Also, it provides flexibility for users 
       as not all contact fields are compulsory when creating contacts.
   * Relevant Pull requests: [\#228](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/228)
@@ -75,7 +75,7 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Updated documentation for the `Logic` component
     * Added implementation details of the contact list features, zoom link features and find task feature.
-    * Added user stories, user cases
+    * Added user stories, use cases
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#226](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/226), 
                                                      [\#244](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/244), 

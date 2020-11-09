@@ -497,7 +497,7 @@ Each `Module` can only have one `GradeTracker` which manages the assignments und
 The `GradeTracker` stores a `UniqueAssignmentList` that ensures assignments within the list are not duplicates of each other.
 Each `Assignment` contains the following three fields: an `AssignmentName`, `AssignmentPercentage` and `AssignmentResult`.
 
-![Structure of the Grade Tracker Component](images/GradeTrackerDiagram.png)
+![Structure of the Grade Tracker Component](images/GradeTracker/GradeTrackerDiagram.png)
 
 The list of all `GradeTracker` related features are:
 1. Add an Assignment: Adds a new assignment to the `GradeTracker`.
@@ -518,16 +518,11 @@ This feature is facilitated by the following classes:
   * It implements `AddAssignmentCommand#execute()` which executes the creation of the `Assignment` and adds the
   assignment to the module identified by the `ModuleName` that was parsed.
 
-When an `assignment` is added, it follows the sequence diagram as shown below. The sequence flows similarly 
-to the rest of the project as the command is parsed and then executed.
-
-![Sequence Diagram of the Add Assignment Command](images/AddAssignmentSequenceDiagram.png)
-
 Given below is an example usage scenario and how the mechanism for adding an `Assignment` behaves at each step:
 
 Step 1. `LogicManager` receives the user input `addassignment n/CS2100 a/Quiz 1 %/20 r/85` from `Ui`
 
-Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create a `AddAssignmentParser`
+Step 2. `LogicManager` calls `ParserManager`, which calls `GradeTrackerParser#parseCommand()` to create a `AddAssignmentParser`
 
 Step 3. Additionally, `AddAssignmentParser` will call the `AddAssignmentParser#parse()` method to parse the command arguments
 
@@ -539,7 +534,13 @@ and `85` for `AssignmentResult`. A `ModuleName` is also created using the input 
 Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
 `Module#addAssignment()` is executed with the `Assignment`, adding the assignment to the module's `GradeTracker`.
 
-Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+Step 7. The `Model#setModule()` operation exposed in the Model interface is invoked to replace the original module
+with the updated module containing the assignment. 
+
+Step 8. A `CommandResult` from the command execution is returned to `LogicManager`
+
+The sequence diagram for Add Assignment Command functions similarly to the sequence diagram for Delete Assignment. You can
+view the sequence diagram for Delete Assignment [here](#delete-assignment-feature) for reference.
 
 #### Design consideration:
 
@@ -576,7 +577,7 @@ Given below is an example usage scenario and how the mechanism for editing an `A
 
 Step 1. `LogicManager` receives the user input `editassignment 1 n/CS2100 a/Quiz 1` from `Ui`
 
-Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create a `EditAssignmentParser`
+Step 2. `LogicManager` calls `ParserManager`, which then calls `GradeTrackerParser#parseCommand()` to create an `EditAssignmentParser`
 
 Step 3. Additionally, `EditAssignmentParser` will call the `EditAssignmentParser#parse()` method to parse the command arguments
 
@@ -586,23 +587,127 @@ Step 5. `EditAssignmentCommand#execute()` will be evoked by `LogicManager` to cr
 using the parsed inputs, `Quiz 1` for `AssignmentName`. A `ModuleName` is also created using the input `CS2100`.
 
 Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
-`Module#setAssignment()` is executed with the `Assignment`, adding the assignment to the module's `GradeTracker`.
+`GradeTracker` replaces the `Assignment` with a new one created using the `EditAssignmentDescriptor`.
 
 Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
 
+![Edit Assignment Command Sequence Diagram](images/GradeTracker/EditAssignmentSequenceDiagram.png)
+
 #### Design consideration:
 
-##### Aspect: Whether to directly store the assignments under module
-* Alternative 1 : Module stores assignments directly without any association class.
-    * Pros : Less work to be done.
-    * Cons : Less OOP.
+##### Aspect: Whether to receive the user inputs as an index or as the assignment name
+* Alternative 1 : Receive user input of assignment to edit as an assignment name.
+    * Pros : The user is less prone to typing in the wrong commands and selecting the wrong assignment to edit.
+    * Cons : Tougher to implement as need to identify not just which module in the module list is the one being targeted,
+but now also which assignment in the grade tracker of that module is being targeted.
     
-* Alternative 2 (current choice): Module stores a separate class that then stores the assignments
-    * Pros : More OOP and the assignments are less coupled to the Module.
-    * Cons : Takes more effort and complexity to recreate the unique object list within another layer(`Module`).
+* Alternative 2 (current choice): Receive user input of assignment to edit as an index.
+    * Pros : Easier to implement and shorter commands needed to type out for the user.
+    * Cons : The user will need to observe the GUI more carefully in order to not make mistakes.
     
-We implemented the second option despite its difficulty and complexity, taking more time to carry out as we felt
-that this feature was major enough to warrant the time and depth to implement.
+We implemented the second option as we believe that with a clean enough GUI, the user will not be as likely to
+make mistakes in selecting the right assignment to edit.
+
+####Delete Assignment Feature
+
+This feature allows `assignments` within a `GradeTracker` to be deleted. The assignment to be deleted is identified
+by the module name that stores the grade tracker it is under and the index of the assignment. The grade tracker of the module to act on must
+currently have a valid assignment to target.
+
+This feature requires the following classes:
+
+* `DeleteAssignmentParser`:
+  * It implements `DeleteAssignmentParser#parse()` to validate and parse the assignment `Index` and module name.
+* `DeleteAssignmentCommand`:
+  * It implements `DeleteAssignmentCommand#execute()` which will execute the deleting of the assignment at the corresponding
+  assignment `Index` in the corresponding `Module` identified by the parsed module name.
+
+Given below is an example usage scenario and how the mechanism for deleting an `Assignment` behaves at each step:
+
+Step 1. `LogicManager` receives the user input `deleteassignment 1 n/CS2100` from `Ui`
+
+Step 2. `LogicManager` calls `ParserManager`, which then calls `GradeTrackerParser#parseCommand()` to create a `DeleteAssignmentParser`
+
+Step 3. Additionally, `DeleteAssignmentParser` will call the `DeleteAssignmentParser#parse()` method to parse the command arguments
+
+Step 4. An `DeleteAssignmentCommand` is created and the command arguments are passed to it.
+
+Step 5. `DeleteAssignmentCommand#execute()` will be evoked by `LogicManager` . A `ModuleName` is also created using the input `CS2100`.
+
+Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
+`GradeTracker` deletes the `Assignment` at the `Index`.
+
+Step 7. The `Model#setModule()` operation is run to update the model with the newly updated module.
+
+Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Below is the sequence diagram for the `DeleteAssignmentCommand`:
+![Delete Assignment Command Sequence Diagram](images/GradeTracker/DeleteAssignmentCommandSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Format to accept the user input
+* Alternative 1 : Receive user input of as two indexes to simplify the command.
+    * Pros : The command becomes very short for the user to write. The implementation can also become very simple. 
+    * Cons : There might be confusion for the user to realise which index corresponds to the module and which index
+    corresponds to the assignment.
+    
+* Alternative 2 (current choice): Receive only the assignment to delete as an index and the name of the module as its module name.
+    * Pros : Better for clarity for the user to input exactly what they are asking to delete.
+    * Cons : The user will have to fully type out the name of the module to delete the assignment from.
+    
+We implemented the second option as we believe that with oversimplifying the command could lead to it being extremely unintuitive.
+With this implementation, it will be as similar as possible to the other delete commands with only one extra input.
+
+####Add Grade Feature
+
+This feature allows a `Grade` to be stored in a `GradeTracker`. The `Grade` is the aggregated score from the assignments
+in the grade tracker of that module. The `Grade` can also be set to override the current assignment aggregated `Grade`.
+
+This feature requires the following classes:
+
+* `AddGradeParser`:
+  * It implements `AddGradeParser#parse()` to validate and parse the module name and grade.
+* `AddGradeCommand`:
+  * It implements `AddGradeCommand#execute()` which will execute the overriding to the current grade for the module with the
+  module name.
+
+Given below is an example usage scenario and how the mechanism for adding a grade behaves at each step:
+
+Step 1. `LogicManager` receives the user input `addgrade n/CS2100 g/80` from `Ui`
+
+Step 2. `LogicManager` calls `ParserManager`, which then calls `GradeTrackerParser#parseCommand()` to create an `AddGradeParser`
+
+Step 3. Additionally, `AddGradeParser` will call the `AddGradeParser#parse()` method to parse the command arguments
+
+Step 4. An `AddGradeCommand` is created and the command arguments are passed to it.
+
+Step 5. `AddGradeCommand#execute()` will be evoked by `LogicManager` . A `ModuleName` is also created using the input `CS2100`
+and a `Grade` is created with the input `80`.
+
+Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
+`GradeTracker` for that module replaces the `Grade` currently stored with the new `Grade`.
+
+Step 7. The `Model#setModule()` operation is run to update the model with the newly updated module.
+
+Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+
+The sequence diagram for Add Grade Command functions similarly to the sequence diagram for Delete Assignment. You can
+view the sequence diagram for Delete Assignment [here](#delete-assignment-feature) for reference.
+
+#### Design consideration:
+
+##### Aspect: Whether to implement the ability for the assignments being added to update the grade
+* Alternative 1 : Grade is only updated with `AddGradeCommand`.
+    * Pros : The implementation becomes simpler and less coupling between assignment and grades. 
+    * Cons : The grade feature might not be as useful for the user.
+    
+* Alternative 2 (current choice): `AddAssignmentCommand` and `EditAssignmentCommand` will update grade with the changes to the assignments.
+    * Pros : More relevant to the user and would be more helpful.
+    * Cons : The implementation will be significantly harder and increased coupling between assignments and grades.
+    
+We implemented the second option as the usefulness of the `Grade` feature increases significantly and the overall usefulness of
+`GradeTracker` would also increase as well.
 
 ### Cap Calculator
 
@@ -851,7 +956,7 @@ Below is a list of all `Contact` related features:
 
 Given below is the class diagram of the `Contact` class:
 
-![ContactClassDiagram](images/Contact/ContactClassDiagram.png)
+![ContactClassDiagram](images/contact/ContactClassDiagram.png)
 
 Figure ?.? Class Diagram for Contact class
 
@@ -878,7 +983,7 @@ Step 5. The `Model#addContact()` operation exposed in the `Model` interface is i
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to add a contact works:
-![AddContactSequenceDiagram](images/Contact/AddContactSequenceDiagram.png)
+![AddContactSequenceDiagram](images/contact/AddContactSequenceDiagram.png)
 Figure ?.? Sequence diagram for the execution of `AddContactCommand`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddContactCommand` and `AddContactParser` should end 
@@ -887,7 +992,7 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 
 
 The following activity diagram summarizes what happens when a user executes the `AddContactCommand`:
-![AddContactCommandActivityDiagram](images/Contact/AddContactCommandActivityDiagram.png)
+![AddContactCommandActivityDiagram](images/contact/AddContactCommandActivityDiagram.png)
 Figure ?.? Activity diagram representing the execution of `AddContactCommand`
 
 ##### Design consideration:
@@ -922,7 +1027,7 @@ After the user input has been parsed by `DeleteContactParser`, `LogicManager` wi
 `DeleteContactCommand#execute()`. This deletes the target contact by invoking the `Model#deleteContact()` method exposed in the `Model` interface.
 
 Given below is the sequence diagram of how the operation to delete a contact works:
-![DeleteContactSequenceDiagram](images/Contact/DeleteContactCommandSequenceDiagram.png)
+![DeleteContactSequenceDiagram](images/contact/DeleteContactCommandSequenceDiagram.png)
 
 #### Design consideration:
 
@@ -967,7 +1072,7 @@ Step 5. The `Model#setContact()` operation exposed in the `Model` interface is i
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to edit a contact works:
-![EditContactSequenceDiagram](images/Contact/EditContactCommandSequenceDiagram.png)
+![EditContactSequenceDiagram](images/contact/EditContactCommandSequenceDiagram.png)
 
 
 #### Design consideration:
@@ -1051,11 +1156,11 @@ Step 5. The `Model#updateFilteredContactList()` operation exposed in the `Model`
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to find contact works:
-![FindContactCommandSequenceDiagram](images/Contact/FindContactCommandSequenceDiagram.png)
+![FindContactCommandSequenceDiagram](images/contact/FindContactCommandSequenceDiagram.png)
 Fig ??
 
 Given below is the sequence diagram showing the interaction between `FindContactParser` and `FindContactCriteria`:
-![FindContactCriteriaSequenceDiagram](images/Contact/FindContactCriteriaSequenceDiagram.png)
+![FindContactCriteriaSequenceDiagram](images/contact/FindContactCriteriaSequenceDiagram.png)
 
 
 #### Design consideration:
@@ -1522,6 +1627,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |          | contact list                               |                                | |
 | `* *`    | user                                       | edit my graded assignments     | update the information of the assignments I have completed     |
 | `* *`    | user                                       | delete graded assignments      | remove the assignments that are do not contribute to my grade anymore|
+| `*`      | user                                       | add an overall grade to a module| change my grade without adding assignments to control it|
 | `*`      | user who is overloading                    | sort modules by name           | locate a module easily                                 |
 | `* * *`  | user                                       | add a task                     | keep track of the tasks that I must complete           |
 | `* * *`  | user                                       | delete a task                  | remove a task that has been done                       |
@@ -1983,18 +2089,20 @@ Use case ends.
 
       Use case ends.
 
- * 3a. The given grade is invalid.
+ * 3a. One or more of the assignment details are invalid.
 
     * CAP5BUDDY displays an error message.
 
       Use case ends.
 
-**Use Case: View grades for a module**
+**Use Case: Add grade to a module**
 
   **MSS**
-  1. User requests to view grades for a module.
-  2. CAP5BUDDY retrieves current grades.
-  3. CAP5BUDDY displays current grades.
+  1. User requests to add a grade to a module.
+  2. CAP5BUDDY retrieves the module from the module list.
+  3. CAP5BUDDY creates a new grade to replace the current one in the module.
+  4. CAP5BUDDY updates module in module list.
+  5. CAP5BUDDY displays success message
 
   **Extensions**
 
@@ -2009,11 +2117,11 @@ Use case ends.
 
   **MSS**
   1. User requests to edit an assignment in a module in CAP5BUDDY.
-  2. CAP5BUDDY retrieves the module.
+  2. CAP5BUDDY retrieves the module from the module list.
   3. CAP5BUDDY retrieves the assignment requested from the grade tracker in the module.
-  4. User requests to edit the assignment retrieved.
-  5. CAP5BUDDY edits the assignment.
-  6. CAP5BUDDY saves the edited assignment in the module.
+  4. CAP5BUDDY creates a new assignment to replace the assignment retrieved.
+  5. CAP5BUDDY updates the grade tracker in the module.
+  6. CAP5BUDDY updates the module in the module list.
   7. CAP5BUDDY displays success message.
 
   **Extensions**
@@ -2024,12 +2132,18 @@ Use case ends.
 
       Use case ends.
 
-  * 3a. The given assignment is invalid.
+  * 3a. The assignment to retrieve is invalid.
 
     * CAP5BUDDY displays an error message.
 
       Use case ends.
 
+  * 4a. The information to create a new assignment is invalid.
+
+    * CAP5BUDDY displays an error message.
+    
+      Use case ends.
+     
   *{More to be added}*
 
 **Use case: Delete an assignment**
@@ -2040,9 +2154,13 @@ Use case ends.
    3. CAP5BUDDY retrieves the assignment requested from the grade tracker in the module.
    4. CAP5BUDDY deletes the assignment.
    5. CAP5BUDDY updates the grade tracker in the module.
-   4. CAP5BUDDY displays success message.
+   6. CAP5BUDDY updates the module list with the module.
+   7. CAP5BUDDY displays success message.
 
    **Extensions**
+   * 2a. The provided module is invalid.
+   
+      * CAP5BUDDY displays an error message.
 
    * 3a. The provided assignment is invalid.
 
