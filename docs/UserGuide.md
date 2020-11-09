@@ -149,6 +149,8 @@ please check that you have installed the correct driver in the _`chrome_driver`_
     <div style="page-break-after: always;"></div>
 
    ![Jarvis](images/userguide/Jarvis.png)
+   
+1. For Mac users, you may see a security popup telling you that _`chrome_driver`_ is not authorized. To resolve this issue, right click on _`chrome_driver`_ and select `Open With Terminal`. Then proceed to start Jarvis again. 
 
 1. Upon start up, you will be prompted to log in to unlock Jarvis's
  full set of features.
