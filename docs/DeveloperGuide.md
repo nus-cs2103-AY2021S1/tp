@@ -157,7 +157,6 @@ Classes used by multiple components are in the [`seedu.cc.commons`](https://gith
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Add entries feature 
-
 *(Written by Nicholas Canete)* <br>
 
 This feature allows user to add entries.
@@ -207,7 +206,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 
 ## Delete feature
-
 *(Written by Jordan Yoong)* <br>
 
 This feature allows the user to delete previously added entries.
@@ -259,7 +257,6 @@ Explanation why a certain design is chosen.
 
 
 ### Edit entries feature 
-
 *(Written by Nicholas Canete)* <br>
 
 This feature allows the user to edit existing entries.
@@ -323,7 +320,6 @@ specifying index and edited fields alone.
     
 
 ## Clear feature
-
 *(Written by Jordan Yoong)* <br>
 
 This feature allows the user to clear previously added entries.
@@ -587,6 +583,9 @@ Explanation why a certain design is chosen.
     * Cons: Less convenience for the user. 
 
 ### Calculate net profits feature
+*(Written by Cheok Su Anne)* <br>
+
+This feature allows user to calculate and view the current profits.
 
 #### Implementation
 The calculate net profits mechanism is facilitated by `GetProfitCommand`. It extends `Command` and is identified by `CommonCentsParser`. The `GetProfitCommand` interacts with `Account` and the interaction is managed by `ActiveAccount`. As such, it implements the following operations:   
