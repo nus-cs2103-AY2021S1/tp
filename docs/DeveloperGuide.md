@@ -546,7 +546,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 </p>
 
---------------------------------------------------------------------------------------------------------------------
 
 #### **Use case: Add a template**
 
@@ -569,7 +568,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.<br>
 </p>
 
---------------------------------------------------------------------------------------------------------------------
 
 #### **Use case: Add an exercise based on an existing template**
 
@@ -592,7 +590,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 </p>
 
---------------------------------------------------------------------------------------------------------------------
+
+
 
 #### **Use case: Archive data**
   *MSS*
@@ -607,7 +606,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 </p>
 
---------------------------------------------------------------------------------------------------------------------
+
 
 #### **Use case: Add a goal**
 1.  User requests to create a goal for a day.  
@@ -626,7 +625,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       1a1. `Calo` shows an error message, information the user about the pre-existing goal. <br>  
     Use case ends.<br>
 
---------------------------------------------------------------------------------------------------------------------
+
+
 
 #### **Use case: Find exercises with a keyword**
 
@@ -642,7 +642,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 </p>
 
---------------------------------------------------------------------------------------------------------------------
+
 
 #### **Use case: Recall exercises with a keyword**
 
@@ -659,7 +659,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 </p>
 
---------------------------------------------------------------------------------------------------------------------
 
 #### **Use case: Update an exercise**
 
@@ -677,7 +676,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 </p>
 
---------------------------------------------------------------------------------------------------------------------
 
 #### **Use case: Delete an exercise**
 
@@ -694,7 +692,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 </p>
 
---------------------------------------------------------------------------------------------------------------------
 
 #### **Use case: List exercises**
 
@@ -712,7 +709,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 </p>
 
---------------------------------------------------------------------------------------------------------------------
 
 ### 9. Appendix D: Non-Functional Requirements
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
