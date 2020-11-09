@@ -24,7 +24,7 @@ public class RoutineViewCommandParser implements Parser<RoutineViewCommand> {
         try {
             Index index = ParserUtil.parseIndex(args);
             return new RoutineViewCommand(index);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | ParseException e) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, RoutineViewCommand.MESSAGE_USAGE));
         }

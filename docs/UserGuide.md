@@ -975,6 +975,8 @@ Action | Format | Examples
 **Add Calories** | `calorie_add c/CALORIE` | `calorie_add c/1000`
 **Deduct Calories** | `calorie_minus c/CALORIE` | `calorie_minus c/200`
 
+<div style="page-break-after: always;"></div>
+
 ### 5.7 Miscellaneous
 
 Action | Format | Examples

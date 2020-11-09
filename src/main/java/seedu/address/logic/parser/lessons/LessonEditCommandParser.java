@@ -40,6 +40,10 @@ public class LessonEditCommandParser implements Parser<LessonEditCommand> {
             throw new ParseException(String.format(
                     MESSAGE_INVALID_COMMAND_FORMAT, LessonEditCommand.MESSAGE_USAGE));
         }
+        if (argMultimap.getValue(PREFIX_LESSON).isPresent() && argMultimap.getAllValues(PREFIX_LESSON).size() != 1) {
+            throw new ParseException(String.format(
+                    MESSAGE_INVALID_COMMAND_FORMAT, LessonEditCommand.MESSAGE_USAGE));
+        }
 
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
 

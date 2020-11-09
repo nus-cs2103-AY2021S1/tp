@@ -18,6 +18,9 @@ public class Calorie {
 
     public static final String VALIDATION_REGEX = "\\d+";
 
+    /**
+     * The amount of calories the user input.
+     */
     private final int calorie;
 
     /**

@@ -334,7 +334,7 @@ public class AddCommandTest {
         @Override
         public boolean hasLesson(Lesson lesson) {
             requireNonNull(lesson);
-            return this.lesson.isSameLesson(lesson);
+            return this.lesson.isSameActivity(lesson);
         }
     }
 
@@ -347,7 +347,7 @@ public class AddCommandTest {
         @Override
         public boolean hasLesson(Lesson lesson) {
             requireNonNull(lesson);
-            return lessonsAdded.stream().anyMatch(lesson::isSameLesson);
+            return lessonsAdded.stream().anyMatch(lesson::isSameActivity);
         }
 
         @Override
