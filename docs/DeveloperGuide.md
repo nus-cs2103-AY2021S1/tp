@@ -58,7 +58,7 @@
     * [F.2 General Features](#f2-general-features)
     * [F.3 Administrative Features](#f3-student-administrative-features)
     * [F.4 Academic Features](#f4-student-academic-features)
-    * [F.5 Notebook Features](#f5-managing-questions-from-students)
+    * [F.5 Notebook Features](#f5-notebook-feature)
     * [F.6 Saving Data](#f6-saving-data)
 
 
