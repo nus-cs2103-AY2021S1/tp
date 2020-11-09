@@ -33,7 +33,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-T10-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-T10-3/tp/tree/master/docs/diagrams) folder.
 
 </div>
 
@@ -73,6 +73,7 @@ The following sections break down the various components in greater detail.
 
 
 ----------------
+<a name="ui-component"></a>
 ### 3.2&ensp;UI Component
 
 The *UI* component is responsible for all the user-facing views in the graphical user interface. This includes displaying recipes, ingredients and statistics, receiving command input from the user, and printing command results to the user.
@@ -104,6 +105,7 @@ Figure 999: <i>An activity diagram for the Ui during application launch</i>
 
 
 -------------------
+<a name="logic-component"></a>
 ### 3.3&ensp;Logic Component
 
 The *Logic* component is responsible for parsing command input, executing commands, and updating the Model component of any changes to data caused by running a command.
@@ -141,6 +143,7 @@ Figure 5: <i>A sequence diagram showing the execution of <code>delete recipe #1<
 
 
 -------------------
+<a name="model-component"></a>
 ### 3.4&ensp;Model Component
 
 The *Model* component is responsible for holding the data of the application (eg. the recipes and ingredients) in-memory during execution, and mediating access to this data for each of the other components of the system.
@@ -174,6 +177,7 @@ Only when a recipe is made are the references are resolved to their actual ingre
 
 
 ---------------------
+<a name="storage-component"></a>
 ### 3.5&ensp;Storage Component
 
 The storage component is responsible for the saving and loading of the usage data for recipe and ingredient, the user preferences, and more importantly the recipe and ingredient data, to and from disk. Both pieces of data are stored in Javascript Object Notation (JSON) files, which is a human-readable (and editable) plain-text format.
@@ -205,6 +209,7 @@ For example, the `JsonSerializableIngredientUsageList` contains `JsonAdaptedUsag
 
 
 ------------------
+<a name="common-classes"></a>
 ### 3.6&ensp;Utility Classes
 
 While not itself a component, various utility types are placed in the `chopchop.commons` package; these are used by all the components in ChopChop, and comprise three sub-parts in their respective packages:
