@@ -55,6 +55,8 @@ Note how the app contains some sample expenses and revenues if you have not used
 These blocks are a few examples of notations that will be used in this document. Each block and icon 
 has a different meaning so do look out for them under our features.
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-info"> 
 
 :information_source: **Note:** 
