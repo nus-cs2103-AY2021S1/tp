@@ -51,9 +51,9 @@ with a focus on the Command Line Interface (CLI), while still retaining the benf
 ## **Section 2 - Using this Document**
 This Developer Guide will help you understand the thought processes behind the design and implementation of 
 **Trackr**. It will begin with how to [get started](#section-3---setting-up-getting-started), followed by the [design](#section-4---design) and [implementation](#section-5---implementation), and ending with 
-the [documentation]((#section-6---documentation-logging-testing-configuration-dev-ops)) for this project. 
+the [documentation](#section-6---documentation-logging-testing-configuration-dev-ops) for this project. 
 
-This section will provide you the [formatting]() used in this throughout the document so that understand in quick and simple.
+This section will provide you the [formatting](#section-22---formatting) used in this throughout the document so that understand in quick and simple.
 For more information on confusing terms encountered, you can check the [glossary](#appendix-e---glossary) for clarification. 
 
 ### Section 2.2 - Formatting
@@ -64,7 +64,7 @@ This document is written in a manner where formatting is applied to text in orde
 | ------------- | ------------------------------------------------------------ |
 | `code`        | Words in 'code' format refer to class names or fields within classes. |
 | *Italics*     | Words in italics refer to the type of diagrams used.|
-| [Underline]() | Words that are in blue and underlined when hovered over refer to hyperlinks. Hyperlinks are clickable, and bring you either to different parts of this document or to external websites, for the convenience of navigating quickly to different parts of the document or the web. |
+| [Underline](#section-22---formatting) | Words that are in blue and underlined when hovered over refer to hyperlinks. Hyperlinks are clickable, and bring you either to different parts of this document or to external websites, for the convenience of navigating quickly to different parts of the document or the web. |
 | **Bold**      | Words in bold refer to important points within the document. |
 
 ---
@@ -92,14 +92,14 @@ The **_Architecture Diagram_** given above explains the high-level design of Tra
 -   at app launch: Initializes the components in the correct sequence, and connects them up with each other.
 -   at shut down: Shuts down the components and invokes clean-up methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#section-46---common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
--   [**`UI`**](#ui-component): The UI of the App.
--   [**`Logic`**](#logic-component): The command executor.
--   [**`Model`**](#model-component): Holds the data of the App in memory.
--   [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+-   [**`UI`**](#section-42---ui-component): The UI of the App.
+-   [**`Logic`**](#section-43---logic-component): The command executor.
+-   [**`Model`**](#section-44---model-component): Holds the data of the App in memory.
+-   [**`Storage`**](#section-45---storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
@@ -132,8 +132,8 @@ The `UI` Component defines what the user will see and interact with while using 
 `MainWindow` is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter`, `ViewDisplay` etc. 
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class. The `UI` component uses JavaFx UI framework. 
 The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. 
-For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) 
-is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/ui/HelpWindow.java) 
+is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 -   executes user commands using the `Logic` component.
@@ -161,7 +161,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <figcaption> Figure 4.3b Sequence Diagram of DeleteTutorialGroupCommand </figcaption>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTutorialGroupCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
+</div>
 ### Section 4.4 - Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -177,9 +177,6 @@ The `Model` component,
 -   stores the Trackr data.
 -   exposes unmodifiable `ObservableList<Module>`, `ObservableList<TutorialGroup>` and `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 -   does not depend on any of the other three components.
-
-
-</div>
 
 ### Section 4.5 - Storage component
 
@@ -664,8 +661,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Teaching Assistant         | edit a module                                   | keep the module information accurate if there are changes      |
 | `* * *`  | Teaching Assistant         | find a module                                   | quickly get to the module I am looking for                     |
 | `* * *`  | Teaching Assistant         | list all the modules I teach                    | have an overall view of all the modules                        |
-| `* * *`  | Teaching Assistant         | add/delete a tutorial group                     | manage the list of tutorial groups I teach                     | 
-| `* * *`  | Teaching Assistant         | edit a tutorial group                           | keep the tutorial group information accurate if there are changes| 
+| `* * *`  | Teaching Assistant         | add/delete a tutorial group                     | manage the list of tutorial groups I teach                     |
+| `* * *`  | Teaching Assistant         | edit a tutorial group                           | keep the tutorial group information accurate if there are changes|
 | `* * *`  | Teaching Assistant         | find a tutorial group                           | quickly get to the tutorial group I am looking for             |
 | `* * *`  | Teaching Assistant         | list all the tutorial groups I teach            | have an overall view of all the tutorial groups                |
 | `* * *`  | Teaching Assistant         | add/delete students to my list                  | manage the list of students I teach                            |

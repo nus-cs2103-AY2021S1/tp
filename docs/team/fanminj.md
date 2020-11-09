@@ -8,11 +8,11 @@ title: Jian Fanmin's Project Portfolio Page
 ### Project Overview
 Trackr is an application for teaching assistants (TAs) who prefer to use a desktop application for managing their
 student records. It is uses a Command Line Interface (CLI), while still retaining the benefits of a Graphical User
-Interface (GUI). It is written in Java, and currently has over 10kLoC.
+Interface (GUI). Currently, Trackr is written in Java and has more than 15,000 LoC.
 
 ### Summary of Contributions
 
-- Code contributed: [tP Code Dashboard](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=fanminj&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+- Code contributed: [tP Code Dashboard](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&until=2020-11-09&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=fanminj&tabRepo=AY2021S1-CS2103T-W12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 - Enhancements implemented:
     - New feature: Added the ability to keep track of student's attendance on top of their personal details.
