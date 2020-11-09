@@ -118,7 +118,8 @@ public class Assignment extends Task {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append("\n")
+                .append(getName())
                 .append(" Deadline: ")
                 .append(getDeadline())
                 .append(" Module: ")

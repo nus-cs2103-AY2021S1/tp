@@ -131,7 +131,7 @@ If the lab report assignment is of **high priority**, you can enter `add n/Lab r
 
 More examples:
 * `add n/Lab report d/23-04-2020 1230 mod/CS2100 remind`
-* `add n/Lab report d/30-04-2020 1230 mod/CS2100`
+* `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH remind`
 
 ### Deleting assignments : `delete`
 
@@ -303,7 +303,7 @@ You can edit more than one field of an assignment at a time so that you can conv
 This is the table of prefixes used:
 
 | Prefix | Syntax | Example |
-|-|-|
+|-|-|-|
 | `n/` | n/NAME_OF_ASSIGNMENT | - `n/Tutorial` |
 | `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT | - `mod/ST2334` |
 | `d/` | d/DEADLINE_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
@@ -451,18 +451,18 @@ the command line based on the indexes labelled in the figure.
    
 2) The two assignments will be marked as done and each assignment will have a green tick displayed as labelled in the figure. 
 
-   ![UserGuideDoneCommandTicksAdded](images/UserGuideDoneCommandTicksAdded.PNG)
+   ![UserGuideDoneCommandTicksAdded](images/UserGuideDoneCommandSuccess.PNG)
    *Figure 23: Added ticks labelled*
 
 3) A message that includes the information of the assignments marked as done will be displayed in the Command Box.
 
-   ![UserGuideDoneCommandSuccess](images/UserGuideDoneCommandSuccess.PNG)
+   ![UserGuideDoneCommandSuccess](images/UserGuideDoneCommandTicks.PNG)
    *Figure 24: Message shown in Command Box labelled*
    
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
 * At least one index must be present. For example, `done` without any index is invalid.
-* The indexes **must be found in your assignment list**
+* The indexes **must be found in your assignment list**.
 * The indexes **must not be duplicated**. For example, `done 4 4` is invalid.
 </div>
 
@@ -474,7 +474,7 @@ Format: `undone INDEX`
 You can unmark assignments that you have previously marked as done by specifying the assignment `INDEX` as shown in your
  list.
 
-You can unmark `one` done assignment at a time. Here is an example with steps to follow:
+You can unmark `one` done assignment at a time. Here is an example with steps for you to follow:
 
 1) If you have **accidentally** marked the assignment with the name "Essay" as done,
 you can simply enter `undone 2` into the command line based on the index labelled in the figure.
@@ -494,9 +494,9 @@ you can simply enter `undone 2` into the command line based on the index labelle
    
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
-* Assignments are marked as not done **by default**
+* Assignments are marked as **not done by default**.
 * The index must be present. For example, `undone` without any index is invalid.
-* The index **must be found in your assignment list**
+* The index **must be found in your assignment list**.
 </div>
 
 ### Scheduling assignments: `schedule`
@@ -518,17 +518,14 @@ Here is an example with steps to follow:
 
 1) You want to schedule assignments with the name "CS2106 Lab" as shown in the figure below with an expected hour of 5 hours
 and need to be done by a week from now (although the actual deadline is longer).
-
     ![UserGuideScheduleCommand](images/UserGuideScheduleCommand.PNG)
     *Figure 28: Assignment to schedule*
 
 2) You can simply enter `schedule 3 hrs/5 af/01-01-2020 0000 by/23-12-2020 2359` into the command box.
-
     ![UserGuideScheduleCommandInput](images/UserGuideScheduleCommandInput.PNG)
     *Figure 29: Command inputted by user*
 
 3) The suggested time slot will be displayed in the assignment card.
-    
     ![UserGuideScheduleCommandResult](images/UserGuideScheduleCommandResult.PNG)
     *Figure 30: Message shown in Command Box and suggested schedule displayed in the assignment card*
 
@@ -578,14 +575,12 @@ You can undo all previous commands one at a time if you make mistakes in command
 Here is an example with steps to follow:
 
 1) You accidentally delete the first assignment by entering `delete 1` command.
-
     ![UserGuideUndoCommandDeleteInput](images/UserGuideUndoCommandDeleteInput.PNG)
     *Figure 33: Delete the first assignment*
     ![UserGuideUndoCommandDeleteResult](images/UserGuideUndoCommandDeleteResult.PNG)
     *Figure 34: Result after deleting the first assignment*
     
 2) You can enter `undo` to undo the `delete 1` command.
-
     ![UserGuideUndoCommandInput](images/UserGuideUndoCommandInput.PNG)
     *Figure 35: Undo the delete command*
     ![UserGuideUndoCommandResult](images/UserGuideUndoCommandResult.PNG)
@@ -660,6 +655,7 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 | **import** | `import url/NUSMODS_URL` | `import url/https://nusmods.com/timetable/sem-2/share?CS2108=LEC:1` |
 | **list** | `list [NUMBER_OF_DAYS]` | `list 2`<br>`list` |
 | **find** | `find PREFIX/ KEYWORD [MORE_KEYWORD]` | `find mod/CS2103T CS2100`<br>`find p/HIGH` |
+| **edit** | `edit INDEX PREFIX/EDITED_FIELD [MORE_PREFIX/EDITED_FIELD]` | `edit 3 mod/CS2100`<br>`edit 1 d/10-10-2020 1200` |
 | **remind** | `remind INDEX [MORE_INDEXES]` | `remind 5`<br>`remind 2 4 5` |
 | **unremind** | `unremind INDEX` | `unremind 2` |
 | **prioritize** | `prioritize INDEX p/PRIORITY` | `prioritize 3 p/HIGH`<br>`prioritize 1 p/LOW` |
@@ -677,16 +673,16 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: 
+**Q: How do I transfer my data to another Computer?**<br>
+**A:** 
 1. Install the app in your other computer and start the app.
 2. Notice that a data file named `addressbook.json` is created under the `/data` folder.
 3. Close the app in your other computer.
 4. Overwrite the newly created data file with the data file from your previous computer.
 5. All your existing data has been successfully transferred!
 
-**Q**: I am not free during the time that my assignment has been scheduled. How do I reschedule?<br>
-**A**:
+**Q: I am not free during the time that my assignment has been scheduled. How do I reschedule?**<br>
+**A:**
 You can reschedule by using the schedule command on that assignment again.<br>
 
 1. Type the schedule command into the Command Box with the index of the assignment that you want to reschedule. You can refer to the diagram below.<br>
@@ -705,7 +701,7 @@ You can paste the command into the command box after step 2 and repeat step 1-2 
    *Figure 39: New suggested time for assignment labelled*
 <br>
 
-**Q**: I double-clicked the productivenus.jar file but the app is not starting. What should I do?<br>
+**Q: I double-clicked the productivenus.jar file but the app is not starting. What should I do?**<br>
 **A**: This is most likely caused by the *Security and Privacy Settings* of your operating system. You can either
 modify your *Security and Privacy Settings* (depends on your operating system) to accept
 anonymous files or run ProductiveNUS with the `Command Prompt`.
