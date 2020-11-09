@@ -251,7 +251,7 @@ The following sequence diagram shows how the Open mechanism works:
 
 * **Current implementation:** Flashcard is taken from the last displayed list
   * Pros: Easy to implement and CLI-optimized.
-  * Cons: nil
+  * Cons: *nil*
 
 ### Tags
 
