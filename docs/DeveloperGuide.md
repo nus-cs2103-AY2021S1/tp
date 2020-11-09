@@ -275,7 +275,7 @@ using the template and returns a new AddCommand object. The parse method in AddT
 of creating a new template and returns a new AddTemplateCommand object.
 The template list is stored in the data file folder as a txt file.
 
-=== Updating an exercise
+### 4.4. Updating an exercise
 
 Author: Lee Wei Min
 
@@ -286,7 +286,7 @@ updates an existing exercise, where all fields are optional but at least one fie
 be specified. For more details, please refer to the [update section](https://ay2021s1-cs2103t-w17-2.github.io/tp/UserGuide.html#33-update-exercises--update) of the user guide
 </div>
 
-==== Implementation
+#### 4.4.1 Implementation
 
 We will use the following example command: `update 1 d/30 c/260 m/chest t/home`.
 
@@ -322,9 +322,9 @@ of commandResult should be joined to the side of the box representing the comman
 Due to a limitation of PlantUML, it is not possible to do so here.
 </div>
 
-==== Design Considerations
+#### 4.4.2 Design Considerations
 
-===== Aspect: Process of updating the new data in `model`
+**Aspect**: Process of updating the new data in `model`
 
 - **Alternative 1 (Current choice)**: Replace `Exercise` to be updated in `UniqueExerciseList` of `ExerciseBook` with another `Exercise` object containing the updated data.
 
@@ -344,7 +344,7 @@ Due to a limitation of PlantUML, it is not possible to do so here.
   - Cons:
     - If an error occurs in the middle of the process, the fields which were updated would not recover the original values.
 
-#### Summary
+#### 4.4.3 Summary
 
 The following activity diagram summarizes what happens when a user executes an `update` command:
 
