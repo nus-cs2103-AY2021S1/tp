@@ -6,12 +6,10 @@ import seedu.address.logic.parser.exceptions.CaloriesOverflow;
 import java.math.BigInteger;
 import java.util.Objects;
 
-public static final String MESSAGE_CONSTRAINTS =
-            "Calories should be a non-negative integer. It should not be blank (if updating)";
-
 public class Calories {
 
-    public static final String MESSAGE_CONSTRAINTS = "Calories should be a integer.";
+    public static final String MESSAGE_CONSTRAINTS = "Calories should be a non-negative integer." +
+            "It should not be blank (if updating)";
 
     public final String value;
 
