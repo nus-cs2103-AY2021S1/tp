@@ -33,7 +33,7 @@ This table below illustrates what each formatting means.
 | `p/PHONE_NUMBER` | Words in UPPER_CASE | A parameter to be supplied by the user |`p/91234567`|
 | `n/NAME [s/SEX]` | Words in square brackets| Optional parameter |`n/John Doe` or <br> `n/John Doe s/M` |
 | `[g/ALLERGY]…` | Words with `…` after them| Parameters that can be input multiple times including 0 times|`g/sulfa g/zyrtec` or `g/levocetirizine `|
-| [Blue underline](#2-about-this-document)| Blue words that show underline on mouse-over| A clickable hyperlink, to either an external webpage or other parts of this User Guide|[1. Introduction](#1-introduction)|
+| [**Blue underline**](#2-about-this-document)| Bold blue words that show underline on mouse-over| A clickable hyperlink, to either an external webpage or other parts of this User Guide|[**1. Introduction**](#1-introduction)|
 
 <div markdown="block" class="alert alert-warning">
 * These sections give examples of how you can use the features of CliniCal.
