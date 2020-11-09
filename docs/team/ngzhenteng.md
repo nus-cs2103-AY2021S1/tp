@@ -32,6 +32,7 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=ngzhenteng)
 
+<div style="page-break-after: always;"></div>
 * **Project management**:
   * Managed milestones `v1.1` - `v1.3` on GitHub
   * Ensured the team's completion of weekly deliverables such as demo videos.
