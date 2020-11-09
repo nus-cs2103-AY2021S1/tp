@@ -287,12 +287,12 @@ Everyone should have permission to access the image path or online image URL you
      Image | File Path | Image | File Path
      --------|--------------|--------|-------------
      <img src="images/healthy1.png" width="150" height="100"> | images/healthy1.jpg | <img src="images/healthy4.png" width="150" height="100"> | images/healthy4.jpg
-     <img src="images/healthy2.png" width="150" height="100"> | images/healthy2.jpg | <img src="images/healthy5.png" width="150" height="100"> | images/healthy5.jpg
      
      <div style="page-break-after: always;"></div>
      
      Image | File Path | Image | File Path
      --------|--------------|--------|-------------
+     <img src="images/healthy2.png" width="150" height="100"> | images/healthy2.jpg | <img src="images/healthy5.png" width="150" height="100"> | images/healthy5.jpg
      <img src="images/healthy3.png" width="150" height="100"> | images/healthy3.jpg | <img src="images/healthy6.png" width="150" height="100"> | images/healthy6.jpg
 
 * `INSTRUCTION` will take in a series of instruction text and Wishful Shrinking will automatically separate each
