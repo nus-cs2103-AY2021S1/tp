@@ -31,7 +31,7 @@ public class SampleDataUtil {
             new Ingredient("Cream", Mass.grams(460), new ExpiryDate("2020-11-15"),
                 Set.of(new Tag("high calorie"), new Tag("high sugar level"))),
             new Ingredient("Egg", Count.of(12), new ExpiryDate("2020-12-01"),
-                Set.of(new Tag("high protein"), new Tag("breakfast"), new Tag("frequently used"))),
+                Set.of(new Tag("high protein"), new Tag("breakfast"))),
             new Ingredient("Flour", Mass.kilograms(3.5), null,
                 Set.of(new Tag("staple food"), new Tag("bakery"), new Tag("carbohydrate"))),
             new Ingredient("French Vinaigrette", Volume.millilitres(300), new ExpiryDate("2021-05-01"),
@@ -53,7 +53,7 @@ public class SampleDataUtil {
             new Ingredient("Vanilla Extract", Volume.millilitres(150), new ExpiryDate("2020-12-28"),
                 Set.of(new Tag("bakery"), new Tag("sweet"))),
             new Ingredient("Milk", Volume.millilitres(750), new ExpiryDate("2020-12-14"),
-                Set.of(new Tag("dairy"), new Tag("frequently used")))
+                Set.of(new Tag("dairy"), new Tag("drink")))
         };
     }
 
