@@ -1070,14 +1070,14 @@ This section provides an overview of the general commands used in tCheck.
 
 #### 4.1 Viewing help : `help`
 
-Show a message explaining how to access the help page, which is the tCheck User Guide.
+Shows a message explaining how to access the help page, which is the tCheck User Guide.
 
 Format: `help`
 
 Example: 
 
-Let's say you want to find out how tCheck can help you manage the employees.
-You can follow these instructions:
+Let's say you are unsure of what are the commands that you can use.
+You can follow these instructions to access the tCheck User Guide:
 
 1. Type `help` into the _Command Box_.
 2. Press "Enter" to execute the command.
@@ -1085,7 +1085,7 @@ You can follow these instructions:
 Outcome:
 
 1. The _Result Display_ will show a success message.
-2. tCheck will open the Help window, which shows a message explaining how to access the help page.
+2. A pop-up window will appear. The window contains a message explaining how to access the tCheck User Guide.
 
 ![HelpCommandScreenshot](images/HelpCommandScreenshot.png)
 
