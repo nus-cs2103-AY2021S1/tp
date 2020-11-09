@@ -42,7 +42,7 @@ EditCommand -> EditCommand: createEditedEntry
 return editedEntry
 autoactivate off
 
-alt entryToEdit instanceof Expense
+opt entryToEdit instanceof Expense
 EditCommand -> ActiveAccount: setExpense(entryToEdit, editedEntry)
 activate ActiveAccount
 
@@ -50,7 +50,7 @@ ActiveAccount --> EditCommand
 else
 end
 
-alt (entryToEdit instance of Revenue)
+opt (entryToEdit instance of Revenue)
 EditCommand -> ActiveAccount: setRevenue(entryToEdit, editedEntry)
 
 

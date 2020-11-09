@@ -118,6 +118,8 @@ are new to _Common Cents_, do not fret as this section will guide you step by st
 available! This will better your experience with _Common Cents_ and your usage of features!
 
 ## 4.1 Accounts
+*(Written by Nicholas Canete)* <br>
+
 Accounts in Common Cents are key features that help you better manage, categorise, and organise your finances better. 
 In Common Cents, each account has a unique name, and a unique list of expenses and revenues. 
 You can make as many accounts as you'd like in order to help you better categorise and organise your finances better!<br>
@@ -143,6 +145,8 @@ optional Tags. In the app user interface, each revenue amount will be displayed 
 will be displayed as a scrollable list, right beside the expenses list.
 
 ## 4.2 Entries
+*(Written by Nicholas Canete)* <br>
+
 'Entry' (or 'Entries') is the term used to describe either Expense or Revenue. Each entry input into Common Cents would 
 have compulsory fields - Description, Amount - and optional Tags. 
 
