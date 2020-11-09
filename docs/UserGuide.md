@@ -67,7 +67,7 @@ To use HelloFile effectively, we recommend the following workflow.
 ![Show](images/screenshots/show.PNG) <br><br>
 4. If you have made a mistake, you can recover by using `undo` and `redo`.<br>
 ![Undo](images/screenshots/undo.PNG) <br>
-![Redo](images/screenshots/open.PNG) <br><br>
+![Redo](images/screenshots/redo.PNG) <br><br>
 5. To exit the application, either close the application window, or use the `exit` command.
 
 --------------------------------------------------------------------------------------------------------------------
