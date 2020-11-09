@@ -13,7 +13,7 @@ This portfolio aims to document the contributions that I have made to the **Trac
 Together with Tiffany, we are in-charge of the UI/UX of the front-end development of TrackIt@NUS. 
 Through the iterations, were have worked very closely with each other, as well as with the back-end team through the v1.2, v1.3 and v1.4 iterations.
 
-### 2.1 Code Contributed
+### 2.1 Code Contributed - RepoSense [link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&until=2020-11-09&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=justweihong&tabRepo=AY2021S1-CS2103T-W13-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code)
 
 ### 2.2 Design of App 
 With a focus of a user-centric design, we wanted to create a UI that will not only fulfil the solution that
