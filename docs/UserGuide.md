@@ -351,6 +351,8 @@ Adds a `Consultation` session with a `Student` at a specific date and time.
 * `add -c John Doe d/2020-09-20 t/13:30`
 * `add -c Mary Jane d/2021-01-02 t/09:15`
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-info">
 * When you add a `Consultation` for a future date while displaying only past `Consultations`, make sure to enter `view -c` to view the complete list to check if the `Consultation` has been added correctly.
 * Similarly, when you add a `Consultation` for a past date while displaying only future `Consultations`, make sure to enter `view -c`.
@@ -394,6 +396,8 @@ Adds your personal `Todo` with a `description`.
 * The way to input is similar to the screenshot of adding `Mastery Check` above, only without the date and time.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### 6.3.4 Adding `Events` : `-e`
 
 Adds your personal `Event` with a `description`, to attend at a specific date and time.
@@ -407,8 +411,6 @@ Adds your personal `Event` with a `description`, to attend at a specific date an
 <div markdown="block" class="alert alert-info">
 * An `Event` requires extra date and time specifications in order to create. The way to input is similar to the screenshot of adding `Mastery Check` above.
 </div>
-
-<div style="page-break-after: always;"></div>
 
 #### 6.3.5 Adding `Deadlines` : `-d`
 
@@ -424,7 +426,7 @@ Adds your personal `Deadline` with a `description`, to complete by a specific da
 * Similar to `Event`, a `Deadline` requires extra date and time specifications in order to create. You can refer to the screenshot of adding `Mastery Check` above for a real-life example of how the command would look like.
 </div>
 
-
+<div style="page-break-after: always;"></div>
 
 ### 6.4 Editing Information : `edit`
 
