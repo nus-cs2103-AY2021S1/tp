@@ -575,7 +575,7 @@ The sequence diagram below shows the sequence of interactions between the `Model
 Figure ???: <i>The sequence diagram of the execution of StatsRecipeTopCommand </i>
 </div>
 
-1. `Logic` uses `CommandParser` to parse the user input.
+1. `LogicManager` uses `CommandParser` to parse the user input.
 2. `CommandParser` calls on the static method `parseStatsCommand` of `StatsCommandParser` class.
 3. `StatsCommandParser` then calls on methods `getCommandTarget` and `parseRecipeStatsCommand` to determine which command object should be instantiated.
 4. A `StatsRecipeTopCommand` object is instantiated by `StatsCommandParser`.
@@ -1723,10 +1723,25 @@ having expiry dates in December 2020.
      Expected: No ingredient is listed. Error details shown in the Command Output box.   
 
 ### B.4&ensp;Viewing statistics
+The sample data of ChopChop does not include sample recipe and ingredient usage data as they could be misleading for users viewing their usage statistics.
+Here are the steps you can follow and execute in order, to create a sample usage data of Recipe A, B and C for testing.
+1. `stats recipe clear`
+2. `stats ingredient clear`
+3. `add recipe A /ingredient A /qty 1`
+4. `add ingredient A /qty 1`
+5. `add recipe B /ingredient B /qty 1`
+6. `add ingredient B /qty 1`
+7. `add recipe C /ingredient C /qty 1`
+8. `add ingredient C /qty 1`
+9. `make recipe C`
+10. Wait 1 minute, so that you get a different date(yyyy-MM-dd HH:mm) for B.
+11. `make recipe B`
+12. Wait 1 minute, so that you get a different date(yyyy-MM-dd HH:mm) for C.
+13. `make recipe A`
 
 #### B.4.1&ensp;Viewing recipes made in a given time frame 
-1. View recipes with 3 recipes A, B and C (made in this order) that were made today and at least 1 minute apart from each other.
-    1. Prerequisites: Cleared previous usage records and made recipes A, B and C today and at least 1 minute apart from each other. For example Recipe A made 5 minutes ago, Recipe B made 4 minutes ago and Recipe C made 3 minutes ago.
+1. View recipes with 3 recipes A, B and C that were made at least 1 minute apart from each other.
+    1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
     1. Test case: `stats recipe made`<br>
         Expected: The stats box shows "Showing recipes made <today's date in yyyy-MM-dd>" and a list of recipes A, B and C.
     1. Test case: `stats recipe made /before <date of Recipe B in yyyy-MM-dd HH:mm>`<br>
@@ -1753,11 +1768,11 @@ having expiry dates in December 2020.
 
 #### B.4.2&ensp;Viewing recipes made most recently
 1. View recipes with 3 recipes A, B and C were made in this order.
-    1. Prerequisites: Cleared previous usage records and made recipes A, B and C in this order.
+    1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
     1. Test case: `stats recipe recent`<br>
-        Expected: The stats box shows "Here are your recently made recipes" and a list of recipes A, B and C.
+        Expected: The stats box shows "Here are your recently made recipes" and a list of recipes A, B and C, shown in this order
     1. Test case: execute other non-stats commands such as `list recipes`<br>
-       Expected: The stats box shows "Showing recently made recipes" and a list of recipes A, B and C.
+       Expected: The stats box shows "Showing recently made recipes" and a list of recipes A, B and C, shown in this order.
        
 1. View recipes made recently with no past recipe usage records
     1. Prerequisites: No recipe usages saved. This can be done by executing `stats recipe clear` which should clear all recipe usages.
@@ -1779,7 +1794,7 @@ having expiry dates in December 2020.
 
 #### B.4.4&ensp;Clearing recipe usages
 1. Clear records of recipe usages after making Recipes A, B and C.
-    1. Prerequisites: Made recipes A, B and C.
+    1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
     1. Test case: `stats recipe clear`<br>
         Expected: The command output box shows "Cleared recipe cooking history" and the stats box shows "No recipes were made recently".
     1. Test case: `stats recipe clear` followed by `stats recipe recent`<br>
@@ -1793,8 +1808,8 @@ having expiry dates in December 2020.
         Expected: The command output box shows "Cleared recipe cooking history" and the stats box shows "No recipes were made recently".
    
 #### B.4.5&ensp;Viewing ingredients used in a given time frame 
-1. View ingredients with 3 ingredients A, B and C (used in this order) that were used today and at least 1 minute apart from each other. (To use an ingredient, add a recipe that requires the ingredient then make the recipe)
-    1. Prerequisites: Cleared previous usage records and used ingredients A, B and C today and at least 1 minute apart from each other. For example Ingredient A used 5 minutes ago, Ingredient B used 4 minutes ago and Ingredient C used 3 minutes ago.
+1. View ingredients with 3 ingredients A, B and C (used in this order) that were used at least 1 minute apart from each other.
+    1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
     1. Test case: `stats ingredient used`<br>
         Expected: The stats box shows "Showing ingredients used <today's date in yyyy-MM-dd>" and a list of ingredients A, B and C.
     1. Test case: `stats ingredient used /before <date of Ingredient B in yyyy-MM-dd HH:mm>`<br>
@@ -1821,9 +1836,9 @@ having expiry dates in December 2020.
    
 #### B.4.6&ensp;Viewing ingredients used most recently
 1. View ingredients with 3 ingredients A, B and C were made in this order.
-    1. Prerequisites: Cleared previous usage records and made ingredients A, B and C in this order.
+    1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
     1. Test case: `stats ingredient recent`<br>
-        Expected: The stats box shows "Here are your recently made ingredients" and a list of ingredients A, B and C.
+        Expected: The stats box shows "Here are your recently made ingredients" and a list of ingredients A, B and C, shown in this order.
        
 1. View ingredients made recently with no past ingredient usage records
     1. Prerequisites: No ingredient usages saved. This can be done by executing `stats ingredient clear` which should clear all ingredient usages.
@@ -1832,7 +1847,7 @@ having expiry dates in December 2020.
    
 #### B.4.7&ensp;Clearing ingredient usages
 1. Clear records of ingredient usages after making Ingredients A, B and C.
-    1. Prerequisites: Made ingredients A, B and C.
+    1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
     1. Test case: `stats ingredient clear`<br>
         Expected: The command output box shows "Cleared ingredient usage history" and the stats box shows "No ingredients were used recently".
     1. Test case: `stats ingredient clear` followed by `stats ingredient recent`<br>
