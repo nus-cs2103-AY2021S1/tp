@@ -238,18 +238,18 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setupTextFieldModules(TextField commandTextField) {
         AutocompleteModule autocompleteModule = AutocompleteModule.attachTo(commandTextField);
-        autocompleteModule.addSuggestions("cn/", () -> logic.getFilteredPersonList().stream()
+        autocompleteModule.addSuggestions("cn/", () -> logic.getAddressBook().getPersonList().stream()
                 .map(p -> p.getName().fullName).collect(Collectors.toList()));
-        autocompleteModule.addSuggestions("mdn/", () -> logic.getFilteredModuleList().stream()
+        autocompleteModule.addSuggestions("mdn/", () -> logic.getModuleBook().getModuleList().stream()
                 .map(m -> m.getModuleName().getModuleName()).collect(Collectors.toList()));
-        autocompleteModule.addSuggestions("mtn/", () -> logic.getFilteredMeetingList().stream()
+        autocompleteModule.addSuggestions("mtn/", () -> logic.getMeetingBook().getMeetingList().stream()
                 .map(m -> m.getMeetingName().meetingName).collect(Collectors.toList()));
 
         FzfModule.attachTo(commandTextField, () ->
                 Stream.of(
-                        logic.getFilteredPersonList().stream().map(p -> p.getName().fullName),
-                        logic.getFilteredModuleList().stream().map(m -> m.getModuleName().getModuleName()),
-                        logic.getFilteredMeetingList().stream().map(m -> m.getMeetingName().meetingName)
+                        logic.getAddressBook().getPersonList().stream().map(p -> p.getName().fullName),
+                        logic.getModuleBook().getModuleList().stream().map(m -> m.getModuleName().getModuleName()),
+                        logic.getMeetingBook().getMeetingList().stream().map(m -> m.getMeetingName().meetingName)
                 ).flatMap(x -> x).collect(Collectors.toList())
         );
     }
