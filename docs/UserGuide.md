@@ -388,7 +388,7 @@ if this command is used on an animal's `MEDICAL_CONDITION`s or `FEED_TIME`s, all
 Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL_CONDITION]… [f/FEED_TIME]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An animal can have any number of medical conditions and feed times (including 0).
+An animal can have any number of medical conditions and feed times (including 0). You can use *m/* or *f/* to clear all the existing medical conditions or feed times of an animal respectively.
 </div>
 
 <div markdown="block" class="alert alert-warning">
@@ -408,6 +408,7 @@ An animal can have any number of medical conditions and feed times (including 0)
 Examples:
 * `replace 200 i/2910`
 * `replace 200 i/2910 n/Jirachi`
+* `replace 200 i/2910 m/`
 
 Example Usage:
 ```
@@ -502,7 +503,7 @@ The category input is case insensitive.
 
 </div>
 
-Example:
+Examples:
 * `sort name`
 * `sort id`
 
@@ -549,7 +550,7 @@ Format: `snap FILE_NAME`
 * `FILE_NAME` must not already exist in the `data/snapshots` folder.
 </div>
 
-Example:
+Examples:
 * `snap zookeepbook_19-10-2020` 
 * `snap archive_1`
 
