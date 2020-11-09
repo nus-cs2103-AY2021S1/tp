@@ -245,8 +245,12 @@ The section below provides some useful details about the zoom list management fe
 
 **:information_source: Note:**<br> 
 As zoom links are only displayed on the **additional information display panel**, and not the main item display panel,
-to view all your zoom links or changes made to them, you can use the `viewmodule INDEX` command, where `INDEX` refers to 
-the index of the module with the zoom links.
+to view all your zoom links, you can use the `viewmodule INDEX` command, where `INDEX` refers to the index of the module with the zoom links.
+
+**:information_source: Note:**<br> 
+To view changes or updates made to zoom links, you should use the command `viewmodule INDEX`, where `INDEX` refers to 
+the index of the module with the zoom links, after executing the zoom link command.
+e.g. `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/huf7r3` followed by `viewmodule 1`
                          
 **:information_source: Note:** <br>
 Each lesson in a module will only be allowed to have one zoom link,
@@ -304,8 +308,15 @@ e.g. `Mon-Lecture` and `Wed-Lecture`.
   `addzoom 1 n/lecture-weds z/https://nus-sg.zoom.us/j/auya7164hg` adds a zoom link `https://nus-sg.zoom.us/j/auya7164hg` to the first module
   in the displayed module list for the lesson `lecture-weds`.
   
+  <div markdown="block" class="alert alert-info">
+  
+  **:information_source: Note:** <br> 
+  To view the newly added zoom link, you have to use the `viewmodule INDEX` command after the `addzoom` command, where `INDEX` refers to the index of the module which contains the added zoom link
+  
+  </div>
+  
   Expected Outcome:
-
+  ![AddZoom](images/Module/AddZoomUG.PNG)
 
 #### Editing a zoom link of a specific lesson in a module: `editzoom`
 
@@ -336,12 +347,20 @@ Edits a zoom link of a specific lesson in a module.
 
    Example:
    
-   `editzoom 1 n/tutorial z/https://nus-sg.zoom.us/j/aad83sc63gdy` edits the zoom link of the lesson `tutorial`
-    in the first module to be `https://nus-sg.zoom.us/j/aad83sc63gdy`
+   `editzoom 1 n/lecture-weds z/https://nus-sg.zoom.us/editedZoom` edits the zoom link of the lesson `lecture-weds`
+    in the first module to be `https://nus-sg.zoom.us/editedZoom`
+
+   <div markdown="block" class="alert alert-info">
+      
+   **:information_source: Note:** <br> 
+   To view the newly edited zoom link, you have to use the `viewmodule INDEX` command after the `editzoom` command, where `INDEX` refers to the index of the module which contains the edited zoom link
+      
+   </div>
 
    Expected Outcome:
+   ![EditZoom](images/Module/EditZoomUG.PNG)
    
-   
+
 
 #### Deleting a zoom link for a specific lesson from a module: `deletezoom`
 
@@ -359,10 +378,17 @@ Deletes a zoom link for a specific lesson from an existing module.
 
   Example
   
-  `deletezoom 2 n/lecture` deletes the zoom link of the lesson `lecture` from the 2nd module in the displayed module list.
+  `deletezoom 1 n/lecture-weds` deletes the zoom link of the lesson `lecture-weds` from the 1st module in the displayed module list.
+
+  <div markdown="block" class="alert alert-info">
+        
+  **:information_source: Note:** <br> 
+     To view the changes made, you have to use the `viewmodule INDEX` command after the `deletezoom` command, where `INDEX` refers to the index of the module which the zoom link was deleted from.
+        
+  </div>
 
   Expected Outcome:
-  
+  ![DeleteZoom](images/Module/DeleteZoomUG.PNG)
   
 
 #### Deleting a module: `deletemodule`
