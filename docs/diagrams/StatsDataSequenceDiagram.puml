@@ -38,6 +38,6 @@ std --> stats
 deactivate std
 end
 return
-stats --> logic
+stats --> logic: StatisticsData
 deactivate stats
 @enduml
