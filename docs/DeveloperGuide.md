@@ -418,7 +418,7 @@ To search for the most recent exercise with the user-specified `Name`, we use `R
 The `RecallCommand` then goes through the existing Exercise List to find the most recent date, creates the `TheMostRecentDatePredicate`, and updates the GUI display when executed.
 
 The sequence diagram below demonstrates how the `recall` command works:
-![findSequenceDiagram](images/recallSequenceDiagram.png)
+![recallSequenceDiagram](images/recallSequenceDiagram.png)
 
 How the `recall` command works:
 
