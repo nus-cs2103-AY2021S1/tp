@@ -1,4 +1,7 @@
-# **About Us**
+---
+layout: page
+title: About Us
+---
 
 PropertyFree was developed by the AY2021S1-CS2103-W14-1 team.
 
