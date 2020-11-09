@@ -173,7 +173,7 @@ Meanwhile, keyword search finds matches for the user-entered keywords in any par
 If the user uses exact search and keyword search together, it will find `Exercise` objects that match both the exact search and keyword search.
 
 The above commands rely on `FindCommand` and `RecallCommand` objects respectively. Objects of both classes use a `Predicate<Exercise>` object to filter through the `Exercise` list,
-and the exercises evaluated to be true by these predicates will be listed in GUI Exercise List.
+and the exercises that evaluate the predicates to be true will be listed in GUI Exercise List.
 
 #### 4.1.1. Implementation
 
