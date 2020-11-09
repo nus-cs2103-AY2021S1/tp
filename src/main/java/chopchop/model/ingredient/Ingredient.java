@@ -106,7 +106,7 @@ public class Ingredient extends Entry {
                 .values()
                 .stream()
                 .reduce((a, b) -> a.add(b).getValue())
-                .orElse(Count.of(0));
+                .orElseThrow(() -> new IncompatibleIngredientsException("No unexpired ingredients"));
     }
 
     public Optional<ExpiryDate> getExpiryDate() {
