@@ -18,12 +18,12 @@ public class ViewStudentCommand extends Command {
     public static final String COMMAND_WORD = "viewStudent";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Views the students identified by the index number used in the displayed tutorial group list.\n"
+            + ": Views the students identified by the index number used in the displayed Tutorial Group list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Viewing students of: %1$s";
-    public static final String MESSAGE_WRONG_VIEW = "You are currently not in the tutorial group view";
+    public static final String MESSAGE_WRONG_VIEW = "You are currently not in the tutorial group view. ";
 
     private final Index targetIndex;
 

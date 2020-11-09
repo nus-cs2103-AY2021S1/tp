@@ -25,7 +25,7 @@ public class EditParticipationCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_PARTICIPATION + "PARTICIPATION_SCORE\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PARTICIPATION + "5";
+            + PREFIX_PARTICIPATION + "10";
 
     public static final String MESSAGE_EDIT_PARTICIPATION_SUCCESS = "%s's participation score is %s/%s";
     public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view";

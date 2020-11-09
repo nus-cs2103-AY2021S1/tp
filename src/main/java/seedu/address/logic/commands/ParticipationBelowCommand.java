@@ -12,11 +12,11 @@ public class ParticipationBelowCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Shows a new list of students whose participation score falls below the upper bound.\n"
             + "Parameters: UPPER_BOUND (must be one positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 5 ";
+            + "Example: " + COMMAND_WORD + " 35";
 
     public static final String MESSAGE_PARTICIPATION_BELOW_SUCCESS = "Here are the students whose "
             + "participation are below %s";
-    public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view";
+    public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view. ";
 
     private final ParticipationBelowSpecifiedScorePredicate predicate;
     private final int upperBound;

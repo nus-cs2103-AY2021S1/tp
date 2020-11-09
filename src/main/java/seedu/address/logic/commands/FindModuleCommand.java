@@ -20,8 +20,8 @@ public class FindModuleCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " cs2100 cs3243 CS2030";
 
-    public static final String MESSAGE_NOT_IN_MODULE_VIEW =
-            "You are currently not in the Module view. Run listMod to go back to the module view.";
+    public static final String MESSAGE_NOT_IN_MODULE_VIEW = "You are currently not in the Module view.";
+
 
     private final ModuleContainsKeywordsPredicate predicate;
 
