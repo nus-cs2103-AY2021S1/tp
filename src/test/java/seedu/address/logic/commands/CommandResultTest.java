@@ -33,6 +33,12 @@ public class CommandResultTest {
 
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false, false)));
+
+        // different showList value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, true, false)));
+
+        // different showCalendar value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, false, true)));
     }
 
     @Test
@@ -50,5 +56,11 @@ public class CommandResultTest {
 
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, false, false).hashCode());
+
+        // different showList value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false, true, false).hashCode());
+
+        // different showCalendar value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false, false, true).hashCode());
     }
 }
