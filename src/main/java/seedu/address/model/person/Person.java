@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.commons.util.EqualsUtil.equalsNullable;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -33,7 +34,7 @@ public class Person {
 
     /**
      * Only name, client sources, priority need to be non-null.
-     * By default, Person is not in archive
+     * By default, Person is not in archive.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<ClientSource> clientSources, Note note,
                   Priority priority, Policy policy) {
@@ -108,8 +109,8 @@ public class Person {
 
     /**
      * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * If one of phone or email is null for both self and other person, check the other field instead.
-     * If both of phone and email are null for both self and other person, return true.
+     * If both the phones of self and other person are null, check the email instead. Same for the other way round.
+     * If both the phones and emails of self and other person are null, return true.
      * This defines a weaker notion of equality between two persons.
      *
      * Note that archive status is not checked here, i.e. a person cannot belong in archive and also in active list.
@@ -119,35 +120,25 @@ public class Person {
             return true;
         }
 
-        // If both of phone and email are null for both self and other person, return true.
-        if (otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && getPhone() == null && otherPerson.getPhone() == null
-                && getEmail() == null && otherPerson.getEmail() == null) {
-            return true;
+        // If other person is null, or if their names are not equal, then not the same person.
+        if (otherPerson == null || !otherPerson.getName().equals(getName())) {
+            return false;
         }
 
-        // If one of phone or email is null for both self and other person, check the other field instead.
-        // If at least one of phone or email are the same and non-null, return true,
-        return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && (isSameNullable(otherPerson.getPhone(), getPhone())
-                || isSameNullable(otherPerson.getEmail(), getEmail()));
-    }
+        // If both phones are null, test the email instead.
+        if (getPhone() == null && otherPerson.getPhone() == null) {
+            return equalsNullable(otherPerson.getEmail(), getEmail());
+        }
 
-    /**
-     * Returns true if both objects are non-null, and are equal to each other.
-     * This is a utility method used by isSamePerson to handle for nulls.
-     * If either objects are null, false is returned, as the other identity field
-     * would be used to check for "sameness" instead.
-     *
-     * @param obj      First object to test for is same.
-     * @param otherObj Second object to test for is same.
-     * @return Boolean representing if 2 objects are the same.
-     */
-    private boolean isSameNullable(Object obj, Object otherObj) {
-        return obj != null
-                && obj.equals(otherObj);
+        // If both emails are null, test the phone instead.
+        if (getEmail() == null && otherPerson.getEmail() == null) {
+            return equalsNullable(otherPerson.getPhone(), getPhone());
+        }
+
+        // After handling for cases where both emails/phones are null in earlier checks;
+        // test if at least one of phone or email is the same.
+        return (equalsNullable(otherPerson.getPhone(), getPhone())
+                || equalsNullable(otherPerson.getEmail(), getEmail()));
     }
 
     /**
@@ -176,14 +167,6 @@ public class Person {
                 && equalsNullable(otherPerson.getPolicy(), getPolicy());
     }
 
-    private boolean equalsNullable(Object obj, Object otherObj) {
-        if (obj == null) {
-            return otherObj == null;
-        } else {
-            return obj.equals(otherObj);
-        }
-    }
-
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
@@ -194,38 +177,41 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
 
-        builder.append(getName());
-        if (getPhone() != null) {
-            builder.append(" Phone: ")
-                    .append(getPhone());
-        }
-        if (getEmail() != null) {
-            builder.append(" Email: ")
-                    .append(getEmail());
-        }
-        if (getAddress() != null) {
-            builder.append(" Address: ")
-                    .append(getAddress());
-        }
+        builder.append(getName())
+                .append(personFieldToStringBuilder(getPhone()))
+                .append(personFieldToStringBuilder(getEmail()))
+                .append(personFieldToStringBuilder(getAddress()));
+
         if (getClientSources().size() > 0) {
             builder.append(" ClientSources: ");
             getClientSources().forEach(builder::append);
         }
-        if (getNote() != null) {
-            builder.append(" Note: ")
-                    .append(getNote());
-        }
 
-        if (getPolicy() != null) {
-            builder.append(" Policy: ")
-                    .append(getPolicy());
-        }
-        // Not necessary to add archive status
-
-        builder.append(" Priority: ")
-                .append(getPriority());
+        builder.append(personFieldToStringBuilder(getNote()))
+                .append(personFieldToStringBuilder(getPolicy()))
+                .append(personFieldToStringBuilder(getPriority()));
 
         return builder.toString();
+    }
+
+    /**
+     * Returns a formatted string builder containing the field's class name and the field.
+     * If the field is not present, return an empty string builder.
+     *
+     * @param field The field in the Person class.
+     * @return String builder with field's class name and the field.
+     */
+    private StringBuilder personFieldToStringBuilder(Object field) {
+        final StringBuilder builder = new StringBuilder();
+        if (field == null) {
+            // return the empty builder
+            return builder;
+        }
+        builder.append(" ")
+                .append(field.getClass().getSimpleName())
+                .append(": ")
+                .append(field);
+        return builder;
     }
 
 }
