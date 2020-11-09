@@ -5,55 +5,69 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `cs2103w144@gmail.com`
 
 ## Project team
 
-### John Doe
+### Chan Qin Liang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/qlchan24.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/qlchan24)]
+[[portfolio](team/qlchan24.md)]
 
-* Role: Project Advisor
+* Role: Review Manager
+* Responsibilities: Code quality, review deliverables, release management
 
-### Jane Doe
+### Jeffrey Tan Jian Sheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jeffreytjs.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jeffreytjs)]
+[[portfolio](team/jeffreytjs.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer, Draft manager
+* Responsibilities:
+    * In charge of Documentation maintenance inclduding:
+      * User stories
+      * User guide
+      * Developer guide
+    * Product Demo
+    * UI Design
 
-### Johnny Doe
+### Lim Zheng Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhengweii.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/zhengweii)] [[portfolio](team/zhengweii.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Git/GitHub & Code Manager
+* Responsibilities: Providing assistance for Git,
+ensuring coding standards as well as managing the GitHub repo e.g.
+checking on LoC contributions and milestones management
 
-### Jean Doe
+### Toh Yu Ting
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tohyuting.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/tohyuting)]
+[[portfolio](team/tohyuting.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Minute manager/Assistant draft manager
+* Responsibilities: Record minutes during meeting and manage collaborative documentations for project discussions.
+  Work closely with draft manager to manage and update the user stories, user guide, UML diagram, developer guide.
+  Update user and developer guides that are not specific to a feature.
 
-### James Doe
+### Wang Zhenlin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/criss-wang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Criss-Wang)]
+[[portfolio](team/criss-wang.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Communication/progress manager; Tech Helper;
+* Responsibilities:
+    * In charge of `Delete` command.
+    * In charge of team communication (Setup channel/meeting schedule/deal with emergency situation).
+    * Track and manage team progression.
+    * Help team members with technical difficulties and catch up to the team's progress.

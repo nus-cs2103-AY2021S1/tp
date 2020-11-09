@@ -1,0 +1,56 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ClinicParser" as ClinicParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "e:EditCommand" as EditCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit ct/s i/1 n/Claire")
+activate LogicManager
+
+LogicManager -> ClinicParser : parseCommand("edit ct/s i/1 n/Claire")
+activate ClinicParser
+
+create EditCommandParser
+ClinicParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> ClinicParser
+deactivate EditCommandParser
+
+ClinicParser -> EditCommandParser : parse("ct/s i/1 n/Claire")
+activate EditCommandParser
+
+ref over EditCommandParser
+Create appropriate EditDesciptor
+end
+
+create EditCommand
+EditCommandParser -> EditCommand : EditCommand(index, editDescriptor)
+activate EditCommand
+EditCommand --> EditCommandParser : e
+deactivate EditCommand
+EditCommandParser --> ClinicParser : e
+deactivate EditCommandParser
+EditCommandParser -[hidden]-> ClinicParser : e
+destroy EditCommandParser
+
+ClinicParser --> LogicManager : e
+deactivate ClinicParser
+
+ref over LogicManager, Model
+Execution of Edit Command
+end
+
+
+[<--LogicManager : result
+deactivate LogicManager
+
+@enduml

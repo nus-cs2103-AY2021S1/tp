@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ClinicParser" as ClinicParser LOGIC_COLOR
+participant ":RemoveMacroCommandParser" as RemoveMacroCommandParser LOGIC_COLOR
+participant ":RemoveMacroCommand" as RemoveMacroCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("removemacro uw")
+activate LogicManager
+
+LogicManager -> ClinicParser : parseCommand("removemacro uw")
+activate ClinicParser
+
+create RemoveMacroCommandParser
+ClinicParser -> RemoveMacroCommandParser
+activate RemoveMacroCommandParser
+
+RemoveMacroCommandParser --> ClinicParser
+deactivate RemoveMacroCommandParser
+
+ClinicParser -> RemoveMacroCommandParser : parse("uw")
+activate RemoveMacroCommandParser
+
+create RemoveMacroCommand
+RemoveMacroCommandParser -> RemoveMacroCommand
+activate RemoveMacroCommand
+
+RemoveMacroCommand --> RemoveMacroCommandParser :
+deactivate RemoveMacroCommand
+
+RemoveMacroCommandParser --> ClinicParser : command
+deactivate RemoveMacroCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+RemoveMacroCommandParser -[hidden]-> ClinicParser
+destroy RemoveMacroCommandParser
+
+ClinicParser --> LogicManager :
+deactivate ClinicParser
+
+LogicManager -> RemoveMacroCommand : execute()
+activate RemoveMacroCommand
+
+RemoveMacroCommand -> Model : getMacro(alias)
+activate Model
+
+Model --> RemoveMacroCommand :
+deactivate Model
+
+RemoveMacroCommand -> Model : deleteMacro(macro)
+activate Model
+
+Model --> RemoveMacroCommand :
+deactivate Model
+
+create CommandResult
+RemoveMacroCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> RemoveMacroCommand
+deactivate CommandResult
+
+RemoveMacroCommand --> LogicManager : result
+deactivate RemoveMacroCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -1,0 +1,55 @@
+@startuml
+skinparam backgroundColor #ffffff
+skinparam classAttributeIconSize 0
+hide circle
+
+abstract class "{abstract}\nCommand" {
+    + {abstract} execute(model : Model) : CommandResult
+}
+
+interface Model <<interface>> {
+    + addSupplier(Supplier supplier) : void
+    + hasSupplier(Supplier supplier) : boolean
+    + addWarehouse(Warehouse warehouse) : void
+    + hasWarehouse(Warehouse warehouse) : boolean
+}
+
+class Supplier {
+    /' Fields '/
+    - name : Name
+    - phone : Phone
+    - email : Email
+    - remark : Remark
+    - products : Set<Product>
+
+    /' Methods '/
+    + equals(other : Object) : boolean
+    + isSameSupplier(otherSupplier : Supplier) : boolean
+}
+
+class Warehouse {
+    /' Fields '/
+    - name : Name
+    - phone : Phone
+    - address : Address
+    - remark : Remark
+    - products : Set<Product>
+
+    /' Methods '/
+    + equals(other : Object) : boolean
+    + isSameWarehouse(otherWarehouse : Warehouse) : boolean
+}
+
+class AddCommand implements Model {
+    /' Fields '/
+    - supplierToAdd : Supplier
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+    + equals(other : Object) : boolean
+}
+
+AddCommand --up|> "{abstract}\nCommand"
+AddCommand --> Supplier
+AddCommand --> Warehouse
+@enduml

@@ -5,52 +5,62 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyClinic <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class Clinic
+Class ReadOnlyClinic
 Class Model
 Class ModelManager
 Class UserPrefs
-Class ReadOnlyUserPrefs
+Class UserMacros
+Class CommandHistory
+Class ReadOnlyUserMacros <<Interface>>
+Class ReadOnlyUserPrefs <<Interface>>
+Class ReadOnlyCommandHistory <<Interface>>
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package Supplier {
+Class Supplier
+Class UniqueSupplierList
 }
 
-Package Tag {
-Class Tag
+Package Warehouse {
+Class Warehouse
+Class UniqueWarehouseList
 }
+
+Package Macro {
+Class Macro
+Class UniqueMacroList
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Clinic .up.|> ReadOnlyClinic
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
+ModelManager o--> "1" Clinic
+ModelManager o--> "1" UserPrefs
+ModelManager o--> "1" UserMacros
+ModelManager o--> "1" CommandHistory
+
 UserPrefs .up.|> ReadOnlyUserPrefs
+UserMacros .up.|> ReadOnlyUserMacros
+CommandHistory .up.|> ReadOnlyCommandHistory
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Clinic *-down-> "1" UniqueSupplierList
+UniqueSupplierList o--> "*" Supplier
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Clinic *-down-> "1" UniqueWarehouseList
+UniqueWarehouseList o--> "*" Warehouse
 
-ModelManager -->"1" Person : filtered list
+UserMacros *-down-> "1" UniqueMacroList
+UniqueMacroList o--> "*" Macro
+
+
+ModelManager -->"*" Supplier : filtered list
+ModelManager -->"*" Warehouse : filtered list
+ModelManager -->"*" Macro : observable list
 @enduml

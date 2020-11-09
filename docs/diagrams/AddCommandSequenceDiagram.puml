@@ -1,0 +1,70 @@
+@startuml
+/' Sequence Diagram for add supplier'/
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ClinicParser" as ClinicParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "addCommand:AddCommand" as AddCommand LOGIC_COLOR
+participant "commandResult:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+create LogicManager
+[-> LogicManager : execute("add ct/s \n n/John Doe \n p/9876"...")
+activate LogicManager
+
+LogicManager -> ClinicParser : parseCommand("add ct/s \n n/John Doe \n p/9876"...")
+activate ClinicParser
+
+create AddCommandParser
+
+ClinicParser -> AddCommandParser ++ : parse("add ct/s \n n/John Doe \n p/9876"...")
+activate AddCommandParser
+
+create AddCommand
+
+AddCommandParser -> AddCommand ++ : Supplier
+activate AddCommand
+
+AddCommand --> AddCommandParser -- : addCommand
+deactivate AddCommand
+AddCommandParser --> ClinicParser -- : addCommand
+
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> ClinicParser
+destroy AddCommandParser
+ClinicParser --> LogicManager -- : addCommand
+
+LogicManager -> AddCommand ++ : execute(model)
+
+activate AddCommand
+
+AddCommand -> Model ++ : hasSupplier(supplierToAdd)
+
+Model --> AddCommand -- :
+
+AddCommand -> Model : addSupplier(supplierToAdd)
+
+
+create CommandResult
+
+AddCommand -> CommandResult ++ : message
+activate CommandResult
+
+CommandResult --> AddCommand -- : commandResult
+
+deactivate CommandResult
+
+AddCommand --> LogicManager -- : commandResult
+
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

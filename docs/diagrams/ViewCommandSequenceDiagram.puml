@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ClinicParser" as ClinicParser LOGIC_COLOR
+participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR
+participant "v:ViewCommand" as ViewCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("view ct/s i/1")
+activate LogicManager
+LogicManager -> ClinicParser : parseCommand("view ct/s i/1")
+activate ClinicParser
+
+create ViewCommandParser
+ClinicParser -> ViewCommandParser
+activate ViewCommandParser
+ViewCommandParser --> ClinicParser
+deactivate ViewCommandParser
+
+ClinicParser -> ViewCommandParser : parse("ct/s i/1)
+activate ViewCommandParser
+
+create ViewCommand
+ViewCommandParser -> ViewCommand : ViewCommand(type, index)
+activate ViewCommand
+ViewCommand --> ViewCommandParser
+deactivate ViewCommand
+
+ViewCommandParser --> ClinicParser : v
+deactivate ViewCommandParser
+ViewCommandParser -[hidden]-> ClinicParser : v
+destroy ViewCommandParser
+ClinicParser --> LogicManager : v
+deactivate ClinicParser
+
+ref over ViewCommand, Model, LogicManager
+    Execution of View Command
+end ref
+
+
+[<--LogicManager : result
+deactivate LogicManager
+
+@enduml

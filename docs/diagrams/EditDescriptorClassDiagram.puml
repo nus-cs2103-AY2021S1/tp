@@ -1,0 +1,36 @@
+@startuml
+skinparam backgroundColor #ffffff
+skinparam classAttributeIconSize 0
+hide circle
+
+class EditDescriptor {
+    /' Fields '/
+    - name : name
+    - phone : Phone
+    - remark : remark
+    - products : Set<Product>
+
+    /' Methods '/
+    + isAnyFieldEdited() : boolean
+    + equals (Object other) : boolean
+}
+
+class EditSupplierDescriptor extends EditDescriptor {
+    /' Fields '/
+    - email : Email
+
+    /' Methods '/
+    + isAnyFieldEdited() : boolean
+    + equals (Object other) : boolean
+}
+
+class EditWarehouseDescriptor extends EditDescriptor {
+    /' Fields '/
+    - address : Address
+
+    /' Methods '/
+    + isAnyFieldEdited() : boolean
+    + equals (Object other) : boolean
+}
+
+@enduml

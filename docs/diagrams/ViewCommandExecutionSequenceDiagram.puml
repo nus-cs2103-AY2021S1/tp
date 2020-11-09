@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+mainframe sd Execution of View Command
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "v:ViewCommand" as ViewCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+participant "supplierList:List" as SupplierList MODEL_COLOR
+participant "warehouseList:List" as WarehouseList MODEL_COLOR
+end box
+
+activate LogicManager
+LogicManager -> ViewCommand : execute(model)
+activate ViewCommand
+
+alt SUPPLIER
+ViewCommand -> ViewCommand : viewSupplier(model)
+activate ViewCommand
+ViewCommand -> Model : getFilteredSupplierList()
+activate Model
+Model --> ViewCommand : supplierList
+deactivate
+
+ViewCommand -> SupplierList : get(index)
+activate SupplierList
+SupplierList --> ViewCommand : supplierToView
+deactivate SupplierList
+
+ViewCommand -> Model : updateFilteredSupplierList(supplierPredicate)
+activate Model
+deactivate Model
+
+create CommandResult
+ViewCommand -> CommandResult
+activate CommandResult
+CommandResult --> ViewCommand
+deactivate CommandResult
+ViewCommand --> ViewCommand
+deactivate ViewCommand
+ViewCommand --> LogicManager : result
+
+else WAREHOUSE
+ViewCommand -> ViewCommand : viewWarehouse(model)
+activate ViewCommand
+ViewCommand -> Model : getFilteredWarehouseList()
+activate Model
+Model --> ViewCommand : warehouseList
+deactivate
+ViewCommand -> WarehouseList : get(index)
+activate WarehouseList
+WarehouseList --> ViewCommand : warehouseToView
+deactivate WarehouseList
+
+ViewCommand -> Model : updateFilteredWarehouseList(warehousePredicate)
+activate Model
+deactivate Model
+
+create CommandResult
+ViewCommand -> CommandResult
+activate CommandResult
+CommandResult --> ViewCommand
+deactivate CommandResult
+ViewCommand --> ViewCommand
+deactivate ViewCommand
+ViewCommand --> LogicManager : result
+deactivate ViewCommand
+
+end
+
+@enduml

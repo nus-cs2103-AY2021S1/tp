@@ -1,0 +1,97 @@
+@startuml
+!include style.puml
+
+mainframe sd Execution of Edit Command
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "e:EditCommand" as EditCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+participant "supplierList:List" as SupplierList MODEL_COLOR
+participant "warehouseList:List" as WarehouseList MODEL_COLOR
+end box
+
+activate LogicManager
+LogicManager -> EditCommand : execute(model)
+
+alt editDescriptor instanceOf editSupplierDescriptor
+
+activate EditCommand
+EditCommand -> EditCommand : executeSupplierEditing(model)
+activate EditCommand
+
+EditCommand -> Model : getFilteredSupplierList()
+activate Model
+Model --> EditCommand  : supplierList
+deactivate Model
+
+EditCommand -> SupplierList : get(index)
+activate SupplierList
+SupplierList --> EditCommand : supplierToEdit
+deactivate SupplierList
+EditCommand -> EditCommand : createEditedSupplier(supplierToEdit, editDescriptor)
+activate EditCommand
+EditCommand --> EditCommand : editedSupplier
+deactivate EditCommand
+
+
+EditCommand -> Model : setSupplier()
+activate Model
+deactivate Model
+
+EditCommand -> Model : updateFilteredSupplierList()
+activate Model
+deactivate Model
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+CommandResult --> EditCommand : result
+deactivate CommandResult
+EditCommand --> EditCommand
+deactivate EditCommand
+EditCommand --> LogicManager : result
+
+else editDescriptor instanceOf editWarehouseDescriptor
+
+EditCommand -> EditCommand : executeWarehouseEditing(model)
+activate EditCommand
+
+EditCommand -> Model : getFilteredWarehouseList()
+activate Model
+Model --> EditCommand  : warehouseList
+deactivate Model
+EditCommand -> WarehouseList : get(index)
+activate WarehouseList
+WarehouseList --> EditCommand : warehouseToEdit
+deactivate WarehouseList
+EditCommand -> EditCommand : createEditedWarehouse(warehouseToEdit, editDescriptor)
+activate EditCommand
+EditCommand --> EditCommand : editedWarehouse
+deactivate EditCommand
+
+EditCommand -> Model : setWarehouse()
+activate Model
+deactivate Model
+
+EditCommand -> Model : updateFilteredWarehouseList()
+activate Model
+deactivate Model
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+CommandResult --> EditCommand : result
+deactivate CommandResult
+EditCommand --> EditCommand
+deactivate EditCommand
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+end
+
+@enduml
