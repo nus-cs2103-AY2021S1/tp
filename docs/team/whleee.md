@@ -50,6 +50,8 @@ Given below are my contributions to the project.
     * Added implementation details of the `ts-add` feature: [\#129](https://github.com/AY2021S1-CS2103-F10-1/tp/pull/129).
     * Improved on use cases relating to the creation and deletion of Trainings, as well as the addition of Students to Trainings or removal of Students from Trainings.
     * Added manual testing cases for `training`, `delete-training`, `ts-add`,`ts-delete` and `ts-addall`.
+
+<div style="page-break-after: always;"></div>
     
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#23](https://github.com/AY2021S1-CS2103-F10-1/tp/pull/23), [\#73](https://github.com/AY2021S1-CS2103-F10-1/tp/pull/73), [\#123](https://github.com/AY2021S1-CS2103-F10-1/tp/pull/123)
