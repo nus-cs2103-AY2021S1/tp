@@ -321,7 +321,7 @@ Here is an example with steps for you to follow:
 
 3) A message that indicates details of the edited assignment is displayed in the Message Box.
 
-![EditCommand2](images/EditCommand2.png)
+![EditCommand2](images/EditCommandDiagram2.png)
 *Figure 13: The displayed message and the edited assignment*
 
 More examples: 
@@ -410,7 +410,7 @@ You can use the `INDEX` of the assignment as shown in your assignment list to se
 
 For example, `prioritize 1 p/LOW` will set a low priority tag for the first assignment in your assignment list.
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary"> 
   
 **:clipboard: Pointers to note:**<br>
 * The `INDEX` must be found in your assignment list.
