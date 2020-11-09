@@ -79,7 +79,7 @@ The ***Architecture Diagram*** given above explains the high-level design of Cov
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/plantuml) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-W12-1/tp/tree/master/docs/diagrams/plantuml) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -147,7 +147,7 @@ Below is a class diagram for `Ui`
 </p>
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The `UI` component listens for changes to `Model` data so that the `UI` can be updated with the modified data.
 Below shows the interaction with `Model`
@@ -324,7 +324,7 @@ This section describes some noteworthy details on how [Patient](#41-patient-feat
 
 #### 4.1.1 Overview
 
-The patient feature in Covigent allows hotel staff to store important information about the individuals that are quarantined in the hotels. Some of these important dynamic information include temperature and comment regarding the patient. To fully understand the patient feature, it is important to learn about the [implementation](#412-implementation) and [design considerations](#413-design-considerations) of the patient object before looking at the possible [commands](#414-create-read-update-delete) that can operate on the patient object. 
+The patient feature in Covigent allows hotel staff to store important information about the individuals that are quarantined in the hotels. Some of these important dynamic information include temperature and comment regarding the patient. To fully understand the patient feature, it is important to learn about the [implementation](#412-implementation) and [design considerations](#413-design-considerations) of the patient object before looking at the possible [commands](#414-create-read-update-delete) that can operate on the patient object. A patient is meant to be allocated to a room in the facility, hence tying the patient feature with the room feature together.
 
 #### 4.1.2 Implementation
 A `Patient` object in Covigent contains the following attributes, which is also reflected in Figure 15:
@@ -532,7 +532,7 @@ The features comprise of five commands namely,
 * `SearchRoomCommand` - Searches for the room with the specified room number.
 * `FindEmptyRoomCommand` - Finds an empty room with the lowest room number.
 
-We will illustrate the progress of one of the above commands for simplicity.
+We will illustrate the progress of two of the above commands for simplicity.
 
 
 #### 4.2.4 Create, Read, Update
@@ -760,7 +760,7 @@ _Written by Wai Lok_
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
 
-* The logging level can be controlled using the `logLevel` setting in the configuration file (See [Section 4.2, "Configuration"](#46-configuration-feature))
+* The logging level can be controlled using the `logLevel` setting in the configuration file (See [Section 4.5, "Configuration Features"](#45-configuration-feature))
 * The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level
 * Log messages are output through: `Console` and to a `.log` file
 
