@@ -82,7 +82,7 @@ Figure 2 shows the GUI of **tCheck**, annotated with descriptions for all compon
 <img src="images/tCheckInfographic.png" width="1000" height="700" />
 Figure 2 - Annotated GUI of tCheck
 
-#### 2.2. General Symbols and Syntax 
+#### 2.2 General Symbols and Syntax 
 
 The following table explains the general symbols and syntax used in this User Guide.
 <div style="page-break-after: always;"></div>
@@ -93,7 +93,7 @@ The following table explains the general symbols and syntax used in this User Gu
 | _italics_ | Italicised text specifies the terms related to tCheck's GUI |
 |<div markdown="block" class="alert alert-info"> :information_source: </div>  | An exclamation mark indicates that the following text is a note|
 
-#### 2.3. Command Syntax and Usage
+#### 2.3 Command Syntax and Usage
 
 The following table explains the technical terms used in this user guide.
 
@@ -127,7 +127,7 @@ The following points explain the format of a command.
    e.g. If the command specifies `p/PHONE_NUMBER e/EMERGENCY_CONTACT`, `e/EMERGENCY_CONTACT p/PHONE_NUMBER` is also acceptable.
     
 
-#### 3.2.4 Prefix process and usage
+#### 2.4 Prefix process and usage
 
 The table below explains some important features of how prefix(es) are processed in tCheck to help you understand and use prefix(es) in commands.
 
