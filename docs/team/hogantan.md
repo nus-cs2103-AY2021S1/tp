@@ -15,21 +15,30 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
     * What it does: Allows the user to add/delete examination records to a particular student. It also allows users to view the exam statistics of a particular student.
 
     * Justification: This feature is crucial for a private tutor as it allows the private tutor to monitor his/her students' academic progress.
-In other words, his/she will be able to track each individual students' academic performance.
-As a result, the private tutor will be able to not only keep track of which students need more help while also gauging his/her capability as a teacher.
+    In other words, his/she will be able to track each individual students' academic performance. As a result, the private tutor will be able to not only keep track of which students need more help while also gauging his/her capability as a teacher.
+
+  * Highlights: Since this is a new feature with its own set of commands, the implementation required modifying the base student class which was quite tricky given that most other
+  commands were tied to the base student class. Also the addition of opening a new window via a GUI also brings in many considerations to take into account when implementing such as 
+  design considerations. 
 
 * **Major enhancement implemented**: developed the **GUI** of **Reeve**.
     * What it does: This feature provides a pleasant interaction between User and **Reeve** by strategically deciding how to display information to users.
 
-    * Justification: In most products, a well-developed UI/UX is imperative in not only landing a good first impression from potential users but it also keeps users
-interested in using the product.
+    * Justification: In most products, a well-developed UI/UX is imperative in not only landing a good first impression from potential users but it also keeps users interested in using the product.
+
+    * Highlights: This enhancement saw a big change from the original AddressBook3 interface in terms of color choice, placement of the various UI components, etc. 
+    Colours of each component in the application were carefully chosen to create a visually pleasing interface. Arrangement of UI components had to be arranged in a way
+    that would be easy and intuitive for users to understand and get used to. 
 
 * **Major enhancement implemented**: developed the **toggle feature** of **Reeve**.
     * What it does: Allows the user to toggle in between displaying administrative and academic details of students.
 
     * Justification: As aforementioned above, a well-developed UI/UX is imperative to users, hence this feature ensures that the
     display of student inform is kept clean and neat without much cluttering.
-
+    
+    * Highlights: This enhancement saw a need to consider various UI/UX considerations as well in order to make the feature
+    intuitive and convenient for users as well as easy to understand. 
+    
 * **Minor enhancement implemented**:
     * Updated `add` command which allows users to add students along with their administrative details.
 
