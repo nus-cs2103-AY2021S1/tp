@@ -19,7 +19,7 @@ This document specifies the architecture and software design for the application
 
 The Developer Guide is designed for those who are interested in understanding the architecture and other aspects of software design
 of tCheck. In particular, this guide has been written with the current and future tCheck developers in mind because it details
-the knowledge necessary to know to be able to modify the codebase and customize tCheck for specific operational needs or extend current functionalities.
+the knowledge necessary to modify the codebase and customize tCheck for specific operational needs or extend current functionalities.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -896,14 +896,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Store Manager**: A person who oversees the operation of a T-Sugar store, and is responsible for sales recording, inventory keeping and other management tasks of the store
 * **Employee**: A person who works at a T-Sugar store and is either a full-time worker or a part-time worker
 * **Address Book**: A list containing all the employees' details (name, phone number etc.)
 * **Employee Directory**: A section of GUI which tracks the Address Book
 * **Sales Book**: A list that stores sales data of the drinks
 * **Sales Tracker**: A section of GUI which tracks the Sales Book
-* **Ingredient Book**: A list that stores all available ingredients and their amounts
+* **Ingredient Book**: A list that stores data of all available ingredients and their amounts
 * **Ingredient Tracker**: A section of GUI which tracks the Ingredient Book
 
 --------------------------------------------------------------------------------------------------------------------
