@@ -50,6 +50,7 @@
    6.3 [Module Commands](#63-module-commands)<br>
    6.4 [Tutorial Group Commands](#64-tutorial-group-commands)<br>
    6.5 [Student Commands](#65-student-commands)<br>
+   6.6 [Attendance Commands](#66-attendance-commands)<br>
 
 ## 1. Introduction
 
@@ -772,6 +773,3 @@ Command | Description | Compatible View
 | `attendanceBelow UPPER_BOUND`                                | Finds and lists all students in the current Student view whose attendance score falls below the provided score | STUDENT         |
 | `editParticipation INDEX score/PARTICIPATION_SCORE`          | Edits the participation score of a student by adding to or deducting from their existing score by the provided score | STUDENT         |
 | `participationBelow UPPER_BOUND`                             | Finds and lists all students in the current Student view whose participation score falls below the provided score. | STUDENT         |
-
-
-
