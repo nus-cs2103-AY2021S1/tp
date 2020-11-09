@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+
+title updating new name
+
+box Logic LOGIC_COLOR_T1
+participant "e:EditAccountCommand" as EditAccountCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ActiveAccountManager" as ActiveAccount MODEL_COLOR
+participant ":ModelManager" as Model MODEL_COLOR
+end box
+
+
+EditAccountCommand -> ActiveAccount: setName("new name")
+activate ActiveAccount
+
+ActiveAccount --> EditAccountCommand
+deactivate ActiveAccount
+
+EditAccountCommand -> Model: setAccount()
+activate Model
+
+Model --> EditAccountCommand
+deactivate Model
+
+@enduml
+

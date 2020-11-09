@@ -38,32 +38,40 @@ deactivate CommonCentsParser
 LogicManager -> ClearCommand: execute(model, activeAccount)
 activate ClearCommand
 
-alt isExpense
+alt clear expense
 ClearCommand -> ActiveAccount: clearExpense()
 activate ActiveAccount
-else
-end
+ActiveAccount --> ClearCommand
+deactivate ActiveAccount
 
-
-alt isRevenue
+else clear revenue
 ClearCommand -> ActiveAccount: clearRevenue()
-else
-end
+activate ActiveAccount
+ActiveAccount --> ClearCommand
+deactivate ActiveAccount
 
-alt isNoCategoryPresent
+else clear all
 ClearCommand -> ActiveAccount: clearRevenue()
+activate ActiveAccount
+ActiveAccount --> ClearCommand
+deactivate ActiveAccount
 ClearCommand -> ActiveAccount: clearExpense()
+activate ActiveAccount
+ActiveAccount --> ClearCommand
+deactivate ActiveAccount
 else
 end
 
-ActiveAccount -> Model: setAccount(editedAccount)
+ClearCommand -> Model: setAccount(editedAccount)
 activate Model
 
+Model --> ClearCommand
 deactivate ActiveAccount
 deactivate Model
 
 ClearCommand --> LogicManager
 deactivate ClearCommand
 
+[<--LogicManager
 deactivate LogicManager
 @enduml

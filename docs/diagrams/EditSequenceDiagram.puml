@@ -42,33 +42,28 @@ EditCommand -> EditCommand: createEditedEntry
 return editedEntry
 autoactivate off
 
-opt entryToEdit instanceof Expense
+alt entryToEdit instanceof Expense
 EditCommand -> ActiveAccount: setExpense(entryToEdit, editedEntry)
 activate ActiveAccount
-
 ActiveAccount --> EditCommand
-else
-end
-
-opt (entryToEdit instance of Revenue)
-EditCommand -> ActiveAccount: setRevenue(entryToEdit, editedEntry)
-
-
-ActiveAccount --> EditCommand
-else
-end
-autoactivate on
-ActiveAccount -> ActiveAccount: getAccount()
-return editedAccount
-autoactivate off
-ActiveAccount -> Model: setAccount(editedAccount)
-activate Model
 deactivate ActiveAccount
+
+else (entryToEdit instance of Revenue)
+EditCommand -> ActiveAccount: setRevenue(entryToEdit, editedEntry)
+activate ActiveAccount
+ActiveAccount --> EditCommand
+deactivate ActiveAccount
+end
+
+EditCommand -> Model: setAccount(editedAccount)
+activate Model
+Model --> EditCommand
 deactivate Model
 
 
 EditCommand --> LogicManager
 deactivate EditCommand
 
+[<--LogicManager
 deactivate LogicManager
 @enduml

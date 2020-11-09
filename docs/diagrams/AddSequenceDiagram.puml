@@ -38,34 +38,31 @@ deactivate CommonCentsParser
 LogicManager -> AddCommand: execute(model, activeAccount)
 activate AddCommand
 
-
 alt entry instanceof Expense
 AddCommand -> ActiveAccount: addExpense(entry)
 activate ActiveAccount
 
 ActiveAccount --> AddCommand
-else
-end
-
-alt (entry instanceof Revenue)
+deactivate ActiveAccount
+else (entry instanceof Revenue)
 AddCommand -> ActiveAccount: addRevenue(entry)
+activate ActiveAccount
 
 
 ActiveAccount --> AddCommand
-else
-end
-autoactivate on
-ActiveAccount -> ActiveAccount: getAccount()
-return editedAccount
-autoactivate off
-ActiveAccount -> Model: setAccount(editedAccount)
-activate Model
 deactivate ActiveAccount
-deactivate Model
 
+end
+
+AddCommand -> Model: setAccount()
+activate Model
+
+Model -> AddCommand
+deactivate Model
 
 AddCommand --> LogicManager
 deactivate AddCommand
 
+[<--LogicManager
 deactivate LogicManager
 @enduml
