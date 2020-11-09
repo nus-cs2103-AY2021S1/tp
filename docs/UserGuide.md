@@ -37,7 +37,7 @@ FaculType is a **desktop app** for managing **faculty members and their modules*
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -78,6 +78,7 @@ Shows a list of all modules in the active semester.
 
 Format: `mlist`
 
+<div style="page-break-after: always;"></div>
 #### Switching the active semester : `switch`
 
 Switches the active semester from Semester 1 to Semester 2 and vice versa.
@@ -118,6 +119,7 @@ Format: `exit`
 
 FaculType data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
+<div style="page-break-after: always;"></div>
 ### Contact Management
 
 #### Adding a contact: `add`
@@ -149,6 +151,7 @@ Examples:
 * `clist` followed by `delete 2` deletes the 2nd contact in FaculType.
 * `find n/Janson` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
+<div style="page-break-after: always;"></div>
 #### Editing a contact : `edit`
 
 Edits an existing contact in FaculType.
@@ -179,6 +182,7 @@ Examples:
 *  `remark 1 r/Wears red glasses` adds the remark “Wears red glasses” to the 1st contact in the list.
 *  `remark 2 r/` erases the remark of the 2nd contact in the list.
 
+<div style="page-break-after: always;"></div>
 #### Locating contacts by attributes: `find`
 
 Finds all contacts that match the given fields.
@@ -211,6 +215,7 @@ Examples:
 * `addmod m/CS50 n/Introduction to Computer Science` adds a module named `Introduction to Computer Science` with code `CS50` to the active semester.
 * `addmod m/CS2102 n/Database Systems` adds a module named `Database Systems` with code `CS2102` to the active semester.
 
+<div style="page-break-after: always;"></div>
 #### Deleting a module: `delmod`
 
 Deletes a module from the active semester.
@@ -246,6 +251,7 @@ Examples :
 * `findmod m/CS2 n/Software Programming i/Damith` returns all modules with codes containing `CS2` **and**
 names containing `Software` **and** `Programming` **and** instructors with names `Damith`.
 
+<div style="page-break-after: always;"></div>
 ### Instructor Assignment
 
 #### Assigning an instructor to modules : `assign`
@@ -261,14 +267,17 @@ Examples :
 * `assign 2 m/CS2030S` Assigns the contact at index 2 to the existing module with code `CS2030S`.
 * `assign 3 m/CS2100 m/CS2106` Assigns the contact at index 3 to the existing modules with codes `CS2100` and `CS2106`.
 
+<div style="page-break-after: always;"></div>
 Before assignment:
 
 ![BeforeAssignment](images/BeforeAssignment.png)
 
+<div style="page-break-after: always;"></div>
 After assignment:
 
 ![AfterAssignment](images/AfterAssignment.png)
 
+<div style="page-break-after: always;"></div>
 #### Unassigning an instructor from modules : `unassign`
 
 Unassigns a contact from one or more modules in the active semester. The contact will no longer be an instructor in those modules.
@@ -299,6 +308,7 @@ The following features are not done yet and will be implemented in the next upda
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
 ## Current Bugs
 
 The following bugs still occur in the current version of FaculType and will be fixed in the next update. Using features in the following ways should be avoided.
@@ -312,6 +322,8 @@ Example of the tag bug:
 
 ![TagBug](images/TagBug.png)
 
+<div style="page-break-after: always;"></div>
+
 * No validation of instructor existence for modules. Adding a non-existent instructor by editing the 
 `addressbook.json` file will not throw any error.
 
@@ -324,6 +336,7 @@ Example of the instructor bug:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -351,6 +364,11 @@ Action | Format, Examples
 **List all contacts** | `clist`
 **List all modules** | `mlist`
 **Switch active semester** | `switch`
+
+<div style="page-break-after: always;"></div>
+
+Action | Format, Examples
+--------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL d/DEPARTMENT o/OFFICE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe p/98765431 e/betsycrowe@example.com d/Data Science o/COM1-02-03 t/lecturer t/friend`
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [o/OFFICE] [t/TAG]…​` <br> e.g. `edit 1 d/Information Systems o/COM2-01-02`
@@ -362,6 +380,11 @@ Action | Format, Examples
 **Assign a contact** | `assign INDEX m/MODULE_CODE [m/MODULE_CODE]…​` <br> e.g. `assign 3 m/CS2100 m/CS2106`
 **Unassign a contact** | `unassign INDEX m/[MODULE_CODE] [m/MODULE_CODE]…​` <br> e.g. `unassign 3 m/CS2100 m/CS2106`
 **Unassign all contacts** | `unassignall`
+
+<div style="page-break-after: always;"></div>
+
+Action | Format, Examples
+--------|------------------
 **Clear all data** | `reset`
 **Clear all contacts** | `cclear`
 **Clear all modules** | `mclear`
