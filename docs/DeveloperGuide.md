@@ -988,8 +988,25 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 
-## Bidder Commands
+### Testing Bidder Features
 
+#### Adding a bidder while all bidders are being shown.
+
+1. Test case: `add-b n/Kor Ming Soon p/8222222`
+
+    Expected: A bidder with the name: `Kor Ming Soon`, phone: `82222222` will be created and assigned a unique `BidderId`.
+    A visual `Tag` with the role `bidder` is also assigned. 
+    
+#### Find a bidder while all bidders are being shown.
+
+1. Test case: `find-b Kor`
+
+    Expected: The 
+
+
+### Testing Seller Features
+
+### Testing Property Features
 
 ### Deleting a person
 

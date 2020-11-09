@@ -1,7 +1,3 @@
----
-layout: page
-title: Kor Ming Soon's Project Portfolio Page
-___
 ## Project: PropertyFree
 
 Given below are my contributions to the project.
@@ -9,7 +5,9 @@ Given below are my contributions to the project.
 Overview:
 
 This document is a project portfolio that documents all contributions made to PropertyFree's development by Ming Soon.
+
 ___
+
 
 ## Description of Project:
 
@@ -19,6 +17,7 @@ and associate them with meetings with clients.
 
 For our project we hope to make it more streamlined for agents to keep track of their property and have clear information about those properties
 and there clients.
+
 ___
 
 ##Developers of PropertyFree:
@@ -26,6 +25,7 @@ ___
 PropertyFree is developed by a group of second year Computer Science Students from the School of Computing, National
 University if Singapore. This was developed for the team projects assignment for the module CS2103 and is a
 brown-field project adapting from existing projects.
+
 ___
 
 ## My Contributions to PropertyFree
