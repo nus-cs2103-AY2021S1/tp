@@ -40,7 +40,7 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-Each of the four components,
+Each of the four components
 
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
@@ -90,7 +90,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 </div>
 
 ### Model component
@@ -136,7 +136,7 @@ Classes used by multiple components are in the `seedu.taskmaster.commons` packag
 ### SessionList
 
 Author: **Joshua Chew**
-* Implement the class `SessionList` that encapsulate a list of tutorial sessions.
+* Implement the class `SessionList` that encapsulates a list of tutorial sessions.
 * Implement the class `Session` that represents a tutorial session conducted by a teaching assistant.
 * Implement the commands in which a session is created and deleted.
 * Implement the command to select the current session.
@@ -177,8 +177,8 @@ session with a specified name already exist inside the session list.
 
 * Make `Session` store an `AttendanceList` and a `ClassParticipationList`.
 
-    Initially, the attendance and class participation data was meant to be stored as seperate data structures. However, this
-    approach was abandoned in favour of allowing the `Session` class store the interface `StudentRecordList` instead. This would
+    Initially, the attendance and class participation data was meant to be stored as separate data structures. However, this
+    approach was abandoned in favour of allowing the `Session` class to store the interface `StudentRecordList` instead. This would
     support the Open-Closed Principle. It would allow greater ease of future extensions in the functionality of TAskmaster. For
     example, if we wished to allow a session store data on student submissions, the original approach would necessitate the modification
     of the code for `Session` to store another data structure which encapsulate the student submission data. On the other hand,

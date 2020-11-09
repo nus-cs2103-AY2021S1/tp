@@ -99,7 +99,7 @@ Mark your students' attendance with the `mark` commands.
 
 ### Step 6: Get Present Students
 TAskmaster provides you with two ways to get students to call on to answer questions.
-* The `lowest-score` command shows a student that is present and currently have the lowest score. If there are multiple
+* The `lowest-score` command shows a student that is present and currently has the lowest score. If there are multiple
 present students with the lowest score, the command will show all of them.
 ![walkthrough7](images/walkthrough/7.png)
 * The `random-student` command chooses a student that is present randomly.
@@ -112,7 +112,7 @@ You can award class participation score to students using the `score` command.
 ### Step 8: Switch Views
 Note that you will not be allowed to use any session view commands outside of a session.
 * To switch to a session view, use the `goto` command or click the corresponding button on the left, under 'Sessions'. 
-* To go back to student list view, use the `list-students` command or click the Student List button on the left.
+* To go back to the student list view, use the `list-students` command or click the Student List button on the left.
 
 ### Step 9: Exit TAskmaster
 When you are done with TAskmaster, use the `exit` command to close the application.
