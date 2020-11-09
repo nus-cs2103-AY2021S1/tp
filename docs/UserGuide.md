@@ -81,7 +81,12 @@ This section introduces ...
 
 The command is the main way to schedule appointment for a patient with Nuudle.
 
-This section provides information about the commands on [general commands](#general-commands), [patient management](#patient-management), [command summary](#command-summary) accordingly.
+This section introduces three types of commands:
+1. [general commands](#general-commands)
+2. [patient management](#patient-management)
+3. [appointment management](#appointment-management)
+ 
+An overview of all the commands is also provided in the [command summary](#command-summary).
 
 ### Command format
 
@@ -577,7 +582,7 @@ This glossary provides definitions for the special terms used in the user guide.
 
 **Tag:** A word or phrase that indicates the medical condition of a patient.
 
-**GUI:** A acronym that stands for Graphic User Interface.
+**GUI:** An acronym that stands for Graphic User Interface.
 
 **Command:** The text typed in by the user as an instruction for Nuudle.
 
