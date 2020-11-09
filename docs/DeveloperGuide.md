@@ -788,10 +788,10 @@ The following activity diagram summarizes what happens when a user executes an `
 **Target user profile**:
 
 * Students with many modules who want to memorize points
-* prefer desktop apps over other types
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-* wants to monitor his/her progress
+* Prefer desktop apps over other types
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
+* Wants to monitor his/her progress
 
 **Value proposition**: manage flashcards faster than a typical mouse/GUI driven app with
 a test feature and track the progress later.
