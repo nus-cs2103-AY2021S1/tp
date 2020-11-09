@@ -315,7 +315,7 @@ e.g. `Mon-Lecture` and `Wed-Lecture`.
   
   </div>
   
-  Expected Outcome:
+  Expected Outcome: <br>
   ![AddZoom](images/Module/AddZoomUG.PNG)
 
 #### Editing a zoom link of a specific lesson in a module: `editzoom`
@@ -357,7 +357,7 @@ Edits a zoom link of a specific lesson in a module.
       
    </div>
 
-   Expected Outcome:
+   Expected Outcome: <br>
    ![EditZoom](images/Module/EditZoomUG.PNG)
    
 
@@ -387,7 +387,7 @@ Deletes a zoom link for a specific lesson from an existing module.
         
   </div>
 
-  Expected Outcome:
+  Expected Outcome: <br>
   ![DeleteZoom](images/Module/DeleteZoomUG.PNG)
   
 
@@ -925,7 +925,7 @@ Expected Outcome:
   
   `findcontact n/amy` finds all contacts with the word `amy` in their name
   
-  Expected Outcome:
+  Expected Outcome: <br>
   ![FindContact](images/Contact/FindContactUG.PNG)
   
   Other helpful examples:
@@ -954,7 +954,7 @@ Expected Outcome:
  
  Example: `listcontact`
  
- Expected Outcome:
+ Expected Outcome: <br>
  ![ListContact](images/Contact/ListContactUG.PNG)
 
 
@@ -981,7 +981,7 @@ Expected Outcome:
  
  `editcontact 2 n/amy lee e/amy-lee@gmail.com t/classmate` edits the second contact in the displayed contact list with the name `amy lee`, email `amy-lee@gmail.com` and tag `classmate`
  
- Expected Outcome:
+ Expected Outcome: <br>
  ![EditContact](images/Contact/EditContactUG.PNG)
 
 
@@ -1002,7 +1002,7 @@ Example:
 
 `deletecontact 2` deletes the second contact in the displayed contact list
 
-Expected Outcome:
+Expected Outcome: <br>
 ![DeleteContact](images/Contact/DeleteContactUG.PNG)
 
 
@@ -1075,7 +1075,7 @@ Format: `clearcontact`
 
 Example: `clearcontact`
 
-Expected Outcome:
+Expected Outcome: <br>
 ![ClearContact](images/Contact/ClearContactUG.PNG)
 
 
