@@ -55,7 +55,7 @@ public class MakeRecipeCommand extends Command implements Undoable {
 
             try {
                 this.ingredients.add(new Pair<>(ingredient, ingredient.split(ingredientRef.getQuantity()).snd()));
-                model.addIngredientUsage(ingredientRef);
+
 
             } catch (IncompatibleIngredientsException | IllegalValueException e) {
                 return CommandResult.error("Could not make recipe: %s", e.getMessage());
@@ -74,6 +74,10 @@ public class MakeRecipeCommand extends Command implements Undoable {
         }
 
         model.finishEditingIngredients();
+
+        for (var ingredientRef : this.recipe.getIngredients()) {
+            model.addIngredientUsage(ingredientRef);
+        }
 
         model.addRecipeUsage(this.recipe);
 

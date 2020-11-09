@@ -172,7 +172,7 @@ Figure 7: <i>The class diagram for Recipes and Ingredients</i>
 
 Note that an instance of `Recipe` only stores `IngredientReferences` to the ingredients it uses, and not the actual `Ingredients` themselves — since the actual instance of the ingredient that will be used by the recipe is indeterminate.
 
-Only when a recipe is made are the references are resolved to their actual ingredient.
+Only when a recipe is made are the references resolved to their actual ingredient.
 
 
 
