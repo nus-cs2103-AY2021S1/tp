@@ -1,162 +1,178 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.AMY;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.testutil.TypicalItems.APPLE;
+import static seedu.address.testutil.TypicalItems.getTypicalItemList;
+import static seedu.address.testutil.TypicalRecipes.BANANA_PIE;
+import static seedu.address.testutil.TypicalRecipes.FOUND_APPLE;
+import static seedu.address.testutil.TypicalRecipes.getTypicalRecipeList;
 
-import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.InventoryComponent;
+import seedu.address.model.LocationList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyItemList;
+import seedu.address.model.ReadOnlyLocationList;
+import seedu.address.model.ReadOnlyRecipeList;
+import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.StorageManager;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.storage.Storage;
+import seedu.address.ui.DisplayedInventoryType;
 
+/**
+ * Contains integration tests with the model.
+ */
 public class LogicManagerTest {
-    private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
 
-    @TempDir
-    public Path temporaryFolder;
-
-    private Model model = new ModelManager();
-    private Logic logic;
+    private Model model;
+    private LogicManager logicManager;
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
-        logic = new LogicManager(model, storage);
+        model = new ModelManager(getTypicalItemList(), new LocationList(), getTypicalRecipeList(), new UserPrefs());
+        logicManager = new LogicManager(model, new StorageStub());
     }
 
+    /**
+     * Tests for successful processing of Item, Recipe and Detailed Item.
+     */
     @Test
-    public void execute_invalidCommandFormat_throwsParseException() {
-        String invalidCommand = "uicfhmowqewca";
-        assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
+    public void getInventoryList_success() {
+        ArrayList<InventoryComponent> items = logicManager.getInventoryList(DisplayedInventoryType.ITEMS);
+        ArrayList<InventoryComponent> expectedItems = new ArrayList<>(getTypicalItemList().getItemList());
+        assertEquals(expectedItems, items);
+
+        ArrayList<InventoryComponent> recipes = logicManager.getInventoryList(DisplayedInventoryType.RECIPES);
+        ArrayList<InventoryComponent> expectedRecipes = new ArrayList<>();
+        model.getFilteredRecipeList().forEach(recipe -> expectedRecipes.add(recipe.print(model.getFilteredItemList())));
+        assertEquals(expectedRecipes, recipes);
+
+        // Detailed view only has 1 item with its associated recipes
+        model.updateFilteredItemList(item -> item.getName().equals("Apple"));
+        model.updateFilteredRecipeList(recipe -> recipe.getProductName().equals("Apple"));
+        ArrayList<InventoryComponent> detailed = logicManager.getInventoryList(DisplayedInventoryType.DETAILED_ITEM);
+        ArrayList<InventoryComponent> expectedDetailed = new ArrayList<>();
+        // manually add the item and relevant recipes
+        expectedDetailed.add(APPLE);
+        expectedDetailed.add(BANANA_PIE);
+        expectedDetailed.add(FOUND_APPLE);
+        assertEquals(expectedDetailed, detailed);
     }
 
+    /**
+     * Tests for assertion error thrown when attempt to retrieve "unchanged" type.
+     */
     @Test
-    public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
-    }
-
-    @Test
-    public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
-        JsonUserPrefsStorage userPrefsStorage =
-                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
-        logic = new LogicManager(model, storage);
-
-        // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
-        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getInventoryList_error() {
+        assertThrows(AssertionError.class, () -> logicManager.getInventoryList(DisplayedInventoryType.UNCHANGED));
     }
 
     /**
-     * Executes the command and confirms that
-     * - no exceptions are thrown <br>
-     * - the feedback message is equal to {@code expectedMessage} <br>
-     * - the internal model manager state is the same as that in {@code expectedModel} <br>
-     * @see #assertCommandFailure(String, Class, String, Model)
+     * Storage Stub used for testing of getInventoryList which is not dependent on storage
      */
-    private void assertCommandSuccess(String inputCommand, String expectedMessage,
-            Model expectedModel) throws CommandException, ParseException {
-        CommandResult result = logic.execute(inputCommand);
-        assertEquals(expectedMessage, result.getFeedbackToUser());
-        assertEquals(expectedModel, model);
-    }
+    private class StorageStub implements Storage {
 
-    /**
-     * Executes the command, confirms that a ParseException is thrown and that the result message is correct.
-     * @see #assertCommandFailure(String, Class, String, Model)
-     */
-    private void assertParseException(String inputCommand, String expectedMessage) {
-        assertCommandFailure(inputCommand, ParseException.class, expectedMessage);
-    }
-
-    /**
-     * Executes the command, confirms that a CommandException is thrown and that the result message is correct.
-     * @see #assertCommandFailure(String, Class, String, Model)
-     */
-    private void assertCommandException(String inputCommand, String expectedMessage) {
-        assertCommandFailure(inputCommand, CommandException.class, expectedMessage);
-    }
-
-    /**
-     * Executes the command, confirms that the exception is thrown and that the result message is correct.
-     * @see #assertCommandFailure(String, Class, String, Model)
-     */
-    private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
-            String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
-    }
-
-    /**
-     * Executes the command and confirms that
-     * - the {@code expectedException} is thrown <br>
-     * - the resulting error message is equal to {@code expectedMessage} <br>
-     * - the internal model manager state is the same as that in {@code expectedModel} <br>
-     * @see #assertCommandSuccess(String, String, Model)
-     */
-    private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
-            String expectedMessage, Model expectedModel) {
-        assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
-        assertEquals(expectedModel, model);
-    }
-
-    /**
-     * A stub class to throw an {@code IOException} when the save method is called.
-     */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
-            super(filePath);
+        @Override
+        public Path getUserPrefsFilePath() {
+            return null;
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-            throw DUMMY_IO_EXCEPTION;
+        public Optional<UserPrefs> readUserPrefs() {
+            return Optional.empty();
+        }
+
+        @Override
+        public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) {
+
+        }
+
+        @Override
+        public Path getItemListFilePath() {
+            return null;
+        }
+
+        @Override
+        public Optional<ReadOnlyItemList> readItemList() {
+            return Optional.empty();
+        }
+
+        @Override
+        public Optional<ReadOnlyItemList> readItemList(Path filePath) {
+            return Optional.empty();
+        }
+
+        @Override
+        public void saveItemList(ReadOnlyItemList itemList) {
+
+        }
+
+        @Override
+        public void saveItemList(ReadOnlyItemList addressBook, Path filePath) {
+
+        }
+
+        @Override
+        public void saveLocationList(ReadOnlyLocationList addressBook) {
+
+        }
+
+        @Override
+        public void saveLocationList(ReadOnlyLocationList addressBook, Path filePath) {
+
+        }
+
+        @Override
+        public Path getLocationListFilePath() {
+            return null;
+        }
+
+        @Override
+        public Optional<ReadOnlyLocationList> readLocationList() {
+            return Optional.empty();
+        }
+
+        @Override
+        public Optional<ReadOnlyLocationList> readLocationList(Path filePath) {
+            return Optional.empty();
+        }
+
+        @Override
+        public Path getRecipeListFilePath() {
+            return null;
+        }
+
+        @Override
+        public Optional<ReadOnlyRecipeList> readRecipeList() {
+            return Optional.empty();
+        }
+
+        @Override
+        public Optional<ReadOnlyRecipeList> readRecipeList(Path filePath) {
+            return Optional.empty();
+        }
+
+        @Override
+        public void saveRecipeList(ReadOnlyRecipeList recipeList) {
+
+        }
+
+        @Override
+        public void saveRecipeList(ReadOnlyRecipeList recipeList, Path filePath) {
+
+        }
+
+        @Override
+        public void saveModel(Model model) {
+
         }
     }
 }

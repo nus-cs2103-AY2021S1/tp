@@ -1,0 +1,75 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InventoryParser" as InventoryParser LOGIC_COLOR
+participant ":AddRecipeCommandParser" as AddRecipeCommandParser LOGIC_COLOR
+participant "d:AddRecipeCommand" as AddRecipeCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addr Bob’s anvil \n-items block of iron[3], iron ingot[4]")
+activate LogicManager
+
+LogicManager -> InventoryParser : parseCommand("Bob’s anvil \n-items block of iron[3], iron ingot[4]")
+activate InventoryParser
+
+create AddRecipeCommandParser
+InventoryParser -> AddRecipeCommandParser
+activate AddRecipeCommandParser
+
+AddRecipeCommandParser --> InventoryParser
+deactivate AddRecipeCommandParser
+
+InventoryParser -> AddRecipeCommandParser : parse("addr Bob’s anvil \n-items block of iron[3], iron ingot[4]")
+activate AddRecipeCommandParser
+
+create AddRecipeCommand
+AddRecipeCommandParser -> AddRecipeCommand
+activate AddRecipeCommand
+
+AddRecipeCommand --> AddRecipeCommandParser : d
+deactivate AddRecipeCommand
+
+AddRecipeCommandParser --> InventoryParser : d
+deactivate AddRecipeCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddRecipeCommandParser -[hidden]-> InventoryParser
+destroy AddRecipeCommandParser
+
+InventoryParser --> LogicManager : d
+deactivate InventoryParser
+
+LogicManager -> AddRecipeCommand : execute()
+activate AddRecipeCommand
+
+opt \tIf item does not exist
+    AddRecipeCommand -> Model : addItem("Bob's anvil", 0, "no description", [])
+    activate Model
+    Model --> AddRecipeCommand
+    deactivate Model
+end
+AddRecipeCommand -> Model : addRecipe("Bob's anvil", \n[Pair("block of iron", 3), Pair("iron ingot", 4)])
+activate Model
+
+Model --> AddRecipeCommand
+deactivate Model
+
+create CommandResult
+AddRecipeCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddRecipeCommand
+deactivate CommandResult
+
+AddRecipeCommand --> LogicManager : result
+deactivate AddRecipeCommand
+destroy CommandResult
+[<--LogicManager
+deactivate LogicManager
+@enduml

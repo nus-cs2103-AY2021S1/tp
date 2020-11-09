@@ -1,0 +1,70 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InventoryParser" as InventoryParser LOGIC_COLOR
+participant ":AddItemCommandParser" as AddItemCommandParser LOGIC_COLOR
+participant "d:AddItemCommand" as AddItemCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addi -n banana -q 44 -d edible banana \n-l Bob’s banana farm, Bob's home")
+activate LogicManager
+
+LogicManager -> InventoryParser : parseCommand("addi -n banana -q 44 -d edible banana \n-l Bob’s banana farm, Bob's home")
+activate InventoryParser
+
+create AddItemCommandParser
+InventoryParser -> AddItemCommandParser
+activate AddItemCommandParser
+
+AddItemCommandParser --> InventoryParser
+deactivate AddItemCommandParser
+
+InventoryParser -> AddItemCommandParser : parse("-n banana -q 44 -d edible banana \n-l Bob’s banana farm, Bob's home")
+activate AddItemCommandParser
+
+create AddItemCommand
+AddItemCommandParser -> AddItemCommand
+activate AddItemCommand
+
+AddItemCommand --> AddItemCommandParser : d
+deactivate AddItemCommand
+
+AddItemCommandParser --> InventoryParser : d
+deactivate AddItemCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddItemCommandParser -[hidden]-> InventoryParser
+destroy AddItemCommandParser
+
+InventoryParser --> LogicManager : d
+deactivate InventoryParser
+
+LogicManager -> AddItemCommand : execute()
+activate AddItemCommand
+
+AddItemCommand -> Model : addItem(item)
+activate Model
+
+Model --> AddItemCommand
+deactivate Model
+
+create CommandResult
+AddItemCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddItemCommand
+deactivate CommandResult
+
+AddItemCommand --> LogicManager : result
+deactivate AddItemCommand
+
+destroy CommandResult
+[<--LogicManager
+deactivate LogicManager
+@enduml

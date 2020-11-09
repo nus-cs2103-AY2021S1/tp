@@ -1,0 +1,19 @@
+@startuml
+actor "User" as ur
+actor "HardcoreGamer" as hc
+actor "GuildLeader" as gl
+left to right direction
+package Inventoryinator {
+    usecase "View Item" as UC1
+    usecase "List Items" as UC2
+    usecase "Add Items" as UC3
+    usecase "Detete Items" as UC4
+    usecase "Add Recipes" as UC4
+}
+ur --> UC1
+ur --> UC2
+ur --> UC3
+ur --> UC4
+hc --|> ur
+gl --|> ur
+@enduml

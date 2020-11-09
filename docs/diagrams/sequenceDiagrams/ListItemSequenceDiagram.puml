@@ -1,0 +1,102 @@
+@startuml
+!include ../style.puml
+
+box Ui UI_COLOR_T1
+participant ":InventoryListPanel" as InventoryListPanel UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InventoryParser" as InventoryParser LOGIC_COLOR
+participant ":ListItemCommandParser" as ListItemCommandParser LOGIC_COLOR
+participant ":ListItemCommand" as ListItemCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("listi")
+activate LogicManager
+
+LogicManager -> InventoryParser : parseCommand("listi")
+activate InventoryParser
+
+create ListItemCommandParser
+InventoryParser -> ListItemCommandParser
+activate ListItemCommandParser
+
+ListItemCommandParser --> InventoryParser
+deactivate ListItemCommandParser
+
+InventoryParser -> ListItemCommandParser : parse("")
+activate ListItemCommandParser
+
+create ListItemCommand
+ListItemCommandParser -> ListItemCommand
+activate ListItemCommand
+
+ListItemCommand --> ListItemCommandParser :
+deactivate ListItemCommand
+
+ListItemCommandParser --> InventoryParser :
+deactivate ListItemCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ListItemCommandParser -[hidden]-> InventoryParser
+destroy ListItemCommandParser
+
+InventoryParser --> LogicManager :
+deactivate InventoryParser
+
+LogicManager -> ListItemCommand : execute()
+activate ListItemCommand
+
+alt Item list is empty
+    ListItemCommand -> Model
+    activate Model
+    Model --> ListItemCommand : error message
+    deactivate Model
+else Item list is not empty
+    ListItemCommand ->  Model
+    activate Model
+    Model --> ListItemCommand : success message
+    deactivate Model
+end
+
+
+create CommandResult
+ListItemCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListItemCommand
+deactivate CommandResult
+CommandResult -[hidden]-> ListItemCommand
+destroy CommandResult
+
+ListItemCommand --> LogicManager : CommandResult
+deactivate ListItemCommand
+ListItemCommand -[hidden]-> LogicManager
+destroy ListItemCommand
+
+[<--LogicManager : CommandResult
+[<-[hidden]-LogicManager
+
+create InventoryListPanel
+activate InventoryListPanel
+[-> InventoryListPanel : refresh(InventoryList, ITEMS)
+
+InventoryListPanel --> LogicManager : getInventoryList(ITEMS)
+
+LogicManager --> Model : getFilteredItemList()
+activate Model
+Model --> LogicManager :
+deactivate Model
+
+CommandResult -[hidden]-> LogicManager
+InventoryListPanel <-- LogicManager : InventoryList
+deactivate LogicManager
+
+[<--InventoryListPanel
+deactivate InventoryListPanel
+@enduml

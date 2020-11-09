@@ -1,0 +1,79 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InventoryParser" as InventoryParser LOGIC_COLOR
+participant ":ViewDetailsCommandParser" as ViewDetailsCommandParser LOGIC_COLOR
+participant ":ViewDetailsCommand" as ViewDetailsCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("view flavorful pomelo")
+activate LogicManager
+
+LogicManager -> InventoryParser : parseCommand("view flavorful pomelo")
+activate InventoryParser
+
+create ViewDetailsCommandParser
+InventoryParser -> ViewDetailsCommandParser
+activate ViewDetailsCommandParser
+
+ViewDetailsCommandParser --> InventoryParser
+deactivate ViewDetailsCommandParser
+
+InventoryParser -> ViewDetailsCommandParser : parse("flavorful pomelo")
+activate ViewDetailsCommandParser
+
+create ViewDetailsCommand
+ViewDetailsCommandParser -> ViewDetailsCommand
+activate ViewDetailsCommand
+
+ViewDetailsCommand --> ViewDetailsCommandParser
+deactivate ViewDetailsCommand
+
+ViewDetailsCommandParser --> InventoryParser
+deactivate ViewDetailsCommandParser
+ViewDetailsCommandParser -[hidden]-> InventoryParser
+destroy ViewDetailsCommandParser
+
+InventoryParser --> LogicManager
+deactivate InventoryParser
+
+LogicManager -> Model: resetItemFilters()
+activate Model
+Model --> LogicManager
+deactivate Model
+
+LogicManager -> Model: resetRecipeFilters()
+activate Model
+Model --> LogicManager
+deactivate Model
+
+LogicManager -> ViewDetailsCommand : execute()
+activate ViewDetailsCommand
+
+ViewDetailsCommand -> Model : updateFilteredItemList()
+activate Model
+
+Model --> ViewDetailsCommand
+deactivate Model
+
+create CommandResult
+ViewDetailsCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewDetailsCommand
+deactivate CommandResult
+
+ViewDetailsCommand --> LogicManager : commandResult
+deactivate ViewDetailsCommand
+
+destroy CommandResult
+[<--LogicManager : commandResult
+deactivate LogicManager
+@enduml

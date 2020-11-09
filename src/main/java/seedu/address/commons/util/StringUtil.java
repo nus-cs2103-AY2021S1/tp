@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 /**
  * Helper functions for handling strings.
@@ -31,11 +32,45 @@ public class StringUtil {
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
         checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
 
-        String preppedSentence = sentence;
+        String preppedSentence = sentence.trim();
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
         return Arrays.stream(wordsInPreppedSentence)
                 .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    /**
+     * Returns true if the {@code sentence} contains the {@code pattern}.
+     *   Ignores case, includes checking for partial matches.
+     * @param sentence cannot be null
+     * @param pattern cannot be null, matches case-sensitively
+     */
+    public static boolean matchesPatternIgnoreCase(String sentence, Pattern pattern) {
+        requireNonNull(sentence);
+        requireNonNull(pattern);
+
+        return pattern.matcher(sentence).find();
+    }
+
+    /**
+     * Returns true if the {@code sentence} contains {@code words}.
+     *   Ignores case, but a exact match is required.
+     *   <br>examples:<pre>
+     *       exactlyMultipleWordsIgnoreCase("ABc def", "abc def") == true
+     *       exactlyMultipleWordsIgnoreCase("ABc def", "abc DEF") == true
+     *       exactlyMultipleWordsIgnoreCase("ABc def", "ABc d") == false //not an exact match
+     *       </pre>
+     * @param sentence cannot be null
+     * @param words cannot be null, cannot be empty, can be multiple words
+     */
+    public static boolean exactlyMultipleWordsIgnoreCase(String sentence, String words) {
+        requireNonNull(sentence);
+        requireNonNull(words);
+
+        String preppedWord = words.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+
+        return sentence.equalsIgnoreCase(preppedWord);
     }
 
     /**

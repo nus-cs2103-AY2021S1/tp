@@ -1,0 +1,81 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InventoryParser" as InventoryParser LOGIC_COLOR
+participant ":FindItemCommandParser" as FindItemCommandParser LOGIC_COLOR
+participant "FindItemCommand" as FindItemCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":NameMatchesKeywordsPredicate" as NameMatchesKeywordsPredicate MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find bob")
+activate LogicManager
+
+LogicManager -> InventoryParser : parseCommand("find bob")
+activate InventoryParser
+
+create FindItemCommandParser
+InventoryParser -> FindItemCommandParser
+activate FindItemCommandParser
+
+FindItemCommandParser --> InventoryParser
+deactivate FindItemCommandParser
+
+InventoryParser -> FindItemCommandParser : parse("bob")
+activate FindItemCommandParser
+
+create NameMatchesKeywordsPredicate
+FindItemCommandParser -> NameMatchesKeywordsPredicate : nameKeywords
+activate NameMatchesKeywordsPredicate
+
+NameMatchesKeywordsPredicate --> FindItemCommandParser
+deactivate NameMatchesKeywordsPredicate
+
+create FindItemCommand
+FindItemCommandParser -> FindItemCommand : predicate
+activate FindItemCommand
+
+FindItemCommand --> FindItemCommandParser
+deactivate FindItemCommand
+
+FindItemCommandParser --> InventoryParser
+deactivate FindItemCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindItemCommandParser -[hidden]-> InventoryParser
+destroy FindItemCommandParser
+
+InventoryParser --> LogicManager
+deactivate InventoryParser
+
+LogicManager -> FindItemCommand : execute()
+activate FindItemCommand
+
+FindItemCommand -> Model : updateFilteredItemList(predicate)
+activate Model
+
+Model --> FindItemCommand
+deactivate Model
+
+create CommandResult
+FindItemCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindItemCommand
+deactivate CommandResult
+CommandResult -[hidden]-> FindItemCommand
+destroy CommandResult
+
+FindItemCommand --> LogicManager : result
+deactivate FindItemCommand
+FindItemCommand -[hidden]-> LogicManager
+destroy FindItemCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

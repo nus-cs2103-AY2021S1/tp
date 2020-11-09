@@ -2,58 +2,87 @@
 layout: page
 title: About Us
 ---
+* Table of Contents
+{:toc}
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us via the issues tracker of this [repository](https://github.com/AY2021S1-CS2103T-F13-1/tp/issues).
 
 ## Project team
 
-### John Doe
+[[team portfolio](https://github.com/AY2021S1-CS2103T-F13-1)]
 
-<img src="images/johndoe.png" width="200px">
+### Shi Jing Lin
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+![shijinglin](images/aqcd.png)
 
-* Role: Project Advisor
+[[github](https://github.com/aqcd)]
 
-### Jane Doe
+[[portfolio](team/aqcd.md)]
 
-<img src="images/johndoe.png" width="200px">
+* Role: Project Manager
+* Responsibilities:
+    * Workflow Assignment
+    * Team Lead
+    * Git Expert
+    * Whitespace Expert
+    
+### Stephen Tan
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+![stephentan](images/blackonyyx.png)
 
-* Role: Team Lead
-* Responsibilities: UI
+[[github](http://github.com/blackonyyx)]
 
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/blackonyyx.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities:
+    * Documentation
+    * Javadoc Standards
+    * Light Mode Advocate
+    * Internal Bug Tester
 
-### James Doe
+### Liu Zhengdao
 
-<img src="images/johndoe.png" width="200px">
+![liuzhengdao](images/justacasul.png)
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/justacasul)] 
+
+[[portfolio](team/justacasul.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities:
+    * GUI Expert
+    * UI Designer
+    * Code Quality
+    * Full-Stack Developer
+
+### Kheng Hun
+
+![siewkhenghun](images/khenghun.png)
+
+[[github](https://github.com/khenghun)]
+
+[[portfolio](team/khenghun.md)]
+
+* Role: Developer
+* Responsibilities:
+    * Scheduling and Tracking
+    * Deliverables and Deadlines
+    * Testing
+    * Main Feature Developer
+    
+### Rahul
+
+![rahul](images/rahul0506.png)
+
+[[github](https://github.com/Rahul0506)]
+
+[[portfolio](team/rahul0506.md)]
+
+* Role: Developer
+* Responsibilities:
+    * Continuous Integration
+    * IntelliJ Expert
+    * Gaming Expert

@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -10,12 +11,19 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.InventoryParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.InventoryComponent;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyItemList;
+import seedu.address.model.ReadOnlyLocationList;
+import seedu.address.model.ReadOnlyRecipeList;
+import seedu.address.model.item.Item;
+import seedu.address.model.location.Location;
+import seedu.address.model.recipe.PrintableRecipe;
+import seedu.address.model.recipe.Recipe;
 import seedu.address.storage.Storage;
+import seedu.address.ui.DisplayedInventoryType;
 
 /**
  * The main LogicManager of the app.
@@ -26,7 +34,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final InventoryParser inventoryParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,19 +42,23 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        inventoryParser = new InventoryParser();
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException, IOException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = inventoryParser.parseCommand(commandText);
+        // clear filters to prepare for command execution
+        model.resetItemFilters();
+        model.resetRecipeFilters();
+
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveModel(model);
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -54,21 +66,58 @@ public class LogicManager implements Logic {
         return commandResult;
     }
 
+    // Item
+
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyItemList getItemList() {
+        return model.getItemList();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Item> getFilteredItemList() {
+        return model.getFilteredItemList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getItemListFilePath() {
+        return model.getItemListFilePath();
     }
 
+    // Location
+
+    @Override
+    public ReadOnlyLocationList getLocationList() {
+        return model.getLocationList();
+    }
+
+    @Override
+    public ObservableList<Location> getFilteredLocationList() {
+        return model.getFilteredLocationList();
+    }
+
+    @Override
+    public Path getLocationListFilePath() {
+        return model.getLocationListFilePath();
+    }
+
+    // Recipe
+
+    @Override
+    public ReadOnlyRecipeList getRecipeList() {
+        return model.getRecipeList();
+    }
+
+    @Override
+    public ObservableList<Recipe> getFilteredRecipeList() {
+        return model.getFilteredRecipeList();
+    }
+
+    @Override
+    public Path getRecipeListFilePath() {
+        return model.getRecipeListFilePath();
+    }
+
+    // GUI
     @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
@@ -77,5 +126,41 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    /**
+     * Returns the relevant inventory list containing inventory of {@code inventoryType} to be displayed.
+     */
+    public ArrayList<InventoryComponent> getInventoryList(DisplayedInventoryType inventoryType) {
+        ArrayList<InventoryComponent> inventoryList = new ArrayList<>();
+        switch(inventoryType) {
+        case ITEMS:
+            inventoryList.addAll(model.getFilteredItemList());
+            break;
+        case RECIPES:
+            // convert recipes to printable form
+            model.getFilteredRecipeList()
+                    .forEach(recipe -> inventoryList.add(recipe.print(model.getFilteredItemList())));
+            break;
+        case DETAILED_ITEM:
+            // adds the single matching item into the inventory list
+            model.getFilteredItemList().forEach(item -> inventoryList.add(item.detailedItem()));
+
+            model.resetItemFilters();
+            // adds all recipes which can craft the item into the inventory list
+            model.getFilteredRecipeList()
+                    .forEach(recipe -> {
+                        PrintableRecipe pr = recipe.print(model.getFilteredItemList());
+                        pr.includeOffset(); // toggles that index should be adjusted
+                        inventoryList.add(pr);
+                    });
+            break;
+        case UNCHANGED:
+            assert false : "unchanged called in getInventoryList";
+            break;
+        default:
+            throw new IllegalStateException("This inventoryType is not valid" + inventoryType);
+        }
+        return inventoryList;
     }
 }

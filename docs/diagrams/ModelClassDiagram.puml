@@ -1,56 +1,74 @@
 @startuml
 !include style.puml
-skinparam arrowThickness 1.1
+skinparam arrowThickness 1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
-Class Model
+Interface ReadOnlyItemList <<Interface>>
+Interface ReadOnlyRecipeList <<Interface>>
+Interface ReadOnlyLocationList <<Interface>>
+Interface ReadOnlyUserPrefs <<Interface>>
 Class ModelManager
+Class Inventory
+Class VersionedInventory
+Class ItemList
+Class RecipeList
+Class LocationList
 Class UserPrefs
-Class ReadOnlyUserPrefs
+Class "{abstract}\nInventoryComponent" as InventoryComponent
+Class FilteredList
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package Item {
+Class UniqueItemList
+Class Item
 }
 
-Package Tag {
-Class Tag
+Package Recipe {
+Class UniqueRecipeList
+Class Recipe
+}
+
+Package Location {
+Class UniqueLocationList
+Class Location
 }
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside .down.> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
-
-ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
+ModelManager .up.|> Model
+ModelManager *-up-> "1 " UserPrefs
+ModelManager *-left-> "1" VersionedInventory
+ModelManager *-down-> "1" Inventory
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+ModelManager *-up-> "3" FilteredList
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Inventory *-down-> "1" ItemList
+Inventory *-down-> "1  " RecipeList
+Inventory *-down-> "1" LocationList
 
-ModelManager -->"1" Person : filtered list
+ItemList .up.|> ReadOnlyItemList
+RecipeList .up.|> ReadOnlyRecipeList
+LocationList .up.|> ReadOnlyLocationList
+
+VersionedInventory o-down-> " * " Inventory
+
+ItemList *--> "1" UniqueItemList
+RecipeList *--> "1" UniqueRecipeList
+LocationList *--> "1" UniqueLocationList
+
+UniqueItemList o-left-> " *" Item
+Item -down-|> InventoryComponent
+
+UniqueRecipeList o-left-> "*" Recipe
+Recipe -down-|> InventoryComponent
+
+UniqueLocationList o-left-> "*" Location
+
 @enduml
