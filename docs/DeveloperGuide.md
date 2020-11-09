@@ -33,7 +33,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-T10-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-T10-3/tp/tree/master/docs/diagrams) folder.
 
 </div>
 
@@ -73,6 +73,7 @@ The following sections break down the various components in greater detail.
 
 
 ----------------
+<a name="ui-component"></a>
 ### 3.2&ensp;UI Component
 
 The *UI* component is responsible for all the user-facing views in the graphical user interface. This includes displaying recipes, ingredients and statistics, receiving command input from the user, and printing command results to the user.
@@ -81,7 +82,7 @@ The class diagram of the UI component is shown below:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/UiClassDiagram.png" /> <br />
-Figure 3: <i>The class diagram of the UI component</i>
+Figure 3.1: <i>The class diagram of the UI component</i>
 </div>
 
 **Interface**: [`Ui.java`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/ui/Ui.java)
@@ -95,22 +96,23 @@ The `UI` component:
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `list ingredients`:
-
-<div style="text-align: center; padding-bottom: 2em">
-<img src="images/dg/UiSequenceDiagram.png" style="width: 75%" /> <br />
-Figure 4: <i>A sequence diagram showing the execution of <code>list ingredients</code></i>
-</div>
-
 The following activity diagram shows the general flow of events for the Ui component when the application is launched:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="diagrams/ui/UiLauchActivityDiagram.png" style="width: 45%"> <br />
-Figure 5: <i>An activity diagram for the Ui during application launch</i>
+Figure 3.2: <i>An activity diagram for the Ui during application launch</i>
+</div>
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user issues the command `list ingredients`:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/dg/UiSequenceDiagram.png" style="width: 75%" /> <br />
+Figure 3.3: <i>A sequence diagram showing the execution of <code>list ingredients</code></i>
 </div>
 
 
 -------------------
+<a name="logic-component"></a>
 ### 3.3&ensp;Logic Component
 
 The *Logic* component is responsible for parsing command input, executing commands, and updating the Model component of any changes to data caused by running a command.
@@ -119,7 +121,7 @@ The class diagram of the Logic component is shown below:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="diagrams/logic/cls-overall.png" /> <br />
-Figure 6: <i>The class diagram of the Logic component</i>
+Figure 4.1: <i>The class diagram of the Logic component</i>
 </div>
 
 **Interface**: [`Logic.java`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/logic/Logic.java)
@@ -135,7 +137,7 @@ This is the general flow of events when a command is executed:
 For example, this is a sequence diagram showing the deletion of a recipe:
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/DeleteSequenceDiagram.png" style="width: 95%" /> <br />
-Figure 7: <i>A sequence diagram showing the execution of <code>delete recipe #1</code> in the Logic component</i>
+Figure 4.2: <i>A sequence diagram showing the execution of <code>delete recipe #1</code> in the Logic component</i>
 </div>
 
 
@@ -148,6 +150,7 @@ Figure 7: <i>A sequence diagram showing the execution of <code>delete recipe #1<
 
 
 -------------------
+<a name="model-component"></a>
 ### 3.4&ensp;Model Component
 
 The *Model* component is responsible for holding the data of the application (eg. the recipes and ingredients) in-memory during execution, and mediating access to this data for each of the other components of the system.
@@ -156,7 +159,7 @@ The class diagram of the *Model* component is shown below:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/ModelClassDiagram.png" /> <br />
-Figure 8: <i>The class diagram of the Model component</i>
+Figure 5.1: <i>The class diagram of the Model component</i>
 </div>
 
 **Interface**: [`Model.java`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/model/Model.java)
@@ -171,7 +174,7 @@ The Model component:
 Of note in the Model component are the `Recipe` and `Ingredient` classes; below is the class diagram for both:
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/RecipeIngredient.png"> <br/>
-Figure 9: <i>The class diagram for Recipes and Ingredients</i>
+Figure 5.2: <i>The class diagram for Recipes and Ingredients</i>
 </div>
 
 Note that an instance of `Recipe` only stores `IngredientReferences` to the ingredients it uses, and not the actual `Ingredients` themselves — since the actual instance of the ingredient that will be used by the recipe is indeterminate.
@@ -181,6 +184,7 @@ Only when a recipe is made are the references resolved to their actual ingredien
 
 
 ---------------------
+<a name="storage-component"></a>
 ### 3.5&ensp;Storage Component
 
 The storage component is responsible for the saving and loading of the usage data for recipe and ingredient, the user preferences, and more importantly the recipe and ingredient data, to and from disk. Both pieces of data are stored in Javascript Object Notation (JSON) files, which is a human-readable (and editable) plain-text format.
@@ -191,7 +195,7 @@ The class diagram of the *Storage* component is shown below:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/StorageClassDiagram.png"> <br />
-Figure 10: <i>The class diagram of the Storage component</i>
+Figure 6: <i>The class diagram of the Storage component</i>
 </div>
 
 **Interface**: [`Storage.java`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/storage/Storage.java)
@@ -212,6 +216,7 @@ For example, the `JsonSerializableIngredientUsageList` contains `JsonAdaptedUsag
 
 
 ------------------
+<a name="common-classes"></a>
 ### 3.6&ensp;Utility Classes
 
 While not itself a component, various utility types are placed in the `chopchop.commons` package; these are used by all the components in ChopChop, and comprise three sub-parts in their respective packages:
@@ -237,19 +242,17 @@ This section explains, in detail, the implementation of some noteworthy features
 <a name="ImplCommandParser"></a>
 ### 4.1&ensp;Command Parser
 
-Main developer: **zhiayang**
-
 The command parser is part of the *Logic* component, and is responsible for taking the input command as a string and either returning a valid `Command` to be executed, or a sensible error message. It was completely rewritten due to the requirement of different parsing semantics.
 
 Shown below is the class diagram for the various Parser components:
 <div style="text-align: center; padding-bottom: 2em">
 <img src="diagrams/logic/cls-parser.png" style="width: 85%"> <br />
-Figure 999: <i>The class diagram for the parser</i>
+Figure 7.1: <i>The class diagram for the parser</i>
 </div>
 
 Notably, there are various wrapper classes to ensure type safety, namely `CommandArguments`, `ArgName`, and `ItemReference`, used instead of passing raw strings around in an error-prone manner.
 
-Furthermore, instead of pointlessly instantiating objects that do not store any state, all of the parsing work (save the main `CommandParser`) is done by static methods, in the various `_CommandParser` classes (eg. `AddCommandParser`, `ListCommandParser`).
+Furthermore, instead of pointlessly instantiating objects that do not store any state, all of the parsing work (save the main `CommandParser`) is done by static methods, in the various `XYZCommandParser` classes (eg. `AddCommandParser`, `ListCommandParser`).
 
 The `CommonParser` class holds common methods for each parser, for example quantity parsing and validation (eg. preventing negative quantities), checking for unsupported named arguments, etc.
 
@@ -293,7 +296,7 @@ One of the more complex commands to parse is the `add recipe` command; here is t
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="diagrams/logic/seq-parser-add-recipe.png" style="width: 95%"> <br />
-Figure 999: <i>A sequence diagram for parsing an <code>add recipe</code> command</i>
+Figure 7.2: <i>A sequence diagram for parsing an <code>add recipe</code> command</i>
 </div>
 
 
@@ -344,15 +347,13 @@ After abstracting out functions that resolve an item reference, code complexity 
 <a name="ImplTabCompletion"></a>
 ### 4.2&ensp;Tab Completion
 
-Main developer: **zhiayang**
-
 This feature allows the user to quickly type in commands and complete long recipe and ingredient names, and greatly reduces the tedium of using a command-line application. Its implementation is not particularly clever and can be described mostly by a state machine.
 
 The main brains of the tab completer lies in determining which <i>kind</i> of item to complete (eg. a command name or a recipe name), and it can be (roughly) represented by the activity diagram below:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="diagrams/logic/act-tabcomplete.png" style="width: 45%"> <br />
-Figure 999: <i>A high-level activity diagram for the tab completer</i>
+Figure 8: <i>A high-level activity diagram for the tab completer</i>
 </div>
 
 <i>Developer's note: the activity diagram could have been made a lot more detailed, but it would have been completely unreadable.</i>
@@ -369,15 +370,13 @@ Most notably, each command (or, ideally, its parser) should 'own' the knowledge 
 <a name="ImplQuantities"></a>
 ### 4.3&ensp;Quantity and Unit Handling
 
-Main developer: **zhiayang**
-
 As an application dealing with ingredients, one of the core requirements of ChopChop is being able to track quantities of ingredients, and perform arithmetic on them when cooking recipes (consuming) and refilling those ingredients.
 
 The relationships between the various quantity-related classes are shown below:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="diagrams/model/cls-quantity.png" style="width: 45%"> <br />
-Figure 999: <i>The class diagram for the quantity components</i>
+Figure 9: <i>The class diagram for the quantity components</i>
 </div>
 
 The `Quantity` interface contains a static method that handles parsing a quantity from a string; in the current implementation, it needs to have explicit knowledge about the supported units (in the sense that it lists `Mass`, `Count`, etc). It attempts to parse the input with each unit's parser and returns the first one that succeeds:
@@ -427,15 +426,13 @@ In the current implementation, there are a number of specific units of Volume (*
 <a name="ImplHelpCommand"></a>
 ### 4.4&ensp;Help Command
 
-Main developer: **zhiayang**
-
 To improve the user experience for first-time users, a robust help command was implemented into ChopChop. Unlike the AB3 'solution' of simply opening a dialog with a link to the User Guide, ChopChop's help is able to provide a clickable link directly to the correct section in the User Guide for that specific command.
 
 For example, here is the output of `help add recipe`:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/help_message_2.png" style="width: 45%"> <br />
-Figure 999: <i>The output of `help add recipe`</i>
+Figure 10: <i>The output of `help add recipe`</i>
 </div>
 
 This requires two pieces to cooperate:
@@ -462,21 +459,9 @@ When extending ChopChop to include new commands, it is important to follow these
 
 
 
-
-
-<div style="height: 15em">
-
-</div>
-
-
-
-
-
-
 <a name="stats-feature"></a>
 ### 4.5&ensp;Statistics feature
 
-Main developer: **trav1st**
 
 <a name="stats-curr-impl"></a>
 #### 4.5.1&ensp;Current implementation
@@ -488,7 +473,7 @@ It is mainly supported by `UsageList` and `Usage` in the Model component. `Usage
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/UsageClassDiagram.png" style="width: 45%"> <br />
-Figure 999: <i>Usage component in Model</i>
+Figure 11: <i>Usage component in Model</i>
 </div>
 
 The `Model` interface exposes various operations to support the addition and removal of usages, and getting statistics from `UsageList`.
@@ -506,62 +491,56 @@ The process is demonstrated below by the code snippet of `MakeRecipeCommand#undo
 After changes to `Model` were made, the `Storage` component saves the `UsageList`s in json format.
 Finally, the `StatsBox` is updated based on the `CommandResult` returned after the execution of each command.
 
-#### 4.5.2&ensp;Design considerations
+<h4>Design Considerations</h4>
 
 This section details the design considerations of the statistics feature.
 
 <a name="stats-design-considerations"></a>
 
-Aspect 1: How the usages are tracked and saved.
+**1. How the usages are tracked and saved.**
 
-* Consideration 1:
-Store the history of commands executed. The statistics of recipe and ingredient usages can be computed based on the commands executed.
-For example, currently there are 10 cabbages and the `make recipe salad` command was executed 3 times yesterday. Assuming salad required 2 cabbages to make, 6 cabbages were used yesterday.
-    * Pros:
-        * Requires less memory usage.
-        * Allows more statistics to be computed as all changes to `Model` have to be done through the execution of a command.
-    * Cons:
-        * Getting statistics for ingredient usage can be tricky as recipes can be deleted and edited. In the example above, to compute the number of cabbages used, exact ingredient consumptions have to be stored in addition to the `make recipe salad` text command.
-        * Violates Single Responsibility Principle and Separation of Concerns as the history of command is being used for statistics purposes in addition to the `undo` feature which uses a non-persistent history of command.
+  - Option A: Store the history of commands executed. The statistics of recipe and ingredient usages can be computed based on the commands executed. For example, currently there are 10 cabbages and the `make recipe salad` command was executed 3 times yesterday. Assuming salad required 2 cabbages to make, 6 cabbages were used yesterday.
+    - Pros:
+      - Requires less memory usage.
+      - Allows more statistics to be computed as all changes to `Model` have to be done through the execution of a command.
+    - Cons:
+      - Getting statistics for ingredient usage can be tricky as recipes can be deleted and edited. In the example above, to compute the number of cabbages used, exact ingredient consumptions have to be stored in addition to the `make recipe salad` text command.
+      - Violates Single Responsibility Principle and Separation of Concerns as the history of command is being used for statistics purposes in addition to the `undo` feature which uses a non-persistent history of command.
 
-* **Consideration 2(chosen)**:
-Store the relevant information such as name, and the date and time of which the recipe was made or ingredient was used in `Usage` which is then stored in `UsageList`.
-    * Pros:
-        * Easier to implement
-        * Allows quick access to certain data such as latest recipe usages.
-    * Cons:
-        * Modifications to `Usage` and its associated classes may be required to support computation of more kinds of statistics.
+  - **Option B(chosen)**: Store the relevant information such as name, and the date and time of which the recipe was made or ingredient was used in `Usage` which is then stored in `UsageList`.
+    - Pros:
+      - Easier to implement
+      - Allows quick access to certain data such as latest recipe usages.
+    - Cons:
+      - Modifications to `Usage` and its associated classes may be required to support computation of more kinds of statistics.
 
-Aspect 2: Responsibility of `UsageList`.
-* **Consideration 1(chosen)**:
-Make `getRecentlyUsed` and `getUsageBetween` return a Pair of Strings.
-    * Pros:
-        * Easier to implement.
-    * Cons:
-        * Violates the Single Responsibility Principle.
-* Consideration 2:
-Make `getRecentlyUsed` and `getUsageBetween` return intermediate values.
-    * Pros:
-        * `UsageList` only needs to handle adding, removing and returning of `Usage`.
-    * Cons:
-        * Additional processing is required in `ModelManager`.
+**2. Responsibility of Usage List.**
+  - **Option A(chosen)**: Make `getRecentlyUsed` and `getUsageBetween` return a Pair of Strings.
+    - Pros:
+      - Easier to implement.
+    - Cons:
+      - Violates the Single Responsibility Principle.
+  - Option B: Make `getRecentlyUsed` and `getUsageBetween` return intermediate values.
+    - Pros:
+      - `UsageList` only needs to handle adding, removing and returning of `Usage`.
+    - Cons:
+      - Additional processing is required in `ModelManager`.
 
-Aspect 3: GUI of statistics box.
-* **Consideration 1(chosen)**:
-Update the statistics box after every execution of command.
-    * Pros:
-        * The user will be shown recently made recipes list after they executed non-statistics commands (other than `stats recipe recent`). This makes the app feel more responsive as both `StatsBox` and `CommandOutput` panels are updated.
-    * Cons:
-        * Additional computation required to refresh `StatsBox`.
-        * The user might want to have previous stats command results stay in the statistics box for future reference.
-* Consideration 2: Notify and update statistics box with `CommandResult` in `MainWindow` only after the execution of statistics commands.
-    * Pros:
-        * The statistics results remain in the statistics box even after the execution of other commands so the user does not have to execute the statistics command again to view the statistics.
-    * Cons:
-        * The user will have to execute `stats recipe recent` to obtain the default view on statistics box again.
+**3: GUI of statistics box.**
+  - **Option A(chosen)**: Update the statistics box after every execution of command.
+    - Pros:
+      - The user will be shown recently made recipes list after they executed non-statistics commands (other than `stats recipe recent`). This makes the app feel more responsive as both `StatsBox` and `CommandOutput` panels are updated.
+    - Cons:
+      - Additional computation required to refresh `StatsBox`.
+      - The user might want to have previous stats command results stay in the statistics box for future reference.
+  - Option B: Notify and update statistics box with `CommandResult` in `MainWindow` only after the execution of statistics commands.
+    - Pros:
+      - The statistics results remain in the statistics box even after the execution of other commands so the user does not have to execute the statistics command again to view the statistics.
+    - Cons:
+      - The user will have to execute `stats recipe recent` to obtain the default view on statistics box again.
 
 <a name="stats-related-commands"></a>
-#### 4.5.3&ensp;Related commands
+#### 4.5.2&ensp;Related commands
 
 `StatsCommandParser` parses the Statistics commands and returns the corresponding `Command object` based on user's input.
 For more information on the Parser, view [4.1 Command Parser](#41command-parser). 
@@ -579,10 +558,10 @@ It is executed with an object of `StatsRecipeTopCommand` which is created after 
 The sequence diagram below shows the sequence of interactions between the `Model` and the `Logic` components after the user command `stats recipe top` is executed.
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/StatsRecipeTopSequenceDiagram.png"> <br />
-Figure ???: <i>The sequence diagram of the execution of StatsRecipeTopCommand </i>
+Figure 12.1 <i>The sequence diagram of the execution of StatsRecipeTopCommand </i>
 </div>
 
-1. `Logic` uses `CommandParser` to parse the user input.
+1. `LogicManager` uses `CommandParser` to parse the user input.
 2. `CommandParser` calls on the static method `parseStatsCommand` of `StatsCommandParser` class.
 3. `StatsCommandParser` then calls on methods `getCommandTarget` and `parseRecipeStatsCommand` to determine which command object should be instantiated.
 4. A `StatsRecipeTopCommand` object is instantiated by `StatsCommandParser`.
@@ -592,13 +571,11 @@ Figure ???: <i>The sequence diagram of the execution of StatsRecipeTopCommand </
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/RecipeTopCmdStatsBox.png" style="width: 40%"> <br />
-Figure 8000. GUI of statistics box after `stats recipe top` command is executed</i>
+Figure 12.2. GUI of statistics box after `stats recipe top` command is executed</i>
 </div>
 
 
 ### 4.6&ensp;Undo/redo feature
-
-Main developer: **seowalex**
 
 The undo/redo feature is implemented using a `HistoryManager`, which keeps track of and stores the command history, along with a list of parsed undoable `Command`s.
 Every command that can be undone/redone implements the `Undoable` interface, which requires the implementation of the `Undoable#undo()` method.
@@ -618,7 +595,7 @@ The `HistoryManager` is initialised with an empty list of `CommandHistory`s, as 
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/state/UndoRedoState0.png"> <br />
-Figure 999: <i>The initial state of HistoryManager</i>
+Figure 13.1: <i>The initial state of HistoryManager</i>
 </div>
 
 Step 2. The user executes `delete recipe #5` to delete the 5th recipe from the recipe book.
@@ -627,7 +604,7 @@ The `currentIndex` pointer is also incremented by one, as the application is cur
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/state/UndoRedoState1.png"> <br />
-Figure 999: <i>The state of HistoryManager after command "delete recipe #5"</i>
+Figure 13.2: <i>The state of HistoryManager after command "delete recipe #5"</i>
 </div>
 
 Step 3. The user executes `add recipe beef noodles` to add a new recipe.
@@ -636,7 +613,7 @@ The `currentIndex` pointer is once again incremented by one.
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/state/UndoRedoState2.png"> <br />
-Figure 999: <i>The state of HistoryManager after command "add recipe beef noodles"</i>
+Figure 13.3: <i>The state of HistoryManager after command "add recipe beef noodles"</i>
 </div>
 
 Step 4. The user now desires to undo the last action, and executes the `undo` command.
@@ -645,14 +622,14 @@ The command's `Undoable#undo()` operation will then be executed.
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/state/UndoRedoState3.png"> <br />
-Figure 999: <i>The state of HistoryManager after command "undo"</i>
+Figure 13.4: <i>The state of HistoryManager after command "undo"</i>
 </div>
 
 The following sequence diagram shows how the undo operation works:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/UndoSequenceDiagram.png"> <br />
-Figure 999: <i>A sequence diagram for an <code>undo</code> command</i>
+Figure 13.5: <i>A sequence diagram for an <code>undo</code> command</i>
 </div>
 
 The `redo` command does the opposite — it calls `HistoryManager#redo()`, which executes the command `currentIndex` is pointing to, and decrements the `currentIndex` by one.
@@ -663,27 +640,27 @@ Since the `currentIndex` is not pointing to the end of the `CommandHistory` list
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/state/UndoRedoState4.png"> <br />
-Figure 999: <i>The state of HistoryManager after command "list recipes"</i>
+Figure 13.6: <i>The state of HistoryManager after command "list recipes"</i>
 </div>
 
 The following activity diagram summarises what happens when a user executes a new command:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/CommitActivityDiagram.png"> <br />
-Figure 999: <i>An activity diagram for the undo/redo feature</i>
+Figure 13.7: <i>An activity diagram for the undo/redo feature</i>
 </div>
 
 <h4>Design considerations</h4>
 
-<h5>Aspect: How state is saved</h5>
+**Aspect: How state is saved**
 
-* **Alternative 1 (current choice):** Save each undoable command as it is executed. Each command implements its own undo/redo operation.
-  * Pros: Uses less memory since the entire state of the application does not have to be saved, and is also faster since only a small part of the model needs to be modified each time.
-  * Cons: All model changes need to be restricted to the command, as each command needs to be able to fully reverse any changes made to the model.
+- **Option A (current choice):** Save each undoable command as it is executed. Each command implements its own undo/redo operation.
+  - Pros: Uses less memory since the entire state of the application does not have to be saved, and is also faster since only a small part of the model needs to be modified each time.
+  - Cons: All model changes need to be restricted to the command, as each command needs to be able to fully reverse any changes made to the model.
 
-* **Alternative 2:** Saves the entire recipe/ingredient book every time a change is made to the model.
-  * Pros: Easy to implement, does not require custom undo/redo operations for each command.
-  * Cons: Will be much slower as the entire model needs to be replaced on each undo/redo, which does not scale well with more recipes/ingredients.
+- **Option B:** Saves the entire recipe/ingredient book every time a change is made to the model.
+  - Pros: Easy to implement, does not require custom undo/redo operations for each command.
+  - Cons: Will be much slower as the entire model needs to be replaced on each undo/redo, which does not scale well with more recipes/ingredients.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -699,7 +676,6 @@ Figure 999: <i>An activity diagram for the undo/redo feature</i>
 
 
 ## **Appendices**
-{:.owo}
 
 
 ## A&ensp;Requirements
@@ -719,7 +695,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------- |
 | `* * *`  | Person learning how to cook           | View my recipes                                                                   | Not get the instructions wrong.                           |
 | `* * *`  | Picky eater                           | Delete my recipes                                                                 | Remove recipes that I do not like.                        |
-| `* * *`  | Forgetful home cook                   | Record recipes that I learnt from my friends and television shows                 | Try to cook them in the future.                           |                                                                         |
+| `* * *`  | Forgetful home cook                   | Record recipes that I learnt from my friends and television shows                 | Try to cook them in the future.                           |
 | `* * *`  | Person that cannot decide             | Select recipes to cook automatically based on the ingredients that i have         | Eat a wider variety of meals.                             |
 | `* * *`  | Home cook                             | Delete the ingredients                                                            | Remove ingredients that have expired.                     |
 | `* * *`  | Home cook                             | Edit the ingredients                                                              | Edit ingredients quantities when some parts are spoilt.   |
@@ -749,7 +725,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | [UC05](#U05) | View recipe                            |
 | [UC06](#U06) | Filter recipes                         |
 | [UC07](#U07) | Make recipe                            |
-| [UC08](#U08) | List recipe recommendations            |
+| [UC08](#U08) | List recipe recommendationations       |
 | [UC09](#U09) | View recipe statistics                 |
 | [UC10](#U10) | Add ingredient                         |
 | [UC11](#U11) | Delete ingredient                      |
@@ -840,7 +816,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User chooses to list recipes.
 2. User requests for the recipes.
-3. FRMS display the recipes.
+3. FRMS displays the recipes.
 4. FRMS displays a confirmation message.
 
     Use case ends.
@@ -906,7 +882,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS:**
 
-1. User chooses to make a recipes.
+1. User chooses to make a recipe.
 2. User provides the recipe to be made.
 3. FRMS makes the recipe.
 4. FRMS displays a confirmation message.
@@ -926,13 +902,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 <a name="U08"></a>
-**Use case: U08 - List recipe recommends**
+**Use case: U08 - List recipe recommendations**
 
 **MSS:**
 
 1. User chooses to list recipes recommendations.
-2. User requests for the recipes recommendation.
-3. FRMS display the recipes.
+2. User requests for the recipes recommendations.
+3. FRMS displays the recipes.
 4. FRMS displays a confirmation message.
 
     Use case ends.
@@ -1123,16 +1099,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Should be able to add multiple recipes at once
-5. Should have autocompletion for commands
-6. Should be able to fuzzy search for recipes/food
-7. Should be able to manage recipes in a interactive manner (like Google Assistant)
-8. Should have input sanitisation
+4. Should be able to add multiple recipes at once.
+5. Should have autocompletion for commands.
+6. Should be able to fuzzy search for recipes/food.
+7. Should be able to manage recipes in a interactive manner (like Google Assistant).
+8. Should have input sanitisation.
 
 ### A.5&ensp;Glossary
 
 * **Mainstream OS:** Latest version of Windows, MacOS or any Linux distro
 * **Recipe:** List of ingredients and steps needed to cook a dish
+
+| Word/Phrase     | Meaning                                                                                                               |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------|
+| Case Insensitive| Capitalisation is not considered, eg. `aAaAaAaA` and `aaaaaaaa` are the same when comparing case insensitively        |
+| Command         | A series of text you type into the [Command Box](#CommandBox) in order to perform an action in ChopChop               |
+| GUI             | A <i>graphical user interface</i>, which is the visual display that you see in ChopChop                               |
+| Index           | A number that you can use to refer to an ingredient or recipe in a command; it appears in the top left corner of items|
+| Ingredient      | A food item (eg. salt, butter) that you keep in stock; needed to make recipes                                         |
+| Recipe          | A dish that can be made using some ingredients; has a list steps to make it, and a list of ingredients used           |
+| Tag             | A word or short phrase (eg. `sweet`, `simple recipe`) that you can attach to ingredients and recipes to identify them |
+| Mainstream OS   | Latest version of Windows, MacOS or any Linux distro                                                                  |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1730,123 +1717,185 @@ having expiry dates in December 2020.
      Expected: No ingredient is listed. Error details shown in the Command Output box.   
 
 ### B.4&ensp;Viewing statistics
+The sample data of ChopChop does not include sample recipe and ingredient usage data as they could be misleading for users viewing their usage statistics.
+Here are the steps you can follow and execute in order, to create a sample usage data of Recipe A, B and C for testing.
+1. `stats recipe clear`
+2. `stats ingredient clear`
+3. `add recipe A /ingredient A /qty 1`
+4. `add ingredient A /qty 1`
+5. `add recipe B /ingredient B /qty 1`
+6. `add ingredient B /qty 1`
+7. `add recipe C /ingredient C /qty 1`
+8. `add ingredient C /qty 1`
+9. `make recipe C`
+10. Wait 1 minute, so that you get a different date(yyyy-MM-dd HH:mm) for B.
+11. `make recipe B`
+12. Wait 1 minute, so that you get a different date(yyyy-MM-dd HH:mm) for C.
+13. `make recipe A`
 
 #### B.4.1&ensp;Viewing recipes made in a given time frame 
-1. View recipes with 3 recipes A, B and C (made in this order) that were made today and at least 1 minute apart from each other.
-    1. Prerequisites: Cleared previous usage records and made recipes A, B and C today and at least 1 minute apart from each other. For example Recipe A made 5 minutes ago, Recipe B made 4 minutes ago and Recipe C made 3 minutes ago.
+
+1. View recipes with 3 recipes A, B and C that were made at least 1 minute apart from each other.
+
+    1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
+    
     1. Test case: `stats recipe made`<br>
         Expected: The stats box shows "Showing recipes made <today's date in yyyy-MM-dd>" and a list of recipes A, B and C.
+        
     1. Test case: `stats recipe made /before <date of Recipe B in yyyy-MM-dd HH:mm>`<br>
         Expected: The stats box shows "Showing recipes made before <date of Recipe B in yyyy-MM-dd HH:mm>" and a list of recipes with only Recipe A in it.
+        
     1. Test case: `stats recipe made /after <date of Recipe B in yyyy-MM-dd HH:mm>`<br>
         Expected: The stats box shows "Showing recipes made before <date of Recipe B in yyyy-MM-dd HH:mm>" and a list of recipes with only Recipe B and C in it.
+        
     1. Test case: `stats recipe made /after <date of Recipe A in yyyy-MM-dd HH:mm> /before <date of Recipe B in yyyy-MM-dd HH:mm>`<br>
         Expected: The stats box shows "Showing recipes made between <date of Recipe A in yyyy-MM-dd HH:mm> and <date of Recipe B in yyyy-MM-dd HH:mm>" and a list of recipes with only Recipe A in it.
+        
     1. Test case: `stats recipe made /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is equal to or later than date2.<br>
         Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box returns to default panel showing recently made recipes.
    
 1. View recipes made with no past recipe usage records
     1. Prerequisites: No recipe usages saved. This can be done by executing `stats recipe clear` which should clear all recipe usages.
+    
     1. Test case: `stats recipe made`<br>
         Expected: The stats box shows "No recipes were made on <today's date in yyyy-MM-dd>".
+        
     1. Test case: `stats recipe made /before <date in yyyy-MM-dd>`<br>
         Expected: The stats box shows "No recipes were made before <date in yyyy-MM-dd> 00:00".
+        
     1. Test case: `stats recipe made /after <date in yyyy-MM-dd>`<br>
         Expected: The stats box shows "No recipes were made before <date in yyyy-MM-dd> 00:00".
+        
     1. Test case: `stats recipe made /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is earlier than date2.<br>
         Expected: The stats box shows "No recipes were made between <date1 in yyyy-MM-dd> 00:00 and <date2 in yyyy-MM-dd> 00:00".
+        
     1. Test case: `stats recipe made /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is equal to or later than date2.<br>
         Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box shows "No recipes were made recently".
 
 #### B.4.2&ensp;Viewing recipes made most recently
 1. View recipes with 3 recipes A, B and C were made in this order.
-    1. Prerequisites: Cleared previous usage records and made recipes A, B and C in this order.
+
+    1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
+    
     1. Test case: `stats recipe recent`<br>
-        Expected: The stats box shows "Here are your recently made recipes" and a list of recipes A, B and C.
+        Expected: The stats box shows "Here are your recently made recipes" and a list of recipes A, B and C, shown in this order
     1. Test case: execute other non-stats commands such as `list recipes`<br>
-       Expected: The stats box shows "Showing recently made recipes" and a list of recipes A, B and C.
+       Expected: The stats box shows "Showing recently made recipes" and a list of recipes A, B and C, shown in this order.
+       
        
 1. View recipes made recently with no past recipe usage records
+
     1. Prerequisites: No recipe usages saved. This can be done by executing `stats recipe clear` which should clear all recipe usages.
+    
     1. Test case: `stats recipe made`<br>
         Expected: The stats box shows "No recipes were made" with no lists shown below.
+        
     1. Test case: execute other non-stats commands such as `list recipes`<br>
         Expected: The stats box shows "No recipes were made" with no lists shown below.
+        
    
 #### B.4.3&ensp;Viewing recipes made most frequently
 1. View most made recipes with records of recipe made.
+
     1. Prerequisites: Cleared previous usage records and made recipe A 3 times and recipe B once.
+    
     1. Test case: `stats recipe top`<br>
         Expected: The stats box shows "Here are your top recipes" and a list of recipes with first item as recipe A and the text below is "No. of times made: 3", and second item as recipe B and the text below is "No. of times made: 1".
+        
        
 1. View most made recipes with past recipe usage records
+
     1. Prerequisites: No recipe usages saved. This can be done by executing `stats recipe clear` which should clear all recipe usages.
+    
     1. Test case: `stats recipe top`<br>
         Expected: The stats box shows "No recipes were made recently"
 
 #### B.4.4&ensp;Clearing recipe usages
 1. Clear records of recipe usages after making Recipes A, B and C.
-    1. Prerequisites: Made recipes A, B and C.
+
+    1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
+    
     1. Test case: `stats recipe clear`<br>
         Expected: The command output box shows "Cleared recipe cooking history" and the stats box shows "No recipes were made recently".
+        
     1. Test case: `stats recipe clear` followed by `stats recipe recent`<br>
         Expected: The stats box shows "No recipes were made recently" with no lists shown below.
+        
     1. Test case: `stats recipe clear` followed by any other non-stats command such as `list recipes`<br>
         Expected: The stats box shows "No recipes were made recently" with no lists shown below.
         
 1. Clear records of recipe usages when there are no records.
     1. Prerequisites: No records of recipe usages.
+    
     1. Test case: `stats recipe clear`<br>
         Expected: The command output box shows "Cleared recipe cooking history" and the stats box shows "No recipes were made recently".
    
 #### B.4.5&ensp;Viewing ingredients used in a given time frame 
-1. View ingredients with 3 ingredients A, B and C (used in this order) that were used today and at least 1 minute apart from each other. (To use an ingredient, add a recipe that requires the ingredient then make the recipe)
-    1. Prerequisites: Cleared previous usage records and used ingredients A, B and C today and at least 1 minute apart from each other. For example Ingredient A used 5 minutes ago, Ingredient B used 4 minutes ago and Ingredient C used 3 minutes ago.
+
+1. View ingredients with 3 ingredients A, B and C (used in this order) that were used at least 1 minute apart from each other.
+    1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
+    
     1. Test case: `stats ingredient used`<br>
         Expected: The stats box shows "Showing ingredients used <today's date in yyyy-MM-dd>" and a list of ingredients A, B and C.
+        
     1. Test case: `stats ingredient used /before <date of Ingredient B in yyyy-MM-dd HH:mm>`<br>
         Expected: The stats box shows "Showing ingredients used before <date of Ingredient B in yyyy-MM-dd HH:mm>" and a list of ingredients with only Ingredient A in it.
+        
     1. Test case: `stats ingredient used /after <date of Ingredient B in yyyy-MM-dd HH:mm>`<br>
         Expected: The stats box shows "Showing ingredients used before <date of Ingredient B in yyyy-MM-dd HH:mm>" and a list of ingredients with only Ingredient B and C in it.
+        
     1. Test case: `stats ingredient used /after <date of Ingredient A in yyyy-MM-dd HH:mm> /before <date of Ingredient B in yyyy-MM-dd HH:mm>`<br>
         Expected: The stats box shows "Showing ingredients used between <date of Ingredient A in yyyy-MM-dd HH:mm> and <date of Ingredient B in yyyy-MM-dd HH:mm>" and a list of ingredients with only Ingredient A in it.
+        
     1. Test case: `stats ingredient used /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is equal to or later than date2.<br> 
         Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box returns to default panel showing recently made recipes.
 
 1. View ingredients used with no past ingredient usage records
     1. Prerequisites: No ingredient usages saved. This can be done by executing `stats ingredient clear` which should clear all ingredient usages.
+    
     1. Test case: `stats ingredient used`<br>
         Expected: The stats box shows "No ingredients were used on <today's date in yyyy-MM-dd>".
+        
     1. Test case: `stats ingredient used /before <date in yyyy-MM-dd>`<br>
         Expected: The stats box shows "No ingredients were used before <date in yyyy-MM-dd> 00:00".
+        
     1. Test case: `stats ingredient used /after <date in yyyy-MM-dd>`<br>
         Expected: The stats box shows "No ingredients were used before <date in yyyy-MM-dd> 00:00".
+        
     1. Test case: `stats ingredient used /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is earlier than date2. <br>
         Expected: The stats box shows "No ingredients were used between <date1 in yyyy-MM-dd> 00:00 and <date2 in yyyy-MM-dd> 00:00".
+        
     1. Test case: `stats ingredient used /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is equal to or later than date2.<br> 
         Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box returns to default panel showing recently made recipes.
    
 #### B.4.6&ensp;Viewing ingredients used most recently
 1. View ingredients with 3 ingredients A, B and C were made in this order.
-    1. Prerequisites: Cleared previous usage records and made ingredients A, B and C in this order.
+
+    1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
+
     1. Test case: `stats ingredient recent`<br>
-        Expected: The stats box shows "Here are your recently made ingredients" and a list of ingredients A, B and C.
+        Expected: The stats box shows "Here are your recently made ingredients" and a list of ingredients A, B and C, shown in this order.
        
 1. View ingredients made recently with no past ingredient usage records
     1. Prerequisites: No ingredient usages saved. This can be done by executing `stats ingredient clear` which should clear all ingredient usages.
+    
     1. Test case: `stats ingredient made`<br>
         Expected: The stats box shows "No ingredients were made" with no lists shown below.
    
 #### B.4.7&ensp;Clearing ingredient usages
 1. Clear records of ingredient usages after making Ingredients A, B and C.
-    1. Prerequisites: Made ingredients A, B and C.
+
+    1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
+
     1. Test case: `stats ingredient clear`<br>
         Expected: The command output box shows "Cleared ingredient usage history" and the stats box shows "No ingredients were used recently".
+        
     1. Test case: `stats ingredient clear` followed by `stats ingredient recent`<br>
         Expected: The stats box shows "No ingredients were used recently" with no lists shown below.
         
 1. Clear records of ingredient usages when there are no records.
     1. Prerequisites: No records of ingredient usages.
+    
     1. Test case: `stats ingredient clear`<br>
         Expected: The command output box shows "Cleared ingredient usage history". The stats box returns to default panel showing recently made recipes.
           
@@ -1861,7 +1910,7 @@ With 10 being the baseline of AB3, we estimate the effort required to deliver th
 These are the components which have involved significant effort on our part to (re)implement, including significant new features as well as improvements and extensions to existing AB3 features.
 
 #### C.1.1&ensp;GUI
-The GUI of ChopChop was designed to provide a seamless User Experience(UX) for our users; besides adding data to ChopChop, our users are likely to be operating ChopChop while cooking. As such, our User Interface(UI) is designed to handle both mouse and cli inputs to enable users to navigate the application with ease regardless the setting.
+The GUI of ChopChop was designed to provide a seamless User Experience(UX) for our users; besides adding data to ChopChop, our users are likely to be operating ChopChop while cooking. As such, our User Interface(UI) is designed to handle both mouse and cli inputs to enable users to navigate the application with ease regardless the setting. This design diverges vastly from AB3's non-switchable pane, non-resizable, cli only dark-themed design.
 
 In addition, ChopChop's "tab" switching and resizable display ensures that our users have no issues viewing the information they need. This implementation of the GUI, as well as making the colors, fonts and shapes to mesh well together into a welcoming cooking application required significant hours of trial-and-error.
 
