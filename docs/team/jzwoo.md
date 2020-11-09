@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Project Portfolio Page
+title: Woo Jian Zhe's Project Portfolio Page
 ---
 
 ## Project: FaculType
 
-FaculType is a desktop app for managing faculty members and their modules, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI) created with JavaFX. It is written in Java. 
+FaculType is a desktop app for managing faculty members and their modules, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI) created with JavaFX. It is written in Java, and has about 11 kLoC.
 
 Given below are my contributions to the project.
 
