@@ -1,19 +1,13 @@
 package seedu.address.model;
 
-import java.nio.file.Path;
-import java.util.function.Predicate;
-
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.logic.commands.exceptions.UndoRedoLimitReachedException;
 
 /**
- * The API of the Model component.
+ * API of a Model component
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
+    int MODEL_DEFAULT_STATES_LIMIT = 20;
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -35,53 +29,24 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Sets the maximum number of states that the model should keep
      */
-    Path getAddressBookFilePath();
+    void setStatesLimit(int limit);
 
     /**
-     * Sets the user prefs' address book file path.
+     * Commits the current model to the list of model states
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void commit();
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Reverts the current model to the previous one in the list of model states
+     * @throws UndoRedoLimitReachedException if there is nothing left to undo
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    void undo() throws UndoRedoLimitReachedException;
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Changes an undone model back to the previous one
+     * @throws UndoRedoLimitReachedException if there is nothing left to redo
      */
-    boolean hasPerson(Person person);
-
-    /**
-     * Deletes the given person.
-     * The person must exist in the address book.
-     */
-    void deletePerson(Person target);
-
-    /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
-     */
-    void addPerson(Person person);
-
-    /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    void setPerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
-
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void redo() throws UndoRedoLimitReachedException;
 }

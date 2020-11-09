@@ -1,11 +1,14 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.core.Messages.HELP_START;
+import static seedu.address.commons.core.Messages.HELP_SUMMARY;
+import static seedu.address.commons.core.Messages.MESSAGE_HELP_ON_START;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -13,8 +16,9 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.logic.commands.results.HelpCommandResult;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -24,6 +28,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String TITLE = "OneShelf";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -31,21 +36,29 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ItemListPanel itemListPanel;
     private ResultDisplay resultDisplay;
+    private DeliveryListPanel deliveryListPanel;
     private HelpWindow helpWindow;
+    private PreviewWindow previewWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
-    private MenuItem helpMenuItem;
+    private MenuItem startHelpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private MenuItem summaryHelpMenuItem;
+
+    @FXML
+    private StackPane itemListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private StackPane deliveryListPanelPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -62,10 +75,13 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        primaryStage.setResizable(false);
+        primaryStage.setTitle(TITLE);
 
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        previewWindow = new PreviewWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -73,7 +89,8 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(startHelpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(summaryHelpMenuItem, KeyCombination.valueOf("F2"));
     }
 
     /**
@@ -99,7 +116,7 @@ public class MainWindow extends UiPart<Stage> {
          * in CommandBox or ResultDisplay.
          */
         getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
+            if (keyCombination.match(event)) {
                 menuItem.getOnAction().handle(new ActionEvent());
                 event.consume();
             }
@@ -110,13 +127,17 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        itemListPanel = new ItemListPanel(logic.getFilteredAndSortedItemList());
+        itemListPanelPlaceholder.getChildren().add(itemListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
+        resultDisplay.setFeedbackToUser(MESSAGE_HELP_ON_START);
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        deliveryListPanel = new DeliveryListPanel(logic.getFilteredAndSortedDeliveryList());
+        deliveryListPanelPlaceholder.getChildren().add(deliveryListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter();
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -136,14 +157,43 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the help window or focuses on it if it's already opened.
+     * Sets up the start help window page and opens it or focuses on it if it's already opened
      */
     @FXML
-    public void handleHelp() {
+    public void handleHelpStart() {
+        helpWindow.setText(HELP_START);
+        handleHelp();
+    }
+
+    /**
+     * Sets up the summary help window page and opens it or focuses on it if it's already opened
+     */
+    @FXML
+    public void handleHelpSummary() {
+        previewWindow.setPreviewText(HELP_SUMMARY);
+        handlePreview();
+    }
+
+    /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
+    private void handleHelp() {
         if (!helpWindow.isShowing()) {
             helpWindow.show();
         } else {
             helpWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
+    @FXML
+    private void handlePreview() {
+        if (!previewWindow.isShowing()) {
+            previewWindow.show();
+        } else {
+            previewWindow.focus();
         }
     }
 
@@ -160,11 +210,12 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        previewWindow.hide();
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ItemListPanel getItemListPanel() {
+        return itemListPanel;
     }
 
     /**
@@ -179,7 +230,15 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
+                HelpCommandResult helpCommandResult = (HelpCommandResult) commandResult;
+                helpWindow.setText(helpCommandResult.getPopUpContent());
                 handleHelp();
+            }
+
+            if (commandResult.isShowPreview()) {
+                HelpCommandResult helpCommandResult = (HelpCommandResult) commandResult;
+                previewWindow.setPreviewText(helpCommandResult.getPopUpContent());
+                handlePreview();
             }
 
             if (commandResult.isExit()) {

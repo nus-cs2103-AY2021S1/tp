@@ -1,0 +1,7 @@
+{
+  "items": [ {
+    "name": "Item with invalid name field: L@mb",
+    "quantity": "23",
+    "supplier": "NTUC"
+  } ]
+}

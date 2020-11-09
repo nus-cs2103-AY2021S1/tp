@@ -4,46 +4,88 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.delivery.Address;
+import seedu.address.model.delivery.Delivery;
+import seedu.address.model.delivery.DeliveryName;
+import seedu.address.model.delivery.Order;
+import seedu.address.model.delivery.Phone;
+import seedu.address.model.delivery.Time;
+import seedu.address.model.deliverymodel.DeliveryBook;
+import seedu.address.model.deliverymodel.ReadOnlyDeliveryBook;
+import seedu.address.model.inventorymodel.InventoryBook;
+import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
+import seedu.address.model.item.Item;
+import seedu.address.model.item.Metric;
+import seedu.address.model.item.Name;
+import seedu.address.model.item.Quantity;
+import seedu.address.model.item.Supplier;
+import seedu.address.model.item.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code InventoryBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+    public static Item[] getSampleItems() {
+        return new Item[] {
+            new Item(new Name("Milk"),
+                new Quantity("5"),
+                new Supplier("SHENG SHIONG"),
+                getTagSet("Beverage"),
+                new Quantity("30"),
+                new Metric("L")),
+            new Item(new Name("Tuna"),
+                new Quantity("24"),
+                new Supplier("NTUC"),
+                getTagSet("meat"),
+                new Quantity("50"),
+                new Metric("KG")),
+            new Item(new Name("Broccoli"),
+                new Quantity("50"),
+                new Supplier("NTUC"),
+                getTagSet("Vegetable"),
+                new Quantity("80"),
+                new Metric("KG")),
+            new Item(new Name("Chicken"),
+                new Quantity("72"),
+                new Supplier("NTUC"),
+                getTagSet("meat"),
+                new Quantity("50"),
+                new Metric("KG"))
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+    public static Delivery[] getSampleDeliveries() {
+        return new Delivery[]{
+            new Delivery(new DeliveryName("Damith"),
+                new Phone("91231231"),
+                new Address("Blk 999 Bukit Batam Jln Pondok Indah No. 55"),
+                new Order("1x Laksa, 1x Ice Kopi"),
+                Time.timeFromMinutes("0")),
+            new Delivery(new DeliveryName("Aileen"),
+                new Phone("81111111"),
+                new Address("The View Orchard Apartment No. 12"),
+                new Order("5x Mee Goreng, 5x Prata plain"),
+                Time.timeFromMinutes("8")),
+            new Delivery(new DeliveryName("Alex Yeoh"),
+                new Phone("87438807"),
+                new Address("Blk 30 Geylang Street 29, #06-40"),
+                new Order("1x Prata"),
+                Time.timeFromMinutes("30"))
+        };
+    }
+
+    public static ReadOnlyDeliveryBook getSampleDeliveryBook() {
+        DeliveryBook sampleDb = new DeliveryBook();
+        for (Delivery sampleDelivery : getSampleDeliveries()) {
+            sampleDb.addDelivery(sampleDelivery);
+        }
+        return sampleDb;
+    }
+
+    public static ReadOnlyInventoryBook getSampleInventoryBook() {
+        InventoryBook sampleAb = new InventoryBook();
+        for (Item sampleItem : getSampleItems()) {
+            sampleAb.addItem(sampleItem);
         }
         return sampleAb;
     }
