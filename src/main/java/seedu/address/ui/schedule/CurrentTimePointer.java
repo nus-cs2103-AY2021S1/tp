@@ -6,6 +6,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.ui.UiPart;
 
+/*
+Code adapted from AY2021S1-CS2103T-F12-2/tp (https://github.com/AY2021S1-CS2103T-F12-2/tp)
+ */
 public class CurrentTimePointer extends UiPart<Region> {
     private static final String FXML = "schedule/CurrentTimePointer.fxml";
 

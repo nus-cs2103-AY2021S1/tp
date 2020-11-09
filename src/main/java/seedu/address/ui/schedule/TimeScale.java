@@ -15,6 +15,9 @@ import javafx.scene.layout.StackPane;
 import seedu.address.model.task.Task;
 import seedu.address.ui.UiPart;
 
+/*
+Code adapted from AY2021S1-CS2103T-F12-2/tp (https://github.com/AY2021S1-CS2103T-F12-2/tp)
+ */
 public class TimeScale extends UiPart<Region> {
     private static final String FXML = "schedule/TimeScale.fxml";
 

@@ -71,6 +71,7 @@ public class DisplayPanel extends UiPart<Region> {
         super(FXML);
         this.logic = logic;
         this.tagColors = new HashMap<>();
+        tagColors.put("Untagged", "#02B68F");
         fillInnerPart();
         listenerOnChange();
     }
