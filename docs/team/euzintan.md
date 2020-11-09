@@ -14,8 +14,8 @@ Interface (GUI).
 
 - Code contributed: [tP Code Dashboard]()
 
-- **Class Implementation**:
-- **New Feature**: Created all Tutorial Group related features, including addTG, deleteTG, editTG, findTG and viewStudent.
+- **Class Implementation**: Planned and created all 
+- **New Feature**: Implemented all Tutorial Group related features, including addTG, deleteTG, editTG, findTG and viewStudent.
 This includes the Parsers for each of the commands as well.
     - What it does: Allows TAs to add different Tutorial Groups to different Modules
     - Justifications: TAs could be teaching multiple Tutorial Groups across different Modules. This feature helps them
@@ -25,4 +25,3 @@ This includes the Parsers for each of the commands as well.
 - **Testing**: 
     - Wrote all test cases for all classes related to Tutorial Groups, its commands and parsers.
 -**Other Changes:**  
-    
