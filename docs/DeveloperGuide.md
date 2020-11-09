@@ -275,7 +275,8 @@ of creating a new template and returns a new AddTemplateCommand object.
 The template list is stored in the data file folder as a txt file.
 
 ### 4.4. GoalBook
-Author: Nauman Sajid
+(Nauman Sajid)  
+
 Calo has been designed to ensure that a user is accountable for this own progress. A key aspect of this accountability is
 ensuring that the user sets clear goals and meets them. To achieve this we have created a goalBook which is similar
 to the exerciseBook. The goalBook helps the user track and update his goals.
@@ -320,19 +321,19 @@ The below sequence diagram details the execution flow:
 ![UpdateSequenceDiagram](images/UpdateSequenceDiagram.png)
 
 Here are the steps:
-Step 1: `LogicManager` calls its  `execute` method, supplying the argument "update 1 d/30 c/260 m/chest t/home", which was entered by the user.
-Step 2: `LogicManager` calls the `exerciseBookParser`'s `parseCommand` method, supplying the user input.
+Step 1: `LogicManager` calls its  `execute` method, supplying the argument "update 1 d/30 c/260 m/chest t/home", which was entered by the user.  
+Step 2: `LogicManager` calls the `exerciseBookParser`'s `parseCommand` method, supplying the user input.  
 Step 3: In `parseCommand`, the user input is parsed and its command word (`update`) is matched to the `UpdateCommandParser`. `UpdateCommandParser`'s `parse` method is called, passing in the parsed arguments.
 Step 4: In `UpdateCommandParser`'s `parse` method, a `EditExerciseDescriptor` object
 is created. Each field of the parsed arguments are added to the `EditExerciseDescriptor` object. `UpdateCommandParser` then creates an `UpdateCommand` object containing the index of the `exercise` to edit and the `EditExerciseDescriptor` object. In the sequence diagram, the argument `index` refers
 to the `Index` object representing the index of the first exercise, while `editExerciseDescriptor`
 refers to the `EditExerciseDescriptor` object that contains the data (from the parsed
-arguments) to update.
-Step 5: `LogicManager` obtains the `UpdateCommand` object, which is referenced by the `command` variable. It then executes the `execute` method of  the `UpdateCommand` object.
+arguments) to update.  
+Step 5: `LogicManager` obtains the `UpdateCommand` object, which is referenced by the `command` variable. It then executes the `execute` method of  the `UpdateCommand` object.  
 Step 6: In the `execute` method, the `UpdateCommand` object calls `getFilteredExerciseList` to 
-to obtain `lastShownExerciseList`. The `Exercise` to edit is retrieved from the `lastShownExerciseList` using the `index`, and assigned to `exerciseToEdit`. Another `Exercise` object, named `editedExercise` is created to hold the data to be updated. The `UpdateCommand` object then calls the `setExercise` method of `Model`, with `exerciseToEdit` and `editedExercise`.
+to obtain `lastShownExerciseList`. The `Exercise` to edit is retrieved from the `lastShownExerciseList` using the `index`, and assigned to `exerciseToEdit`. Another `Exercise` object, named `editedExercise` is created to hold the data to be updated. The `UpdateCommand` object then calls the `setExercise` method of `Model`, with `exerciseToEdit` and `editedExercise`.  
 Step 7: A new `CommandResult` is created containing the message to be displayed to the user,
-which is "Edited Exercise: Name: running Description: 30 Date: 10-12-2020 Calories: 260 Muscles worked:[chest] Tags: [home]". This `CommandResult` is returned to `LogicManager`.
+which is "Edited Exercise: Name: running Description: 30 Date: 10-12-2020 Calories: 260 Muscles worked:[chest] Tags: [home]". This `CommandResult` is returned to `LogicManager`.  
 
 <div markdown="span" class="alert alert-info">:information_source: Note: The activation bar
 of commandResult should be joined to the side of the box representing the commandResult instance.
@@ -388,12 +389,12 @@ The sequence diagram below demonstrates how the `find` command works:
 
 How the `find` command works:
 
-Step 1: `LogicManager` executes the user input, using `ExerciseBookParser` to realise this is a `find` command, and create a new `FindCommandParser` object.
-Step 2: The `FindCommandParser` object parses the user-entered arguments, and creates a `PropertiesMatchPredicate`.
-Step 3: This `PropertiesMatchPredicate` object is  then used to construct a new `FindCommand` object, returned to `LogicManager`.
-Step 4: `LogicManager` calls the `execute` method of the created `FindCommand`, which filters for `Exercise` objects that evaluate the predicate created previously to be true.
+Step 1: `LogicManager` executes the user input, using `ExerciseBookParser` to realise this is a `find` command, and create a new `FindCommandParser` object.  
+Step 2: The `FindCommandParser` object parses the user-entered arguments, and creates a `PropertiesMatchPredicate`.  
+Step 3: This `PropertiesMatchPredicate` object is  then used to construct a new `FindCommand` object, returned to `LogicManager`.  
+Step 4: `LogicManager` calls the `execute` method of the created `FindCommand`, which filters for `Exercise` objects that evaluate the predicate created previously to be true.  
 It then returns a new CommandResult object reflecting the status of the execution. These changes are eventually reflected in the GUI.
-The `find` command therefore searches through the existing Exercise List and then displays the relevant search results in the GUI’s Exercise List.
+The `find` command therefore searches through the existing Exercise List and then displays the relevant search results in the GUI’s Exercise List.  
 
 To search for the most recent exercise with the user-specified `Name`, we use `RecallCommandParser` to parse the user input and create a new `RecallCommand` object with the parsed input.
 The `RecallCommand` then goes through the existing Exercise List to find the most recent date, creates the `TheMostRecentDatePredicate`, and updates the GUI display when executed.
@@ -403,12 +404,10 @@ The sequence diagram below demonstrates how the `recall` command works:
 
 How the `recall` command works:
 
-Step 1: `LogicManager` executes the user input, using `ExerciseBookParser` to realise this is a `recall` command, and create a new `RecallCommandParser` object.
-
-Step 2: The `RecallCommandParser` object parses the user-entered arguments, and creates a `RecallCommand` object which is returned to `LogicManager`.
-
+Step 1: `LogicManager` executes the user input, using `ExerciseBookParser` to realise this is a `recall` command, and create a new `RecallCommandParser` object.  
+Step 2: The `RecallCommandParser` object parses the user-entered arguments, and creates a `RecallCommand` object which is returned to `LogicManager`.  
 Step 3: `LogicManager` calls the `execute` method of the created `RecallCommand`, which creates the `TheMostRecentDatePredicate` and filters for `Exercise` objects that evaluate the predicate created previously to be true.
-It then returns a new CommandResult object reflecting the status of the execution. These changes are eventually reflected in the GUI.
+It then returns a new CommandResult object reflecting the status of the execution. These changes are eventually reflected in the GUI.  
 
 The `recall` command therefore searches for the most recent exercise with the specified name in the existing Exercise List and then displays the relevant search results in the GUI.
 
