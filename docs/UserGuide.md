@@ -615,6 +615,8 @@ which is in the same directory as your jar file. This is the strict template to 
 
 * You may use the sample resume by keying in `sample` as filepath.<br>
 
+* More info [here](https://ay2021s1-cs2103t-w13-1.github.io/tp/DeveloperGuide.html#331-application-management-system).
+
 </div>
 
 Example:
@@ -830,26 +832,26 @@ Example Scenario:
 
 | Action          | Format, Examples                                                                                                                                        |
 |-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **ListStaff**  | `list s-`   
-| **AddStaff**    | `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
-| **FindStaff**   | `find s- KEYWORD [MORE_KEYWORDS]`<br> e.g., `find s- James Jake`                                                                 |
+| **List Staff**  | `list s-`   
+| **Add Staff**    | `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `adds n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
+| **Find Staff**   | `find s- KEYWORD [MORE_KEYWORDS]`<br> e.g., `find s- James Jake`                                                                 |
 | **View**        | `view INDEX`<br> e.g., `view 2`                                                                                            |
-| **DeleteStaff** | `dels INDEX`<br> e.g., `dels 1`         
-| **EditStaff**   | `edits INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edits 2 n/James Lee e/jameslee@example.com` |
-| **AddLeave**    | `addl INDEX l/d/DATE [d/DATE]` <br> e.g., `addl 2 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`                                                   |
-| **DeleteLeave** | `dell INDEX d/DATE`<br> e.g., `dell 1 d/10/10/2020`                                                                                       |
-| **ClearStaffDatabase** | `clear s-`         |
+| **Delete Staff** | `dels INDEX`<br> e.g., `dels 1`         
+| **Edit Staff**   | `edits INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edits 2 n/James Lee e/jameslee@example.com` |
+| **Add Leave**    | `addl INDEX l/d/DATE [d/DATE]` <br> e.g., `addl 2 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`                                                   |
+| **Delete Leave** | `dell INDEX d/DATE`<br> e.g., `dell 1 d/10/10/2020`                                                                                       |
+| **Clear Staff Database** | `clear s-`         |
 
 ### 5.3. Applicant
 
 | Action                | Format, Examples                                                                                                 |
 |-----------------------|--------------------------------------------------------------------------------------------|
 | **List** | `list a-`   
-| **AddApplicant**      | `adda` <br> e.g., `adda n/John Doe p/98765432 e/jd@example.com a/John street, block 123, #01-01` |
+| **Add Applicant**      | `adda` <br> e.g., `adda n/John Doe p/98765432 e/jd@example.com a/John street, block 123, #01-01` |
 | **Find** | `find a- KEYWORD [MORE_KEYWORDS]`<br> e.g., `find a- James Jake`                                                                 |
 | **View** | `view INDEX`<br> e.g., `view 2`                                                                                            |
-| **DeleteApplicant**   | `dela` <br> e.g., `dela 1`                                                                       |
-| **AddApplication**    | `addapp INDEX [filepath]` <br> e.g., `addapp 1 C:\Users\Public\Downloads\resume.txt`             |
-| **DeleteApplication** | `delapp INDEX` <br> e.g., `delapp 1`                                                       |
-| **SetAppStatus**      | `setas INDEX as/NEW_APPLICATION_STATUS` <br> e.g., `setas 1 as/processing`                               |
-| **ClearApplicantDatabase** | `clear a-`         |
+| **Delete Applicant**   | `dela` <br> e.g., `dela 1`                                                                       |
+| **Add Application**    | `addapp INDEX [filepath]` <br> e.g., `addapp 1 C:\Users\Public\Downloads\resume.txt`             |
+| **Delete Application** | `delapp INDEX` <br> e.g., `delapp 1`                                                       |
+| **Set AppStatus**      | `setas INDEX as/NEW_APPLICATION_STATUS` <br> e.g., `setas 1 as/processing`                               |
+| **Clear Applicant Database** | `clear a-`         |
