@@ -454,6 +454,8 @@ Staff List.
 
 ### 3.4. Applicant commands
 
+Staff commands give you the ability to keep track of your applicants which help you make good recruitment decisions.
+
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Note:**<br>
