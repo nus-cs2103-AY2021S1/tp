@@ -389,16 +389,15 @@ Let's say you have a service with the following information you want to add into
 
 Adding the above service:
 1. Type `addsvc t/Microdermabrasion du/2.0 p/68.00` into the *Command Box*.
-2. Press `Enter` to execute.
+1. Press `Enter` to execute.
 
 Outcome:
 1. The *Result Display* will show success message.
-2. Homerce will switch to the *Services Tab*.
+1. Homerce will switch to the *Services Tab*.
+1. You can now see all your services including the newly added service.
 
 ![addsvc](images/addsvc.png) <br>
 *Figure 9 - GUI outcome for `addsvc`*
-
-3. You can now see all your services including the newly added service.
 
 #### 4.2.3. Edit a service: `editsvc`
 
@@ -424,16 +423,15 @@ its current service title. You can follow these instructions.
 
 Editing an existing service:
 1. Type `editsvc 1 t/Microderm Abrasion` into the *Command Box*.
-2. Press `Enter` to execute.
+1. Press `Enter` to execute.
 
 Outcome:
 1. The *Result Display* will show a success message.
-2. Homerce will switch to the *Services Tab*.
+1. Homerce will switch to the *Services Tab*.
+1. You can now see all your services including the edited service.
 
 ![editsvc](images/editsvc.png) <br>
 *Figure 10 - GUI outcome for `editsvc`*
-
-3. You can now see all your services including the edited service.
 
 #### 4.2.4. Delete a service: `deletesvc`
 
@@ -463,16 +461,15 @@ instructions.
 
 Deleting an existing service:
 1. Type `deletesvc 3` into the *Command Box*.
-2. Press `Enter` to execute.
+1. Press `Enter` to execute.
 
 Outcome:
 1. The *Result Display* will show a success message.
-2. Homerce will switch to the *Services Tab*.
+1. Homerce will switch to the *Services Tab*.
+1. You can now see that the service that was previously on the third index in the service list has been deleted from Homerce.
 
 ![deletesvc](images/deletesvc.png) <br>
 *Figure 11 - GUI outcome for `deletesvc`*
-
-3. You can now see that the service that was previously on the third index in the service list has been deleted from Homerce.
 
 #### 4.2.5. Find a service by keyword: `findsvc`
 
@@ -497,16 +494,15 @@ follow these instructions.
 
 Finding a service:
 1. Type `findsvc t/nail` into the *Command Box*.
-2. Press `Enter` to execute.
+1. Press `Enter` to execute.
 
 Outcome:
 1. The *Result Display* will show a success message.
-2. Homerce will switch to the *Services Tab*.
+1. Homerce will switch to the *Services Tab*.
+1. You can now see the services in your list of services that contain nail in its title.
 
 ![findsvc](images/findsvc.png) <br>
 *Figure 12 - GUI outcome for `findsvc`*
-
-3. You can now see the services in your list of services that contain nail in its title.
 
 #### 4.2.6. List all services: `listsvc`
 
@@ -519,16 +515,15 @@ Let's say you are in another tab and want to look at the list of all services. Y
 
 Listing all services:
 1. Type `listsvc` into the *Command Box*.
-2. Press `Enter` to execute.
+1. Press `Enter` to execute.
 
 Outcome:
 1. The *Result Display* will show a success message.
-2. Homerce will switch to the *Services Tab*.
+1. Homerce will switch to the *Services Tab*.
+1. You can now see all your services.
 
 ![listsvc](images/listsvc.png) <br>
 *Figure 13 - GUI outcome for `listsvc`*
-
-3. You can now see all your services.
 
 #### 4.2.7. Clear all services: `clearsvc`
 
@@ -551,16 +546,15 @@ follow these instructions.
 
 Clearing all services:
 1. Type `clearsvc` into the *Command Box*.
-2. Press `Enter` to execute.
+1. Press `Enter` to execute.
 
 Outcome:
 1. The *Result Display* will show a success message if you have no services scheduled in your upcoming appointments.
-2. Homerce will switch to the *Services Tab*.
+1. Homerce will switch to the *Services Tab*.
+1. You can see that the list of services is now empty.
 
 ![clearsvc](images/clearsvc.png) <br>
 *Figure 14 - GUI outcome for `clearsvc`*
-
-3. You can see that the list of services is now empty.
 
 ### 4.3. Appointment Manager
 
@@ -676,7 +670,6 @@ Outcome:
 ![findapt](images/findapt.png) <br>
 *Figure 17 - GUI outcome for `findapt`*
 
-
 #### 4.3.5. Edit an appointment: `editapt`
 
 When a new or existing client calls to edit a booking he or she had made, use this
@@ -742,7 +735,6 @@ Outcome:
 
 ![done](images/doneapt.png) <br>
 *Figure 19 - GUI outcome for `done`*
-
 
 #### 4.3.7. Mark an appointment as not done: `undone`
 
