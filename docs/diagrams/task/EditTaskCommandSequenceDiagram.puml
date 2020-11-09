@@ -1,0 +1,74 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TodoListParser" as TodoListParser LOGIC_COLOR
+participant ":EditTaskParser" as EditTaskParser LOGIC_COLOR
+participant "c:EditTaskCommand" as EditTaskCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(editTask)
+activate LogicManager
+
+LogicManager -> TodoListParser : parseCommand(editTask)
+activate TodoListParser
+
+create EditTaskParser
+ContactListParser -> EditTaskParser
+activate EditTaskParser
+
+EditTaskParser --> ContactListParser
+deactivate EditTaskParser
+
+ContactListParser -> EditTaskParser :parse(commandArgument)
+activate EditTaskParser
+
+ref over EditTaskParser: Create EditContactDescriptor to store edited task details
+
+create EditTaskCommand
+EditTaskParser -> EditTaskCommand
+activate EditTaskCommand
+
+EditTaskCommand --> EditTaskParser: t
+deactivate EditTaskCommand
+
+EditTaskParser --> ContactListParser: t
+deactivate EditTaskParser
+
+EditTaskParser -[hidden]-> EditTaskCommand
+destroy EditTaskParser
+
+ContactListParser --> LogicManager: t
+deactivate ContactListParser
+
+LogicManager -> EditTaskCommand : execute(model)
+activate EditTaskCommand
+
+EditTaskCommand -> Model : setContact(targetContact, editedContact)
+activate Model
+
+Model --> EditTaskCommand
+deactivate Model
+
+create CommandResult
+EditTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditTaskCommand: r
+deactivate CommandResult
+
+EditTaskCommand --> LogicManager: r
+deactivate EditTaskCommand
+
+EditTaskCommand -[hidden]-> LogicManager
+destroy EditTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

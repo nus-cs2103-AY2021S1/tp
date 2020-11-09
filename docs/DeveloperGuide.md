@@ -1253,7 +1253,6 @@ Given below is the sequence diagram showing the interaction between `FindContact
 ![FindContactCriteriaSequenceDiagram](images/Contact/FindContactCriteriaSequenceDiagram.png)
 
 
-
 #### Design consideration:
 
 ##### Aspect: Storing of predicates in `FindContactCriteria`
@@ -1286,41 +1285,103 @@ Given below is the sequence diagram showing the interaction between `FindContact
   * Cons: Increases the complexity of implementing `FindContactParser` which has to validate and parse multiple search 
           parameters provided.
 
+#### Sort Contacts Feature
 
+The sort contact feature allows the user to sort the contacts based on name lexicographically
+from the lowest to the highest value.
+
+In addition this feature also supports the operation of reversing the list. The order will be the opposite of the order
+given above.
+
+This feature is facilitated by the following classes:
+  * `SortContactParser`:
+    * It implements `SortContactParser#parse()` to parse and validate the user input
+    * It creates comparator objects using the command arguments and reversing it if necessary
+
+  * `SortContactCommand`:
+    * It implements `SortContactCommand#execute()` to sort the `ContactList` in `Model`
+    * It sorts the `ContactList` by invoking `Model#updateSortedContactList()`
+
+  * `ContactComparatorByName`:
+    * It implements `Comparator#compare()` to compare 2 contacts based on their name
+
+Given below is an example usage scenario and how the mechanism for sorting contacts behaves at each step:
+
+Step 1. `LogicManager` receives the user input `sortcontact` from `Ui`
+
+Step 2. `LogicManager` calls `ContactListParser#parseCommand()` to create a `FindContactParser`
+
+Step 3. Then, `ContactListParser` will call the `SortContactParser#parse()` method to parse the command arguments
+
+Step 4. This creates the `ContactComparatorByName` based on the command arguments (if it's reversed or not)
+
+Step 4. Finally, a `SortContactCommand` is created and `SortContactCommand#execute()` will be invoked by `LogicManager`
+
+Step 5. The `Model#updateSortedContactList()` operation exposed in the `Model` interface is invoked to update the displayed todo list
+by updating the `Model#sortedContactList` with the new comparator.
+
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+In addition, if the user wants to reverse order, the `ContactComparatorByName` will be updated in the `SortContactParser#parse()`
+using the built-in java method `Comparator#reversed()`.
 
 
 ### 3.3 TodoList feature
+
+#### Brief Overview
+
+We design the TodoList to help the user manage their tasks. It is designed specifically to track
+the things that the user needs to accomplish. The tracking is quite detailed but still prioritizes
+user's freedom and flexibility in managing their task.
+
+TodoList stores all of the user's tasks in a list that can be seen under **Tasks** tab in the GUI. Each entry
+in the list shows the details of a task and some GUI enhancements are also added. Furthermore, TodoList 
+shows some statistics about the user's tasks to give the user a general overview of how they are doing.
 
 #### Implementation
 
 The TodoList feature has two main component :
 
 * **Containee component** (Task-related classes)
-  * `Class Task` - container class to store information about a task
-  * `Class TaskName` - wrapper class to store the name of a task
-  * `Class Date` - wrapper class to store the date/deadline of a task
-  * `Enum Priority` - enum class to represent priority of a task
-  * `Enum Status` - enum class to represent the progress status of a task
+
+![TaskClassDiagram](images/Task/TaskClassDiagram.png)
+
+  * `Task` - container class to store information about a task
+  * `TaskName` - wrapper class to store the name of a task
+  * `Date` - wrapper class to store the date/deadline of a task
+  * `Priority` - enum class to represent priority of a task
+  * `Status` - enum class to represent the progress status of a task
+  * `LocalDate` - built-in class to represent the date creation of the task
 
 * **Container component** (List-like classes)
-  * Class `UniqueTodoList` - container class for storing tasks
-  * Class `TodoList` - wrapper class for UniqueTodoList
-  * Interface `ReadOnlyTodoList` - interface for displaying the list on the GUI
+
+  * `UniqueTodoList` - container class for storing tasks
+  * `TodoList` - wrapper class for UniqueTodoList
+  * `ReadOnlyTodoList` - interface for displaying the list on the GUI
 
 ##### Containee Component
 
-The Task class mainly functions as a class to store all the informations related to a task i.e. name, tag, priority,
-date, and status. It does not have any subclasses.
+The `Task` mainly functions as a class to store all the information related to a task which are name, tag, priority,
+date, status, and the date created. In particular, this class does not have subclasses.
 
-The Task class supports the following operations :
+These fields are optional in the `Task` class:
+
+* `Tag` - represented as empty by an empty `HashSet`
+* `Priority` - represented as empty by `null`
+* `Date` - represented as empty by `null`
+
+The `Task` class supports the following operations :
 
 * Setters for all the field
+  * The setter supports immutability for better testing.
 * Getters for all the field
+  * Getter returns an `Optional` object.
 * `Task#isSameTask()` - checks if two tasks are the same i.e. have the same name
 (weaker than Task#equals() which requires all the fields to be the same)
 * `Task#hasSameTag()` - checks if the task has the specified tag
 * `Task#hasSamePriority()` - checks if the task has the specified priority
 * `Task#hasSameDate()` - checks if the task has the specified date
+* The methods that are not mentioned here are used specifically for the GUI.
 
 ##### Container Component
 
@@ -1374,8 +1435,264 @@ TodoList implements ReadOnlyTodoList which require the following operation :
 
   Alternative 1 is chosen since we prioritize user freedom to create custom type for the task.
 
-  
+##### Aspect: Optional fields in `Task`
 
+* Alternative 1 (current): <br/>
+  All fields does not need to be compulsory. In other word, the field can be null or empty.
+
+  Pros :
+  * Add more flexibility to the user since the nature of specified task might not have some of the required fields.
+
+  Cons :
+  * Harder to implement i.e. need to check if the field is present or not everytime it is used.
+  * More prone to `NullPointerException`
+
+* Alternative 2: <br/>
+  All fields should be compulsory. In other word, the field cannot be null or empty.
+
+  Pros :
+  * Easier to implement
+  * Avoid getting a `NullPointerException` in runtime.
+
+  Cons :
+  * User needs to input all field when creating a task, which might not be convenient.
+
+  Alternative 1 is chosen since we prioritize flexibility in inputting details of a task.
+
+#### Implemented Commands
+
+In general, the commands for TodoList have similar implementation with ModuleTracker.
+It extends from an abstract class `Command` and implements the method `execute()` to support
+polymorphism when executing all the commands.
+
+The details of each command will be explained in the respective sections of each command.
+
+Below are the list of the all the implemented commands for TodoList:
+
+* `AddTaskCommand` - add a task to the list
+* `DeleteTaskCommand` - delete a task from the list
+* `EditTaskCommand` - edit a task in the list
+* `SortTaskCommand` - sort the list based on criteria
+* `FindTaskCommand` - find tasks based on keywords
+* `CompleteTaskCommand` - label a task as completed
+* `ResetTaskCommand` - reset task label to not completed
+* `ClearTaskCommand` - clear the list
+
+#### Add Task Feature
+
+The add task feature is the most fundamental feature in the TodoList as it allows the user to add
+a task to the list. The implementation is similar compared to the other big feature. In addition,
+this feature does not allow the user to add duplicate task where 2 tasks are considered to be
+duplicates (or the same) if they have the exact same name (case-insensitive).
+
+This feature creates and adds a new `Task` into the `TodoList` if the task does not already exist. 
+
+This feature is facilitated by the following classes:
+
+ * `AddTaskParser`:
+   * It implements `AddTaskParser#parse()` to parse and validate the user arguments to create a new `Task`.
+
+ * `AddTaskCommand`:
+   * It implements `AddTaskCommand#execute()` which executes the addition of the new `Task` into `Model`.
+
+Given below is an example usage scenario and how the mechanism for adding task behaves at each step:
+
+Step 1. `LogicManager` receives the user input `addtask n/Finish Lab Report t/LAB t/CS2100 ` from `Ui`
+
+Step 2. `LogicManager` calls `TodoListParser#parseCommand()` to create an `AddTaskParser`
+
+Step 3. Additionally, `TodoListParser` will call the `AddTaskParser#parse()` method to parse the command arguments
+
+Step 4. This creates an `AddTaskCommand` and `AddTaskCommand#execute()` will be invoked by `LogicManager` to execute the command to add the `Task`
+
+Step 5. The `Model#addTask()` operation exposed in the `Model` interface is invoked to add the new `Task`
+
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Given below is the sequence diagram of how the operation to add a `Task` works:
+
+![AddTaskSequenceDiagram](images/TodoList/AddTaskSequenceDiagram.png)
+Figure Sequence diagram for the execution of `AddTaskCommand`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddTaskCommand` and `AddTaskParser` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+#### Delete Task Feature
+
+The delete task feature is a counterpart feature from the previous add task feature. This feature allows the user
+to delete a task based on the index of the task from the **currently** displayed list.
+
+This feature deletes an existing `task` using the index of the `Task` on the displayed `TaskList`.
+This feature is facilitated by the following classes: 
+
+  * `DeleteTaskParser`:
+    * It implements `DeleteTaskParser#parse()` to parse and validate the `Task` index
+
+  * `DeleteTaskCommand`:
+    * It implements `DeleteTaskCommand#execute()` to delete the `Task` from `Model`
+
+After the user input has been parsed by `DeleteTaskParser`, `LogicManager` will execute the delete operation by invoking
+`DeleteTaskCommand#execute()`. `The DeleteTaskCommand#execute()` will get the target `Task` from the `model`.
+Then delete the target `Task` by invoking the `Model#deleteTask()` method exposed in the `Model` interface.
+
+The sequence diagram for this feature should be similar with figure
+
+#### Edit Task Feature
+
+The edit task feature is one of the feature that prioritizes user convenience. With this feature user
+does not have to delete a task and re-add the task when they mistakenly input the details of a task.
+Furthermore, the edit task feature also supports the operation to delete a detail from a task.
+
+The edit task feature edits an existing `Task` in the `TodoList` using `Task` details provided by the user.
+This feature is facilitated by the following classes:
+
+  * `EditTaskParser`: 
+    * It implements `EditTaskParser#parse()` to parse and validate the provided `Task` details and `Task` index
+
+  * `EditTaskDescriptor`:
+    * It stores the `Task` details which will be used to edit the target `Task`
+
+  * `EditTaskCommand`:
+    * It implements `EditTaskCommand#execute()` to edit the task in `Model`
+
+Given below is an example usage scenario and how the mechanism for editing a `Task` behaves at each step:
+
+Step 1. `LogicManager` receives the user input `edittask 1 n/Submit essay d/2020-10-10 t/ES2660` from `Ui`
+
+Step 2. `LogicManager` calls `TodoListParser#parseCommand()` to create an `EditTaskParser`
+
+Step 3. Additionally, `TodoListParser` will call the `EditTaskParser#parse()` method to parse the command arguments
+
+Step 4. This creates an `EditTaskCommand` and `EditTaskCommand#execute()` will be invoked by `LogicManager` to edit the target `Task`
+
+Step 5. The `Model#setTask()` operation exposed in the `Model` interface is invoked to replace the target `Task` with the edited `Task`
+
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Given below is the sequence diagram of how the operation to edit a `Task` works:
+![EditTaskSequenceDiagram](images/TodoList/EditTaskCommandSequenceDiagram.png)
+
+In addition, as mentioned previously the edit task feature support the operation to delete a detail from
+the task. The steps are given below:
+
+Step 1. `EditTaskParser#parse()` will check if a given prefix has an empty description.
+
+Step 2. If the given prefix has an empty description, `EditTaskParser#parse()` will set a boolean inside the `editTaskDescriptor` to true for that particular prefix.
+
+Step 3. Then `EditTaskCommand#execute()` will edit the detail of a task based on the boolean inside the `editTaskDescriptor`.
+
+Step 4. If the boolean is true for a specific prefix, the detail of the task represented by the prefix will be deleted from the task, otherwise the task is edited normally.
+
+Step 5. The following steps should continue from step 5 from above sequence.
+
+Given below is the activity diagram of how the above steps work:
+![EditTaskDeleteFieldActivityDiagram](images/TodoList/EditTaskDeleteFieldActivityDiagram.png)
+
+#### Design Consideration
+
+##### Aspect: Descriptor for Both Deleting and Editing a Field
+
+* Alternative 1 (current): <br/>
+  Add a boolean variable inside the descriptor to indicate if a detail should be deleted or leaves as it is.
+
+  Pros :
+  * Easier to implement i.e only need to add a boolean variable and some setter and getter method.
+  * The boolean can be used to facilitate the guard clause when editing a task.
+
+  Cons :
+  * Descriptor has more than 1 responsible because it does not just edit but also need to consider deleteing
+    a field.
+
+* Alternative 2 : <br/>
+  Use a list to tell the `EditTaskCommand` which field to delete.
+
+  Pros :
+  * More intuitive since we just simply add the prefix representing the details that we want to delete.
+
+  Cons :
+  * Will be harder to implement :
+    * Need to pass more parameters to `EditTaskCommand`.
+    * Might not be consistent to pass prefixes to `EditTaskCommand`.
+  * Might take more memory space.
+  * Might take more time to execute since we need to check if each prefix exists in the list.
+
+  Alternative 1 is chosen since it cause minor changes to the overall code, however we might try to implement alternative
+  2 in the future.
+
+#### Sort Tasks Feature
+
+The sort task feature is one of the vital features in TodoList because it allows the user to effectively and
+efficiently manage their tasks. This is the case because in general people will execute tasks in an order.
+This feature lets the user know which task is the most important, the closest to deadline, and also by name.
+
+This feature can sort the list based on these criteria: 
+
+* `Name` - sorts the list lexicographically with case ignored, from the lowest to the highest based on the task' name
+* `Priority`- sorts the list from the highest priority to the lowest priority based on the task' priority
+* `Date`. - sorts the list from the closest date to the latest date based on the task's deadline
+
+In addition this feature also supports the operation of reversing the list. The order will be the opposite of the order
+given above.
+
+This feature is facilitated by the following classes:
+  * `SortTaskParser`:
+    * It implements `SortTaskParser#parse()` to parse and validate the user input
+    * It creates comparator objects using the command arguments and reversing it if necessary
+    
+  * `SortTaskCommand`:
+    * It implements `SortTaskCommand#execute()` to sort the `TodoList` in `Model`
+    * It sorts the `TodoList` by invoking `Model#updateSortedTodoList()`
+
+  * `TaskComparatorByName`:
+    * It implements `Comparator#compare()` to compare 2 tasks based on their name
+    * It uses the `TaskNameComparator` class
+
+  * `TaskComparatorByPriority`:
+    * It implements `Comparator#compare()` to compare 2 tasks based on their priority
+
+  * `TaskComparatorByDate`:
+      * It implements `Comparator#compare()` to compare 2 tasks based on their date
+      * It uses the `DateComparator` class
+
+In addition the classes below are uses by the comparator classes mentioned above:
+  * `TaskNameComparator`:
+    * It implements `Comparator#compare()` for comparing 2 `TaskName` objects
+  
+  * `DateComparator`:
+    * It implements `Comparator#comapre()` for comparing `Date` objects
+
+Given below is the class diagram describing the comparators:
+![TaskComparatorClassDiagram](images/Task/TaskComparatorClassDiagram.png)
+
+Given below is an example usage scenario and how the mechanism for sorting tasks behaves at each step:
+
+Step 1. `LogicManager` receives the user input `sorttask priority` from `Ui`
+
+Step 2. `LogicManager` calls `TodoListParser#parseCommand()` to create a `FindTaskParser`
+
+Step 3. Then, `TodoListParser` will call the `SortTaskParser#parse()` method to parse the command arguments
+
+Step 4. This creates the correct `Comparator<Task>` based on the command arguments
+
+Step 4. Finally, a `SortTaskCommand` is created and `SortTaskCommand#execute()` will be invoked by `LogicManager`
+
+Step 5. The `Model#updateSortedTodoList()` operation exposed in the `Model` interface is invoked to update the displayed todo list
+by updating the `Model#sortedTodoList` with the new comparator.
+
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+![SortTaskCommandSequenceDiagram](images/TodoList/SortTaskCommandSequenceDiagram.png))
+
+In addition, if the user wants to reverse order, the `Comparator<Task>` will be updated in the `SortTaskParser#parse()`
+using the built-in java method `Comparator#reversed()`.
+
+##### Sort and Filter Implementation
+
+This feature which require the list to be sorted can work together with he find task feature. This is because the
+`Model.sortedTodoList` is wrapped inside the `Model.filteredTodoList`. When the `Model#updateSortedList()` is
+invoked, the `Model.filteredTodoList` will also be updated. Furthermore, the list in the GUI will also be updated.
+Combining sorting and filtering can be very powerful, especially when it comes to managing tasks.
 
 #### Find Task Feature
 
@@ -1458,8 +1775,89 @@ The following activity diagram summarizes what happens when a user executes `Fin
 Alternative 2 was chosen as it conformed with the standard practice of handling errors using exception. Moreover, it removes any room for 
 ambiguity by ensuring all constraints related to the command are made known to the users.
 
+#### Complete Task Feature
 
+The complete task feature allows the user to label a task as completed when they have accomplished it.
+The entry of the task in the GUI will show the green label **COMPLETED** when the task is done, or
+red label **NOT COMPLETED** if otherwise.
+
+This feature is facilitated by the following classes:
+
+  * `Status`:
+    * `Enum` to store the status of the task
+    * It stores 2 values i.e. `COMPLETED` and `NOT_COMPLETED`
     
+  * `CompleteTaskCommand`:
+    * It implements `CompleteTaskCommand#execute()` to mark a `Task` as `COMPLETED`
+
+Given below is an example usage scenario and how the mechanism for editing a `Task` behaves at each step:
+
+Step 1. `LogicManager` receives the user input `completetask 1` from `Ui`
+
+Step 2. `LogicManager` calls `TodoListParser#parseCommand()` to create an `CompleteTaskParser`
+
+Step 3. Additionally, `TodoListParser` will call the `CompleteTaskParser#parse()` method to parse the command arguments
+
+Step 4. This creates an `CompleteTaskCommand` and `CompleteTaskCommand#execute()` will be invoked by `LogicManager` to set the task status as `COMPLETED`
+
+Step 5. The `Model#setTask()` operation exposed in the `Model` interface is invoked to replace the target `Task` with the same `Task` but the status is set to `COMPLETED`
+
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+The sequence diagram for this feature should be similar with figure
+
+#### Reset Task Feature
+
+The reset task feature does the opposite of what the complete task feature does. It labels the task as `NOT COMPLETED`
+instead. This feature is added to avoid the need to use the edit task to edit the status.
+
+This feature is facilitated by the following classes:
+
+  * `Status`:
+    * `Enum` to store the status of the task
+    * It stores 2 values i.e. `COMPLETED` and `NOT_COMPLETED`
+    
+  * `ResetTaskCommand`:
+    * It implements `ResetTaskCommand#execute()` to mark a `Task` as `NOT COMPLETED`
+
+Given below is an example usage scenario and how the mechanism for editing a `Task` behaves at each step:
+
+Step 1. `LogicManager` receives the user input `completetask 1` from `Ui`
+
+Step 2. `LogicManager` calls `TodoListParser#parseCommand()` to create an `ResetTaskParser`
+
+Step 3. Additionally, `TodoListParser` will call the `ResetTaskParser#parse()` method to parse the command arguments
+
+Step 4. This creates an `ResetTaskCommand` and `ResetTaskCommand#execute()` will be invoked by `LogicManager` to set the task status as `COMPLETED`
+
+Step 5. The `Model#setTask()` operation exposed in the `Model` interface is invoked to replace the target `Task` with the same `Task` but the status is set to `COMPLETED`
+
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+The sequence diagram for this feature should be similar with figure
+
+#### Clear Tasks Feature
+
+The clear tasks feature just simply clear the whole existing `TodoList`. This command can be undone by the `undo` command.
+
+Given below is an example usage scenario and how the mechanism for celaring the tasks behaves at each step:
+
+Step 1. `LogicManager` receives the user input `cleartask`
+
+Step 2. `LogicManager` calls `TodoListParser#parseCommand()` to create a `ClearTaskCommand`
+
+Step 3. This creates an `ClearTaskCommand` and `ClearTaskCommand#execute()` will be invoked by `LogicManager` to empty the list
+
+Step 4. A `CommandResult` from the command execution is returned to `LogicManager`
+    
+The sequence diagram for this feature should be similar with figure
+
+Take note that there is no additional parser created for the clear tasks feature i.e. `ClearTaskParser` is not created.
+In this case, The parsing will be handled by the `TodoListParser#singleWordCommandsChecker()` instead. This method also
+checks if the user included anything after the command word and throws the `ParseException`.
+
+
+
 ### 3.4 Event list management feature
 
 ### Add Event Feature
@@ -2013,7 +2411,202 @@ Use case ends.
           
 
 
-## Todo list use cases
+## Todo List Use Cases
+
+**Use case: UC - Add a task to todo list**
+**Actor: user**
+**MSS:**
+
+1. User wants to add a task to the todo list.
+2. User enters the command to add a task.
+3. CAP 5 Buddy saves the given task in the todo list.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. Format for information about the task is invalid.
+
+  * 2a1. CAP 5 Buddy displays an error message and ask the user to use the correct format.
+  * 2a2. User enters the information with the correct format.
+
+  Use case resumes at step 3.
+
+* 2b. User enters the wrong information.
+
+  * 2b2. User edits the task.
+  
+  Use case ends.
+
+* 2c. User enters an already existing task.
+
+  * 2b1. CAP 5 Buddy displays an error message about duplicate tasks.
+
+  Use case resumes at step 1.
+
+**Use case: UC - Delete a task in the todo list**
+**Actor: user**
+**MSS**
+
+1. User wants to delete a task in the todo list.
+2. User enters the command to delete a task.
+3. CAP 5 Buddy deletes the task from the todo list.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. User accidentally delete the wrong task.
+
+  * 2a1. User enters the undo command.
+
+  Use case resumes at step 1.
+
+**Use case: UC - Edit a task in the todo list**
+**Actor: user**
+**MSS**
+
+1. User wants to edit a task in the todo list.
+2. User enters the command to edit a task.
+3. CAP 5 Buddy edits the specified task.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. User accidentally edits the wrong task.
+
+  * 2a1. User enters the undo command.
+
+  Use case resumes at step 1.
+
+**Use case: UC - Sort task in the todo list**
+**Actor: user**
+**MSS**
+
+1. User wants to sort the tasks in the todo list.
+2. User enters the command to sort the todo list based on a criterion.
+3. CAP 5 Buddy displays the sorted tasks based on the chosen criterion.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. User input the wrong criterion.
+
+  * 2a1. User reset the order using the list command.
+  * 2a2. User re-enter the command with the correct criterion.
+
+  Use case resumes at step 3.
+
+**Use case: Find a task in the todo list**
+**Actor: user**
+**MSS**
+
+1. User wants to find a task in the todo list.
+2. User enters the command to find a task based on keywords.
+3. CAP5 Buddy displays all task based on the user input from step 2.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. User input is invalid.
+
+  * 2a1. CAP 5 Buddy displays an error message and tells the user the correct format.
+  * 2a2. User enters the keywords with the correct format.
+
+  Use case resumes at step 3
+
+* 2b. User input the wrong keywords.
+
+  * 2b1. User shows all the tasks using the list command.
+  * 2b2. User re-enter the command with the correct keywords.
+
+  Use case resumes at step 3.
+
+**Use case: UC - Label a task in the todo list as completed**
+**Actor: user**
+**MSS**
+
+1. User wants label a task as "completed".
+2. User enters the command to complete a task.
+3. CAP 5 Buddy labels the specified task as "completed".
+
+Use case ends.
+
+**Extensions**
+
+* 2a. User accidentally labels the wrong task.
+
+  * 2a1. User enters the undo or reset task command.
+
+  Use case resumes at step 1.
+
+**Use case: UC - Reset task label in the todo list to "not completed"**
+**Actor: user**
+**MSS**
+
+1. User wants reset a task to "not completed".
+2. User enters the command to reset a task.
+3. CAP 5 Buddy labels the specified task as "not completed".
+
+Use case ends.
+
+**Extensions**
+
+* 2a. User accidentally labels the wrong task.
+
+  * 2a1. User enters the undo or complete task command.
+
+  Use case resumes at step 1.
+
+**Use case: UC - List all tasks in the list**
+**Actor: user**
+**Precondition: User just entered a sort task or find task command"**
+**MSS**
+
+1. User wants see all the tasks in the list with the default ordering.
+2. User enters the command to list all tasks.
+3. CAP 5 Buddy displays all the tasks with the default ordering.
+
+Use case ends.
+
+**Use case: UC - Clear all tasks in the list**
+**Actor: user**
+**MSS**
+
+1. User wants to remove all tasks from the list.
+2. User enters the command to clear the list.
+3. CAP 5 Buddy removes all the tasks from the list.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. User changes mind and wants the list back.
+
+  * 2a1. The user enter the undo command.
+
+  Use case ends.
+
+**Use case: Archive a task in the todo list (Proposed)**
+**Actor: user**
+**MSS**
+
+1. User wants to archive a task in the todo list.
+2. User input the command to archive a task.
+3. CAP5 Buddy archives the task.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. User accidentally archive the wrong task.
+
+  * 2a1. The user enter the undo or unarchive command.
+
+  Use case resumes at step 1.
 
 ## General feature use cases
 
@@ -2111,107 +2704,25 @@ Use case ends.
 
   *{More to be added}*
 
-**Use case: Add a task to todo list**
 
-**MSS**
+**Use Case: View all contact details of a lecturer**
 
-1. User wants to add a task to the todo list.
-2. User chooses the type of task to be added.
-3. User enters the information regarding the task.
-4. CAP5BUDDY saves the given task in the todo list.
+  **MSS**
+   1. User requests to view all contact details of a lecturer.
+   2. User provides the name of the lecturer.
+   3. CAP5BUDDY searches for the specified lecturer from storage.
+   4. CAP5BUDDY retrieves all contact details of the lecturer from storage.
+   5. CAP5BUDDY displays the desired contact details.
 
-Use case ends.
+  **Extensions**
 
-**Extensions**
+   * 3a. The specified lecturer name does not exist.
 
-* 3a. Format for information about the task is invalid.
+     * CAP5BUDDY displays an error message.
 
-  * 3a1. CAP5BUDDY displays an error message and ask the user to use the correct format.
-  * 3a2. User enters the information with the correct format.
+     Use case ends.
 
-  Use case resumes at step 4
-
-  *{More to be added}*
-
-**Use case: Delete a task in the todo list**
-
-**MSS**
-
-1. User wants to delete a task in the todo list.
-2. User chooses the task to be deleted.
-3. CAP5BUDDY shows a prompt message asking if the user really wants to delete the task.
-4. User clicks the "YES" button.
-5. CAP5BUDDY deletes the task from the todo list.
-
-Use case ends.
-
-**Extensions**
-
-* 4a. User accidentally clicked the "NO" button.
-
-  * 4a1. The prompt message disappears and CAP5BUDDY does not delete the task.
-
-  Use case ends.
-
-  *{More to be added}*
-
-**Use case: Sort task in the todo list**
-
-**MSS**
-
-1. User wants to sort the tasks in the todo list.
-2. User chooses the basis for sorting the tasks.
-3. CAP5BUDDY displays the sorted tasks based on the chosen basis.
-
-Use case ends.
-
-  *{More to be added}*
-
-**Use case: Find a task in the todo list**
-
-**MSS**
-
-1. User wants to find a task in the todo list.
-2. User chooses whether to find task based on date or keyword.
-3. User enters the date or keyword.
-4. CAP5BUDDY displays all task based on the user input from step 3.
-
-Use case ends.
-
-**Extensions**
-
-* 3a. User inputs the date with an incorrect format.
-
-  * 3a1. CAP5BUDDY displays an error message and ask the user to use the correct format.
-  * 3a2. User enters the date with the correct format.
-
-  Use case resumes at step 4
-
-  *{More to be added}*
-
-**Use case: Archive a task in the todo list**
-
-**MSS**
-
-1. User wants to archive a task in the todo list.
-2. CAP5BUDDY shows a prompt message asking if the user is sure to archive the task.
-3. User clicks the "YES" button.
-4. CAP5BUDDY archives the task.
-
-Use case ends.
-
-**Extensions**
-
-* 3a. User accidentally clicked the "NO" button.
-
-  * 3a1. The prompt message disappears and CAP5BUDDY does not archive the task.
-
-  Use case ends.
-
-  *{More to be added}*
-
-
-
+  **Use Case: View the email of a Lecturer**
   
 
 
@@ -2790,6 +3301,16 @@ testers are expected to do more *exploratory* testing.
 
 ### Todo List
 
+1. Labeling task as completed while all tasks are being shown
+
+   1. Test case: `completetask 1`<br>
+      Expected: First task is labelled as completed. Details of the completed module will be shown.
+
+   1. Test case: `completetask 0`<br>
+      Expected: No task is labelled as completed. Error details will be shown.
+
+   1. Other incorrect `completetask` command to try: `completetask`, `completetask y`, `...` (where xy is larger than the todo list size)<br>
+      Expected: Similar to previous.
 
 
 
