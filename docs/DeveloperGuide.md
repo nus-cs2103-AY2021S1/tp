@@ -145,14 +145,14 @@ In this section, we will be highlighting some key features and how they are bein
 
 ### 4.1 Find by name or NRIC feature (by Cao Qin)
 
-The find feature enables users to find patients by specifying their names (anyone from their first names, middle names or last names) or Nric numbers.
+The find feature enables users to find patients by specifying their names (anyone from their first names, middle names, or last names) or Nric numbers.
 
 #### 4.1.1 Implementation
 
 The following are the changes made to achieve this feature:
 
 * A `KeywordPredicate` class is added under the `model/patient` package. 
-* `FindCommand` class is modified to keep a KeywordPredicate object as a filed.
+* `FindCommand` class is modified to keep a KeywordPredicate object as a field.
 * `FindCommandParser` class is modified to parser both patients' names and nric numbers.
 
 Given below is a usage scenario of this feature using both name and Nric as inputs.
@@ -161,11 +161,11 @@ Step 1. The user executes `add n/Alex Yeoh ic/S0000001A p/87438807 e/alexyeoh@ex
 
 Step 2. The user executes `add n/Bernice Yu ic/S0000002A p/99272758 e/berniceyu@example.com a/Blk 30 Lorong 3 Serangoon Gardens, #07-18 mr/www.sample.com/02` to add a patient named Bernice Yu and with a Nric number “S0000002A”.
 
-Step 3. The user executes `find Yeoh` command to find a patient with name "Yeoh".
+Step 3. The user executes `find Yeoh` command to find a patient with the name "Yeoh".
 
-Step 4. The user executes `find S0000001A` command to find a patient with Nric number "S0000001A".
+Step 4. The user executes `find S0000001A` command to find a patient with the Nric number "S0000001A".
 
-Step 5. The user executes `find Alex S0000002A` command to find 2 patients: one with name “Alex” and one with Nric number “A0000002S”.
+Step 5. The user executes `find Alex S0000002A` command to find 2 patients: one with the name “Alex” and one with the Nric number “A0000002S”.
 
 Step 6. The user executes `list` command to view the full list of patients.
 
@@ -177,14 +177,14 @@ The sequence diagram below illustrates the interaction between Logic and Model c
  
 **:information_source: Note on sequence diagram:**<br>
  
-* The lifeline for `findCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+* The lifeline for `findCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 </div>
 
 In the **Logic** Component, when user inputs `find Alex S0000002A`, these are the key methods invoked:
 * `LogicManager#execute("find Alex S0000002A")`: The `LogicManager` takes in the command text string ("find Alex S0000002").
 * `HospifyParser#parseCommand("find")`: The `HospifyParser` parses the users' input and recognizes the command word, "find", and a `FindCommand` is created.
-* `FindCommand#execute(model)`: The `FindCommand` uses the `updateFilteredPatientList` method of `Model` to update the displayed patients list and returns a `CommandResult` object which represents the result of a
+* `FindCommand#execute(model)`: The `FindCommand` uses the `updateFilteredPatientList` method of `Model` to update the displayed patient list and returns a `CommandResult` object which represents the result of a
 command execution.
 
 In the **Model** Component, This is the key method invoked:

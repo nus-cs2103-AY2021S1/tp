@@ -203,17 +203,17 @@ Format: `edit INDEX [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [mr/MEDIC
 
 **:information_source: Note:**<br>
 * The meaning of each field in the above format is the same as in the `add` command, you can refer to the [**`add` command**](#32-adding-a-patient-add-by-cedric-lim-jun-wei).
-For your convenience, specifications for each filed is also provided below.
+For your convenience, specifications for each field are also provided below.
 
 </div>
 
-* The `INDEX` refers to the index number of patient as shown in the displayed patient list, and it **must be a positive integer**, such as 1, 2, 3, …​
+* The `INDEX` refers to the index number of the patient as shown in the displayed patient list, and it **must be a positive integer**, such as 1, 2, 3, …​
 * The `NRIC` field should start with an alphabet, followed by 7 digits, before ending with another alphabet.
 * The `NAME` and `ALLERGIES` fields should only contain alphanumeric characters, and they have an upper limit of 100 characters. 
 * The `PHONE_NUMBER` field should contain a number that is between 3 and 15 digits (inclusive) long.
 * The `EMAIL` field should contain a valid email address (to find more information on email validation, please check the [Command Summary](#5-command-summary)).
 * The `ADDRESS` field should only contain alphanumeric characters, and its total length should not exceed 200 characters.
-* The `MEDICAL_RECORD_URL` field should contain a valid url (to find more information on url validation, please check the [Command Summary](#5-command-summary)).
+* The `MEDICAL_RECORD_URL` field should contain a valid URL (to find more information on URL validation, please check the [Command Summary](#5-command-summary)).
 
 <div markdown="block" class="alert alert-info">
 
@@ -227,7 +227,7 @@ For your convenience, specifications for each filed is also provided below.
 
 </div>
 
-To help you better understand how to use `edit` command, here are some examples below.
+To help you better understand how to use the `edit` command, here are some examples below.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
@@ -295,7 +295,7 @@ Format: `delete INDEX` or `delete NRIC`
 * The `NRIC` refers to the `NRIC` field of the patient to be deleted. It should start with an alphabet, followed by 7 digits, before ending with another alphabet.
 * The `NRIC` entered is **case-insensitive**. e.g. `s1234567a` will match `S1234567A`
 * Only full `NRIC`s will be matched e.g. `S12345` will **not** match `S1234567A`
-* When a patient is successfully deleted from **Hospify**, a success message will appear in the message box, and the deleted patient will disappear in the displayed patient list.
+* When a patient is successfully deleted from **Hospify**, a success message will appear in the message box, and the deleted patient will disappear from the displayed patient list.
 </div>
 
 To help you get more familiar with the `delete` command, here are some examples of using this command, as shown below.
@@ -597,7 +597,7 @@ at **hospify_enquiry@gmail.com** to notify the tech team if it does not open on 
 
 ### 3.15 Clearing all entries: `clear` (by Cao Qin)
 
-This command allows you to clear all patients' information from **Hospify**. It is very useful when you want to clear all the sample data in the system and start using **Hospify** in youe own clinic!
+This command allows you to clear all patients' information from **Hospify**. It is very useful when you want to clear all the sample data in the system and start using **Hospify** in your own clinic!
 
 To use this command, simply type in `clear`, and all the patients' information will be removed from the system.
 
@@ -606,6 +606,7 @@ Format: `clear`
 To help you understand this command, here is an example of using it, as shown below.
 
 Example: 
+
 execute `clear`(shown in Figure 16.1 below) command will empty the patient list (shown in Figure 16.2 below).
 
 ![clear command](images/clear%20command.png)
