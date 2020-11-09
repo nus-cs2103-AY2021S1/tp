@@ -90,13 +90,14 @@ Given below are my contributions to the project.
     * Added documentation for `viewtask`, `viewteammate`, `leaveTaskView`, `leaveTeammateView`. (Pull request [\#167](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/167))
     * Edited documentation for Global scope features. (Pull request [\#322](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/322))
     * Update all images in UG (Pull request [\#327](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/327))
-    * Eidted documentation for Project scope features(5th-8th) (Pull request [\#329](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/329))
+    * Edited documentation for Project scope features(5th-8th) (Pull request [\#329](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/329))
   * Developer Guide:
     * Came up with the outline of Use Cases. (Pull request [\#53](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/53))
     * Wrote the Use Cases for first draft of ProjectProfile Tracking System. (Pull request [\#53](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/53))
     * Wrote the Use Cases for first draft of Team Members Tracking System. (Pull request [\#53](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/53))
     * Edit the Ui section (Pull request [\#169](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/169))
     * Wrote the Launch and Shutdown. (Pull request [\#169](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/169))
+    * Edited for new task feature. (Pull request [\#350](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/350))
 
 * **Community**:
   * Set up milestones in GitHub
