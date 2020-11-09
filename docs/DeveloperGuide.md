@@ -457,23 +457,40 @@ as well as command handling.
 ### UI
 
 Author: **Lim Jin Feng**
-* Change/Add classes in the UI package to display newly implemented functionality such as ClassRecords.
+* Change/Add classes in the UI package to display newly implemented functionality such as ClassRecords and Sessions.
+The following is my implementation of the Ui.
 
 ![Structure of the UI Component](images/UpdatedUiClassDiagram.png)
 
-A new method `MainWindow#fillInnerParts2` will change the contents of the Ui to the student record, from the student list.
-* This is implemented in such a way to accomodate future expansion.
+* New classes `StudentRecordListPanel` and `StudentRecordCard` was added to support the display of Student Records in
+`MainWindow`.
+* A new class, `SessionListPanel` was added to support the display of Sessions.
+* In `MainWindow`, `studentListPanel` was refactored to `mainListPanel` as it could be filled with either students or sessions.
+* `MainWindow#fillInnerParts` was refactored to take in a boolean `fillWithStudents`, which determines whether
+  `mainListPanel` should be filled with the Student List or Session List.
+* A new method `MainWindow#fillMainList` was introduced to reduce code duplication as filling with Students versus filling
+  with Sessions fills the rest of TAskmaster with its defaults.
 
-**To-Do:**
-* Support displaying of Sessions when Sessions are implemented.
-* Support displaying of any new future implementation.
-
-**_Notes from developer:_**
-* Implementation still buggy: Ui does not update accordingly for student records.
+**Design considerations/specifications:**
+* Supported displaying of Sessions.
+    * Displaying of Session is an integral part of TAskmaster as with any user interface, the user would have
+    difficulties in viewing, editing, adding and managing sessions.
+    * Improvements in the displaying Sessions include:
+        * Adding a header to show the user which Session he is currently on.
+        * Adding the display of date and time in the header.
+* Implemented alternative changing of session via GUI buttons.
+    * Although TAskmaster is optimised for CLI, we felt that it would be a great quality of life improvement to allow the
+    user an alternative way to change sessions via a click. This would also complement the sidebar implemented for
+    TAskmaster, hence improving the aesthetics and usability as a whole.
+* Implemented alternative changing to the student list via GUI buttons.
+    * Similarly, this is a quality of life feature.
+* Must be able to accommodate future implementations.
+    * For v2.0, any expansions made to TAskmaster would require an update to UI. Hence, it is imperative that current
+    implementations of UI must be able to support those expansions.
 
 Alternative implementations considered:
-* Use FXML's tab feature to display class records: Does not support future expansion when sessions is implemented - 
-there may be an indefinite amount of sessions created.
+* Use FXML's tab feature to display class records: Does not fit the overall theme of TAskmaster and does not support
+indefinite number of sessions.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

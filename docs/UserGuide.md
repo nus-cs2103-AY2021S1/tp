@@ -354,6 +354,3 @@ This means that your data is saved even if the app is not shutdown with the `exi
 
 Avoid modifying the files as this may cause the program to read the input as invalid on startup and load with an
 empty student list without any sessions.
-
-## Frequently Asked Questions (FAQ)
-How to download java? [Here](https://lmgtfy.com/?q=how+to+download+java)
