@@ -1,31 +1,36 @@
 package seedu.address.model.person;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Flashcard}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Person> {
-    private final List<String> keywords;
+public class NameContainsKeywordsPredicate implements Predicate<Flashcard> {
+    private final String keyword;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
+    public NameContainsKeywordsPredicate(String keyword) {
+        this.keyword = keyword;
     }
 
     @Override
-    public boolean test(Person person) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+    public boolean test(Flashcard flashcard) {
+        if (keyword.isBlank()) {
+            return false;
+        }
+        List<String> words = Arrays.asList(keyword.split("\\s+"));
+        return words.stream()
+                .allMatch(word -> StringUtil.containsWordIgnoreCase(flashcard.getTitle().fullTitle, word));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                && keyword.equals(((NameContainsKeywordsPredicate) other).keyword)); // state check
     }
 
 }

@@ -31,9 +31,12 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private CommandBox commandBox;
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private PerformanceWindow performanceWindow;
+    private QuizListPanel quizListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -50,6 +53,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private StackPane quizListPanelPlaceholder;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -62,10 +68,12 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        primaryStage.setTitle("DSAce");
 
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        performanceWindow = new PerformanceWindow(logic, helpWindow);
     }
 
     public Stage getPrimaryStage() {
@@ -120,7 +128,13 @@ public class MainWindow extends UiPart<Stage> {
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
+        this.commandBox = commandBox;
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        quizListPanelPlaceholder.setVisible(false);
+        quizListPanelPlaceholder.setManaged(false);
+        primaryStage.getScene().lookup("#quizList").setVisible(false);
+        primaryStage.getScene().lookup("#quizList").setManaged(false);
     }
 
     /**
@@ -147,8 +161,57 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the performance window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handlePerformance() {
+        if (!performanceWindow.isShowing()) {
+            performanceWindow.show();
+        } else {
+            performanceWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
+    }
+
+    /**
+     * Switches to quiz settings.
+     */
+    @FXML
+    public void handleQuiz() {
+        personListPanelPlaceholder.setVisible(false);
+        personListPanelPlaceholder.setManaged(false);
+
+        quizListPanel = new QuizListPanel(logic.getQuizList());
+        quizListPanelPlaceholder.getChildren().add(quizListPanel.getRoot());
+        quizListPanelPlaceholder.setVisible(true);
+        quizListPanelPlaceholder.setManaged(true);
+        primaryStage.getScene().lookup("#quizList").setVisible(true);
+        primaryStage.getScene().lookup("#quizList").setManaged(true);
+
+        primaryStage.getScene().getStylesheets().remove("/view/DarkTheme.css");
+        primaryStage.getScene().getStylesheets().add("/view/LightTheme.css");
+    }
+
+    /**
+     * Switches to flashcard settings.
+     */
+    @FXML
+    public void handleExitQuiz() {
+        quizListPanelPlaceholder.setVisible(false);
+        quizListPanelPlaceholder.setManaged(false);
+        primaryStage.getScene().lookup("#quizList").setVisible(false);
+        primaryStage.getScene().lookup("#quizList").setManaged(false);
+
+
+        personListPanelPlaceholder.setVisible(true);
+        personListPanelPlaceholder.setManaged(true);
+
+        primaryStage.getScene().getStylesheets().remove("/view/LightTheme.css");
+        primaryStage.getScene().getStylesheets().add("/view/DarkTheme.css");
     }
 
     /**
@@ -160,6 +223,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        performanceWindow.hide();
         primaryStage.hide();
     }
 
@@ -180,6 +244,18 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowPerformance()) {
+                handlePerformance();
+            }
+
+            if (commandResult.isSwitchToQuiz()) {
+                handleQuiz();
+            }
+
+            if (commandResult.isSwitchToFlashcards()) {
+                handleExitQuiz();
             }
 
             if (commandResult.isExit()) {

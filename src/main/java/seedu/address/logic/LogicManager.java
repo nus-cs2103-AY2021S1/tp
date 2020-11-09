@@ -9,12 +9,19 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.PerformanceCommand;
+import seedu.address.logic.commands.PerformanceCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.FlashcardParser;
+import seedu.address.logic.parser.PerformanceParser;
+import seedu.address.logic.parser.QuizParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyFlashcardBook;
+import seedu.address.model.person.Flashcard;
+import seedu.address.model.quiz.Attempt;
+import seedu.address.model.quiz.Question;
+import seedu.address.model.quiz.Response;
 import seedu.address.storage.Storage;
 
 /**
@@ -26,7 +33,9 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final FlashcardParser flashcardParser;
+    private final QuizParser quizParser;
+    private final PerformanceParser performanceParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +43,9 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        flashcardParser = new FlashcardParser();
+        quizParser = new QuizParser();
+        performanceParser = new PerformanceParser();
     }
 
     @Override
@@ -42,31 +53,62 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command;
+
+        if (model.getIsQuizMode()) {
+            command = quizParser.parseCommand(commandText);
+        } else {
+            command = flashcardParser.parseCommand(commandText);
+
+        }
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveFlashcardBook(model.getFlashcardBook()); // write to Json file here
+            if (model.getIsQuizMode()) {
+                model.savePerformance();
+            }
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
 
         return commandResult;
     }
-
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public PerformanceCommandResult executePerformanceCommands(String commandText)
+            throws CommandException, ParseException {
+        logger.info("----------------[USER COMMAND][" + commandText + "]");
+
+        PerformanceCommand command = performanceParser.parseCommand(commandText);
+        PerformanceCommandResult commandResult = command.execute(model);
+        return commandResult;
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ReadOnlyFlashcardBook getAddressBook() {
+        return model.getFlashcardBook();
+    }
+
+    @Override
+    public ObservableList<Flashcard> getFilteredPersonList() {
+        return model.getFilteredFlashcardList();
+    }
+    @Override
+    public ObservableList<Question> getQuizList() {
+        return model.getQuizList();
+    }
+    @Override
+    public ObservableList<Attempt> getAttemptList() {
+        return model.getAttemptList();
+    }
+    @Override
+    public ObservableList<Response> getResponseList() {
+        return model.getResponseList();
     }
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getFlashcardBookFilePath();
     }
 
     @Override

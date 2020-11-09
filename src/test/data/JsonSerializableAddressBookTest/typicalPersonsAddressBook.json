@@ -1,46 +1,39 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
-  "persons" : [ {
-    "name" : "Alice Pauline",
-    "phone" : "94351253",
-    "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+  "_comment": "FlashcardBook save file which contains the same Flashcard values as in TypicalFlashcard#getTypicalFlashcardBook()",
+  "flashcards" : [ {
+    "title" : "Bubble Sort",
+    "definition" : "<DEFINITION PLACEHOLDER> 1",
+    "priority": "",
+    "tagged" : [ "difficult" ]
   }, {
-    "name" : "Benson Meier",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "title" : "Heaping",
+    "definition" : "<DEFINITION PLACEHOLDER> 2",
+    "priority": "",
+    "tagged" : [ "midterm", "final" ]
   }, {
-    "name" : "Carl Kurz",
-    "phone" : "95352563",
-    "email" : "heinz@example.com",
-    "address" : "wall street",
+    "title" : "Binary Tree",
+    "definition" : "<DEFINITION PLACEHOLDER> 3",
+    "priority": "",
     "tagged" : [ ]
   }, {
-    "name" : "Daniel Meier",
-    "phone" : "87652533",
-    "email" : "cornelia@example.com",
-    "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "title" : "Quick Sort",
+    "definition" : "<DEFINITION PLACEHOLDER> 4",
+    "priority": "",
+    "tagged" : [ "difficult" ]
   }, {
-    "name" : "Elle Meyer",
-    "phone" : "9482224",
-    "email" : "werner@example.com",
-    "address" : "michegan ave",
+    "title" : "Merge Sort",
+    "definition" : "<DEFINITION PLACEHOLDER> 5",
+    "priority": "",
     "tagged" : [ ]
   }, {
-    "name" : "Fiona Kunz",
-    "phone" : "9482427",
-    "email" : "lydia@example.com",
-    "address" : "little tokyo",
+    "title" : "Insertion Sort",
+    "definition" : "<DEFINITION PLACEHOLDER> 6",
+    "priority": "",
     "tagged" : [ ]
   }, {
-    "name" : "George Best",
-    "phone" : "9482442",
-    "email" : "anna@example.com",
-    "address" : "4th street",
+    "title" : "Selection Sort",
+    "definition" : "<DEFINITION PLACEHOLDER> 7",
+    "priority": "",
     "tagged" : [ ]
   } ]
 }

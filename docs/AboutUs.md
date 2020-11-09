@@ -9,51 +9,50 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Cai Jialin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jialin7878.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jialin7878)]
+[[portfolio](team/jialin7878.md)]
 
-* Role: Project Advisor
+* Role: Developer
 
-### Jane Doe
+### Calista Io
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/calistaio.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/calistaio)]
+[[portfolio](team/calistaio.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Gan Jing Wen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gan-jw.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/gan-jw)] [[portfolio](team/gan-jw.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Mehak Virdi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mehak24k.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/mehak24k)]
+[[portfolio](team/mehak24k.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Testing + Code Quality
+
+### Wu Zeying
+
+<img src="images/zeying99.png" width="200px">
+
+[[github](http://github.com/zeying99)]
+[[portfolio](team/wuzeying.md)]
+
+* Role: Developer
+* Responsibilities: documentation

@@ -9,10 +9,10 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.Definition;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
+import seedu.address.model.person.Title;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,6 +21,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_SORT_ORDER = "Sort order is not correctly specified.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -36,18 +37,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String title} into a {@code Title}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+    public static Title parseTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedName = title.trim();
+        if (!Title.isValidName(trimmedName)) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new Title(trimmedName);
     }
 
     /**
@@ -65,34 +66,36 @@ public class ParserUtil {
         return new Phone(trimmedPhone);
     }
 
+
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String priority} into a {@code Priority}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code priority} is invalid.
+     */
+    public static Priority parsePriority(String priority) throws ParseException {
+        requireNonNull(priority);
+        String trimmedPriority = priority.trim().toLowerCase();
+        if (!Priority.isValid(trimmedPriority)) {
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
+        Priority newP = Priority.identifyPriority(trimmedPriority);
+        return newP;
+    }
+
+    /**
+     * Parses a {@code String definition} into a {@code Definition}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Definition parseDefinition(String definition) throws ParseException {
+        requireNonNull(definition);
+        String trimmedDefinition = definition.trim();
+        if (!Definition.isValidDefinition(trimmedDefinition)) {
+            throw new ParseException(Definition.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
-    }
-
-    /**
-     * Parses a {@code String email} into an {@code Email}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code email} is invalid.
-     */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
-        return new Email(trimmedEmail);
+        return new Definition(trimmedDefinition);
     }
 
     /**
@@ -120,5 +123,23 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses String into sort order.
+     * @param sortOrder order in which the flashcard list is sorted.
+     * @return String specifying the sort order.
+     * @throws ParseException if the sort order is not correctly specified.
+     */
+    public static String parseSortOrder(String sortOrder) throws ParseException {
+        if (sortOrder.equals("")) {
+            return "asc";
+        }
+        String trimmedSortOrder = sortOrder.trim();
+        String lowerCaseSortOrder = trimmedSortOrder.toLowerCase();
+        if (!(lowerCaseSortOrder.equals("asc") || lowerCaseSortOrder.equals("desc"))) {
+            throw new ParseException(MESSAGE_INVALID_SORT_ORDER);
+        }
+        return lowerCaseSortOrder;
     }
 }

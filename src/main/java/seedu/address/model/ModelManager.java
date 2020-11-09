@@ -3,7 +3,10 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,7 +14,13 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Flashcard;
+import seedu.address.model.quiz.Attempt;
+import seedu.address.model.quiz.Question;
+import seedu.address.model.quiz.Response;
+import seedu.address.model.util.SampleDataUtil;
+import seedu.address.storage.PerformanceBook;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,26 +28,44 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final FlashcardBook flashcardBook;
+    private final ReadOnlyQuizBook readOnlyQuizBook = SampleDataUtil.getSampleQuizBook();
+    private final QuizBook quizBook = new QuizBook(readOnlyQuizBook);
+    private final PerformanceBook performanceBook;
+    private final ObservableList<Question> filteredQuizList = this.quizBook.getQuestionList();
+    private ObservableList<Response> responseList;
+    private final ObservableList<Attempt> filteredAttemptList;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Flashcard> filteredFlashcards;
+    private boolean isQuizMode = false;
+    private boolean hasCurrentAttempt = false;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyFlashcardBook flashcardBook, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(flashcardBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + flashcardBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.flashcardBook = new FlashcardBook(flashcardBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredFlashcards = new FilteredList<>(this.flashcardBook.getFlashcardList());
+
+        PerformanceBook tempPerformanceBook;
+
+        try {
+            tempPerformanceBook = new PerformanceBook();
+        } catch (IOException e) {
+            tempPerformanceBook = PerformanceBook.createDefaultPerformanceBook();
+        }
+        performanceBook = tempPerformanceBook;
+        filteredAttemptList = this.performanceBook.getPerformance().getAttempts();
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new FlashcardBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,67 +93,74 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getFlashcardBookFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setFlashcardBookFilePath(Path flashcardBookFilePath) {
+        requireNonNull(flashcardBookFilePath);
+        userPrefs.setAddressBookFilePath(flashcardBookFilePath);
     }
 
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setFlashcardBook(ReadOnlyFlashcardBook flashcardBook) {
+        this.flashcardBook.resetData(flashcardBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyFlashcardBook getFlashcardBook() {
+        return flashcardBook;
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasFlashcard(Flashcard flashcard) {
+        requireNonNull(flashcard);
+        return flashcardBook.hasFlashcard(flashcard);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteFlashcard(Flashcard target) {
+        flashcardBook.removeFlashcard(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void flipFlashcard(Flashcard target) {
+        flashcardBook.flipFlashcard(target);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void addFlashcard(Flashcard flashcard) {
+        flashcardBook.addFlashcard(flashcard);
+        updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARD);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
+        requireAllNonNull(target, editedFlashcard);
+        flashcardBook.setFlashcard(target, editedFlashcard);
+    }
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Flashcard} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Flashcard> getFilteredFlashcardList() {
+        return filteredFlashcards;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredFlashcardList(Predicate<Flashcard> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredFlashcards.setPredicate(predicate);
+    }
+
+    @Override
+    public void sortFilteredFlashcardList(String sortOrder) {
+        flashcardBook.sortFlashcard(sortOrder);
     }
 
     @Override
@@ -143,9 +177,104 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return flashcardBook.equals(other.flashcardBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredFlashcards.equals(other.filteredFlashcards);
     }
 
+    //=========== Filtered Question List Accessors =============================================================
+
+    @Override
+    public boolean getIsQuizMode() {
+        return this.isQuizMode;
+    }
+
+    @Override
+    public void flipQuizMode() {
+        this.isQuizMode = !isQuizMode;
+    }
+
+    @Override
+    public boolean hasCurrentAttempt() {
+        return this.hasCurrentAttempt;
+    }
+
+    @Override
+    public void startAttempt() {
+        this.hasCurrentAttempt = true;
+        quizBook.startAttempt();
+    }
+
+    @Override
+    public boolean endAttempt() {
+        this.hasCurrentAttempt = false;
+        Attempt currentAttempt = quizBook.endAttempt();
+        boolean isCurrentAttemptEmpty = currentAttempt.isEmpty();
+        try {
+            if (!isCurrentAttemptEmpty) {
+                performanceBook.saveAttempt(currentAttempt);
+            }
+        } catch (IOException e) {
+            logger.warning("Error here.");
+        }
+        return isCurrentAttemptEmpty;
+    }
+    @Override
+    public void showAttempt(Attempt attempt) {
+        requireNonNull(attempt);
+        responseList = attempt.getResponses();
+    }
+
+    @Override
+    public void recordResponse(Response response) {
+        requireNonNull(response);
+        quizBook.recordResponse(response);
+    }
+
+    @Override
+    public void setSelectedIndex(Question question, String response) {
+        requireAllNonNull(question, response);
+        int index;
+        if (question.isMcq()) {
+            index = Integer.parseInt(response);
+        } else {
+            index = response.toLowerCase().equals("true") ? 1 : 2;
+        }
+        Question newQuestion = question.copy();
+        newQuestion.setSelectedIndex(index);
+        quizBook.setQuestion(question, newQuestion);
+    }
+    @Override
+    public void setAllSelectedIndex(int index) {
+        List<Question> newQuestions = new ArrayList<>();
+        for (Question qn : quizBook.getQuestionList()) {
+            Question newQn = qn.copy();
+            newQn.setSelectedIndex(index);
+            newQuestions.add(newQn);
+        }
+        quizBook.setQuestions(newQuestions);
+    }
+
+    public ObservableList<Question> getQuizList() {
+        return this.filteredQuizList;
+    }
+
+    public ObservableList<Attempt> getAttemptList() {
+        return this.filteredAttemptList;
+    }
+
+    public ObservableList<Response> getResponseList() {
+        return this.responseList;
+    }
+
+    public QuizBook getQuizBook() {
+        return this.quizBook;
+    }
+
+    /**
+     * Saves performance in performance book.
+     */
+    public void savePerformance() throws IOException {
+        performanceBook.savePerformance();
+    }
 }

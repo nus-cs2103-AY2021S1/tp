@@ -1,8 +1,11 @@
 package seedu.address.ui;
 
+import java.util.Stack;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -17,6 +20,8 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+    private final Stack<String> commandHistory = new Stack<>();
+    private final Stack<String> commandFuture = new Stack<>();
 
     @FXML
     private TextField commandTextField;
@@ -29,6 +34,7 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        setListener();
     }
 
     /**
@@ -36,12 +42,56 @@ public class CommandBox extends UiPart<Region> {
      */
     @FXML
     private void handleCommandEntered() {
+        commandHistory.add(commandTextField.getText());
         try {
             commandExecutor.execute(commandTextField.getText());
+            commandFuture.clear();
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
+    }
+
+    private void setListener() {
+        commandTextField.setOnKeyPressed(keyEvent -> {
+            if (keyEvent.getCode() == KeyCode.DOWN) {
+                setText(getForwardCommand());
+                keyEvent.consume();
+            }
+            if (keyEvent.getCode() == KeyCode.UP) {
+                setText(getPreviousCommand());
+                keyEvent.consume();
+            }
+        });
+    }
+
+    private String getPreviousCommand() {
+        if (commandHistory.isEmpty()) {
+            return commandTextField.getText();
+        } else {
+            if (commandTextField.getText() != "") {
+                commandFuture.add(commandTextField.getText());
+            }
+            return commandHistory.pop();
+        }
+    }
+
+    private String getForwardCommand() {
+        if (commandFuture.isEmpty()) {
+            return "";
+        } else {
+            if (commandTextField.getText() != "") {
+                commandHistory.add(commandTextField.getText());
+            }
+            return commandFuture.pop();
+        }
+    }
+
+    /**
+     * Set commandTextField with userInput
+     */
+    private void setText(String command) {
+        commandTextField.setText(command);
     }
 
     /**
