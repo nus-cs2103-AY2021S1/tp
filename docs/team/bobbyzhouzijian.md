@@ -19,7 +19,6 @@ Given below are my contributions to the project.
 * **New Features**: Added the ability to find tasks and lessons.
   * What it does: easy-to-use CLI commands to find a particular task or lesson according to a set of specified attributes.
   * Justifications: The `find-task` and `find-lesson` features are integral in managing a large amount of tasks and lessons.
-<div style="page-break-after: always;"></div>
   * Highlights: This feature requires deep integration with other features because the there are many attributes that a task/lesson
   can be searched for. Also, it requires rigorous analysis in deciding what specific attributes should be included in the search feature
   so as to allow users find what they want with ease. Lastly, since many attributes are involved, prudence is required in implementing the feature
@@ -29,6 +28,7 @@ Given below are my contributions to the project.
   * What it does: allows user to edit or delete a lesson by a set of attributes. The calendar and data analysis will be updated as well.
   * Justifications: The ability to edit or delete a lesson is important in managing lessons. Users need to use this feature frequently to edit a lesson under
   many situations, for example the user makes a typo in the lesson title or the lesson is not relevant anymore.
+<div style="page-break-after: always;"></div>
   * Highlights: This feature requires a meticulous and creative design to ensure that the edited lesson is reflected on the calendar view
   as well as the data analysis as well. Also, it needs to integrate well with the `Overlap` class implemented by my teammate Marcus to
   ensure that edited lessons do not overlap with other time slots already existing in PlaNus. 
@@ -55,7 +55,6 @@ Given below are my contributions to the project.
   * Redesign the `help` feature to display a much more user-friendly help window instead of just a 
   URL to the user guide implemented by the original ab3. The new help window now includes a summary view of all the commands in PlaNus.
   Users do not have to navigate to the user guide to look up for all the commands. [\#200](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/200)
-<div style="page-break-after: always;"></div>
 * **Documentation**:
   * User Guide:
     * Added hyperlinks to Table of Content [\#74](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/74)
