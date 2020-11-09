@@ -12,6 +12,7 @@ which cater for specific games. Users interact with it via a CLI, and receive fe
 with JavaFX.
 
 Given below are my contributions to the project.
+
 * **New Feature**: Added the `delr` command which deletes a recipe.
 [\#27](https://github.com/AY2021S1-CS2103T-F13-1/tp/pull/27)
   * What it does: Allows the user to delete a recipe they no longer need.

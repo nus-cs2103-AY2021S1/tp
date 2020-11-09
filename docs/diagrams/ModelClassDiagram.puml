@@ -1,78 +1,74 @@
 @startuml
 !include style.puml
-skinparam arrowThickness 1.1
+skinparam arrowThickness 1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyInventoryinator <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class Inventoryinator
-Class ReadOnlyInventoryinator
-Class Model
+Interface ReadOnlyItemList <<Interface>>
+Interface ReadOnlyRecipeList <<Interface>>
+Interface ReadOnlyLocationList <<Interface>>
+Interface ReadOnlyUserPrefs <<Interface>>
 Class ModelManager
+Class Inventory
+Class VersionedInventory
+Class ItemList
+Class RecipeList
+Class LocationList
 Class UserPrefs
-Class ReadOnlyUserPrefs
+Class "{abstract}\nInventoryComponent" as InventoryComponent
+Class FilteredList
 
 Package Item {
-Class Item
-Class ItemId
-Class Description
-Class Location
-Class ItemName
-Class Quantity
 Class UniqueItemList
-Class LocationIdManager
-Class UniqueRecipesManager
-Class RecipeList
-}
-Package Recipes {
-Class Recipe
-Class Ingredients
-Class RecipeID
-Class CraftedItem
-Class RecipeDescription
+Class Item
 }
 
-Package Tag {
-Class Tag
+Package Recipe {
+Class UniqueRecipeList
+Class Recipe
+}
+
+Package Location {
+Class UniqueLocationList
+Class Location
 }
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside .down.> Model
 
-ModelManager .up.|> ReadOnlyModelManager
-
-ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" ModelManager
-ModelManager o-left-> "1" UserPrefs
+ModelManager .up.|> Model
+ModelManager *-up-> "1 " UserPrefs
+ModelManager *-left-> "1" VersionedInventory
+ModelManager *-down-> "1" Inventory
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-ModelManager o--> "1" UniqueItemList
-UniqueItemList o--> "*" Item
-ModelManager o--> "*" LocationIdManager
-LocationIdManager o--> "*" Item
-ModelManager o--> "1" UniqueRecipesManager
-UniqueRecipesManager o--> "*" Recipe
+ModelManager *-up-> "3" FilteredList
 
-Recipe *--> RecipeID
-Recipe *--> Ingredients
-Recipe *--> CraftedItem
-Recipe *--> RecipeDescription
-RecipeList o--> "*" RecipeID
-Ingredients *--> ItemId
-CraftedItem *--> ItemId
+Inventory *-down-> "1" ItemList
+Inventory *-down-> "1  " RecipeList
+Inventory *-down-> "1" LocationList
 
-Item *--> ItemName
-Item *--> Quantity
-Item *--> "*"Location
-Item *--> Description
-Item *--> "*" Tag
-Item *--> ItemId
-Item *--> "*" RecipeList
+ItemList .up.|> ReadOnlyItemList
+RecipeList .up.|> ReadOnlyRecipeList
+LocationList .up.|> ReadOnlyLocationList
 
-ModelManager -->"1" Item : filtered list
+VersionedInventory o-down-> " * " Inventory
+
+ItemList *--> "1" UniqueItemList
+RecipeList *--> "1" UniqueRecipeList
+LocationList *--> "1" UniqueLocationList
+
+UniqueItemList o-left-> " *" Item
+Item -down-|> InventoryComponent
+
+UniqueRecipeList o-left-> "*" Recipe
+Recipe -down-|> InventoryComponent
+
+UniqueLocationList o-left-> "*" Location
+
 @enduml

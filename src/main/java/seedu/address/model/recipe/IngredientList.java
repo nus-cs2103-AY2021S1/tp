@@ -87,7 +87,8 @@ public class IngredientList implements Iterable<Ingredient> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof IngredientList // instanceof handles nulls
-                && ingredientList.equals(((IngredientList) other).ingredientList));
+                && ingredientList.containsAll(((IngredientList) other).ingredientList)
+                && ((IngredientList) other).ingredientList.containsAll(ingredientList));
     }
 
     @Override
