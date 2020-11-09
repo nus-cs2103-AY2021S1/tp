@@ -69,9 +69,13 @@ public class EditVisitCommand extends Command {
         Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
         VisitHistory visitHistory = patientToEdit.getVisitHistory();
         ObservableList<Visit> observableHistory = visitHistory.getObservableVisits();
-
+        //Defensive Programming
         if (visitIndex == EMPTY_VISIT_LOG) {
-            return new CommandResult(MESSAGE_MISSING_INDEX_PROMPT, observableHistory);
+            if (!observableHistory.isEmpty()) {
+                throw new CommandException(MESSAGE_MISSING_INDEX_PROMPT);
+            } else {
+                return new CommandResult("", observableHistory);
+            }
         } else {
             try {
                 Visit visit = visitHistory.getVisitByIndex(visitIndex);

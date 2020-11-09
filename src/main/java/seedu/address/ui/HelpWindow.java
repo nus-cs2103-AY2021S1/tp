@@ -103,7 +103,9 @@ public class HelpWindow extends UiPart<Stage> {
         clipboard.setContent(url);
     }
 
-
+    /**
+     * Sets the Escape key to close the Help Window.
+     */
     private void setEscAsClose() {
         getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ESCAPE) {

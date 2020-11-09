@@ -944,7 +944,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
     
-##### Use case: UC11 - Add appointment
+##### Use case: UC11 - Editing patient's visitation logs
+
+**MSS**
+
+* Precondition: User is able to see the patients list.
+
+1. User <ins>views the profile of a patient (UC10)</ins>.
+2. User keys in command to edit a patient's visitation log.
+3. CliniCal shows the existing visitation log details in a new window.
+4. User amends the visitation log details.
+5. User saves the details.
+6. CliniCal saves the visitation log details.
+
+    Use case ends.
+    
+**Extensions**
+
+* 2a. The given command is invalid.
+    * 2a1. CliniCal shows an error message.
+    
+    Use case resumes at step 2.
+    
+* 3a. There are no amendments to be made.<br>
+    Use case ends.
+    
+##### Use case: UC12 - Deleting patient's visitation logs
+
+**MSS**
+
+* Precondition: User is able to see the patients list.
+
+1. User <ins>views the profile of a patient (UC10)</ins>.
+2.  User requests to delete the visitation log of a patient.
+3.  CliniCal deletes the visitation log.
+    
+    Use case ends.
+    
+**Extensions**
+
+* 2a. The given command is invalid.
+    * 2a1. CliniCal shows an error message.
+    
+    Use case resumes at step 2.
+    
+##### Use case: UC13 - Add appointment
 
 **MSS**
 
@@ -1089,7 +1133,47 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect commands to try: `addvisit 1 vd/test`, `addvisit 90000 vd/test` (assuming 90000 is larger than size of patient list)<br>
        Expected: Error message will be shown as an invalid command is given.
        
-##### F.8 Adding an appointment
+##### F.8 Editing visitation log
+
+1. Editing existing visitation log for a patient
+
+    1. Prerequisites: List all patients using the list command. Patients, each with visitation logs, are in the list.
+    
+    1. Test case: `editvisit 1 i/2`<br>
+        Expected: The first patient's second visitation log will be available to edit. A separate window displaying the three fields (Diagnosis, Prescription, Comments) with existing visitation log details filled, will appear.
+        After editing the relevant details, saving the visitation log will result in a success message being shown in the main window. 
+    
+    1. Test case: `editvisit 1 i/2 vd/31/07/2020`<br>
+        Expected: Similar to previous scenario, and the visitation date will be changed to 31/07/2020. 
+    
+    1. Test case: `editvisit 1 vd/15/01/2050`<br>
+        Expected: Error message will be shown as a future date is given. (Only past dates up till and including today will be accepted)
+    
+    1. Test case: `editvisit 1 vd/30/13/2020`<br>
+        Expected: Error message will be shown as an invalid date is given.
+    
+    1. Other incorrect commands to try: `editvisit -99`, `editvisit 1 vd/test`, <br>`editvisit 1 vd/99` <br>
+        Expected: Error message will be shown as an invalid parameter is given.
+
+##### F.9 Deleting visitation log
+
+1. Deleting a visitation log for a patient.    
+    
+    1. Prerequisites: List all patients using the list command. Patients, each with visitation logs, are in the list.
+    
+    1. Test case: `deletevisit 1 i/2`<br>
+        Expected: Deletes the second visitation log of the first patient in the patient list. A success message will be shown in the main window.
+        
+    1. Test case: `deletevisit 1`<br>
+        Expected: Error message will be shown as no visitation log index is given.
+        
+    1. Test case: `deletevisit i/3`<br>
+        Expected: Error message will be shown as no patient log index is given.
+    
+    1. Other incorrect commands to try: `deletevisit 1 i/test`, `deletevisit test i/3`<br>
+        Expected: Error message will be shown as an invalid parameter is given.
+       
+##### F.10 Adding an appointment
 
 1. Adding a new appointment to the appointment list and calendar
 
@@ -1102,7 +1186,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect add appointment commands to try: `addappt x st/11/11/2020 12:00 d/60` (where x is larger than the list size), `addappt 0 st/11/11/2020 12:00 d/60`, `addappt 0 st/42/42/2020 25:00 d/2147483647`<br>
       Expected: Similar to previous.  
       
-##### F.9 Deleting an appointment
+##### F.11 Deleting an appointment
 
 1. Deleting an appointment in the appointment list and calendar
 

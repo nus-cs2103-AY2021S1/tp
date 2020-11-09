@@ -280,6 +280,12 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isEditVisit()) {
+                if (observableHistory.isEmpty()) {
+                    if (profileVisitPanel.isShowing()) {
+                        profileVisitPanel.hide();
+                    }
+                    handleEmptyVisitHistory();
+                }
                 visitWindow.setPreviousVisitDetails(logic, previousVisit, visitIndex, patientIndex, visitDate);
                 if (profileVisitPanel.isShowing()) {
                     profileVisitPanel.hide();

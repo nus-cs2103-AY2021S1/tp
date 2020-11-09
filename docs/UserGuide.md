@@ -620,7 +620,10 @@ Format: `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]`
 
 * If you do not wish to change the date, it is not required to enter the same date again, even though CliniCal will still accept it.
 * The date "01/01/1900" is reserved for internal usage, please do not use this date!
-
+* You can use `editvisit` followed by the patient index to check if the patient has any existing visitation logs.
+    * A message pop-up will appear if the patient has no existing visitation logs.
+    * If the patient has existing visitation logs, then you will see an error informing you to input the visitation index.
+    
 </div>
 
 
@@ -661,6 +664,16 @@ Format: `deletevisit INDEX i/VISIT_INDEX`
 **Step 1**: Input `deletevisit 1 i/2` into the command box and press <kbd>Enter</kbd>.
 
 **Step 2**: A message will be displayed to indicate that the patient's second visitation log has been successfully deleted.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* You can use `deletevisit` followed by the patient index to check if the patient has any existing visitation logs.
+    * A message pop-up will appear if the patient has no existing visitation logs.
+    * If the patient has existing visitation logs, then you will see an error informing you to input the visitation index.
+
+</div>
 
 ### 5.4 Patient Appointment Commands
 
@@ -823,7 +836,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER ic/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…​` <br> e.g. `add n/James Ho p/22224444 ic/S2686887R e/jamesho@example.com a/123, Clementi Rd, 1234665 s/M b/B+ g/sulfa g/aspirin`
 **Add profile picture** | `addpicture 1 f/data/profile_picture.png`
-**Add Visit** | `addvisit INDEX [vd/VISIT_DATE]` <br> e.g. `addvisit 1 vd/31/12/2020`
+**Add Visit** | `addvisit INDEX [vd/VISIT_DATE]` <br> e.g. `addvisit 1 vd/01/01/2020`
 **Add Appointment** | `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION` <br> e.g., `addappt 1 st/27/12/2020 14:00 d/60`
 **Clear** | `clear`
 **Clear command history** | `clearhistory`
@@ -832,7 +845,7 @@ Action | Format, Examples
 **Delete Appointment** | `deleteappt INDEX` <br> e.g. `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com `
 **Edit Appointment** | `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_START_TIME] [d/DURATION]` <br> e.g. `editappt 3 st/12/12/2020 10:10 d/40`
-**Edit Visit** | `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]` <br> e.g. `editvisit 1 i/2`
+**Edit Visit** | `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]` <br> e.g. `editvisit 1 i/2 vd/01/01/2020`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **List** | `list`
 **Help** | `help`
