@@ -99,7 +99,7 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 
    * **`list`** : Lists all students.
 
-   * **`add`**`add n/Alex p/93211234 s/Commonwealth Secondary School y/Primary 6 v/Blk 33 West Coast Rd #21-214
+   * **`add`**`n/Alex p/93211234 s/Commonwealth Secondary School y/Primary 6 v/Blk 33 West Coast Rd #21-214
    t/1 1430-1630 f/25 d/12/12/2020` : Adds a student named `Alex` to **Reeve**.
 
    * **`delete`**`3` : Deletes the 3rd student shown in the current list.
@@ -366,6 +366,13 @@ Format: `overdue`
 
 * Students tutored for free (i.e. `FEE` = $0.00) will not be displayed.
 * If all students have paid their fees within the past month, no students will be displayed.
+
+<div markdown="block" class="alert alert-danger">
+
+:warning: If you use `edit` to update a student's last payment date to within a month from now, the student will be hidden from the list as his payment is no longer outstanding.
+You can always view his particulars again using `list` or `find`. The same applies if you add a new student with a recent payment date (`add`) after using this command.
+
+</div>
 
 Expected outcome:
 
