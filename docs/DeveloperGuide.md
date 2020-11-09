@@ -743,6 +743,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | staff of a quarantine facility | look at all the rooms| find out which rooms are occupied and which are not |
 | `* *`| staff of a quarantine facility | initialise the number of rooms many times with previous information retained | define correct number of rooms if mistake is made I can correct it without having to tediously key in information again|
 |`* * `| staff of a quarantine facility | find out an empty room | to allocate patient to that empty room easily without having to search through the rooms for an empty room |
+| `* * `| careless staff of a quarantine facility | edit a task | to allow for me to easily change a mistake that I made while adding tasks |
+| `* * `| staff of a quarantine facility | search a task | to allow for me to easily search for a task in a room
+
 ### A3. Use cases
 
 (For all use cases below, the **System** is`Covigent` and the **Actor** is the `user`, unless specified otherwise)
@@ -823,8 +826,8 @@ Use case ends.
 **MSS**
 
 1. User requests to search for an empty room to accommodate patient.
-2. System peeks the first room from Priority Queue.
-3. System shows the empty room with lowest room number.
+2. System finds out empty room.
+3. System shows the empty room with lowest room number and displays success message.
 Use case ends.
 
 **Extensions**
