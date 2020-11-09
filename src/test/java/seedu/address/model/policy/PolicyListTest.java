@@ -10,7 +10,7 @@ import static seedu.address.testutil.TypicalPolicies.MISSING_FROM_LIST_POLICY;
 import static seedu.address.testutil.TypicalPolicies.MISSING_FROM_LIST_POLICY_NAME;
 import static seedu.address.testutil.TypicalPolicies.getTypicalPolicyList;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,11 +21,11 @@ public class PolicyListTest {
     public void constructor() {
         PolicyList policyList = new PolicyList();
         assertThrows(NullPointerException.class, () -> new PolicyList(null));
-        assertEquals(policyList.getHashtableCopy(), new Hashtable<>());
-        assertEquals(policyList, new PolicyList(new Hashtable<>()));
+        assertEquals(policyList.getHashMapCopy(), new HashMap<>());
+        assertEquals(policyList, new PolicyList(new HashMap<>()));
 
         PolicyList typicalPolicyList = getTypicalPolicyList();
-        assertEquals(typicalPolicyList, new PolicyList(typicalPolicyList.getHashtableCopy()));
+        assertEquals(typicalPolicyList, new PolicyList(typicalPolicyList.getHashMapCopy()));
     }
 
     @Test
@@ -62,13 +62,13 @@ public class PolicyListTest {
     }
 
     @Test
-    public void getHashTableCopy() {
+    public void getHashMapCopy() {
         //check if its a copy
         PolicyList policyList = getTypicalPolicyList();
-        policyList.getHashtableCopy().clear();
+        policyList.getHashMapCopy().clear();
         assertFalse(policyList.equals(new PolicyList()));
 
-        policyList.getHashtableCopy().put(MISSING_FROM_LIST_POLICY_NAME, MISSING_FROM_LIST_POLICY);
+        policyList.getHashMapCopy().put(MISSING_FROM_LIST_POLICY_NAME, MISSING_FROM_LIST_POLICY);
         assertFalse(policyList.contains(MISSING_FROM_LIST_POLICY));
     }
 
