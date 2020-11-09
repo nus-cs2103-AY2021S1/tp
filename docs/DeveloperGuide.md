@@ -5,7 +5,6 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
 ## **1. Introduction**
 Welcome to OneShelf. This developer guide aims to introduce potential developers to the structure and implementation of
 **OneShelf**. <br>
@@ -22,7 +21,9 @@ instructions for manual testing.
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ## **3. Design**
 This section shows the architecture design of **OneShelf**.
@@ -30,6 +31,7 @@ This section shows the architecture design of **OneShelf**.
 ### 3.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
+
 Figure 1. Architecture Diagram
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
@@ -64,6 +66,10 @@ For example, the `Logic` component (see the class diagram given below) defines i
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png) <br>
 Figure 2. Class Diagram of Logic Component
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete-i 1`.
@@ -73,6 +79,10 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Figure 3. Sequence Diagram of delete-i 1 command
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ### 3.2 UI component
 
@@ -93,7 +103,9 @@ Figure 4: Structure of the `UI` Component
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ### 3.3 Logic component
 
@@ -103,6 +115,10 @@ by instructing `Ui`, and modifies `Model` and/or `Storage` component depending o
 The following class diagram illustrated the structure of `Logic` component:
 <br> ![Structure of the Logic Component](images/LogicClassDiagram.png) <br>
 Figure 5: Structure of the `Logic` Component
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
@@ -114,6 +130,7 @@ The `Logic` component does the following:
 4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
+
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete-i 1")` API call.
 <br>
 ![Interactions Inside the Logic Component for the `delete-i 1` Command](images/DeleteSequenceDiagram.png)
@@ -123,6 +140,10 @@ Figure 6: Sequence Diagram of `delete-i 1`
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ItemDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 ### 3.4 Model component
 The Model component corresponds to all the data-related logic that the user works with.
 
@@ -130,6 +151,10 @@ The following class diagram illustrates the structure of the `Model` component:
 <br>
 ![Structure of the Model Component](images/ModelClassDiagram.png) <br>
 Figure 7: Structure of the `Model` Component
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -173,6 +198,10 @@ You may also refer to Figure 9 as shown below:
 <br> ![Structure of the Delivery Component](images/DeliveryClassDiagram.png) <br>
 Figure 9: Structure of the `Delivery`
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 ### 3.5 Storage component
 
 Storage component is responsible to save the data of inventory and delivery book into the hard disk.
@@ -187,11 +216,17 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the inventoryBook/deliveryBook data in json format and read it back.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### 3.6 Common classes
 
 Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ## **4. Implementation**
 
@@ -219,6 +254,9 @@ Note: Deliveries are all considered unique. Reason being the same person can mak
 <div markdown="span" class="alert alert-info">:information_source: **For example:**`John` with the address `Choa Chu Kang Block 259` is able to make multiple orders before his previous deliveries are fulfilled.
 </div>
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ### 4.2 Editing Items and Delivery
 
@@ -275,6 +313,10 @@ When the user, while having the `CommandBox` selected, pressing the arrow up key
 `previousCommand()` will attempt to return the previous command entered by user, if any. Then `CommandBox` will call `TextField`'s `setText(String)` on the return value of `previousCommand()` which will set the text for the User
 in the GUI.
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 ### 4.4 Finding Items and Delivery
 
 OneShelf is capable of storing many items and pending deliveries.
@@ -295,6 +337,10 @@ The following activity diagram summarizes what happens when a user executes a `f
 By using `ArgumentMultimap`, we are able to record the searching criteria together with the prefixes. We will then pass this criteria along with the prefix to create a Predicate that matches the specified field object which implements `Predicate<Item>`.
 The predicate is then combined and passed to the `InventoryModel#UpdateItemListFilter` which will then be used to set the predicate on the existing filteredlist.
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 Below is a usage example:
 
 Step 1: User executes `find-i s/NTUC` command to search the list of items by Supplier <br>
@@ -313,6 +359,10 @@ Hence, we have modified it to allow the predicate to match the substrings of the
 You can refer to the sequence diagram as shown below:
 ![ItemFindCommandSequenceDiagram](images/ItemFindCommandSequenceDiagram2.png)
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 ### 4.5 Undo/Redo Command
 
 Each `Model` internally stores its undo and redo history as a (for `DeliveryModel`) `deliveryBookStateList` and `deliveryBookStatePointer`. There are corresponding analogs for `InventoryModel`.
@@ -326,16 +376,28 @@ These operations are exposed in the `Models` interface as `Models#commit()`, `Mo
 
 The `ModelsManager` class calls `Model#commit()`, `Model#undo()`, and `Model#redo` on each of the models it contains, which then handle the respective tasks.
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. Each `Model` will be initialized with its initial state, and the pointer pointing to their respective book's state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 Step 2. The user executes `delete-i 5` command to delete the 5th item in the inventory book. The `delete-i` command calls `Models#commit()`, causing the modified state of the inventory and delivery books after the `delete-i 5` command executes to be saved in the `inventoryBookStateList`, `deliveryBookStateList`,
 and the `inventoryBookStatePointer`, `deliveryBookStatePointer` are shifted to the newly inserted books state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 Step 3. The user executes `add-d n/David p/12345678 …​` to add a new Delivery. The `add-d` command also calls `Models#commit()`, causing another set of modified book states to be saved into the `inventoryBookStateList` and `deliveryBookStateList`.
 
@@ -345,6 +407,10 @@ Step 3. The user executes `add-d n/David p/12345678 …​` to add a new Deliver
 
 </div>
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 Step 4. The user now decides that adding the delivery was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Models#undo()`, which will shift the `deliveryBookStatePointer` and `inventoryBookStatePointer` once to the left, pointing it to the previous states, and restores the inventoryBook/deliveryBook to those states.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
@@ -352,6 +418,10 @@ Step 4. The user now decides that adding the delivery was a mistake, and decides
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the current state pointers are at index 0, pointing to the initial state, then there are no previous books states to restore. The `undo` command uses `InventoryModel#canUndo()` and `DeliveryModel#canUndo()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
+</div>
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
 </div>
 
 The following sequence diagram shows how the undo operation works:
@@ -368,17 +438,33 @@ The `redo` command does the opposite — it calls `Models#redo()`, which shi
 
 </div>
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 Step 5. The user then decides to execute the command `list-i`. Commands that do not modify the inventoryBook and deliveryBook, such as `list-d` and `find-i`, will usually not call `Models#commit()`, `Models#undo()` or `Models#redo()`. Thus, the `inventoryBookStateList` and `deliveryBookStateList` remain unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 Step 6. The user executes `clear-d`, which calls `Models#commit()`. Since the state pointers are not pointing at the end of the respective state lists, all states after the current state will be purged. Reason: It no longer makes sense to redo the `add-d n/David p/12345678 …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 The following activity diagram summarizes what happens when a user executes a new command:
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 #### Design consideration:
 
@@ -392,6 +478,10 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the item being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ### 4.6 Help Window
 
@@ -430,6 +520,10 @@ If there is a need for any changes in the help message, `HELP_SUMMARY` can be fo
 You may refer to the Help Activity Diagram shown below:
 ![HelpActivityDiagram](images/HelpActivityDiagram.png)
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 ### 4.7 Logging
 
 * We are using `java.util.logging` package for logging.
@@ -443,6 +537,9 @@ You may refer to the Help Activity Diagram shown below:
     * `INFO`: Information showing the noteworthy actions by the App.
     * `FINE`: Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size.
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 <a name="configuration"></a>
 ### 4.8 Configuration
@@ -467,7 +564,9 @@ Refer to the guide [here](Testing.md)
 
 Refer to the guide [here](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ## **Appendix A: Product scope**
 
@@ -482,7 +581,9 @@ Refer to the guide [here](DevOps.md)
 
 **Value proposition**: manage inventory and pending delivery faster than a typical mouse/GUI driven app
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ## **Appendix B: User stories**
 
@@ -513,7 +614,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ## **Appendix C: Use Cases**
 
@@ -548,6 +651,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 **Use case: UC02 - Adding a new inventory item**
 
 **Actor**: User
@@ -576,6 +683,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1c1. InventoryBook adds on existing item name and supplier's with input quantity or new tags.
     
   Use case ends.
+
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 **Use case: UC03 - Editing an item**
 
@@ -616,6 +727,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 **Use case: UC04 - User opens help window**
 
 **Actor**: User
@@ -637,6 +752,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
    
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+   
 **Use case: UC05 - Undoing a command**
 
 **Actor**: User
@@ -656,6 +775,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a1. OneShelf gives an appropriate message informing the user that there are no more previous states to revert to.
   
   Use case ends.
+  
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
   
 **Use case: UC06 - Redoing an undone command**
 
@@ -677,7 +800,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
   Use case ends.
   
-  
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 **Use case: UC07 - Finding a delivery**
 
 **Actor**: User
@@ -702,6 +828,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. OneShelf shows an error.
   
   Use Case ends.
+ 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
   
 **Use case: UC08 - Exits application**
 
@@ -714,7 +844,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use Case ends.
     
----------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 
 ## **Appendix D: Non-Functional Requirements**
@@ -734,6 +866,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 13. Storing 100 states of the models for the Undo and Redo Commands should not take more than 100 KB.
 14. Storing 100 states of history of commands the user has entered should not take more than 10 KB.
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
+
 ## **Appendix E: Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -744,7 +880,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 inventory items and pending deliveries respectively
 
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ## **Appendix F: Instructions for manual testing**
 
@@ -775,6 +913,9 @@ testers are expected to do more *exploratory* testing.
     1. Test Case: `add-i n/Chicken s/NTUC t/meat`
        Expected: User will receive an error message as `Quantity` is a compulsory field for `add-i`.
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ### F2. Adding to an existing item
 
@@ -792,6 +933,10 @@ testers are expected to do more *exploratory* testing.
        
     1. Test Case: `add-i n/Chicken s/NTUC q/10 t/meat`
        Expected: Meat tag should be added into the chicken supplied from NTUC, and quantity increased by 10.
+  
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
        
 ### F3. Adding a pending delivery
 
@@ -804,7 +949,9 @@ testers are expected to do more *exploratory* testing.
    1. Test Case: `add-d n/DAMITH p/91829722 a/Jln Bukit Batok o/Nasi lemak x2 by/15`
        Expected: Same delivery as the above test case is added with the exception of `deliver by` to be 15 minutes.
 
-
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
 
 ### F4. Editing Command
 
@@ -826,6 +973,10 @@ testers are expected to do more *exploratory* testing.
 
     1. other incorrect edit commands to try: `edit`, edit x n/TUNA`, ... (where x is larger than the list size, x is a negative number or x is not an integer) <br>
        Expected: Similar to previous.
+  
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
        
 ### F5. Deleting an item
 
@@ -842,6 +993,9 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete-i`, `delete-i x`, `...` (where x is larger than the list size, 
    x is a negative number, or x is not an integer)<br>
 
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
       
 ### F6. Undoing a command
 
@@ -858,6 +1012,10 @@ testers are expected to do more *exploratory* testing.
     
     1. Test Case: `undo` <br>
         Expected: The inventory book is restored to the state where it had 5 items. Success message is displayed.
+      
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak
+</div>
       
 ### F7. Redoing an undone command
 
@@ -884,6 +1042,3 @@ testers are expected to do more *exploratory* testing.
     
     1. Test Case: `redo` <br>
         Expected: The inventory book is restored to the state where all its items were cleared. Success message is displayed. 
-
-
-

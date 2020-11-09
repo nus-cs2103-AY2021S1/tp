@@ -17,6 +17,9 @@ This User Guide will provide a general overview of installation, current feature
 
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## 2. Quick Start
 
 ### 2.1 Installation Guide
@@ -28,6 +31,7 @@ Refer to this video for a quick tutorial on **OneShelf Installation Guide**:
 [![](http://img.youtube.com/vi/W460SJkRMMM/0.jpg)](http://www.youtube.com/watch?v=W460SJkRMMM "One Shelf Installation Guide")
 
 <br>
+
 
 Installation Steps:
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -43,6 +47,7 @@ using the terminal, refer to the installation guide video above.
 
 1. Refer to the [Features](#3-features) below for details of each command.
 
+<div style="page-break-after: always;"></div>
    
 ### 2.2 How to use OneShelf
 
@@ -77,6 +82,8 @@ the list.*
 
 All pending deliveries related command have a suffix `-d`.
 
+<div style="page-break-after: always;"></div>
+
 ### 2.3 User Interface Sections
 
 <a name="uiwithannotationpng"></a>
@@ -91,6 +98,8 @@ All pending deliveries related command have a suffix `-d`.
    <br>
    <br>
    
+<div style="page-break-after: always;"></div>
+
 | Component | Description |
 |-----------|-------------|
 | Toolbar | Displays the toolbar options for this application. You can access the different `help` windows and `exit` the application.|
@@ -103,6 +112,8 @@ All pending deliveries related command have a suffix `-d`.
 *You may want to refer to the [glossary](#6-glossary)*
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
    <a name="uihelpstart"></a>
 * Type the command `help start` in the command box and press Enter to execute it. <br>
@@ -117,13 +128,13 @@ All pending deliveries related command have a suffix `-d`.
     <br>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 <a name="3-features"></a>
 ## 3. Features
 
 In this section, you can find the different available command features, general features 
 and upcoming features.
-
 
 ### 3.1 Command Features
 
@@ -154,6 +165,8 @@ Things to note for the commands:
   e.g. `[t/TAG]…​` can be used 
   1. once: `t/brother`
   1. or multiple times: `t/sibling t/brother t/family`
+  
+<div style="page-break-after: always;"></div>
 
 * Fields in the commands can be in any order.<br>
   e.g. a command with format `add-i n/NAME q/QUANTITY` can be used as
@@ -165,7 +178,8 @@ as the actual input. <br>
   e.g. `add-i n/Chicken q/10 n/Fish` <br>
   Notice that in this example, `NAME` appears twice in one single command, OneShelf will take Fish as the actual
   name and ignore Chicken.
-
+  
+* The `|` symbol means the user must provide at least one of the fields separated by the `|`
 
 #### 3.1.1 Viewing help : `help`
 
@@ -180,6 +194,8 @@ To open up `help start` window, you can also do the following:
 * Click on `Help` located at the top toolbar and then click `Start F1`
 
 A new help window similar to [Figure 2](#uihelpstart) should appear on your desktop.
+
+<div style="page-break-after: always;"></div>
 
 ##### 3.1.1b `help summary`
 
@@ -202,6 +218,7 @@ A new help window similar below (Figure 4) should appear on your desktop.
 Figure 4: Help Summary Window
 <br>
 
+<div style="page-break-after: always;"></div>
 
 #### 3.1.2 Adding an item or delivery: `add-i` or `add-d`
 
@@ -221,6 +238,8 @@ Pointers to take note when adding an item:
 
 *Note: `MAX_QUANTITY` is not a hard cap on the amount of an item you can store in the inventory.* 
 
+<div style="page-break-after: always;"></div>
+
 <a name="addexample1"></a>
 Example 1: Add an item using [Figure 1](#uiwithannotationpng) data set as the starting point.
 
@@ -237,6 +256,8 @@ Example 1: Add an item using [Figure 1](#uiwithannotationpng) data set as the st
     
     Figure 5: Add new item of duck
     <br>
+
+<div style="page-break-after: always;"></div>
 
 4. Press key arrow up on your keyboard to toggle to previous command and press Enter. 
    You should receive an error message, refer to Figure 6:
@@ -270,6 +291,8 @@ Example 1: Add an item using [Figure 1](#uiwithannotationpng) data set as the st
 An item can have any number of tags (including 0) and adding exactly the same tag to an existing item will not result in duplicated tags
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ##### 3.1.2b `add-d`
 
 Format: `add-d n/NAME p/PHONE a/ADDRESS o/ORDER [by/TIME]`
@@ -295,6 +318,8 @@ Example 1:
     Figure 8: Added Jason's delivery
     <br>
 
+<div style="page-break-after: always;"></div>
+
 Example 2: 
 
 1. Repeat step 1 and 2 as above but with the command:
@@ -314,7 +339,7 @@ Example 2:
 Pending deliveries are automatically sorted based on their `deliver by` time and unlike inventory item, pending delivery does not have a quantity
 </div>
 
-
+<div style="page-break-after: always;"></div>
 
 #### 3.1.3 Removing quantity from an item: `remove-i`
 
@@ -333,7 +358,6 @@ Examples:
 There is no remove-d since a pending delivery does not have a quantity
 </div>
 
-
 <a name="edit"></a>
 #### 3.1.4 Editing an item or delivery: `edit-i` or `edit-d`
 
@@ -343,11 +367,6 @@ Edits an existing item in the Inventory book or an existing pending delivery in 
 
 Format: `edit-i INDEX [n/NAME | q/QUANTITY | s/SUPPLIER | max/MAX_QUANTITY | t/TAG…​]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note:** <br>
-The `|` symbol means the user must provide at least one of the fields
-separated by the `|`
-</div>
-
 Pointers to take note when editing an item:
 
 * Edits the item at the specified `INDEX`. The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
@@ -355,6 +374,8 @@ Pointers to take note when editing an item:
 * When editing tags, the existing tags of the item will be removed
 * You can remove all the item’s tags by typing `t/` without
     specifying any tags after it.
+
+<div style="page-break-after: always;"></div>
 
 Example 1: `edit-i 3 n/CARROTS q/50` using [Figure 1](#uiwithannotationpng) as the starting point.
 
@@ -372,6 +393,8 @@ refer to Figure 10.
     Figure 10: Edit Carrot Result
     <br>
 
+<div style="page-break-after: always;"></div>
+
 Example 2: `edit-i 2 n/Spinach t/` using [Figure 1](#uiwithannotationpng) as the starting point.
 
 1. Select the Command box and type in `edit-i 2 n/Spinach t/`
@@ -388,6 +411,7 @@ fields as shown in Figure 11.
     Figure 11: Edit Spinach Result
     <br>
 
+<div style="page-break-after: always;"></div>
 
 ##### 3.1.4b `edit-d`
 
@@ -396,8 +420,6 @@ Format: `edit-d INDEX [n/NAME | p/PHONE | a/ADDRESS | o/ORDER | by/TIME]`
 Examples:
 * `edit-d 1 n/AARON p/91111233` <br>
 Edits the name and phone number of the 1st item to be `AARON` and `91111233` respectively.
-
-
 
 #### 3.1.5 Locating items or delivery by keywords: `find-i` or `find-d`
 
@@ -419,6 +441,8 @@ Pointers to take note when finding an item:
   e.g. `find-i n/Chicken s/NTUC` will return items matching name and supplier.
 * Finding multiple `Tag` needs to be seperated e.g. `find-i t/meat t/perishable`
 
+<div style="page-break-after: always;"></div>
+
 Example:
 * `find-i s/ntuc t/meat` using [Figure 1](#uiwithannotationpng) as the starting point.
 
@@ -435,6 +459,8 @@ Figure 12:
     
     Figure 12: Find item supplied by NTUC in meat category
     <br>
+
+<div style="page-break-after: always;"></div>
 
 ##### 3.1.5b `find-d`
 
@@ -453,7 +479,9 @@ Pointers to take note when finding a delivery:
   e.g. `find-d n/Bernice Adam` will return deliveries with names `Bernice Yeo`, `Adam Tan`
 * More than one Prefix can be specified (i.e. `AND` search).
   e.g. `find-d n/Bernice p/85783742` will return delivery matching *both* name and phone.
- 
+
+<div style="page-break-after: always;"></div>
+
 Example:
 * `find-d n/alex aileen` using [Figure 1](#uiwithannotationpng) as the starting point.
 
@@ -470,6 +498,8 @@ Example:
     
     Figure 13: Find delivery by alex and aileen
     <br>
+
+<div style="page-break-after: always;"></div>
 
 #### 3.1.6 Listing all items or delivery: `list-i` or `list-d`
 
@@ -495,6 +525,8 @@ Example:
     Figure 14: List inventory items
     <br>
 
+<div style="page-break-after: always;"></div>
+
 #### 3.1.7 Deleting an item or delivery: `delete-i` or `delete-d`
 
 Deletes an item or delivery from inventory book or delivery book respectively. Delete command is especially useful
@@ -508,6 +540,7 @@ Pointers to take note when deleting an item or delivery:
 * The index refers to the index number shown in the displayed item/ delivery list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+
 Example 1:
 1. Assume by entering `list-i`, we have the following inventory items as shown in Figure 15:
     <br>
@@ -517,7 +550,9 @@ Example 1:
     
     Figure 15: Before deleting index 2
     <br>
- 
+
+<div style="page-break-after: always;"></div>
+
 2. Enter `delete-i 2` which will delete the 2nd INDEX in the inventory book. The expected result should be as shown in Figure 16:
     <br>
     
@@ -532,14 +567,13 @@ Example 1:
 </div>
 
 
+<div style="page-break-after: always;"></div>
 
 #### 3.1.8 Clearing all entries: `clear-i` or `clear-d`
 
 Clears all entries from the Inventory/ Delivery book.
 
 Format: `clear-i` or `clear-d`
-
-
 
 #### 3.1.9 Undo last command: `undo`
 
@@ -552,6 +586,8 @@ Pointers to take note about `undo`:
 * If there is a previous state available, the current state is reverted to that state
 * If the current state is the earliest possible one, it shows a message informing the user that there is nothing more to undo
 * The maximum number of previous commands you can undo is 20
+
+<div style="page-break-after: always;"></div>
 
 <a name="undoExample1"></a>Example 1: `undo` using [Figure 1](#uiwithannotationpng) as the starting point.
 
@@ -573,7 +609,7 @@ Pointers to take note about `undo`:
 4. Repeat step 2
 * You should now see the same items as appearing in [Figure 1](#uiwithannotationpng)
 
-
+<div style="page-break-after: always;"></div>
 
 #### 3.1.10 Redo last command: `redo`
 
@@ -598,14 +634,13 @@ Example 1: `redo` using [Figure 1](#uiwithannotationpng) as the starting point.
 
 4. You should now see the items cleared again, as shown in [Step 2 of Example 1](#undoExample1Step2) of the `undo` command.
 
-
-
 #### 3.1.11 Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
+<div style="page-break-after: always;"></div>
 
 ### 3.2 General Features
 
@@ -635,6 +670,7 @@ by pressing the arrow down key you're able to traverse into next commands.
 
 * Pending deliveries are sorted based on deliver by timing ie. delivery by.
 
+<div style="page-break-after: always;"></div>
 
 ### 3.3 Coming Soon
 
@@ -660,10 +696,7 @@ Look up prices on a 'supplier' database
 
 Notify the user if a certain stock is below threshold
 
-
-
 --------------------------------------------------------------------------------------------------------------------
-
 ## 4. FAQ
 
 **Q**: How do I transfer my data to another Computer? <br>
@@ -676,11 +709,9 @@ You may refer to the [video](#installationvideo) of installation guide.
 **Q**: Help! I've accidentally typed `clear-i` or `clear-d` and wiped all my data! <br>
 **A**: Use the [Undo Command](#3110-undo-last-command-undo) to reset your data back.
 
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-
-
-
 ## 5. Command Summary
 
 #### 5.1 General Commands Summary
@@ -692,6 +723,8 @@ You may refer to the [video](#installationvideo) of installation guide.
 |**Undo last command**   | `undo`  |
 |**Redo last undone command**   | `redo`  |
 |**Exit command** | `exit` |
+
+<div style="page-break-after: always;"></div>
 
 #### 5.2 Inventory Summary
 
@@ -705,6 +738,7 @@ You may refer to the [video](#installationvideo) of installation guide.
 |**List Inventory**   | `list-i` |
 |**Remove from Inventory** | `remove-i INDEX q/QUANTITY`    |
 
+<div style="page-break-after: always;"></div>
 
 #### 5.3 Delivery Summary
 
