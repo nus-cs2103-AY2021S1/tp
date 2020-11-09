@@ -25,10 +25,10 @@ public class CliSyntax {
     public static final Prefix PREFIX_START_DATE = new Prefix("start/");
     public static final Prefix PREFIX_END_DATE = new Prefix("end/");
     // Prefixes related to Teammate
-    public static final Prefix PREFIX_TEAMMATE_ADDRESS = new Prefix("ma/");
-    public static final Prefix PREFIX_TEAMMATE_EMAIL = new Prefix("me/");
-    public static final Prefix PREFIX_TEAMMATE_GIT_USERNAME = new Prefix("mg/");
-    public static final Prefix PREFIX_TEAMMATE_NAME = new Prefix("mn/");
-    public static final Prefix PREFIX_TEAMMATE_PHONE = new Prefix("mp/");
+    public static final Prefix PREFIX_PERSON_ADDRESS = new Prefix("ma/");
+    public static final Prefix PREFIX_PERSON_EMAIL = new Prefix("me/");
+    public static final Prefix PREFIX_PERSON_GIT_USERNAME = new Prefix("mg/");
+    public static final Prefix PREFIX_PERSON_NAME = new Prefix("mn/");
+    public static final Prefix PREFIX_PERSON_PHONE = new Prefix("mp/");
 
 }
