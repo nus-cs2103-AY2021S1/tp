@@ -862,7 +862,7 @@ cases for the general entity. If any of the features have a different implementa
     Use case ends.
 * 3a. The given index is invalid.
     * 3a1. PropertyFree shows an error message.  
-     Use case resumes at step 2.
+     Use case ends.
         
 **Special cases**
 * In the case when the `ENTITY` is `Bidder`, a deletion of the `Bidder` will result in the deletion of the associated `bids` and
@@ -880,7 +880,7 @@ cases for the general entity. If any of the features have a different implementa
     
 **Extensions**
 
-* 2a. The given `ENTITY` is of the wrong format.
+* 2a. The input format is invalid.
     * 2a1. PropertyFree shows an error message.  
         Use case ends.
         
@@ -897,8 +897,8 @@ cases for the general entity. If any of the features have a different implementa
 
 **MSS**
 
-1. User requests for a list of `ENTITY` scheduled
-2. PropertyFree shows a list of `ENTITY` scheduled.  
+1. User requests for a list of `ENTITY`.
+2. PropertyFree shows a list of `ENTITY`.  
 Use case ends.
 
     
@@ -951,7 +951,7 @@ Use case ends.
 
 **Extensions**
 
-* 1a. User enters an invalid input.
+* 1a. User enters an invalid order input.
     * 1a1. PropertyFree shows an error message.  
          Use case ends.  
 
