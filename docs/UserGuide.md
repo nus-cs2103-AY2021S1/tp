@@ -27,10 +27,10 @@
    --- 4.3.3 [Edit a module: `editMod`](#433-edit-a-module-editmod)<br>
    --- 4.3.4 [Find a module: `findMod`](#434-find-a-module-findmod)<br>
    4.4 [Tutorial Group Features](#44-tutorial-group-features)<br>
-   --- 4.4.1 [Add a tutorial group: `addTG`](#441-add-a-tutorial-group-to-a-module-addtg)<br>
-   --- 4.4.3 [Delete a tutorial group: `deleteTG`](#442-delete-a-tutorial-group-from-a-module-deletetg)<br>
-   --- 4.4.4 [Edit a Tutorial Group: `editTG`](#443-edit-a-tutorial-group-edittg)<br>
-   --- 4.4.2 [Find a tutorial group: `findTG`](#444-find-a-tutorial-group-findtg)<br>
+   --- 4.4.1 [Add a tutorial group: `addTG`](#441-add-a-tutorial-group-addtg)<br>
+   --- 4.4.2 [Delete a tutorial group: `deleteTG`](#442-delete-a-tutorial-group-deletetg)<br>
+   --- 4.4.3 [Edit a Tutorial Group: `editTG`](#443-edit-a-tutorial-group-edittg)<br>
+   --- 4.4.4 [Find a tutorial group: `findTG`](#444-find-a-tutorial-group-findtg)<br>
    4.5 [Student Features](#45-student-features)<br>
    --- 4.5.1 [Add a student: `addStudent`](#451-add-a-student-addstudent)<br>
    --- 4.5.2 [Delete a student: `deleteStudent`](#452-delete-a-student-deletestudent)<br>
@@ -497,7 +497,7 @@ Format: `addStudent n/NAME p/PHONE e/EMAIL id/STUDENT_ID [t/TAG]...`
 Example:
 
 - Adds a student called _John Tan_ with phone number _81234567_, email _johntan@u.nus.edu_, student id _A1234567X_
-and tag _student_ to the current tutorial group in view.
+and tag _student_ to the student list.
   - `addStudent n/John Tan p/81234567 e/johntan@u.nus.edu id/A1234567X t/student`
 
 Expected Outcome:
