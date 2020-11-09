@@ -3,18 +3,18 @@ layout: page
 title: Jonas Ng's Project Portfolio Page
 ---
 
-## Project: CAP 5 Buddy
+### Project: CAP 5 Buddy
 
-## Overview
+### Overview
 
 CAP 5 Buddy is a desktop module tracker application used to centralise key module details. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 30 kLoC.
 
-## Summary of Contributions
+#### Summary of Contributions
 
 Given below are my contributions to the project.
 
 * **Enhancement:** Implemented the feature to find items using multiple search parameters. 
-                   This includes the following functionalities: `find contact`, `find task`.
+                   This includes the following functionalities: find contact, find task.
 
   * **What it does:** This feature allows the user to filter contacts, tasks and events using multiple search parameters. 
   
@@ -24,11 +24,11 @@ Given below are my contributions to the project.
   
   * **Highlights:** 
   
-    * This feature required in-depth analysis of the underlying implementation of `Contact` and `Task` so that appropriate 
+    * This feature required in-depth analysis of the implementation of Contact and Task so that appropriate 
       search parameters to find contacts and tasks with could be identified.
     
     * The implementation and design of the find feature is open to future extensions to accommodate new search parameters.
-      This ensures that the feature will be consistent with the implementation of `Contact` and `Task`.
+      This ensures that the feature will be consistent with the implementation of Contact and Task.
       
     * As users are allowed to provide a variable number of search parameters, defensive programming was employed extensively
       to ascertain exactly which search parameters were provided before the command can be executed.
@@ -57,7 +57,7 @@ Given below are my contributions to the project.
                             [\#555](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/555)
   
 * **Enhancement:** Implemented contact list management feature. 
-                   This feature includes the following functionalities: `add contact`, `delete contact`, `edit contact`, `clear contact`, `list contact`
+                   This feature includes the following functionalities: add contact, delete contact, edit contact, clear contact, list contact
 
   * **What it does:** This feature allows users to keep track of module related contacts while managing all their contact details.
                   
@@ -105,15 +105,12 @@ Given below are my contributions to the project.
                    [\#621](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/621))
 
 * **Documentation**:
-
   * User Guide:
     * Added documentation for contact list management features, zoom link management features and find task feature
-
   * Developer Guide:
     * Update documentation for the `Logic` component under design 
     * Added implementation details of the contact list management feature, zoom link management feature and find task feature.
     * Added user stories, user cases
-
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#226](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/226), 
                                                      [\#244](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/244), 
