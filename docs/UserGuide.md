@@ -17,8 +17,8 @@ DSAce is a **desktop app for creating flashcards and practising quiz questions f
       * [**`sort`** : Sorting all flashcards.](#sorting-all-flashcards--sort)
       * [**`edit`** : Editing a flashcard.](#editing-a-flashcard--edit)
       * [**`find`** : Locating flashcards by name/tag/priority.](#locating-flashcards-by-nametagpriority-find)
-      * [**`delete`** : Deleting a flashcard.](#deleting-a-flashcard--delete)
       * [**`flip`** : Flipping a flashcard.](#flipping-a-flashcard--flip)
+      * [**`delete`** : Deleting a flashcard.](#deleting-a-flashcard--delete)
       * [**`clear`** : Clearing all flashcards.](#clearing-all-entries--clear)
    * [Quiz Commands](#quiz-commands)
       * [**`enter quiz`** : Entering Quiz mode.](#entering-quiz-mode--enter-quiz)
@@ -153,7 +153,7 @@ is shown in the image below. Note that the performance interface can be accessed
 
 </div>
 
-## Flashcard interface
+## General Commands
 <div markdown="block" class="alert alert-info">
 Only commands listed in this section are valid in the flashcard interface.
 </div>
@@ -165,6 +165,18 @@ Opens up a help window containing a link to the user guide.
 ![help message](images/helpMessage.png)
 
 Format: `help`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+
+## Flashcard Commands
+<div markdown="block" class="alert alert-info">
+Only commands listed in this section are valid in the flashcard mode.
+</div>
 
 ### Adding a flashcard : `add`
 
@@ -260,18 +272,6 @@ Examples:
 * `find n/Heap p/medium` returns `Heaps`
 * `find n/Heap p/low` or `find n/Chaining t/metal` returns no flashcards because not all conditions are satisfied
 
-### Deleting a flashcard : `delete`
-
-Deletes the specified flashcard from the flashcard list.
-
-Format: `delete INDEX`
-
-* Deletes the flashcard at the specified `INDEX`.
-* The index refers to the index number associated with the deleted flashcard, as shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the second flashcard in the list.
 
 ### Flipping a flashcard : `flip`
 
@@ -293,17 +293,15 @@ Format: `flip INDEX`
 Examples:
 * `list` followed by `flip 2` flips the second flashcard in the flashcard list.
 
-### Clearing all entries : `clear`
+### Deleting a flashcard : `delete`
 
-Removes all flashcards from the flashcard list.
+Deletes the specified flashcard from the flashcard list.
 
-Format: `clear`
+Format: `delete INDEX`
 
-### Entering Quiz mode : `enter quiz`
-
-Enters the quiz interface and disables commands from the flashcard interface.
-
-Format: `enter quiz`
+* Deletes the flashcard at the specified `INDEX`.
+* The index refers to the index number associated with the deleted flashcard, as shown in the displayed flashcard list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 * Quiz mode is now active.
 * You can now only use commands relevant to the quiz interface.
@@ -313,21 +311,24 @@ Examples:
 
 ### Checking performance : `performance`
 
-Opens the performance interface where the list of past quiz attempts are stored.
+Examples:
+* `list` followed by `delete 2` deletes the second flashcard in the list.
 
-Format: `performance`
+### Clearing all entries : `clear`
 
-### Exiting the program : `exit`
+Removes all flashcards from the flashcard list.
 
-Exits the program.
+Format: `clear`
 
-Format: `exit`
-
-## Quiz interface
-
+## Quiz Commands
 <div markdown="block" class="alert alert-info">
-Only commands listed in this section are valid in the quiz interface.
 </div>
+
+### Entering Quiz mode : `enter quiz`
+
+Enters the quiz interface and disables commands from the flashcard interface.
+
+Format: `enter quiz`
 
 ### Starting an attempt : `start attempt`
 
@@ -368,23 +369,6 @@ Format: `end attempt`
 * If `end attempt` is entered without answering any quiz questions, the current quiz attempt will end but no results
  will be stored in the performance interface.
 
-### Checking performance : `performance`
-
-Opens the performance interface where past quiz attempts are recorded.
-
-Format: `performance`
-
-* When `performance` is entered, all past quiz attempts are displayed to the user. For each attempt, the timestamp
- representing the time at which the attempt was started, as well as the number of correct responses out of the total
-  number of responses submitted for that particular attempt are displayed. 
-
-### Viewing help : `help`
-
-Opens up a help window containing a link to the user guide.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
 
 ### Leaving Quiz mode : `leave quiz`
 
@@ -392,25 +376,19 @@ Leaves the quiz interface and and disables all commands from the quiz interface.
 
 Format: `leave quiz`
 
-### Exiting application : `exit`
 
-Exits the program.
-
-Format: `exit`
-
-## Performance interface
+## Performance Commands
 
 <div markdown="block" class="alert alert-info">
 Only commands listed in this section are valid in the performance interface.
 The performance interface is a separate window from the flashcard and quiz interfaces.
 </div>
 
-### Listing past attempt results: `list`
+### Checking performance : `performance`
 
-Shows a list of all past quiz attempts and the result statistic for each attempt. The result statistic consists of
- the number of correct responses out of the total number of responses submitted for each attempt.
+Opens the performance interface where the list of past quiz attempts are stored.
 
-Format: `list`
+Format: `performance`
 
 ### Viewing the results of a specific quiz attempt : `view`
 
@@ -429,13 +407,13 @@ Example: `view 1`
 
 ![view message](images/view_attempt.png)
 
-### Viewing help : `help`
+### Listing past attempt results: `list`
 
-Shows a message containing the link to the user guide.
+Shows a list of all past quiz attempts and the result statistic for each attempt. The result statistic consists of
+ the number of correct responses out of the total number of responses submitted for each attempt.
 
-![help message](images/helpMessage.png)
+Format: `list`
 
-Format: `help`
 
 
 ### Saving the data

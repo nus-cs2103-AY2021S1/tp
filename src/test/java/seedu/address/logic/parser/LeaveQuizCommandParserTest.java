@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.LeaveQuizCommand;
 
+//author zeying99
 
 public class LeaveQuizCommandParserTest {
 
