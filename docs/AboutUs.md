@@ -39,7 +39,7 @@ You can reach him at the email `damithch@comp.nus.edu.sg`.
 
 * Role: Developer
 * Responsibilities:
-    * Implementing `StudentRecordList`, `StudentRecord`, `MarkCommand`
+    * Design and implement student record list, student records and mark command
     * Overall bug fixing and testing
     * Project management: Issues and PR reviews
 
