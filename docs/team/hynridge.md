@@ -82,8 +82,6 @@ Terminology | Definition
 
 ## Contributions to the Developer Guide (Extract)
 
-<div style="page-break-after: always;"></div>
-
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -99,6 +97,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Student with lots of files                                     | see a list of my tags                                 | find the tag that I created easily                            |
 | `* * *`  | Developer                                                      | open files with a quick command                       | focus on coding and not look to find my files                 |
 | `* *`    | CS student with a lot of project                               | hide private contact details                          | minimize chance of someone else seeing them by accident       |
+<div style="page-break-after: always;"></div>
+
+| Priority | As a …​                                                     | I want to …​                                       | So that I can…​                                            |
+|----------| ---------------------------------------------------------------| ------------------------------------------------------| --------------------------------------------------------------|
 | `* *`    | Command line user                                              | use commands similar to Linux                         | use the similar Linux command without having to relearn       |
 | `*`      | Forgetful user who always forget where his files are located   | tag frequently used files with a easy to remember tag | locate my files easily                                        |
 | `*`      | Intermediate user                                              | delete file                                           | not be distracted by it.                                      |
