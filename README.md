@@ -14,6 +14,11 @@ Meet Calo, your friendly workout app.
 
 Customised for the CLI lover and fast typer.
 
+For detailed documentation of this project, see
+- [User Guide](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/docs/UserGuide.md)
+- [Developer Guide](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/docs/DeveloperGuide.md)
+- [About Us](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/docs/AboutUs.md)
+
 Try it now!
 
 ## Acknowledgements
