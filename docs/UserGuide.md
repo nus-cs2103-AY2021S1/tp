@@ -67,7 +67,7 @@ Objectives of PlaNus:
 
 5. Alternatively, in command prompt (for Windows) or terminal (in MacOS), go to the directory where planus.jar is stored and enter `java -jar planus.jar`.To open command prompt (for Windows) or terminal (in MacOS), simply search for them in your computer.
 
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
 
 6. You may try out some commands listed in the [command summary](#command-summary) to explore the app.
 
@@ -158,7 +158,11 @@ Format: `exit`
 
 This section shows features that deal with operation of tasks including
 creating, reading, updating and deleting a task. A task can be either a
-`event` or `deadline`. <br>
+`event` or `deadline`.
+
+<br>
+
+<div style="page-break-after: always;"></div>
 
 ### 2.1 List all tasks : `list-task`
 
