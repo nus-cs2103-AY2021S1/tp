@@ -37,7 +37,7 @@ Given below are my contributions to the project.
         - Rewrote overall document hierarchy: [#91](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/91)
         - Add documentation for application (resume) related matters. [#109](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/109)
     - Developer's Guide
-        - Rewrote overall document hierarchy: [118](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/118)
+        - Rewrote overall document hierarchy: [#118](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/118)
         [#228](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/228)
         - Adapt delete sequence diagram: [#91](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/91)
 
