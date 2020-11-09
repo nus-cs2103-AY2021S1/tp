@@ -328,7 +328,7 @@ The following activity diagram summarizes the scoping features when a user execu
   * Pros: Only need one status field in `Model`, and easy to extend.
   * Cons: When lower levels of `PERSON` is implemented, child scopes of `PROJECT` like `TASK` might be reused, but it is not easy to implement this.
 
-* **Altertative 2:** Keeps a status for every level.
+* **Alternative 2:** Keeps a status for every level.
   * Pros: Do not need a hierarchy understanding of all scopes anymore, and will solve the duplication problem in alternative 1.
   * Cons: Need several status field in `Model`, which may make the code more complicated and harder to extend. 
   
@@ -996,9 +996,9 @@ should be able to accomplish most of the tasks faster using commands than using 
 * **Participation**: The class of an object that handles the relations between a Project object and Person Object.
 * **Scope**: The confines of when certain commands will work.
 * **Teammate**: A member of the user's team in a project.
-* **Person** A person that could be in any number of the user's team's projects.
-* **Project** A software project with a GitHub repository link and a deadline.
-* **Task** Something to be done for a project with a certain progress status.
+* **Person**: A person that could be in any number of the user's team's projects.
+* **Project**: A software project with a GitHub repository link and a deadline.
+* **Task**: Something to be done for a project with a certain progress status.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
