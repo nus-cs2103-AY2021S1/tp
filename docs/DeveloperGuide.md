@@ -146,8 +146,9 @@ This is the class diagram for Tag <br>
 
 ### Data Structure: Label
 [Label](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/label/Label.java)
-stores a `Label`, which is an optional field in `Tag`. A `Label` must only contain alphanumeric characters, and up to 
-one word. `Label` allows the user to label their tagged file. The purpose is to keep label short and concise, as it only 
+stores a `Label`, which is an optional field in `Tag`. `Label` allows the user to label their tagged file. 
+A `Label` must only contain alphanumeric characters, and up to
+one word. The purpose is to keep label short and concise, as it only
 serves as extra information of a tagged file.
 
 This sequence diagram shows a successful execution of `LabelCommand`.<br>
@@ -226,7 +227,7 @@ This sequence diagram shows a successful execution of `RetagCommand`.<br>
 
 [CdCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/CdCommand.java)
 changes the current directory of the HelloFile internal File Explorer. `CommandException` is thrown if the given directory 
-is invalid, cannot be found, or cannot be set as the current directory (*e.g. the given directory is not a folder*).
+is invalid, cannot be found, not readable, or cannot be set as the current directory (*e.g. the given directory is not a folder*).
 
 This sequence diagram shows a successful execution of `CdCommand`.<br>
 ![CdCommandSuccessExecution](images/CdCommandSuccessSequenceDiagram.png)
@@ -285,8 +286,8 @@ Then, a new `Tag` is created using the modified `Set<Label>` and added back to t
 
 ### Internal File Explorer
 
-Internal File Explorer is a simple file explorer that supports viewing files on your computer. It uses a `CurrentPath` that 
-represents the directory the explorer is viewing, as well as a `FileList` of the children files under that directory. The 
+Internal File Explorer is a simple file explorer that supports viewing of files on your computer. It uses a `CurrentPath` that 
+represents the directory the explorer is viewing, as well as a `FileList` to keep track of the children files under that directory. The 
 user can use `CdCommand` to change the current directory of the explorer, so he or she can view files under different directories.
 
 The purpose of implementing Internal File Explorer is to make tagging files easier by supporting tagging files using their 
@@ -295,7 +296,7 @@ under the same directory.
 
 Implementation of Internal File Explorer:
 
-Model
+*Model*
 
 The model class `CurrentPath` saves the current directory of the explorer, and keeps a `FileList` that contains the children files under 
 that directory.
@@ -303,13 +304,13 @@ that directory.
 This is the class diagram for CurrentPath.<br>
 ![CurrentPath](images/CurrentPathClassDiagram.png)
 
-UI
+*UI*
 
 `FileExplorerPanel` is the UI component for displaying Internal File Explorer. It contains a `javafx.scene.control.Label` 
 to display the current directory and a `javafx.scene.control.ListView` for the list of children files. 
 `FileCard` is a UI component for displaying the information of a file, and it is used to show the children files in the ListView in `FileExplorerPanel`.
 
-Storage
+*Storage*
 
 We keep the current directory of the File Explorer in `SavedFilePath`. HelloFile saves the directory in json format upon exiting the app,
 and loads the current path saved last time when the app starts. By doing so, the state of the File Explorer will
@@ -661,6 +662,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br />
 
 
+**User case ID: UC12**
+
+**Use Case: Open all tagged file with the same label**
+
+**MSS**
+
+1. User requests to open files with the same label.
+2. HelloFile opens the all the files using the default application.
+
+    Use case ends.
+
+**Extension**
+
+* 2a. HelloFile cannot find the label entered.
+
+	* 2a1. HelloFile prompts the user that the label cannot be found.
+
+        Use case resumes from step 1.
+
+* 2b. HelloFile detects that some tags' file paths are invalid.
+
+	* 2b1. HelloFile opens the valid files and prompts the user that some target file does not exist.
+
+        Use case resumes from step 1.
+
+* 2c. HelloFile detects that there is no permission to open some files.
+
+	* 2c1. HelloFile opens the files that can be opened and prompts the user that the app does not have the permission to open some files.
+
+	    Use case resumes form step 1.
+
+<br />
+
 **Common Extensions for All UseCases**
 
 * *a. User enters an invalid command.
@@ -695,6 +729,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Tag**: A string that will be mapped to a file path
+* **Label**: A string that categorises a tag
 * **UI**: User interface
 * **CLI**: Command line interface
 * **GUI**: Graphical user interface
