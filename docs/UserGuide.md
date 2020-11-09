@@ -76,6 +76,9 @@ Jarvis is a desktop app for CS1101S Teaching Assistants (Avengers), optimized fo
     - [7.4 View Command Summary](#74-view-command-summary)
     - [7.5 Exit Command Summary](#75-exit-command-summary)
     - [7.6 Help Command Summary](#76-help-command-summary)
+    
+<div style="page-break-after: always;"></div>
+
 8. [Glossary](#8-glossary)
     - [8.1 Difference Between Consultations and Mastery Checks](#81-difference-between-consultations-and-mastery-checks)
 9. [FAQ](#9-faq)
@@ -106,7 +109,6 @@ We have highlighted several features below that we feel are reflective of our de
 1. Important information such as `Student`, `Mission`, `Quest`, etc will not be deleted when the user keys in the wrong login information. We wish to give users the benefit of doubt and not delete their information as we do believe accidents can happen.
 
 <div style="page-break-after: always;"></div>
-
 ## 2. About the User Guide
 This section aims to remind you of the important parts to take note of while reading the user guide.
 
@@ -120,7 +122,6 @@ Symbol | Meaning
  ✏️   | This symbol indicates that an example is provided.
 
 <div style="page-break-after: always;"></div>
-
 ## 3. Quick start
 
 1. Ensure you have Java 11 or above installed in your Computer.
