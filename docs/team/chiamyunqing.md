@@ -28,8 +28,10 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chiamyunqing&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
+
 * **Project management**:
   * Managed release [v1.3](https://github.com/AY2021S1-CS2103T-W12-1/tp/releases) on GitHub.
+
 
 * **Enhancements to existing features**:
   * Modified the GUI from AB3 to get a basic structure for the GUI of Covigent. (Pull request [\#24](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/24))
@@ -37,13 +39,16 @@ Given below are my contributions to the project.
   * Wrote unit tests for `addpatient`, `deletepatient`, `searchroom`, `allocateroom` and `listroom` commands and patient attributes.(Pull requests [\#10](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/10), [\#59](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/59), [\#60](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/60), [\#99](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/99))
   * Refactored the codebase to reflect the functionalities of classes clearly. (Pull request [\#80](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/80))
 
+
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `addpatient`, `deletepatient`, `searchroom`.
     * Did cosmetic tweaks to existing documentation of features `help`.
+    * Added a command summary section for user to refer to easily.
   * Developer Guide:
     * Updated the implementation of `Model Component`.
     * Added the implementation details for Patient and its CRUD operations.
+
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#12](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/12), [\#26](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/26), [\#27](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/27), [\#79](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/79), [#115](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/115)
