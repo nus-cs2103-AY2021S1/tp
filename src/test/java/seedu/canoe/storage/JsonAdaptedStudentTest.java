@@ -42,7 +42,8 @@ public class JsonAdaptedStudentTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-    private static final List<JsonAdaptedAttendance> VALID_TRAINING_ATTENDANCES = BENSON.getTrainingAttendances().stream()
+    private static final List<JsonAdaptedAttendance> VALID_TRAINING_ATTENDANCES = BENSON.getTrainingAttendances()
+            .stream()
             .map(JsonAdaptedAttendance::new)
             .collect(Collectors.toList());
 
