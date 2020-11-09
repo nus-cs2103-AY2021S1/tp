@@ -33,7 +33,6 @@ ___
   * Justification: This feature improves the product significantly because a user might want to sort the list of meetings that he has so that it is easier for him to identify his next meeting easily.
   * Highlights: This enhancement affects the existing meeting book as the meetings will have to be stored after being sorted. It required an in-depth analysis of design alternatives. The implementation of this command was challenging as it required the sorting of all 3 types of meeting according to the date object attribute it has.
 
-
 * **Add Meeting Feature**: Added a command to add 3 types of meetings, paperwork, admin and viewing types with various parameters such as Bidder Id, Property Id, Venue, Date, Start Time, and End Time to the meeting book.
 * What it does: allows the user to add meetings in the meeting book based on the type of meeting he has.
 * Justification: This feature improves the product significantly because a user will want to add meetings to the meeting book so that he can have an easy reference of all the upcoming meetings with clients that he has.
@@ -61,27 +60,21 @@ ___
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=christopher&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=munharsha&tabRepo=AY2021S1-CS2103-W14-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
 * **Project management**:
-  * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
+* Managed the weekly tasks and the mini goals we had between each iteration. Helped keep the team in check when the pace was off and when we were falling behind.
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Wrote additional tests for existing features to increase coverage and one example is from 65% to 67% (Pull requests [\#272]())
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `edit` and `sort` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the features `add-m`, `edit-m` and `sort-m` 
+    * Did cosmetic tweaks and helped tidy up the existing command table to make it more presentable.
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added implementation details of the `LOGIC` component for the system.
+    * Added implementation details of the `edit` feature.
+    * Helped with the formatting and the standardisation of the overall document.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+  * PRs reviewed (with non-trivial review comments): [\#208](), [\#256](), [\#134]()]
+  * Contributed to forum discussions (examples: [#222](), [#147](), [#223]())
+  * Reported bugs and suggestions for other teams. Reported 14 bugs for other teams such as T14-2.
