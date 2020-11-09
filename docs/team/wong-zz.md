@@ -5,7 +5,11 @@ title: Wong Zheng Zhi's Project Portfolio Page
 
 ## Project: MediBook
 
-MediBook is a desktop medical records software targeting doctors and administrative staffs in clinics or hospitals to help manage patient details. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI), implemented using JavaFX.
+MediBook is a desktop medical records software targeting doctors and administrative staffs in clinics or hospitals to help manage patient data. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI), implemented using JavaFX. If you can type fast, MediBook can get your patient records management tasks done faster than traditional GUI apps.
+
+MediBook aims to increase efficiency in a clinical setting by providing a convenient interface for clinical staff to record and keep track of patient details whilst also having an intuitive workflow that reduces repetition in order to reduce repeated work. Besides just managing patient data, MediBook is also able to generate and visualize data for the user. For example, MediBook is able to generate charts of a patient's height, weight and BMI, helping doctors to better track the progress of the patient.
+
+Overall, MediBook aims to reduce the inefficiency in other existing patient management software while also being more user-friendly and intuitive.
 
 Given below are my contributions to the project.
 
