@@ -25,6 +25,8 @@ This is the link to the code contributed by me: [RepoSense link](https://nus-cs2
     * **Highlights**: This enhancement was not easy as the 2 additional parameters added were optional (priority has a prefix while remind does not) thus I had figure how to check for their presence and display accurate error messages.
   This was achieved using Regex commands, which was something unfamiliar to me and involved numerous testings.     
   
+<div style="page-break-after: always;"></div>
+
 * **Updated Remind Feature** [\#280](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/280)
     * **What**: I helped to ensure that the error messages are still accurate after we added a feature to allow users to remind multiple assignments.
     * **Justification**: This improves the product as users will now be able to see where the error actually occurs when they are setting reminders to multiple assignments instead of simply being notified that there is an error.
