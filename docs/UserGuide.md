@@ -17,6 +17,7 @@ title: User Guide
 
 
 ## Introduction <a name="introduction"></a>
+
 <img src="images/tCheckLogo.png" width="200" height="200" />
 
 Welcome to the User Guide of **tCheck**!
@@ -62,9 +63,9 @@ how the figure below shows some sample data.<br>
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## 3. About this document <a name="about"></a>
+## About this document <a name="about"></a>
 
-### 3.1 Structure of this document
+### 1 Structure of this document
 
 We have structured this User Guide in a way so that you can find what you need easily and quickly. In the next section,
 [Section 3.2 - Reading this document](#reading-this-document), you can find sevaral useful tips on how to read this guide. The following section,
@@ -76,21 +77,21 @@ We have structured this User Guide in a way so that you can find what you need e
 
    * Manpower Management
 
-   * Other general features
+   * Other General Features
 
-### 3.2 Reading this document <a name="reading-this-document"></a>
+### 2 Reading this document <a name="reading-this-document"></a>
 
 This section introduces you to some key technical terms, symbols and syntax that are used throughout this guide.
-You may want to familarize yourself with them before moving on to the next section.
+You may want to familarise yourself with them before moving on to the next section.
 
-#### 3.2.1 Terminology related to the GUI
+#### 2.1 Terminology related to the GUI
 
 Figure 2 shows the GUI of **tCheck**, annotated with descriptions for all components of the GUI.
 
 <img src="images/tCheckInfographic.png" width="1000" height="600" />
 Figure 2 - Annotated GUI of tCheck
 
-#### 3.2.2. General Symbols and Syntax 
+#### 2.2. General Symbols and Syntax 
 
 The following table explains the general symbols and syntax used in this User Guide.
 
@@ -101,7 +102,7 @@ The following table explains the general symbols and syntax used in this User Gu
 |<div markdown="block" class="alert alert-info"> :information_source: </div>  | An exclamation mark indicates that the following text is a note |
 |<div markdown="span" class="alert alert-primary">:bulb:  | An bulb indicates that the following text is a tip |
 
-#### 3.2.3. Command Syntax and Usage
+#### 2.3. Command Syntax and Usage
 
 The following table explains the technical terms used in this user guide.
 
@@ -135,14 +136,14 @@ The following points explain the format of a command.
    e.g. If the command specifies `p/PHONE_NUMBER e/EMERGENCY_CONTACT`, `e/EMERGENCY_CONTACT p/PHONE_NUMBER` is also acceptable.
     
 
-#### 3.2.4 Prefix process and usage
+#### 2.4 Prefix processing and usage
 
 The table below explains some important features of how prefix(es) are processed in tCheck to help you understand and use prefix(es) in commands.
 
 Situation | What will happen
 -------|------------------------------
 Duplicate (2 or more) valid prefixes detected | Only the last prefix and its following parameter are accepted and processed as part of the command.
-Invalid prefix entered | tCheck will not recognize this "prefix" and thus it will be processed as part of the parameter for the nearest previous valid prefix, which may result in error for the parameter.
+Invalid prefix entered | tCheck will not recognise this "prefix" and thus it will be processed as part of the parameter for the nearest previous valid prefix, which may result in error for the parameter.
 Unexpected prefix(es) entered for commands which do not take in any parameter | tCheck will not accept or process these prefix(es) because all words entered after the command words will be ignored. 
 
 **Example 1:**
@@ -158,8 +159,8 @@ Thus, the command will be processed in the same way as `i-set i/Boba m/90`.
 
 **How the command is processed:**
 
-In this example, the prefixes `M/`, `P/`, `B/`, `L`, `G` and `S/` are valid but `T/` is invalid. Hence, the situation of
-invalid prefix entered takes place. Since tCheck will not be able to recognize the `T/` entered as a prefix. Thus, it will be treated as
+In this example, the prefixes `M/`, `P/`, `B/`, `L/`, `G/` and `S/` are valid but `T/` is invalid. Hence, the situation of
+invalid prefix entered takes place. Since tCheck will not be able to recognise the `T/` entered as a prefix. Thus, it will be treated as
 part of the parameter for the nearest previous prefix, which is `S/`. This will cause the command to fail because `10 T/20` is an invalid format for amount and appropriate error message will be shown.
 
 **Example 3:**
@@ -172,24 +173,6 @@ Thus, tCheck will ignore all words come after the command word `help` and the co
 
 --------------------------------------------------------------------------------------------------------------------
 ## Features <a name="features"></a>
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `i-set i/INGREDIENT_NAME m/AMOUNT`, both `INGREDIENT_NAME` and `AMOUNT` are parameters which can be used as `i-set i/Milk m/90`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `...`​ after them can be used once or multiple times.<br>
-  e.g. `sales A/NUM B/NUM C/NUM ...` can be used as `sales BSBM/100` or `sales BSBM/100 BSBBT/120`.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-</div>
 
 ### 1. Commands - Sales Tracking <a name="commands-sales-tracking"></a>
 The Sales Tracking features allows you to keep a record of the sales of the bubble tea drinks inside the
@@ -300,14 +283,10 @@ Before executing:<br>
 After executing:<br>
 ![SalesFindCommandScreenshot](images/SalesFindResult.png)
 
-#### 1.4 Ranking the list of drinks sold : `s-rank`
-Shows a ranked list of all types of drinks sold in the Sales Tracker. The list of drinks
-is ranked from the most popular to least popular.
-
-Format: `s-rank`
-
 ### 2. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
 
+The Ingredients Tracking features allows you to keep an inventory of the ingredients for a T-Sugar store inside the Ingredient Tracker.
+You are able to view data related to ingredients tracking in the Ingredient Tracker inside the _Main View_.
 
 <div markdown="block" class="alert alert-info">
 
@@ -347,6 +326,17 @@ Sets the level of one single ingredient predefined in the ingredient book to the
 Format: `i-set i/INGREDIENT_NAME m/AMOUNT`
 
 * Sets the `INGREDIENT_NAME` to the specified `AMOUNT`.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about amounts:** <br>
+
+You can use one or two leading zeros when setting the amounts if you prefer, as long as the total number of digits entered for the amount is less than or equal to three, except for zero. Zero will always be displayed as one single "0".
+This applies for both setting one ingredient's level and setting all ingredients' levels.
+
+For example, tCheck accepts `07`, `007` and `070` as valid parameters for `AMOUNT`, but `0007` is rejected.
+
+</div>
 
 Example:
 
@@ -417,7 +407,13 @@ Outcome:
 1. The _Result Display_ will show a success message.
 2. You can now see that tCheck has updated all ingredients' levels to the pre-determined default amounts in the Ingredient Tracker inside the _Main View_.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:** <br>
+
 tCheck GUI behaves similarly to examples given in the previous command, except no parameters are taken in.
+
+</div>
 
 #### 2.4 Listing all ingredients' levels : `i-list`
 Lists the ingredient's levels of all ingredient types.
@@ -889,7 +885,7 @@ Format: `c-archive-all`
 
 Example:
 
-Let's say after you familiarize yourself with tCheck, you want to remove all sample data in employee directory. But
+Let's say after you familiarise yourself with tCheck, you want to remove all sample data in employee directory. But
  you don't want to permanently delete those data, so that you can use them as a reference in the future. To archive
   all employees, you can follow these instructions:
 
