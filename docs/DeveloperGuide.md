@@ -13,7 +13,7 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ---
-
+<div style="page-break-after: always;"></div>
 ## Introduction
 
 **ResiReg** is a productivity app designed to help OHS* admin at Residential Colleges (RCs)* in NUS with their daily tasks.
@@ -37,7 +37,7 @@ It is intended for developers, software testers, open-source contributors and an
 ## Setting Up
 
 Refer to the guide [here](./SettingUp.md).
-
+<div style="page-break-after: always;"></div>
 ## **Design**
 
 ### Architecture
@@ -100,7 +100,7 @@ The `UI` component,
 - Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
 When the app is launched, `StudentListPanel` is displayed to allow the user to manage student records. When a room tab session is to be shown, `StudentListPanel` becomes hidden, and the `RoomListPanel` is displayed to allow the user to edit and view rooms, by exposing a `MainPanel#handleToggle` method to the `Logic` components.
-
+<div style="page-break-after: always;"></div>
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -123,7 +123,7 @@ Notes:
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("add-room fl/11 n/100 t/NN")` API call.
 
 ![Interactions Inside the Logic Component for the `add-room fl/11 n/100 t/NN` Command](images/AddRoomSequenceDiagram.png)
-
+<div style="page-break-after: always;"></div>
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -139,7 +139,7 @@ The `Model`,
     - unmodifiable `ObservableList<Room>`
     - unmodifiable `ObservableList<Allocation>`
     - unmodifiable `ObservableList<BinItem>`
-
+<div style="page-break-after: always;"></div>
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -156,7 +156,7 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.resireg.commons` package.
 
 ---
-
+<div style="page-break-after: always;"></div>
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -209,7 +209,7 @@ Problem Statement: A bin item must be polymorphic in its storage, i.e., it must 
 - **Alternative 2:** Assigning storage responsibility to the `Binnable` interface
   - Pros: Makes storage more OOP-compliant, prevents need for explicit type-checking. 
   - Cons: Complicates the general MVC structure, and makes it more difficult to migrate to non-JSON storage, since instances of `Binnable` (e.g. `Student` and `Room`) must now contain their storage implementation details as well. 
-
+<div style="page-break-after: always;"></div>
 ### Allocation/ Deallocation/ Reallocation Feature
 
 The allocation/ deallocation/ reallocation feature is facilitated by `Allocation`. It is an association class of the
@@ -271,7 +271,7 @@ Having attempted a `Student` having a `Room` attribute and/or vice versa, it ine
 up with a cyclic dependency in various parts of the code, such as the `Student` or `Room`'s `toString()` methods or
 their `JsonAdapted` variants, which is undesired. Therefore, the room allocation functionality was refactored into
 the `Allocation` association class (alternative 4).
-
+<div style="page-break-after: always;"></div>
 ### Undo/redo feature
 
 #### Implementation
@@ -349,7 +349,7 @@ Step 6. The user executes `clear`, which calls `Model#saveStateResiReg()`.
 As before, the current state `stateBeforeClear` clear will be pushed into `undoStatesStack`. This time `redoStatesStack` is no longer empty. It will be cleared as it no longer make sense to redo the add n/Jet command (this is the behavior that most modern desktop applications follow).
 
 ![UndoRedoState5](images/UndoRedoState5.png)
-
+<div style="page-break-after: always;"></div>
 The following activity diagram summarizes what happens when a user executes a new command, 
 that is not `undo` or `redo`:
 
@@ -395,7 +395,7 @@ the `undo` command. (The activity diagram for `redo` is largely similar).
     - Also, goes against the Separation
     of Concerns principle since the management of both undoing and redoing
     is handled together.
-
+<div style="page-break-after: always;"></div>
 ### Data archiving for semester
 Allocations of a student to a room are valid only for a given semester. This implies that ResiReg should support the archival and creation of multiple semesters, so that the data can be managed and stored in an organized fashion that suits the OHS admin. The `archive` command accomplishes this by allowing the user to achive the current semester's allocations, and advance to a new semester which pre-fills the Student and Room details.
 
@@ -413,7 +413,7 @@ Step 2. The user executes the `archive` command to archive the current semester'
 Step 3. The `archive` command then computes the succeeding state from the current state via `ResiReg#getNextSemesterResiReg`. This method computes the succeeding semester from the current semester via `Semester#getNextSemester`, and resets the allocations of students to rooms.
 
 Step 4. The `Storage#archiveResiReg` is then called. This operation saves the current data of the semester inside `./AY{YEAR}S{SEMESTER}/archive.json`, where `{YEAR}` denotes the academic year and `{SEMESTER}` denotes which semester of the academic year. For example, the data of Semester 1 of Year 2020 would be stored inside `./AY2020S1/archive.json`.
-
+<div style="page-break-after: always;"></div>
 Step 5. Finally, the fresh semester in ResiReg is then updated in 2 steps:
 
 Step 5.1: Firstly, the application state is updated by calling `Model#setResiReg` with the computed succeeding state in Step 2. 
@@ -436,7 +436,7 @@ The following sequence diagram shows the flow of the `archive` operation as desc
 - **Alternative 2:** Compute the next semester directly within the `archiveResiReg` method
   - Pros: violates the Single-responsibility Principle, as `archiveResiReg` now has 2 responsibilities: computing the next semester, and writing the file to storage
   - Cons: Compared to Alternative 1, less intermediate methods to implement.
-
+<div style="page-break-after: always;"></div>
 ### Help command
 
 The help command allows the user to view the help message for any command in the application based on the command word. The command word refers to the text that the user enters to execute the application eg. `delete-student` for the command to delete a student, `help` for the help command. 
@@ -476,6 +476,7 @@ HelpCommand basically requires a mapping of each command to its Help object. To 
     - Pros: simple to implement
     - Cons: it is easy for developers to forget to modify the map in the HelpCommand class when adding new commands. This mistake can easily go unnoticed as the command will still if the command word has been correctly associated with its parser.
 - **Alternative 2:** Have a data structure inside ResiRegParser which maps each command word to both its Help and Parser. ResiRegParser uses the mapping from command word to Parser, while the mapping from command word to Help is exposed to HelpCommand via a public method or attribute.
+<div style="page-break-after: always;"></div>
     - Pros: ensures that the HelpCommand is always up to date, as developers must bind the command word to both its Help and Parser.
     - Cons: violates the single responsibility principle. ResiRegParser does not need to know about the Help for each command to parse commands.
 - **Alternative 3 (current choice):** Have a separate class (`CommandWordEnum`) containing a data structure that maps each command word to its Parser and Help. Developers would modify this class when adding commands. HelpCommand and ResiRegParser can use the `CommandWordEnum` to generate a mapping of each command word to its Parser or Help respectively.
@@ -497,7 +498,7 @@ HelpCommand basically requires a mapping of each command to its Help object. To 
 - [DevOps guide](DevOps.md)
 
 ---
-
+<div style="page-break-after: always;"></div>
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -523,6 +524,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | \*       | OHS admin                | find a room by searching for the room number             | get the details of a specific room quickly.                                                               |
 | \* \*    | advanced user            | redo the previous command                                | do the same task without typing again, e.g. if two students wish to pay the same bill.                    |
 | \* \*    | careless user            | undo my last command                                     | fix any change that I made erroneously.                                                                   |
+<div style="page-break-after: always;"></div>
+| Priority | As a…                    | I can…                                                   | So that I can…                                                                                            |
+| -------- | ------------------------ | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | \* \*    | advanced user            | view previous commands                                   | check if I made an error in adding or deleting records.                                                   |
 | \* \* \* | OHS admin                | view a list of vacant rooms                              | start assigning rooms to students during check-in.                                                        |
 | \* \* \* | OHS admin                | view a room allocation for a student                     | check and inform a student of their room allocation during check in.                                      |
