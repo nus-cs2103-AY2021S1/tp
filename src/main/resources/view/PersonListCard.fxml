@@ -19,18 +19,28 @@
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
       <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
+        <Label fx:id="personId" styleClass="cell_big_label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="personName" text="\$first" styleClass="cell_big_label" />
       </HBox>
-      <FlowPane fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      <HBox spacing="115">
+        <children>
+          <VBox>
+            <FlowPane fx:id="personTags" styleClass="tags"/>
+            <Label fx:id="personPhone" styleClass="cell_small_label" text="\$phone" />
+            <Label fx:id="personExperience" styleClass="cell_small_label" text="\$experience" />
+            <Label fx:id="personDateOfApplication" styleClass="cell_small_label" text="\$date" />
+            <Label fx:id="personSalary" styleClass="cell_small_label"  text="no expected salary"/>
+          </VBox>
+        </children>
+        <children>
+          <Label fx:id="personBlacklistStatus" styleClass="label-side" textFill="white"  />
+        </children>
+      </HBox>
     </VBox>
   </GridPane>
 </HBox>

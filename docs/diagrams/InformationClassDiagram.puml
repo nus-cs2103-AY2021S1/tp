@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR_T4
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Information {
+Class Person
+Class Job
+Class Salary
+Class Date
+Class Name
+Class Phone
+Class Email
+Class Experience
+Class BlacklistStatus
+Class Address
+Class UrlLink
+
+
+Class Vacancy
+Class Priority
+}
+Package Tag {
+Class Tag
+}
+
+Person *----> "1" Name
+Person *----> "1" Phone
+Person *----> "1" Email
+Person *----> "0..1" Address
+Person *----> "1" Experience
+Person *----> "0..1" Salary
+Person *----> "1" Date
+Person *----> "0..1" UrlLink
+Person *----> "1" BlacklistStatus
+Person *----> "*" Tag
+
+Job *-up---> "2" Name
+Job *-up---> "1" Phone
+Job *-up---> "1" Email
+Job *-up---> "1" Address
+Job *--right---> "1" Vacancy : "                        "
+Job *--left---> "  1" Priority : "                      "
+Job *-up---> "*" Tag
+
+BlacklistStatus -right[hidden]- Address
+Date -right[hidden]- Address
+Experience -right[hidden]- Address
+
+@enduml
+

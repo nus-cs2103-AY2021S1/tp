@@ -1,56 +1,60 @@
 @startuml
 !include style.puml
 skinparam arrowThickness 1.1
-skinparam arrowColor MODEL_COLOR
+skinparam arrowColor MODEL_COLOR_T4
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyPersonAddressBook <<Interface>>
+Interface ReadOnlyJobAddressBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class PersonAddressBook
+Class JobAddressBook
+Class ReadOnlyPersonAddressBook
+Class ReadOnlyJobAddressBook
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
+Package Information {
 Class UniquePersonList
+Class UniqueJobList
+Class Person
+Class Job
 }
 
 Package Tag {
 Class Tag
 }
+
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ...> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+PersonAddressBook .up.|> ReadOnlyPersonAddressBook
+JobAddressBook .up.|> ReadOnlyJobAddressBook
+
+PersonAddressBook *--> "1" UniquePersonList
+JobAddressBook *--> "1" UniqueJobList
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
+ModelManager o-right-> "1" PersonAddressBook
+ModelManager o-left-> "1" JobAddressBook
+UniquePersonList o--> "*" Person
+UniqueJobList o--> "*" Job
+ModelManager --> Job : filtered list
+ModelManager --> Job : sorted list
+ModelManager --> Person : filtered list
+ModelManager --> Person : sorted list
+ModelManager o-up-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
 Person *--> "*" Tag
+Job *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
 
-ModelManager -->"1" Person : filtered list
 @enduml

@@ -1,0 +1,22 @@
+{
+  "persons": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "experience" : "3.0",
+    "dateOfApplication" : "01-01-15",
+    "isBlacklisted" : "true",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "urlLink" : "profile.com",
+    "tagged": [ "friends" ]
+  }, {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "pauline@example.com",
+    "experience" : "2.0",
+    "dateOfApplication" : "29-11-11",
+    "isBlacklisted" : "false",
+    "address": "4th street",
+    "urlLink" : "portfolio.com"
+  } ]
+}

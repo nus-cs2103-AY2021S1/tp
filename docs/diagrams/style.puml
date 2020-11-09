@@ -7,29 +7,29 @@
 
 'T1 through T4 are shades of the original color from lightest to darkest
 
-!define UI_COLOR #1D8900
-!define UI_COLOR_T1 #83E769
-!define UI_COLOR_T2 #3FC71B
-!define UI_COLOR_T3 #166800
-!define UI_COLOR_T4 #0E4100
+!define UI_COLOR #DABCEB
+!define UI_COLOR_T1 #E1D5E7
+!define UI_COLOR_T2 #AB68D1
+!define UI_COLOR_T3 #8233B0
+!define UI_COLOR_T4 #3E0C59
 
-!define LOGIC_COLOR #3333C4
-!define LOGIC_COLOR_T1 #C8C8FA
-!define LOGIC_COLOR_T2 #6A6ADC
-!define LOGIC_COLOR_T3 #1616B0
-!define LOGIC_COLOR_T4 #101086
+!define LOGIC_COLOR #7AD1D6
+!define LOGIC_COLOR_T1 #B0E3E6
+!define LOGIC_COLOR_T2 #50C0C6
+!define LOGIC_COLOR_T3 #2AA2A9
+!define LOGIC_COLOR_T4 #0E858B
 
-!define MODEL_COLOR #9D0012
-!define MODEL_COLOR_T1 #F97181
-!define MODEL_COLOR_T2 #E41F36
-!define MODEL_COLOR_T3 #7B000E
-!define MODEL_COLOR_T4 #51000A
+!define MODEL_COLOR #F7E2A4
+!define MODEL_COLOR_T1 #FFF2CC
+!define MODEL_COLOR_T2 #F8D879
+!define MODEL_COLOR_T3 #EDC345
+!define MODEL_COLOR_T4 #E5AF0E
 
-!define STORAGE_COLOR #A38300
-!define STORAGE_COLOR_T1 #FFE374
-!define STORAGE_COLOR_T2 #EDC520
-!define STORAGE_COLOR_T3 #806600
-!define STORAGE_COLOR_T2 #544400
+!define STORAGE_COLOR #F8C2BB
+!define STORAGE_COLOR_T1 #FAD9D5
+!define STORAGE_COLOR_T2 #EEABA3
+!define STORAGE_COLOR_T3 #E9948A
+!define STORAGE_COLOR_T4 #E46F62
 
 !define USER_COLOR #000000
 
@@ -38,10 +38,10 @@ skinparam BackgroundColor #FFFFFFF
 skinparam Shadowing false
 
 skinparam Class {
-    FontColor #FFFFFF
+    FontColor #000000
     BorderThickness 1
     BorderColor #FFFFFF
-    StereotypeFontColor #FFFFFF
+    StereotypeFontColor #000000
     FontName Arial
 }
 
@@ -55,16 +55,16 @@ skinparam Sequence {
     MessageAlign center
     BoxFontSize 15
     BoxPadding 0
-    BoxFontColor #FFFFFF
+    BoxFontColor #000000
     FontName Arial
 }
 
 skinparam Participant {
-    FontColor #FFFFFFF
+    FontColor #000000
     Padding 20
 }
 
-skinparam MinClassWidth 50
+skinparam MinClassWidth 100
 skinparam ParticipantPadding 10
 skinparam Shadowing false
 skinparam DefaultTextAlignment center

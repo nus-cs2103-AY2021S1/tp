@@ -39,6 +39,30 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code sentence} contains the {@code phrase}.
+     *   Ignores case and does not require a full word match.
+     *   <br>examples:<pre>
+     *       containsPhraseIgnoreCase("Joanna wong", "joan") == true
+     *       containsWordIgnoreCase("facebook@recruitment.com", "@REcRuiTMent.com") == true
+     *       containsWordIgnoreCase("google@recruitment.com", "@recruitment.sg") == false //does not contain the phrase
+     *       </pre>
+     * @param sentence cannot be null
+     * @param phrase cannot be null, cannot be empty, must be a single phrase
+     */
+    public static boolean containsPhraseIgnoreCase(String sentence, String phrase) {
+        requireNonNull(sentence);
+        requireNonNull(phrase);
+
+        String preppedWord = phrase.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+
+        String lowerCasePhrase = phrase.toLowerCase();
+        String lowerCaseSentence = sentence.toLowerCase();
+        return lowerCaseSentence.contains(lowerCasePhrase);
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {

@@ -1,0 +1,58 @@
+{
+  "_comment": "AddressBook save file which contains the same Job values as in TypicalJobs#getTypicalJobAddressBook()",
+  "jobs" : [ {
+    "jobtitle": "Toilet Bowl Cleaner",
+    "company": "Facebook",
+    "phone": "67438807",
+    "email": "recruitment@facebook.com",
+    "address": "1 Hacker Way, Menlo Park, CA 94025",
+    "tagged": [ "Cleaner" ],
+    "priority": "low",
+    "vacancy": "1"
+  }, {
+    "jobtitle": "Wall Painter",
+    "company": "Apple",
+    "phone": "69272758",
+    "email": "recruitment@apple.com",
+    "address": "1 Apple Park Way, Cupertino, California",
+    "tagged": [ "Cleaner" ],
+    "priority": "low",
+    "vacancy": "3"
+  }, {
+    "jobtitle": "Plant Waterer",
+    "company": "Amazon",
+    "phone": "63210283",
+    "email": "recruitment@amazon.com",
+    "address": "16 Forest Way, Seattle, Washington",
+    "tagged": [ "Cleaner" ],
+    "priority": "low",
+    "vacancy": "2"
+  }, {
+    "jobtitle": "Glass Wiper",
+    "company": "Netflix",
+    "phone": "61031282",
+    "email": "recruitment@netflix.com",
+    "address": "19 Netflix Lane, Los Gatos, California",
+    "tagged": [ "Cleaner" ],
+    "priority": "moderate",
+    "vacancy": "5"
+  }, {
+    "jobtitle": "Software Engineer",
+    "company": "Google",
+    "phone": "62492021",
+    "email": "recruitment@google.com",
+    "address": "1600 Google Way, Mountain View, California",
+    "tagged": [ "SE" ],
+    "priority": "moderate",
+    "vacancy": "2"
+  }, {
+    "jobtitle": "CS2103T Lecturer",
+    "company": "NUS",
+    "phone": "62624417",
+    "email": "recruitment@nus.edu.sg",
+    "address": "21 Lower Kent Ridge Rd, Singapore 119077",
+    "tagged": [ "Teaching" ],
+    "priority": "high",
+    "vacancy": "1"
+  } ]
+}

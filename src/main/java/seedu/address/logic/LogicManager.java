@@ -13,8 +13,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyPersonAddressBook;
+import seedu.address.model.information.Job;
+import seedu.address.model.information.Person;
 import seedu.address.storage.Storage;
 
 /**
@@ -46,7 +47,9 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+
+            storage.savePersonAddressBook(model.getPersonAddressBook());
+            storage.saveJobAddressBook(model.getJobAddressBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,8 +58,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyPersonAddressBook getPersonAddressBook() {
+        return model.getPersonAddressBook();
     }
 
     @Override
@@ -65,8 +68,33 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public ObservableList<Job> getFilteredJobList() {
+        return model.getFilteredJobList();
+    }
+
+    @Override
+    public ObservableList<Person> getSortedPersonList() {
+        return model.getSortedPersonList();
+    }
+
+    @Override
+    public ObservableList<Job> getSortedJobList() {
+        return model.getSortedJobList();
+    }
+
+    @Override
+    public Person getDisplayedPerson() {
+        return model.getDisplayedPerson();
+    }
+
+    @Override
+    public Job getDisplayedJob() {
+        return model.getDisplayedJob();
+    }
+
+    @Override
+    public Path getPersonAddressBookFilePath() {
+        return model.getPersonAddressBookFilePath();
     }
 
     @Override

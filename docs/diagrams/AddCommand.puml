@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+scale 1.75
+
+'`add can n/John p/98765432 e/john@ex.com a/John street exp/5 doa/15-10-20`
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddPersonCommandParser" as AddPersonCommandParser LOGIC_COLOR
+participant "a: AddPersonCommand" as AddPersonCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add can \nn/John p/98765432 \ne/john@ex.com \na/John street \nexp/5 doa/15-10-20")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("add can \nn/John p/98765432 \ne/john@ex.com a/John street \nexp/5 doa/15-10-20")
+activate AddressBookParser
+
+create AddPersonCommandParser
+AddressBookParser -> AddPersonCommandParser
+activate AddPersonCommandParser
+
+AddPersonCommandParser --> AddressBookParser
+deactivate AddPersonCommandParser
+
+AddressBookParser -> AddPersonCommandParser : parse(" n/John p/98765432 \ne/john@ex.com a/John street \nexp/5 doa/15-10-20")
+activate AddPersonCommandParser
+
+create AddPersonCommand
+AddPersonCommandParser -> AddPersonCommand
+activate AddPersonCommand
+
+AddPersonCommand --> AddPersonCommandParser : "a"
+deactivate AddPersonCommand
+
+AddPersonCommandParser --> AddressBookParser : "a"
+
+
+destroy AddPersonCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddPersonCommand : "execute()"
+activate AddPersonCommand
+
+AddPersonCommand -> Model : "hasPerson(Person)"
+activate Model
+Model --> AddPersonCommand
+deactivate Model
+
+
+
+AddPersonCommand -> Model : "addPerson(Person)"
+activate Model
+Model --> AddPersonCommand
+deactivate Model
+
+
+create CommandResult
+AddPersonCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddPersonCommand
+deactivate CommandResult
+
+AddPersonCommand --> LogicManager : "New candidate added: John Phone: 98765432 Email: john@ex.com \nExperience: 5.00 years Date of Application: 15-10-20 Address: John street"
+deactivate AddPersonCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

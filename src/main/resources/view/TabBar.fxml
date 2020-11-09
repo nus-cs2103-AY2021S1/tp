@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <TabPane  fx:id="personAndJobTabBar" styleClass="tab-pane" tabClosingPolicy="UNAVAILABLE">
+        <Tab fx:id="personTab" styleClass="@LightTheme.css">
+            <content>
+                <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10" />
+                    </padding>
+                    <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                </VBox>
+            </content>
+        </Tab>
+        <Tab fx:id="jobTab">
+            <VBox fx:id="jobList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10" />
+                </padding>
+                <StackPane fx:id="jobListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            </VBox>
+        </Tab>
+
+    </TabPane>
+</StackPane>

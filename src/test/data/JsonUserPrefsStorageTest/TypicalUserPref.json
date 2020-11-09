@@ -7,5 +7,6 @@
       "y" : 100
     }
   },
-  "addressBookFilePath" : "addressbook.json"
+  "personAddressBookFilePath" : "personaddressbook.json",
+  "jobAddressBookFilePath" : "jobaddressbook.json"
 }

@@ -4,12 +4,12 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
+participant "u:UndoPersonCommand" as UndoPersonCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+participant ":VersionedPersonAddressBook" as VersionedPersonAddressBook MODEL_COLOR
 end box
 [-> LogicManager : execute(undo)
 activate LogicManager
@@ -17,36 +17,36 @@ activate LogicManager
 LogicManager -> AddressBookParser : parseCommand(undo)
 activate AddressBookParser
 
-create UndoCommand
-AddressBookParser -> UndoCommand
-activate UndoCommand
+create UndoPersonCommand
+AddressBookParser -> UndoPersonCommand
+activate UndoPersonCommand
 
-UndoCommand --> AddressBookParser
-deactivate UndoCommand
+UndoPersonCommand --> AddressBookParser
+deactivate UndoPersonCommand
 
 AddressBookParser --> LogicManager : u
 deactivate AddressBookParser
 
-LogicManager -> UndoCommand : execute()
-activate UndoCommand
+LogicManager -> UndoPersonCommand : execute()
+activate UndoPersonCommand
 
-UndoCommand -> Model : undoAddressBook()
+UndoPersonCommand -> Model : undoPersonAddressBook()
 activate Model
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
+Model -> VersionedPersonAddressBook : undo()
+activate VersionedPersonAddressBook
 
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
+VersionedPersonAddressBook -> VersionedPersonAddressBook :resetData(ReadOnly\nPersonAddressBook)
+VersionedPersonAddressBook --> Model :
+deactivate VersionedPersonAddressBook
 
-Model --> UndoCommand
+Model --> UndoPersonCommand
 deactivate Model
 
-UndoCommand --> LogicManager : result
-deactivate UndoCommand
-UndoCommand -[hidden]-> LogicManager : result
-destroy UndoCommand
+UndoPersonCommand --> LogicManager : result
+deactivate UndoPersonCommand
+UndoPersonCommand -[hidden]-> LogicManager : result
+destroy UndoPersonCommand
 
 [<--LogicManager
 deactivate LogicManager

@@ -1,11 +1,17 @@
 package seedu.address.ui;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -16,6 +22,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.information.Job;
+import seedu.address.model.information.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -26,12 +34,12 @@ public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
+    private final Image image = new Image(this.getClass().getResourceAsStream("/images/CANdidates1.png"));
 
     private Stage primaryStage;
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,13 +50,26 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
-
-    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private TabPane tabPane;
+
+    @FXML
+    private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane jobListPanelPlaceholder;
+
+    @FXML
+    private StackPane detailedView;
+
+    @FXML
+    private ListView<Person> personListView;
+
+    @FXML
+    private ScrollPane scrollPane;
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,6 +87,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+
     }
 
     public Stage getPrimaryStage() {
@@ -110,17 +133,19 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        PersonListPanel personListPanel = new PersonListPanel(logic.getFilteredPersonList(), this);
+        JobListPanel jobListPanel = new JobListPanel(logic.getFilteredJobList(), this);
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        jobListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        setUpRightPanelLogo();
     }
 
     /**
@@ -134,6 +159,7 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
     }
+
 
     /**
      * Opens the help window or focuses on it if it's already opened.
@@ -152,6 +178,54 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Updates the detailed view on the right panel with the supplied {@code Person}.
+     * @param person
+     */
+    public void updateDetailedPersonPanel(Person person) {
+        PersonDetailedView personDetailedView = new PersonDetailedView(person);
+        detailedView.getChildren().clear();
+        detailedView.getChildren().add(personDetailedView.getRoot());
+    }
+
+    /**
+     * Updates the detailed view on the right panel with the supplied {@code Job}.
+     */
+    public void updateDetailedJobPanel(Job job) {
+        JobDetailedView jobDetailedView = new JobDetailedView(job);
+        detailedView.getChildren().clear();
+        detailedView.getChildren().add(jobDetailedView.getRoot());
+    }
+
+    /**
+     * Sets up and display CANdidates logo on the right panel upon launching of the app.
+     */
+    private void setUpRightPanelLogo() {
+        ImageView logoPlaceHolder = new ImageView();
+        logoPlaceHolder.setFitWidth(550);
+        logoPlaceHolder.setTranslateY(-340);
+        logoPlaceHolder.setTranslateX(20);
+        logoPlaceHolder.setPreserveRatio(true);
+        logoPlaceHolder.setY(10);
+        logoPlaceHolder.setImage(image);
+        detailedView.getChildren().add(logoPlaceHolder);
+    }
+    /**
+     * Switches tab to the desired tab.
+     */
+    private void switchTab(String tabName) {
+        switch (tabName) {
+        case Person.TAB_NAME:
+            tabPane.getSelectionModel().select(0);
+            break;
+        case Job.TAB_NAME:
+            tabPane.getSelectionModel().select(1);
+            break;
+        default:
+            throw new AssertionError("No such tab name " + tabName);
+        }
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -161,10 +235,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**
@@ -177,15 +247,26 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
+            Optional<String> tabNameToDisplay = commandResult.getTabName();
+            if (tabNameToDisplay.isPresent()) {
+                System.out.println(tabNameToDisplay.get());
+                switchTab(tabNameToDisplay.get());
+            }
+            if (commandResult.isPersonRightPanelView()) {
+                updateDetailedPersonPanel(logic.getDisplayedPerson());
+            }
+            if (commandResult.isJobRightPanelView()) {
+                updateDetailedJobPanel(logic.getDisplayedJob());
+            }
+            if (!commandResult.isJobRightPanelView() && !commandResult.isPersonRightPanelView()) {
+                detailedView.getChildren().clear();
+            }
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
-
             if (commandResult.isExit()) {
                 handleExit();
             }
-
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

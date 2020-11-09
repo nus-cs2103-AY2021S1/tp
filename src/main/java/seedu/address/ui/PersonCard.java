@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Person;
+import seedu.address.model.information.Person;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -29,17 +29,21 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label personName;
     @FXML
-    private Label id;
+    private Label personId;
     @FXML
-    private Label phone;
+    private Label personPhone;
     @FXML
-    private Label address;
+    private Label personExperience;
     @FXML
-    private Label email;
+    private Label personDateOfApplication;
     @FXML
-    private FlowPane tags;
+    private Label personBlacklistStatus;
+    @FXML
+    private Label personSalary;
+    @FXML
+    private FlowPane personTags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -47,14 +51,19 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
+        personId.setText(displayedIndex + ". ");
+        personName.setText(person.getName().fullName);
+        personPhone.setText(person.getPhone().value);
+        personExperience.setText(String.format("%.2f years", person.getExperience().experienceInYears));
+        personDateOfApplication.setText(person.getDateOfApplication().dateString);
+        personBlacklistStatus.setText(person.getBlacklistStatus().isBlacklisted ? "Blacklisted" : "Not Blacklisted");
+        person.getSalaryOptional().ifPresent(sal -> personSalary.setText("$" + sal.toString()));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> personTags.getChildren().add(new Label(tag.tagName + " ")));
+        personBlacklistStatus.setStyle(person.getBlacklistStatus().isBlacklisted
+                ? "-fx-background-color: black; -fx-text-fill: white;"
+                : "-fx-background-color: green; -fx-text-fill:white;");
     }
 
     @Override
@@ -71,7 +80,7 @@ public class PersonCard extends UiPart<Region> {
 
         // state check
         PersonCard card = (PersonCard) other;
-        return id.getText().equals(card.id.getText())
+        return personId.getText().equals(card.personId.getText())
                 && person.equals(card.person);
     }
 }

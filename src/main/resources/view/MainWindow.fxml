@@ -1,60 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Scene?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import java.net.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.stage.*?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+<?import javafx.geometry.Insets?>
+<fx:root minHeight="700" minWidth="1280" onCloseRequest="#handleExit"  title="CANdidates" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/CANdidates1.png" />
   </icons>
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@DarkTheme.css" />
+        <URL value="@LightTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
-
-      <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-          </Menu>
-        </MenuBar>
-
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
-
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
-
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-      </VBox>
+        <HBox style="-fx-background-color: white">
+          <children>
+            <VBox styleClass="left-panel">
+              <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+                <Menu mnemonicParsing="false" text="File">
+                  <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+                </Menu>
+            </MenuBar>
+            <TabPane fx:id="tabPane" maxWidth="650" prefWidth="650"  styleClass="tabs" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+              <tabs>
+                <Tab id="personTab" fx:id="personTab" text="Candidates">
+                  <content>
+                    <VBox fx:id="personList" maxWidth="650" prefWidth="650" VBox.vgrow="ALWAYS">
+                      <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                    </VBox>
+                  </content>
+                </Tab>
+                <Tab fx:id="jobTab" text="Jobs">
+                  <content>
+                    <VBox fx:id="jobsList" maxWidth="650" prefWidth="650" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                        <StackPane fx:id="jobListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                    </VBox>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+              <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" maxWidth="650" prefWidth="650" minHeight="100" prefHeight="100" styleClass="status-panel" VBox.vgrow="ALWAYS">
+              </StackPane>
+              <StackPane fx:id="commandBoxPlaceholder" maxWidth="650" prefWidth="650" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                <padding>
+                  <Insets bottom="5" left="10" right="10" top="5" />
+                </padding>
+              </StackPane>
+            </VBox>
+          </children>
+          <children>
+            <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" style="-fx-background-color: white;" styleClass="right-scroll" vbarPolicy="NEVER">
+            <VBox maxWidth="700" prefWidth="630" minHeight="1300"  minWidth="600" spacing="10" styleClass="right-panel">
+                <StackPane fx:id="detailedView" VBox.vgrow="ALWAYS" />
+            </VBox>
+            </ScrollPane>
+          </children>
+        </HBox>
     </Scene>
   </scene>
 </fx:root>

@@ -1,0 +1,87 @@
+@startuml
+!include style.puml
+scale 1920*1080
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindPersonCommandParser" as FindPersonCommandParser LOGIC_COLOR
+participant "n: PersonName\nContainsKeywordsPredicate" as PersonNameContainsKeywordsPredicate LOGIC_COLOR
+participant "e: PersonExperience\nContainsKeywordsPredicate" as PersonExperienceContainsKeywordsPredicate LOGIC_COLOR
+participant "f : FindPersonCommand" as FindPersonCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find can \nn/Alex exp/0")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("find \ncan n/Alex exp/0")
+activate AddressBookParser
+
+create FindPersonCommandParser
+AddressBookParser -> FindPersonCommandParser
+activate FindPersonCommandParser
+
+
+AddressBookParser -> FindPersonCommandParser : parse(" n/Alex exp/0")
+
+
+create PersonNameContainsKeywordsPredicate
+FindPersonCommandParser -> PersonNameContainsKeywordsPredicate : PersonNameContains\nKeywordsPredicate()
+activate PersonNameContainsKeywordsPredicate
+
+create PersonExperienceContainsKeywordsPredicate
+FindPersonCommandParser -> PersonExperienceContainsKeywordsPredicate : PersonExperienceContainsKeywordsPredicate()
+activate PersonExperienceContainsKeywordsPredicate
+
+create FindPersonCommand
+FindPersonCommandParser -> FindPersonCommand : FindPersonCommand()
+activate FindPersonCommand
+
+FindPersonCommand --> FindPersonCommandParser : f
+deactivate FindPersonCommand
+
+FindPersonCommandParser --> AddressBookParser : f
+deactivate FindPersonCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindPersonCommandParser -[hidden]-> AddressBookParser
+destroy FindPersonCommandParser
+
+AddressBookParser --> LogicManager : f
+deactivate AddressBookParser
+
+LogicManager -> FindPersonCommand : execute()
+activate FindPersonCommand
+
+FindPersonCommand -> FindPersonCommand : composePredicatesList({n, e})
+activate FindPersonCommand
+FindPersonCommand --> FindPersonCommand : n && e
+deactivate FindPersonCommand
+
+FindPersonCommand -> Model : updateFilteredPersonList(n && e)
+activate Model
+
+Model --> FindPersonCommand
+deactivate Model
+
+destroy PersonNameContainsKeywordsPredicate
+destroy PersonExperienceContainsKeywordsPredicate
+
+create CommandResult
+FindPersonCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindPersonCommand
+deactivate CommandResult
+
+FindPersonCommand --> LogicManager : "10 candidates listed!"
+deactivate FindPersonCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

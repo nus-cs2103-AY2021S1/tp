@@ -5,14 +5,15 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyJobAddressBook;
+import seedu.address.model.ReadOnlyPersonAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface Storage extends PersonAddressBookStorage, JobAddressBookStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -20,13 +21,26 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     @Override
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
-    @Override
-    Path getAddressBookFilePath();
+    //=========== PersonAddressBookStorage ============================================================================
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Path getPersonAddressBookFilePath();
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    Optional<ReadOnlyPersonAddressBook> readPersonAddressBook() throws DataConversionException, IOException;
+
+    @Override
+    void savePersonAddressBook(ReadOnlyPersonAddressBook personAddressBook) throws IOException;
+
+    //=========== JobAddressBookStorage ===============================================================================
+
+    @Override
+    Path getJobAddressBookFilePath();
+
+    @Override
+    Optional<ReadOnlyJobAddressBook> readJobAddressBook() throws DataConversionException, IOException;
+
+    @Override
+    void saveJobAddressBook(ReadOnlyJobAddressBook jobAddressBook) throws IOException;
 
 }

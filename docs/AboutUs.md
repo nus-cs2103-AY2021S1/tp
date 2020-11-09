@@ -3,57 +3,57 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are a CS2103T project team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Toh Hong Xian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/raythx98.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/raythx98)]
+[[portfolio](team/raythx98.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Deliverables and Deadlines
 
-### Jean Doe
+### Lee Joon Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/breadpeanutbutter.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/BreadPeanutButter)]
+[[portfolio](team/breadpeanutbutter.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Code Quality
 
-### James Doe
+### Germaine Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/g-erm.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/g-erm)] [[portfolio](team/g-erm.md)]
+
+* Role: Developer
+* Responsibilities: Testing
+
+### Nigel Ng
+
+<img src="images/vangoghhh.png" width="200px">
+
+[[github](http://github.com/vanGoghhh)]
+[[portfolio](team/vangoghhh.md)]
 
 * Role: Developer
 * Responsibilities: UI
+
+### Amelia Tan
+
+<img src="images/ameliatjy.png" width="200px">
+
+[[github](http://github.com/ameliatjy)]
+[[portfolio](team/ameliatjy.md)]
+
+* Role: Developer
+* Responsibilities: Scheduling and Tracking
