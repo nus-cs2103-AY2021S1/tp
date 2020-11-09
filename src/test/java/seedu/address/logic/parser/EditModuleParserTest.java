@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
-import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
 import seedu.address.logic.parser.modulelistparsers.EditModuleParser;
 import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.ModuleName;
@@ -51,44 +50,49 @@ public class EditModuleParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_ES2660)
-                .withGradePoint(VALID_GRADEPOINT_4).withMc(VALID_MC_4).withTags(VALID_TAG_LECTURE).build();
+        EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder()
+                .withName(VALID_MODULENAME_ES2660).withGradePoint(VALID_GRADEPOINT_4).withMc(VALID_MC_4)
+                .withTags(VALID_TAG_LECTURE).build();
         EditModuleCommand expectedCommand = new EditModuleCommand(Index.fromOneBased(1), descriptor);
         assertParseSuccess(parser, VALID_INPUT_ALL_FIELDS, expectedCommand);
     }
 
     @Test
     public void parse_onlyNameSpecified_success() {
-        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_ES2660).build();
+        EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder()
+                .withName(VALID_MODULENAME_ES2660).build();
         EditModuleCommand expectedCommand = new EditModuleCommand(Index.fromOneBased(1), descriptor);
         assertParseSuccess(parser, VALID_INPUT_EDIT_NAME, expectedCommand);
     }
 
     @Test
     public void parse_onlyTagSpecified_success() {
-        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withTags(VALID_TAG_LECTURE).build();
+        EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder()
+                .withTags(VALID_TAG_LECTURE).build();
         EditModuleCommand expectedCommand = new EditModuleCommand(Index.fromOneBased(1), descriptor);
         assertParseSuccess(parser, VALID_INPUT_EDIT_TAG, expectedCommand);
     }
 
     @Test
     public void parse_onlyGradePointSpecified_success() {
-        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withGradePoint(VALID_GRADEPOINT_4).build();
+        EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder()
+                .withGradePoint(VALID_GRADEPOINT_4).build();
         EditModuleCommand expectedCommand = new EditModuleCommand(Index.fromOneBased(1), descriptor);
         assertParseSuccess(parser, VALID_INPUT_EDIT_GRADEPOINT, expectedCommand);
     }
 
     @Test
     public void parse_onlyMcSpecified_success() {
-        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withMc(VALID_MC_4).build();
+        EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder()
+                .withMc(VALID_MC_4).build();
         EditModuleCommand expectedCommand = new EditModuleCommand(Index.fromOneBased(1), descriptor);
         assertParseSuccess(parser, VALID_INPUT_EDIT_MC, expectedCommand);
     }
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_ES2660)
-                .build();
+        EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder()
+                .withName(VALID_MODULENAME_ES2660).build();
         EditModuleCommand expectedCommand = new EditModuleCommand(Index.fromOneBased(1), descriptor);
         assertParseSuccess(parser, VALID_INPUT_EDIT_NAME, expectedCommand);
     }
@@ -98,7 +102,8 @@ public class EditModuleParserTest {
         String invalidThenValid = " " + 1
                 + " " + PREFIX_NAME + "@123"
                 + " " + PREFIX_NAME + VALID_MODULENAME_ES2660;
-        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_ES2660).build();
+        EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder()
+                .withName(VALID_MODULENAME_ES2660).build();
         EditModuleCommand expectedCommand = new EditModuleCommand(Index.fromOneBased(1), descriptor);
         assertParseSuccess(parser, invalidThenValid, expectedCommand);
     }
@@ -106,14 +111,15 @@ public class EditModuleParserTest {
     @Test
     public void parse_missingIndex_failure() {
         String missingIndex = " " + PREFIX_NAME + VALID_MODULENAME_ES2660;
-        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_ES2660).build();
+        EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder()
+                .withName(VALID_MODULENAME_ES2660).build();
         assertParseFailure(parser, missingIndex, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_missingAllFields_failure() {
         String missingFields = " ";
-        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().build();
+        EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().build();
         assertParseFailure(parser, missingFields, MESSAGE_INVALID_FORMAT);
     }
 

@@ -3,7 +3,7 @@ package seedu.address.model.module.grade;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an association class that tracks the CAP for a module
+ * Represents an association class that tracks the CAP for a module.
  */
 public class GradePoint {
     public static final String MESSAGE_CONSTRAINTS =

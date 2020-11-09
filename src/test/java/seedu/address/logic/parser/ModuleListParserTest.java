@@ -16,11 +16,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindModuleCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.ClearModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.DeleteModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.FindModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.ListModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;

@@ -1,10 +1,12 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.modulelistcommands;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.NameContainsKeywordsPredicate;
@@ -12,7 +14,8 @@ import seedu.address.model.module.NameContainsKeywordsPredicate;
 
 
 /**
- * Finds and lists all modules in module list whose name contains any of the argument keywords.
+ * Encapsulates methods and information to finds and lists all modules in module list whose name contains any of
+ * the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindModuleCommand extends Command {
@@ -26,6 +29,11 @@ public class FindModuleCommand extends Command {
 
     private final Predicate<Module> predicate;
 
+    /**
+     * Creates and initialises a new FindModuleCommand object.
+     *
+     * @param predicate Predicate object used to update the filtered displayed module list.
+     */
     public FindModuleCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }

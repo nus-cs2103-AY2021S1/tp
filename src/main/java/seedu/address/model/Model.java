@@ -172,6 +172,10 @@ public interface Model {
      * Sets module list to display the non-archived module list
      */
     void displayNonArchivedModules();
+    /**
+     * Returns true if archived module list is being displayed
+     */
+    boolean getModuleListDisplay();
 
     // ============================ ContactList ==================================================
 
@@ -298,7 +302,20 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateSortedTodoList(Comparator<Task> comparator);
+    /**
+     * Saves the current todo list state in history.
+     */
+    void commitTodoList();
 
+    /**
+     * Restores the previous todo list state from history.
+     */
+    void undoTodoList() throws VersionedListException;
+
+    /**
+     * Restores the previously undone todo list state from history.
+     */
+    void redoTodoList() throws VersionedListException;
     // ========================== Scheduler Methods ============================================ //
 
     /**
@@ -355,24 +372,11 @@ public interface Model {
      * Restores the previously undone event list state from history.
      */
     void redoEventList() throws VersionedListException;
-    /**
-     * Saves the current todo list state in history.
-     */
-    void commitTodoList();
-
-    /**
-     * Restores the previous todo list state from history.
-     */
-    void undoTodoList() throws VersionedListException;
-
-    /**
-     * Restores the previously undone todo list state from history.
-     */
-    void redoTodoList() throws VersionedListException;
 
     /**
      * Saves the current CAP5Buddy list state in history.
      */
+    // ========================== General Methods ============================================ //
     void commit(int type);
 
     /**
@@ -385,8 +389,4 @@ public interface Model {
      */
     void redo() throws VersionedListException;
 
-    /**
-     * Returns true if archived module list is being displayed
-     */
-    boolean getModuleListDisplay();
 }

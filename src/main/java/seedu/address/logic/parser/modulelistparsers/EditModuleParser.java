@@ -45,8 +45,8 @@ public class EditModuleParser implements Parser<EditModuleCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditModuleCommand.MESSAGE_USAGE), pe);
         }
-
         EditModuleCommand.EditModuleDescriptor editModuleDescriptor = new EditModuleCommand.EditModuleDescriptor();
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editModuleDescriptor::setTags);
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editModuleDescriptor.setModuleName(ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_NAME).get()));

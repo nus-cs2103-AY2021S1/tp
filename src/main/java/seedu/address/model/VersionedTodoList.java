@@ -6,7 +6,7 @@ import java.util.List;
 import seedu.address.model.exceptions.VersionedListException;
 
 /**
- * Class that stores versioned history and future of a todo list used for undo/redo functions
+ * Class that stores versioned history and future of a todo list used for undo/redo functions.
  */
 public class VersionedTodoList extends TodoList {
     private static final String MESSAGE_NO_REDO_HISTORY = "There are no Todo List commands to redo";
@@ -25,7 +25,8 @@ public class VersionedTodoList extends TodoList {
 
     /**
      * Creates a versioned todo list using the todo lists in the {@code toBeCopied}
-     * @param toBeCopied
+     *
+     * @param toBeCopied Todo list to be copied.
      */
     public VersionedTodoList(ReadOnlyTodoList toBeCopied) {
         super(toBeCopied);
