@@ -584,6 +584,8 @@ which is in the same directory as your jar file. This is the strict template to 
 
 * You may use the sample resume by keying in `sample` as filepath.<br>
 
+* More info [here](https://ay2021s1-cs2103t-w13-1.github.io/tp/DeveloperGuide.html#331-application-management-system).
+
 </div>
 
 Example:
