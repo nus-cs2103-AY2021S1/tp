@@ -8,6 +8,9 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new ImportantContactParser object.
+ */
 public class ImportantContactParser implements Parser<ImportantContactCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ImportantContactCommand

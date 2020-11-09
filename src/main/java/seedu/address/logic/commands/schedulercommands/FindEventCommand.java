@@ -13,6 +13,9 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.FindEventCriteria;
 
+/**
+ * Represents the FindEventCommand.
+ */
 public class FindEventCommand extends Command {
 
     public static final String COMMAND_WORD = "findevent";

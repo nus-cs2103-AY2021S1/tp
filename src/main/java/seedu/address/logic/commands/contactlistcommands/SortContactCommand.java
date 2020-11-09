@@ -10,6 +10,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
 
+/**
+ * Sorts the contacts being displayed in CAP5Buddy according to a specified comparator.
+ */
 public class SortContactCommand extends Command {
 
     public static final String COMMAND_WORD = "sortcontact";

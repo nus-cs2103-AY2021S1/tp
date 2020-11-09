@@ -3,6 +3,9 @@ package seedu.address.model.module.grade;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents the percentage of the total grade that this assignment takes up.
+ */
 public class AssignmentPercentage {
 
     public static final String MESSAGE_CONSTRAINTS =

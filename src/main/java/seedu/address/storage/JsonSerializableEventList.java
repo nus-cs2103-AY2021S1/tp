@@ -13,6 +13,9 @@ import seedu.address.model.EventList;
 import seedu.address.model.ReadOnlyEventList;
 import seedu.address.model.event.Event;
 
+/**
+ * An Immutable EvenList that is serializable to JSON format.
+ */
 @JsonRootName(value = "eventlist")
 public class JsonSerializableEventList {
 

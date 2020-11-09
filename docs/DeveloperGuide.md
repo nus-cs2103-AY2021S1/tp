@@ -97,15 +97,15 @@ of the **XYZListPanel**.
 
 ![LogicClassDiagram](images/LogicClassDiagram.png)
 
-**API** : `Logic.java`
+**API** : [`Logic.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `ParserManager` class to create the respective classes: `ModuleListParser`, `ContactListParser`, `TodoListParser`,
-   `GradeTrackerParser` and `SchedulerParser` which will parse the user command.
-2. This results in a `Command` object which is executed by `LogicManager`.
-3. The command execution can affect the Model (e.g. adding a module).
-4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+   `GradeTrackerParser` and `SchedulerParser` which will parse the user command. <br>
+2. This results in a `Command` object which is executed by `LogicManager`. <br>
+3. The command execution can affect the `Model` (e.g. adding a module). <br>
+4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`. <br>
 5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
-help to the user.
+help to the user. <br>
 
 ![Structure of the Storage Component](images/ModelClassDiagram.png)
 
@@ -125,12 +125,59 @@ The `Model`,
 
 #### Module Tracker
 
+##### Module List
+<p aligin="center"><img src="images/Module/ModuleListClassDiagram.png" border="2px solid black"></p>
+
+##### ModuleList class
+**ModuleList class** : [`ModuleList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/ModuleList.java)
+
+* Wraps all data i.e. Modules at the module list level
+* Stores Modules in memory
+* Stores a UniqueModuleList
+* Duplicate Modules are not allowed
+
+##### Module class
+**Module package** : [`seedu.address.model.module`](https://github.com/AY2021S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/model/module)
+
+* Module is a container class that stores :
+  * Name of a module
+  * HashMap of ModuleLesson and ZoomLink key value pairs
+  * GradeTracker of a module
+  * ModularCredits of a module
+  * Tag(s) of a module
+* GradeTracker is a container class that stores:
+  * Grade for a module
+  * Assignments for a module
+  
 #### Contact List
+
+
+<p aligin="center"><img src ="images/ContactListDiagram.png" border="1px solid black"></p>
+
+**Contact package** : [`seedu.address.model.contact`](https://github.com/AY2021S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/model/contact)
+
+**Contact** class: [`Contact.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/contact/Contact.java)
+
+It encapsulates the following classes:
+
+ * `ContactName`
+ * `Email`
+ * `Telegram`
+ * `Set<Tag>`
+ * boolean `isImportant`
+
+
+**ContactList class** : [`ContactList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/ContactList.java)
+
+* Wraps all data i.e. `Contact` at the contact list level
+* Stores all the `Contact` in memory
+* Stores a `UniqueContactList`
+* Duplicate `Contact` are not allowed in `UniqueContactList`
 
 #### Todo List
 
 #### Scheduler
-<p aligin="center"><img src ="images/EventListClassDiagram.png" border="1px solid black"></p>p>
+<p aligin="center"><img src ="images/EventListClassDiagram.png" border="1px solid black"></p>
 
 ##### EventList class
 **EventList class** : [`EventList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/EventList.java)
@@ -164,7 +211,7 @@ The `Model`,
 
 ### Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+<p aligin="center"><img src="images/StorageClassDiagram.png" border="2px solid black"></p>
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -191,53 +238,6 @@ Adapted objects related to their feature type.
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
-### Common classes
-
-**API** :
-
-## Module List
-![Structure of the Module List Component](images/Module/ModuleListClassDiagram.png)
-
-**Module package** : [`seedu.address.model.module`](https://github.com/AY2021S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/model/module)
-
-* Module is a container class that stores :
-  * Name of a module
-  * HashMap of ModuleLesson and ZoomLink key value pairs
-  * GradeTracker of a module
-  * ModularCredits of a module
-  * Tag(s) of a module
-* GradeTracker is a container class that stores:
-  * Grade for a module
-  * Assignments for a module
-
-#### ModuleList class
-**ModuleList class** : [`ModuleList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/ModuleList.java)
-
-* Wraps all data i.e. Modules at the module list level
-* Stores Modules in memory
-* Stores a UniqueModuleList
-* Duplicate Modules are not allowed
-
-
-## Contact List
-
-![Structure of the Contact List Component](images/ContactListDiagram.png)
-
-#### Contact class
-
-**Contact package** : [`seedu.address.model.contact`](https://github.com/AY2021S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/model/contact)
-
-* Contact is a container class that stores :
-  * Name of a contact
-  * Email of a contact
-  * Telegram of a contact
-#### ContactList class
-**ContactList class** : [`ContactList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/ContactList.java)
-
-* Wraps all data i.e. Contacts at the contact list level
-* Stores Contacts in memory
-* Stores a UniqueContactList
-* Duplicate Contacts are not allowed
 
 ## Todo List
 
@@ -333,14 +333,20 @@ This feature is facilitated by the following classes:
 
 Given below is an example usage scenario and how the mechanism for adding module behaves at each step:
 Step 1. `LogicManager` receives the user input `addmodule n/CS2100 mc/4.0 t/Coremodule ` from `Ui`
+
 Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `AddModuleParser`
+
 Step 3. Additionally, `ModuleListParser` will call the `AddModuleParser#parse()` method to parse the command arguments
+
 Step 4. This creates an `AddModuleCommand` and `AddModuleCommand#execute()` will be invoked by `LogicManager` to execute the command to add the `Module`
+
 Step 5. The `Model#addModule()` operation exposed in the `Model` interface is invoked to add the new `Module`
+
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to add a `Module` works:
-![AddModuleSequenceDiagram](images/Module/AddModuleSequenceDiagram.png)
+<p aligin="center"><img src="images/Module/AddModuleSequenceDiagram.png" border="2px solid black"></p>
+
 Figure 3.1.1.1 Sequence diagram for the execution of `AddModuleCommand`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddModuleCommand` and `AddModuleParser` should end 
@@ -364,7 +370,7 @@ After the user input has been parsed by `DeleteModuleParser`, `LogicManager` wil
 `DeleteModuleCommand#execute()`. This deletes the target `Module` by invoking the `Model#deleteModule()` method exposed in the `Model` interface.
 
 Given below is the sequence diagram of how the operation to delete a `Module` works:
-![DeleteModuleSequenceDiagram](images/Module/DeleteModuleCommandSequenceDiagram.png)
+<p aligin="center"><img src="images/Module/DeleteModuleCommandSequenceDiagram.png" border="2px solid black"></p>
 
 #### Design consideration:
 
@@ -399,14 +405,19 @@ This feature is facilitated by the following classes:
 
 Given below is an example usage scenario and how the mechanism for editing a `Module` behaves at each step:
 Step 1. `LogicManager` receives the user input `editmodule 1 n/CS2100 mc/4.0 gp/5.0 t/Coremodule ` from `Ui`
+
 Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `EditModuleParser`
+
 Step 3. Additionally, `ModuleListParser` will call the `EditModuleParser#parse()` method to parse the command arguments
+
 Step 4. This creates an `EditModuleCommand` and `EditModuleCommand#execute()` will be invoked by `LogicManager` to edit the target `Module`
+
 Step 5. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target `Module` with the edited `Module`
+
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to edit a `Module` works:
-![EditModuleSequenceDiagram](images/Module/EditModuleCommandSequenceDiagram.png)
+<p aligin="center"><img src="images/Module/EditModuleCommandSequenceDiagram.png" border="2px solid black"></p>
 
 
 #### Design consideration:
@@ -449,16 +460,22 @@ This feature is facilitated by the following classes:
 
 Given below is an example usage scenario and how the mechanism for finding `Module` behaves at each step:
 Step 1. `LogicManager` receives the user input `findmodule CS2100` from `Ui`
+
 Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create a `FindModuleParser`
+
 Step 3. Additionally, `ModuleListParser` will call the `FindModuleParser#parse()` method to parse the command arguments
+
 Step 4. This creates a `NameContainsKeywordsPredicate` that will be used to obtain the filtered displayed `ModuleList`
-Step 4. Additionally, a `FindModuleCommand` is created and `FindModuleCommand#execute()` will be invoked by `LogicManager` to find matching modules
-Step 5. The `Model#updateFilteredModuleList()` operation exposed in the `Model` interface is invoked to update the displayed `ModuleList`
+
+Step 5. Additionally, a `FindModuleCommand` is created and `FindModuleCommand#execute()` will be invoked by `LogicManager` to find matching modules
+
+Step 6. The `Model#updateFilteredModuleList()` operation exposed in the `Model` interface is invoked to update the displayed `ModuleList`
         using `NameContainsKeywordsPredicate`
-Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to find modules works:
-![FindModuleCommandSequenceDiagram](images/Module/FindModuleCommandSequenceDiagram.png)
+<p aligin="center"><img src="images/Module/FindModuleCommandSequenceDiagram.png" border="2px solid black"></p>
 Fig ??
 
 #### Module list data archiving
@@ -473,14 +490,13 @@ compared the the current `ModuleList` that stores currently relevant modules. Ad
 * `ModelManager#unarchiveModule()` - Un-archives a module by removing it from the archived `ModuleList` and placing it in the current `ModuleList`.
 
 The following sequence diagram shows how the archive module operation works:
-![ArchiveModuleSequenceDiagram](images/Module/ArchiveModuleSequenceDiagram.png)
+<p aligin="center"><img src="images/Module/ArchiveModuleSequenceDiagram.png" border="2px solid black"></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveModuleCommand`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 The `unarchivemodule` command does the opposite — it calls `Model#unarchiveModule()`, which removes the specified module  from the archived `ModuleList` and placing it in the current `ModuleList`.
-
 
 ### Module Assignment 
 In order for CAP 5 Buddy to properly support the students study, information of the students grades assignments and results should be kept.
@@ -497,7 +513,7 @@ Each `Module` can only have one `GradeTracker` which manages the assignments und
 The `GradeTracker` stores a `UniqueAssignmentList` that ensures assignments within the list are not duplicates of each other.
 Each `Assignment` contains the following three fields: an `AssignmentName`, `AssignmentPercentage` and `AssignmentResult`.
 
-![Structure of the Grade Tracker Component](images/GradeTrackerDiagram.png)
+![Structure of the Grade Tracker Component](images/GradeTracker/GradeTrackerDiagram.png)
 
 The list of all `GradeTracker` related features are:
 1. Add an Assignment: Adds a new assignment to the `GradeTracker`.
@@ -518,16 +534,11 @@ This feature is facilitated by the following classes:
   * It implements `AddAssignmentCommand#execute()` which executes the creation of the `Assignment` and adds the
   assignment to the module identified by the `ModuleName` that was parsed.
 
-When an `assignment` is added, it follows the sequence diagram as shown below. The sequence flows similarly 
-to the rest of the project as the command is parsed and then executed.
-
-![Sequence Diagram of the Add Assignment Command](images/AddAssignmentSequenceDiagram.png)
-
 Given below is an example usage scenario and how the mechanism for adding an `Assignment` behaves at each step:
 
 Step 1. `LogicManager` receives the user input `addassignment n/CS2100 a/Quiz 1 %/20 r/85` from `Ui`
 
-Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create a `AddAssignmentParser`
+Step 2. `LogicManager` calls `ParserManager`, which calls `GradeTrackerParser#parseCommand()` to create a `AddAssignmentParser`
 
 Step 3. Additionally, `AddAssignmentParser` will call the `AddAssignmentParser#parse()` method to parse the command arguments
 
@@ -539,7 +550,13 @@ and `85` for `AssignmentResult`. A `ModuleName` is also created using the input 
 Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
 `Module#addAssignment()` is executed with the `Assignment`, adding the assignment to the module's `GradeTracker`.
 
-Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+Step 7. The `Model#setModule()` operation exposed in the Model interface is invoked to replace the original module
+with the updated module containing the assignment. 
+
+Step 8. A `CommandResult` from the command execution is returned to `LogicManager`
+
+The sequence diagram for Add Assignment Command functions similarly to the sequence diagram for Delete Assignment. You can
+view the sequence diagram for Delete Assignment [here](#delete-assignment-feature) for reference.
 
 #### Design consideration:
 
@@ -576,7 +593,7 @@ Given below is an example usage scenario and how the mechanism for editing an `A
 
 Step 1. `LogicManager` receives the user input `editassignment 1 n/CS2100 a/Quiz 1` from `Ui`
 
-Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create a `EditAssignmentParser`
+Step 2. `LogicManager` calls `ParserManager`, which then calls `GradeTrackerParser#parseCommand()` to create an `EditAssignmentParser`
 
 Step 3. Additionally, `EditAssignmentParser` will call the `EditAssignmentParser#parse()` method to parse the command arguments
 
@@ -586,23 +603,127 @@ Step 5. `EditAssignmentCommand#execute()` will be evoked by `LogicManager` to cr
 using the parsed inputs, `Quiz 1` for `AssignmentName`. A `ModuleName` is also created using the input `CS2100`.
 
 Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
-`Module#setAssignment()` is executed with the `Assignment`, adding the assignment to the module's `GradeTracker`.
+`GradeTracker` replaces the `Assignment` with a new one created using the `EditAssignmentDescriptor`.
 
 Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
 
+![Edit Assignment Command Sequence Diagram](images/GradeTracker/EditAssignmentSequenceDiagram.png)
+
 #### Design consideration:
 
-##### Aspect: Whether to directly store the assignments under module
-* Alternative 1 : Module stores assignments directly without any association class.
-    * Pros : Less work to be done.
-    * Cons : Less OOP.
+##### Aspect: Whether to receive the user inputs as an index or as the assignment name
+* Alternative 1 : Receive user input of assignment to edit as an assignment name.
+    * Pros : The user is less prone to typing in the wrong commands and selecting the wrong assignment to edit.
+    * Cons : Tougher to implement as need to identify not just which module in the module list is the one being targeted,
+but now also which assignment in the grade tracker of that module is being targeted.
     
-* Alternative 2 (current choice): Module stores a separate class that then stores the assignments
-    * Pros : More OOP and the assignments are less coupled to the Module.
-    * Cons : Takes more effort and complexity to recreate the unique object list within another layer(`Module`).
+* Alternative 2 (current choice): Receive user input of assignment to edit as an index.
+    * Pros : Easier to implement and shorter commands needed to type out for the user.
+    * Cons : The user will need to observe the GUI more carefully in order to not make mistakes.
     
-We implemented the second option despite its difficulty and complexity, taking more time to carry out as we felt
-that this feature was major enough to warrant the time and depth to implement.
+We implemented the second option as we believe that with a clean enough GUI, the user will not be as likely to
+make mistakes in selecting the right assignment to edit.
+
+####Delete Assignment Feature
+
+This feature allows `assignments` within a `GradeTracker` to be deleted. The assignment to be deleted is identified
+by the module name that stores the grade tracker it is under and the index of the assignment. The grade tracker of the module to act on must
+currently have a valid assignment to target.
+
+This feature requires the following classes:
+
+* `DeleteAssignmentParser`:
+  * It implements `DeleteAssignmentParser#parse()` to validate and parse the assignment `Index` and module name.
+* `DeleteAssignmentCommand`:
+  * It implements `DeleteAssignmentCommand#execute()` which will execute the deleting of the assignment at the corresponding
+  assignment `Index` in the corresponding `Module` identified by the parsed module name.
+
+Given below is an example usage scenario and how the mechanism for deleting an `Assignment` behaves at each step:
+
+Step 1. `LogicManager` receives the user input `deleteassignment 1 n/CS2100` from `Ui`
+
+Step 2. `LogicManager` calls `ParserManager`, which then calls `GradeTrackerParser#parseCommand()` to create a `DeleteAssignmentParser`
+
+Step 3. Additionally, `DeleteAssignmentParser` will call the `DeleteAssignmentParser#parse()` method to parse the command arguments
+
+Step 4. An `DeleteAssignmentCommand` is created and the command arguments are passed to it.
+
+Step 5. `DeleteAssignmentCommand#execute()` will be evoked by `LogicManager` . A `ModuleName` is also created using the input `CS2100`.
+
+Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
+`GradeTracker` deletes the `Assignment` at the `Index`.
+
+Step 7. The `Model#setModule()` operation is run to update the model with the newly updated module.
+
+Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Below is the sequence diagram for the `DeleteAssignmentCommand`:
+![Delete Assignment Command Sequence Diagram](images/GradeTracker/DeleteAssignmentCommandSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Format to accept the user input
+* Alternative 1 : Receive user input of as two indexes to simplify the command.
+    * Pros : The command becomes very short for the user to write. The implementation can also become very simple. 
+    * Cons : There might be confusion for the user to realise which index corresponds to the module and which index
+    corresponds to the assignment.
+    
+* Alternative 2 (current choice): Receive only the assignment to delete as an index and the name of the module as its module name.
+    * Pros : Better for clarity for the user to input exactly what they are asking to delete.
+    * Cons : The user will have to fully type out the name of the module to delete the assignment from.
+    
+We implemented the second option as we believe that with oversimplifying the command could lead to it being extremely unintuitive.
+With this implementation, it will be as similar as possible to the other delete commands with only one extra input.
+
+####Add Grade Feature
+
+This feature allows a `Grade` to be stored in a `GradeTracker`. The `Grade` is the aggregated score from the assignments
+in the grade tracker of that module. The `Grade` can also be set to override the current assignment aggregated `Grade`.
+
+This feature requires the following classes:
+
+* `AddGradeParser`:
+  * It implements `AddGradeParser#parse()` to validate and parse the module name and grade.
+* `AddGradeCommand`:
+  * It implements `AddGradeCommand#execute()` which will execute the overriding to the current grade for the module with the
+  module name.
+
+Given below is an example usage scenario and how the mechanism for adding a grade behaves at each step:
+
+Step 1. `LogicManager` receives the user input `addgrade n/CS2100 g/80` from `Ui`
+
+Step 2. `LogicManager` calls `ParserManager`, which then calls `GradeTrackerParser#parseCommand()` to create an `AddGradeParser`
+
+Step 3. Additionally, `AddGradeParser` will call the `AddGradeParser#parse()` method to parse the command arguments
+
+Step 4. An `AddGradeCommand` is created and the command arguments are passed to it.
+
+Step 5. `AddGradeCommand#execute()` will be evoked by `LogicManager` . A `ModuleName` is also created using the input `CS2100`
+and a `Grade` is created with the input `80`.
+
+Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
+`GradeTracker` for that module replaces the `Grade` currently stored with the new `Grade`.
+
+Step 7. The `Model#setModule()` operation is run to update the model with the newly updated module.
+
+Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+
+The sequence diagram for Add Grade Command functions similarly to the sequence diagram for Delete Assignment. You can
+view the sequence diagram for Delete Assignment [here](#delete-assignment-feature) for reference.
+
+#### Design consideration:
+
+##### Aspect: Whether to implement the ability for the assignments being added to update the grade
+* Alternative 1 : Grade is only updated with `AddGradeCommand`.
+    * Pros : The implementation becomes simpler and less coupling between assignment and grades. 
+    * Cons : The grade feature might not be as useful for the user.
+    
+* Alternative 2 (current choice): `AddAssignmentCommand` and `EditAssignmentCommand` will update grade with the changes to the assignments.
+    * Pros : More relevant to the user and would be more helpful.
+    * Cons : The implementation will be significantly harder and increased coupling between assignments and grades.
+    
+We implemented the second option as the usefulness of the `Grade` feature increases significantly and the overall usefulness of
+`GradeTracker` would also increase as well.
 
 ### Cap Calculator
 
@@ -614,7 +735,7 @@ grade points and modular credits, both stored internally `gradePoints` and `modu
 * `CalculateCapCommand#calculateCap()` - Calculates CAP using data from modules tagged as completed in current `ModuleList` and archived `ModuleList`.
 
 The following sequence diagram shows how the calculate cap operation works:
-![CalculateCapSequenceDiagram](images/Module/CalculateCapSequenceDiagram.png)
+<p aligin="center"><img src="images/Module/CalculateCapSequenceDiagram.png" border="2px solid black"></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CalculateCapCommand`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -640,28 +761,29 @@ The calculate CAP function is facilitated by `TargetCapCalculatorCommand`. It ex
 * `TargetCapCalculatorCommand#calculateCapNeeded()` - Calculates CAP needed for planned modules for user to achieve input target CAP using data from modules in current `ModuleList` and archived `ModuleList`.
 
 The following sequence diagram shows how the target cap operation works:
-![CalculateCapSequenceDiagram](images/Module/TargetCapCalculatorSequenceDiagram.png)
+<p aligin="center"><img src="images/Module/TargetCapCalculatorSequenceDiagram.png" border="2px solid black"></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CalculateCapCommand`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Zoom Link Management
 
-As Cap 5 Buddy is designed to suit the needs of SoC students during the transition to online learning,
-it is crucial to design features which allows efficient management of zoom links which are widely used during
+## 3.1.4  Module zoom link management feature
+
+As Cap 5 Buddy is designed to be a module tracking application for SoC students,
+it is crucial to design features which allows efficient management of zoom links which are widely used by modules during
 online learning. However, it is worth noting that these features can be easily modified to manage any website links,
-showcasing the usefulness of these features beyond online learning.
+showcasing the usefulness of these features for tracking module related details beyond online learning.
 
 The section below provides details of the implementation of each zoom link related function and design considerations
 of these features.
 
-#### Details of implementation
+### Details of implementation
 
-##### Add zoom link feature
+#### 3.1.4.1  Add zoom link feature
 
 This feature creates and adds a new `ZoomLink` for a `ModuleLesson` into a specific `Module`, if the 
-zoom link does not already exist in the module. Each `ModuleLesson` in a `Module` is only allowed to have one `ZoomLink`.
+`ZoomLink` does not already exist in the module. Each `ModuleLesson` in a `Module` is only allowed to have one `ZoomLink`.
 
 This feature is facilitated by the following classes:
   * `AddZoomLinkParser`:
@@ -674,26 +796,36 @@ This feature is facilitated by the following classes:
       `ModuleLesson` into the `Module` encapsulated in `Model`
       
 Given below is an example usage scenario and how the mechanism for adding zoom links behaves at each step:
+
 Step 1. `LogicManager` receives the user input `addzoom 1 n/Lecture z/https://nus-sg.zoom.us/link` from `Ui`
+
 Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `AddZoomLinkParser`
+
 Step 3. Additionally, `ModuleListParser` will call the `AddZoomLinkParser#parse()` method to parse the command arguments
+
 Step 4. This creates an `AddZoomLinkCommand` using a `ZoomDescriptor` object that encapsulates the `ZoomLink` and `ModuleLesson` to be added
+
 Step 5. `AddZoomLinkCommand#execute()` will be invoked by `LogicManager` to create
         the updated `Module` with the added `ZoomLink` and `ModuleLesson` by calling the `Module#addZoomLink()` method
+
 Step 5. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target module with the updated module containing the newly added zoom link
+
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to add a zoom link works:
 ![AddZoomLinkSequenceDiagram](images/AddZoomLinkCommandSequenceDiagram.png)
+Fig 3.1.4 Sequence diagram for the execution of `AddZoomLinkCommand`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddZoomLinkCommand` and `AddZoomLinkParser` should end 
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<br>
+
 The following activity diagram summarizes what happens when a user executes the `AddZoomLinkCommand`:
 ![AddZoomLinkActivityDiagram](images/AddZoomLinkCommandActivityDiagram.png)
 
-##### Design consideration:
+#### Design consideration:
 
 ##### Aspect: How to encapsulate zoom links and module lesson fields
 
@@ -714,50 +846,58 @@ The following activity diagram summarizes what happens when a user executes the 
 Alternative 1 was chosen since it followed OOP principles which is a good practice in a SE project. Also, it provides
 greater flexibility for expansion of the project.
 
-##### Delete zoom link feature
 
-This feature deletes an existing zoom link from a module using the module lesson that is mapped to the
-target zoom link.
+#### 3.1.4.2  Delete zoom link feature
+
+This feature deletes an existing `ZoomLink` from a `Module` using the `ModuleLesson` that is mapped to the
+target `ZoomLink`.
 
 This feature is facilitated by the following classes:
   
   * `DeleteZoomLinkParser`:
     * It implements `DeleteZoomLinkParser#parse()` to validate and parse the module index and module lesson provided by the user.
   * `DeleteZoomLinkCommand`:
-    * It implements `DeleteZoomLinkCommand#execute()` to delete the zoom link from the module 
-      using the unique module lesson that is mapped to the target zoom link.  
+    * It implements `DeleteZoomLinkCommand#execute()` to delete the `ZoomLink` from the `Module` 
+      using the unique `ModuleLesson` that is mapped to the target zoom link.  
       
 Given below is an example usage scenario and how the mechanism for deleting zoom links behaves at each step:
+
 Step 1. `LogicManager` receives the user input `deletezoom 1 n/Lecture` from `Ui`
-Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `DeleteZoomLinkParser`
+
+Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create a `DeleteZoomLinkParser`
+
 Step 3. Additionally, `ModuleListParser` will call the `DeleteZoomLinkParser#parse()` method to parse the command arguments
+
 Step 4. This creates a `DeleteZoomLinkCommand` and `DeleteZoomLinkCommand#execute()` will be invoked by `LogicManager` 
-Step 5. This deletes the target zoom link identified by its unique module lesson using the `Module#deleteZoomLink()` method.
+
+Step 5. This deletes the target zoom link identified by its unique module lesson using the `Module#deleteZoomLink()` method
+
 Step 6. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target module with the updated module
+
 Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
 
 
-##### Design consideration:
+#### Design consideration:
 
 ##### Aspect: Limit on the number of zoom links that can be mapped to each module lesson
 
-* **Alternative 1 (current choice):** Each module lesson can only be mapped to a single zoom link
+* **Alternative 1 (current choice):** Each `ModuleLesson` can only be mapped to a single `ZoomLink`
   * Pros: The execution of a zoom link command is less complicated as each zoom link is uniquely identified by its module lesson. 
           The implementation of the command is easier as we only need to identify the correct module lesson and
           remove the key value pair from the hashmap.
   * Cons: Creates a restriction for users as they are only allowed to add one zoom link for each module lesson.
 
-* **Alternative 2:** Each module lesson can be mapped to multiple zoom links
+* **Alternative 2:** Each `ModuleLesson` can be mapped to multiple `ZoomLinks`
   * Pros: This creates more freedom and flexibility for users to add multiple zoom links for the same lesson.
   * Cons: Locating the specific zoom link to remove is tedious as we have to iterate through the list of zoom links that are mapped to the module lesson. 
-          Additionally, we need to implement a mechanism to allow users to specify the exact zoom link to be deleted since using the module
-          name is not sufficient.
+          Additionally, we need to implement a mechanism to allow users to specify the exact zoom link to be deleted since using the module lesson
+          is not sufficient.
 
 Alternative 1 was chosen as it was significantly simpler to implement and did not violate any key design principles.
 We also took into consideration the fact that it is unlikely for a single lesson to have multiple zoom links.
 
 
-##### Edit zoom link feature
+#### 3.1.4.3  Edit zoom link feature
 
 This feature edits an existing zoom link in a module using the module lesson that is mapped to the
 target zoom link.
@@ -766,7 +906,7 @@ This feature is facilitated by the following classes:
 
   * `EditZoomLinkParser`:
     * It implements `EditZoomLinkParser#parse()` to validate and parse the module index, module lesson and edited zoom link provided by the user.
-      This creates a `ZoomDescriptor` object that stores the zoom link details needed for the edit zoom link command.
+      This creates a `ZoomDescriptor` object that encapsulates the zoom link details needed for the edit zoom link command.
     
   * `ZoomDescriptor`  
     * It stores and encapsulates the `ZoomLink` and `ModuleLesson` objects which will be used to execute the command to edit the zoom link 
@@ -776,19 +916,27 @@ This feature is facilitated by the following classes:
    
 
 Given below is an example usage scenario and how the mechanism for editing zoom links behaves at each step:
+
 Step 1. `LogicManager` receives the user input `editzoom 1 n/Lecture z/https://nus-sg.zoom.us/newLink` from `Ui`
+
 Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `EditZoomLinkParser`
+
 Step 3. Additionally, `ModuleListParser` will call the `EditZoomLinkParser#parse()` method to parse the command arguments
+
 Step 4. This creates an `EditZoomLinkCommand` using a `ZoomDescriptor` object that encapsulates the edited zoom link
+
 Step 5. `EditZoomLinkCommand#execute()` will be invoked by `LogicManager` to create
         the updated `Module` with the edited `ZoomLink` by calling the `Module#editZoomLink()` method
+
 Step 5. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target module with the updated module containing the edited zoom link
+
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`   
 
-The sequence diagram of how the operation to edit a zoom link works is similar to the one in figure ?.?, 
+The sequence diagram of how the operation to edit a zoom link works is similar to the one in figure [3.3](#module-list-features), 
 except that the respective parser and command classes are `EditZoomLinkParser` and `EditZoomLinkCommand`
 
-##### Design consideration:
+
+#### Design consideration:
 
 ##### Aspect: How to implement the command to edit zoom link
 
@@ -796,16 +944,16 @@ except that the respective parser and command classes are `EditZoomLinkParser` a
                      since the two commands have very similar implementations.
 
   * Pros: Reduces the amount of code that has to be written, as well as the number of classes that have to be implemented. 
-  * Cons: Violates the **Single Responsibility Principle** since the same parser and command classes have 2 separate responsibilities and have to perform 2 different operations.
+  * Cons: Violates the **Single Responsibility Principle** since the same parser and command class have 2 separate responsibilities and have to perform 2 different operations.
 
 * **Alternative 2 (current choice):** Implement the `EditZoomLink` command separately.
 
   * Pros: Adheres to the Single Responsibility Principle and it is easier to implement the function since we do not need to handle 
-          2 separate commands at the same time.
+          2 separate commands in the same parser and command classes.
   * Cons: Repetition of code may occur.
   
 Alternative 2 was chosen since it was a good practice to follow key designing principles. Using alternative 1 would complicate
-the implementation of the command since we had to handle 2 different cases and this can increase the occurrences of bugs.
+the implementation of the command since we had to handle 2 different commands within the same class and this can increase the difficulty of testing and debugging.
 
 
 ##### Aspect: Data structure to support zoom link commands
@@ -826,21 +974,21 @@ the implementation of the command since we had to handle 2 different cases and t
   * Cons: The process of checking for duplicate module lessons and zoom links in the module is more tedious.
 
 Alternative 1 was chosen since checking for duplicate zoom links occurs frequently during the execution of 
-zoom link related commands.
+zoom link related commands. 
 
 
 
 
-### 3.2 Contact List Management
+## 3.2 Contact list management feature
 
 As a module tracking system, Cap 5 Buddy allows users to manage a list of module-related contacts with ease.
-This is especially important since being enrolled in numerous modules results in the need to keep track of
+This is especially important since being enrolled in numerous modules can result in the need to keep track of
 numerous contacts, each with different contact details.
 
 The section below provides details of the implementation of each Contact List function and design considerations
 of these features.
 
-#### Contact List Commands
+### Contact list features
 
 Below is a list of all `Contact` related features:
 
@@ -848,6 +996,11 @@ Below is a list of all `Contact` related features:
 2. Delete a contact: Deletes a pre-existing contact from the contact list
 3. Edit a contact: Edits a pre-existing contact in the contact list
 4. Find a contact: Search for contacts using different search parameters
+5. Mark a contact as important: 
+6. Sort the contact list:
+7. List out all contacts in the contact list
+8. Clear the contact list
+
 
 Given below is the class diagram of the `Contact` class:
 
@@ -855,9 +1008,9 @@ Given below is the class diagram of the `Contact` class:
 
 Figure ?.? Class Diagram for Contact class
 
-#### Details of implementation
+###  Details of implementation
 
-##### Add contact feature
+#### 3.2.1  Add contact feature
 
 This feature creates and adds a new `Contact` into the contact list if the contact does not already exist. 
 
@@ -870,11 +1023,17 @@ This feature is facilitated by the following classes:
    * It implements `AddContactCommand#execute()` which executes the addition of the new contact into `Model`.
 
 Given below is an example usage scenario and how the mechanism for adding contact behaves at each step:
+
 Step 1. `LogicManager` receives the user input `addcontact n/John e/john@gmail.com te/@johndoe` from `Ui`
+
 Step 2. `LogicManager` calls `ContactListParser#parseCommand()` to create an `AddContactParser`
+
 Step 3. Additionally, `ContactListParser` will call the `AddContactParser#parse()` method to parse the command arguments
+
 Step 4. This creates an `AddContactCommand` and `AddContactCommand#execute()` will be invoked by `LogicManager` to excecute the command to add the contact
+
 Step 5. The `Model#addContact()` operation exposed in the `Model` interface is invoked to add the new contact
+
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to add a contact works:
@@ -885,19 +1044,21 @@ Figure ?.? Sequence diagram for the execution of `AddContactCommand`
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<br>
 
-The following activity diagram summarizes what happens when a user executes the `AddContactCommand`:
-![AddContactCommandActivityDiagram](images/contact/AddContactCommandActivityDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes `AddContactCommand`:
+![AddContactCommandActivityDiagram](images/Contact/AddContactCommandActivityDiagram.png)
 Figure ?.? Activity diagram representing the execution of `AddContactCommand`
 
-##### Design consideration:
+#### Design consideration:
 
 ##### Aspect: Require users to provide all contact fields when adding a new contact
 
 * **Alternative 1 (current choice):** Require `ContactName` and `Email` to be mandatory fields that must be provided, while leaving `Telegram` as an optional field
   * Pros: This caters to certain contacts who do not have a `Telegram` field, providing more flexibility for users when creating contacts.
-  * Cons: This can complicate the process of checking if 2 contacts are the same since we need to consider if the `Telegram` field of a contact 
-          is present before the comparison is performed. 
+  * Cons: This implementation of contact related methods can become complicated since we need to consider if the `Telegram` field of a contact 
+          is present before any operation is performed. 
 
 * **Alternative 2:** Require `ContactName`, `Email` and `Telegram` to be mandatory fields
   * Pros: The process of checking if 2 contacts are the same by comparing all 3 contact fields will be simpler.
@@ -907,43 +1068,55 @@ Alternative 1 was chosen since it provides users with greater freedom when creat
 mandatory can restrict users when adding contacts, hindering user experience.
 
 
-#### Delete Contact Feature
+#### 3.2.2  Delete Contact Feature
 
 The delete contact feature deletes a pre-existing `Contact` using the index of the contact on the displayed contact list.
 This feature is facilitated by the following classes: 
 
   * `DeleteContactParser`:
-    * It implements `DeleteContactParser#parse()` to parse and validate the contact ID
+    * It implements `DeleteContactParser#parse()` to parse and validate the contact index 
 
   * `DeleteContactCommand`:
     * It implements `DeleteContactCommand#execute()` to delete the `Contact` from `Model`
 
-After the user input has been parsed by `DeleteContactParser`, `LogicManager` will execute the delete operation by invoking
-`DeleteContactCommand#execute()`. This deletes the target contact by invoking the `Model#deleteContact()` method exposed in the `Model` interface.
+Given below is an example usage scenario and how the mechanism for deleting contact behaves at each step:
+
+Step 1. `LogicManager` receives the user input `deletecontact 1` from `Ui`
+
+Step 2. `LogicManager` calls `ContactListParser#parseCommand()` to create a `DeleteContactParser`
+
+Step 3. Additionally, `ContactListParser` will call the `DeleteContactParser#parse()` method to parse the command arguments
+
+Step 4. This creates a `DeleteContactCommand` and `DeleteContactCommand#execute()` will be invoked by `LogicManager` to delete the target contact
+
+Step 5. The `Model#deleteContact()` operation exposed in the `Model` interface is invoked to delete the target contact from `Model`
+
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to delete a contact works:
-![DeleteContactSequenceDiagram](images/contact/DeleteContactCommandSequenceDiagram.png)
+
+![DeleteContactSequenceDiagram](images/Contact/DeleteContactCommandSequenceDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: Method to delete contact
+##### Aspect: Mechanism to delete contacts
 
 * **Alternative 1 (current choice):** Delete a contact based on its index in the displayed contact list
   * Pros: Using the contact index allows us to uniquely identify the target contact to delete, reducing the room for possible error
-  * Cons: The target contact to be deleted might not be displayed on the contact list and hence the contact index might not be
+  * Cons: The target contact which the user wants to delete might not be displayed on the contact list and hence the contact index might not be
           readily available. This can inconvenience users who have to search for the contact to retrieve the contact index.
 
-* **Alternative 2:** Delete a contact based on the contact name
+* **Alternative 2:** Delete a contact using the contact name
   * Pros: It can make the deletion process simpler for **users** who can provide the name of the contact without having to execute more commands.
   * Cons: This can complicate the deletion process since contacts with the same name is a possibility. If there are multiple
           contacts with the same provided name, more information of the target contact has to be provided by the user,
           creating more inconvenience for the user as well.
 
-Alternative 1 was chosen since it guarantees a unique contact would be provided in every case. This ensures the
-contact deletion process is safe and the correct contact is deleted, minimising the room for potential errors.  
+Alternative 1 was chosen since it guarantees a unique contact would be provided in every case. This ensures that the
+target contact can be accurately identified and deleted, minimising the room for potential errors or bugs.  
 
 
-#### Edit Contact Feature
+#### 3.2.3  Edit Contact Feature
 
 The edit contact feature edits a pre-existing contact in the contact list using contact details provided by the users.
 This feature is facilitated by the following classes:
@@ -952,22 +1125,42 @@ This feature is facilitated by the following classes:
     * It implements `EditContactParser#parse()` to parse and validate the provided contact details and contact index
 
   * `EditContactDescriptor`:
-    * It stores the contact details which will be used to edit the target contact
+    * It encapsulates the contact details which will be used to edit the target contact
 
   * `EditContactCommand`:
     * It implements `EditContactCommand#execute()` to edit the contact in `Model`
+    
+    
+![EditContactDescriptorClassDiagram](images/Contact/EditContactDescriptorClassDiagram.png) 
+Fig ?.? Class diagram describing the `EditContactDescriptor` class
 
 
 Given below is an example usage scenario and how the mechanism for editing contact behaves at each step:
+
 Step 1. `LogicManager` receives the user input `editcontact 1 n/John te/@johndoe` from `Ui`
+
 Step 2. `LogicManager` calls `ContactListParser#parseCommand()` to create an `EditContactParser`
+
 Step 3. Additionally, `ContactListParser` will call the `EditContactParser#parse()` method to parse the command arguments
+
 Step 4. This creates an `EditContactCommand` and `EditContactCommand#execute()` will be invoked by `LogicManager` to edit the target contact
+
 Step 5. The `Model#setContact()` operation exposed in the `Model` interface is invoked to replace the target contact with the edited contact
+
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to edit a contact works:
 ![EditContactSequenceDiagram](images/contact/EditContactCommandSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddContactCommand` and `AddContactParser` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+<br>
+
+The following activity diagram summarizes what happens when a user executes `EditContactCommand`:
+![EditContactCommandActivityDiagram](images/Contact/EditContactCommandActivityDiagram.png)
+Fig ?.? Activity diagram for the execution of `EditContactCommand`
 
 
 #### Design consideration:
@@ -987,25 +1180,26 @@ Given below is the sequence diagram of how the operation to edit a contact works
 Alternative 1 was chosen as it would make future changes to any class easier and less error-prone, 
 hence increasing the ease of maintenance, since there was less coupling between the 2 classes.
 
-##### Aspect: Implementation of `EditContactCommand`
 
-* **Alternative 1 (current choice):** 
+##### Aspect: How to implement `EditContactCommand`
+
+* **Alternative 1 (current choice):** Implement a separate `EditContactCommand` without reusing other command classes
   * Pros: Reduces coupling between the command classes and `EditContactCommand` can be implemented without restrictions,
           or a need to consider how it might affect the other command classes
   * Cons: Additional methods have to be implemented to replace the target contact with the edited contact
 
 * **Alternative 2:** Reuse `DeleteContactCommand` to delete the target contact and `AddContactCommand` to add the edited contact
-  * Pros: Reusing other commands would make the implementation of `EditContactCommand` simpler and easier
-  * Cons: It increases coupling between the 3 commands and this can cause issues in `EditContactCommand` if either 
+  * Pros: Reusing other commands would make the implementation of `EditContactCommand` simpler and more straightforward
+  * Cons: It increases coupling between the 3 commands and this can cause issues to `EditContactCommand` if either 
           `DeleteContactCommand` or `AddContactCommand` developed bugs or errors. Also, it might affect performance since 
           executing `EditContactCommand` will execute 2 other commands.
 
-Alternative 1 was chosen since it gave more freedom with regard to the implementation of `EditContactCommand` since
+Alternative 1 was chosen since it gave more freedom in regard to the implementation of `EditContactCommand` since
 we were not restricted to reusing other commands. Less coupling between the classes meant that changes in one class would 
 less likely require changes to other classes.
 
 
-#### Find Contact Feature
+#### 3.2.4  Find Contact Feature
 
 The find contact feature is important since sieving through all contacts to search for a specific contact can be 
 tedious and not user-friendly. Finding contacts using one search parameter is not meaningful 
@@ -1026,9 +1220,9 @@ This feature is facilitated by the following classes:
   * `FindContactCriteria`:
     * It encapsulates all the predicates which will be used to test for matching contacts
     * It implements the following operations:
-      * `FindContactCriteria#addPredicate():` Adds a new predicate into the list of predicates 
+      * `FindContactCriteria#addPredicate()` to add a new predicate into the list of predicates 
          to test for matching contacts
-      * `FindContactCriteria#getFindContactPredicate():` To compose all the predicates into a single predicate
+      * `FindContactCriteria#getFindContactPredicate()` to compose all the predicates into a single predicate
 
     * Predicate objects that can be stored in `FindContactCriteria`:
       * `ContactNameContainsKeywordsPredicate`:
@@ -1041,21 +1235,35 @@ This feature is facilitated by the following classes:
       filtered contact list in `Model` using the predicate from `FindContactCriteria`
 
 Given below is an example usage scenario and how the mechanism for finding contact behaves at each step:
+
 Step 1. `LogicManager` receives the user input `findcontact n/John t/friend` from `Ui`
+
 Step 2. `LogicManager` calls `ContactListParser#parseCommand()` to create a `FindContactParser`
+
 Step 3. Additionally, `ContactListParser` will call the `FindContactParser#parse()` method to parse the command arguments
+
 Step 4. This creates a `FindContactCriteria` that encapsulates the created `Predicate` objects to test for matching contacts
+
 Step 4. Additionally, a `FindContactCommand` is created and `FindContactCommand#execute()` will be invoked by `LogicManager` to find matching contacts
+
 Step 5. The `Model#updateFilteredContactList()` operation exposed in the `Model` interface is invoked to update the displayed contact list 
         using the predicate from `FindContactCriteria`
+
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to find contact works:
-![FindContactCommandSequenceDiagram](images/contact/FindContactCommandSequenceDiagram.png)
-Fig ??
+
+![FindContactCommandSequenceDiagram](images/Contact/FindContactCommandSequenceDiagram.png)
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddContactCommand` and `AddContactParser` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+<br>
 
 Given below is the sequence diagram showing the interaction between `FindContactParser` and `FindContactCriteria`:
-![FindContactCriteriaSequenceDiagram](images/contact/FindContactCriteriaSequenceDiagram.png)
+![FindContactCriteriaSequenceDiagram](images/Contact/FindContactCriteriaSequenceDiagram.png)
 
 
 #### Design consideration:
@@ -1074,7 +1282,7 @@ Given below is the sequence diagram showing the interaction between `FindContact
   * Cons: It is tedious to compose the predicates into a single predicate as we have to check each individual field and 
           determine if it is null of if the predicate exists. 
 
-##### Aspect: Implementation of `FindContactCommand` 
+##### Aspect: How to implement `FindContactCommand` 
 
 * **Alternative 1 :** Implement separate find contact commands for each possible search parameter. In this case, to find contacts, 
                       we can create a command to find contacts by name, and another to find by tags.
@@ -1090,42 +1298,103 @@ Given below is the sequence diagram showing the interaction between `FindContact
   * Cons: Increases the complexity of implementing `FindContactParser` which has to validate and parse multiple search 
           parameters provided.
 
+#### Sort Contacts Feature
 
+The sort contact feature allows the user to sort the contacts based on name lexicographically
+from the lowest to the highest value.
 
+In addition this feature also supports the operation of reversing the list. The order will be the opposite of the order
+given above.
+
+This feature is facilitated by the following classes:
+  * `SortContactParser`:
+    * It implements `SortContactParser#parse()` to parse and validate the user input
+    * It creates comparator objects using the command arguments and reversing it if necessary
+
+  * `SortContactCommand`:
+    * It implements `SortContactCommand#execute()` to sort the `ContactList` in `Model`
+    * It sorts the `ContactList` by invoking `Model#updateSortedContactList()`
+
+  * `ContactComparatorByName`:
+    * It implements `Comparator#compare()` to compare 2 contacts based on their name
+
+Given below is an example usage scenario and how the mechanism for sorting contacts behaves at each step:
+
+Step 1. `LogicManager` receives the user input `sortcontact` from `Ui`
+
+Step 2. `LogicManager` calls `ContactListParser#parseCommand()` to create a `FindContactParser`
+
+Step 3. Then, `ContactListParser` will call the `SortContactParser#parse()` method to parse the command arguments
+
+Step 4. This creates the `ContactComparatorByName` based on the command arguments (if it's reversed or not)
+
+Step 4. Finally, a `SortContactCommand` is created and `SortContactCommand#execute()` will be invoked by `LogicManager`
+
+Step 5. The `Model#updateSortedContactList()` operation exposed in the `Model` interface is invoked to update the displayed todo list
+by updating the `Model#sortedContactList` with the new comparator.
+
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+In addition, if the user wants to reverse order, the `ContactComparatorByName` will be updated in the `SortContactParser#parse()`
+using the built-in java method `Comparator#reversed()`.
 
 
 ### 3.3 TodoList feature
+
+#### Brief Overview
+
+We design the TodoList to help the user manage their tasks. It is designed specifically to track
+the things that the user needs to accomplish. The tracking is quite detailed but still prioritizes
+user's freedom and flexibility in managing their task.
+
+TodoList stores all of the user's tasks in a list that can be seen under **Tasks** tab in the GUI. Each entry
+in the list shows the details of a task and some GUI enhancements are also added. Furthermore, TodoList 
+shows some statistics about the user's tasks to give the user a general overview of how they are doing.
 
 #### Implementation
 
 The TodoList feature has two main component :
 
 * **Containee component** (Task-related classes)
-  * `Class Task` - container class to store information about a task
-  * `Class TaskName` - wrapper class to store the name of a task
-  * `Class Date` - wrapper class to store the date/deadline of a task
-  * `Enum Priority` - enum class to represent priority of a task
-  * `Enum Status` - enum class to represent the progress status of a task
+
+![TaskClassDiagram](images/Task/TaskClassDiagram.png)
+
+  * `Task` - container class to store information about a task
+  * `TaskName` - wrapper class to store the name of a task
+  * `Date` - wrapper class to store the date/deadline of a task
+  * `Priority` - enum class to represent priority of a task
+  * `Status` - enum class to represent the progress status of a task
+  * `LocalDate` - built-in class to represent the date creation of the task
 
 * **Container component** (List-like classes)
-  * Class `UniqueTodoList` - container class for storing tasks
-  * Class `TodoList` - wrapper class for UniqueTodoList
-  * Interface `ReadOnlyTodoList` - interface for displaying the list on the GUI
+
+  * `UniqueTodoList` - container class for storing tasks
+  * `TodoList` - wrapper class for UniqueTodoList
+  * `ReadOnlyTodoList` - interface for displaying the list on the GUI
 
 ##### Containee Component
 
-The Task class mainly functions as a class to store all the informations related to a task i.e. name, tag, priority,
-date, and status. It does not have any subclasses.
+The `Task` mainly functions as a class to store all the information related to a task which are name, tag, priority,
+date, status, and the date created. In particular, this class does not have subclasses.
 
-The Task class supports the following operations :
+These fields are optional in the `Task` class:
+
+* `Tag` - represented as empty by an empty `HashSet`
+* `Priority` - represented as empty by `null`
+* `Date` - represented as empty by `null`
+
+The `Task` class supports the following operations :
 
 * Setters for all the field
+  * The setter supports immutability for better testing.
 * Getters for all the field
+  * Getter returns an `Optional` object.
 * `Task#isSameTask()` - checks if two tasks are the same i.e. have the same name
 (weaker than Task#equals() which requires all the fields to be the same)
 * `Task#hasSameTag()` - checks if the task has the specified tag
 * `Task#hasSamePriority()` - checks if the task has the specified priority
 * `Task#hasSameDate()` - checks if the task has the specified date
+* The methods that are not mentioned here are used specifically for the GUI.
 
 ##### Container Component
 
@@ -1179,8 +1448,264 @@ TodoList implements ReadOnlyTodoList which require the following operation :
 
   Alternative 1 is chosen since we prioritize user freedom to create custom type for the task.
 
-  
+##### Aspect: Optional fields in `Task`
 
+* Alternative 1 (current): <br/>
+  All fields does not need to be compulsory. In other word, the field can be null or empty.
+
+  Pros :
+  * Add more flexibility to the user since the nature of specified task might not have some of the required fields.
+
+  Cons :
+  * Harder to implement i.e. need to check if the field is present or not everytime it is used.
+  * More prone to `NullPointerException`
+
+* Alternative 2: <br/>
+  All fields should be compulsory. In other word, the field cannot be null or empty.
+
+  Pros :
+  * Easier to implement
+  * Avoid getting a `NullPointerException` in runtime.
+
+  Cons :
+  * User needs to input all field when creating a task, which might not be convenient.
+
+  Alternative 1 is chosen since we prioritize flexibility in inputting details of a task.
+
+#### Implemented Commands
+
+In general, the commands for TodoList have similar implementation with ModuleTracker.
+It extends from an abstract class `Command` and implements the method `execute()` to support
+polymorphism when executing all the commands.
+
+The details of each command will be explained in the respective sections of each command.
+
+Below are the list of the all the implemented commands for TodoList:
+
+* `AddTaskCommand` - add a task to the list
+* `DeleteTaskCommand` - delete a task from the list
+* `EditTaskCommand` - edit a task in the list
+* `SortTaskCommand` - sort the list based on criteria
+* `FindTaskCommand` - find tasks based on keywords
+* `CompleteTaskCommand` - label a task as completed
+* `ResetTaskCommand` - reset task label to not completed
+* `ClearTaskCommand` - clear the list
+
+#### Add Task Feature
+
+The add task feature is the most fundamental feature in the TodoList as it allows the user to add
+a task to the list. The implementation is similar compared to the other big feature. In addition,
+this feature does not allow the user to add duplicate task where 2 tasks are considered to be
+duplicates (or the same) if they have the exact same name (case-insensitive).
+
+This feature creates and adds a new `Task` into the `TodoList` if the task does not already exist. 
+
+This feature is facilitated by the following classes:
+
+ * `AddTaskParser`:
+   * It implements `AddTaskParser#parse()` to parse and validate the user arguments to create a new `Task`.
+
+ * `AddTaskCommand`:
+   * It implements `AddTaskCommand#execute()` which executes the addition of the new `Task` into `Model`.
+
+Given below is an example usage scenario and how the mechanism for adding task behaves at each step:
+
+Step 1. `LogicManager` receives the user input `addtask n/Finish Lab Report t/LAB t/CS2100 ` from `Ui`
+
+Step 2. `LogicManager` calls `TodoListParser#parseCommand()` to create an `AddTaskParser`
+
+Step 3. Additionally, `TodoListParser` will call the `AddTaskParser#parse()` method to parse the command arguments
+
+Step 4. This creates an `AddTaskCommand` and `AddTaskCommand#execute()` will be invoked by `LogicManager` to execute the command to add the `Task`
+
+Step 5. The `Model#addTask()` operation exposed in the `Model` interface is invoked to add the new `Task`
+
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Given below is the sequence diagram of how the operation to add a `Task` works:
+
+![AddTaskSequenceDiagram](images/TodoList/AddTaskSequenceDiagram.png)
+Figure Sequence diagram for the execution of `AddTaskCommand`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddTaskCommand` and `AddTaskParser` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+#### Delete Task Feature
+
+The delete task feature is a counterpart feature from the previous add task feature. This feature allows the user
+to delete a task based on the index of the task from the **currently** displayed list.
+
+This feature deletes an existing `task` using the index of the `Task` on the displayed `TaskList`.
+This feature is facilitated by the following classes: 
+
+  * `DeleteTaskParser`:
+    * It implements `DeleteTaskParser#parse()` to parse and validate the `Task` index
+
+  * `DeleteTaskCommand`:
+    * It implements `DeleteTaskCommand#execute()` to delete the `Task` from `Model`
+
+After the user input has been parsed by `DeleteTaskParser`, `LogicManager` will execute the delete operation by invoking
+`DeleteTaskCommand#execute()`. `The DeleteTaskCommand#execute()` will get the target `Task` from the `model`.
+Then delete the target `Task` by invoking the `Model#deleteTask()` method exposed in the `Model` interface.
+
+The sequence diagram for this feature should be similar with figure
+
+#### Edit Task Feature
+
+The edit task feature is one of the feature that prioritizes user convenience. With this feature user
+does not have to delete a task and re-add the task when they mistakenly input the details of a task.
+Furthermore, the edit task feature also supports the operation to delete a detail from a task.
+
+The edit task feature edits an existing `Task` in the `TodoList` using `Task` details provided by the user.
+This feature is facilitated by the following classes:
+
+  * `EditTaskParser`: 
+    * It implements `EditTaskParser#parse()` to parse and validate the provided `Task` details and `Task` index
+
+  * `EditTaskDescriptor`:
+    * It stores the `Task` details which will be used to edit the target `Task`
+
+  * `EditTaskCommand`:
+    * It implements `EditTaskCommand#execute()` to edit the task in `Model`
+
+Given below is an example usage scenario and how the mechanism for editing a `Task` behaves at each step:
+
+Step 1. `LogicManager` receives the user input `edittask 1 n/Submit essay d/2020-10-10 t/ES2660` from `Ui`
+
+Step 2. `LogicManager` calls `TodoListParser#parseCommand()` to create an `EditTaskParser`
+
+Step 3. Additionally, `TodoListParser` will call the `EditTaskParser#parse()` method to parse the command arguments
+
+Step 4. This creates an `EditTaskCommand` and `EditTaskCommand#execute()` will be invoked by `LogicManager` to edit the target `Task`
+
+Step 5. The `Model#setTask()` operation exposed in the `Model` interface is invoked to replace the target `Task` with the edited `Task`
+
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Given below is the sequence diagram of how the operation to edit a `Task` works:
+![EditTaskSequenceDiagram](images/TodoList/EditTaskCommandSequenceDiagram.png)
+
+In addition, as mentioned previously the edit task feature support the operation to delete a detail from
+the task. The steps are given below:
+
+Step 1. `EditTaskParser#parse()` will check if a given prefix has an empty description.
+
+Step 2. If the given prefix has an empty description, `EditTaskParser#parse()` will set a boolean inside the `editTaskDescriptor` to true for that particular prefix.
+
+Step 3. Then `EditTaskCommand#execute()` will edit the detail of a task based on the boolean inside the `editTaskDescriptor`.
+
+Step 4. If the boolean is true for a specific prefix, the detail of the task represented by the prefix will be deleted from the task, otherwise the task is edited normally.
+
+Step 5. The following steps should continue from step 5 from above sequence.
+
+Given below is the activity diagram of how the above steps work:
+![EditTaskDeleteFieldActivityDiagram](images/TodoList/EditTaskDeleteFieldActivityDiagram.png)
+
+#### Design Consideration
+
+##### Aspect: Descriptor for Both Deleting and Editing a Field
+
+* Alternative 1 (current): <br/>
+  Add a boolean variable inside the descriptor to indicate if a detail should be deleted or leaves as it is.
+
+  Pros :
+  * Easier to implement i.e only need to add a boolean variable and some setter and getter method.
+  * The boolean can be used to facilitate the guard clause when editing a task.
+
+  Cons :
+  * Descriptor has more than 1 responsible because it does not just edit but also need to consider deleteing
+    a field.
+
+* Alternative 2 : <br/>
+  Use a list to tell the `EditTaskCommand` which field to delete.
+
+  Pros :
+  * More intuitive since we just simply add the prefix representing the details that we want to delete.
+
+  Cons :
+  * Will be harder to implement :
+    * Need to pass more parameters to `EditTaskCommand`.
+    * Might not be consistent to pass prefixes to `EditTaskCommand`.
+  * Might take more memory space.
+  * Might take more time to execute since we need to check if each prefix exists in the list.
+
+  Alternative 1 is chosen since it cause minor changes to the overall code, however we might try to implement alternative
+  2 in the future.
+
+#### Sort Tasks Feature
+
+The sort task feature is one of the vital features in TodoList because it allows the user to effectively and
+efficiently manage their tasks. This is the case because in general people will execute tasks in an order.
+This feature lets the user know which task is the most important, the closest to deadline, and also by name.
+
+This feature can sort the list based on these criteria: 
+
+* `Name` - sorts the list lexicographically with case ignored, from the lowest to the highest based on the task' name
+* `Priority`- sorts the list from the highest priority to the lowest priority based on the task' priority
+* `Date`. - sorts the list from the closest date to the latest date based on the task's deadline
+
+In addition this feature also supports the operation of reversing the list. The order will be the opposite of the order
+given above.
+
+This feature is facilitated by the following classes:
+  * `SortTaskParser`:
+    * It implements `SortTaskParser#parse()` to parse and validate the user input
+    * It creates comparator objects using the command arguments and reversing it if necessary
+    
+  * `SortTaskCommand`:
+    * It implements `SortTaskCommand#execute()` to sort the `TodoList` in `Model`
+    * It sorts the `TodoList` by invoking `Model#updateSortedTodoList()`
+
+  * `TaskComparatorByName`:
+    * It implements `Comparator#compare()` to compare 2 tasks based on their name
+    * It uses the `TaskNameComparator` class
+
+  * `TaskComparatorByPriority`:
+    * It implements `Comparator#compare()` to compare 2 tasks based on their priority
+
+  * `TaskComparatorByDate`:
+      * It implements `Comparator#compare()` to compare 2 tasks based on their date
+      * It uses the `DateComparator` class
+
+In addition the classes below are uses by the comparator classes mentioned above:
+  * `TaskNameComparator`:
+    * It implements `Comparator#compare()` for comparing 2 `TaskName` objects
+  
+  * `DateComparator`:
+    * It implements `Comparator#comapre()` for comparing `Date` objects
+
+Given below is the class diagram describing the comparators:
+![TaskComparatorClassDiagram](images/Task/TaskComparatorClassDiagram.png)
+
+Given below is an example usage scenario and how the mechanism for sorting tasks behaves at each step:
+
+Step 1. `LogicManager` receives the user input `sorttask priority` from `Ui`
+
+Step 2. `LogicManager` calls `TodoListParser#parseCommand()` to create a `FindTaskParser`
+
+Step 3. Then, `TodoListParser` will call the `SortTaskParser#parse()` method to parse the command arguments
+
+Step 4. This creates the correct `Comparator<Task>` based on the command arguments
+
+Step 4. Finally, a `SortTaskCommand` is created and `SortTaskCommand#execute()` will be invoked by `LogicManager`
+
+Step 5. The `Model#updateSortedTodoList()` operation exposed in the `Model` interface is invoked to update the displayed todo list
+by updating the `Model#sortedTodoList` with the new comparator.
+
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+![SortTaskCommandSequenceDiagram](images/TodoList/SortTaskCommandSequenceDiagram.png))
+
+In addition, if the user wants to reverse order, the `Comparator<Task>` will be updated in the `SortTaskParser#parse()`
+using the built-in java method `Comparator#reversed()`.
+
+##### Sort and Filter Implementation
+
+This feature which require the list to be sorted can work together with he find task feature. This is because the
+`Model.sortedTodoList` is wrapped inside the `Model.filteredTodoList`. When the `Model#updateSortedList()` is
+invoked, the `Model.filteredTodoList` will also be updated. Furthermore, the list in the GUI will also be updated.
+Combining sorting and filtering can be very powerful, especially when it comes to managing tasks.
 
 #### Find Task Feature
 
@@ -1202,21 +1727,21 @@ This feature is facilitated by the following classes:
   * `FindTaskCriteria`:
     * It encapsulates all the predicates which will be used to test for matching tasks
     * It implements the following operations:
-      * `FindTaskCriteria#addPredicate():` Adds a new predicate into the list of predicates 
-        to test for matching contacts
-      * `FindTaskCriteria#getFindTaskPredicate():` To compose all the predicates into a single predicate
+      * `FindTaskCriteria#addPredicate()` to add a new predicate into the list of predicates 
+        to test for matching tasks
+      * `FindTaskCriteria#getFindTaskPredicate()` to compose all the predicates into a single predicate
         
   * Predicate objects that can be stored in `FindTaskCriteria`:
     * `TaskNameContainsKeywordsPredicate`:
       * Tests if the name of a given task matches at least one of the name keywords provided (case-insensitive)
-    * `ContactContainsTagsPredicate`:
+    * `TaskContainsTagsPredicate`:
       * Tests if a given task contains at least one of the search tags provided (case-insensitive)
     * `TaskMatchesDatePredicate`:
       * Tests if the date of a given task matches the search date exactly.
     * `TaskMatchesPriorityPredicate`:
-      * Tests if the priority of a given task matches the search priority exactly.
+      * Tests if the priority of a given task matches the search priority exactly (case-insensitive)
     * `TaskMatchesStatusPredicate`:
-      * Tests if the status of a given task matches the search status exactly.
+      * Tests if the status of a given task matches the search status exactly (case-insensitive)
   
 Given below is the class diagram describing the `FindTaskCriteria` class:
 ![FindTaskCriteriaClassDiagram](images/FindTaskCriteriaClassDiagram.png)
@@ -1242,6 +1767,7 @@ Step 5. The `Model#updateFilteredTodoList()` operation exposed in the `Model` in
 
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
+The following activity diagram summarizes what happens when a user executes `FindTaskCommand`
 ![FindTaskCommandActivityDiagram](images/FindTaskCommandActivityDiagram.png)
 
 #### Design consideration:
@@ -1250,18 +1776,103 @@ Step 6. A `CommandResult` from the command execution is returned to `LogicManage
 
 * **Alternative 1 :** Allow users to provide 0 search parameters, in which case the find task command does not perform any operation.
   
-  * Pros: Implementation of the command is simpler as we do not need to check if at least one search parameter was provided.
+  * Pros: Implementation of the command is simpler and straightforward as we do not need to check if at least one search parameter was provided.
   * Cons: The command does not perform any meaningful operation.
   
 * **Alternative 2 (current choice):** Handle instances when no search parameter was provided using exceptions and inform users that at least one parameter is required.
 
-  * Pros: Ensures that users are aware of any constraints related to the command.
-  * Cons: The implementation of the command is slighly more complex since exception handling is required and 
+  * Pros: Ensures that users are aware of all the constraints related to the command.
+  * Cons: The implementation of the command is more complex since exception handling is required and 
           we need to check if at least one search parameter was provided.
 
 Alternative 2 was chosen as it conformed with the standard practice of handling errors using exception. Moreover, it removes any room for 
 ambiguity by ensuring all constraints related to the command are made known to the users.
+
+
+#### Complete Task Feature
+
+The complete task feature allows the user to label a task as completed when they have accomplished it.
+The entry of the task in the GUI will show the green label **COMPLETED** when the task is done, or
+red label **NOT COMPLETED** if otherwise.
+
+This feature is facilitated by the following classes:
+
+  * `Status`:
+    * `Enum` to store the status of the task
+    * It stores 2 values i.e. `COMPLETED` and `NOT_COMPLETED`
     
+  * `CompleteTaskCommand`:
+    * It implements `CompleteTaskCommand#execute()` to mark a `Task` as `COMPLETED`
+
+Given below is an example usage scenario and how the mechanism for editing a `Task` behaves at each step:
+
+Step 1. `LogicManager` receives the user input `completetask 1` from `Ui`
+
+Step 2. `LogicManager` calls `TodoListParser#parseCommand()` to create an `CompleteTaskParser`
+
+Step 3. Additionally, `TodoListParser` will call the `CompleteTaskParser#parse()` method to parse the command arguments
+
+Step 4. This creates an `CompleteTaskCommand` and `CompleteTaskCommand#execute()` will be invoked by `LogicManager` to set the task status as `COMPLETED`
+
+Step 5. The `Model#setTask()` operation exposed in the `Model` interface is invoked to replace the target `Task` with the same `Task` but the status is set to `COMPLETED`
+
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+The sequence diagram for this feature should be similar with figure
+
+#### Reset Task Feature
+
+The reset task feature does the opposite of what the complete task feature does. It labels the task as `NOT COMPLETED`
+instead. This feature is added to avoid the need to use the edit task to edit the status.
+
+This feature is facilitated by the following classes:
+
+  * `Status`:
+    * `Enum` to store the status of the task
+    * It stores 2 values i.e. `COMPLETED` and `NOT_COMPLETED`
+    
+  * `ResetTaskCommand`:
+    * It implements `ResetTaskCommand#execute()` to mark a `Task` as `NOT COMPLETED`
+
+Given below is an example usage scenario and how the mechanism for editing a `Task` behaves at each step:
+
+Step 1. `LogicManager` receives the user input `completetask 1` from `Ui`
+
+Step 2. `LogicManager` calls `TodoListParser#parseCommand()` to create an `ResetTaskParser`
+
+Step 3. Additionally, `TodoListParser` will call the `ResetTaskParser#parse()` method to parse the command arguments
+
+Step 4. This creates an `ResetTaskCommand` and `ResetTaskCommand#execute()` will be invoked by `LogicManager` to set the task status as `COMPLETED`
+
+Step 5. The `Model#setTask()` operation exposed in the `Model` interface is invoked to replace the target `Task` with the same `Task` but the status is set to `COMPLETED`
+
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+The sequence diagram for this feature should be similar with figure
+
+#### Clear Tasks Feature
+
+The clear tasks feature just simply clear the whole existing `TodoList`. This command can be undone by the `undo` command.
+
+Given below is an example usage scenario and how the mechanism for celaring the tasks behaves at each step:
+
+Step 1. `LogicManager` receives the user input `cleartask`
+
+Step 2. `LogicManager` calls `TodoListParser#parseCommand()` to create a `ClearTaskCommand`
+
+Step 3. This creates an `ClearTaskCommand` and `ClearTaskCommand#execute()` will be invoked by `LogicManager` to empty the list
+
+Step 4. A `CommandResult` from the command execution is returned to `LogicManager`
+
+    
+The sequence diagram for this feature should be similar with figure
+
+Take note that there is no additional parser created for the clear tasks feature i.e. `ClearTaskParser` is not created.
+In this case, The parsing will be handled by the `TodoListParser#singleWordCommandsChecker()` instead. This method also
+checks if the user included anything after the command word and throws the `ParseException`.
+
+
+
 ### 3.4 Event list management feature
 
 ### Add Event Feature
@@ -1413,15 +2024,16 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 Step 1. The user launches the application for the first time. The `VersionedModuleList` will be initialized with the initial `ModuleList` state, and the `currentStatePointer` pointing to that single `ModuleList` state.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+<p aligin="center"><img src="images/UndoRedoState0.png" border="2px solid black"></p>
 
 Step 2. The user executes `deletemodule 5` command to delete the 5th module in the `ModuleList`. The `deletemodule` command calls `Model#commitModuleList()`, causing the modified state of the `ModuleList` after the `deletemodule 5` command executes to be saved in the `moduleListStateList`, and the `currentStatePointer` is shifted to the newly inserted `ModuleList` state.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+<p aligin="center"><img src="images/UndoRedoState1.png" border="2px solid black"></p>
 
 Step 3. The user executes `addmodule n/CS2103T​` to add a new module. The `addmodule` command also calls `Model#commitModuleList()`, causing another modified `ModuleList` state to be saved into the `moduleListStateList`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+<p aligin="center"><img src="images/UndoRedoState2.png" border="2px solid black"></p>
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitModuleList()`, so the `ModuleList` state will not be saved into the `moduleListStateList`.
 
@@ -1429,7 +2041,7 @@ Step 3. The user executes `addmodule n/CS2103T​` to add a new module. The `add
 
 Step 4. The user now decides that adding the module was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoModuleList()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous `ModuleList` state, and restores the `ModuleList` to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+<p aligin="center"><img src="images/UndoRedoState3.png" border="2px solid black"></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial `ModuleList` state, then there are no previous `ModuleList` states to restore. The `undo` command uses `isIndexZero()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
@@ -1438,7 +2050,7 @@ than attempting to perform the undo.
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+<p aligin="center"><img src="images/UndoSequenceDiagram.png" border="2px solid black"></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -1452,15 +2064,15 @@ The `redo` command does the opposite — it calls `Model#redoModuleList()`, 
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify `ModuleList`, such as `list`, will usually not call `Model#commitModuleList()`, `Model#undoModuleList()` or `Model#redoModuleList()`. Thus, the `ModuleListStateList` remains unchanged.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+<p aligin="center"><img src="UndoRedoState4.png" border="2px solid black"></p>
 
 Step 6. The user executes `clearmodule`, which calls `Model#commitModuleList()`. Since the `currentStatePointer` is not pointing at the end of the `moduleListStateList`, all `ModuleList` states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `addmodule n/CS2103​` command. This is the behavior that most modern desktop applications follow.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+<p aligin="center"><img src="UndoRedoState5.png" border="2px solid black"></p>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+<p aligin="center"><img src="images/CommitActivityDiagram.png" border="2px solid black"></p>
 
 #### Design consideration:
 
@@ -1515,19 +2127,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add a new module               | keep track of the module information easily            |
 | `* * *`  | user                                       | delete a module                | remove modules that are completed                      |
 | `* *`    | user                                       | find a module by name          | locate details of a module without having to go through the entire list |
-| `* *`    | user                                       | add a zoom link to a module    | keep track and retrieve it easily                      |
+| `* * *`  | user with many online zoom lessons         | add a zoom link to a module    | keep track and retrieve it easily                      |
+| `* * `   | user                                       | edit the zoom link of a module | update the zoom link whenever it changes               |
+| `* *`    | user                                       | delete the zoom link of a module | prevent the accumulation of unused zoom links        |
 | `* *`    | user                                       | calculate my CAP details   | plan my academic progress for the future      |
 | `* *`    | user                                       | archive a modules   | hide less relevant modules that might still be useful for future purposes|
 | `* *`    | user                                       | add graded assignments       | add the information of the assignments that contributed to my grade      |
 |          | contact list                               |                                | |
+| `* * *`  | user                                       | add module contacts            | keep track of all contact details for future reference  |
+| `* * *`  | user                                       | delete a contact               | prevent unnecessary contacts from accumulating |
+| `* * *`  | user                                       | edit a contact                 | update contact details whenever they are changed |
+| `* * *`  | user                                       | find a contact by keyword      | retrieve the necessary contact easily without having to look through all my contacts    |
 | `* *`    | user                                       | edit my graded assignments     | update the information of the assignments I have completed     |
 | `* *`    | user                                       | delete graded assignments      | remove the assignments that are do not contribute to my grade anymore|
+| `*`      | user                                       | add an overall grade to a module| change my grade without adding assignments to control it|
 | `*`      | user who is overloading                    | sort modules by name           | locate a module easily                                 |
 | `* * *`  | user                                       | add a task                     | keep track of the tasks that I must complete           |
 | `* * *`  | user                                       | delete a task                  | remove a task that has been done                       |
 | `* * *`  | user                                       | edit a task                    | make necessary changes to a task                       |
 | `* *`    | user                                       | label a task as completed      |                                                        |
-| `* *`    | user                                       | find a task                    | find a task easily without looking at the entire list  |
+| `* *`    | user                                       | find a task                    | retrieve a task easily without looking at the entire list  |
 | `* *`    | user                                       | sort tasks based on criteria   | easily manage the tasks by order                       |
 | `* *`    | user                                       | filter tasks based on criteria | easily manage the tasks by group                       |
 | `*`      | user                                       | reset the status of a task     | change a task from labeled as completed to not completed |
@@ -1544,7 +2163,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-=======
+
 ## Module list use cases
 
 **Use case: UC04 - View a module**
@@ -1683,10 +2302,327 @@ Use case ends.
 
 Use case ends.
 
+**Use case: Add zoom link to module**
+
+**MSS**
+
+1. User requests to add a new zoom link to a specific module in the module list.
+2. User provides the module index, zoom link and module lesson name.
+3. CAP5BUDDY creates and zoom link and adds it into the specified module.
+4. CAP5BUDDY indicates that the zoom link has been successfully added and displays the newly created zoom link.
+
+  Use case ends.
+  
+**Extensions**
+
+  * 2a. CAP5BUDDY detects that the module index is invalid.
+  
+  * 2b.CAP5BUDDY detects that the provided zoom link details are invalid.
+  
+  *
+  
+**Use case: Delete zoom link from module**
+
+**MSS**
+
+1. User requests to delete a zoom link from a specific module.
+2. User provides the module index and module lesson which the target zoom link belongs to.
+3. CAP5BUDDY deletes the zoom link from the module.
+4. CAP5BUDDY indicates that the zoom has been successfully deleted.
+
+**Extensions**
+
+  * 2a. CAP5BUDDY detects that the module index is invalid.
+
+
 ## Contact list use cases
 
+**Use case: Add contact to contact list**
 
-## Todo list use cases
+**MSS**
+
+1. User requests to add a new contact to the contact list.
+2. User provides the name and email of the contact, and optionally a telegram field and/or tags.
+3. CAP5BUDDY creates the new contact and adds it into the contact list
+4. CAP5BUDDY indicates that the contact has been successfully added and displays the newly created contact.
+ 
+ Use case ends.
+
+**Extensions:**
+
+  * 2a. CAP5BUDDY detects that the contact details provided are invalid.
+    
+    * 2a1. CAP5BUDDY displays an error message and informs the user of the contact detail constraints.
+   
+      Use case ends.
+      
+  * 3a. CAP5BUDDY detects that a duplicate contact exists in the contact list.
+  
+    * 3a1. CAP5BUDDY displays an error message and informs the user that the contact could not be added as a duplciate contact exists.
+
+    Use case ends.
+
+
+**Use Case: Delete contact from contact list**
+
+**MSS**
+
+1. User requests to delete a contact from the contact list.
+2. User provides the index of the contact in the displayed contact list to be deleted.
+3. CAP5BUDDY deletes the contact from the contact list.
+4. CAP5BUDDY indicates that the contact was successfully deleted and displays the details of the deleted contact.
+
+  Use case ends.
+  
+**Extensions:**
+
+  * 2a. CAP5BUDDY detects that the contact index provided is invalid.
+  
+    * 2a1. CAP5BUDDY displays an error message and informs the user that the index provided is invalid.
+    
+      Use case ends.
+
+
+**Use Case: Edit contact in contact list**
+
+**MSS**
+
+1. User requests to edit a contact in the contact list.
+2. User provides the index of the target contact and the edited contact details.
+3. CAP5BUDDY edits the target contact with the provided contact details.
+4. CAP5BUDDY indicates that the contact was edited successfully and displays the details of the edited contact.
+
+  Use case ends.
+  
+**Extensions**
+
+  * 2a. CAP5BUDDY detects that the contact index provided is invalid.
+  
+    * 2a1. CAP5BUDDY displays an error message and informs the user that the index provided is invalid.
+    
+      Use case ends.
+  
+  * 2b. CAP5BUDDY detects that the contact details provided are invalid. (same as use case add contact)
+  
+  * 2c. same as use case add contact duplicate contact
+  
+  
+  
+**Use Case: Find contacts**
+
+**MSS**
+
+1. User requests to find contacts in the contact list.
+2. User provides the search keywords and parameter.
+3. CAP5BUDDY finds all the contacts that match the search parameters provided.
+4. CAP5BUDDY displays all the contacts.
+
+**Extensions**
+
+  * 2a. CAP5BUDDY detects that no search keywords or parameters were provided.
+  
+    * 2a1. CAP5BUDDY displays an error message and informs the user that at least one search parameter must be provided.
+    
+      Use case ends.
+          
+
+
+## Todo List Use Cases
+
+**Use case: UC - Add a task to todo list**
+**Actor: user**
+**MSS:**
+
+1. User wants to add a task to the todo list.
+2. User enters the command to add a task.
+3. CAP 5 Buddy saves the given task in the todo list.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. Format for information about the task is invalid.
+
+  * 2a1. CAP 5 Buddy displays an error message and ask the user to use the correct format.
+  * 2a2. User enters the information with the correct format.
+
+  Use case resumes at step 3.
+
+* 2b. User enters the wrong information.
+
+  * 2b2. User edits the task.
+  
+  Use case ends.
+
+* 2c. User enters an already existing task.
+
+  * 2b1. CAP 5 Buddy displays an error message about duplicate tasks.
+
+  Use case resumes at step 1.
+
+**Use case: UC - Delete a task in the todo list**
+**Actor: user**
+**MSS**
+
+1. User wants to delete a task in the todo list.
+2. User enters the command to delete a task.
+3. CAP 5 Buddy deletes the task from the todo list.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. User accidentally delete the wrong task.
+
+  * 2a1. User enters the undo command.
+
+  Use case resumes at step 1.
+
+**Use case: UC - Edit a task in the todo list**
+**Actor: user**
+**MSS**
+
+1. User wants to edit a task in the todo list.
+2. User enters the command to edit a task.
+3. CAP 5 Buddy edits the specified task.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. User accidentally edits the wrong task.
+
+  * 2a1. User enters the undo command.
+
+  Use case resumes at step 1.
+
+**Use case: UC - Sort task in the todo list**
+**Actor: user**
+**MSS**
+
+1. User wants to sort the tasks in the todo list.
+2. User enters the command to sort the todo list based on a criterion.
+3. CAP 5 Buddy displays the sorted tasks based on the chosen criterion.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. User input the wrong criterion.
+
+  * 2a1. User reset the order using the list command.
+  * 2a2. User re-enter the command with the correct criterion.
+
+  Use case resumes at step 3.
+
+**Use case: Find a task in the todo list**
+**Actor: user**
+**MSS**
+
+1. User wants to find a task in the todo list.
+2. User enters the command to find a task based on keywords.
+3. CAP5 Buddy displays all task based on the user input from step 2.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. User input is invalid.
+
+  * 2a1. CAP 5 Buddy displays an error message and tells the user the correct format.
+  * 2a2. User enters the keywords with the correct format.
+
+  Use case resumes at step 3
+
+* 2b. User input the wrong keywords.
+
+  * 2b1. User shows all the tasks using the list command.
+  * 2b2. User re-enter the command with the correct keywords.
+
+  Use case resumes at step 3.
+
+**Use case: UC - Label a task in the todo list as completed**
+**Actor: user**
+**MSS**
+
+1. User wants label a task as "completed".
+2. User enters the command to complete a task.
+3. CAP 5 Buddy labels the specified task as "completed".
+
+Use case ends.
+
+**Extensions**
+
+* 2a. User accidentally labels the wrong task.
+
+  * 2a1. User enters the undo or reset task command.
+
+  Use case resumes at step 1.
+
+**Use case: UC - Reset task label in the todo list to "not completed"**
+**Actor: user**
+**MSS**
+
+1. User wants reset a task to "not completed".
+2. User enters the command to reset a task.
+3. CAP 5 Buddy labels the specified task as "not completed".
+
+Use case ends.
+
+**Extensions**
+
+* 2a. User accidentally labels the wrong task.
+
+  * 2a1. User enters the undo or complete task command.
+
+  Use case resumes at step 1.
+
+**Use case: UC - List all tasks in the list**
+**Actor: user**
+**Precondition: User just entered a sort task or find task command"**
+**MSS**
+
+1. User wants see all the tasks in the list with the default ordering.
+2. User enters the command to list all tasks.
+3. CAP 5 Buddy displays all the tasks with the default ordering.
+
+Use case ends.
+
+**Use case: UC - Clear all tasks in the list**
+**Actor: user**
+**MSS**
+
+1. User wants to remove all tasks from the list.
+2. User enters the command to clear the list.
+3. CAP 5 Buddy removes all the tasks from the list.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. User changes mind and wants the list back.
+
+  * 2a1. The user enter the undo command.
+
+  Use case ends.
+
+**Use case: Archive a task in the todo list (Proposed)**
+**Actor: user**
+**MSS**
+
+1. User wants to archive a task in the todo list.
+2. User input the command to archive a task.
+3. CAP5 Buddy archives the task.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. User accidentally archive the wrong task.
+
+  * 2a1. The user enter the undo or unarchive command.
+
+  Use case resumes at step 1.
 
 ## General feature use cases
 
@@ -1783,6 +2719,8 @@ Use case ends.
   Use case resumes at step 2.
 
   *{More to be added}*
+
+
 
 **Use case: Add a task to todo list**
 
@@ -1883,88 +2821,9 @@ Use case ends.
 
   *{More to be added}*
 
-**Use Case: View all contact details of a lecturer**
 
-  **MSS**
-   1. User requests to view all contact details of a lecturer.
-   2. User provides the name of the lecturer.
-   3. CAP5BUDDY searches for the specified lecturer from storage.
-   4. CAP5BUDDY retrieves all contact details of the lecturer from storage.
-   5. CAP5BUDDY displays the desired contact details.
+  
 
-  **Extensions**
-
-   * 3a. The specified lecturer name does not exist.
-
-     * CAP5BUDDY displays an error message.
-
-     Use case ends.
-
-  **Use Case: View the email of a Lecturer**
-
-  **MSS**
-  1. User requests to view the email of a lecturer.
-  2. User provides the name of the lecturer.
-  3. CAP5BUDDY searches for the specified lecturer from storage.
-  4. CAP5BUDDY retrieves the email of the lecturer from storage.
-  4. CAP5BUDDY displays the desired email address.
-
-  **Extensions**
-
-  * 3a. The specified lecturer name does not exist.
-
-    * CAP5BUDDY displays an error message.
-
-    Use case ends.
-
-  **Use Case: View the hand phone contact of a peer**
-
-  **MSS**
-  1. User requests to view the hand phone number of a peer.
-  2. User provides the name of the peer.
-  3. CAP5BUDDY searches for the specified peer from storage.
-  4. CAP5BUDDY retrieves the hand phone contact of the peer from storage.
-  4. CAP5BUDDY displays the desired hand phone contact.
-
-  **Extensions**
-
-* 3a. The specified peer name does not exist.
-
-  * CAP5BUDDY displays an error message.
-
-  Use case ends.
-
-* 4a. The specified peer does not have a hand phone contact saved.
-
-  * CAP5BUDDY displays an error message.
-
-  Use case ends.
-
-**Use Case: Edit the email of a TA**
-
-  **MSS**
-  1. User requests to edit the email of a TA.
-  2. User provides the name of the TA.
-  3. CAP5BUDDY searches for the specified TA from storage.
-  4. User provides the new email to replace the existing email.
-  5. CAP5BUDDY replaces the email of the TA with the user provided email.
-  6. CAP5BUDDY displays the success message.
-
-  **Extensions**
-
-  * 3a. The specified TA name does not exist.
-
-    * CAP5BUDDY displays an error message.
-
-    Use case ends.
-
-  * 4a. The provided email address is empty or null.
-
-    * CAP5BUDDY displays an error message.
-
-    Use case ends.
-
-    *{More to be added}*
 
 **Use Case: Add assignment to CAP5BUDDY**
 
@@ -1983,18 +2842,20 @@ Use case ends.
 
       Use case ends.
 
- * 3a. The given grade is invalid.
+ * 3a. One or more of the assignment details are invalid.
 
     * CAP5BUDDY displays an error message.
 
       Use case ends.
 
-**Use Case: View grades for a module**
+**Use Case: Add grade to a module**
 
   **MSS**
-  1. User requests to view grades for a module.
-  2. CAP5BUDDY retrieves current grades.
-  3. CAP5BUDDY displays current grades.
+  1. User requests to add a grade to a module.
+  2. CAP5BUDDY retrieves the module from the module list.
+  3. CAP5BUDDY creates a new grade to replace the current one in the module.
+  4. CAP5BUDDY updates module in module list.
+  5. CAP5BUDDY displays success message
 
   **Extensions**
 
@@ -2009,11 +2870,11 @@ Use case ends.
 
   **MSS**
   1. User requests to edit an assignment in a module in CAP5BUDDY.
-  2. CAP5BUDDY retrieves the module.
+  2. CAP5BUDDY retrieves the module from the module list.
   3. CAP5BUDDY retrieves the assignment requested from the grade tracker in the module.
-  4. User requests to edit the assignment retrieved.
-  5. CAP5BUDDY edits the assignment.
-  6. CAP5BUDDY saves the edited assignment in the module.
+  4. CAP5BUDDY creates a new assignment to replace the assignment retrieved.
+  5. CAP5BUDDY updates the grade tracker in the module.
+  6. CAP5BUDDY updates the module in the module list.
   7. CAP5BUDDY displays success message.
 
   **Extensions**
@@ -2024,12 +2885,18 @@ Use case ends.
 
       Use case ends.
 
-  * 3a. The given assignment is invalid.
+  * 3a. The assignment to retrieve is invalid.
 
     * CAP5BUDDY displays an error message.
 
       Use case ends.
 
+  * 4a. The information to create a new assignment is invalid.
+
+    * CAP5BUDDY displays an error message.
+    
+      Use case ends.
+     
   *{More to be added}*
 
 **Use case: Delete an assignment**
@@ -2040,9 +2907,13 @@ Use case ends.
    3. CAP5BUDDY retrieves the assignment requested from the grade tracker in the module.
    4. CAP5BUDDY deletes the assignment.
    5. CAP5BUDDY updates the grade tracker in the module.
-   4. CAP5BUDDY displays success message.
+   6. CAP5BUDDY updates the module list with the module.
+   7. CAP5BUDDY displays success message.
 
    **Extensions**
+   * 2a. The provided module is invalid.
+   
+      * CAP5BUDDY displays an error message.
 
    * 3a. The provided assignment is invalid.
 
@@ -2227,6 +3098,38 @@ testers are expected to do more *exploratory* testing.
    
    * Prerequisites : List all archived modules using the `viewarchive` command. Multiple modules in the list.
    
+#### Finding a module
+ 
+1. Finding a module while all modules are being shown.
+
+   1. Prerequisites: List out all modules using the `listmodule` command. Multiple modules in the list.
+
+   1. Test case: `findmodule CS2030` <br>
+      Expected: Any module with their name containing the word `CS2030` will be displayed in the contact list panel.
+     
+   1. Test case: `findmodule CS2030 CS2040` <br>
+     Expected: Any module with their name containing the word `CS2030`  or `CS2040` will be displayed in the contact list panel.
+
+   1. Test case: `findmodule` <br>
+      Expected: No module is found.
+      
+#### Clearing modules
+
+1. Clearing module list while all modules are being shown.
+
+   1. Prerequisites: List out all modules using the `listmodule` command. Multiple modules in the list.
+
+   1. Test case: `clearmodule` <br>
+      Expected: All modules cleared, module list should be empty.
+
+
+2. Clearing module list while some modules are being shown.
+
+   1. Prerequisites: List out some modules using the `findmodule` command. A few modules in the list.
+
+   1. Test case: `clearmodule` <br>
+      Expected: All modules cleared, module list should be empty.
+
 #### Calculate CAP
  
  1. Calculate CAP
@@ -2245,16 +3148,406 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `targetcap 5`<br>
       Expected: Target CAP details are calculated. Target CAP details shown in the status message.    
    
+<<<<<<< HEAD
  
       
 
+
+
+
+
+
+
+
+
+#### Adding a zoom link
+
+1. Prerequisites: List out all modules using the `listmodule` command. Multiple modules in the list.
+
+   1. Test case: `addzoom 1 n/lecture z/https://nus-sg.zoom.us/zoomlink` <br>
+      Expected: A zoom link `https://nus-sg.zoom.us/zoomlink` for the module lesson `lecture` is added to the first module in the displayed module list.
+                Details of the newly created zoom link are shown in the status message.
+
+   1. Test case: `addzoom 0 n/lecture z/https://nus-sg.zoom.us/zoomlink` <br>
+      Expected: No zoom link is added. Error message for invalid command format is shown in the status message.
+      
+   1. Test case: `addzoom x n/lecture z/https://nus-sg.zoom.us/zoomlink` where `x` is larger than the module list size <br>
+      Expected: No zoom link is added. Error message for invalid module index is shown in the status message.
+
+   1. Test case: `addzoom` <br>
+      Expected: No zoom link is added. Error message for invalid command format is shown in the status message.
+   
+   1. Test case: `addzoom 1 n/*** z/https://nus-sg.zoom.us/zoomlink` <br>
+      Expected: No zoom link is added. Error message for invalid module lesson is shown in the status message.
+   
+   1. Test case: `addzoom 1 n/lecture z/https://invalidzoomlink` <br>
+      Expected: No zoom link is added. Error message for invalid zoom link is shown in the status message.
+   
+   1. Test case: `addzoom 1 n/lecture` <br>
+      Expected: No zoom link is added. Error message for invalid command format is shown in the status message.
+
+   1. Test case: `addzoom 1 z/https://nus-sg.zoom.us/zoomlink` <br>
+      Expected: No zoom link is added. Error message for invalid command format is shown in the status message.
+
+
+#### Deleting a zoom link
+
+
+1. Prerequisites: List out all modules using the `listmodule` command. Multiple modules in the list.
+
+   1. Test case: `deletezoom 1 n/lecture` <br>
+      Expected: Deletes the zoom link from the first module in the displayed module list for the module lesson `lecture`.
+                Details of the module lesson and module which the zoom link was deleted from are shown in the status message.
+   
+   1. Test case: `deletezoom 0 n/lecture` <br>
+      Expected: No zoom link is deleted. Error message for invalid command format is shown in the status message.
+         
+   1. Test case: `deletezoom x n/lecture` where `x` is larger than the module list size <br>
+      Expected: No zoom link is deleted. Error message for invalid module index is shown in the status message.
+   
+   1. Test case: `deletezoom` <br>
+      Expected: No zoom link is deleted. Error message for invalid command format is shown in the status message.
+      
+   1. Test case: `deletezoom 1 n/***` <br>
+      Expected: No zoom link is delete. Error message for invalid module lesson is shown in the status message.
+   
+   
+#### Editing a zoom link
+   
+1. Prerequisites: List out all modules using the `listmodule` command. Multiple modules in the list.   
+
+   1. Test case: `editzoom 1 n/lecture z/https://nus-sg.zoom.us/newZoomLink` <br>
+      Expected: The zoom link for the module lesson `lecture` in the first module in the displayed module list is edited to `https://nus-sg.zoom.us/newZoomLink`.
+                Details of the newly created zoom link are shown in the status message.
+   
+   1. Test case: `editzoom 0 n/lecture z/https://nus-sg.zoom.us/newZoomLink` <br>
+      Expected: No zoom link is edited. Error message for invalid command format is shown in the status message.
+         
+   1. Test case: `editzoom x n/lecture z/https://nus-sg.zoom.us/newZoomLink` where `x` is larger than the module list size <br>
+      Expected: No zoom link is edited. Error message for invalid module index is shown in the status message.
+   
+   1. Test case: `editzoom` <br>
+      Expected: No zoom link is edited. Error message for invalid command format is shown in the status message.
+      
+   1. Test case: `editzoom 1 n/*** z/https://nus-sg.zoom.us/newZoomLink` <br>
+      Expected: No zoom link is edited. Error message for invalid module lesson is shown in the status message.
+      
+   1. Test case: `editzoom 1 n/lecture z/https://invalidzoomlink` <br>
+      Expected: No zoom link is edited. Error message for invalid zoom link is shown in the status message.
+      
+   1. Test case: `editzoom 1 n/lecture` <br>
+      Expected: No zoom link is edited. Error message for invalid command format is shown in the status message.
+   
+   1. Test case: `editzoom 1 z/https://nus-sg.zoom.us/newZoomLink` <br>
+      Expected: No zoom link is added. Error message for invalid command format is shown in the status message.
+
+
+
+
+
+
 ### Contact List
+
+#### Adding a contact
+
+1. Adding a contact while all contacts are being shown.
+
+   1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
+  
+   1. Test case: `addcontact n/john e/john@gmail.com` <br>
+      Expected: A contact with the name `john` and email `john@gmail.com` will be created. Details of the newly created contact are shown in the status message.
+   
+   1. Test case: `addcontact n/john e/john@gmail.com te/@johndoe` <br>
+      Expected: A contact with the name `john`, email `john@gmail.com` and telegram `@johndoe` will be created. Details of the newly created contact are shown in the status message.
+
+   1. Test case: `addcontact n/john e/john@gmail.com t/tag1 t/tag2` <br>
+      Expected: A contact with the name `john`, email `john@gmail.com` and tags `tag1` and `tag2` will be created. Details of the newly created contact are shown in the status message.
+
+   1. Test case: `addcontact n/*** e/john@gmail.com` <br>
+      Expected: The contact will not be created. Error message for invalid contact name is shown in the status message.
+      
+   1. Test case: `addcontact n/john e/incorrectemail.com` <br>
+      Expected: The contact will not be created. Error message for invalid contact email is shown in the status message.
+      
+   1. Test case: `addcontact n/john e/john@gmail.com te/john` <br>
+      Expected: The contact will not be created. Error message for invalid contact telegram is shown in the status message.
+
+   1. Test case: `addcontact n/john e/john@gmail.com t/&^*` <br>
+      Expected: The contact will not be created. Error message for invalid contact tag is shown in the status message.
+
+   1. Test case: `addcontact` <br>
+      Expected: No contact will be created. Error message for invalid command format is shown in the status message.
+   
+   1. Test case: `addcontact n/john` <br>
+      Expected: No contact will be created. Error message for invalid command format is shown in the status message.
+
+   1. Test case: `addcontact e/john@gmail.com` <br>
+      Expected: No contact will be created. Error message for invalid command format is shown in the status message.
+
+
+
+#### Deleting a contact
+
+1. Deleting a contact while all contacts are being shown.
+
+   1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
+
+   1. Test case: `deletecontact 1` <br>
+      Expected: The first contact is deleted from the list. Details of the deleted contact shown in the status message.
+      
+   1. Test case: `deletecontact 0` <br>
+      Expected: No contact is deleted. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
+
+   1. Test case: `deletecontact x` where x is larger that the displayed contact list size <br>
+      Expected:  No contact is deleted. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
+
+   1. Test case: `deletecontact` <br>
+      Expected: No contact is deleted. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
+
+2. Deleting a contact while some contacts are being shown
+
+   1. Prerequisites: List out some contacts using the `findcontact` command. A few contacts in the list.
+
+   1. Test case: `deletecontact 1` (assuming there is at least one contact in the displayed contact list) <br>
+      Expected: The first contact is deleted from the filtered contact list. Details of the deleted contact shown in the status message.
+
+   1. Test case: `deletecontact 0` <br>
+      Expected: No contact is deleted. Error message for invalid command format shown in the status message. The contact list remains unchanged.  
+   
+   1. Test case: `deletecontact x` where `x` is larger that the displayed contact list size <br>
+      Expected:  No contact is deleted. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
+
+
+#### Editing a contact
+
+1. Editing a contact while all contacts are being shown.
+
+   1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
+
+   1. Test case: `editcontact 1 n/john e/john@gmail.com` <br>
+      Expected: The first contact in the displayed contact list will be edited with the name `john` and email `john@gmail.com`. 
+                Details of the newly edited contact are shown in the status message.
+   
+   1. Test case: `editcontact 1 te/@johndoe` <br>
+      Expected: The first contact in the displayed contact list will be edited with the telegram `@johndoe`. 
+                Details of the newly edited contact are shown in the status message.             
+   
+   1. Test case: `editcontact 1 te/tag1` <br>
+      Expected: The first contact in the displayed contact list will be edited with the tag `tag1`. 
+                Details of the newly edited contact are shown in the status message.
+
+   1. Test case: `editcontact 1 t/` <br>
+      Expected: The first contact in the displayed contact list will be edited with all tags removed. 
+               Details of the newly edited contact are shown in the status message.
+
+   1. Test case: `editcontact 1 n/***` <br>
+      Expected: The first contact will not be edited. Error message for invalid contact name is shown in the status message.
+     
+   1. Test case: `editcontact e/incorrectemail.com` <br>
+      Expected: The first contact will not be edited. Error message for invalid contact email is shown in the status message.
+        
+   1. Test case: `editcontact 1 te/john` <br>
+      Expected: The first contact will not be edited. Error message for invalid contact telegram is shown in the status message.
+  
+  1. Test case: `editcontact 1 t/&^*` <br>
+     Expected: The first contact will not be edited. Error message for invalid contact tag is shown in the status message.
+
+  1. Test case: `editcontact 0 n/john` <br>
+     Expected: No contact is edited. Error message for invalid command format shown in the status message. The contact list remains unchanged.  
+     
+  1. Test case: `editcontact x n/john` where `x` is larger that the displayed contact list size <br>
+     Expected: No contact is edited. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
+
+   1. Test case: `editcontact` <br>
+      Expected: No contact is edited. Error message for invalid command format shown in the status message. The contact list remains unchanged.  
+
+
+#### Finding a contact
+
+1. Finding a contact while all contacts are being shown.
+
+   1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
+
+   1. Test case: `findcontact n/john` <br>
+      Expected: All contacts with their name containing the word `john` will be displayed in the contact list panel.
+
+   1. Test case: `findcontact t/friend` <br>
+      Expected: All contacts containing the tag `friend` will be displayed in the contact list panel.
+
+  1. Test case: `findcontact n/john t/friend` <br>
+     Expected: All contacts which fulfil **all** the following criteria will be displayed in the contact list panel.
+        
+        * Contact name contains the word `john`
+        
+        * Contains the tag `friend`
+
+   1. Test case: `findcontact 1 t/john` <br>
+      Expected: No contact will be found. Error message for invalid command format shown in the status message. The displayed contact list remains unchanged.
+   
+   1. Test case: `findcontact n/***` <br>
+      Expected: No contact will be found. Error message for invalid contact name shown in the status message. The displayed contact list remains unchanged.
+
+   1. Test case: `findcontact t/$$` <br>
+      Expected: No contact will be found. Error message for invalid contact tag shown in the status message. The displayed contact list remains unchanged.
+
+   1. Test case: `findcontact` <br>
+      Expected: No contact will be found. Error message for invalid command format shown in the status message. The displayed contact list remains unchanged.
+
+
+#### Clearing all contacts
+
+1. Clearing contact list while all contacts are being shown.
+
+   1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
+
+   1. Test case: `clearcontact` <br>
+      Expected: All contacts cleared, displayed contact list should be empty.
+
+
+2. Clearing contact list while some contacts are being shown.
+
+   1. Prerequisites: List out some contacts using the `findcontact` command. A few contacts in the list.
+   
+   1. Test case: `clearcontact` <br>
+      Expected: All contacts cleared, displayed contact list should be empty.
+
+
+#### Listing all contact
+
+1. Listing all contacts while all contacts are being shown.
+
+   1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
+
+   1. Test case: `listcontact` <br>
+      Expected: Displayed contact list remains unchanged.
+
+
+2. Listing all contacts while some contacts are being shown.
+
+   1. Prerequisites: List out some contacts using the `findcontact` command. A few contacts in the list.
+   
+   1. Test case: `listcontact` <br>
+      Expected: All contacts in the contact list are displayed.
+
+
 
 
 ### Todo List
 
+1. Labeling task as completed while all tasks are being shown
+
+   1. Test case: `completetask 1`<br>
+      Expected: First task is labelled as completed. Details of the completed module will be shown.
+
+   1. Test case: `completetask 0`<br>
+      Expected: No task is labelled as completed. Error details will be shown.
+
+   1. Other incorrect `completetask` command to try: `completetask`, `completetask y`, `...` (where xy is larger than the todo list size)<br>
+      Expected: Similar to previous.
+
+### Scheduler
+
+#### Add Event
+1. Adding an Event while all Events are shown.
+
+   1. Test case: `addevent n/CS2100 Test d/2-1-2020 1200`<br>
+      Expected: Event added into the list. Added Event can be found at the bottom of the list.
+
+2. Adding an Event that is already present.
+
+   1. Test case: `addevent n/CS2100 Test d/2-1-2020 1200`<br>
+      Expected: Duplicate Event Error message thrown, the Event will not be added to the list.
+
+#### Delete Event
+1. Deleting an Event from the list shown in the GUI.
+
+   1. Test case: `deleteevent 1`<br>
+      Expected: Event of index 1 will be deleted and removed from the list of Events.
+
+2. Deleting an Event with an invalid index
+
+   1. Test case: `deleteevent -1`<br>
+      Expected: Invalid event index Error message thrown, no Events will be deleted.
+      
+#### Edit Event
+1. Editing an Event name
+
+   1. Test case: `editevent 1 n/Testing file`
+      Expected: The Event in index 1 will have its name changed to `Testing file`.
+
+2. Editing an Event name using invalid event index
+
+   1. Test case: `editevent -1 n/Testing`
+      Expected: Invalid event index Error message thrown, no Events will be edited.
+
+#### Find Event
+1. Finding an Event using a valid event name
+
+<<<<<<< HEAD
+
+
+
+
+
+#### Finding a task
+
+1. Prerequisites: List out all tasks using the `listtask` command. Multiple tasks in the list.
+
+   1. Test case: `findtask n/lab` <br>
+      Expected: All tasks with their name containing the word `lab` will be displayed in the todolist panel.
+
+   1. Test case: `findtask t/easy` <br>
+      Expected: All tasks containing the tag `easy` will be displayed in the todolist panel.
+      
+   1. Test case: `findtask d/2020-01-01` <br>
+      Expected: All tasks with the date `2020-01-01` will be displayed in the todolist panel.
+      
+   1. Test case: `findtask p/high` <br>
+      Expected: All tasks with the priority `high` will be displayed in the todolist panel.
+   
+   1. Test case: `findtask s/completed` <br>
+      Expected: All tasks with the status `completed` will be displayed in the todolist panel.       
+
+   1. Test case: `findtask n/lab d/2020-01-01 p/high` <br>
+      Expected: All tasks which fulfil **all** the following criteria will be displayed in the todolist panel.
+        
+        * Task name contains the word `lab`
+        
+        * Has the date `2020-01-01`
+        
+        * Has the priority `high`
+
+   1. Test case: `findtask 1 t/easy` <br>
+      Expected: No task will be found. Error message for invalid command format shown in the status message. The displayed todolist remains unchanged.
+   
+   1. Test case: `findtask n/***` <br>
+      Expected: No task will be found. Error message for invalid task name shown in the status message. The displayed todolist remains unchanged.
+
+   1. Test case: `findtask t/$$` <br>
+      Expected: No task will be found. Error message for invalid task tag shown in the status message. The displayed todolist remains unchanged.
+
+   1. Test case: `findtask p/invalidPriority` <br>
+      Expected: No task will be found. Error message for invalid task priority shown in the status message. The displayed todolist remains unchanged.
+
+   1. Test case: `findtask d/invalidDate` <br>
+      Expected: No task will be found. Error message for invalid task date shown in the status message. The displayed todolist remains unchanged.
+   
+   1. Test case: `findtask s/invalidStatus` <br>
+      Expected: No task will be found. Error message for invalid task status shown in the status message. The displayed todolist remains unchanged.
+   
+   1. Test case: `findtask` <br>
+      Expected: No task will be found. Error message for invalid command format shown in the status message. The displayed todolist remains unchanged.
+
+
+
+
 
 ### Event List
+
+   1. Test case: `findevent n/CS2100`
+      Expected: All Events with `CS2100` in its name will be displayed.
+
+
 
 ### Common Features
 
@@ -2289,6 +3582,7 @@ testers are expected to do more *exploratory* testing.
      
     1. Test case: `redo`<br>
        Expected: No command is redone. Error details shown in the status message.
+
 
 ### Saving data
 

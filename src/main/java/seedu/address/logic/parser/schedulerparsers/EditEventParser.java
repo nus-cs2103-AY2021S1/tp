@@ -19,10 +19,13 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Parses input arguments and creates a new EditEventParser object.
+ */
 public class EditEventParser implements Parser<EditEventCommand> {
     @Override
     public EditEventCommand parse(String userInput) throws ParseException {
-        ArgumentTokenizer tokenizer = new ArgumentTokenizer(userInput, PREFIX_NAME, PREFIX_DATE);
+        ArgumentTokenizer tokenizer = new ArgumentTokenizer(userInput, PREFIX_NAME, PREFIX_DATE, PREFIX_TAG);
         ArgumentMultimap argMultiMap = tokenizer.tokenize();
         Index index = ParserUtil.parseIndex(argMultiMap.getPreamble());
         EditEventDescriptor descriptor = new EditEventDescriptor();

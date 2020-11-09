@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.gradetrackercommands.EditAssignmentCommand;
-import seedu.address.logic.commands.gradetrackercommands.EditAssignmentDescriptor;
+import seedu.address.logic.commands.gradetrackercommands.EditAssignmentCommand.EditAssignmentDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -20,6 +20,9 @@ import seedu.address.model.module.grade.AssignmentName;
 import seedu.address.model.module.grade.AssignmentPercentage;
 import seedu.address.model.module.grade.AssignmentResult;
 
+/**
+ * Parses input arguments and creates a new EditAssignmentParser object.
+ */
 public class EditAssignmentParser implements Parser<EditAssignmentCommand> {
 
     /**

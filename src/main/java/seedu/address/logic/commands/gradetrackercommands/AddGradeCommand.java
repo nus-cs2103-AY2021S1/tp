@@ -16,6 +16,10 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.grade.Grade;
 
+/**
+ * Encapsulates methods and information to add a Grade to overwrite the current grade
+ * stored under a gradetracker of a module.
+ */
 public class AddGradeCommand extends Command {
 
     public static final String COMMAND_WORD = "addgrade";

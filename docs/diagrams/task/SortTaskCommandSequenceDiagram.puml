@@ -1,0 +1,74 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TodoListParser" as TodoListParser LOGIC_COLOR
+participant ":SortTaskParser" as SortTaskParser LOGIC_COLOR
+participant "c:FindTaskCommand" as FindTaskCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(findTask)
+activate LogicManager
+
+LogicManager -> TodoListParser : parseCommand(findTask)
+activate TodoListParser
+
+create SortTaskParser
+TodoListParser -> SortTaskParser
+activate SortTaskParser
+
+SortTaskParser --> TodoListParser
+deactivate SortTaskParser
+
+TodoListParser -> SortTaskParser :parse(commandArgument)
+activate SortTaskParser
+
+ref over SortTaskParser: Create Comparator<Task> and reverse based on user input
+
+create FindTaskCommand
+SortTaskParser -> FindTaskCommand
+activate FindTaskCommand
+
+FindTaskCommand --> SortTaskParser: c
+deactivate FindTaskCommand
+
+SortTaskParser --> TodoListParser: c
+deactivate SortTaskParser
+
+SortTaskParser -[hidden]-> FindTaskCommand
+destroy SortTaskParser
+
+TodoListParser --> LogicManager: c
+deactivate TodoListParser
+
+LogicManager -> FindTaskCommand : execute(model)
+activate FindTaskCommand
+
+FindTaskCommand -> Model : updateFilteredTodoList(predicate)
+activate Model
+
+Model --> FindTaskCommand
+deactivate Model
+
+create CommandResult
+FindTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindTaskCommand: r
+deactivate CommandResult
+
+FindTaskCommand --> LogicManager: r
+deactivate FindTaskCommand
+
+FindTaskCommand -[hidden]-> LogicManager
+destroy FindTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

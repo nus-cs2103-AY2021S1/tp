@@ -507,14 +507,18 @@ assignments will contain the following fields:
 
   * The assignment takes up a percentage of the final grade, `ASSIGNMENT_PERCENTAGE`.
 
-  * Your `ASSIGNMENT_RESULT` must be converted to a decimal from `0.00 - 1.00`
+  * Your `ASSIGNMENT_RESULT` can only range from `0.00 - 100`
+  
+  * The changes for your assignment would only be seen through using the `viewmodule` command.
 
   Example:
-  * `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80` adds an assignment called `Quiz 1` to the module `CS2100`. `Quiz 1`
-  carries `5`% of the final grade and the result for this assignment is `80/100`.
+  * `addassignment n/CS2100 a/Quiz 1 %/5 r/80` adds an assignment called `Quiz 1` to the module `CS2100`. `Quiz 1`
+  carries `5`% of the final grade and the result for this assignment is `80`.
 
-  To be implemented:
-  * We are working on developing the display to show more details for each assignment besides the `ASSIGNMENT_NAME`.
+  Expected Outcome: 
+  
+ <p aligin="center"><img src="docs/images/GradeTracker/AddAssignment.PNG" border="2px solid black"></p>
+
 
 #### Editing an assignment in a module: `editassignment`
 
@@ -530,14 +534,57 @@ assignments will contain the following fields:
 
   * The index **must be a positive integer** 1, 2, 3...
 
-  * Your new `ASSIGNMENT_RESULT` must be converted to a decimal from `0.00 - 1.00`
+  * Your new `ASSIGNMENT_RESULT` can only range from `0.00 - 100`
+  
+  * The `viewmodule` command needs to be called again to update the assignment visually.
 
-  Example of usage:
+  Examples of usage:
    * `editassignment 1 n/CS2100 a/Quiz 1` edits the assignment at position `1` of the module `CS2100` with a new
    assignment name, `Quiz 1`.
 
-   * `editassignment 1 n/CS2100 %/20 r/0.80` edits the assignment at position `1` of the module `CS2100` with a new
-   assignment percentage, `20`% of the final grade, and a new assignment result, `0.80`.
+   * `editassignment 1 n/CS2100 %/20 r/80` edits the assignment at position `1` of the module `CS2100` with a new
+   assignment percentage, `20`% of the final grade, and a new assignment result, `80`.
+
+To be implemented:
+  * We are working on showing the assignment changes without the need to call `viewmodule` again as we see the
+  possible hassle involved.
+  
+#### Deleting an assignment in a module: `deleteassignment`
+
+  Deletes an assignment at the specified position in the specified module.
+
+  Format: `deleteassignment` `INDEX` `n/MODULE_NAME`
+
+  * You can retrieve the index of the assignment list by using the `viewmodule` command to list out the details of the module.
+
+  * The index **must be a positive integer** 1, 2, 3...
+  
+  * The changes for your assignment would only be seen through using the `viewmodule` command.
+
+
+  Example of usage:
+   * `deleteassignment 2 n/CS2100` deletes the assignment at position `2` of the module `CS2100`.
+   
+#### Adding a grade to a module: `addgrade`
+
+  Adds a grade to the specified module.
+
+  Format: `addgrade` `n/MODULE_NAME` `g/GRADE`
+
+  * The `MODULE_NAME` must match exactly with an existing module in the module list.
+  
+  * The `GRADE` can only range from 0 - 100.
+  
+  * The existing `GRADE` will be overwritten by the new `GRADE` being added.
+  
+  * The changes for your assignment would only be seen through using the `viewmodule` command.
+
+  Example of usage:
+   * `addgrade n/CS2100 g/85` adds a grade of `85` to the module `CS2100`.
+   
+   Expected Outcome: 
+     
+<p aligin="center"><img src="docs/images/GradeTracker/AddGrade.PNG" border="2px solid black"></p>
 
 #### Calculating Cumulative Average Point(CAP): `calculatecap`
 
@@ -1031,6 +1078,7 @@ Expected Outcome:
 
  * You can remove all the contact’s tags by typing `t/` without specifying any tags after it, i.e. `editcontact 1 t/`
 
+
  Example: 
  
  `editcontact 2 n/amy lee e/amy-lee@gmail.com t/classmate` edits the second contact in the displayed contact list with the name `amy lee`, email `amy-lee@gmail.com` and tag `classmate`
@@ -1142,8 +1190,9 @@ Expected Outcome: <br>
 Creates and add a new Event with the specified information from the user input
 
   Format: `addevent n/EVENT_NAME d/DATE_TIME [t/TAG]`
-
+<p aligin="center"><img src="images/AddEventExample.png" border="2px solid black"></p>
    Examples:
+    * `addevent n/CS2100 Assignment 1 d/10-9-2020 1200 t/Important` adds an Event called C2100 Assignment 1 with the deadline of 10-9-2020 1200 and the tagging of Important.(Expected result shown in above image.)
     * `addevent n/CS2103T exams d/12-12-2020 1200` adds an Event called CS2103T into the Scheduler with the date 12-12-2020.
     * `addevent n/CS2103T exams d/12-12-2020 1200 t/Important` adds an Event called CS2103T into the Scheduler with the date 12-12-2020 and the tag of Important.
     * `addevent n/CS2103T exams d/12-12-2020 1200 t/Important t/Urgent` adds an Event called CS2103T into the Scheduler with the date 12-12-2020 and the tag of Important and Urgent.
@@ -1164,21 +1213,12 @@ as event name and the event date.
 
   Format: `editevent index [n/new name] [d/new date]`<br>
   **Note:** All fields are optional but at least 1 of them must be present.
-
+<p aligin="center"><img src="images/EditEventExample.png" border="2px solid black"></p>
    Examples:
-    * `editevent 1 n/CS2103T assignment d/2-4-2020 1200 t/Important` edits the event of index 1 with the new name of CS2103T, new date and time of 2-4-2020 1200 and the new tag of Important.
+    * `editevent 1 n/CS2103T assignment d/2-4-2020 1200 t/NotImportant` edits the event of index 1 with the new name of CS2103T, new date and time of 2-4-2020 1200 and the new tag of NotImportant. (Expected result shown in above image.)
     * `editevent 1 n/CS2100` edits the event of index 1 with the new name of CS2103T.
     * `editevent 1 d/3-3-2020 1300` edits the event of index 1 with the new date time of 3-3-2020 1300.
-    * `editevent 1 t/Not Important` edits the event of index 1 with the new tag of Not Important.
-
-#### Viewing an Event from the Scheduler: `viewevent`
-
-You can choose to view a particular event from the list by entering the index.
-
-  Format: `viewevent index`
-
-   Example:
-    * `viewevent 1` views the event details of index 1 from the EventList.
+    * `editevent 1 t/NotImportant` edits the event of index 1 with the new tag of Not Important.
 
 #### Finding an Event from the Scheduler: `findevent`
 
@@ -1186,7 +1226,7 @@ You can search for a particular event based on the name and date. This will retu
 
   Format: `findevent [n/EVENT_NAME] [d/DATE_TIME]`
   **Note:** All fields are optional but at least 1 of them must be present.
-   
+
    Examples:
     * `findevent n/CS2103T` finds all events that have **CS2103T** in their event name.
     * `findevent d/1-1-2020 1200` finds all event that have the date and time of **1 Jan 2020 12:00**.
@@ -1264,7 +1304,12 @@ Action | Format, Examples
 **Edit Module** | `editmodule INDEX n/NEW_NAME [mc/MODULAR_CREDITS] [gp/GRADE_POINT] [t/TAG]...`<br> e.g. `editmodule 2 n/CS2103T gp/4.5`
 **Clear Module List** | `clearmodule`<br> e.g. `clearmodule`
 **Add Zoom to module** | `addzoom INDEX n/LESSON_NAME z/ZOOM_LINK` <br> e.g. `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/uascya367yfy`
-**Add Assignment** | `addassignment n/MODULE_NAME a/ASSIGNMENT_NAME %/ASSIGNMENT_PERCENTAGE r/ASSIGNMENT_RESULT` <br> e.g. `addassignment n/CS2100 a/Quiz 1 %/5.0 r/0.80`
+**Add Assignment** | `addassignment n/MODULE_NAME a/ASSIGNMENT_NAME %/ASSIGNMENT_PERCENTAGE r/ASSIGNMENT_RESULT` <br> e.g. `addassignment n/CS2100 a/Quiz 1 %/5.0 r/80`
+**Edit Assignment** | `editassignment INDEX n/MODULE_NAME [a/ASSIGNMENT_NAME] [%/ASSIGNMENT_PERCENTAGE] [r/ASSIGNMENT_RESULT]` <br> e.g. `editassignment 1 n/CS2100 a/Quiz 3 %/20.0`
+**Delete Assignment** | `deleteassignment INDEX n/MODULE_NAME` <br> e.g. `deleteassignment 1 n/CS2100`
+**Add Grade** | `addgrade n/MODULE_NAME g/GRADE` <br> e.g. `addgrade n/CS2100 g/90`
+**Archive** | `archivemodule INDEX `<br> e.g. `archivemodule 3`
+**Un-archive** | `unarchivemodule INDEX `<br> e.g. `unarchivemodule 3`
 **Archive Module** | `archivemodule INDEX `<br> e.g. `archivemodule 3`
 **Un-archive Module** | `unarchivemodule INDEX `<br> e.g. `unarchivemodule 3`
 **View Archived Module List** | `viewarchive `<br> e.g. `viewarchive`
@@ -1272,7 +1317,7 @@ Action | Format, Examples
 **Calculate CAP** | `calculatecap` <br> e.g. `calculatecap`
 **Calculate Target CAP details** | `targetcap tc/TARGET_CAP` <br> e.g. `targetcap 4.5`
 
-## Command Summary for ContactList
+## Command Summary for Contact List
 
 Action | Format, Examples
 -------|-------------------------
@@ -1301,7 +1346,6 @@ Action | Format, Examples
 **Delete Event** | `deleteevent index` <br> e.g. `deleteevent 1`
 **Edit Event** | `editevent index [n/EVENT_NAME] [d/DATE_TIME] [t/TAG]` <br> e.g. `editevent 1 n/CS2100 d/2-1-2020 t/Done`
 **Find Event** | `findevent [n/EVENT_NAME] [d/DATE_TIME]` <br> e.g. `findevent n/CS2103T`
-**View Event** | `viewevent index` <br> e.g. `viewevent 1`
 
 ## Command summary for general features
 
