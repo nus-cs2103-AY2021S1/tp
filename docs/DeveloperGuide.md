@@ -64,7 +64,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-*Figure 2. Interactions between components for the `deleteexp 1` command*
+*Figure 2. Interactions between components for the `deletecli 1` command*
 
 
 The sections below give more details of each component.
@@ -100,7 +100,7 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deleteexp 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deleteexp 1", historyManager)` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -278,7 +278,7 @@ Reason for choosing option 1:
 
 ### 4.3 Client Manager
 
-Homerce allows the user to keep track of the clients that his or her home-based business serves. The client manager is one of the `ListManager`s elaborated in [section 4.1](#41-list-managers).
+Homerce allows the user to keep track of the clients that his or her home-based business serves. The client manager is one of the `ListManager`s elaborated in [Section 4.1 List Manager](#41-list-managers).
 
 #### 4.3.1 Rationale 
 
@@ -362,7 +362,7 @@ Reason for choosing option 2:
 
 ### 4.4 Service Manager 
 
-Homerce allows the user to keep track of the services that his or her home-based business provides. The service manager is one of the `ListManager`s elaborated in [section 4.1](#41-list-managers).
+Homerce allows the user to keep track of the services that his or her home-based business provides. The service manager is one of the `ListManager`s elaborated in [Section 4.1 List Manager](#41-list-managers).
 
 #### 4.4.1 Rationale 
 
@@ -428,7 +428,7 @@ Reason for choosing option 2:
 * The user can find services by title to determine it's unique service code, allowing the user to quickly identify a service's service code.
 
 ### 4.5 Appointment Manager
-Homerce allows the user to keep track of the appointments of his or her home-based business. The appointment manager is one of the `ListManager`s elaborated in [section 4.1](#41-list-managers).
+Homerce allows the user to keep track of the appointments of his or her home-based business. The appointment manager is one of the `ListManager`s elaborated in [Section 4.1 List Manager](#41-list-managers).
 
 #### 4.5.1 Rationale
 The appointment manager is a core feature which enables tracking of all past and upcoming appointments the home-based business owner has.
@@ -484,7 +484,7 @@ Reason for choosing option 2:
 
 |              | **Pros**   | **Cons** |
 | -------------|-------------| -----|
-| **Option 1** <br> Implement a `PriorityQueue` that is fits the observer design pattern similar to `ObservableList` in the JavaFX library. | Better performance as the data structure for the list of appointments is optimized to be chronologically ordered whenever changes are made. | High technical knowledge and effort required to implement the data structures when time could be better used to develop and test other features.|
+| **Option 1** <br> Implement a `PriorityQueue` that fits the observer design pattern similar to `ObservableList` in the JavaFX library. | Better performance as the data structure for the list of appointments is optimized to be chronologically ordered whenever changes are made. | High technical knowledge and effort required to implement the data structures when time could be better used to develop and test other features.|
 | **Option 2 (current choice)** <br> `FXCollections` library is used to sort the `ObservableList` of appointments, using a `Comparator` object. | No need for huge modifications to the generic `UniqueList`. Convenient usage of built-in library. | Higher number of internal computations as sorting is done for every change to the list of appointments. Might not scale well for large number of appointments (n > 1000)|
 
 Reason for choosing option 2:
@@ -517,7 +517,7 @@ Reason for choosing option 1:
 
 ### 4.6 Revenue Tracker
 
-Homerce allows the user to keep track of the revenues that his or her home-based business earned. The revenue tracker is one of the `ListTracker`s elaborated in [section 4.2](#42-list-trackers).
+Homerce allows the user to keep track of the revenues that his or her home-based business earned. The revenue tracker is one of the `ListTracker`s elaborated in [Section 4.2 List Tracker](#42-list-trackers).
 
 #### 4.6.1 Rationale
 
@@ -527,7 +527,7 @@ a revenue tracker to assist the user with the process of keeping track of all th
 #### 4.6.2 Current Implementation
 
 The current implementation of the revenue tracker allows the user to keep track of a list of revenues earned by the home-based business.
-The revenues will be categorized based on the service provided and it will be used in `breakdownfinance` in [section 4.8](#48-finance-breakdown). 
+The revenues will be categorized based on the service provided and it will be used in `breakdownfinance` in [Section 4.9 Finance Breakdown](#49-finance-breakdown). 
 
 **Sort Revenue**
 
@@ -573,7 +573,7 @@ and clear the revenue list. For example, if there are 5 entries in the list, all
 
 The following steps will describe the execution of the `ClearRevenueCommand` in detail, assuming that no errors are encountered.
 1. When the `execute()` method of the `ClearRevenueCommand` is called, the `ModelManager`'s `setRevenues()` method is called.
-1. The `RevenueTracker` then calls the `setItems()` method on `NonUniqueList`, which set the revenue entries in the revenue list.
+1. The `RevenueTracker` then calls the `setItems()` method on `NonUniqueList`, which overwrites the existing revenue list to a new empty revenue list.
 1. The `ObservableList` of revenues is updated to reflect the empty list.
 1. The `Ui` component will detect this change and update the GUI.
 1. Assuming that the above steps are all successful, the `ClearRevenueCommand` will then create a `CommandResult` object and return the result.
@@ -592,8 +592,8 @@ The following Sequence Diagram summarises the aforementioned steps.
 
 |              | **Pros**   | **Cons** |
 | -------------|-------------| -----|
-| **Option 1** <br> Implement a `PriorityQueue` that is fits the observer design pattern similar to `ObservableList` in the JavaFX library. | Better performance as the data structure for the list of appointments is optimized to be chronologically ordered whenever changes are made. | High technical knowledge and effort required to implement the data structures when time could be better used to develop and test other features.|
-| **Option 2 (current choice)** <br> `FXCollections` library is used to sort the `ObservableList` of appointments, using a `Comparator` object. | No need for huge modifications to the generic `NonUniqueList`. Convenient usage of built-in library. | Higher number of internal computations as sorting is done for every change to the list of appointments. Might not scale well for large number of appointments (n > 1000)|
+| **Option 1** <br> Implement a `PriorityQueue` that fits the observer design pattern similar to `ObservableList` in the JavaFX library. | Better performance as the data structure for the list of revenue is optimized to be chronologically ordered whenever changes are made. | High technical knowledge and effort required to implement the data structures when time could be better used to develop and test other features.|
+| **Option 2 (current choice)** <br> `FXCollections` library is used to sort the `ObservableList` of revenue, using a `Comparator` object. | No need for huge modifications to the generic `NonUniqueList`. Convenient usage of built-in library. | Higher number of internal computations as sorting is done for every change to the list of revenue. Might not scale well for large number of revenue (n > 1000)|
 
 Reason for choosing option 2:
 * The effort needed to implement option 1 is too great to justify the improvements in performance.
@@ -601,7 +601,7 @@ Reason for choosing option 2:
 
 ### 4.7 Expense Tracker
 
-Homerce allows the user to keep track of the expenses that his or her home-based business incurs. The expense tracker is one of the `ListTracker`s elaborated in [section 4.2](#42-list-trackers).
+Homerce allows the user to keep track of the expenses that his or her home-based business incurs. The expense tracker is one of the `ListTracker`s elaborated in [Section 4.2 List Tracker](#42-list-trackers).
 
 #### 4.7.1 Rationale 
 
@@ -611,7 +611,7 @@ an expense tracker to assist the user with the process of keeping track of all t
 #### 4.7.2 Current Implementation
 
 The current implementation of the expense tracker allows the user to keep track of a list of expenses incurred by the home-based business. Users can specify the
-description, value, and date of the expense. Users can add an optional tag to categorize the expense, which will be used in `breakdownfinance` in [section 4.8](#48-finance-breakdown). 
+description, value, and date of the expense. Users can add an optional tag to categorize the expense, which will be used in `breakdownfinance` in [Section 4.9](#49-finance-breakdown). 
 In addition, the user can indicate if the expense is a fixed expense that recurs monthly, or if it is a one-time expense. Fixed expenses will be automatically recorded by Homerce
 every month.
 
@@ -685,11 +685,11 @@ will display appointments from Monday to Sunday using JavaFx's GridPane. Each ro
 and the duration of an appointment would correspond to the number of columns taken up by an appointment. The date of an appointment will 
 be indicated using the first column of the grid.
 
-In this section, we will use the following UML object diagram to describe the interaction between objects in the schedule view.
+In this section, we will use the following UML object diagram to describe the interaction between appointments in the same week. 
 
 ![Object diagram for schedule](images/ScheduleObjectDiagram.png)
 
-*Figure 24. Associations between related objects of the schedule view feature* 
+*Figure 24. Associations between related appointments in the same week* 
 
 #### 4.8.3 Design Consideration
 
@@ -926,12 +926,12 @@ Use case ends.
 
 <b>Extensions</b>
 3a. Invalid index provided.
-  3a1. Homerce displays an error message.
-  Use case ends.
+    3a1. Homerce displays an error message.
+    Use case ends.
 
 3b. Invalid details provided.
-  3b1. Homerce displays an error message.
-  Use case ends.
+    3b1. Homerce displays an error message.
+    Use case ends.
 </pre>
 <br>
 <pre>
@@ -952,7 +952,7 @@ Clear all clients in the client list.
 Use case ends.
 
 <b>Extensions</b>
-1a. Service is in use by one or more upcoming appointment.
+1a. Client is in use by one or more upcoming appointment.
     1a1. Homerce displays an error message.
     Use case ends.
 </pre>
@@ -982,12 +982,12 @@ Use case ends.
 
 <b>Extensions</b>
 3a. Invalid index provided.
-  3a1. Homerce displays an error message.
-  Use case ends.
+    3a1. Homerce displays an error message.
+    Use case ends.
 
 3b. Invalid details provided.
-  3b1. Homerce displays an error message.
-  Use case ends.
+    3b1. Homerce displays an error message.
+    Use case ends.
 </pre>
 <br>
 <pre>
@@ -1013,8 +1013,8 @@ Use case ends.
 
 <b>Extensions</b>
 3a. Invalid index provided.
-  3a1. Homerce displays an error message.
-  Use case ends.
+    3a1. Homerce displays an error message.
+    Use case ends.
 
 3b. Service is in use by one or more upcoming appointment.
     3b1. Homerce displays an error message.
@@ -1025,7 +1025,7 @@ Use case ends.
 
 <pre>
 UC005: Appointment Done
-Indicate that the appointment have been done.
+Indicate that the appointment is done.
 
 <b>System: Homerce</b>
 
@@ -1039,15 +1039,15 @@ Indicate that the appointment have been done.
 1. User requests to list all appointments.
 2. Homerce shows a list of appointments.
 3. User requests to mark a specific appointment as done.
-4. Homerce indicate that the appointment have been completed.
-5. Homerce <ins>adds a revenue (UC027)</ins>.
+4. Homerce indicate that the appointment is completed.
+5. Homerce <ins>adds a revenue (UC007)</ins>.
 6. Homerce displays all appointments in the appointment list.
 7. Homerce displays a successful listed message.
 
 <b>Extensions</b>
 3a. Invalid index provided.
-  3a1. Homerce displays an error message.
-  Use case ends.
+    3a1. Homerce displays an error message.
+    Use case ends.
 </pre>
 <br>
 <pre>  
@@ -1060,25 +1060,25 @@ Indicate that the appointment has not been completed.
   
 <b>Preconditions: Appointment exists in appointment list, and it is indicated as done.</b>
   
-<b>Guarantees: Appointment indicated as undone.</b>
+<b>Guarantees: Appointment indicated as not done.</b>
  
 <b>MSS</b>
 1. User requests to list all appointments.
 2. Homerce shows a list of appointments.
-3. User requests to mark a specific appointment as undone.
-4. Homerce indicate that the appointment have not been completed.
-5. Homerce <ins>deletes a revenue (UC028)</ins>.
+3. User requests to mark a specific appointment as not done.
+4. Homerce indicates that the appointment has not been completed.
+5. Homerce <ins>deletes a revenue (UC008)</ins>.
 6. Homerce displays all appointments in the appointment list.
 7. Homerce displays a successful listed message.
   
 <b>Extensions</b>
 3a. Invalid index provided.
-  3a1. Homerce displays an error message.
-  Use case ends.
+    3a1. Homerce displays an error message.
+    Use case ends.
   
 5a. No revenue matches found.
-  a1. Homerce displays an error message.
-  Use case resumes at step 6.
+    a1. Homerce displays an error message.
+    Use case resumes at step 6.
 </pre>
 
 ### Revenue Tracker
@@ -1096,14 +1096,14 @@ Add a revenue earned by the business into Homerce.
 <b>Guarantees: A new revenue will be added to the revenue list upon marking the appointment as done.</b>
 
 <b>MSS</b>
-1. User <ins>mark appointment as done(UC019)</ins>.
+1. User <ins>mark appointment as done(UC005)</ins>.
 2. Homerce adds the revenue generated from appointment to the revenue list.
 3. Homerce displays a successful message.
 Use case ends.
 </pre>
 <br>
 <pre>
-UC008: Delete an Revenue
+UC008: Delete a Revenue
 Delete the selected revenue from the revenue list.
 
 <b>System: Homerce</b>
@@ -1112,11 +1112,11 @@ Delete the selected revenue from the revenue list.
 
 <b>Preconditions: Revenue exists in revenue list.</b>
 
-<b>Guarantees: Revenue specified by user deleted upon marking the appointment as undone.</b>
+<b>Guarantees: Revenue that was generated by the appointment specified is deleted upon marking the appointment as not done.</b>
 
 <b>MSS</b>
-1. User <ins>mark appointment as done(UC019)</ins>.
-2. Homerce remove the revenue generated from appointment to the revenue list.
+1. User <ins>marks the appointment as not done(UC005)</ins>.
+2. Homerce removes the revenue that was generated by the appointment from the revenue list.
 3. Homerce displays a successful message.
 Use case ends.
 
@@ -1146,8 +1146,8 @@ Use case ends.
 
 <b>Extensions</b>
 2a. No revenue matches the search value.
-  2a1. Homerce displays an empty list.
-  Use case resumes at step 4.
+    2a1. Homerce displays an empty list.
+    Use case resumes at step 4.
 </pre>
 
 ### Expense Tracker
@@ -1172,8 +1172,8 @@ Use case ends.
 
 <b>Extensions</b>
 1a. Incomplete details provided.
-  1a1. Homerce displays an error message.
-  Use case resumes at step 1.
+    1a1. Homerce displays an error message.
+    Use case resumes at step 1.
 </pre>
 <br>
 <pre>
@@ -1196,8 +1196,8 @@ Use case ends.
 
 <b>Extensions</b>
 1a. No expense in revenue list.
-  1a1. Homerce displays an empty list.
-  Use case resumes at step 3.
+    1a1. Homerce displays an empty list.
+    Use case resumes at step 3.
 </pre>
 <br>
 <pre>
@@ -1210,7 +1210,7 @@ List all the expenses sorted by value in the expense list.
 
 <b>Preconditions: Expense exists in expense list.</b>
 
-<b>Guarantees: All expenses in the expense list will be displayed.</b>
+<b>Guarantees: All expenses in the expense list will be displayed in sorted order.</b>
 
 <b>MSS</b>
 1. User requests to sort all expenses by descending or ascending order.
@@ -1221,8 +1221,8 @@ Use case ends.
 
 <b>Extensions</b>
 1a. No expense in revenue list.
-  1a1. Homerce displays an empty list.
-  Use case resumes at step 3.
+    1a1. Homerce displays an empty list.
+    Use case resumes at step 3.
 </pre>
 
 ### Others
@@ -1338,13 +1338,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all clients using the `list` command, such that there are multiple clients in the list.
 
-   1. Test case: `delete 1`
-        1. Expected: First contact is deleted from the list. Details of the deleted contact shown in the result display.
+   1. Test case: `deletecli 6`
+        1. Expected: Sixth contact is deleted from the list. Details of the deleted contact shown in the result display.
 
-   1. Test case: `delete 0`
+   1. Test case: `deletecli 0`
         1. Expected: No client is deleted. Error message shown in the result display.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size)
+   1. Other incorrect delete commands to try: `deletecli`, `deletecli x` (where x is larger than the list size)
         1. Expected: Similar to previous.
 
 #### Add a Service
@@ -1353,8 +1353,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: Arguments are valid and compulsory parameters are provided. No duplicate service is allowed in the Service Manager. The Service Manager must not have more than 1000 services.
    
-   1. Test case: `addsvc t/Microdermabrasion du/2.0 p/68`
-        1. Expected: Adds a new service with title of `Microdermabrasion`, duration of `2.0` hours, and price of `68` dollars. A service code will be automatically generated for the service.
+   1. Test case: `addsvc t/Microdermabrasion du/2.0 p/68.00`
+        1. Expected: Adds a new service with title of `Microdermabrasion`, duration of `2.0` hours, and price of `68.00` dollars. A service code will be automatically generated for the service.
         
    1. Test case: `addsvc t/Microdermabrasion`
         1. Expected: No service is added. Error message is shown in result display.
@@ -1382,10 +1382,10 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all appointments using the `listapt` command, such that multiple appointments are in the list. The index provided is valid, and the specified appointment is currently marked as done. 
    
    1. Test case: `undone 1`
-        1. Expected: First appointment is marked as undone. Details of the appointment shown in result display. Revenue is debited accordingly from the Revenue Tracker.
+        1. Expected: First appointment is marked as not done. Details of the appointment shown in result display. Revenue is debited accordingly from the Revenue Tracker.
         
    1. Test case: `undone 0`
-        1. Expected: No appointment is undone. Error message is shown in result display.
+        1. Expected: No appointment is not done. Error message is shown in result display.
         
    1. Other incorrect formats to try: `undone`, `undone x` (where x is larger than the appointment list size, or x refers to an appointment that is undone)
         1. Expected: Similar to previous.
@@ -1472,7 +1472,7 @@ testers are expected to do more *exploratory* testing.
 ## Appendix G: Effort
 
 Creating **Homerce** was a challenging but fulfilling journey, and required much effort from all the team members equally. 
-This can be substantiated by our **26,000** lines of code combined, accumulated in less than 10 weeks, placing us at top 7
+This can be substantiated by our **26,000** lines of code combined, accumulated in less than 10 weeks, placing us within the top 10
 in the cohort for total code contribution.
 In addition, despite the COVID-19 measures in place, we were able to maintain healthy and
 consistent communication with two meetings a week - an online meeting through Zoom on the weekends, and face-to-face meetings on weekdays.

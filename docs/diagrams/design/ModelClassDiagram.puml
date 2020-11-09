@@ -48,7 +48,7 @@ Client *--> "*" Tag
 
 Name -[hidden]right-> Phone
 
-note right of ClientManager : Manager classes also exist for Service,\n Appointment, Revenue and Expense.
+note right of ClientManager : Manager or Tracker classes also exist for Service,\n Appointment, Revenue and Expense.
 
 ModelManager -->"1" Client : filtered list
 @enduml
