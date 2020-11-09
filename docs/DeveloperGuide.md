@@ -250,7 +250,7 @@ Figure 12. Sequence Diagram for the Create Inventory command.
 The `CreateInventoryRecordCommand` has been successfully created and its `execute` method would be called by `LogicManager#execute`, which then called by `MainWindow#executeCommand`.
 Below is another sequence diagram that depicts the interactions between `LogicManager`, `CreateInventoryRecordCommand`, `ModelManager` as well as `Storage`, when `CreateInventoryRecordCommand#execute` is called.
 
-![inventoryCommandExecuteSequenceDiagram](diagrams/logic/AddInventoryCommandExecuteSequenceDiagram.xml)<br>
+![inventoryCommandExecuteSequenceDiagram](images/AddInventoryCommandExecuteSequenceDiagram.png)<br>
 Figure 13. Sequence Diagram for `CreateInventoryRecordCommand#execute()`
 
 As you can see, the Inventory Record, as well as a Finance Record, is added into NUStorage's [Model Component](#234-model-component).
