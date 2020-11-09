@@ -1,4 +1,7 @@
-# Trackr - User Guide
+---
+layout: page
+title: User Guide
+---
 
 1. [Introduction](#1-introduction)<br>
 2. [About This Document](#2-about-this-document)<br>
@@ -15,11 +18,11 @@
    --- 4.1.2 [Clear Trackr: 'clear'](#412-clear-trackr-clear)<br>
    --- 4.1.3 [Exit Trackr: 'exit'](#413-exit-trackr-exit)<br>
    4.2 [Navigation Features](#42-navigation-features)<br>
-   --- 4.2.1 [List all Modules in Trackr: `listMod`](#421-list-all-modules-in-__trackr__-listmod)<br>
-   --- 4.2.2 [View all Tutorial Groups in a Module: `viewtTG`](#422-view-all-tutorial-groups-in-a-module-viewtg)<br>
-   --- 4.2.3 [List all Tutorial Groups in the current Module: `listTG`](#423-list-all-tutorial-groups-in-the-current-module-listtg)<br>
-   --- 4.2.4 [View all Students in a Tutorial Group: `viewStudent`](#424-view-all-students-in-a-tutorial-group-viewstudent)<br>
-   --- 4.2.5 [List all Students in a Tutorial Group: `listStudent`](#425-list-all-students-in-a-tutorial-group-liststudent)<br>
+   --- 4.2.1 [List all modules in Trackr: `listMod`](#421-list-all-modules-in-trackr-listmod)<br>
+   --- 4.2.2 [View all tutorial groups in a module: `viewtTG`](#422-view-all-tutorial-groups-in-a-module-viewtg)<br>
+   --- 4.2.3 [List all tutorial groups in the current module: `listTG`](#423-list-all-tutorial-groups-in-the-current-module-listtg)<br>
+   --- 4.2.4 [View all students in a tutorial group: `viewStudent`](#424-view-all-students-in-a-tutorial-group-viewstudent)<br>
+   --- 4.2.5 [List all students in a tutorial group: `listStudent`](#425-list-all-students-in-a-tutorial-group-liststudent)<br>
    --- 4.2.6 [Return to previous view: `prevView`](#426-return-to-previous-view-prevview)<br>
    4.3 [Module Features](#43-module-features)<br>
    --- 4.3.1 [Add a module: `addMod`](#431-add-a-module-addmod)<br>
@@ -87,12 +90,12 @@ The table below explains certain terms used in the document to describe differen
 
 This document is written in a manner where formatting is applied to text in order to convey different meanings. The table below will explain what these formatting uses are, what they look like, and what they mean in the context of the document.
 
-| Formatting    | Meaning                                                      |
-| ------------- | ------------------------------------------------------------ |
-| `code`        | Words in 'code' format refer to commands (or fields in commands) that can be typed into the command line. |
-| *Italics*     | Words in italics refer to example parameters, which is what you, the user could type as the parameter that needs to be provided. |
-| [Underline]() | Words that are in blue and underlined when hovered over refer to hyperlinks. Hyperlinks are clickable, and bring you either to different parts of this document or to external websites, for the convenience of navigating quickly to different parts of the document or the web. |
-| **Bold**      | The name of the application **Trackr** is written in bold to refer to what the application does or how it responds to user input. |
+| Formatting                  | Meaning                                                      |
+| --------------------------- | ------------------------------------------------------------ |
+| `code`                      | Words in 'code' format refer to commands (or fields in commands) that can be typed into the command line. |
+| *Italics*                   | Words in italics refer to example parameters, which is what you, the user could type as the parameter that needs to be provided. |
+| [Underline](#22-formatting) | Words that are in blue and underlined when hovered over refer to hyperlinks. Hyperlinks are clickable, and bring you either to different parts of this document or to external websites, for the convenience of navigating quickly to different parts of the document or the web. This example on the left will bring you to this section (2.2 Formatting). |
+| **Bold**                    | The name of the application **Trackr** is written in bold to refer to what the application does or how it responds to user input. |
 
 ### 2.3 Command Format
 
@@ -208,7 +211,7 @@ Example: `exit`
 
 ### 4.2 Navigation Features
 
-#### 4.2.1 List all Modules in __Trackr__: `listMod`
+#### 4.2.1 List all modules in Trackr: `listMod`
 
 Lists all the modules in the Module view.
 
@@ -246,7 +249,7 @@ Expected Outcome:
 
 Figure 4.2.2a Expected outcome of performing the `viewTG` command
 
-#### 4.2.3 List all Tutorial Groups in the current Module: `listTG`
+#### 4.2.3 List all tutorial groups in the current module: `listTG`
 Lists all tutorial groups in the Tutorial Group view.
 
 Format: `listTG`
@@ -790,7 +793,6 @@ Command | Description | Compatible View
 `listTG` | Lists all tutorial groups in the Tutorial Group view | TUTORIAL GROUP
 `viewStudent INDEX` | Shows the student list of a target tutorial group | TUTORIAL GROUP
 `listStudent` | Lists all students in the Student view | STUDENT
-`viewAttendance INDEX` | Shows the attendance for Target student | STUDENT
 `prevView` | Returns to the previous view | ANY
 
 

@@ -1,4 +1,8 @@
-# **Trackr - Developer Guide**
+---
+layout: page
+title: Developer Guide
+---
+
 by Team W12-2
 
 ---

@@ -1,4 +1,7 @@
-# About Us
+---
+layout: page		
+title: About Us		
+---
 
 Trackr is designed and developed by the [CS2013T-W12-2](https://github.com/AY2021S1-CS2103T-W12-2) team.
 

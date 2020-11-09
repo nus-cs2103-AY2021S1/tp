@@ -19,7 +19,9 @@ public class ViewTutorialGroupCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_VIEWING_TG_SUCCESS = "Viewing tutorial groups of: %1$s";
+
     public static final String MESSAGE_NOT_IN_MODULE_VIEW = "You are currently not in the Module view. ";
+
 
     private final Index targetIndex;
 

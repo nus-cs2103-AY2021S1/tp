@@ -16,7 +16,7 @@ public class AddModuleCommand extends Command {
             + PREFIX_MODULE + "MODULE_CODE \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE + "CS2100";
-    public static final String MESSAGE_NOT_IN_MODULE_VIEW = "You are currently not in the Module view. "
+    public static final String MESSAGE_NOT_IN_MODULE_VIEW = "You are currently not in the Module view. \n"
             + "Run listMod to go back to the Module view.";
 
 
