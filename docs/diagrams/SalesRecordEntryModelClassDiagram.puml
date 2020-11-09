@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Class ModelManager
+Class SalesBook
+Interface ReadOnlySalesBook <<interface>>
+
+Package SalesRecordEntry <<Rectangle>> {
+Class UniqueSaleRecordList
+Class SalesRecordEntry
+Class Drink <<enumeration>>
+Class Integer
+}
+}
+
+ModelManager o--> "1" SalesBook
+SalesBook .down.|> ReadOnlySalesBook
+
+SalesBook *--> "1" UniqueSaleRecordList
+UniqueSaleRecordList o--> "*" SalesRecordEntry
+SalesRecordEntry *--> "1" Drink : drink
+SalesRecordEntry *--> "1" Integer : numberSold
+
+ModelManager --> "*" SalesRecordEntry : filteredSalesRecordList
+@enduml
