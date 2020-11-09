@@ -1,20 +1,36 @@
 @startuml
 start
-:StatisticsData tries to calculate time of a task;
+:StatisticsData calculates time taken for a task/lesson;
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([Event])
-    :Calculate duration between
-    start time and end time;
-else ([Deadline])
-    if () then ([Done])
-        :Get its duration;
-    else ([else])
-        :Skip it;
+if () then ([Task])
+    if () then ([Event])
+        if () then ([event has
+    passed])
+            :Calculate time spent
+            on this event;
+        else ([else])
+        endif
+    else ([Deadline])
+        if () then ([done])
+            :Get time spent on
+            this deadline;
+        else ([else])
+        endif
     endif
+    :Add to total time for
+    all tasks under its
+    module tag;
+else ([Lesson])
+    :Calculate time
+    spent on all lessons
+    that has passed;
+    : Add to total time
+    taken for all lessons
+    under its module tag;
 endif
-    :Add the time to total time;
+    :Add the time to total time taken for the module tag;
 stop
 @enduml
