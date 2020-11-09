@@ -26,10 +26,10 @@ public class ViewSessionCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters the sessions shown in the Session List "
             + "to the period specified. "
             + "Possible periods -> 'week', 'all', 'future', 'past'. "
-            + "Variable periods are also possible with this format: (+/-)#(D/W/M/Y). "
+            + "Variable periods are also possible with this format: (+/-)#(D/W/M/Y) where # is a non-negative integer. "
             + "Parameters: " + PREFIX_PERIOD + "PERIOD \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_PERIOD + "week "
-            + "or " + COMMAND_WORD + " " + PREFIX_PERIOD + "+1W";
+            + "or " + COMMAND_WORD + " " + PREFIX_PERIOD + "+3W";
     public static final String MESSAGE_SHOW_SESSIONS_SUCCESS = "Session List updated with requested period: %1$s";
 
     public static final Pattern VALID_PATTERN = Pattern.compile("^(\\+|-)\\d+[DdWwMmYy]$");
