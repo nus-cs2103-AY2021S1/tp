@@ -39,9 +39,6 @@ public class ParserUtil {
     public static double parseItemCost(String itemCost) throws ParseException {
         requireNonNull(itemCost);
         String trimmedAmount = itemCost.trim();
-        if (trimmedAmount.length() > 12) {
-            throw new ParseException(MESSAGE_LONG_ITEM_COST);
-        }
         try {
             double cost = Double.parseDouble(trimmedAmount);
             if (cost < 0 || cost > 2000000000) {
