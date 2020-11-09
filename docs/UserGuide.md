@@ -252,9 +252,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     ![add_example](images/ug_example/add_example.PNG)
     &nbsp;
 
-<div style="page-break-after: always;"></div>
-
-2. **List all Expenses `list`** <a name="list"></a>
+1. **List all Expenses `list`** <a name="list"></a>
     - Displays all the items in the list.
     - Displays the budget balance based on **total expenditure** against the **total sum of all budgets**.
     - Format: `list`
@@ -263,9 +261,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     ![list_example](images/ug_example/list_example.PNG)
     &nbsp;
 
-<div style="page-break-after: always;"></div>
-
-3. **Edit an Expense `edit`** <a name="edit"></a>
+1. **Edit an Expense `edit`** <a name="edit"></a>
     - Edits the fields of existing expenses.
     - Identified by index starting from 1, based on expenses currently displayed.
     - Order of arguments is flexible except index.
@@ -285,9 +281,8 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     ![edit_example](images/ug_example/edit_example.PNG)
     &nbsp;
 
-<div style="page-break-after: always;"></div>
 
-4. **Delete an Expense `delete`** <a name="delete"></a>
+1. **Delete an Expense `delete`** <a name="delete"></a>
     - Deletes a specified existing expense record.
     - Identified by index starting from 1, based on expenses currently displayed.
     - Format:  `delete <index>`
@@ -296,9 +291,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     ![delete_example](images/ug_example/delete_example.PNG)
     &nbsp;
 
-<div style="page-break-after: always;"></div>
-
-5. **Add a Category `addCat`** <a name="addCat"></a>
+1. **Add a Category `addCat`** <a name="addCat"></a>
     - Adds a new category to the expense book.
     - The category must not already exist in the expense book.
     - Format: `addCat t/<category>`
@@ -311,9 +304,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     _Use "Shopping" category_
     &nbsp;
 
-<div style="page-break-after: always;"></div>
-
-6. **Delete a Category `deleteCat`** <a name="deleteCat"></a>
+1. **Delete a Category `deleteCat`** <a name="deleteCat"></a>
     - Deletes an existing category in expense book, if it exists. (Note: the "Default" category <u> cannot </u> be deleted.)
     - Category budget of the deleted category will be deleted.
     - All expenses tagged with deleted category will be reverted to "Default" category.
@@ -324,9 +315,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     _Expense 9 is reverted from "Shopping" category to "Default" category_
     &nbsp;
 
-<div style="page-break-after: always;"></div>
-
-7. **Top up Category Budget `topup`** <a name="topup"></a>
+1. **Top up Category Budget `topup`** <a name="topup"></a>
     - Increases the budget of a **particular category** by the amount specified by the user.
     - Expenses in the same category reduce the balance of the budget.
     - Tag (or category) input is optional, defaults to the "Default" category.
@@ -346,9 +335,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     ![topup_example](images/ug_example/topup_example.PNG)
     &nbsp;
 
-<div style="page-break-after: always;"></div>
-
-8. **Reduce Category Budget `reduce`** <a name="reduce"></a>
+1. **Reduce Category Budget `reduce`** <a name="reduce"></a>
     - Reduces the budget of a **particular category** by the amount specified by the user.
     - The amount in any budget cannot fall below zero (any reduction in budget beyond the amount present would cause a _reduction to zero_).
     - Tag (or category) input is optional, defaults to the "Default" category.
@@ -362,9 +349,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     ![reduce_example](images/ug_example/reduce_example)
     &nbsp;
 
-<div style="page-break-after: always;"></div>
-
-9. **Find Expenses `find`** <a name="find"></a>
+1. **Find Expenses `find`** <a name="find"></a>
     - Finds expenses with given keywords and/or date by user.
     - Expenses that fits the criteria will be presented as another list.
     - For Description, keywords are not case-sensitive, and partial word matching is supported.
@@ -380,9 +365,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     _Find by description keyword and date_
     &nbsp;
 
-<div style="page-break-after: always;"></div>
-
-10. **Add a Remark `remark`** <a name="remark"></a>
+1. **Add a Remark `remark`** <a name="remark"></a>
     - Adds a remark to an existing expense.
     - Note: Remarks can be up to 200 characters long.
     - Format: `remark <index> -r <remark>`
@@ -391,9 +374,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     ![remark_example](./images/ug_example/remark_example.PNG)
     &nbsp;
 
-<div style="page-break-after: always;"></div>
-
-11. **Sort Expenses `sort`** <a name="sort"></a>
+1. **Sort Expenses `sort`** <a name="sort"></a>
     - Sorts expenses which are current displayed.
     - **Sorting keywords** (and thus criterion) include:
         - expense amount: `amount`
@@ -405,17 +386,12 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Format: `sort -by <sorting keyword> [-by <sorting keyword>] [-by <sorting keyword>]`
     - Example: `sort -by date -by descriptionR` (sorts by date, then by reversed alphabetical order of the descriptions)
 
-    | ![sort_example](./images/ug_example/sort_example.PNG) <br> _Single parameter sort: ascending Date order_                                       | ![sort_example_2](./images/ug_example/sort_example_2.PNG) <br> _Multiple parameter sort: in order of appearance – date, then description, then amount (see Expenses 1 and 2)_ |
-    
-<div style="page-break-after: always;"></div>
-    
+    | ![sort_example](./images/ug_example/sort_example.PNG) <br> _Single parameter sort: ascending Date order_                                       | ![sort_example_2](./images/ug_example/sort_example_2.PNG) <br> _Multiple parameter sort: in order of appearance – date, then description, then amount (see Expenses 1 and 2)_ |      
     |------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
     |![sort_example_3](./images/ug_example/sort_example_3.PNG) <br> _Multi-parameter sort will take the last sorting keyword if there are duplicates_|![sort_example_4](./images/ug_example/sort_example_4.PNG) <br> _Sorting after using `Find`_                                                                                    |
     &nbsp;
 
-<div style="page-break-after: always;"></div>
-
-12. **Switch Category `switch`** <a name="switch"></a>
+1. **Switch Category `switch`** <a name="switch"></a>
     - Switches expense book to requested category.
     - Displays all expenses tagged under requested category.
     - Budget balance displayed below is also category-specific.
@@ -432,9 +408,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     _Budget balance displayed here is the budget for the "Food" category_
     &nbsp;
 
-<div style="page-break-after: always;"></div>
-
-13. **Add Command Shortcut `alias`** <a name="alias"></a>
+1. **Add Command Shortcut `alias`** <a name="alias"></a>
     - Maps user-specified shortcut to existing command.
     - Original command keyword will still function as before.
     - Input Restrictions:
@@ -459,18 +433,14 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     ![alias_example_3](./images/ug_example/alias_example_3.PNG)
     _"spent" keyword can no longer function as "add"_
 
-<div style="page-break-after: always;"></div>
-
-14. **Reset Command Shortcuts `resetAlias`** <a name="resetAlias"></a>
+1. **Reset Command Shortcuts `resetAlias`** <a name="resetAlias"></a>
     - Removes all existing shortcuts defined by user.
     - Format: `resetAlias`
     - Example: `resetAlias`
 
     ![resetAlias_example](./images/ug_example/resetAlias_example.PNG)
 
-<div style="page-break-after: always;"></div>
-
-15. **Graph Command `graph`** <a name="graph"></a>
+1. **Graph Command `graph`** <a name="graph"></a>
     - Opens a window that displays a pie chart representing categorical expenses.
     - Format: `graph`
     - Example: `graph`
@@ -480,9 +450,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
     ![graph_example](./images/ug_example/graph_example.PNG)
 
-<div style="page-break-after: always;"></div>
-
-16. **Display Help `help`** <a name="help"></a>
+1. **Display Help `help`** <a name="help"></a>
     - Displays a help link to the User Guide, which comprehensively covers Bamboo's commands.
     - Format: `help`
     - Example: `help`
@@ -499,9 +467,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
     ![clear_example](images/ug_example/clear_example.png)
 
-<div style="page-break-after: always;"></div>
-
-18. **Exit Application `exit`** <a name="exit"></a>
+1. **Exit Application `exit`** <a name="exit"></a>
     - Exits the application.
     - Format: `exit`
 
