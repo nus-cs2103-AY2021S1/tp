@@ -253,11 +253,12 @@
 
 .ingredient-tags .label {
     -fx-text-fill: #fafafa;
-    -fx-background-color: #00897b;
     -fx-padding: 2px 4px;
-    -fx-border-radius: 3px;
-    -fx-background-radius: 3px;
     -fx-font-size: 11px;
+}
+
+.ingredient-tags .ingredient-tag-rect {
+    -fx-fill: #00897b;
 }
 
 .stats-header {

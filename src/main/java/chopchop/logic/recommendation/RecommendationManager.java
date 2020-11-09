@@ -51,7 +51,7 @@ public class RecommendationManager {
                 .allMatch(ingredientRef -> model.findIngredientWithName(ingredientRef.getName())
                         .map(ingredient -> {
                             try {
-                                return ingredientRef.getQuantity().compareTo(ingredient.getQuantity()) <= 0;
+                                return ingredientRef.getQuantity().compareTo(ingredient.getUnexpiredQuantity()) <= 0;
                             } catch (IncompatibleIngredientsException e) {
                                 return false;
                             }

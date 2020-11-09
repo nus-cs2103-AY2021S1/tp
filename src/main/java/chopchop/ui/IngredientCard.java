@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
 
 public class IngredientCard extends UiPart<Region> {
 
@@ -54,7 +56,18 @@ public class IngredientCard extends UiPart<Region> {
         this.ingredient.getTags().stream()
             .map(Object::toString)
             .sorted()
-            .map(Label::new)
+            .map(tag -> {
+                var label = new Label(tag);
+                var rect = new Rectangle();
+                rect.setArcWidth(6.0);
+                rect.setArcHeight(6.0);
+                rect.getStyleClass().add("ingredient-tag-rect");
+
+                rect.widthProperty().bind(label.widthProperty());
+                rect.heightProperty().bind(label.heightProperty());
+
+                return new StackPane(rect, label);
+            })
             .forEach(this.tagList.getChildren()::add);
     }
 

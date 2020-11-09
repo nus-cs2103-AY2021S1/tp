@@ -46,6 +46,10 @@ public class AddIngredientCommand extends Command implements Undoable {
     public CommandResult execute(Model model, HistoryManager historyManager) {
         enforceNonNull(model);
 
+        if (this.quantity.map(Quantity::isZero).orElse(false)) {
+            return CommandResult.error("Quantity should not be zero");
+        }
+
         // first create the ingredient.
         this.addedIngredient = new Ingredient(this.name, this.quantity, this.expiryDate, this.tags);
 
