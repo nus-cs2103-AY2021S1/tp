@@ -6,13 +6,22 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Interface ReadOnlyContactList <<Interface>>
 
-ContactList *-right-> "1" UniqueContactList
-ContactList .down.|> ReadOnlyContactList
+Package contact {
+    Class UniqueContactList
+    Class Contact
+    Class ContactName
+    CLass Email
+    Class Telegram
+}
 
-UniqueContactList o-right->"*" Contact
+ContactList *-down-> "1" UniqueContactList
+ContactList .up.|> ReadOnlyContactList
 
-Contact *-->"1" Name
+UniqueContactList o-down->"*" Contact
+
+Contact *-->"1" ContactName
 Contact *-->"1" Email
 Contact *-->"0..1" Telegram
 Contact *-->"*" Tag
+
 @enduml

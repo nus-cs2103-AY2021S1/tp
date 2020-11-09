@@ -77,15 +77,15 @@ of the **XYZListPanel**.
 
 ![LogicClassDiagram](images/LogicClassDiagram.png)
 
-**API** : [`Logic.java`]()
+**API** : [`Logic.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `ParserManager` class to create the respective classes: `ModuleListParser`, `ContactListParser`, `TodoListParser`,
-   `GradeTrackerParser` and `SchedulerParser` which will parse the user command.
-2. This results in a `Command` object which is executed by `LogicManager`.
-3. The command execution can affect the Model (e.g. adding a module).
-4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+   `GradeTrackerParser` and `SchedulerParser` which will parse the user command. <br>
+2. This results in a `Command` object which is executed by `LogicManager`. <br>
+3. The command execution can affect the `Model` (e.g. adding a module). <br>
+4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`. <br>
 5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
-help to the user.
+help to the user. <br>
 
 ![Structure of the Storage Component](images/ModelClassDiagram.png)
 
@@ -469,7 +469,7 @@ of these features.
 #### 3.1.4.1  Add zoom link feature
 
 This feature creates and adds a new `ZoomLink` for a `ModuleLesson` into a specific `Module`, if the 
-zoom link does not already exist in the module. Each `ModuleLesson` in a `Module` is only allowed to have one `ZoomLink`.
+`ZoomLink` does not already exist in the module. Each `ModuleLesson` in a `Module` is only allowed to have one `ZoomLink`.
 
 This feature is facilitated by the following classes:
   * `AddZoomLinkParser`:
@@ -535,16 +535,16 @@ greater flexibility for expansion of the project.
 
 #### 3.1.4.2  Delete zoom link feature
 
-This feature deletes an existing zoom link from a module using the module lesson that is mapped to the
-target zoom link.
+This feature deletes an existing `ZoomLink` from a `Module` using the `ModuleLesson` that is mapped to the
+target `ZoomLink`.
 
 This feature is facilitated by the following classes:
   
   * `DeleteZoomLinkParser`:
     * It implements `DeleteZoomLinkParser#parse()` to validate and parse the module index and module lesson provided by the user.
   * `DeleteZoomLinkCommand`:
-    * It implements `DeleteZoomLinkCommand#execute()` to delete the zoom link from the module 
-      using the unique module lesson that is mapped to the target zoom link.  
+    * It implements `DeleteZoomLinkCommand#execute()` to delete the `ZoomLink` from the `Module` 
+      using the unique `ModuleLesson` that is mapped to the target zoom link.  
       
 Given below is an example usage scenario and how the mechanism for deleting zoom links behaves at each step:
 
@@ -567,13 +567,13 @@ Step 7. A `CommandResult` from the command execution is returned to `LogicManage
 
 ##### Aspect: Limit on the number of zoom links that can be mapped to each module lesson
 
-* **Alternative 1 (current choice):** Each module lesson can only be mapped to a single zoom link
+* **Alternative 1 (current choice):** Each `ModuleLesson` can only be mapped to a single `ZoomLink`
   * Pros: The execution of a zoom link command is less complicated as each zoom link is uniquely identified by its module lesson. 
           The implementation of the command is easier as we only need to identify the correct module lesson and
           remove the key value pair from the hashmap.
   * Cons: Creates a restriction for users as they are only allowed to add one zoom link for each module lesson.
 
-* **Alternative 2:** Each module lesson can be mapped to multiple zoom links
+* **Alternative 2:** Each `ModuleLesson` can be mapped to multiple `ZoomLinks`
   * Pros: This creates more freedom and flexibility for users to add multiple zoom links for the same lesson.
   * Cons: Locating the specific zoom link to remove is tedious as we have to iterate through the list of zoom links that are mapped to the module lesson. 
           Additionally, we need to implement a mechanism to allow users to specify the exact zoom link to be deleted since using the module lesson
@@ -685,7 +685,7 @@ Below is a list of all `Contact` related features:
 5. Mark a contact as important: 
 6. Sort the contact list:
 7. List out all contacts in the contact list
-8. Clear the contact list:
+8. Clear the contact list
 
 
 Given below is the class diagram of the `Contact` class:
