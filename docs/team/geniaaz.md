@@ -15,11 +15,10 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=geniaaz&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 ### Enhancements / Features implemented:
-* **Model modification**: Added the Person model and its attributes. (Pull requests [\#13](https://github
-.com/AY2021S1-CS2103T-W10-3/tp/pull/13), [\#17](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/17))
+* **Model modification**: Added the Person model and its attributes. (Pull requests [\#13](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/13), [\#17](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/17))
 
 * **Model modification** : Refactored some attributes for Person in AB3 to attributes for Project in Taskmania
-. (Pull requests [\#66](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/66), [\#74](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/66), [\#80](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/80))
+. (Pull requests [\#66](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/66), [\#74](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/74), [\#80](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/80))
   * What it means: refactors person.Name -> project.ProjectName, person.Address -> project.ProjectDescription, person.Tags -> project.ProjectTags
 
 * **New Feature** : Create new Command to add Teammates to a project. (Pull requests [\#98](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/98) )
@@ -30,7 +29,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
   * Changes made: 
     * EditTeammate now can change attributes of Teammates
 
-* **Enhancements to existing features** : Update tests for Teammate Commands (Pull requests [\#141](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/123))
+* **Enhancements to existing features** : Update tests for Teammate Commands (Pull requests [\#141](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/141))
   * Changes made: 
     * Tests added to increase path coverage for Teammate classes
 
@@ -65,10 +64,9 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
     * Rewrite entire UG to improve clarity (Pull request [\#171](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/171)).
     * Update UG with proper contents page (Pull request [\#304](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/304)).
   * Developer Guide:
-    * Modify Architecture and AddTeamamte sections in DG (Pull request [\#44](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/278)).
+    * Modify Architecture and AddTeamamte sections in DG (Pull request [\#44](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/44)).
     * Modify DG to include DeleteTeammate feature explanation (Pull request ([\#345](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/345)).
         
 ### Contributions beyond the project team:
- * Tutorial to allow checkstyle to be solved on IntelliJ before pushing to github. (Pull request ([\#329](https
- ://github.com/nus-cs2103-AY2021S1/forum/issues/329)).
+ * Tutorial to allow checkstyle to be solved on IntelliJ before pushing to github. (Pull request ([\#329](https://github.com/nus-cs2103-AY2021S1/forum/issues/329)).
  * Sharing that Github has an issue. (Pull request ([\#374](https://github.com/nus-cs2103-AY2021S1/forum/issues/374)).
