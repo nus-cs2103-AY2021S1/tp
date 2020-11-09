@@ -3,30 +3,30 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SupperStrikersParser" as SupperStrikersParser LOGIC_COLOR
 participant ":RemoveCommandParser" as RemoveCommandParser LOGIC_COLOR
 participant "d:RemoveCommand" as RemoveCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("Remove 1")
+[-> LogicManager : execute("remove 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("Remove 1")
-activate AddressBookParser
+LogicManager -> SupperStrikersParser : parseCommand("remove 1")
+activate SupperStrikersParser
 
 create RemoveCommandParser
-AddressBookParser -> RemoveCommandParser
+SupperStrikersParser -> RemoveCommandParser
 activate RemoveCommandParser
 
-RemoveCommandParser --> AddressBookParser
+RemoveCommandParser --> SupperStrikersParser
 deactivate RemoveCommandParser
 
-AddressBookParser -> RemoveCommandParser : parse("1")
+SupperStrikersParser -> RemoveCommandParser : parse("1")
 activate RemoveCommandParser
 
 create RemoveCommand
@@ -36,19 +36,19 @@ activate RemoveCommand
 RemoveCommand --> RemoveCommandParser : d
 deactivate RemoveCommand
 
-RemoveCommandParser --> AddressBookParser : d
+RemoveCommandParser --> SupperStrikersParser : d
 deactivate RemoveCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-RemoveCommandParser -[hidden]-> AddressBookParser
+RemoveCommandParser -[hidden]-> SupperStrikersParser
 destroy RemoveCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+SupperStrikersParser --> LogicManager : d
+deactivate SupperStrikersParser
 
 LogicManager -> RemoveCommand : execute()
 activate RemoveCommand
 
-RemoveCommand -> Model : RemovePerson(1)
+RemoveCommand -> Model : removeOrderItem(1)
 activate Model
 
 Model --> RemoveCommand
@@ -58,10 +58,10 @@ create CommandResult
 RemoveCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> RemoveCommand
+CommandResult --> RemoveCommand : r
 deactivate CommandResult
 
-RemoveCommand --> LogicManager : result
+RemoveCommand --> LogicManager : r
 deactivate RemoveCommand
 
 [<--LogicManager
