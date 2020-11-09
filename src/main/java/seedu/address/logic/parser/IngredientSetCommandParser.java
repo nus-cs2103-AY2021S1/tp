@@ -13,12 +13,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ingredient.IngredientName;
 
 /**
- * Parses input arguments and creates a new {@code RemarkCommand} object
+ * Parses input arguments and creates a new {@code SetCommand} object.
  */
 public class IngredientSetCommandParser implements Parser<IngredientSetCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
+     * Parses the given {@code String} of arguments in the context of the {@code SetCommand}
      * and returns a {@code RemarkCommand} object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format

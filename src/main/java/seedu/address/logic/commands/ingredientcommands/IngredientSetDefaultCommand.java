@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.ingredientcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INGREDIENTS;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -13,7 +14,7 @@ import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientName;
 
 /**
- * Set the ingredient to the default levels.
+ * Sets all ingredients to the pre-determined default levels.
  */
 public class IngredientSetDefaultCommand extends Command {
 
@@ -39,7 +40,7 @@ public class IngredientSetDefaultCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
+        model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
         IngredientBook defaultIngredientBook = new IngredientBook();
         IngredientBook filledBook = IngredientSetCommand.fillIngredientBookHelper(defaultIngredientBook);
 
@@ -64,7 +65,7 @@ public class IngredientSetDefaultCommand extends Command {
         ReadOnlyIngredientBook defaultReadOnlyFilledBook = filledBook;
 
         model.setIngredientBook(defaultReadOnlyFilledBook);
-        model.updateFilteredIngredientList(Model.PREDICATE_SHOW_ALL_INGREDIENTS);
+        model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
 
         return new CommandResult(MESSAGE_SUCCESS);
     }

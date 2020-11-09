@@ -19,7 +19,7 @@ import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientName;
 
 /**
- * Set the level of one specific ingredient to a specific level.
+ * Sets the level of one specific ingredient to a specific level.
  */
 public class IngredientSetCommand extends Command {
 
@@ -54,6 +54,7 @@ public class IngredientSetCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
         List<Ingredient> lastShownList = model.getFilteredIngredientList();
 
         Ingredient ingredientToEdit = null;
@@ -111,6 +112,11 @@ public class IngredientSetCommand extends Command {
                 && setIngredientDescriptor.getAmount().equals(e.setIngredientDescriptor.getAmount());
     }
 
+    /**
+     * Helps initialise the ingredient book by filling in the book with the six available ingredients.
+     *
+     * @return the filled ingredient book
+     */
     protected static IngredientBook fillIngredientBookHelper(IngredientBook tempBook) {
 
         tempBook.addIngredient(new Ingredient(new IngredientName("Milk")));
@@ -123,15 +129,21 @@ public class IngredientSetCommand extends Command {
         return tempBook;
     }
 
+    /**
+     * Stores the details to set the ingredient with. Each non-empty field value will replace the
+     * corresponding field value of the ingredient.
+     */
     public static class SetIngredientDescriptor {
 
         private IngredientName ingredientName;
         private Amount amount;
 
-        public SetIngredientDescriptor(){}
+        public SetIngredientDescriptor() {
+        }
 
         /**
          * Copy constructor.
+         * A defensive copy is used internally.
          */
         public SetIngredientDescriptor(SetIngredientDescriptor toCopy) {
             setAmount(toCopy.amount);
@@ -147,12 +159,15 @@ public class IngredientSetCommand extends Command {
         public void setAmount(Amount amount) {
             this.amount = amount;
         }
+
         public void setIngredientName(IngredientName name) {
             this.ingredientName = name;
         }
+
         public Optional<IngredientName> getIngredientName() {
             return Optional.ofNullable(ingredientName);
         }
+
         public Optional<Amount> getAmount() {
             return Optional.ofNullable(amount);
         }

@@ -14,11 +14,15 @@ import seedu.address.logic.commands.ingredientcommands.IngredientSetAllCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ingredient.Amount;
 
+/**
+ * Parses input arguments and creates a new {@code SetAllCommand} object.
+ */
 public class IngredientSetAllCommandParser implements Parser<IngredientSetAllCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the SetAllCommand
      * and returns an SetAllCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public IngredientSetAllCommand parse(String args) throws ParseException {
