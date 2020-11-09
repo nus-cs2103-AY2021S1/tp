@@ -146,8 +146,8 @@ please check that you have installed the correct driver in the _`chrome_driver`_
     1. Launch Jarvis from the Windows Command Prompt or MacOS command line by navigating to the directory containing `jarvis.jar`,
     then typing the command `java -jar jarvis.jar`
 
-<br>
-
+    <br>
+    
     A GUI similar to the screenshot below should appear in a few seconds.
     
     <div style="page-break-after: always;"></div>
