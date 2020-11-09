@@ -169,7 +169,7 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 Both options are equally feasible. However, Alternative 1 was chosen to avoid confusion for prospective users.
 
-### Find module by module attributes feature
+### Find modules by attributes feature
 
 #### Implementation
 
@@ -197,7 +197,7 @@ The following activity diagram summarizes what happens when a user executes a fi
   * Pros : Provides the ability for a very general and flexible search.
   * Cons : Unable to have a more focused search, might be more confusing for the user to narrow down his/her searches.
 
-### Deleting Module feature
+### Delete modules feature
 
 #### Implementation
 
@@ -206,15 +206,15 @@ It uses an operation `AddressBook#removeModule()` which is exposed in the `Model
 Then, the `removeModuleWithCode()` operation is called in `UniqueModuleList`. `UniqueModuleList#removeModuleWithCode()` will remove the module with the specified code
 from the module list.
 
-Given below is the example usage scenario and how the delete module mecahnism behaves at each step.
+Given below is the example usage scenario and how the delete module mechanism behaves at each step.
 
-Step 1. The user launches the application. Facultype is initialized with the module `CS2103` in the addressbook.
+1. The user launches the application. FaculType has the module `CS2103` in the active semester.
 
-Step 2. The user executes the command `delmod m/CS2103` to delete the module with the module code CS2103 in the addressbook.
+2. The user executes the command `delmod m/CS2103` to delete the module with the module code `CS2103`.
 
-Step 3. The `delmod` command then calls `Model#deleteModule()` after checking for the existence of the specified module.
+3. The `DelmodCommand` then calls `Model#deleteModule()` after checking for the existence of the specified module.
 
-Step 4. The Module with the specified module code, will be deleted from the `UniqueModuleList` in the addressbook.
+4. The module with the specified module code will be deleted from the current semester's `UniqueModuleList` in `AddressBook`.
 
 The following sequence diagram shows how the deleting of the module works:
 
@@ -309,7 +309,7 @@ The following activity diagram summarizes what happens when a user executes an u
 #### Implementation
 
 It implements the following operations:
-* `AddressBook#clearContacts()` — Clear all contacts from the list.
+* `AddressBook#clearContacts()` — Clear all contacts from the contact list.
 
 These operations are exposed in the `Model` interface as `Model#clearContacts()` and `UniquePersonList` class as `UniquePersonList#clearAll()`
 
@@ -326,7 +326,7 @@ The follow activity diagram summarizes what happens when a user executes a cclea
 #### Implementation
 
 It implements the following operations:
-* `AddressBook#clearMod()` — Clear all modules from the list.
+* `AddressBook#clearMod()` — Clear all modules from the active semester module list.
 
 These operations are exposed in the `Model` interface as `Model#clearMod()` and `UniqueModuleList` class as `UniqueModuleList#clearAll()`
 The following sequence diagram shows how the mclear operation works:

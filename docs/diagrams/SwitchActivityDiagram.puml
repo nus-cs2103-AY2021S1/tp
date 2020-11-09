@@ -1,6 +1,10 @@
 @startuml
 start
 :User executes switch command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
 if () then ([active semester is Semester 1])
 :Switch active semester to Semester 2;
 else ([else])
