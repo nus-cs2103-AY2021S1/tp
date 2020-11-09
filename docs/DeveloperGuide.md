@@ -393,9 +393,6 @@ The corresponding UI element is displayed on the bottom left of the `PatientProf
 It contains a JavaFX `ListView` displaying `MedicalNoteCard` instances.
 The corresponding UI element is displayed on the right of the `PatientProfile` UI element.
 * `PersonalDetailsRow` represents a single `patient` personal detail. It provides the graphics for a row in the `ListView` of `PersonalDetailsCard`.
-
-<div style="page-break-after: always;"></div>
-
 * `MedicalDetailsRow` represents a single `patient` personal detail. It provides the graphics for a row in the `ListView` of `MedicalDetailsCard`.
 * `MedicalNoteCard` represents a single `MedicalNote`. It provides the graphics for an element in the `ListView` of `MedicalNotesPanel`.
 `PatientChartCard` represents a UI element displaying the height, weight and BMI charts of a `patient`.
