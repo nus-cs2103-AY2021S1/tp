@@ -19,7 +19,6 @@ Interface (GUI). Our application was build using Java with IntelliJ as our IDE o
   - Storage system
     - Implemented the internal system of converting objects into the serializable JSON versions that the Jackson class can use.
     - Designed the structure of storage by designing how different objects store other objects and how these objects are to be accessed by other classes.
-    - Ensured continued support of updating this system when the corresponding non-JSON counterparts update so saving and loading can always work and be tested for bugs.
     - Wrote testcases to ensure even when JSON file is tinkered with, Trackr can throw the proper exceptions and continue to function without crashing.
   - Class implementation
     - Implementation for fields in the Module, TutorialGroup, Student classes into their own classes i.e. ModuleId, TutorialGroupId, DayOfWeek, TimeOfDay.
@@ -42,12 +41,11 @@ Interface (GUI). Our application was build using Java with IntelliJ as our IDE o
 - Contributions to team-based-tasks:
   - Helped release [trial version of v1.3](https://github.com/AY2021S1-CS2103T-W12-2/tp/releases/tag/v1.3.trial)
   - Done most of refactoring from the name Addressbook to Trackr, [performed renames of UI elements and elements in code.](https://github.com/AY2021S1-CS2103T-W12-2/tp/pull/39)
-  - [Safely deleted classes no longer required for Trackr to use](https://github.com/AY2021S1-CS2103T-W12-2/tp/pull/178) that used to belong to AB3, ensured the removal would not cause bugs or crashes to the application.
+  - [Safely deleted classes no longer required for Trackr to use](https://github.com/AY2021S1-CS2103T-W12-2/tp/pull/178) that used to belong to AB3, ensured the removal would not cause bugs.
   - [Reorganise classes into different packages](https://github.com/AY2021S1-CS2103T-W12-2/tp/pull/63) for ease of navigation and updating the team whenever doing so.
   - Ensured formatting consistency across the UG and DG, setting conventions of how to present information in our UG and DG, and fixing grammatical errors / typos.
 - Review/mentoring contributions:
-  - [Reviewed PRs](https://github.com/AY2021S1-CS2103T-W12-2/tp/pulls?q=is%3Apr+reviewed-by%3Aethanthegoondu)
-  - [Commented on PRs](https://github.com/AY2021S1-CS2103T-W12-2/tp/pulls?q=is%3Apr+is%3Aclosed+commenter%3Aethanthegoondu)
+  - [Reviewed PRs](https://github.com/AY2021S1-CS2103T-W12-2/tp/pulls?q=is%3Apr+reviewed-by%3Aethanthegoondu) and [PRs I commented on](https://github.com/AY2021S1-CS2103T-W12-2/tp/pulls?q=is%3Apr+is%3Aclosed+commenter%3Aethanthegoondu).
   - Advice given for code of other team members through external means of communication i.e. Telegram chat and Google Meet meetings
     - Reported bugs and pointed out inconsistencies in other team member's code
     - Helped with code tracing if team member has difficulty finding the cause of a bug
