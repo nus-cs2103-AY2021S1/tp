@@ -25,6 +25,7 @@ Given below are my contributions to the project.
   to ensure that different combinations of attributes do not result in a bug. 
 
 <div style="page-break-after: always;"></div>
+
 * **New Features**: Added the ability to edit and delete a lesson.
   * What it does: allows user to edit or delete a lesson by a set of attributes. The calendar and data analysis will be updated as well.
   * Justifications: The ability to edit or delete a lesson is important in managing lessons. Users need to use this feature frequently to edit a lesson under
