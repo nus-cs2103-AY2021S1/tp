@@ -831,8 +831,8 @@ Therefore, the **time analysis for the week** will show that the **time spent on
 | **Delete task**   | `delete-task INDEX...` <br> e.g. `delete-task 3`, `delete-task 3, 4, 5` |
 | **Done task**     | `done INDEX:TIME_TAKEN...`<br> e.g. `done 1:20`, `done 1:20 2:60 3:120` |
 | **Find task**     | `find-task ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...` <br> e.g.`find-task title:dinner date:02-02-2020` |
-| **Edit task**     | `edit-task INDEX [title:TITLE] [date:DATE] [desc:DESCRIPTION] [tag:MODULE_CODE] [datetime:DEADLINE (deadline only)] [date:EVENT_DATE (event only)] [start:START_TIME (event only)] [end:END_TIME (event only)]`<br>e.g. `edit-task 1 date:02-02-2020 12:00 tag:CS2101` | <div style="page-break-after: always;"></div>
-| **List lesson**   | `list-lesson`                                                |
+| **Edit task**     | `edit-task INDEX [title:TITLE] [date:DATE] [desc:DESCRIPTION] [tag:MODULE_CODE] [datetime:DEADLINE (deadline only)] [date:EVENT_DATE (event only)] [start:START_TIME (event only)] [end:END_TIME (event only)]`<br>e.g. `edit-task 1 date:02-02-2020 12:00 tag:CS2101` |
+| **List lesson**   | `list-lesson`  <div style="page-break-after: always;"></div>                 |
 | **Add Lesson**    | `lesson title:TITLE tag:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME to:TIME start:DATE end:DATE`<br>e.g.`lesson title:CS2103T Lecture tag:CS2103T desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:01-01-2020 end:01-05-2020` |
 | **Edit lesson**   | `edit-lesson INDEX [title:TITLE] [tag:MODULE_CODE] [desc:DESCRIPTION] [day:DAY] [from:TIME] [to:TIME] [start:DATE] [end:DATE]` <br> `e.g.edit-lesson 1 start:10-10-2020` |
 | **Find lesson**   | `find-lesson ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...` <br> e.g. `find-lesson title:Tutorial` |
