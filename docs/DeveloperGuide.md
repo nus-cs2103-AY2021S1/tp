@@ -256,7 +256,6 @@ calls `enter`, causing a switch of scoping status and assignment of `project` of
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The `startproject` command calls `enter` method in model, causing a switching of level and updates the project of focus.
-
 </div>
 The following sequence diagram shows the execution of startproject command.
 
@@ -403,7 +402,7 @@ Step 1. The user uses `startproject` to open a project called "Taskmania". Suppo
 
 Step 2. The user executes `filter ta/T-Fang` command to find all tasks that assigned to a "Tian Fang" whose Github username is "T-Fang". the command is eventually passed to `TaskFilterCommandParser` and the parser will identify the type of the filtering condition using the prefix entered and create the corresponding task predicate. In this case, `ta/` indicates that a predicate that filter tasks by their assignees' Github usernames should be created. 
 
-Step 3. The `LogicManager` executes the `TaskFilterCommand` returned by the parser. The `TaskFilterCommand` will get the current project ("Taskmania") from the `Model` and update the `taskFilter` predicate inside the "Taskmania" project. Therefore, the filtered task list of "Taskmania" will only contain `task1` and `task2`.
+Step 3. The `LogicManager` executes the `TaskFilterCommand` returned by the parser. The `TaskFilterCommand` will get the current project ("Taskmania") from the `Model` and update the `taskFilter` predicate inside the "Taskmania" project. Therefore, the filtered task list of "Taskmania" will only contain `task1` and `task2`. Note that the commands related to task indices such as `viewtask` now take in indecies with respect to the newly filtered list (e.g. `viewtask 3` will show an error message as there are only two tasks in the filtered task list ).
 
 ![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
 
@@ -447,11 +446,11 @@ The following activity diagram summarizes what happens when a user executes a ta
 ##### Aspect: Whether to clear filter when user re-enters the project
 
 * **Alternative 1 (current choice):** Keep the filter and display filtered tasks when the user re-enters the project
-  * Pros: Task list remains unchanged (e.g. the user don't have to filter everytime (s)he re-enters the same project if (s)he only wants to see tasks assigned to him/her ) .
-  * Cons: The user might not be able to see all the tasks when (s)he enters the project.
+  * Pros: Task list remains unchanged (e.g. users don't have to filter everytime they re-enter the same project if they only want to see tasks that are assigned to them) .
+  * Cons: Users might not be able to see all the tasks when they enter the project.
 * **Alternative 2:** Clear the filter when the user re-enters the project
-  * Pros: The user always gets to see all the tasks every time (s)he enters the project.
-  * Cons: The user have to filter everytime (s)he re-enters the same project if (s)he only wants to see tasks assigned to him/her.
+  * Pros: Users always gets to see all the tasks every time they enter the project.
+  * Cons: Users have to filter everytime they re-enters the same project if they only want to see tasks that are assigned to them.
 
 ### New Teammate feature
 

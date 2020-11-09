@@ -9,9 +9,9 @@ Taskmania (based off AB3) is a **desktop application for a project leader to man
  finished in a software project, optimized for use via a Command Line Interface (CLI) while still having the benefits
   of a Graphical User Interface (GUI). If you can type fast, Taskmania can allow you to manage your team faster than 
  a traditional point and click interface.
- 
+
 ## Table of contents
- 
+
  * Table of Contents
  {:toc}
 
@@ -129,7 +129,7 @@ Valid scopes: all.
 ![before_leave_person](images/beforeLeavePersonDashboard.png)
 
    *Figure 5: Before `leave`, a person named Alice Pauline shows on the person dashboard*
-   
+
 ![after_leave_person](images/afterLeavePersonDashboard.png)
 
    *Figure 6: After `leave`, person dashboard is cleared*
@@ -244,7 +244,7 @@ Valid scope: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`.
 ![find_project](images/findProject.png)
 
    *Figure 10: The project contains `Basket` is found and shown on the filtered project list*
-   
+
 Format: `find KEYWORD [MORE_KEYWORDS]...`
 - The search is case-insensitive. e.g `run` will match `Run`
 - The order of the keywords does not matter. e.g. `Project CS2103T` will match `CS2103T Project`
@@ -372,7 +372,7 @@ Filter tasks in the task list by various task attributes:
   - by deadline (either specifying a deadline - `td/DEADLINE` or a time range for the deadline - `start/START_DATE end/END_DATE` )
   - by progress - `tp/TASK_PROGRESS`
   - by done status - `done/DONE_STATUS` (when a task's progress is 100, it is "done")
-  
+
 ![filter](images/filter.png)
 
    *Figure 17: The task list is filtered by `ta/LucasTai98` and only the task assigned to `LucasTai98` is shown on filtered task list*
@@ -396,8 +396,9 @@ Specifically:
 3. `filter td/DEADLINE` finds all the tasks whose deadlines match the given `DEADLINE`
    - Deadline of the task follows the format *DD-MM-YYYY hh:mm:ss*
 4. `filter start/START_DATE end/END_DATE` finds all tasks whose deadlines are within the time range specified by the `START_DATE` and `END_DATE`
-   - Start date and end date in the time range follows the format *DD-MM-YYYY*
+   - `START_DATE` and `END_DATE` of the time range follows the format *DD-MM-YYYY*
    - There should be a space between `START_DATE` and `end/`. e.g.`filter start/01-11-2020end/02-11-2020` is invalid
+   - `END_DATE` cannot be a date before `START_DATE`
 5. `filter tp/TASK_PROGRESS` finds all tasks whose progress match the given `TASK_PROGRESS`
    - `TASK_PROGRESS` should only be integers between 0 and 100 inclusive, and it should not be blank
 6. `filter done/true` finds all completed (progress is 100) tasks and `filter done/false` finds all unfinished tasks
@@ -429,15 +430,16 @@ Sort tasks in the task list by various task's attributes in ascending/descending
 
 Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
-Format: `sort (sa/)||(sd/) (td/)||((tp/)||(tn/)||(done/)` 
+Format: `sort (sa/)||(sd/) (td/)||(tp/)||(tn/)||(done/)` 
   - User may choose the sorting order (`sa/` for ascending order and `sd/` for descending order)
   - User may choose one attribute of task to sort the task list
+  - User can apply filter and sorter at the same time
 
 
 ![before_sort](images/beforeSort.png)
 
    *Figure 19: Before `Sort`*
-   
+
 ![after_sort](images/afterSort.png)
 
    *Figure 20: After `Sort` by task name in ascending order*
