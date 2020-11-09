@@ -20,9 +20,9 @@ Given below are my contributions to the project.
   * Fully in charge of the Ui.
   * Redesigned and implemented a new Ui for PlaNus with minor parts based on the original AddressBook-Level3 Ui. 
   * Highlights: 
-    1) Designed and styled the task, lesson list, and the time analysis panel. 
-    2) Designed and implemented the calendar view from scratch. 
-    3) Worked out all the connections between the frontend code and backend code alone. 
+    * Designed and styled the task, lesson list, and the time analysis panel. 
+    * Designed and implemented the calendar view from scratch. 
+    * Worked out all the connections between the frontend code and backend code alone. 
     <br>
     
   Refer to the following PR or the v1.4 final release of the product to view the latest the UI.
