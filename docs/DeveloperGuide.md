@@ -11,7 +11,7 @@
 * [3.4. Storage Component](#35-storage-component)
 * [3.4. Common Class](#36-common-classes)
 
-4.[ Implementation](#4-implementation)  
+4.[ Implementation](#4-implementation) 
 5.[ Documentation, Logging and Testing](#5-documentation-logging-testing-configuration-dev-ops)  
 6.[ Appendix A: Requirements](#6-appendix-a-requirements)  
 7.[ Appendix B: User Stories](#7-appendix-b-user-stories)  
@@ -89,7 +89,7 @@ The sections below give more details of each component.
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ExerciseListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindowForExercise.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/resources/view/MainWindowForExercise.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -101,7 +101,7 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/logic/LogicForExercise.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `ExerciseBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -141,7 +141,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/storage/StorageForExercise.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -275,95 +275,158 @@ using the template and returns a new AddCommand object. The parse method in AddT
 of creating a new template and returns a new AddTemplateCommand object.
 The template list is stored in the data file folder as a txt file.
 
-### \[Proposed\] Undo/redo feature
+=== Updating an exercise
 
-#### Proposed Implementation
+Author: Lee Wei Min
 
-The proposed undo/redo mechanism is facilitated by `VersionedExerciseBook`. It extends `ExerciseBook` with an undo/redo history, stored internally as an `exerciseBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+This section details how an `Exercise` is modified using the `update` command.
 
-* `VersionedExerciseBook#commit()` — Saves the current exercise book state in its history.
-* `VersionedExerciseBook#undo()` — Restores the previous exercise book state from its history.
-* `VersionedExerciseBook#redo()` — Restores a previously undone exercise book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitExerciseBook()`, `Model#undoExerciseBook()` and `Model#redoExerciseBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedExerciseBook` will be initialized with the initial exercise book state, and the `currentStatePointer` pointing to that single exercise book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the exercise book. The `delete` command calls `Model#commitExerciseBook()`, causing the modified state of the exercise book after the `delete 5` command executes to be saved in the `exerciseBookStateList`, and the `currentStatePointer` is shifted to the newly inserted exercise book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitExerciseBook()`, causing another modified exercise book state to be saved into the `exerciseBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitExerciseBook()`, so the exercise book state will not be saved into the `exerciseBookStateList`.
-
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The update command 
+updates an existing exercise, where all fields are optional but at least one field to update must
+be specified. For more details, please refer to the [update section](https://ay2021s1-cs2103t-w17-2.github.io/tp/UserGuide.html#33-update-exercises--update) of the user guide
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoExerciseBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous exercise book state, and restores the exercise book to that state.
+==== Implementation
 
-![UndoRedoState3](images/UndoRedoState3.png)
+We will use the following example command: `update 1 d/30 c/260 m/chest t/home`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial ExerciseBook state, then there are no previous ExerciseBook states to restore. The `undo` command uses `Model#canUndoExerciseBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+The below sequence diagram details the execution flow:
 
+![UpdateSequenceDiagram](images/UpdateSequenceDiagram.png)
+
+Here are the steps:
+- Step 1: `LogicManager` calls its  `execute` method, supplying the argument "update 1 d/30 c/260 m/chest t/home", which was entered by the user.
+
+- Step 2: `LogicManager` calls the `exerciseBookParser`'s `parseCommand` method, supplying the user input.
+
+- Step 3: In `parseCommand`, the user input is parsed and its command word (`update`) is matched to the `UpdateCommandParser`. `UpdateCommandParser`'s `parse` method is called, passing in the parsed arguments.
+
+- Step 4: In `UpdateCommandParser`'s `parse` method, a `EditExerciseDescriptor` object
+is created. Each field of the parsed arguments are added to the `EditExerciseDescriptor` object. `UpdateCommandParser` then creates an `UpdateCommand` object containing the index of the `exercise` to edit and the `EditExerciseDescriptor` object. In the sequence diagram, the argument `index` refers
+to the `Index` object representing the index of the first exercise, while `editExerciseDescriptor`
+refers to the `EditExerciseDescriptor` object that contains the data (from the parsed
+arguments) to update.
+
+- Step 5: `LogicManager` obtains the `UpdateCommand` object, which is referenced by the `command` variable. It then executes the `execute` method of  the `UpdateCommand` object.
+
+- Step 6: In the `execute` method, the `UpdateCommand` object calls `getFilteredExerciseList` to 
+to obtain `lastShownExerciseList`. The `Exercise` to edit is retrieved from the `lastShownExerciseList` using the `index`, and assigned to `exerciseToEdit`. Another `Exercise` object, named `editedExercise` is created to hold the data to be updated. The `UpdateCommand` object then calls the `setExercise` method of `Model`, with `exerciseToEdit` and `editedExercise`.
+
+- Step 7: A new `CommandResult` is created containing the message to be displayed to the user,
+which is "Edited Exercise: Name: running Description: 30 Date: 10-12-2020 Calories: 260 Muscles worked:[chest] Tags: [home]". This `CommandResult` is returned to `LogicManager`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The activation bar
+of commandResult should be joined to the side of the box representing the commandResult instance.
+Due to a limitation of PlantUML, it is not possible to do so here.
 </div>
 
-The following sequence diagram shows how the undo operation works:
+==== Design Considerations
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+===== Aspect: Process of updating the new data in `model`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+- **Alternative 1 (Current choice)**: Replace `Exercise` to be updated in `UniqueExerciseList` of `ExerciseBook` with another `Exercise` object containing the updated data.
 
-</div>
+  - Pros:
+    - Atomic updates.
+  - Cons:
+    - May have performance issues in terms of memory usage.
+    - Eg. If only one field of the original `Exercise` object will be updated, another `Exercise`
+      object will still be created containing the original data of the unchanged fields.
 
-The `redo` command does the opposite — it calls `Model#redoExerciseBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the exercise book to that state.
+<br>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `exerciseBookStateList.size() - 1`, pointing to the latest exercise book state, then there are no undone ExerciseBook states to restore. The `redo` command uses `Model#canRedoExerciseBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+- **Alternative 2**: Update the fields of the original exercise one at a time.
 
-</div>
+  - Pros:
+    - Will use less memory (no new `Exercise` object will be created)
+  - Cons:
+    - If an error occurs in the middle of the process, the fields which were updated would not recover the original values.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the exercise book, such as `list`, will usually not call `Model#commitExerciseBook()`, `Model#undoExerciseBook()` or `Model#redoExerciseBook()`. Thus, the `exerciseBookStateList` remains unchanged.
+#### Summary
 
-![UndoRedoState4](images/UndoRedoState4.png)
+The following activity diagram summarizes what happens when a user executes an `update` command:
 
-Step 6. The user executes `clear`, which calls `Model#commitExerciseBook()`. Since the `currentStatePointer` is not pointing at the end of the `exerciseBookStateList`, all exercise book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+![UndoRedoState5](images/UpdateActivityDiagram.png)
 
-![UndoRedoState5](images/UndoRedoState5.png)
+### Proposed Implementation of Undo
 
-The following activity diagram summarizes what happens when a user executes a new command:
+### 4.1. Searching for specific `exercise`
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+(by Xinyi)
+=======
 
-#### Design consideration:
+This section addresses how the `find` and `recall` commands work. 
 
+The `find` command allows users to search through the Exercise Book based on what users enter for the `Field`s. Users should enter at least one `Field`. The search results can then be displayed in the GUI's Exercise Book.
 
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire exercise book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### Aspect: How to archive Data
-
-* **Current Choice:** Using Archive Command.
-  * Implementation: Have a separate Archive Command to let the User specify the file location.
-  * Pros: The user can specify the location where users want to save the data.
-  * Cons: Error prone. The user need to enter the file location specification which may be difficult for users who are not used to command prompt.
+Meanwhile, the `recall` command allows users to search for the most recent exercise with the specific name entered by the user.
 
 
+[NOTE]
+`Field`s here indicate which `Exercise` attributes we are interested in. Exact search finds `Exercise` objects with values that exactly match the user-specified values of the fields (`Name`, `Description`, `Date` ,`Calories`).
+Meanwhile, keyword search finds matches for the user-entered keywords in any part of the `Name` or any part of the `Description`.
+If the user uses exact search and keyword search together, it will find `Exercise` objects that match both the exact search and keyword search.
+
+The above commands rely on `FindCommand` and `RecallCommand` objects respectively. Objects of both classes use a `Predicate<Exercise>` object to filter through the `Exercise` list,
+and the exercises evaluated to be true by these predicates will be listed in GUI Exercise List.
+
+#### 4.1.1. Implementation
+
+To search via the user-specified `Exercise` attributes, We use `FindCommandParser` to create the `PropertiesMatchPredicate` with all the user inputs. This predicate returns true only when the exercise matches all the given fields.
+This predicate is then used to construct a new `FindCommand` object, which changes the GUI display when executed.
+
+The sequence diagram below demonstrates how the `find` command works:
+//diagram to add
+
+How the `find` command works:
+
+Step 1: `LogicManager` executes the user input, using `ExerciseBookParser` to realise this is a `find` command, and create a new `FindCommandParser` object.
+
+Step 2: The `FindCommandParser` object parses the user-entered arguments, and creates a `PropertiesMatchPredicate`.
+
+Step 3: This `PropertiesMatchPredicate` object is  then used to construct a new `FindCommand` object, returned to `LogicManager`.
+
+Step 4: `LogicManager` calls the `execute` method of the created `FindCommand`, which filters for `Exercise` objects that evaluate the predicate created previously to be true.
+It then returns a new CommandResult object reflecting the status of the execution. These changes are eventually reflected in the GUI.
+
+The `find` command therefore searches through the existing Exercise List and then displays the relevant search results in the GUI’s Exercise List.
+
+To search for the most recent exercise with the user-specified `Name`, we use `RecallCommandParser` to parse the user input and create a new `RecallCommand` object with the parsed input.
+The `RecallCommand` then goes through the existing Exercise List to find the most recent date, creates the `TheMostRecentDatePredicate`, and updates the GUI display when executed.
+
+The sequence diagram below demonstrates how the `recall` command works:
+//diagram to add
+
+How the `recall` command works:
+
+Step 1: `LogicManager` executes the user input, using `ExerciseBookParser` to realise this is a `recall` command, and create a new `RecallCommandParser` object.
+
+Step 2: The `RecallCommandParser` object parses the user-entered arguments, and creates a `RecallCommand` object which is returned to `LogicManager`.
+
+Step 3: `LogicManager` calls the `execute` method of the created `RecallCommand`, which creates the `TheMostRecentDatePredicate` and filters for `Exercise` objects that evaluate the predicate created previously to be true.
+It then returns a new CommandResult object reflecting the status of the execution. These changes are eventually reflected in the GUI.
+
+The `recall` command therefore searches for the most recent exercise with the specified name in the existing Exercise List and then displays the relevant search results in the GUI.
+
+#### 4.1.2. Design considerations
+
+##### Aspect: Case-sensitivity for user inputs
+* **Alternative 1 (current choice):** The inputs for `Name`, `Description`, and `Keyword` are case-insensitive.
+  * Pros: More user-friendly.
+  * Cons: Cannot get precise results if the user wants to search in a case-sensitive way.
+
+* **Alternative 2:** The inputs for `Name`, `Description`, and `Keyword` are case-sensitive.
+  * Pros: Users can get exact match for their inputs. e.g. Push Up will not match push UP.
+  * Cons: It is likely that users cannot clearly remember the case of `Name`s and `Description`s of the exercises. The `find` command will be harder for the user to use.
+
+##### Aspect: How to find and display the most recent exercise
+* **Alternative 1 (current choice):** Goes through the Exercise Book to find the most recent date and filters for the `Exercise` with specified `Name` and `Date`
+  * Pros: Easy to implement. Uses the same exercise list as other commands do.
+  * Cons: Users cannot get other information except for the most recent `Exercise`.
+
+* **Alternative 2:** Get all the `Exercise`s with the specified name and reorder them by most recent.
+  * Pros: Users can take a look at other similar `Exercise`s besides the most recent one.
+  * Cons: Needs to create another Exercise List. Other commands will not work on the newly created list.
 
 --------------------------------------------------------------------------------------------------------------------
 

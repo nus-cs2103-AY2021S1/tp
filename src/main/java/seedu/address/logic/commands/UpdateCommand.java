@@ -80,13 +80,13 @@ public class UpdateCommand extends CommandForExercise {
     @Override
     public CommandResult execute(ExerciseModel model) throws CommandException, ParseException {
         requireNonNull(model);
-        List<Exercise> lastShownList = model.getFilteredExerciseList();
+        List<Exercise> lastShownExerciseList = model.getFilteredExerciseList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownExerciseList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX);
         }
 
-        Exercise exerciseToEdit = lastShownList.get(index.getZeroBased());
+        Exercise exerciseToEdit = lastShownExerciseList.get(index.getZeroBased());
         Exercise editedExercise = createEditedExercise(exerciseToEdit, editExerciseDescriptor);
 
         if (!exerciseToEdit.isSameExercise(editedExercise) && model.hasExercise(editedExercise)) {

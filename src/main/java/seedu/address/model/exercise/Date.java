@@ -9,7 +9,7 @@ import java.time.format.ResolverStyle;
 
 public class Date {
     public static final String MESSAGE_CONSTRAINTS =
-            "Dates should be a valid date in calendar and should be in the format of DD-MM-YYYY";
+            "Dates should be a valid date in calendar, in the format of DD-MM-YYYY and should not be blank (if updating)";
     private static final String DATE_FORMAT = "dd-MM-yyyy";
 
     public final String value;
