@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_LONG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalAppointments.ALICE_APPOINTMENT;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
@@ -16,6 +17,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_APPOINTMENT;
 import static seedu.address.testutil.TypicalPatients.getTypicalPatientBook;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
 
@@ -117,7 +120,7 @@ public class ChangeCommandTest {
     }
 
     @Test
-    public void execute_duplicateAppointment_failure() throws ParseException {
+    public void execute_duplicateAppointmentUnfilteredList_failure() throws ParseException {
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
         descriptor.setDate(ParserUtil.parseDate(ANOTHER_DATE));
         ChangeCommand changeCommand = new ChangeCommand(INDEX_THIRD_APPOINTMENT, descriptor);
@@ -132,6 +135,51 @@ public class ChangeCommandTest {
         ChangeCommand changeCommand = new ChangeCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(changeCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_overlapAppointmentUnfilteredList_failure() {
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
+        Time overlappingTime = new Time(ALICE_APPOINTMENT.getStartTime().getTime().plusMinutes(30));
+        descriptor.setStartTime(overlappingTime);
+        descriptor.setDate(ALICE_APPOINTMENT.getDate());
+        descriptor.setDuration(ALICE_APPOINTMENT.getDuration());
+
+        ChangeCommand changeCommand = new ChangeCommand(INDEX_THIRD_APPOINTMENT, descriptor);
+
+        assertCommandFailure(changeCommand, model, ChangeCommand.APPOINTMENT_OVERLAP);
+    }
+
+    @Test
+    public void execute_doneAppointmentFilteredList_failure() {
+        Appointment doneAppointment = ALICE_APPOINTMENT.markAsDone();
+        model.setAppointment(ALICE_APPOINTMENT, doneAppointment);
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor(date, time, duration);
+
+        ChangeCommand changeCommand = new ChangeCommand(INDEX_FIRST_APPOINTMENT, descriptor);
+        model.updateFilteredAppointmentList(appointment -> appointment.equals(doneAppointment));
+
+        assertCommandFailure(changeCommand, model, ChangeCommand.APPOINTMENT_DONE);
+    }
+
+    @Test
+    public void execute_invalidDurationEndTimeOutOfRange_failure() {
+        Duration duration = Duration.between(time.getTime(), LocalTime.MIDNIGHT);;
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor(date, time, duration);
+
+        ChangeCommand changeCommand = new ChangeCommand(INDEX_FIRST_APPOINTMENT, descriptor);
+
+        assertCommandFailure(changeCommand, model, ParserUtil.MESSAGE_DURATION_EXCEEDED);
+    }
+
+    @Test
+    public void execute_expiredDateTime_failure() throws ParseException {
+        Date expiredDate = new Date(LocalDate.of(2010, 2, 2));
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor(expiredDate, time, duration);
+
+        ChangeCommand changeCommand = new ChangeCommand(INDEX_FIRST_APPOINTMENT, descriptor);
+
+        assertCommandFailure(changeCommand, model, Messages.MESSAGE_EXPIRED_DATE_TIME);
     }
 
     @Test

@@ -5,7 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_EXPIRED_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_DURATION;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_DURATION_EXCEEDED;
 import static seedu.address.model.appointment.Appointment.CREATION_OFFSET_MINUTES;
 
 import java.time.Duration;
@@ -147,7 +147,7 @@ public class ChangeCommand extends Command {
         try {
             endTime = new Time(startTime.getTime().plus(duration));
         } catch (IllegalArgumentException e) {
-            throw new CommandException(e.getMessage());
+            throw new CommandException(MESSAGE_DURATION_EXCEEDED);
         }
         Patient patient = appointmentToEdit.getPatient();
 
@@ -155,6 +155,7 @@ public class ChangeCommand extends Command {
         assert startTime != null;
         assert endTime != null;
         assert patient != null;
+        assert duration.compareTo(Duration.between(Time.OPENING_TIME, Time.CLOSING_TIME)) <= 0;
 
         LocalTime timeWithLeeway = startTime.getTime().plusMinutes(CREATION_OFFSET_MINUTES);
         if (DateTimeUtil.isExpired(date.getDate(), timeWithLeeway)) {
@@ -163,7 +164,7 @@ public class ChangeCommand extends Command {
         try {
             return new Appointment(date, startTime, endTime, patient);
         } catch (IllegalArgumentException e) {
-            throw new CommandException(MESSAGE_INVALID_DURATION);
+            throw new CommandException(MESSAGE_DURATION_EXCEEDED);
         }
     }
 
