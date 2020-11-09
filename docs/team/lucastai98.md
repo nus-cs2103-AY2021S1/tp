@@ -44,10 +44,11 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Came up with the content outline of the first draft of modified User Guide.
-    * Added user guide for dashboard-related features, including project dashboard and task dashboard. [\#45](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/45)
+    * Added user guide for dashboard-related features, including project dashboard and task dashboard. (Pull request: [\#45](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/45))
     * Added the glossary of terms (Pull request: [\#272](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/272))
   * Developer Guide:
-    * Edited the implementation of the design of the storage to fit our apps new storage design. [\#][\#368](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/368/files)
+    * Edited the implementation of the design of the storage to fit our apps new storage design. (Pull requests: [\#151](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/151)
+    & [\#368](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/368/files))
     * Wrote most of the implementation of task feature. (Pull request: [\#181](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/181))
     * Added the glossary of terms (Pull request: [\#272](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/272))
 
