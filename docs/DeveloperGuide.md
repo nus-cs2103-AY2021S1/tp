@@ -243,6 +243,24 @@ Step 5. The user executes `exit quiz`, which calls `Model#exitQuiz`. The GUI int
 
 ![UndoRedoState5](images/state4.png)
 
+### Performance Feature
+
+This activity diagram shows the possible user flow for a user who wants to check their past quiz records
+
+![Performance](images/Performance_ActivityDiagram.png)
+
+### View Attempt feature
+
+The view attempt feature allows the user to view a past quiz record given by its index.
+ This feature is implemented
+by creating an instance of `ViewAttemptCommand` and returns a  `PerformanceCommand` which will trigger the a method in
+Performance Window to display the responses accordingly
+
+The following sequence diagram shows how the view attempt feature works:
+
+![ViewAttempt0](images/ViewAttemptCommand_SequenceDiagram.png)
+
+
 
 #### Design consideration:
 
