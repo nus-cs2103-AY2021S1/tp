@@ -175,10 +175,15 @@ A high level illustration of the executation is given in the following sequence 
 
 Step 1: Users enter the command which will consists of the keyword `archive`, the parameter `f/` followed by the file location.
 This input is stored as a `String`.  
+
 Step 2: The `String` is then passed to `ExerciseBookParser` which will cascade the `String` into meaning parts.  
+
 Step 3: `ExerciseBookParser` create the `ArchiveCommand` and set the `Storage` component for `ArchiveCommand`.  
-Step 4: `ExerciseBookParser` passes the `ArchiveCommand` back to the `LogicManager` and the `LogicManager` executes the command.
+
+Step 4: `ExerciseBookParser` passes the `ArchiveCommand` back to the `LogicManager` and the `LogicManager` executes the command.  
+
 Step 5: During the executation, `ArchiveCommand` interacts with `Storage` who will write to the Local File on the user's computer.  
+
 Step 6: If the user has no permission to write on the specific file location, an error message will appear on user screen.
 Else, a success message will appear on the user Response Box.  
 
@@ -217,8 +222,11 @@ for that day as the value. `CaloriesGraph` will then take values for the most re
 them on the Calories Graph.
 
 Step 1: User enter a valid command.  
+
 Step 2: The command is passed to the `LogicManager` which parse and execute the command.  
+
 Step 3: After the update is done, `MainWindow` called `getCaloriesByDay()` which is a HashMap that contains the summarised information.  
+
 Step 4: `MainWinodw` re-render all its `Ui` component including `CaloriesGraph`.  
 
 ![Flow Diagram for Calories Graph](images/CaloriesGraphFlowDiagram.png)
@@ -322,16 +330,22 @@ The below sequence diagram details the execution flow:
 
 Here are the steps:
 Step 1: `LogicManager` calls its  `execute` method, supplying the argument "update 1 d/30 c/260 m/chest t/home", which was entered by the user.  
+
 Step 2: `LogicManager` calls the `exerciseBookParser`'s `parseCommand` method, supplying the user input.  
+
 Step 3: In `parseCommand`, the user input is parsed and its command word (`update`) is matched to the `UpdateCommandParser`. `UpdateCommandParser`'s `parse` method is called, passing in the parsed arguments.
+
 Step 4: In `UpdateCommandParser`'s `parse` method, a `EditExerciseDescriptor` object
 is created. Each field of the parsed arguments are added to the `EditExerciseDescriptor` object. `UpdateCommandParser` then creates an `UpdateCommand` object containing the index of the `exercise` to edit and the `EditExerciseDescriptor` object. In the sequence diagram, the argument `index` refers
 to the `Index` object representing the index of the first exercise, while `editExerciseDescriptor`
 refers to the `EditExerciseDescriptor` object that contains the data (from the parsed
 arguments) to update.  
+
 Step 5: `LogicManager` obtains the `UpdateCommand` object, which is referenced by the `command` variable. It then executes the `execute` method of  the `UpdateCommand` object.  
+
 Step 6: In the `execute` method, the `UpdateCommand` object calls `getFilteredExerciseList` to 
 to obtain `lastShownExerciseList`. The `Exercise` to edit is retrieved from the `lastShownExerciseList` using the `index`, and assigned to `exerciseToEdit`. Another `Exercise` object, named `editedExercise` is created to hold the data to be updated. The `UpdateCommand` object then calls the `setExercise` method of `Model`, with `exerciseToEdit` and `editedExercise`.  
+
 Step 7: A new `CommandResult` is created containing the message to be displayed to the user,
 which is "Edited Exercise: Name: running Description: 30 Date: 10-12-2020 Calories: 260 Muscles worked:[chest] Tags: [home]". This `CommandResult` is returned to `LogicManager`.  
 
@@ -390,12 +404,16 @@ The sequence diagram below demonstrates how the `find` command works:
 How the `find` command works:
 
 Step 1: `LogicManager` executes the user input, using `ExerciseBookParser` to realise this is a `find` command, and create a new `FindCommandParser` object.  
+
 Step 2: The `FindCommandParser` object parses the user-entered arguments, and creates a `PropertiesMatchPredicate`.  
+
 Step 3: This `PropertiesMatchPredicate` object is  then used to construct a new `FindCommand` object, returned to `LogicManager`.  
+
 Step 4: `LogicManager` calls the `execute` method of the created `FindCommand`, which filters for `Exercise` objects that evaluate the predicate created previously to be true.  
 It then returns a new CommandResult object reflecting the status of the execution. These changes are eventually reflected in the GUI.
 The `find` command therefore searches through the existing Exercise List and then displays the relevant search results in the GUI’s Exercise List.  
 
+  
 To search for the most recent exercise with the user-specified `Name`, we use `RecallCommandParser` to parse the user input and create a new `RecallCommand` object with the parsed input.
 The `RecallCommand` then goes through the existing Exercise List to find the most recent date, creates the `TheMostRecentDatePredicate`, and updates the GUI display when executed.
 
@@ -405,7 +423,9 @@ The sequence diagram below demonstrates how the `recall` command works:
 How the `recall` command works:
 
 Step 1: `LogicManager` executes the user input, using `ExerciseBookParser` to realise this is a `recall` command, and create a new `RecallCommandParser` object.  
+
 Step 2: The `RecallCommandParser` object parses the user-entered arguments, and creates a `RecallCommand` object which is returned to `LogicManager`.  
+
 Step 3: `LogicManager` calls the `execute` method of the created `RecallCommand`, which creates the `TheMostRecentDatePredicate` and filters for `Exercise` objects that evaluate the predicate created previously to be true.
 It then returns a new CommandResult object reflecting the status of the execution. These changes are eventually reflected in the GUI.  
 
