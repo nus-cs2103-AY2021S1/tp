@@ -464,9 +464,10 @@ Format: `delete INDEX`
 <p align="center">
     <img src="images/deleteExampleBefore.png"/>
     <br>
+    <em style="color:#CC5500">Figure 15.1 Example of Delete Patient Command (Before)</em>
     <img src="images/deleteExampleAfter.png"/>
     <br>
-    <em style="color:#CC5500">Figure 15. Example of Delete Patient Command</em>
+    <em style="color:#CC5500">Figure 15.2 Example of Delete Patient Command (After)</em>
 </p>
 
 <div markdown="block" class="alert alert-warning">
