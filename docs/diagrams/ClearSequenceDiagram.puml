@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommonCentsParser" as CommonCentsParser LOGIC_COLOR
+participant ":ClearCommandParser" as ClearCommandParser LOGIC_COLOR
+participant ":ClearCommand" as ClearCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ActiveAccountManager" as ActiveAccount MODEL_COLOR
+participant ":ModelManager" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("clear c/expense")
+activate LogicManager
+
+LogicManager -> CommonCentsParser: parseCommand("clear c/expense")
+activate CommonCentsParser
+
+CommonCentsParser -> ClearCommandParser: parse("clear c/expense")
+activate ClearCommandParser
+
+create ClearCommand
+ClearCommandParser -> ClearCommand
+activate ClearCommand
+
+ClearCommand -> ClearCommandParser
+deactivate ClearCommand
+
+ClearCommandParser --> CommonCentsParser
+deactivate ClearCommandParser
+
+CommonCentsParser --> LogicManager
+deactivate CommonCentsParser
+
+LogicManager -> ClearCommand: execute(model, activeAccount)
+activate ClearCommand
+
+alt clear expense
+ClearCommand -> ActiveAccount: clearExpense()
+activate ActiveAccount
+ActiveAccount --> ClearCommand
+deactivate ActiveAccount
+
+else clear revenue
+ClearCommand -> ActiveAccount: clearRevenue()
+activate ActiveAccount
+ActiveAccount --> ClearCommand
+deactivate ActiveAccount
+
+else clear all
+ClearCommand -> ActiveAccount: clearRevenue()
+activate ActiveAccount
+ActiveAccount --> ClearCommand
+deactivate ActiveAccount
+ClearCommand -> ActiveAccount: clearExpense()
+activate ActiveAccount
+ActiveAccount --> ClearCommand
+deactivate ActiveAccount
+else
+end
+
+ClearCommand -> Model: setAccount(editedAccount)
+activate Model
+
+Model --> ClearCommand
+deactivate ActiveAccount
+deactivate Model
+
+ClearCommand --> LogicManager
+deactivate ClearCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

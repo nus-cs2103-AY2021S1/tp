@@ -5,11 +5,10 @@ start
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([command commits AddressBook])
-    :Purge redunant states;
-    :Save AddressBook to
-    addressBookStateList;
-else ([else])
+if () then ([else])
+    :Saves state as an attribute in ActiveAccount;
+    :command commits ActiveAccount and Model;
+else ([command exception encountered])
 endif
 stop
 @enduml

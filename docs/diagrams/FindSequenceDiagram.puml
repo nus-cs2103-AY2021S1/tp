@@ -1,0 +1,78 @@
+FindSequenceDiagram.puml@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommonCentsParser" as CommonCentsParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant ":FindCommand" as FindCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ActiveAccountManager" as ActiveAccount MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find k/cases flowers")
+activate LogicManager
+
+LogicManager -> CommonCentsParser: parseCommand("find k/cases flowers")
+activate CommonCentsParser
+
+CommonCentsParser -> FindCommandParser: parse("find k/cases flowers")
+activate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand
+activate FindCommand
+
+FindCommand -> FindCommandParser
+deactivate FindCommand
+
+FindCommandParser --> CommonCentsParser
+deactivate FindCommandParser
+
+CommonCentsParser --> LogicManager
+deactivate CommonCentsParser
+
+LogicManager -> FindCommand: execute(model, activeAccount)
+activate FindCommand
+
+alt expensePredicate not null and revenuePredicate null
+FindCommand -> ActiveAccount: updateFilteredExpenseList()
+activate ActiveAccount
+
+ActiveAccount --> FindCommand
+deactivate ActiveAccount
+
+else revenuePredicate not null and expensePredicate null
+FindCommand -> ActiveAccount: updateFilteredRevenueList()
+activate ActiveAccount
+ActiveAccount --> FindCommand
+deactivate ActiveAccount
+
+else revenuePredicate and expensePredicate not null
+
+FindCommand -> ActiveAccount: updateFilteredRevenueList()
+activate ActiveAccount
+ActiveAccount --> FindCommand
+deactivate ActiveAccount
+
+FindCommand -> ActiveAccount: updateFilteredExpenseList()
+activate ActiveAccount
+ActiveAccount --> FindCommand
+deactivate ActiveAccount
+
+deactivate ActiveAccount
+end
+
+
+
+FindCommand --> LogicManager
+deactivate FindCommand
+FindCommand -[hidden]-> LogicManager : result
+destroy FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
+

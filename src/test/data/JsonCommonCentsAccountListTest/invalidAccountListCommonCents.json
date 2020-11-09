@@ -1,0 +1,38 @@
+{
+  "accounts" : [ {
+    "name" : "General account",
+    "expenses" : [ {
+      "description" : "bought flower pots",
+      "amount" : "49.99",
+      "tags" : [ "tools", "%29Sept" ]
+    }, {
+      "description" : " ",
+      "amount" : "20",
+      "tags" : [ "tools", "17Aug" ]
+    }, {
+      "description" : "paid rent",
+      "amount" : "1000"
+    }, {
+      "description" : "buying flower seeds",
+      "amount" : "15.65",
+      "tags" : [ "roses" ]
+    }],
+    "revenues" : [ {
+      "description" : "sold flower pots",
+      "amount" : "99.99",
+      "tags" : [ "10sold" ]
+    }, {
+      "description" : "sold gardening tools",
+      "amount" : "45.55f",
+      "tags" : [ "shovel", "wateringCan", "sickle" ]
+    }, {
+      "description" : "sold flower seed",
+      "amount" : "30",
+      "tags" : [ "10sunflowerseeds", "5roseseeds" ]
+    }, {
+      "description" : "selling flowers",
+      "amount" : "32.99",
+      "tags" : [ "sunflowers"]
+    } ]
+  } ]
+}

@@ -4,24 +4,38 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
+
+Class hidden #FFFF
+
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyCommonCents <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class CommonCents
+Class ReadOnlyCommonCents
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
+Package Account {
+Class UniqueAccountList
+Class Account
 Class Name
-Class Phone
-Class UniquePersonList
+Interface ActiveAccount
+Class ActiveAccountManager
+
+
+
+Package Entry {
+Class ExpenseList
+Class RevenueList
+Abstract Class Entry
+Class Expense
+Class Revenue
+Class Description
+Class Amount
+}
 }
 
 Package Tag {
@@ -29,28 +43,36 @@ Class Tag
 }
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+
+hidden .down.|> Model
+
+CommonCents .up.|> ReadOnlyCommonCents
 
 ModelManager .up.|> Model
-Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
-UserPrefs .up.|> ReadOnlyUserPrefs
+Model ..> ObservableList
+ModelManager o--> "1" CommonCents
+ModelManager o--> "1" UserPrefs
+UserPrefs .down..|> ReadOnlyUserPrefs
+ModelManager --> Account: filtered list
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+ActiveAccountManager "1" --> "0..1" ActiveAccountManager : previous state
+ActiveAccountManager ..|> ActiveAccount
+ActiveAccountManager o-left-> "1" Account
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+CommonCents *--> "1" UniqueAccountList
+UniqueAccountList o--> "1..*" Account
+Account *--> Name
+Account *--> "1" ExpenseList
+Account *--> "1" RevenueList
 
-ModelManager -->"1" Person : filtered list
+ExpenseList o--> "*" Expense
+RevenueList o--> "*" Revenue
+Expense .down.|> Entry
+Revenue .down.|> Entry
+Entry *--> Description
+Entry *--> Amount
+Entry *--> "*" Tag
+
+
 @enduml

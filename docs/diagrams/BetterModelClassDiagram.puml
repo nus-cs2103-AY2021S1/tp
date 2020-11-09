@@ -4,18 +4,32 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniquePersonList
-AddressBook *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+CommonCents *-right-> "1" UniqueAccountList
+CommonCents *-right-> "1" UniqueTagList
+UniqueTagList -[hidden]down- UniqueAccountList
+UniqueTagList -[hidden]down- UniqueAccountList
 
 UniqueTagList *-right-> "*" Tag
-UniquePersonList o-right-> Person
+UniqueAccountList o-right-> Account
 
-Person -up-> "*" Tag
+Entry o-up-> "*" Tag
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Account *--> Name
+Account *--> "1" ExpenseList
+Account *--> "1" RevenueList
+ActiveAccountManager o--> Account
+ActiveAccountManager "1" -up-> "0..1" ActiveAccountManager : previous state
+ActiveAccountManager ..|> ActiveAccount
+
+
+ExpenseList o--> "*" Expense
+RevenueList o--> "*" Revenue
+
+Expense ..|> Entry
+Revenue ..|> Entry
+
+Entry *--> Description
+Entry *--> Amount
+
+
 @enduml

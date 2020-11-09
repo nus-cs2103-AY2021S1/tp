@@ -6,24 +6,26 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.stage.Stage?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+<?import javafx.scene.control.Label?>
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Common Cents - If you have it, use it." type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/cc_logo.png" />
   </icons>
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@DarkTheme.css" />
+        <URL value="@PinkTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox>
+      <VBox stylesheets="@PinkTheme.css">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -33,27 +35,52 @@
           </Menu>
         </MenuBar>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+        <HBox fx:id="accountNameBar">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets top="10" left="10" right="5" bottom="0"/>
+          </padding>
+          <Label fx:id="activeAccountName" styleClass="account-name">
+            <padding>
+              <Insets top="5" left="5" right="5" bottom="5"/>
+            </padding>
+          </Label>
+        </HBox>
+
+
+      <HBox fx:id="commandBoxPlaceholder" maxHeight="150" minHeight="120" prefHeight="120" styleClass="pane-with-border" VBox.vgrow="NEVER"  >
+        <padding>
+          <Insets bottom="5" left="10" top="5" />
+        </padding>
+        <Circle fx:id="accountDisplayPicture" radius="40.0" strokeType="INSIDE" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);">
+          <HBox.margin>
+            <Insets bottom="100.0" left="5.0" right="12.0" top="5" />
+          </HBox.margin>
+        </Circle>
+      </HBox>
+
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100"
+                   styleClass="pane-with-border" VBox.vgrow="NEVER">
+          <padding>
+            <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
+        <HBox fx:id="entryListPlaceholder"
+              VBox.vgrow="ALWAYS" spacing="10" >
+              <padding>
+                <Insets top="5" bottom="5" right="10"/>
+              </padding>
+              <StackPane fx:id="pieChartPlaceholder">
+                <padding>
+                  <Insets top="10" bottom="10" right="10"/>
+                </padding>
+              </StackPane>
+              <StackPane fx:id="expenseListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              <StackPane fx:id="revenueListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+        </HBox>
 
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"
+                   style="-fx-background-color: rgba(100, 84, 92, 0.8); -fx-padding: 5 0 5 5"/>
       </VBox>
     </Scene>
   </scene>

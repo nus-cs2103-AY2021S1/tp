@@ -1,0 +1,72 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommonCentsParser" as CommonCentsParser LOGIC_COLOR
+participant ":EditAccountCommandParser" as EditAccountCommandParser LOGIC_COLOR
+participant "e:EditAccountCommand" as EditAccountCommand LOGIC_COLOR
+end box
+
+'box ActiveAccount ACTIVEACCOUNT_COLOR_T1
+'participant ":ActiveAccountManager" as ActiveAccount LOGIC_COLOR
+'end box
+
+box Model MODEL_COLOR_T1
+'participant ":ActiveAccountManager" as ActiveAccount MODEL_COLOR
+'participant ":ModelManager" as Model MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("editacc 1 n/new name")
+activate LogicManager
+
+LogicManager -> CommonCentsParser: parseCommand("editacc 1 n/new name")
+activate CommonCentsParser
+
+CommonCentsParser -> EditAccountCommandParser: parse("1 n/new name")
+activate EditAccountCommandParser
+
+create EditAccountCommand
+EditAccountCommandParser -> EditAccountCommand
+activate EditAccountCommand
+
+EditAccountCommand -> EditAccountCommandParser
+deactivate EditAccountCommand
+
+EditAccountCommandParser --> CommonCentsParser
+deactivate EditAccountCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditAccountCommandParser -[hidden]-> CommonCentsParser
+destroy EditAccountCommandParser
+
+CommonCentsParser --> LogicManager
+deactivate CommonCentsParser
+
+LogicManager -> EditAccountCommand: execute()
+activate EditAccountCommand
+
+'EditAccountCommand -> ActiveAccount: setName("new name")
+'activate ActiveAccount
+'
+'ActiveAccount --> EditAccountCommand
+'deactivate ActiveAccount
+'
+'EditAccountCommand -> Model: setAccount(previousAccount, newAccount)
+'activate Model
+'
+'Model --> EditAccountCommand
+'deactivate Model
+
+ref over EditAccountCommand, Model: updating new name
+
+EditAccountCommand --> LogicManager : result
+deactivate EditAccountCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditAccountCommand -[hidden]-> LogicManager
+destroy EditAccountCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
+

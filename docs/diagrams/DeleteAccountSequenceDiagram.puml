@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommonCentsParser" as CommonCentsParser LOGIC_COLOR
+participant ":DeleteAccountCommandParser" as DeleteAccountCommandParser LOGIC_COLOR
+participant "d:DeleteAccountCommand" as DeleteAccountCommand LOGIC_COLOR
+participant ":CommandResultFactory" as CommandResultFactory LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("deleteacc 1")
+activate LogicManager
+
+LogicManager -> CommonCentsParser : parseCommand("deleteacc 1")
+activate CommonCentsParser
+
+create DeleteAccountCommandParser
+CommonCentsParser -> DeleteAccountCommandParser
+activate DeleteAccountCommandParser
+
+DeleteAccountCommandParser --> CommonCentsParser
+deactivate DeleteAccountCommandParser
+
+CommonCentsParser -> DeleteAccountCommandParser : parse("1")
+activate DeleteAccountCommandParser
+
+create DeleteAccountCommand
+DeleteAccountCommandParser -> DeleteAccountCommand
+activate DeleteAccountCommand
+
+DeleteAccountCommand --> DeleteAccountCommandParser : d
+deactivate DeleteAccountCommand
+
+DeleteAccountCommandParser --> CommonCentsParser : d
+deactivate DeleteAccountCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteAccountCommandParser -[hidden]-> CommonCentsParser
+destroy DeleteAccountCommandParser
+
+CommonCentsParser --> LogicManager : d
+deactivate CommonCentsParser
+
+LogicManager -> DeleteAccountCommand : execute()
+activate DeleteAccountCommand
+
+DeleteAccountCommand -> Model : deleteAccount(1)
+activate Model
+
+Model --> DeleteAccountCommand
+deactivate Model
+
+DeleteAccountCommand -> CommandResultFactory : createDefaultCommandResult()
+activate CommandResultFactory
+
+create CommandResult
+CommandResultFactory -> CommandResult
+activate CommandResult
+
+CommandResult --> CommandResultFactory : result
+deactivate CommandResult
+
+CommandResultFactory --> DeleteAccountCommand : result
+deactivate CommandResultFactory
+
+DeleteAccountCommand --> LogicManager : result
+deactivate DeleteAccountCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteAccountCommand -[hidden]-> LogicManager
+destroy DeleteAccountCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
