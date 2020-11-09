@@ -47,7 +47,7 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+![Class Diagram of the Logic Component](images/LogicClassDiagramNew.png)
 
 **How the architecture components interact with each other**
 
@@ -75,16 +75,21 @@ The `UI` component,
 
 ### Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+![Structure of the Logic Component](images/LogicClassDiagramNew.png)
 
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/definition/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object which is executed by the `LogicManager`.
+1. `Logic` uses the `FlashcardParser`, `QuizParser` and `PerformanceParser` classes to parse the user command
+ depending on which mode the app is in.
+1. `FlashcardParser` and `QuizParser` will result in a `Command` object while `PerformanceParser` will result in a
+ `PerformanceCommand` object.
+1. Either `Command` or `PerformanceCommand` objects are executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a flashcard).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+1. The result of the command execution is encapsulated as a `CommandResult` or `PerformanceCommandResult` object for
+ which is passed back to the `Ui`.
+1. In addition, the `CommandResult` or `PerformanceCommandResult` object can also instruct the `Ui` to perform
+ certain actions, such as displaying help to the user.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -171,15 +176,47 @@ The following activity diagram shows how user input is processed:
 
 ![sort1](images/Sort1.png)
 
-### \[Proposed\] Quiz feature
+### [Proposed] Quiz feature
 
-#### Proposed Implementation
+The proposed quiz feature defines a set of sample questions related to CS2040S, containing both MCQ and True-False
+ questions, for users to test their knowledge of CS2040S content.
 
-The proposed quiz feature is facilitated by `QuizPaser` and `Question`.  `Question` is an abstract class and `Mcq` and `TrueFalse` extends Question. There are a few methods within Questions:
+#### Implementation
 
-* `getPrompt() ` — Provides question description.
+The feature is facilitated by `QuizPaser`, `Performance`, `Attempt`, `Response` and `Question`. 
+`Performance` is a public class that keeps track of past attempts by storing `Attempt` as an internal
+ `UniqueAttemptList`.
+`Attempt` is a public class keeping track of user responses to a question by storing `Response` as an internal
+ `UniqueResponseList`.
+  Response is a public class with reference to the `Question` class.
+  `Question` is an abstract class and `Mcq` and `TrueFalse` extends Question.
+
+The following shows a Class Diagram of the structure of Quiz components:
+![QuizComponents](images/QuizComponentsClassDiagram.png)
+
+`Performance` implements the following operations:
+
+* `addAttempt(Attempt attempt)` - Records an attempt into performance.
+* `getAttempts()` - Provides a list of past attempts.
+* `getFormattedTimestamp(LocalDateTime timestamp)` - Returns a date and time in format yyyy/MM/dd HH:mm:ss. 
+
+`Attempt` implements the following operations:
+
+* `addResponse(Response newResponse)` - Records user's new response into current attempt.
+* `calculateScore()` - total score of attempt based on number of correct responses.
+* `attemptAnalysis()` - Returns a detailed attempt analysis.
+* `getResponses()` - Provides a list of responses in current attempt.
+ 
+`Response` implements the following operations:
+
+* `markResponse()` - Checks if answer of response is correct.
+
+`Question` implements the following operations:
+
 * `getQuestion()` — Provides both question description and options.
 * `checkResponse(String response)` — Checks if the response is the same as the correct answer.
+* `isMcq()` - Checks if question is Mcq or TrueFalse.
+* `setSelectedIndex(int index)` - Sets user answer as selected option.
 
 These operations are exposed in the `Model` interface as `Model#startQuiz()`,`Model#enterQuiz()`,`Model#exitQuiz()` `Model#endQuiz()` and `Model#attemptQuestion()` respectively.
 
