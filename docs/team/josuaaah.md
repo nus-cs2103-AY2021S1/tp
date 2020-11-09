@@ -35,13 +35,13 @@ Given below are my contributions to the project.
     be able to choose which session's records to view or perform commands on.
     - Highlights: This enhancement requires some contemplation to be made on how the `Model` class should be redesigned
     such that it contains information on which session is currently selected. It also has to support the corner case
-    where the TAskmaster is being used for the first time, where no sessions has been created yet and the pointer to the
+    where the TAskmaster is being used for the first time, where no sessions have been created yet and the pointer to the
     current session is `null`. This implementation is challenging as it has to ensure that such corner cases would not
     present unexpected bugs.
 
 - **New Feature:** Added the ability to delete a session in TAskmaster.
     - What it does: Allows a TA to delete a session with the specified session name from the session list.
-    - Justification: This feature improves the usability of the product. TAs can potentially made mistakes when adding
+    - Justification: This feature improves the usability of the product. TAs can potentially make mistakes when adding
     sessions. For example, he could have mistyped the name of a session, or keyed in the wrong date and time. In such
     cases, a TA can easily delete the session from the application.
     - Highlights: This enhancement requires careful testing to ensure that all potential bugs are eliminated. For
@@ -70,7 +70,7 @@ session-related commands.
         [#212](https://github.com/AY2021S1-CS2103-F09-1/tp/pull/212)
 
 - **Community:**
-    - PRs reviewed and [approved](https://github.com/AY2021S1-CS2103-F09-1/tp/pulls?q=is%3Apr+is%3Aclosed+review%3Aapproved)
+    - PRs reviewed and [approved](https://github.com/AY2021S1-CS2103-F09-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Ajosuaaah)
     - Contributed to forum discussions (Examples: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/266), 
     [2](https://github.com/nus-cs2103-AY2021S1/forum/issues/139))
     - Did manual testing on another group's product [ConciergeBook](https://github.com/AY2021S1-CS2103-W14-2/tp) and reported bugs to them
