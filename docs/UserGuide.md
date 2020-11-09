@@ -837,6 +837,7 @@ You can find the comprehensive list of commands in the table below.
 | View | Sessions within Period |`sview p/PERIOD ` |
 | Find | Client by Name | `cfind KEYWORD [MORE_KEYWORDS]` |
 
+
 # 6 Acknowledgement
 * This project uses libraries from [ControlsFX](https://github.com/controlsfx/controlsfx)
 
