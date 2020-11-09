@@ -1253,11 +1253,6 @@ Action | Format, Examples
 **Set all ingredients to default**  | `i-set-default` <br> e.g., `i-set-default`
 **List**| `i-list`
 **Find**| `i-find KEYWORD [MORE_KEYWORDS]`  <br> e.g., `i-find milk sugar`
-
-<div style="page-break-after: always;"></div>
-
-Action | Format, Examples
--------|------------------------------
 **Reset all ingredients' levels to zero**| `i-reset-all`
 **List all ingredients that the user should restock**| `i-restock`
 
@@ -1273,11 +1268,6 @@ Action | Format, Examples
 **Find available manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
 **Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
 **Clear** | `c-clear`
-
-<div style="page-break-after: always;"></div>
-
-Action | Format, Examples
--------|------------------------------
 **Archive an employee** |  `c-archive INDEX`<br> e.g., `c-archive 1`  
 **Archive all employees** |  `c-archive-all` <br>
 **List all archived employees** |  `c-archive-list`
