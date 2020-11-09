@@ -6,9 +6,9 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Interface Predicate <<Interface>>
 
-Predicate <|-- TrainingMatchesDateTimePredicate
-Predicate <|-- TrainingMatchesIdPredicate
-Predicate <|-- IdMatchesPredicate
-Predicate <|-- DateTimeMatchesPredicate
+Predicate <|.. TrainingMatchesDateTimePredicate
+Predicate <|.. TrainingMatchesIdPredicate
+Predicate <|.. IdMatchesPredicate
+Predicate <|.. DateTimeMatchesPredicate
 
 @enduml
