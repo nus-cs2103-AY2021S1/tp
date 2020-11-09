@@ -83,18 +83,15 @@ Symbol | Meaning
 This section serves to explain how to set up **Reeve** on your computer and how to make sense of the visual layout of the application.
 
 ### 2.1 Setting up Reeve
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java 11 or above installed in your Computer.
 
-2. Download the latest `jar` file from [here](https://github.com/AY2021S1-CS2103T-W15-2/tp/releases).
+1. Download the latest .jar file from [here](https://github.com/AY2021S1-CS2103T-W15-2/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for **Reeve**.
+1. Copy the file to the folder you want to use as the _home folder_ for **Reeve**.
 
-4. Double-click the file to start the app. The GUI similar to the below figure (Figure 1) should appear in a few seconds. Note how the app contains some sample data.
+1. Double-click the file to start the app. The GUI similar to the below figure (Figure 1) should appear in a few seconds. Note how the app contains some sample data.
 
-![Ui](images/Ui.png)
-<div align="center">Figure 1: <strong>Reeve</strong> GUI</div><br>
-
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all students.
@@ -109,6 +106,9 @@ This section serves to explain how to set up **Reeve** on your computer and how 
    * **`exit`** : Exits **Reeve**.
 
 1. Refer to the [Features](#3-features) section below for details of each command.
+
+![Ui](images/Ui.png)
+<div align="center">Figure 1: <strong>Reeve</strong> GUI</div><br>
 
 ### 2.2 Making sense of Reeve's layout (By: Alex Chua)
 
