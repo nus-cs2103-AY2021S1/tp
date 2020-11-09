@@ -67,6 +67,7 @@ Given below are my contributions to the project.
   * Write additional tests to increase test coverage.
   (Pull requests [\#189](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/189),
   [\#268](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/268))
+  [\#287](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/287))
 
 * **Documentation**:
   * User Guide (UG):
@@ -75,7 +76,10 @@ Given below are my contributions to the project.
   * Developer Guide (DG):
     * Update DG Diagrams and include `TagCommand`, `OpenCommand` implementation details. [\#154](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/158)
   * Proof reading:
-    * Proof read UG and DG and correct mistakes. [\#177](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/177)
+    * Proof read UG and DG and correct mistakes.
+    [\#177](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/177)
+    [\#334](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/334)
+    [\#336](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/336)
 
 * **Contribution to Team-based Tasks**
   * Made a logo for HelloFile to be used in UG and presentations.
