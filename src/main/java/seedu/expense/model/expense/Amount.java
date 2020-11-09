@@ -56,7 +56,7 @@ public class Amount implements Comparable<Amount> {
         checkArgument(isWithinRange(minTermAmount), MESSAGE_CONSTRAINTS);
         this.value = minTermAmount;
     }
-    
+
     /**
      * Converts an amount (rounded to two decimal places) into cents.
      */
