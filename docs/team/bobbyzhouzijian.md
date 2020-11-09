@@ -24,11 +24,12 @@ Given below are my contributions to the project.
   so as to allow users find what they want with ease. Lastly, since many attributes are involved, prudence is required in implementing the feature
   to ensure that different combinations of attributes do not result in a bug. 
 
+<div style="page-break-after: always;"></div>
+
 * **New Features**: Added the ability to edit and delete a lesson.
   * What it does: allows user to edit or delete a lesson by a set of attributes. The calendar and data analysis will be updated as well.
   * Justifications: The ability to edit or delete a lesson is important in managing lessons. Users need to use this feature frequently to edit a lesson under
   many situations, for example the user makes a typo in the lesson title or the lesson is not relevant anymore.
-<div style="page-break-after: always;"></div>
   * Highlights: This feature requires a meticulous and creative design to ensure that the edited lesson is reflected on the calendar view
   as well as the data analysis as well. Also, it needs to integrate well with the `Overlap` class implemented by my teammate Marcus to
   ensure that edited lessons do not overlap with other time slots already existing in PlaNus. 
