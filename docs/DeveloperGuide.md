@@ -1093,7 +1093,7 @@ testers are expected to do more *exploratory* testing.
     
 ## Appendix: Effort
 
-### 1. Overall efforts
+### Overall efforts
 
 Adapting AB3 to fit our vision for fitNUS was no small task. This was everyone's first introduction to a brown-field
 software engineering project and the scope and depth of AB3 took everyone by surprise. We faced a lot of difficulties
@@ -1101,21 +1101,21 @@ juggling both understanding and dissecting the code, as well as adhering to the 
 refactoring Person into Exercise, we had to find an elegant solution to the other classes of fitNUS, while ensuring low
 coupling and abstraction.
 
-### 2. Exercises and Routines
+### Exercises and Routines
 
 We knew that we wanted to center fitNUS around Exercise. Intertwining of Exercise with Routine, Timetable and the other
 classes proved to be extremely challenging. Whenever an Exercise was edited or removed, relevant Routines will have to
 changed and similarly edited. We went through several iterations of refactoring these classes due to
 design issues as we learnt more about design principles in the course and defensive programming.
 
-### 3. Lessons
+### Lessons
 
 We knew another major aspect to fitNUS was Lesson. Intertwining of Lesson and Timetable and the other
 classes proved to be extremely challenging. Whenever a Lesson was edited or removed, relevant Lessons will have to be
 changed and similarly edited in the Timetable. We went through several iterations of refactoring these classes due to
 design issues as we learnt more about design principles in the course and defensive programming.  
 
-### 4. Timetable and Slot
+### Timetable and Slot
 
 Implementing a Timetable in fitNUS that stores Routines and Lessons prove to be another challenging task.
 Since the Timetable has to be able to store both Routines and Lessons, we need to use a parent Activity class and
@@ -1127,7 +1127,7 @@ A lot of meticulous thoughts are required to implement this feature properly due
 Whenever a Routine or Lesson is edited or deleted, we need to ensure any corresponding Slots containing them have to be
 edited or deleted as well.
 
-### 5. User Interface
+### User Interface
 
 We envisioned fitNUS to be more of a "visual" product, where users will feel that the product is intuitive to use and
 the interface is lean. We are proud and sure that we have achieved this goal, despite not knowing any JavaFX before
@@ -1136,7 +1136,7 @@ enters calories as well as the timetable tab that is able to concisely display t
 We spent a considerable amount of time on independent learning to understand how the graph and tabs can be implemented, 
 and how to best integrate these components into fitNUS.
 
-### 6. Conclusion
+### Conclusion
 
 No matter how much you plan for a project, things will always hiccup. 
 We had a lot of unique ideas and features that we wish we could have implemented, but due to the unforeseen workload and the already
