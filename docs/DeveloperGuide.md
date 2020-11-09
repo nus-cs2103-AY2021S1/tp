@@ -552,16 +552,60 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Starting an attempt
+1. Starting an attempt while user is in quiz mode and has no an ongoing attempt.
+
+   1. Prerequisites: Switch to quiz mode from flashcard mode using the `enter quiz` command. Multiple questions are
+    listed. No prior `start attempt` is called.
+   
+   1. Test case: `start attempt`<br>
+      Expected: Attempt is started. Success message shown in the status message.
+   
+   1. Test case: `start`<br>
+      Expected: No new attempt started. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect end attempt commands to try: `start attempt 123`, `StArT AtTemPt`<br>
+      Expected: Similar to previous.
+
+1. Starts an attempt while user is in quiz mode and has an ongoing attempt.
+   
+   1. Prerequisites: Similar to previous prerequisites. Enter `start attempt` to start an ongoing attempt.
+    
+   1. Test case: `start attempt`<br>
+      Expected: No new attempt started. Error details shown in the status message. Status bar remains the same.
+      
+### Ending an attempt
+1. Ending an attempt while user is in quiz mode and has an empty ongoing attempt.
+
+   1. Prerequisites: Switch to quiz mode from flashcard mode using the `enter quiz` command. Multiple questions are listed. Enter `start
+    attempt` to start an ongoing attempt.
+   
+   1. Test case: `end attempt`<br>
+      Expected: Attempt ended but not saved in performance. Success message shown in the status message.
+   
+   1. Test case: `end`<br>
+      Expected: Attempt does not end. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect end attempt commands to try: `end attempt 123`, `EnD AtTemPt`<br>
+      Expected: Similar to previous.
+      
+1. Ending an attempt while user is in quiz mode from flashcard mode and has a non-empty ongoing attempt.
+
+   1. Prerequisites: Similar to previous prerequisites, enter `answer 1 a/true` to add a new response to current
+    attempt.
+   
+   1. Test case: `end attempt`<br>
+      Expected: Attempt ended and saved in performance. Success message shown in the status message.
+      
 
 ### Answering a question
 
 1. Answering a question while user is in quiz mode and has an ongoing attempt.
 
-   1. Prerequisites: Switch to quiz mode using the `enter quiz` command. Multiple questions are listed. Then start an
+   1. Prerequisites: Switch to quiz mode from flashcard mode using the `enter quiz` command. Multiple questions are listed. Then start an
     attempt using `start attempt`.
 
-   1. Test case: `answer 1 a/true`
+   1. Test case: `answer 1 a/true`<br>
       Expected: Answer is recorded and user answer will be highlighted on the question. Success message shown in the
        status message.
 
@@ -572,11 +616,8 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
    1. Other incorrect answer commands to try: `answer 1 a/random`, `answer 2 a/`, `answer 8 a/false`, `answer x
-   `, `...` (where x is larger
-    than the question list size)<br>
+   `, `...` (where x is larger than the question list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
