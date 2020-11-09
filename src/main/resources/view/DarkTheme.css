@@ -157,6 +157,17 @@
     -fx-text-fill: black !important;
 }
 
+.budget-display {
+    -fx-background-color: transparent;
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 13pt;
+    -fx-text-fill: white;
+}
+
+.budget-display .label {
+    -fx-text-fill: black !important;
+}
+
 .status-bar .label {
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
@@ -328,7 +339,7 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #expenseListPanel, #expenseWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
@@ -337,9 +348,39 @@
     -fx-background-radius: 0;
 }
 
+#budgetDisplay .content {
+    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-radius: 0;
+}
+
+#budgetPlaceHolder #budgetHeader {
+    -fx-text-fill: white;
+    -fx-font-size: 16;
+}
+
+#budgetPlaceHolder #budgetDisplay {
+    -fx-text-fill: black;
+    -fx-font-size: 14;
+    -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+}
+
+.green-bar {
+    -fx-accent: #3CB371;
+}
+
+.orange-bar {
+    -fx-accent: #FFDAB9;
+}
+
+.red-bar {
+    -fx-accent: #F08080;
+}
+
 #tags {
     -fx-hgap: 7;
-    -fx-vgap: 3;
+    -fx-vgap: 7;
+    -fx-padding: 4 0 4 0;
 }
 
 #tags .label {
@@ -349,4 +390,25 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+.chart-legend {
+    -fx-background-color: #515658;
+}
+
+.chart-legend-item {
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+.chart-title {
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+}
+
+.chart-pie-label {
+    -fx-fill: white;
+    -fx-font-family: "Segoe UI Semibold";
 }

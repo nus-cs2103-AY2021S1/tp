@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ExpenseBookParser" as ExpenseBookParser LOGIC_COLOR
+participant "s:SwitchCommand" as SwitchCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute(switch)
+activate LogicManager
+
+LogicManager -> ExpenseBookParser : parseCommand(switch)
+activate ExpenseBookParser
+
+create SwitchCommand
+ExpenseBookParser -> SwitchCommand
+activate SwitchCommand
+
+SwitchCommand --> ExpenseBookParser
+deactivate SwitchCommand
+
+ExpenseBookParser --> LogicManager : s
+deactivate ExpenseBookParser
+
+LogicManager -> SwitchCommand : execute()
+activate SwitchCommand
+
+SwitchCommand -> Model : hasCategory(category)
+activate Model
+
+ref over Model : hasCategory
+
+Model -> SwitchCommand : hasCategory
+deactivate Model
+
+SwitchCommand -> Model : switchCategory(category)
+activate Model
+
+Model -> Model : updateExpenseBookCategory(category)
+activate Model
+
+ref over Model : update lists
+
+Model -> Model
+deactivate Model
+
+Model --> SwitchCommand
+deactivate Model
+
+SwitchCommand --> LogicManager : result
+deactivate SwitchCommand
+SwitchCommand -[hidden]-> LogicManager : result
+destroy SwitchCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

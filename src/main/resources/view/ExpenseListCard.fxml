@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<GridPane id="cardPane" fx:id="cardPane" hgap="30" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <columnConstraints>
+        <ColumnConstraints hgrow="NEVER" prefWidth="50"/>
+        <ColumnConstraints hgrow="NEVER" prefWidth="100"/>
+        <ColumnConstraints hgrow="ALWAYS" prefWidth="150" halignment="LEFT"/>
+        <ColumnConstraints hgrow="SOMETIMES" prefWidth="100"/>
+        <ColumnConstraints hgrow="NEVER"/>
+        <ColumnConstraints hgrow="ALWAYS" prefWidth="150"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints valignment="CENTER"/>
+    </rowConstraints>
+    <Label fx:id="id" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="cell_big_label"
+        wrapText="true"/>
+    <Label fx:id="amount" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="cell_big_label"
+           wrapText="true" text="\$amount" />
+    <Label fx:id="description" GridPane.rowIndex="0" GridPane.columnIndex="2" text="\$first"
+           wrapText="true" styleClass="cell_big_label" />
+    <FlowPane fx:id="tags" GridPane.rowIndex="0" GridPane.columnIndex="3" alignment="CENTER"></FlowPane>
+    <Label fx:id="date" GridPane.rowIndex="0" GridPane.columnIndex="4" styleClass="cell_big_label" text="\$date" />
+    <Label fx:id="remark" GridPane.rowIndex="0" GridPane.columnIndex="5" styleClass="cell_big_label"
+           wrapText="true" text="\$remark">
+        <padding>
+            <Insets top="5" right="5" bottom="5" left="5" />
+        </padding>
+    </Label>
+</GridPane>

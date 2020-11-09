@@ -1,0 +1,22 @@
+@startuml
+(*)  --> "user requests to top-up a specified category-budget"
+If "" then
+--> [category exists] "top-up specified category-budget"
+--> "run command"
+If "" then
+--> [user tops-up too much] "user requests to reduce category-budget"
+If "" then
+--> [amount reduced exceeds amount present in budget] "reduce category-budget to zero"
+-->(*)
+else
+--> [else] "reduce category-budget by specified amount"
+-->(*)
+Endif
+else
+--> [else] (*)
+Endif
+else
+--> [else] "Bamboo shows error message"
+Endif
+-->(*)
+@enduml

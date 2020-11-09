@@ -1,0 +1,23 @@
+{
+  "expenses": [ {
+    "description": "Expense with invalid Description field: Ha!ns R@star#unt",
+    "amount": "3.00",
+    "date": "04-10-2020"
+  } ],
+  "budget": {
+    "defaultCategory": {
+      "tag": "Default",
+      "amount": "10.00"
+    },
+    "categoryBudgets": [
+      {
+        "tag": "Food",
+        "amount": "100.00"
+      },
+      {
+        "tag": "Transport",
+        "amount": "50.00"
+      }
+    ]
+  }
+}

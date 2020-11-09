@@ -5,55 +5,61 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us through our respective emails.
 
 ## Project team
 
-### John Doe
+### Maxx Chan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/maxxyh.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/maxxyh)]
+[[portfolio](team/maxxyh.md)]
+[[email](mailto:maxxchan@u.nus.edu)]
 
-* Role: Project Advisor
+* Role: Team Lead, Developer
+* Responsibilities: Scheduling and Tracking, Deliverables and Deadlines
 
-### Jane Doe
+### Hakiem Rasid
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hakiem526.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/hakiem526)]
+[[portfolio](team/hakiem526.md)]
+[[email](mailto:e0325825@u.nus.edu)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Testing
 
-### Jean Doe
+### Jaylen Lee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jaylenlee.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Jaylenlee)]
+[[portfolio](team/jaylenlee.md)]
+[[email](mailto:e0424677@u.nus.edu)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Integration
+
+### Leben Chew
+
+<img src="images/lebencwb.png" width="200px">
+
+[[github](http://github.com/lebencwb)]
+[[portfolio](team/lebencwb.md)]
+[[email](mailto:leben.chew@u.nus.edu)]
+
+* Role: Developer
+* Responsibilities: UI/UX
+
+### Marcus Ng
+
+<img src="images/marcus2k.png" width="200px">
+
+[[github](http://github.com/marcus2k)]
+[[portfolio](team/marcus2k.md)]
+[[email](mailto:marcus@u.nus.edu)]
+
+* Role: Developer
+* Responsibilities: Code Quality

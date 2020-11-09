@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ExpenseBookParser" as ExpenseBookParser LOGIC_COLOR
+participant "s:DefaultAliasCommand" as DefaultAliasCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute(defaultalias)
+activate LogicManager
+
+LogicManager -> ExpenseBookParser : parseCommand(defaultalias)
+activate ExpenseBookParser
+
+create DefaultAliasCommand
+ExpenseBookParser -> DefaultAliasCommand
+activate DefaultAliasCommand
+
+DefaultAliasCommand --> ExpenseBookParser
+deactivate DefaultAliasCommand
+
+ExpenseBookParser --> LogicManager : s
+deactivate ExpenseBookParser
+
+LogicManager -> DefaultAliasCommand : execute()
+activate DefaultAliasCommand
+
+deactivate DefaultAliasCommand
+DefaultAliasCommand -[hidden]-> LogicManager : result
+destroy DefaultAliasCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

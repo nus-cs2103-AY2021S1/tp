@@ -5,52 +5,89 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyExpenseBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class ExpenseBook
+Class ReadOnlyExpenseBook
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package Expense {
+Class Expense
+Class Date
+Class Description
+Class UniqueExpenseList
+Class Amount
+Class Remark
+}
+
+Package Tag {
+Class UniqueTagList
+Class Tag
+}
+
+Package Budget {
+Interface Budget <<Interface>>
+Class UniqueCategoryBudgetList
+Class CategoryBudget
+Class Amount
 }
 
 Package Tag {
 Class Tag
+}
+
+Package Alias {
+Class AliasMap
 }
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+ExpenseBook .up.|> ReadOnlyExpenseBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" ExpenseBook
+ModelManager o-right-> "1" AliasMap
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+ExpenseBook *--> "1" UniqueExpenseList
+UniqueExpenseList o--> "*" Expense
+Expense *--> "1" Description
+Expense *-right-> "1" Amount
+Expense *--> "1" Date
+Expense *--> "1" Tag
+Expense --> "0..1" Remark
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+ExpenseBook *--> "1" UniqueCategoryBudgetList
+UniqueCategoryBudgetList o--> "*" CategoryBudget : budgets
+CategoryBudget *--> Amount
+CategoryBudget *--> "1" Tag
+Budget ^.right. UniqueCategoryBudgetList
+Budget ^.. CategoryBudget
 
-ModelManager -->"1" Person : filtered list
+ExpenseBook *--> "1" AliasMap
+
+ExpenseBook *--> "1" UniqueTagList
+UniqueTagList o--> "*" Tag
+
+Class HiddenOutside2 #FFFFFF
+HiddenOutside2 -[hidden]-> Amount
+Tag -[hidden]left-> HiddenOutside2
+
+Description -[hidden]right-> Amount
+Amount -[hidden]left-> CategoryBudget
+Amount -[hidden]-> Tag
+Tag -[hidden]right-> Date
+
+UniqueExpenseList --> "1" Expense : filtered list
+UniqueCategoryBudgetList o-down-> "1" CategoryBudget : "Default"
+UniqueCategoryBudgetList ..> Tag
+UniqueCategoryBudgetList ..> Amount
 @enduml

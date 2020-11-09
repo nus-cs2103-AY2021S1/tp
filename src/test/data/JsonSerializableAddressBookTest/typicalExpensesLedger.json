@@ -1,0 +1,66 @@
+{
+  "_comment": "Ledger save file which contains the same Expense values as in TypicalExpenses#getTypicalExpenseBook()",
+  "expenses" : [ {
+    "description" : "Felicia's Birthday",
+    "amount" : "140",
+    "date" : "02-07-2020",
+    "remark" : "Birthday surprise with friends + birthday presents + birthday dinner",
+    "tagged" : "Girlfriend"
+  }, {
+    "description" : "Grab Home",
+    "amount" : "15",
+    "date" : "01-07-2020",
+    "remark" : "Need to stop grabbing so much!",
+    "tagged" : "Transport"
+  }, {
+    "description" : "ZARA Jacket",
+    "amount" : "80",
+    "date" : "30-06-2020",
+    "remark" : "",
+    "tagged" : "Shopping"
+  }, {
+    "description" : "Ramen with Tyler",
+    "amount" : "18.50",
+    "date" : "29-06-2020",
+    "remark" : "",
+    "tagged" : "Food"
+  }, {
+    "description" : "Phone Bill Payment",
+    "amount" : "35.90",
+    "date" : "29-06-2020",
+    "remark" : "",
+    "tagged" : "Default"
+  }, {
+    "description" : "Grab to Supper",
+    "amount" : "5",
+    "date" : "28-06-2020",
+    "remark" : "",
+    "tagged" : "Default"
+  }, {
+    "description" : "Swee Choon Supper",
+    "amount" : "12.40",
+    "date" : "28-06-2020",
+    "remark" : "",
+    "tagged" : "Default"
+  } ],
+  "budget": {
+    "defaultCategory": {
+      "tag": "Default",
+      "amount": "10.00"
+    },
+    "categoryBudgets": [ {
+      "tag": "Transport",
+      "amount": "50.00"
+    }, {
+      "tag": "Food",
+      "amount": "70.00"
+    }, {
+      "tag": "Shopping",
+      "amount": "20.00"
+    }, {
+      "tag": "Girlfriend",
+      "amount": "200.00"
+    } ]
+  },
+  "categories": [ "Transport", "Food", "Shopping", "Girlfriend" ]
+}

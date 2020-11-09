@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<HBox fx:id="budgetPlaceHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1">
+  <padding>
+    <Insets top="15" right="50" bottom="15" left="50" />
+  </padding>
+  <Label fx:id="budgetHeader">
+    <padding>
+      <Insets top="0" right="30" bottom="0" left="0" />
+    </padding>
+  </Label>
+  <StackPane fx:id="budgetBarHolder">
+    <Label fx:id="budgetDisplay"/>
+    <ProgressBar fx:id="progressBar" prefHeight="30" prefWidth="500"/>
+  </StackPane>
+</HBox>
