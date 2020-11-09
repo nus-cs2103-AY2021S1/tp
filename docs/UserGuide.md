@@ -2,6 +2,7 @@
 layout: page
 title: User Guide
 ---
+![Nuudle Logo](images/nuudleLogo.png)
 
 * Table of Contents
 {:toc}
