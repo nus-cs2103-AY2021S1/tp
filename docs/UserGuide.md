@@ -2,7 +2,8 @@
 layout: page
 title: User Guide
 ---
-Welcome to the User Guide for Eva!
+Welcome to the User Guide for Eva! 
+If you are viewing this on the pdf version, use Adobe Acrobat Reader and zoom in to 200% for the best viewing experience!
 
 * Table of Contents
 {:toc}
