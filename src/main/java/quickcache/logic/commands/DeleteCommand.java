@@ -34,7 +34,7 @@ public class DeleteCommand extends Command {
             + "1. " + COMMAND_WORD + " 1\n"
             + "2. " + COMMAND_WORD + " " + PREFIX_TAG + "MCQ";
 
-    public static final String MESSAGE_DELETE_FLASHCARD_SUCCESS = "Deleted Flashcard: %1$s";
+    public static final String MESSAGE_DELETE_FLASHCARD_SUCCESS = "Deleted Flashcard:\n\n%1$s";
 
     private final Index targetIndex;
     private final FlashcardPredicate predicate;
@@ -86,6 +86,9 @@ public class DeleteCommand extends Command {
                 Flashcard flashcardToDelete = filteredList.get(0);
                 model.deleteFlashcard(flashcardToDelete);
             }
+
+            // necessary to display all the remaining flashcards in the list
+            model.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
 
             String deleteWithTagsMessage = createDeleteWithTagsMessage();
             return new CommandResult(String.format(MESSAGE_DELETE_FLASHCARD_SUCCESS, deleteWithTagsMessage));

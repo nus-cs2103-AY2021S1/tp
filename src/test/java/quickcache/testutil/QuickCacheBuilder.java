@@ -21,7 +21,7 @@ public class QuickCacheBuilder {
     }
 
     /**
-     * Adds a new {@code Flashcard} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Flashcard} to the {@code quickCache} that we are building.
      */
     public QuickCacheBuilder withFlashcard(Flashcard flashcard) {
         quickCache.addFlashcard(flashcard);

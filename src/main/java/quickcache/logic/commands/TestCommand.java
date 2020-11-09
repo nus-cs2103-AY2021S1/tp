@@ -34,10 +34,12 @@ public class TestCommand extends Command {
             + PREFIX_OPTION + " 1";
 
 
-    public static final String MESSAGE_FORMAT = "Expected Answer: %1$s\n"
-            + "Your Answer: %2$s";
+    public static final String MESSAGE_FORMAT = "Expected Answer:\n%1$s\n\n"
+            + "Your Answer:\n%2$s";
     public static final String MESSAGE_NO_OPTION_PROVIDED = "An option must be chosen for "
             + "the multiple choice question.";
+    public static final String MESSAGE_OPTION_INVALID = "Option given must be one of the "
+            + "options in the multiple choice question";
     public static final String MESSAGE_NO_ANSWER_PROVIDED = "An answer must be chosen for the open ended question.";
     public static final String MESSAGE_NO_OPTION_OR_ANSWER_PROVIDED = "An option or answer must be specified.";
     private final Index index;
@@ -93,8 +95,15 @@ public class TestCommand extends Command {
         if (question instanceof MultipleChoiceQuestion) {
             MultipleChoiceQuestion mcq = (MultipleChoiceQuestion) question;
             Option option = testAnswerDescriptor.getOption().get();
-            Index index = option.getIndex();
-            answer = mcq.getAnswerFromIndex(index);
+
+            // Tries to get the answer based on the option's index, throws an error if invalid index
+            try {
+                Index index = option.getIndex();
+                answer = mcq.getAnswerFromIndex(index);
+            } catch (IllegalArgumentException | IndexOutOfBoundsException e) {
+                throw new CommandException(MESSAGE_OPTION_INVALID);
+            }
+
         } else if (question instanceof OpenEndedQuestion) {
             OpenEndedQuestion openEndedQuestion = (OpenEndedQuestion) question;
             answer = testAnswerDescriptor.getAnswer().get();

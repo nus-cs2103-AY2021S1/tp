@@ -4,7 +4,7 @@ import java.util.Set;
 
 /**
  * Represents a Flashcard. Each Flashcard will contain one question and
- * one answer. In addition, it can have multiple tags.
+ * one difficulty and one statistics. In addition, it can have multiple tags.
  */
 public class Flashcard {
 

@@ -11,7 +11,7 @@ import quickcache.testutil.SerializableTestClass;
 import quickcache.testutil.TestUtil;
 
 /**
- * Tests JSON Read and Write
+ * Tests JSON Read and Write.
  */
 public class JsonUtilTest {
 

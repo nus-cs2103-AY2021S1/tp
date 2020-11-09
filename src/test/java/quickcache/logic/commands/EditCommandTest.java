@@ -20,7 +20,7 @@ import quickcache.testutil.TypicalFlashcards;
 import quickcache.testutil.TypicalIndexes;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand)
+ * Contains integration tests (interaction with the Model)
  * and unit tests for EditCommand.
  */
 public class EditCommandTest {

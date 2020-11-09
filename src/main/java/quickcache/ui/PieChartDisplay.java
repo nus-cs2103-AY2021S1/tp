@@ -45,8 +45,7 @@ public class PieChartDisplay extends UiPart<Region> {
         double correctRate = feedbackToUser.getStatistics().map(Statistics::getCorrectRate).orElse(0.0);
         double incorrectRate = correctRate == 0.0 && timesTested == 0 ? 0.0 : 100.0 - correctRate;
 
-        pieChartDisplay.setTitle(feedbackToUser.getQuestion().map(Object::toString)
-                .orElseGet(() -> "No Question to display"));
+        pieChartDisplay.setTitle("Flashcard Statistics");
 
         String itemCorrect = String.format("Correct (%.2f%%)", correctRate);
         String itemIncorrect = String.format("Incorrect (%.2f%%)", incorrectRate);

@@ -1,0 +1,19 @@
+@startuml
+start
+:User executes open command;
+:QuickCache parse the input from user;
+:Model returns the previously filtered list;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([index larger than size of the list])
+    :Throw CommandException;
+    :Pass the CommandException to UI;
+else ([else])
+    :Get the flashcard from the list;
+    :Pass flashcard details to UI;
+endif
+:UI displays results to User;
+stop
+@enduml

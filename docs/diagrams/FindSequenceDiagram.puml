@@ -3,94 +3,18 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":QuickCacheParser" as QuickCacheParser LOGIC_COLOR
-participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
 participant "f:FindCommand" as FindCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant "filteredFlashcards:FilteredList<Flashcard>" as FilteredList MODEL_COLOR
-participant ":FlashcardContainsTagPredicate" as FlashcardContainsTagPredicate MODEL_COLOR
-participant ":QuestionContainsKeywordsPredicate" as QuestionContainsKeywordsPredicate MODEL_COLOR
-participant "predicate:FlashcardPredicate" as FlashcardPredicate MODEL_COLOR
 end box
 
 [-> LogicManager : execute("find t/MCQ q/What")
 activate LogicManager
 
-LogicManager -> QuickCacheParser : parseCommand("find t/MCQ q/What")
-activate QuickCacheParser
-
-create FindCommandParser
-QuickCacheParser -> FindCommandParser
-activate FindCommandParser
-
-FindCommandParser --> QuickCacheParser
-deactivate FindCommandParser
-
-QuickCacheParser -> FindCommandParser : parse(" t/MCQ q/What")
-activate FindCommandParser
-
-FindCommandParser -> FindCommandParser : getFlashcardPredicate(tags, keywords)
-note left
-Either opt
-condition will
-definitely be
-fulfilled due to
-parser constraints
-end note
-activate FindCommandParser
-
-opt findingTags
-    create FlashcardContainsTagPredicate
-    FindCommandParser -> FlashcardContainsTagPredicate : new FlashcardContainsTagPredicate(tags)
-    activate FlashcardContainsTagPredicate
-
-    FlashcardContainsTagPredicate --> FindCommandParser
-    deactivate FlashcardContainsTagPredicate
-end opt
-
-opt findingKeywords
-    create QuestionContainsKeywordsPredicate
-    FindCommandParser -> QuestionContainsKeywordsPredicate : new QuestionContainsKeywordsPredicate(keywords)
-    activate QuestionContainsKeywordsPredicate
-
-    QuestionContainsKeywordsPredicate --> FindCommandParser
-    deactivate QuestionContainsKeywordsPredicate
-end opt
-
-create FlashcardPredicate
-FindCommandParser -> FlashcardPredicate : new FlashcardPredicate(predicates)
-note left
-FlashcardPredicate
-compiles all created
-predicates
-end note
-activate FlashcardPredicate
-
-FlashcardPredicate --> FindCommandParser : predicate
-deactivate FlashcardPredicate
-
-FindCommandParser --> FindCommandParser : predicate
-deactivate FindCommandParser
-
-create FindCommand
-FindCommandParser -> FindCommand : new FindCommand(predicate)
-activate FindCommand
-
-FindCommand --> FindCommandParser : f
-deactivate FindCommand
-
-FindCommandParser --> QuickCacheParser: f
-deactivate FindCommandParser
-
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-FindCommandParser -[hidden]-> QuickCacheParser
-destroy FindCommandParser
-
-QuickCacheParser --> LogicManager : f
-deactivate QuickCacheParser
+ref over LogicManager, FindCommand : Parse Find Command
 
 LogicManager -> FindCommand : execute()
 activate FindCommand

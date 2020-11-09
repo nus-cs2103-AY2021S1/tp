@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+
+group Parse DeleteByTagCommand
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":QuickCacheParser" as QuickCacheParser LOGIC_COLOR
+participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
+participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+end box
+
+activate LogicManager
+
+LogicManager -> QuickCacheParser : parseCommand("delete t/tag")
+activate QuickCacheParser
+
+create DeleteCommandParser
+QuickCacheParser -> DeleteCommandParser
+activate DeleteCommandParser
+
+DeleteCommandParser -> QuickCacheParser
+deactivate DeleteCommandParser
+
+QuickCacheParser -> DeleteCommandParser : parse("t/tag")
+activate DeleteCommandParser
+
+create DeleteCommand
+DeleteCommandParser -> DeleteCommand
+activate DeleteCommand
+
+DeleteCommand --> DeleteCommandParser : d
+deactivate DeleteCommand
+
+DeleteCommandParser -> QuickCacheParser : d
+deactivate DeleteCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteCommandParser -[hidden]-> QuickCacheParser
+destroy DeleteCommandParser
+
+QuickCacheParser --> LogicManager : d
+deactivate QuickCacheParser
+end
+@enduml

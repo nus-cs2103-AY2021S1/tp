@@ -1,0 +1,19 @@
+@startuml
+start
+:User executes stats command;
+:Model returns the previously filtered list;
+:Search for flashcard matching the index given;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([given flashcard index is valid])
+    :Get statistics of specified flashcard;
+    :Pass the result to the UI;
+else ([else])
+    :Throw CommandException;
+    :Pass the CommandException to the UI;
+endif
+    :UI displays results to User;
+stop
+@enduml
