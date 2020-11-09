@@ -29,7 +29,8 @@ Given below are my contributions to the project.
   * Justifications: The ability to edit or delete a lesson is important in managing lessons. Users need to use this feature frequently to edit a lesson under
   many situations, for example the user makes a typo in the lesson title or the lesson is not relevant anymore.
 <div style="page-break-after: always;"></div>
-* * Highlights: This feature requires a meticulous and creative design to ensure that the edited lesson is reflected on the calendar view
+*
+  * Highlights: This feature requires a meticulous and creative design to ensure that the edited lesson is reflected on the calendar view
   as well as the data analysis as well. Also, it needs to integrate well with the `Overlap` class implemented by my teammate Marcus to
   ensure that edited lessons do not overlap with other time slots already existing in PlaNus. 
 
