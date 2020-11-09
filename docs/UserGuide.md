@@ -1,6 +1,6 @@
 # User Guide
 
-Bamboo (v1.3) is a **simple desktop app for managing personal finance, optimized for use via a Command Line Interface (CLI),** and targeted at college students. If you can type fast, Bamboo v1.2 can get your financial management tasks done faster than traditional GUI apps.
+Bamboo (v1.4) is a **simple desktop app for managing personal finance, optimized for use via a Command Line Interface (CLI),** and targeted at college students. If you can type fast, Bamboo v1.4 can get your financial management tasks done faster than traditional GUI apps.
 
 
 This User Guide explains how you can use Bamboo to manage your personal finances. Let's grow our wealth! :bamboo:
@@ -29,7 +29,7 @@ Refer to [Quick Start](#QuickStart) for a short tutorial on how to set up Bamboo
 7. Let's grow our wealth together!
 
 ## Command Format Guide
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 This section explains the format of commands in this User Guide.
 
 * Items in <angular_brackets> are types of parameters to be supplied by the user e.g. in `add -d <description>`, `<description>` refers to a description of an expense such as "Lunch @ Thai Place".
@@ -449,7 +449,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Format: `clear`
     - Example: `clear`
     
-    ![clear_example](images/ug_example/clear_example.PNG)
+    ![clear_example](images/ug_example/clear_example.png)
 
 1. **Exit Application `exit`** <a name="exit"></a>
     - Exits the application.
