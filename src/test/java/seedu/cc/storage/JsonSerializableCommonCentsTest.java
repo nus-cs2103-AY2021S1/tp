@@ -40,7 +40,7 @@ public class JsonSerializableCommonCentsTest {
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
-    /*
+
     @Test
     public void toModelType_duplicateAccount_throwsIllegalValueException() throws DataConversionException {
         JsonSerializableCommonCents dataFromFile = JsonUtil.readJsonFile(DUPLICATE_ACCOUNT_LIST_FILE,
@@ -48,5 +48,5 @@ public class JsonSerializableCommonCentsTest {
         assertThrows(IllegalValueException.class, JsonSerializableCommonCents.MESSAGE_DUPLICATE_ACCOUNT,
             dataFromFile::toModelType);
     }
-    */
+
 }
