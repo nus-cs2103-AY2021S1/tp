@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-
+ 
 Insurance4Insurance (I4I) is an app for insurance agents to manage clients. It helps manage client profile information 
 for insurance agents to remember personal details about his/her client. It is optimized for use via a Command Line 
 Interface (CLI) while still having the benefits of a Graphic User Interface (GUI). 
@@ -55,7 +55,11 @@ Interface (CLI) while still having the benefits of a Graphic User Interface (GUI
   e.g `n/NAME [s/CLIENT_SOURCE]` can be used as `n/John Doe s/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[s/CLIENT_SOURCE]…​` can be used as ` ` (i.e. 0 times), `s/friend`, `s/friend s/family` etc.
+  e.g. `[s/CLIENT_SOURCE]…​` can be used as ` ` (i.e. 0 times), `s/friend`, `s/foe s/family` etc.
+
+* If items without `…`​ after them was input multiple times, only the last occurrence would be used as the input to the command.<br>
+  e.g. `n/NAME` can be used more than once: `n/John Doe n/Cai Shen Ye n/Betsy Crowe`,
+  but only `n/Betsy Crowe` would be used as the input to the command.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -97,7 +101,13 @@ Examples:
 
 Notes: 
 
-* If the priority field is empty, I4I will set the priority of the client to undefined. 
+* The client to be added should not already be in the client list.
+  
+  2 clients are considered different if
+    * They have different names OR
+    * They have the same name BUT have different email or phone number
+
+* If the priority field is empty, I4I will set the priority of the client to `Undefined`. 
     See [Priority Feature](#priority-feature) for more information.
 
 * The policy must already exist in the policy list. You can do so by using the
