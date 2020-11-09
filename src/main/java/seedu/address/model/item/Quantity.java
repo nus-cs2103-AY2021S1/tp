@@ -55,10 +55,11 @@ public class Quantity implements Comparable<Quantity> {
      */
     public Quantity add(Quantity quantity) throws OverflowQuantityException {
         int value = Integer.parseInt(this.value) + Integer.parseInt(quantity.value);
-        if (isValidQuantity(Integer.toString(value))) {
-            return new Quantity(Integer.toString(value));
+        String qty = Integer.toString(value);
+        if (isValidQuantity(qty)) {
+            return new Quantity(qty);
         } else {
-            throw new OverflowQuantityException("Quantity cannot exceed 9 digits!");
+            throw new OverflowQuantityException(qty);
         }
     }
 
