@@ -94,10 +94,4 @@ public class InventoryTest {
             return inventoryRecords;
         }
     }
-
-    @Test
-    public void hasHashCode_hashCodePresent_returnsTrue() {
-        int hashcode = inventory.hashCode();
-        assertTrue(hashcode == inventory.hashCode());
-    }
 }

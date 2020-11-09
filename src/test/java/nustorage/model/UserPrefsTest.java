@@ -24,11 +24,4 @@ public class UserPrefsTest {
         UserPrefs userPref = new UserPrefs();
         assertTrue(userPref.getFinanceAccountFilePath().toString().contains("financeAccount"));
     }
-
-    @Test
-    public void hasHashCode_hashCodePresent_returnsTrue() {
-        UserPrefs userPref = new UserPrefs();
-        int hashcode = userPref.hashCode();
-        assertTrue(hashcode == userPref.hashCode());
-    }
 }
