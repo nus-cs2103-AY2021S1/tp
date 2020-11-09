@@ -336,7 +336,7 @@ For simplicity, we will refer to this command input as `commandText`.
     <figcaption>Figure 15 - Delete Session Parse Args Ref Sequence Diagram</figcaption>
 </figure>
  
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteSessionCommand` 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteSessionCommand` and `DeleteSessionCommandParser` 
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
