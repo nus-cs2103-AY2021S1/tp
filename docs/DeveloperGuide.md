@@ -525,7 +525,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Calo` application and the **Actor** is the `user`, unless specified otherwise)
 
-#### **Use case: Add an exercise**
+**Use case: Add an exercise**
 
 *MSS*
 1.  User requests to add an exercise. 
@@ -547,7 +547,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </p>
 
 
-#### **Use case: Add a template**
+**Use case: Add a template**
 
 *MSS*
 1.  User requests to create a template for an exercise.
@@ -569,7 +569,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </p>
 
 
-#### **Use case: Add an exercise based on an existing template**
+**Use case: Add an exercise based on an existing template**
 
 *MSS*
 1.  User requests to add an exercise from an existing template.
@@ -593,7 +593,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-#### **Use case: Archive data**
+**Use case: Archive data**
   *MSS*
 1.  User requests to archive data to a different file location
 2.  `Calo` archives data to the specified location
@@ -607,8 +607,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </p>
 
 
-
-#### **Use case: Add a goal**
+**Use case: Add a goal**
 1.  User requests to create a goal for a day.  
 2.  `Calo` adds the template and displays on the Template Panel.    
   Use case ends.
@@ -628,7 +627,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-#### **Use case: Find exercises with a keyword**
+**Use case: Find exercises with a keyword**
 
 *MSS*  
 1.  User requests to find exercises with a keyword
@@ -644,7 +643,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-#### **Use case: Recall exercises with a keyword**
+**Use case: Recall exercises with a keyword**
 
 *MSS*  
 
@@ -660,7 +659,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </p>
 
 
-#### **Use case: Update an exercise**
+**Use case: Update an exercise**
 
 *MSS*
 
@@ -677,7 +676,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </p>
 
 
-#### **Use case: Delete an exercise**
+**Use case: Delete an exercise**
 
 *MSS*
 
@@ -693,7 +692,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </p>
 
 
-#### **Use case: List exercises**
+**Use case: List exercises**
 
 *MSS*
 1.  User requests to list exercises
