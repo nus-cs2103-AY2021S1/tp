@@ -775,9 +775,10 @@ Use case ends.
 **Extensions**
 
 * 2a. The search result is empty.
-    2a1. FitEgo displays no clients found.
+    
+    * 2a1. FitEgo displays no clients found.
 
-  Use case ends.
+    Use case ends.
 
 <br/>
 
@@ -803,10 +804,12 @@ Use case ends.
       Use case resumes at step 3.
 
 * 4a. Previous Client's profile window is not closed.
+
     * 4a1. The previous Client's profile will be closed.
+    
     * 4a2. The current Client's profile will be displayed.
 
-      Use case ends.
+    Use case ends.
       
 <br/>
 
@@ -936,7 +939,8 @@ Use case ends.
 
 **Extensions**
  - 3a. User closes the Help Window. 
-    * 3a1. FitEgo closes the Help Window
+ 
+    * 3a1. FitEgo closes the Help Window.
 	
       Use case ends.
         
@@ -954,6 +958,7 @@ Use case ends.
 
 **Extensions**
 * 2a. User closes the Settings Window. 
+
     * 2a1. FitEgo closes the Settings Window.
 	
       Use case ends.
@@ -1027,9 +1032,10 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
       Details of the added Client are shown in the status message.
     
    1. Other incorrect Add Client commands to try: <br>
-       `cadd n/John Doe p/98765432 a/311, Clementi Ave 2, #02-25 t/injured-thigh` (email not added), <br>
-       `cadd n/John Doe p/98765432 e/example.com a/311, Clementi Ave 2, #02-25 t/injured-thigh t/allergy-dairy` (invalid email address) <br>
-      Expected: Client is not added. Error details are shown in the status message.
+        * `cadd n/John Doe p/98765432 a/311, Clementi Ave 2, #02-25 t/injured-thigh` (email not added)
+        * `cadd n/John Doe p/98765432 e/example.com a/311, Clementi Ave 2, #02-25 t/injured-thigh t/allergy-dairy` (invalid email address)
+      Expected: Client is not added. <br>
+      Error details are shown in the status message.
 
 ### 6.3 Editing a Client
 
@@ -1042,7 +1048,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
       Details of the edited Client are shown is in the status message.
 
    1. Other incorrect Edit Client commands to try: 
-       `cedit 0 p/91234567` (index out of bound) <br>
+       * `cedit 0 p/91234567` (index out of bound) <br>
       Expected: Client details is not edited. <br>
       Error details are shown in the status message.
       
@@ -1065,8 +1071,8 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
        Details of the added Session are shown in the status message.
        
     1. Other incorrect Add Session commands to try: 
-        `sadd g/machoman ex/endurance at/29/09/2020 t/120` (wrong date format), <br>
-        `sadd g/machoman ex/endurance at/29/09/2020 1600 t/0` (invalid duration) <br>
+        * `sadd g/machoman ex/endurance at/29/09/2020 t/120` (wrong date format)
+        * `sadd g/machoman ex/endurance at/29/09/2020 1600 t/0` (invalid duration)
        Expected: Session is not added. <br>
        Error details are shown in the status message.
 
@@ -1101,7 +1107,8 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
       Indication that Session List has been successfully updated is shown in the status message.
 
    1. Other incorrect View Session commands to try: `sview`, `sview p/+2s` (where unit of time is not d/m/y), `...` <br>
-      Expected: View of Session List is unchanged. Error details shown in the status message.
+      Expected: View of Session List is unchanged. <br>
+      Error details shown in the status message.
       
 ### 6.9 Adding a Schedule
 
