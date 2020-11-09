@@ -238,7 +238,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
     ![add_example](images/ug_example/add_example.PNG)
     &nbsp;
-    
+
 1. **List all Expenses `list`** <a name="list"></a>
     - Displays all the items in the list.
     - Displays the budget balance based on **total expenditure** against the **total sum of all budgets**.
@@ -247,7 +247,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
     ![list_example](images/ug_example/list_example.PNG)
     &nbsp;
-    
+
 1. **Edit an Expense `edit`** <a name="edit"></a>
     - Edits the fields of existing expenses.
     - Identified by index starting from 1, based on expenses currently displayed.
@@ -276,7 +276,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
     ![delete_example](images/ug_example/delete_example.PNG)
     &nbsp;
-    
+
 1. **Add a Category `addCat`** <a name="addCat"></a>
     - Adds a new category to the expense book.
     - The category must not already exist in the expense book.
@@ -289,7 +289,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     ![addCat_example](images/ug_example/addCat_example_2.PNG)
     _Use "Shopping" category_
     &nbsp;
-    
+
 1. **Delete a Category `deleteCat`** <a name="deleteCat"></a>
     - Deletes an existing category in expense book, if it exists. (Note: the "Default" category <u> cannot </u> be deleted.)
     - Category budget of the deleted category will be deleted.
@@ -300,7 +300,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     ![deleteCat_example](./images/ug_example/deleteCat_example.PNG)
     _Expense 9 is reverted from "Shopping" category to "Default" category_
     &nbsp;
-    
+
 1. **Top up Category Budget `topup`** <a name="topup"></a>
     - Increases the budget of a **particular category** by the amount specified by the user.
     - Expenses in the same category reduce the balance of the budget.
@@ -334,7 +334,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
       
     ![reduce_example](images/ug_example/reduce_example)
     &nbsp;
-    
+
 1. **Find Expenses `find`** <a name="find"></a>
     - Finds expenses with given keywords and/or date by user.
     - Expenses that fits the criteria will be presented as another list.
@@ -418,7 +418,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
     ![alias_example_3](./images/ug_example/alias_example_3.PNG)
     _"spent" keyword can no longer function as "add"_
-        
+
 1. **Reset Command Shortcuts `resetAlias`** <a name="resetAlias"></a>
     - Removes all existing shortcuts defined by user.
     - Format: `resetAlias`

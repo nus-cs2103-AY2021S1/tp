@@ -731,7 +731,7 @@ Similar to U9, except it's the opposite.
     * 1b1. Bamboo shows an error message.
     
       Use case ends.
-      
+
 * 1c. The specified amount exceeds the amount present in the specified budget.
     * 1c1. Bamboo reduces the amount in the specified budget to zero.
     * 1c2. Bamboo alerts the user that the amount reduced from the budget exceeded the amount present.
