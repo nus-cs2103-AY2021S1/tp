@@ -483,14 +483,11 @@ assignments will contain the following fields:
 
   * The assignment takes up a percentage of the final grade, `ASSIGNMENT_PERCENTAGE`.
 
-  * Your `ASSIGNMENT_RESULT` must be converted to a decimal from `0.00 - 1.00`
+  * Your `ASSIGNMENT_RESULT` can only range from `0.00 - 100`
 
   Example:
-  * `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80` adds an assignment called `Quiz 1` to the module `CS2100`. `Quiz 1`
-  carries `5`% of the final grade and the result for this assignment is `80/100`.
-
-  To be implemented:
-  * We are working on developing the display to show more details for each assignment besides the `ASSIGNMENT_NAME`.
+  * `addassignment n/CS2100 a/Quiz 1 %/5 r/80` adds an assignment called `Quiz 1` to the module `CS2100`. `Quiz 1`
+  carries `5`% of the final grade and the result for this assignment is `80`.
 
 #### Editing an assignment in a module: `editassignment`
 
@@ -506,15 +503,49 @@ assignments will contain the following fields:
 
   * The index **must be a positive integer** 1, 2, 3...
 
-  * Your new `ASSIGNMENT_RESULT` must be converted to a decimal from `0.00 - 1.00`
+  * Your new `ASSIGNMENT_RESULT` can only range from `0.00 - 100`
+  
+  * The `viewmodule` command needs to be called again to update the assignment visually.
 
-  Example of usage:
+  Examples of usage:
    * `editassignment 1 n/CS2100 a/Quiz 1` edits the assignment at position `1` of the module `CS2100` with a new
    assignment name, `Quiz 1`.
 
-   * `editassignment 1 n/CS2100 %/20 r/0.80` edits the assignment at position `1` of the module `CS2100` with a new
-   assignment percentage, `20`% of the final grade, and a new assignment result, `0.80`.
+   * `editassignment 1 n/CS2100 %/20 r/80` edits the assignment at position `1` of the module `CS2100` with a new
+   assignment percentage, `20`% of the final grade, and a new assignment result, `80`.
 
+To be implemented:
+  * We are working on showing the assignment changes without the need to call `viewmodule` again as we see the
+  possible hassle involved.
+  
+#### Deleting an assignment in a module: `deleteassignment`
+
+  Deletes an assignment at the specified position in the specified module.
+
+  Format: `deleteassignment` `INDEX` `n/MODULE_NAME`
+
+  * You can retrieve the index of the assignment list by using the `viewmodule` command to list out the details of the module.
+
+  * The index **must be a positive integer** 1, 2, 3...
+
+  Example of usage:
+   * `deleteassignment 2 n/CS2100` deletes the assignment at position `2` of the module `CS2100`.
+   
+#### Adding a grade to a module: `addgrade`
+
+  Adds a grade to the specified module.
+
+  Format: `addgrade` `n/MODULE_NAME` `g/GRADE`
+
+  * The `MODULE_NAME` must match exactly with an existing module in the module list.
+  
+  * The `GRADE` can only range from 0 - 100.
+  
+  * The existing `GRADE` will be overwritten by the new `GRADE` being added.
+  
+  Example of usage:
+   * `addgrade n/CS2100 g/85` adds a grade of `85` to the module `CS2100`.
+   
 #### Calculating Cumulative Average Point(CAP): `calculatecap`
 
 Calculates the user's CAP based on completed modules
@@ -1237,7 +1268,12 @@ Action | Format, Examples
 **Edit Module** | `editmodule INDEX n/NEW_NAME [mc/MODULAR_CREDITS] [gp/GRADE_POINT] [t/TAG]...`<br> e.g. `editmodule 2 n/CS2103T gp/4.5`
 **Clear Module List** | `clearmodule`<br> e.g. `clearmodule`
 **Add Zoom to module** | `addzoom INDEX n/LESSON_NAME z/ZOOM_LINK` <br> e.g. `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/uascya367yfy`
-**Add Assignment** | `addassignment n/MODULE_NAME a/ASSIGNMENT_NAME %/ASSIGNMENT_PERCENTAGE r/ASSIGNMENT_RESULT` <br> e.g. `addassignment n/CS2100 a/Quiz 1 %/5.0 r/0.80`
+**Add Assignment** | `addassignment n/MODULE_NAME a/ASSIGNMENT_NAME %/ASSIGNMENT_PERCENTAGE r/ASSIGNMENT_RESULT` <br> e.g. `addassignment n/CS2100 a/Quiz 1 %/5.0 r/80`
+**Edit Assignment** | `editassignment INDEX n/MODULE_NAME [a/ASSIGNMENT_NAME] [%/ASSIGNMENT_PERCENTAGE] [r/ASSIGNMENT_RESULT]` <br> e.g. `editassignment 1 n/CS2100 a/Quiz 3 %/20.0`
+**Delete Assignment** | `deleteassignment INDEX n/MODULE_NAME` <br> e.g. `deleteassignment 1 n/CS2100`
+**Add Grade** | `addgrade n/MODULE_NAME g/GRADE` <br> e.g. `addgrade n/CS2100 g/90`
+**Archive** | `archivemodule INDEX `<br> e.g. `archivemodule 3`
+**Un-archive** | `unarchivemodule INDEX `<br> e.g. `unarchivemodule 3`
 **Archive Module** | `archivemodule INDEX `<br> e.g. `archivemodule 3`
 **Un-archive Module** | `unarchivemodule INDEX `<br> e.g. `unarchivemodule 3`
 **View Archived Module List** | `viewarchive `<br> e.g. `viewarchive`

@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.gradetrackercommands.EditAssignmentCommand;
-import seedu.address.logic.commands.gradetrackercommands.EditAssignmentDescriptor;
+import seedu.address.logic.commands.gradetrackercommands.EditAssignmentCommand.EditAssignmentDescriptor;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.grade.AssignmentName;
 import seedu.address.model.module.grade.AssignmentPercentage;
