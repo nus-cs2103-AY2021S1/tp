@@ -95,11 +95,18 @@ The `UI` component:
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `list ingredients`:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/dg/UiSequenceDiagram.png" style="width: 75%" /> <br />
+Figure 4: <i>A sequence diagram showing the execution of <code>list ingredients</code></i>
+</div>
+
 The following activity diagram shows the general flow of events for the Ui component when the application is launched:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="diagrams/ui/UiLauchActivityDiagram.png" style="width: 45%"> <br />
-Figure 999: <i>An activity diagram for the Ui during application launch</i>
+Figure 5: <i>An activity diagram for the Ui during application launch</i>
 </div>
 
 
@@ -112,7 +119,7 @@ The class diagram of the Logic component is shown below:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="diagrams/logic/cls-overall.png" /> <br />
-Figure 4: <i>The class diagram of the Logic component</i>
+Figure 6: <i>The class diagram of the Logic component</i>
 </div>
 
 **Interface**: [`Logic.java`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/logic/Logic.java)
@@ -128,7 +135,7 @@ This is the general flow of events when a command is executed:
 For example, this is a sequence diagram showing the deletion of a recipe:
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/DeleteSequenceDiagram.png" style="width: 95%" /> <br />
-Figure 5: <i>A sequence diagram showing the execution of <code>delete recipe #1</code> in the Logic component</i>
+Figure 7: <i>A sequence diagram showing the execution of <code>delete recipe #1</code> in the Logic component</i>
 </div>
 
 
@@ -149,7 +156,7 @@ The class diagram of the *Model* component is shown below:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/ModelClassDiagram.png" /> <br />
-Figure 6: <i>The class diagram of the Model component</i>
+Figure 8: <i>The class diagram of the Model component</i>
 </div>
 
 **Interface**: [`Model.java`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/model/Model.java)
@@ -164,7 +171,7 @@ The Model component:
 Of note in the Model component are the `Recipe` and `Ingredient` classes; below is the class diagram for both:
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/RecipeIngredient.png"> <br/>
-Figure 7: <i>The class diagram for Recipes and Ingredients</i>
+Figure 9: <i>The class diagram for Recipes and Ingredients</i>
 </div>
 
 Note that an instance of `Recipe` only stores `IngredientReferences` to the ingredients it uses, and not the actual `Ingredients` themselves — since the actual instance of the ingredient that will be used by the recipe is indeterminate.
@@ -184,7 +191,7 @@ The class diagram of the *Storage* component is shown below:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/StorageClassDiagram.png"> <br />
-Figure 8: <i>The class diagram of the Storage component</i>
+Figure 10: <i>The class diagram of the Storage component</i>
 </div>
 
 **Interface**: [`Storage.java`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/storage/Storage.java)
