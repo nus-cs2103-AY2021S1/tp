@@ -28,7 +28,8 @@ public class AnswerCommand extends Command {
             + "True/False Example: " + COMMAND_WORD + " 1 "
             + PREFIX_ANSWER + "true\n"
             + "MCQ Example: " + COMMAND_WORD + " 6 "
-            + PREFIX_ANSWER + "1";
+            + PREFIX_ANSWER + "1\n"
+            + "Answers should not be left blank!";
 
     public static final String MESSAGE_ANSWER_SUCCESS = "Your answer has successfully been recorded.";
 
@@ -73,5 +74,13 @@ public class AnswerCommand extends Command {
 
         model.recordResponse(resp);
         return new CommandResult(String.format(MESSAGE_ANSWER_SUCCESS, this.index.getZeroBased(), this.answer));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AnswerCommand // instanceof handles nulls
+                && index.equals(((AnswerCommand) other).index)
+                && answer.equals(((AnswerCommand) other).answer));
     }
 }

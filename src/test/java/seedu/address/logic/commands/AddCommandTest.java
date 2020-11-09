@@ -19,6 +19,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FlashcardBook;
 import seedu.address.model.Model;
+import seedu.address.model.QuizBook;
 import seedu.address.model.ReadOnlyFlashcardBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Flashcard;
@@ -180,6 +181,11 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Response> getResponseList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public QuizBook getQuizBook() {
             throw new AssertionError("This method should not be called.");
         }
 

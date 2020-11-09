@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEFINITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
@@ -14,8 +15,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FlashcardBook;
 import seedu.address.model.Model;
+import seedu.address.model.QuizBook;
 import seedu.address.model.person.Flashcard;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.quiz.Response;
 import seedu.address.testutil.EditFlashcardDescriptorBuilder;
 
 /**
@@ -37,8 +40,16 @@ public class CommandTestUtil {
     public static final String TAG_DESC_DIFFICULT = " " + PREFIX_TAG + VALID_TAG_DIFFICULT;
     public static final String INVALID_NAME_DESC = " " + PREFIX_TITLE + "Bubble&Sort"; // '&' not allowed in names
     public static final String INVALID_DEFINITION_DESC = " "
-            + PREFIX_DEFINITION; // empty string not allowed for addresses>>>>>>> upstream/branch-v1.2
+            + PREFIX_DEFINITION; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    public static final String VALID_TF_ANSWER_TRUE = "true";
+    public static final String VALID_TF_ANSWER_FALSE = "false";
+    public static final String VALID_MCQ_ANSWER_OPTION_ONE = "1";
+    public static final String TF_ANSWER_DESC_TRUE = " " + PREFIX_ANSWER + VALID_TF_ANSWER_TRUE;
+    public static final String TF_ANSWER_DESC_FALSE = " " + PREFIX_ANSWER + VALID_TF_ANSWER_FALSE;
+    public static final String MCQ_ANSWER_DESC_ONE = " " + PREFIX_ANSWER + VALID_MCQ_ANSWER_OPTION_ONE;
+    public static final String INVALID_ANSWER_DESC = " " + PREFIX_ANSWER; //empty string not allowed for answers
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -97,6 +108,24 @@ public class CommandTestUtil {
         assertEquals(expectedFlashcardBook, actualModel.getFlashcardBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredFlashcardList());
     }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the address book, filtered flashcard list and selected flashcard in {@code actualModel} remain unchanged
+     */
+    public static void assertCommandFailureQuiz(Command command, Model actualModel, String expectedMessage) {
+        // we are unable to defensively copy the model for comparison later, so we can
+        // only do so by copying its components.
+        QuizBook expectedQuizBook = new QuizBook(actualModel.getQuizBook());
+        List<Response> expectedFilteredList = new ArrayList<>(actualModel.getResponseList());
+
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedQuizBook, actualModel.getQuizBook());
+        assertEquals(expectedFilteredList, actualModel.getResponseList());
+    }
+
     /**
      * Updates {@code model}'s filtered list to show only the flashcard at the given {@code targetIndex} in the
      * {@code model}'s address book.

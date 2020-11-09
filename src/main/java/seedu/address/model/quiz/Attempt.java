@@ -127,4 +127,18 @@ public class Attempt implements Comparable<Attempt> {
     public boolean isEmpty() {
         return responses.size() <= 0;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Attempt)) {
+            return false;
+        }
+        Attempt attempt = (Attempt) (other);
+        System.out.println(attempt.getResponses());
+        System.out.println(responses);
+        return attempt.getTimestamp().equals(timestamp) && attempt.getResponses().equals(this.getResponses());
+    }
 }

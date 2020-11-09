@@ -65,4 +65,17 @@ public class Response {
                 && otherResponse.getResponse().equals(getResponse());
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Response)) {
+            return false;
+        }
+        Response otherResponse = (Response) (other);
+        return otherResponse.getQuestion().equals(question) && otherResponse.getResponse().equals(response)
+                && otherResponse.getIsCorrect() == isCorrect;
+    }
+
 }
