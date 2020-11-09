@@ -8,9 +8,7 @@ tCheck is a desktop application that offers an integrated system to efficiently 
 Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=diwu-yi&sort=groupTitle&sortWithin=title&since=2020-08-14&until=2020-11-09&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
-
 * **New Features**:
-
   * Built ingredient model and ingredient book model for ingredient tracking purposes.
     * What it does : Allow us to model any ingredient and build an ingredient book with the model built.
     * Justification : This is a must-have feature for the project because all ingredient-related commands will depend on the ingredient model and ingredient book model.
@@ -18,14 +16,12 @@ Given below are my contributions to the project.
     [#62](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/62)
     [#72](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/72)
     [#127](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/127)
-  
   * Added `i-set i/INGREDIENT_NAME m/AMOUNT` command.
     * What it does : Allow a user (a store manager) to set one single ingredient's level to the specified amount in his/her T-Sugar stall.
     * Justification : This is a must-have feature for the application because it is necessary to offer users a command which they can use to adjust the ingredients' levels so that the ingredient tracking purpose can be achieved.
     * Related PR(s) (non-exhaustive):
     [#105](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/105)
     [#161](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/161)
-    
   * Added `i-set-default` command.
     * What it does : Allow a user to set all ingredients' levels to a pre-determined default level for his/her T-Sugar stall.
     * Justification : This is a nice-to-have feature for the application because it acts as a shortcut for stall managers to start using tCheck. Instead of manually adjusting each of the ingredient's level, all levels can be set to default using a short command.
@@ -33,35 +29,28 @@ Given below are my contributions to the project.
     [#78](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/78)
 <div style="page-break-after: always;"></div>
 
+* **New Features(continued)**:
   * Added `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` command.
     * What it does : Allow a to set all ingredients' levels to different specified amounts for all available ingredients in a T-sugar stall.
     * Justification : This is also a nice-to-have feature for the application. It enables expert users to conveniently set all available ingredients' levels in one single command.
     * Related PR(s) (non-exhaustive):
     [#82](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/82)
-    
   * Implemented Ingredient Tracker Graphic User Interface (GUI) and integrate the Ingredient Tracker to the _Main Window_.
     * What it does : Allow users to view all available ingredients' levels via a dedicated GUI part for ingredient tracking purposes.
     * Justification : This is a must-have feature for the application because if a user cannot view directly the ingredients' levels through the GUI, the usability of the application will suffer.
     * Related PR(s) (non-exhaustive):
     [#146](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/146)
     [#152](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/152)
-   
 * **Project management**:
-
   * Added issues assigned to milestone v1.1, v1.2, 1.3 and v1.4.
   * Managed v1.4 release on GitHub.
-  
 * **Quality assurance**:
-
   * Took charge of overall testing of functionalities of tCheck.
   * Monitored test cases written for all teammates.
   * Reminded teammates to add tests when the test coverage is not satisfactory.
-
 * **Documentation**:
-
   * AboutUs page:
     * Updated my information in the AboutUs page of the project website.
- 
   * User Guide:
     * Added documentation for the features `i-set i/INGREDIENT_NAME m/AMOUNT` , `i-set-default` and `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_SUGAR`.
     * Authored three sections of About Us section (sub-section 1, 2.1 and 2.4).
@@ -69,17 +58,13 @@ Given below are my contributions to the project.
     * Added visuals such as screenshots for setting ingredients' levels feature and tCheckInfographic for better presenting of User Guide.
     [#254](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/254)
     [#118](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/118)
-    
   * Developer Guide:
     * Added documentation for the section of use cases (UC03).
-    * Added documentation and diagrams for commands to set ingredients' levels.
+    * Added documentation and diagrams for commands to set ingredients' levels, use cases and manual testing instructions.
     * Added a diagram for the ingredient model.
     * Authored audience part in the introduction section and Glossary with others.
-    * Added documentation for Instruction for manual testing of setting ingredients' levels feature.
     [#91](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/91)
-    
 * **Community involvement**:
-  * Offered non-trivial suggestions to pull requests reviewed.
+  * Offered non-trivial suggestions to pull requests reviewed and contributed to forum discussions.
   * Related PR(s) (non-exhaustive):
   [#252](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/252)
-  
