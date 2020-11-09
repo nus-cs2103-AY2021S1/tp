@@ -795,7 +795,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `CliniCal` and the **Actor** is the `user`, unless specified otherwise)
 
-##### Use case: UC01 - Add a patient
+##### Use case: UC01 - Add a new patient
 
 **MSS**
 
@@ -1031,7 +1031,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes at step 2.
     
-##### Use case: UC13 - Add appointment
+##### Use case: UC13 - Add a new appointment
 
 **MSS**
 
@@ -1060,7 +1060,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes at step 1.
     
-##### Use case: UC14 - Edit appointment
+##### Use case: UC14 - Edit an appointment
 
 **MSS**
 
@@ -1094,7 +1094,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes at step 1.
 
-##### Use case: UC15 - Delete appointment
+##### Use case: UC15 - Delete an appointment
 
 **MSS**
 
