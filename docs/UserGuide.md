@@ -48,12 +48,14 @@ Note how the app contains some sample expenses and revenues if you have not used
 6\. Refer to the [Features](#5-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-[comment]: <> (Copy the blocks below and edit your message)
+
+<div style="page-break-after: always;"></div>
 # 2. How to identify notations
 *(Written by Lim Zi Yang)* <br>
 
 These blocks are a few examples of notations that will be used in this document. Each block and icon 
 has a different meaning so do look out for them under our features.
+
 
 <div markdown="block" class="alert alert-info"> 
 
@@ -87,14 +89,18 @@ Important cautions that needs to be known before using the feature.
 
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 # 3. User Interface Overview
 *(Written by Le Hue Man)* <br>
 
-As you can see, **figure 3-1** below shows the default user interface (UI) of _Common Cents_ with its components.  
+As you can see, **Figure 3-1** below shows the default user interface (UI) of _Common Cents_ with its components.  
 ![annotatedUi](images/commands/annotatedUi.PNG)
 <p align="center"> <sub> <b>Figure 3-1</b>: Default user interface of <i>Common Cents</i> </sub> </p>
 
 You can find the description for each UI component shown in the table below.<br> 
+
+<div style="page-break-after: always;"></div>
 
 UI component | Description
 --------|------------------
@@ -110,6 +116,8 @@ UI component | Description
 *Revenue list* | Displays all the revenues in your current account in a panel.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 # 4. Components
 *(Written by Nicholas Canete)* <br>
 
@@ -164,6 +172,7 @@ order to provide more information about the Entry.
 Amount is the numeric value associated with the Entry that Common Cents receives from you. All amounts, for both expenses
 and revenues must be given as a positive value.
 
+<div style="page-break-after: always;"></div>
 ### 4.2.4 Tags
 Tags refer to short textual prompts attached to an Entry, with the purpose of giving extra information and identity for
 your Entries in Common Cents.
@@ -401,7 +410,7 @@ description (**Figure 5.2-5**)
 
 <br>![findCommand](images/commands/findCommand.PNG)
 <p align="center"> <sub> <b>Figure 5.2-5</b>: Find command successfully executed </sub> </p>
-
+<div style="page-break-after: always;"></div>
 <div markdown="block" class="alert alert-info"> 
 
 :information_source: **Note:**
@@ -616,7 +625,7 @@ Deleting your account means all the data of the entries in the account is lost a
 irreversible action and cannot be undone. Do delete your account with caution!
 
 </div>
-
+<div style="page-break-after: always;"></div>
 ### 5.3.3 Editing the name of the current account: `editacc`
 *(Written by Lim Zi Yang)* <br>
 

@@ -17,6 +17,10 @@ Entry o-up-> "*" Tag
 Account *--> Name
 Account *--> "1" ExpenseList
 Account *--> "1" RevenueList
+ActiveAccountManager o--> Account
+ActiveAccountManager "1" -up-> "0..1" ActiveAccountManager : previous state
+ActiveAccountManager ..|> ActiveAccount
+
 
 ExpenseList o--> "*" Expense
 RevenueList o--> "*" Revenue

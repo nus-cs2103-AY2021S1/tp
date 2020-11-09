@@ -63,7 +63,7 @@ Given below are my contributions to the project.
     [\#97](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/97), 
     [\#125](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/125),
     [\#148](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/148)) 
-   
+
 ### Documentation
 
 #### User Guide:
@@ -72,9 +72,8 @@ Given below are my contributions to the project.
 * Rectified bugs and errors from PE-D.
 * Added documentation for the Entry level commands `help`, `exit`, `add`, `delete`, `list`, `clear`, `profit`:
 [\#189](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/189/)
-  
+
 #### Developer Guide:
-* Formatting edits
 * **Added implementation details of the `delete` feature**: 
 [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#delete-feature)
 * **Added implementation details of the `clear` feature**: 
