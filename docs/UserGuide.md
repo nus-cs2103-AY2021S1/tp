@@ -58,13 +58,17 @@ Calo is a desktop app that is **designed for keeping track of calories burnt thr
 
 </div>
 
-## 3.1. Viewing help : `help`
+## 3.1. Understanding the Display
 
-Shows a message that explans how to access the help page.
+`Calo` has a simplisitc but powerful Gui that is designed with you in mind.   
+The following diagram illustrates the name of each Gui component and how they are useful for you.
 
-![help message](images/helpMessage.png)
+![Annoted Gui](images/Ui%20(annotated).png)
 
-Format: `help`
+
+![Annotated Exercise Card](images/Annotated_ExerciseCard.png)
+
+
 
 ## 3.2. Add exercises : `add`
 
@@ -213,6 +217,13 @@ Examples:<br>
 
 - `addt temp/pushup d/half an hour at/09-06-2020` Creates the exercise using the template called pushup with the date 09-06-2020, description half an hour and default calories 100.
 
+## 3.14. Viewing help : `help`
+
+Shows a message that explans how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
 
 
 ---
