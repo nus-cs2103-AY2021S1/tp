@@ -54,7 +54,7 @@ public class ResponseCard extends UiPart<Region> {
             int userResponseIndex = Integer.parseInt(response.getResponse());
             addOptions(opt, opt.get(((Mcq) question).getAnswer() - 1), opt.get(userResponseIndex - 1));
         } else {
-            String correctAns = ((TrueFalse) question).getAnswer() ? "True" : "False";
+            String correctAns = ((TrueFalse) question).getAnswer() ? "true" : "false";
             addOptions(TrueFalse.OPTIONS, correctAns, response.getResponse());
         }
     }
@@ -65,10 +65,10 @@ public class ResponseCard extends UiPart<Region> {
     private void addOptions(List<String> options, String correctAnswer, String userAnswer) {
         for (String op : options) {
             Label label = new Label(op);
-            if (op.equals(userAnswer)) {
+            if (op.toLowerCase().equals(userAnswer.toLowerCase())) {
                 label.setStyle(LABEL_BACKGROUND_RED);
             }
-            if (op.equals(correctAnswer)) {
+            if (op.toLowerCase().equals(correctAnswer.toLowerCase())) {
                 label.setStyle(LABEL_BACKGROUND_GREEN);
             }
             markedOptions.getChildren().add(label);
