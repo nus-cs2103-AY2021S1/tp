@@ -11,7 +11,7 @@
 * [3.4. Storage Component](#35-storage-component)
 * [3.4. Common Class](#36-common-classes)
 
-4.[ Implementation](#4-implementation)  
+4.[ Implementation](#4-implementation) 
 5.[ Documentation, Logging and Testing](#5-documentation-logging-testing-configuration-dev-ops)  
 6.[ Appendix A: Requirements](#6-appendix-a-requirements)  
 7.[ Appendix B: User Stories](#7-appendix-b-user-stories)  
@@ -156,6 +156,40 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## 4. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### 4.1. Searching for specific `exercise`
+
+(by Xinyi)
+
+This section addresses how the `find` and `recall` commands work. 
+
+The `find` command allows users to search through the Exercise Book based on users' inputs. Users should enter at least one field. The search results can then be displayed in the GUI's Exercise Book.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### \[Proposed\] Undo/redo feature
 
