@@ -16,15 +16,11 @@ Together with my team, we morphed the exiting java application Address Book (Lev
 Given below are my contributions to the project.
 
 **New Features:**
-- Adding a staff record
-  - What it does: Allows user to add the record of a staff with the compulsory fields of Name, Email, Phone, Address.
+- Adding a staff and applicant record
+  - What it does: Allows user to add the record of a staff and applicant with the compulsory fields of Name, Email, Phone, Address.
   - Justification: This feature forms the foundation of our HR application as we need to store records that the user 
     adds.
-- Adding an applicant record
-  - What it does: Allows user to add the record of a staff with the compulsory fields of Name, Email, Phone, Address
-  - Justification: This feature forms the foundation of our HR application as we need to store records that the user
-    adds.
-  - Highlights: User can delay the input of Interview Date, so they can set an Interview date while adding an applicant
+  - Highlights: For the applicant records, user can delay the input of Interview Date, so they can set an Interview date while adding an applicant
     or add that detail in later with the edit command. 
 - Deleting an applicant record
   - What it does: Allows the user to delete a specific record of a staff based on the index provided.
