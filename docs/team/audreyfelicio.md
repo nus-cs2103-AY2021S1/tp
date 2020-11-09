@@ -2,7 +2,6 @@
 layout: page
 title: Audrey's Project Portfolio Page
 ---
-
 ### Project: Warenager
 
 Warenager is an **inventory management application** to help warehouse managers
@@ -18,39 +17,36 @@ Given below are my contributions to the project.
   on the tP Code Dashboard.
 
 * **Features and Enhancements Implemented**
-  * **New Feature**: Added the ability to update existing stocks in the inventory. (Pull requests [\#101](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/101), [\#157](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/157), [\#214](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/214), [\#222](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/222), [\#258](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/258))
-    * What it does: Allows the user to update the details of the desired stock.
-    * Justification: This feature improves the user experience as user can easily edit the details of
-    existing stocks. Users now do not need to remove the item and then add them back in order to
-    edit the details.
+  * **New Feature**: Added the ability to update existing stocks in the inventory. (Pull requests
+  [\#101](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/101),
+  [\#157](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/157),
+  [\#214](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/214),
+  [\#222](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/222),
+  [\#258](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/258))
+    * What it does: Allows the user to update the details of the desired stocks.
+    * Justification: This feature allows the user to update stocks without the need to remove first and then add back
+    the stocks with new details.
     * Highlights: Multiple stocks are able to be updated in one step. User can update the name, source, low quantity
-    threshold, quantity, and location details of a stock. The implementation was challenging a helper class was
-    needed to generate the updated stock without tampering with the original stock in the inventory. Implementing
-    the increment quantity in update was the most challenging thing in this feature since a helper class to
-    abstract and encapsulate the process of adding value to a quantity was needed.
+    threshold, quantity, and location details of a stock. The implementation was challenging as the implementation need
+    to preserve data integrity if an error occurs while updating.
 
   * **New Feature**: Added the ability to sort existing stocks in the inventory. (Pull request [\#151](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/151))
     * What it does: Allows the user to sort the stocks in the inventory by the field the user wants.
-    * Justification: This feature improves the user experience as the user can list the existing stocks by
-    the user's order preference. Sorting in alphabetical order also helps for easier viewing of stocks.
-    * Highlights: User can sort by name, source, quantity, serial number, or location. For each field the user can also
-    further specify whether to sort in ascending or descending order. The implementation was quite challenging since
-    adaptation to the `ModelManager` was needed in order to sort the internal `FilteredList` inside `ModelManager`.
-    Another thing that is challenging is to generate different comparators for different fields.
+    * Justification: This feature allows the user to sort stocks according to the user's preference for easier viewing.
+    * Highlights: User can sort by name, source, quantity, serial number, or location and in both ascending
+    and descending order. The implementation was challenging since it requires comparators to sort the stocks.
   
-  * **New Feature**: Added the ability to suggest correct commands to the user. (Pull requests [\#133](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/133), [\#187](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/187), [\#261](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/261))
-    * What it does: Suggests the correct command format to the user if the command user input is in the wrong format.
-    * Justification: This feature improves the user experience as the user can view and type the correct command form
-    easily after entering a faulty command. This makes the user more convenient as every time the user enters a wrong
-    command format, the user will not need to refer to the user guide or help and instead just need to type the suggested
-    message.
-    * Highlights: This feature uses the minimum edit distance heuristics to calculate the closest correct command word.
-    The suggestion for the fields and prefixes is generated based on the user input itself. The minimum edit distance
-    heuristics is implemented using dynamic programming algorithm. The implementation for this feature was the most
-    challenging since suggestion feature requires all error message format to be standardized and a lot of research
-    regarding the string comparison heuristic and the algorithm was needed. Another thing that made this challenging is
-    that to make sure the suggestion generated is correct and hence a lot of parameter checking is needed in generating
-    the suggestion message.
+  * **New Feature**: Added the ability to suggest correct commands to the user. (Pull requests
+  [\#133](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/133),
+  [\#187](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/187),
+  [\#261](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/261))
+    * What it does: Suggests a correct command format to the user if the command the user entered is invalid.
+    * Justification: This feature allows the user to view and type the correct command form easily after entering an
+    invalid command.
+    * Highlights: This feature uses the minimum edit distance heuristic to calculate the closest correct command word.
+    The suggestion for the fields and prefixes is generated based on the user input and default parameters.
+    The implementation was the most challenging since a lot of research on the algorithm for string comparison heuristic
+    was needed.
 
 * **Git & Repository**:
   * Created the team repository by forking from `nus-cs2103-AY2021S1/tp`.
