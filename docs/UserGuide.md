@@ -547,6 +547,27 @@ is shown in the screenshot above. In the actual application, you can scroll down
 </div>
 
 ### 3. Commands - Manpower Management <a name="commands-manpower-management"></a>
+
+The Manpower Management features allows you to keep a record of your employees' data (i.e. employee's names,
+employee's phone numbers, tags that indicate what days the employee is available to work, etc) inside
+Employee Directory. You are able to view data related to manpower in the Employee Directory inside the _Main
+ View_.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about available drinks:**<br>
+
+* All employees who are currently working in the shop are active (unarchived) employees.
+
+* Employees who are no longer working in the shop can be deleted from the Employee Directory (refer to command `c
+-delete` for details), or moved to the archived Employee Directory (refer to `c-archive` for details).
+
+* All active (unarchived) employees' information is stored in the active Employee Directory.
+
+* All archived employees' information is stored in the archived Employee Directory.
+
+</div>
+
 #### 3.1 Adding an employee : `c-add`
 
 Adds an employee to the Employee Directory.
@@ -565,7 +586,8 @@ Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...`
 
 Example: 
 
-Let's say you want to add an employee called John Doe to the Employee Directory. His phone number is 98765432. His emergency contact is 81234567. His address is Blk 123 ABC Road. Assume he is a part-time employee, and he only can work on Friday. So you want to indicate these two characteristics in tCheck. You can assign him two labels, "Friday" and "PartTime" so that you can use find-employees-by-tags features (refer to `c-tag-find` for more details) to find a group of employees by their tag(s).You can follow these instructions:
+Let's say you want to add an employee called John Doe to the Employee Directory. His phone number is 98765432. His
+ emergency contact is 81234567. His address is Blk 123 ABC Road. Assume he is a part-time employee, and he only can work on Friday. So you want to indicate these two characteristics in tCheck. You can assign him two labels, "Friday" and "PartTime" so that you can use find-employees-by-tags features (refer to `c-tag-find` for more details) to find a group of employees by their tag(s). You can follow these instructions:
 
 1. Type `c-add n/John Doe p/98765432 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime` into the _Command Box_.
 1. Press "Enter" to execute.
@@ -925,7 +947,7 @@ Format: `c-archive-all`
 
 Example:
 
-Let's say after you familiarize yourself with tCheck, you want to remove all sample data in employee directory. But
+Let's say after you familiarise yourself with tCheck, you want to remove all sample data in employee directory. But
  you don't want to permanently delete those data, so that you can use them as a reference in the future. To archive
   all employees, you can follow these instructions:
 
@@ -965,7 +987,7 @@ Archived employees will be shown with a red color label, named as "[Archived]", 
 
 Example:
 
-Let's say you want to see an archived employee's information. You can follow these instructions:
+Let's say you want to find an archived employee's information. You can follow these instructions:
 
 1. Type `c-archive-list` into the _Command Box_.
 2. Press "Enter" to execute.
