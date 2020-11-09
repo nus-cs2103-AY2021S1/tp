@@ -15,7 +15,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](https://www.linkedin.com/in/simon-teo-94a4a158/)]
 [[github](https://github.com/simonteozw)]
-[[portfolio](https://github.com/simonteozw/tp)]
+[[portfolio](https://ay2021s1-cs2103t-w13-4.github.io/tp/team/simonteozw.html)]
 
 * Role: Documentation Master
 
@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/justweihong.png" width="200px">
 
 [[github](http://github.com/justweihong)]
-[[portfolio](https://github.com/justweihong/tp)]
+[[portfolio](https://ay2021s1-cs2103t-w13-4.github.io/tp/team/justweihong.html)]
 
 * Role: UI
 
@@ -32,7 +32,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/nottiffchan.png" width="200px">
 
-[[github](http://github.com/nottiffchan)] [[portfolio](https://github.com/nottiffchan/tp)]
+[[github](http://github.com/nottiffchan)] [[portfolio](https://ay2021s1-cs2103t-w13-4.github.io/tp/team/nottiffchan.html)]
 
 * Role: Deliverables and Deadlines
 
@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/unclegrandpa925.png" width="200px">
 
-[[github](https://github.com/UncleGrandpa925)] [[portfolio](https://github.com/UncleGrandpa925)]
+[[github](https://github.com/UncleGrandpa925)] [[portfolio](https://ay2021s1-cs2103t-w13-4.github.io/tp/team/unclegrandpa925.md)]
 
 * Role: Team Leader
 
@@ -49,6 +49,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/nguyendqminh.png" width="200px">
 
 [[github](http://github.com/nguyendqminh)]
-[[portfolio](https://github.com/nguyendqminh/tp)]
+[[portfolio](https://ay2021s1-cs2103t-w13-4.github.io/tp/team/nguyendqminh.html)]
 
 * Role: Testing Master
