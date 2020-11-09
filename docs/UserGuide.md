@@ -90,12 +90,12 @@ The table below explains certain terms used in the document to describe differen
 
 This document is written in a manner where formatting is applied to text in order to convey different meanings. The table below will explain what these formatting uses are, what they look like, and what they mean in the context of the document.
 
-| Formatting    | Meaning                                                      |
-| ------------- | ------------------------------------------------------------ |
-| `code`        | Words in 'code' format refer to commands (or fields in commands) that can be typed into the command line. |
-| *Italics*     | Words in italics refer to example parameters, which is what you, the user could type as the parameter that needs to be provided. |
-| [Underline]() | Words that are in blue and underlined when hovered over refer to hyperlinks. Hyperlinks are clickable, and bring you either to different parts of this document or to external websites, for the convenience of navigating quickly to different parts of the document or the web. |
-| **Bold**      | The name of the application **Trackr** is written in bold to refer to what the application does or how it responds to user input. |
+| Formatting                  | Meaning                                                      |
+| --------------------------- | ------------------------------------------------------------ |
+| `code`                      | Words in 'code' format refer to commands (or fields in commands) that can be typed into the command line. |
+| *Italics*                   | Words in italics refer to example parameters, which is what you, the user could type as the parameter that needs to be provided. |
+| [Underline](#22-formatting) | Words that are in blue and underlined when hovered over refer to hyperlinks. Hyperlinks are clickable, and bring you either to different parts of this document or to external websites, for the convenience of navigating quickly to different parts of the document or the web. This example on the left will bring you to this section (2.2 Formatting). |
+| **Bold**                    | The name of the application **Trackr** is written in bold to refer to what the application does or how it responds to user input. |
 
 ### 2.3 Command Format
 
@@ -793,7 +793,6 @@ Command | Description | Compatible View
 `listTG` | Lists all tutorial groups in the Tutorial Group view | TUTORIAL GROUP
 `viewStudent INDEX` | Shows the student list of a target tutorial group | TUTORIAL GROUP
 `listStudent` | Lists all students in the Student view | STUDENT
-`viewAttendance INDEX` | Shows the attendance for Target student | STUDENT
 `prevView` | Returns to the previous view | ANY
 
 

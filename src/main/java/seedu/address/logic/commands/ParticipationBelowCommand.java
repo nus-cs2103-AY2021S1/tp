@@ -12,7 +12,7 @@ public class ParticipationBelowCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Shows a new list of students whose participation score falls below the upper bound.\n"
             + "Parameters: UPPER_BOUND (must be one positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 5 ";
+            + "Example: " + COMMAND_WORD + " 35";
 
     public static final String MESSAGE_PARTICIPATION_BELOW_SUCCESS = "Here are the students whose "
             + "participation are below %s";
