@@ -491,9 +491,6 @@ was updated, the `addHeightRecord` and `addWeightRecord` methods would be called
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-
-<div style="page-break-after: always;"></div>
-
 **Value proposition**:
 * Helps users manage a central database for keeping track of patients' records efficiently.
 * Manage patients' records quickly through a simple and intuitive UI.
