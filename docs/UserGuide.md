@@ -334,7 +334,7 @@ Examples:
 
     1. Initially, list of patients is not sorted by name as seen below:
         
-        ![Sort Nric example](images/SortNric.PNG)
+        ![Sort Nric example](images/SortNric0.png)
         Figure 9.1 List of patients not sorted by name
         
     2. After user inputs `sort name` list is sorted as seen below:
@@ -346,7 +346,7 @@ Examples:
     
     1. Initially, list of patients is not sorted by NRIC as seen below:
         
-        ![Sort Nric example](images/SortName.PNG)
+        ![Sort Nric example](images/SortName0.png)
         Figure 9.3 List of patients not sorted by NRIC
     
     2. After user inputs `sort NRIC` list is sorted as seen below:
