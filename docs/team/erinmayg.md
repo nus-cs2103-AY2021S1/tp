@@ -12,33 +12,35 @@ Given below are my contributions to the project.
 * **New Feature**: Implemented Modules (including its attributes and UniqueModuleList)
   * What it is: A representation of modules that are available in the user's university/college.
   * Justification: This feature improves the product by allowing users to insert modules into the app.
-  * Highlights: This feature is a foundation for module-related commands to be added in the future. It required an in
-  -depth analysis and understanding of how the application works as a whole (from displaying the components to how it
-   stores the data).
+  * Highlights: This feature is a foundation for module-related commands to be added in the future. It required an 
+   in-depth analysis and understanding of how the application works as a whole (from displaying the components to
+   how it stores the data).
   
 * **New Feature**: Added the ability to list all modules
   * What it does: A command to show all available modules in the active semester in the module list.
   * Justification: This feature improves the product by allowing users to only reset the view of the module list
    while still keeping the filtered contacts list.
-  * Highlights: This feature requires an understanding of the model class.
+  * Highlights: This feature required an understanding of the model class.
 
 * **New Feature**: Added the ability to detect duplicate prefixes
   * What it does: Detects whether there's a duplicate prefix provided by the user.
-  * Justification: Restricts the user by forbidding users to enter multiple prefixes in commands which doesn't
+  * Justification: Restricts the user by forbidding multiple prefixes in commands which doesn't
    support multiple prefixes of the same type.
-  * Highlights: This feature requires an understanding of how the `ArgumentMultimap` class works.
+  * Highlights: This feature required an understanding of how the `ArgumentMultimap` class works.
 
 * **New Feature**: Added the ability to detect any prefix from the list of required prefixes
   * What it does: Checks whether there exists at least one prefix from the list of supported prefixes by a command.
   * Justification: This feature improves the app by allowing commands (such as `find` and `findmod`) to be more
-   flexible by not requiring users to provide all supported prefixes.
-  * Highlights: This feature requires an understanding of how the `ArgumentMultimap` class works.
+   flexible by not requiring users to provide all supported prefixes (users only need to input at least one prefix).
+  * Highlights: This feature required an understanding of how the `ArgumentMultimap` class works.
+
+<div style="page-break-after: always;"></div>
    
 * **New Feature**: Displays the module list and a view of switching semesters
   * What it does: Switches the tabs in the GUI to represent the switching of semesters.
   * Justification: This feature improves the product as it gives users a graphical view of all the modules in
    the active semester (Semester 1 or Semester 2).
-  * Highlights: This feature requires an in-depth understanding of how JavaFX works (both in the design aspect and
+  * Highlights: This feature required an in-depth understanding of how JavaFX works (both in the design aspect and
    the functional coding aspect) and an analysis of all existing components and its CSS attributes.
   * Credits: Module TabPane color scheme [link](https://stackoverflow.com/questions/30642032/how-to-get-rid-of-the-grey-selection-border-in-javafx).
 
@@ -65,7 +67,7 @@ Given below are my contributions to the project.
   [\#220](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/220),
   [\#226](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/226),
   [\#245](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/245),
-  [\#247](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/247),)
+  [\#247](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/247))
   * Wrote additional test utils for new features (Pull request 
    [\#61](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/61))
   * Wrote additional test cases for new and existing features (Pull requests 
@@ -93,7 +95,10 @@ Given below are my contributions to the project.
     * Added the use cases for all features:
     [\#31](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/31),
     [\#96](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/96),
-    [\#240](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/240)
+    [\#240](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/240),
+    [\#262](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/262)
+    * Added the manual testing for most features:
+    [\#262](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/262)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 

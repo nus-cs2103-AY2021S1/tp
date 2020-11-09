@@ -134,7 +134,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Find by attributes feature
+### Find contacts by attributes feature
 
 #### Implementation
 
@@ -189,13 +189,13 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 ##### Aspect: How findmod executes
 
-* **Alternative 1 (current choice):** AND searching from multiple attributes and OR searching between keywords for module name and instructor attributes. Module code attribute only allows single keywords.
-  * Pros : Provides the ability to narrow down the search results by adding more attributes while also allowing more flexible search within the attributes. Single keyword for module code attribute allows for more focused module code searches.
-  * Cons : Unable to search for multiple modules with different module attributes and unable to search for multiple modules with different module codes.
+* **Alternative 1 (current choice):** AND searching from multiple attributes and AND searching between keywords for module name and instructor attributes. Module code attribute only allows single keywords.
+  * Pros : Provides the ability to narrow down the search results by adding more attributes and keywords. Single keyword for module code attribute allows for more focused module code searches.
+  * Cons : Unable to have a more general search and unable to search for multiple modules with different module codes.
 
-* **Alternative 2:** And searching across attributes and disallow multiple keyword search across all attributes.
-  * Pros : Provides the ability for a very focused module search.
-  * Cons : Attributes like instructor name and module name might be difficult to remember, and might be difficult to find with just one keyword.
+* **Alternative 2:** And searching across attributes and OR searching between keywords for module name and instructor attributes. 
+  * Pros : Provides the ability for a very general and flexible search.
+  * Cons : Unable to have a more focused search, might be more confusing for the user to narrow down his/her searches.
 
 ### Deleting Module feature
 
@@ -235,21 +235,6 @@ The following activity diagram summarizes what happens when a user executes a de
   * Pros : Dean does not have to memorise all the module code, can simply delete based on what is shown in the module list.
   * Cons : Less intuitive.
 
-####  Deleting a module from the module list
-
-  a. Prerequisites:  Delete a module from the module list using the `delmod` command. There are only 3 modules with module codes `CS2103`, `CS2100`, `CS1010S` in FaculType.
-
-  b. Test case: `delmod m/CS2103`
-  Expected: Module with module code `CS2103` would be deleted from the module list.
-
-  c. Test case: `delmod m/CS1101S`
-  Expected: No module is deleted from the module list since `CS1101S` is not a module that exists in the module list. Error details shown in the status message. Status bar remains the same.
-
-  d. Test case: `delmod m/CS2103 m/CS2100`
-  Expected: No module is deleted from the module list because `delmod` does not allow for multiple deletions. Error details shown in the status message. Status bar remains the same.
-
-  { more test cases ... }
-
 ### Assign feature
 
 #### Implementation
@@ -257,6 +242,14 @@ The following activity diagram summarizes what happens when a user executes a de
 The assign feature is facilitated by `AssignCommand` and `AssignCommandParser`.
 It uses an operation `AddressBook#assignInstructor()` which is exposed in the `Model` interface as `Model#assignInstructor()`.
 Then, the `assignInstructor()` operation is called in both `UniqueModuleList` and `Module`. `Module#assignInstructor()` will add the instructor to the module's set of instructors.
+
+The following sequence diagram shows how the assign operation works:
+
+![AssignSequenceDiagram](images/AssignSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes an assign command:
+
+![AssignActivityDiagram](images/AssignActivityDiagram.png)
 
 #### Design consideration:
 
@@ -285,28 +278,6 @@ The following activity diagram summarizes what happens when a user executes a un
 
 ![UnassignActivityDiagram](images/UnassignActivityDiagram.png)
 
-#### Unassigning a certain instructor from one or more modules
-a. Prerequisites : Unassign all instructors from all modules using the `unassignall` command. There are only 3 modules with module codes `CS2103`, `CS2100`, `CS1010S` in FaculType.
-Contact on index `1` is an instructor of module with module code `CS2103` and `CS2100`, while contact on index `2` is an instructor of module with module code `CS2100` and `CS1010S`.
-
-b. Test case : `unassign 1 m/CS2103 m/CS2100`<br>
-Expected : First contact is unassigned from both CS2103 and CS2100 modules. First contact is no longer an instructor of CS2103 nor CS2100 module.
-
-c. Test case : `unassign 2 m/CS2103 m/CS2100`<br>
-Expected : No contact is unassigned from any modules because instructor on index `2` is not an instructor of module `CS2103`.
-
-d. Test case : `unassign 0 m/CS1010S`<br>
-Expected : No contact is unassigned from any modules. Error details shown in the status message. Status bar remains the same.
-
-e. Test case : `unassign 1 m/CS3230`<br>
-Expected : No contact is unassigned from any modules. Error details shown in the status message. Status bar remains the same.
-
-f. Other incorrect unassign commands to try : `unassign`, `unassign x m/y` (where x is larger that the list size or is not an instructor of module y), `unassign a m/b` (where b does not exist in FaculType)<br>
-Expected : Similar to previous.
-
-{ more test cases ... }
-
-
 ### Unassignall feature
 
 The assign feature is facilitated by `UnassignallCommand` and `UnassignallCommandParser`.
@@ -320,7 +291,6 @@ The following sequence diagram shows how the unassignall operation works:
 The following activity diagram summarizes what happens when a user executes a unassignall command:
 
 ![UnassignallActivityDiagram](images/UnassignallActivityDiagram.png)
-
 
 #### Design consideration:
 
@@ -345,19 +315,7 @@ These operations are exposed in the `Model` interface as `Model#clearContacts()`
 
 The following sequence diagram shows how the cclear operation works:
 
-![UndoRedoState0](images/ClearContactsSequenceDiagram.png)
-
-Clearing all contacts from the contact list
-
-a. Prerequisites : Clear all contacts from contact list using `cclear` There are 3 contacts with names `Andre Taulani`, `Bayu Skak`, `Cak Lontong` in FaculType.
-
-b. Test case : `cclear` <br>
-Expected : Success message saying "All contacts deleted"
-
-c. Test case : `cclear` on an empty contact list <br>
-Expected : Error message saying "Contact list is already empty".
-
-{ more test cases ... }
+![CclearSequenceDiagram](images/CclearSequenceDiagram.png)
 
 ### Clear all modules feature
 
@@ -367,39 +325,36 @@ It implements the following operations:
 * `AddressBook#clearMod()` — Clear all modules from the list.
 
 These operations are exposed in the `Model` interface as `Model#clearMod()` and `UniqueModuleList` class as `UniqueModuleList#clearAll()`
-
 The following sequence diagram shows how the mclear operation works:
 
-![UndoRedoState0](images/MclearCommandSequenceDiagram.png)
+![MclearSequenceDiagram](images/MclearSequenceDiagram.png)
 
-Clearing all modules from the module list
+### Switch active semester feature
 
-a. Prerequisites : Clear all modules from module list using `mclear` There are 3 modules with module codes `CS2100`, `CS2101`, `CS2102` in FaculType.
+#### Implementation
 
-b. Test case : `mclear` <br>
-Expected : Success message saying "All modules deleted"
+The switch feature is facilitated by `AddressBook#switchModuleList()` which is exposed in the `Model` interface as `Model#switchModuleList()`.
 
-c. Test case : `mclear` on an empty module list <br>
-Expected : Error message saying "Module list is already empty".
+AddressBook has two module lists, one for each semester, and one additional `UniqueModuleList` variable named `activeModules` that stores a reference to the active semester's module list. 
+`AddressBook#switchModuleList()` toggles which module list is referenced by `activeModules`.
+All `AddressBook` operations on `UniqueModuleList` are done on `activeModules`.
 
-{ more test cases ... }
+The following sequence diagram shows how the switch operation works:
 
-### \[Proposed\] Switch feature
+![SwitchSequenceDiagram](images/SwitchSequenceDiagram.png)
 
-#### Proposed Implementation
+The following activity diagram summarizes what happens when a user executes a switch command:
 
-The switch feature is facilitated by `AddressBook#switchActiveSemester()`.
-The `AddressBook` will store three module lists, one for Semester 1, one for Semester 2, and one to reference the active semester.
-All operations on `UniqueModuleList` will be done on the active semester. `AddressBook#switchActiveSemester()` toggles the active semester between Semester 1 and Semester 2.
+![SwitchActivityDiagram](images/SwitchActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: Viewing a certain semester
+##### Aspect: Setting the active semester
 * **Alternative 1 (current choice):** There are two module lists and active semester references one of them.
-  * Pros: Less code to change, more difficult to test.
+  * Pros: Less code to change.
   * Cons: Can only manage the modules in the active semester.
 
-* **Alternative 2:** There is only one module list and there is a filter to only show modules of a particular semester.
+* **Alternative 2:** There is only one module list and there is a filter to select modules of a particular semester.
   * Pros: More efficient to list the modules of a certain instructor.
   * Cons: Need to add semester field to modules and commands, will have two copies of the same module if held in both semesters, more code to change.
 
@@ -484,12 +439,29 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the contact being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+--------------------------------------------------------------------------------------------------------------------
 
-### \[Proposed\] Data archiving
+## **Current bugs and feature ideas**
 
-_{Explain here how the data archiving feature will be implemented}_
+This section describes bugs found in the current version of FaculType and 
+feature ideas that have been proposed but currently don't have implementation details yet.
+Both of which are to be fixed/implemented in the next version of FaculType.
 
+### Current bugs:
+
+* Editing a contact's identifying attributes (name, phone, email) to be the same as another contact's causes problems due to the detection of duplicate contacts.
+This bug is inherited from the parent project AddressBook Level 3.
+* A tag in a contact card and an instructor tag in a module card may be cut off if the text inside is too long or if there are too many tags.
+This bug is inherited from the parent project AddressBook Level 3.
+
+Example of the tag bug:
+
+![TagBug](images/TagBug.png)
+
+### Feature ideas:
+
+* Order filter results of contacts and modules by how much they match the specified parameters.
+* Differentiate instructor tags in module cards for instructors with the same name.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -525,28 +497,27 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                 | I want to …​                   | So that I can…​                                                        |
+| Priority | As a …​                                 | I want to …​                   | So that I can…​                                                 |
 | -------- | ------------------------| -----------------------------------|--------------------------------------------------------------------------------------|
 | `* * *`  | new user                | see usage instructions             | refer to instructions when I forget how to use the App                               |
 | `* * *`  | user                    | add a new contact                  |                                                                                      |
-| `* * *`  | user                    | delete a contact                   | remove entries that I no longer need                                                 |
+| `* * *`  | user                    | delete a contact                   | remove contacts that I no longer need                                                |
 | `* * *`  | user                    | find a contact by attributes       | locate details of contacts without having to go through the entire list              |
 | `* * *`  | forgetful user          | add remarks to contacts            | remember certain details about them                                                  | 
 | `* * *`  | faculty leader          | store a contact's office           | keep track of where to find them                                                     |
 | `* * *`  | faculty leader          | store a contact's department       | keep track of their respective field                                                 |
-| `* * *`  | faculty leader          | edit a contact's office            | keep the data up to date                                                             |
-| `* * *`  | faculty leader          | edit a contact's department        | keep the data up to date                                                             |
+| `* * *`  | faculty leader          | edit a contact's office            | keep the contact data up to date                                                     |
+| `* * *`  | faculty leader          | edit a contact's department        | keep the contact data up to date                                                     |
 | `* * *`  | faculty leader          | add a new module                   |                                                                                      |
 | `* * *`  | faculty leader          | delete a module                    | remove modules no longer offered                                                     |
-| `* * *`  | faculty leader          | find modules by their code         |                                                                                      |
-| `* * *`  | faculty leader          | find modules by their name            |                                                                                   |
-| `* * *`  | faculty leader          | find modules by the instructor's name |                                                                                   |
-| `* * *`  | faculty leader          | assign a contact to various modules       | keep a record of all the modules they teach                                   |
-| `* * *`  | faculty leader          | unassign a contact from various modules   | update the record of instructors when necessary                               |
-| `* * *`  | faculty leader          | unassign all instructors from all modules | update the record of instructors when there are syllabus restructuring        |
+| `* * *`  | faculty leader          | find modules by attributes         | locate modules without having to go through the entire list                          |
+| `* * *`  | faculty leader          | find modules by the instructor's name | locate modules instructed by the instructor                                       |
+| `* * *`  | faculty leader          | assign a contact to various modules       | keep track of the modules they instruct                                       |
+| `* * *`  | faculty leader          | unassign a contact from various modules   | update the assignment data if they no longer instruct those modules           |
+| `* * *`  | faculty leader          | unassign all instructors from all modules | quickly reset the assignment data if I need to change most of the assignments |
 | `* * *`  | user                    | clear all contacts                  |                                                                                     |
-| `* * *`  | faculty leader          | clear all modules                   | discard all previous semester's information                                         |
-| `* * *`  | faculty leader          | be able to switch semester easily   | shift semester without having to reassign all instructors                           | 
+| `* * *`  | faculty leader          | clear all modules                   | discard all the semester's information                                              |
+| `* * *`  | faculty leader          | be able to switch semesters easily   | manage the other semester without having to reassign instructors                   | 
 
 *{More to be added}*
 
@@ -554,6 +525,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `FaculType` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Listing all contacts and modules**
+
+**MSS**
+
+1.  User requests to list all contacts and modules.
+2.  FaculType shows all contacts and modules in the active semester.
+    
+    Use case ends.
+
+**Use case: Listing all contacts**
+
+**MSS**
+
+1.  User requests to list all contacts.
+2.  FaculType shows all contacts.
+    
+    Use case ends.
+
+**Use case: Listing all modules**
+
+**MSS**
+
+1.  User requests to list all modules.
+2.  FaculType shows all modules in the active semester.
+    
+    Use case ends.
+    
 **Use case: Add a contact**
 
 **MSS**
@@ -599,7 +597,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. FaculType shows an error message.
 
       Use case resumes at step 1.
-      
+
 **Use case: Delete a contact**
 
 **MSS**
@@ -874,6 +872,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+**Use case: Resetting data**
+
+**MSS**
+
+1.  User requests to reset data.
+2.  FaculType deletes all contacts and modules.
+    
+    Use case ends.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -893,15 +900,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Contact**: A member of a faculty
-* **Contact attribute**: A piece of information associated to a contact, i.e. name, contact, number, email, department, office, remark, tag(s)
-* **Remark**: A short description of a contact. Remark is an optional contact attribute
-* **Tag**: An optional one-word identifier of a contact. A contact can have multiple tags
-* **Module**: A course held in a college or university. A module can be assigned to a contact
-* **Module attribute**: A piece of information associated to a module, i.e. module code, module name
-* **Module code**: A shorter unique identifier of a module
-* **Module name**: An identifier for a module that is more descriptive than the module code
-* **Instructor** : A faculty member who teaches a particular module
-* **Assignment**: A module handled by a contact. Assignment links a contact with a module. Once linked, the contact can be considered an instructor
+* **Contact attribute**: A piece of information associated to a contact, i.e. name, contact, number, email, department, office.
+* **Remark**: A short description of a contact. A remark is optional.
+* **Tag**: An optional one-word identifier of a contact. A contact can have multiple tags.
+* **Module**: A course held in a college or university. A module can be assigned to a contact.
+* **Module attribute**: A piece of information associated to a module, i.e. module code, module name.
+* **Module code**: A shorter unique identifier of a module.
+* **Module name**: An identifier for a module that is more descriptive than the module code.
+* **Instructor** : A contact who instructs a particular module.
+* **Assignment**: A module handled by a contact. Assignment links a contact with a module. Once linked, the contact can be considered an instructor.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -927,49 +934,357 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+       
+### Listing all contacts 
 
-1. _{ more test cases …​ }_
+1. Test case: `clist`
+   Expected: All contacts are shown in the contact list.
+    
+1. Test case: `clist x`
+   Expected: Contact list remain in their original state. Error details shown in the status message.
+   
+### Listing all modules
 
+1. Test case: `mlist`
+   Expected: All modules in the active semester are shown in the module list.
+    
+1. Test case: `mlist x`
+   Expected: Module list remain in their original state. Error details shown in the status message.
+
+### Adding a contact
+
+1. Adding a contact while all contacts are being shown
+
+   1. Prerequisites: List all contacts using the `list` or `clist` command.
+   
+   1. Test case: `add n/Alice Liddel p/987654321 e/aliceliddel@example.com d/FASS o/AS5-04-03`<br>
+      Expected: The contact is added as the last index in the contact list. Details of the added contact shown in the
+       status message.
+       
+   1. Test case: `add n/Alice Liddel p/9876**** e/aliceliddel@example.com d/FASS o/AS5-04-03`<br>
+         Expected: The contact is not added. Error details shown in the status message.
+
+   1. Test case: `add n/Alice Liddel`<br>
+      Expected: No contact is added. Error details shown in the status message. 
+
+   1. Other incorrect delete commands to try: `add`, `add n/Alice * p/8765432 e/aliceliddel@example.com d/FASS o/As5
+   -04-03`, `...` <br>
+      Expected: Similar to previous.
+
+1. Adding a contact while contacts are being filtered
+    
+   1. Prerequisites: Filter contacts by attributes using the `find` command.
+
+   1. Test cases similar to previous.
+   Expected: similar to each respective test cases but the contact list is reset to show all contacts.
+   
+1. Adding a contact with identical attributes
+
+   1. Prerequisites: There exists a contact in the contact list.
+   Example: <br>
+   `name: Alex Yeoh`<br>
+   `phone: 987654321` <br>
+   `email: alexyeoh@example.com`<br>
+   `department: Computing`<br>
+   `office: COM2-03-04`
+   
+   1. Test case: `add n/Alex Yeoh p/87654321 e/alexyeoh@example.com d/Computing o/COM2-03-04`
+   Expected: The contact is added as the last index in the list. Details of the added contact shown in the status
+    message.
+    
+   1. Test case: `add n/Alex Yeoh p/987654321 e/alexyeoh@example.com d/FASS o/AS5-04-03`
+   Expected: The contact is not added. Error details shown in the status message.
+   
+   
+### Adding a module
+
+1. Adding a module while all modules are being shown
+
+   1. Prerequisites: List all contacts using the `list` or `mlist` command.
+   
+   1. Test case: `addmod m/CS2103 n/Software Engineering`<br>
+      Expected: The module is added as the last index in the module list of the active semester. Details of the added
+       module shown in the status message.
+       
+   1. Test case: `addmod m/CS2103`<br>
+         Expected: The module is added as the last index in the contact list. Details of the added contact shown in the
+          status message.
+
+   1. Test case: `add n/Alice Liddel`<br>
+      Expected: No contact is added. Error details shown in the status message. 
+
+   1. Other incorrect delete commands to try: `add`, `add n/Alice * p/8765432 e/aliceliddel@example.com d/FASS o/As5
+   -04-03`, `...` <br>
+      Expected: Similar to previous.
+
+1. Deleting a contact while contacts are being filtered
+    
+   1. Prerequisites: Filter contacts by attributes using the `find` command.
+
+   1. Test cases similar to previous.
+   Expected: similar to each respective test cases but the contact list is reset to show all contacts.
+
+   
 ### Deleting a contact
 
 1. Deleting a contact while all contacts are being shown
 
-   1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
+   1. Prerequisites: List all contacts using the `list` or `clist` command. Multiple contacts in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No contact is deleted. Error details shown in the status message. 
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Deleting a contact while contacts are being filtered
+    
+   1. Prerequisites: Filter contacts by attributes using the `find` command. Other prerequisites are similar to previous.
+
+   1. Test cases similar to previous.
+   
+### Deleting a module
+
+1. Prerequisites:  List all modules using the `list` or `mlist` command.
+Delete a module from the module list using the `delmod` command. There are only 3 modules with module codes `CS2103`, `CS2100`, `CS1010S` in FaculType.
+
+1. Test case: `delmod m/CS2103`
+Expected: Module with module code `CS2103` would be deleted from the module list.
+
+1. Test case: `delmod m/CS1101S`
+Expected: No module is deleted from the module list since `CS1101S` is not a module that exists in the module list. Error details shown in the status message. 
+
+1. Test case: `delmod m/CS2103 m/CS2100`
+Expected: No module is deleted from the module list because `delmod` does not allow for multiple deletions. Error details shown in the status message. 
+   
+### Editing a contact
+
+1. Editing a contact while all contacts are being shown
+
+   1. Prerequisites: List all contacts using the `list` or `clist` command. Multiple contacts in the list.
+
+   1. Test case: `edit 1 n/Tony Stark`<br>
+      Expected: First contact's name is changed to `Tony Stark`. Details of the edited contact shown in the status
+       message.
+       
+   1. Test case: `edit 1 t/`<br>
+         Expected: First contact's tags are deleted. Details of the edited contact shown in the status message. 
+         
+   1. Test case: `edit 1 n/**`<br>
+            Expected: No contact is edited. Error details shown in the status message. 
+
+   1. Test case: `edit 0`<br>
+      Expected: No contact is edited. Error details shown in the status message. 
+
+   1. Other incorrect delete commands to try: `edit`, `edit x`, `edit p/98765abcd`, `...` (where x is larger than the
+    list size)<br>
+      Expected: Similar to previous.
+
+1. Deleting a contact while contacts are being filtered
+    
+   1. Prerequisites: Filter contacts by attributes using the `find` command. Other prerequisites are similar to previous.
+
+   1. Test cases similar to previous.
 
 ### Finding a contact
 
-1. Finding a contact while all contacts are being shown
+1. Prerequisites: Multiple contacts in the list.
 
-   1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
+1. Test case: `find n/Alice d/Math`<br>
+   Expected: All contacts that has "Alice" in their name, and "Math" in their department are shown.
 
-   1. Test case: `find n/Alice d/Math`<br>
-      Expected: All contacts that has "Alice" in their name, and "Math" in their department is shown.
-      . Timestamp in the status bar is updated.
+1. Test case: `find n/`<br>
+   Expected: No contacts filtered. Error details shown in the status message. 
 
-   1. Test case: `find n/`<br>
-      Expected: No contacts filtered. Error details shown in the status message. Status bar remains the same.
+1. Other incorrect find commands to try: `find p/abcdef`, `find`, `find Alice`, `...`
+   Expected: Similar to previous.
 
-   1. Other incorrect find commands to try: `find p/abcdef`, `find`, `find Alice`, `...`
+### Finding a module
+
+1. Prerequisites: Multiple modules in the list.
+
+1. Test case: `findmod m/CS1010 n/Programming`<br>
+   Expected: All contacts that has "CS1010" in their module code, *and* "Programming" in their module name are shown.
+
+1. Test case: `findmod m/`<br>
+   Expected: No modules filtered. Error details shown in the status message. 
+
+1. Other incorrect find commands to try: `findmod m/CS**`, `findmod`, `findmod Alice`, `...`
+   Expected: Similar to previous.
+
+### Clearing all contacts from the contact list
+
+1. Prerequisites : List all contacts using the `list` or `clist` command.
+
+1. Test case : `cclear` <br>
+Expected : Success message saying "All contacts deleted"
+
+1. Test case : `cclear` on an empty contact list <br>
+Expected : Error message saying "Contact list is already empty".
+
+### Clearing all modules from the module list
+
+1. Prerequisites : List all modules using the `list` or `mlist` command.
+
+1. Test case : `mclear` <br>
+Expected : Success message saying "All modules deleted"
+
+1. Test case : `mclear` on an empty module list <br>
+Expected : Error message saying "Module list is already empty".
+
+### Assigning a contact to one or more modules
+
+1. Assigning a contact while all contacts are being shown
+
+   1. Prerequisites: List all contacts and modules in the active semester using the `list` command. There are only 3 modules in the active semester with module codes `CS2103`, `CS2100`, `CS1010S`.
+   Contact on index `1` is not an instructor of any module, while contact on index `2` is an instructor of modules with module codes `CS2103` and `CS2100`.
+
+   1. Test case : `assign 1 m/CS1010S`<br>
+      Expected: First contact is assigned to the CS1010S module. Name of contact shown in module card.
+      
+   1. Test case : `assign 1 m/CS2103 m/CS2100`<br>
+      Expected: First contact is assigned to both CS2103 and CS2100 modules. Name of contact shown in module cards.
+
+   1. Test case: `assign 2 m/CS2103 m/CS1010S`<br>
+      Expected: No contacts assigned to any modules. Error details shown in the status message.
+      
+   1. Test case: `assign 0 m/CS2103 m/CS2100`<br>
+      Expected: No contacts assigned to any modules. Error details shown in the status message.
+   
+   1. Test case: `assign 1 m/CS3230`<br>
+      Expected: No contacts assigned to any modules. Error details shown in the status message.
+
+   1. Other incorrect assign commands to try: `assign m/cs2013`, `assign`, `assign x m/cs2103`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Assigning a contact while contacts are being filtered
+    
+   1. Prerequisites: Filter contacts by attributes using the `find` command and list all modules using the `mlist` command. Other prerequisites are similar to previous.
+
+   1. Test cases similar to previous.  
+
+### Unassigning a contact from one or more modules
+
+1. Unassigning a contact while all contacts are being shown
+
+    1. Prerequisites : List all contacts and modules using the `list` command. There are only 3 modules in the active semester with module codes `CS2103`, `CS2100`, `CS1010S`.
+    Contact on index `1` is an instructor of module with module code `CS2103` and `CS2100`, while contact on index `2` is an instructor of module with module code `CS2100` and `CS1010S`.
+
+    1. Test case : `unassign 1 m/CS2103 m/CS2100`<br>
+    Expected : First contact is unassigned from both CS2103 and CS2100 modules. First contact is no longer an instructor of CS2103 nor CS2100 module. Name of contact removed from module cards.
+
+    1. Test case : `unassign 2 m/CS2103 m/CS2100`<br>
+    Expected : No contact is unassigned from any modules because instructor on index `2` is not an instructor of module `CS2103`.
+
+    1. Test case : `unassign 0 m/CS1010S`<br>
+    Expected : No contact is unassigned from any modules. Error details shown in the status message. 
+
+    1. Test case : `unassign 1 m/CS3230`<br>
+    Expected : No contact is unassigned from any modules. Error details shown in the status message. 
+
+    1. Other incorrect unassign commands to try : `unassign`, `unassign x m/y` (where x is larger that the list size or is not an instructor of module y), `unassign a m/b` (where b does not exist in FaculType)<br>
+    Expected : Similar to previous.
+
+1. Unassigning a contact while contacts are being filtered
+
+   1. Prerequisites: Filter contacts by attributes using the `find` command and list all modules using the `mlist` command. Other prerequisites are similar to previous.
+
+   1. Test cases similar to previous.
+   
+### Unassigning all contacts
+
+1. Prerequisites: There exists multiple modules and contacts in FaculType.
+
+1. Test case: `unassignall`
+   Expected: All contacts are unassigned from all modules.
+   
+1. Test case: `unassignall abcd`
+   Expected: No contact is unassigned. Error details shown in the status message.
+   
+### Switching the active semester
+
+1. Prerequisites: Active semester is Semester 1.
+
+1. Test case: `switch`<br>
+   Expected: Active semester switched to Semester 2. Module list view updates to the active semester.
+
+1. Test case: `switch m/`<br>
+   Expected: Active semester unchanged. Error details shown in the status message.
+
+1. Other incorrect assign commands to try: `switch switch`
+   Expected: Similar to previous.
+   
+### Resetting data
+
+1. Test case: `reset`
+   Expected: All contacts and modules are deleted from the app.
+
+1. Test case: `reset x`
+   Expected: Nothing is changed or deleted. Error details shown in the status message.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Open the `FaculType.jar` file and do any type of modification on the contact or module list.
+   1. Inside the data folder edit the `addressbook.json` file and do any of the following:
+        1. Invalid person test cases
+            - Test case: invalid phone number <br>
+              Insert an alphabetical or special characters into the `phone` attribute in `persons`. <br>
+              Example: `987654321abcd`<br>
+              Expected: FaculType will restart with the placeholder contacts and modules, all previous information
+               will be deleted.
+            - Test case: invalid name <br>
+              Insert any special character into the `name` attribute in `persons`.<br>
+              Example: `Alex Yeoh**`<br>
+              Expected: Similar to previous.
+            - Test case: invalid email <br>
+              Modify the email to be in an invalid format.<br>
+              Example: `alexgmail`<br>
+              Expected: Similar to previous.
+            - Test case: invalid office <br>
+              Insert any special character into the `department` attribute in `persons`.<br>
+              Example: `Math??`<br>
+              Expected: Similar to previous.
+            - Test case: invalid tag <br>
+              Modify the tag to have more than one word.<br>
+              Example: `best friend`<br>
+              Expected: Similar to previous.
+        1. Invalid module test cases
+            - Test case: invalid module code <br>
+              Modify the `moduleCode` to have in `modules` to have more than one word or have a special character.<br>
+              Example: `CS123**` <br>
+              Expected: FaculType will restart with the placeholder contacts and modules, all previous information
+              will be deleted.
+            - Test case: invalid module name <br>
+              Insert any special character into the module name.<br>
+              Example: `Programming Meth***`<br>
+              Expected: Similar to previous.
+            - Test case: invalid instructor <br>
+              Do any of the above invalid person test cases into the `instructors` in any of the module in `modules`.<br>
+              Expected: Similar to previous.
+        1. Duplicate contacts<br>
+           Test case: copy and paste any contact in `persons`.<br>
+           Expected: Similar to previous.
+        1. Duplicate modules<br>
+           Test case: copy and paste any module in `modules`.<br>
+           Expected: Similar to previous.
+        1. Invalid JSON format<br>
+           Test case: delete `modules` or `persons` or erase any commas (`,`) or brackets (`{ }`).<br>
+           Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
+1. Dealing with missing files.
+    
+   1. Test case: delete `config.json`<br>
+      Expected: FaculType will restart as usual.
+   
+   1. Test case: delete `preferences.json`<br>
+      Expected: Previous user preferences such as window size will be deleted and FaculType will restart with the
+       default GUI settings.
+       
+   1. Test case: delete `data/addressbook.json` <br>
+      Expected: All contact and module information will be deleted and FaculType will restart with the placeholder
+       contact and module information.

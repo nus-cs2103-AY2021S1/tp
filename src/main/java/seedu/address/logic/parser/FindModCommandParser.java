@@ -12,7 +12,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindModCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -35,7 +34,8 @@ public class FindModCommandParser implements Parser<FindModCommand> {
 
         List<Predicate<Module>> predicates = new ArrayList<>();
 
-        if (!areAnyPrefixesPresent(argMultimap, PREFIX_MODULE_CODE, PREFIX_MODULE_NAME, PREFIX_MODULE_INSTRUCTOR)
+        if (!ArgumentMultimap.areAnyPrefixesPresent(argMultimap, PREFIX_MODULE_CODE, PREFIX_MODULE_NAME,
+            PREFIX_MODULE_INSTRUCTOR)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindModCommand.MESSAGE_USAGE));
         }
@@ -51,14 +51,6 @@ public class FindModCommandParser implements Parser<FindModCommand> {
 
         assert (!predicates.isEmpty());
         return new FindModCommand(predicates);
-    }
-
-    /**
-     * Returns true if one or more of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean areAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     /**

@@ -14,6 +14,8 @@ FaculType is a **desktop app** for managing **faculty members and their modules*
     * [Contact Management](#contact-management)
     * [Module Management](#module-management)
     * [Instructor Assignment](#instructor-assignment)
+    * [Upcoming Features](#upcoming-features)
+* [Current Bugs](#current-bugs)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
@@ -145,7 +147,7 @@ Format: `delete INDEX`
 
 Examples:
 * `clist` followed by `delete 2` deletes the 2nd contact in FaculType.
-* `find n/Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
+* `find n/Janson` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
 #### Editing a contact : `edit`
 
@@ -229,9 +231,7 @@ Finds all modules in the active semester that match the given fields.
 Format : `findmod [m/MODULE_CODE] [n/MODULE_NAME] [i/INSTRUCTOR_NAME]`
 
 * `MODULE_CODE` parameter **does not** allow for multiple keywords. e.g. `cs1 cs2` would not be allowed.
-* `MODULE_NAME` and `INSTRUCTOR_NAME` parameters support search for multiple keywords. The keywords should be seperated by a spacing.
-* Partial words will be matched for `MODULE_CODE` and `MODULE_NAME` parameters. e.g. `data` will match `Database Systems`.
-* Full keywords would be required for `INSTRUCTOR_NAME` parameter. e.g. `John` will match `John Lennon` but `Joh` will not match.
+* Partial words will be matched for all parameters. e.g. `data` will match `Database Systems`.
 * The search is case-insensitive for all parameters. e.g. `cs50` will match `CS50`.
 * The order of the keywords do not matter. e.g. `Statistics and Probability` will match `Probability and Statistics`.
 * At least one of the optional fields must be provided.
@@ -240,11 +240,11 @@ Examples :
 
 * `findmod m/cs210` returns all modules with codes containing `CS210`.
 * `findmod n/programming` returns all modules with names containing `programming`.
-* `findmod n/software methodology` returns all the modules with names containing `software` **or** `methodology`.
+* `findmod n/software methodology` returns all the modules with names containing `software` **and** `methodology`.
 * `findmod m/CS2 n/security i/Alex` returns all modules with codes containing `CS2`, names containing `programming`,
 **and** instructors with names containing `Alex`.
 * `findmod m/CS2 n/Software Programming i/Damith` returns all modules with codes containing `CS2` **and**
-names containing `Software` **or** `Programming` **and** instructors with names `Damith`.
+names containing `Software` **and** `Programming` **and** instructors with names `Damith`.
 
 ### Instructor Assignment
 
@@ -289,6 +289,28 @@ Examples :
 Unassigns all contacts from all modules in the active semester.
 
 Format: `unassignall`
+
+### Upcoming Features
+
+The following features are not done yet and will be implemented in the next update.
+
+* Order filter results of contacts and modules by how much they match the specified parameters.
+* Differentiate instructor tags in module cards for instructors with the same name.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Current Bugs
+
+The following bugs still occur in the current version of FaculType and will be fixed in the next update. Using features in the following ways should be avoided.
+
+* Editing a contact's identifying attributes (name, phone, email) to be the same as another contact's causes problems due to the detection of duplicate contacts.
+This bug is inherited from the parent project AddressBook Level 3.
+* A tag in a contact card and an instructor tag in a module card may be cut off if the text inside is too long or if there are too many tags.
+This bug is inherited from the parent project AddressBook Level 3.
+
+Example of the tag bug:
+
+![TagBug](images/TagBug.png)
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -15,7 +15,7 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_MODULE_CODE = "Duplicate module code specified: %s";
     public static final String MESSAGE_INSTRUCTOR_ALREADY_ASSIGNED = "%1$s is already assigned to %2$s";
     public static final String MESSAGE_INSTRUCTOR_IS_NOT_ASSIGNED = "%1$s is not assigned to %2$s";
-    public static final String MESSAGE_PERSON_IS_NOT_AN_INSTRUCTOR = "%1$s does not teach any modules";
+    public static final String MESSAGE_PERSON_IS_NOT_AN_INSTRUCTOR = "%1$s does not instruct any modules";
     public static final String MESSAGE_DUPLICATE_PREFIX = "Prefix %s has a duplicate";
     public static final String MESSAGE_EMPTY_KEYWORD = "Keyword cannot be empty";
     public static final String MESSAGE_INVALID_MODULE_CODE_KEYWORD = "Module code keywords should be a single word";

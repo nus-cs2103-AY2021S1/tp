@@ -373,6 +373,7 @@
     -fx-padding: 8 1 8 1;
 }
 
+/* @author erinmayg-reused */
 .tab-pane {
     -fx-background-color: #0B132B;
     -fx-background-insets: 0px;
@@ -418,6 +419,7 @@
     -fx-focus-color: transparent;
     -fx-font-weight: bold;
 }
+/* @author erinmayg-reused */
 
 .tab-content-area {
     -fx-background-color: #c24848;

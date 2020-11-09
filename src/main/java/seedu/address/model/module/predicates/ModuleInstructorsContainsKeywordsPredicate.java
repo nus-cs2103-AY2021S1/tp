@@ -19,12 +19,12 @@ public class ModuleInstructorsContainsKeywordsPredicate implements Predicate<Mod
     public boolean test(Module module) {
         Set<Person> instructors = module.getInstructors();
         return keywords.stream()
-                .anyMatch(keyword -> anyInstructorsNameContainsKeyword(instructors, keyword));
+                .allMatch(keyword -> anyInstructorsNameContainsKeyword(instructors, keyword));
     }
 
     private static boolean anyInstructorsNameContainsKeyword(Set<Person> instructors, String keyword) {
         for (Person instructor : instructors) {
-            if (StringUtil.containsWordIgnoreCase(instructor.getName().toString(), keyword)) {
+            if (StringUtil.containsSubWordOrWordIgnoreCase(instructor.getName().toString(), keyword)) {
                 return true;
             }
             continue;

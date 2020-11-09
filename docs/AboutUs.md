@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/justintzuriel.png" width="200px">
 
 [[github](https://github.com/justintzuriel)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/justintzuriel.md)]
 
 * Role: Team Lead
 * Responsibilities: Deliverables and deadlines
@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/erinmayg.png" width="200px">
 
 [[github](http://github.com/erinmayg)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/erinmayg.md)]
 
 * Role: Developer
 * Responsibilities: UI
@@ -44,7 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/florenciamartina.png" width="200px">
 
 [[github](http://github.com/florenciamartina)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/florenciamartina.md)]
 
 * Role: Developer
 * Responsibilities: Documentation
@@ -54,7 +54,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/jzwoo.png" width="200px">
 
 [[github](http://github.com/jzwoo)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/jzwoo.md)]
 
 * Role: Developer
 * Responsibilities: Testing

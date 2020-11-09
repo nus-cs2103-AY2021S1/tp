@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NAME_KEYWORD;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PHONE_KEYWORD;
+import static seedu.address.logic.parser.ArgumentMultimap.areAnyPrefixesPresent;
 import static seedu.address.logic.parser.ArgumentMultimap.checkDuplicatePrefix;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -85,14 +86,6 @@ public class FindCommandParser implements Parser<FindCommand> {
         assert (!predicates.isEmpty());
 
         return new FindCommand(predicates);
-    }
-
-    /**
-     * Returns true if one of the prefixes has an {@code Optional} value in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean areAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     /**
