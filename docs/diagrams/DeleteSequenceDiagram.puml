@@ -5,14 +5,13 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ProductiveNusParser" as ProductiveNusParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant ":ParserUtil" as ParserUtil LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant "d:CommandLogic" as CommandLogic LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant "model:Model" as Model MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
 end box
 
 [-> LogicManager : execute("delete 1 2")
@@ -30,11 +29,6 @@ deactivate DeleteCommandParser
 
 ProductiveNusParser -> DeleteCommandParser : parse("1 2")
 activate DeleteCommandParser
-
-DeleteCommandParser -> ParserUtil : parseIndexes("1 2")
-activate ParserUtil
-ParserUtil --> DeleteCommandParser : List<Index> parsedIndexes
-deactivate ParserUtil
 
 
 create DeleteCommand
@@ -61,12 +55,12 @@ activate Model
 Model --> DeleteCommand
 deactivate Model
 
-DeleteCommand -> CommandLogic : checkForDuplicatedIndexes({1,2})
+DeleteCommand -> CommandLogic : checkForDuplicatedIndexes([1,2])
 activate CommandLogic
 CommandLogic --> DeleteCommand
 deactivate CommandLogic
 
-DeleteCommand -> CommandLogic : checkForInvalidIndexes({1,2}, model, DeleteCommand.MESSAGE_USAGE)
+DeleteCommand -> CommandLogic : checkForInvalidIndexes([1,2], model, DeleteCommand.MESSAGE_USAGE)
 activate CommandLogic
 CommandLogic --> DeleteCommand
 deactivate CommandLogic
