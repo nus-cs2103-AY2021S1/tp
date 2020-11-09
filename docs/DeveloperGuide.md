@@ -449,11 +449,16 @@ Below is a sequence diagram summarizing the main interactions.
 
 ![Sequence diagram for macro](images/MacroSequenceDiagram.png)
 
-##### 7.5.4 Aspect: How undo executes
+##### 7.5.4 Aspect: Design alternatives
 
-* **Alternative 1:** done the parsing/compiling on creation of the macro so we don't need to use another parser during execution.
-  * Cons: More involved and prone to bugs
+* **Alternative 1:** 'Compile' a macro into a `Command` using the existing `ParameterSet` classes.
+ * Pros: Allows us to check for more potential errors in the macro's format.
+ * Cons: Harder to implement and more complicated.
 
+* **Alternative 2: (Current Choice)** Use string substitution along with another parser instance to run commands.
+ * Pros: Much simpler implementation and less prone to bugs.
+ * Cons: Some errors in the user's macro will only be detected when the macro is being run.
+ 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 8. **Documentation, logging, testing, configuration, dev-ops**
