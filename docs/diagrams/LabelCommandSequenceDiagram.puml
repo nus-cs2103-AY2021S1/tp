@@ -56,5 +56,6 @@ deactivate CommandResult
 
 [<- LabelCommand : result
 deactivate LabelCommand
+destroy LabelCommand
 
 @enduml

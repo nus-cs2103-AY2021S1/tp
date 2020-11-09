@@ -49,5 +49,6 @@ deactivate CommandResult
 
 [<- RetagCommand : result
 deactivate RetagCommand
+destroy RetagCommand
 
 @enduml

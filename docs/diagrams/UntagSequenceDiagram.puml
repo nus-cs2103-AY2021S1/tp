@@ -35,5 +35,6 @@ deactivate CommandResult
 
 [<- UntagCommand : result
 deactivate UntagCommand
+destroy UntagCommand
 
 @enduml
