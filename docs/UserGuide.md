@@ -57,8 +57,7 @@ Interface (CLI) while still having the benefits of a Graphic User Interface (GUI
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[s/CLIENT_SOURCE]…​` can be used as ` ` (i.e. 0 times), `s/friend`, `s/foe s/family` etc.
 
-* Items without `…`​ after them can also be used multiple times. 
-  However, only the last occurrence would be used as the input to the command.<br>
+* If items without `…`​ after them was input multiple times, only the last occurrence would be used as the input to the command.<br>
   e.g. `n/NAME` can be used more than once: `n/John Doe n/Cai Shen Ye n/Betsy Crowe`,
   but only `n/Betsy Crowe` would be used as the input to the command.
 
