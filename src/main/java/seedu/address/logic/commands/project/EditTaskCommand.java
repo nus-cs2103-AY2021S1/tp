@@ -82,7 +82,6 @@ public class EditTaskCommand extends Command {
             project.addTask(taskToEdit);
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-
         if (editedTask.hasAnyAssignee()) {
             editedTask.getAssignees().forEach(assignee -> project.getParticipation(assignee).deleteTask(taskToEdit));
             editedTask.getAssignees().forEach(assignee -> project.getParticipation(assignee).addTask(editedTask));
@@ -129,7 +128,7 @@ public class EditTaskCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        // short circuit if same object
+        // short circuit if is same object
         if (other == this) {
             return true;
         }
