@@ -66,6 +66,8 @@ Given below are my contributions to the project.
    [2](https://github.com/anthony6401/ped/issues/4), 
    [3](https://github.com/anthony6401/ped/issues/6))
    
+<div style="page-break-after: always;"></div>
+   
 ## Contributions to the User Guide (Extract)
    
 Expressions with `...` at the end can be provided any number of times.<br>
@@ -110,6 +112,8 @@ and the invalid ones will be shown to the user.
 **Q**: Can tag name be duplicated?<br>
 **A**: No. The tag names must be unique for all files being managed.
     
+<div style="page-break-after: always;"></div>
+    
 ## Contributions to the Developer Guide (Extract)
 
 ### Storage component
@@ -125,6 +129,8 @@ It is also used for converting data in json format to java objects when executin
 
 This diagram shows how the `AddressBook` is saved to json file after executing a command.
 ![SaveSuccessSequence](../images/SaveStorageSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 This diagram shows how the `AddressBook` is read from json file when executing the app.
 ![ReadSuccessSequence](../images/ReadStorageSequenceDiagram.png)
