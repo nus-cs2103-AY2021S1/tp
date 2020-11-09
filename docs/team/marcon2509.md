@@ -1,18 +1,9 @@
-# Marcus Duigan Xing Yu - Project Portfolio
+---
+layout: page
+title: Marcus Duigan's Project Portfolio Page
+---
 
-___
-
-## Project: PropertyFree
-
-Given below are my contributions to the project.
-
-Overview:
-
-This document is a project portfolio that documents all contributions made to PropertyFree's development by Marcus.
-
-___
-
-## Description of Project:
+#### Description of Project:
 
 PropertyFree is a real estate management application meant for property agents to organize their properties and meetings more efficiently.
 Other application can keep track of meetings and schedules but there are relatively few applications that help track properties 
@@ -21,17 +12,7 @@ and associate them with meetings with clients.
 For our project we hope to make it more streamlined for agents to keep track of their property and have clear information about those properties
 and there clients.
 
-___
-
-##Developers of PropertyFree:
-
-PropertyFree is developed by a group of second year Computer Science Students from the School of Computing, National
-University if Singapore. This was developed for the team projects assignment for the module CS2103 and is a
-brown-field project adapting from existing projects.
-
-___
-
-## My Contributions to PropertyFree
+#### My Contributions to PropertyFree
 
 ### New Features
 
@@ -91,13 +72,14 @@ ___
 * **Documentation**:
   * User Guide:
     * Added documentation for the bid features
-    * Added table of command summary for easier reference
+    * Added table of command summary for easier reference Pull request: [#283](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/283)
     * Did cosmetic tweaks to existing documentation of all bid features
     * Reviewed and standardized entire user guide. Pull requests: [#283](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/283), [#286](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/286/files)
   * Developer Guide:
     * Added implementation details for the general `add` and `list` feature. Pull request: [#297](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/297)
     * Added implementation details for the specific bid auto sort feature and bids/meetings validity check feature. Pull request: [#297](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/297)
     * Updated Overall Architecture model and description. Pull request: [#297](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/297)
+    * Updated User Stories and Non-Functional requirements. Pull Request: [#344](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/344)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments) outside of practical exams for other teams (pull requests [#245](https://github.com/AY2021S1-CS2103T-W16-4/tp/issues/245),
