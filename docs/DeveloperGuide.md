@@ -91,6 +91,9 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -110,6 +113,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 
@@ -137,6 +143,9 @@ The `Patient`,
 * stores `Allergy`, `Condition` and `Treatment` objects, where each patient can store any number of such objects.
 * `Allergy`, `Condition` and `Treatment` are considered "medical details"/"medical tags", and inherit from the `Tag` class.
 
+
+<div style="page-break-after: always;"></div>
+
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -154,6 +163,9 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.medibook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -414,6 +426,9 @@ When any command that can affect the logic within `LogicManager` is executed (su
 command objects would call the relevant setter method from the class that implements the `Context` interface. `LogicManager` then retrieves
 this information from that very same class, thereby solving the issue without causing any cyclic dependencies while maintaining the command design pattern.
 
+
+<div style="page-break-after: always;"></div>
+
 Note:
 
 Some of the commands that makes use of the `Context` interface are:
@@ -476,6 +491,9 @@ was updated, the `addHeightRecord` and `addWeightRecord` methods would be called
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+
+
+<div style="page-break-after: always;"></div>
 
 **Value proposition**:
 * Helps users manage a central database for keeping track of patients' records efficiently.
