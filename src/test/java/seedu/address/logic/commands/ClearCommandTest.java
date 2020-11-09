@@ -1,7 +1,10 @@
 package seedu.address.logic.commands;
 
+
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalExercise.getTypicalExerciseBook;
+
+import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,13 +40,14 @@ public class ClearCommandTest {
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
-}
-
-class ExerciseBookNoWritingStubs extends ExerciseBook {
-    @Override
-    public void resetAllData() {
-        super.exercises.resetAll();
-        TemplateList.reset();
+    private class ExerciseBookNoWritingStubs extends ExerciseBook {
+        @Override
+        public void resetAllData() throws IOException {
+            super.exercises.resetAll();
+            TemplateList.reset();
+        }
     }
 }
+
+
 

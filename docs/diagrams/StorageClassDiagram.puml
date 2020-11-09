@@ -20,6 +20,7 @@ JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonExerciseBookStorage .left.|> ExerciseBookStorage
 JsonExerciseBookStorage .down.> JsonSerializableExerciseBookStorage
 JsonSerializableExerciseBookStorage .right.> JsonSerializableExercise
-JsonSerializableExercise .right.> JsonAdaptedExerciseTag
+JsonSerializableExerciseBookStorage .down.> JsonSerializableGoal
+JsonSerializableExercise ..> JsonAdaptedExerciseTag
 JsonSerializableExercise .right.> JsonAdaptedMuscleTag
 @enduml
