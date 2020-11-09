@@ -469,6 +469,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
   
+
+  
 **UC09 - User quits app**
 
 **MSS**
@@ -479,9 +481,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
       
 
-
-
-**UC08 - User adds a new policy**    
+**UC10 - User adds a new policy**    
 
 **MSS**
 
@@ -504,7 +504,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
         Use case ends.
 
-**UC09 - User clears the list of existing policy**    
+**UC11 - User clears the list of existing policy**    
 
 **MSS**
 
@@ -512,17 +512,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. System gives success message.
     
     Use case ends.
-
-**UC10 - User exits I4I**    
-
-**MSS**
-
-1. User chooses to exit I4I.
-2. System exits the program.
-    
-    Use case ends.
-
-
 
 ### Non-Functional Requirements
 
