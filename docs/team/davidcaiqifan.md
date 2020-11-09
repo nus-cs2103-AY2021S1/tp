@@ -15,17 +15,17 @@ Given below are my contributions to the project.
   * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
   * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *AB3's developer's guide described the concept of undo/redo commands, and I made use of the concepts mentioned*
+  * Credits: *AB3's developer's guide described the concept of undo/redo commands implemented here*
 
 * **New Feature**: Added features that allows the user to calculate relevant CAP details.
   * What it does: Calculates the user's CAP details based on completed modules that the user has stored in the application.
-  * Justification: This feature improves the product significantly and fits the purpose of the application very well because the application is academic focused. The user most likely will want to be able to calculate his/her academic details.
+  * Justification: This feature fits the purpose of the application very well because the application is academic focused. The user most likely will want to be able to calculate his/her academic details.
   * Highlights: This enhancement is much more useful when used in conjunction with other commands. Therefore, it required careful design considerations in order to make the feature work best with related commands. For example, the `addcmodule` command was designed to enhance this feature.
 
 * **New Feature**: Added command that allows the user to archive/unarchive his/her modules.
   * What it does: CAP5Buddy keeps track of two lists for its module tracker component : A _Regular_ module list , and a _Archived_ module list. This enhancement allows users to move modules between the two lists and archive/unarchive modules on command.
-  * Justification: This feature improves the product significantly and fits the purpose of the application very well because the application is academic focused. It is likely that the user wants to keep track of some modules that do not have information that need to be accessed as frequently. Therefore, the user may opt to archive such modules instead to reduce clutter in the main module list.
-  * Highlights: I designed this enhancement to enhance user quality of life and alleviate issues of other commands. For example, the `calculatecap` command feature requires a often large list of modules to be of practical use and this enhancement prevents cluttering of the _regular_ module list.
+  * Justification: This feature fits the purpose of the application very well because the application is academic focused. The user might want to keep track of completed modules. Therefore, the user may opt to archive such modules instead to reduce clutter in the main module list.
+  * Highlights: I designed this enhancement to enhance user quality of life and enhance other commands. For example, CAP calculator features may require a long list of modules and the ability to archive modules may be helpful.
   
 * **New Feature**: Added command that allows the user to find a module and display it in the GUI
   * What it does: Allows the user to search for a module by its name.
