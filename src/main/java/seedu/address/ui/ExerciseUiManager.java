@@ -23,7 +23,7 @@ public class ExerciseUiManager implements Ui {
     private static final String ICON_APPLICATION = "/images/Calo.png";
 
     private Logic logic;
-    private MainWindowForExercise mainWindow;
+    private MainWindow mainWindow;
 
     /**
      * Creates a {@code ExerciseUiManager} with the given {@code Logic}.
@@ -41,7 +41,7 @@ public class ExerciseUiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            mainWindow = new MainWindowForExercise(primaryStage, logic);
+            mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
         } catch (Throwable e) {
