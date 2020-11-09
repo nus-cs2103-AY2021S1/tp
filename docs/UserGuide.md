@@ -370,7 +370,7 @@ Format: `overdue`
 <div markdown="block" class="alert alert-danger">
 
 :warning: If you use `edit` to update a student's last payment date to within a month from now, the student will be hidden from the list as his payment is no longer outstanding.
-You can always view his particulars again using `list` or `find`.
+You can always view his particulars again using `list` or `find`. The same also applies if you edit his fee to $0.00.
 
 </div>
 
