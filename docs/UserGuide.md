@@ -226,7 +226,7 @@ Format: `listmodule`
  * Executing this command will remove the current archived module list from display if you are currently viewing it. You can use the `viewarchive` command to display the archived module list(See previous section).
 
  Examples:
- * `list` Views the un-archived module list on the display.
+ * `listmodule` Views the un-archived module list on the display.
 
 #### Locating modules: `findmodule`
 
@@ -518,7 +518,6 @@ assignments will contain the following fields:
   Expected Outcome: 
   
  <p aligin="center"><img src="images/GradeTracker/AddAssignment.png" border="2px solid black"></p>
-
 
 #### Editing an assignment in a module: `editassignment`
 
@@ -1218,6 +1217,15 @@ You can search for a particular event based on the name and date. This will retu
     * `findevent n/CS2103T` finds all events that have **CS2103T** in their event name.
     * `findevent d/1-1-2020 1200` finds all event that have the date and time of **1 Jan 2020 12:00**.
 
+#### List events: `listevent`
+
+Allows you to view all events.
+
+Format: `listevent`
+
+ Examples:
+ * `listevent` Views the event list on the display.
+
 ### General Features
 
 #### Undo previous user command: `undo`
@@ -1342,6 +1350,7 @@ Action | Format, Examples
 **Delete Event** | `deleteevent index` <br> e.g. `deleteevent 1`
 **Edit Event** | `editevent index [n/EVENT_NAME] [d/DATE_TIME] [t/TAG]` <br> e.g. `editevent 1 n/CS2100 d/2-1-2020 t/Done`
 **Find Event** | `findevent [n/EVENT_NAME] [d/DATE_TIME]` <br> e.g. `findevent n/CS2103T`
+**List Event** | `listevet` <br> e.g. `listevent`
 
 ## Command summary for general features
 
