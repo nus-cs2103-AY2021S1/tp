@@ -26,13 +26,6 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
-    //    /**
-    //     * Returns the student list.
-    //     *
-    //     * @see Model#getStudentList()
-    //     */
-    //    ReadOnlyTrackr<Student> getStudentList();
-
     /** Returns an unmodifiable view of the filtered list of students */
     ObservableList<Student> getFilteredStudentList();
 

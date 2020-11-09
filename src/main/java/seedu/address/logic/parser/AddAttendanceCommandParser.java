@@ -52,7 +52,13 @@ public class AddAttendanceCommandParser implements Parser<AddAttendanceCommand> 
         String[] weeksToAddString = weeks.toArray(new String[0]);
         int[] weeksToAdd = new int[size];
         for (int i = 0; i < size; i++) {
-            weeksToAdd[i] = Integer.parseInt(weeksToAddString[i]);
+            try {
+                weeksToAdd[i] = Integer.parseInt(weeksToAddString[i]);
+            } catch (NumberFormatException e) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAttendanceCommand.MESSAGE_USAGE)
+                );
+            }
         }
         return weeksToAdd;
     }

@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Represents a Person's name in the address book.
+ * Represents a Tutorial Group's day of the week in Trackr.
  * Guarantees: immutable; is valid as declared in {@link #isValidDayOfWeek(String)}
  */
 public class DayOfWeek {

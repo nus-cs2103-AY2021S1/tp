@@ -32,7 +32,7 @@ public class ModuleId {
     }
 
     /**
-     * Returns true if a given string is a valid ID.
+     * Returns true if a given string is a valid MODULE CODE.
      */
     public static boolean isValidModuleId(String test) {
         return test.matches(VALIDATION_REGEX);

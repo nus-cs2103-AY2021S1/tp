@@ -1,0 +1,22 @@
+@startuml
+!include style.puml
+
+start
+
+:User enters an ListMod
+command in the command box;
+
+:TrackrParser parses the argument;
+
+:ListModCommand is excuted;
+
+    if () then ([Trackr is in Module View])
+        :Trackr removes all existing
+        search predicates to display all modules;
+    else ([else])
+        :Trackr displays all modules;
+    endif
+:returns feedback to user;
+
+stop
+@enduml

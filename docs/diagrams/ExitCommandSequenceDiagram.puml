@@ -1,0 +1,42 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackrParser" as TrackrParser LOGIC_COLOR
+participant "e:ExitCommand" as ExitCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("exit")
+activate LogicManager
+
+LogicManager -> TrackrParser : parseCommand("exit")
+activate TrackrParser
+
+create ExitCommand
+TrackrParser -> ExitCommand
+activate ExitCommand
+
+ExitCommand --> TrackrParser: e
+deactivate ExitCommand
+
+TrackrParser --> LogicManager : e
+deactivate TrackrParser
+
+LogicManager -> ExitCommand : execute()
+activate ExitCommand
+
+create CommandResult
+ExitCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ExitCommand
+deactivate CommandResult
+
+ExitCommand --> LogicManager : result
+deactivate ExitCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

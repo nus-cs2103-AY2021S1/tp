@@ -4,7 +4,7 @@
 2. [About This Document](#2-about-this-document)<br>
     2.1 [Glossary](#21-glossary)<br>
 	2.2 [Formatting](#22-formatting)<br>
-	2.3 [Command format](#23-command-format)<br>
+	2.3 [Command Format](#23-command-format)<br>
 3. [Getting Started](#3-getting-started)<br>
     3.1 [Setting Up](#31-setting-up)<br>
     3.2 [Using Trackr](#32-using-trackr)<br>
@@ -20,28 +20,29 @@
    --- 4.2.3 [List all Tutorial Groups in the current Module: `listTG`](#423-list-all-tutorial-groups-in-the-current-module-listtg)<br>
    --- 4.2.4 [View all Students in a Tutorial Group: `viewStudent`](#424-view-all-students-in-a-tutorial-group-viewstudent)<br>
    --- 4.2.5 [List all Students in a Tutorial Group: `listStudent`](#425-list-all-students-in-a-tutorial-group-liststudent)<br>
-   --- 4.2.6 [Show the Attendance of target Student: `viewAttendance`](#426-show-the-attendance-of-target-student-viewattendance)<br>
-   --- 4.2.7 [Return to previous view: `prevView`](#427-return-to-previous-view-prevview)<br>
-   4.3 [Module features](#43-module-features)<br>
-   --- 4.2.1 [Add a module: `addMod`](#421-add-a-module-addmod)<br>
-   --- 4.2.2 [Delete a module: `deleteMod`](#422-delete-a-module-deletemod)<br>
-   --- 4.2.3 [Edit a module: `editMod`](#423-edit-a-module-editmod)<br>
-   --- 4.2.4 [Find a module: `findMod`](#424-find-a-module-findmod)<br>
-   --- 4.2.5 [List all modules: `listMod`](#425-list-all-modules-listmod)<br>
-   4.3 [Tutorial group features](#43-tutorial-group-features)<br>
-   --- 4.3.1 [View all tutorial groups in a module: `viewTG`](#431-view-all-tutorial-groups-in-a-module-viewtg)<br>
-   --- 4.3.2 [Add a tutorial group to a module: `addTG`](#432-add-a-tutorial-group-to-a-module-addtg)<br>
-   --- 4.3.3 [Find a tutorial group: `findTG`](#433-find-a-tutorial-group-findtg)<br>
-   --- 4.3.4 [Return to Tutorial Group List: `listTG`](#434-return-to-tutorial-group-list-listtg)<br>
-   --- 4.3.5 [Delete a tutorial group from a module: `deleteTG`](#435-delete-a-tutorial-group-from-a-module-deletetg)<br>
-   --- 4.3.6 [Edit a Tutorial Group: `editTG`](#436-edit-a-tutorial-group-edittg)<br>
-   4.4 [Student features](#44-student-features)<br>
-   --- 4.4.1 [View all students in a tutorial group: `viewStudent`](#441-view-all-students-in-a-tutorial-group-viewstudent)<br>
-   --- 4.4.2 [Add a student: `addStudent`](#442-add-a-student-addstudent)<br>
-   --- 4.4.3 [Delete a student: `deleteStudent`](#443-delete-a-student-deletestudent)<br>
-   --- 4.4.4 [Edit a student: `editStudent`](#444-edit-a-student-editstudent)<br>
-   --- 4.4.5 [Find a student: `findStudent`](#445-find-a-student-findstudent)<br>
-   --- 4.4.6 [List all students in a tutorial group: `listStudent`](#446-list-all-students-in-a-tutorial-group-liststudent)<br>
+   --- 4.2.6 [Return to previous view: `prevView`](#426-return-to-previous-view-prevview)<br>
+   4.3 [Module Features](#43-module-features)<br>
+   --- 4.3.1 [Add a module: `addMod`](#431-add-a-module-addmod)<br>
+   --- 4.3.2 [Delete a module: `deleteMod`](#432-delete-a-module-deletemod)<br>
+   --- 4.3.3 [Edit a module: `editMod`](#433-edit-a-module-editmod)<br>
+   --- 4.3.4 [Find a module: `findMod`](#434-find-a-module-findmod)<br>
+   4.4 [Tutorial Group Features](#44-tutorial-group-features)<br>
+   --- 4.4.1 [Add a tutorial group: `addTG`](#441-add-a-tutorial-group-to-a-module-addtg)<br>
+   --- 4.4.3 [Delete a tutorial group: `deleteTG`](#442-delete-a-tutorial-group-from-a-module-deletetg)<br>
+   --- 4.4.4 [Edit a Tutorial Group: `editTG`](#443-edit-a-tutorial-group-edittg)<br>
+   --- 4.4.2 [Find a tutorial group: `findTG`](#444-find-a-tutorial-group-findtg)<br>
+   4.5 [Student Features](#45-student-features)<br>
+   --- 4.5.1 [Add a student: `addStudent`](#451-add-a-student-addstudent)<br>
+   --- 4.5.2 [Delete a student: `deleteStudent`](#452-delete-a-student-deletestudent)<br>
+   --- 4.5.3 [Edit a student: `editStudent`](#453-edit-a-student-editstudent)<br>
+   --- 4.5.4 [Find a student: `findStudent`](#454-find-a-student-findstudent)<br>
+   4.6 [Attendance Features](#46-attendance-features)<br>
+   --- 4.6.1 [Add attendance: `addAttendance`](#461-add-attendance-addattendance)<br>
+   --- 4.6.2 [Delete attendance: `deleteAttendance`](#462-delete-attendance-deleteattendance)<br>
+   --- 4.6.3 [View all attendance of a Student: `viewAttendance`](#463-view-all-attendance-of-a-student-viewattendance)<br>
+   --- 4.6.4 [Show Students who fall below an attendance score: `attendanceBelow`](#464-show-students-who-fall-below-an-attendance-score-attendancebelow)<br>
+   --- 4.6.5 [Edit a Student's participation: `editParticipation`](#465-edit-a-students-participation-editparticipation)<br>
+   --- 4.6.6 [Show Students who fall below a participation score: `participationBelow`](#466-show-students-who-fall-below-a-participation-score-participationbelow)<br>
 5. [FAQ](#5-faq)<br>
 6. [Command Summary](#6-command-summary)<br>
    6.1 [General Commands](#61-general-commands) <br>
@@ -262,20 +263,8 @@ Example: `listStudent`
 Expected Outcome:
 ![ListStudentCommand](images/ListStudentCommand.png)
 
-#### 4.2.6 Show the attendance of Target Student: 'viewAttendance'
-Shows the attendance of Target student: `viewAttendance`
-
-Format: `viewAttendance STUDENT_INDEX`
-
-> Note: You should perform this command in STUDENT view.
-
-Example: `viewAttendance 1`
-
-Expected Outcome:
-![ViewAttendanceCommand](images/ViewAttendanceCommand.png)
-
-#### 4.2.7 Return to previous view: `prevView`
-Returns to the previous view: `prevView`
+#### 4.2.6 Return to previous view: `prevView`
+Returns to the previous view.
 
 Format: `prevView`
 
@@ -285,7 +274,9 @@ Example: `prevView`
 
 ![PrevViewCommand](images/PrevViewCommand.png)
 
-### 4.3 Module features
+### 4.3 Module Features
+
+> You should perform the following features while in the Module view.
 
 #### 4.3.1 Add a module: `addMod`
 
@@ -294,9 +285,9 @@ Adds a module to the module list.
 Format: `addMod m/MODULE_CODE`
 
 > Note:
-> - Method can only be called in the Module view.
-> - Modules should not share the same code.
+> - Modules should not share the same `MODULE_CODE`.
 > - It is recommended to use the exact code of the module.
+> - `MODULE_CODE` should not be blank and only contain alphanumeric characters.
 
 Example:
 
@@ -314,7 +305,6 @@ Deletes a module based on the given `INDEX`
 Format: `deleteMod INDEX`
 
 > Note:
-> - Method can only be called in the Module view.
 > - `INDEX` refers to the index number shown in the Module view.
 > - `INDEX` must be a positive integer starting from 1.
 > - Deleting a module is irreversible.
@@ -335,16 +325,13 @@ Edits a module with the provided details.
 Format: `editMod INDEX m/MODULE_CODE`
 
 > Note:
-> - Method can only be called in the Module view.
 > - `INDEX` refers to the index number shown in the Module view.
 > - `INDEX` must be a positive integer starting from 1.
-> - New module code must be provided.
-> - Existing values will be updated to the given values.
-> - New module code should not already exist.
+> - New `MODULE_CODE` should not already exist.
 
 Example:
 
-- Editing the module code of the first module to be _CS2020_.
+- Edits the module code of the first module to be _CS2020_.
 
     - `editMod 1 m/CS2020`
 
@@ -354,15 +341,15 @@ Expected Outcome:
 
 #### 4.3.4 Find a module: `findMod`
 
-Finds and lists all modules in the current Module view whose field contains any of the given keywords.
+Finds and lists all modules in the current Module view whose module code contains any of the given keywords.
 
 Format: `findMod KEYWORD`
 
 > Note:
-> - Method can only be called in the Module view.
+> - `KEYWORD` should not be blank.
 > - `KEYWORD` is not case-sensitive (e.g. _cs2100_ will match _CS2100_).
-> - `KEYWORD` can be a substring (e.g. _CS20_ will match _CS2020_).
-> - The search will look for matches in the module's code. 
+> - The search will look for matches, including partial match, in the module's code (e.g. _cs2_ will match _CS2100_,
+however, _cs23_ will not match _CS2100_).
 > - If no module matching the keyword is found, the Module view will be empty.
 
 Example:
@@ -376,58 +363,83 @@ Expected Outcome:
 ![FindModuleCommand](images/FindModuleCommand.png)
 
 
-### 4.4 Tutorial Group features
+### 4.4 Tutorial Group Features
 
-#### 4.4.1 Add a Tutorial Group to a Module: `addTG`
-You can add a Tutorial Group to the Module you are viewing using this command.
+> You should perform the following features while in the Tutorial Group view.
 
-> - You can only use this command when you are viewing Tutorial Groups of the Module you intend to add the Tutorial Group to.
-> - This command can also be used after the findTG command while displaying only Tutorial Groups you searched for.
-> - Refer to 4.2.1 - View all Tutorial Groups in a Module
+#### 4.4.1 Add a tutorial group: `addTG`
+Adds a tutorial group to the tutorial group list.
 
-Format: `addTG tg/TG_CODE day/MON/TUE/WED/THU/FRI start/HH:MM end/HH:MM`
+Format: `addTG tg/TG_CODE day/DAY_OF_WEEK start/START_TIME end/END_TIME`
 
-Example: `addTG tg/T03 day/MON start/08:00 end/10:00`
+> Note:
+> - Tutorial groups should not share the same `TG_CODE` within the same module.
+> - It is recommended to use the exact code of the tutorial group.
+> - `TG_CODE`, `DAY_OF_WEEK`, `START_TIME` and `END_TIME` should not be blank.
+> - `TG_CODE` should only contain alphanumeric characters.
+> - `DAY_OF_WEEK` should only be one of MON/TUE/WED/THU/FRI.
+> - `START_TIME` and `END_TIME` should be in the form of HH:MM.
 
-#### 4.4.2 Find a Tutorial Group: `findTG`
-If you need to quickly find a Tutorial from a list of Tutorials, use this command.
+Example: 
+- Adds a tutorial group _T03_ that takes place every _MON_ from _08:00_ to _10:00_ to the tutorial group list.
+    - `addTG tg/T03 day/MON start/08:00 end/10:00`
 
-> - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in.
-> - Refer to 4.2.1 - View all Tutorial Groups in a Module
+Expected Outcome:
 
-Format: `findTG TARGET_TG_CODE`
-Where TARGET_TG_CODE is the code of the Tutorial Group you want to search for.
+#### 4.4.2 Delete a tutorial group: `deleteTG`
+Deletes a tutorial group based on the given `INDEX`
 
-Example: `findTG B014`
-To search for a Tutorial Group with code B014
+Format: `deleteTG INDEX`
 
+> Note:
+> - `INDEX` refers to the index number shown in the Tutorial Group view.
+> - `INDEX` must be a positive integer starting from 1.
+> - Deleting a tutorial group is irreversible.
 
-#### 4.4.3 Delete a Tutorial Group from a Module: `deleteTG`
-You can use this command to delete a Tutorial Group you have previously added to a Module.
-> - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in.
-> - Refer to 4.2.1 - View all Tutorial Groups in a Module
+Example:
 
-Format: `deleteTG TG_INDEX`
-Where TG_INDEX is the index of the Tutorial Group you want to delete.
+- Deletes a tutorial group at index _1_ in the tutorial group list.
+    - `deleteTG 1`
 
-Example: `deleteTG 2`
-To delete Tutorial Group with the index 2 in the currently displayed list.
+Expected Outcome:
 
-#### 4.4.4 Edit a Tutorial Group: `editTG`
-You can use this command to edit a Tutorial Group you have previously added to a Module.
-> - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in.
-> - Refer to 4.2.1 - View all Tutorial Groups in a Module
+#### 4.4.3 Edit a Tutorial Group: `editTG`
+Edits a module with the provided details.
 
-Format: `editTG TG_INDEX tg/TG_CODE day/MON/TUE/WED/THU/FRI start/HH:MM end/HH:MM`
-Where TG_INDEX is the index of the Tutorial Group you want to edit.
-You must enter all arguments regardless of which field you would like to edit.
+Format: `editTG INDEX [tg/TG_CODE] [day/DAY_OF_WEEK] [start/START_TIME] [end/END_TIME]`
 
-Example: `editTG 3 tg/T04 day/TUE start/08:00 end/10:00`
+> Note:
+> - `INDEX` refers to the index number shown in the Student view.
+> - `INDEX` must be a positive integer starting from 1.
+> - At least one of the optional fields must be provided.
+> - Existing values will be updated to the given values.
 
+Example:
 
-These are the commands you can use to manage the different `Tutorial Groups` you teach. Now we look at how you can manage your `Students`.
+- Edits the third tutorial group to be _T04_, takes place every _TUE_ from _08:00_ to _10:00_.
 
-### 4.5 Student features
+    - `editTG 3 tg/T04 day/TUE start/08:00 end/10:00`
+
+Expected Outcome:
+
+#### 4.4.4 Find a tutorial group: `findTG`
+Finds and lists all tutorial groups in the current Tutorial Group view whose tutorial group code contains any of the given keywords.
+
+Format: `findTG KEYWORD`
+
+> Note:
+> - `KEYWORD` should not be blank.
+> - `KEYWORD` is not case-sensitive (e.g. _t05_ will match _T05_).
+> - The search will look for matches, including partial match, in the tutorial group's code (e.g. _t_ will match _T05_,
+however, _t5_ will not match _T05_).
+> - If no tutorial group matching the keyword is found, the Tutorial Group view will be empty.
+
+Example: 
+- Finds a tutorial group with `KEYWORD` _b14_.
+
+    - `findTG b14`
+
+### 4.5 Student Features
 
 > You should perform the following features while in the Student view.
 
@@ -435,14 +447,15 @@ These are the commands you can use to manage the different `Tutorial Groups` you
 
 Adds a student with your provided details.
 
-Format: `addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...`
+Format: `addStudent n/NAME p/PHONE e/EMAIL id/STUDENT_ID [t/TAG]...`
 
-Note:
-
-- Students should not share the same student ID within the same tutorial group.
-- Phone numbers should only contain numbers, and it should be at least 3 digits long.
-- Student IDs begin and end with a capital letter and should have 7 digits (e.g. A1243567X).
-- A student can have any number of tags, including 0.
+> Note:
+> - Students should not share the same `STUDENT_ID` within the same tutorial group.
+> - `NAME` should not be blank and only contain alphanumeric characters.
+> - `PHONE` should only contain numbers, and it should be at least 3 digits long.
+> - `EMAIL` should be in the form local-part@domain.
+> - `STUDENT_ID` begin and end with a capital letter and should have 7 digits (e.g. A1243567X).
+> - A student can have any number of `TAG`, including 0.
 
 Example:
 
@@ -460,15 +473,14 @@ Deletes a student based on the given `INDEX`.
 
 Format: `deleteStudent INDEX`
 
-Note:
-
-- `INDEX` refers to the index number shown in the Student view.
-- `INDEX` must be a positive integer starting from 1.
-- Deleting a student is irreversible.
+> Note:
+> - `INDEX` refers to the index number shown in the Student view.
+> - `INDEX` must be a positive integer starting from 1.
+> - Deleting a student is irreversible.
 
 Example:
 
-- Deletes the second student in the Student view.
+- Deletes the second student in the student list.
 
     - `deleteStudent 2`
 
@@ -480,20 +492,19 @@ Expected Outcome:
 
 Edits a student at the given `INDEX` with the provided details.
 
-Format: `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [id/STUDENT_ID] [t/TAG]...`
+Format: `editStudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [id/STUDENT_ID] [t/TAG]...`
 
-Note:
-
-- `INDEX` refers to the index number shown in the Student view.
-- `INDEX` must be a positive integer starting from 1.
-- At least one of the optional fields must be provided.
-- Existing values will be updated to the given values.
-- When you edit the tag(s), the existing tag(s) of the student will be replaced (adding of tag(s) is not cumulative).
-- You may wish to remove all the student's tags by typing `t/` without specifying any tags after it.
+> Note:
+> - `INDEX` refers to the index number shown in the Student view.
+> - `INDEX` must be a positive integer starting from 1.
+> - At least one of the optional fields must be provided.
+> - Existing values will be updated to the given values.
+> - When you edit the tag(s), the existing tag(s) of the student will be replaced (adding of tag(s) is not cumulative).
+> - You may wish to remove all the student's tags by typing `t/` without specifying any tags after it.
 
 Example:
 
-- Editing the phone number and email address of the first student to be _97654321_ and _jtan@u.nus.edu_.
+- Edits the phone number and email address of the first student to be _97654321_ and _jtan@u.nus.edu_.
 
     - `editStudent 1 p/97654321 e/jtan@u.nus.edu`
 
@@ -507,12 +518,12 @@ Finds and lists all students in the current Student view whose name contains any
 
 Format: `findStudent KEYWORD [KEYWORD]...`
 
-Note:
-
-- `KEYWORD` is not case-sensitive (e.g. _john_ will match _John_).
-- The search will look for matches, including partial match, in the student's name (e.g. _jo_ will match _John_,
- however, _jhn_ will not match _John_).
-- If no student matching the keyword is found, the Student view will be empty.
+> Note:
+> - `KEYWORD` should not be blank.
+> - `KEYWORD` is not case-sensitive (e.g. _john_ will match _John_).
+> - The search will look for matches, including partial match, in the student's name (e.g. _jo_ will match _John_,
+however, _jhn_ will not match _John_).
+> - If no student matching the keyword is found, the Student view will be empty.
 
 Example:
 
@@ -523,6 +534,133 @@ Example:
 Expected Outcome:
 
 ![FindStudentCommand](images/FindStudentCommand.png)
+
+### 4.6 Attendance Features
+
+> You should perform the following features while in the Student view.
+
+#### 4.6.1 Add Attendance: `addAttendance`
+
+Adds the attendance of a student for specific week(s). Can also be seen as marking a student as 'present' for specific week(s).
+
+Format: `addAttendance INDEX week/WEEK_NUMBER [week/WEEK_NUMBER]...`
+> Note:
+> - `INDEX` refers to the index number shown in the Student view.
+> - `INDEX` must be a positive integer starting from 1.
+> - You can provide more than one WEEK_NUMBER to mark attendance for multiple weeks.
+> - Marking attendance for weeks that have already been marked as 'present' will not make any changes for those weeks.
+Example:
+
+- Adds the attendance of the first student on the student list for `WEEK_NUMBER` _2_ and `WEEK_NUMBER` _3_.
+
+    - `addAttendance 1 week/2 week/3`
+
+Expected Outcome:
+
+![AddAttendanceCommand](images/AddAttendanceCommand.png)
+
+#### 4.6.2 Delete attendance: `deleteAttendance`
+
+Deletes the attendance of a student for specific week(s). Can also be seen as marking a student as 'absent' for specific week(s).
+
+Format: `deleteAttendance INDEX week/WEEK_NUMBER [week/WEEK_NUMBER]...`
+
+> Note:
+> - `INDEX` refers to the index number shown in the Student view.
+> - `INDEX` must be a positive integer starting from 1.
+> - You can provide more than one WEEK_NUMBER to mark attendance for multiple weeks.
+> - Marking attendance for weeks that have already been marked as 'absent' will not make any changes for those weeks.
+
+Example:
+
+- Deletes the attendance of the first student on the student list for `WEEK_NUMBER` _6_.
+
+  - `deleteAttendance 1 week/6`
+
+Expected Outcome:
+
+![DeleteAttendanceCommand](images/DeleteAttendanceCommand.png)
+
+#### 4.6.3 View all attendance of a Student: `viewAttendance`
+
+Shows the attendance of target student by specifying the week(s) that the student has attended.
+
+Format: `viewAttendance INDEX`
+
+> Note:
+>
+> - `INDEX` refers to the index number shown in the Student view.
+> - `INDEX` must be a positive integer starting from 1.
+
+Example:
+
+- Views the attendance of the first student on the student list.
+  - `viewAttendance 1`
+
+Expected Outcome:
+![ViewAttendanceCommand](images/ViewAttendanceCommand.png)
+
+#### 4.6.4 Show Students who fall below an attendance score: `attendanceBelow`
+
+Finds and lists all students in the current Student view whose attendance score falls below the provided score.
+
+Format: `attendanceBelow UPPER_BOUND`
+
+> Note:
+>
+> - This command finds students who has an attendance score below `UPPER_BOUND`.
+> - `UPPER_BOUND` must be a positive integer starting from 1.
+> - The students found will not include those whose attendance score is equal to `UPPER_BOUND`, only below, i.e. `UPPER_BOUND` is not inclusive.
+
+Example:
+
+- Shows all students who has an attendance score below 5.
+  - `attendanceBelow 5`
+
+Expected Outcome:
+![AttendanceBelowCommand](images/AttendanceBelowCommand.png)
+
+#### 4.6.5 Edit a Student's participation: `editParticipation`
+
+Edits the participation score of a student by adding to or deducting from their existing score by the provided score.
+
+Format: `editParticipation INDEX score/PARTICIPATION_SCORE`
+
+> Note:
+>
+> - `INDEX` refers to the index number shown in the Student view.
+> - `INDEX` must be a positive integer starting from 1.
+> - You can deduct score from a student by putting a negative number for `PARTICIPATION_SCORE` (e.g. Put -10 as `PARTICIPATION_SCORE` to deduct 10 score from a student)
+> - `PARTICIPATION_SCORE` must be a whole number ranging from -100 to 100, using 0 will have no effect on the existing score.
+> - Students can have a participation score from 0 to 100, adding or deducting score to one outside this range will cause the score to clip to the limits (e.g. Deducting 40 score from a student with a score of 30 will lead to the student having the score of 0 instead of -10)
+
+Example:
+
+- Adds 10 score to the first student on the student list.
+  - `editParticipation 1 10`
+
+Expected Outcome:
+![EditParticipationCommand](images/EditParticipationCommand.png)
+
+#### 4.6.6 Show Students who fall below a participation score: `participationBelow`
+
+Finds and lists all students in the current Student view whose participation score falls below the provided score.
+
+Format: `participationBelow UPPER_BOUND`
+
+> Note:
+>
+> - This command finds students who has an participation score below `UPPER_BOUND`.
+> - `UPPER_BOUND` must be a positive integer starting from 1.
+> - The students found will not include those whose participation score is equal to `UPPER_BOUND`, only below, i.e. `UPPER_BOUND` is not inclusive.
+
+Example:
+
+- Shows all students who has a participation score below 35.
+  - `participationBelow 35`
+
+Expected Outcome:
+![AttendanceBelowCommand](images/AttendanceBelowCommand.png)
 
 
 ## 5. FAQ
@@ -583,7 +721,6 @@ Command | Description | Compatible View
 
 Command | Description | Compatible View
 --------|--------|--------
-
 `addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...` | Adds a new student to the current Student view | STUDENT
 `deleteStudent INDEX` | Deletes a student from the current Student view | STUDENT
 `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [id/STUDENT_ID] [t/TAG]...` | Edits a student in the current Student view | STUDENT

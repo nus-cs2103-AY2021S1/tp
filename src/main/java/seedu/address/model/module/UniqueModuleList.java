@@ -110,7 +110,7 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Adds an {@code Showable} object to the list.
+     * Adds a {@code TutorialGroup} tutorialGroup to the UniqueTutorialGroupList of currentModuleInView.
      * The object must not already exist in the list.
      */
     public void addTutorialGroup(TutorialGroup tutorialGroup, Module currentModuleInView) {

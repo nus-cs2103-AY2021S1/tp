@@ -3,10 +3,10 @@
 
 start
 
-:User enters an Add Module
+:User enters an addMod
 command in the command box;
 
-:TrackrParser parses the argument
+:TrackrParser parses the user input
 to determine which command parser
 should further parse it;
 
@@ -28,8 +28,7 @@ if () then ([valid command input format])
         endif
 else ([else])
     :throws ParseException
-    with command usage
-    direction;
+    with command usage direction;
 endif
 :returns feedback to user;
 

@@ -21,7 +21,7 @@ to determine index of Module to Edit;
         to determine edited ModuleId;
         if () then ([Trackr is in Module View])
                 if () then ([else])
-                        :Module is updated;
+                        :Module is edited;
                         :All Modules displayed by Trackr;
                 else ([EditedModule already exists])
                         :throws CommandException with

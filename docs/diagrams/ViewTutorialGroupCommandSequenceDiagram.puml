@@ -1,0 +1,104 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackrParser" as TrackrParser LOGIC_COLOR
+participant ":ViewTutorialGroupCommandParser" as ViewTGCommandParser LOGIC_COLOR
+participant "v:ViewTutorialGroupCommand" as ViewTGCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ReadOnlyTrackr<Module>" as ReadOnlyTrackr MODEL_COLOR
+participant ":UniqueModuleList" as UniqueModuleList MODEL_COLOR
+participant "internalList:ObservableList<Module>" as internalList MODEL_COLOR
+participant ":Module" as Module MODEL_COLOR
+participant ":UniqueTutorialGroupList" as UniqueTutorialGroupList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("viewTG 1")
+activate LogicManager
+
+LogicManager -> TrackrParser : parseCommand("viewTG 1")
+activate TrackrParser
+
+create ViewTGCommandParser
+TrackrParser -> ViewTGCommandParser
+activate ViewTGCommandParser
+
+ViewTGCommandParser --> TrackrParser
+deactivate ViewTGCommandParser
+
+TrackrParser -> ViewTGCommandParser : parse("1")
+activate ViewTGCommandParser
+
+create ViewTGCommand
+ViewTGCommandParser -> ViewTGCommand
+activate ViewTGCommand
+
+ViewTGCommand --> ViewTGCommandParser : v
+deactivate ViewTGCommand
+
+ViewTGCommandParser --> TrackrParser : v
+deactivate ViewTGCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ViewTGCommandParser -[hidden]-> TrackrParser
+destroy ViewTGCommandParser
+
+TrackrParser --> LogicManager : v
+deactivate TrackrParser
+
+LogicManager -> ViewTGCommand : execute()
+activate ViewTGCommand
+
+ViewTGCommand -> Model : setViewToTutorialGroup(target)
+activate Model
+
+Model -> ReadOnlyTrackr : getTutorialGroupListOfModule(target)
+activate ReadOnlyTrackr
+
+ReadOnlyTrackr -> UniqueModuleList: getTutorialGroupListOfModule(target)
+activate UniqueModuleList
+
+UniqueModuleList -> internalList: get(index)
+activate internalList
+
+internalList -> Module: getTutorialGroups()
+activate Module
+
+Module --> UniqueTutorialGroupList: asUnmodifiableObservableList()
+activate UniqueTutorialGroupList
+
+UniqueTutorialGroupList --> Module: internalUnmodifiableList:ObservableList<TutorialGroup>
+deactivate UniqueTutorialGroupList
+
+Module --> internalList
+deactivate Module
+
+internalList --> UniqueModuleList
+deactivate internalList
+
+UniqueModuleList --> ReadOnlyTrackr
+deactivate UniqueModuleList
+
+ReadOnlyTrackr --> Model
+deactivate ReadOnlyTrackr
+
+Model --> ViewTGCommand
+deactivate Model
+
+create CommandResult
+ViewTGCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewTGCommand
+deactivate CommandResult
+
+ViewTGCommand --> LogicManager : result
+deactivate ViewTGCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -10,7 +10,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Trackr" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root
+        minHeight="600"
+        minWidth="450"
+        onCloseRequest="#handleExit"
+        title="Trackr" type="javafx.stage.Stage"
+        xmlns="http://javafx.com/javafx/11.0.1"
+        xmlns:fx="http://javafx.com/fxml/1"
+>
   <scene>
     <Scene>
       <stylesheets>
@@ -27,8 +34,12 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-            <StackPane fx:id="viewDisplayPlaceholder" prefHeight="55.0" prefWidth="340.0" styleClass="pane-with-border" />
-
+            <StackPane
+                    fx:id="viewDisplayPlaceholder"
+                    prefHeight="55.0"
+                    prefWidth="340.0"
+                    styleClass="pane-with-border"
+            />
         <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
@@ -36,7 +47,14 @@
           <StackPane fx:id="listPanelPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS" />
         </VBox>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane
+                fx:id="resultDisplayPlaceholder"
+                maxHeight="100"
+                minHeight="100"
+                prefHeight="100"
+                styleClass="pane-with-border"
+                VBox.vgrow="NEVER"
+        >
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>

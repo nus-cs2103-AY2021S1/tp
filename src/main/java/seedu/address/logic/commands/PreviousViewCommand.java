@@ -7,6 +7,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORIALGROUPS;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+/**
+ * Navigates the user to the previous view (i.e. from Student View to Tutorial Group View).
+ */
 public class PreviousViewCommand extends Command {
     public static final String COMMAND_WORD = "prevView";
 

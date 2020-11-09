@@ -6,6 +6,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ViewAttendanceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new ViewAttendanceCommand object.
+ */
 public class ViewAttendanceCommandParser implements Parser<ViewAttendanceCommand> {
 
     /**

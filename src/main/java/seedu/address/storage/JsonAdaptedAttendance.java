@@ -52,7 +52,8 @@ class JsonAdaptedAttendance {
     /**
      * Converts this Jackson-friendly adapted attendance record into the model's {@code Attendance} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted attendance record
+     * or participation score.
      */
     public Attendance toModelType() throws IllegalValueException {
         final Attendance modelAttendance = new Attendance();

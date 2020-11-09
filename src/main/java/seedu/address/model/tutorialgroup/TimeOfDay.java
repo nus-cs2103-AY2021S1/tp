@@ -7,7 +7,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents a Person's name in the address book.
+ * Represents a Tutorial Groups's time slot in Trackr.
  * Guarantees: immutable; is valid as declared in {@link #isValidTimeOfDay(String)}
  */
 public class TimeOfDay {

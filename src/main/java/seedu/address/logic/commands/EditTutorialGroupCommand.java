@@ -26,7 +26,7 @@ public class EditTutorialGroupCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the specifics of the Tutorial Group specified "
         + "by the index number used in the displayed Tutorial Group list. "
-        + "\nExisting values will be overwritten by the input values.\n"
+        + "Existing values will be overwritten by the input values.\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "TUTORIAL_GROUP_INDEX "
         + "Example: " + COMMAND_WORD + " 1 "

@@ -56,11 +56,6 @@ public class LogicManager implements Logic {
         return commandResult;
     }
 
-    //    @Override
-    //    public ReadOnlyTrackr<Student> getStudentList() {
-    //        return model.getStudentList();
-    //    }
-
     @Override
     public ObservableList<Student> getFilteredStudentList() {
         return model.getFilteredStudentList();

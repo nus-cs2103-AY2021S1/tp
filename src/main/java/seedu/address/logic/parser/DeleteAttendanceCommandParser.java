@@ -54,7 +54,13 @@ public class DeleteAttendanceCommandParser implements Parser<DeleteAttendanceCom
         String[] weeksToDeleteString = weeks.toArray(new String[0]);
         int[] weeksToDelete = new int[size];
         for (int i = 0; i < size; i++) {
-            weeksToDelete[i] = Integer.parseInt(weeksToDeleteString[i]);
+            try {
+                weeksToDelete[i] = Integer.parseInt(weeksToDeleteString[i]);
+            } catch (NumberFormatException e) {
+                throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteAttendanceCommand.MESSAGE_USAGE)
+            );
+            }
         }
         return weeksToDelete;
     }

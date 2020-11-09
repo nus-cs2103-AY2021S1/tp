@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackrParser" as TrackrParser LOGIC_COLOR
+participant "l:ListModuleCommand" as ListModuleCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("listMod")
+activate LogicManager
+
+LogicManager -> TrackrParser : parseCommand("listMod")
+activate TrackrParser
+
+create ListModuleCommand
+TrackrParser -> ListModuleCommand
+activate ListModuleCommand
+
+ListModuleCommand --> TrackrParser : l
+deactivate ListModuleCommand
+
+TrackrParser --> LogicManager : l
+deactivate TrackrParser
+
+LogicManager -> ListModuleCommand : execute()
+activate ListModuleCommand
+
+ListModuleCommand -> Model : updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES)
+activate Model
+
+Model --> ListModuleCommand
+ListModuleCommand -> Model: setViewToModule()
+Model --> ListModuleCommand
+deactivate Model
+
+create CommandResult
+ListModuleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListModuleCommand
+deactivate CommandResult
+
+ListModuleCommand --> LogicManager : result
+deactivate ListModuleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
