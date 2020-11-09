@@ -8,6 +8,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.exceptions.VersionedListException;
 
+/**
+ * Encapsulates methods and information to undo previous command.
+ */
 public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -15,9 +18,6 @@ public class UndoCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_UNDO_COMMAND_SUCCESS = "Previous command has been undone";
-    public UndoCommand() {
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -26,7 +26,6 @@ public class UndoCommand extends Command {
         } catch (VersionedListException versionedListException) {
             throw new CommandException(versionedListException.getMessage());
         }
-        //model.undoModuleList();
         return new CommandResult(MESSAGE_UNDO_COMMAND_SUCCESS);
     }
 
@@ -36,8 +35,4 @@ public class UndoCommand extends Command {
                 || (other instanceof UndoCommand); // instanceof handles nulls
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

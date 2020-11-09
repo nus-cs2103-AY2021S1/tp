@@ -1,5 +1,7 @@
 package seedu.address.model.event;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -16,6 +18,7 @@ public class FindEventCriteria {
      * @param predicate Predicate to be added.
      */
     public void addPredicate(Predicate<Event> predicate) {
+        requireNonNull(predicate);
         predicateList.add(predicate);
     }
 
@@ -36,8 +39,12 @@ public class FindEventCriteria {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof FindEventCriteria // instanceof handles nulls
-                && predicateList.equals(((FindEventCriteria) other).predicateList));
+        if (this == other) {
+            return true;
+        } else if (other instanceof FindEventCriteria) {
+            return this.predicateList.equals(((FindEventCriteria) other).predicateList);
+        } else {
+            return false;
+        }
     }
 }

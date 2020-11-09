@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.model.ArchivedModuleList;
+import seedu.address.logic.commands.modulelistcommands.ZoomLinkCommand.ZoomDescriptor;
 import seedu.address.model.ContactList;
 import seedu.address.model.EventList;
 import seedu.address.model.Model;
@@ -34,7 +34,7 @@ import seedu.address.testutil.ZoomDescriptorBuilder;
 
 public class AddZoomLinkCommandTest {
 
-    private Model model = new ModelManager(getTypicalModuleList(), new ArchivedModuleList(),
+    private Model model = new ModelManager(getTypicalModuleList(), new ModuleList(),
             new ContactList(), new TodoList(), new EventList(), new UserPrefs());
 
     @Test
@@ -70,7 +70,7 @@ public class AddZoomLinkCommandTest {
 
         String expectedMessage = String.format(AddZoomLinkCommand.MESSAGE_ADD_ZOOM_SUCCESS, VALID_ZOOM_LINK_CS2103T);
 
-        Model expectedModel = new ModelManager(new ModuleList(model.getModuleList()), new ArchivedModuleList(),
+        Model expectedModel = new ModelManager(new ModuleList(model.getModuleList()), new ModuleList(),
                 new ContactList(), new TodoList(), new EventList(), new UserPrefs());
         expectedModel.setModule(moduleToUpdate, moduleWithAddedZoom);
 

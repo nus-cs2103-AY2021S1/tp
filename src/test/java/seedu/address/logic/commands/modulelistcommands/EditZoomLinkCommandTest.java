@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.model.ArchivedModuleList;
+import seedu.address.logic.commands.modulelistcommands.ZoomLinkCommand.ZoomDescriptor;
 import seedu.address.model.ContactList;
 import seedu.address.model.EventList;
 import seedu.address.model.Model;
@@ -33,7 +33,7 @@ import seedu.address.testutil.ZoomDescriptorBuilder;
 
 public class EditZoomLinkCommandTest {
 
-    private Model model = new ModelManager(getTypicalModuleList(), new ArchivedModuleList(),
+    private Model model = new ModelManager(getTypicalModuleList(), new ModuleList(),
             new ContactList(), new TodoList(), new EventList(), new UserPrefs());
 
     @Test
@@ -69,7 +69,7 @@ public class EditZoomLinkCommandTest {
         String expectedMessage = String.format(EditZoomLinkCommand.MESSAGE_EDIT_ZOOM_SUCCESS,
                 VALID_ZOOM_LINK_CS2103T, VALID_MODULE_LESSON_LECTURE);
 
-        Model expectedModel = new ModelManager(new ModuleList(model.getModuleList()), new ArchivedModuleList(),
+        Model expectedModel = new ModelManager(new ModuleList(model.getModuleList()), new ModuleList(),
                 new ContactList(), new TodoList(), new EventList(), new UserPrefs());
         expectedModel.setModule(moduleToUpdate, moduleWithEditedZoom);
 
@@ -90,10 +90,10 @@ public class EditZoomLinkCommandTest {
         String expectedMessage = String.format(EditZoomLinkCommand.MESSAGE_EDIT_ZOOM_SUCCESS,
                 VALID_ZOOM_LINK_CS2103T, VALID_MODULE_LESSON_LECTURE);
 
-        Model expectedModel = new ModelManager(new ModuleList(model.getModuleList()), new ArchivedModuleList(),
+        Model expectedModel = new ModelManager(new ModuleList(model.getModuleList()), new ModuleList(),
                 new ContactList(), new TodoList(), new EventList(), new UserPrefs());
+        showModuleAtIndex(expectedModel, INDEX_FIRST_MODULE);
         expectedModel.setModule(model.getFilteredModuleList().get(0), moduleWithEditedZoom);
-
         assertCommandSuccess(editZoomLinkCommand, model, expectedMessage, expectedModel);
     }
 

@@ -16,7 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
 
 /**
- * Adds a contact into the contact list.
+ * Encapsulates methods and information to add a contact into the contact list.
  */
 public class AddContactCommand extends Command {
 
@@ -30,19 +30,20 @@ public class AddContactCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_TELEGRAM + "@johndoe"
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_TELEGRAM + "@johndoe "
             + PREFIX_TAG + "friend";
 
-    public static final String MESSAGE_SUCCESS = "New contact added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New contact added: %1$s \n";
     public static final String MESSAGE_DUPLICATE_CONTACT = "This contact already exists in the contact list";
 
     private final Logger logger = LogsCenter.getLogger(AddContactCommand.class);
 
+    /** Contact to be added to the contact list. */
     private final Contact toAdd;
 
     /**
-     * Creates and initialises a new AddContactCommand for the addition of a new contact.
+     * Creates and initialises a new AddContactCommand for the addition of a new contact into the contact list.
      *
      * @param contact Contact to be added.
      */
@@ -70,11 +71,6 @@ public class AddContactCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddContactCommand // instanceof handles nulls
                 && toAdd.equals(((AddContactCommand) other).toAdd));
-    }
-
-    @Override
-    public boolean isExit() {
-        return false;
     }
 
 }

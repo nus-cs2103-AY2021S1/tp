@@ -42,8 +42,15 @@ public class ViewEventCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, toView));
     }
 
+
     @Override
-    public boolean isExit() {
-        return false;
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        } else if (other instanceof ViewEventCommand) {
+            return this.index.equals(((ViewEventCommand) other).index);
+        } else {
+            return false;
+        }
     }
 }

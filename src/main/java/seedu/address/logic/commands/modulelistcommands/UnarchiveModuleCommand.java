@@ -12,6 +12,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 
+/**
+ * Encapsulates methods and information to un-archive a module identified using it's displayed index
+ * from the archived module list.
+ */
 public class UnarchiveModuleCommand extends Command {
     public static final String COMMAND_WORD = "unarchivemodule";
 
@@ -22,8 +26,18 @@ public class UnarchiveModuleCommand extends Command {
 
     public static final String MESSAGE_UNARCHIVE_MODULE_SUCCESS = "Un-Archived module: %1$s";
 
+    public static final String MESSAGE_VIEW_UNARCHIVED_MODULES_CONSTRAINT =
+            "You are not currently viewing archived modules";
+
     private final Index targetIndex;
 
+    /**
+     * Creates and initialises a new UnarchiveModuleCommand for the un-archiving of a module in the archived
+     * module list.
+     *
+     * @param targetIndex Index object encapsulating the index of the target module in the filtered displayed
+     *                    module list.
+     */
     public UnarchiveModuleCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
@@ -31,10 +45,12 @@ public class UnarchiveModuleCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Module> lastShownList = model.getFilteredArchivedModuleList();
-
+        List<Module> lastShownList = model.getFilteredModuleList();
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+        }
+        if (!model.getModuleListDisplay()) {
+            throw new CommandException(MESSAGE_VIEW_UNARCHIVED_MODULES_CONSTRAINT);
         }
 
         Module moduleToUnarchive = lastShownList.get(targetIndex.getZeroBased());
@@ -46,12 +62,8 @@ public class UnarchiveModuleCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteModuleCommand // instanceof handles nulls
+                || (other instanceof UnarchiveModuleCommand // instanceof handles nulls
                 && targetIndex.equals(((UnarchiveModuleCommand) other).targetIndex)); // state check
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

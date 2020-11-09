@@ -25,6 +25,7 @@ public class FindEventCommand extends Command {
     private final Logger logger = LogsCenter.getLogger(FindContactCommand.class);
 
     private final Predicate<Event> predicate;
+    private final FindEventCriteria criteria;
 
     /**
      * Represents the command container for the find event command.
@@ -32,6 +33,7 @@ public class FindEventCommand extends Command {
      */
     public FindEventCommand(FindEventCriteria predicate) {
         logger.info("The find event command is being executed");
+        this.criteria = predicate;
         this.predicate = predicate.getFindEventPredicate();
     }
 
@@ -42,8 +44,15 @@ public class FindEventCommand extends Command {
                 model.getFilteredEventList().size()));
     }
 
+
     @Override
-    public boolean isExit() {
-        return false;
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        } else if (other instanceof FindEventCommand) {
+            return this.criteria.equals(((FindEventCommand) other).criteria);
+        } else {
+            return false;
+        }
     }
 }

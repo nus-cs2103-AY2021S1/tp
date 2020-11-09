@@ -1,6 +1,5 @@
 package seedu.address.logic.commands.contactlistcommands;
 
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CONTACTS;
 
@@ -13,7 +12,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Lists all the existing contacts in the contact list to the user.
+ * Encapsulates methods and information to list all the existing contacts in the
+ * contact list to the user.
  */
 public class ListContactCommand extends Command {
 
@@ -32,8 +32,4 @@ public class ListContactCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

@@ -1,12 +1,13 @@
 package seedu.address.logic;
 
+import seedu.address.logic.parser.ContactListParser;
 import seedu.address.logic.parser.FeatureParser;
 import seedu.address.logic.parser.GradeTrackerParser;
 import seedu.address.logic.parser.ModuleListParser;
+import seedu.address.logic.parser.SchedulerParser;
 import seedu.address.logic.parser.TodoListParser;
-import seedu.address.logic.parser.contactlistparsers.ContactListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.schedulerparsers.SchedulerParser;
+
 
 /**
  * Represents the manager in charge of overseeing all the medium feature parsers.
@@ -20,21 +21,13 @@ public class ParserManager {
 
     /**
      * Creates a Container the holds all the medium parsers.
-     * @param moduleListParser parses module related commands.
-     * @param todoListParser parses task related commands.
-     * @param contactListParser parses contact related commands.
-     * @param gradeTrackerParser parses grade tracker related commands.
      */
-    public ParserManager(ModuleListParser moduleListParser,
-                         TodoListParser todoListParser,
-                         ContactListParser contactListParser,
-                         GradeTrackerParser gradeTrackerParser,
-                         SchedulerParser schedulerParser) {
-        this.contactListParser = contactListParser;
-        this.todoListParser = todoListParser;
-        this.moduleListParser = moduleListParser;
-        this.gradeTrackerParser = gradeTrackerParser;
-        this.schedulerParser = schedulerParser;
+    public ParserManager() {
+        moduleListParser = new ModuleListParser();
+        contactListParser = new ContactListParser();
+        todoListParser = new TodoListParser();
+        gradeTrackerParser = new GradeTrackerParser();
+        schedulerParser = new SchedulerParser();
     }
 
     /**
@@ -64,6 +57,7 @@ public class ParserManager {
      */
     private boolean containsModuleListCommandWords(String commandWord) {
         return commandWord.contains("module") || commandWord.contains("undo") || commandWord.contains("redo")
-                || commandWord.contains("cap") || commandWord.contains("zoom") || commandWord.contains("archive");
+                || commandWord.contains("cap") || commandWord.contains("zoom") || commandWord.contains("archive")
+                || commandWord.contains("exit");
     }
 }

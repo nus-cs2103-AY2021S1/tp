@@ -6,15 +6,14 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showContactAtIndex;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CONTACT;
+import static seedu.address.testutil.contact.TypicalContacts.getTypicalContactList;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.ArchivedModuleList;
 import seedu.address.model.EventList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -25,7 +24,7 @@ import seedu.address.model.contact.Contact;
 
 public class DeleteContactCommandTest {
 
-    private Model model = new ModelManager(new ModuleList(), new ArchivedModuleList(),
+    private Model model = new ModelManager(new ModuleList(), new ModuleList(),
             getTypicalContactList(), new TodoList(), new EventList(), new UserPrefs());
 
     @Test

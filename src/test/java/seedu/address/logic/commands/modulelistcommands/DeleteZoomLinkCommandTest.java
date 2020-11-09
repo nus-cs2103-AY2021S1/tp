@@ -16,19 +16,18 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.ArchivedModuleList;
 import seedu.address.model.ContactList;
 import seedu.address.model.EventList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ModuleList;
 import seedu.address.model.TodoList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleLesson;
 
 public class DeleteZoomLinkCommandTest {
-
-    private Model model = new ModelManager(getTypicalModuleList(), new ArchivedModuleList(),
+    private Model model = new ModelManager(getTypicalModuleList(), new ModuleList(),
             new ContactList(), new TodoList(), new EventList(), new UserPrefs());
 
     @Test
@@ -96,6 +95,7 @@ public class DeleteZoomLinkCommandTest {
 
         Model expectedModel = new ModelManager(model.getModuleList(), model.getArchivedModuleList(),
                 model.getContactList(), model.getTodoList(), model.getEventList(), new UserPrefs());
+        showModuleAtIndex(expectedModel, INDEX_FIRST_MODULE);
         expectedModel.setModule(moduleToUpdate, updatedModule);
 
         assertCommandSuccess(deleteZoomLinkCommand, model, expectedMessage, expectedModel);

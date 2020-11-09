@@ -9,7 +9,7 @@ import seedu.address.model.module.ZoomLink;
 /**
  * Jackson-friendly version of {@link ZoomLink}.
  */
-class JsonAdaptedZoomLink {
+public class JsonAdaptedZoomLink {
 
     private final String link;
 
@@ -31,7 +31,7 @@ class JsonAdaptedZoomLink {
      */
     public JsonAdaptedZoomLink(String key, ZoomLink source) {
         this.lesson = key;
-        link = source.getLink();
+        link = source.toString();
     }
 
     public String getLesson() {

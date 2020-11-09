@@ -10,9 +10,12 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
+import seedu.address.model.module.grade.Assignment;
+import seedu.address.model.module.grade.GradePoint;
 import seedu.address.model.module.grade.GradeTracker;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
+import seedu.address.testutil.gradetracker.AssignmentBuilder;
 
 /**
  * A utility class to help with building Module objects.
@@ -79,14 +82,14 @@ public class ModuleBuilder {
         this.zoomLinkMap = updatedLinks;
         return this;
     }
-
     /**
-     * Sets the {@code ZoomLink} of the {@code Module} that we are building.
+     * Sets the {@code ModularCredits} of the {@code Module} that we are building.
      */
     public ModuleBuilder withModularCredits(double modularCredits) {
         this.modularCredits = new ModularCredits(modularCredits);
         return this;
     }
+
     /**
      * Sets the {@code ModuleCredits} of the {@code Module} that we are building.
      */
@@ -96,11 +99,30 @@ public class ModuleBuilder {
     }
 
     /**
+     * Sets the {@code GradePoint} of the {@code Module} that we are building.
+     */
+    public ModuleBuilder withGradePoint(double value) {
+        this.gradeTracker.setGradePoint(new GradePoint(value));
+        return this;
+    }
+
+    /**
      * Adds the {@code Tag} to the {@code Module} that we are building.
      */
     public ModuleBuilder withTag(String tag) {
         Set<Tag> updatedTag = new HashSet<Tag>(this.tags);
         updatedTag.add(new Tag(tag));
+        this.tags.addAll(updatedTag);
+        return this;
+    }
+
+    /**
+     * Adds the {@code Assignment} to the {@code Module} that we are building.
+     */
+    public ModuleBuilder withAssignment(String assignmentName, double assignmentPercentage, double assignmentResult) {
+        Assignment assignment = new AssignmentBuilder().withAssignmentName(assignmentName)
+                .withAssignmentPercentage(assignmentPercentage).withAssignmentResult(assignmentResult).build();
+        this.gradeTracker.addAssignment(assignment);
         return this;
     }
 

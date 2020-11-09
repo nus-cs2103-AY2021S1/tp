@@ -3,7 +3,9 @@ package seedu.address.logic.parser.schedulerparsers;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.schedulercommands.AddEventCommand;
@@ -16,11 +18,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventTime;
+import seedu.address.model.tag.Tag;
 
 public class AddEventParser implements Parser<AddEventCommand> {
     @Override
     public AddEventCommand parse(String userInput) throws ParseException {
-        ArgumentTokenizer tokenizer = new ArgumentTokenizer(userInput, PREFIX_NAME, PREFIX_DATE);
+        ArgumentTokenizer tokenizer = new ArgumentTokenizer(userInput, PREFIX_NAME, PREFIX_DATE, PREFIX_TAG);
         ArgumentMultimap argMultiMap = tokenizer.tokenize();
         if (!arePrefixesPresent(argMultiMap, PREFIX_NAME, PREFIX_DATE)
                 || !argMultiMap.getPreamble().isEmpty()) {
@@ -30,7 +33,8 @@ public class AddEventParser implements Parser<AddEventCommand> {
         EventName name = ParserUtil.parseEventName(argMultiMap.getValue(PREFIX_NAME).get());
         String dateTime = argMultiMap.getValue(PREFIX_DATE).get();
         EventTime time = ParserUtil.parseEventTime(dateTime);
-        Event event = new Event(name, time);
+        Set<Tag> tags = ParserUtil.parseTags(argMultiMap.getAllValues(PREFIX_TAG));
+        Event event = new Event(name, time, tags);
         return new AddEventCommand(event);
     }
 

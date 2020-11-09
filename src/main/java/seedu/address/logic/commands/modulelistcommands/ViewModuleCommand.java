@@ -2,8 +2,9 @@ package seedu.address.logic.commands.modulelistcommands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -13,9 +14,12 @@ import seedu.address.logic.commands.ViewCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleLesson;
+import seedu.address.model.module.ZoomLink;
+import seedu.address.ui.DisplayZoomLink;
 
 /**
- * Lists all modules in the module list to the user.
+ * Encapsulates methods and information to display details for a specified module to the user.
  */
 public class ViewModuleCommand extends Command {
 
@@ -31,10 +35,13 @@ public class ViewModuleCommand extends Command {
     private Index index;
 
     /**
-     * Creates a ViewCommand to view the specified {@code Module}
+     * Creates and initialises a new ViewModuleCommand for detailed display of a specified module.
+     *
+     * @param targetIndex Index object encapsulating the index of the target module in the filtered displayed
+     *                    module list.
      */
-    public ViewModuleCommand(Index index) {
-        this.index = index;
+    public ViewModuleCommand(Index targetIndex) {
+        this.index = targetIndex;
     }
 
     @Override
@@ -51,14 +58,25 @@ public class ViewModuleCommand extends Command {
 
         ViewCommandResult viewCommandResult = new ViewCommandResult(String.format(MESSAGE_SUCCESS, moduleToView));
         viewCommandResult.setTextArea(moduleToView.toViewTextArea());
-        viewCommandResult.setZoomLinks(moduleToView.getAllLinks().values().stream().collect(Collectors.toList()));
-        //viewCommandResult.setZoomLinksToCopy(moduleToView.getAllLinks()
-        // .values().stream().collect(Collectors.toList()));
+        List<DisplayZoomLink> displayZoomLinkList = new ArrayList<>();
+        for (Map.Entry<ModuleLesson, ZoomLink> entry : moduleToView.getAllLinks().entrySet()) {
+            DisplayZoomLink displayZoomLink = new DisplayZoomLink(entry.getKey(), entry.getValue());
+            displayZoomLinkList.add(displayZoomLink);
+        }
+        viewCommandResult.setDisplayZoomLinks(displayZoomLinkList);
+        viewCommandResult.setAssignments(moduleToView.getGradeTracker().getAssignments());
+        viewCommandResult.setModule(moduleToView);
         return viewCommandResult;
     }
 
     @Override
-    public boolean isExit() {
-        return false;
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        } else if (other instanceof ViewModuleCommand) {
+            return this.index.equals(((ViewModuleCommand) other).index);
+        } else {
+            return false;
+        }
     }
 }

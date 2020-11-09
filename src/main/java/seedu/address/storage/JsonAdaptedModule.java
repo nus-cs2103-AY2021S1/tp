@@ -24,7 +24,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Module}.
  */
-class JsonAdaptedModule {
+public class JsonAdaptedModule {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Module's %s field is missing!";
 
@@ -63,8 +63,8 @@ class JsonAdaptedModule {
      */
     public JsonAdaptedModule(Module source) {
         name = source.getName().fullName;
-        source.getAllLinks().forEach((lesson, link) -> zoomLinks.add(new JsonAdaptedZoomLink(lesson.getLesson(),
-                link.getLink())));
+        source.getAllLinks().forEach((lesson, link) -> zoomLinks.add(new JsonAdaptedZoomLink(lesson.toString(),
+                link.toString())));
         gradeTracker = new JsonAdaptedGradeTracker(source.getGradeTracker());
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -113,6 +113,7 @@ class JsonAdaptedModule {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     GradeTracker.class.getSimpleName()));
         }
+        gradeTracker.toModelType();
         if (!GradeTracker.isValidGradeTracker(gradeTracker.toModelType())) {
             throw new IllegalValueException(GradeTracker.MESSAGE_INVALID_GRADE);
         }
