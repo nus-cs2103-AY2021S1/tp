@@ -21,6 +21,7 @@ It is optimized for use via a Command Line Interface (CLI) while still having th
     - [3.5 Storage component](#35-storage-component)
     - [3.6 Scraper component](#36-scraper-component)
     - [3.7 Common classes](#37-common-classes)
+<div style="page-break-after: always;"></div>
 4. [Implementation](#4-implementation)
     - [4.1 Login](#41-login)
         * [4.1.1 What is the login process](#411-what-is-the-login-process)
@@ -37,7 +38,6 @@ It is optimized for use via a Command Line Interface (CLI) while still having th
         * [4.3.1 What is AddCommand](#431-what-is-addcommand)
         * [4.3.2 Structure of AddCommand](#432-structure-of-addcommand)
         * [4.3.3 Structure of AddXYZCommand](#433-structure-of-addxyzcommand)
-<div style="page-break-after: always;"></div>
         * [4.3.4 Structure of AddCommandParser](#434-structure-of-addcommandparser)
         * [4.3.5 Path Diagram of AddTaskCommand](#435-path-diagram-of-addtaskcommand)
         * [4.3.6 Sequence Diagram of AddTaskCommand](#436-sequence-diagram-of-addtaskcommand)
