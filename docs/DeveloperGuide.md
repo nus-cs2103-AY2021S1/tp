@@ -5,13 +5,6 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
-## 1. Introduction
-
-### 1.2 Audience 
-
-The Developer Guide is designed for those who are interested in understanding the architecture and other aspects of software design
-of tCheck. In particular, this guide has been written with the current and future tCheck developers in mind because it details
-the knowledge necessary to know to be able to modify the codebase and customize tCheck for specific operational needs or extend current functionalities.
 
 ## **Introduction**
 
@@ -21,6 +14,12 @@ optimised for the Command Line Interface (CLI), so that users can update and ret
 
 ### Purpose of Document
 This document specifies the architecture and software design for the application, tCheck.
+
+### Audience
+
+The Developer Guide is designed for those who are interested in understanding the architecture and other aspects of software design
+of tCheck. In particular, this guide has been written with the current and future tCheck developers in mind because it details
+the knowledge necessary to know to be able to modify the codebase and customize tCheck for specific operational needs or extend current functionalities.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -130,7 +129,6 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-
 Given below is the class diagram showing details of the person model:
 
 The `Person` sub-component,
@@ -149,6 +147,10 @@ The `SalesRecordEntry` sub-component,
 Given below is the class diagram showing the details of the `SalesRecordEntry` model:
 
 ![Structure of the SalesRecordEntry sub-component](images/SalesRecordEntryModelClassDiagram.png)
+
+The `Ingredient` sub-component,
+* stores the ingredient book data.
+* exposes an unmodifiable `ObservableList<Ingredient>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
 Given below is the class diagram showing details of the ingredient model:
 
@@ -827,25 +829,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User enters the name of the ingredient and the amount he/she wants to set to.
 3. tCheck will set the ingredient level of this ingredient and display a success message.
 
-        Use case ends.
+  Use case ends.
 
 **Extensions**
 
 * 2a. tCheck is unable to find the entered ingredient name.
 
-  * 2a1. tCheck displays an error message informing the user that the ingredient name entered is not found in the pre-defined ingredient book.
+  * 2a1. tCheck requests the user to re-enter the command with correct ingredient name.
+  
+  * 2a2. User enters a new ingredient name.
+  
+  Steps 2a1-2a2 are repeated until a valid ingredient name is entered.
 
   Use case ends.
 
 * 2b. tCheck detects an invalid amount value entered.
 
-  * 2b1. tCheck displays an error message informing the user that the amount entered is invalid with corresponding reasons (e.g. negative number, contains decimal part etc).
+  * 2b1. tCheck requests the user to re-enter the command with valid parameter for amount.
+  
+  * 2b2. User enters a new amount for the ingredient.
+  
+  Steps 2b1-2b2 are repeated until a valid amount is entered.
 
   Use case ends.
 
 * 2c. tCheck detects missing field(s) in the command entered.
 
-  * 2c1. tCheck displays an error message informing the user that there are missing field(s) which caused the command to fail and shows an example of a correct command.
+  * 2c1. tCheck requests the user to re-enter the command with all necessary fields.
+  
+  * 2c2. User enters new a command with necessary fields.
+  
+  Steps 2c1-2c2 are repeated until a valid command with all necessary fields is entered.
 
   Use case ends.
 
@@ -899,6 +913,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Store Manager**: A person who oversees the operation of a T-Sugar store, and is responsible for sales recording, inventory keeping and other management tasks of the store
+* **Employee**: A person who works at a T-Sugar store and is either a full-time worker or a part-time worker
+* **Address Book**: A list containing all the employees' details (name, phone number etc.)
+* **Employee Directory**: A section of GUI which tracks the Address Book
+* **Sales Book**: A list that stores sales data of the drinks
+* **Sales Tracker**: A section of GUI which tracks the Sales Book
+* **Ingredient Book**: A list that stores all available ingredients and their amounts
+* **Ingredient Tracker**: A section of GUI which tracks the Ingredient Book
 
 --------------------------------------------------------------------------------------------------------------------
 
