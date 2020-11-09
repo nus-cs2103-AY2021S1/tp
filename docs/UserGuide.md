@@ -291,7 +291,7 @@ the data of your previous I4I home folder. By default, the 2 data files are name
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [s/CLIENT_SOURCE]…​ [l/PRIORITY]` <br>e.g., `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 o/This client is new. s/friend from jc s/Jack's Girlfriend l/h`
+**Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [s/CLIENT_SOURCE]…​ [l/PRIORITY] [pn/POLICY_NAME]` <br>e.g., `add n/Betsy Crowe s/friend s/enemy from jac e/betsycrowe@example.com a/Newgate Prison p/1234567 o/This client is new. l/high pn/Life Time Policy`
 **Add Policy** | `addp pn/POLICY_NAME pd/POLICY_DESCRIPTION` <br>e.g., `addp pn/Medishield pd/Covers COVID`
 **Archive** | `archive INDEX`<br> e.g., `archive 3`
 **Clear Clients** | `clear`
