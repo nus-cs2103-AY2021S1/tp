@@ -67,8 +67,6 @@ For example, the `Logic` component (see the class diagram given below) defines i
     <em style="color:#CC5500">Figure 2. Class Diagram of Logic Component</em>
 </p>
 
-<div style="page-break-after: always;"></div>
-
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
