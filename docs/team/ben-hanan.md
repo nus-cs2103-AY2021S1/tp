@@ -18,7 +18,7 @@ Together with [my team](https://ay2021s1-cs2103t-w13-1.github.io/tp/AboutUs.html
 Given below are my contributions to the project.
 
 * **New Feature**:
-    - Leave management [#51](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/51)
+    - Leave management
         - What it does: allows user add and delete leave records from a staff, auto updates total number of leave taken.
         - Justification: a leave management system allows users to keep track of their staff leaves.
         - Highlights: added leaves will be marked as "Approved", "Taken" or "On Current Leave" automatically based on the user's local time.
