@@ -50,7 +50,6 @@ Note how the app contains some sample expenses and revenues if you have not used
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
-
 # 2. How to identify notations
 *(Written by Lim Zi Yang)* <br>
 
@@ -92,7 +91,6 @@ Important cautions that needs to be known before using the feature.
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
-
 # 3. User Interface Overview
 *(Written by Le Hue Man)* <br>
 
@@ -120,7 +118,6 @@ UI component | Description
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
-
 # 4. Components
 *(Written by Nicholas Canete)* <br>
 
@@ -171,6 +168,7 @@ the [Features](#5-features) below.
 Description refers to the textual information that is associated with the Entry that Common Cents receives from you, in
 order to provide more information about the Entry.  
 
+<div style="page-break-after: always;"></div>
 ### 4.2.3 Amount 
 Amount is the numeric value associated with the Entry that Common Cents receives from you. All amounts, for both expenses
 and revenues must be given as a positive value.
