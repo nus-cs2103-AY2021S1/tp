@@ -198,7 +198,7 @@ Given below is the activity diagram a user will go through when creating a routi
 
 #### 4.1.1 Design Considerations
 
-##### Aspect: Whether to create a Routine and add exercises simultaneously in the same command
+**Aspect: Whether to create a Routine and add exercises simultaneously in the same command**
 
 * **Alternative 1 (Current implementation)**: No, there should be a seperate command to add Exercise into Routine
 
@@ -215,7 +215,7 @@ Alternative 1 was chosen for the command to add an Exercise to a Routine to be s
   believe that the trade-off to gain lower coupling and prevent ripple effects across fitNUS was the right choice to
   make.
 
-##### Aspect: Whether to implement Tag for Routine
+**Aspect: Whether to implement Tag for Routine**
 
 * **Alternative 1 (Current implementation)**: No, there is no Tag function for Routine.
 
@@ -371,7 +371,7 @@ The GUI then lists the deleted lesson.
 
 #### 4.4.1 Design Considerations
 
-##### Aspect: Whether to automatically delete the corresponding slot that contains the lesson when the user deletes that lesson
+**Aspect: Whether to automatically delete the corresponding slot that contains the lesson when the user deletes that lesson**
 
 * **Alternative 1 (Current implementation)**: Yes, fitNUS should automatically delete the corresponding slot, if any.
 
@@ -472,16 +472,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `fitNUS` and the **Actor** is the `user`, unless specified otherwise)
 
-#### **Use Case 1 (UC01): List all routines in fitNUS**
+**Use Case 1 (UC01): List all routines in fitNUS**
 
-**MSS**
+***MSS***
 
 1.  User requests to list all existing routines available.
 2.  fitNUS displays all the routines that are available, if there are any.
 
-#### **Use Case 2 (UC02): Create a new routine**
+**Use Case 2 (UC02): Create a new routine**
 
-**MSS**
+***MSS***
 
 1.  User requests to <u>list all routines in fitNUS (UC01)</u>.
 2.  User requests to create a new routine.
@@ -489,7 +489,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+***Extensions***
 
 * 2a. The given routine name already exists.
 
@@ -497,9 +497,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-#### **Use Case 3 (UC03): Delete a routine**
+**Use Case 3 (UC03): Delete a routine**
 
-**MSS**
+***MSS***
 
 1.  User requests to <u>list all routines in fitNUS (UC01)</u>.
 2.  User requests to delete a specific routine in the list.
@@ -507,7 +507,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+***Extensions***
 
 * 1a. The list is empty.
 
@@ -519,9 +519,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-#### **Use Case 4 (UC04): Add exercise to routine**
+**Use Case 4 (UC04): Add exercise to routine**
 
-**MSS**
+***MSS***
 
 1.  User requests to <u>list all routines in fitNUS (UC01)</u>.
 2.  User requests to add an exercise to a specific routine.
@@ -529,7 +529,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+***Extensions***
 
 * 1a. The list is empty.
 
@@ -547,23 +547,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-#### **Use Case 5 (UC05): View details of a certain routine**
+**Use Case 5 (UC05): View details of a certain routine**
 
-**MSS**
+***MSS***
 
 1.  User requests to view a certain routine.
 2.  fitNUS displays all information of the specified routine, and the exercises it contains.
 
-**Extensions**
+***Extensions***
 
 * 1a.   Index given by user is invalid.
     * 1a1.  fitNUS shows an error message.
 
       Use case ends.
 
-#### **Use Case 6 (UC06): Delete exercise from routine**
+**Use Case 6 (UC06): Delete exercise from routine**
 
-**MSS**
+***MSS***
 
 1.  User requests to <u>list all routines in fitNUS (UC01)</u>.
 2.  User requests to <u>view details of a certain routine (UC05)</u>.
@@ -572,7 +572,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+***Extensions***
 
 * 1a. The list is empty.
 
@@ -592,9 +592,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-#### **Use Case 7 (UC07): Add routine to timetable**
+**Use Case 7 (UC07): Add routine to timetable**
 
-**MSS**
+***MSS***
 
 1.  User requests to <u>list all routines in fitNUS (UC01)</u>.
 2.  User requests to add a specific routine to a specific slot in the timetable.
@@ -602,7 +602,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+***Extensions***
 
 * 2a. Routine requested by user does not exist.
     * 2a1. fitNUS shows an error message.
@@ -619,30 +619,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-#### **Use Case 8 (UC08): Delete slot from timetable**
+**Use Case 8 (UC08): Delete slot from timetable**
 
-**MSS**
+***MSS***
 
 1.  User requests to delete a specific slot in the timetable.
 2.  fitNUS deletes the slot from schedule.
 
     Use case ends.
 
-**Extensions**
+***Extensions***
 
 * 3a. The slot requested does not exist.
     * 3a1. fitNUS shows an error message.
 
     Use case ends.
 
-#### **Use Case 9 (UC09): Add Calories**
+**Use Case 9 (UC09): Add Calories**
 
-**MSS**
+***MSS***
 
 1.  User inputs calories increment into fitNUS.
 2.  fitNUS adds the calories and displays the new total calories for the day on a graph.
 
-**Extensions**
+***Extensions***
 
 * 1a.   User inputs too large of a number.
     * 1a1.  fitNUS informs the user that the input is too large.
@@ -654,14 +654,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-#### **Use Case 10 (UC10): Minus calories**
+**Use Case 10 (UC10): Minus calories**
 
-**MSS**
+***MSS***
 
 1.  User inputs calories decrement into fitNUS.
 2.  fitNUS deducts the calories and displays the new total calories for the day on a graph.
 
-**Extensions**
+***Extensions***
 
 * 1a.   User inputs a number larger than the current calories count for the day.
     * 1a1.  fitNUS informs the user that the input will cause the count to be negative.
@@ -673,14 +673,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-#### **Use case 11 (UC11): Set height**
+**Use case 11 (UC11): Set height**
 
-**MSS**
+***MSS***
 
 1.  User inputs his/her height into fitNUS.
 2.  fitNUS displays the new height to the user.
 
-**Extensions**
+***Extensions***
 
 * 1a.   User inputs an impossibly large number or small number.
     * 1a1.  fitNUS informs the user that the input is invalid.
@@ -692,14 +692,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-#### **Use case 12 (UC12): Set weight**
+**Use case 12 (UC12): Set weight**
 
-**MSS**
+***MSS***
 
 1.  User inputs his/her weight into fitNUS.
 2.  fitNUS displays the new weight to the user.
 
-**Extensions**
+***Extensions***
 
 * 1a.   User inputs an impossibly large number or small number.
     * 1a1.  fitNUS informs the user that the input is invalid.
@@ -779,6 +779,55 @@ testers are expected to do more *exploratory* testing.
 
 ### Features
 
+1. Adding a Lesson
+
+   1. Prerequisites: Lesson named "CS2103T" must not already exist in fitNUS.
+   1. Test case: `lesson_add n/CS2103T t/core`<br>
+      Expected: Creates a Lesson called "CS2103T" that is tagged with "core" tag. Success message will be shown.
+   1. Test case: `lesson_add n/CS2100`<br>
+      Expected: Creates a Lesson called "CS21000" with no tags. Success message will be shown.
+   1. Test case: `lesson_add n/CS20&0`<br>
+      Expected: Throws an error due to input not following alphanumeric format. 
+   1. Other incorrect commands to try: `lesson_add`, `lesson_add n/MA1101R n/MA1521`, `...`<br>
+      Expected: Similar to previous.
+
+1. Deleting a Lesson
+
+   1. Prerequisites: Lesson indicated must already exist in fitNUS. In this case, there exists 1 Lesson.
+   1. Test case: `lesson_delete 1`<br>
+      Expected: First Lesson is deleted from the list. Successful message will be shown.
+   1. Test case: `lesson_delete 0`<br>
+      Expected: No Lesson is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Other incorrect delete commands to try: `lesson_delete`, `lesson_delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous. 
+      
+1. Finding a Lesson using keywords
+
+    1. Prerequisites: There must be Lesson existing in fitNUS to search for. In this case, we assume there are 2 named
+    "CS2030" and "CS2040". squats, bench press
+    1. Test case: `lesson_find cs2040`<br>Expected: Lesson "CS2040" will be the only Lesson listed in fitNUS.
+    Success message will inform user how many lessons were successfully found.
+    1. Test case: `lesson_find cs`<br>Expected: Lessons "CS2030" and "CS2040" will be the Lessons listed in fitNUS.
+    Success message will inform user how many lessons were successfully found.
+    1. Test case: `lesson_find @`<br>Expected: No Lesson object will be found, because this is an invalid Name.
+    1. Other incorrect delete commands to try: `lesson_find `<br>
+       Expected: Error message thrown informing you of the correct command format. 
+
+1. Editing an existing Lesson
+
+    1. Prerequisites: There must be a Lesson existing in fitNUS to edit. There is one Lesson named "ES2660".
+    1. Test case: `lesson_edit 1 n/CS2100`<br>Expected: Lesson "ES2660" will be renamed to "CS2100"
+    and a success message will inform user of the new name.
+    1. Test case: `lesson_edit 1 n/CS2100 t/easy`<br>Expected: Lesson "ES2660" will be renamed to "CS2100"
+    with a tag saying "easy". A success message will inform user of the new name and tags.
+    1. Test case: `lesson_edit 10 n/Good Name`<br>Expected: Invalid index, no Lesson is edited and an error message
+    will be thrown, explaining the index is invalid.
+
+1. Listing all Lesson
+
+    1. Test case: `lesson_list`: fitNUS will list out all the Lesson in the Lesson column. Success message will be
+    show.
+
 1. Adding an Exercise
 
    1. Prerequisites: Exercise named "Squats" must not already exist in fitNUS.
@@ -790,7 +839,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Throws an error due to input not following alphanumeric format. 
    1. Other incorrect commands to try: `exercise_add`, `exercise_add e/Bicep e/Curls`, `...`<br>
       Expected: Similar to previous.
-
+<br>
 1. Deleting an Exercise
 
    1. Prerequisites: Exercise indicated must already exist in fitNUS. In this case, there exist 1 Exercise.
@@ -800,9 +849,8 @@ testers are expected to do more *exploratory* testing.
       Expected: No Exercise is deleted. Error details shown in the status message. Status bar remains the same.
    1. Other incorrect delete commands to try: `exercise_delete`, `exercise_delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous. 
-      
+<br>
 1. Finding an Exercise using keywords
-
     1. Prerequisites: There must be Exercise existing in fitNUS to search for. In this case, we assume there are 2 named
     "Squats" and "Bench Press".
     1. Test case: `exercise_find bench`<br>Expected: Exercise "Bench Press" will be the only Exercise listed in fitNUS.
@@ -812,9 +860,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `exercise_find @`<br>Expected: No Exercise object will be found, because this is an invalid Name.
     1. Other incorrect delete commands to try: `exercise_find `<br>
        Expected: Error message thrown informing you of the correct command format. 
-
+<br>
 1. Editing an existing Exercise
-
     1. Prerequisites: There must be an Exercise existing in fitNUS to edit. There is one Exercise named "Squats".
     1. Test case: `exercise_edit 1 e/Barbell Squats`<br>Expected: Exercise "Bench Press" will be renamed to "Barbell
     Squats" and a success message will inform user of the new name.
@@ -825,29 +872,28 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `exercise_edit 1 e/Bicep e/Tricep`, `exercise_edit 1 e/Bicep t/Tough
     t/Hard`<br>
        Expected: Error message thrown informing you of the correct command format.
-
+<br>
 1. Listing all Exercise
-
     1. Test case: `exercise_list`: fitNUS will list out all the Exercise in the Exercise column. Success message will be
     show.
-
+<br>
 1. Adding a Routine
 
    1. Test case: `routine_create r/Leg Workout`<br>
       Expected: Creates a Routine called "Leg Workout"
    1. Other incorrect delete commands to try: `routine_create`, `routine_create r/EXISTING_ROUTINE`, `...`<br>
       Expected: Similar to previous.
-
+<br>
 1. Deleting a Routine
 
    1. Prerequisites: Routine must already exist in fitNUS. In this case, the first Routine is the one to be deleted.
    1. Test case: `routine_delete 1`<br>
       Expected: First Routine is deleted from the list. Successful message will be shown.
    1. Test case: `routine_delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No Routine is deleted. Error details shown in the status message. Status bar remains the same.
    1. Other incorrect delete commands to try: `routine_delete`, `routine_delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
+<br>
 1. Adding an Exercise to a Routine
 
    1. Prerequisites: Both the exercise and routine must already exist in fitNUS. In this case, only the Routine "Leg Workout" and Exercise "Squats" exist.
@@ -859,7 +905,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Throws an error message stating that the routine does not exist in fitNUS.
    1. Other incorrect delete commands to try: `routine_add_exercise`, `routine_add_exercise r/EXISTING_ROUTINE`, `...`<br>
       Expected: Throws an error message stating that the format is incorrect.
-
+<br>
 1. Deleting an Exercise from a Routine
 
    1. Prerequisites: Both the exercise and routine must already exist in fitNUS, and the routine must contain the exercise.
@@ -872,7 +918,32 @@ testers are expected to do more *exploratory* testing.
       Expected: Throws an error message stating that the routine does not exist in fitNUS.
    1. Other incorrect delete commands to try: `routine_delete_exercise`, `routine_delete_exercise r/EXISTING_ROUTINE`, `...`<br>
       Expected: Throws an error message stating that the format is incorrect.
+<br>
+1. Finding a Routine
 
+    1. Prerequisites: In this case, there exists 2 Routines named "Leg Day" and "Upper Body".
+    1. Test case:  `routine_find leg`<br>Expected: Routine column is updated to show only the "Leg Day" routine. Success
+    message is shown.
+    1. Test case: `routine_find best routine in singapore`<br>Expected: Routine column is updated show 0 routines as the
+    keywords do not match any existing Routines.
+    1. Test case: `routine_find b@d routine`<br>Expected: Error message is thrown due to inclusion of a special character.
+    1. Other incorrect find commands to try: `routine_find`, `...`<br>Expected: Throws an error similar to above.
+<br>
+1. Listing all Routines
+
+    1. Test case: `exercise_list`: fitNUS will list out all the Routines in the Routine column. Success message will be
+        show.
+<br>
+1. Viewing a Routine
+
+   1. Prerequisites: Routines must already exist in fitNUS. In this case, the third Routine is the one to be viewed.
+   1. Test case: `routine_view 3`<br>
+      Expected: Routine column is cleared, except for the third routine. Successful message will be shown.
+   1. Test case: `routine_view 0`<br>
+      Expected: No routine is viewed. Error details shown in the status message. Status bar remains the same.
+   1. Other incorrect delete commands to try: `routine_view`, `routine_delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+<br>
 1. Adding a Routine to the Timetable
 
    1. Prerequisites: The routine must already exist in fitNUS. In this case, only the Routine "Leg Workout" exists.
@@ -890,7 +961,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Throws an error message stating that the slot already exists in the timetable.
    1. Other incorrect delete commands to try: `timetable_add_routine`, `timetable_add_routine r/EXISTING_ROUTINE`, `...`<br>
       Expected: Throws an error message stating that the format is incorrect.
-
+<br>
 1. Adding a Lesson to the Timetable
 
    1. Prerequisites: The lesson must already exist in fitNUS. In this case, only the Lesson "CS2103T" exists.
@@ -908,7 +979,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Throws an error message stating that the slot already exists in the timetable.
    1. Other incorrect delete commands to try: `timetable_add_lesson`, `timetable_add_lesson n/EXISTING_LESSON`, `...`<br>
       Expected: Throws an error message stating that the format is incorrect.
-
+<br>
 1. Deleting a Slot from the Timetable
 
    1. Prerequisites: The Slot must already exist in the Timetable. In this case, only the Slot on Monday, 1600-1800 exists.
@@ -924,7 +995,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Throws an error message stating that the slot does not exist in the timetable.
    1. Other incorrect delete commands to try: `timetable_delete_slot`, `timetable_delete_slot D/monday`, `...`<br>
       Expected: Throws an error message stating that the format is incorrect.
-
+<br>
 1. Setting user weight
 
    1. Test case: `weight w/70`<br>
@@ -933,7 +1004,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Weight does not update or change on GUI. Error will be shown for an unrealistic weight for a user.
    1. Other incorrect delete commands to try: `weight w/0`, `weight w/-1`, `...`<br>
       Expected: Similar to previous.
-
+<br>
 1. Setting user height
 
    1. Test case: `height h/170`<br>
@@ -942,7 +1013,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Height does not update or change on GUI. Error will be shown for an unrealistic height for a user.
    1. Other incorrect delete commands to try: `height w/10`, `height w/-1`, `...`<br>
       Expected: Similar to previous.
-
+<br>
 1. Adding calorie count
 
    1. Test case: `calorie_add c/1500`<br>
@@ -951,7 +1022,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Error will be thrown because this value not a realistic input. Calorie Graph and today's calorie count will not update.
    1. Other incorrect delete commands to try: `calorie_add c/-1`, `calorie_add c/0`, `...`<br>
       Expected: Similar to previous.
-
+<br>
 1. Deducting calorie count
 
    1. Test case: `calorie_minus c/1500`<br>
@@ -960,7 +1031,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Error will be thrown because this value is not a realistic input. Calorie Graph and today's calorie count will not update.
    1. Other incorrect delete commands to try: `calorie_add c/-1`, `calorie_add c/0`, `...`<br>
       Expected: Similar to previous.
-
+<br>
 1. _{ more test cases …​ }_
 
 ### Saving data
@@ -992,9 +1063,16 @@ coupling and abstraction.
 We knew that we wanted to center fitNUS around Exercise. Intertwining of Exercise with Routine, Timetable and the other
 classes proved to be extremely challenging. Whenever an Exercise was edited or removed, relevant Routines will have to
 changed and similarly edited. We went through several iterations of refactoring these classes due to
-design issues as we learnt more about design principles in the course and defensive programming. 
+design issues as we learnt more about design principles in the course and defensive programming.
 
-### 3. Timetable and Slot
+### 3. Lessons
+
+We knew another major aspect to fitNUS was Lesson. Intertwining of Lesson and Timetable and the other
+classes proved to be extremely challenging. Whenever a Lesson was edited or removed, relevant Lessons will have to be
+changed and similarly edited in the Timetable. We went through several iterations of refactoring these classes due to
+design issues as we learnt more about design principles in the course and defensive programming.  
+
+### 4. Timetable and Slot
 
 Implementing a Timetable in fitNUS that stores Routines and Lessons prove to be another challenging task.
 Since the Timetable has to be able to store both Routines and Lessons, we need to use a parent Activity class and
@@ -1006,7 +1084,7 @@ A lot of meticulous thoughts are required to implement this feature properly due
 Whenever a Routine or Lesson is edited or deleted, we need to ensure any corresponding Slots containing them have to be
 edited or deleted as well.
 
-### 3. User Interface
+### 5. User Interface
 
 We envisioned fitNUS to be more of a "visual" product, where users will feel that the product is intuitive to use and
 the interface is lean. We are proud and sure that we have achieved this goal, despite not knowing any JavaFX before
@@ -1015,7 +1093,7 @@ enters calories as well as the timetable tab that is able to concisely display t
 We spent a considerable amount of time on independent learning to understand how the graph and tabs can be implemented, 
 and how to best integrate these components into fitNUS.
 
-### 4. Conclusion
+### 6. Conclusion
 
 No matter how much you plan for a project, things will always hiccup. 
 We had a lot of unique ideas and features that we wish we could have implemented, but due to the unforeseen workload and the already

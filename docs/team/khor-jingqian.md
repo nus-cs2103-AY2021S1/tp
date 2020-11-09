@@ -66,6 +66,9 @@ wholesome user experience.
   * Wrote test cases for Routine, UniqueRoutineList, DailyCalorie, CalorieLog, Body, Height and Weight and all the
   linked classes. [#195](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/195) [#194](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/194) [#193](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/193) [#199](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/199)
   * Disallow the input of repeated prefixes for all the classes in fitNUS where AB3 would take the latest prefix command to be accurate, now only allowing 1 prefix when appropriate.  [#195](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/195)
+  * Prevent input for Tag that is more than 50 characters, enhancing user-friendliness.  [#195](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/195)
+  * Disallow finding symbols, because it is a logical flaw to prevent symbols in Name, and yet allow search for it.  [#210](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/210)
+  * Improve defensive code when reading JSON files, in the event of tampering. [#213](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/213)
 
 ## Contributions to the team-based tasks:
 
@@ -81,7 +84,7 @@ wholesome user experience.
 
 * Contributed some pictures for UG (refer to above links to UG edits).
 
-* Wrote the command summary for User Guide(refer to above links to UG edits).
+* Wrote the command summary for User Guide. [#76](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/76)
 
 ## Contributions to the Developer Guide:
 
@@ -89,11 +92,9 @@ wholesome user experience.
 
 * Refactored architecture diagrams from AB3 to better reflect how fitNUS works. (refer to above links to DG edits)
 
-* Wrote User Stories and Manual testing for the group. [#195](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/195)
+* Wrote User Stories and Manual testing for the group. [#195](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/195) [#214](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/214)
 
-* Added an Activity Diagram for `routine_create` for better clarity [#195](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/195)
-
-* Wrote design considerations for `routine_create` [#195](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/195)
+* Added an Activity Diagram  and design considerations for `routine_create` for better clarity [#195](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/195)
 
 ## Community
   * Reported feature flaws and suggestions for other teams in the class during PE Dry Run. [#1](https://github.com/khor-jingqian/ped/issues/1) [#2](https://github.com/khor-jingqian/ped/issues/1) [#3](https://github.com/khor-jingqian/ped/issues/3)

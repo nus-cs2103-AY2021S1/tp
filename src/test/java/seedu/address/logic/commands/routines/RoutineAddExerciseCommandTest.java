@@ -5,9 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.routines.RoutineAddExerciseCommand.MESSAGE_DUPLICATE_EXERCISE;
+import static seedu.address.logic.commands.routines.RoutineAddExerciseCommand.MESSAGE_MISSING_EXERCISE;
 import static seedu.address.testutil.TypicalExercises.BENCH_PRESS;
 import static seedu.address.testutil.TypicalExercises.SQUATS;
 import static seedu.address.testutil.TypicalExercises.getTypicalFitNus;
+import static seedu.address.testutil.TypicalRoutines.LEG_DAY;
 import static seedu.address.testutil.TypicalRoutines.UPPER_BODY;
 import static seedu.address.testutil.TypicalRoutines.getPopulatedFitNus;
 
@@ -54,8 +57,26 @@ public class RoutineAddExerciseCommandTest {
     }
 
     @Test
-    public void execute_invalidRoutine_throwsCommandException() {
+    public void execute_missingExercise_throwsCommandException() {
+        Model newPopulatedModel = new ModelManager(getPopulatedFitNus(), new UserPrefs());
+        RoutineAddExerciseCommand routineAddExerciseCommand = new RoutineAddExerciseCommand(LEG_DAY,
+                SQUATS);
+        assertCommandFailure(routineAddExerciseCommand, newPopulatedModel, MESSAGE_MISSING_EXERCISE);
+    }
 
+
+    @Test
+    public void execute_duplicateExercise_throwsCommandException() {
+        Model newPopulatedModel = new ModelManager(getPopulatedFitNus(), new UserPrefs());
+        newPopulatedModel.addExercise(SQUATS);
+        newPopulatedModel.addExerciseToRoutine(LEG_DAY, SQUATS);
+        RoutineAddExerciseCommand routineAddExerciseCommand = new RoutineAddExerciseCommand(LEG_DAY,
+                SQUATS);
+        assertCommandFailure(routineAddExerciseCommand, newPopulatedModel, MESSAGE_DUPLICATE_EXERCISE);
+    }
+
+    @Test
+    public void execute_invalidRoutine_throwsCommandException() {
         RoutineAddExerciseCommand routineAddExerciseCommand = new RoutineAddExerciseCommand(UPPER_BODY,
                 SQUATS);
         assertCommandFailure(routineAddExerciseCommand, typicalModel, MESSAGE_MISSING_ROUTINE);
