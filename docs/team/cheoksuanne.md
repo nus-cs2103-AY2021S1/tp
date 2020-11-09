@@ -34,7 +34,8 @@ Given below are my contributions to the project.
   [\#210](https://github.com/AY2021S1-CS2103T-W12-1/tp/issues/210),
   [\#212](https://github.com/AY2021S1-CS2103T-W12-1/tp/issues/212),
   [\#213](https://github.com/AY2021S1-CS2103T-W12-1/tp/issues/213))
-   
+<div style="page-break-after: always;"></div>
+
 * **Enhancements to existing features**:
    * Wrote tests for existing features to improve code coverage (Pull requests
     [\#91](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/91), 
