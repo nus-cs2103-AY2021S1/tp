@@ -24,7 +24,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.util.Name;
 
 /**
- * Edits the details of an existing exercise in fitNUS.
+ * Edits the details of an existing Exercise in fitNUS.
  */
 public class ExerciseEditCommand extends Command {
 
@@ -44,10 +44,19 @@ public class ExerciseEditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists in fitNUS";
 
+    /**
+     * The Index of the exercise to be edited.
+     */
     private final Index index;
+
+    /**
+     * The details to edit the exercise with.
+     */
     private final EditExerciseDescriptor editExerciseDescriptor;
 
     /**
+     * Creates an ExerciseEditCommand to edit the specified exercise identified by its {@code Index}.
+     *
      * @param index of the exercise in the filtered exercise list to edit
      * @param editExerciseDescriptor details to edit the exercise with
      */

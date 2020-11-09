@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.exercise.Exercise;
 
 /**
- * Deletes an exercise identified using it's displayed index from fitNUS.
+ * Deletes an Exercise identified using its displayed index from fitNUS.
  */
 public class ExerciseDeleteCommand extends Command {
 
@@ -26,8 +26,14 @@ public class ExerciseDeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_EXERCISE_SUCCESS = "Deleted Exercise: %1$s";
 
+    /**
+     * The Index of the exercise to be deleted.
+     */
     private final Index targetIndex;
 
+    /**
+     * Creates an ExerciseDeleteCommand to delete the specified exercise identified by its {@code Index}.
+     */
     public ExerciseDeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

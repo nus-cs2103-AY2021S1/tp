@@ -13,7 +13,7 @@ import seedu.address.model.exercise.exceptions.DuplicateExerciseException;
 import seedu.address.model.routine.Routine;
 
 /**
- * Adds an exercise to a routine in fitNUS.
+ * Adds an Exercise to a Routine in fitNUS.
  */
 public class RoutineAddExerciseCommand extends Command {
 
@@ -34,11 +34,18 @@ public class RoutineAddExerciseCommand extends Command {
     public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists in the routine!";
 
 
+    /**
+     * The Routine to be added to.
+     */
     private final Routine routineToAdd;
+
+    /**
+     * The Exercise to add.
+     */
     private final Exercise exerciseToAdd;
 
     /**
-     * Creates a RoutineAddExerciseCommand to add the specified {@code Exercise} to the {@code Routine}
+     * Creates a RoutineAddExerciseCommand to add the specified {@code Exercise} to the {@code Routine}.
      */
     public RoutineAddExerciseCommand(Routine routine, Exercise exercise) {
         requireNonNull(routine);

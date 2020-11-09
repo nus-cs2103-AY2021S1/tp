@@ -10,13 +10,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exercise.ExerciseNameContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new ExerciseFindCommand object
+ * Parses input arguments and creates a new ExerciseFindCommand object.
  */
 public class ExerciseFindCommandParser implements Parser<ExerciseFindCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the ExerciseFindCommand
      * and returns a ExerciseFindCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public ExerciseFindCommand parse(String args) throws ParseException {

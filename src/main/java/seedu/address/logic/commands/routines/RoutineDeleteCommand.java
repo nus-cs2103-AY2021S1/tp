@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.routine.Routine;
 
 /**
- * Deletes a routine identified using it's displayed index from fitNUS.
+ * Deletes a Routine identified using it's displayed index from fitNUS.
  */
 public class RoutineDeleteCommand extends Command {
 
@@ -26,10 +26,13 @@ public class RoutineDeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_ROUTINE_SUCCESS = "Deleted Routine: %1$s";
 
+    /**
+     * The Index of the routine to be deleted.
+     */
     private final Index targetIndex;
 
     /**
-     * Creates a RoutineDeleteCommand to delete the specified {@code Index} of the routine
+     * Creates a RoutineDeleteCommand to delete the specified routine identified by its {@code Index}.
      */
     public RoutineDeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;

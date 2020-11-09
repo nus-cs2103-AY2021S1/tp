@@ -19,13 +19,14 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.util.Name;
 
 /**
- * Parses input arguments and creates a new LessonAddCommand object
+ * Parses input arguments and creates a new LessonAddCommand object.
  */
 public class LessonAddCommandParser implements Parser<LessonAddCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the LessonAddCommand
      * and returns a LessonAddCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public LessonAddCommand parse(String args) throws ParseException {
@@ -35,6 +36,10 @@ public class LessonAddCommandParser implements Parser<LessonAddCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_LESSON)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LessonAddCommand.MESSAGE_USAGE));
+        } else if (argMultimap.getAllValues(PREFIX_LESSON).size() != 1) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, LessonAddCommand.MESSAGE_USAGE)
+            );
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_LESSON).get());

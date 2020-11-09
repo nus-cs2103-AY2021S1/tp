@@ -16,10 +16,14 @@ import seedu.address.model.util.Name;
  */
 public class Exercise {
 
-    // Identity fields
+    /**
+     * The Name of the Exercise.
+     */
     private final Name name;
 
-    // Data fields
+    /**
+     * The set of Tags the Exercise contains.
+     */
     private final Set<Tag> tags = new HashSet<>();
 
     /**

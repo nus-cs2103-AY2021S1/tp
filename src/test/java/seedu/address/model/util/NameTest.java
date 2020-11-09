@@ -36,9 +36,9 @@ public class NameTest {
         assertFalse(Name.isValidName("")); // empty string
         assertFalse(Name.isValidName(" ")); // spaces only
         assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
-        assertFalse(Name.isValidName("cs1234*")); // contains non-alphanumeric characters
-        assertFalse(Name.isValidName("Bench Press @ Record: 45KG")); //Possible Exercise names
-        assertFalse(Name.isValidName("Push Routine @ The Beach / Park")); //Possible Routine names
+        assertFalse(Name.isValidName("cs1234*")); // Lesson name contains non-alphanumeric characters
+        assertFalse(Name.isValidName("Bench Press Record: 45KG")); // Exercise name contains non-alphanumeric char
+        assertFalse(Name.isValidName("Push Routine @ The Beach")); // Routine name contains non-alphanumeric char
 
 
         // valid name

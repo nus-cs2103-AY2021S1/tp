@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.lesson.Lesson;
 
 /**
- * Adds a lesson to fitNUS.
+ * Adds a Lesson to fitNUS.
  */
 public class LessonAddCommand extends Command {
 
@@ -29,6 +29,9 @@ public class LessonAddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New lesson added: %1$s";
     public static final String MESSAGE_DUPLICATE_LESSON = "This lesson already exists in fitNUS";
 
+    /**
+     * The Lesson to be added.
+     */
     private final Lesson toAdd;
 
     /**

@@ -22,7 +22,6 @@ import seedu.address.testutil.TypicalRoutines;
 public class RoutineFindCommandTest {
 
     private Model model = new ModelManager(TypicalRoutines.getTypicalFitNus(), new UserPrefs());
-    private Model expectedModel = new ModelManager(TypicalRoutines.getTypicalFitNus(), new UserPrefs());
     private Routine testRoutine = new Routine(new Name("Jump Fly Swim"));
     private Routine testRoutine1 = new Routine(new Name("Fly Swim Jump"));
     private Routine testRoutine2 = new Routine(new Name("Swim Jump Fly"));

@@ -28,6 +28,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -129,7 +130,7 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
             String lowerCaseTagName = tagName.toLowerCase();
             if (lowerCaseTagSet.contains(lowerCaseTagName)) {
-                throw new ParseException("Tags are case-sensitive! Please refrain from adding duplicates.");
+                throw new ParseException(Tag.MESSAGE_CONSTRAINTS_CASE_SENSITIVE);
             }
             lowerCaseTagSet.add(lowerCaseTagName);
         }
@@ -138,6 +139,9 @@ public class ParserUtil {
 
     /**
      * Parses {@code String height} into a {@code Height}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code height} is invalid.
      */
     public static Height parseHeight(String height) throws ParseException {
         requireNonNull(height);
@@ -156,6 +160,9 @@ public class ParserUtil {
 
     /**
      * Parses {@code String weight} into a {@code Weight}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code weight} is invalid.
      */
     public static Weight parseWeight(String weight) throws ParseException {
         requireNonNull(weight);

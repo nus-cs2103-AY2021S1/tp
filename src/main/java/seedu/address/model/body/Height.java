@@ -18,6 +18,9 @@ public class Height {
 
     public static final String VALIDATION_REGEX = "\\d+(\\.\\d{1,2})?";
 
+    /**
+     * The height of the user.
+     */
     private final double height;
 
     /**

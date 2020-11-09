@@ -4,8 +4,8 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":FitNusParser" as FitNusParser LOGIC_COLOR
-participant ":FindExercisesCommandParser" as FindExercisesCommandParser LOGIC_COLOR
-participant "f:FindExercisesCommand" as FindExercisesCommand LOGIC_COLOR
+participant ":ExerciseFindCommandParser" as ExerciseFindCommandParser LOGIC_COLOR
+participant "f:ExerciseFindCommand" as ExerciseFindCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,45 +13,45 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("find_exercises bench")
+[-> LogicManager : execute("exercise_find bench")
 activate LogicManager
 
-LogicManager -> FitNusParser : parseCommand("find_exercises bench")
+LogicManager -> FitNusParser : parseCommand("exercise_find bench")
 activate FitNusParser
 
-create FindExercisesCommandParser
-FitNusParser -> FindExercisesCommandParser
-activate FindExercisesCommandParser
+create ExerciseFindCommandParser
+FitNusParser -> ExerciseFindCommandParser
+activate ExerciseFindCommandParser
 
-FindExercisesCommandParser --> FitNusParser
-deactivate FindExercisesCommandParser
+ExerciseFindCommandParser --> FitNusParser
+deactivate ExerciseFindCommandParser
 
-FitNusParser -> FindExercisesCommandParser : parse("bench")
-activate FindExercisesCommandParser
+FitNusParser -> ExerciseFindCommandParser : parse("bench")
+activate ExerciseFindCommandParser
 
-create FindExercisesCommand
-FindExercisesCommandParser -> FindExercisesCommand
-activate FindExercisesCommand
+create ExerciseFindCommand
+ExerciseFindCommandParser -> ExerciseFindCommand
+activate ExerciseFindCommand
 
-FindExercisesCommand --> FindExercisesCommandParser : f
-deactivate FindExercisesCommand
+ExerciseFindCommand --> ExerciseFindCommandParser : f
+deactivate ExerciseFindCommand
 
-FindExercisesCommandParser --> FitNusParser : f
-deactivate FindExercisesCommandParser
+ExerciseFindCommandParser --> FitNusParser : f
+deactivate ExerciseFindCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-FindExercisesCommandParser -[hidden]-> FitNusParser
-destroy FindExercisesCommandParser
+ExerciseFindCommandParser -[hidden]-> FitNusParser
+destroy ExerciseFindCommandParser
 
 FitNusParser --> LogicManager : f
 deactivate FitNusParser
 
-LogicManager -> FindExercisesCommand : execute()
-activate FindExercisesCommand
+LogicManager -> ExerciseFindCommand : execute()
+activate ExerciseFindCommand
 
-FindExercisesCommand-> Model : updateFilteredExerciseList(predicate)
+ExerciseFindCommand-> Model : updateFilteredExerciseList(predicate)
 activate Model
 
-Model --> FindExercisesCommand
+Model --> ExerciseFindCommand
 deactivate Model
 
 create CommandResult

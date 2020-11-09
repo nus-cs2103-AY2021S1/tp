@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.LESSON_NAME_DESC_CS21
 import static seedu.address.logic.commands.CommandTestUtil.LESSON_TAG_DESC_EASY;
 import static seedu.address.logic.commands.CommandTestUtil.LESSON_TAG_DESC_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_NAME_CS2030;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_NAME_CS2106;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_TAG_EASY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_TAG_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -35,7 +34,7 @@ public class LessonEditCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, LessonEditCommand.MESSAGE_USAGE);
 
-    private LessonEditCommandParser parser = new LessonEditCommandParser();
+    private final LessonEditCommandParser parser = new LessonEditCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -65,6 +64,14 @@ public class LessonEditCommandParserTest {
     }
 
     @Test
+    public void parse_multipleNameFields_failure() {
+        String userInput = INDEX_FIRST_LESSON.getOneBased() + LESSON_NAME_DESC_CS2030
+                + LESSON_NAME_DESC_CS2030 + LESSON_TAG_DESC_LECTURE + LESSON_NAME_DESC_CS2106 + LESSON_TAG_DESC_EASY;
+
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_LESSON_NAME_DESC, Name.MESSAGE_CONSTRAINTS_FORMAT); // invalid lesson
         assertParseFailure(parser, "1" + INVALID_LESSON_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
@@ -82,6 +89,7 @@ public class LessonEditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_LESSON_NAME_DESC + INVALID_LESSON_TAG_DESC,
                 Name.MESSAGE_CONSTRAINTS_FORMAT);
     }
+
 
     @Test
     public void parse_allFieldsSpecified_success() {
@@ -108,37 +116,6 @@ public class LessonEditCommandParserTest {
         // tags
         userInput = targetIndex.getOneBased() + LESSON_TAG_DESC_LECTURE;
         descriptor = new EditLessonDescriptorBuilder().withTags(VALID_LESSON_TAG_LECTURE).build();
-        expectedCommand = new LessonEditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_LESSON;
-        String userInput = targetIndex.getOneBased() + LESSON_NAME_DESC_CS2030
-                + LESSON_NAME_DESC_CS2030 + LESSON_TAG_DESC_LECTURE + LESSON_NAME_DESC_CS2106 + LESSON_TAG_DESC_EASY;
-
-        EditLessonDescriptor descriptor = new EditLessonDescriptorBuilder().withName(VALID_LESSON_NAME_CS2106)
-                .withTags(VALID_LESSON_TAG_LECTURE, VALID_LESSON_TAG_EASY).build();
-        LessonEditCommand expectedCommand = new LessonEditCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_invalidValueFollowedByValidValue_success() {
-        // no other valid values specified
-        Index targetIndex = INDEX_FIRST_LESSON;
-        String userInput = targetIndex.getOneBased() + INVALID_LESSON_NAME_DESC + LESSON_NAME_DESC_CS2106;
-        EditLessonDescriptor descriptor = new EditLessonDescriptorBuilder().withName(VALID_LESSON_NAME_CS2106).build();
-        LessonEditCommand expectedCommand = new LessonEditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // other valid values specified
-        userInput = targetIndex.getOneBased() + LESSON_TAG_DESC_EASY + INVALID_LESSON_NAME_DESC
-                + LESSON_TAG_DESC_LECTURE + LESSON_NAME_DESC_CS2106;
-        descriptor = new EditLessonDescriptorBuilder().withName(VALID_LESSON_NAME_CS2106)
-                .withTags(VALID_LESSON_TAG_LECTURE, VALID_LESSON_TAG_EASY).build();
         expectedCommand = new LessonEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

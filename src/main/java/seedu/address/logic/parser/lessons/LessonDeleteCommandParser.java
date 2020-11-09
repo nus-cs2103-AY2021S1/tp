@@ -9,13 +9,14 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new LessonDeleteCommand object
+ * Parses input arguments and creates a new LessonDeleteCommand object.
  */
 public class LessonDeleteCommandParser implements Parser<LessonDeleteCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the LessonDeleteCommand
      * and returns a LessonDeleteCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public LessonDeleteCommand parse(String args) throws ParseException {

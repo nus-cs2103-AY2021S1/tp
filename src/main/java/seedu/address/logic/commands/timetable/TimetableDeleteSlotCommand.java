@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.timetable.Slot;
 
 /**
- * Deletes a slot from the timetable in fitNUS.
+ * Deletes a Slot from the timetable in fitNUS.
  */
 public class TimetableDeleteSlotCommand extends Command {
 
@@ -31,6 +31,9 @@ public class TimetableDeleteSlotCommand extends Command {
     public static final String MESSAGE_DELETE_SLOT_SUCCESS = "Deleted Slot: %1$s";
     public static final String MESSAGE_MISSING_SLOT = "This slot does not exist in your timetable.";
 
+    /**
+     * The Slot to be deleted.
+     */
     private final Slot slotToFind;
 
     /**
@@ -51,7 +54,8 @@ public class TimetableDeleteSlotCommand extends Command {
             throw new CommandException(MESSAGE_MISSING_SLOT);
         }
 
-        Slot slotToDelete = lastShownList.stream().filter(slotToFind::isSameSlot).findFirst().get();
+        Slot slotToDelete =
+                lastShownList.stream().reduce(slotToFind, (slot, slot2) -> slot.isSameSlot(slot2) ? slot2 : slot);
 
         model.deleteSlotFromTimetable(slotToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_SLOT_SUCCESS, slotToDelete));
