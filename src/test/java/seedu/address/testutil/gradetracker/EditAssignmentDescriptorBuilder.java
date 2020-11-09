@@ -1,6 +1,6 @@
 package seedu.address.testutil.gradetracker;
 
-import seedu.address.logic.commands.gradetrackercommands.EditAssignmentDescriptor;
+import seedu.address.logic.commands.gradetrackercommands.EditAssignmentCommand.EditAssignmentDescriptor;
 import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.AssignmentName;
 import seedu.address.model.module.grade.AssignmentPercentage;
