@@ -1643,7 +1643,7 @@ Use case same as UC14: Delete Meeting
   * 1b1. Modduke shows an error message.
 
     Use case ends.
-    
+
 **UC20: Copy Contact Information**
 
 **MSS**
