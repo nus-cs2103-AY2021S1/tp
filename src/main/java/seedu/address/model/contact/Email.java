@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Contact's email in the contact list.
- * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}.
  */
 public class Email {
 
@@ -27,7 +27,8 @@ public class Email {
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@"
             + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
 
-    private final String value;
+    /** String describing the email address. */
+    private final String email;
 
     /**
      * Constructs an {@code Email}.
@@ -37,11 +38,14 @@ public class Email {
     public Email(String email) {
         requireNonNull(email);
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
-        value = email;
+        this.email = email;
     }
 
     /**
-     * Returns if a given string is a valid email.
+     * Determines if a given string is a valid email.
+     *
+     * @param test A given String to test.
+     * @return True if the given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -49,19 +53,19 @@ public class Email {
 
     @Override
     public String toString() {
-        return value;
+        return this.email;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Email // instanceof handles nulls
-                && value.equals(((Email) other).value)); // state check
+                && email.equals(((Email) other).email)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return email.hashCode();
     }
 
 }

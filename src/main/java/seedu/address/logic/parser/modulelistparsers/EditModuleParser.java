@@ -14,7 +14,6 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
-import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -23,13 +22,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new EditModuleCommand object.
  */
 public class EditModuleParser implements Parser<EditModuleCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditModuleCommand
+     * and returns an EditModuleCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditModuleCommand parse(String args) throws ParseException {
@@ -45,31 +45,12 @@ public class EditModuleParser implements Parser<EditModuleCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditModuleCommand.MESSAGE_USAGE), pe);
         }
+        EditModuleCommand.EditModuleDescriptor editModuleDescriptor = new EditModuleCommand.EditModuleDescriptor();
 
-        EditModuleDescriptor editModuleDescriptor = new EditModuleDescriptor();
-
-
-        /*if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editModuleDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
-        }
-
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editModuleDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-        }*/
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editModuleDescriptor::setTags);
-
-        /*if (!editModuleDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
-        }
-        */
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editModuleDescriptor.setModuleName(ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        /*
-        if (argMultimap.getValue(PREFIX_ZOOM_LINK).isPresent()) {
-            editModuleDescriptor.setZoomLink(ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM_LINK).get()));
-        }
-        */
         if (argMultimap.getValue(PREFIX_MODULAR_CREDITS).isPresent()) {
             editModuleDescriptor.setModularCredits(ParserUtil
                     .parseModularCredits(argMultimap.getValue(PREFIX_MODULAR_CREDITS).get()));

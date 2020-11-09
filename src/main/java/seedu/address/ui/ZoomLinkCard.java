@@ -51,7 +51,7 @@ public class ZoomLinkCard extends UiPart<Region> {
     private void copyZoomLink() {
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         final ClipboardContent url = new ClipboardContent();
-        url.putString(displayZoomLink.getZoomLink().getLink());
+        url.putString(displayZoomLink.getZoomLink().toString());
         clipboard.setContent(url);
     }
 

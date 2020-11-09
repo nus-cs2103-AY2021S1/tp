@@ -9,12 +9,13 @@ import java.util.function.Predicate;
  */
 public class TaskMatchesStatusPredicate implements Predicate<Task> {
 
+    /** Status object to test for matching tasks. */
     private final Status searchStatus;
 
     /**
-     * Creates and initialises a new TaskMatchesStatusPredicate object.
+     * Creates and initialises a new TaskMatchesStatusPredicate object to test for matching tasks.
      *
-     * @param searchStatus Status provided by the user to search for matching tasks.
+     * @param searchStatus Status provided by the user to find matching tasks.
      */
     public TaskMatchesStatusPredicate(Status searchStatus) {
         requireNonNull(searchStatus);
