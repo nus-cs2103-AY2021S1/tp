@@ -28,6 +28,8 @@ Given below are my contributions to the project.
   * Justification: This feature gives tutors ability to view their Tasks quickly based on different categories.
   * Highlights: I really appreciate the usefulness and flexibility of using an Observer pattern.
 
+<div style="page-break-after: always;"></div>
+
 * **New Feature**: Added a `History Command` that allows Tutors to navigate to previous commands using up/down keys.
   * What it does: Allows tutors to navigate through previous commands entered using up and down arrow keys.
   * Justification: Enhances the CLI nature of JARVIS which gives tutors ability to skim through previous commands, and
