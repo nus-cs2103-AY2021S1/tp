@@ -126,8 +126,6 @@ public class MainApp extends Application {
             initialIngredientBookData = new IngredientBook();
         }
 
-        IngredientBook sample = new IngredientBook();
-
         return new ModelManager(initialAddressBookData, initialSalesBookData, initialIngredientBookData, userPrefs);
     }
 

@@ -13,10 +13,11 @@ if () then ([not all ingredients' levels are already at zero])
     ingredient's levels;
     :Show a success message to the user;
 else ([else])
-    :Show a message to the user
-    stating that all ingredients'
+    :Show an error message to the
+    user stating that all ingredients'
     levels are already at zero
-    before the command is entered;
+    before the execution of the
+    command;
 endif
 stop
 @enduml
