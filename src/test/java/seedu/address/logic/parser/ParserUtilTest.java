@@ -51,6 +51,8 @@ public class ParserUtilTest {
     private static final String VALID_WEIGHT = "70";
     private static final String VALID_CALORIE = "1000";
 
+    private static final String INVALID_LENGTH_INPUT = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
+
     private static final String WHITESPACE = " \t\r\n";
 
     @Test
@@ -85,6 +87,27 @@ public class ParserUtilTest {
     @Test
     public void parseName_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
+    }
+
+    @Test
+    public void parseTag_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(
+                INVALID_LENGTH_INPUT
+        ));
+    }
+
+    @Test
+    public void parseTag_severalTags_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(
+                " t/A t/A"
+        ));
+    }
+
+    @Test
+    public void parseName_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(
+                INVALID_LENGTH_INPUT
+        ));
     }
 
     @Test

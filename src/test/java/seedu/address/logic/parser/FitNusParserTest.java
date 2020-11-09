@@ -18,13 +18,13 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddHeightCommand;
-import seedu.address.logic.commands.AddWeightCommand;
-import seedu.address.logic.commands.CalorieAddCommand;
-import seedu.address.logic.commands.CalorieMinusCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.body.AddHeightCommand;
+import seedu.address.logic.commands.body.AddWeightCommand;
+import seedu.address.logic.commands.calorie.CalorieAddCommand;
+import seedu.address.logic.commands.calorie.CalorieMinusCommand;
 import seedu.address.logic.commands.exercise.ExerciseAddCommand;
 import seedu.address.logic.commands.exercise.ExerciseDeleteCommand;
 import seedu.address.logic.commands.exercise.ExerciseEditCommand;

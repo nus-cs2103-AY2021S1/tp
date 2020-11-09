@@ -8,7 +8,7 @@ title: Wu Licheng's Project Portfolio Page
 ### Overview
 
 fitNUS is a desktop application that is targeted at NUS students who are looking to improve their fitness.
-The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 15
 kLoC.
 
 ### About the Team
@@ -60,6 +60,7 @@ wholesome user experience.
 
 * **Enhancements to existing features**:
   * Updated the GUI to display exercises, routines and lessons added into 3 columns for ease of viewing.
+  [#62](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/62)
 
 ## Contributions to the team-based tasks:
 
@@ -69,22 +70,15 @@ wholesome user experience.
 
 ## Contributions to the User Guide:
 
-* Contributed to the introduction, and the documentation for Exercise.
-
-  * [Introduction](https://github.com/AY2021S1-CS2103T-T09-2/tp/blob/master/docs/UserGuide.md#1-introduction)
-
-  * [Exercise Commands](https://github.com/AY2021S1-CS2103T-T09-2/tp/blob/master/docs/UserGuide.md#41-exercise)
+* Contributed to the introduction [#99](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/99)
+* Contributed to documentation for Exercise.
 
 ## Contributions to the Developer Guide:
 
 * Added implementation details of the command `find_exercises`, through the use of a sequence diagram
-to illustrate the flow of method calls in fitNUS.
+to illustrate the flow of method calls in fitNUS. [#86](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/86)
 
-  * [Find Exercises](https://github.com/AY2021S1-CS2103T-T09-2/tp/blob/master/docs/DeveloperGuide.md#find-exercises)
-
-* Updated the UI component from AB3 to better reflect how fitNUS works.
-
-  * [UI Components](https://github.com/AY2021S1-CS2103T-T09-2/tp/blob/master/docs/DeveloperGuide.md#ui-component)
+* Updated the UI component from AB3 to better reflect how fitNUS works. [#208](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/208)
 
 ## Community
   * Reported bugs and suggestions for other teams in the class during PE Dry Run.

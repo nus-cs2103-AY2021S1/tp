@@ -21,7 +21,8 @@ public class LessonFindCommandParser implements Parser<LessonFindCommand> {
      */
     public LessonFindCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        String validRegex = "[\\p{Alnum}][\\p{Alnum} ]*";
+        if (trimmedArgs.isEmpty() | !trimmedArgs.matches(validRegex)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, LessonFindCommand.MESSAGE_USAGE));
         }
