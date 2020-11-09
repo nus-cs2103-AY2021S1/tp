@@ -73,13 +73,6 @@ public class TutorialGroup {
         return this.students.count();
     }
 
-
-    //SETTERS
-    public void setLessonTime(TimeOfDay startTime, TimeOfDay endTime) {
-        this.startTime = startTime;
-        this.endTime = endTime;
-    }
-
     //ADD
 
     /**

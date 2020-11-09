@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalTutorialGroups.T05;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
@@ -90,6 +91,14 @@ public class UniqueTutorialGroupListTest {
         UniqueTutorialGroupList expectedUniqueTutorialGroupList = new UniqueTutorialGroupList();
         expectedUniqueTutorialGroupList.addTutorialGroup(editedT05);
         assertEquals(expectedUniqueTutorialGroupList, uniqueTutorialGroupList);
+    }
+
+    @Test
+    public void getSize_sizeOfTutorialGroupsExpected_success() {
+        uniqueTutorialGroupList.addTutorialGroup(T05);
+        uniqueTutorialGroupList.addTutorialGroup(B06);
+        int listSize = uniqueTutorialGroupList.size();
+        assertEquals(listSize, 2);
     }
 
     @Test

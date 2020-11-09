@@ -10,6 +10,8 @@ import seedu.address.model.tutorialgroup.DayOfWeek;
 import seedu.address.model.tutorialgroup.TimeOfDay;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.model.tutorialgroup.TutorialGroupId;
+import seedu.address.testutil.TutorialGroupBuilder;
+import seedu.address.testutil.TypicalStudents;
 
 public class TutorialGroupTest {
     @Test
@@ -33,6 +35,14 @@ public class TutorialGroupTest {
         assertThrows(AssertionError.class, () -> new TutorialGroup(
             new TutorialGroupId("T04"), new DayOfWeek("MON"), startTime,
             endTime));
+    }
+
+    @Test
+    public void getTotalStudents_validTotalStudents_success() {
+        TutorialGroup tutorialGroup = new TutorialGroupBuilder().build();
+        tutorialGroup.addStudent(TypicalStudents.ALEX);
+        tutorialGroup.addStudent(TypicalStudents.BENG);
+        assertTrue(tutorialGroup.getTotalStudents() == 2);
     }
 
     @Test
