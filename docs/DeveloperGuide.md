@@ -1164,16 +1164,39 @@ testers are expected to do more *exploratory* testing.
 
 ##### F.2 Adding a patient
 
-1. Adding a new patient to the list
+1. Adding a new patient to the patient list
 
    1. Test case: `add n/John Doe p/12345678 ic/s1234567a`<br>
-      Expected: A patient named John Doe should be added into the list with his phone number and IC number.
+       Expected: A patient named John Doe should be added to the patient list with the provided phone number and NRIC.
+   
+   1. Test case: `add n/John Doe`<br>
+       Expected: No patient is added. Error message will be shown as phone number and NRIC are missing.
+       
+   1. Test case: `add n/John Doe p/12345678 ic/s1234567a s/male`<br>
+       Expected: No patient is added. Error message will be shown as an invalid sex is given.
+       
+   1. Other incorrect commands to try: `add 1`, `add` 
+       Expected: No patient is added. Error message will be shown as an invalid command is given.
 
-   1. Test case: `add`<br>
-      Expected: No patient is added. Error details shown in the status message. Status bar remains the same.
-      
+##### F.3 Editing a patient
 
-##### F.3 Deleting a patient
+1. Editing the details of a patient
+
+   1. Prerequisites: There is at least more than one patient in the patient list.
+
+   1. Test case: `edit 1 g/sulfa g/aspirin`<br>
+       Expected: The existing allergy tags (if applicable) of the 1st patient are replaced with new allergy tags, `sulfa` and `aspirin`.
+   
+   1. Test case: `edit 1 p/1234567890`<br>
+       Expected: No patient is edited. Error message will be shown as invalid phone number is provided.
+       
+   1. Test case: `edit 0 n/John Doe`<br>
+       Expected: No patient is edited. Error message will be shown as an invalid index is provided.
+       
+   1. Other incorrect commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+   
+##### F.4 Deleting a patient
 
 1. Deleting a patient while all patients are being shown
 
@@ -1185,19 +1208,8 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete 0`<br>
       Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-##### F.4 Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. Prerequisites: The json file saved contains data for at least one patient.
-   
-   1. Test case: Corrupted json file<br>
-      Open up `data/clinical.json` in a text editor and change any field to an invalid value. For example, try including an alphabet in the phone number of a patient.<br>
-      Expected: The application should start gracefully with an empty set of data, without crashing. The application will log an error to the console.
-
 
 ##### F.5 Displaying patient's profile
 
@@ -1305,7 +1317,23 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect add appointment commands to try: `addappt x st/11/11/2020 12:00 d/60` (where x is larger than the list size), `addappt 0 st/11/11/2020 12:00 d/60`, `addappt 0 st/42/42/2020 25:00 d/2147483647`<br>
       Expected: Similar to previous.  
       
-##### F.11 Deleting an appointment
+##### F.11 Editing an appointment
+
+1. Editing the details of an appointment
+
+   1. Test case: `editappt 1 d/30`<br>
+      Expected: The duration of the 1st appointment is edited to 30 minutes and the change is updated in the appointment list and calendar. Details of the edited appointment is shown in the result display box.
+
+   1. Test case: `editappt 0`<br>
+      Expected: No appointment is edited. Error details are shown in the result display area.
+      
+   1. Test case: `editappt 1 d/0`<br>
+      Expected: No appointment is edited. Error details are shown in the result display area.
+
+   1. Other incorrect delete commands to try: `editappt`, `editappt x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.       
+
+##### F.12 Deleting an appointment
 
 1. Deleting an appointment in the appointment list and calendar
 
@@ -1316,7 +1344,17 @@ testers are expected to do more *exploratory* testing.
       Expected: No appointment is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `deleteappt`, `deleteappt x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.       
+      Expected: Similar to previous.  
+      
+##### F.13 Saving data
+
+1. Dealing with missing/corrupted data files
+
+   1. Prerequisites: The json file saved contains data for at least one patient.
+   
+   1. Test case: Corrupted json file<br>
+      Open up `data/clinical.json` in a text editor and change any field to an invalid value. For example, try including an alphabet in the phone number of a patient.<br>
+      Expected: The application should start gracefully with an empty set of data, without crashing. The application will log an error to the console. 
        
 ## **Appendix G: Effort**
 
