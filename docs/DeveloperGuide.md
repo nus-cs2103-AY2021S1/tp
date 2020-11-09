@@ -744,7 +744,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`| staff of a quarantine facility | initialise the number of rooms many times with previous information retained | define correct number of rooms if mistake is made I can correct it without having to tediously key in information again|
 |`* * `| staff of a quarantine facility | find out an empty room | to allocate patient to that empty room easily without having to search through the rooms for an empty room |
 | `* * `| careless staff of a quarantine facility | edit a task | to allow for me to easily change a mistake that I made while adding tasks |
-| `* * `| staff of a quarantine facility | search a task | to allow for me to easily search for a task in a room
+| `* * `| forgetful staff of a quarantine facility | search a task | to allow for me to easily search for a task that end before a certain due date |
 
 ### A3. Use cases
 
@@ -848,6 +848,8 @@ Use case ends.
 Use case ends.
 
 **Extensions**
+* 2a. System realises that user does not input any number of rooms.
+   * 2a1. System displays an error message.
 * 3a. System realises that user inputs values other than integer.
    * 3a1. System displays an error message.
 * 3b. System realises that the integer input is zero.
@@ -856,6 +858,45 @@ Use case ends.
    * 3c1. System displays an error message.
 * 3d. System realises that the number of rooms input is less than number of occupied room
    * 3d1. System displays an error message.
+Use case ends.
+
+**Use case: Edit Task**
+
+**MSS**
+
+1. User requests to edit an existing task.
+2. User inputs the room number of the room to change the task in.
+3. System changes the task in the room.
+4. System displays success message.
+Use case ends.
+
+**Extensions**
+* 2a. System realises that user did not input commands in correct format.
+   * 2a1. System displays an error message.
+* 2b. System realises that user did not input task or task description.
+   * 2b1. System displays an error message.
+* 3a. System realises that user input negative room number.
+   * 3a1. System displays an error message.
+* 3b. System realises that the room with room number does not exist.
+   * 3b1. System displays an error message.
+* 3c. System realises that the same task exists in the room.
+   * 3c1. System displays an error message.
+Use case ends.
+
+**Use case: Search Task**
+
+**MSS**
+
+1. User requests to search for a task before a specific date.
+2. User inputs the specific date.
+3. System searches for tasks before the specific date.
+4. System displays the tasks before the specific date and success message.
+
+**Extensions**
+* 2a. System realises that user did not input commands in correct format.
+   * 2a1. System displays an error message.
+* 3a. System realises that there are not any tasks before the given deadline.
+   * 3a1. System displays an error message.
 Use case ends.
 
 ### A4. Non-Functional Requirements
