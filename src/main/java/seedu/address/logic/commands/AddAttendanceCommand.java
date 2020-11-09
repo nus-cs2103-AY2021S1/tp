@@ -27,7 +27,8 @@ public class AddAttendanceCommand extends Command {
             + PREFIX_WEEK + "WEEK_NUMBER "
             + "[" + PREFIX_WEEK + "WEEK_NUMBER]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_WEEK + "2";
+            + PREFIX_WEEK + "2 "
+            + PREFIX_WEEK + "3";
 
     public static final String MESSAGE_ADD_ATTENDANCE_SUCCESS = "%s is present on %s";
     public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view";
