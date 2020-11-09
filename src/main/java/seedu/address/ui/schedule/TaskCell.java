@@ -75,7 +75,7 @@ public class TaskCell extends UiPart<Region> {
      * Calculate the margin top by the task for the TimeScale.
      */
     public double marginTop() {
-        return getMarginFromDateTime(task.getStartTime());
+        return getMarginFromDateTime(task.getDateTime());
     }
 
     /**
@@ -87,7 +87,7 @@ public class TaskCell extends UiPart<Region> {
     }
 
     private String getTimeFromTask(Task task) {
-        LocalDateTime dateTime = task.getStartTime();
+        LocalDateTime dateTime = task.getDateTime();
         DateTimeFormatter formmater = DateTimeFormatter.ofPattern("HH:mm");
         return toAmPmTime(formmater.format(dateTime));
     }

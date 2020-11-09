@@ -14,7 +14,9 @@ import seedu.address.model.task.Task;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.schedule.UpcomingSchedule;
 
-
+/**
+ * A CalendarDayPanel Class that represents a panel which holds Lesson and Events information of a certain day.
+ */
 public class CalendarDayPanel extends UiPart<Region> {
     private static final String FXML = "panel/CalendarDayPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(CalendarDayPanel.class);

@@ -15,6 +15,9 @@ import seedu.address.model.tag.Tag;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.card.StatsSummaryCard;
 
+/**
+ * A StatsSummaryPanel that represents a panel that holds statistics summary and its visualization.
+ */
 public class StatsSummaryPanel extends UiPart<Region> {
     private static final String FXML = "panel/StatsSummaryPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(StatsSummaryPanel.class);

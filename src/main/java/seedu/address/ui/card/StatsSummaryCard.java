@@ -8,6 +8,9 @@ import seedu.address.model.StatisticsData;
 import seedu.address.model.tag.Tag;
 import seedu.address.ui.UiPart;
 
+/**
+ * A StatsSummaryCard class that represents a card that holds summary of statistics of a certain module tag.
+ */
 public class StatsSummaryCard extends UiPart<Region> {
     private static final String FXML = "card/StatsSummaryCard.fxml";
 

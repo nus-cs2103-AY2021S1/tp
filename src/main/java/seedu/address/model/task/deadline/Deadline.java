@@ -68,7 +68,7 @@ public class Deadline extends Task {
         return this.doneDateTime.getValue().toLocalDate();
     }
     @Override
-    public LocalDateTime getStartTime() {
+    public LocalDateTime getDateTime() {
         return deadlineDateTime.getValue();
     }
     @Override
