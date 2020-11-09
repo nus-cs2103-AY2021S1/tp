@@ -7,7 +7,7 @@ title: Nikhilalalalala's Project Portfolio Page
 
 [[github](http://github.com/Nikhilalalalala)]
 
-Project: Eva
+Project Eva: 
 Eva is a desktop HR management application built in the java language. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 
 Eva was developed in semester 1 of AY20/21 as a team project in the NUS SOC module CS2103T Software Engineering. 
