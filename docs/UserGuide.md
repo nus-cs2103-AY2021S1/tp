@@ -150,6 +150,13 @@ Examples:
 * `help` - this will display all available commands.
 * `help add` - this will display a help message specific to the `add` command.
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: Notes about the `help` Command.
+ * `help help` will flag as an invalid command.
+ * `help` will not work with created macros, the `listmacro` command should be used instead.
+</div>
+
 ![help message](images/CommandImagesForUG/Help.png)
 
 ### 5.2 Adding a food item: `add`
@@ -309,6 +316,7 @@ Format: `edit INDEX [-n NAME] [-p PROTEIN] [-c CARBS] [-f FATS] [-d DATE]`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * To view the list of supported date formats, see *Appendix A*.
+* To edit tag, use tag and untag command instead.
 
 </div>
 
@@ -394,9 +402,9 @@ Format: `export DIRPATH [-o FILENAME]`
 </div>
 
 Examples:
-* `export c:/mcgymmy` exports the save file as `mcgymmy.json` to `c:/mcgymmy`
-* `export c:/mcgymmy -o save_file` exports the save file as `save_file.json` to `c:/mcgymmy`
-
+* For Windows users:`export c:/mcgymmy` exports the save file as `mcgymmy.json` to `c:/mcgymmy`
+* For Windows users:`export c:/mcgymmy -o save_file` exports the save file as `save_file.json` to `c:/mcgymmy`
+* For Mac users: `export /Users/mcgymmy -o save_file` exports the save file as `save_file.json` to `/Users/mcgymmy`
 ![Export command example](images/CommandImagesForUG/Export.png)
 
 <div markdown="span" class="alert alert-primary">
@@ -440,7 +448,12 @@ commands by combining multiple commands together. This is a powerful tool that r
 repetitive long-winded command execution. The `macro` command specifically stores a new macro into
 your McGymmy system.
 
-*__WARNING:__* this is an advanced feature!
+<div markdown="block" class="alert alert-danger">
+
+
+:warning: *__WARNING:__* this is an advanced feature!
+
+</div>
 
 Format: `macro MACRONAME FLAG_1 FLAG_2 ... ; COMMAND_1 PARAMETERS_TO_COMMAND_1; [COMMAND_2 PARAMETERS_TO_COMMAND_2; ...]` <br>
 
@@ -458,13 +471,16 @@ Format: `macro MACRONAME FLAG_1 FLAG_2 ... ; COMMAND_1 PARAMETERS_TO_COMMAND_1; 
 
 * Using `undo` after creating a macro using this command will remove it.
 
+* Using `exit` in a macro will close McGymmy, and subsequent commands will be ignored. E.g. if `macro ex; add -n one; exit; add -n two` is executed,
+McGymmy will add a food item named `one` and then exit, but will not create a food item named `two`.
+
 * Read the examples below for more information.
 
 </div>
 
 Examples:
-* `macro addWith100cal p ; add -n \$ -c 100 -p \p`
-    * Example usage of this macro: `addWith100cal Banana -p 200`
+* `macro addWith100carbs p ; add -n \$ -c 100 -p \p`
+    * Example usage of this macro: `addWith100carbs Banana -p 200`
     * The following command will be executed by the macro: `add -n Banana -c 100 -p 200`
     * i.e. in `add -n \$ -c 100 -p \p`, `\$` and `\p` will be substituted with Banana and 200 respectively.
 
@@ -475,9 +491,9 @@ Examples:
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** Be careful when creating a macro!
-* It is possible to create a macro with errors!
-* The commands in the macro will only be checked for errors when you run the macro itself.
-* e.g. Entering `macro test; add` will create a new macro, but every time you execute the macro `test`, the error message from `add` telling you it requires the name parameter will be shown.
+- It is possible to create a macro with errors!
+- The commands in the macro will only be checked for errors when you run the macro itself.
+- e.g. Entering `macro test; add` will create a new macro, but every time you execute the macro `test`, the error message from `add` telling you it requires the name parameter will be shown.
 
 </div>
 
@@ -489,7 +505,7 @@ Examples:
 
 </div>
 
-### 5.14 List all macros : `listmacro`
+### 5.14 Listing all macros : `listmacro`
 
 The `listmacro` command displays information on the available macros in the terminal, which allows you to keep track of
 all macros currently in the McGymmy system.
@@ -501,6 +517,14 @@ Examples:
 * `listmacro kfc` - this will display information on the `kfc` macro.
 
 ![List Macro command example](images/CommandImagesForUG/Listmacro.png)
+
+When using `listmacro` with a name of a `macro` it will show the details of the macro
+Details include:
+* Parameters
+* Declaration details
+<br>
+
+![List_Macro_command_with_optional_parameters_example](images/CommandImagesForUG/ListmacroCommand.png)
 
 ### 5.15 Deleting a macro: `remmacro`
 
@@ -572,24 +596,24 @@ For those who prefer clicking:
 --------------------------------------------------------------------------------------------------------------------
 
 ## 7. Command summary
-
-Action                                                           | Format, Examples
------------------------------------------------------------------|------------------
-[**Add**](#52-adding-a-food-item-add)                            | `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE] [-t TAG]` <br> e.g., `add Chicken Rice -p 10 -f 5 -c 23 -d 02/09/2020 -t Lunch`
-[**Clear**](#56-clearing-food-items-clear)                       | `clear`
-[**Delete**](#59-deleting-a-food-item-delete)                    | `delete INDEX`<br> e.g., `delete 3`
-[**Edit**](#58-editing-a-food-item--edit)                        | `edit INDEX [-n NAME] [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]`<br> e.g.,`edit 2 -n Chicken Rice -p 30 -f 50 -c 60 -d 02/09/2020`
-[**Exit**](#516-exiting-the-program--exit)                       | `exit`
-[**Export**](#511-exporting-your-save-file-to-a-folder-export)   | `export DIRPATH [-o FILENAME]` <br> e.g., `export c:/mcgymmy -o save_file`
-[**Find**](#55-finding-a-food-item-find)                         | `find [KEYWORDS] [-n WORDS_IN_NAME] [-t WORDS_IN_TAG] [-d DATE]` <br> e.g., `find chicken -t Dinner -d 28-10-2020`
-[**Help**](#51-viewing-help--help)                               | `help [COMMAND]` <br> e.g., `help add`
-[**Import**](#510-importing-another-save-file-import)            | `import [FILEPATH]​` <br> e.g., `import c:/mcgymmy/save_file.json`
-[**List**](#57-listing-all-food-items--list)                     | `list`
-[**Macro**](#513-creating-a-macro-command--macro)                | `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​` <br> e.g., `macro lunch; add Chicken`
-[**RemMacro**](#515-deleting-a-macro-remmacro)                   | `remmacro MACRONAME` <br> e.g., `remmacro lunch`
-[**ListMacro**](#514-list-all-macros--listmacro)                 | `listmacro [macro]` <br> e.g., `listmacro kfc`
-[**Tag**](#53-tagging-food-items--tag)                           | `tag INDEX -t TAG_NAME` <br> e.g., `tag 1 -t Lunch`
-[**UnTag**](#54-untagging-food-items--untag)                     | `untag INDEX -t TAG_NAME` <br> e.g., `untag 1 -t Lunch`
+Action                                                           | Format, Examples                                                                                                                         |
+-----------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+[**Add**](#52-adding-a-food-item-add)                            | `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE] [-t TAG]` <br> e.g., `add Chicken Rice -p 10 -f 5 -c 23 -d 02/09/2020 -t Lunch` |
+[**Clear**](#56-clearing-food-items-clear)                       | `clear`                                                                                                                                  |
+[**Delete**](#59-deleting-a-food-item-delete)                    | `delete INDEX`<br> e.g., `delete 3`                                                                                                      |
+[**Edit**](#58-editing-a-food-item--edit)                        | `edit INDEX [-n NAME] [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]`<br> e.g.,`edit 2 -n Chicken Rice -p 30 -f 50 -c 60 -d 02/09/2020`     |
+[**Exit**](#516-exiting-the-program--exit)                       | `exit`                                                                                                                                   |
+[**Export**](#511-exporting-your-save-file-to-a-folder-export)   | `export DIRPATH [-o FILENAME]` <br> e.g., `export c:/mcgymmy -o save_file`                                                               |
+[**Find**](#55-finding-a-food-item-find)                         | `find [KEYWORDS] [-n WORDS_IN_NAME] [-t WORDS_IN_TAG] [-d DATE]` <br> e.g., `find chicken -t Dinner -d 28-10-2020`                       |
+[**Help**](#51-viewing-help--help)                               | `help [COMMAND]` <br> e.g., `help add`                                                                                                   |
+[**Import**](#510-importing-another-save-file-import)            | `import [FILEPATH]​` <br> e.g., `import c:/mcgymmy/save_file.json`                                                                    |
+[**List**](#57-listing-all-food-items--list)                     | `list`                                                                                                                                   |
+[**Macro**](#513-creating-a-macro-command--macro)                | `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​` <br> e.g., `macro lunch; add Chicken`                                                    |
+[**RemMacro**](#515-deleting-a-macro-remmacro)                   | `remmacro MACRONAME` <br> e.g., `remmacro lunch`                                                                                         |
+[**ListMacro**](#514-listing-all-macros--listmacro)                 | `listmacro [macro]` <br> e.g., `listmacro kfc`                                                                                        |
+[**Tag**](#53-tagging-food-items--tag)                           | `tag INDEX -t TAG_NAME` <br> e.g., `tag 1 -t Lunch`                                                                                      |
+[**UnTag**](#54-untagging-food-items--untag)                     | `untag INDEX -t TAG_NAME` <br> e.g., `untag 1 -t Lunch`                                                                                  |
+[**Undo**](#512-undoing-the-previous-command--undo)              | `undo`                                                                                                                                   |
 
 ## 8. Appendix A
 List of supported input date formats, sorted from the highest parsing priority to the lowest parsing priority
