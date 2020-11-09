@@ -47,7 +47,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Architecture Sequence](images/ArchitectureSequenceDiagram2.png)
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `start attempt`.
 
@@ -92,7 +92,7 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram1.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -105,7 +105,7 @@ The execution for the `end attempt` command is similar.
 
 ### Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](images/ModelClassDiagram2.png)
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/definition/model/Model.java)
 
@@ -118,14 +118,14 @@ The `Model`,
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+![BetterModelClassDiagram](images/BetterModelClassDiagram2.png)
 
 </div>
 
 
 ### Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+![Structure of the Storage Component](images/StorageClassDiagram3.png)
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/definition/storage/Storage.java)
 
@@ -148,14 +148,6 @@ is converted to data that can be stored in the text file.
 ![load Sequence Diagram](images/store8.png)
 
 ![save Sequence Diagram](images/store6.png)
-
-### Common classes
-
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
-Example of class diagram for addCommandParser:
-![classDiagram0](images/classDiagram0.png)
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
