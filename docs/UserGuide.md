@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide
+title: User Guide ![Hospify logo](images/hospify/hospify_200x200.png)
 ---
 
 * Table of Contents
@@ -607,7 +607,7 @@ In this section, we will be looking at some of the frequently asked questions fr
 **A**: Install the app in the other computer and overwrite the **data file** with the `hospify.json` 
 that is in the **data file** of your other computer.
 
-* **Step 1.** Go into the **data file** in the previous home directory of the **Hospify** app.</br>
+* **Step 1.** Go into the **data file** in the previous home directory of the **Hospify** app.<br />
 ![data file](images/faq/data_file.PNG)
 Figure 17.1.1 Go to the **Data File**
 
@@ -618,17 +618,17 @@ Figure 17.1.2 Replace `hospify.json` file
 </div>
 
 <div markdown="block" class="alert alert-info">
-**Q**: I cannot run the `JAR` file! How do I get the program to run?<br/>
+**Q**: I cannot run the `JAR` file! How do I get the program to run?<br />
 **A**: Check if you have at least `Java 11` installed on your Computer.
 
-* On **Windows**\
+* On **Windows**
     
-    **Step 1.** Open up **Command Prompt** by searching for **command prompt** in the task bar shown below.</br>
-![windows search command prompt](images/faq/search_commandPrompt.PNG)</br>
+    **Step 1.** Open up **Command Prompt** by searching for **command prompt** in the task bar shown below.<br />
+![windows search command prompt](images/faq/search_commandPrompt.PNG)<br />
 Figure 17.2.1 Windows search for command prompt
     
-    **Step 2.** Type the command `java -version` to check for the version.</br>
-![windows java version](images/faq/windows_javaVersion.PNG)</br>
+    **Step 2.** Type the command `java -version` to check for the version.<br />
+![windows java version](images/faq/windows_javaVersion.PNG)<br />
 Figure 17.2.2 Check windows java version
 
 <div markdown="block" class="alert alert-warning">
@@ -647,12 +647,12 @@ Figure 17.2.3 Running jar from windows prompt
 
 * On **MAC**
 
-**Step 1.** Open up **Terminal** by searching for **terminal** in the search bar shown below.</br>
-![mac search bar](images/faq/mac_search.PNG)</br>
+**Step 1.** Open up **Terminal** by searching for **terminal** in the search bar shown below.<br />
+![mac search bar](images/faq/mac_search.PNG)<br />
 Figure 17.2.4 mac search bar
 
-**Step 2.** Type the command `java -version` to check for the version shown below.</br>
-![mac java version](images/faq/mac_javaVersion.PNG)</br>
+**Step 2.** Type the command `java -version` to check for the version shown below.<br />
+![mac java version](images/faq/mac_javaVersion.PNG)<br />
 Figure 17.2.5 Mac java version command
 
 <div markdown="block" class="alert alert-warning">
@@ -676,16 +676,16 @@ Figure 17.2.6 Running jar from Mac terminal
 </div>
 
 <div markdown="block" class="alert alert-info">
-**Q**: How do I get the latest version of **Hospify**?</br>
+**Q**: How do I get the latest version of **Hospify**?<br />
 **A**: As of the latest version, **Hospify** does not support updating within the application. In order to get the
  latest version, go to the **GitHub releases** 
- [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases/tag/v1.3) to download the latest version.</br>
-![download jar](images/faq/download_jar.PNG)</br>
+ [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases/tag/v1.3) to download the latest version.<br />
+![download jar](images/faq/download_jar.PNG)<br />
 Figure 17.3.1 Download latest jar file
 </div>
 
 <div markdown="block" class="alert alert-info">
-**Q**: My question is not listed in the FAQ. What should I do?</br>
+**Q**: My question is not listed in the FAQ. What should I do?<br />
 **A**: For inquires, please send email to our developer team at **hospify_enquiry@gmail.com**.
 </div>
 
