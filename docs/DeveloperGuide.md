@@ -584,7 +584,7 @@ Use case ends.
 
 **Extensions**
 
-- 1a. Student details are missing or invalid, or there is already a student with the same matriculation number.
+- 1a. Student details are missing or invalid, or there is already a student with the same student ID.
   - ResiReg shows an error message.
   -  Use case starts over.
 
@@ -639,8 +639,8 @@ Use case ends.
 
 **MSS**
 
-1. OHS admin requests to <u>list students without a room allocation (UC12)</u> and <u>list vacant rooms (UC11)</u>. 
-1. ResiReg shows a list of students without a room allocation and a list of vacant rooms side by side.
+1. OHS admin requests to list both students and rooms.
+1. ResiReg shows a list of students and a list of vacant rooms at the same time.
 1. OHS admin requests to allocate a particular student to a particular room.
 1. ResiReg adds the room allocation and saves the changes.
 
@@ -829,15 +829,41 @@ Similar to <u>UC03 - edit a student</u>, just replace student with room.
 **Extensions**
 
 - 1a. Command word or alias is missing.
+  - 1a1. ResiReg shows an error message.
+  - Use case starts over.
 - 1b. Command word doesn't exist.
+  - 1b1. ResiReg shows an error message.
+  - Use case starts over.
 - 1c. Alias already exists.
+  - 1c1. ResiReg shows an error message.
+  -  Use case starts over.
 - 1d. Alias supplied is another command word.
-  - 1*1. ResiReg shows an error message.
+  - 1d1. ResiReg shows an error message.
   -  Use case starts over.
 
 #### Use case: UC17 - Delete an alias
-Similar to <u>UC16 - add an alias</u>, except with deletion, and the addition of the following extension:
-- 1e. Alias supplied does not exist.
+
+**MSS**
+
+1. OHS admin requests to delete an alias for a command word.
+2. ResiReg deletes the alias and saves the changes.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. Command word or alias is missing.
+  - 1a1. ResiReg shows an error message.
+  - Use case starts over.
+- 1b. Command word doesn't exist.
+  - 1b1. ResiReg shows an error message.
+  - Use case starts over.
+- 1c. Alias supplied does not exist.
+  - 1c1. ResiReg shows an error message.
+  -  Use case starts over.
+- 1d. Alias supplied is another command word.
+  - 1d1. ResiReg shows an error message.
+  -  Use case starts over.
 
 #### Use case: UC18 - Restore deleted items
 **MSS**
