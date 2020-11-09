@@ -868,12 +868,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### A3. Use cases
 
-(For all use cases below, the **System** is `Covigent` and the **Actor** is `Hotel Staff`, unless specified otherwise)
+(For all use cases below, the **System** is `Covigent` and the **Actor** is `Hotel Staff`, unless specified otherwise. In addition, due to limitation in Github markdown, for use cases which include another use case, there will be no underlining of text.) 
 
-**Use case: UC01 Delete a patient from a room**
+**Use case: UC01 Add a patient**
 
 **MSS**
-1. Hotel Staff requests to delete a patient into the system.
+
+1. Hotel Staff requests to add a patient into the system.
+2. Covigent adds the patient into the system.
+3. Covigent shows the details of the newly added patient.
+Use case ends.
+
+**Extensions**
+* 2a. Covigent realises that the patient name already exists in the system.
+    * 2a1. Covigent displays an error message.
+Use case ends.
+
+* 2b. Covigent realises that the patient information being entered does not conform to the system format.
+    * 2b1. Covigent displays an error message.
+Use case ends.
+
+**Use case: UC02 Delete a patient**
+
+**MSS**
+
+1. Hotel Staff requests to delete a patient from the system.
 2. Covigent deletes the patient and removes the patient from the room he/she is residing in.
 3. Covigent shows the details of the deleted patient.
 Use case ends.
@@ -881,30 +900,6 @@ Use case ends.
 **Extensions**
 * 2a. Covigent realizes the patient does not exist in the system.
     * 2a1. Covigent displays an error message.
-Use case ends.
-
-**Use case: UC02 Allocate a patient to a room**
-
-**MSS**
-
-1. Hotel Staff requests to add a patient into the system.
-2. Covigent adds the patient.
-3. Covigent shows the details of the newly added patient.
-4. Hotel Staff requests to allocate the patient to a specified room.
-5. Covigent adds the patient to the specified room.
-Use case ends.
-
-**Extensions**
-* 1a. The patient already exists in Covigent.
-    * 2a1. Covigent displays an error message.
-Use case ends.
-    
-* 4a. Covigent realizes that the specified room does not exist.
-    * 4a1. Covigent displays an error message.
-Use case ends.   
-  
-* 4b. Covigent realizes that the specified room is not empty.
-   * 4b1. Covigent displays an error message.
 Use case ends.
 
 **Use case: UC03 Edit a patient**
@@ -935,7 +930,26 @@ Use case ends.
    * 2a1. Covigent displays an error message.
 Use case ends.
 
-**Use case: UC05 List all rooms**
+**Use case: UC05 Allocate a patient to a room**
+
+**MSS**
+
+1. Hotel Staff adds a patient to Covigent (UC01).
+2. Hotel Staff requests to allocate the patient to a specified room.
+3. Covigent adds the patient to the specified room.
+Use case ends.
+
+**Extensions**    
+* 2a. Covigent realizes that the specified room does not exist.
+    * 2a1. Covigent displays an error message.
+Use case ends.   
+  
+* 2b. Covigent realizes that the specified room is not empty.
+   * 2b1. Covigent displays an error message.
+Use case ends.
+
+
+**Use case: UC06 List all rooms**
 
 **MSS**
 
@@ -948,7 +962,7 @@ Use case ends.
    * 1a1. System displays an error message.
 Use case ends.
 
-**Use case: UC06 Find empty room**
+**Use case: UC07 Find empty room**
 
 **MSS**
 
@@ -966,7 +980,7 @@ Use case ends.
     * 1b1. System displays an error message.
 Use case ends.
 
-**Use case: UC07 Initialize rooms**
+**Use case: UC08 Initialize rooms**
 
 **MSS**
 
@@ -985,7 +999,25 @@ Use case ends.
    * 2b1. Covigent displays an error message.
 Use case ends.
 
-**Use case: UC08 Add a task to a room**
+**Use case: UC09 Search for a room**
+
+**MSS**
+
+1. Hotel Staff requests to search for a room with the given patient.
+2. Hotel Staff inputs the name of the patient to find the corresponding room.
+3. Covigent displays the room details that the patient resides in.
+Use case ends.
+
+**Extensions**
+* 2a. Covigent realizes that the patient does not exists in the system.
+    * 2a1. Covigent displays an error message.
+Use case ends.
+
+* 2b. Covigent realizes that the patient is not allocated to any room.
+    * 2b1. Covigent displays an error message.
+Use case ends.
+
+**Use case: UC10 Add a task to a room**
 
 **MSS**
 
@@ -998,7 +1030,7 @@ Use case ends.
     * 1a1. Covigent displays an error message.
 Use case ends.
 
-**Use case: UC09 Delete a task from a room**
+**Use case: UC11 Delete a task from a room**
 
 **MSS**
 
@@ -1017,7 +1049,7 @@ Use case ends.
     * 1b1. Covigent displays an error message.
 Use case ends.
 
-**Use case: UC10 Edit a task in a room**
+**Use case: UC12 Edit a task in a room**
 
 **MSS**
 
@@ -1029,17 +1061,25 @@ Use case ends.
 **Extensions**
 * 2a. System realises that user does not input any number of rooms.
    * 2a1. System displays an error message.
+Use case ends.
+
 * 3a. System realises that user inputs values other than integer.
    * 3a1. System displays an error message.
+Use case ends.
+
 * 3b. System realises that the integer input is zero.
    * 3b1. System displays an error message.
+Use case ends.
+
 * 3c. System realises that the integer input is negative.
    * 3c1. System displays an error message.
+Use case ends.
+
 * 3d. System realises that the number of rooms input is less than number of occupied room
    * 3d1. System displays an error message.
 Use case ends.
 
-**Use case: Search Task**
+**Use case: UC13 Search Task**
 
 **MSS**
 
@@ -1047,6 +1087,7 @@ Use case ends.
 2. User inputs the specific date.
 3. System searches for tasks before the specific date.
 4. System displays the tasks before the specific date and success message.
+Use case ends.
 
 **Extensions**
 * 1a. Covigent realizes that no optional fields are input.
