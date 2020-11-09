@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":McSchedulerParser" as McSchedulerParser LOGIC_COLOR
+participant ":WorkerAddCommandParser" as WorkerAddCommandParser LOGIC_COLOR
+participant "a:WorkerAddCommand" as WorkerAddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("worker-add\nn/John hp/98765432\np/9.0 a/400")
+activate LogicManager
+
+LogicManager -> McSchedulerParser : parseCommand("worker-add\nn/John hp/98765432\np/9.0 a/400")
+activate McSchedulerParser
+
+create WorkerAddCommandParser
+McSchedulerParser -> WorkerAddCommandParser
+activate WorkerAddCommandParser
+
+WorkerAddCommandParser --> McSchedulerParser
+deactivate WorkerAddCommandParser
+
+McSchedulerParser -> WorkerAddCommandParser : parse("n/John hp/98765432\np/9.0 a/400")
+activate WorkerAddCommandParser
+
+create WorkerAddCommand
+WorkerAddCommandParser -> WorkerAddCommand
+activate WorkerAddCommand
+
+WorkerAddCommand --> WorkerAddCommandParser : a
+deactivate WorkerAddCommand
+
+WorkerAddCommandParser --> McSchedulerParser : a
+deactivate WorkerAddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+WorkerAddCommandParser -[hidden]-> McSchedulerParser
+destroy WorkerAddCommandParser
+
+McSchedulerParser --> LogicManager : a
+deactivate McSchedulerParser
+
+LogicManager -> WorkerAddCommand : execute()
+activate WorkerAddCommand
+
+WorkerAddCommand -> Model : addWorker(w)
+activate Model
+
+Model --> WorkerAddCommand
+deactivate Model
+
+create CommandResult
+WorkerAddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> WorkerAddCommand
+deactivate CommandResult
+
+WorkerAddCommand --> LogicManager : result
+deactivate WorkerAddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

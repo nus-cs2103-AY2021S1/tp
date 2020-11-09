@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+        </columnConstraints>
+        <VBox alignment="CENTER_LEFT" minHeight="60" GridPane.columnIndex="0">
+            <padding>
+                <Insets bottom="10" left="15" right="10" top="10" />
+            </padding>
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label fx:id="id" styleClass="cell_big_label">
+                    <minWidth>
+                        <!-- Ensures that the label text is never truncated -->
+                        <Region fx:constant="USE_PREF_SIZE" />
+                    </minWidth>
+                </Label>
+                <Label fx:id="dayTime" text="\$first" styleClass="cell_big_label" />
+            </HBox>
+            <Label fx:id="lineBreak1" styleClass="cell_tiny_label" text="" />
+            <Label fx:id="roleReqLabel" styleClass="cell_med_label" text="Roles required:" />
+            <VBox fx:id="roleRequirements" />
+            <Label fx:id="lineBreak2" styleClass="cell_tiny_label" text="" />
+            <Label fx:id="shiftAssignLabel" styleClass="cell_med_label" text="Assigned workers:" />
+            <FlowPane fx:id="shiftAssignments" />
+            <Label fx:id="lineBreak3" styleClass="cell_tiny_label" text="" />
+            <Label fx:id="leavesLabel" styleClass="cell_med_label" text="Workers on leave:" />
+            <FlowPane fx:id="leaveShiftAssignments" />
+        </VBox>
+    </GridPane>
+</HBox>

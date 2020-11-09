@@ -1,0 +1,21 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+skinparam ClassAttributeFontColor #FFFFFF
+show members
+
+
+class Role {
+roleName: String
+{static} createRole(String)
+}
+
+class Leave {
+{static} ROLE_NAME: String
+}
+
+Role <|- Leave
+Role ..> Leave
+@enduml

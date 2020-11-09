@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":McSchedulerParser" as McSchedulerParser LOGIC_COLOR
+participant ":ShiftEditCommandParser" as ShiftEditCommandParser LOGIC_COLOR
+participant "d:EditShiftDescriptor" as EditShiftDescriptor LOGIC_COLOR
+participant ":ShiftEditCommand" as ShiftEditCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("shift-edit\n2 d/FRI")
+activate LogicManager
+
+LogicManager -> McSchedulerParser : parseCommand("shift-edit\n2 d/FRI")
+activate McSchedulerParser
+
+create ShiftEditCommandParser
+McSchedulerParser -> ShiftEditCommandParser
+activate ShiftEditCommandParser
+ShiftEditCommandParser --> McSchedulerParser
+deactivate ShiftEditCommandParser
+
+McSchedulerParser -> ShiftEditCommandParser: parse("2 d/FRI")
+activate ShiftEditCommandParser
+
+create EditShiftDescriptor
+ShiftEditCommandParser -> EditShiftDescriptor
+activate EditShiftDescriptor
+EditShiftDescriptor --> ShiftEditCommandParser : d
+deactivate EditShiftDescriptor
+
+ShiftEditCommandParser -> EditShiftDescriptor : setShiftDay(shiftDay)
+activate EditShiftDescriptor
+EditShiftDescriptor --> ShiftEditCommandParser
+deactivate EditShiftDescriptor
+
+create ShiftEditCommand
+ShiftEditCommandParser -> ShiftEditCommand
+activate ShiftEditCommand
+ShiftEditCommand --> ShiftEditCommandParser
+deactivate ShiftEditCommand
+
+ShiftEditCommandParser --> McSchedulerParser
+deactivate ShiftEditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ShiftEditCommandParser -[hidden]-> McSchedulerParser
+destroy ShiftEditCommandParser
+
+McSchedulerParser --> LogicManager
+deactivate McSchedulerParser
+
+LogicManager -> ShiftEditCommand : execute()
+activate ShiftEditCommand
+
+ShiftEditCommand -> Model : setShift(shiftToEdit,\neditedShift)
+activate Model
+Model --> ShiftEditCommand
+deactivate Model
+ShiftEditCommand --> LogicManager
+deactivate ShiftEditCommand
+
+LogicManager -->[
+deactivate LogicManager
+
+
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+
+skinparam conditionStyle diamond
+
+start
+
+:parse given datetime range\ninto list of shifts;
+:remove shifts which user\nhas already taken leave;
+:add leave to all shifts;
+If (did some shifts have non-leave assignment?) then ([yes])
+    :inform user, but\ncommand still runs;
+else ([no])
+
+Endif
+
+stop
+
+@enduml
