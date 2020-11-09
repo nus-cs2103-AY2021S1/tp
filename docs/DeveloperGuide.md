@@ -805,7 +805,26 @@ Use case ends.
    * 2a1. System displays an error message.
 Use case ends.
 
+**Use case: Lists all rooms**
 
+**MSS**
+
+1. User requests to list all the rooms in quarantine facility.
+2. System shows/lists all the rooms in the hotel and also whether it is occupied/ unoccupied.
+Use case ends.
+
+**Exctensions**
+*  2a. System realises that there are no rooms existing.
+    * 2a1. System displays an error message.
+Use case ends.
+
+**Use case: Find empty room**
+
+**MSS**
+
+1. User requests to search for an empty room to accommodate patient
+2. System polls the first room from Priority Queue
+3. System shows the empty room with lowest room number
 ### A4. Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
