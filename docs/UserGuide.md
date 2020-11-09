@@ -100,6 +100,8 @@ The following table explains the general symbols and syntax used in this User Gu
 | _italics_ | Italicised text specifies the terms related to tCheck's GUI |
 |<div markdown="block" class="alert alert-info"> :information_source: </div>  | An exclamation mark indicates that the following text is a note|
 
+<div style="page-break-after: always;"></div>
+
 #### 2.3 Command Syntax and Usage
 
 The following table explains the technical terms used in this user guide.
@@ -136,6 +138,7 @@ The following points explain the format of a command.
    e.g. If the command specifies `p/PHONE_NUMBER e/EMERGENCY_CONTACT`, `e/EMERGENCY_CONTACT p/PHONE_NUMBER` is also acceptable.
     
 
+
 #### 2.4 Prefix processing and usage
 
 The table below explains some important features of how prefix(es) are processed in tCheck to help you understand and use prefix(es) in commands.
@@ -146,6 +149,8 @@ Duplicate (2 or more) valid prefixes detected | Only the last prefix and its fol
 Invalid prefix entered | tCheck will not recognise this "prefix" and thus it will be processed as part of the parameter for the nearest previous valid prefix, which may result in error for the parameter.
 Unexpected prefix(es) entered for commands which do not take in any parameter | tCheck will not accept or process these prefix(es) because all words entered after the command words will be ignored. 
 
+<div style="page-break-after: always;"></div>
+
 **Example 1:**
 `i-set i/Milk i/Boba m/90`
 
@@ -153,8 +158,6 @@ Unexpected prefix(es) entered for commands which do not take in any parameter | 
 
 In this example, the situation of duplicate valid prefixes detected takes place. Hence, only the last, in this case, the second prefix and its following parameters are accepted.
 Thus, the command will be processed in the same way as `i-set i/Boba m/90`.
-
-<div style="page-break-after: always;"></div>
 
 **Example 2:**
 `i-set-all M/10 P/10 B/10 L/10 G/10 S/10 T/10`
@@ -457,12 +460,13 @@ You can follow these instructions:
 1. Type `i-list` into the _Command Box_.
 1. Press "Enter" to execute the command.
 
+<div style="page-break-after: always;"></div>
+
 Outcome:
 
 1. The _Result Display_ will show a success message.
 2. The Ingredient Tracker inside the _Main View_ will show the list of all the ingredients.
 
-<div style="page-break-after: always;"></div>
 
 ![IngredientListCommandScreenshot](images/IngredientListCommandScreenshot.png)
 
@@ -612,6 +616,9 @@ Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...`
 * In tCheck, you may add an employee to the Employee Directory. When you add an employee, you need to provide his/her name, phone number, emergency contact, and address.
 * Tag is optional. Tags names should be alphanumeric. White space, characters are not allowed to be used in tags names. 
 
+
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:** <br>
@@ -620,7 +627,6 @@ PHONE_NUMBER and EMERGENCY_CONTACT must be 8-digit number and start with 8 or 9.
 
 </div>
 
-<div style="page-break-after: always;"></div>
 
 Example: 
 
@@ -635,9 +641,13 @@ Outcome:
 1. The _Result Display_ will show that you add a new employee.
 2. All active employees will be listed in the Employee Directory inside the _Main View_.
 
+
+<div style="page-break-after: always;"></div>
+
 ![AddEmployeeCommandScreenshot](images/AddEmployeeCommandResult.png)
 
 _Figure 12. A screenshot showing the outcome of an `c-add` command_
+
 
 <div style="page-break-after: always;"></div>
 
@@ -780,6 +790,9 @@ Outcome:
 
 2. Employees who are can work on `Monday` or `Friday` will be listed in the Employee Directory inside the _Main View_.
 
+
+<div style="page-break-after: always;"></div>
+
 ![FindByTagCommandScreenshot](images/FindByTagCommandScreenshot.png)
 
 _Figure 16. A screenshot showing the outcome of an `c-tag-find` command_
@@ -870,6 +883,9 @@ Outcome:
     
     c. The success message.
 2. The available manpower for tomorrow will be listed in the Employee Directory inside the _Main View_.
+
+
+<div style="page-break-after: always;"></div>
 
 ![FindByTagTomorrowCommandScreenshot](images/FindByTagTomorrowCommandScreenshot.png)
 
@@ -1039,7 +1055,6 @@ After the execution:<br>
 
 _Figure 22b. Screenshot showing the outcome of an `c-archive-all` command_
 
-<div style="page-break-after: always;"></div>
 
 #### 3.12 Listing all archived employees : `c-archive-list`
 
@@ -1194,11 +1209,12 @@ tCheck also shows the calendar for the current month when you start the applicat
  Let's say today is 8-Nov-2020, when you start tCheck, the calendar inside _Main View_ will show November's calendar,
  and hightlight today's date.
  
+ 
+<div style="page-break-after: always;"></div>
+
  ![CalendarScreenshot](images/CalendarScreenshot.png)
  
  _Figure 26. Screenshots showing the calendar in tCheck_
-
-<div style="page-break-after: always;"></div>
 
 ## FAQ <a name="FAQ"></a>
 
@@ -1213,6 +1229,8 @@ include: `s-list`, `i-set-default`, `i-list`, `i-reset-all`, `i-restock`, `c-lis
  "data" in tCheck home folder) with the files that contain the data in your previous tCheck home folder.
 
 
+<div style="page-break-after: always;"></div>
+
 ## Command summary <a name="command-summary"></a>
 
 ### Sales Tracking
@@ -1223,7 +1241,6 @@ Action | Format, Examples
 **List**| `s-list`
 **Find**| `s-find KEYWORD [MORE_KEYWORDS]` <br> e.g., `s-find BSBM BSBBT`
 
-<div style="page-break-after: always;"></div>
 
 ### Ingredients Tracking
 
@@ -1236,8 +1253,6 @@ Action | Format, Examples
 **Find**| `i-find KEYWORD [MORE_KEYWORDS]`  <br> e.g., `i-find milk sugar`
 **Reset all ingredients' levels to zero**| `i-reset-all`
 **List all ingredients that the user should restock**| `i-restock`
-
-<div style="page-break-after: always;"></div>
 
 ### Manpower Management
 
@@ -1256,7 +1271,6 @@ Action | Format, Examples
 **List all archived employees** |  `c-archive-list`
 **Unarchive** | `c-unarchive INDEX`<br> e.g., `c-unarchive 1` 
 
-<div style="page-break-after: always;"></div>
 
 ### General
 
