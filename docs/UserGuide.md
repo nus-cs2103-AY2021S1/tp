@@ -68,7 +68,7 @@ You can follow the steps below to get CliniCal up and running:
 
    * `list`: Lists all your patients.
 
-   * `add n/John Doe p/98765432 ic/S2561932A a/Pickle street, Block 123, #01-01 e/johnd@example.com` : Adds a patient named `John Doe` to the patient database.
+   * `add n/John Doe p/98765432 ic/S2561932A a/Pickle street, Block 123, #01-01 e/johnd@example.com` : Adds a patient named `John Doe` to the patient list.
 
    * `delete 3` : Deletes the 3rd patient shown in the patient list.
 
@@ -100,7 +100,7 @@ The layout of the GUI is as follows:
 
 On the first startup, CliniCal will be loaded with sample data to give you a feel of the features in CliniCal.
 
-If you wish to start afresh, enter the `clear` command to clear all entries from the appointment and patient database.
+If you wish to start afresh, enter the `clear` command to clear all entries from the appointment and patient list.
 
 ### 4.1 Overview Tab
 
@@ -110,13 +110,13 @@ If you wish to start afresh, enter the `clear` command to clear all entries from
     <em style="color:#CC5500">Figure 3. Overview Tab Layout</em>
 </p>
 
-This would be the home page of CliniCal, where the appointment list would be on the left, and the calendar view on the right.
+This would be the main screen of CliniCal, where the appointment list would be on the left, and the calendar view on the right.
 
 * The index used to access each appointment is shown next to the patient's name.
 
-* On the left, you would be able to view all upcoming appointments with the follow details under each appointment:
+* On the left, you would be able to view all upcoming appointments and each appointment contains the following details:
     * Patient Name
-    * NRIC
+    * Patient NRIC
     * Date and Time of Appointment
     * Duration of Appointment
 
@@ -139,13 +139,24 @@ This would be the home page of CliniCal, where the appointment list would be on 
     <em style="color:#CC5500">Figure 4. Patient Tab Layout</em>
 </p>
 
-This tab shows you the patient database and the details of each patient, together with a summary of each visit.
+This tab shows you the patient list and the details of each patient, together with the most recent visit date.
 
 * The index used to access each patient is shown next to the patient's name.
 
+* Each patient contains the following details:
+    * Name
+    * Allergies (if applicable)
+    * Phone Number
+    * NRIC
+    * Address
+    * Email
+    * Sex
+    * Blood Type
+    * Most Recent Visit Date (if applicable)
+
 * The sample data in the figure above indicates that Bernice Yu has the <span style="color:red">red</span> color tag, meaning that Bernice Yu has high priority and requires close monitoring and follow-up actions. You are free to assign any color to any patient.
 
-* Refer to [**Patient Commands**](#52-patient-commands) for more details on how to add a patient!
+* Refer to the section on [**Patient Commands**](#52-patient-commands) for more details on how to add a patient!
 
 ### 4.3 Profile Window
 
@@ -157,7 +168,7 @@ This tab shows you the patient database and the details of each patient, togethe
 
 This window shows you the individual patient profile picture and personal details in an easy to read manner.
 
-* It also contains details of each visit stored in visitation logs sorted by descending date order in DD/MM/YYYY format (i.e. The most recent visit will appear at the top). 
+* If applicable, the profile contains details of each visit stored in visitation logs sorted by descending date order in DD/MM/YYYY format (i.e. The most recent visit will appear at the top). 
 
 * The index used to access each visitation log is also shown after the words 'Visitation Log'.
 
@@ -166,7 +177,7 @@ This window shows you the individual patient profile picture and personal detail
     * Prescription
     * Comments
 
-* Refer to [**Patient Visitation Commands**](#53-patient-visitation-commands) for more details on how to add a visit!
+* Refer to the section on [**Patient Visitation Commands**](#53-patient-visitation-commands) for more details on how to add a visit!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -182,13 +193,13 @@ General commands help enhance your general user experience while using CliniCal.
 
 Access help page by referring to the link provided in the message pop-up.
 
+Format: `help`
+
 <p align="center">
     <img src="images/helpMessage.png"/>
     <br>
     <em style="color:#CC5500">Figure 6. Example of Help Message</em>
 </p>
-
-Format: `help`
 
 <div markdown="span" class="alert alert-primary">
 
@@ -200,25 +211,25 @@ Format: `help`
 
 View a list of past commands that you had used during the session.
 
+Format: `history`
+
 <p align="center">
     <img src="images/historyExample.png"/>
     <br>
     <em style="color:#CC5500">Figure 7. Example of History Command</em>
 </p>
 
-Format: `history`
-
 #### 5.1.3 Clearing command history: `clearhistory`
 
 Clear the command history.
+
+Format: `clearhistory`
 
 <p align="center">
     <img src="images/clearHistoryExample.png"/>
     <br>
     <em style="color:#CC5500">Figure 8. Example of Clear History Command</em>
 </p>
-
-Format: `clearhistory`
 
 <div markdown="block" class="alert alert-info">
 
@@ -231,7 +242,14 @@ Format: `clearhistory`
 
 #### 5.1.4 Undoing the previous command: `undo`
 
-Revert your previous command which modified the patient database.
+Revert your previous command which modified the patient list.
+
+Format: `undo`
+
+* Only applies for commands that modify the patient list such as `add`, `edit`, `delete`, `clear`,
+`addvisit`, `editvisit`, `deletevisit`, `addappt`, `editappt` and `deleteappt`.
+* Does not support `addpicture`, so remember to be careful when modifying a patient's profile picture!
+* Does not apply for undoable commands such as `find`, `list` and `clearhistory`.
 
 <p align="center">
     <img src="images/undoExample.png"/>
@@ -239,20 +257,20 @@ Revert your previous command which modified the patient database.
     <em style="color:#CC5500">Figure 9. Example of Undo Command</em>
 </p>
 
-Format: `undo`
+Example: You want to restore Alex Yeoh's patient details right after accidentally using the `edit` command.
 
-* Only applies for commands that modify the patient database such as `add`, `edit`, `delete`, `clear`,
-`addvisit`, `editvisit`, `deletevisit`, `addappt`, `editappt` and `deleteappt`.
-* Does not support `addpicture`, so remember to be careful when modifying a patient's profile picture!
-* Does not apply for undoable commands such as `find`, `list` and `clearhistory`.
+Step 1: Input `undo` into the command box and press <kbd>Enter</kbd>.
 
-Example: 
-* While trying to `edit`, you accidentally deleted Alex Yeoh's patient details by accident.
-* Instead of re-entering all the information again, you can easily restore Alex Yeoh's details by using `undo` on your previous `delete` command.
+Step 2: On the Patient tab, you can check that Alex Yeoh's patient details are restored to the original state before the `edit` command.
 
 #### 5.1.5 Redoing a command: `redo`
 
 Redo the most recent command that you have undone.
+
+Format: `redo`
+
+* Only able to `redo` commands that have been previously undone such as `add`, `edit`, `delete`, `clear`,
+`addvisit`, `editvisit`, `deletevisit`, `addappt`, `editappt` and `deleteappt`.
 
 <p align="center">
     <img src="images/redoExample.png"/>
@@ -260,10 +278,11 @@ Redo the most recent command that you have undone.
     <em style="color:#CC5500">Figure 10. Example of Redo Command</em>
 </p>
 
-Format: `redo`
+Example: You want to restore Alex Yeoh's patient details right after accidentally using `undo` command on the `edit` command.
 
-* Only able to `redo` commands that have been previously undone such as `add`, `edit`, `delete`, `clear`,
-`addvisit`, `editvisit`, `deletevisit`, `addappt`, `editappt` and `deleteappt`.
+Step 1: Input `redo` into the command box and press <kbd>Enter</kbd>.
+
+Step 2: On the Patient tab, you can check that Alex Yeoh's patient details are restored to the original state before the `undo` command.
 
 #### 5.1.6 Exiting the program: `exit`
 
@@ -273,11 +292,23 @@ Format: `exit`
 
 ### 5.2 Patient Commands
 
-Patient commands help you make changes to your database of patients.
+Patient commands help you make changes to the patient list.
 
 #### 5.2.1 Adding a patient: `add`
 
-Add a new patient to the patient database.
+Add a new patient to the patient list.
+
+Format: `add n/NAME p/PHONE_NUMBER ic/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
+
+* `NAME` refers to the name of the patient and should only contain alphanumeric characters.
+* `PHONE_NUMBER` refers to the phone number of the patient and can be any 8 digit number combinations.
+* `NRIC` refers to the unique alphanumeric serial number on the National Registration Identity Card. Only Singaporean NRIC format is accepted.
+* `ADDRESS` refers to the address of the patient.
+* `EMAIL` refers to the email of the patient. To account for corporate email networks, a wide range of email addresses is accepted, such as `user@desk102`. If you are entering normal email addresses, check that you have not missed out on any parts of the email.
+* `SEX` refers to the sex of the patient and can only be either M(male) or F(female).
+* `BLOOD_TYPE` refers to the blood type of the patient and can only be any of the following, A, B, O, AB, followed by either + or -.
+* `ALLERGY` refers to the allergy of the patient. A patient can have any number of allergies (including 0).
+* `COLOR_TAG` refers to the color tag that can be used to classify patients. Color tag can be any standard HTML color name, such as <span style="color:red">red</span>, <span style="color:green">green</span> or <span style="color:orange">orange</span>. When a patient is tagged with a color tag, a portion of the patient's panel will be styled to show that color.
 
 <p align="center">
     <img src="images/addExample.png"/>
@@ -285,31 +316,18 @@ Add a new patient to the patient database.
     <em style="color:#CC5500">Figure 11. Example of Add Patient Command</em>
 </p>
 
-Format: `add n/NAME p/PHONE_NUMBER ic/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
+Example: You want to add a new patient with specific personal details.
 
-Examples:
-* `add n/John Doe p/98765432 ic/S3857462J e/johnd@example.com a/Pickle street, block 123, #01-01` Adds a new patient named 'John Doe' with the respective fields.
-* `add n/Betsy Crowe ic/G7667353B e/betsycrowe@example.com a/Newgate Prison p/1234567 g/penicillin` Adds a new patient named 'Betsy Crowe' with the respective fields.
+Step 1: Input `add n/Betsy Yu ic/G7667353B e/betsyyu@example.com a/Newgate Prison p/1234567 g/penicillin s/F` into the command box and press <kbd>Enter</kbd>.
+
+Step 2: On the Patient tab, you can find your newly added patient at the bottom of the patient list.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**<br>
 
-* Only Singaporean NRIC format (@xxxxxxx#) is accepted for NRIC field.
 * `N/A` is accepted as a special placeholder for all optional fields.
-* To account for corporate email networks, we allow a wide range of email addresses, such as `user@desk102`. If you are entering normal email addresses, check that you have not missed out on any parts of the email.
-* A patient can have any number of allergies (including 0).
-* The color tag can be any standard HTML color name, such as <span style="color:red">red</span>, <span style="color:green">green</span> or <span style="color:orange">orange</span>.
-* Check out <a href="https://www.w3schools.com/colors/colors_names.asp">this link</a> for an extensive list.
-
-</div>
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note about color coding patients:**<br>
-
- * When your patient is tagged with a color tag, a portion of the patient's panel will be styled to show that color. The color tags can be used for a variety of purposes.
- * For example, you may color code patients at risk of terminal diseases as <span style="color:red">red</span>, for easier reference.
+* Color tags can be used for a variety of purposes. For example, you may color code patients at risk of terminal diseases as <span style="color:red">red</span>, for easier reference. Check out <a href="https://www.w3schools.com/colors/colors_names.asp">this link</a> for an extensive list of possible color tags.
 
 </div>
 
@@ -344,7 +362,23 @@ Examples:
 
 #### 5.2.3 Editing a patient: `edit`
 
-Edit an existing patient in the patient database.
+Edit an existing patient in the patient list.
+
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
+
+* Edits the patient at the specified `INDEX`. 
+* `INDEX` refers to the index number shown in the displayed patient list. The index **must be a positive number** 1, 2, 3, …​
+* `NAME` refers to the name of the patient and should only contain alphanumeric characters.
+* `PHONE_NUMBER` refers to the phone number of the patient and can be any 8 digit number combinations.
+* `NRIC` refers to the unique alphanumeric serial number on the National Registration Identity Card. Only Singaporean NRIC format is accepted.
+* `ADDRESS` refers to the address of the patient. 
+* `EMAIL` refers to the email of the patient. To account for corporate email networks, a wide range of email addresses is accepted, such as `user@desk102`. If you are entering normal email addresses, check that you have not missed out on any parts of the email.
+* `SEX` refers to the sex of the patient and can only be either M(male) or F(female).
+* `BLOOD_TYPE` refers to the blood type of the patient and can only be any of the following, A, B, O, AB, followed by either + or -.
+* `ALLERGY` refers to the allergy of the patient. A patient can have any number of allergies (including 0).
+* `COLOR_TAG` refers to the color tag that can be used to classify patients. Color tag can be any standard HTML color name, such as <span style="color:red">red</span>, <span style="color:green">green</span> or <span style="color:orange">orange</span>. When a patient is tagged with a color tag, a portion of the patient's panel will be styled to show that color.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
 
 <p align="center">
     <img src="images/editExample.png"/>
@@ -352,38 +386,37 @@ Edit an existing patient in the patient database.
     <em style="color:#CC5500">Figure 13. Example of Edit Patient Command</em>
 </p>
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
+Example: You want to edit the details of the first patient.
 
-* Edits the patient at the specified `INDEX`. `INDEX` refers to the index number shown in the displayed patient list. The index **must be a positive number** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* To account for corporate email networks, we allow a wide range of email addresses, such as `user@desk102`. If you are entering normal email addresses, check that you have not missed out on any parts of the email.
-* When editing allergies (or color tag), the existing allergies (or color tag) of the patient will be removed i.e adding of allergies (or color tag) is not cumulative.
-* You can remove all the patient’s allergies by typing `g/` without specifying any allergies after it. The same applies for color tags of a patient.
+Step 1: Input `edit 1 p/35154520 g/aspirin ct/green g/recombinant interferons` into the command box and press <kbd>Enter</kbd>.
 
-Examples:
-*  `edit 1 p/11111111 e/pauline@example.com` Edits the phone number and email address of the 1st patient to be `11111111` and `pauline@example.com` respectively.
-*  `edit 2 ct/red` Clears the existing color tag and edits the color tag of the 2nd patient to be <span style="color:red">red</span>.
+Step 2: On the Patient tab, you can find your newly edited patient inside the patient list.
 
 <p align="center">
-    <img src="images/colorTagExample.png"/>
+    <img src="images/editExample2.png"/>
     <br>
-    <em style="color:#CC5500">Figure 14. Example of Colour Coded Patient</em>
+    <em style="color:#CC5500">Figure 14. Example of Removing Allergy and Color Tag with Edit Patient Command</em>
 </p>
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**<br>
 
-* `N/A` is accepted as a special placeholder for all optional fields.
-* Only Singaporean NRIC format (@xxxxxxx#) is accepted for NRIC field.
 * If you have edited **patient name** or **patient NRIC**, please make sure to update the changes to any relevant appointments, using the `editappt` command.
+* `N/A` is accepted as a special placeholder for all optional fields.
+* When you edit allergies (or color tag), the existing allergies (or color tag) of the patient will be removed i.e adding of allergies (or color tag) is not cumulative.
+* You can remove all the patient’s allergies by typing `g/` without specifying any allergies after it. The same applies for color tags of a patient where you can remove the color tag by typing `ct/` without specifying any color tag.
+* Color tags can be used for a variety of purposes. For example, you may color code patients at risk of terminal diseases as <span style="color:red">red</span>, for easier reference. Check out <a href="https://www.w3schools.com/colors/colors_names.asp">this link</a> for an extensive list of possible color tags.
 
 </div>
 
 #### 5.2.4 Deleting a patient: `delete`
 
-Delete a specified patient from the patient database.
+Delete a specified patient from the patient list.
+
+Format: `delete INDEX`
+
+* Deletes the patient at the specified `INDEX`. `INDEX` refers to the index number shown in the displayed patient list. The index **must be a positive number** 1, 2, 3, …​
 
 <p align="center">
     <img src="images/deleteExample.png"/>
@@ -391,15 +424,11 @@ Delete a specified patient from the patient database.
     <em style="color:#CC5500">Figure 15. Example of Delete Patient Command</em>
 </p>
 
-Format: `delete INDEX`
+Example: You want to delete the fifth patient.
 
-* Deletes the patient at the specified `INDEX`.
-* `INDEX` refers to the index number shown in the displayed patient list.
-* `INDEX` **must be a positive number** 1, 2, 3, …​
+Step 1: Input `delete 5` into the command box and press <kbd>Enter</kbd>.
 
-Examples:
-* `list` followed by `delete 9` deletes the 9th patient in the patient database.
-* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+Step 2: On the Patient tab, you can check that the specified patient is no longer inside the patient list.
 
 <div markdown="block" class="alert alert-info">
 
@@ -411,7 +440,9 @@ Examples:
 
 #### 5.2.5 Deleting all patients: `clear`
 
-Clear all patient entries from the patient database.
+Clear all patient entries from the patient list.
+
+Format: `clear`
 
 <p align="center">
     <img src="images/clearExample.png"/>
@@ -419,14 +450,11 @@ Clear all patient entries from the patient database.
     <em style="color:#CC5500">Figure 16. Example of Clear Command</em>
 </p>
 
-Format: `clear`
+Example: You want to delete all the patients.
 
-<div markdown="block" class="alert alert-primary">
-:bulb: <span style="font-weight:bold">Tip: </span>
+Step 1: Input `clear` into the command box and press <kbd>Enter</kbd>.
 
-* Reverse the `clear` command using the `undo` command!
-
-</div>
+Step 2: On the Patient tab, you can check that there is no patient inside the patient list.
 
 <div markdown="block" class="alert alert-info">
 
@@ -436,15 +464,16 @@ Format: `clear`
 
 </div>
 
+<div markdown="block" class="alert alert-primary">
+:bulb: <span style="font-weight:bold">Tip: </span>
+
+* Reverse the `clear` command using the `undo` command!
+
+</div>
+
 #### 5.2.6 Finding patients: `find`
 
 Find patients whose names or NRIC contain any of the given keywords.
-
-<p align="center">
-    <img src="images/findExample.png"/>
-    <br>
-    <em style="color:#CC5500">Figure 17. Example of Find Command</em>
-</p>
 
 Format: `find KEYWORDS`
 
@@ -452,7 +481,7 @@ Format: `find KEYWORDS`
 * The search is case-insensitive. 
     * `benson` will match `Benson`
 * The search keyword entered can consist of just one word or even multiple keywords. 
-    * `Benson` or `Benson Meier` 
+    * `Benson` or `Benson Meier`
 * Patient will be matched even if the keyword matches the search parameters only partially 
     * `Ben` will match `Benson`, `7435696` will match `S7435696B`.
 * The order of the keywords does not matter. 
@@ -460,15 +489,23 @@ Format: `find KEYWORDS`
 * Patients matching at least one keyword will be returned (i.e. OR search).
     * `Benson Meier` will return `Benson Yu`, `Andrew Meier`
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find ben` returns `benjamin`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-* `find 9123456` returns the patient with the NRIC `s9123456z`
+<p align="center">
+    <img src="images/findExample.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 17. Example of Find Command</em>
+</p>
+
+Example: You want to find all the patients with `yu` in their names.
+
+Step 1: Input `find yu` into the command box and press <kbd>Enter</kbd>.
+
+Step 2: On the Patient tab, you can check that the patient list only shows the patients with `yu` in their names.
 
 #### 5.2.7 Listing all patients: `list`
 
-View a list of all your patients in the patient database.
+View a list of all your patients in the patient list.
+
+Format: `list`
 
 <p align="center">
     <img src="images/listExample.png"/>
@@ -476,12 +513,10 @@ View a list of all your patients in the patient database.
     <em style="color:#CC5500">Figure 18. Example of List Command</em>
 </p>
 
-Format: `list`
-
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
 
-* If you are on the `Overview` screen rather than the `Patients` screen, the application may not be updated! When using list, please switch over to the patients tab to see the list of your patients.
+* If you are on the Overview tab, the list may not be updated! When using `list`, please switch over to the Patients tab to see the list of your patients.
 
 </div>
 
@@ -489,17 +524,17 @@ Format: `list`
 
 Display the patient's profile in a separate window.
 
-<p align="center">
-    <img src="images/profileExample.png"/>
-    <br>
-    <em style="color:#CC5500">Figure 19. Example of Profile Window</em>
-</p>
-
 Format: `profile INDEX`
 
 * Displays the patient's profile that is specified by `INDEX`.
 * `INDEX` refers to the index number shown in the displayed patient list.
 * `INDEX` **must be a positive number** 1, 2, 3, …​
+
+<p align="center">
+    <img src="images/profileExample.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 19. Example of Profile Window</em>
+</p>
 
 **Example**: You want to display the profile of the 1st patient on the list.
 
@@ -633,7 +668,7 @@ Patient Appointment commands help you manage your upcoming patient appointments.
 
 #### 5.4.1 Adding an appointment: `addappt`
 
-Add a new appointment for the specified patient to the appointment database.
+Add a new appointment for the specified patient to the appointment list.
 
 <p align="center">
     <img src="images/addApptExample.png"/>
@@ -676,7 +711,7 @@ Example: You want to add an appointment with the first patient on the list.
 
 #### 5.4.2 Editing an appointment: `editappt`
 
-Edit the specified appointment in the appointment database.
+Edit the specified appointment in the appointment list.
 
 <p align="center">
     <img src="images/editApptExample.png"/>
@@ -725,7 +760,7 @@ Example: You want to reschedule the first appointment in the appointment list.
 
 #### 5.4.3 Deleting an appointment: `deleteappt`
 
-Delete the specified appointment from the appointment database.
+Delete the specified appointment from the appointment list.
 
 <p align="center">
     <img src="images/DeleteApptExample.png"/>
