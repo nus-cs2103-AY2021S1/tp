@@ -836,10 +836,7 @@ testers are expected to do more *exploratory* testing.
       Expected: tasks with title including "tutorial" will be displayed
       
    1. Test case: `find-tasks title:tutorial title:lab`<br>
-      Expected: lessons with title including either "tutorial" or "lab" will be displayed
-      
-   1. Test case: `find-lesson datetime:10-11-2020 12:00`<br>
-      Expected: lesson happening on 10-1102020 at 12:00 will be displayed.
+      Expected: tasks with title including either "tutorial" or "lab" will be displayed
 
 ### Deleting a task
 
