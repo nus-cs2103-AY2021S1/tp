@@ -109,6 +109,8 @@ FitEgo can help you with that. Here's how:
 
 FitEgo lets you record crucial information that you want to keep track of using three types of entities:
 
+<center> Table 1 - Summary of entities </center>
+
 Item | Prefix | What it represents
 -----|-------| -------------------
 Client | c | Someone who is interested in or has engaged with your services
@@ -150,7 +152,7 @@ You can refer to the table and the figure below to familiarize yourself with the
      <figcaption> Figure 2 - Callouts of the various UI components</figcaption>
  </figure>
  
-<center> Table 1 - Functions of UI Components </center>
+<center> Table 2 - Functions of UI Components </center>
 From the figure above, the GUI is made up of several components. 
 
 | Component | Description |
@@ -435,7 +437,7 @@ Examples:
 
 If you are no longer taking up a client, you can delete the client which can be found in the Client List. This helps in reducing obsolete information.
 
-Format: `cdel INDEX`
+Format: `cdel INDEX [f/]`
 
 Points to take note when deleting a client from the Client List:
 * Deletes the client at the specified `INDEX`.
@@ -469,7 +471,7 @@ You can view the full details of a client from the Client List.
 You can easily look up the following information about the client in the Main Window:
 * Your client's name, email, address, phone, tags
 * Your client's weight history in line graph form
-* A list of schedules associated with your client, together with the interval, exercise type and remark
+* A list of schedules associated with your client, together with the interval, exercise type, payment status, and remark
 
 Format: `cview INDEX`
 
@@ -626,7 +628,7 @@ Points to take note when viewing session from the Session List:
  * On top of the Session List, you can find the type of the period you are viewing.
  * The recognized periods are as follows:
  
- <center>Table 2 - List of recognized periods </center>
+ <center>Table 3 - List of recognized periods </center>
  
  | Period | Sessions displayed |
  | -------- | -------- |
@@ -638,7 +640,7 @@ Points to take note when viewing session from the Session List:
  | `-[x][unit]` | Sessions within past x time units where x is a non-negative integer|
  
  * The recognized units are as follows:
- <center>Table 3 - List of recognized time units </center>
+ <center>Table 4 - List of recognized time units </center>
  
  | Unit | Time unit parsed |
  | -------- | -------- |
@@ -688,14 +690,14 @@ Each schedule contains information about the client and the attended session.
 Listed below are three other types of information that you can add into a schedule:
 1. your client's weight if you have recorded your client's weight during a session
 1. exercises done by your client during the session as remark
-1. your client's payment status on whether he has or has not paid for the session
+1. your client's payment status on whether your client has or has not paid for the session
 
 </div>
 
 
 The table below shows an example of schedules. The session at Machoman Gym is attended by 2 clients. For each client, we can take note of their weight, activities, and payment status. 
 
-<center> Table 4 - Example of Schedule Tracking </center>
+<center> Table 5 - Example of Schedule Tracking </center>
 
 | Client   | Session                                                      | Weight | Remark                                                       | Payment Status |
 | -------- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ | -------------- |
@@ -728,7 +730,7 @@ Points to take note when adding a schedule:
 
 Example:
 
-* `schadd c/1 s/1` schedules the first client in the Client List with the first session in the Session List. As you can see in the figure below, Alex Yeoh (the fifth client, marked by the red square) is added to the first session in the list (marked by the blue square).
+* `schadd c/1 s/1` schedules the first client in the Client List with the first session in the Session List. As you can see in the figure below, Alex Yeoh (the first client, marked by the red square) is added to the first session in the list (marked by the blue square).
 
  <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
      <p>
@@ -756,7 +758,7 @@ Points to take note when editing a schedule's details:
 Examples:
 
 *  `schedit c/1 s/1 us/2` reschedules the first session in the Session List to the second session in the Session List while keeping all other fields the same
-*  `schedit c/1 s/1 pd/paid` indicates that the first client in the Client List has paid for the second session in the Session List while keeping all other fields the same
+*  `schedit c/1 s/1 pd/paid` indicates that the first client in the Client List has paid for the first session in the Session List while keeping all other fields the same
 *  `schedit c/1 s/1 r/did 5 pushups` edits the schedule containing client index 1 and session index 1 to have remark of doing 5 pushups while keeping all other fields the same
 *  `schedit c/1 s/1 w/70` edits the schedule containing client index 1 and session index 1 to a weight of 70kg while keeping all other fields the same
 * `schedit c/1 s/1 r/` clears the schedule containing client index 1 and session index 1 remarks while keeping all other fields the same
@@ -788,7 +790,7 @@ Examples:
 
 # 4 FAQ
 
-**Q**: How do I transfer my data to another Computer?
+**Q**: How do I transfer my data to another Computer?  
 **A**: Install the app in the other computer and overwrite the empty `data` folder it creates with your previous FitEgo `data` folder.
 
 **Q**: I have encountered difficulties with FitEgo. May I know who do I reach out to for assistance?  
@@ -807,7 +809,7 @@ Examples:
 
 You can find the comprehensive list of commands in the table below. 
 
-<center>Table 5 - General Commands Summary</center>
+<center>Table 6 - General Commands Summary</center>
 
 | Action | Format |
 | ---------| -------- |
@@ -817,7 +819,7 @@ You can find the comprehensive list of commands in the table below.
 | Clear all data | `clear` |
 | Exit this program | `exit` |
 
-<center>Table 6 - Keyword based Commands Summary (grouped by action) </center>
+<center>Table 7 - Keyword based Commands Summary (grouped by action) </center>
 
 | Action | Entity | Format |
 | ---------| -------- | -------- |
@@ -834,6 +836,10 @@ You can find the comprehensive list of commands in the table below.
 | View | Client's Full Profile | `cview INDEX` |
 | View | Sessions within Period |`sview p/PERIOD ` |
 | Find | Client by Name | `cfind KEYWORD [MORE_KEYWORDS]` |
+
+
+---
+
 
 # 6 Acknowledgement
 * This project uses libraries from [ControlsFX](https://github.com/controlsfx/controlsfx)
