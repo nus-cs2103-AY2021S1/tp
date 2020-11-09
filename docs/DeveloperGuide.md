@@ -775,7 +775,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     * 3b1. FitEgo shows an instruction to force delete.
     
-      Use case ends.
+      Use case resumes at step 2.
             
 * 3c. User requests to force delete a specific Client in the list.
 
@@ -809,7 +809,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
  1.  User requests to list Clients.
  2.  FitEgo shows a list of Clients.
  3.  User requests to view a specific Client in the list
- 4.  FitEgo opens the Client's profile in a new window. <br/> Use case ends.
+ 4.  FitEgo opens the Client's profile in the Main Window. <br/> Use case ends.
 
 **Extensions**
 * 2a. The list is empty.
