@@ -1035,6 +1035,8 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
 
 1. Editing a Client while all Clients are being shown
 
+   1. Prerequisites: There should be at least 1 Client in the Client List.
+    
    1. Test case: `cedit 1 p/91234567` <br>
       Expected: First Client's details has been edited. <br>
       Details of the edited Client shown is in the status message.
@@ -1048,6 +1050,8 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
 
 1. Deleting a Client while all Clients are being shown
 
+   1. Prerequisites: There should be at least 1 Client in the Client List.
+    
    1. Test case: `cdel 1` <br>
       Expected: First Client is being deleted from the list. <br>
       Details of the deleted Client is shown in the status message.
@@ -1057,19 +1061,20 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
 1. Adding a Session while all Clients are being shown.
 
     1. Test case: `sadd g/Machoman Gym ex/Endurance at/29/09/2020 1600 t/120` <br>
-       Expected: Session is added to the list, and it is shown in order. <br>
+       Expected: Session is added to the list. <br>
        Details of the added Session shown in the status message.
        
     1. Other incorrect Add Session commands to try: 
         `sadd g/machoman ex/endurance at/29/09/2020 t/120` (wrong date format), <br>
         `sadd g/machoman ex/endurance at/29/09/2020 1600 t/0` (invalid duration) <br>
-       Expected: Session is not added. Error details are shown in the status message.
+       Expected: Session is not added. <br>
+       Error details are shown in the status message.
 
 ### 6.6 Editing a Session
 
 1. Editing a Session while all Sessions are being shown.
 
-   1. Prerequisites: Multiple Sessions in the list can be viewed on the right panel of the GUI.
+   1. Prerequisites: There should be at least 1 Session in the Session List.
     
    1. Test case: `sedit 1 g/Machoman at/29/09/2020 1600 t/120` <br>
       Expected: First Session's gym location and timing is edited. <br>
@@ -1079,6 +1084,8 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
 
 1. Deleting a Session while all Sessions are being shown.
 
+   1. Prerequisites: There should be at least 1 Session in the Session List.
+   
    1. Test case: `sdel 1 f/` <br>
       Expected: The 1st Session in the Session List will be deleted alongside all Schedules associated to the Session. <br>
       Details of the deleted Session is shown in the status message.
@@ -1087,7 +1094,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
 
 1. Viewing Sessions within Period while the Session List is non-empty.
 
-   1. Prerequisites: Multiple Sessions in the list can be viewed on the right panel of the GUI.
+   1. Prerequisites: There should be at least 1 Session in the Session List.
 
    1. Test case: `sview p/+1d`<br>
       Expected: The right panel only displays Sessions with start time from 0000hrs today to 2359hrs the next day. <br>
@@ -1100,7 +1107,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
 
 1. Adding a Schedule while all Clients and Sessions are being shown.
 
-   1. Prerequisites: Multiple Clients and Sessions in the list can be viewed on the left and right panel of the GUI respectively.
+   1. Prerequisites: There should be at least 1 Client and 1 Session in the Client and Session List respectively.
    
    1. Test case: `schadd c/1 s/1`<br>
       Expected: Add a Schedule associated with the first Client in the Client List and first Session in the Session List. <br>
@@ -1111,7 +1118,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
 
 1. Editing a Schedule while all Schedules are being shown.
 
-   1. Prerequisites: Multiple Schedules in the list can be viewed on the main panel of the GUI.
+   1. Prerequisites: There should be at least 1 Schedule with the associated Client and Session.
 
    1. Test case: `schedit c/1 s/1 us/2 pd/paid r/text`<br>
       Expected: Edit Schedule with the first Client and first Session is edited to second Session in the Session List, with payment updated to paid and remarks updated to text. <br>
@@ -1122,7 +1129,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
 
 1. Deleting a Schedule while all Clients and Sessions are being shown.
 
-   1. Prerequisites: Multiple Clients and Sessions in the list can be viewed on the left and right panel of the GUI respectively.
+   1. Prerequisites: There should be at least 1 Schedule with the associated Client and Session.
    
    1. Test case: `schdel c/1 s/1`<br>
       Expected: Delete the Schedule associated with first Client in the Client List and first Session in the Session List. <br>
