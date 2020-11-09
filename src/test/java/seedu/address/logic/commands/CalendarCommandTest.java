@@ -1,30 +1,21 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CalendarCommand.MESSAGE_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPlanus.getTypicalPlanus;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 
 public class CalendarCommandTest {
+    private Model model = new ModelManager();
+    private Model expectedModel = new ModelManager();
 
     @Test
-    public void execute_emptyPlanus_success() {
-        Model model = new ModelManager();
-        Model expectedModel = new ModelManager();
-
-        assertCommandSuccess(new CalendarCommand(), model, CalendarCommand.MESSAGE_SUCCESS, expectedModel);
-    }
-
-    @Test
-    public void execute_nonEmptyPlanus_success() {
-        Model model = new ModelManager(getTypicalPlanus(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalPlanus(), new UserPrefs());
-
-        assertCommandSuccess(new CalendarCommand(), model, CalendarCommand.MESSAGE_SUCCESS, expectedModel);
+    public void execute_calendar_success() {
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS, false, false, false, true);
+        assertCommandSuccess(new CalendarCommand(), model, expectedCommandResult, expectedModel);
     }
 
 }
