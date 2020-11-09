@@ -23,6 +23,7 @@ Given below are my contributions to the project.
   * Set up GitHub page
 
 * **Enhancements to existing features**:
+  * Refactored code to suit our application more [\#40](https://github.com/AY2021S1-CS2103-T14-2/tp/pull/40), [\#41](https://github.com/AY2021S1-CS2103-T14-2/tp/pull/41)
   * Implement quiz parser class and edit logic manager to switch between flashcard mode and quiz mode [\#81](https://github.com/AY2021S1-CS2103-T14-2/tp/pull/81)
   * Implement Response, Attempt, Performance classes for quiz model [\#94](https://github.com/AY2021S1-CS2103-T14-2/tp/pull/94)
   * Add exit command in Quiz mode [\#139](https://github.com/AY2021S1-CS2103-T14-2/tp/pull/139)
@@ -38,11 +39,7 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added implementation details of Logic component and quiz components of quiz feature [\#165](https://github.com/AY2021S1-CS2103-T14-2/tp/pull/165)
     * Added activity diagram for workflow of quiz feature [\#171](https://github.com/AY2021S1-CS2103-T14-2/tp/pull/171)
-    * Added Instructions for Manual Testing for `answer` command [\#166](https://github.com/AY2021S1-CS2103-T14-2/tp/pull/166)
-    * Added Instructions for Manual Testing for `start attempt` and `end attempt` command [\#171](https://github.com/AY2021S1-CS2103-T14-2/tp/pull/171)
+    * Added Instructions for Manual Testing for `answer`, `start attempt` and `end attempt` command [\#166](https://github.com/AY2021S1-CS2103-T14-2/tp/pull/166), [\#171](https://github.com/AY2021S1-CS2103-T14-2/tp/pull/171)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * PRs reviewed (with non-trivial review comments): [\#136](https://github.com/AY2021S1-CS2103-T14-2/tp/pull/136)
