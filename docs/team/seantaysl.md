@@ -44,7 +44,8 @@ Given below are my contributions to the project.
         * Updated screenshots for Getting Started (Section 3).
         
     * Developer Guide:
-        * Made the Ui Class Diagram.
+        * Made the Ui Class Diagram
+        * Updated Ui Section
         * Added on to the User Stories and Product Scope.
         * Preface and Using this document section.
         * Proofread documentations in section 6 for errors.
