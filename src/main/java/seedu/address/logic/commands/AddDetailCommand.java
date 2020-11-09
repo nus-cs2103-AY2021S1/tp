@@ -19,10 +19,9 @@ public class AddDetailCommand extends DetailCommand {
 
     public static final String COMMAND_WORD = "add";
     public static final String MESSAGE_USAGE = DetailCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": adds a Detail to the student identified "
-            + "by the index number used in the displayed student list. \n"
+            + ": adds a Detail to the specified student.\n\n"
             + "Parameters: STUDENT_INDEX (must be a positive integer) "
-            + PREFIX_TEXT + "DETAIL\n"
+            + PREFIX_TEXT + "DETAIL\n\n"
             + "Example: " + DetailCommand.COMMAND_WORD + " " + COMMAND_WORD + " 2 "
             + PREFIX_TEXT + "Eats sweets in class";
 
