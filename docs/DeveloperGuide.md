@@ -486,7 +486,7 @@ Use case ends.
 3a3. DSAce verifies the new index. <br/>
 Steps 3a2 to 3a3 are repeated until the index specified is correct. <br/>
 Use case resumes from step 4.
-   
+
 5a. The user does not specify whether the flashcard is to be sorted in ascending or descending order of priority. <br/>
 5a1. DSAce displays the flashcard list that is sorted in ascending order of priority. <br/>
 Use case resumes from step 7.
