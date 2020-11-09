@@ -23,20 +23,20 @@ I am in-charge of the **UI/UX** of the **front-end development** of TrackIt@NUS.
 ### 2.3 UI Development
  
 #### 2.3.1 Side Panel (Major Enhancement)
-I have added a side panel feature. This feature allow users to toggle between the different tabs easily. 
+I have added a [Side Panel](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/UserGuide.md#layout) feature. This feature allow users to toggle between the different tabs easily. 
 Initially, tabs elements were used in at the top of the views (.fxml) for initial v.1.2.
 However, the design of the tabs vertically does not give users a good experience. 
 After considerations and further discussion with the backend team, we decided to include this for further degree of customisations of the app.
 This component is necessary because users need a section in the app to toggle between the upcoming view, the module view, the contact view and the help view.
 
 #### 2.3.2 Module View (Major Enhancement)
-* I have added the module tab feature. 
+* I have added the [Module Tab](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/UserGuide.md#moduletabs) feature. 
 * This feature is one of the core features, and it allow users to see their lessons, tasks and contacts related to a specific module in one view. 
 * This a necessary view for users to view the all their school related stuff for a specific module in a specific way. 
 * ithin the Module View, there is TaskPanel, LessonPanel and ContactPanel, all of which are adapted and extended from those in AB3.
 
 #### 2.3.3 Contacts View (Minor Enhancement)
-* I have added the contact tab feature.
+* I have added the [Contact Tab](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/UserGuide.md#contactstab) feature.
 * This feature is necessary, and is not to be confused with the contact panel in the module tab.
 * This feature is necessary for users to include contacts that are not taking the same modules, but still relevant to user's school work. 
 * More info can be found in the user guide. Similar to the module view, it contains a ContactPanel which is adapted and extended from those in AB3.
@@ -48,11 +48,11 @@ This component is necessary because users need a section in the app to toggle be
 
 ## 3. Contributions to the User Guide
 * Oversees the formatting of the user guide and the numbering of TOC, logo and logo footer
-* Included : `4. Application Layout`, `4.1 Upcoming Tab`,  `4.2 Module Tabs`,  `4.3 Contacts Tab`, `4.4 Help Tab`, `6. FAQ`
-* Help Formatted (significantly) : `1. Introduction`, `2. Quick Start`, `7. Glossary`, `8. Command Summary`
-* Help Formatted : the `features` section from `5.1` to `5.6`
+* Included : [Application Layout](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/UserGuide.md#layout) and [FAQs](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/UserGuide.md#faq)
+* Help Formatted (significantly) : [Introduction](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/UserGuide.md#introduction), [Quick Start](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/UserGuide.md#quick-start), [Glossary](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/UserGuide.md#glossary) and [Command Summary](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/UserGuide.md#command-summary). 
+* Help Formatted : the [Features](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/UserGuide.md#features) sections.
 
 ## 4. Contributions to the Developer Guide
 * Formatted the numbering of TOC, logo and logo footer
-* Included the UI section as part of my contribution to code base `3.2 UI component` and `3.2.2 Module Tab`
-* Included Appendix sections for use cases and user stories.
+* Included the UI section as part of my contribution to code base [UI Component](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/DeveloperGuide.md#ui) and [Module Tab](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/DeveloperGuide.md#module-tab)
+* Included Appendix sections for [Use Cases](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/DeveloperGuide.md#appen-c) and [User Stories](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/DeveloperGuide.md#appen-b).
