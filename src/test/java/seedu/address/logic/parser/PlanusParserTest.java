@@ -16,16 +16,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteLessonCommand;
-import seedu.address.logic.commands.DeleteTaskCommand;
-import seedu.address.logic.commands.DoneCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindLessonCommand;
-import seedu.address.logic.commands.FindTaskCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListLessonCommand;
-import seedu.address.logic.commands.ListTaskCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.LessonContainsKeywordsPredicate;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
@@ -39,6 +30,12 @@ public class PlanusParserTest {
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+    }
+
+    @Test
+    public void parseCommand_calendar() throws Exception {
+        assertTrue(parser.parseCommand(CalendarCommand.COMMAND_WORD) instanceof CalendarCommand);
+        assertTrue(parser.parseCommand(CalendarCommand.COMMAND_WORD + " 3") instanceof CalendarCommand);
     }
 
     @Test
