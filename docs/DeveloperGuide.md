@@ -809,7 +809,7 @@ testers are expected to do more *exploratory* testing.
       1. Test case: `edit-task 1 datetime: 29-11-2020 23:59`<br>
         Expected: The deadline date time of the first task displayed in the task list will be updated to "29-11-2020 23:59".
       1. Test case: `edit-task 1 date: 29-11-2020`<br>
-            Expected: will be edited as you cannot edit deadline with date attribute.
+            Expected: No task will be edited as you cannot edit deadline with date attribute.
 
    1. Prerequisites: The first task in the list is a event task.
       1. Test case: `edit-task 1 date: 29-11-2020`<br>
@@ -835,8 +835,14 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `find-task title:tutorial`<br>
       Expected: tasks with title including "tutorial" will be displayed
       
-   1. Test case: `find-tasks title:tutorial title:lab`<br>
+   1. Test case: `find-task title:tutorial title:lab`<br>
       Expected: tasks with title including either "tutorial" or "lab" will be displayed
+      
+   1. Test case: `find-task title:tutorial title:lab`<br>
+      Expected: tasks with title including either "tutorial" or "lab" will be displayed
+      
+   1. Test case: `find-task date:15-11-2020`<br>
+      Expected: deadline with deadline date on "15-11-2020" and event with event date on "15-11-2020" will be displayed
 
 ### Deleting a task
 
