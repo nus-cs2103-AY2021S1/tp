@@ -27,7 +27,7 @@ Given below are my contributions to the project.
                 to declutter the main window.
   * Credits: 
     1. Implement popup windows: [GeeksForGeeks](https://www.geeksforgeeks.org/javafx-popup-class/), [How to create a popup pane in JavaFX](https://quollwriter.wordpress.com/2019/04/08/how-to-create-a-popup-pane-in-javafx/),
-                          [VISIT Github](https://github.com/AY1920S1-CS2103T-F12-2/main), [JavaFX Popup example on Github](https://gist.github.com/jewelsea/1926196),
+                          [VISIT Github](https://github.com/AY1920S1-CS2103T-F12-2/main), [JavaFX Popup example on Github](https://gist.github.com/jewelsea/1926196)
     2. Populate separate panel with custom list: [Oracle](https://docs.oracle.com/javafx/2/ui_controls/list-view.htm)
     3. Custom list cell: [StackOverflow](https://stackoverflow.com/questions/25246496/javafx-custom-list-cell-updateitem-being-called-a-lot)
     2. Existing AB3 codebase: [Github](https://github.com/se-edu/addressbook-level3)
@@ -41,8 +41,7 @@ Given below are my contributions to the project.
 <br/><br/> 
 * **New Feature**: Enhanced the find command to allow partial matching, and included IC number as an additional search parameter
   * What it does: Locates a patient after the user specifies either the patient's name or IC number.
-  * Justification: User can quickly locate a specific patient by searching the patient's unique IC number. This prevents searching of patients
-                   with duplicated names.
+  * Justification: User can quickly locate a specific patient by searching the patient's unique IC number, instead of using names which can be duplicated.
   * Highlights: Enhanced partial matching functionality allows user to type in the first few digits of the patient's IC number, or the first few characters of the patient's name to 
                 locate the patient, instead of having to specify the entire IC number or name.
   * Credits: NIL
@@ -58,14 +57,14 @@ Given below are my contributions to the project.
 <br/><br/>
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `addpicture`, `addvisit` and `profile` ([\#148](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/148))
+    * Added documentation for `addpicture`, `addvisit` and `profile` features ([\#148](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/148))
     * Improve overall styling ([\#255](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/255))
     * Removed discrepancies on formatting issues ([\#265](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/265))
   * Developer Guide:
-    * Added implementation details of the `addpicture`, `addvisit` and `profile` feature ([\#83](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/83))
-    * Added new use cases for `addpicture` and `profile` functionality ([\#251](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/251))
+    * Added implementation details for the `addpicture`, `addvisit` and `profile` features ([\#83](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/83))
+    * Added new use cases for `addpicture` and `profile` features ([\#251](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/251))
     * Added manual testing instructions for `addpicture`, `addvisit` and `profile` features ([\#266](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/266))
-    * Added brief preface to each section. ([\#141](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/141))
+    * Added brief preface to each section ([\#141](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/141))
 <br/><br/> 
 * **Community**:
   * Reported bugs and suggestions for other teams in the class (during Practical Dry Run): [Issues link](https://github.com/afroneth/ped/issues)
