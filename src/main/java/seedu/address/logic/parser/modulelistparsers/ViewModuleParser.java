@@ -9,13 +9,14 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new ViewCommand object
+ * Parses input arguments and creates a new ViewModuleCommand object.
  */
 public class ViewModuleParser implements Parser<ViewModuleCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the ViewCommand
-     * and returns a ViewCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ViewModuleCommand
+     * and returns a ViewModuleCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewModuleCommand parse(String args) throws ParseException {
