@@ -1,3 +1,8 @@
+---
+layout: page
+title: Developer Guide
+---
+
 ## Table of Contents
 1.[ About This Guide](#1-about-this-guide)  
 2.[ Setting Up](#2-setting-up)  
