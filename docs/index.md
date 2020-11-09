@@ -17,4 +17,4 @@ title: CliniCal
 
 **Acknowledgements**
 
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [JFoenix](https://github.com/jfoenixadmin/JFoenix)
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [JFoenix](https://github.com/jfoenixadmin/JFoenix), [JFXtras](https://jfxtras.org), [commons-validator](https://commons.apache.org/proper/commons-validator/).

@@ -902,11 +902,35 @@ CliniCal data is saved in your hard disk automatically after any command that ch
 
 ## 6. FAQ
 
+**Q**: What are the minimum system requirements for this application?<br>
+**A**: If your computer runs any of the Operating Systems found in [this link](https://www.oracle.com/java/technologies/javase/products-doc-jdk11certconfig.html), you will be able to run CliniCal. 
+
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install CliniCal in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CliniCal home folder.
 
 **Q**: I want to revert back to the sample data that was present when I first opened the application. How can I do this?<br>
 **A**: Remove the `data` folder that is in the same directory as `CliniCal.jar`. The sample data should be reloaded on the next start of the application.
+
+**Q**: The application doesn't start when the jar file is double-clicked. What can I do?<br>
+**A**: It is possible that java was not installed onto your system properly, or the installation of Java is corrupted. Try reinstalling java or running solutions such as [JarFix](https://johann.loefflmann.net/en/software/jarfix/index.html) to solve this problem.
+
+**Q**: Some of the longer text in the application is truncated at the end. How do I see the full text stored in the application?<br>
+**A**: The main window of CliniCal is resizable and you can expand the window if you want the window to contain more information. Click and drag on the edge of the window to adjust its size.
+
+**Q**: Is the source code of this application freely available?<br>
+**A**: Yes, our code is available on our [GitHub repository](https://github.com/AY2021S1-CS2103T-W11-4/tp) under the MIT License. If you wish to contribute to the codebase of this application, please read the [Developer Guide](https://ay2021s1-cs2103t-w11-4.github.io/tp/DeveloperGuide.html) and make a pull request to our repository.
+
+**Q**: Is my data secure with this application?<br>
+**A**: Your data is stored safely on your machine. CliniCal stores the data locally and does not upload any data to servers on the Internet. However, you are recommended to use antivirus software on your machine to prevent unauthorised hackers from accessing the local database.
+
+**Q**: I am a developer and I wish to port over data from other applications. Does your application allow third-party apps to modify the database directly?<br>
+**A**: Yes! Our data is stored in the file `clinical.json` in the `data` folder you run CliniCal in. You may modify this file to modify the database directly. Keep in mind that if the data is stored in a format that doesn't match the formatting described in [Section 5.2.1](#521-adding-a-patient-add), the application will start with an empty set of data.
+
+**Q**: I've spotted a bug in your application. How can I report this?<br>
+**A**: We would love to hear from you. You can either email us at `seer [at] comp.nus.edu.sg` or make a GitHub issue at this [link](https://github.com/AY2021S1-CS2103T-W11-4/tp/issues) with the relevant details.
+
+**Q**: Is there a way to export the calendar data into another application, say Google Calendar?<br>
+**A**: We are currently working on this feature and it is planned for `v2.0`, scheduled to be released in January 2021.
 
 --------------------------------------------------------------------------------------------------------------------
 
