@@ -42,16 +42,16 @@ public class DailyCalorie implements Comparable<DailyCalorie> {
     /**
      * Adds the calories to the calorie sum.
      */
-    public void addCalories(int calorieAddition) {
-        calorieSum += calorieAddition;
+    public void addCalories(Calorie calories) {
+        calorieSum += calories.getCalorie();
     }
 
     /**
      * Minus the calories to the calorie sum.
      */
-    public void minusCalories(int calories) {
+    public void minusCalories(Calorie calories) {
         assert(calorieSum > 0);
-        calorieSum -= calories;
+        calorieSum -= calories.getCalorie();
     }
 
 
@@ -65,7 +65,7 @@ public class DailyCalorie implements Comparable<DailyCalorie> {
         }
 
         return otherDailyCalorie != null
-                && otherDailyCalorie.getDate().equals(getDate());
+                && otherDailyCalorie.getDate().isEqual(getDate());
     }
 
     /**

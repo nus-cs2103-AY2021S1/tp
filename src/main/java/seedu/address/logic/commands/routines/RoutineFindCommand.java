@@ -17,7 +17,8 @@ public class RoutineFindCommand extends Command {
     public static final String COMMAND_WORD = "routine_find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all routines whose names contain ALL of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "the specified keywords (case-insensitive) and displays them as a list with index numbers."
+            + "\nAvoid finding special characters!\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " Lower body";
 

@@ -22,4 +22,9 @@ public class RoutineListCommand extends Command {
         model.updateFilteredRoutineList(PREDICATE_SHOW_ALL_ROUTINES);
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof RoutineListCommand;
+    }
 }

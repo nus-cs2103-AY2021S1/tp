@@ -21,7 +21,8 @@ public class RoutineFindCommandParser implements Parser<RoutineFindCommand> {
      */
     public RoutineFindCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        String validRegex = "[\\p{Alnum}][\\p{Alnum} ]*";
+        if (trimmedArgs.isEmpty() | !trimmedArgs.matches(validRegex)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, RoutineFindCommand.MESSAGE_USAGE));
         }

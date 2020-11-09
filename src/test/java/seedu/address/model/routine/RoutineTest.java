@@ -34,7 +34,7 @@ public class RoutineTest {
         assertFalse(LEG_DAY.isSameActivity(null));
 
         // same Name, one has Exercise and the other does not -> returns true
-        Routine editedRoutine = LEG_DAY;
+        Routine editedRoutine = new Routine(new Name("Leg Day"));
         Name editedName = new Name("Leg Extensions");
         Exercise typicalExercise = new Exercise(editedName, new HashSet<>());
         editedRoutine.addExercise(typicalExercise);

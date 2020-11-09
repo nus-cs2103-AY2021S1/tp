@@ -15,18 +15,6 @@ Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Exercise {
-Class Exercise
-Class Name
-Class UniqueExerciseList
-}
-
-Package Routine {
-Class Routine
-Class Name
-Class UniqueRoutineList
-}
-
 Package Body {
 Class Body
 Class Height
@@ -34,17 +22,38 @@ Class Weight
 }
 
 Package Calorie {
+Class Calorie
 Class CalorieLog
 Class DailyCalorie
 }
 
+Package Exercise {
+Class Exercise
+Class UniqueExerciseList
+}
+
+Package Routine {
+Class Routine
+Class UniqueRoutineList
+}
+
+
 Package Lesson {
 Class Lesson
-Class Name
 Class UniqueLessonList
 }
 
-Package Tag {
+Package Timetable {
+Class Timetable
+Class Slot
+Class UniqueSlotList
+Class "{abstract}\nActivity" as Activity
+Class Day
+Class Duration
+}
+
+Package Util {
+Class Name
 Class Tag
 }
 }
@@ -54,27 +63,42 @@ HiddenOutside ..> Model
 
 FitNus .up.|> ReadOnlyFitNus
 
-ModelManager .up.|> Model
 Model .right.> ObservableList
+ModelManager .up.|> Model
 ModelManager o--> "1" FitNus
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
+FitNus *--> "1" Body
+FitNus *--> "1" CalorieLog
 FitNus *--> "1" UniqueExerciseList
+FitNus *--> "1" UniqueRoutineList
 FitNus *--> "1" UniqueLessonList
+FitNus *--> "1" Timetable
+
+Body *--> Height
+Body *--> Weight
+
+CalorieLog o--> "0..7" DailyCalorie
+DailyCalorie .> Calorie
+
 UniqueExerciseList o--> "*" Exercise
 Exercise *--> Name
 Exercise *--> "*" Tag
 
-
-FitNus *--> "1" UniqueRoutineList
 UniqueRoutineList o--> "*" Routine
 Routine --> "*" Exercise
-ModelManager -->"1" Exercise : filtered list
 
-FitNus *--> "1" Body
+UniqueLessonList o--> "*" Lesson
+Lesson *--> Name
+Lesson *--> "*" Tag
 
-FitNus *--> "1" CalorieLog
-
+Timetable *--> "1" UniqueSlotList
+UniqueSlotList o--> "*" Slot
+Slot --> Activity
+Slot --> Day
+Slot --> Duration
+Routine -|> Activity
+Lesson -|> Activity
 
 @enduml

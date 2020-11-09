@@ -60,6 +60,8 @@ public class ExerciseAddCommandParserTest {
 
     @Test
     public void parse_invalidExerciseValue_failure() {
+
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExerciseAddCommand.MESSAGE_USAGE);
         // invalid exercise
         assertParseFailure(parser, INVALID_EXERCISE_NAME_DESC
                 + EXERCISE_TAG_DESC_CHEST + EXERCISE_TAG_DESC_ARMS, Name.MESSAGE_CONSTRAINTS_FORMAT);
@@ -67,6 +69,10 @@ public class ExerciseAddCommandParserTest {
         // invalid tag
         assertParseFailure(parser, EXERCISE_NAME_DESC_BENCH
                 + INVALID_EXERCISE_TAG_DESC + VALID_EXERCISE_TAG_ARMS, Tag.MESSAGE_CONSTRAINTS);
+
+        //too many exercise prefix
+        assertParseFailure(parser, EXERCISE_NAME_DESC_BENCH
+                + EXERCISE_NAME_DESC_SQUATS + VALID_EXERCISE_TAG_ARMS, expectedMessage);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + EXERCISE_NAME_DESC_BENCH

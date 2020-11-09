@@ -22,14 +22,17 @@ public class LessonFindCommandParserTest {
     }
 
     @Test
+    public void parse_symbolsInArgs_throwsParseException() {
+        assertParseFailure(parser, "@@@@@@", String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, LessonFindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_validArgs_returnsLessonFindCommand() {
         // no leading and trailing whitespaces
         LessonFindCommand expectedLessonFindCommand =
                 new LessonFindCommand(new LessonNameContainsKeywordsPredicate(Arrays.asList("GES1028", "CS2106")));
         assertParseSuccess(parser, "GES1028 CS2106", expectedLessonFindCommand);
-
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n GES1028 \n \t CS2106  \t", expectedLessonFindCommand);
     }
 
 }

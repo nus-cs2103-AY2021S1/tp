@@ -21,7 +21,13 @@ public class ExerciseFindCommandParser implements Parser<ExerciseFindCommand> {
      */
     public ExerciseFindCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
+
+        String validRegex = "[\\p{Alnum}][\\p{Alnum} ]*";
+
         if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExerciseFindCommand.MESSAGE_USAGE));
+        } else if (!trimmedArgs.matches(validRegex)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExerciseFindCommand.MESSAGE_USAGE));
         }

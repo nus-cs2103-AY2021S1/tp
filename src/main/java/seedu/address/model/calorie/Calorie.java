@@ -7,13 +7,14 @@ import java.util.Objects;
  */
 public class Calorie {
     public static final String MESSAGE_CONSTRAINTS_FORMAT =
-            "Calorie input must be a valid integer and not more than the Java's maximum"
-                    + " integer value e.g. calorie_add c/100";
+            "Calorie input must be a positive integer e.g. 1000";
 
     public static final String MESSAGE_CONSTRAINTS_LIMIT =
-            "Calorie input should never be less than or equal to 0!";
+            "Calorie input should be greater than 0 and lesser than 10000!";
 
     public static final double CALORIE_LOWER_LIMIT = 0;
+
+    public static final double CALORIE_UPPER_LIMIT = 10000;
 
     public static final String VALIDATION_REGEX = "\\d+";
 
@@ -49,7 +50,7 @@ public class Calorie {
      * @return True if the given calorie is within a reasonable range.
      */
     public static boolean isValidCalorie(int test) {
-        return test > CALORIE_LOWER_LIMIT;
+        return test > CALORIE_LOWER_LIMIT && test < CALORIE_UPPER_LIMIT;
     }
 
     @Override

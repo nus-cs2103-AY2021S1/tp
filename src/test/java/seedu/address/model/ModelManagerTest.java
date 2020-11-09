@@ -5,8 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LESSONS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalExercises.SQUATS;
 import static seedu.address.testutil.TypicalLessons.GEH1030;
 import static seedu.address.testutil.TypicalLessons.GES1028;
+import static seedu.address.testutil.TypicalRoutines.LEG_DAY;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +17,12 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.body.Height;
+import seedu.address.model.body.Weight;
+import seedu.address.model.calorie.Calorie;
 import seedu.address.model.lesson.LessonNameContainsKeywordsPredicate;
+import seedu.address.model.routine.Routine;
+import seedu.address.model.util.Name;
 import seedu.address.testutil.FitNusBuilder;
 
 public class ModelManagerTest {
@@ -91,6 +98,74 @@ public class ModelManagerTest {
     @Test
     public void getFilteredLessonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredLessonList().remove(0));
+    }
+
+    @Test
+    public void hasLesson_nullRoutine_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasRoutine(null));
+    }
+
+    @Test
+    public void hasRoutine_routineNotInFitNus_returnsFalse() {
+        assertFalse(modelManager.hasRoutine(LEG_DAY));
+    }
+
+    @Test
+    public void hasLesson_routineInFitNus_returnsTrue() {
+        modelManager.addRoutine(LEG_DAY);
+        assertTrue(modelManager.hasRoutine(LEG_DAY));
+    }
+
+    @Test
+    public void getFilteredRoutineList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredRoutineList().remove(0));
+    }
+
+    @Test
+    public void deleteRoutine_routineInFitNus_returnsFalse() {
+        modelManager.addRoutine(LEG_DAY);
+        modelManager.deleteRoutine(LEG_DAY);
+        assertFalse(modelManager.hasRoutine(LEG_DAY));
+    }
+
+    @Test
+    public void addExerciseToRoutine_routineInFitNus_returnsFalse() {
+        Routine modelRoutine = new Routine(new Name("Leg Day"));
+        modelManager.addRoutine(modelRoutine);
+        modelManager.addExercise(SQUATS);
+        modelManager.addExerciseToRoutine(modelRoutine, SQUATS);
+        assertTrue(modelManager.getFilteredRoutineList().get(0).hasExercise(SQUATS));
+    }
+
+    @Test
+    public void deleteExerciseFromRoutine_routineInFitNus_returnsFalse() {
+        Routine modelRoutine = new Routine(new Name("Leg Day"));
+        modelRoutine.addExercise(SQUATS);
+        modelManager.addRoutine(modelRoutine);
+        modelManager.addExercise(SQUATS);
+        modelManager.deleteExerciseFromRoutine(modelRoutine, SQUATS);
+        assertFalse(modelManager.getFilteredRoutineList().get(0).hasExercise(SQUATS));
+    }
+
+    @Test
+    public void bodyTests() {
+        assertEquals(String.format("%.2f", modelManager.getBmi()), "17.58");
+        modelManager.addWeight(new Weight(80));
+        assertEquals(String.format("%.2f", modelManager.getBmi()), "31.25");
+        modelManager.addHeight(new Height(180));
+        assertEquals(String.format("%.2f", modelManager.getBmi()), "24.69");
+
+    }
+
+    @Test
+    public void calorieTests_success() {
+        assertEquals(modelManager.getFilteredDailyCalorie().size(), 0);
+        assertEquals(modelManager.getCalories(), 0);
+        modelManager.addCalories(new Calorie(1500));
+        assertEquals(modelManager.getCalories(), 1500);
+        modelManager.minusCalories(new Calorie(1500));
+        assertEquals(modelManager.getCalories(), 0);
+        assertEquals(modelManager.getFilteredDailyCalorie().size(), 1);
     }
 
     @Test

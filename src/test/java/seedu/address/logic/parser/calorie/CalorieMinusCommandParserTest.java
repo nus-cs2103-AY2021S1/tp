@@ -6,8 +6,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.CalorieMinusCommand;
-import seedu.address.logic.parser.CalorieMinusCommandParser;
+import seedu.address.logic.commands.calorie.CalorieMinusCommand;
 import seedu.address.model.calorie.Calorie;
 
 public class CalorieMinusCommandParserTest {

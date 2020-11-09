@@ -373,16 +373,6 @@ public class FitNus implements ReadOnlyFitNus {
         return lessons.retrieveLesson(lesson);
     }
 
-    /**
-     * Checks the index given is within the bounds of Routine.
-     *
-     * @param index index that is input by user.
-     * @return False if out of bounds.
-     */
-    public boolean checkBounds(int index) {
-        return index > 0 && index <= routines.checkSize();
-    }
-
     //// util methods
 
     @Override

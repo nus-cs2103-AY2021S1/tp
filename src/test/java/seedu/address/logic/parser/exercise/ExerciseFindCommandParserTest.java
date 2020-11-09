@@ -22,6 +22,12 @@ public class ExerciseFindCommandParserTest {
     }
 
     @Test
+    public void parse_symbolsInArgs_throwsParseException() {
+        assertParseFailure(parser, "@@@@@@", String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, ExerciseFindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_validArgs_returnsExerciseFindCommand() {
         // no leading and trailing whitespaces
         ExerciseFindCommand expectedExerciseFindCommand =

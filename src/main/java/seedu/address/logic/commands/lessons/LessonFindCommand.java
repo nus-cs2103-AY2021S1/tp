@@ -17,7 +17,8 @@ public class LessonFindCommand extends Command {
     public static final String COMMAND_WORD = "lesson_find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all lessons whose names contain ANY of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\nAvoid "
+            + "finding special characters!\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " MA1521 geq cs";
 

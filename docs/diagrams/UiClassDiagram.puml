@@ -46,11 +46,11 @@ MainWindow *-down-> ResultDisplay
 MainWindow *-down-> StatusBarFooter
 MainWindow *-down-> HomePanel
 MainWindow *-down-> TimetablePanel
-MainWindow *-down-> CalorieGraph
-MainWindow *-down-> BmiBox
 HomePanel *-down-> ExerciseListPanel
 HomePanel *-down-> RoutineListPanel
 HomePanel *-down-> LessonListPanel
+HomePanel *-down-> CalorieGraph
+HomePanel *-down-> BmiBox
 TimetablePanel *-down-> SlotListPanel
 ExerciseListPanel -down-> ExerciseCard
 RoutineListPanel -down-> RoutineCard
@@ -65,11 +65,22 @@ ExerciseCard --|> UiPart
 RoutineCard --|> UiPart
 LessonCard --|> UiPart
 StatusBarFooter --|> UiPart
+HomePanel --|> UiPart
+TimetablePanel --|> UiPart
+RoutineListPanel --|> UiPart
+ExerciseListPanel --|> UiPart
+LessonListPanel --|> UiPart
+SlotListPanel --|> UiPart
+SlotCard --|> UiPart
 HelpWindow -down-|> UiPart
 
 ExerciseCard ..> Model
 RoutineCard ..> Model
 LessonCard ..> Model
+BmiBox ..> Model
+CalorieGraph ..> Model
+BmiBox ..> Model
+SlotCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 

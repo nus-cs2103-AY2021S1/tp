@@ -36,21 +36,25 @@ wholesome user experience.
   * Highlights: Implementing Routine required a deep understanding of how the original AB3 functioned. The implementation was made even more challenging by the fact that
   it was built on Exercise and maintaining low coupling was tough and introduced many issues. Whenever an Exercise was deleted or edited, the corresponding Routine that has implemented it has to remove or edit the Exercise as well.
 
+
 * **New Feature**: Added DailyCalorie classes and implemented its relevant implementations.
   * What it does: allows the user to track their daily calorie intake up to 7 days.
   * Justification: Calories is an important part of tracking your fitness and this implementation allows fitNUS to better help their users.
   * Highlights: Calorie tracking is done on a daily basis because the team believes that users should not be able to change future or past calorie count.  Implementation was tricky as I wanted any calorie features to be isolated and be able to run by itself. This meant that the calorie classes had to use LocalDate to remove the dependency on the user. This increased the difficulty of testing and equality checks.
 
+
 * **New Feature**: Implemented the graph for calorie tracking on the fitNUS GUI.
   * What it does: allows the user to track their daily calorie intake up to 7 days.
   * Justification: To appeal to the visual users of fitNUS to allow them to follow their progress using graphics.
-  * Highlights: Calorie tracking is done on a daily basis because the team believes that users should not be able to change future or past calorie count. It was difficult to learn the JavaFX for LineChart and implementing such that, it responds to user input of calories. I chose to implement the feature as an ObservableList of calorie entries for every day that the user has edited their calories. This way, the information of calories per day and which day its recording is encapsulated. This ObservableList is passed to the CalorieGraph class to translate into a Series and then plotted on the GUI.
+  * Highlights: Calorie tracking is done on a daily basis. It was difficult to learn the JavaFX for LineChart and implementing such that it responds to user input of calories by actively charting new entries. I chose to implement the feature as an ObservableList of calorie entries for every day that the user has edited their calories. This way, the information of calories per day and which day its recording is encapsulated. This ObservableList is passed to the CalorieGraph class to translate into a Series and then plotted on the GUI.
   * Credits: Oracle document on LineChart, xAxis, yAxis and their tutorial.
+
 
 * **New Feature**: Implemented the BMI display on GUI and Body class that supported it.
     * What it does: allows the user to input their height and weight, displaying their BMI.
     * Justification: body metrics are important in tracking your fitness journey, so we felt that it was essential to have this graphics on the GUI.
-    * Highlights:  highlights of this feature is more of being user-centric and having design considerations where users may try to input unreasonable figures. In such cases, the ParserUtil will detect this input as a ParseException. Implementation of the GUI treats the Body as an Observable object that detects any change in the Height or Weight classes that it contains. The GUI listens for changes, and updates the BMI accordingly.
+    * Highlights:  Implementation of the GUI treats the Body as an Observable object that detects any change in the Height or Weight classes that it contains. The GUI listens for changes, and updates the BMI accordingly. Body is wrapped in ObservableList and then in an unmodifiable copy of this. I considered refactoring and using ChangeListener to detect changes in Body but decided against it because it meant exposing the Body object to Logic and Model and the current implementation is more defensive.
+
 
 * **Code contributed**: You can view my code contributions to fitNUS [here](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=khor-jingqian&tabRepo=AY2021S1-CS2103T-T09-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other).
 
@@ -91,7 +95,7 @@ wholesome user experience.
 
 * Wrote design considerations for `routine_create` [#195](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/195)
 
-##Community
+## Community
   * Reported feature flaws and suggestions for other teams in the class during PE Dry Run. [#1](https://github.com/khor-jingqian/ped/issues/1) [#2](https://github.com/khor-jingqian/ped/issues/1) [#3](https://github.com/khor-jingqian/ped/issues/3)
 
   * Left non-trivial comments on team mate's PR. [#196](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/196)
