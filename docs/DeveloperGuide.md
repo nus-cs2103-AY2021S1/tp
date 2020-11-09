@@ -445,14 +445,14 @@ calls `Model#setIngredient(Ingredient target, Ingredient newAmount)`, causing th
 to be replaced by the ingredient `newAmount` which has the same ingredient name and a zero ingredient's level.
 
 <div markdown="span" class="alert alert-info">:information_source: **Notes:** If there are multiple ingredients that 
-have non-zero ingredient's levels, `Model#setIngredient(Ingredient target, Ingredient newAmount)` will be called 
+have nonzero ingredient's levels, `Model#setIngredient(Ingredient target, Ingredient newAmount)` will be called 
 multiple times, each time replacing one of these ingredients with a new ingredient that has the same ingredient name and a zero 
 ingredient's level.
 </div>
 
 The following sequence diagram shows how the resetting all ingredients' levels operation works, assuming that the 
 `i-reset-all` command calls `Model#setIngredient(Ingredient target, Ingredient newAmount)` only once. This happens when 
-only one ingredient has a non-zero ingredient's level before the execution of the `i-reset-all` command. 
+only one ingredient has a nonzero ingredient's level before the execution of the `i-reset-all` command. 
 
 ![Reset all Ingredients' Levels Sequence Diagram](images/IngredientResetAllSequenceDiagram.png)
 
@@ -472,7 +472,7 @@ before the execution of the `i-reset-all` command, an error message will be show
 ##### Aspect: How resetting all ingredients' levels executes
   
   * **Alternative 1 (current choice):** Loop through the list of ingredients twice, the first time to check if all 
-  ingredients' levels are zero, the second time to replace each ingredient that has a non-zero ingredient's 
+  ingredients' levels are zero, the second time to replace each ingredient that has a nonzero ingredient's 
   level with a new ingredient which has the same ingredient name and a zero ingredient's level.
     * Pros: Easier to implement.
     * Cons: Execution of the command may require the creation of one or more new ingredients, which may increase the 
@@ -480,7 +480,7 @@ before the execution of the `i-reset-all` command, an error message will be show
     
   * **Alternative 2:** Loop through the list of ingredients twice, the first time to check if all ingredients' levels are 
   already zero, the second time to update the ingredient's level of the ingredients to zero if the ingredients 
-  have non-zero ingredient's levels.
+  have nonzero ingredient's levels.
     * Pros: Clear implementation. Do not lead to creation of new ingredient objects.
     * Cons: Less easy to implement.
 
