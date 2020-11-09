@@ -351,7 +351,7 @@ The following sequence diagram shows how a clear entry operation works:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Some of the interactions with the utility classes,
 such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
-of the find entries command.
+of the clear entries command.
 </div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
@@ -363,7 +363,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 #### Design consideration
 Explanation why a certain design is chosen.
 
-##### Aspect: How find entries command is parsed
+##### Aspect: How clear entries command is parsed
 * **Choice:** User needs to use prefixes before the keywords.
     * Pros: 
         * Easy to implement as the arguments can be tokenized
