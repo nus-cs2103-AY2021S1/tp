@@ -996,36 +996,62 @@ Given below is the sequence diagram showing the interaction between `FindContact
 
 ### 3.3 TodoList feature
 
+#### Brief Overview
+
+We design the TodoList to help the user manage their tasks. It is designed specifically to track
+the things that the user needs to accomplish. The tracking is quite detailed but still prioritizes
+user's freedom and flexibility in managing their task.
+
+TodoList stores all of the user's tasks in a list that can be seen under **Tasks** tab in the GUI. Each entry
+in the list shows the details of a task and some GUI enhancements are also added. Furthermore, TodoList 
+shows some statistics about the user's tasks to give the user a general overview of how they are doing.
+
 #### Implementation
 
 The TodoList feature has two main component :
 
 * **Containee component** (Task-related classes)
-  * `Class Task` - container class to store information about a task
-  * `Class TaskName` - wrapper class to store the name of a task
-  * `Class Date` - wrapper class to store the date/deadline of a task
-  * `Enum Priority` - enum class to represent priority of a task
-  * `Enum Status` - enum class to represent the progress status of a task
+
+![TaskClassDiagram]()
+
+  * `Task` - container class to store information about a task
+  * `TaskName` - wrapper class to store the name of a task
+  * `Date` - wrapper class to store the date/deadline of a task
+  * `Priority` - enum class to represent priority of a task
+  * `Status` - enum class to represent the progress status of a task
+  * `LocalDate` - built-in class to represent the date creation of the task
 
 * **Container component** (List-like classes)
-  * Class `UniqueTodoList` - container class for storing tasks
-  * Class `TodoList` - wrapper class for UniqueTodoList
-  * Interface `ReadOnlyTodoList` - interface for displaying the list on the GUI
+
+![SimpleTodoListClassDiagram]()
+
+  * `UniqueTodoList` - container class for storing tasks
+  * `TodoList` - wrapper class for UniqueTodoList
+  * `ReadOnlyTodoList` - interface for displaying the list on the GUI
 
 ##### Containee Component
 
-The Task class mainly functions as a class to store all the informations related to a task i.e. name, tag, priority,
-date, and status. It does not have any subclasses.
+The `Task` mainly functions as a class to store all the information related to a task which are name, tag, priority,
+date, status, and the date created. In particular, this class does not have subclasses.
 
-The Task class supports the following operations :
+These fields are optional in the `Task` class:
+
+* `Tag` - represented as empty by an empty `HashSet`
+* `Priority` - represented as empty by `null`
+* `Date` - represented as empty by `null`
+
+The `Task` class supports the following operations :
 
 * Setters for all the field
+  * The setter supports immutability for better testing.
 * Getters for all the field
+  * Getter returns an `Optional` object.
 * `Task#isSameTask()` - checks if two tasks are the same i.e. have the same name
 (weaker than Task#equals() which requires all the fields to be the same)
 * `Task#hasSameTag()` - checks if the task has the specified tag
 * `Task#hasSamePriority()` - checks if the task has the specified priority
 * `Task#hasSameDate()` - checks if the task has the specified date
+* The methods that are not mentioned here are used specifically for the GUI.
 
 ##### Container Component
 
@@ -1079,8 +1105,59 @@ TodoList implements ReadOnlyTodoList which require the following operation :
 
   Alternative 1 is chosen since we prioritize user freedom to create custom type for the task.
 
-  
+##### Aspect: Optional fields in `Task`
 
+* Alternative 1 (current): <br/>
+  All fields does not need to be compulsory. In other word, the field can be null or empty.
+
+  Pros :
+  * Add more flexibility to the user since the nature of specified task might not have some of the required fields.
+
+  Cons :
+  * Harder to implement i.e. need to check if the field is present or not everytime it is used.
+  * More prone to `NullPointerException`
+
+* Alternative 2: <br/>
+  All fields should be compulsory. In other word, the field cannot be null or empty.
+
+  Pros :
+  * Easier to implement
+  * Avoid getting a `NullPointerException` in runtime.
+
+  Cons :
+  * User needs to input all field when creating a task, which might not be convenient.
+
+  Alternative 1 is chosen since we prioritize flexibility in inputting details of a task.
+
+#### Implemented Commands
+
+In general, the commands for TodoList have similar implementation with ModuleTracker.
+It extends from an abstract class `Command` and implements the method `execute()` to support
+polymorphism when executing all the commands.
+
+The details of each command will be explained in the respective sections of each command.
+
+Below are the list of the all the implemented commands for TodoList:
+
+* `AddTaskCommand` - add a task to the list
+* `DeleteTaskCommand` - delete a task from the list
+* `EditTaskCommand` - edit a task in the list
+* `SortTaskCommand` - sort the list based on criteria
+* `FindTaskCommand` - find tasks based on keywords
+* `CompleteTaskCommand` - label a task as completed
+* `ResetTaskCommand` - reset task label to not completed
+* `ClearTaskCommand` - clear the list
+
+#### Add Task Feature
+
+![AddTaskSequenceDiagram]()
+
+
+#### Delete Task Feature
+
+#### Edit Task Feature
+
+#### Sort Tasks Feature
 
 #### Find Task Feature
 
@@ -1162,7 +1239,11 @@ Step 6. A `CommandResult` from the command execution is returned to `LogicManage
 Alternative 2 was chosen as it conformed with the standard practice of handling errors using exception. Moreover, it removes any room for 
 ambiguity by ensuring all constraints related to the command are made known to the users.
 
+#### Complete Task Feature
 
+#### Reset Task Feature
+
+#### Clear Tasks Feature
 
 
     
