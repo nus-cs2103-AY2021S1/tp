@@ -179,7 +179,7 @@ Examples:
 
 **Steps for adding a flashcard with diagram**:
 
-**Step 1**: Locate the relative file path of the image file. In this example, our file path is `images/classDiagramExample1.png` 
+**Step 1**: Locate the relative file path of the image file. In this example, our file path is `image/classDiagramExample1.png` 
 
 Root folder containing the jar file        |  Image directory
 :-------------------------:|:-------------------------:
