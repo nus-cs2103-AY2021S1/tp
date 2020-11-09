@@ -36,7 +36,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
+* [**`UI`**](#ui-component): The _UI_ of the App.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
@@ -44,9 +44,9 @@ The rest of the App consists of four components.
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding _API_ `interface` mentioned in the previous point.
 
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
+For example, the `Logic` component (see the class diagram given below) defines its _API_ in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
@@ -60,14 +60,14 @@ The sections below give more details of each component.
 
 ### UI component
 
-The UI component represents elements directly interacting with the user.
+The _UI_ component represents elements directly interacting with the user.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 
-**API:** The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `AccountListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+**API:** The _UI_ consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `AccountListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses _JavaFx_ _UI_ framework. The layout of these _UI_ parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/ui/Ui.java)
 
@@ -75,7 +75,7 @@ The `UI` component uses JavaFx UI framework. The layout of these UI parts are de
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
-* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Listens for changes to `Model` data so that the _UI_ can be updated with the modified data.
 
 ### Logic component
 The Logic component parses and executes the commands. <br>
@@ -93,7 +93,7 @@ or affect the `Model` directly (e.g. adding an account).
 the result of the command execution and is passed back to the `Ui`.
 * In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deleteacc 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deleteacc 1")` _API_ call.
 
 ![Interactions Inside the Logic Component for the `deleteacc 1` Command](images/DeleteAccountSequenceDiagram.png)
 
@@ -122,8 +122,8 @@ The `ActiveAccount`,
 
 * responsible for managing the data of the currently active Account.
 * stores a `Account` object that represents the current Account that the user is managing.
-* stores an `ObservableList<Expense>` that can be `observed` e.g. the UI can be bounde to this list so that the UI automatically updates when the data in the list change.
-* stores an `ObservableList<Revenue>` that can be `observed` e.g. the UI can be bounde to this list so that the UI automatically updates when the data in the list change.
+* stores an `ObservableList<Expense>` that can be `observed` e.g. the _UI_ can be bounde to this list so that the _UI_ automatically updates when the data in the list change.
+* stores an `ObservableList<Revenue>` that can be `observed` e.g. the _UI_ can be bounde to this list so that the _UI_ automatically updates when the data in the list change.
 * stores an `Optional<ActiveAccount>` that represents the previous state of the `ActiveAccount`.
 * does not depend on any of the other four components.
 
@@ -654,9 +654,9 @@ This section highlights the problems that _Common Cents_ solves by describing th
 * Is reasonably comfortable using CLI apps
 
 **Value proposition**: 
-* Can manage financial entries faster than a typical mouse/GUI driven app
-* Provides a simple UI for business owners to see all the desired information easily
-* Provides an aesthetic UI which is pleasant to the eye
+* Can manage financial entries faster than a typical mouse/_GUI_ driven app
+* Provides a simple _UI_ for business owners to see all the desired information easily
+* Provides an aesthetic _UI_ which is pleasant to the eye
 
 ### User stories
 This section describes the features of _Common Cents_ from an end-user perspective. 
@@ -1030,7 +1030,7 @@ For all use cases below, the **System** is the `CommonCents` and the **Actor** i
 
 **MSS**
 
-1. User requests to find some specific entries (UC16).
+1. User requests to <u> find some specific entries (UC16)</u>.
 2. User requests to list all entries.
 3. Commmon Cents displays all entries again before find command was used.
 
@@ -1184,7 +1184,7 @@ For all use cases below, the **System** is the `CommonCents` and the **Actor** i
 ### Non-Functional Requirements
 This specifies criteria that can be used to judge the operation of _Common Cents_.
 
-1.  Should work on any _Mainstream OS_ as long as it has Java `11` or above installed.
+1.  Should work on any _Mainstream OS_ as long as it has _Java_ `11` or above installed.
 2.  Should be able to hold up to 1000 entries per account without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Should be able to perform simple arithmetic with up to 1000 entries without a significant drop in performance.
@@ -1195,8 +1195,13 @@ This specifies criteria that can be used to judge the operation of _Common Cents
 Definitions of certain terms used in this Developer Guide.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Entry-level commands**: Commands that interacts with expenses or revenues.
-* **Account-level commands**: Commands that interacts with accounts.
+* **API**: Application Programming Interface
+* **UI**: User Interface
+* **GUI**: Graphical User Interface
+* **Java**: An object oriented programming language
+* **JavaFX**: Standard Graphical User Interface Library for Java Standard Edition
+* **Entry-level commands**: Commands that interacts with expenses or revenues
+* **Account-level commands**: Commands that interacts with accounts
 
 
 --------------------------------------------------------------------------------------------------------------------
