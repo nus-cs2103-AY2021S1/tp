@@ -12,7 +12,7 @@ title: HelloFile
 the benefits of a Graphical User Interface (GUI). By tagging frequently used files/folders with a short nickname, you 
 will be able to manage and access your files with ease.
   
-* If you are interested in using HelloFile, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* If you are interested in using HelloFile, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#32-quick-start).
 * If you are interested about how HelloFile is developed, the [**Developer Guide**](DeveloperGuide.html) may be helpful.
 
 
