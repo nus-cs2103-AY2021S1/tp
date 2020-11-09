@@ -42,7 +42,7 @@ public class Expense {
      * @see ExpenseBook#getBudgetBarLabel()
      */
     public static Expense getGenericExpenseWithTag(Tag tag) {
-        return new Expense(Description.getGenericDescription(), Amount.getGenericAmount(),
+        return new Expense(Description.getGenericDescription(), Amount.zeroAmount(),
                 Date.getDateNow(), null, tag);
     }
 
