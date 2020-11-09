@@ -173,7 +173,7 @@ public class MainApp extends Application {
             contactListOptional = storage.readContactList();
             if (!contactListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ContactList");
-                initialContactList = new ContactList();
+                initialContactList = contactListOptional.orElseGet(SampleDataUtil::getSampleContactList);
             } else {
                 initialContactList = contactListOptional.get();
             }

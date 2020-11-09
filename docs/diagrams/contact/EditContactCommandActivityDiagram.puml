@@ -1,0 +1,35 @@
+@startuml
+
+start
+
+:User enters the command to edit a contact;
+
+:EditContactParser parsers the command arguments;
+
+if () then ([command arguments are valid])
+        :Create EditContactDescriptor to encapsulate edited contact details;
+        :Create and execute EditContactCommand;
+        if() then ([contact index is valid])
+
+            if() then ([the edited Contact already exists in the Contact List])
+                :Throw command exception;
+                :Update UI to display error message;
+            else ([else])
+                :Replace the target contact in the contact list with the edited contact;
+                :Update UI to display the edited contact;
+            endif
+
+        else ([else])
+            :Throw command exception;
+            :Update UI to display error message;
+        endif
+
+else ([else])
+        :Throw parse exception;
+        :Update UI to display error message;
+
+endif
+
+stop
+
+@enduml
