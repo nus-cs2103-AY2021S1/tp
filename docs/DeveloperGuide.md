@@ -1205,7 +1205,7 @@ testers are expected to do more *exploratory* testing.
     
     1. Run the app once and play around with the application. Once a change is made, the program will generate a data files in `./data/`.
     
-    1. In `./data/`, open `covigentapp.json`. On line 2, delete the `[`: <br>
+    1. In `./data/`, open `covigentapp.json`. On line 2, delete the `[`: <br><br>
         ```
         1 {
         2   "patients" : [ {
