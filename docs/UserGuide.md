@@ -159,7 +159,7 @@ The table below shows a list of command parameters that will be used.
 <table>
 <tr><th>Parameter Name</th><th>Description</th><th>Example</th></tr>
 <tr><td><pre>NAME</pre></td><td>The name of the client. <br><br> It must be an alphanumeric word.</td><td>E.g. Typing <code>John Doe</code> would represent the name of the client saved in the client manager.</td></tr>
-<tr><td><pre>EMAIL</pre></td><td>The email of the client. <br> Emails should be in <code>local-part@domain</code> format <br> <br> The <code>local-part</code> can only contain alphanumeric characters, and the special characters <br> +!#$%&'*+/=?\`{}~^.-&#124; <br> <br> The <code>domain</code> can only contain Alphanumeric characters. <br> A period(.) or a hyphen(-) for the characters in between, if any. <br> The domain name must also have at least 2 characters and start and end with alphanumeric characters</td><td>johnDoe97@example123.com</td></tr>
+<tr><td><pre>EMAIL</pre></td><td>The email of the client. <br> Emails should be in <code>local-part@domain</code> format <br> <br> The <code>local-part</code> can only contain alphanumeric and special characters <br> <br> The <code>domain</code> can only contain Alphanumeric characters. <br> A period(.) or a hyphen(-) for the characters in between, if any. <br> The domain name must also have at least 2 characters and start and end with alphanumeric characters</td><td>johnDoe97@example123.com</td></tr>
 <tr><td><pre>PHONE</pre></td><td>Phone is the contact number of the client and is the indicator used to uniquely identify a client. <br> <br> It must consist only of numeric characters, and be at least 3 digits long.</td><td>E.g. <code>91234567</code> would represent the client's phone number.<br><br> Another client with the same number <code>91234567</code> will not be allowed to get added into the client list. </td></tr>
 <tr><td><pre>TAG</pre></td><td>The tag you want to attach to the client. <br> <br> It must be a single alphanumeric word. </td><td>E.g. Typing <code>friend</code> would mean that friend is the additional information associated with the client.</td></tr>
 <tr><td><pre>INDEX</pre></td><td>The index of the client in the displayed list. <br> <br> It must be a valid index number.</td><td>E.g. Typing <code>2</code> would mean the client with index-2 in the displayed list.</td></tr>
@@ -368,7 +368,7 @@ The table below shows a list of command parameters that will be used in this fea
 |`DURATION`| The duration of the service must be in half hour intervals between 0.5 and 23.5.| E.g `1.5`
 |`PRICE`| The revenue received from the service. <br> <br> It must be a positive number above 0.00 and below 1,000,000.00 and must have two decimal places. | E.g `5.50`
 |`SERVICE_CODE`| The service code is the code that identifies a particular type of service provided. <br> <br> It must be an alphanumeric word of 5 characters long.| E.g. If you have added an eyelash extension service into Homerce and its service code is `SC001`. <br> <br> Typing `SC001` would refers to the eyelash extension service.
-|`INDEX`| The index number of the service in the displayed service list.<br> <br> The first entry of the list has an index number of `1` and all entries are listed in increasing index numbers. | E.g `5`
+|`INDEX`| The index number of the service in the displayed service list.<br> <br> The first entry of the list has an index number of `1` and all entries are listed in increasing index numbers. | E.g Typing in `5` would refer to the fifth service in the displayed service list.
 
 #### 4.2.2. Add a service: `addsvc`
 
@@ -698,7 +698,7 @@ Steps:
 Outcome:
 1. The *Result Display* will show a success message.
 1. Homerce will switch to the *Appointment Tab*.
-1. You will see your edited appointment displayed alongside other appointments in your tracker.
+1. You will see your edited appointment displayed alongside other appointments in your list of appointments.
 
 ![editapt](images/editapt.png) <br>
 *Figure 18 - GUI outcome for `editapt`*
@@ -731,7 +731,7 @@ Steps:
 Outcome:
 1. The *Result Display* will show a success message.
 1. Homerce will switch to the *Appointment Tab*.
-1. You will see your appointment marked as done, displayed alongside other appointments in your tracker.
+1. You will see your appointment marked as done, displayed alongside other appointments in your list of appointments.
 
 ![done](images/doneapt.png) <br>
 *Figure 19 - GUI outcome for `done`*
@@ -774,7 +774,7 @@ Steps:
 Outcome:
 1. The *Result Display* will show a success message.
 1. Homerce will switch to the *Appointment Tab*.
-1. You will see your appointment marked as not done, alongside other appointments in your tracker.
+1. You will see your appointment marked as not done, alongside other appointments in your list of appointments.
 
 ![undone](images/undoneapt.png) <br>
 *Figure 20 - GUI outcome for `undoneapt`*
@@ -796,7 +796,7 @@ Format : `deleteapt INDEX`
 
 Example:
 
-Let's say you a client called to cancel his/her appointment. After finding the appointment in Homerce
+Let's say your client called to cancel his/her appointment. After finding the appointment in Homerce
 with `listapt` or `findapt`, you see that the appointment to delete has index 2. You can follow these instructions 
 to delete that appointment.
 
@@ -807,7 +807,7 @@ Steps:
 Outcome:
 1. The *Result Display* will show a success message.
 1. Homerce will switch to the *Appointment Tab*.
-1. You will see the rest of your appointments in your tracker, with the one with index 2 removed.
+1. You will see the rest of your appointments in your list of appointments, with the one with index 2 removed.
 
 ![deleteapt](images/deleteapt.png) <br>
 *Figure 21 - GUI outcome for `deleteapt`*
@@ -832,7 +832,7 @@ Steps:
 Outcome:
 1. The *Result Display* will show a success message.
 1. Homerce will switch to the *Appointment Tab*.
-1. You will no appointments listed in the tracker.
+1. You will no appointments listed in the list of appointments.
 
 ![clearapt](images/clearapt.png) <br>
 *Figure 22 - GUI outcome for `clearapt`*
@@ -850,10 +850,10 @@ The table below shows a list of command parameters that will be used in this fea
 
 | Parameter Name | Description | Example
 |---------|---------|---------
-|`DATE`  | The revenue earned date. <br> <br> It must be in the format of `dd-MM-yyyy`. | E.g. Typing `22-10-2020` would mean 22 October 2020.
+|`DATE`  | The date that the revenue was credited. <br> <br> It must be in the format of `dd-MM-yyyy`. | E.g. Typing `22-10-2020` would mean 22 October 2020.
 |`SERVICE_CODE`| The service code is the code that identifies a particular type of service provided. <br> <br> It must be alphanumeric words of 5 characters long. | E.g. If you have added an eyelash extension service into Homerce and its service code is `SC001`. <br> <br> Typing `SC001` would refers to the eyelash extension service.
 |`ORDER` | The order refers to ascending or descending. <br> <br> It must be in the format of `asc` or `desc` | E.g. Typing `asc` would mean ascending.  <br> <br> E.g. Typing `desc` would mean descending.
-|`INDEX`| The index number of the revenue in the displayed revenue list.<br> <br> The first entry of the list has an index number of `1` and all entries are listed in increasing index numbers. | E.g `5`
+|`INDEX`| The index number of the revenue in the displayed revenue list.<br> <br> The first entry of the list has an index number of `1` and all entries are listed in increasing index numbers. | E.g Typing in `5` would refer to the fifth revenue in the displayed revenue list.
 
 #### 4.4.2. Find a revenue : `findrev`
 
@@ -910,7 +910,7 @@ Steps :
 Outcome : 
 1. The *Result Display* will show a success message.
 1. Homerce will list out all the revenue entries sorted from highest to lowest cost in the _Revenue Tab_.
-1. You can now see your revenues sort by descending order.
+1. You can now see your revenues sorted by descending order.
 
 ![sortrev](images/revenue/SortRevenue(Desc).png) <br>
 *Figure 24 - GUI outcome for `sortrev`*
@@ -924,7 +924,7 @@ Format : `listrev`
 Example :
 
 Let's say you wish to list your revenues to view all the earnings that you currently have.<br>
-You can follow the steps below to list your all your revenue entries.
+You can follow the steps below to list all your revenue entries.
 
 Steps :
 1. Type `listrev` in the _Command Box_.
@@ -964,7 +964,7 @@ Steps :
 Outcome : 
 1. The *Result Display* will show a success message.
 1. Homerce will clear all the revenue data.
-1. You will have no revenues listed in the tracker.
+1. You will have no more revenues listed in the tracker.
 
 ![clearrev](images/revenue/ClearRevenue.png) <br>
 *Figure 26 - GUI outcome for `clearrev`*
@@ -984,7 +984,7 @@ The table below shows a list of command parameters that will be used.
 
 | Parameter Name | Description | Example
 |---------|---------|---------
-|`DESCRIPTION`  | The description of the expense. <br><br> It must be one or more alphanumeric words, not more than 50 characters long in total. | E.g. Typing `Conditioner` as the description indicates that the expense was made on a bottle of Conditioner.
+|`DESCRIPTION`  | The description of the expense. <br><br> It must be one or more alphanumeric words or special characters not more than 50 characters long in total. | E.g. Typing `Conditioner` as the description indicates that the expense was made on a bottle of Conditioner.
 |`IS_FIXED`| The indication of whether an expense is fixed. <br> <br> It must be in the format of `y` or `n`. <br><br> *Note: A fixed expense is an expense that recurs monthly. For example, the monthly air-conditioning bill is a fixed expense as it recurs every month, while a box of tissues is a one-time expense and should not be indicated as fixed.* | E.g. Typing `y` would mean the expense is fixed. <br>You only have to add a fixed expense to the tracker once, as Homerce will automatically record the same expense for you every month. <br> <br> E.g. Typing `n` would mean the expense is not fixed.
 |`VALUE` | The value refers to the monetary value of the expense. <br> <br> It must be a positive number above 0.00 and below 1,000,000.00 and must have two decimal places. | E.g. Typing `10.00` would mean the expense costs $10.00.
 |`DATE` | The date of the expense. <br> <br> It must be a valid date in the format of `dd-MM-yyyy`. A valid year is any year from 0001 to 9999. | E.g. Typing `28-09-2020` would mean the expense was made on 28 September 2020.
@@ -1459,6 +1459,7 @@ You can copy and transfer the data folder into the same directory as Homerce on 
 ## 6. Glossary
 
 * **Alphanumeric**: Alphanumeric does not include special characters, it only includes letters a to z (uppercase and lowercase) and digits 0 to 9.
+* **Special Characters**: Refers to any of the characters within these set of characters: +!#$%&'*+/=?\`{}~^.-&#124;
 
 --------------------------------------------------------------------------------------------------------------------
 
