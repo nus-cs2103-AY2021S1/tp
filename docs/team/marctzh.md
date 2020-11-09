@@ -29,6 +29,8 @@ Given below are my contributions to the project.
   * Justifications: Users may accidentally schedule multiple tasks that overlap
   * Highlights: This feature requires meticulous planning of the many possible scenarios where an overlap may occur.
 
+<div style="page-break-after: always;"></div>
+
 * **New Features**: Added the data analysis feature.
 
   * What it does: allow the user to know total time spent on each task/lesson for a specified time period.
@@ -40,7 +42,7 @@ Given below are my contributions to the project.
   * Manage the milestones `v1.2`, `v1.3` and `v1.4` (including issues and deadlines) on GitHub. 
 
 * **Code contributed**: 
-  My code contributions to PlaNus can be found via the [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=MarcTzh&tabRepo=AY2021S1-CS2103T-T12-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code).
+  My code contributions to PlaNus can be found via the [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=marctzh&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other).
 
 * **Documentation**:
 
