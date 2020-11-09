@@ -108,7 +108,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deletepatient Alex Yeoh`.
 
 <p align="center">
     <img src="images/dg/ArchitectureSequenceDiagram.png" width="574">
@@ -122,7 +122,7 @@ The sections below give more details of each component.
 ### 3.2 UI Component
 
 The `UI` component displays information for the users based on user's input. The GUI to displayed is based on the return from logic.
-It uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+It uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W12-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 * Executes user commands using the `Logic` component.
