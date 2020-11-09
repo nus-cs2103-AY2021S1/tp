@@ -187,6 +187,8 @@ this box.
         1. Information Panel - A detailed list on the information stored within Jarvis.
         1. Tab Switcher - A tab switcher for browsing through the different types of information stored in Jarvis.
 
+<div style="page-break-after: always;"></div>
+
 #### 4.1.1 Top Bar
     
    ![Jarvis](images/userguide/topBar.png)
@@ -211,6 +213,8 @@ this box.
 
    * A text input box for all user commands to be keyed in. You may refer to a detailed guide on the various commands
     available in Jarvis. Hit the enter key to execute the inputted command.
+
+<div style="page-break-after: always;"></div>
 
 #### 4.1.3 Feedback Box
 
@@ -269,6 +273,8 @@ Within the red rectangle box, Jarvis will notify you if the login was successful
 The username, password and student names are covered with a red rectangle for this diagram only to protect the Avenger's account security.
 You will be able to see the login details you entered.
 
+<div style="page-break-after: always;"></div>
+
 ### 5.3 Updated Student Information
 Upon success, all information from Source Academy will be visible to you. The student information tab will display you student information.
 The `Telegram` and `E-mail` fields are test values as these information are not available on Source Academy.
@@ -279,6 +285,7 @@ You will have to edit them using the [Editing Student Information](#642-editing-
 ## 6. Features
 
 ### 6.1 General Notes
+This section includes some general notes on Jarvis.
 
 #### 6.1.1 Notes about Command Format
 
@@ -302,6 +309,9 @@ You will have to edit them using the [Editing Student Information](#642-editing-
    * Each `Task` you create, be it `Todo`, `Event` or `Deadline`, there will be an unique Task ID assigned to each of them, so
    that there will be no 2 of the same ID in your Task List at any point of time. The Task ID is reflected as
    <br>eg. D1, E5, T21
+   
+   <div style="page-break-after: always;"></div>
+   
    * The first alphabet "T", "E" and "D" refers to `Todo`, `Event`, and `Deadline` respectively, and the number followed
    after the alphabet is the index of the `Task` you created with respect to all the `Tasks` you ever created.
 
@@ -466,6 +476,8 @@ Edits the score of a `Mastery Check` session with a `Student`.
 * The `INDEX` parameter should be a non-zero unsigned integer that is a valid index currently displayed along with the target `Mastery Check`.
 * Jarvis allows editing to the same value; even if no values are actually updated by the command, it will display a success message.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### 6.5 Deleting Information : `delete`
 
