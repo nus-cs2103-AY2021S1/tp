@@ -281,7 +281,7 @@ For example:
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **Tip:** To view a list of changes that can be undone, use the [`view-history` command](#viewing-change-history--view-history).
+:bulb: **Tip:** To view a list of changes that can be undone, use the [`view-history`](#viewing-change-history--view-history) command.
 
 </div>
 
@@ -293,7 +293,7 @@ If you decide that you do not need to undo a change, you can use this command to
 
 For example:
 
-1. You want to [undo](#undoing-previous-changes--undo) the last four changes in your Tutor's Pet. However, you accidentally undid the last five changes instead.
+1. You want to [undo](#undoing-a-previous-change--undo) the last four changes in your Tutor's Pet. However, you accidentally undid the last five changes instead.
 
 1. You type `redo` and press <kbd>Enter</kbd>.
 
