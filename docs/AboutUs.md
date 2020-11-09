@@ -13,8 +13,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](http://github.com/Ringo1225)] [[portfolio](team/ringo1225.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Development + Documentation + Testing
 
 ### Peh Jun Siang
 
@@ -32,7 +32,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/GabrielTeo)] [[portfolio](team/gabrielteo.md)]
 
 * Role: Developer
-* Responsibilities: Documentation + Deliverables and deadlines + UI
+* Responsibilities: Documentation + Deliverables and deadlines
 
 ### Cedric Lim Jun Wei
 

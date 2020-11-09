@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.AppointmentCommandParser;
+package seedu.address.logic.parser.appointmentCommandParser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -49,7 +49,7 @@ public class AddApptCommandParser implements Parser<AddApptCommand> {
         Appointment appointment = new Appointment();
 
         if (argMultimap.getValue(PREFIX_APPOINTMENT).isPresent()) {
-            appointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_APPOINTMENT).get());
+            appointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_APPOINTMENT).get(), false);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     Appointment.MISSING_TIMING));

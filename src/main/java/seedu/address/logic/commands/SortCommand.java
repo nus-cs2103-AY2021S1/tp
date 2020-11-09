@@ -12,8 +12,8 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts records in Hospify by name or NRIC.\n"
-            + "Example: " + COMMAND_WORD + " name"
-            + " or " + COMMAND_WORD + " nric";
+            + "Example: " + COMMAND_WORD + " name\n"
+            + "Example: " + COMMAND_WORD + " nric";
 
     public static final String MESSAGE_SUCCESS = "Patient list sorted!";
 

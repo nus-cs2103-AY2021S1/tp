@@ -15,7 +15,7 @@ public class MedicalRecord {
             + "followed by any path (if applicable)\n"
             + "Sample format: (http:// or https://)(www.)domain_name.com/path123";
     public static final String VALIDATION_REGEX = "((http|https)://)?(www.)?"
-            + "[a-zA-Z0-9@:%._+~#?&=/]{2,256}.[a-z]{2,6}([-a-zA-Z0-9@:%._+~#?&=/]*)";
+            + "[a-zA-Z0-9@:%._+~#?&=/]{2,256}\\.[a-z]{2,6}([-a-zA-Z0-9@:%._+~#?&=/]*)";
 
     public final String value;
 
@@ -27,14 +27,14 @@ public class MedicalRecord {
     public MedicalRecord(String url) {
         requireNonNull(url);
         checkArgument(isValidUrl(url), MESSAGE_CONSTRAINTS);
-        value = url;
+        this.value = url;
     }
 
     /**
      * Returns true if a given string is a valid url.
      */
     public static boolean isValidUrl(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.trim().matches(VALIDATION_REGEX);
     }
 
     @Override

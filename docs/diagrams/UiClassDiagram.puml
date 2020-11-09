@@ -12,6 +12,7 @@ Class MainWindow
 Class HelpWindow
 Class ResultDisplay
 Class PatientListPanel
+Class AppointmentWindow
 Class PatientCard
 Class StatusBarFooter
 Class CommandBox
@@ -35,6 +36,7 @@ MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> PatientListPanel
 MainWindow *-down-> StatusBarFooter
+MainWindow *-down-> AppointmentWindow
 
 PatientListPanel -down-> PatientCard
 

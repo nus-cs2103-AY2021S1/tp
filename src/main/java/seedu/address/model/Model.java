@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.patient.MedicalRecord;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 
@@ -63,6 +64,11 @@ public interface Model {
      * Returns true if a patient with the same NRIC as {@code nric} exists in Hospify.
      */
     boolean hasPatientWithNric(Nric nric);
+
+    /**
+     * Returns true if a patient with the same Medical Record URL as {@code url} exists in Hospify.
+     */
+    boolean hasPatientWithMrUrl(MedicalRecord url);
 
     /**
      * Deletes the given patient.

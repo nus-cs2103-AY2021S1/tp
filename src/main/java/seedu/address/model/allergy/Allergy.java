@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Allergy {
 
-    public static final String MESSAGE_CONSTRAINTS = "Allergies names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Allergies names should be alphabetical and "
+            + "between 1 to 100 characters long.";
     public static final String VALIDATION_REGEX = "\\p{Alpha}+";
 
     public final String allergyName;
@@ -29,7 +30,7 @@ public class Allergy {
      * Returns true if a given string is a valid allergy name.
      */
     public static boolean isValidAllergyName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() <= 100;
     }
 
     @Override

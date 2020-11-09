@@ -137,7 +137,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code appointment} is invalid.
      */
-    public static Appointment parseAppointment(String appointment) throws ParseException {
+    public static Appointment parseAppointment(String appointment, boolean allowPast) throws ParseException {
         requireNonNull(appointment);
         String trimmedAppointment = appointment.trim();
         ArgumentMultimap argMultimap =
@@ -149,15 +149,21 @@ public class ParserUtil {
         } else {
             description = "";
         }
-        if (!Appointment.isValidAppointment(timing)) {
+
+        if (!Appointment.isValidDateTime(timing)) {
             throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
         }
 
         LocalDateTime localDateTime =
                 LocalDateTime.parse(timing, DateTimeFormatter.ofPattern("d/M/yyyy HH:mm"));
-        if (Appointment.isPassed(localDateTime)) {
+        if (!allowPast && Appointment.isPassed(localDateTime)) {
             throw new ParseException(Appointment.TIME_RANGE_CONSTRAINTS);
         }
+
+        if (!Appointment.isValidDescription(description)) {
+            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS_INVALID_DESCRIPTION);
+        }
+
         return new Appointment().setTime(timing).setDescription(description);
     }
 
@@ -180,7 +186,7 @@ public class ParserUtil {
         requireNonNull(appointments);
         final Set<Appointment> appointmentSet = new HashSet<>();
         for (String appointmentTime : appointments) {
-            appointmentSet.add(parseAppointment(appointmentTime));
+            appointmentSet.add(parseAppointment(appointmentTime, false));
         }
         return appointmentSet;
     }

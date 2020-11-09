@@ -34,10 +34,10 @@ public class AddApptCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an appointment for the patient specified "
-            + "by the NRIC of the patient. \n"
-            + "Parameters: [NRIC] "
-            + "[" + PREFIX_APPOINTMENT + "APPOINTMENT TIME] "
-            + "[" + PREFIX_DESCRIPTION + "APPOINTMENT DESCRIPTION]"
+            + "by his or her NRIC.\n"
+            + "Parameters: NRIC "
+            + PREFIX_APPOINTMENT + "DATE TIME "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]"
             + "\n"
             + "Example: " + COMMAND_WORD + " S1234567A "
             + PREFIX_APPOINTMENT + "28/09/2022 20:00 "
@@ -55,6 +55,8 @@ public class AddApptCommand extends Command {
      * @param appointment the appointment to add to the patient
      */
     public AddApptCommand(Nric nric, Appointment appointment) {
+        requireNonNull(nric);
+        requireNonNull(appointment);
         this.nric = nric;
         this.appointment = appointment;
     }
