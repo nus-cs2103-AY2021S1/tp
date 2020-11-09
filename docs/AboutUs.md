@@ -23,7 +23,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/ijavierja.png" width="200px">
 
 [github](https://github.com/ijavierja)
-[portfolio](team/johndoe.md)
+[portfolio](team/ijavierja.md)
 
 * Role: Project Manager
 * Responsibilities:
@@ -36,7 +36,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/joven-heng.png" width="200px">
 
 [github](http://github.com/Joven-Heng)
-[portfolio](team/joven.md)
+[portfolio](team/joven-heng.md)
 
 * Role: Testing
 * Responsibilities: 
