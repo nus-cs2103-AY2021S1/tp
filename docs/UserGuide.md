@@ -109,7 +109,7 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 1. Refer to the [Features](#3-features) section below for details of each command.
 
 ### 2.2 Making sense of Reeve's layout (By: Alex)
-![Reeve's Layou](images/ReeveLayout.png)
+![Reeve's Layout](images/ReeveLayout.png)
 
 1. **Menu**
 
@@ -236,7 +236,7 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [
 
 </div>
 
-Examples:
+Example:
 * Suppose you want to add a student without any additional details.
     * You can use something like `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020`.
     * You should see a screen similar to the one shown below.
