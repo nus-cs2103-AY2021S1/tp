@@ -21,12 +21,12 @@ Given below are my contributions to the project.
   * Updated the Phone class to accept only valid phone numbers (Pull request [#210](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/210))
   * Updated the functionality of sort command to be able to accept commands with no direction (toggle feature) (Pull request [#125](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/125))
   * Updated the find command to work for our menu items and tags (Pull requests [#107](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/107), [#120](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/120))
-  * Wrote test cases for all preset commands (Pull requests [#212](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/212), [#217](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/217), [#219](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/212))
+  * Wrote test cases for all preset commands (Pull requests [#212](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/212), [#217](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/217), [#219](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/219))
   * Fixed saving storage bugs (Pull requests [#93](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/93), [#147](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/147))
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for `preset` (Pull request [#139](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/139))
+    * Added documentation for preset commands (Pull request [#139](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/139))
     * Helped standardise the entire document: (Pull requests [#16](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/16), [#138](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/138), [#189](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/189))
   * Developer Guide:
     * Standardise and fixed grammatical errors (Pull requests [#90](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/90), [#230](https://github.com/AY2021S1-CS2103-T16-1/tp/pull/230))
