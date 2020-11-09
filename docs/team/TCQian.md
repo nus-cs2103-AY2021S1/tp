@@ -29,7 +29,7 @@ Given below are my contributions to the project.
       * removed the function `convertIntoDateTime`;
       * added LocalDateTimeFormatter in Deadline class.  
       
-  * **Model modification**: Edited execute in command classes.(Pull request [\#312](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/312)
+  * **Model modification**: Edited execute in command classes.(Pull request [\#312](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/312))
     * What it means: synchronised the updates of the project, task, teammate, participation on dashboards
     * What changes made: 
       * if the instances mentioned above is edited or delete while they are displayed on dashboards, update the model class which holds the instances displayed;
@@ -64,7 +64,7 @@ Given below are my contributions to the project.
   * What changes made: 
     * added flowpane named tasks in TeammateDashoboard.fxml;
  
- * **GUI modification**: Enhanced the GUI for Milestone v1.4. (Pull request [\#273](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/273)), [\#308](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/308))
+ * **GUI modification**: Enhanced the GUI for Milestone v1.4. (Pull request [\#273](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/273), [\#308](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/308))
    * What it means: changes the color of GUI and the resize the layout
    * What changes made: 
      * edited MainWindow.fxml;
