@@ -811,7 +811,7 @@ The notebook feature comprises three specific commands extending `NoteCommand`:
 * `EditNoteCommand` – Edits a note in the notebook.
 * `DeleteNoteCommand` – Deletes a note from the notebook
 
-The following class diagram shows how the various commands relate to each other. (refer to [5.3 Logic Component](#54-logic-component) for higher-level details about the design)
+The following class diagram shows how the various commands relate to each other. (refer to [5.3 Logic Component](#53-logic-component) for higher-level details about the design)
 
 ![NoteCommandClassDiagram](images/NoteCommandClassDiagram.png)
 
