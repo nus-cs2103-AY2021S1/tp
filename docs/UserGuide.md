@@ -826,6 +826,8 @@ Bidder Id: B12
 Property Id: P12
 Venue: eunos
 Date: 12-05-2016
+Start Time: 12:30
+End Time: 13:00
 ```
 
 ## Sorting the existing Meeting List
