@@ -29,7 +29,7 @@ import seedu.address.model.task.event.StartDateTime;
  */
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
-        String event1Date = "19-11-2020";
+        String event1Date = "20-11-2020";
         String event2Date = "25-11-2020";
         return new Task[] {
             Deadline.createDeadline(new Title("Borrow books"), new DeadlineDateTime("25-11-2020 09:00"),
@@ -73,6 +73,9 @@ public class SampleDataUtil {
         Planus samplePlanus = new Planus();
         for (Task sampleTask : getSampleTasks()) {
             samplePlanus.addTask(sampleTask);
+            if (sampleTask instanceof Event) {
+                samplePlanus.addTaskToCalendar(sampleTask);
+            }
         }
         for (Lesson sampleLesson : getSampleLessons()) {
             samplePlanus.addLesson(sampleLesson);
