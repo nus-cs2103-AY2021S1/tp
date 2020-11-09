@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ExerciseBookParser" as ExerciseBookParser LOGIC_COLOR
+participant ":RecallCommandParser" as RecallCommandParser LOGIC_COLOR
+participant ":RecallCommand" as RecallCommand LOGIC_COLOR
+participant ":TheMostRecentDatePredicate" as TheMostRecentDatePredicate LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("recall running")
+activate LogicManager
+
+LogicManager -> ExerciseBookParser : parseCommand("recall running")
+activate ExerciseBookParser
+
+create RecallCommandParser
+ExerciseBookParser -> RecallCommandParser : new RecallCommandParser()
+activate RecallCommandParser
+
+RecallCommandParser --> ExerciseBookParser
+deactivate RecallCommandParser
+
+ExerciseBookParser -> RecallCommandParser : parse("running")
+activate RecallCommandParser
+
+create RecallCommand
+RecallCommandParser -> RecallCommand : new RecallCommand("running")
+activate RecallCommand
+
+create TheMostRecentDatePredicate
+RecallCommand -> TheMostRecentDatePredicate : new TheMostRecentDatePredicate("09-11-2020")
+activate TheMostRecentDatePredicate
+
+TheMostRecentDatePredicate --> RecallCommand : predicate
+deactivate TheMostRecentDatePredicate
+
+RecallCommand --> RecallCommandParser : command
+deactivate RecallCommand
+
+RecallCommandParser --> ExerciseBookParser : command
+deactivate RecallCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+RecallCommandParser -[hidden]-> ExerciseBookParser
+destroy RecallCommandParser
+
+ExerciseBookParser --> LogicManager : command
+deactivate ExerciseBookParser
+
+LogicManager -> RecallCommand : execute()
+activate RecallCommand
+
+RecallCommand -> Model : updateFilteredExerciseList(predicate)
+activate Model
+
+Model --> RecallCommand
+deactivate Model
+
+create CommandResult
+RecallCommand -> CommandResult : new CommandResult(resultMessage)
+activate CommandResult
+
+CommandResult --> RecallCommand : result
+deactivate CommandResult
+
+RecallCommand --> LogicManager : result
+deactivate RecallCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

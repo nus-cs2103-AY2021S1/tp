@@ -63,10 +63,10 @@ Model --> FindCommand
 deactivate Model
 
 create CommandResult
-FindCommand -> CommandResult
+FindCommand -> CommandResult : new CommandResult(resultMessage)
 activate CommandResult
 
-CommandResult --> FindCommand
+CommandResult --> FindCommand : result
 deactivate CommandResult
 
 FindCommand --> LogicManager : result
