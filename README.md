@@ -11,6 +11,10 @@ PropertyFree is a Command Line Interface (CLI) app for property management. It h
 The User Guide is available at
 https://ay2021s1-cs2103-w14-1.github.io/tp/UserGuide.html 
 
+## Developer Guide
+The Developer Guide is available at
+https://ay2021s1-cs2103-w14-1.github.io/tp/DeveloperGuide.html  
+
 ## User Interface
 ![Ui](docs/images/Ui.png)
 
