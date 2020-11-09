@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/wm71811.png" width="200px">
 
-[[github](http://github.com/WM71811)] 
+[[github](http://github.com/WM71811)]
 [[portfolio](team/wm71811.md)]
 
 * Role: Developer

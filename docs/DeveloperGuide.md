@@ -24,9 +24,10 @@ This document specifies the architecture and software design for the application
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+### **Setting up**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+The code of tCheck is open sourced and published on a github repository. If you want to download the code and/or set up
+an environment to contribute to this repository, you can refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -68,7 +69,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `c-delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -322,7 +323,7 @@ The following activity diagram shows how the find drink's sales data operation w
   * **Current Choice**: Obtain the drink's name entered by the user, and use the
   drink's name to find the sales data by looping through the salesbook.
     * Pros: Code is more readable and consistent with the logic of finding employees.
-    * Cons: Every execution of the command will require one to access the sales record list loop through 
+    * Cons: Every execution of the command will require to access the sales record list loop through 
     the list once, which may increase the time required for the operation. 
 
 ### \[Completed\] Set ingredients' levels feature
@@ -700,42 +701,32 @@ The product provides an integrated system for the purpose of sales tracking, ing
 
 ### User stories
 
-Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
+Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| As a/an                           | I can/I want to (features that are going to be implemented)                                                                  | So that (benefit gained)                                                                                 | Priority |
-| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| Store manager                     | have a centralised system that helps me keep track of my employees’ contact numbers                                          | I don't need to organize working contacts on my personal phone                                           | 1                                                             |
-| Store manager                     | have a software that helps me on daily inventory checking                                                                    | I can reduce the amount of human errors that may be involved and track the shop's inventory conveniently | 1                                                             |
-| Busy store manager                | receive reminders to restock                                                                                                 | I won't lose revenue because of unexpected ingredient shortage during operation                          | 1                                                             |
-| First-time user                   | be able to download the app                                                                                                  | I can play around and check out what it can do before actual usage                                       | 1                                                             |
-| First-time user                   | use the help feature                                                                                                         | I can get more familiar with the app features                                                            | 1                                                             |
-| First-time user                   | find out if the app is running smoothly and bug-free                                                                         | I can decide if using this app will indeed help me run a store                                           | 1                                                             |
-| Concerned manager                 | check the employees's contact number if they are absent without stating any reasons                                          | I can easily contact them in a short time                                                                | 1                                                             |
-| Second-time user                  | initialize the ingredients level in the app                                                                                  | I need not remember the amount of inventories, and only need to update when I do a restock               | 1                                                             |
-| Second-time user                  | find the emergency contacts of my employees quickly if they are injured                                                      | I can find the person to contact and know what action to take in the shortest time possible              | 1                                                             |
-| Intermediate user                 | input the number of each type of drinks sold into tCheck at the end of the day, and know the amount of remaining ingredients | I can document the amount of ingredients left                                                            | 1                                                             |
-| Expert user                       | to delete some of the employees' data who are no longer working at the shop                                                  | they are no longer tracked by the app.                                                                   | 1                                                             |
-| Second-time user                  | view the revenue from the last day                                                                                           | I can predict how much demand it would likely to be for today                                            | 1                                                             |
-| Store manager                     | have a software to help me calculate my daily revenue                                                                        | I don't need to manually calculate them and it will become less troublesome to do so                     | 2                                                             |
-| Busy and concenrned store manager | have a software to remind me on check my employees' health condition for each shift                                          | I won't forget to check, espcially when I'm busy                                                         | 2                                                             |
-| First-time user                   | read the "About" page in the app                                                                                             | I know how to use this software to help my business                                                      | 2                                                             |
-| First-time user                   | register for a password-protected account                                                                                    | I can be sure that my user data will not be viewed by non-users                                          | 2                                                             |
-| First-time user                   | be able to navigate the app easily                                                                                           | I only need basic intuition to use the navigation bar (For GUI)                                          | 2                                                             |
-| Impatient first-time user         | have a fast-response inventory keeping application                                                                           | I don't waste time waiting for the app to load                                                           | 2                                                             |
-| Second-time user                  | only use the software and access my data if I enter the correct login information                                            | it prevents unauthorised users from viewing the shop's information                                       | 2                                                             |
-| Second-time user                  | be reminded of the task of checking the employee's health condition                                                          | I would not forget to check the employees' health status each day before the shop opens                  | 2                                                             |
-| Concerned manager                 | check and record the health conditions of my employees                                                                       | I can do my best to ensure the safety of food is guanranteed                                             | 2                                                             |
-| Second-time user                  | view the inventory from the last day                                                                                         | I can restock before the ingredients ran out of stock and affect my business                             | 2                                                             |
-| Intermediate user                 | input the number of each type of drinks sold into tCheck at the end of the day,and find out the total revenue of the day     | I can document the daily revenue                                                                         | 2                                                             |
-| Intermediate user                 | do closing duties according to a check list shown on the app                                                                 | I will not forget important things                                                                       | 2                                                             |
-| Intermediate user                 | use the ingredient data                                                                                                      | I can prepare for next day's ingredients                                                                 | 2                                                             |
-| Busy store manager                | use shortcut commands                                                                                                        | it makes my input process into tCheck faster and more convenient.                                        | 2                                                             |
-| Expert user                       | my data to be saved reliably                                                                                                 | my data won't be lost even if my computer crashes                                                        | 2                                                             |
-| Expert user                       | have fast responses after a long usage period                                                                                | I will not waste time waiting for the app even after extensive usage                                     | 2                                                             |
-| Expert user                       | export my data from the application                                                                                          | the performace of the store can be analyzed easily by using other third-party softwares                  | 2                                                             |
-| Intermediate user                 | to look through my employees' health condition data of the last 10 days                                                      | I can roughly gauge the conditions of my employees                                                       | 3                                                             |                                              |
+| Priority | As a/an…  | I can/I want to                                                  | So that I can/I want to                                                                |
+| -------- | ------------| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `* * *`  | Store manager     | have a centralised system that helps me keep track of my employees’ contact details                                           | not need to organize working contacts on my personal phone|
+| `* * *`  | Store manager         | have a software that helps me on inventory checking                                                | reduce the amount of human errors that may be involved and track the shop's inventory conveniently |
+| `* * *`  | Store manager         | archive all employees' contact details with just one command   | quick-reset all the contact database without permanently deleting the information |
+| `* * *`  | Store manager         | archive some employees' contact details   | retrieve them if needed in the future |
+| `* * *`  | Busy store manager         | have a system that can automatically save the updated data after each command   | not need to click the save button every time and worry about data loss. |
+| `* * *`  | First-time user        | be able to download this app                                                | play around and check out what it can be before actual usage  |
+| `* * *`  | First-time user        | use the help feature                                          | get more familiar with the app features            |
+| `* * *`    | First-time user        | find out if the app is running smoothly and bug-free        | decide if using this app will indeed help me run a store                    |
+| `* * *`  | Concerned manager      | check the employee's contact number if they are absent without stating any reasons       | easily contact them in a short time  |
+| `* * *`  | Second-time user      | initialize the ingredients level   | need not remember the amount of inventories, and only need to update when I do a restock |
+| `* * *`  | Second-time user      | view all the ingredient levels from the last day   | restock before the ingredients ran out of stock and affect my business|
+| `* * *`    | Second-time user      | find the emergency contacts of my employees quickly if they are injured | find the person to contact and know what action to take in the shortest time possible |
+| `* * *`    | Second-time user      | set all different ingredients levels to standard default amounts   | easily start using tCheck to track ingredients in my store |
+| `* * *`    | Second-time user      | set different ingredients levels to different default amounts   | be able to use tCheck to track my store's ingredients and their usage levels |
+| `* * *`    | Intermediate user      | input the number of each type of drinks sold into tCheck at the end of the day | keep a record of the sales of the drinks |
+| `* * *`    | Intermediate user      | find a specific ingredient consumption  | check an individual ingredient's level quickly   |
+| `* * `    | Intermediate user      | see a ranking of the drinks sold | easily compare and identify the most popular drink in the shop so far   |
+| `* * `    | Intermediate user      | view the list of drinks sold for the day | check that I have input the correct number and see a visual overview of the sales of drinks   |
+| `* * `    | Store manager      | delete some of the employees' data who are no longer working at my shop | get them no longer tracked by tCheck   |
+| `* * `    | Store manager      | see all archived contact details | still find my former employees' contacts when needed |
+| `* * `    | Second-time user      | reset all ingredient levels to zero   | record new ingredient levels conveniently |
 
-*{More to be added}*
 
 ### Use cases
 
@@ -917,22 +908,34 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Adding an employee
 
-1. Deleting a person while all persons are being shown
+1. Adding a new employee to the active Employee Directory
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Test case: `c-add n/John Doe p/98765432 e/87654321 a/311, Clementi Ave 2, #02-25 t/Friday t/monday`<br>
+      Expected: An employee named John Doe should be added into the active Employee Directory with his phone number, emergency contact, address,
+      and tags.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `c-add`<br>
+      Expected: No employee is added. Error details shown in the status message. Status bar remains the same.
+      
+### Deleting an employee
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+1. Deleting an employee while all active employees are being shown
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Prerequisites: List all active employees using the `c-active-list` command. Multiple employees in the list.
+
+   1. Test case: `c-delete 1`<br>
+      Expected: First employee is deleted from the active Employee Directory. Details of the deleted employee shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `c-delete 0`<br>
+      Expected: No employee is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `c-delete`, `c-delete x`, `...` (where x is larger than the Employee Directory's size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
 
 ### Updating sales of drinks
 
@@ -963,7 +966,25 @@ testers are expected to do more *exploratory* testing.
      
     1. Test case: `s-list` <br>
        Expected: The list of drinks sales is now ordered from most to least number of sales.
-       
+
+### Finding sales of drinks
+
+1. Finding the sales of a drink item while all sales are being shown.
+
+   1. Prerequisites: List all sales using the `s-list` command. The full list of drinks sales will be shown.
+   
+   2. Test case: `s-find BSBBT`<br>
+      Expected: BSBBT's sales data shown in the sales tracker panel.
+      
+   3. Test case: `s-find BSBBT BSBM`<br>
+      Expected: BSBBT's sales data and BSBM's sales data shown in the sales tracker panel.
+      
+   4. Test case: `s-find HUGB`<br>
+      Expected: No drink's sales data shown in the sales tracker panel.
+   
+   5. Test case: `s-find`<br>
+      Expected: Error details shown in the status message. 
+      
 ### Resetting all ingredients' levels to zero
 
 1. Resetting all ingredients' levels to zero when not all ingredients' levels are at zero
@@ -1013,6 +1034,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect archive commands to try: `archive`, `c-archive x`, `...` (where x is larger than the list size
    )<br>
       Expected: No employee is archived. Error details shown in the status message.
+
 
 ### Saving data
 
