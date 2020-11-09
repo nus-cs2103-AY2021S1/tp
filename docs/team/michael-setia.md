@@ -59,7 +59,6 @@ Given below are my contributions to the project.
   * Did testing for basic commands for `ModuleTracker` (500+ LoC)
 
 * **Community**:
-  * PRs reviewed and approved(with non-trivial review comments):
-    * More PRs can be checked in GitHub.
-  * Non-trivial comments added:
-    * 
+  * Reviewed and approved PRs e.g PR #316, PR #257 (more can be checked in GitHub)
+  * Added 50+ comments througout the project (can be checked in the module dashboard)
+  * Added comments as discussion e.g. PR #244 (more can be checked in GitHub)
