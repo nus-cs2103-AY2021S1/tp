@@ -479,7 +479,9 @@ is `#00001`. The user executes `update-order --order 1 --description textbook` t
 
 The following sequence diagram shows how the update order operation works :
 
-![Update Order Sequence Diagram]()
+![Update Order Sequence Diagram](images/UpdateOrderSequenceDiagram.png)
+
+(note: diagram has a minor typo; diagram shows "- -" as opposed to the correct "--" as PlantUML recognizes -- as a strike through instead of text)
 
 **Update Client**
 
@@ -496,7 +498,9 @@ to the new client.
 
 The following sequence diagram shows how the update client operation works :
 
-![Update Client Sequence Diagram]()
+![Update Client Sequence Diagram](images/UpdateClientSequenceDiagram.png)
+
+(note: diagram has a minor typo; diagram shows "- -" as opposed to the correct "--" as PlantUML recognizes -- as a strike through instead of text)
 
 --------------------------------------------------------------------------------------------------------------------
 
