@@ -109,7 +109,7 @@ The `UI` component,
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying 
 the help window to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("c-delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -125,19 +125,29 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the `Person`, `SalesRecordEntry` and `Ingredient` sub-components.
 * does not depend on any of the other three components.
-
-Given below is the class diagram showing details of the person model:
 
 The `Person` sub-component,
 * stores the address book data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
+<div markdown="span" class="alert alert-info">:information_source: **Notes:**
+    In tCheck context, an employee is modelled as a `Person`.
+</div><br>
+
+Given below is the class diagram showing details of the `Person` model
+
 ![Structure of the Person Model Component](images/PersonModelClassDiagram.png)
 
-Figure x. Class diagram showing the structure of `Person` sub-component
+
+<div markdown="span" class="alert alert-info">:information_source: **Notes:** An alternative (arguably, a more OOP
+) model is given below. It has a `Tag` list in the `tCheck` application, which `Person` references. This allows
+ `tCheck` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+
+![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+
+</div><br>
 
 The `SalesRecordEntry` sub-component,
 * stores the sales book data
@@ -162,22 +172,10 @@ Given below is the class diagram showing details of the ingredient model:
  PlantUML, where there cannot be two textboxes at the arrow head, the role has been placed in the middle of the arrow.
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP
-) model is given below. It has a `Tag` list in the `tCheck` application, which `Person` references. This allows
- `tCheck` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-Figure x. Class diagram showing the alternative structure of `Person` sub-component
-
-</div>
-
 
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
-
-Figure x. Class diagram showing the `Storage` structure
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -302,7 +300,7 @@ user in the `s-update` command
     * Cons: There are not many operations to do with `Drink`s. It is only used to represent a constant set of
      drink types.
 
-## \[Completed\] Finding sales data of some drinks
+### \[Completed\] Finding sales data of some drinks
 
 Finds specific drinks' sales data feature allows the user to get the sales data of a drink quickly. The command is:
 
@@ -368,7 +366,7 @@ Given below is an example usage scenario for the aforementioned three commands a
 Step 1. The user, a T-Sugar store manager, launches tCheck for the very first time. The `IngredientBook` will be initialized with a `UniqueIngredientList` containing the six pre-defined ingredients, namely `Milk`, `Pearl`, `Boba`, `Black Tea` , `Green Tea` and `Brown Sugar`, with an amount of 0 set for all.
 
 ![IngredientBookState](images/IngredientBookState.png)
-Figure Set Ingredients' levels - 1 shows the relationship between Model and Ingredient Book after tCheck is launched.
+shows the relationship between Model and Ingredient Book after tCheck is launched.
 
 Step 2. The user executes `i-set-default` to set the amounts of all ingredients to the default levels of the store, which are 50 L for liquids and 20 KG for solids. The `i-set-default` command calls `Model#setIngredientBook(ReadOnlyIngredientBook ingredientBook)`, causing the initial ingredient book to be replaced by the `ingredientBook` with the amounts of ingredients to be equal to the ingredients' default levels.
 
@@ -390,13 +388,11 @@ Furthermore,
 The following sequence diagram shows how the set ingredients' levels operation works, using `i-set i/Milk m/100` as an example:
 
 ![SetSequenceDiagram](images/SetSequenceDiagram.png)
-Figure Set Ingredients' levels - 2.
 
 The following activity diagram summarizes what happens when a user executes a new command which is one of the three commands for setting ingredients' levels
 Please note that only the command words of the respective commands are shown to represent the commands in this diagram:
 
 ![SetActivityDiagram](images/SetActivityDiagram.png)
-Figure Set Ingredients' levels - 3.
 
 #### Design consideration:
 
@@ -437,7 +433,7 @@ Given below is an example usage scenario that shows how the resetting all ingred
 each step.
 
 Step 1. The user, a store manager of the bubble tea brand, T-Sugar, launches tCheck for the second time. 
-The `IngredientBook` is loaded, containing data stored in the `IngredientBook` data file. In this case,
+The `IngredientBook` is loaded, containing data read from the `IngredientBook` data file. In this case,
 The `UniqueIngredientList` in `IngredientBook` contains the six pre-defined ingredients, namely `Milk`, `Pearl`, 
 `Boba`, `Black Tea` , `Green Tea` and `Brown Sugar`, with an amount of 0 for all ingredients except `Milk`, which 
 has an amount of 5 in units of litres.
@@ -448,17 +444,17 @@ the `IngredientBook`. The `i-reset-all` command then checks the list of ingredie
 levels of all ingredient types are already zero before the `i-reset-all` command is going to make any change to 
 the ingredients. Since all ingredients' levels are already zero except `Milk`, the `i-reset-all` command 
 calls `Model#setIngredient(Ingredient target, Ingredient newAmount)`, causing the ingredient `target`, which is `Milk`, 
-to be replaced by the ingredient `newAmount` with the same ingredient name and a zero ingredient's level.
+to be replaced by the ingredient `newAmount` which has the same ingredient name and a zero ingredient's level.
 
 <div markdown="span" class="alert alert-info">:information_source: **Notes:** If there are multiple ingredients that 
-have non-zero ingredient's levels, `Model#setIngredient(Ingredient target, Ingredient newAmount)` will be called 
-multiple times, each time to replace an ingredient with a new ingredient with the same ingredient name and a zero 
+have nonzero ingredient's levels, `Model#setIngredient(Ingredient target, Ingredient newAmount)` will be called 
+multiple times, each time replacing one of these ingredients with a new ingredient that has the same ingredient name and a zero 
 ingredient's level.
 </div>
 
 The following sequence diagram shows how the resetting all ingredients' levels operation works, assuming that the 
 `i-reset-all` command calls `Model#setIngredient(Ingredient target, Ingredient newAmount)` only once. This happens when 
-only one ingredient before the execution of the `i-reset-all` command. 
+only one ingredient has a nonzero ingredient's level before the execution of the `i-reset-all` command. 
 
 ![Reset all Ingredients' Levels Sequence Diagram](images/IngredientResetAllSequenceDiagram.png)
 
@@ -478,7 +474,7 @@ before the execution of the `i-reset-all` command, an error message will be show
 ##### Aspect: How resetting all ingredients' levels executes
   
   * **Alternative 1 (current choice):** Loop through the list of ingredients twice, the first time to check if all 
-  ingredients' levels are zero, the second time to replace each ingredient that has a non-zero ingredient's 
+  ingredients' levels are zero, the second time to replace each ingredient that has a nonzero ingredient's 
   level with a new ingredient which has the same ingredient name and a zero ingredient's level.
     * Pros: Easier to implement.
     * Cons: Execution of the command may require the creation of one or more new ingredients, which may increase the 
@@ -486,7 +482,7 @@ before the execution of the `i-reset-all` command, an error message will be show
     
   * **Alternative 2:** Loop through the list of ingredients twice, the first time to check if all ingredients' levels are 
   already zero, the second time to update the ingredient's level of the ingredients to zero if the ingredients 
-  have non-zero ingredient's levels.
+  have nonzero ingredient's levels.
     * Pros: Clear implementation. Do not lead to creation of new ingredient objects.
     * Cons: Less easy to implement.
 
@@ -523,13 +519,10 @@ In tCheck, each employee is modeled as `Person` object. The archiving employee f
 
 ![Structure of the Archive/Unarchive Component](images/ArchiveClassDiagram.png)
 
-*Figure Archive-1. Overview class diagram representation of archiving/unarchiving implementation*
-
 Given below shows how the `c-archive`, `c-unarchive`, and `c-archive-all` mechanism works in steps based on different scenarios. Two activity diagrams are provided before each detailed explanation to describe how tCheck handles an archiving/unarchiving commands. Three sequence diagrams are attached after the description
 
 ##### 1. Archive an employee
-
-*Figure Archive-2. Activity diagram representation of the general flow of archiving of a peron in tCheck*
+![ArchiveActivityDiagram](images/ArchiveActivityDiagram.png)
 
 User can archive a specific employee (modeled as a `Person` in the code) by entering the `c-archive INDEX` command. The
  following steps describe how this behavior is implemented:
@@ -543,20 +536,16 @@ Step 3: The `Person` will have a new `ArchivedStatus` value, which will be set t
 
 Step 4: The current `FilteredList` will be updated to only show active `Persons`, facilitated by the predicate `Model#PREDICATE_SHOW_ALL_ACTIVE_PERSONS`
 
-![Structure of the Storage Component](images/ArchiveSequenceDiagram.png)
+![ArchiveSequenceDiagram](images/ArchiveSequenceDiagram.png)
 
-*Figure Archive-2. Sequence diagram representation of archiving an employee*
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveCommand`
+<div markdown="span" class="alert alert-info">:information_source: **Notes:** The lifeline for `ArchiveCommand`
  should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 
 ##### 2. Unarchive an employee
 
-![Structure of the Storage Component](images/UnarchiveActivityDiagram.png)
-
-*Figure Archive-3. Activity diagram representation of the general flow of unarchiving an employee in tCheck*
+![UnarchiveActivityDiagram](images/UnarchiveActivityDiagram.png)
 
 User can unarchive an already-archived employee(modeled as `Person` in the code) by entering the `c-unarchive INDEX
 ` command. The following steps describe how this behavior is implemented:
@@ -569,11 +558,9 @@ Step 3: The `Person` will have a new `ArchivedStatus` value, which will be set t
 
 Step 4: The current `FilteredList` will be updated to only show active `Persons`, facilitated by the predicate `Model#PREDICATE_SHOW_ALL_ACTIVE_PERSONS`
 
-![Structure of the Storage Component](images/UnarchiveSequenceDiagram.png)
+![UnarchiveSequenceDiagram](images/UnarchiveSequenceDiagram.png)
 
-*Figure Archive-4. Sequence diagram representation of unarchiving an employee*
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnarchiveCommand` should
+<div markdown="span" class="alert alert-info">:information_source: **Notes:** The lifeline for `UnarchiveCommand` should
  end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -587,16 +574,15 @@ Step 2: For each `Person` in the observable 'PersonList', `ArchiveAllCommand` wi
 
 Step 3: The current `FilteredList` will be updated to only show the empty active `Persons`, facilitated by the predicate `Model#PREDICATE_SHOW_ALL_ACTIVE_PERSONS`
 
-![Structure of the Storage Component](images/ArchiveAllSequenceDiagram.png)
+![ArchiveAllSequenceDiagram](images/ArchiveAllSequenceDiagram.png)
 
-*Figure Archive-5. Sequence diagram representation of archiving all employees*
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveAllCommand` should
- end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Notes:** The lifeline for 
+`ArchiveAllCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches
+ the end of diagram.
 </div>
 
 
-#### Design consideration:
+#### Design considerations:
 
 ##### Aspect: The implementation to store archived employees
 
@@ -625,9 +611,9 @@ increased.
 Compared with the original implementation, this feature adds emergency contact information of the employee. It can help
 the user to contact some staff when emergency situation happens. The command is:
 
-- `edit INDEX [n/NAME] [p/PHONE] [e/EMERGENCY_CONTACT] [t/TAG] …​​`
+- `c-edit INDEX [n/NAME] [p/PHONE] [e/EMERGENCY_CONTACT] [t/TAG] ...`
 
-#### Completed Implementation
+#### Implementation
 
 The completed edit employee's contact information is facilitated by `AddressBook`. It implements `ReadOnlyAddressBook`
 interface and offers method to edit the application's `AddressBook`. Particularly, it changes Person's constructor and
@@ -638,11 +624,11 @@ Given below is an example usage scenario and how the edit mechanism behaves at e
 Step 1: The user launches the application for the first time. Because now there isn't any information in addressbook.
 The user can't edit now.
 
-Step 2: The user executes `add n/Betsy Crowe e/81234567 p/1234567 t/morning shift t/part-time`. The `add` command calls
+Step 2: The user executes `c-add n/Betsy Crowe e/81234567 p/91234567 t/morning shift t/part-time`. The `add` command calls
 `Model#addPerson()` to add Besty's information in the `AddressBook`. The updated `AddressBook` is stored in
 `addressbook.json`.
 
-Step 3: The user executes `edit 1 n/Besty Crowe e/54749110 p/1234567 t/morning shift t/part-time` to change Besty Crowe's
+Step 3: The user executes `c-edit 1 n/Besty Crowe e/84749110 p/81234567 t/morning shift t/part-time` to change Besty Crowe's
 phone number. This`edit` command calls `Model#setPerson()` to replace the original Besty Crowe's information in the
 `Addressbook`, causing the updated `Addressbook` to be stored in `addressbook.json`, overwriting the former one.
 
@@ -657,7 +643,6 @@ with phone number, using a prefix to identify them.
 * **Alternative 2:** Use different icons to represent phone and emergency contact
   * Pros: Will be easy to tell from.
   * Cons: Need more work.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -768,30 +753,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. tCheck detects an incorrect input format.
-        
-        * 2a1. tCheck requests the user to re-enter the data in the correct format.
-        
-    	* 2a2. User enters new data.
-    	
-    	Steps 2a1-2a2 are repeated until the data entered is in the correct format.
-    	
-    	Use case resumes from step 2.
 
+    * 2a1. tCheck requests the user to re-enter the data in the correct format.
+    * 2a2. User enters new data.
+  	
+  	Steps 2a1-2a2 are repeated until the data entered is in the correct format.
+    
+    Use case resumes from step 2.
+    
 * 2b. tCheck detects that the specified employee does not exist.
-        
-        * 2b1. tCheck requests the user to re-enter a valid index that corresponds to an existing employee.
-        
-        * 2b2. User enters new index.
-        
-        Steps 2b1-2b2 are repeated until the index entered is valid.
-        
-        Use case resumes from step 2.
 
+    * 2b1. tCheck requests the user to re-enter a valid index that corresponds to an existing employee.
+    * 2b2. User enters new index.
+  	
+  	Steps 2b1-2b2 are repeated until the index entered is valid.
+    
+    Use case resumes from step 2.
+    
 * 2c. tCheck detects that the specified employee has already been archived.
-        
-        * 2c1. tCheck returns the error message to the user.
-        
-        Use case ends.
+
+    * 2c1. tCheck returns the error message to the user.
+    
+    Use case ends.
+
 
 **Use Case: UC02 - Archive all employees**
 
@@ -804,22 +788,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 **Extensions**
-
 * 2a. tCheck detects an incorrect input format.
 
-        * 2a1. tCheck requests the user to re-enter in the correct format.
-        
-    	* 2a2. User enters new data.
-    	
-    	Steps 2a1-2a2 are repeated until the data entered is in the correct format.
-    	
-    	Use case resumes from step 2.
-      	
+    * 2a1. tCheck requests the user to re-enter in the correct format.
+    * 2a2. User enters new data.
+  	
+  	Steps 2a1-2a2 are repeated until the data entered is in the correct format.
+    
+    Use case resumes from step 2.
+
 * 2b. tCheck detects an empty Employee Directory.
 
-   	    * 2b1. tCheck shows a warning message.
-
-   	    Use case ends.
+    * 2b1. tCheck shows a warning message.
+    
+    Use case ends.
 
 **UC03 - Set ingredient level for a single ingredient**
 
@@ -885,15 +867,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   	Steps 3a1-3a2 are repeated until the data entered are correct.
     
     Use case resumes from step 4.
-      	
-* 5a. tCheck detects an invalid sales number. <br>
- 	* 5a1. tCheck requests for the correct data. <br>
- 	* 5a2. User enters new data. <br>
- 	
- 	Steps 5a1-5a2 are repeated until the data entered are correct. <br>
+    
+* 5a. tCheck detects an invalid sales number
+
+    * 5a1. tCheck requests for the correct data.
+    * 5a2. User enters new data.
+  	
+  	Steps 5a1-5a2 are repeated until the data entered are correct.
     
     Use case resumes from step 6.
-
+      	
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -928,7 +911,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">:information_source: **Notes:** These instructions only provide a
+ starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
@@ -977,8 +961,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `c-delete`, `c-delete x`, `...` (where x is larger than the Employee Directory's size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 
 ### Updating sales of drinks
@@ -1061,7 +1043,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect set commands to try: `i-set i/Milk m/1.2`, `i-set i/Milk m/1000`, `i-set i/Milk`<br>
       Expected: The amount of milk is unchanged. Corresponding error messages are shown in _Result Display_.
 
-### F.1 Archiving an employee
+### Archiving an employee
 
 1. Archiving an employee and hides his/her info from the active/unarchived employee directory.
 
