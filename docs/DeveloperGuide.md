@@ -97,7 +97,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `cdel 1`.
 
-<figure style="width:50%; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/ArchitectureSequenceDiagram.png"/>
     </p>
@@ -709,9 +709,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
- 1.  User requests to add a specific Client in the list
- 2.  FitEgo adds the Client.  
-Use case ends.
+ 1.  User requests to add a specific Client in the list.
+ 2.  FitEgo adds the Client. <br/> Use case ends.
     
 **Extensions**
 
@@ -733,11 +732,10 @@ Use case ends.
 
 **MSS**
 
- 1.  User requests to list Clients
- 2.  FitEgo shows a list of Clients
- 3.  User requests to edit a specific Client in the list
- 4.  FitEgo edits the Client according to the specified details  
-Use case ends.
+ 1.  User requests to list Clients.
+ 2.  FitEgo shows a list of Clients.
+ 3.  User requests to edit a specific Client in the list.
+ 4.  FitEgo edits the Client according to the specified details. <br/> Use case ends.  
 
 **Extensions**
 
@@ -756,23 +754,16 @@ Use case ends.
 
 **MSS**
 
- 1.  User requests to list Clients
- 2.  FitEgo shows a list of Clients
- 3.  User requests to delete a specific Client in the list
- 4.  FitEgo deletes the Client  
-Use case ends.
+ 1.  User requests to list Clients.
+ 2.  FitEgo shows a list of Clients.
+ 3.  User requests to delete a specific Client in the list.
+ 4.  FitEgo deletes the Client. <br/> Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
 
   Use case ends.
-  
-* 2b. User requests to force delete a specific Client in the list.
-
-    * 2b1. FitEgo force deletes the Client and its associated Schedules.
-  
-    Use case ends.
 
 * 3a. The given index is invalid.
 
@@ -782,9 +773,15 @@ Use case ends.
 
 * 3b. The given index refers to a Client associated with one or more Schedule.
     
-    * 3b1. FitEgo shows an error message.
+    * 3b1. FitEgo shows an instruction to force delete.
     
       Use case resumes at step 2.
+            
+* 3c. User requests to force delete a specific Client in the list.
+
+    * 3c1. FitEgo force deletes the Client and its associated Schedules if any.
+
+      Use case ends.
       
 <br/>
 
@@ -793,9 +790,7 @@ Use case ends.
 **MSS**
 
  1.  User requests to find some Client based on keyword or text.
- 2.  FitEgo displays the Client's whose name matches the keyword or text.
- 
-Use case ends.
+ 2.  FitEgo displays the Client's whose name matches the keyword or text. <br/> Use case ends.
 
 **Extensions**
 
@@ -803,7 +798,7 @@ Use case ends.
     
     * 2a1. FitEgo displays no clients found.
 
-    Use case ends.
+      Use case ends.
 
 <br/>
 
@@ -814,8 +809,7 @@ Use case ends.
  1.  User requests to list Clients.
  2.  FitEgo shows a list of Clients.
  3.  User requests to view a specific Client in the list
- 4.  FitEgo opens the Client's profile in a new window.  
-Use case ends.
+ 4.  FitEgo shows the Client's profile. <br/> Use case ends.
 
 **Extensions**
 * 2a. The list is empty.
@@ -834,8 +828,8 @@ Use case ends.
     
     * 4a2. The current Client's profile will be displayed.
 
-    Use case ends.
-      
+      Use case ends.
+             
 <br/>
 
 **Use case: UC06 Add a Session**
@@ -860,10 +854,10 @@ Similar to [UC03 (Delete a Client)](#uc03), but replace Client with Session.
 
 **MSS**
 
+ 1.  User requests to list Sessions.
  1.  FitEgo shows a list of Sessions.
  2.  User requests to filter the Session List by a period.
- 3.  FitEgo filters the Session List according to the specified period and updates the title displayed.
-Use case ends.
+ 3.  FitEgo filters the Session List according to the specified period and updates the title displayed.  <br/> Use case ends.
 
 **Extensions**
 
@@ -882,23 +876,22 @@ Use case ends.
 
 **MSS**
 
- 1. FitEgo shows a list of Clients and list of Sessions.
- 2. User requests to add a specific Schedule between a specified Client from Client List and Session from Session List.
- 3. FitEgo adds the Schedule.
- 
-Use case ends.
+ 1. User requests to list Clients and Sessions.
+ 2. FitEgo shows a list of Clients and list of Sessions.
+ 3. User requests to add a specific Schedule between a specified Client from Client List and Session from Session List.
+ 4. FitEgo adds the Schedule. <br/> Use case ends.
 
 **Extensions**
 
-- 2a. The Client index or Session index is invalid.
+- 3a. The Client index or Session index is invalid.
 
-  - 2a1. FitEgo shows an error message.
+  - 3a1. FitEgo shows an error message.
 
     Use case resumes at step 2.
   
-- 2b. The Schedule to be added already exists.
+- 3b. The Schedule to be added already exists.
 
-  - 2b1. FitEgo shows an error message.
+  - 3b1. FitEgo shows an error message.
 
     Use case resumes at step 2.  
 <br/>
@@ -907,11 +900,10 @@ Use case ends.
 
 **MSS**
 
+ 1.  User requests to list Clients and Sessions.
  1.  FitEgo shows a list of Clients and list of Sessions.
  2.  User requests to edit a specific Schedule in the list. (i.e. updated Session index, update payment, update weight)
- 3.  FitEgo edits the Schedule according to the specified details.
-
-Use case ends.
+ 3.  FitEgo edits the Schedule according to the specified details. <br/> Use case ends.
 
 **Extensions**
 
@@ -931,23 +923,22 @@ Use case ends.
 
 **MSS**
 
- 1. FitEgo shows a list of Clients and list of Sessions.
- 2. User requests to delete a Schedule associated with a specified Client from the Client List and Session from the Session List.
- 3. FitEgo deletes the Schedule.
- 
-Use case ends.
+ 1. User requests to list Clients and Sessions.
+ 2. FitEgo shows a list of Clients and list of Sessions.
+ 3. User requests to delete a Schedule associated with a specified Client from the Client List and Session from the Session List.
+ 4. FitEgo deletes the Schedule. <br/> Use case ends.
 
 **Extensions**
 
-- 2a. The Client index or Session index is invalid.
+- 3a. The Client index or Session index is invalid.
 
-  - 2a1. FitEgo shows an error message.
+  - 3a1. FitEgo shows an error message.
   
     Use case resumes at step 2.
 
-- 2b. There is no Schedule associated with the specified Client and Session.
+- 3b. There is no Schedule associated with the specified Client and Session.
 
-  - 2b1. FitEgo shows an error message.
+  - 3b1. FitEgo shows an error message.
 
     Use case resumes at step 2.  
 <br/>
@@ -958,9 +949,7 @@ Use case ends.
  1.  User requests to view Help Window. 
  2.  FitEgo displays Help Window with the User Guide link.
  3.  User selects the link to access the User Guide. 
- 4.  FitEgo opens the User Guide in user's default browser.
- 
-Use case ends.
+ 4.  FitEgo opens the User Guide in user's default browser. <br/> Use case ends.
 
 **Extensions**
  - 3a. User closes the Help Window. 
@@ -977,9 +966,7 @@ Use case ends.
 1.  User requests to view Settings Window. 
 2.  FitEgo displays Settings Window.
 3.  User makes changes to settings. 
-4.  FitEgo saves changes to settings. 
-
-    Use case ends.
+4.  FitEgo saves changes to settings. <br/> Use case ends.
 
 **Extensions**
 * 2a. User closes the Settings Window. 
