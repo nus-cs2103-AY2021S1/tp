@@ -2,6 +2,7 @@
 layout: page
 title: User Guide
 ---
+*(Written by Nicholas Canete)* <br>
 
 Thank you for choosing **Common Cents**! This is your convenient at-hand **expense-tracking tool**, meant for **anyone who runs a small-scale business**. 
 With just a few commands, _Common Cents_ will keep track, categorise and calculate your income and expenditure for you! 
@@ -108,6 +109,8 @@ UI component | Description
 
 --------------------------------------------------------------------------------------------------------------------
 # 4. Components
+*(Written by Nicholas Canete)* <br>
+
 This section describes the various components that comprises _Common Cents_, mainly Account and Entries. If you
 are new to _Common Cents_, do not fret as this section will guide you step by step in understanding the components
 available! This will better your experience with _Common Cents_ and your usage of features!
@@ -698,6 +701,9 @@ commands anymore. Do confirm the changes made to the entries in the account befo
 This section contains a few frequently asked questions with regard to _Common Cents_.
 
 ## 6.1 General Inquiry
+*(Written by Nicholas Canete)* <br>
+
+
 This section features general questions about _Common Cents_ that are not specific to the features.
 
 1\. **Question:** How do I save my data in _Common Cents_?<br>

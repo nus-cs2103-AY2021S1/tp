@@ -1,5 +1,5 @@
 @startuml
-
+!pragma useVerticalIf on
 start
 repeat :User enters command;
 repeat  while () is ([invalid args])
@@ -9,12 +9,9 @@ repeat  while () is ([invalid args])
 if () then ([expense predicate exists])
 : Specified expense is removed from
       Expense List of ActiveAccount;
-else ([else]);
-endif
-if () then ([revenue predicate exists])
+else if () then ([revenue predicate exists])
 : Specified revenue is removed from
      Revenue List of ActiveAccount;
-else ([else]);
 endif
 stop
 @enduml

@@ -8,11 +8,10 @@ repeat  while () is ([invalid args])
 :Account is retrieved from ActiveAccount;
 if () then ([expense predicate exists])
 : Expense List of ActiveAccount is cleared;
-else if ([revenue predicate exists]);
+else if () then ([revenue predicate exists]);
 : Revenue List of ActiveAccount is cleared;
 else ([else]);
 : Both Lists of ActiveAccount are cleared;
-
 endif
 stop
 @enduml
