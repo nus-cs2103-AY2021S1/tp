@@ -3,7 +3,7 @@ layout: page
 title: Hou Rui's Project Portfolio Page
 ---
 
-<img src="images/hou-rui.png" width="100px">
+<img src="../images/hou-rui.png" width="100px">
 
 ## Project: Eva
 
@@ -43,5 +43,5 @@ Given below are my contributions to the project.
 * **Documentation**
 
 - Write the documentation (User Guide and Developer Guide) for load command.
-- Write user guide for the improved find command.
+- Write user guide and developer guide for the improved find command.
 - Rewrite the developer guide and redraw the diagrams for storage structure.
