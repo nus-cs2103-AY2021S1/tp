@@ -1616,12 +1616,8 @@ Same as View Contacts Use Case except only contacts that match the given paramet
 2.  Modduke accepts request and displays all meetings
 
     Use case ends.
-    
-**UC18: View Meeting**
 
-Use case same as UC14: Delete Meeting
-
-**UC19: View Timeline**
+**UC18: View Timeline**
 
 **MSS**
 
@@ -1630,21 +1626,7 @@ Use case same as UC14: Delete Meeting
 
     Use case ends.
 
-**Extensions**
-
-* 1a. Consult Name is missing.
-
-  * 1a1. Modduke shows an error message.
-
-    Use case ends
-
-* 1b. Consult with the same name already exists.
-
-  * 1b1. Modduke shows an error message.
-
-    Use case ends.
-
-**UC20: Copy Contact Information**
+**UC19: Copy Contact Information**
 
 **MSS**
 
@@ -1667,7 +1649,7 @@ Use case same as UC14: Delete Meeting
 
     Use case ends.
 
-**UC21: Autocomplete Entity Name (Contact, Module, Meeting)**
+**UC20: Autocomplete Entity Name (Contact, Module, Meeting)**
 
 **MSS**
 
@@ -1695,7 +1677,7 @@ Use case same as UC14: Delete Meeting
     
         Use case ends.
     
-**UC22: Switch to light theme**
+**UC21: Switch to light theme**
 
 **Guarantees**
 
@@ -1708,7 +1690,7 @@ Use case same as UC14: Delete Meeting
 
     Use case ends.
 
-**UC23: Switch to dark theme**
+**UC22: Switch to dark theme**
 
 **Guarantees**
 
@@ -1721,7 +1703,7 @@ Use case same as UC14: Delete Meeting
 
     Use case ends.
     
-**UC24: Command History**
+**UC23: Command History**
 
 **MSS**
 
