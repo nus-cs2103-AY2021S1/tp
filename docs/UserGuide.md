@@ -568,15 +568,16 @@ Doe will be displayed.
 <br>✏️ Examples:
 * `view -s John Doe`
 
+
 #### 6.6.3 Viewing deadline for `Missions` : `-m`
 
 Shows the deadline for the current `Missions`.
 
 <br>**Format: `view -m`**
 
-![ViewMissionDeadline](images/userguide/viewMissionDeadline.png)
-
 <div style="page-break-after: always;"></div>
+
+![ViewMissionDeadline](images/userguide/viewMissionDeadline.png)
 
 #### 6.6.4 Viewing ungraded `Missions` : `-um`
 
