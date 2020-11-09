@@ -1,12 +1,14 @@
 package seedu.address.logic.parser.lessons;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXERCISE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.address.logic.commands.exercise.ExerciseAddCommand;
 import seedu.address.logic.commands.lessons.LessonAddCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -35,6 +37,10 @@ public class LessonAddCommandParser implements Parser<LessonAddCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_LESSON)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LessonAddCommand.MESSAGE_USAGE));
+        } else if (argMultimap.getAllValues(PREFIX_LESSON).size() != 1) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, LessonAddCommand.MESSAGE_USAGE)
+            );
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_LESSON).get());
