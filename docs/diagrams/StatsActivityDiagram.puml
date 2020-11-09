@@ -9,10 +9,10 @@ start
 
 if () then ([given flashcard index is valid])
     :Get statistics of specified flashcard;
-    :Pass statistics to UI through feedback;
+    :Pass the result to the UI;
 else ([else])
     :Throw CommandException;
-    :UI catches CommandException;
+    :Pass the CommandException to the UI;
 endif
     :UI displays results to User;
 stop

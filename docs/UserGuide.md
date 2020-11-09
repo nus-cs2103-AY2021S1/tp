@@ -274,7 +274,7 @@ To find flashcards, you can find them by specifying keywords within their questi
 :information_source: You must provide at least one search parameter.
 
 <div markdown="block" class="alert alert-danger">
-:exclamation: Take note that only flashcards which fullfill **all** the specified search parameters will be displayed. Flashcards that fullfill only some search parameters will not be diplayed.
+:exclamation: Take note that only flashcards which fulfill **all** the specified search parameters will be displayed. Flashcards that fulfill only some search parameters will not be diplayed.
 
 </div>
 
@@ -397,7 +397,7 @@ You can delete a group of flashcards based on a specified tag. All flashcards th
 
 <div markdown="block" class="alert alert-info">
 
-:bulb: You can specify more than one tag to be used when deleting flashcards. Any flashcard with **at least one** of these specified tags will be deleted.
+:bulb: You can specify more than one tag to be used when deleting flashcards. But only flashcards with **all** of these specified tags will be deleted.
 
 </div>
 
@@ -519,7 +519,9 @@ You can also display the statistics of multiple flashcards in a Pie Chart by spe
 1. In the user input box, enter the stats command together with the tags that you want to use as the criteria. For example, if you want to display statistics for all flashcards with the tag `MCQ`, type `stats t/MCQ`.
 
     <div markdown="block" class="alert alert-info">
-    :bulb: You can specify more than one tag to be used when displaying statistics of multiple flashcards. Any flashcard with **at least one** of these specified tags will be included in the aggregation.
+    
+    :bulb: You can specify more than one tag to be used when displaying statistics of multiple flashcards. But only flashcards with **all** of these specified tags will be included in the aggregation.
+    
     </div>
 
     ![StatsTagsStep1](./images/StatsTagsStep1.png)

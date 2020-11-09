@@ -17,5 +17,7 @@ else ([else])
 endif
     :Replace old flashcard
     with updated flashcard;
+    :Pass the result to the UI;
+    :UI displays the results to the User;
 stop
 @enduml
