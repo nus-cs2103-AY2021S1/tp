@@ -6,17 +6,33 @@ title: Joshua's Project Portfolio Page
 ## Joshua Tan - Project Portfolio for QuickCache(tP)
 
 ### Table of contents
-{:toc}
 
-### 1. Introduction
+* [Introduction](#introduction)
+  * [About the team](#about-the-team)
+  * [About the project](#about-the-project)
+* [Summary of Contributions](#summary-of-contributions)
+* [Code Contributions](#code-contributions)
+  * [Creation of base classes](#creation-of-base-classes)
+  * [Find flashcards](#find-flashcards)
+  * [Delete by tag](#delete-by-tag)
+  * [Improve the GUI](#improved-the-gui)
+* [Documentation Contributions](#documentation-contributions)
+  * [Management of overall documentation and website](#management-of-overall-documentation-and-website)
+  * [Creation of diagrams](#creation-of-diagrams)
+* [Other notable contributions](#other-notable-contributions)
+  * [Team management](#team-management)
+  * [Defensive coding and bug fixes](#defensive-coding-and-bug-fixes)
+  * [Community Contributions](#community-contributions)
+
+### Introduction
 
 This document serves as a project portfolio for QuickCache, and outlines my contributions to the project, including the features that I have implemented.
 
-#### 1.1. About the team
+#### About the team
 
 My team of five consists of  five Year 2 Computer Science students, all taking the module CS2103T Software Engineering.
 
-#### 1.2. About the project
+#### About the project
 
 This was a project part of the module CS2103T Software Engineering. The main aim of the project was to develop a Command
 Line Interface (CLI) desktop application. The application had to capitalise on the speed and efficiency of using a CLI.
@@ -25,7 +41,7 @@ My team then decided to create an application that would allow students to creat
 QuickCache was built on top of an existing CLI application called [AddressBook3](https://se-education.org/addressbook-level3/) (AB3).
 We took the entire semester (13 weeks) to build QuickCache and added 15,000 lines of new code to the existing codebase.
 
-### 2. Summary of Contributions
+### Summary of Contributions
 
 My primary role was to help develop these enhancements for QuickCache:
 
@@ -41,7 +57,7 @@ In addition, I served as the Documentation Lead and my responsibilities included
   * Coordinating and delegating jobs to my teammates to ensure proper documentation
   * Ensuring the correctness of the contents of all documentations
 
-### 3. Code Contributions
+### Code Contributions
 
 This section describes my detailed code contributions to the project.
 
@@ -50,7 +66,7 @@ Click on the following links to view the code that I have contributed:
   * [Functional Code](https://github.com/AY2021S1-CS2103T-T13-2/tp/tree/master/src/main/java/quickcache)
   * [Test Code](https://github.com/AY2021S1-CS2103T-T13-2/tp/tree/master/src/test/java/quickcache)
 
-#### 3.1 Creation of base classes
+#### Creation of base classes
 
 **Description:** I kickstarted the project by creating the `Flashcard` class and other dependencies classes.
 The design architecture was inspired by the original `AddressBook3` design. In order to follow the original design, the whole team
@@ -62,7 +78,7 @@ and `Choice` classes for us to use in the future for other purposes such as sear
 
 Pull requests: [\#35](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/35), [\#62](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/62)
 
-#### 3.2 Find flashcards
+#### Find flashcards
 
 **Description:** A user of QuickCache would want to be able to search for flashcards based on their categories. This was
 implemented through the use of the `Tag` organisational system. The user would be using our tagging system to label 
@@ -74,7 +90,7 @@ a `FlashcardContainsTagPredicate` class and additional tests to make sure that t
 
 Pull requests: [\#60](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/60)
 
-#### 3.3 Delete by Tag
+#### Delete by Tag
 
 **Description:** A user of QuickCache would want to delete flashcards based on categories. I developed the enhancement
 to allow QuickCache to search and delete for flashcards using the `Tag` organisational system. This feature enhances the
@@ -87,7 +103,7 @@ to allow QuickCache to search and delete for flashcards using the `Tag` organisa
 
 Pull requests: [\#129](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/129)
 
-#### 3.5 Improved the GUI
+#### Improved the GUI
 
 **Description:** The original GUI was built using [JavaFx](https://openjfx.io). In order to make it original to AB3, I tweaked
 the layout of the GUI. In addition, I worked with my teammate Xing Jian to pick the colour scheme.
@@ -101,7 +117,7 @@ Pull requests: [\#214](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/214)
 
 This section describes my contributions as the Documentation Lead as well as other notable documentations.
 
-#### Management of overall documentation and websites
+#### Management of overall documentation and website
 
 Our team website is hosted on Github pages and I was primarily in charge of managing the contents.
 Part of my responsibilites included ensuring the accuracy of diagrams and information presented in our User Guide (UG)
