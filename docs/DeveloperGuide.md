@@ -194,7 +194,7 @@ Given below is an example usage scenario and how the Add Multiple Choice Questio
 
 Step 1. The user launches the application for the first time. `QuickCache` will be initialized with the initial state.
 
-Step 2. The user executes `addmcd q/question ans/1 c/first c/second` command to add a flashcard.
+Step 2. The user executes `addmcq q/question ans/1 c/first c/second` command to add a flashcard.
 The following sequence diagram shows how the input is parsed:
 
 ![AddMcqSequenceDiagram](images/AddMcqParserSequenceDiagram.png)
@@ -742,7 +742,7 @@ The following sequence diagram shows how the Clearstats mechanism works:
 
 * **Alternative:** Edit the `Statistics` of the `Flashcard` directly
   * Pros: No "unnecessary" creation of a new `Flashcard` and `Statistics` object when a user requests to clear its statistics.
-  * Cons: `Flashcard` and `Statisitcs` become difficult to debug.
+  * Cons: `Flashcard` and `Statistics` become difficult to debug.
 
 ### Export flashcards
 
@@ -838,10 +838,10 @@ The following activity diagram summarizes what happens when a user executes an `
 **Target user profile**:
 
 * Students with many modules who want to memorize points
-* prefer desktop apps over other types
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-* wants to monitor his/her progress
+* Prefer desktop apps over other types
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
+* Wants to monitor his/her progress
 
 **Value proposition**: manage flashcards faster than a typical mouse/GUI driven app with
 a test feature and track the progress later.
@@ -1664,7 +1664,7 @@ User can choose to import or export their data
 
       </div>
       
-### F.11 Saving data
+### 11. Saving data
 
 1. Dealing with missing data file
 
