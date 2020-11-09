@@ -116,6 +116,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 <p align="center"><img src="images/ArchitectureDiagram.png" align="center" width="450"/></p>
 <div align="center">Figure 1: Architecture Diagram</div><br>
 
+<div style="page-break-after: always;"></div>
+
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 <div markdown="span" class="alert alert-primary">
