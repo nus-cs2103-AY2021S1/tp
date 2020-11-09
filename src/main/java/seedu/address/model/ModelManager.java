@@ -233,7 +233,8 @@ public class ModelManager implements Model {
     }
 
     //=========== Undo/Redo =================================================================================
-
+    //@@author YangYue128-helen-reused
+    //Reused from https://github.com/se-edu/addressbook-level4 with minor modifications
     @Override
     public boolean canUndoAppointmentBook() {
         return versionedAppointmentBook.canUndo();
@@ -304,6 +305,7 @@ public class ModelManager implements Model {
                 && filteredPatients.equals(other.filteredPatients)
                 && filteredAppointments.equals(other.filteredAppointments);
     }
+    //@@author
 
     //=========== Model Validation =============================================================
 
