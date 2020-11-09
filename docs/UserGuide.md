@@ -34,10 +34,14 @@ This section explains the format of commands in this User Guide.
 
 - Items in <angular_brackets> are types of parameters to be supplied by the user e.g. in `add -d <description>`, `<description>` refers to a description of an expense such as "Lunch @ Thai Place".
 - Items in square brackets are optional e.g `-d <description> [-@<date>]` means that date input is optional. Both `-d lunch` and `-d lunch -@03-09-2020` are valid.
+
+:bulb: **Note:** Command input is limited to 450 characters total (including command and parameters).
+
 </div>
 
 ## Features <a name="Features"></a>
 
+### Basic 
 1. **Add**
     - Adds new expense record.
     - Command: `add`
@@ -62,6 +66,8 @@ This section explains the format of commands in this User Guide.
     - Adds a remark to an existing expense.
     - Command: `remark`
     - [Usage](#remark)
+
+### Extension
 
 1. **Category Tagging**
     - Tags expenses by their categories.
@@ -172,6 +178,19 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Format: `-r <remark>`
     - Restrictions: Remarks can be up to 200 characters long.
     - Example: `edit t/Food`, `find -d Coffee t/Food`
+
+1. **alias** <a name="alias"></a>
+    - "Also known as" for commands.
+    - Alternative names for commands can be used to invoke original commands.
+    - Added with [alias](#alias) command
+    - Format: `alias <original_command> <new_command>`
+    - Restrictions: 
+        - Alphanumeric 
+        - Up to 10 characters long
+        - Cannot be one fo the command keywords listed in [Commands](#commands)
+        - Only one alias for a command at any point in time.
+    - Example: `alias add spent`
+
 
 <div markdown="span" class="alert alert-primary">
 
@@ -343,13 +362,18 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Original command keyword will still function as before.
     - Input Restrictions: 
         - The 2 commands specified cannot be the same.
-        - New command cannot be a keyword that is already being used.
         - Original command must exist.
+        - New alias command: 
+            - Is case-sensitive.
+            - Cannot be a keyword that is already being used i.e. command keywords listed in [Commands](#commands)
+            - Must be alphanumeric.
+            - Can be up to 10 characters long.
+            - Cannot remap the `alias` and `resetAlias` commands.
     - Format: `alias <original_command> <new_command>`
     - Example: `alias add spent`
     <div markdown="span" class="alert alert-primary">
     
-    :bulb: **Note**: Only one user-provided alias can be mapped to an original alias at any point in time. If a new alias is provided for a commnad, the old user-alias will be un-mapped.
+    :bulb: **Note**: Only one user-provided alias command can be mapped to an original command at any point in time. If a new alias is provided for a command, the old user-alias will be un-mapped.
 
     </div>
     
