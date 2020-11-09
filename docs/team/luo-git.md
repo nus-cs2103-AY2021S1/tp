@@ -84,7 +84,7 @@ Given below are my contributions to the project.
   * PRs reviewed (with non-trivial review comments):
   [\#193](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/193),
   [\#81](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/81),
-  [\#87](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/87),
+  [\#285](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/285),
   [\#276](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/276)
   * Contributed to forum discussions
   (examples: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/370),
@@ -96,7 +96,7 @@ Given below are my contributions to the project.
   [2](https://github.com/luo-git/ped/issues/3),
   [3](https://github.com/luo-git/ped/issues/6))
 
-## \[Optional\] Contributions to the User Guide (Extract)
+## Contributions to the User Guide (Extract)
 
 As the information age encroaches out lives, our digital footprint has become larger and larger.
 When we accumulate many files from work, school and daily lives,
@@ -108,26 +108,32 @@ This is where our solution, HelloFile, comes in.
 
 *HelloFile* is a desktop application for professionals who have to manage a lot of files, specifically **tech savvy CS2103T CS students**.
 It is optimised for use under Command Line Interface (CLI).
-By using our application, you can tag frequently used files/folders with a short nickname, and open your them
-with a single command. We hope by using our application, you can manage your files with ease. You can
+By using our application, you can tag frequently used files/folders with a short nickname, and open them
+with a single command. We hope by using our application, you can manage your files easily. You can
 make your life easier one file at a time, and free up your precious time to spend on things you truly enjoy.
 
-## \[Optional\] Contributions to the Developer Guide (Extract)
+## Contributions to the Developer Guide (Extract)
 
 ### Adding of Tags: TagCommand
 
-[TagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/TagCommand.java)
+[TagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/TagCommand.java) 
 adds a new `Tag` to `AddressBook` if the tag's `TagName` is not a duplicate and the tag's `FileAddress`
-is pointing to a valid file.
+is pointing to a valid file. 
+Moreover, TagCommand checks if the file is present before adding the tag to `Model`.
 
-Firstly, `TagCommand` checks if the file address given is absolute or relative file path.
+This diagram shows a successful execution of `TagCommand`, resulting in a new tag added to `Model`.
+![TagSuccessSequence](images/TagCommandSuccessSequenceDiagram.png)
+
+This diagram shows an unsuccessful execution of `TagCommand`, resulting in `CommandException` thrown.
+In this case, the file was not present.<br>
+![TagFailureSequence](images/TagCommandFailureSequenceDiagram.png)
+
+`TagCommand` checks if the file address given is absolute or relative file path.
 If the address is relative, it converts the relative path to absolute address by concatenating the relative
 path to the current path stored in `Model`.
-
 We designed `TagCommand` this way so that the users can use our File Explorer interface to navigate to
 a folder, then tag files using relative file addresses.
 
-Lastly, TagCommand checks if the file is present using `java.io.File.exists()` before adding the tag to `Model`.
 
 ### Opening of Tags: OpenCommand
 
@@ -138,12 +144,15 @@ to be opened.
 After that, it opens the files located at the `Tag`'s `FileAddress` if the file is present and user has read permission.
 `CommandException` is thrown if tag is not present, the file cannot be found or no read permission.
 
+This sequence diagram shows a successful execution of `OpenCommand`. <br>
+![OpenCommandSuccessExecution](images/OpenCommandSuccessSequenceDiagram.png)
+
 We implemented OpenCommand using `java.awt.Desktop`,
 which supports various desktop capabilities such as `open()`. `Desktop` ensures that our application can operation across
 most java-supported platforms, hence fulfilling our product's requirement to be platform independent.
 
 However, there are some significant drawback of using `java.awt.Desktop`. The platform that HelloFile operates on must
-support `Desktop`. This means that our application will never work on a headless environment.
+support `Desktop`. This means that our application will never work on a headless environment. 
 As a developer, you can check whether the environment supports `Desktop`
 using the library method `java.awt.Desktop.isDesktopSupported()`.
 
