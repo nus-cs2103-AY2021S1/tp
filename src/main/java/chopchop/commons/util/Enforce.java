@@ -8,6 +8,19 @@ import java.util.Optional;
 
 /**
  * Replacement for assertions. Why does this class exist? to increase codecov percentage.
+ *
+ * Using a Java assert creates one static initialiser in each class containing 1 statement and 1 branch,
+ * as well as 4 branches at each usage site. (2x2 -- asserts on/off, condition true/false).
+ *
+ * As one might expect, this tanks codecov when asserts are used liberally -- which defeats the purpose.
+ * Thus, this class was created instead to "abstract out" the branches taken/not taken, so the penalty
+ * is only applied once. Is this gaming the system? Without a doubt, yes.
+ *
+ * Furthermore, Java comparisons (eg. {@code a < b}) create a branch because the JVM is not well-designed,
+ * which is why we have {@code enforceLessThan} and friends.
+ *
+ * If you don't care about codecov (or when the Jacoco people finally fix their library), this class can be
+ * discarded.
  */
 public class Enforce {
 

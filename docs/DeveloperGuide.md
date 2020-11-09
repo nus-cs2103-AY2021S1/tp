@@ -95,8 +95,12 @@ The `UI` component:
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+The following activity diagram shows the general flow of events for the Ui component when the application is launched:
 
-
+<div style="text-align: center; padding-bottom: 2em">
+<img src="diagrams/ui/UiLauchActivityDiagram.png" style="width: 45%"> <br />
+Figure 999: <i>An activity diagram for the Ui during application launch</i>
+</div>
 
 
 -------------------
@@ -123,7 +127,7 @@ This is the general flow of events when a command is executed:
 
 For example, this is a sequence diagram showing the deletion of a recipe:
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/dg/seq_delete_recipe.png" style="width: 95%" /> <br />
+<img src="images/dg/DeleteSequenceDiagram.png" style="width: 95%" /> <br />
 Figure 5: <i>A sequence diagram showing the execution of <code>delete recipe #1</code> in the Logic component</i>
 </div>
 
@@ -159,7 +163,7 @@ The Model component:
 
 Of note in the Model component are the `Recipe` and `Ingredient` classes; below is the class diagram for both:
 <div style="text-align: center; padding-bottom: 2em">
-<h2 style="background-color: pink">TODO: class diagram for Recipe and Ingredient</h2>
+<img src="images/dg/RecipeIngredient.png"> <br/>
 Figure 7: <i>The class diagram for Recipes and Ingredients</i>
 </div>
 
@@ -465,12 +469,12 @@ When extending ChopChop to include new commands, it is important to follow these
 <a name="stats-feature"></a>
 ### 4.5&ensp;Statistics feature
 
-Main developer: trav1st
+Main developer: **trav1st**
 
 <a name="stats-curr-impl"></a>
 #### 4.5.1&ensp;Current implementation
 
-The statistics feature keeps track of the recipes that were made and the ingredients that were consumed in the process. 
+The statistics feature keeps track of the recipes that were made and the ingredients that were consumed in the process.
 The feature spans across the 4 components of the App.
 It is mainly supported by `UsageList` and `Usage` in the Model component. `UsageList` and `Usage` are similar to `EntryBook` and `Entry` respectively in terms of their purpose.
 
@@ -480,7 +484,7 @@ It is mainly supported by `UsageList` and `Usage` in the Model component. `Usage
 Figure 999: <i>Usage component in Model</i>
 </div>
 
-The `Model` interface exposes various operations to support the addition, removal of usages and getting statistics from `UsageList`
+The `Model` interface exposes various operations to support the addition and removal of usages, and getting statistics from `UsageList`.
 
 During the execution of `MakeRecipeCommand`, a `RecipeUsage` and `IngredientUsage`s are created and added to `recipeUsageList` and `ingredientUsageList` through operations in `Model` interface.
 Since `MakeRecipeCommand` is undoable, these usages are removed from the lists upon undoing the command.
@@ -492,7 +496,7 @@ The process is demonstrated below by the code snippet of `MakeRecipeCommand#undo
         model.removeRecipeUsage(this.recipe);
 ```
 
-After changes to `Model` were made, the `Storage` component saves the usage lists in json format.
+After changes to `Model` were made, the `Storage` component saves the `UsageList`s in json format.
 Finally, the `StatsBox` is updated based on the `CommandResult` returned after the execution of each command.
 
 #### 4.5.2&ensp;Design considerations
@@ -503,64 +507,69 @@ This section details the design considerations of the statistics feature.
 
 Aspect 1: How the usages are tracked and saved.
 
-* Consideration 1: 
+* Consideration 1:
 Store the history of commands executed. The statistics of recipe and ingredient usages can be computed based on the commands executed.
-For example, currently there are 10 cabbages and the `make recipe salad` command was executed 3 times yesterday. Assuming salad requires 2 cabbages to make, 6 cabbages were used yesterday.
-    * Pros: 
-        * Requires less memory usage.
-        * Allows more statistics to be computed as all changes to the Model have to be done through the execution of a command.
-    * Cons: 
-        * Getting statistics for ingredient usage can be tricky as recipes can be deleted and edited. In the example above, exact ingredient consumptions have to be stored in addition to the `make recipe salad` text command.
-        * Violates Single Responsibility Principle and Separation of Concerns as the history of command is being used for statistics purpose in addition to `undo` which uses a non-persistent history of command.
-
-* Consideration 2: 
-Store the relevant information such as name, and the date and time of which the recipe was made or ingredient was used in `Usage` which is then contained in `UsageList`.
-    * Pros: 
-        * Easier to implement. Allows quick access to certain data such as latest recipe usages.
-    * Cons:
-        * Modifications to `Usage` and its associated classes may be required to support more statistics. 
-
-Aspect 2: Responsibility of `UsageList`
-* Consideration 1: 
-Make `getRecentlyUsed` and `getUsageBetween` return Pair of Strings
-    * Pros: 
-        * Easier to implement
-    * Cons: 
-        * Violates the Single Responsibility Principle
-* Consideration 2: 
-Make `getRecentlyUsed` and `getUsageBetween` return intermediate values
-    * Pros: 
-        * `UsageList` only needs to handle adding, removing and returning of `Usage`
-    * Cons: 
-        * Additional processing is required in `ModelManager`
-
-Aspect 3: GUI of statistics box
-* Consideration 1: 
-Update the statistics box after every execution of command. 
+For example, currently there are 10 cabbages and the `make recipe salad` command was executed 3 times yesterday. Assuming salad required 2 cabbages to make, 6 cabbages were used yesterday.
     * Pros:
-        * User will be shown recently made recipes list after they executed non-statistics commands (other than `stats recipe recent`). This makes the app feel more responsive as both `StatsBox` and `CommandOutput` panels are updated.
+        * Requires less memory usage.
+        * Allows more statistics to be computed as all changes to `Model` have to be done through the execution of a command.
     * Cons:
-        * Additional computation required to refresh `StatsBox`. The user might want to have previous stats command results stay in the statistics box for future reference. 
-* Consideration 2: Notify and update statistics box with `CommandResult` in `MainWindow` only after the execution of statistics commands
-    * Pros: 
+        * Getting statistics for ingredient usage can be tricky as recipes can be deleted and edited. In the example above, to compute the number of cabbages used, exact ingredient consumptions have to be stored in addition to the `make recipe salad` text command.
+        * Violates Single Responsibility Principle and Separation of Concerns as the history of command is being used for statistics purposes in addition to the `undo` feature which uses a non-persistent history of command.
+
+* **Consideration 2(chosen)**:
+Store the relevant information such as name, and the date and time of which the recipe was made or ingredient was used in `Usage` which is then stored in `UsageList`.
+    * Pros:
+        * Easier to implement
+        * Allows quick access to certain data such as latest recipe usages.
+    * Cons:
+        * Modifications to `Usage` and its associated classes may be required to support computation of more kinds of statistics.
+
+Aspect 2: Responsibility of `UsageList`.
+* **Consideration 1(chosen)**:
+Make `getRecentlyUsed` and `getUsageBetween` return a Pair of Strings.
+    * Pros:
+        * Easier to implement.
+    * Cons:
+        * Violates the Single Responsibility Principle.
+* Consideration 2:
+Make `getRecentlyUsed` and `getUsageBetween` return intermediate values.
+    * Pros:
+        * `UsageList` only needs to handle adding, removing and returning of `Usage`.
+    * Cons:
+        * Additional processing is required in `ModelManager`.
+
+Aspect 3: GUI of statistics box.
+* **Consideration 1(chosen)**:
+Update the statistics box after every execution of command.
+    * Pros:
+        * The user will be shown recently made recipes list after they executed non-statistics commands (other than `stats recipe recent`). This makes the app feel more responsive as both `StatsBox` and `CommandOutput` panels are updated.
+    * Cons:
+        * Additional computation required to refresh `StatsBox`.
+        * The user might want to have previous stats command results stay in the statistics box for future reference.
+* Consideration 2: Notify and update statistics box with `CommandResult` in `MainWindow` only after the execution of statistics commands.
+    * Pros:
         * The statistics results remain in the statistics box even after the execution of other commands so the user does not have to execute the statistics command again to view the statistics.
     * Cons:
-        * User will have to execute `stats recipe recent` to obtain the default view on statistics box again.
+        * The user will have to execute `stats recipe recent` to obtain the default view on statistics box again.
 
 <a name="stats-related-commands"></a>
-#### 4.5.3&ensp;Related commands 
+#### 4.5.3&ensp;Related commands
 
-`StatsCommandParser` parses the Statistics commands and returns the corresponding Command object based on user's input.
-For more information on the Parser, view 
-7 statistics commands are `StatsRecipeTopCommand`, `StatsRecipeMadeCommand`, `StatsIngredientUsedCommand`, `StatsRecipeRecentCommand` and `StatsIngredientRecentCommand` which update the list in `StatsBox` as well as `StatsRecipeClearCommand` and `StatsIngredientClearCommand` which remove all `Usage` in their respective `UsageList`.
-All the statistics commands function in a similar way so we will go through just one of command in details below.
+`StatsCommandParser` parses the Statistics commands and returns the corresponding `Command object` based on user's input.
+For more information on the Parser, view [4.1 Command Parser](#41command-parser). 
+
+
+The7 supported statistics commands are `StatsRecipeTopCommand`, `StatsRecipeMadeCommand`, `StatsIngredientUsedCommand`, `StatsRecipeRecentCommand` and `StatsIngredientRecentCommand` which update the `recipeList` in `StatsBox`, as well as `StatsRecipeClearCommand` and `StatsIngredientClearCommand` which remove all `Usage` in their respective `UsageList`.
+All the statistics commands function in a similar way so we will go through just one of commands in details below.
 
 <a name="view-top-recipes"></a>
-##### View top recipes command
-The view top recipes command allows the user to see the recipes that were made the most number of times based on the `Usage`s saved in `UsageList`.
-It is executed with `StatsRecipeTopCommand` by parsing `stats recipe top` as the user input.
+<h4>View top recipes command</h4>
 
-The sequence diagram below shows the sequence of interactions between `Model` where the UsageList is contained in and the `Logic` components after the user executes StatsRecipeTopCommand with the user input `stats recipe top`.
+The view top recipes command allows the user to see the recipes that were made the most number of times based on the `Usage` saved in `UsageList`.
+It is executed with an object of `StatsRecipeTopCommand` which is created after parsing `stats recipe top` as the user command.
+
+The sequence diagram below shows the sequence of interactions between the `Model` and the `Logic` components after the user command `stats recipe top` is executed.
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/StatsRecipeTopSequenceDiagram.png"> <br />
 Figure ???: <i>The sequence diagram of the execution of StatsRecipeTopCommand </i>
@@ -569,11 +578,10 @@ Figure ???: <i>The sequence diagram of the execution of StatsRecipeTopCommand </
 1. `Logic` uses `CommandParser` to parse the user input.
 2. `CommandParser` calls on the static method `parseStatsCommand` of `StatsCommandParser` class.
 3. `StatsCommandParser` then calls on methods `getCommandTarget` and `parseRecipeStatsCommand` to determine which command object should be instantiated.
-4. An instance of `StatsRecipeTopCommand` is instantiated. by `StatsCommandParser`.
-5. This instance is returned to the `Logic`.
-6. `Logic` calls the `execute` method of `StatsRecipeTopCommand`
-7. `StatsRecipeTopCommand` calls `getMostMadeRecipeList` of `Model` and a list of String pairs is returned. This list is encapsulated in `CommandResult` which is then returned to `Logic`.
-
+4. A `StatsRecipeTopCommand` object is instantiated by `StatsCommandParser`.
+5. This object is passed back to and executed by the `LogicManager`.
+6. `StatsRecipeTopCommand` calls `getMostMadeRecipeList` of `Model` and the result of which is encapsulated in `CommandResult`.
+7. This `CommandResult` object is passed back to `LogicManager`. Additionally, the object then updates `StatsBox` to display a list of top recipes and a confirmation message as shown below. (this interaction is not shown in this sequence diagram).
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/RecipeTopCmdStatsBox.png" style="width: 40%"> <br />
@@ -581,9 +589,9 @@ Figure 8000. GUI of statistics box after `stats recipe top` command is executed<
 </div>
 
 
-### 4.7&ensp;Undo/redo feature
+### 4.6&ensp;Undo/redo feature
 
-#### Proposed Implementation
+Main developer: **seowalex**
 
 The undo/redo feature is implemented using a `HistoryManager`, which keeps track of and stores the command history, along with a list of parsed undoable `Command`s.
 Every command that can be undone/redone implements the `Undoable` interface, which requires the implementation of the `Undoable#undo()` method.
@@ -601,45 +609,66 @@ Further details can be seen in the example usage scenario detailing the mechanis
 Step 1. The user launches the application for the first time.
 The `HistoryManager` is initialised with an empty list of `CommandHistory`s, as no commands have been entered, and the `currentIndex` pointer is intialised to 0.
 
-![UndoRedoState0](images/dg/state/UndoRedoState0.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/dg/state/UndoRedoState0.png"> <br />
+Figure 999: <i>The initial state of HistoryManager</i>
+</div>
 
 Step 2. The user executes `delete recipe #5` to delete the 5th recipe from the recipe book.
 The model is updated accordingly, and the `DeleteRecipeCommand` is saved by the `HistoryManager` by adding to the `CommandHistory` list, as the command implements the `Undoable` interface.
 The `currentIndex` pointer is also incremented by one, as the application is currently at the state after the `DeleteRecipeCommand` is executed.
 
-![UndoRedoState1](images/dg/state/UndoRedoState1.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/dg/state/UndoRedoState1.png"> <br />
+Figure 999: <i>The state of HistoryManager after command "delete recipe #5"</i>
+</div>
 
 Step 3. The user executes `add recipe beef noodles` to add a new recipe.
 Similarly, the model is updated accordingly, and the `AddRecipeCommand` is added to the `CommandHistory` list.
 The `currentIndex` pointer is once again incremented by one.
 
-![UndoRedoState2](images/dg/state/UndoRedoState2.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/dg/state/UndoRedoState2.png"> <br />
+Figure 999: <i>The state of HistoryManager after command "add recipe beef noodles"</i>
+</div>
 
 Step 4. The user now desires to undo the last action, and executes the `undo` command.
 The `undo` command will call `HistoryManager#undo()`, which will decrement the `currentIndex` pointer by one and retrieve the command from the list at the specified index.
 The command's `Undoable#undo()` operation will then be executed.
 
-![UndoRedoState3](images/dg/state/UndoRedoState3.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/dg/state/UndoRedoState3.png"> <br />
+Figure 999: <i>The state of HistoryManager after command "undo"</i>
+</div>
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/dg/UndoSequenceDiagram.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/dg/UndoSequenceDiagram.png"> <br />
+Figure 999: <i>A sequence diagram for an <code>undo</code> command</i>
+</div>
 
-The `redo` command does the opposite — it calls `HistoryManager#redo()`, which executes the command `currentIndex` is pointing to, and increments the `currentIndex` by one.
+The `redo` command does the opposite — it calls `HistoryManager#redo()`, which executes the command `currentIndex` is pointing to, and decrements the `currentIndex` by one.
 
 Step 5. The user then decides to execute the command `list recipes`.
 Commands that do not modify the model, such as `list recipes`, will not be stored by the `HistoryManager` as they cannot be undone.
 Since the `currentIndex` is not pointing to the end of the `CommandHistory` list, all commands starting from the `currentIndex` will be cleared, which in this case is the `add recipe beef noodles` command.
 
-![UndoRedoState4](images/dg/state/UndoRedoState4.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/dg/state/UndoRedoState4.png"> <br />
+Figure 999: <i>The state of HistoryManager after command "list recipes"</i>
+</div>
 
 The following activity diagram summarises what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/dg/CommitActivityDiagram.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/dg/CommitActivityDiagram.png"> <br />
+Figure 999: <i>An activity diagram for the undo/redo feature</i>
+</div>
 
-#### Design consideration:
+<h4>Design considerations</h4>
 
-##### Aspect: How undo & redo executes
+<h5>Aspect: How state is saved</h5>
 
 * **Alternative 1 (current choice):** Save each undoable command as it is executed. Each command implements its own undo/redo operation.
   * Pros: Uses less memory since the entire state of the application does not have to be saved, and is also faster since only a small part of the model needs to be modified each time.
@@ -684,7 +713,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Person learning how to cook           | View my recipes                                                                   | Not get the instructions wrong.                           |
 | `* * *`  | Picky eater                           | Delete my recipes                                                                 | Remove recipes that I do not like.                        |
 | `* * *`  | Forgetful home cook                   | Record recipes that I learnt from my friends and television shows                 | Try to cook them in the future.                           |                                                                         |
-| `* * *`  | Person that cannot decide             | Select recipes to cook automatically based on the ingredients that i have         | Eat a wider variety of meals.                             | 
+| `* * *`  | Person that cannot decide             | Select recipes to cook automatically based on the ingredients that i have         | Eat a wider variety of meals.                             |
 | `* * *`  | Home cook                             | Delete the ingredients                                                            | Remove ingredients that have expired.                     |
 | `* * *`  | Home cook                             | Edit the ingredients                                                              | Edit ingredients quantities when some parts are spoilt.   |
 | `* * *`  | Home cook                             | View a list of all my recipes                                                     | Decide which recipe to cook.                              |
@@ -739,12 +768,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error messages.  
+    * 2a1. FRMS displays an error messages.
 	  Use case ends.
 * 2b. FRMS detects a duplicate recipe.
-    * 2b1. FRMS displays an error messages.  
+    * 2b1. FRMS displays an error messages.
       Use case ends.
-      
+
 <a name="U02"></a>
 **Use case: U02 - Delete recipe**
 
@@ -759,13 +788,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.  
+    * 2a1. FRMS displays an error message.
       Use case ends.
 * 3a. There are no recipes in the FRMS.
-    * 3a1. FRMS displays an error message.  
+    * 3a1. FRMS displays an error message.
       Use case ends.
 * 3b. The recipe to be deleted is not the FRMS.
-    * 3b1. FRMS displays an error message.  
+    * 3b1. FRMS displays an error message.
 	  Use case ends.
 
 
@@ -784,19 +813,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format.
-    * 2a1. FRMS displays an error message.  
+    * 2a1. FRMS displays an error message.
       Use case ends.
 * 3a. FRMS detects an invalid input parameter.
-    * 3a1. FRMS displays an error message.  
+    * 3a1. FRMS displays an error message.
       Use case ends.
 * 4a. There are no recipes in the FRMS.
-    * 4a1. FRMS displays an error message.  
+    * 4a1. FRMS displays an error message.
       Use case ends.
 * 4b. The recipe to be edited is not the FRMS.
-    * 4b1. FRMS displays an error message.  
+    * 4b1. FRMS displays an error message.
 	  Use case ends.
-	  
-	  
+
+
 <a name="U04"></a>
 **Use case: U04 - List recipes**
 
@@ -811,10 +840,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays error messages.  
+    * 2a1. FRMS displays error messages.
 	  Use case ends.
 * 3a. There are no recipes in the FRMS.
-     * 3a1. FRMS displays an error message.  
+     * 3a1. FRMS displays an error message.
        Use case ends.
 
 
@@ -832,13 +861,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.  
+    * 2a1. FRMS displays an error message.
       Use case ends.
 * 3a. There are no recipes in the FRMS.
-    * 3a1. FRMS displays an error message.  
+    * 3a1. FRMS displays an error message.
       Use case ends.
 * 3b. The recipe to be displayed is not the FRMS.
-    * 3b1. FRMS displays an error message.  
+    * 3b1. FRMS displays an error message.
 	  Use case ends.
 
 <a name="U06"></a>
@@ -855,15 +884,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.  
+    * 2a1. FRMS displays an error message.
       Use case ends.
 * 3a. There are no recipes in the FRMS.
-    * 3a1. FRMS displays an error message.  
+    * 3a1. FRMS displays an error message.
       Use case ends.
 * 3b. There are no recipes that match the filter conditions in the FRMS.
-    * 3b1. FRMS displays an error message.  
+    * 3b1. FRMS displays an error message.
       Use case ends.
-              
+
 
 <a name="U07"></a>
 **Use case: U07 - Make recipe**
@@ -879,16 +908,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.  
+    * 2a1. FRMS displays an error message.
       Use case ends.
 * 3a. There are no recipes in the FRMS.
-    * 3a1. FRMS displays an error message.  
+    * 3a1. FRMS displays an error message.
       Use case ends.
 * 3b. The recipe to be displayed is not the FRMS.
-    * 3b1. FRMS displays an error message.  
+    * 3b1. FRMS displays an error message.
 	  Use case ends.
-	  
-	  
+
+
 <a name="U08"></a>
 **Use case: U08 - List recipe recommends**
 
@@ -903,13 +932,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays error messages.  
+    * 2a1. FRMS displays error messages.
 	  Use case ends.
 * 3a. There are no recipes in the FRMS.
-     * 3a1. FRMS displays an error message.  
-       Use case ends.	  
-	  
-	  
+     * 3a1. FRMS displays an error message.
+       Use case ends.
+
+
 <a name="U09"></a>
 **Use case: U09 - View recipe statistics**
 
@@ -924,13 +953,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.  
+    * 2a1. FRMS displays an error message.
       Use case ends.
 * 3a. There are no recipe statistics in the FRMS.
-    * 3a1. FRMS displays an error message.  
+    * 3a1. FRMS displays an error message.
       Use case ends.
 * 3b. There are no recipe statistics for the given parameters in the FRMS.
-    * 3b1. FRMS displays an error message.  
+    * 3b1. FRMS displays an error message.
       Use case ends.
 
 
@@ -948,17 +977,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions:**
 
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.  
+    * 2a1. FRMS displays an error message.
       Use case ends.
 * 2b. FRMS detects a duplicate recipe but the unit of measurement for the quantity of the ingredients are the same.
     * 2b1. FRMS updates the quantity of the ingredient.
-    * 2b2. FRMS displays a confirmation message. 
+    * 2b2. FRMS displays a confirmation message.
       Use case ends.
 * 2c. FRMS detects a duplicate recipe but the unit of measurement for the quantity of the ingredients are different.
-    * 2a1. FRMS displays an error message.  
+    * 2a1. FRMS displays an error message.
       Use case ends.
-    
-    
+
+
 <a name="U11"></a>
 **Use case: U11 - Delete ingredient**
 
@@ -972,13 +1001,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions:**
 
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.  
+    * 2a1. FRMS displays an error message.
       Use case ends.
 * 3a. There are no ingredients in the FRMS.
-    * 3a1. FRMS displays an error message.  
+    * 3a1. FRMS displays an error message.
       Use case ends.
 * 3b. The ingredient to be deleted is not the FRMS.
-    * 3b1. FRMS displays an error message.  
+    * 3b1. FRMS displays an error message.
 	  Use case ends.
 
 
@@ -997,16 +1026,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format.
-    * 2a1. FRMS displays an error message.  
+    * 2a1. FRMS displays an error message.
       Use case ends.
 * 3a. FRMS detects an invalid input parameter.
-    * 3a1. FRMS displays an error message.  
+    * 3a1. FRMS displays an error message.
       Use case ends.
 * 4a. There are no ingredients in the FRMS.
-    * 4a1. FRMS displays an error message.  
+    * 4a1. FRMS displays an error message.
       Use case ends.
 * 4b. The ingredient to be edited is not the FRMS.
-    * 4b1. FRMS displays an error message.  
+    * 4b1. FRMS displays an error message.
 	  Use case ends.
 
 
@@ -1024,10 +1053,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays error messages.  
+    * 2a1. FRMS displays error messages.
 	  Use case ends.
 * 3a. There are no ingredients in the FRMS.
-     * 3a1. FRMS displays an error message.  
+     * 3a1. FRMS displays an error message.
        Use case ends.
 
 
@@ -1045,16 +1074,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.  
+    * 2a1. FRMS displays an error message.
       Use case ends.
 * 3a. There are no ingredients in the FRMS.
-    * 3a1. FRMS displays an error message.  
+    * 3a1. FRMS displays an error message.
       Use case ends.
 * 3b. There are no ingredients that match the filter conditions in the FRMS.
-    * 3b1. FRMS displays an error message.  
+    * 3b1. FRMS displays an error message.
       Use case ends.
-              
-              
+
+
 <a name="U15"></a>
 **Use case: U15 - View ingredient statistics**
 
@@ -1069,15 +1098,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.  
+    * 2a1. FRMS displays an error message.
       Use case ends.
 * 3a. There are no ingredient statistics in the FRMS.
-    * 3a1. FRMS displays an error message.  
+    * 3a1. FRMS displays an error message.
       Use case ends.
 * 3b. There are no ingredient statistics for the given parameters in the FRMS.
-    * 3b1. FRMS displays an error message.  
+    * 3b1. FRMS displays an error message.
       Use case ends.
-  
+
 
 
 
@@ -1104,6 +1133,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
+(For all test cases below, a corresponding output will be displayed in the `Command Output Box`, unless specified otherwise)
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
@@ -1115,259 +1146,707 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file. <br>
+      Expected: Shows the GUI with a set of sample data. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   1. Re-launch the app by double-clicking the jar file. <br>
+      Expected: The most recent window size and location is retained.
+
+1. Exit Application
+
+    1. Type `quit` in the command box, and press <kbd>enter</kbd> to exit the application. <br>
+       Expected: The window closes and the application exits.
 
 #### B.1.2&ensp;Recall commands previously entered
+
 1. Recalling commands without any prior input
    1. Prerequisites: No commands executed since launch.
-   
-   1. Test Case: `list recipe` without entering followed by pressing the <kbd>↑</kbd> key.  
+
+   1. Test Case: `list recipe` without entering followed by pressing the <kbd>↑</kbd> key <br>
       Expected: `list recipe` remains in the command box with the caret before the first char of the text.
-      
-   1. Test Case: `list recipe` without entering followed by pressing the <kbd>↓</kbd> key.  
-      Expected: `list recipe` remains in the command box with the caret after the last char of the text.      
-      
+
+   1. Test Case: `list recipe` without entering followed by pressing the <kbd>↓</kbd> key <br>
+      Expected: `list recipe` remains in the command box with the caret after the last char of the text.
+
 1. Recalling commands previously entered
    1. Prerequisites: None.
-   
-   1. Test Case: `list recipe` followed by pressing the <kbd>↑</kbd> key.  
+
+   1. Test Case: `list recipe` followed by pressing the <kbd>↑</kbd> key  <br>
       Expected: `list recipe` appears in the command box with the caret after the last char of the text.
-    
-   1. Test Case: `list rec` followed by pressing the <kbd>↑</kbd> key.  
+
+   1. Test Case: `list rec` followed by pressing the <kbd>↑</kbd> key <br>
       Expected: The command box is cleared.
-      
-   1. Test Case: `list recipe` followed by `list ingredient` followed by pressing the <kbd>↑</kbd> twice. 
+
+   1. Test Case: `list recipe` followed by `list ingredient` followed by pressing the <kbd>↑</kbd> twice <br>
       Expected: `list ingredient` appears in the command box, before `list recipe` appears in the command box with the caret after the last char of the text in both cases.
-      
-   1. Test Case: `list recipe` followed by `list ingredient` followed by pressing the <kbd>↑</kbd> key twice, then the <kbd>↓</kbd> key. 
+
+   1. Test Case: `list recipe` followed by `list ingredient` followed by pressing the <kbd>↑</kbd> key twice, then the <kbd>↓</kbd> key <br>
       Expected: `list ingredient`, then `list recipe` appears in the command box before being replaced by `list ingredient` with the caret after the last char of the text in all cases.
 
 #### B.1.3&ensp;Autocomplete input
 1. Autocomplete command
    1. Prerequisites: None.
-   
-   1. Test Case: Pressing the <kbd>tab</kbd> key.
+
+   1. Test Case: Pressing the <kbd>tab</kbd> key <br>
       Expected: Command box remains empty.
-   
-   1. Test Case: Typing `l` followed by pressing the <kbd>tab</kbd> key.
+
+   1. Test Case: Typing `l` followed by pressing the <kbd>tab</kbd> key <br>
       Expected: `list` appears in the command box with the caret after the last char of the text.
 
 1. Autocomplete command target
    1. Prerequisites: None.
-   
-   1. Test Case: Pressing the <kbd>tab</kbd> key.
+
+   1. Test Case: Pressing the <kbd>tab</kbd> key <br>
       Expected: Command box remains empty.
-   
-   1. Test Case: Typing `l` followed by pressing the <kbd>tab</kbd> key, then `r` before pressing <kbd>tab</kbd>.
+
+   1. Test Case: Typing `l` followed by pressing the <kbd>tab</kbd> key, then `r` before pressing <kbd>tab</kbd> <br>
       Expected: `list recipe ` appears in the command box with the caret after the last char of the text.
 
 1. Autocomplete user defined parameters without recipes and ingredients
    1. Prerequisites: No recipes in ChopChop. In this section, we will start off with `view recipe ` in the command box.
-   
-   1. Test Case: Pressing the <kbd>tab</kbd> key.
+
+   1. Test Case: Pressing the <kbd>tab</kbd> key <br>
       Expected: Command box remains empty.
-   
-   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd>.
+
+   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> <br>
       Expected: `view recipe ` remains in the command box with the caret 1 en space after the last char of the text.
-      
+
 1. Autocomplete user defined parameters
    1. Prerequisites: Only 3 recipes `apple pie`, `apple slices` and `apple juice` starting with the letter `a` in ChopCHop. In this section, we will start off with `view recipe ` in the command box.
-   
-   1. Test Case: Pressing the <kbd>tab</kbd> key.
+
+   1. Test Case: Pressing the <kbd>tab</kbd> key <br>
       Expected: Command box remains empty.
-   
-   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd>.
+
+   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> <br>
       Expected: `view recipe apple pie ` appears in the command box with the caret 1 en space after the last char of the text.
-      
-   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> twice.
+
+   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> twice <br>
       Expected: `view recipe apple juice ` appears in the command box with the caret 1 en space after the last char of the text.
-      
-   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> thrice.
+
+   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> thrice <br>
       Expected: `view recipe apple slices ` appears in the command box with the caret 1 en space after the last char of the text.
-      
-   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> four times.
+
+   1. Test Case: Typing `a` followed by pressing <kbd>tab</kbd> four times <br>
+
       Expected: `view recipe apple pie ` appears in the command box with the caret 1 en space after the last char of the text.
- 
+
 #### B.1.4&ensp;Undo commands previously entered
 1. Undoing an undoable command
-   1. Prerequisites: None.
-   
-   1. Test Case: `add recipe duck rice` followed by `undo`.
-      Expected: The added recipe is removed. The command output box shows details of the undone command.        
-      
-   1. Test Case: `add recipe duck rice` followed by `add recipe duck soup`, then `undo` twice.
-      Expected: The added recipes are removed. The command output box shows details of the second undone command.              
-      
+   1. Prerequisites: None. 
+
+   1. Test Case: `add recipe duck rice` followed by `undo` <br>
+      Expected: The added recipe is removed.
+
+   1. Test Case: `add recipe duck rice` followed by `add recipe duck soup`, then `undo` twice <br>
+      Expected: The added recipes are removed.
+
 1. Undoing an command that cannot be undone
    1. Prerequisites: No commands entered since launch.
-   
-   1. Test Case: `list recipe` followed by `undo`.
-      Expected: The command output box shows an error message.       
+
+   1. Test Case: `list recipe` followed by `undo` <br>
+      Expected: Nothing happens. An error is displayed in the command output box.
 
 1. Undoing an command that cannot be undone with undoable commands entered before.
    1. Prerequisites: None.
-   
-   1. Test Case: `add recipe duck rice` followed by `list recipe`, then `undo`.
-      Expected: The recipe `duck rice` is removed. The command output box shows details of the undone command.            
+
+   1. Test Case: `add recipe duck rice` followed by `list recipe`, then `undo` <br>
+      Expected: The recipe `duck rice` is removed.
 
 #### B.1.5&ensp;Redo commands previously undone
 1. Redoing an undone command
    1. Prerequisites: None.
-   
-   1. Test Case: `add recipe duck rice` followed by `undo`, then `redo`.
-      Expected: The `duck rice` recipe removed by the `undo` command is added. The command output box shows details of the redone command.      
-      
-   1. Test Case: `add recipe duck rice` followed by `add recipe duck soup`, then `undo` twice, then `redo` twice. 
-      Expected: The `duck rice` and `duck soup` recipes removed by the `undo` commands are added. The command output box shows details of the second redone command. 
-      
+
+   1. Test Case: `add recipe duck rice` followed by `undo`, then `redo` <br>
+      Expected: The `duck rice` recipe removed by the `undo` command is added.
+
+   1. Test Case: `add recipe duck rice` followed by `add recipe duck soup`, then `undo` twice, then `redo` twice <br>
+      Expected: The `duck rice` and `duck soup` recipes removed by the `undo` commands are added.
+
 1. Redoing when there is no undo command executed prior
    1. Prerequisites: No undo command executed since launch, or all undoable commands have been redone.
-   
-   1. Test Case: `add recipe duck rice` followed by `redo`.
-      Expected: The command output box shows an error message.      
-      
-1. Test Case: `add recipe duck rice` followed by `undo`, then `redo`, and then `redo`.
-      Expected: The `duck rice` recipe removed by the `undo` command is added after the first `redo`.  The command output box shows an error message after the second redo.             
-      
+
+   1. Test Case: `add recipe duck rice` followed by `redo` <br>
+      Expected: Nothing happens. An error is displayed in the command output box.
+
+   1. Test Case: `add recipe duck rice` followed by `undo`, then `redo`, and then `redo` <br>
+      Expected: The `duck rice` recipe removed by the `undo` command is added after the first `redo`.  Nothing happens for the second redo. An error is displayed in the command output box.
+
+#### B.1.6&ensp;Getting Help
+
+1. Getting Help
+
+    1. Prerequisites: none.
+
+    1. Test case: `help`<br>
+    Expected: General help message displayed at the command output box.
+
+    1. Test case: `help add`, `help delete ingredient` <br>
+    Expected: Help message for the specified command displayed at the command output box.
+
+    1. Incorrect help commands to try: `help 0`, `help recipe`, `...` <br>
+    Expected: No help message displayed. Error details shown in the command output box.
+
+
 ### B.2&ensp;Managing Recipes
 
-#### B.2.1&ensp;Adding recipes  
+#### B.2.1&ensp;Adding recipes
+
+All successful test cases in the section **Adding recipes** will result in the **Recipe Display** being shown.
+
+1. Adding a recipe
+
+   1. Prerequisites: none.
+
+   1. Test Case: `add recipe Banana Smoothie  /ingredient Banana` <br>
+      Expected: The recipe `Banana Smoothie` is added to the recipe list. No steps and tags should be shown; the ingredient with quantity in brackets `Banana (1)` is shown.
+
+   1. Test Case: `add recipe Banana Smoothie  /ingredient Banana /qty 100g` <br>
+      Expected: The recipe `Banana Smoothie` is added to the recipe list. No steps and tags should be shown; the ingredient with quantity in brackets `Banana (100g)` is shown.
+
+   1. Test Case: `add recipe Banana Smoothie  /step Chop Bananas /step Add to blender` <br>
+      Expected: The recipe `Banana Smoothie` is added to the recipe list. No ingredients and tags should be shown; the steps `Chop Bananas` and `Add to blender` are shown.
+
+   1. Test Case: `add recipe Banana Smoothie  /tag Fruit /tag Favourites` <br>
+      Expected: The recipe `Banana Smoothie` is added to the recipe list. No ingredients and steps should be shown; the tags `Fruit` and `Favourites` are shown.
+       
+   1. Test case: 
+      ``````
+      add recipe Banana Smoothie 
+      /ingredient Banana /qty 2 
+      /ingredient milk /qty 200ml 
+      /step Chop the bananas and add to a blender with milk. 
+      /step Turn the blender on and blend until creamy and smooth.
+      /step Ready to serve.
+      /tag Summer Favourites /tag Fruit
+      ``````
+      Expected: The recipe `Banana Smoothie` is added to the recipe list.
+
 1. Adding a recipe without ingredients, steps and tags
    1. Prerequisites: None.
 
-1. Adding a recipe
-   1. Prerequisites: None. 
-   
-#### B.2.2&ensp;Deleting recipes  
+   1. Test case: `add recipe Cookies and Cream Cake` <br>
+   Expected: Output display similar to previous.
+
+   1. Incorrect add commands to try: `add`, `add recipe`<br>
+   Expected: No recipe is added. Error details shown in the Command Output box.
+
+#### B.2.2&ensp;Deleting recipes
+
+All successful test cases in the section **Deleting recipes** will result in the **Recipe View Panel** being shown.
+
 1. Deleting a recipe using recipe index
-   1. Prerequisites: None. 
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop.
+
+   1. Test case: `delete recipe #1`<br>
+      Expected: The recipe **#1** `Apple Tart` is deleted from the recipe list.
+
+   1. Test case: `delete recipe #20`<br>
+      Expected: No recipe deleted as the recipe with the given index does not exist. Error details shown in the Command Output box.
 
 1. Deleting a recipe using recipe index in a filtered list
-   1. Prerequisites: None. 
-   
-1. Deleting a recipe using recipe name
-   1. Prerequisites: None. 
 
-#### B.2.3&ensp;Editing recipes  
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop.
+
+   1. Test Case: `find recipe banana` followed by `delete recipe #1` <br>
+      Expected: The recipe `Sweet Banana Salad` is deleted from the recipe list.
+
+   1. Test Case: `find recipe banana` followed by `delete recipe #1`, then `undo`, then `find recipe banana` before `delete recipe #1`<br>
+      Expected: The recipe `Banana Smoothie` is deleted from the recipe list.
+
+1. Deleting a recipe using recipe name
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop.
+
+   1. Test Case: `delete recipe Apple Tart`<br>
+      Expected: The recipe `Apple Tart` is deleted from the recipe list.
+
+   1. Test case: `delete recipe Salad`<br>
+      Expected: No recipe deleted as the recipe with the given name does not exist. Error details shown in the Command Output box.
+
+   1. Other incorrect delete commands to try: `delete`, `delete recipe`<br>
+      Expected: No recipe is deleted. Output display similar to previous.
+
+#### B.2.3&ensp;Editing recipes
+
 1. Editing a recipe using recipe index
-   1. Prerequisites: None. 
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop.
+
+   1. Test Case: `edit recipe #1 /name Apple Tarts`<br>
+      Expected: The recipe `Apple Tart` is renamed to `Apple Tarts`.
 
 1. Editing a recipe using recipe index in a filtered list
-   1. Prerequisites: None. 
+    1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
    
+    1. Test Case: `find recipe banana`, followed by `edit recipe #1 /ingredient:add Raisins /qty 5`<br>
+       Expected: The ingredient with quantity in brackets `Raisins (5)` is added to the recipe `Sweet Banana Salad`.
+
+    1. Test Case: `find recipe banana`, followed by `edit recipe #1 /ingredient:edit Banana /qty 3`<br>
+       Expected: The ingredient with quantity in brackets `Banana (2)` is changed to `Banana (3)` in the recipe `Sweet Banana Salad`.   
+
+    1. Test Case: `find recipe banana`, followed by `edit recipe #1 /ingredient:delete Banana`<br>
+       Expected: The ingredient with quantity in brackets `Banana (2)` is removed from the recipe `Sweet Banana Salad`.
+
 1. Editing a recipe using recipe name
-   1. Prerequisites: None. 
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop.
 
-#### B.2.4&ensp;Listing recipes  
-1. Listing recipes
-   1. Prerequisites: None. 
+   1. Test Case: `edit recipe Apple Tart /tag:add vegetarian`<br>
+      Expected: The tag `vegetarian` is added to the recipe `Apple Tart`.
+       
+   1. Test Case: `edit recipe Apple Tart /step:delete:1`<br>
+      Expected: The step `Cut the banana and put it into a bowl` is removed from the recipe `Apple Tart`.
+      
+   1. Test Case: `edit recipe Apple Tart /step:add Mash the bananas`<br>
+      Expected: The step `Mash the bananas` is added to the end of the existing steps of the recipe `Apple Tart`.      
+ 
+   1. Test Case: `edit recipe Apple Tart /step:edit:1 Put the bananas in a bowl`<br> 
+      Expected: The step `Cut the banana and put it into a bowl` is changed to `Put the bananas in a bowl` in the recipe `Apple Tart`.  
+      
+   1. Incorrect edit commands to try: `edit`, `edit recipe`, `edit recipe #1`<br>
+      Expected: No recipe is edited. Error details shown in the Command Output box.
 
-1. Listing filtered recipes
-   1. Prerequisites: None. 
+#### B.2.4&ensp;Filtering recipes
+1. Filtering recipes
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
    
+   1. Test Case: `filter recipe /name banana` <br>
+      Expected: The recipes `Sweet Banana Salad` and `Banana Smoothie` are to be displayed. 
+      
+   1. Test Case: `filter recipe /tag fruit` <br>
+      Expected: The recipes `Apple Tart`, `Sweet Banana Salad` and `Banana Smoothie` are to be displayed.
+   
+   1. Test Case: `filter recipe /ingredient banana` <br>
+      Expected: The recipes `Sweet Banana Salad` and `Banana Smoothie` are to be displayed.  
+      
+   1. Test Case: `filter recipe /name banana /ingredient banana /tag fruit /tag healthy` <br>
+         Expected: The recipes `Sweet Banana Salad` and `Banana Smoothie` are to be displayed.     
+
+   1. Incorrect filter commands to try: `filter`, `filter recipe`, `filter recipe /name`, `...`(where any search term is empty) <br>
+      Expected: No recipe is filtered. Error details shown in the Command Output box.
+
+#### B.2.5&ensp;Finding recipes
+1. Finding recipes
+    1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
+   
+    1. Test Case: `find recipe banana`<br>  
+       Expected: The recipes `Sweet Banana Salad` and `Banana Smoothie` are to be displayed. 
+       
+    1. Test Case: `find recipe banana apple`<br>  
+       Expected: The recipes `Apple Tart`, `Sweet Banana Salad`, `Banana Smoothie` are to be displayed.    
+
+   1. Incorrect find commands to try: `find`, `find recipe` <br>
+      Expected: No recipe is found. Error details shown in the Command Output box.
+
+#### B.2.6&ensp;Listing recipes
+1. Listing recipes
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop.
+
+   1. Test case: `list recipe` <br>
+     Expected: All 6 recipes displayed in the Recipe View Panel.
+     
+   1. Test case: `list recipes` <br>
+     Expected: All 6 recipes displayed in the Recipe View Panel.
+   
+   1. Other incorrect list commands to try: `list`, `list rec` <br>
+     Expected: No recipe is found. Error details shown in the Command Output box.
+
 1. Listing recipe recommendations
-  1. Prerequisites: None. 
-  
-#### B.2.5&ensp;Viewing recipes   
-1. Viewing a recipe using recipe index
-   1. Prerequisites: None. 
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop.
+
+   1. Test case: `list recommendation` or `list recommendations`<br>
+     Expected: All recipes with sufficient ingredients in stock are listed.
+
+   1. Incorrect list recommendation(s) commands to try: `list`, `list recipe recommendation`, `...` <br>
+     Expected: No recommendation listed. Error details shown in the Command Output box.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The recommendations displayed might differ due to the sample ingredients of ChopChop
+having expiry dates in December 2020.
+</div>
+
+#### B.2.7&ensp;Viewing recipes
+1. Viewing a recipe using recipe index<br>
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop.
+
+   1. Test case: `view recipe #1`<br>
+      Expected: The recipe **#1** `Apple Tart` is displayed.
 
 1. Viewing a recipe using recipe index in a filtered list
-   1. Prerequisites: None. 
-   
+    1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop.
+
+    1. Test Case: `find recipe banana` followed by `view recipe #1` <br>
+       Expected: The recipe `Sweet Banana Salad` is displayed.
+
 1. Viewing a recipe using recipe name
-   1. Prerequisites: None. 
-   
-#### B.2.6&ensp;Making recipes   
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop.
+
+   1. Test Case: `view recipe Apple Tart`<br>
+      Expected: The recipe `Apple Tart` is displayed.
+
+#### B.2.8&ensp;Making recipes
 1. Making a recipe using recipe index
-   1. Prerequisites: None. 
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop.
+
+   1. Test Case: `make recipe #1` <br>
+      Expected: The recipe `Apple Tart` is made.
+
+   1. Test case: `make recipe #1` twice <br>
+       Expected: On the second `make recipe #1`, an error is thrown as there are 2 apples missing.
 
 1. Making a recipe using recipe index in a filtered list
-   1. Prerequisites: None. 
+
+    1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop. 
    
+    1. Test Case: `find recipe banana` followed by `make recipe #1` <br>
+       Expected: The recipe `Sweet Banana Salad` is made. The command output box shows details of the command.  
+
 1. Making a recipe using recipe name
-   1. Prerequisites: None. 
+   1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop.
+
+   1. Test Case: `make recipe Apple Tart` <br>
+      Expected: The recipe `Apple Tart` is made. The command output box shows details of the command.
+
 
 ### B.3&ensp;Managing Ingredients
 
-#### B.3.1&ensp;Adding ingredients  
-1. Adding an ingredient without quantity, expiry date and tags.
-   1. Prerequisites: None.
+#### B.3.1&ensp;Adding ingredients
 
-1. Adding an ingredient
-   1. Prerequisites: None. 
+1. Adding a new ingredient without quantity, expiry date and tags.
+    1. Prerequisites: None.
+
+    1. Test Case: `add ingredient duck` <br>  
+       Expected: The ingredient duck with quantity 1 is added to the ingredient list. No expiry date and tags should be shown when viewing the recipe. 
+       
+1. Adding a new ingredient
+
+    1. Prerequisites: None. 
    
+    1. Test Case: `add ingredient duck /qty 2kg` <br>   
+       Expected: The ingredient duck with quantity 2kg is added to the ingredient list. No expiry date and tags should be shown when viewing the recipe.
+ 
+    1. Test Case: `add ingredient duck /qty 2ounce` <br>  
+       Expected: An error is given in the command output box as the unit is not known.
+
+    1. Test Case: `add ingredient duck /expiry 2021-12-12` <br>
+       Expected: The ingredient duck with quantity 1 and expiry date 2021-12-12 is added to the ingredient list. No tags should be shown when viewing the recipe.        
+       
+    1. Test Case: `add ingredient duck /tag poultry` <br>
+       Expected: The ingredient duck with quantity 1 and tag poultry is added to the ingredient list. No expiry date should be shown when viewing the recipe.      
+
+    1. Test Case: `add ingredient duck /expiry 2021-12-12 /tag poultry` <br>
+       Expected: The ingredient duck with quantity 1, expiry date 2021-12-12 and tag poultry is added to the ingredient list.  
+       
+    1. Test Case: `add ingredient duck /qty 2kg /expiry 2021-12-12 /tag poultry` <br>
+       Expected: The ingredient duck with quantity 2kg, expiry date 2021-12-12 and tag poultry is added to the ingredient list.
+       
+    1. Test Case: `add ingredient duck /qty 2kg /expiry 2021-12-12 /tag poultry /expiry 2022-12-31` <br>
+       Expected: The ingredient duck with quantity 2kg, expiry date 2021-12-12 and tag poultry is added to the ingredient list.
+       
+1. Adding to the quantity of an existing ingredient
+
+    1. Prerequisites: the ingredient has been added to the ingredient list.
+   
+    1. Test case: `add ingredient Apple` <br>
+       Expected: The quantity of the existing ingredient **Apple** increases by 1. The ingredient tile of Apple in the Ingredient Display Panel is updated.
+   
+    1. Test case: `add ingredient Apple /qty 3` <br>
+       Expected: The quantity of the existing ingredient **Apple** increases by 3. The ingredient tile of Apple in the Ingredient Display Panel is updated.
+   
+    1. Test Case: `add ingredient Apple /qty 2ounce` <br>  
+       Expected: No ingredient is updated as the unit provided is unknown. Error details shown in the Command Output box.
+   
+    1. Test case: `add ingredient Chocolate /qty 50mL` <br>
+       Expected: No ingredient is updated due to incompatible units. Error details shown in the Command Output box.
+      
+    1. Test case: `add ingredient Vinegar` <br>
+      Expected: Same as previous.
+
+1. Adding tags to an existing ingredient
+
+    1. Prerequisites: the ingredient has been added to the ingredient list, with or without any tag.
+    
+    1. Test case: `add ingredient Apple /qty 12 /tag Healthy /tag Sweet` <br>
+          Expected: New tags **Healthy** and **Sweet** are added to ingredient **Apple**'s current tag list, while the quantity of **Apple** increases by 12.
+
+1. Adding expiry date to an existing ingredient
+
+    1. Prerequisites: the ingredient has been added to the ingredient list, with or without and expiry date.
+    
+    1. Test case: `add ingredient Apple /qty 12 /expiry 2020-12-31 /expiry 2020-12-01` <br>
+      Expected: The earliest expiry date **2020-12-01** is added to ingredient **Apple**. The quantity of **Apple** increases by 12.
+      
+    1. Test case: `add ingredient Apple /qty 2 /expiry 2020-11-25` <br>
+      Expected: The current expiry date **2020-12-01** of ingredient **Apple** is replaced by the earlier new expiry date **2020-11-25**. The quantity of **Apple** increases by 2.
+      
+    1. Test case: `add ingredient Apple /qty 2 /expiry 2022-10-28` <br>
+      Expected: The current expiry date **2020-12-01** of ingredient **Apple** stays the same as it is earlier than the new date provided. The quantity of **Apple** still increases by 2.   
+      
 #### B.3.2&ensp;Deleting ingredients  
-1. Deleting an ingredient using ingredient index
-   1. Prerequisites: None. 
 
-1. Deleting an ingredient using ingredient index in a filtered list
-   1. Prerequisites: None. 
+1. Deleting a ingredient using ingredient index
+   1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop.
+    
+   1. Test case: `delete ingredient #10`<br>
+      Expected: The ingredient **#10** `Ginger Root` is deleted from the ingredient list. 
+    
+   1. Test case: `delete ingredient #20`<br>
+      Expected: No ingredient deleted as the ingredient with the given index does not exist. Error details shown in the Command Output box. 
+      
+   1. Test case: `delete ingredient #1 /qty 3`<br>
+      Expected: The quantity of ingredient **#1** decreases by 3 and becomes 5.
+      
+   1. Test case: `delete ingredient #1 /qty 8`<br>
+      Expected: The quantity of ingredient **#1** decreases by 8 and becomes 0. The ingredient disappears from the ingredient list.    
+      
+   1. Test case: `delete ingredient #1 /qty 10`<br>
+      Expected: No ingredient deleted as the quantity of ingredient **#1** in stock is not sufficient for the deletion. Error details shown in the Command Output box.    
    
-1. Deleting an ingredient using ingredient name
-   1. Prerequisites: None. 
+   1. Test case: `delete ingredient #1 /qty 10mL`<br>   
+      Expected: No ingredient is updated due to incompatible units **Count** and **mL**. Error details shown in the Command Output box.
+      
+   1. Test case: `delete ingredient #1 /qty 10ounce`<br>   
+      Expected: No ingredient is updated as the unit provided is unknown. Error details shown in the Command Output box.
 
-#### B.3.3&ensp;Editing ingredients  
+1. Deleting a ingredient using ingredient index in a filtered list
+   1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop. 
+   
+   1. Test Case: `find ingredient Salt` followed by `delete ingredient #1`<br>
+      Expected: The ingredient `Salt` is deleted from the ingredient list.
+      
+   1. Test Case: `find ingredient Salt` followed by `delete ingredient #1`, then `undo`, then `find ingredient Salt` before `delete ingredient #1`<br>
+      Expected: The ingredient `Salt` is deleted from the ingredient list.
+      
+   1. Other test cases are similar to previous.
+   
+1. Deleting a ingredient using ingredient name
+   1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop. 
+
+   1. Test Case: `delete Pineapple Juice`<br>
+      Expected: The ingredient `Pineapple Juice` is deleted from the ingredient list.
+      
+   1. Test case: `delete ingredient Salad`<br>
+      Expected: No ingredient deleted as the ingredient with the given name does not exist. Error details shown in the Command Output box.
+      
+   1. Other test cases are similar to previous.
+   
+   1. Other incorrect delete commands to try: `delete`, `delete ingredient`<br>
+      Expected: No ingredient is deleted. Output display similar to previous.      
+
+#### B.3.3&ensp;Editing ingredients
+
 1. Editing an ingredient using ingredient index
-   1. Prerequisites: None. 
-
+   1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop. 
+   
+   1. Test case: `edit ingredient #1 /tag:add Sweet`<br>
+      Expected: The ingredient **#1** is edited. A new tag **Sweet** is added to its current tag list.
+      
+   1. Test case: `edit ingredient #1 /tag:delete low calorie`<br>
+      Expected: The ingredient **#1** is edited. The existing tag **Dairy** is removed from its current tag list.
+    
+   1. Incorrect edit commands to try: `edit`, `edit ingredient`, `edit ingredient #1`<br>
+      Expected: No ingredient is edited. Error details shown in the Command Output box. 
+      
 1. Editing an ingredient using ingredient index in a filtered list
-   1. Prerequisites: None. 
+
+   1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop. 
+   
+   1. Test Case: `find ingredient Flour`, followed by `edit ingredient #1 /tag:add kitchen /tag:delete carbohydrate`<br>
+      Expected: The new tag **Sweet** is added to ingredient **Flour**, while its existing tag **carbohydrate** is removed.
    
 1. Editing an ingredient using ingredient name
-   1. Prerequisites: None. 
+   1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop. 
+    
+   1. Test case: `edit ingredient Flour /tag:add kitchen /tag:delete carbohydrate`<br>
+   Expected: The ingredient **Flour** is edited. A new tag **kitchen** is added while the tag **carbohydrate** is removed.
 
-#### B.3.4&ensp;Listing ingredients  
-1. Listing ingredients
-   1. Prerequisites: None. 
+   1. Incorrect edit commands to try out: `edit ingredient Flour` <br>
+   Expected: No ingredient is edited. Error details shown in the Command Output box.
+      
+#### B.3.4&ensp;Filtering ingredients 
 
-1. Listing filtered ingredients
-   1. Prerequisites: None. 
+1. Filtering ingredients 
+   1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop. 
    
- 
+   1. Test case: `filter ingredient /name sugar` <br>
+   Expected: The ingredients **Brown Sugar** and **Granulated Sugar** are to be displayed.
+   
+   1. Test case: `filter ingredient /expiry 2020-12-01` <br>
+      Expected: The ingredient **Butter**, **Cream** and **Egg** are to be displayed.
+      
+   1. Test case: `filter ingredient /tag bakery /tag sweet` <br>
+      Expected: The ingredients **Brown Sugar**, **Granulated Sugar**, **Honey** and **Vanilla Extract** are to be displayed.
+
+   1. Test case: 
+      ``````
+      filter ingredient
+      /name vanilla /name extract
+      /expiry 2021-12-10 /expiry 2020-12-31
+      /tag sweet /tag bakery
+      ``````
+      Expected: The ingredient **Vanilla Extract**, which matches all specified criteria, is to be displayed.
+    
+   1. Incorrect filter commands to try: `filter`, `filter ingredient`, `filter ingredient /name`, `...`(where any search term is empty) <br>
+      Expected: No ingredient is filtered. Error details shown in the Command Output box.   
+      
+#### B.3.5&ensp;Finding ingredients  
+
+1. Finding ingredients 
+   1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop. 
+   
+   1. Test case: `find ingredient sugar`
+      Expected: The ingredients **Brown Sugar** and **Granulated Sugar** are to be displayed.
+
+   1. Test case: `find ingredient sugar vanilla`
+      Expected: The ingredients **Brown Sugar**, **Granulated Sugar** and **Vanilla Extract** are to be displayed.
+    
+   1. Incorrect find commands to try: `find`, `find ingredient` <br>
+      Expected: No ingredient is found. Error details shown in the Command Output box.   
+         
+#### B.3.6&ensp;Listing ingredients
+
+1. Listing ingredients 
+   1. Prerequisites: There are ingredients in the ingredient list. For this section, we will be using the sample data of ChopChop. 
+   
+   1. Test case: `list ingredient` <br>
+     Expected: All ingredients are displayed in the Ingredient View Panel.
+   
+   1. Test case: `list ingredients` <br>
+     Expected: All ingredients are displayed in the Ingredient View Panel.
+   
+   1. Test case: `list ingredients /name fruit` <br>
+     Expected: Output display same as previous. `/name fruit` is ignored when the command is parsed.
+   
+   1. Other incorrect list commands to try: `list`, `list ingred` <br>
+     Expected: No ingredient is listed. Error details shown in the Command Output box.   
+
 ### B.4&ensp;Viewing statistics
 
 #### B.4.1&ensp;Viewing recipes made in a given time frame 
-1. xx
-   1. xx
+1. View recipes with 3 recipes A, B and C (made in this order) that were made today and at least 1 minute apart from each other.
+    1. Prerequisites: Cleared previous usage records and made recipes A, B and C today and at least 1 minute apart from each other. For example Recipe A made 5 minutes ago, Recipe B made 4 minutes ago and Recipe C made 3 minutes ago.
+    1. Test case: `stats recipe made`<br>
+        Expected: The stats box shows "Showing recipes made <today's date in yyyy-MM-dd>" and a list of recipes A, B and C.
+    1. Test case: `stats recipe made /before <date of Recipe B in yyyy-MM-dd HH:mm>`<br>
+        Expected: The stats box shows "Showing recipes made before <date of Recipe B in yyyy-MM-dd HH:mm>" and a list of recipes with only Recipe A in it.
+    1. Test case: `stats recipe made /after <date of Recipe B in yyyy-MM-dd HH:mm>`<br>
+        Expected: The stats box shows "Showing recipes made before <date of Recipe B in yyyy-MM-dd HH:mm>" and a list of recipes with only Recipe B and C in it.
+    1. Test case: `stats recipe made /after <date of Recipe A in yyyy-MM-dd HH:mm> /before <date of Recipe B in yyyy-MM-dd HH:mm>`<br>
+        Expected: The stats box shows "Showing recipes made between <date of Recipe A in yyyy-MM-dd HH:mm> and <date of Recipe B in yyyy-MM-dd HH:mm>" and a list of recipes with only Recipe A in it.
+    1. Test case: `stats recipe made /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is equal to or later than date2.<br>
+        Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box returns to default panel showing recently made recipes.
+   
+1. View recipes made with no past recipe usage records
+    1. Prerequisites: No recipe usages saved. This can be done by executing `stats recipe clear` which should clear all recipe usages.
+    1. Test case: `stats recipe made`<br>
+        Expected: The stats box shows "No recipes were made on <today's date in yyyy-MM-dd>".
+    1. Test case: `stats recipe made /before <date in yyyy-MM-dd>`<br>
+        Expected: The stats box shows "No recipes were made before <date in yyyy-MM-dd> 00:00".
+    1. Test case: `stats recipe made /after <date in yyyy-MM-dd>`<br>
+        Expected: The stats box shows "No recipes were made before <date in yyyy-MM-dd> 00:00".
+    1. Test case: `stats recipe made /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is earlier than date2.<br>
+        Expected: The stats box shows "No recipes were made between <date1 in yyyy-MM-dd> 00:00 and <date2 in yyyy-MM-dd> 00:00".
+    1. Test case: `stats recipe made /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is equal to or later than date2.<br>
+        Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box shows "No recipes were made recently".
 
 #### B.4.2&ensp;Viewing recipes made most recently
-1. xx
-   1. xx
+1. View recipes with 3 recipes A, B and C were made in this order.
+    1. Prerequisites: Cleared previous usage records and made recipes A, B and C in this order.
+    1. Test case: `stats recipe recent`<br>
+        Expected: The stats box shows "Here are your recently made recipes" and a list of recipes A, B and C.
+    1. Test case: execute other non-stats commands such as `list recipes`<br>
+       Expected: The stats box shows "Showing recently made recipes" and a list of recipes A, B and C.
+       
+1. View recipes made recently with no past recipe usage records
+    1. Prerequisites: No recipe usages saved. This can be done by executing `stats recipe clear` which should clear all recipe usages.
+    1. Test case: `stats recipe made`<br>
+        Expected: The stats box shows "No recipes were made" with no lists shown below.
+    1. Test case: execute other non-stats commands such as `list recipes`<br>
+        Expected: The stats box shows "No recipes were made" with no lists shown below.
    
 #### B.4.3&ensp;Viewing recipes made most frequently
-1. xx
-   1. xx
+1. View most made recipes with records of recipe made.
+    1. Prerequisites: Cleared previous usage records and made recipe A 3 times and recipe B once.
+    1. Test case: `stats recipe top`<br>
+        Expected: The stats box shows "Here are your top recipes" and a list of recipes with first item as recipe A and the text below is "No. of times made: 3", and second item as recipe B and the text below is "No. of times made: 1".
+       
+1. View most made recipes with past recipe usage records
+    1. Prerequisites: No recipe usages saved. This can be done by executing `stats recipe clear` which should clear all recipe usages.
+    1. Test case: `stats recipe top`<br>
+        Expected: The stats box shows "No recipes were made recently"
 
-#### B.4.4&ensp;Clearing recipe statistics
-1. xx
-   1. xx
+#### B.4.4&ensp;Clearing recipe usages
+1. Clear records of recipe usages after making Recipes A, B and C.
+    1. Prerequisites: Made recipes A, B and C.
+    1. Test case: `stats recipe clear`<br>
+        Expected: The command output box shows "Cleared recipe cooking history" and the stats box shows "No recipes were made recently".
+    1. Test case: `stats recipe clear` followed by `stats recipe recent`<br>
+        Expected: The stats box shows "No recipes were made recently" with no lists shown below.
+    1. Test case: `stats recipe clear` followed by any other non-stats command such as `list recipes`<br>
+        Expected: The stats box shows "No recipes were made recently" with no lists shown below.
+        
+1. Clear records of recipe usages when there are no records.
+    1. Prerequisites: No records of recipe usages.
+    1. Test case: `stats recipe clear`<br>
+        Expected: The command output box shows "Cleared recipe cooking history" and the stats box shows "No recipes were made recently".
    
 #### B.4.5&ensp;Viewing ingredients used in a given time frame 
-1. xx
-   1. xx
+1. View ingredients with 3 ingredients A, B and C (used in this order) that were used today and at least 1 minute apart from each other. (To use an ingredient, add a recipe that requires the ingredient then make the recipe)
+    1. Prerequisites: Cleared previous usage records and used ingredients A, B and C today and at least 1 minute apart from each other. For example Ingredient A used 5 minutes ago, Ingredient B used 4 minutes ago and Ingredient C used 3 minutes ago.
+    1. Test case: `stats ingredient used`<br>
+        Expected: The stats box shows "Showing ingredients used <today's date in yyyy-MM-dd>" and a list of ingredients A, B and C.
+    1. Test case: `stats ingredient used /before <date of Ingredient B in yyyy-MM-dd HH:mm>`<br>
+        Expected: The stats box shows "Showing ingredients used before <date of Ingredient B in yyyy-MM-dd HH:mm>" and a list of ingredients with only Ingredient A in it.
+    1. Test case: `stats ingredient used /after <date of Ingredient B in yyyy-MM-dd HH:mm>`<br>
+        Expected: The stats box shows "Showing ingredients used before <date of Ingredient B in yyyy-MM-dd HH:mm>" and a list of ingredients with only Ingredient B and C in it.
+    1. Test case: `stats ingredient used /after <date of Ingredient A in yyyy-MM-dd HH:mm> /before <date of Ingredient B in yyyy-MM-dd HH:mm>`<br>
+        Expected: The stats box shows "Showing ingredients used between <date of Ingredient A in yyyy-MM-dd HH:mm> and <date of Ingredient B in yyyy-MM-dd HH:mm>" and a list of ingredients with only Ingredient A in it.
+    1. Test case: `stats ingredient used /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is equal to or later than date2.<br> 
+        Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box returns to default panel showing recently made recipes.
+
+1. View ingredients used with no past ingredient usage records
+    1. Prerequisites: No ingredient usages saved. This can be done by executing `stats ingredient clear` which should clear all ingredient usages.
+    1. Test case: `stats ingredient used`<br>
+        Expected: The stats box shows "No ingredients were used on <today's date in yyyy-MM-dd>".
+    1. Test case: `stats ingredient used /before <date in yyyy-MM-dd>`<br>
+        Expected: The stats box shows "No ingredients were used before <date in yyyy-MM-dd> 00:00".
+    1. Test case: `stats ingredient used /after <date in yyyy-MM-dd>`<br>
+        Expected: The stats box shows "No ingredients were used before <date in yyyy-MM-dd> 00:00".
+    1. Test case: `stats ingredient used /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is earlier than date2. <br>
+        Expected: The stats box shows "No ingredients were used between <date1 in yyyy-MM-dd> 00:00 and <date2 in yyyy-MM-dd> 00:00".
+    1. Test case: `stats ingredient used /after <date1 in yyyy-MM-dd> /before <date2 in yyyy-MM-dd>`, where date1 is equal to or later than date2.<br> 
+        Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box returns to default panel showing recently made recipes.
    
 #### B.4.6&ensp;Viewing ingredients used most recently
-1. xx
-   1. xx
+1. View ingredients with 3 ingredients A, B and C were made in this order.
+    1. Prerequisites: Cleared previous usage records and made ingredients A, B and C in this order.
+    1. Test case: `stats ingredient recent`<br>
+        Expected: The stats box shows "Here are your recently made ingredients" and a list of ingredients A, B and C.
+       
+1. View ingredients made recently with no past ingredient usage records
+    1. Prerequisites: No ingredient usages saved. This can be done by executing `stats ingredient clear` which should clear all ingredient usages.
+    1. Test case: `stats ingredient made`<br>
+        Expected: The stats box shows "No ingredients were made" with no lists shown below.
    
-#### B.4.7&ensp;Clearing ingredient statistics
-1. xx
-   1. xx
+#### B.4.7&ensp;Clearing ingredient usages
+1. Clear records of ingredient usages after making Ingredients A, B and C.
+    1. Prerequisites: Made ingredients A, B and C.
+    1. Test case: `stats ingredient clear`<br>
+        Expected: The command output box shows "Cleared ingredient usage history" and the stats box shows "No ingredients were used recently".
+    1. Test case: `stats ingredient clear` followed by `stats ingredient recent`<br>
+        Expected: The stats box shows "No ingredients were used recently" with no lists shown below.
+        
+1. Clear records of ingredient usages when there are no records.
+    1. Prerequisites: No records of ingredient usages.
+    1. Test case: `stats ingredient clear`<br>
+        Expected: The command output box shows "Cleared ingredient usage history". The stats box returns to default panel showing recently made recipes.
           
-                   
+
 ## C&ensp;Effort
 
-With 10 being the baseline of AB3, we estimate the effort required to deliver the current version of ChopChop at **20**.
+With 10 being the baseline of AB3, we estimate the effort required to deliver the current version of ChopChop at **18**.
 
 
 ### C.1&ensp;Major Implementation Efforts
@@ -1386,10 +1865,10 @@ In addition, a comprehensive set of tests were written for each command parser t
 
 
 #### C.1.3&ensp;Statistics and Recommendations
-The statistics feature was developed in a depth-first approach. It spans across all major components in ChopChop.
+The development of the statistics feature follows a depth-first approach because it requires additional classes and operations across all major components in ChopChop.
 
 #### C.1.4&ensp;Automated GUI Testing
-To ensure that our ChopChop GUI conform to its expected behaviour, we implemented Unit tests that test the individual components components comprehensively. 
+To ensure that our ChopChop GUI conform to its expected behaviour, we implemented Unit tests that test the individual components components comprehensively.
 
 Thanks to the TestFX library we use, our GUI tests can be run in the headless mode. In the headless mode, GUI tests do not show up on the screen. That means the developer can do other things on the Computer while the tests are running.
 
@@ -1402,7 +1881,9 @@ Significant effort was undertaken to ensure that the completer works in all case
 
 
 #### C.1.6&ensp;Command History
-fsdf
+To ensure that any mistakes that the user make are not permanent, an undo/redo feature is implemented so that any changes made to ChopChop can be easily reverted.
+
+Effort was made to ensure that implementing the undo/redo feature for new commands is as straightforward as possible, through the use of an `Undoable` interface.
 
 
 ### C.2&ensp;Minor Implementation Efforts
@@ -1410,7 +1891,7 @@ fsdf
 These are components that are either straightforward extensions of existing AB3 features, or new features that were not extremely hard or intensive to implement.
 
 #### C.2.1&ensp;Storage and Model Updates
-The structures of both Model and Storage components remain mostly similar. Additional classes are added to support saving of Entry, Usage and new data structures in-memory and in json format. Superclasses are used wherever possible to reduce code duplication. 
+The structures of both Model and Storage components remain mostly similar. Additional classes are added to support saving of Entry, Usage and new data structures in-memory and in json format. Superclasses are used wherever possible to reduce code duplication.
 
 #### C.2.2&ensp;Utility Classes
 A set of utility classes, namely `Pair`, `Result`, and `Either` were written to facilitate a functional programming style in various ChopChop components. These classes are comprehensively tested and well-documented as well.

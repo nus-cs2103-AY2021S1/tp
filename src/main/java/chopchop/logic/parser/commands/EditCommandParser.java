@@ -77,7 +77,9 @@ public class EditCommandParser {
 
                     if (argName.nameEquals(ARG_NAME)) {
 
-                        if (argValue.isEmpty()) {
+                        if (!argName.getComponents().isEmpty()) {
+                            return Result.error("Expected only '/name' without any edit-arguments");
+                        } else if (argValue.isEmpty()) {
                             return Result.error("Expected a name after '/name'");
                         } else if (editedName.isPresent()) {
                             return Result.error("Only one '/name' should be provided");

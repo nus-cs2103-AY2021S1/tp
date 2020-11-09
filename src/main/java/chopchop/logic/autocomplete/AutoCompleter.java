@@ -371,11 +371,13 @@ public class AutoCompleter {
             if (tgt.equals(CommandTarget.RECIPE.toString())) {
 
                 validArguments.add(Strings.ARG_TAG);
+                validArguments.add(Strings.ARG_NAME);
                 validArguments.add(Strings.ARG_INGREDIENT);
 
             } else if (tgt.equals(CommandTarget.INGREDIENT.toString())) {
 
                 validArguments.add(Strings.ARG_TAG);
+                validArguments.add(Strings.ARG_NAME);
                 validArguments.add(Strings.ARG_EXPIRY);
             }
         } else if (cmd.equals(Strings.COMMAND_STATS)) {
