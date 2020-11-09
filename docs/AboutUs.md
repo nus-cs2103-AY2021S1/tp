@@ -61,7 +61,11 @@ You can reach him at the email `damithch@comp.nus.edu.sg`.
 [[portfolio](team/josuaaah.md)]
 
 * Role: Developer
-* Responsibilities: Code Quality
+* Responsibilities: 
+  - Implement sessions
+  - Implement session lists
+  - Implement commands to add and delete sessions
+  - Implement commands to change current session
 
 ### Theodore Leebrant
 
