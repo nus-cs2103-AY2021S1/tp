@@ -1,0 +1,54 @@
+@startuml
+!include ../style.puml
+
+show members
+
+note right of N
+The attributes of ""Calendar""
+and ""Appointment"" are
+simplified into ""String""
+types for simplicity
+end note
+
+Object "__: AppointmentManager__" as AppointmentManager {
+}
+
+Object "__: Calendar__" as Calendar {
+    #  date = "27-11-2020"
+}
+
+Object "__: UniqueAppointmentList__" as UniqueAppointmentList {
+}
+
+Object "__: Appointment__" as Appointment1 {
+    - appointmentDate = "23-11-2020"
+    - timeOfDay = "1230"
+}
+
+Object "__: Appointment__" as Appointment2 {
+    - appointmentDate = "25-11-2020"
+    - timeOfDay = "1030"
+}
+
+Object "__: Appointment__" as Appointment3 {
+    - appointmentDate = "27-11-2020"
+    - timeOfDay = "0900"
+}
+
+Object "__: Appointment__" as Appointment4 {
+    - appointmentDate = "28-11-2020"
+    - timeOfDay = "1300"
+}
+
+AppointmentManager -- Calendar
+AppointmentManager -- UniqueAppointmentList
+
+UniqueAppointmentList -- Appointment1
+UniqueAppointmentList -- Appointment2
+UniqueAppointmentList -- Appointment3
+UniqueAppointmentList -- Appointment4
+
+N - AppointmentManager
+hide N
+
+@enduml

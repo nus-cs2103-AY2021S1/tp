@@ -24,28 +24,30 @@ end note
 
 AddServiceCommand -> ModelManager : ""getServiceManager()""
 activate ModelManager
-AddServiceCommand <-- ModelManager: ""sm""
-deactivate ModelManager
 
-AddServiceCommand -> ServiceManager : ""getServiceList()""
+ModelManager -> ServiceManager : ""getServiceList()""
 activate ServiceManager
-AddServiceCommand <-- ServiceManager : ""services""
+ModelManager <-- ServiceManager : ""services""
 deactivate ServiceManager
+
+AddServiceCommand <-- ModelManager: ""services""
+deactivate ModelManager
 
 AddServiceCommand -> ModelManager : ""getAppointmentManager()""
 activate ModelManager
-AddServiceCommand <-- ModelManager: ""am""
-deactivate ModelManager
 
-AddServiceCommand -> AppointmentManager : ""getAppointmentList()""
+ModelManager -> AppointmentManager : ""getAppointmentList()""
 activate AppointmentManager
-AddServiceCommand <-- AppointmentManager : ""appointments""
+ModelManager <-- AppointmentManager : ""appointments""
 deactivate AppointmentManager
+
+AddServiceCommand <-- ModelManager: ""appointments""
+deactivate ModelManager
 
 AddServiceCommand -> ServiceCodeGenerator: ""generateServiceCode(services, appointments)""
 
 activate ServiceCodeGenerator
-AddServiceCommand <-- ServiceCodeGenerator: ""serviceCode""
+AddServiceCommand <-- ServiceCodeGenerator: """"
 deactivate ServiceCodeGenerator
 
 AddServiceCommand -> ModelManager : ""addService(s)""

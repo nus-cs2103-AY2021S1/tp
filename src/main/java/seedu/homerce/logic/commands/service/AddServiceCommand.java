@@ -32,8 +32,8 @@ public class AddServiceCommand extends Command {
             + PREFIX_SERVICE_DURATION + "DURATION "
             + PREFIX_SERVICE_PRICE + "PRICE "
             + " Example: " + COMMAND_WORD + " "
-            + PREFIX_SERVICE_TITLE + "Lash Lift"
-            + PREFIX_SERVICE_DURATION + "0.5 "
+            + PREFIX_SERVICE_TITLE + "Neck Treatment "
+            + PREFIX_SERVICE_DURATION + "1.5 "
             + PREFIX_SERVICE_PRICE + "38.00";
 
     public static final String MESSAGE_SUCCESS = "New Service added: %1$s";
