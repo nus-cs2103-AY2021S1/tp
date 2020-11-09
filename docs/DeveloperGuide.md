@@ -2050,29 +2050,13 @@ Use case ends.
 
 * 2b. User enters the wrong information.
 
-  * 2b1. User edits the task.
+  * 2b2. User edits the task.
   
   Use case ends.
 
 * 2c. User enters an already existing task.
 
-  Use case resumes at step 1.
-
-**Use case: UC - Delete a task in the todo list**
-**Actor: user**
-**MSS**
-
-1. User wants to delete a task in the todo list.
-2. User enters the command to delete a task.
-3. CAP 5 Buddy deletes the task from the todo list.
-
-Use case ends.
-
-**Extensions**
-
-* 3a. User accidentally delete the wrong task.
-
-  * 3a1. User enters the undo command.
+  * 2b1. CAP 5 Buddy displays an error message about duplicate tasks.
 
   Use case resumes at step 1.
 
@@ -2088,9 +2072,9 @@ Use case ends.
 
 **Extensions**
 
-* 3a. User accidentally delete the wrong task.
+* 2a. User accidentally delete the wrong task.
 
-  * 3a1. User enters the undo command.
+  * 2a1. User enters the undo command.
 
   Use case resumes at step 1.
 
@@ -2106,9 +2090,9 @@ Use case ends.
 
 **Extensions**
 
-* 3a. User accidentally edits the wrong task.
+* 2a. User accidentally edits the wrong task.
 
-  * 3a1. User enters the undo command.
+  * 2a1. User enters the undo command.
 
   Use case resumes at step 1.
 
@@ -2122,6 +2106,15 @@ Use case ends.
 
 Use case ends.
 
+**Extensions**
+
+* 2a. User input the wrong criterion.
+
+  * 2a1. User reset the order using the list command.
+  * 2a2. User re-enter the command with the correct criterion.
+
+  Use case resumes at step 3.
+
 **Use case: Find a task in the todo list**
 **Actor: user**
 **MSS**
@@ -2134,12 +2127,19 @@ Use case ends.
 
 **Extensions**
 
-* 3a. User input is invalid.
+* 2a. User input is invalid.
 
-  * 3a1. CAP 5 Buddy displays an error message and tells the user the correct format.
-  * 3a2. User enters the keywords with the correct format.
+  * 2a1. CAP 5 Buddy displays an error message and tells the user the correct format.
+  * 2a2. User enters the keywords with the correct format.
 
   Use case resumes at step 3
+
+* 2b. User input the wrong keywords.
+
+  * 2b1. User shows all the tasks using the list command.
+  * 2b2. User re-enter the command with the correct keywords.
+
+  Use case resumes at step 3.
 
 **Use case: UC - Label a task in the todo list as completed**
 **Actor: user**
@@ -2153,9 +2153,9 @@ Use case ends.
 
 **Extensions**
 
-* 3a. User accidentally labels the wrong task.
+* 2a. User accidentally labels the wrong task.
 
-  * 3a1. User enters the undo or reset task command.
+  * 2a1. User enters the undo or reset task command.
 
   Use case resumes at step 1.
 
@@ -2171,9 +2171,9 @@ Use case ends.
 
 **Extensions**
 
-* 3a. User accidentally labels the wrong task.
+* 2a. User accidentally labels the wrong task.
 
-  * 3a1. User enters the undo or complete task command.
+  * 2a1. User enters the undo or complete task command.
 
   Use case resumes at step 1.
 
@@ -2200,9 +2200,9 @@ Use case ends.
 
 **Extensions**
 
-* 1a. User changed mind and wants the list back.
+* 2a. User changes mind and wants the list back.
 
-  * 3a1. The user enter the undo command.
+  * 2a1. The user enter the undo command.
 
   Use case ends.
 
@@ -2212,15 +2212,15 @@ Use case ends.
 
 1. User wants to archive a task in the todo list.
 2. User input the command to archive a task.
-4. CAP 5 BU archives the task.
+3. CAP5 Buddy archives the task.
 
 Use case ends.
 
 **Extensions**
 
-* 3a. User accidentally archive the wrong task.
+* 2a. User accidentally archive the wrong task.
 
-  * 3a1. The user enter the undo command.
+  * 2a1. The user enter the undo or unarchive command.
 
   Use case resumes at step 1.
 
