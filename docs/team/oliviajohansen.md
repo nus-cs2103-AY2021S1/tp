@@ -32,7 +32,7 @@ Given below are my contributions to the project. These enhancements affect exist
   * Justification: This feature improves the product significantly because a user can edit recipes in the recipe list, saving them the hassle of having to delete then re-adding an entire recipe.
   * Credits: This feature was built off AB3 "edit" feature.
 
-* **New Feature**: Added the ability to directly modify an existing ingredient or recipe.
+* **New Feature**: Added ability to directly edit existing ingredient or recipe.
   * What it does: allows the user to easily edit ingredients or recipes in their fridge or recipe list
    respectively by directly modifying the existing item.
   * Justification: This feature improves the product significantly because a user can easily edit items without
