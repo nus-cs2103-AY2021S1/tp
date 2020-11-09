@@ -425,6 +425,9 @@ When any command that can affect the logic within `LogicManager` is executed (su
 command objects would call the relevant setter method from the class that implements the `Context` interface. `LogicManager` then retrieves
 this information from that very same class, thereby solving the issue without causing any cyclic dependencies while maintaining the command design pattern.
 
+
+<div style="page-break-after: always;"></div>
+
 Note:
 
 Some of the commands that makes use of the `Context` interface are:
