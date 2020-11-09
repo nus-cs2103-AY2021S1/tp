@@ -815,6 +815,8 @@ Therefore, the **time analysis for the week** will show that the **time spent on
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Command summary
 
 | Action            | Format, Examples                                             |
