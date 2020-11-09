@@ -50,7 +50,7 @@ and their clients.
   * **What it does**:  navigates the calendar to the next month and to previous month. Automatically focuses on the TextField in 
     command box so that the user is able to type commands.
   
-  * **Justification**: The above-mentioned key press functions in PropertyFree helps the user to easily navigate PropertyFree.
+  * **Justification**:
   The button control helps the user to easily navigate through the calendar to identify which dates and days are important.
 
 * **New Feature**: Implemented the `next` and `prev` command for navigating the calendar.
