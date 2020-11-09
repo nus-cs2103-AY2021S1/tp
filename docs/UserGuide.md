@@ -3,6 +3,8 @@ layout: page
 title: User Guide
 ---
 
+## Introduction 
+
 Cap 5.0 Buddy helps NUS SoC students to keep track of their module details efficiently.
 It helps you to centralize key module details, contacts and information while following your study progress through a Command Line Interface (CLI).
 
@@ -116,7 +118,7 @@ Creates and add a new completed module to be stored in the system.
 
 #### Viewing a module: `viewmodule`
 
-Views a module stored in the system.
+Displays a snapshot of a module stored in the system.
 
  Format: `viewmodule` `INDEX`
     
@@ -127,6 +129,8 @@ Views a module stored in the system.
   * The index **must be a positive integer** 1, 2, 3...
   
   * Clicking on the `ZoomLink` displayed(if any) will copy the `ZoomLink` into your clipboard.
+  
+  * Note that the displayed snapshot is not updated when the module being displayed is changed.
 
   Example:
    * `viewmodule 1` views the first module in the displayed list.
