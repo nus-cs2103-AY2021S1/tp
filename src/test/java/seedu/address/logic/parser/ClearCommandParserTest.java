@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ClearCommand;
 
+//author zeying99
+
 public class ClearCommandParserTest {
 
     private ClearCommandParser parser = new ClearCommandParser();

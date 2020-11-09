@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EnterQuizCommand;
 
+//author zeying99
+
 public class EnterQuizCommandParserTest {
 
     private EnterQuizCommandParser parser = new EnterQuizCommandParser();
