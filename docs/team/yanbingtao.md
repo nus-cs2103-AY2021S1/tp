@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=T12-2&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-  * Managed Pull Requests on GitHub's team repository.
+  * Managed Pull Requests on GitHub's team repository
   
 * **Added _archive_ feature**: Allows user to archive a single/all employees' contact information by using
  commands, `c-archive` or `c-archive-all`, respectively. 
@@ -41,7 +41,6 @@ Given below are my contributions to the project.
 * **Implemented _calendar-pane_ in GUI**: can show a calendar for the current month.
 (Pull Request: [#135](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/135))
 
-
 * **Separated the main pane to 4 panes**: can display sales record data, ingredient tracking data,
  employees' contact info, and a calendar independently. 
  (Pull Request: [#89](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/89))
@@ -49,24 +48,19 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Improved the contact GUI by adding a title in front of each data. 
   (Pull Request: [#89](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/89))
-    For example, instead of displaying "81234567", now the contact pane shows "Contact Number: 81234567". 
-
     
   * Improved the GUI by wrapping around when the displayed content is too long. 
-  (Pull Request: [#228](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/228)) After I implemented
-  this feature, the text will be auto wrap around, and start a new line if one line is not enough to display. 
-        
+  (Pull Request: [#228](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/228)) 
+  
 * **Contributions to team-based tasks**:
     * Changed the product icon (Pull Request: [#89](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/154))
     * Changed the main window title name to our product name (Pull Request: [#154](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/89))
-    * Maintained all meeting minutes.
-    * Contributed to set meeting agenda before each meeting.
+    * Maintained all meeting minutes and contributed to set meeting agenda before each meeting.
     * Managed all Pull Requests in team repository (by adding correct labels, linking to correct milestone, linking to
      correct issues if any).
     * PRs reviewed (with non-trivial review comments):
      [#20](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/20),
      [#24](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/24),
-     [#62](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/62),
      [#105](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/105),
      [#168](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/168),
      [#169](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/169),
