@@ -1,12 +1,15 @@
 @startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
 
 class ExpenseBook
 class UniqueExpenseList
 class ObservableList
 class Expense
 class PieChartData
-interface ChartData
-class ChartDisplay
+interface ChartDataCollector <<Interface>>
 class GraphicalDisplayWindow
 
 hide empty members
@@ -14,9 +17,8 @@ hide empty members
 ExpenseBook --> UniqueExpenseList
 UniqueExpenseList *--> ObservableList
 ObservableList --> Expense
-ChartData <|-- PieChartData
-ChartData ..> ObservableList
-ChartDisplay --> ChartData
-GraphicalDisplayWindow --> ChartDisplay
+ChartDataCollector <|.. PieChartData
+PieChartData --> ExpenseBook
+GraphicalDisplayWindow --> ChartDataCollector
 
 @enduml
