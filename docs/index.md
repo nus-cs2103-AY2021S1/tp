@@ -16,7 +16,7 @@ title: ResiReg
 - Manage records of rooms.
 - Manage allocations of students to rooms in the College
 
-Our application is geared towards users who prefer typing over mouse actions, so interactions with our application is mainly keyboard based.
+Our application is geared towards users who prefer typing over mouse actions, so interactions with our application are mainly keyboard based.
 
 ## Site Map
 

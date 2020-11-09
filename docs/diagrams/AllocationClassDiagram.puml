@@ -1,6 +1,11 @@
 @startuml
+!include style.puml
 
-scale 0.5
+scale 1.5
+
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
 
 class Allocation
 class UniqueAllocationList
@@ -13,15 +18,5 @@ UniqueAllocationList o--> "*" Allocation
 Allocation o--> "1" Floor
 Allocation o--> "1" RoomNumber
 Allocation o--> "1" StudentId
-
-class UniqueAllocationList {
-addAllocation(Allocation)
-setAllocation(Allocation, Allocation)
-removeAllocation(Allocation)
-}
-
-class Allocation {
-}
-
 
 @enduml

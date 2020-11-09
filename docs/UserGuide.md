@@ -8,7 +8,7 @@ title: User Guide
 
 ## Introduction
 
-**ResiReg** (**Resi**dential **Reg**ulation) is a productivity app designed to help admin staff at Residential Colleges (RCs)\* in NUS with their daily tasks.
+**ResiReg** (**Resi**dential **Reg**ulation) is a productivity app designed to help admin staff at Residential Colleges (RCs) in NUS with their daily tasks.
 
 **ResiReg** has the following main features:
 
@@ -16,7 +16,7 @@ title: User Guide
 - Manage records of rooms.
 - Manage allocations of students to rooms in the College.
 
-**ResiReg** is optimised for OHS admin who are fast typists who are used to a Command Line Interface, and prefer typing over other means of input. It comes with:
+**ResiReg** is optimised for admin staff who are fast typists who are used to a Command Line Interface, and prefer typing over other means of input. It comes with:
 
 - A Command Line Interface (CLI) which allows you to access all **ResiReg** features by typing.
 - A Graphical User Interface (GUI) that displays the information you need.
@@ -28,7 +28,7 @@ title: User Guide
 
 ### Basic Information
 
-This User Guide explains how you (as an OHS admin) can use **ResiReg** to manage tasks at Residential Colleges.
+This User Guide explains how you can use **ResiReg** to manage tasks at Residential Colleges.
 
 You may refer to [Quick Start](#quick-start) for a short tutorial on how to run **ResiReg** on your system and use **ResiReg**'s main features. For a full walkthrough of **ResiReg**, please refer to [Features](#features).
 
@@ -37,10 +37,10 @@ You may refer to [Quick Start](#quick-start) for a short tutorial on how to run 
 > **ResiReg** runs on Windows, Linux, and OS-X.
 
 1. Ensure that Java 11 or above is installed in your computer.
-2. Download the latest `ResiReg.jar` here.
+2. Download the latest `resireg.jar` here.
 3. Copy the file to the folder you want to use as the home folder for your **ResiReg**.
 4. Double-click the file to start the app. The app window should open in a few seconds.
-5. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing `help` and pressing Enter will open this user guide.
+5. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing `help` and pressing Enter will display a help message containing a list of available commands, as well as a link to this User Guide.
 6. Some example commands you can try:
    - `rooms --vacant`: lists all rooms that are vacant.
    - `allocate si/1 ri/2`: allocates the 1st student in the student list to the 2nd room in the room list.
@@ -55,7 +55,7 @@ This section explains the format of commands in this User Guide.
 - Words in `<angular_brackets>` are the parameters to be supplied by the user e.g. in `deallocate <student_name>`, `<student_name>` is a parameter which can be used as `deallocate Jet New`.
 - Items in square brackets are optional e.g `<full_name> [-aka <alias>]` can be used as `Jet New -aka JJ` or as `Jet New`.
 - Items separated by <Code>or</Code> indicates a choice between items, but only one item is to be used at any time e.g. `--vacant or --allocated` means either the `--vacant` or the `--allocated` flag (but not both) can be used.
-- Items with `…` after them can be used multiple times including zero times, unless otherwise stated e.g. `[/m <mod> /ig <interest_group>]…` can be used as `/m mod /ig ig`, `/m mod1 /ig ig1 /m mod2 /ig ig2` etc.
+- Items with `…` after them can be used multiple times including zero times, unless otherwise stated.
 </div>
 
 ### Housing Management
@@ -98,6 +98,9 @@ Format: `delete-room <index>`
 - Deletes the room at the specified `index`, and moves the room to the bin.
 - The index refers to the index number shown in the displayed room list.
 
+Examples:
+- `delete-room 1` Removes the room at index `1` from ResiReg.
+
 #### Editing rooms: `edit-room`
 
 Edits an existing room in ResiReg.
@@ -107,7 +110,7 @@ Format `edit-room <index> [fl/<floor>] [n/<room_number>] [t/<room_type>] [tag/<t
 - Constraints on floor, room number and room type are specified under `add-room`.
 
 Examples:
-- `edit-room 1 t/CN` Changes the room type of the 1st room to `CN`
+- `edit-room 1 t/CN` Changes the room type of the 1st room to `CN`.
 
 #### Allocating a room to a student : `allocate`
 
@@ -115,7 +118,7 @@ Allocates a room to a student i.e denotes that the student currently occupies th
 
 Format: `allocate ri/<room_index> si/<student_index>`
 
-- Allocates a room to the student person at the specified `room_index` and `student_index`. The `room_index` refers to the index number shown in the displayed rooms list,
+- Allocates a room to the student at the specified `room_index` and `student_index`. The `room_index` refers to the index number shown in the displayed rooms list,
   and the `student_index` refers to the index number shown in the displayed student list. Both indices **must be positive integers** 1, 2, 3, …​
 - Both the student and the room must be unallocated when this command is run. Otherwise, an error message is displayed accordingly.
 
@@ -136,14 +139,14 @@ Examples:
 Deallocates a room for a student i.e denotes that the student no longer occupies the room.
 
 Format: `deallocate si/<student_index>`
-* Deallocates a room to the student at the specified `student_index`. The `student_index` refers to the index number shown in the displayed student list. The `student_index` **must be a positive integer** 1, 2, 3, …​
+* Deallocates a room to the student at the specified `student_index`. The `student_index` refers to the index number shown in the displayed students list. The `student_index` **must be a positive integer** 1, 2, 3, …
 * The student at `student_index` must have been allocated a room. Otherwise, an error message is displayed.
 
 Examples:
 * `deallocate si/1` deallocates the room for the student at `student_index` 1.
 
 ##### Before deallocation
-Refer to "After allocation" above.
+Refer to [After Allocation](#after-allocation) above.
 
 ##### After deallocation
 
@@ -165,7 +168,7 @@ Examples:
 * `reallocate si/1 ri/2` edits the allocation of the student with index 1's current room to the room with index 2.
 
 ##### Before reallocation
-Refer to "After allocation" above.
+Refer to [After Allocation](#after-allocation) above.
 
 ##### After reallocation
 
@@ -183,6 +186,7 @@ Format: `archive`
 
 - Moves the previous semester's allocation data to `AY[YEAR]S[SEMESTER]/archive.json`. For example, if the previous semester was 2019 Semester 2, the allocation data will be moved to `AY2019S2/archive.json`.
 - The rooms and students are still preserved in the system.
+- Additional arguments passed to the command are ignored.
 
 ##### Before archival
 
@@ -192,7 +196,7 @@ Format: `archive`
 
 ![UI after archiving](./images/AfterArchive.png)
 
-<div markdown="span" class="alert alert-info">:information_source: Performing <code>undo</code> on an <code>archive</code> command will reset and restore the state of the previous semester, but the created archival folder will not be deleted. Any changes followed by another <code>archive</code> command will overwrite the contents of that folder.
+<div markdown="span" class="alert alert-info">:information_source: Performing [undo](#undo-previous-command--undo) on an <code>archive</code> command will reset and restore the state of the previous semester, but the created archival folder will not be deleted. Any changes followed by another <code>archive</code> command will overwrite the contents of that folder.
 </div>
 
 
@@ -226,7 +230,7 @@ Adds a student to ResiReg. The following student details are stored: name, stude
 
 Format: `add-student n/<student_name> i/<student_id> p/<phone_no> e/<email> f/<faculty> [tag/<tag_name>]...`
 
-- The student ID must be a 8-digit alphanumeric string, starting with `EO` and ending with 6 digits. It must be unique (no two students in ResiReg can share the same student ID). Otherwise, an error message is displayed accordingly.
+- The student ID must be an alphanumeric string, starting with `EO` and ending with 6 digits. It must be unique (no two students in ResiReg can share the same student ID). Otherwise, an error message is displayed accordingly.
 - The phone number should be exactly 8 digits
 - The faculty should be a case-sensitive code. Refer to the following list for the faculty codes and their corresponding faculty names
     - `FASS` (Arts and Social Sciences)
@@ -247,7 +251,7 @@ Format: `add-student n/<student_name> i/<student_id> p/<phone_no> e/<email> f/<f
     - `USP` (University Scholars Programme)
     - `YNUS` (Yale-NUS)
 - The pairs of type-prefixes and data (eg. `n/<student_name>`) may given be in any order.
-- The student will not be added if some pieces of information is missing. An error message will be displayed instead.
+- The student will not be added if some pieces of information are missing. An error message will be displayed instead.
 
 Examples:
 
@@ -257,8 +261,8 @@ Examples:
 
   `Invalid command format! add-student: Adds a student to ResiReg. `
   `Parameters: n/NAME i/STUDENT_ID p/PHONE e/EMAIL f/FACULTY [tag/TAG]...`
-  `Example: add-student n/John Doe s/E0123456 p/98765432 e/`
-  `johndoe@u.nus.edu f/FASS`
+  `Example: add-student n/John Doe s/E0123456 p/98765432`
+  `e/ johndoe@u.nus.edu f/FASS`
 
 
 #### Editing a student : `edit-student`
@@ -301,7 +305,7 @@ the command immediately. However, if you deleted the student a while ago, and wi
 
 ### General
 
-> **ResiReg** has many general features such as Command Line Interface (CLI) sugar and a recyling bin for more efficient usage by experienced users.
+> **ResiReg** has many general features such as Command Line Interface (CLI) sugar and a recycling bin for more efficient usage by experienced users.
 
 #### Listing all bin items : `bin`
 
@@ -310,7 +314,7 @@ Shows a list of all bin items in ResiReg.
 Format: `bin`
 
 - `bin` switches to the Bin tab if it is not already selected.
-- If additional text is supplied after `bin`, e.g. `bin ,` or `bin dn` no error message is shown. (rationale: to prevent user typos from interfering with clear intention of viewing the bin list)
+- If additional text is supplied after `bin`, e.g. `bin ,` or `bin dn` no error message is shown. (rationale: to prevent user typos from interfering with a clear intention of viewing the bin list)
 
 Examples: `bin`
 
@@ -320,7 +324,7 @@ Restores an existing bin item in ResiReg.
 
 Format: `restore <index>`
 
-- Restores the bin item at the specified `index` to the list it was originally deleted from (e.g. student list). The index refers to the index number shown in the displayed bin item list. The index **must be a positive integer** 1, 2, 3, …​
+- Restores the bin item at the specified `index` to the list it was originally deleted from (e.g. student list). The index refers to the index number shown in the displayed bin item list. The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 
@@ -334,9 +338,9 @@ Sets the amount of time (in days) that bin items stay in the bin before they are
 The default time for which a bin item stays in the bin is <b>30 days</b>. Use this command if this does not suit your needs.
 </div>
 
-Format: `set-bin-expiry <number_of_days>​`
+Format: `set-bin-expiry <number_of_days>`
 
-- `number_of_days` **must be a positive integer** 1, 2, 3, …​
+- `number_of_days` **must be a positive integer** 1, 2, 3, …
 
 Examples:
 
@@ -344,10 +348,10 @@ Examples:
 
 #### Listing all aliases : `aliases`
 
-Shows the list of aliases (an alias is a user-defined term that can be used interchangeably with a command word) and their corresponding command words currently in ResiReg.
+Shows the list of aliases and their corresponding command words currently in ResiReg. An alias is a user-defined term that can be used interchangeably with a command word.
 
-Format: `aliases​`
-- - If additional text is supplied after `aliases`, e.g. `aliases ,` or `aliases dn` no error message is shown. (rationale: to prevent user typos from interfering with clear intention of viewing the alias list)
+Format: `aliases`
+- If additional text is supplied after `aliases`, e.g. `aliases ,` or `aliases dn` no error message is shown. (rationale: to prevent user typos from interfering with clear intention of viewing the alias list)
 
 Example: `aliases`
 
@@ -355,7 +359,7 @@ Example: `aliases`
 
 Adds an alias for a command word to ResiReg.
 
-Format: `alias c/<command_word> a/<alias_term>​`
+Format: `alias c/<command_word> a/<alias_term>`
 
 - `command_word` must exactly match one of the command words listed by the `help` command.
 - `alias_term` cannot be an existing command word, or an existing alias.
@@ -375,7 +379,7 @@ Format: `dealias c/<command_word> a/<alias_term>​`
 
 Examples:
 
-- `dealias c/set-bin-expiry a/sb` removes the an alias `sb` for the `set-bin-expiry` command. Henceforth, typing `sb` will lead to an error message for `Unknown command`.
+- `dealias c/set-bin-expiry a/sb` removes the alias `sb` for the `set-bin-expiry` command. Henceforth, typing `sb` will lead to an error message for `Unknown command`.
 
 #### Asking for help as a first time user : `help`
 
@@ -410,20 +414,17 @@ Format: `help <command_word> or <alias_term>`
 
 Examples:
 
-- `help rooms` results in the following output:
+- `help rooms`
 
-```
-rooms: Lists all rooms within the system. If the --vacant flag is specified, lists only vacant rooms i.e rooms which have no students allocated to them.
-Otherwise, if the --allocated flag is specified, lists only allocated rooms i.e. rooms which have students allocated to them.
-Parameters: [--vacant or --allocated]
-Example: rooms
-```
-
+<div markdown="span" class="alert alert-info">
+:information_source: All subsequent commands will ignore additional text if supplied.
+</div>
 #### Clearing all entries : `clear`
 
 Clears all entries (students, rooms, allocations and bin items) from ResiReg.
 
 Format: `clear`
+- Additional arguments passed to the command are ignored.
 
 #### Undo previous command : `undo`
 Restores the address book to the previous state where a modifying command was executed.
@@ -461,7 +462,7 @@ Exits the program.
 Format: `exit`
 
 #### View students and rooms side by side: `toggle-split`
-While allocating rooms to students, it is probably easier to view rooms and students at the same time. If the rooms and students tabs are currently separate, `toggle-split` will merge the students and rooms tab into 1 tab that shows them side by side, which is shown the image below. You can use the `rooms` or `students` commands to switch to the combined tab as usual.
+While allocating rooms to students, it is probably easier to view rooms and students at the same time. If the rooms and students tabs are currently separate, `toggle-split` will merge the students and rooms tab into 1 tab that shows them side by side, which is shown in the image below. You can use the `rooms` or `students` commands to switch to the combined tab as usual.
 
 Format: `toggle-split`
 
@@ -492,8 +493,8 @@ Just type in the `help` command!
 
 1. Download the JAR file (`resireg.jar`) on your new computer.
 2. Navigate to where the JAR file is.
-3. Double click on `resireg.jar`
-4. Delete the `resireg.json` file in the folder
+3. Double click on `resireg.jar`.
+4. Delete the `resireg.json` file in the folder.
 5. Copy over the `resireg.json` file <em>residing in your previous **ResiReg** home folder</em> that contains data of your previous **ResiReg** session.
 
 ## Command Summary

@@ -41,7 +41,7 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#5](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/5), [\#67](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/67), [\#89](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/89), [\#122](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/122)
-  * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/6#issuecomment-675195748))
+  * Contributed to forum discussions (examples: [\#6](https://github.com/nus-cs2103-AY2021S1/forum/issues/6#issuecomment-675195748))
   * Made PRs correcting minor issues in TextBook ([\#92](https://github.com/se-edu/se-book/pull/92), [\#93](https://github.com/se-edu/se-book/pull/93))
 
 * **Tools**:

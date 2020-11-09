@@ -90,7 +90,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/resireg/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `MainPanel`, `StatusBarFooter` etc. `MainPanel` in turn is made up of the various tabs represented as `StudentListPanel`, `RoomListPanel` and `BinItemListPanel` and their constitutent parts. All these, including the `MainWindow`, inherit from the abstract `UiPart` class. Note that 
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `MainPanel`, `StatusBarFooter` etc. `MainPanel` in turn is made up of the various tabs represented as `StudentListPanel`, `RoomListPanel` and `BinItemListPanel` and their constitutent parts. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/resireg/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103-T16-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -99,7 +99,7 @@ The `UI` component,
 - Executes user commands using the `Logic` component.
 - Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-When the app is launched, `StudentListPanel` is displayed to allow the user to manage student records. When a room tab session is to be shown, `StudentListPanel` becomes hidden, and the `RoomListPanel` is displayed to allow the user to edit and view rooms, by exposing a `MainPanel#handleToggle` method to the `Logic` components. 
+When the app is launched, `StudentListPanel` is displayed to allow the user to manage student records. When a room tab session is to be shown, `StudentListPanel` becomes hidden, and the `RoomListPanel` is displayed to allow the user to edit and view rooms, by exposing a `MainPanel#handleToggle` method to the `Logic` components.
 
 ### Logic component
 
@@ -520,53 +520,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a…                    | I can…                                                   | So that I can…                                                                                            |
 | -------- | ------------------------ | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| \*       | OHS admin                | find a room by searching for the room number             | get the details of a specific room, without getting cluttered by other information.                       |
-| \* \*    | OHS admin                | view a list of rooms filtered by a particular type       | select the rooms that needs to be upgraded, for example.                                                  |
-| \* \*    | advanced user       | redo the previous command using a keyboard shortcut      | do the same task without typing again, e.g. if two students wish to pay the same bill.                    |
-| \* \*    | careless user      | undo my last command                                     | fix any change that I made erroneously.                                                                   |
-| \* \*    | advanced user       | view previous commands using a keyboard shortcut         | check if I made an error in adding or deleting records.                                                   |
-| \* \* \* | OHS admin                | view a list of vacant rooms                              | start assigning rooms to students before the semester starts.                                             |
+| \*       | OHS admin                | find a room by searching for the room number             | get the details of a specific room quickly.                                                               |
+| \* \*    | advanced user            | redo the previous command                                | do the same task without typing again, e.g. if two students wish to pay the same bill.                    |
+| \* \*    | careless user            | undo my last command                                     | fix any change that I made erroneously.                                                                   |
+| \* \*    | advanced user            | view previous commands                                   | check if I made an error in adding or deleting records.                                                   |
+| \* \* \* | OHS admin                | view a list of vacant rooms                              | start assigning rooms to students during check-in.                                                        |
 | \* \* \* | OHS admin                | view a room allocation for a student                     | check and inform a student of their room allocation during check in.                                      |
 | \* \* \* | OHS admin                | allocate a room to a student                             | allocate a student to a room before the semester starts.                                                  |
 | \* \* \* | OHS admin                | delete a room allocation for a student                   | update vacancies when a student applies to leave their room.                                              |
 | \* \*    | OHS admin                | add a new semester                                       | make sure all new bills and allocations are made in the context of the semester.                          |
 | \* \* \* | OHS admin                | view a list of all allocated rooms                       | check which students stay in which rooms.                                                                 |
+| \* \*    | OHS admin                | view a list of rooms filtered by a particular type       | group the rooms as per my need.                                                                           |
 | \* \* \* | OHS admin                | edit a room allocation for a student                     | change a student's room allocation and update the room vacancies.                                         |
-| \* \* \* | OHS admin                | add a room                                            | perform admin duties related to the room.                                                              |
+| \* \* \* | OHS admin                | add a room                                               | perform admin duties related to the new room.                                                             |
 | \*       | OHS admin                | edit a room's type                                       | log upgrades like the installation of an aircon.                                                          |
-| \* \* \* | OHS admin                | delete a room                                         | in case I had erroneously added a room to ResiReg.             |
-| \* \*    | OHS admin                | add a new semester                                       | make sure all new bills and allocations are made in the context of the semester.                          |
-| \* \*    | OHS admin                | archive the current Semester's data                      | keep the data for auditing purposes, but not have it distract me while dealing with a new semester. |
-| \* \* \* | OHS admin                | view a list of all students                              | check if students' particulars need to be modified                                     |
+| \* \* \* | OHS admin                | delete a room                                            | in case I had erroneously added a room to ResiReg.                                                        |
+| \* \*    | OHS admin                | archive the current Semester's data                      | keep the data for auditing purposes, but not have it distract me while dealing with a new semester.       |
+| \* \* \* | OHS admin                | view a list of all students                              | check if students' particulars need to be modified                                                        |
 | \* \* \* | OHS admin                | add a student to ResiReg                                 | perform admin duties related to the student.                                                              |
-| \* \* \* | OHS admin                | edit the details of an existing student                  | easily correct any typos and update the student details when needed (e.g. faculty).            |
-| \* \* \* | OHS admin                | delete a student                                         | not have to keep track of students not staying in the College.             |
-| \* | OHS admin                | move a deleted student/room to the recycling bin        | temporarily store the item in case the deletion is erroneous |
-| \* | OHS admin                | restore a deleted student/room from the recycling bin        | reverse an erroneous deletion |
-| \* \*    | advanced user | create aliases for  commands                         | perform my common actions while typing less.                                                              |
+| \* \* \* | OHS admin                | edit the details of an existing student                  | easily correct any typos and update the student details when needed (e.g. faculty).                       |
+| \* \* \* | OHS admin                | delete a student                                         | not have to keep track of students not staying in the College.                                            |
+| \*       | OHS admin                | move a deleted student/room to the recycling bin         | temporarily store the item in case the deletion is erroneous                                              |
+| \*       | OHS admin                | restore a deleted student/room from the recycling bin    | reverse an erroneous deletion                                                                             |
+| \* \*    | advanced user            | create aliases for  commands                             | perform my common actions while typing less.                                                              |
 | \* \* \* | first-time user          | ask for help                                             | quickly and easily learn how to use the application in one place.                                         |
 | \* \* \* | new/confused user        | check the syntax for a command                           | do a task even if I am unsure of the command usage.                                                       |
-| \* \*    | advanced user       | redo the previous command using a keyboard shortcut      | do the same task without typing again, e.g. if two students wish to pay the same bill.                    |
-| \* \*    | careless user      | undo my last command                                     | fix any change that I made erroneously.                                                                   |
-| \* \*    | advanced user       | view previous commands         | check if I made an error in adding or deleting records.                                                   |
 
 ### Potential User stories
 
 | Priority | As a…                    | I can…                                                   | So that I can…                                                                                            |
 | -------- | ------------------------ | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| \* \*    | meticulous OHS admin     | have automatic backups of my data                        | ensure my data will not be accidentally erased.                                                     |
 | \* \*    | OHS admin                | export records to csv files                              | easily create mailing lists or send relevant data to other admin.                                         |
 | \* \*    | OHS admin                | delete a bill                                            | remove a erroneously added bill.                                                                          |
-| \* \*    | OHS admin                | import data from a data file                             | continue work from where my predecessor left off.                                                         |
-| \* \*    | OHS admin                | export all of the current data to a data-file            | hand over my duties to another admin.                                                                     |
 | \*       | OHS admin                | edit a room's semesterly fees                            | update room charges when costs increase (e.g. from $1000 to $1500)                                        |
 | \* \*    | OHS admin                | add a bill for a student                                 | keep track of a student's bills and finances.                                                             |
 | \* \*    | OHS admin                | view all outstanding bills for a student                 | inform the student of his/her due bills.                                                                  |
 | \* \*    | OHS admin                | mark a bill as paid                                      | easily keep track of the remaining amount a student has to pay to OHS.                                    |
 | \* \*    | OHS admin                | view a list of all students with outstanding bills       | remind students of outstanding payments.                                                                  |
 | \* \*    | OHS admin                | add a remark to a bill                                   | record any exceptional details about the bill (e.g. cash-only payment).                                   |
-| \* \*    | advanced user       | have autocompletions for a command                       | quickly and efficiently complete an operation.                                                            |
-| \* \*    | busy OHS Admin           | find a student by partial searching for their first name | type quickly without worrying about typos.                                                                |
 
 
 ### Use cases
@@ -894,6 +885,8 @@ Extensions
 2. Should be able to hold up to 1000 records (students and rooms) without a noticeable sluggishness in performance (where a "noticeable sluggishness" is defined as a lag of 1 second) for typical usage.
 3. Should not require an installer.
 4. A user with above average typing speed for regular English text (i.e not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5. The data should not be stored in a Database Management System (DBMS).
+6. Should not depend on any remote server.
 
 ### Glossary
 
@@ -1025,7 +1018,7 @@ testers are expected to do more <i>exploratory</i> testing.
 ### Restoring deleted items
 1. Restoring a room when list of bin items is being viewed
 
-  1. Prerequisites: List all bin items using the `bin` item command. A room at index 1 in the list of bin items.
+   1. Prerequisites: List all bin items using the `bin` item command. A room at index 1 in the list of bin items.
 
    1. Test case: `restore 1`<br>
       Expected: First room is restored from the list. The room is added to the room list (visible if `rooms` command is issued). Timestamp in the status bar is updated.
@@ -1039,10 +1032,34 @@ testers are expected to do more <i>exploratory</i> testing.
 ### Permanent deletion of bin items after expiry 
 1. Verifying permanent deletion of bin items when the list of bin items is viewed. Note: remember to ensure that the pre-requisites are satisfied before either of the test cases is tried.
 
-  1. Prerequisites: Set bin expiry time to 20 days via `set-bin-expiry 20`. Multiple items in the bin deleted on the current date. 
+   1. Prerequisites: Set bin expiry time to 20 days via `set-bin-expiry 20`. Multiple items in the bin deleted on the current date.
 
    1. Test case: Change system time to 21 days in the future (procedure for [Mac](https://support.apple.com/en-za/guide/mac-help/mchlp2996/mac) and [Windows 10](https://support.microsoft.com/en-us/windows/how-to-set-your-time-and-time-zone-dfaa7122-479f-5b98-2a7b-fa0b6e01b261)). Restart ResiReg.<br>
     Expected: All bin items should be cleared from the bin item list. 
 
    1. Test case: Change system time to 15 days in the future (procedure for [Mac](https://support.apple.com/en-za/guide/mac-help/mchlp2996/mac) and [Windows 10](https://support.microsoft.com/en-us/windows/how-to-set-your-time-and-time-zone-dfaa7122-479f-5b98-2a7b-fa0b6e01b261)) Restart ResiReg. <br>
     Expected: No bin item is removed. 
+
+### Archiving a semester
+1. Archiving the currently displayed semester
+
+    1. Test case: `archive`<br>
+       Expected: All current allocations are reset, meaning students should no longer be assigned to a room. The GUI should display the succeeding semester.
+
+### Allocating a student to a room
+1. Allocating a student present in ResiReg, to a Room present in ResiReg
+
+   1. Prerequisites: The student should be displayed in the students list, and the room should be displayed in the rooms list. The `toggle-split` command may be used for a side-by-side view of the 2 lists. Ensure that Room 1 has been allocated to Student 1.
+
+   1. Test case: `allocate ri/3 si/3`<br>
+      Expected: The third student in the students list should be allocated to the third room in the rooms list.
+
+   1. Test case: `allocate ri/1 si/2`<br>
+      Expected: The student is not allocated to the room. An error message describing the problem is shown.
+
+   1. Test case: `allocate ri/2 si/1`<br>
+      Expected: The student is not allocated to the room. An error message describing the problem is shown.
+
+   1. Other incorrect delete commands to try: `allocate ri/0 si/3`, `allocate ri/x si/3`, `...` (where x is larger than the list size)<br>
+      Expected: An error message describing the problem is shown.
+
