@@ -682,7 +682,7 @@ with phone number, using a prefix to identify them.
 * needs to keep track of the daily sales
 * prefers desktop apps over other types
 * prefers typing to mouse interactions
-* is reasonably comfortable using command-line interface (CLI) apps
+* is reasonably comfortable using CLI apps
 
 **Value proposition**:
 The product provides an integrated system for the purpose of sales tracking, ingredient track and manpower management.
