@@ -975,8 +975,7 @@ Similar to [UC03 (Delete a Client)](#uc03), but replace Client with Session.
 1.  User requests to view Settings Window. 
 2.  FitEgo displays Settings Window.
 3.  User makes changes to settings. 
-4.  FitEgo saves changes to settings. 
-    Use case ends.
+4.  FitEgo saves changes to settings. <br/> Use case ends.
 
 **Extensions**
 * 2a. User closes the Settings Window. 
