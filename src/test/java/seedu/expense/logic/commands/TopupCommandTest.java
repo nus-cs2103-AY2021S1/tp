@@ -5,8 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.expense.logic.commands.CommandTestUtil.VALID_TAG_FOOD;
 import static seedu.expense.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
+import static seedu.expense.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.expense.model.ExpenseBook.DEFAULT_TAG;
 import static seedu.expense.testutil.Assert.assertThrows;
+import static seedu.expense.testutil.TypicalExpenses.getTypicalExpenseBook;
 
 import java.nio.file.Path;
 import java.util.Comparator;
@@ -18,9 +20,11 @@ import javafx.collections.ObservableList;
 import seedu.expense.commons.core.GuiSettings;
 import seedu.expense.logic.commands.exceptions.CommandException;
 import seedu.expense.model.Model;
+import seedu.expense.model.ModelManager;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.ReadOnlyUserPrefs;
 import seedu.expense.model.Statistics;
+import seedu.expense.model.UserPrefs;
 import seedu.expense.model.alias.AliasEntry;
 import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.budget.Budget;
@@ -79,6 +83,16 @@ public class TopupCommandTest {
         assertThrows(CommandException.class, () -> new TopupCommand(new Amount("1"),
                 new Tag(VALID_TAG_FOOD)).execute(modelStub));
     }
+
+    @Test
+    public void execute_sumExpensesTooLarge_failure() {
+        Amount largeAmount = new Amount(Amount.MAX_VALUE.toPlainString());
+        TopupCommand topupCommand = new TopupCommand(largeAmount);
+        Model model = new ModelManager(getTypicalExpenseBook(), new UserPrefs(), new AliasMap());
+        model.topupBudget(new Amount("1"));
+        assertCommandFailure(topupCommand, model, TopupCommand.MESSAGE_SUM_OVER_LIMIT);
+    }
+
 
     @Test
     void equals() {
@@ -293,6 +307,11 @@ public class TopupCommandTest {
 
         @Override
         public void deleteAlias(AliasEntry entry) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Amount tallyExpenses() {
             throw new AssertionError("This method should not be called.");
         }
     }

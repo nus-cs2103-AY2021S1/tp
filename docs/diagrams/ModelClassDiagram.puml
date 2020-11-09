@@ -53,6 +53,7 @@ ExpenseBook .up.|> ReadOnlyExpenseBook
 ModelManager .up.|> Model
 Model .right.> ObservableList
 ModelManager o--> "1" ExpenseBook
+ModelManager o-right-> "1" AliasMap
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 

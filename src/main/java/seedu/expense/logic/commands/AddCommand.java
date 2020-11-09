@@ -37,6 +37,7 @@ public class AddCommand extends Command {
             + " -- tagging as 'Default' instead. ";
     public static final String MESSAGE_INVALID_AMOUNT = "Amount of the expense cannot be negative. Please "
             + "specify a non-negative amount of the expense.";
+    public static final String MESSAGE_SUM_OVER_LIMIT = "Total sum of expenses cannot exceed 10e9.";
 
     private final Expense toAdd;
 
@@ -58,6 +59,12 @@ public class AddCommand extends Command {
 
         if (toAdd.getAmount().smallerThan(Amount.zeroAmount())) {
             throw new CommandException(MESSAGE_INVALID_AMOUNT);
+        }
+
+        try {
+            model.tallyExpenses().add(toAdd.getAmount());
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(MESSAGE_SUM_OVER_LIMIT);
         }
 
         if (!model.hasCategory(toAdd.getTag())) {
