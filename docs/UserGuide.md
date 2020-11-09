@@ -369,7 +369,8 @@ Edit an existing patient in the patient list.
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
 
 * Edits the patient at the specified `INDEX`. 
-* `INDEX` refers to the index number shown in the displayed patient list. The index **must be a positive number** 1, 2, 3, …​
+* `INDEX` refers to the index number shown in the displayed patient list. 
+  * The index **must be a positive number**, eg. 1, 2, 3, …
 * `NAME` refers to the name of the patient and should only contain alphanumeric characters.
 * `PHONE_NUMBER` refers to the phone number of the patient and can be any 8 digit number combinations.
 * `NRIC` refers to the unique alphanumeric serial number on the National Registration Identity Card. Only Singaporean NRIC format is accepted.
@@ -418,7 +419,8 @@ Delete a specified patient from the patient list.
 
 Format: `delete INDEX`
 
-* Deletes the patient at the specified `INDEX`. `INDEX` refers to the index number shown in the displayed patient list. The index **must be a positive number** 1, 2, 3, …​
+* Deletes the patient at the specified `INDEX`. `INDEX` refers to the index number shown in the displayed patient list. 
+  * The index **must be a positive number**, eg. 1, 2, 3, …
 
 <p align="center">
     <img src="images/deleteExample.png"/>
@@ -530,7 +532,7 @@ Format: `profile INDEX`
 
 * Displays the patient's profile that is specified by `INDEX`.
 * `INDEX` refers to the index number shown in the displayed patient list.
-* `INDEX` **must be a positive number** 1, 2, 3, …​
+  * The index **must be a positive number**, eg. 1, 2, 3, …
 
 <p align="center">
     <img src="images/profileExample.png"/>
@@ -609,7 +611,7 @@ Format: `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]`
 
 * `INDEX` refers to the patient's index number as shown in the displayed patient list.
 * `VISIT_INDEX` refers to the visitation's index number as shown in the patient's profile.
-* Both indexes **must be a positive number** 1, 2, 3, …​
+  * Both indexes **must be positive numbers**, eg. 1, 2, 3, …
 * `VISIT_DATE` refers to the new date of visitation that you wish to amend to.
     * It follows the format of `dd/MM/yyyy`, for example `23/10/2020`.
     * Do note that for numerical inputs `1-9`, you will need to include an additional `0` in front. For example, enter `05` instead of `5`.
@@ -659,7 +661,7 @@ Format: `deletevisit INDEX i/VISIT_INDEX`
 
 * `INDEX` refers to the patient's index number as shown in the displayed patient list.
 * `VISIT_INDEX` refers to the visitation's index number as shown in the patient's profile.
-* Both indexes **must be a positive number** 1, 2, 3, …​
+  * Both indexes **must be positive numbers**, eg. 1, 2, 3, …
 
 **Example**: You want to delete the 2nd visitation log belonging to the 1st patient on the list.
 
@@ -685,42 +687,40 @@ Patient Appointment commands help you manage your upcoming patient appointments.
 
 Add a new appointment for the specified patient to the appointment list.
 
+Format: `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION`
+
+* `INDEX` refers to the patient's index number as shown in the displayed patient list in the **Patients** tab.
+  * The index **must be a positive number**, eg. 1, 2, 3, …
+* `APPOINTMENT_START_TIME` refers to the date and starting time of the appointment.
+  * It follows the format of `dd/MM/yyyy HH:mm`, for example `31/12/2020 23:59`.
+  * Note that you will need to input the hour (`HH`) in  the 24-hour format.
+* `DURATION` refers to the duration of the appointment, in minutes.
+
 <p align="center">
     <img src="images/addApptExample.png"/>
     <br>
     <em style="color:#CC5500">Figure 23. Example of Add Appointment Command</em>
 </p>
 
-Format: `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION`
 
-* `INDEX` refers to the patient's index number as shown in the displayed patient list in the **Patients** tab.
-    * It **must be a positive number**, eg. 1, 2, 3, …​
-* `APPOINTMENT_START_TIME` refers to the date and starting time of the appointment.
-    * It follows the format of `dd/MM/yyyy HH:mm`, for example `31/12/2020 23:59`.
-    * Note that you will need to input the hour (`HH`) in  the 24-hour format.
-
-* `DURATION` refers to the duration of the appointment, in minutes.
-
-<div markdown="block" class="alert alert-primary">
-:bulb: <span style="font-weight:bold">Tip: </span>
-
-* Note that only appointments with future dates (including today) will be accepted, since patient appointments are scheduled in advance.
-* If you are having trouble converting your time to 24 hour format, check out a time format converter at <a href="https://www.timecalculator.net/12-hour-to-24-hour-converter">this link</a>.
-* You can retrieve your desired patient `INDEX` from the **Patients** tab.
-</div>
-
-Example: You want to add an appointment with the first patient on the list.
+<div markdown="block" class="alert alert-warning">
+:book: <span style="font-weight:bold">Example: </span> 
+You want to add an appointment with the first patient on the list.
 
 **Step 1**: Input `addappt 6 st/11/12/2020 15:00 d/120` into the command box and press Enter.
 
 **Step 2**: On the **Overview** tab, you can find your newly added appointment saved inside the appointment list.
 
 **Step 3**: If your newly added appointment is happening within a week from today, you can see the appointment being reflected in the calendar on the right of the appointment list.
+</div>
 
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
 
-* You are highly recommended to use a duration of at least 30 minutes to optimise your experience with our CliniCal calendar feature.
+* You can retrieve your desired patient `INDEX` from the **Patients** tab.
+* Note that only appointments with future dates (including today) will be accepted, since patient appointments are scheduled in advance.
+* If you are having trouble converting your time to 24 hour format, check out a time format converter at <a href="https://www.timecalculator.net/12-hour-to-24-hour-converter">this link</a>.
+* You are highly recommended to use a duration of at least 60 minutes to optimise your experience with our CliniCal calendar feature.
 
 </div>
 
@@ -728,20 +728,11 @@ Example: You want to add an appointment with the first patient on the list.
 
 Edit the specified appointment in the appointment list.
 
-<p align="center">
-    <img src="images/editApptExample.png"/>
-    <br>
-    <em style="color:#CC5500">Figure 24. Example of Edit Appointment Command</em>
-</p>
-
 Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_START_TIME] [d/DURATION]`
 
-* Edits the appointment at the specified `INDEX`. `INDEX` refers to the index number shown in the displayed appointment list. The index **must be a positive number** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-
+* Edits the appointment at the specified `INDEX`.
 * `INDEX` refers to the appointment's index number as shown in the displayed appointment list in the **Overview** tab. 
-    * It **must be a positive number**, eg. 1, 2, 3, …​
+    * The index **must be a positive number**, eg. 1, 2, 3, …
 * `PATIENT_NAME` refers to the name of the patient involved in the appointment as shown in the displayed calendar in the **Overview** tab.
 * `PATIENT_IC` refers to the NRIC of the patient involved in the appointment as shown in the displayed calendar in the **Overview** tab. 
 * `APPOINTMENT_START_TIME` refers to the date and starting time of the appointment. 
@@ -749,19 +740,24 @@ Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_START_
     * Note that you will need to input the hour (`HH`) in  the 24-hour format. 
 * `DURATION` refers to the duration of the appointment, in minutes.
 
-Example: You want to reschedule the first appointment in the appointment list.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+<p align="center">
+    <img src="images/editApptExample.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 24. Example of Edit Appointment Command</em>
+</p>
+
+<div markdown="block" class="alert alert-warning">
+:book: <span style="font-weight:bold">Example: </span>
+You want to reschedule the first appointment in the appointment list.
 
 **Step 1**: Input `editappt 6 st/12/12/2020 18:00 d/240` into the command box and press Enter.
 
 **Step 2**: On the **Overview** tab, you can find the newly updated appointment inside the appointment list. 
 
 **Step 3**: If the newly updated appointment is due within a week from today, you can also see the appointment details inside the calendar.
-
-<div markdown="block" class="alert alert-primary">
-:bulb: <span style="font-weight:bold">Tip: </span>
-
-* If you are having trouble converting your time to 24 hour format, check out the time format converter at <a href="https://www.timecalculator.net/12-hour-to-24-hour-converter">this link</a>.
-* You can retrieve your desired appointment `INDEX` from the **Overview** tab.
 </div>
 
 <div markdown="block" class="alert alert-info">
@@ -769,7 +765,16 @@ Example: You want to reschedule the first appointment in the appointment list.
 **:information_source: Note:**<br>
 
 * Only Singaporean NRIC format (@xxxxxxx#) is accepted for NRIC field.
-* Please make sure to **update the changes to the relevant patient**, using the `edit` command.
+* If you have edited **patient name** or **patient NRIC**, please make sure to update the changes to any relevant patients, using the `edit` command.
+
+</div>
+
+<div markdown="block" class="alert alert-primary">
+:bulb: <span style="font-weight:bold">Tip: </span>
+
+* You can retrieve your desired appointment `INDEX` from the **Overview** tab.
+* If you are having trouble converting your time to 24 hour format, check out the time format converter at <a href="https://www.timecalculator.net/12-hour-to-24-hour-converter">this link</a>.
+* You are highly recommended to use a duration of at least 60 minutes to optimise your experience with our CliniCal calendar feature.
 
 </div>
 
@@ -777,22 +782,25 @@ Example: You want to reschedule the first appointment in the appointment list.
 
 Delete the specified appointment from the appointment list.
 
+Format: `deleteappt INDEX`
+
+* `INDEX` refers to the appointment's index number as shown in the displayed appointment list in the **Overview** tab.
+    * The index **must be a positive number**, eg. 1, 2, 3, …
+
 <p align="center">
     <img src="images/DeleteApptExample.png"/>
     <br>
     <em style="color:#CC5500">Figure 25. Example of Delete Appointment Command</em>
 </p>
 
-Format: `deleteappt INDEX`
-
-* `INDEX` refers to the appointment's index number as shown in the displayed appointment list in the **Overview** tab.
-    * It **must be a positive number**, eg. 1, 2, 3, …​
-
-Example: You want to delete your next upcoming appointment as your patient could not make it for the appointment.
+<div markdown="block" class="alert alert-warning">
+:book: <span style="font-weight:bold">Example: </span>
+You want to delete your next upcoming appointment as your patient could not make it for the appointment.
 
 **Step 1**: Input `deleteappt 1` and press Enter.
 
 **Step 2**: The first appointment displayed will be removed from the appointment list immediately. You can also see that the appointment is no longer being displayed on the calendar.
+</div>
 
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
