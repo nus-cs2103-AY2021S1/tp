@@ -59,8 +59,6 @@ Interface (GUI). If you are a TA with a fast typing speed, __Trackr__ is the app
 yourself with the information regarding how this document is designed in
 [Section 2, "About this document"](#2-about-this-document).
 
-
-
 ## 2. About this document
 
 Welcome to the __Trackr__ User Guide! In this document you will be able to learn the features that __Trackr__ can
@@ -80,6 +78,7 @@ The table below explains certain terms used in the document to describe differen
 | Field                          | A segment of a command that requires information to be filled into. |
 | Parameter                      | The information filled by you, the user, into the field of a command. |
 | Prefix                         | A short word that is typed right before you, the user, writes the parameter into the command. It always starts with a slash (/) and typically is an abbreviation of the name of the field. |
+| Module                         | The specific course being taught in a University.        |
 | Tutorial Group                 | The specific class being taught under a given module.        |
 | Student                        | An individual who is enrolled in a given module.             |
 
@@ -98,14 +97,19 @@ This document is written in a manner where formatting is applied to text in orde
 
 Commands you provide in the command line follow specific rules. These are the rules you have to follow when typing commands for **Trackr** to read:
 
--   Words in UPPER_CASE are the parameters to be supplied by the user.
-    e.g. in add n/NAME, NAME is a parameter which can be used as add n/John Doe.
--   Items in square brackets are optional.
-    e.g n/NAME [t/TAG] can be used as n/John Doe t/friend or as n/John Doe.
--   Items with …  after them can be used multiple times including zero times.
-    e.g. [t/TAG]…  can be used as (i.e. 0 times), t/friend, t/friend t/family etc.
--   Parameters can be in any order.
-    e.g. if the command specifies n/NAME p/PHONE_NUMBER, p/PHONE_NUMBER n/NAME is also acceptable.
+-   Words in UPPER_CASE are the parameters to be supplied by the user. <br>
+    e.g. in `addMod m/MODULE_CODE`, MODULE_CODE is a parameter which can be used as `addMod m/CS3243`.
+-   Items in square brackets are optional. <br>
+    e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+-   Items with …  after them can be used multiple times including zero times. <br>
+    e.g. `[t/TAG]…`  can be used as (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+-   Parameters can be in any order. <br>
+    e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+-   Multiple instances of the same parameter will still be accepted, however, Trackr will only regard the **last instance** as the intended user input, except for tags. <br>
+    e.g. 
+    - `addMod m/CS3243 m/CS2100` will only add the module _CS2100_ to Trackr.
+    - `editStudent 1 n/Johnny n/James` will edit the student's name to be _James_.
+    - `addStudent n/John Doe p/98765432 e/johnd@example.com id/A1234567X t/CS2103T t/CS2100` will still add both tags to the newly added student _John Doe_.
 
 
 
@@ -159,6 +163,9 @@ Shows a message explaining how to access the user guide.
 
 Format: `help`
 
+> Note
+> - You can perform this command in ANY view.
+
 Example: `help`
 
 Expected Outcome:
@@ -171,7 +178,7 @@ Clears all data inside Trackr.
 Format: `clear`
 
 > Note
-> - Method can be called in ANY view.
+> - You can perform this command in ANY view.
 > - Trackr will erase all data.
 > - Method is irreversible.
 > - View will change to Module view.
@@ -188,7 +195,7 @@ Exits Trackr and automatically saves the data.
 Format: `exit`
 
 > Note
-> - Method can be called in ANY view.
+> - You can perform this command in ANY view.
 > - Trackr will close by itself.
 
 Example: `exit`
@@ -197,68 +204,78 @@ Example: `exit`
 
 #### 4.2.1 List all modules in __Trackr__: `listMod`
 
-Shows all the modules you have added in the Module view.
+Lists all the modules in the Module view.
 
 Format: `listMod`
 
 > Note: You can perform this command in ANY view.
 
-Example: `listMod`
+Example: 
+- Lists all modules in Trackr.
+    - `listMod`
     
 Expected Outcome:
 
 ![ListModuleCommand](images/ListModuleCommand.png)
 
-#### 4.2.2 View all Tutorial Groups in a Module: `viewTG`
-Change view to Tutorial Groups of target Module.
+#### 4.2.2 View all tutorial groups in a module: `viewTG`
+Shows the tutorial group list of a target module.
 
-Format: `viewTG MODULE_INDEX`
-- MODULE_INDEX is the target Module's index in the currently displayed Module List.
+Format: `viewTG INDEX`
 
-> Note: You should perform this command in the MODULE view.
+> Note: 
+> - You should perform this command in the Module view.
+> - `INDEX` is the target module's index in the currently displayed module List.
 
-Example: `viewTG 1`
+Example: 
+- Changes the view to Tutorial Group view and shows the tutorial group list of module at index 1.
+    - `viewTG 1`
 
 Expected Outcome:
 ![ViewTgCommand]()
 
 #### 4.2.3 List all Tutorial Groups in the current Module: `listTG`
-Lists all Tutorial Groups in the current Module.
+Lists all tutorial groups in the Tutorial Group view.
 
 Format: `listTG`
 
-> Note: You should perform this command in the TUTORIAL GROUP view.
+> Note: 
+> - You should perform this command in the Tutorial Group view.
 
-Example: `listTG`
-- Can be used to show all Tutorial Groups after [findTG]() command.
+Example: 
+- Lists all tutorial groups in the Tutorial Group view.
+    - `listTG`
 
 Expected Outcome:
 ![ListTgCommand]()
 
 #### 4.2.4 View all students in a tutorial group: `viewStudent`
-Change view to Students of target Tutorial Group.
+Shows the student list of a target tutorial group.
 
-Format: `viewStudent TG_INDEX`
-- `TG_INDEX` refers to the index number shown in the Tutorial Group view.
-- `TG_INDEX` must be a positive integer starting from 1.
+Format: `viewStudent INDEX`
 
 > Note: You should perform this command in the TUTORIAL GROUP view.
+> - `INDEX` refers to the index number shown in the Tutorial Group view.
+> - `INDEX` must be a positive integer starting from 1.
 
-Example: `viewStudent 1`
-- Views all students of tutorial group at _index 1_ of Tutorial Group List.
-
+Example: 
+- Changes the view to Student view and shows the student list of tutorial group at index 1.
+    - `viewStudent 1`
+    
 Expected Outcome:
 ![ViewStudentCommand](images/ViewStudentCommand.png)
 
 #### 4.2.5 List all students in a tutorial group: `listStudent`
-Lists all Students in the current Tutorial Group.
+Lists all students in the Student view.
 
 Format: `listStudent`
 
-> Note: You should perform this command in the STUDENT view.
+> Note: 
+> - You should perform this command in the Student view.
 
-Example: `listStudent`
-- Can be used to show all Students after [findStudent]() command.
+Example: 
+- Lists all students in the Student view.
+    - `listStudent`
 
 Expected Outcome:
 ![ListStudentCommand](images/ListStudentCommand.png)
@@ -268,7 +285,8 @@ Returns to the previous view.
 
 Format: `prevView`
 
-> Note: You can perform this command in ANY view but MODULE is the last View.
+> Note: 
+> - You can perform this command in ANY view but MODULE is the last View.
 
 Example: `prevView`
 
@@ -701,12 +719,12 @@ Command | Description | Compatible View
 
 Command | Description | Compatible View
 --------|-------------|------------
-`listMod` | Views all modules in __Trackr__ | ANY
-`viewTG MODULE_INDEX` | Changes view to Tutorial Groups of target Module | MODULE
-`listTG` | Lists all Tutorial Groups in current Module | TUTORIAL GROUP
-`viewStudent TG_INDEX` | Change view to Students of target Tutorial Group | TUTORIAL GROUP
-`listStudent` | Lists all Students in current Tutorial Group | STUDENT
-`viewAttendance STUDENT_INDEX` | Shows the attendance for Target student | STUDENT
+`listMod` | Lists all the modules in the Module view | ANY
+`viewTG INDEX` | Shows the tutorial group list of a target module | MODULE
+`listTG` | Lists all tutorial groups in the Tutorial Group view | TUTORIAL GROUP
+`viewStudent INDEX` | Shows the student list of a target tutorial group | TUTORIAL GROUP
+`listStudent` | Lists all students in the Student view | STUDENT
+`viewAttendance INDEX` | Shows the attendance for Target student | STUDENT
 `prevView` | Returns to the previous view | ANY
 
 
