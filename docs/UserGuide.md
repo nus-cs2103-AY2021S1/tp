@@ -73,7 +73,7 @@ You can follow the steps below to get CliniCal up and running:
 
 1. Ensure you have Java `11` or above installed on your Computer. If you have not installed Java on your computer, download the installer from [Oracle](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
 
-1. Download the latest version of CliniCal from [GitHub](https://github.com/AY2021S1-CS2103T-W11-4/tp/releases).
+1. [Download](https://github.com/AY2021S1-CS2103T-W11-4/tp/releases) the latest version of CliniCal.
 
 1. Copy the file to the folder you want to use as the _home folder_ for CliniCal.
 
@@ -427,7 +427,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s
 
 <div markdown="block" class="alert alert-warning">
 :book: <span style="font-weight:bold">Example: </span>
-You want to edit the details of the first patient.
+You want to edit the details of the 1st patient.
 
 **Step 1**: Input `edit 1 p/35154520 g/aspirin ct/green g/recombinant interferons` into the command box and press <kbd>Enter</kbd>.
 
@@ -772,7 +772,7 @@ Format: `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION`
 
 <div markdown="block" class="alert alert-warning">
 :book: <span style="font-weight:bold">Example: </span> 
-You want to add an appointment with the first patient on the list.
+You want to add an appointment with the 1st patient on the list.
 
 **Step 1**: Input `addappt 6 st/11/12/2020 15:00 d/120` into the command box and press <kbd>Enter</kbd>.
 
@@ -818,7 +818,7 @@ Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_START_
 
 <div markdown="block" class="alert alert-warning">
 :book: <span style="font-weight:bold">Example: </span>
-You want to reschedule the first appointment in the appointment list.
+You want to reschedule the 1st appointment in the appointment list.
 
 **Step 1**: Input `editappt 6 st/12/12/2020 18:00 d/240` into the command box and press <kbd>Enter</kbd>.
 
@@ -866,7 +866,7 @@ You want to delete your next upcoming appointment as your patient could not make
 
 **Step 1**: Input `deleteappt 1` and press <kbd>Enter</kbd>.
 
-**Step 2**: The first appointment displayed will be removed from the appointment list immediately. You can also see that the appointment is no longer being displayed on the calendar.
+**Step 2**: The 1st appointment displayed will be removed from the appointment list immediately. You can also see that the appointment is no longer being displayed on the calendar.
 </div>
 
 <div markdown="block" class="alert alert-primary">
@@ -912,7 +912,7 @@ CliniCal data is saved in your hard disk automatically after any command that ch
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER ic/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…​` <br> e.g. `add n/James Ho p/22224444 ic/S2686887R e/jamesho@example.com a/123, Clementi Rd, 1234665 s/M b/B+ g/sulfa g/aspirin`
-**Add profile picture** | `addpicture 1 f/data/profile_picture.png`
+**Add profile picture** | `addpicture 1 f/data/stock_picture.png`
 **Add Visit** | `addvisit INDEX [vd/VISIT_DATE]` <br> e.g. `addvisit 1 vd/01/01/2020`
 **Add Appointment** | `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION` <br> e.g., `addappt 1 st/27/12/2020 14:00 d/60`
 **Clear** | `clear`
@@ -923,7 +923,7 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com `
 **Edit Appointment** | `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_START_TIME] [d/DURATION]` <br> e.g. `editappt 3 st/12/12/2020 10:10 d/40`
 **Edit Visit** | `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]` <br> e.g. `editvisit 1 i/2 vd/01/01/2020`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
+**Find** | `find KEYWORDS`<br> e.g. `find James Jake`
 **List** | `list`
 **Help** | `help`
 **Undo** | `undo`
