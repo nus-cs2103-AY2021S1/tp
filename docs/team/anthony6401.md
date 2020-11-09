@@ -43,13 +43,18 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added documentation of expressions with and without `...`
-      [\#266](https://github.com/nus-cs2103-AY2021S1/forum/issues/266)
+    [\#266](https://github.com/nus-cs2103-AY2021S1/forum/issues/266)
     * Added description for the features `unlabel` and `retag` 
     [\#277](https://github.com/nus-cs2103-AY2021S1/forum/issues/277)
+    * Added more description for some commands and update some examples 
+    [\#312](https://github.com/nus-cs2103-AY2021S1/forum/issues/312)
     
   * Developer Guide:
-    * Added implementation details of `ShowCommand` and `ListCommand`.
-    [\#165](https://github.com/nus-cs2103-AY2021S1/forum/issues/165)
+    * Added implementation details of `ShowCommand`, `ListCommand`, and `UnlabelCommand`.
+    ([\#165](https://github.com/nus-cs2103-AY2021S1/forum/issues/165),
+    [\#316](https://github.com/nus-cs2103-AY2021S1/forum/issues/316))
+    * Add sequence diagrams for storage.
+    [\#318](https://github.com/nus-cs2103-AY2021S1/forum/issues/318)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 
@@ -61,16 +66,68 @@ Given below are my contributions to the project.
    [2](https://github.com/anthony6401/ped/issues/4), 
    [3](https://github.com/anthony6401/ped/issues/6))
    
-## \[Optional\] Contributions to the User Guide (Extract)
+## Contributions to the User Guide (Extract)
    
 Expressions with `...` at the end can be provided any number of times.<br>
 e.g. `t/TAG [l/LABEL]...` can be used as `t/TAG`, `t/TAG l/label`, or `t/TAG l/label1 l/label2 l/label3`.
+   
+<div markdown="block" class="alert alert-warning">
      
 **:warning: Warning for multiple expressions**
 Expressions without `...` at the end takes the last parameter as the argument when provided with multiple same expressions.<br>
 e.g. `tag t/TAG1 t/TAG2` will take `TAG2` as the parameter, ignoring the parameter `TAG1`.
+
+</div>
+
+### 4.1 Adding a tag with filepath : `tag`
+
+Examples:
+* `tag t>Tag1 f>C:\Users` (Adds a tag with nickname `Tag1` using absolute path. The tag has no label and points to `C:\Users`)
+* `tag t>Tag2 f>C:\Users l>Important` (Adds a tag with nickname `Tag2` using absolute path. The tag has a label `important` and points to`C:\Users`)
+* `tag t>Tag3 f>.\Users` (Adds a tag with nickname `Tag3` using relative path. The tag has no label and points to a folder `Users` in the current directory)
+* `tag t>Tag4 f>.\Users l>folder l>readonly` (Adds a tag with nickname `Tag4` using relative path. The tag has labels `folder` as well as `readonly` and points to a folder `Users` in the current directory)
+
+### 4.5 Renaming a tag : `retag`
+
+Renames a tag. <br>
+Changes the specified tag's nickname into the new one in order to make the tag's nickname more descriptive for the user. 
+Note that this command can only change nickname. It can't change any other information such as label and file path.
+Existing data will be carried over.
+
+### 4.7 Deleting multiple labels from a tag : `unlabel`
+
+Deletes one or more labels from a tag. <br>
+This command lets you to uncategorized a certain tag.
+If some labels are invalid, all the other valid labels will be deleted from the tag, 
+and the invalid ones will be shown to the user.
+
+### FAQ
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HelloFile home folder.
+
+**Q**: What if the name or the directory of the file I tagged is changed? Can I still access the file using HelloFile?<br>
+**A**: No. HelloFile cannot trace the file if its name or directory is changed, but if you still want to manage the file, you can tag it again.
+
+**Q**: Can tag name be duplicated?<br>
+**A**: No. The tag names must be unique for all files being managed.
     
-## \[Optional\] Contributions to the Developer Guide (Extract)
+## Contributions to the Developer Guide (Extract)
+
+### Storage component
+
+The `Storage` component converts java objects into json format and store it to the hard drive. 
+It is also used for converting data in json format to java objects when executing the app.
+
+* can save `UserPref` objects in json format and read it back.
+* can save the address book data in json format and read it back.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The storage creates the UserPref and data with default value when the json files are missing/changed. During execution, The storage will update the address book data everytime the user executes a command. However, UserPref is only updated when the app is closed.
+</div>
+
+This diagram shows how the `AddressBook` is saved to json file after executing a command.
+![SaveSuccessSequence](../images/SaveStorageSequenceDiagram.png)
+
+This diagram shows how the `AddressBook` is read from json file when executing the app.
+![ReadSuccessSequence](../images/ReadStorageSequenceDiagram.png)
 
 ### Showing a tag's file path: ShowCommand
 
@@ -78,14 +135,33 @@ e.g. `tag t/TAG1 t/TAG2` will take `TAG2` as the parameter, ignoring the paramet
 searches the list of Tags stored in `AddressBook` and shows the tag's file path in the `ResultDisplay`.
 `CommandException` is thrown if tag is not present.
 
-ShowCommand gets the specified tag by applying `TagNameEqualsKeywordPredicate` that extends from `java.util.function.predicate` to `ObservableList<Tag>`.
+This diagram shows a successful execution of `ShowCommand` to show the information of the specified tag.<br>
+![ShowSuccessSequence](../images/ShowCommandSequenceDiagram.png)
+
+ShowCommand gets the specified tag by applying `TagNameEqualsKeywordPredicate` that extends from `java.util.function.predicate` to `ObservableList<Tag>` using `model.findFilteredTagList()`.
 
 ### Listing out all the tags: ListCommand
 
 [ListCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ListCommand.java)
 lists the Tags stored in `AddressBook` and shows them as `TagCard` which is contained in `TagListPanel`.
-ListCommand shouldn't take in any argument. `CommandException` will be thrown if the user's input contains an argument.
+ListCommand shouldn't take in any argument. A `CommandException` will be thrown if the user's input contains an argument.
+
+This diagram shows a successful execution of `ListCommand`.<br>
+![ListSuccessSequence](../images/ListCommandSequenceDiagram.png)
 
 ListCommand updates the `ObservableList<Tag>` by using `java.util.function.predicate`.
-   
+
+### Deleting a tag's label: UnlabelCommand
+
+[UnlabelCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/UnlabelCommand.java)
+searches the list of Tags stored in `AddressBook` and deletes the specified labels. 
+The user can provide 1 or more labels to be deleted simultaneously. 
+If any of the input is invalid, this command will delete all the valid input from the specified `Tag` and show all the invalid input back to the user.
+
+This diagram shows a successful execution of `UnlabelCommand` using 1 label as the argument.
+![UnlabelSuccessSequence](../images/UnlabelCommandSequenceDiagram.png)
+
+UnlabelCommand checks the existence of the specified `Tag` using `model.findFilteredTagList()`. 
+It takes the `Set<Label>` of the `Tag` and deletes all the labels that matches with user's input with the help of `java.util.stream`. 
+Then, a new `Tag` is created using the modified `Set<Label>` and added back to the `AddressBook` using `model.setTag()`.
 

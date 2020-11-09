@@ -8,7 +8,7 @@ title: About Us
 
 <img src="images/li-s.png" width="200px" alt="Li Shuo's profile picture">
 
-[[github](https://github.com/li-s)][[PPP](team/li-sh.md)]
+[[github](https://github.com/li-s)][[PPP](team/li-s.md)]
 
 * Role: Documentation
 * Responsibility: Logic

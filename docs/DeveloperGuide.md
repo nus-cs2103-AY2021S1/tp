@@ -218,7 +218,7 @@ rename the `Tag` specified by the unique tag name with a different tag name.
 
 This command checks the presence of the `TagName` using `model.findFilteredTagList()`, and that the new tag name is unique, i.e. not present in the `AddressBook`.
 It then sets the tag with the new `TagName`.
-****
+
 This sequence diagram shows a successful execution of `RetagCommand`.<br>
 ![RetagCommandSuccessExecution](images/RetagSequenceDiagram.png)
 
@@ -690,9 +690,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7. The product is offered as a free application.
 8. 99% of the functions are bug free.
 9. The code base should be well documented and populated with ample assertions.
-
-
-*{More to be added}*
 
 ### Glossary
 

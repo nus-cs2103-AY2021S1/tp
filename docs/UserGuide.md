@@ -500,7 +500,7 @@ Terminology | Definition
 
 <div style="page-break-after: always;"></div>
 
-## 8. Command summary
+## 8. Command Summary
 
 Action | Format | Examples
 --------|--------|----------

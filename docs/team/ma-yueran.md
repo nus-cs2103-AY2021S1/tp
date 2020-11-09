@@ -50,9 +50,11 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added the documentation for the feature `cd`. [\#176](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/176)
-    * Update images to fit new UI. [\#211](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/211)
+    * Update images to fit new UI. [\#211](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/211), [\#290](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/290)
+    * Improved the format of Command Summary to make it more readable. [\#292](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/292)
   * Developer Guide:
     * Added implementation details of the `cd` and *Internal File Explorer* feature. [\#168](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/168)
+    * Modified past use cases to fit the current app, and added use cases for the new features. [\#311](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/311)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 
@@ -65,7 +67,7 @@ Given below are my contributions to the project.
   [2](https://github.com/Ma-Yueran/ped/issues/5), 
   [3](https://github.com/Ma-Yueran/ped/issues/6))
 
-## \[Optional\] Contributions to the User Guide (Extract)
+## Contributions to the User Guide (Extract)
 
 ### Changing current directory : `cd`
 
@@ -91,7 +93,7 @@ Examples:
 
 *The image was not added by me, and the command format was also updated by my teammate to fit the new format.*
 
-## \[Optional\] Contributions to the Developer Guide (Extract)
+## Contributions to the Developer Guide (Extract)
 
 ### Changing of Directory: CdCommand
 
@@ -99,17 +101,44 @@ Examples:
 changes the current directory of the HelloFile internal File Explorer. `CommandException` is thrown if the given directory 
 is invalid, cannot be found, or cannot be set as the current directory (*e.g. the given directory is not a folder*).
 
-CdCommand calls `setAddress` in `CurrentPath` to set the current directory to the absolute address parsed from the user input.
-Then, `CurrentPath` will update the list of children files `FileList` to fit the new current directory.
-Moreover, it also updates `javafx.scene.control.ListView` in `FileExplorer` as `ListView` is bound to the `FileList` of the children files 
-under the `CurrentPath`.
+This sequence diagram shows a successful execution of `CdCommand`.<br>
+![CdCommandSuccessExecution](../images/CdCommandSuccessSequenceDiagram.png)
+
+CdCommand gets the `CurrentPath` from `Model`, then it gets the new path to set using the current `CurrentPath`. 
+After that, `CdCommand` calls `setAddress` method in `CurrentPath` to set the current directory to the new address.
+Lastly, `CdCommand` returns a `CommandResult` which will be used as the feedback to the user.
+If `CdCommand` fails to get a valid new path, `CommandException` will be thrown to inform the user why the command failed.
+
+The UI components of Internal File Explorer will update themselves after a success execution of `CdCommand`.
 
 ### Internal File Explorer
 
-Internal File Explorer is a simple file explorer that supports viewing files on your computer. It contains a `CurrentPath` that 
+Internal File Explorer is a simple file explorer that supports viewing files on your computer. It uses a `CurrentPath` that 
 represents the directory the explorer is viewing, as well as a `FileList` of the children files under that directory. The 
 user can use `CdCommand` to change the current directory of the explorer, so he or she can view files under different directories.
 
 The purpose of implementing Internal File Explorer is to make tagging files easier by supporting tagging files using their 
 relative paths (*e.g. the file name*). This can make tagging files easier especially when the user wants to tag multiple files 
 under the same directory.
+
+Implementation of Internal File Explorer:
+
+Model
+
+The model class `CurrentPath` saves the current directory of the explorer, and keeps a `FileList` that contains the children files under 
+that directory.
+
+This is the class diagram for CurrentPath.<br>
+![CurrentPath](../images/CurrentPathClassDiagram.png)
+
+UI
+
+`FileExplorerPanel` is the UI component for displaying Internal File Explorer. It contains a `javafx.scene.control.Label` 
+to display the current directory and a `javafx.scene.control.ListView` for the list of children files. 
+`FileCard` is a UI component for displaying the information of a file, and it is used to show the children files in the ListView in `FileExplorerPanel`.
+
+Storage
+
+We keep the current directory of the File Explorer in `SavedFilePath`. HelloFile saves the directory in json format upon exiting the app,
+and loads the current path saved last time when the app starts. By doing so, the state of the File Explorer will
+persist across every use of our app.

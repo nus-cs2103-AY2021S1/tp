@@ -35,10 +35,12 @@ Given below are my contributions to the project.
     * Added `help COMMAND` in Features section [\#210](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/210)
     * Added screenshots in the User Interface section. [\#212](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/212)
     * Added some screenshots for the Basic Workflow section. [\#214](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/214)
+    * Added Glossary section [\#308](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/308)
     
   * Developer Guide(DG):
     * Added description for features `Tag` class and `Label` class [\#164](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/164)
     * Updated User Stories section [\#173](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/173).
+    * Add an UML in the Implementation section[\#317](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/317)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments):
@@ -55,7 +57,30 @@ Given below are my contributions to the project.
     [3](https://github.com/HynRidge/ped/issues/3),
     [4](https://github.com/HynRidge/ped/issues/2))
     
-## \[Optional\] Contributions to the User Guide (Extract)
+## Contributions to the User Guide  (Extract)
+
+### 4.8 Finding a tag : `find`
+
+Finds a tag by its keyword (can be tag name and/or label).
+
+Format: `find KEYWORD`
+
+Examples:
+* `find notes`
+
+
+## 7. Glossary
+
+Terminology | Definition
+--------------|------------------
+**CLI** | Command Line Interface is a command line program that accepts text input to execute operating system functions
+**GUI** | Graphical User Interface is a form of user interface that allows users to interact with electronic devices through graphical icons, instead of text-based user interfaces.
+**Absolute path** | The complete address of a file location. Usually, the address consists of the root element and the complete directory list required to locate the file Example: `C:\Users\a.txt` (Windows), `/home/usr/b.txt` (Linux)).
+**Relative path** | The partial address of a file location. Usually, the address does not consist root element. Example: `./Users/Files/a.txt`,
+
+<br>
+
+## Contributions to the Developer Guide (Extract)
 
 ### User stories
 
@@ -76,15 +101,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | Forgetful user who always forget where his files are located   | tag frequently used files with a easy to remember tag | locate my files easily                                        |
 | `*`      | Intermediate user                                              | delete file                                           | not be distracted by it.                                      |
 
-## \[Optional\] Contributions to the User Guide  (Extract)
+### Find a specific tag: FindCommand
 
-### Finding a tag : `find`
+...(after some description)
 
-Finds a tag by its keyword (can be tag name and/or label).
-
-Format: `find KEYWORD`
-
-Examples:
-* `find notes`
-
-
+This is the sequence diagram of the FindCommand.<br>  
+![FindSequenceDiagram](../images/FindSequenceDiagram.png)
