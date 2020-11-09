@@ -10,7 +10,7 @@ Other application can keep track of meetings and schedules but there are relativ
 and associate them with meetings with clients. For our project we hope to make it more streamlined for agents to keep track of their property and have clear information about those properties
 and their clients. 
 
-##### My Contributions to PropertyFree: Bidder and Seller Functions [(RepoSense link)](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=kormingsoon&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+##### My Contributions to PropertyFree: Bidder and Seller Functions [(RepoSense link)](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=kormingsoon&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&until=2020-11-09&tabOpen=true&tabType=authorship&tabAuthor=kormingsoon&tabRepo=AY2021S1-CS2103-W14-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 * **New Feature**: Implemented the `Add` function for `Bidder` and `Seller`
   * **What it does**: allows the user to add and `Bidder` and `Seller`, who are the clients engaged by the user (a Property Agent).
@@ -38,7 +38,7 @@ and their clients.
   * **Highlights**:
    My implementation of the `Edit` function prevents any clients from having the same name or same phone number 
       
-#### My Contributions to PropertyFree: User Interface Functions [(RepoSense link)](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=kormingsoon&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+#### My Contributions to PropertyFree: User Interface Functions [(RepoSense link)](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=kormingsoon&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&until=2020-11-09&tabOpen=true&tabType=authorship&tabAuthor=kormingsoon&tabRepo=AY2021S1-CS2103-W14-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 * **New Feature**: Implemented the `AutoTab` switching function for PropertyFree
   * **What it does**: Changes the tab from entity to entity depending on the command executed by the user.
