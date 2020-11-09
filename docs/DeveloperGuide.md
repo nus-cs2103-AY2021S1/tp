@@ -150,6 +150,9 @@ stores a `Label`, which is an optional field in `Tag`. A `Label` must only conta
 one word. `Label` allows the user to label their tagged file. The purpose is to keep label short and concise, as it only 
 serves as extra information of a tagged file.
 
+This sequence diagram shows a successful execution of `LabelCommand`.<br>
+![LabelCommandSuccessExecution](images/LabelCommandSequenceDiagram.png)
+
 ### Adding of Tags: TagCommand
 
 [TagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/TagCommand.java) 
@@ -205,13 +208,19 @@ removes the `Tag` specified by the unique tag name from the `AddressBook`.
 
 This command checks the existence of the `Tag` with `model.findFilteredTagList()`, and calls method `model.deleteTag()` to delete it.
 
+This sequence diagram shows a successful execution of `UntagCommand`.<br>
+![UntagCommandSuccessExecution](images/UntagSequenceDiagram.png)
+
 ### Renaming of Tags: RetagCommand
 
 [RetagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/RetagCommand.java)
 rename the `Tag` specified by the unique tag name with a different tag name.
 
-This command checks the presence of the `Tag` using `java.io.File.exists()`, and that the new tag name is unique, i.e. not present in the `AddressBook`.
-It then gets the filepath of the `Tag` before safely deleting it. Then, a new `Tag` is created with the filepath, and the new tag name.
+This command checks the presence of the `TagName` using `model.findFilteredTagList()`, and that the new tag name is unique, i.e. not present in the `AddressBook`.
+It then sets the tag with the new `TagName`.
+****
+This sequence diagram shows a successful execution of `RetagCommand`.<br>
+![RetagCommandSuccessExecution](images/RetagSequenceDiagram.png)
 
 ### Changing of Directory: CdCommand
 
