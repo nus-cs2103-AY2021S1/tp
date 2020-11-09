@@ -1,29 +1,30 @@
-# Dianne Loh Wen Hui - Project Portfolio
-___
 ## Project: PropertyFree
 
 Given below are my contributions to the project.
 
 Overview:
 
-This document is a project portfolio that documents all contributions made to PropertyFree's development by Dianne.
-___
+This document is a project portfolio that documents all contributions made to PropertyFree's development by Dianne.  
+
+___  
 
 ## Description of Project:
 
 PropertyFree is a real estate management application meant for property agents to organize their properties and meetings more efficiently.
 Other application can keep track of meetings and schedules but there are relatively few applications that help track properties 
-and associate them with meetings with clients.
+and associate them with meetings with clients.  
 
 For our project we hope to make it more streamlined for agents to keep track of their property and have clear information about those properties
-and their clients.
+and their clients.  
+
 ___
 
-##Developers of PropertyFree:
+## Developers of PropertyFree:
 
 PropertyFree is developed by a group of second year Computer Science Students from the School of Computing, National
-University if Singapore. This was developed for the team projects assignment fro the module CS2103 and is a
-brown-field project adapting from existing projects.
+University if Singapore. This was developed for the team projects assignment for the module CS2103 and is a
+brown-field project adapting from existing projects.  
+
 ___
 
 ## My Contributions to PropertyFree  
@@ -63,6 +64,7 @@ ___
 * **Project management**:
   * Managed release `v1.3` on GitHub
   * Managed the issue tracker on GitHub
+  * Creation of labels for clearer segmentation of issues and pull request
 
 * **Documentation**:
   * User Guide:
@@ -72,6 +74,6 @@ ___
     * Added the user stories  
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments)  
-  * Contributed to forum discussions  
+  * PRs reviewed (with non-trivial review comments): [\#297](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/297), [\#192](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/192), [\#151](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/151), [\#127](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/127), [\#124](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/124), [\#76](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/76), [\#77](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/77#discussion_r499703796)   
+  * Contributed to forum discussions: [28](https://github.com/nus-cs2103-AY2021S1/forum/issues/28#issuecomment-675923713), [66](https://github.com/nus-cs2103-AY2021S1/forum/issues/66#issuecomment-679228904)  
   * Reported bugs and suggestions for other teams in the class 
