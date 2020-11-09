@@ -25,6 +25,8 @@ regarding how to make use of these features.
 
 ![Ui](./images/Ui.png)
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 ## 2. Additional Information
 
@@ -198,7 +200,7 @@ Format: `exercise_find KEYWORD [MORE_KEYWORDS]...`
 
 **:information_source: Note:**<br>
 
-This feature is case-insensitive, as the following example will show you. Keywords will return partial matches as well
+This feature is case-insensitive, as the following example will show you. Keywords will return partial matches as well.
 
 </div>
 
@@ -321,7 +323,7 @@ Format: `routine_find KEYWORD [MORE_KEYWORDS]...`
 
 **:information_source: Note:**<br>
 
-This feature is case-insensitive, as the following example will show you. Keywords will return partial matches as well
+This feature is case-insensitive, as the following example will show you. Keywords will return partial matches as well.
 
 </div>
 
@@ -380,6 +382,15 @@ Adds an existing exercise to a specific routine in fitNUS.
 
 Format: `routine_add_exercise r/ROUTINE e/EXERCISE`
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+This feature is case-insensitive, this example just so happens to use capital letters. We have ensured there will be no
+duplicates when creating Routine and Exercise.
+
+</div>
+
 Example:
 * `routine_add_exercise r/Leg Workout e/Squats` Adds an exercise named "Squats" to the routine "Leg Workout".
 
@@ -407,6 +418,15 @@ Note that "Squats" now belongs to "Leg Workout" as a tagging.
 Removes an exercise from a specific routine in fitNUS.
 
 Format: `routine_delete_exercise r/ROUTINE e/EXERCISE`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+This feature is case-insensitive, this example just so happens to use capital letters. We have ensured there will be no
+duplicates when creating Routine and Exercise.
+
+</div>
 
 Example:
 * `routine_delete_exercise r/Leg Workout e/Squats` Deletes the exercise "Squats" from the routine "Leg Workout".
@@ -555,7 +575,7 @@ Format: `lesson_find KEYWORD [MORE_KEYWORDS]...`
 **:information_source: Note:**<br>
 
 This feature is case-insensitive, this example just so happens to use capital letters. Keywords will return partial
-matches as well
+matches as well.
 
 </div>
 
@@ -720,7 +740,8 @@ journey. You BMI will be displayed under the BMI Metrics section once you have u
 
 **:information_source: Note:**<br>
 
-You are able to enter your height and weight with accuracy to 2 decimal places. BMI will automatically recalculate upon your input.
+You are able to enter your height and weight accurate to 2 decimal places. fitNUS will automatically recalculate your BMI
+upon your input.
 
 </div>
 
@@ -876,6 +897,8 @@ Format: `help [COMMAND_KEYWORD]`
 Example:
 * `help timetable` Shows all the commands containing the word "timetable".
 
+<div style="page-break-after: always;"></div>
+
 **Before inputting "help timetable":**
 
 ![Help](./images/help_keyword_before.png)
@@ -992,7 +1015,7 @@ Action | Format | Examples
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous fitNUS home folder.
 
-**Q**: How can I save the data I keyed into fitNUS?
+**Q**: How can I save the data I keyed into fitNUS?<br>
 **A**: Data is automatically saved into the computer after you input any command that changes the data. Manual saving is not needed.
 
 ## 7. Glossary

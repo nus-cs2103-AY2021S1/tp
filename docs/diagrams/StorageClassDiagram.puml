@@ -21,7 +21,7 @@ JsonFitNusStorage .left.|> FitNusStorage
 JsonFitNusStorage .down.> JsonSerializableFitNus
 
 JsonSerializableFitNus --> JsonAdaptedBody
-JsonSerializableFitNus --> JsonAdaptedCalorie
+JsonSerializableFitNus --> JsonAdaptedDailyCalorie
 JsonSerializableFitNus --> JsonAdaptedLesson
 JsonSerializableFitNus --> JsonAdaptedExercise
 JsonSerializableFitNus --> JsonAdaptedRoutine

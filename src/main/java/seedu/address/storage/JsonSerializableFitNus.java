@@ -17,6 +17,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.FitNus;
 import seedu.address.model.ReadOnlyFitNus;
 import seedu.address.model.body.Body;
+import seedu.address.model.body.Height;
+import seedu.address.model.body.Weight;
 import seedu.address.model.calorie.DailyCalorie;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.lesson.Lesson;
@@ -149,6 +151,9 @@ class JsonSerializableFitNus {
             Body newBody = body.toModelType();
             fitNus.addHeight(newBody.getHeight());
             fitNus.addWeight(newBody.getWeight());
+        } else {
+            fitNus.addHeight(new Height(160));
+            fitNus.addWeight(new Weight(45));
         }
         return fitNus;
     }
