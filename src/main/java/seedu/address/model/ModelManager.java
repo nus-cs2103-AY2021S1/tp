@@ -305,6 +305,7 @@ public class ModelManager implements Model {
                 && filteredPatients.equals(other.filteredPatients)
                 && filteredAppointments.equals(other.filteredAppointments);
     }
+    //@@author
 
     //=========== Model Validation =============================================================
 

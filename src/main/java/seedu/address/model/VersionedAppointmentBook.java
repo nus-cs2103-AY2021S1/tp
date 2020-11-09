@@ -98,3 +98,4 @@ public class VersionedAppointmentBook extends AppointmentBook {
                 && currentStatePointer == versionedAppointmentBook.currentStatePointer;
     }
 }
+//@@author
