@@ -377,11 +377,11 @@ wishlist, the indexes in the `filteredWishlist` will be updated accordingly (and
 user uses the index as displayed in the Ui, the correct activity will be referenced.
 </div>
 
-<div style="page-break-after: always;"></div>
-
 The following sequence diagram shows how the copy operation works:
 
 ![CopySequenceDiagram](images/CopySequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The lifeline for `CopyCommandParser` and
@@ -496,13 +496,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete an item       | remove unwanted items              |
 | `* * *`  | user                                       | modify an item       | edit any last minute changes              |
 | `* * *`  | frequent user                              | have a list of items    | easily see my travel plans              |
-| `* * *`  | user                                       | be able to switch between travel plans   | navigate to travel plans easily              |
+| `* * *`  | user                                       | switch between travel plans   | easily retrieve each travel plan              |
 | `* *`    | user                                       | input accommodation details         | easily remember where I am going to stay           |
 | `* *`    | user                                       | input cost of activity  | track the price of each activities easily                      |
 | `* *`    | user                                       | input timing to an activity         | plan a schedule for my travel plan               |
 | `* *`    | user                                       | record particulars of my friends travelling with me         | make group reservations/ bookings more convenient.  |
 | `* *`    | user                                       | sort items  | view my items in a preferred manner            |
-| `* *`    | user                                       | create priority levels for activities | rank the level of importance of each activities    |
+| `* *`    | user                                       | create priority levels for activities | rank the importance of each activity    |
 | `*`      | user                                       | have a feature to search  | find and filter my desired items efficiently  |
 | `*`      | user                                       | have a move and copy feature | move/copy activities in my wishlist to my travel plan easily  |
 | `*`      | user                                       | be able to switch tabs | view my activities, accommodation and friends easily |
@@ -918,6 +918,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC19 - Sort activity list in travel plan**
 
 **MSS**
@@ -934,8 +936,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. Wanderlust shows an error message.
 
     Use case ends.
-
-<div style="page-break-after: always;"></div>
 
 **Use case: UC20 - Sort accommodation list in travel plan**
 
@@ -977,6 +977,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC22 - Find activity in travel plan**
 
 **MSS**
@@ -996,8 +998,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. Wanderlust returns an empty list.
 
     Use case ends.
-
-<div style="page-break-after: always;"></div>
 
 **Use case: UC23 - Find accommodation in travel plan**
 
@@ -1039,6 +1039,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC25 - Move activity from wishlist to travel plan**
 
 **MSS**
@@ -1058,8 +1060,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. Wanderlust shows an error message.
 
     Use case ends.
-
-<div style="page-break-after: always;"></div>
 
 **Use case: UC26 - Copy activity from wishlist to travel plan**
 
@@ -1099,6 +1099,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -1112,7 +1113,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 8.  Should not crash when data is given in compatible formats.
 9.  The app should be accessible via the downloaded JAR file without any other installations needed.
 
-<div style="page-break-after: always;"></div>
 
 ### Glossary
 
@@ -1382,6 +1382,8 @@ testers are expected to do more *exploratory* testing.
    e. Other incorrect copy commands to try: `copy`, `copy x`, `copy y`<br>
       Expected: Error message is thrown.
 
+<div style="page-break-after: always;"></div>
+
 ### Move
 
 1. Move an activity from the `wishlist` to the specific `travelplan` directory. The activity will be deleted from the `wishlist`.
@@ -1404,8 +1406,6 @@ testers are expected to do more *exploratory* testing.
 
    e. Other incorrect copy commands to try: `move`, `move x`, `move y`<br>
       Expected: Error message is thrown.
-
-<div style="page-break-after: always;"></div>
 
 ### Clear
 
