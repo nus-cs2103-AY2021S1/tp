@@ -283,7 +283,9 @@ You can use `list` or `find` (e.g `find n/Amy`) to display her information again
 </div>
 
 <div markdown="block" class="alert alert-danger">
+
 :warning: You cannot add additional details with this command.
+
 </div>
 
 Examples:
@@ -438,7 +440,7 @@ Format: `detail delete STUDENT_INDEX i/DETAIL_INDEX`
 * There has to be a valid detail at the `DETAIL_INDEX` provided.
 
 Examples:
-* `detail delete 1 i/3` deletes the 3rd detail for the 1st student in **Reeve**.
+* `detail delete 1 i/1` deletes the 1st detail for the 1st student in **Reeve**.
 
 Expected Outcome:
 The following figure (Figure __) shows the expected outcome after executing the above example.
@@ -767,7 +769,7 @@ Format: `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`
 * The specified student is chosen based on `STUDENT_INDEX` of **Reeve**.
 
 Example:
-* `attendance delete 1 d/19/04/2020` deletes the attendance with the date 19 Apr 2020 from the 1st student in the displayed students list in **Reeve**.
+* `attendance delete 1 d/06/05/2010` deletes the attendance with the date 6 Apr 2020 from the 1st student in the displayed students list in **Reeve**.
 
 Expected Outcome:
 The following figure (Figure __) shows the expected outcome after executing the above example.
