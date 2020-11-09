@@ -52,7 +52,7 @@ All commands and their examples are demarcated with `markups`. `Markups` appear 
 
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME_OF_ASSIGNMENT d/DEADLINE`, `d/DEADLINE n/NAME_OF_ASSIGNMENT` is also acceptable.
+  e.g. if the command specifies `n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT`, `d/DEADLINE_OF_ASSIGNMENT n/NAME_OF_ASSIGNMENT` is also acceptable.
   
 * All instances of `INDEX` **must be a positive integer**.<br>
   e.g. 1, 2, 3, …​
@@ -100,7 +100,7 @@ For example, 7:00 AM is `0700` while 7:00 PM is `1900`.
 
 ### Adding an assignment: `add`
 
-Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE​[p/PRIORITY] 
+Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT mod/MODULE_CODE_OF_ASSIGNMENT [p/PRIORITY_OF_ASSIGNMENT] 
 [remind]`
 
 You can add your assignments into your schedule so that you can manage all your assignments and
@@ -128,9 +128,9 @@ simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. All the informatio
 If the lab report assignment is of **high priority**, you can enter `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH`
 </div> 
 
-Examples:
+More examples:
 * `add n/Lab report d/23-04-2020 1230 mod/CS2100 remind`
-* `add n/Lab report d/30-04-2020 1230 mod/CS2100 p/LOW remind`
+* `add n/Lab report d/30-04-2020 1230 mod/CS2100`
 
 ### Deleting assignments : `delete`
 
@@ -193,7 +193,7 @@ Follow these steps and try importing your timetable:
 * Importing a new timetable will override your previous timetable data.
 </div>
 
-Example:
+Another example:
 * `import url/https://nusmods.com/timetable/sem-1/share?CS2100=TUT:01,LAB:11,LEC:1&CS2101=&CS2103T=LEC:G16&CS2105=TUT:14,LEC:1&EC1301=TUT:S28,LEC:1&IS1103=` 
 
 ### Listing assignments : `list`
@@ -230,7 +230,7 @@ More examples:
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
-* **Only one** number can be keyed in. For example, `list 1 2` will not work. 
+* **Only one** number can be keyed in. For example, `list 1 2` is invalid. 
 </div>
 
 ### Finding assignments : `find`
@@ -277,9 +277,9 @@ Here is an example with steps for you to follow:
 ![FindCommand2](images/FindCommandDiagram2.png)
 *Figure 11: The displayed message and the updated list*
 
-More examples:
-* `find n`
-* `delete 2 3 1`
+More examples: 
+- `find p/medium low`
+- `find d/12-12-2020 13-10-2020`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -322,6 +322,10 @@ Here is an example with steps for you to follow:
 ![EditCommand2](images/EditCommand2.png)
 *Figure 13: The displayed message and the edited assignment*
 
+More examples: 
+- `edit 3 mod/CS2100`
+- `edit 1 d/10-10-2020 1200`
+
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
@@ -363,7 +367,7 @@ You can set reminders for **more than one** assignments at a time as well. Here 
 <div markdown="block" class="alert alert-primary">
   
 **:clipboard: Pointers to note:**<br>
-* At least one `INDEX` must be present. For example, `remind` will not work.
+* At least one `INDEX` must be present. For example, `remind` is invalid.
 * The `INDEX` must be found in your assignment list.
 
 </div>
@@ -385,14 +389,14 @@ For example, `unremind 1` will remove the first assignment in `Your reminders` (
 <div markdown="block" class="alert alert-primary">
   
 **:clipboard: Pointers to note:**<br>
-* At least one `INDEX` must be present. For example, `unremind` will not work.
+* At least one `INDEX` must be present. For example, `unremind` is invalid.
 * The `INDEX` must be found in `Your reminders`.
 
 </div>
 
 ### Setting priority for assignments : `prioritize`
 
-Format: `prioritize INDEX p/PRIORITY`
+Format: `prioritize INDEX p/PRIORITY_OF_ASSIGNMENT`
 
 You can set priority levels for assignments based on their urgency. Assignments tagged with a priority level will be
 shown with a coloured priority tag (As shown highlighted in red in the figure below).
@@ -424,7 +428,7 @@ For example, `unprioritize 1` will remove the priority tag, if present, of the f
 <div markdown="block" class="alert alert-primary">
   
 **:clipboard: Pointers to note:**<br>
-* At least one `INDEX` must be present. For example, `unprioritize` will not work.
+* At least one `INDEX` must be present. For example, `unprioritize` is invalid.
 * The `INDEX` must be found in your assignment list.
 </div>
 
@@ -434,8 +438,9 @@ Format: `done INDEX [MORE_INDEXES]`
 
 You can keep track of your uncompleted assignments by marking assignments that you've completed as done.
 
-You can mark **one or more** assignments as done by specifiying the assignment(s) `INDEX` as shown in your list. Here is
-an example with steps to follow:
+You can mark **one or more** assignments as done by specifiying the assignment(s) `INDEX` as shown in your list. 
+
+Here is an example with steps for you to follow:
 
 1) To mark assignments with the name "Essay" and "Biology lab report" shown in the figure below as done, you can simply enter `done 2 3` into
 the command line based on the indexes labelled in the figure.
@@ -455,9 +460,9 @@ the command line based on the indexes labelled in the figure.
    
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
-* At least one index must be present. For example, `done` without any index will not work.
+* At least one index must be present. For example, `done` without any index is invalid.
 * The indexes **must be found in your assignment list**
-* The indexes **must not be duplicated**. For example, `done 4 4` will not work.
+* The indexes **must not be duplicated**. For example, `done 4 4` is invalid.
 </div>
 
 
@@ -489,7 +494,7 @@ you can simply enter `undone 2` into the command line based on the index labelle
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
 * Assignments are marked as not done **by default**
-* The index must be present. For example, `undone` without any index will not work.
+* The index must be present. For example, `undone` without any index is invalid.
 * The index **must be found in your assignment list**
 </div>
 
@@ -526,7 +531,7 @@ and need to be done by a week from now (although the actual deadline is longer).
     ![UserGuideScheduleCommandResult](images/UserGuideScheduleCommandResult.PNG)
     *Figure 30: Message shown in Command Box and suggested schedule displayed in the assignment card*
 
-Examples:
+More examples:
 * `schedule 1 hrs/2 af/23-12-2020 1800 by/23-12-2020 2359`
 * `schedule 2 hrs/5 af/01-01-2020 0530 by/01-01-2021 0530`
 
@@ -552,7 +557,7 @@ For example, `unschedule 3` will remove the suggested time slot of your third as
     ![UserGuideUnscheduleCommandResult](images/UserGuideUnscheduleCommandResult.PNG)
     *Figure 32: Message shown in Command Box and suggested schedule removed*
        
-Examples:
+More examples:
 * `unschedule 1`
 * `unschedule 3`
 

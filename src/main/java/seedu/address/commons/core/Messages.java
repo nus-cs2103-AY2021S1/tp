@@ -11,8 +11,8 @@ public class Messages {
             "The assignment index provided is greater than the size of the list.";
     public static final String MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW = "%1$d assignments listed!";
     public static final String MESSAGE_DUPLICATE_INDEXES = "Duplicated indexes found.";
-    public static final String MESSAGE_MULTIPLE_PREFIXES_FOUND = "Multiple instances of the same prefix found. "
-            + "\nEach prefix should only be used once.";
+    public static final String MESSAGE_MULTIPLE_PREFIXES_FOUND =
+            "Invalid command format! \nMultiple instances of the same prefix found. ";
     public static final String MESSAGE_INVALID_URL = "Invalid NUSMods URL found.";
     public static final String MESSAGE_INVALID_LESSON = "Invalid NUSMods lessons found.";
 }
