@@ -215,6 +215,32 @@ of commandResult should be joined to the side of the box representing the comman
 Due to a limitation of PlantUML, it is not possible to do so here.
 </div>
 
+#### Design Considerations
+
+#### Aspect: Process of updating the new data in `model`
+
+- **Alternative 1 (Current choice)**: Replace `Exercise` to be updated in `UniqueExerciseList` of `ExerciseBook` with another `Exercise` object containing the updated data.
+
+  - Pros:
+    - Atomic updates.
+  - Cons:
+    - May have performance issues in terms of memory usage.
+    - Eg. If only one field of the original `Exercise` object will be updated, another `Exercise`
+      object will still be created containing the original data of the unchanged fields.
+
+- **Alternative 2**: Update the fields of the original exercise one at a time.
+
+  - Pros:
+    - Will use less memory (no new `Exercise` object will be created)
+  - Cons:
+    - If an error occurs in the middle of the process, the fields which were updated would not recover the original values.
+
+#### Summary
+
+The following activity diagram summarizes what happens when a user executes an `update` command:
+
+![UndoRedoState5](images/UpdateActivityDiagram.png)
+
 ### Proposed Implementation of Undo
 
 The proposed undo/redo mechanism is facilitated by `VersionedExerciseBook`. It extends `ExerciseBook` with an undo/redo history, stored internally as an `exerciseBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
