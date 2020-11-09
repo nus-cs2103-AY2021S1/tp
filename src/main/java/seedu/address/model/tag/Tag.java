@@ -122,9 +122,11 @@ public class Tag {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTagName())
                 .append("\nFileAddress: ")
-                .append(getFileAddress())
-                .append("\nLabels: ");
-        getLabels().forEach((label) -> builder.append(label.getLabel() + ", "));
+                .append(getFileAddress());
+        if (!labels.isEmpty()) {
+            builder.append("\nLabels: ");
+            getLabels().forEach((label) -> builder.append(label.getLabel() + ", "));
+        }
         builder.delete(builder.length() - 2, builder.length());
         return builder.toString();
     }
