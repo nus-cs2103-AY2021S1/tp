@@ -30,13 +30,13 @@ Given below are my contributions to the project.
   
 
 * **Enhancements to existing features**:
-  * Supported `Nric` as input for appointment commands 
+  * Supported `Nric` as input for appointment commands.
     * What it does: users can then use `Nric` as input to locate the patient who they want to execute `addAppt`, `deleteAppt` or `editAppt` on.
     
-  * Included `description` field in  `Appointment` related classes 
+  * Included `description` field in  `Appointment` related classes.
       * What it does: makes users be able to keep a description of his/her appointment.
       
-  * Included `description` field in  `editAppt` related commands 
+  * Included `description` field in  `editAppt` related commands.
     * What it does: makes user to be able to edit the `description` of an appointment.
     
   * Revised the implementation of `delete` method. 
@@ -73,9 +73,4 @@ Given below are my contributions to the project.
     * Set up some weekly meeting agendas.
     * Fix some general checkstyle errors.
     
-    
-* **Community**:
-
-
-* **Tools**:
 
