@@ -707,30 +707,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. tCheck detects an incorrect input format.
-        
-        * 2a1. tCheck requests the user to re-enter the data in the correct format.
-        
-    	* 2a2. User enters new data.
-    	
-    	Steps 2a1-2a2 are repeated until the data entered is in the correct format.
-    	
-    	Use case resumes from step 2.
 
+    * 2a1. tCheck requests the user to re-enter the data in the correct format.
+    * 2a2. User enters new data.
+  	
+  	Steps 2a1-2a2 are repeated until the data entered is in the correct format.
+    
+    Use case resumes from step 2.
+    
 * 2b. tCheck detects that the specified employee does not exist.
-        
-        * 2b1. tCheck requests the user to re-enter a valid index that corresponds to an existing employee.
-        
-        * 2b2. User enters new index.
-        
-        Steps 2b1-2b2 are repeated until the index entered is valid.
-        
-        Use case resumes from step 2.
 
+    * 2b1. tCheck requests the user to re-enter a valid index that corresponds to an existing employee.
+    * 2b2. User enters new index.
+  	
+  	Steps 2b1-2b2 are repeated until the index entered is valid.
+    
+    Use case resumes from step 2.
+    
 * 2c. tCheck detects that the specified employee has already been archived.
-        
-        * 2c1. tCheck returns the error message to the user.
-        
-        Use case ends.
+
+    * 2c1. tCheck returns the error message to the user.
+    
+    Use case ends.
+
 
 **Use Case: UC02 - Archive all employees**
 
@@ -743,22 +742,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 **Extensions**
-
 * 2a. tCheck detects an incorrect input format.
 
-        * 2a1. tCheck requests the user to re-enter in the correct format.
-        
-    	* 2a2. User enters new data.
-    	
-    	Steps 2a1-2a2 are repeated until the data entered is in the correct format.
-    	
-    	Use case resumes from step 2.
-      	
+    * 2a1. tCheck requests the user to re-enter in the correct format.
+    * 2a2. User enters new data.
+  	
+  	Steps 2a1-2a2 are repeated until the data entered is in the correct format.
+    
+    Use case resumes from step 2.
+
 * 2b. tCheck detects an empty Employee Directory.
 
-   	    * 2b1. tCheck shows a warning message.
-
-   	    Use case ends.
+    * 2b1. tCheck shows a warning message.
+    
+    Use case ends.
 
 **UC03 - Set ingredient level for a single ingredient**
 
