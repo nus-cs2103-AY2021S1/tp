@@ -9,6 +9,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.body.Height;
 
+/**
+ * Adds the user's Height to fitNUS.
+ */
 public class AddHeightCommand extends Command {
     public static final String COMMAND_WORD = "height";
 
@@ -20,6 +23,9 @@ public class AddHeightCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Height added: %1$s";
 
+    /**
+     * The Height of the user.
+     */
     private final Height height;
 
     /**

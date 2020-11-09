@@ -19,14 +19,15 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.util.Name;
 
 /**
- * Parses input arguments and creates a new ExerciseAddCommand object
+ * Parses input arguments and creates a new ExerciseAddCommand object.
  */
 public class ExerciseAddCommandParser implements Parser<ExerciseAddCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the ExerciseAddCommand
      * and returns an ExerciseAddCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public ExerciseAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

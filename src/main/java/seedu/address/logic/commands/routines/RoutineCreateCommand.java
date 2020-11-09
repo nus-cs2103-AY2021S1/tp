@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.routine.Routine;
 
 /**
- * Creates a new routine in fitNUS.
+ * Creates a new Routine in fitNUS.
  */
 public class RoutineCreateCommand extends Command {
 
@@ -26,10 +26,13 @@ public class RoutineCreateCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New routine added: %1$s";
     public static final String MESSAGE_DUPLICATE_ROUTINE = "This routine already exists in fitNUS";
 
+    /**
+     * The Routine to be created.
+     */
     private final Routine toAdd;
 
     /**
-     * Creates a RoutineCreateCommand to create the specified {@code Routine}
+     * Creates a RoutineCreateCommand to create the specified {@code Routine}.
      */
     public RoutineCreateCommand(Routine routine) {
         requireNonNull(routine);

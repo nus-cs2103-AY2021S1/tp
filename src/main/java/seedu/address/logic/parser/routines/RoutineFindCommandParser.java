@@ -10,13 +10,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.routine.RoutineNameContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new RoutineFindCommand object
+ * Parses input arguments and creates a new RoutineFindCommand object.
  */
 public class RoutineFindCommandParser implements Parser<RoutineFindCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the RoutineFindCommand
      * and returns a RoutineFindCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public RoutineFindCommand parse(String args) throws ParseException {

@@ -29,10 +29,13 @@ public class ExerciseAddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New exercise added: %1$s";
     public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists in fitNUS";
 
+    /**
+     * The Exercise to be added.
+     */
     private final Exercise toAdd;
 
     /**
-     * Creates an ExerciseAddCommand to add the specified {@code Exercise}
+     * Creates an ExerciseAddCommand to add the specified {@code Exercise}.
      */
     public ExerciseAddCommand(Exercise exercise) {
         requireNonNull(exercise);

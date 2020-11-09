@@ -21,12 +21,13 @@ import seedu.address.model.timetable.Duration;
 import seedu.address.model.util.Name;
 
 /**
- * Parses input arguments and creates a new TimetableAddLessonCommand object
+ * Parses input arguments and creates a new TimetableAddLessonCommand object.
  */
 public class TimetableAddLessonCommandParser implements Parser<TimetableAddLessonCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the RoutineAddExerciseCommand
-     * and returns an RoutineAddExerciseCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the TimetableAddLessonCommand
+     * and returns a TimetableAddLessonCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public TimetableAddLessonCommand parse(String args) throws ParseException {
