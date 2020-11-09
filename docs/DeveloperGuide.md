@@ -711,7 +711,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
  1.  User requests to add a specific Client in the list
  2.  FitEgo adds the Client.  
-Use case ends.
+     Use case ends.
     
 **Extensions**
 
@@ -767,12 +767,6 @@ Use case ends.
 * 2a. The list is empty.
 
   Use case ends.
-  
-* 2b. User requests to force delete a specific Client in the list.
-
-    * 2b1. FitEgo force deletes the Client and its associated Schedules.
-  
-    Use case ends.
 
 * 3a. The given index is invalid.
 
@@ -782,9 +776,17 @@ Use case ends.
 
 * 3b. The given index refers to a Client associated with one or more Schedule.
     
-    * 3b1. FitEgo shows an error message.
+    * 3b1. FitEgo asks a confirmation from the User to delete all related information.
+    * 3b2. User confirms.
     
-      Use case resumes at step 2.
+      Steps 3b1 are repeated until User confirms.
+      Use case resumes from step 4.
+            
+* 3c. User requests to force delete a specific Client in the list.
+
+    * 3c1. FitEgo force deletes the Client and its associated Schedules (if exists).
+
+      Use case ends.
       
 <br/>
 
@@ -794,7 +796,6 @@ Use case ends.
 
  1.  User requests to find some Client based on keyword or text.
  2.  FitEgo displays the Client's whose name matches the keyword or text.
- 
 Use case ends.
 
 **Extensions**
@@ -803,7 +804,7 @@ Use case ends.
     
     * 2a1. FitEgo displays no clients found.
 
-    Use case ends.
+      Use case ends.
 
 <br/>
 
@@ -826,7 +827,7 @@ Use case ends.
 
     * 3a1. FitEgo shows an error message.
 
-      Use case resumes at step 3.
+      Use case resumes at step 2.
 
 * 4a. Previous Client's profile window is not closed.
 
@@ -834,8 +835,8 @@ Use case ends.
     
     * 4a2. The current Client's profile will be displayed.
 
-    Use case ends.
-      
+      Use case ends.
+             
 <br/>
 
 **Use case: UC06 Add a Session**
@@ -875,7 +876,7 @@ Use case ends.
 
     * 2a1. FitEgo shows an error message.
 
-      Use case resumes at step 2.     
+      Use case resumes at step 1.     
 <br/>
 
 **Use case: UC10 Add a Schedule**
@@ -885,7 +886,6 @@ Use case ends.
  1. FitEgo shows a list of Clients and list of Sessions.
  2. User requests to add a specific Schedule between a specified Client from Client List and Session from Session List.
  3. FitEgo adds the Schedule.
- 
 Use case ends.
 
 **Extensions**
@@ -894,13 +894,13 @@ Use case ends.
 
   - 2a1. FitEgo shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
   
 - 2b. The Schedule to be added already exists.
 
   - 2b1. FitEgo shows an error message.
 
-    Use case resumes at step 2.  
+    Use case resumes at step 1.  
 <br/>
 
 **Use case: UC11 Edit a Schedule**
@@ -910,7 +910,6 @@ Use case ends.
  1.  FitEgo shows a list of Clients and list of Sessions.
  2.  User requests to edit a specific Schedule in the list. (i.e. updated Session index, update payment, update weight)
  3.  FitEgo edits the Schedule according to the specified details.
-
 Use case ends.
 
 **Extensions**
@@ -923,7 +922,7 @@ Use case ends.
 
     * 2a1. FitEgo shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
       
 <br/>
 
@@ -934,7 +933,6 @@ Use case ends.
  1. FitEgo shows a list of Clients and list of Sessions.
  2. User requests to delete a Schedule associated with a specified Client from the Client List and Session from the Session List.
  3. FitEgo deletes the Schedule.
- 
 Use case ends.
 
 **Extensions**
@@ -943,13 +941,13 @@ Use case ends.
 
   - 2a1. FitEgo shows an error message.
   
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
 - 2b. There is no Schedule associated with the specified Client and Session.
 
   - 2b1. FitEgo shows an error message.
 
-    Use case resumes at step 2.  
+    Use case resumes at step 1.  
 <br/>
 
 **Use case: UC13 Open User Guide in Browser**
