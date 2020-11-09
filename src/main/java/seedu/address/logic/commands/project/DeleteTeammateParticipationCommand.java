@@ -2,7 +2,8 @@ package seedu.address.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.GitUserIndex;
@@ -25,7 +26,10 @@ public class DeleteTeammateParticipationCommand extends Command {
 
     public static final String MESSAGE_DELETE_TEAMMATE_PARTICIPATION_SUCCESS = "Deleted"
         + " Teammate from project: %1$s";
+    public static final String MESSAGE_DELETE_TEAMMATE_PARTICIPATION_SUCCESS_LOGGER = "Teammate deleted from project";
+    public static final String MESSAGE_DELETE_TEAMMATE_PARTICIPATION_FAILURE = "Teammate deletion from project failed";
 
+    private static final Logger logger = Logger.getLogger("DeleteTeammateParticipationCommand");
     private final GitUserIndex gitUserIndex;
 
     public DeleteTeammateParticipationCommand(GitUserIndex gitUserIndex) {
@@ -43,9 +47,9 @@ public class DeleteTeammateParticipationCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
-        List<Participation> lastShownList = project.getTeammates();
 
         if (!project.hasParticipation(gitUserIndex.getGitUserNameString())) {
+            logger.log(Level.WARNING, MESSAGE_DELETE_TEAMMATE_PARTICIPATION_FAILURE);
             throw new CommandException(Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_NAME);
         }
 
@@ -63,6 +67,7 @@ public class DeleteTeammateParticipationCommand extends Command {
             project.updateTeammateOnView(null);
         }
 
+        logger.log(Level.INFO, MESSAGE_DELETE_TEAMMATE_PARTICIPATION_SUCCESS_LOGGER);
         return new CommandResult(String.format(MESSAGE_DELETE_TEAMMATE_PARTICIPATION_SUCCESS,
             personToDeleteParticipation));
     }

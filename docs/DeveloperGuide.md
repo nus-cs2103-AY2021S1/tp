@@ -1056,6 +1056,22 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `deleteteammate`, `delete teammate ...`,  where the input is incomplete
     or the command is incorrect. <br> Expected: Similar to previous.
+    
+### Editing a Teammate from project scope
+
+1. Editing a teammate while in a project's view
+   1. Prerequisites: Have a valid teammate in a project created as described just above, and enter project scope with
+    `startproject 1`. 
+
+   1. Test case: `editteammate LucasTai98 mn/Wiener `<br>
+      Expected: Teammate's name is changed to Wiener, everything else, including the GitUserName, is changed
+      . Feedback to the user tells the user it is successful.
+   1. Test case: `editteammate LucasTai98`<br>
+      Expected: No teammate is edited. Taskmania complains that no data to change the attributes of Teammate were
+       included.
+
+   1. Other incorrect delete commands to try: `editteammate`, `editteammate $%%v`,  where the input is incorrect or 
+   . <br> Expected: Similar to previous.
 
 ### Saving data
 

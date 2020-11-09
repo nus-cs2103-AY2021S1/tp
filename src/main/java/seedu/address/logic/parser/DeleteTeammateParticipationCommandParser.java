@@ -8,6 +8,7 @@ public class DeleteTeammateParticipationCommandParser implements Parser<DeleteTe
 
     /**
      * Parses {@code userInput} into a command and returns it.
+     *
      * @param userInput input after "deletepart" command from user
      * @return instance of DeletePersonCommandParser
      * @throws ParseException if {@code userInput} does not conform the expected format

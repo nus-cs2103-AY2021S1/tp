@@ -81,7 +81,6 @@ public class EditTaskCommand extends Command {
         }
 
         project.deleteTask(taskToEdit);
-        //        project.addTask(editedTask);
         if (editedTask.hasAnyAssignee()) {
             editedTask.getAssignees().forEach(assignee -> project.getParticipation(assignee).deleteTask(taskToEdit));
             editedTask.getAssignees().forEach(assignee -> project.getParticipation(assignee).addTask(editedTask));

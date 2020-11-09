@@ -2,6 +2,9 @@ package seedu.address.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.GitUserIndex;
 import seedu.address.logic.commands.Command;
@@ -23,7 +26,10 @@ public class DeletePersonCommand extends Command {
             + "Parameters: Git UserName (must be a single word)\n"
             + "Example: " + COMMAND_WORD + " LucasTai98";
 
-    public static final String MESSAGE_DELETE_TEAMMATE_SUCCESS = "Deleted Teammate: %1$s";
+    public static final String MESSAGE_DELETED_PERSON_LOGGER = "A person was deleted";
+    public static final String MESSAGE_DELETED_PERSON_FAILURE = "A person was deleted";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    private static final Logger logger = Logger.getLogger("DeletePersonCommand");
 
     private final GitUserIndex gitUserIndex;
 
@@ -43,6 +49,7 @@ public class DeletePersonCommand extends Command {
         requireNonNull(model);
 
         if (!Person.isPresent(gitUserIndex)) {
+            logger.log(Level.WARNING, MESSAGE_DELETED_PERSON_FAILURE);
             throw new CommandException(Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_NAME);
         }
         Person personToDelete = Person.getPersonFromList(gitUserIndex);
@@ -50,7 +57,8 @@ public class DeletePersonCommand extends Command {
         Person.deletePersonFromList(personToDelete);
         model.deletePerson(personToDelete);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_TEAMMATE_SUCCESS, personToDelete));
+        logger.log(Level.INFO, MESSAGE_DELETED_PERSON_LOGGER);
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
 
