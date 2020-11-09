@@ -64,7 +64,8 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/definition/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` and `PerformanceWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`, `StatusBarFooter` etc. 
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/definition/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -546,6 +547,30 @@ testers are expected to do more *exploratory* testing.
       Expected: No flashcard is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Answering a question
+
+1. Answering a question while user is in quiz mode and has an ongoing attempt.
+
+   1. Prerequisites: Switch to quiz mode using the `enter quiz` command. Multiple questions are listed. Then start an
+    attempt using `start attempt`.
+
+   1. Test case: `answer 1 a/true`
+      Expected: Answer is recorded and user answer will be highlighted on the question. Success message shown in the
+       status message.
+
+   1. Test case: `answer 1`<br>
+      Expected: No answer is recorded. Error details shown in the status message. Status bar remains the same.
+
+   1. Test case: `answer 1 a/1`<br>
+      Expected: Similar to previous.
+
+   1. Other incorrect answer commands to try: `answer 1 a/random`, `answer 2 a/`, `answer 8 a/false`, `answer x
+   `, `...` (where x is larger
+    than the question list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_

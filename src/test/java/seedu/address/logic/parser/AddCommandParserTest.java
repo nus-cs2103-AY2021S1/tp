@@ -13,13 +13,13 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_DIFFICULT;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FINAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEFINITION_HEAPING;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_HEAPING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_HEAPSORT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIFFICULT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FINAL;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalFlashcards.AMY;
-import static seedu.address.testutil.TypicalFlashcards.BOB;
+import static seedu.address.testutil.TypicalFlashcards.BUBBLE_SORTING;
+import static seedu.address.testutil.TypicalFlashcards.HEAPING_SORT;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +35,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Flashcard expectedFlashcard = new FlashcardBuilder(BOB).withTags(VALID_TAG_FINAL).build();
+        Flashcard expectedFlashcard = new FlashcardBuilder(HEAPING_SORT).withTags(VALID_TAG_FINAL).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_HEAPING
@@ -50,7 +50,7 @@ public class AddCommandParserTest {
                 + DEFINITION_DESC_HEAPING + TAG_DESC_FINAL, new AddCommand(expectedFlashcard));
 
         // multiple tags - all accepted
-        Flashcard expectedFlashcardMultipleTags = new FlashcardBuilder(BOB).withTags(VALID_TAG_FINAL,
+        Flashcard expectedFlashcardMultipleTags = new FlashcardBuilder(HEAPING_SORT).withTags(VALID_TAG_FINAL,
             VALID_TAG_DIFFICULT).build();
         assertParseSuccess(parser, NAME_DESC_HEAPING + DEFINITION_DESC_HEAPING
                 + TAG_DESC_DIFFICULT + TAG_DESC_FINAL, new AddCommand(expectedFlashcardMultipleTags));
@@ -59,7 +59,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Flashcard expectedFlashcard = new FlashcardBuilder(AMY).withTags().build();
+        Flashcard expectedFlashcard = new FlashcardBuilder(BUBBLE_SORTING).withTags().build();
         assertParseSuccess(parser, NAME_DESC_BUBBLE_SORT + DEFINITION_DESC_BUBBLE_SORT,
                 new AddCommand(expectedFlashcard));
     }
@@ -69,7 +69,7 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_HEAPING + DEFINITION_DESC_HEAPING,
+        assertParseFailure(parser, VALID_NAME_HEAPSORT + DEFINITION_DESC_HEAPING,
                 expectedMessage);
 
         // missing definition prefix
@@ -77,7 +77,7 @@ public class AddCommandParserTest {
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_HEAPING + DEFINITION_DESC_HEAPING,
+        assertParseFailure(parser, VALID_NAME_HEAPSORT + DEFINITION_DESC_HEAPING,
                 expectedMessage);
     }
 

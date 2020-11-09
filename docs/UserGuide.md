@@ -71,6 +71,8 @@ DSAce is a **desktop app for creating flashcards and practising quiz questions f
    * **`clear`** : Deletes all flashcards.
 
    * **`enter quiz`** : Enters Quiz mode.
+   You should see a change in interface to quiz mode.
+   ![Ui](images/Ui2.png)
 
       * **`start attempt`** : Starts a new quiz attempt.
 
@@ -395,34 +397,32 @@ Format: `list`
 
 Displays the detailed results of a specific past quiz attempt. In the performance interface, a red option represents
 an incorrect answer and a green option indicates a correct answer.
+
+For example, in the image displayed below, 
   
 Format: `view INDEX`
 
-Example: Index input must start from 1. Out of bounce index will not be recorded. e.g `view 1`
+Example: `view 1`
 
 ![view message](images/view_attempt.png)
 
 ### Viewing help : `help`
 
-Shows a message explaining the features of the app, and the format of the command associated with each feature.
+Shows a message containing the link to the user guide.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
-### Exiting application : `exit`
-
-Exits the programme.
-
-Format: `exit`
-
 
 ### Saving the data
-DSAce data is saved in the DSAce folder automatically after any command that changes the data is entered. There is no need to save the data manually.
+DSAce data is saved in the home folder automatically after any command that changes the data is entered. There is no
+ need to save the data manually.
 
 ### FAQ
-Q: How do I transfer my data to another Computer? <br>
-A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous DSAce home folder.
+Q: How do I transfer my data to another computer? <br>
+A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the
+ data from your previous DSAce home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
