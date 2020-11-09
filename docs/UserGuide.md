@@ -427,7 +427,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s
 
 <div markdown="block" class="alert alert-warning">
 :book: <span style="font-weight:bold">Example: </span>
-You want to edit the details of the first patient.
+You want to edit the details of the 1st patient.
 
 **Step 1**: Input `edit 1 p/35154520 g/aspirin ct/green g/recombinant interferons` into the command box and press <kbd>Enter</kbd>.
 
@@ -772,7 +772,7 @@ Format: `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION`
 
 <div markdown="block" class="alert alert-warning">
 :book: <span style="font-weight:bold">Example: </span> 
-You want to add an appointment with the first patient on the list.
+You want to add an appointment with the 1st patient on the list.
 
 **Step 1**: Input `addappt 6 st/11/12/2020 15:00 d/120` into the command box and press <kbd>Enter</kbd>.
 
@@ -818,7 +818,7 @@ Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_START_
 
 <div markdown="block" class="alert alert-warning">
 :book: <span style="font-weight:bold">Example: </span>
-You want to reschedule the first appointment in the appointment list.
+You want to reschedule the 1st appointment in the appointment list.
 
 **Step 1**: Input `editappt 6 st/12/12/2020 18:00 d/240` into the command box and press <kbd>Enter</kbd>.
 
@@ -866,7 +866,7 @@ You want to delete your next upcoming appointment as your patient could not make
 
 **Step 1**: Input `deleteappt 1` and press <kbd>Enter</kbd>.
 
-**Step 2**: The first appointment displayed will be removed from the appointment list immediately. You can also see that the appointment is no longer being displayed on the calendar.
+**Step 2**: The 1st appointment displayed will be removed from the appointment list immediately. You can also see that the appointment is no longer being displayed on the calendar.
 </div>
 
 <div markdown="block" class="alert alert-primary">
