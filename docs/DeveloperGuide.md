@@ -458,7 +458,7 @@ TrackIt@NUS allows users to keep track of all modules that he/she is taking. Mod
  * `M delete CS2030` to delete the CS2030 module
  
 
-#### 4.1.1 Current Implementation
+#### 4.1.1 Current Implementation<a name="module-manager-implementation"></a>
 
 In this section, we will outline the key operations of the Module Manager, namely:
 * `AddModuleCommand`
