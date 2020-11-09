@@ -21,7 +21,7 @@ public class FinanceRecord {
      */
     public FinanceRecord(double amount) {
         id = this.hashCode();
-        this.amount = amount;
+        this.amount = roundAmount(amount);
         this.dateTime = LocalDateTime.now();
         this.hasInventory = false;
         this.uiUsableIndex = "" + uiUsableIndex;
@@ -35,7 +35,7 @@ public class FinanceRecord {
      */
     public FinanceRecord(double amount, boolean hasInventory) {
         id = this.hashCode();
-        this.amount = amount;
+        this.amount = roundAmount(amount);
         this.dateTime = LocalDateTime.now();
         this.hasInventory = hasInventory;
         this.uiUsableIndex = "" + uiUsableIndex;
@@ -50,7 +50,7 @@ public class FinanceRecord {
      */
     public FinanceRecord(int id, double amount, boolean hasInventory) {
         this.id = id;
-        this.amount = amount;
+        this.amount = roundAmount(amount);
         this.dateTime = LocalDateTime.now();
         this.hasInventory = hasInventory;
         this.uiUsableIndex = "" + uiUsableIndex;
@@ -64,7 +64,7 @@ public class FinanceRecord {
      */
     public FinanceRecord(double amount, LocalDateTime dateTime) {
         id = this.hashCode();
-        this.amount = amount;
+        this.amount = roundAmount(amount);
         this.dateTime = dateTime;
         this.hasInventory = false;
         this.uiUsableIndex = "" + uiUsableIndex;
@@ -80,7 +80,7 @@ public class FinanceRecord {
      */
     public FinanceRecord(int id, double amount, LocalDateTime dateTime, boolean hasInventory) {
         this.id = id;
-        this.amount = amount;
+        this.amount = roundAmount(amount);
         this.dateTime = dateTime;
         this.hasInventory = hasInventory;
         this.uiUsableIndex = "" + uiUsableIndex;
@@ -94,7 +94,7 @@ public class FinanceRecord {
      */
     public FinanceRecord(double amount, LocalDateTime dateTime, boolean hasInventory) {
         this.id = this.hashCode();
-        this.amount = amount;
+        this.amount = roundAmount(amount);
         this.dateTime = dateTime;
         this.hasInventory = hasInventory;
         this.uiUsableIndex = "" + uiUsableIndex;
@@ -139,6 +139,10 @@ public class FinanceRecord {
 
     public void setUiUsableIndex(int i) {
         this.uiUsableIndex = "" + i;
+    }
+
+    private double roundAmount(double amount) {
+        return Math.round(amount * 100.0) / 100.0;
     }
 
     /**
