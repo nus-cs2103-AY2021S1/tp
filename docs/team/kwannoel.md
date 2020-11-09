@@ -18,39 +18,49 @@ Given below are my contributions to the project.
   - Justification: 
   
     Existing models were missing critical fields which TAs needed for administration.
-    By including these,
+    
+    Including these fields in the model would mean we can extend existing commands
+    to add these in as parameters.
     
   - Highlights:
   
-    Regex
+    Implementing regex was difficult as both matriculation number and telegram handle
+    had different constraints.
+    
+    Refactoring tests was painful but made easier thanks to the `Builder` pattern we used for
+    `Person` tests.
 
 - **Show attendance command**: Added a command that allows the user view attendance of a student at a specific date
 
-- **Code contributed**: [RepoSense link]()
+  - What it does:
+  
+    Allows students to display their attendance,
+
+- **Delete consultation command**: Added a command that allows the user to delete a consultation slot.
+
+- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&until=2020-11-09&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=kwannoel&tabRepo=AY2021S1-CS2103T-F11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
 - **Project management**:
 
   - Organize weekly project meetings
+  - Distribute weekly tasks for first sprint (v1.1 - v1.2).
 
 - **Enhancements to existing features**:
 
 - **Documentation**:
 
-  TODO
-  
   - User Guide:
     - Added documentation for the features `delete` and `find` [\#72]()
     - Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    - Fix linking for the help guide to our user guide
   - Developer Guide:
-    - Added implementation details of the `delete` feature.
+    - Added implementation details of the `show attendance` feature.
+    - Added implementation details of the ``
 
 - **Community**:
 
   TODO
 
   - PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  - Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  - Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  - Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  - PRs reviewed
 
-- _{you can add/remove categories in the list above}_
