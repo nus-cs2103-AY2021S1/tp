@@ -855,8 +855,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | staff of a quarantine facility       | view which rooms are empty     | allocate patients to them |
 | `* * *`  | staff of a quarantine facility       | allocate patients to room     |keep track of which room they are living in|
 | `* * *`  | staff of a quarantine facility | quickly find the room that a patient is staying in | locate the patient in the facility easily |
-| `* *`  | staff of a quarantine facility | quickly find the room details of a given room number | track the patient and tasks in that room easily |
 | `* * *`  | staff of a quarantine facility       | key in new task information    | keep track of the details of the tasks that I must complete                                  |
+| `* *`  | staff of a quarantine facility | quickly find the room details of a given room number | track the patient and tasks in that room easily |
 | `* *`    | staff of the quarantine facility     | indicate that I have completed the task in the room | let other staff know that they no longer have to handle them|
 | `* *`    | staff of a quarantine facility | find out all the outstanding tasks left in each room |  serve the quarantined individuals better                                               |
 | `* *` | staff of a quarantine facility | quickly search through patient information | find the patients that match my criteria|
