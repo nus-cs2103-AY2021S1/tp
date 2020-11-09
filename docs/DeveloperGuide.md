@@ -307,7 +307,7 @@ Step 3. The user can now use the following command to trigger a FindCommand.
 * **Alternative 3:** Allows customisation of ALL command words.
   * Pros: Highest degree of flexibility, better for users who can easily get used to Command Line Apps.
   * Cons: May be messy and slower learning users may get confused.
-_{more aspects and alternatives to be added}
+_{more aspects and alternatives to be added}_
 
 ### Default Category
 
