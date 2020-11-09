@@ -532,7 +532,7 @@ Employee Directory. You are able to view data related to manpower in the Employe
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about available drinks:**<br>
+**:information_source: Notes about employee(s) and Employee Directory:**<br>
 
 * All employees who are currently working in the shop are active (unarchived) employees.
 
@@ -1001,13 +1001,6 @@ Employee Directory inside the _Main View_. For example, there are 2 employees li
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about Employee Directory:**<br>
-* All employees who are currently working in the shop are active/unarchived employees. They are stored in the active
-(unarchived) Employee Directory. You may refer to `c-active-list` to view the active (unarchived) Employee Directory
-.<br>
-
-* All archived employees (refer to `c-archive` to see how to archive an employee) will be stored in the archived
- Employee Directory. You may refer to `c-archive-list` to view the archived Employee Directory.<br>
-
 * If _Employee Directory_ currently shows a list of active/unarchived employees (Archived employees are displayed with a
  red color label, named as "[Archived]", in front of their names. While employees in the active/unarchived employee list
   don't have this red label.), command `c-archive-list` needs to be used first to see a list of all your archived
