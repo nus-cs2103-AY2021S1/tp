@@ -27,6 +27,16 @@ public class ExpiryDate implements Comparable<ExpiryDate> {
     }
 
     /**
+     * Constructs an {@code ExpiryDate}.
+     *
+     * @param date A valid LocalDate
+     */
+    public ExpiryDate(LocalDate date) {
+        requireNonNull(date);
+        this.date = date;
+    }
+
+    /**
      * Checks if the input date is valid.
      *
      * @param test A string of unknown date format
