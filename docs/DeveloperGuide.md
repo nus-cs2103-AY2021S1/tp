@@ -826,7 +826,7 @@ Use case ends.
 
     * 3a1. FitEgo shows an error message.
 
-      Use case resumes at step 3.
+      Use case resumes at step 2.
 
 * 4a. Previous Client's profile window is not closed.
 
@@ -1072,11 +1072,6 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
    1. Test case: `cedit 1 p/91234567` <br>
       Expected: First Client's detail (phone number) is edited. <br>
       Details of the edited Client are shown is in the status message.
-
-   1. Other incorrect Edit Client commands to try: 
-       * `cedit 0 p/91234567` (index out of bound) <br>
-      Expected: Client details is not edited. <br>
-      Error details are shown in the status message.
       
 ### 6.4 Deleting a Client
 
