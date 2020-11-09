@@ -217,7 +217,7 @@ there is two of such exercise on '09-11-2020' and '05-10-2020' so only the forme
 Adds an exercise template.
 
 
-Format: `create n/NAME d/DESCRIPTION c/CALORIES`
+Format: `create n/NAME d/DESCRIPTION c/CALORIES [m/MUSCLES] [t/TAGS]`
 
 Examples:  
 - `create n/pushup c/100` Creates the exercise template with the name push up, description half an hour and calories 100
@@ -228,12 +228,10 @@ and will be shown in the Template Panel.
 ## 3.13. Add an exercise using template : `addt`
 Adds an exercise using template.
 
-Format: `addt temp/NAME d/DESCRIPTION at/DATE [c/CALORIES]`
+Format: `addt temp/NAME d/DESCRIPTION at/DATE [c/CALORIES] [m/MUSCLES] [t/TAGS]`
 - The format for the DATE should be in the form of DD-MM-YYYY.  
-Format: `addt n/NAME at/DATE [c/CALORIES]`
-- The format for the DATE should be in the form of DD-MM-YYYY
 
-- The user can input calorie value to overwrite the default calorie value defined by the template. If the user inputs no calories, then the exercise will have the default calorie value in the template.
+- The user can input calorie value, muscles or tags to overwrite the default value defined by the template. If the user inputs no calories, then the exercise will have the default value in the template.
 
 Examples:<br>
 - `addt temp/pushup d/half an hour at/09-06-2020` Creates the exercise using the template called pushup with the date 09-06-2020, description half an hour and default calories 100.
