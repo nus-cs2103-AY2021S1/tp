@@ -148,8 +148,16 @@ public interface Model {
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
 
+    /**
+     * Updates the filter of the filtered session list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     void updateFilteredSessionList(Predicate<Session> predicate);
 
+    /**
+     * Updates the filter of the filtered student record list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     void updateFilteredStudentRecordList(Predicate<StudentRecord> predicate);
 
     /**
@@ -166,9 +174,9 @@ public interface Model {
     void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType);
 
     /**
-     * Marks the attendances of all {@code studentRecords} with the given {@code attendanceType}
+     * Marks the attendances of all {@code StudentRecords} with the given {@code attendanceType}.
      */
-    void markAllStudentRecords(List<StudentRecord> studentRecords, AttendanceType attendanceType);
+    void markAllStudents(AttendanceType attendanceType);
 
     /**
      * Marks the attendance of the given student {@code target} with the given {@code attendanceType}.
@@ -179,14 +187,10 @@ public interface Model {
     void scoreStudentWithNusnetId(NusnetId nusnetId, double score);
 
     /**
-     * Marks the attendances of all {@code students} with the given {@code attendanceType}
+     * Updates the {@code ClassParticipation} of all {@code StudentRecords} which are {@code PRESENT} with the
+     * given score.
      */
-    void scoreAllStudents(List<StudentRecord> students, double score);
-
-    /**
-     * Updates the corresponding attendance statuses with the Attendances in the given list.
-     */
-    void updateStudentRecords(List<StudentRecord> studentRecords);
+    void scoreAllStudents(double score);
 
     /**
      * Updates the filter of the filtered student list to show a random student.
@@ -194,9 +198,7 @@ public interface Model {
     void showRandomStudent(Random random);
 
     /**
-     * Clears the attendance statuses of all students in the student list.
+     * Returns the currently displayed session.
      */
-    void clearAttendance();
-
     SimpleObjectProperty<Session> getCurrentSession();
 }

@@ -18,7 +18,6 @@ import seedu.taskmaster.model.session.exceptions.NoSessionSelectedException;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
 import seedu.taskmaster.model.student.UniqueStudentList;
-import seedu.taskmaster.model.student.exceptions.StudentNotFoundException;
 
 /**
  * Wraps all data at the Taskmaster level
@@ -185,7 +184,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     }
 
     /**
-     * Marks the attendance of a {@code target} student with {@code attendanceType} in the current session.
+     * Marks the attendance of a {@code target} student record with {@code attendanceType} in the current session.
      *
      * @throws NoSessionException If the session list is empty.
      * @throws NoSessionSelectedException If no session has been selected.
@@ -207,8 +206,8 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     }
 
     /**
-     * Marks the attendance of a student given the {@code nusnetId}
-     * with {@code attendanceType} in the current session.
+     * Marks the attendance of a student record identified by its {@code nusnetId} with {@code attendanceType} in the
+     * current session.
      *
      * @throws NoSessionException If the session list is empty.
      * @throws NoSessionSelectedException If no session has been selected.
@@ -230,26 +229,24 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     }
 
     /**
-     * Marks the attendance of all student records represented by {@code nusnetIds} in the {@code studentRecordList}
-     * of the {@code currentSession}, with the given {@code attendanceType}.
+     * Marks the attendance of all student records in the {@code studentRecordList} of the current session with the
+     * given {@code attendanceType}.
      *
      * @throws NoSessionException If the session list is empty.
      * @throws NoSessionSelectedException If no session has been selected.
      */
-    public void markAllStudentRecords(List<NusnetId> nusnetIds, AttendanceType attendanceType)
+    public void markAllStudentRecords(AttendanceType attendanceType)
             throws NoSessionException, NoSessionSelectedException {
-        assert nusnetIds != null;
         assert attendanceType != null;
 
         if (sessions.isEmpty()) {
             throw new NoSessionException();
         }
-
         if (!sessions.isEmpty() && currentSession.get() == null) {
             throw new NoSessionSelectedException();
         }
 
-        currentSession.get().markAllStudentAttendances(nusnetIds, attendanceType);
+        currentSession.get().markAllStudentAttendances(attendanceType);
     }
 
     /**
@@ -298,17 +295,15 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * @throws NoSessionException If the session list is empty.
      * @throws NoSessionSelectedException If no session has been selected.
      */
-    public void scoreAllStudents(List<NusnetId> nusnetIds, double score)
+    public void scoreAllStudents(double score)
             throws NoSessionException, NoSessionSelectedException {
-        assert nusnetIds != null;
-
         if (sessions.isEmpty()) {
             throw new NoSessionException();
         } else if (currentSession.isNull().get()) {
             throw new NoSessionSelectedException();
         }
 
-        currentSession.get().scoreAllParticipation(nusnetIds, score);
+        currentSession.get().scoreAllParticipation(score);
     }
 
     /**
@@ -358,44 +353,6 @@ public class Taskmaster implements ReadOnlyTaskmaster {
 
     public ObservableList<Session> getSessionList() {
         return sessions.asUnmodifiableObservableList();
-    }
-
-    /**
-     * Sets the {@code AttendanceType} of all {@code StudentRecords} to NO_RECORD in the current session.
-     *
-     * @throws NoSessionException If the session list is empty.
-     * @throws NoSessionSelectedException If no session has been selected.
-     */
-    public void clearAttendance() throws NoSessionException, NoSessionSelectedException {
-        if (sessions.isEmpty()) {
-            throw new NoSessionException();
-        }
-
-        if (!sessions.isEmpty() && currentSession.get() == null) {
-            throw new NoSessionSelectedException();
-        }
-
-        currentSession.get().clearAttendance();
-    }
-
-    /**
-     * Updates the {@code StudentRecordList} of the current session with the data in {@code studentRecords}.
-     *
-     * @throws StudentNotFoundException If the operation is unable to find the specified student.
-     * @throws NoSessionException If the session list is empty.
-     * @throws NoSessionSelectedException If no session has been selected.
-     */
-    public void updateStudentRecords(List<StudentRecord> studentRecords)
-            throws StudentNotFoundException, NoSessionException {
-        if (sessions.isEmpty()) {
-            throw new NoSessionException();
-        }
-
-        if (!sessions.isEmpty() && currentSession.get() == null) {
-            throw new NoSessionSelectedException();
-        }
-
-        currentSession.get().updateStudentRecords(studentRecords);
     }
 
     public boolean inSession() {
