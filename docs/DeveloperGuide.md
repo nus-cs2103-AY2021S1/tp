@@ -682,7 +682,7 @@ with phone number, using a prefix to identify them.
 * needs to keep track of the daily sales
 * prefers desktop apps over other types
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is reasonably comfortable using command-line interface (CLI) apps
 
 **Value proposition**:
 The product provides an integrated system for the purpose of sales tracking, ingredient track and manpower management.
@@ -1007,14 +1007,14 @@ testers are expected to do more *exploratory* testing.
 1. Resetting all ingredients' levels to zero when not all ingredients' levels are at zero
 
    1. Test case: `i-reset-all`<br>
-      Expected: All ingredients' levels are at zero. A success message is shown in the _Result Display_.
+      Expected: All ingredients' levels are now at zero. A success message is shown in the _Result Display_.
 
 
 1. Resetting all ingredients' levels to zero when all ingredients' levels are already at zero 
 
    1. Test case: `i-reset-all`<br>
-      Expected: All ingredients'levels are still at zero. A message is shown in the _Result Display_ explaining that 
-      all ingredients' levels are already at zero, before resetting all ingredients' levels to zero.
+      Expected: All ingredients'levels are still at zero. An error message is shown in the _Result Display_ explaining  
+      that all ingredients' levels are already at zero, before the execution of the `i-reset-all` command.
 
 ### Setting an ingredient's level to a specified amount
 
