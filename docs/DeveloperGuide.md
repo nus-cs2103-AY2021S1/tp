@@ -320,6 +320,8 @@ The first 2 operations are exposed in the `Model` interface as `Model#canUndo()`
 
 Given below is an example usage scenario and how the undo mechanism behaves at each step.
 
+:information_source: **Note:** The `ModelManager**` in the following diagrams is actually stored as `Pair<McGymmy<Pair<Predicate<Food>, MacroList>>`
+
 Step 1. The user launches the application for the first time. The `ModelManager` will be initialized with the empty `mcGymmyStack`.
 
 ![UndoState0](images/UndoState0.png)
