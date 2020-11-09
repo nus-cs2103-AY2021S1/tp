@@ -921,6 +921,7 @@ For all use cases below, the **System** is the `CommonCents` and the **Actor** i
 3.  Common Cents returns to the state prior to the clear expenses command and displays success message.
 </div>
 
+<div style="page-break-after: always;"></div>
 <div markdown="block" class="alert alert-success">
 
 **Use Case: UC13 - Undoing a clear all revenues command**
@@ -964,8 +965,9 @@ For all use cases below, the **System** is the `CommonCents` and the **Actor** i
       Use case resumes at step 1.
 </div>
 
+<div style="page-break-after: always;"></div>
 <div markdown="block" class="alert alert-success">
-
+ 
 **Use Case: UC15 - Finding specific revenues**
 
 **MSS**
@@ -1293,6 +1295,7 @@ Basic instructions to test _entry-level_ commands of _Common Cents_.
 
    1. Prerequisites: Delete the existing `CommonCents.json` file in the `data` folder. Use the default data. 
    
+   <div style="page-break-after: always;"></div>
    1. Test case: `find c/expense k/canvas`<br>
         Expected: 
         * Expense list is updated with only 1 expense that has the description `canvas` inside. 
