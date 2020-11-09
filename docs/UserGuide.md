@@ -897,6 +897,8 @@ Format: `help [COMMAND_KEYWORD]`
 Example:
 * `help timetable` Shows all the commands containing the word "timetable".
 
+<div style="page-break-after: always;"></div>
+
 **Before inputting "help timetable":**
 
 ![Help](./images/help_keyword_before.png)

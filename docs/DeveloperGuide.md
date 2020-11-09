@@ -198,6 +198,8 @@ Given below is the activity diagram a user will go through when creating a routi
 
 ![Routine create activity](./images/RoutineCreateActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 #### 4.1.1 Design Considerations
 
 **Aspect: Whether to create a Routine and add exercises simultaneously in the same command**
@@ -468,6 +470,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`  | NUS student                       | check calories of popular food on fitNUS               | keep better records of my macros
 | `*`  | NUS student                        | know which bus I can take to the nearest gym               | -
 
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -618,7 +621,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-**Use Case 7 (UC07): Add routine to timetable**
+**Use Case 8 (UC08): Add routine to timetable**
 
 ***MSS***
 
@@ -645,7 +648,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-**Use Case 8 (UC08): Delete slot from timetable**
+**Use Case 9 (UC09): Delete slot from timetable**
 
 ***MSS***
 
@@ -661,7 +664,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use Case 9 (UC09): Add Calories**
+**Use Case 10 (UC10): Add Calories**
 
 ***MSS***
 
@@ -680,7 +683,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use Case 10 (UC10): Minus calories**
+**Use Case 11 (UC11): Minus calories**
 
 ***MSS***
 
@@ -699,7 +702,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case 11 (UC11): Set height**
+**Use case 12 (UC12): Set height**
 
 ***MSS***
 
@@ -718,7 +721,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case 12 (UC12): Set weight**
+**Use case 13 (UC13): Set weight**
 
 ***MSS***
 
