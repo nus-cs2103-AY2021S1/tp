@@ -47,7 +47,7 @@ You can start from the [Quick Start](#quick-start) section to learn how to obtai
 how the figure below shows some sample data.<br>
    ![Ui](images/Ui.png)
    
-   Figure 1. A screenshot showing the tCheck's UI
+   _Figure 1. A screenshot showing the tCheck's UI_
 
 1. Type the command in the command box and press "Enter" on your keyboard to execute it. e.g. typing **`help`** and pressing "Enter" will open the help window.<br>
    Some example commands you can try:
@@ -90,7 +90,8 @@ You may want to familarize yourself with them before moving on to the next secti
 Figure 2 shows the GUI of **tCheck**, annotated with descriptions for all components of the GUI.
 
 <img src="images/tCheckInfographic.png" width="1000" height="700" />
-Figure 2 - Annotated GUI of tCheck
+
+_Figure 2 - Annotated GUI of tCheck_
 
 #### 3.2.2. General Symbols and Syntax 
 
@@ -227,7 +228,7 @@ Outcome:
 
 ![SalesUpdateCommandScreenshot](images/SalesUpdateCommandScreenshot.png)
 
-Figure 3. A screenshot showing the outcome of an `s-update` command
+_Figure 3. A screenshot showing the outcome of an `s-update` command_
 
 #### 1.2 Listing the number of drinks sold : `s-list`
 Shows a list of all types of drinks sold in the Sales Tracker. The list of drinks shown is 
@@ -251,7 +252,7 @@ Outcome:
 
 ![SalesListCommandScreenshot](images/SalesListCommandScreenshot.png)
 
-Figure 4. A screenshot showing the outcome of an `s-list` command
+_Figure 4. A screenshot showing the outcome of an `s-list` command_
 
 #### 1.3 Finds the number of drinks by keywords : `s-find`
 
@@ -281,13 +282,13 @@ Before the execution:<br>
 
 ![BeforeSalesFind](images/BeforeSalesFind.png)
 
-Figure 5a. A screenshot showing the view before executing `s-list` command
+_Figure 5a. A screenshot showing the view before executing `s-list` command_
 
 After the execution:<br>
 
 ![SalesFindCommandScreenshot](images/SalesFindResult.png)
 
-Figure 5b. A screenshot showing the outcome of an `s-list` command
+_Figure 5b. A screenshot showing the outcome of an `s-list` command_
 
 
 ### 2. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
@@ -349,13 +350,13 @@ Before the execution:
 
 <img src="images/IngredientSetCommand.png" width="850" height="595" />
 
-Figure 6a. A screenshot showing the view before executing `i-set` command
+_Figure 6a. A screenshot showing the view before executing `i-set` command_
 
 After the execution:<br>
 
 <img src="images/IngredientSetCommandResultDisplay.png" width="850" height="595" />
 
-Figure 6b. A screenshot showing the outcome of an `i-set` command
+_Figure 6b. A screenshot showing the outcome of an `i-set` command_
 
 Note that the amount for Milk is updated in Ingredient Tracker section inside the _Main View_.
 
@@ -382,11 +383,11 @@ Outcome:
 
 Before the execution:<br>
 <img src="images/IngredientSetAllCommand.png" width="850" height="595" />
-Figure 7a. A screenshot showing the view before executing `i-set-all` command
+_Figure 7a. A screenshot showing the view before executing `i-set-all` command_
 
 After the execution:<br>
 <img src="images/IngredientSetAllCommandResultDisplay.png" width="850" height="595" />
-Figure 7b. A screenshot showing the outcome of an `i-set-all` command
+_Figure 7b. A screenshot showing the outcome of an `i-set-all` command_
 
 Note that all amounts for the ingredients are updated in Ingredient Tracker inside the _Main View_.
 
@@ -433,7 +434,7 @@ Outcome:
 
 ![IngredientListCommandScreenshot](images/IngredientListCommandScreenshot.png)
 
-Figure 8. A screenshot showing the outcome of an `i-list` command
+_Figure 8. A screenshot showing the outcome of an `i-list` command_
 
 #### 2.5 Finding ingredients by keywords : `i-find`
 Finds all ingredients that contain the KEYWORD(s) in their names.
@@ -463,7 +464,7 @@ the ingredient `Brown Sugar`.
 
 ![IngredientFindCommandScreenshot](images/IngredientFindCommandScreenshot.png)
 
-Figure 9. A screenshot showing the outcome of an `i-find` command
+_Figure 9. A screenshot showing the outcome of an `i-find` command_
 
 #### 2.6 Resetting all ingredients' levels to zero : `i-reset-all`
 Resets the ingredients' levels of all ingredient types to zero.
@@ -483,7 +484,7 @@ Outcome:
 
 ![IngredientResetAllCommandScreenshot](images/IngredientResetAllCommandScreenshot.png)
 
-Figure 10. A screenshot showing the outcome of an `i-reset-all` command
+_Figure 10. A screenshot showing the outcome of an `i-reset-all` command_
 
 #### 2.7 Listing all ingredients that user should restock : `i-restock`
 Lists the ingredient's levels of all ingredient types that fall below their pre-determined default levels and require the user to 
@@ -513,7 +514,7 @@ its ingredient's level and the amount needed for the ingredient to reach its pre
 
 ![IngredientRestockCommandScreenshot](images/IngredientRestockCommandScreenshot.png)
 
-Figure 11. A screenshot showing the outcome of an `i-restock` command
+_Figure 11. A screenshot showing the outcome of an `i-restock` command_
 
 <div markdown="block" class="alert alert-info">
 
@@ -578,7 +579,7 @@ Outcome:
 
 ![AddEmployeeCommandScreenshot](images/AddEmployeeCommandResult.png)
 
-Figure 12. A screenshot showing the outcome of an `c-add` command
+_Figure 12. A screenshot showing the outcome of an `c-add` command_
 
 #### 3.2 Listing all employees in the active list: `c-active-list`
 
@@ -601,7 +602,7 @@ Outcome:
 
 ![ActiveEmployeeListCommand](images/ActiveListResult.png)
 
-Figure 13. A screenshot showing the outcome of an `c-active-list` command
+_Figure 13. A screenshot showing the outcome of an `c-active-list` command_
 
 #### 3.3 Editing a person : `c-edit`
 
@@ -632,13 +633,13 @@ Outcome:
 Before the execution:<br>
 ![BeforeEditCommandScreenshot](images/BeforeClearCommand.png)
 
-Figure 14a. A screenshot showing the view before executing `c-edit` command
+_Figure 14a. A screenshot showing the view before executing `c-edit` command_
 
 
 After the execution:<br>
 ![EditCommandScreenshot](images/EditCommandResult.png)
 
-Figure 14b. A screenshot showing the outcome of a `c-edit` command
+_Figure 14b. A screenshot showing the outcome of a `c-edit` command_
 
 
 #### 3.4 Locating persons by keywords: `c-find`
@@ -668,7 +669,7 @@ Outcome:
 
 ![EmployeeFindCommandScreenshot](images/EmployeeFindResult.png)
 
-Figure 15. A screenshot showing the outcome of a `c-find` command
+_Figure 15. A screenshot showing the outcome of a `c-find` command_
 
 
 #### 3.5 Locating employees based on matching tags: `c-tag-find`
@@ -711,7 +712,7 @@ Outcome:
 
 ![FindByTagCommandScreenshot](images/FindByTagCommandScreenshot.png)
 
-Figure 16. A screenshot showing the outcome of an `c-tag-find monday friday` command
+_Figure 16. A screenshot showing the outcome of an `c-tag-find monday friday` command_
 
 #### 3.6 Locating all employees who are available to work today: `c-today`
 
@@ -754,7 +755,7 @@ Outcome:
 
 ![FindByTagTodayCommandScreenshot](images/FindByTagTodayCommandScreenshot.png)
 
-Figure 17. A screenshot showing the outcome of an `c-today` command
+_Figure 17. A screenshot showing the outcome of an `c-today` command_
 
 #### 3.7 Locating all employees who are available to work tomorrow: `c-tomorrow`
 
@@ -796,7 +797,7 @@ Outcome:
 
 ![FindByTagTomorrowCommandScreenshot](images/FindByTagTomorrowCommandScreenshot.png)
 
-Figure 18. A screenshot showing the outcome of an `c-tomorrow` command
+_Figure 18. A screenshot showing the outcome of an `c-tomorrow` command_
 
 #### 3.8 Deleting a person : `c-delete`
 
@@ -821,7 +822,7 @@ Outcome:
 
 ![DeleteEmployeeCommandScreenshot](images/DeleteEmployeeResult.png)
 
-Figure 19. A screenshot showing the outcome of a `c-delete` command
+_Figure 19. A screenshot showing the outcome of a `c-delete` command_
 
 
 #### 3.9 Clearing all entries : `c-clear`
@@ -844,12 +845,12 @@ Outcome:
 Before the execution:<br>
 ![ListEmployeeScreenshot](images/BeforeClearCommand.png)
 
-Figure 20a. A screenshot showing the view before executing `c-clear` command
+_Figure 20a. A screenshot showing the view before executing `c-clear` command_
 
 After the execution:<br>
 ![ClearEmployeeCommandScreenshot](images/ClearEmployeeResult.png)
 
-Figure 20b. A screenshot showing the outcome of a `c-clear` command
+_Figure 20b. A screenshot showing the outcome of a `c-clear` command_
 
 
 #### 3.10 Archiving an employee : `c-archive`
@@ -896,12 +897,12 @@ Outcome:
 Before the execution:<br>
 ![BeforeArchiveCommandScreenshot](images/BeforeArchiveCommandScreenshot.png)
 
-Figure 20a. Screenshot showing the view before executing `c-archive 1` command
+_Figure 21a. Screenshot showing the view before executing `c-archive 1` command_
 
 After the execution:<br>
 ![AfterArchiveCommandScreenshot](images/AfterArchiveCommandScreenshot.png)
 
-Figure 20b. Screenshot showing the outcome of an `c-archive 1` command
+_Figure 21b. Screenshot showing the outcome of an `c-archive 1` command_
 
 #### 3.11 Archiving all employees : `c-archive-all`
 
@@ -943,12 +944,12 @@ Outcome:
 Before the execution:<br>
 ![BeforeArchiveAllCommandScreenshot](images/BeforeArchiveAllCommandScreenshot.png)
 
-Figure 21a. Screenshot showing the view before executing `c-archive-all` command
+_Figure 22a. Screenshot showing the view before executing `c-archive-all` command_
 
 After the execution:<br>
 ![AfterArchiveAllCommandScreenshot](images/AfterArchiveAllCommandScreenshot.png)
 
-Figure 21b. Screenshot showing the outcome of an `c-archive-all` command
+_Figure 22b. Screenshot showing the outcome of an `c-archive-all` command_
 
 #### 3.12 Listing all archived employees : `c-archive-list`
 
@@ -980,7 +981,7 @@ Outcome:
 
 ![ArchiveListCommandScreenshot](images/ArchiveListCommandScreenshot.png)
 
-Figure 22. A screenshot showing the outcome of an `c-archive-list` command
+_Figure 23. A screenshot showing the outcome of an `c-archive-list` command_
 
 #### 3.13 Unarchiving an employee : `c-unarchive`
 Unarchives the specified employee from the archived employee list.
@@ -1033,12 +1034,12 @@ Outcome:
 Before the execution:<br>
 ![BeforeUnarchiveCommandScreenshot](images/BeforeUnarchiveCommandScreenshot.png)
 
-Figure 23a. Screenshot showing the view before executing `c-unarchive 1` command
+_Figure 24a. Screenshot showing the view before executing `c-unarchive 1` command_
 
 After the execution:<br>
 ![AfterUnarchiveCommandScreenshot](images/AfterUnarchiveCommandScreenshot.png)
 
-Figure 23b. Screenshot showing the outcome of an `c-unarchive 1` command
+_Figure 24b. Screenshot showing the outcome of an `c-unarchive 1` command_
 
 ### 4. Commands - General <a name="commands-general"></a>
 #### 4.1 Viewing help : `help`
@@ -1062,7 +1063,7 @@ Outcome:
 
 ![HelpCommandScreenshot](images/HelpCommandScreenshot.png)
 
-Figure 24. A screenshot showing the outcome of a `help` command
+_Figure 25. A screenshot showing the outcome of a `help` command_
 
 #### 4.2 Exiting the program : `exit`
 
@@ -1097,7 +1098,7 @@ tCheck also shows the calendar for the current month when you start the applicat
  
  ![CalendarScreenshot](images/CalendarScreenshot.png)
  
- Figure 25. Screenshots showing the calendar in tCheck
+ _Figure 26. Screenshots showing the calendar in tCheck_
 
 ## FAQ <a name="FAQ"></a>
 
