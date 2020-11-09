@@ -779,7 +779,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
             
 * 3c. User requests to force delete a specific Client in the list.
 
-    * 3c1. FitEgo force deletes the Client and its associated Schedules (if exists).
+    * 3c1. FitEgo force deletes the Client and its associated Schedules if any.
 
       Use case ends.
       
