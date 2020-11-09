@@ -57,6 +57,8 @@ how the figure below shows some sample data.<br>
 1. Refer to the [Features](#features) for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## About this document <a name="about"></a>
 
 ### 1. Structure of this document
@@ -91,7 +93,6 @@ _Figure 2 - Annotated GUI of tCheck_
 #### 2.2 General Symbols and Syntax 
 
 The following table explains the general symbols and syntax used in this User Guide.
-<div style="page-break-after: always;"></div>
 
 | Syntax |  What it means |
 |----------|-------------|
@@ -116,6 +117,8 @@ The following table explains the technical terms used in this user guide.
 * Command Word - `c-add` <br>
 * Prefixes - `n/`, `e/`, `p/`, `a/`, `t/`  <br>
 * Parameters - `NAME`, `PHONE_NUMBER`, `EMERGENCY_CONTACT`, `ADDRESS`, `TAG`
+
+<div style="page-break-after: always;"></div>
 
 The following points explain the format of a command. 
 
@@ -151,6 +154,8 @@ Unexpected prefix(es) entered for commands which do not take in any parameter | 
 In this example, the situation of duplicate valid prefixes detected takes place. Hence, only the last, in this case, the second prefix and its following parameters are accepted.
 Thus, the command will be processed in the same way as `i-set i/Boba m/90`.
 
+<div style="page-break-after: always;"></div>
+
 **Example 2:**
 `i-set-all M/10 P/10 B/10 L/10 G/10 S/10 T/10`
 
@@ -169,6 +174,7 @@ In this example, `help` is a command which does not take in any parameter. Hence
 Thus, tCheck will ignore all words come after the command word `help` and the command will be processed in the same way as `help`.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features <a name="features"></a>
 
@@ -206,6 +212,8 @@ Format: `s-update DRINK [MORE_DRINKS]`
 less than or equal to 9,999,999.
 * The sales of at least one drink item should be recorded when using this command.
 
+<div style="page-break-after: always;"></div>
+
 Example: 
 
 Let's say you want to update the sales of Brown Sugar Boba Milk, `BSBM`, to 100 
@@ -223,6 +231,8 @@ Outcome:
 ![SalesUpdateCommandScreenshot](images/SalesUpdateCommandScreenshot.png)
 
 _Figure 3. A screenshot showing the outcome of an `s-update` command_
+
+<div style="page-break-after: always;"></div>
 
 #### 1.2 Listing the number of drinks sold : `s-list`
 Shows a list of all types of drinks sold in the Sales Tracker. The list of drinks shown is 
@@ -248,6 +258,8 @@ Outcome:
 
 _Figure 4. A screenshot showing the outcome of an `s-list` command_
 
+<div style="page-break-after: always;"></div>
+
 #### 1.3 Finds the number of drinks by keywords : `s-find`
 
 Finds all drinks where their abbreviated names match the KEYWORD(s).
@@ -272,18 +284,19 @@ Outcome:
 1. The _Result Display_ will show that how many drinks you find.
 2. All matching drink's sales data will be listed in the _Main View_.
 
-Before the execution:<br>
+<div style="page-break-after: always;"></div>
 
+Before the execution:<br>
 ![BeforeSalesFind](images/BeforeSalesFind.png)
 
 _Figure 5a. A screenshot showing the view before executing `s-find` command_
 
 After the execution:<br>
-
 ![SalesFindCommandScreenshot](images/SalesFindResult.png)
 
 _Figure 5b. A screenshot showing the outcome of an `s-find` command_
 
+<div style="page-break-after: always;"></div>
 
 ### 2. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
 
@@ -321,6 +334,8 @@ You are able to view data related to ingredients tracking in the Ingredient Trac
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### 2.1 Setting one ingredient's level : `i-set`
 
 Sets the level of one single ingredient predefined in the ingredient book to the specified amount.
@@ -353,20 +368,19 @@ Outcome:
 1. The _Result Display_ will show a success message.
 2. You can now see that tCheck has updated Milk's level to 90 L in The Ingredient Tracker inside the _Main View_.
 
-Before the execution:
+<div style="page-break-after: always;"></div>
 
+Before the execution:
 ![IngredientSetCommand](images/IngredientSetCommand.png)
 
 _Figure 6a. A screenshot showing the view before executing `i-set` command_
 
 After the execution:<br>
-
 ![IngredientSetCommandResultDisplay](images/IngredientSetCommandResultDisplay.png)
 
 _Figure 6b. A screenshot showing the outcome of an `i-set` command_
 
-Note that the amount for Milk is updated in Ingredient Tracker section inside the _Main View_.
-
+<div style="page-break-after: always;"></div>
 
 #### 2.2 Setting all ingredients' levels to different specified amounts : `i-set-all`
 
@@ -389,6 +403,8 @@ Outcome:
 1. The _Result Display_ will show a success message.
 2. You can now see that tCheck has updated all ingredients' levels to the specified amounts in the Ingredient Tracker inside the _Main View_.
 
+<div style="page-break-after: always;"></div>
+
 Before the execution:<br>
 ![IngredientSetAllCommand](images/IngredientSetAllCommand.png)
 _Figure 7a. A screenshot showing the view before executing `i-set-all` command_
@@ -397,8 +413,7 @@ After the execution:<br>
 ![IngredientSetAllCommandResultDisplay](images/IngredientSetAllCommandResultDisplay.png)
 _Figure 7b. A screenshot showing the outcome of an `i-set-all` command_
 
-Note that all amounts for the ingredients are updated in Ingredient Tracker inside the _Main View_.
-
+<div style="page-break-after: always;"></div>
 
 #### 2.3 Setting all ingredients to different levels : `i-set-default`
 
@@ -447,6 +462,8 @@ Outcome:
 1. The _Result Display_ will show a success message.
 2. The Ingredient Tracker inside the _Main View_ will show the list of all the ingredients.
 
+<div style="page-break-after: always;"></div>
+
 ![IngredientListCommandScreenshot](images/IngredientListCommandScreenshot.png)
 
 _Figure 8. A screenshot showing the outcome of an `i-list` command_
@@ -462,6 +479,8 @@ Format: `i-find KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched. For example, `Mil` will not match `Milk`.<br>
 * Ingredients with names matching at least one keyword will be listed in the Ingredient Tracker inside the _Main View_ 
 (i.e. `OR` search). For example, `i-find Milk Boba` will find the ingredient `Milk` and the ingredient `Boba`.<br>
+
+<div style="page-break-after: always;"></div>
 
 Example: 
 
@@ -482,6 +501,8 @@ Before the execution:<br>
 ![BeforeIngredientFindCommandScreenshot](images/BeforeIngredientFindCommandScreenshot.png)
 
 _Figure 9a. A screenshot showing the view before executing `i-find` command_
+
+<div style="page-break-after: always;"></div>
 
 After the execution:<br>
 ![AfterIngredientFindCommandScreenshot](images/AfterIngredientFindCommandScreenshot.png)
@@ -506,6 +527,8 @@ Outcome:
 2. You can now see that all ingredients' levels are zero in the Ingredient Tracker inside 
 the _Main View_.
 
+<div style="page-break-after: always;"></div>
+
 ![IngredientResetAllCommandScreenshot](images/IngredientResetAllCommandScreenshot.png)
 
 _Figure 10. A screenshot showing the outcome of an `i-reset-all` command_
@@ -522,6 +545,8 @@ Format: `i-restock`
 Refer to the [Notes about ingredients](#commands-ingredients-tracking-notes-about-ingredients)
 for details on the pre-determined default levels of different types of ingredients.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Example: 
 
@@ -546,6 +571,8 @@ _Figure 11. A screenshot showing the outcome of an `i-restock` command_
 Due to the limited size of the _Result Display_, only a part of the list of ingredients that the user should restock
 is shown in the screenshot above. In the actual application, you can scroll down to see the entire list.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### 3. Commands - Manpower Management <a name="commands-manpower-management"></a>
 
@@ -593,6 +620,8 @@ PHONE_NUMBER and EMERGENCY_CONTACT must be 8-digit number and start with 8 or 9.
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Example: 
 
 Let's say you want to add an employee called John Doe to the Employee Directory. His phone number is 98765432. His
@@ -609,6 +638,8 @@ Outcome:
 ![AddEmployeeCommandScreenshot](images/AddEmployeeCommandResult.png)
 
 _Figure 12. A screenshot showing the outcome of an `c-add` command_
+
+<div style="page-break-after: always;"></div>
 
 #### 3.2 Listing all employees in the active list: `c-active-list`
 
@@ -632,6 +663,8 @@ Outcome:
 ![ActiveEmployeeListCommand](images/ActiveListResult.png)
 
 _Figure 13. A screenshot showing the outcome of an `c-active-list` command_
+
+<div style="page-break-after: always;"></div>
 
 #### 3.3 Editing a person : `c-edit`
 
@@ -659,6 +692,8 @@ Outcome:
 1. The _Result Display_ will show that you edit the employee.
 2. All active employees will be listed in the _Main View_.
 
+<div style="page-break-after: always;"></div>
+
 Before the execution:<br>
 ![BeforeEditCommandScreenshot](images/BeforeEditCommand.png)
 
@@ -671,6 +706,7 @@ After the execution:<br>
 
 _Figure 14b. A screenshot showing the outcome of a `c-edit` command_
 
+<div style="page-break-after: always;"></div>
 
 #### 3.4 Locating persons by keywords: `c-find`
 
@@ -697,6 +733,8 @@ Outcome:
 1. The _Result Display_ will show how many employees' matching your find command
 2. Employees whose name contains "john" will be listed in the Employee Directory inside the _Main View_.
 
+<div style="page-break-after: always;"></div>
+
 ![EmployeeFindCommandScreenshot](images/EmployeeFindResult.png)
 
 _Figure 15. A screenshot showing the outcome of a `c-find` command_
@@ -715,6 +753,8 @@ Format: `c-tag-find KEYWORD [MORE_KEYWORDS]`
 * Employees whose tag(s) matching at least one keyword will be listed in the Employee
  Directory inside the _Main View_ (i.e. `OR` search).  For example, `c-tag-find Monday Friday` will find employees whose
   tags contain `Monday` or `Friday`.<br>
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -743,6 +783,8 @@ Outcome:
 ![FindByTagCommandScreenshot](images/FindByTagCommandScreenshot.png)
 
 _Figure 16. A screenshot showing the outcome of an `c-tag-find` command_
+
+<div style="page-break-after: always;"></div>
 
 #### 3.6 Locating all employees who are available to work today: `c-today`
 
@@ -783,6 +825,8 @@ Outcome:
     
 2. The available manpower for today will be listed in the Employee Directory inside the _Main View_.
 
+<div style="page-break-after: always;"></div>
+
 ![FindByTagTodayCommandScreenshot](images/FindByTagTodayCommandScreenshot.png)
 
 _Figure 17. A screenshot showing the outcome of an `c-today` command_
@@ -806,6 +850,8 @@ tag(s) by editing employee's information feature (refer to `c-edit` command).<br
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Example:
 
 * Let's say tomorrow is `Friday`. You want to find out who are the available manpower for tomorrow. 
@@ -828,6 +874,8 @@ Outcome:
 ![FindByTagTomorrowCommandScreenshot](images/FindByTagTomorrowCommandScreenshot.png)
 
 _Figure 18. A screenshot showing the outcome of an `c-tomorrow` command_
+
+<div style="page-break-after: always;"></div>
 
 #### 3.8 Deleting a person : `c-delete`
 
@@ -854,6 +902,7 @@ Outcome:
 
 _Figure 19. A screenshot showing the outcome of a `c-delete` command_
 
+<div style="page-break-after: always;"></div>
 
 #### 3.9 Clearing all entries : `c-clear`
 
@@ -877,6 +926,8 @@ Before the execution:<br>
 
 _Figure 20a. A screenshot showing the view before executing `c-clear` command_
 
+<div style="page-break-after: always;"></div>
+
 After the execution:<br>
 ![ClearEmployeeCommandScreenshot](images/ClearEmployeeResult.png)
 
@@ -895,6 +946,8 @@ Format: `c-archive INDEX`
 * The `INDEX` **should not be larger than** the total number of employees listed in the current 
 _Employee Directory_ pane. For example, there are 2 employees listed in the current Employee Directory inside the _Main
  View_. The `INDEX` should be less or equal to 2.<br>
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -924,6 +977,8 @@ Outcome:
 1. The _Result Display_ will show a success message with the employee's name that you have archived.
 2. Alex Yeoh's information will be removed from Employee Directory inside the _Main View_.
 
+<div style="page-break-after: always;"></div>
+
 Before the execution:<br>
 ![BeforeArchiveCommandScreenshot](images/BeforeArchiveCommandScreenshot.png)
 
@@ -933,6 +988,8 @@ After the execution:<br>
 ![AfterArchiveCommandScreenshot](images/AfterArchiveCommandScreenshot.png)
 
 _Figure 21b. Screenshot showing the outcome of an `c-archive` command_
+
+<div style="page-break-after: always;"></div>
 
 #### 3.11 Archiving all employees : `c-archive-all`
 
@@ -970,6 +1027,7 @@ Outcome:
 1. The _Result Display_ will show a success message.
 2. All employees will be removed from Employee Directory inside the _Main View_.
 
+<div style="page-break-after: always;"></div>
 
 Before the execution:<br>
 ![BeforeArchiveAllCommandScreenshot](images/BeforeArchiveAllCommandScreenshot.png)
@@ -980,6 +1038,8 @@ After the execution:<br>
 ![AfterArchiveAllCommandScreenshot](images/AfterArchiveAllCommandScreenshot.png)
 
 _Figure 22b. Screenshot showing the outcome of an `c-archive-all` command_
+
+<div style="page-break-after: always;"></div>
 
 #### 3.12 Listing all archived employees : `c-archive-list`
 
@@ -1003,6 +1063,7 @@ Let's say you want to find an archived employee's information. You can follow th
 1. Type `c-archive-list` into the _Command Box_.
 2. Press "Enter" to execute.
 
+<div style="page-break-after: always;"></div>
 
 Outcome:
 
@@ -1024,6 +1085,8 @@ Format: `c-unarchive INDEX`
 * The `INDEX` **should not be larger than** the total number of employees listed in the current
 Employee Directory inside the _Main View_. For example, there are 2 employees listed in the current Employee
  Directory inside the _Main View_. The `INDEX`should be less or equal to 2.<br>
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -1054,6 +1117,8 @@ Outcome:
 2. Alex Yeoh's information will be removed from the archived employee list shown in Employee Directory inside
  the _Main View_.
 
+<div style="page-break-after: always;"></div>
+
 Before the execution:<br>
 ![BeforeUnarchiveCommandScreenshot](images/BeforeUnarchiveCommandScreenshot.png)
 
@@ -1063,6 +1128,8 @@ After the execution:<br>
 ![AfterUnarchiveCommandScreenshot](images/AfterUnarchiveCommandScreenshot.png)
 
 _Figure 24b. Screenshot showing the outcome of an `c-unarchive` command_
+
+<div style="page-break-after: always;"></div>
 
 ### 4. Commands - General <a name="commands-general"></a>
 
@@ -1090,6 +1157,8 @@ Outcome:
 ![HelpCommandScreenshot](images/HelpCommandScreenshot.png)
 
 _Figure 25. A screenshot showing the outcome of a `help` command_
+
+<div style="page-break-after: always;"></div>
 
 #### 4.2 Exiting the program : `exit`
 
@@ -1129,6 +1198,8 @@ tCheck also shows the calendar for the current month when you start the applicat
  
  _Figure 26. Screenshots showing the calendar in tCheck_
 
+<div style="page-break-after: always;"></div>
+
 ## FAQ <a name="FAQ"></a>
 
 **Q**: Why does tCheck ignore additional or extra input that I add after single-word commands, like `help`? <br>
@@ -1152,6 +1223,8 @@ Action | Format, Examples
 **List**| `s-list`
 **Find**| `s-find KEYWORD [MORE_KEYWORDS]` <br> e.g., `s-find BSBM BSBBT`
 
+<div style="page-break-after: always;"></div>
+
 ### Ingredients Tracking
 
 Action | Format, Examples
@@ -1163,6 +1236,8 @@ Action | Format, Examples
 **Find**| `i-find KEYWORD [MORE_KEYWORDS]`  <br> e.g., `i-find milk sugar`
 **Reset all ingredients' levels to zero**| `i-reset-all`
 **List all ingredients that the user should restock**| `i-restock`
+
+<div style="page-break-after: always;"></div>
 
 ### Manpower Management
 
@@ -1180,6 +1255,8 @@ Action | Format, Examples
 **Archive all employees** |  `c-archive-all` <br>
 **List all archived employees** |  `c-archive-list`
 **Unarchive** | `c-unarchive INDEX`<br> e.g., `c-unarchive 1` 
+
+<div style="page-break-after: always;"></div>
 
 ### General
 
