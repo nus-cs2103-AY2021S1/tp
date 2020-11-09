@@ -317,6 +317,10 @@ The following sequence diagram shows how the cclear operation works:
 
 ![CclearSequenceDiagram](images/CclearSequenceDiagram.png)
 
+The follow activity diagram summarizes what happens when a user executes a Cclearcommand:
+
+![CclearActivityDiagram](images/CclearActivityDiagram.png)
+
 ### Clear all modules feature
 
 #### Implementation
@@ -328,6 +332,10 @@ These operations are exposed in the `Model` interface as `Model#clearMod()` and 
 The following sequence diagram shows how the mclear operation works:
 
 ![MclearSequenceDiagram](images/MclearSequenceDiagram.png)
+
+The follow activity diagram summarizes what happens when a user executes a Mclearcommand:
+
+![MclearActivityDiagram](images/MclearAcitivityDiagram.png)
 
 ### Switch active semester feature
 
