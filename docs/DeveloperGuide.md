@@ -1189,10 +1189,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect add patient commands to try: `addpatient n/John Doe t/37.0 d/20200101-20190114 p/91234567 a/22` <br>
       **Expected**: Similar to previous.
-
-1. **Allocating a patient to a room in Covigent**
-    
-    1. Prerequisites: User is viewing the room tab. Patient details has already been input into Covigent. Rooms must already have been initalized.
     
 ### Saving data
 
@@ -1200,7 +1196,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Run the app once and play around with the application. Once a change is made, the program will generate a data files in `./data/`.
 
-   1. In ./data/, delete `covigentapp.json` and `roomInformation.json`.
+   1. In `./data/`, delete `covigentapp.json` and `roomInformation.json`.
    
    1. Re-launch the app.<br><br>
    **Expected**: Default Patient information should now be present in the Patient tab. No Rooms present in Room tab.
