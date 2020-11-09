@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import java.util.Set;
 
 import seedu.address.logic.commands.contactlistcommands.AddContactCommand;
-import seedu.address.logic.commands.contactlistcommands.EditContactDescriptor;
+import seedu.address.logic.commands.contactlistcommands.EditContactCommand.EditContactDescriptor;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 

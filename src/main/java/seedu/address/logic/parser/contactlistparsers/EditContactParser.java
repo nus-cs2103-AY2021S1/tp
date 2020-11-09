@@ -11,10 +11,12 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.contactlistcommands.EditContactCommand;
-import seedu.address.logic.commands.contactlistcommands.EditContactDescriptor;
+import seedu.address.logic.commands.contactlistcommands.EditContactCommand.EditContactDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -29,13 +31,18 @@ import seedu.address.model.tag.Tag;
  */
 public class EditContactParser implements Parser<EditContactCommand> {
 
+    private final Logger logger = LogsCenter.getLogger(EditContactCommand.class);
+
     /**
      * Parses the given {@code String} of arguments in the context of the EditContactCommand
      * and returns an EditContactCommand object for execution.
+     *
      * @throws ParseException If the user input does not conform the expected format.
      */
     public EditContactCommand parse(String args) throws ParseException {
         requireNonNull(args);
+        logger.info("Parsing the command arguments: " + args);
+
         ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME,
                 PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_TAG);
         ArgumentMultimap argMultimap = tokenizer.tokenize();
@@ -50,6 +57,7 @@ public class EditContactParser implements Parser<EditContactCommand> {
         }
 
         EditContactDescriptor editContactDescriptor = new EditContactDescriptor();
+
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editContactDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
@@ -60,11 +68,10 @@ public class EditContactParser implements Parser<EditContactCommand> {
 
         if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
             parseTelegramForEdit(argMultimap.getValue(PREFIX_TELEGRAM).get())
-                    .ifPresentOrElse(telegram -> editContactDescriptor.setTelegram(telegram), () ->
-                            editContactDescriptor.setTelegramDeleted());
+                    .ifPresentOrElse(editContactDescriptor::setTelegram, editContactDescriptor::setTelegramDeleted);
         }
-
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editContactDescriptor::setTags);
+
         if (!editContactDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditContactCommand.MESSAGE_NOT_EDITED);
         }
@@ -73,7 +80,7 @@ public class EditContactParser implements Parser<EditContactCommand> {
     }
 
     /**
-     * Parses the String containing the edited telegram into a {@code Telegram} if the String is non-empty.
+     * Parses the String containing the telegram argument into a {@code Telegram} if the String is not blank.
      *
      * @param telegram String containing the telegram argument.
      * @return Optional describing a Telegram object.

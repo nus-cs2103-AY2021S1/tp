@@ -232,7 +232,7 @@ public class Module {
     /**
      * Edits the zoom link of the specified module lesson in this module.
      *
-     * @param lesson Module lesson which contains the zoom link to be edited.
+     * @param lesson Module lesson which the zoom link to be edited is mapped to.
      * @param editedLink Edited zoom link.
      * @return Module containing the updated zoom links.
      */

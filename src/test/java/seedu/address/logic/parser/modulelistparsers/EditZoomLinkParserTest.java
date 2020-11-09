@@ -17,7 +17,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.modulelistcommands.EditZoomLinkCommand;
-import seedu.address.logic.commands.modulelistcommands.ZoomDescriptor;
+import seedu.address.logic.commands.modulelistcommands.ZoomLinkCommand.ZoomDescriptor;
 import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.testutil.ZoomDescriptorBuilder;

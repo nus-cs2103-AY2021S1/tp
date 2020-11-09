@@ -73,7 +73,7 @@ public class ParserUtil {
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException If the given {@code tag} is invalid.
      */
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
@@ -87,16 +87,13 @@ public class ParserUtil {
     /**
      * Parses a {@code String keywords} into a {@code List<String>}.
      *
-     * @param keywords String containing search keywords provided by the user.
-     * @return List of search keywords.
      * @throws ParseException If the given {@code keywords} is invalid.
      */
     public static List<String> parseSearchKeywords(String keywords) throws ParseException {
         requireNonNull(keywords);
         String trimmedKeywords = keywords.trim();
         if (trimmedKeywords.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_SEARCH_KEYWORD));
+            throw new ParseException(MESSAGE_INVALID_SEARCH_KEYWORD);
         } else {
             String[] keywordArray = keywords.split("\\s+");
             assert keywordArray.length > 0 : "There must be at least one search keyword provided";
@@ -109,7 +106,7 @@ public class ParserUtil {
      * Parses a {@code String name} into a {@code ContactName}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException If the given {@code name} is invalid.
      */
     public static ContactName parseName(String name) throws ParseException {
         requireNonNull(name);
@@ -124,7 +121,7 @@ public class ParserUtil {
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException If the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
@@ -136,14 +133,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String telegramUsername} into an {@code Telegram}.
+     * Parses a {@code String telegram} into a {@code Telegram}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code telegramUsername} is invalid.
+     * @throws ParseException If the given {@code telegram} is invalid.
      */
-    public static Telegram parseTelegram(String telegramUsername) throws ParseException {
-        requireNonNull(telegramUsername);
-        String trimmedTelegram = telegramUsername.trim();
+    public static Telegram parseTelegram(String telegram) throws ParseException {
+        requireNonNull(telegram);
+        String trimmedTelegram = telegram.trim();
         if (!Telegram.isValidTelegram(trimmedTelegram)) {
             throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
@@ -171,7 +168,7 @@ public class ParserUtil {
      * Parses a {@code String zoomLink} into a {@code ZoomLink}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code zoomLink} is invalid.
+     * @throws ParseException If the given {@code zoomLink} is invalid.
      */
     public static ZoomLink parseZoomLink(String zoomLink) throws ParseException {
         requireNonNull(zoomLink);
@@ -186,7 +183,7 @@ public class ParserUtil {
      * Parses a {@code String lesson} into a {@code ModuleLesson}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code lesson} is invalid.
+     * @throws ParseException If the given {@code lesson} is invalid.
      */
     public static ModuleLesson parseModuleLesson(String lesson) throws ParseException {
         requireNonNull(lesson);
@@ -313,16 +310,19 @@ public class ParserUtil {
      * Parses a {@code String status} into a {@code Status}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code status} is invalid.
+     * @throws ParseException If the given {@code status} is invalid.
      */
     public static Status parseTaskStatus(String status) throws ParseException {
         assert status != null;
-        String priorityAllUpperCase = status.toUpperCase();
-        switch(priorityAllUpperCase) {
-        case("COMPLETED"):
+        String statusInUpperCase = status.toUpperCase();
+
+        switch (statusInUpperCase) {
+        case ("COMPLETED"):
             return Status.COMPLETED;
-        case("INCOMPLETE"):
+
+        case ("INCOMPLETE"):
             return Status.NOT_COMPLETED;
+
         default:
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
