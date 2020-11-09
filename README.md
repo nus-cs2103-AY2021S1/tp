@@ -1,14 +1,14 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2021S1-CS2103-F09-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103-F09-1/tp/actions)
+[![codecov](https://codecov.io/gh/AY2021S1-CS2103-F09-1/tp/branch/master/graph/badge.svg?token=Rf0uRl9HK0)](codecov)
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+TAskmaster is a desktop app for managing students, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are a CS Teaching Assistant who can type fast, TAskmaster can help you track your students' attendance and class participation faster than traditional GUI apps.
+
+* If you are interested in using TAskmaster, head over to the [**User Guide**](https://ay2021s1-cs2103-f09-1.github.io/tp/UserGuide.html).
+* If you are interested about developing TAskmaster, the [**Developer Guide**](https://ay2021s1-cs2103-f09-1.github.io/tp/DeveloperGuide.html) is a good place to start.
+
+
+**Acknowledgements**
+
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)

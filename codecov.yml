@@ -1,0 +1,39 @@
+codecov:
+  require_ci_to_pass: yes
+
+coverage:
+  precision: 2
+  round: down
+  range: "60...100"
+
+parsers:
+  gcov:
+    branch_detection:
+      conditional: yes
+      loop: yes
+      method: no
+      macro: no
+
+comment:
+  layout: "reach,diff,flags,files,footer"
+  behavior: default
+  require_changes: no
+
+ignore:
+  - "**/*.md"
+  - "docs"
+  - "data"
+  - ".github"
+  - "config"
+  - "src/main/java/seedu/taskmaster/ui/CommandBox.java"
+  - "src/main/java/seedu/taskmaster/ui/HelpWindow.java"
+  - "src/main/java/seedu/taskmaster/ui/MainWindow.java"
+  - "src/main/java/seedu/taskmaster/ui/ResultDisplay.java"
+  - "src/main/java/seedu/taskmaster/ui/SessionListPanel.java"
+  - "src/main/java/seedu/taskmaster/ui/StatusBarFooter.java"
+  - "src/main/java/seedu/taskmaster/ui/StudentCard.java"
+  - "src/main/java/seedu/taskmaster/ui/StudentListPanel.java"
+  - "src/main/java/seedu/taskmaster/ui/StudentRecordListPanel.java"
+  - "src/main/java/seedu/taskmaster/ui/StudentRecordCard.java"
+  - "src/main/java/seedu/taskmaster/ui/UiManager.java"
+

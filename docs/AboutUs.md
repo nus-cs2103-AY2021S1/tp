@@ -5,55 +5,78 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+This project is part of the NUS module CS2103 Software Engineering.
+Our lecturer is Professor Damith Chatura Rajapakse.
+You can reach him at the email `damithch@comp.nus.edu.sg`.
 
 ## Project team
 
-### John Doe
+### Damith Chatura Rajapakse
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/damithc.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/damithc)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Jaya Rengam
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jayarengam.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jayarengam)]
+[[portfolio](team/jayarengam.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Deliverables and deadlines
 
-### Johnny Doe
+### Goh Siau Chiak
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sc-arecrow.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/sc-arecrow)]
+[[portfolio](team/sc-arecrow.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities:
+    * Design and implement student record list, student records and mark command
+    * Overall bug fixing and testing
+    * Project management: Issues and PR reviews
 
-### James Doe
+### Lim Jin Feng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jflim98.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jflim98)]
+[[portfolio](team/jflim98.md)]
 
 * Role: Developer
 * Responsibilities: UI
+
+### Joshua Chew Jian Xiang
+
+<img src="images/josuaaah.png" width="200px">
+
+[[github](http://github.com/josuaaah)]
+[[portfolio](team/josuaaah.md)]
+
+* Role: Developer
+* Responsibilities: 
+  - Implement sessions
+  - Implement session lists
+  - Implement commands to add and delete sessions
+  - Implement commands to change current session
+
+### Theodore Leebrant
+
+<img src="images/theodoreleebrant.png" width="200px">
+
+[[github](http://github.com/theodoreleebrant)]
+[[portfolio](team/theodoreleebrant.md)]
+
+* Role: Developer, Tester
+* Responsibilities: 
+    * Implementing participation score in the class
+    * Implementing command related to scoring
+    * Overall testing for code and documentation
+    * Repository management: codecov, gradle, etc.

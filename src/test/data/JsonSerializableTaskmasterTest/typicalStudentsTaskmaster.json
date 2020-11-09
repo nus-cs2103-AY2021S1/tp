@@ -1,0 +1,46 @@
+{
+  "_comment": "Taskmaster save file which contains the same Student values as in TypicalStudents#getTypicalTaskmaster()",
+  "students" : [ {
+    "name" : "Alice Pauline",
+    "telegram" : "alicepauline",
+    "email" : "alice@example.com",
+    "nusnetId" : "e0123456",
+    "tagged" : [ "weak" ]
+  }, {
+    "name" : "Benson Meier",
+    "telegram" : "benson_m",
+    "email" : "johnd@example.com",
+    "nusnetId" : "e0456789",
+    "tagged" : [ "strong", "smart" ]
+  }, {
+    "name" : "Carl Kurz",
+    "telegram" : "kurzzz",
+    "email" : "heinz@example.com",
+    "nusnetId" : "e0312654",
+    "tagged" : [ ]
+  }, {
+    "name" : "Daniel Meier",
+    "telegram" : "dms_only",
+    "email" : "cornelia@example.com",
+    "nusnetId" : "e0987465",
+    "tagged" : [ "slacker" ]
+  }, {
+    "name" : "Elle Meyer",
+    "telegram" : "mellie",
+    "email" : "werner@example.com",
+    "nusnetId" : "e0946875",
+    "tagged" : [ ]
+  }, {
+    "name" : "Fiona Kunz",
+    "telegram" : "fionakunz",
+    "email" : "lydia@example.com",
+    "nusnetId" : "e0319843",
+    "tagged" : [ ]
+  }, {
+    "name" : "George Best",
+    "telegram" : "george_worst",
+    "email" : "anna@example.com",
+    "nusnetId" : "e0731894",
+    "tagged" : [ ]
+  } ]
+}

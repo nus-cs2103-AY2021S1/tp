@@ -1,0 +1,13 @@
+{
+  "students": [ {
+    "name": "Valid Student",
+    "telegram": "9482424",
+    "email": "hans@example.com",
+    "nusnetId": "e0123456"
+  }, {
+    "name": "Student With Invalid Phone Field",
+    "telegram": "948asdf@2424",
+    "email": "hans@example.com",
+    "nusnetId": "e0123456"
+  } ]
+}

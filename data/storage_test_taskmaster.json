@@ -1,0 +1,21 @@
+{
+  "students" : [ {
+    "name" : "Moiraine Damodred",
+    "telegram" : "87438807",
+    "email" : "aessedai@tarvalonmail.com",
+    "nusnetId" : "e0000000",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Matrim Cauthon",
+    "telegram" : "99272758",
+    "email" : "matrim@tworivers.com",
+    "nusnetId" : "e0000001",
+    "tagged" : [ "colleagues", "friends" ]
+  }, {
+    "name" : "Perrin Aybara",
+    "telegram" : "93210283",
+    "email" : "perrin@tworivers.com",
+    "nusnetId" : "e0000002",
+    "tagged" : [ "neighbours" ]
+  } ]
+}
