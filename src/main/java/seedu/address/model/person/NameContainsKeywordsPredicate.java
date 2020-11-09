@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
@@ -19,7 +21,9 @@ public class NameContainsKeywordsPredicate implements Predicate<Flashcard> {
         if (keyword.isBlank()) {
             return false;
         }
-        return StringUtil.containsWordIgnoreCase(flashcard.getTitle().fullTitle, keyword);
+        List<String> words = Arrays.asList(keyword.split("\\s+"));
+        return words.stream()
+                .allMatch(word -> StringUtil.containsWordIgnoreCase(flashcard.getTitle().fullTitle, word));
     }
 
     @Override
