@@ -20,16 +20,16 @@ title: User Guide
 **:information_source: Notes about the command format:**<br>
 
 * Words in angle brackets `<parameter>` are the parameters to be supplied by the user.<br>
-  e.g. in `order --description <order description --client <client ID>`, `<client ID>` is a integer parameter such as `123`.
+e.g. in `order --description <order description --client <client ID>`, `<client ID>` is a integer parameter such as `123`.
 
 * Words with `--` before them indicate keywords that must be used unless otherwise specified.<br>
-  e.g. `order --description Wooden Table --client 301`. `--description` and `--client` must be typed used.
+e.g. `order --description Wooden Table --client 301`. `--description` and `--client` must be typed used.
   
 * Words within `()` indicate optional keywords or tokens (most notably for `find` and `find-order`)
 
 * In the case of duplicate parameters, the very last instance of the parameter will be used.<br>
-  e.g. `delete-order --order 00001 --order 00002 --order 00003` will delete Order #00003 instead of the other two 
-  orders.
+e.g. `delete-order --order 00001 --order 00002 --order 00003` will delete Order #00003 instead of the other two 
+orders.
 
 </div>
 
@@ -139,7 +139,7 @@ Click on the `Exit` button on the left navigation bar to quit the application. D
 ## Commands
 ------------------------------------------------------------------------------------------------------------------------
 
-### Adding an Order : `order`
+### Adding an Order: `order`
 
 **Description** : Creates an order made by a client. The order of the orders made by the client will be (by default) the natural ordering.<br>
 Orders will be assigned an ID number automatically when created. This ID number is not unique and must be used in conjunction with the client ID to identify an order.
@@ -442,18 +442,18 @@ Each of the fields in parentheses are optional, and their parameter tags may be 
 * `update-order --order 1 --description jeans` will update the description of the order with order ID 1 to `jeans`
 
 Before:
-![update order example 1 before](images/update order example 1 before.jpg)
+![update order example 1 before](images/update_order_example_1_before.png)
 
 After:
-![update order example 1 after](images/update order example 1 after.jpg)
+![update order example 1 after](images/update_order_example_1_after.png)
 
 * `update-order --order 2 --date 2020-12-12 1500 --description china ware` will update the date of the order with order ID 2 to `2020-12-12 1500` and also update the description of the order with order ID 2 to `china ware`
 
 Before:
-![update order example 2 before](images/update order example 2 before.jpg)
+![update order example 2 before](images/update_order_example_2_before.png)
 
 After:
-![update order example 2 after](images/update order example 2 after.jpg)
+![update order example 2 after](images/update_order_example_2_after.png)
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -480,18 +480,18 @@ Each of the fields in parentheses are optional, and their parameter tags may be 
 * `update-client --client 1 --name paul tan zhi rong` will update the name of the client with client ID 1 to `paul tan zhi rong`
 
 Before:
-![update client example 1 before](images/update client example 1 before.jpg)
+![update client example 1 before](images/update_client_example_1_before.png)
 
 After:
-![update client example 1 after](images/update client example 1 after.jpg)
+![update client example 1 after](images/update_client_example_1_after.png)
 
 * `update-client --client 2 --address 51 commonwealth drive #05-123 --phone 94582153` will update the address of the client with client ID 2 to `51 commonwealth drive #05-123` and update the phone number of the client with client ID 2 to `94582153`
 
 Before:
-![update client example 2 before](images/update client example 2 before.jpg)
+![update client example 2 before](images/update_client_example_2_before.png)
 
 After:
-![update client example 2 after](images/update client example 2 after.jpg)
+![update client example 2 after](images/update_client_example_2_after.png)
 
 ------------------------------------------------------------------------------------------------------------------------
 
