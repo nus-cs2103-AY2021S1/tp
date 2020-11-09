@@ -20,7 +20,7 @@ public class JsonUserPrefsStorageTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonUserPrefsStorageTest");
     private static final String NON_EXISTENT_FILE_STRING = "NonExistentFile.json";
-    private static final String NOT_JSON_FORMAT_FILE_STRING = "notJsonFormatUserPrefs.json";
+    private static final String NOT_JSON_FORMAT_FILE_STRING = "NotJsonFormatUserPrefs.json";
     private static final String SOME_FILE_STRING = "SomeFile.json";
     private static final String TYPICAL_USER_PREF = "TypicalUserPref.json";
     private static final String EMPTY_USER_PREF = "EmptyUserPrefs.json";
