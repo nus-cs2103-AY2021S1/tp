@@ -80,7 +80,7 @@ public class Appointment {
     /**
      * Returns appointment time in a formatted string.
      *
-     * @param localDateTime
+     * @param localDateTime date and time of the appointment.
      * @return date and time formatted to stipulated format.
      */
     public static String getAppointmentTimeString(LocalDateTime localDateTime) {
@@ -109,7 +109,7 @@ public class Appointment {
      * Returns true if description length is less than or equal to 300.
      */
     public static boolean isValidDescription(String description) {
-        return description.length() <= 10;
+        return description.length() <= 300;
     }
 
     /**

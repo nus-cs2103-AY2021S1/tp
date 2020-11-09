@@ -243,15 +243,16 @@ Format: `find KEYWORD [MORE_KEYWORDS] [NRIC] [MORE_NRICs]`
 * Only full NRICs will be matched e.g. `S12345` will not match `S1234567A`
 </div>
 
+After executing the command, a message will appear showing the number of patients found, as well as the patients in the list displayed as shown in figures 6.1 and 6.2 below.
+
 Examples:
-* `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
-  Figure 6.1
+  Figure 6.1 Finding patients `Alex Yeoh` and `David Li`
 
 * `find bernice s0000003a` returns `Bernice Yu`, `Charlotte Oliveiro`
   ![result for 'find bernice s0000003a'](images/findbernices0000003aResult.png)
-  Figure 6.2
+  Figure 6.2 Finding patients `Bernice Yu` and `Charlotte Oliveiro`
 
 ### 3.6 Deleting a patient: `delete` (by Cao Qin)
 
@@ -435,10 +436,10 @@ Examples:
 * `addAppt S1234567A appt/25/12/2020 15:00`
 * `addAppt S0000001A appt/28/09/2022 20:00 d/Eye Check-up`
 
-When an `Appointment` is successfully added to a patient, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in the figure below.<br>
+When an `Appointment` is successfully added to a patient, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in figure 11.1 below.<br>
 
 ![result for 'add appointment'](images/addAppt.png)
-Figure 11.1
+Figure 11.1 Adding an appointment (success scenario)
 
 ### 3.11 Editing an Appointment: `editAppt` (by Gabriel Teo Yu Xiang)
 
@@ -469,10 +470,10 @@ Examples:
 * `editAppt S0000001A oldappt/28/09/2022 20:00 newappt/30/09/2022 15:00`
 * `editAppt S1234567A oldappt/25/12/2020 20:00 newappt/10/01/2021 14:00 d/Revisit`
 
-When an `Appointment` is successfully edited, a success message will appear in the message box as shown in the figure below.<br>
+When an `Appointment` is successfully edited, a success message will appear in the message box as shown in figure 12.1 below.<br>
 
 ![result for 'edit appointment'](images/editAppt.png)
-Figure 12.1
+Figure 12.1 Editing an appointment (success scenario)
 
 ### 3.12 Deleting an Appointment: `deleteAppt` (by Gabriel Teo Yu Xiang)
 
@@ -489,10 +490,10 @@ Format: `deleteAppt NRIC appt/DATE TIME`
 Examples:
 * `deleteAppt S0000001A appt/28/09/2022 20:00`
 
-When an `Appointment` is successfully deleted, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in the figure below.<br>
+When an `Appointment` is successfully deleted, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in figure 13.1 below.<br>
 
 ![result for 'delete appointment'](images/deleteAppt.png)
-Figure 13.1
+Figure 13.1 Deleting an appointment (success scenario)
 
 ### 3.13 Using the Medical Record feature: `mr/` (by Cedric Lim Jun Wei)
 
