@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMP;
 
 import java.util.Optional;
@@ -24,7 +26,9 @@ public class AddExerciseFromTemplate extends CommandForExercise {
             + PREFIX_TEMP + "TEMPLATE NAME "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_DATE + "DATE "
-            + "[" + PREFIX_CALORIES + "CALORIES]\n"
+            + "[" + PREFIX_CALORIES + "CALORIES] "
+            + "[" + PREFIX_MUSCLE + "MUSCLES] "
+            + "[" + PREFIX_TAG + "TAGS]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TEMP + "PUSH_UP "
             + PREFIX_DESCRIPTION + "half an hour "
