@@ -41,8 +41,6 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-<div style="page-break-after: always;"></div>
-
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W11-4/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W11-4/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At App launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -90,8 +88,6 @@ The sections below give more details of each component.
     <br>
     <em style="color:#CC5500">Figure 4. Structure of the UI Component</em>
 </p>
-
-<div style="page-break-after: always;"></div>
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-W11-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
