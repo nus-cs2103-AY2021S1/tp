@@ -1,0 +1,35 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+package Model {
+Class EventList
+
+    package event {
+    Class UniqueEventList
+    Class Event
+    Class EventName
+    Class EventTime
+    }
+
+    package Tag {
+    Class Tag
+    }
+
+}
+
+    package LocalDateTime {
+    Class LocalDateTime
+    }
+
+EventList *--> "1" UniqueEventList
+UniqueEventList o--> "0..*" Event
+Event *--> EventName
+Event *--> EventTime
+Event *--> Tag
+EventTime -->  LocalDateTime
+
+
+@enduml

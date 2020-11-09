@@ -33,32 +33,9 @@ public class ResetContactCommandTest {
         new UserPrefs());
 
     @Test
-    public void execute_validIndexImportantToNotImportantUnfilteredList_resetSuccessful() {
-        Contact contactToReset = model.getFilteredContactList().get(INDEX_SECOND_CONTACT.getZeroBased());
-        contactToReset = contactToReset.markAsImportant();
-        ResetContactCommand resetContactCommand = new ResetContactCommand(INDEX_SECOND_CONTACT);
-
-        ModelManager expectedModel = new ModelManager(
-            new ModuleList(),
-            new ModuleList(),
-            getTypicalContactList(),
-            new TodoList(),
-            new EventList(),
-            new UserPrefs());
-        Contact resetContact = model.getFilteredContactList().get(INDEX_SECOND_CONTACT.getZeroBased());
-        resetContact = resetContact.markAsNotImportant();
-        expectedModel.setContact(contactToReset, resetContact);
-
-        String expectedMessage = String.format(ResetContactCommand.MESSAGE_RESET_CONTACT_SUCCESS, resetContact);
-
-        assertCommandSuccess(resetContactCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_validIndexNotImportantToNotImportantUnfilteredList_resetSuccessful() {
 
         Contact contactToReset = model.getFilteredContactList().get(INDEX_FIRST_CONTACT.getZeroBased());
-        contactToReset = contactToReset.markAsNotImportant();
         ResetContactCommand resetContactCommand = new ResetContactCommand(INDEX_FIRST_CONTACT);
 
         ModelManager expectedModel = new ModelManager(
@@ -86,37 +63,10 @@ public class ResetContactCommandTest {
     }
 
     @Test
-    public void execute_validIndexImportantToNotImportantFilteredList_success() {
-        showContactAtIndex(model, INDEX_SECOND_CONTACT);
-
-        Contact contactToReset = model.getFilteredContactList().get(INDEX_FIRST_CONTACT.getZeroBased());
-        contactToReset = contactToReset.markAsImportant();
-        ResetContactCommand resetContactCommand = new ResetContactCommand(INDEX_FIRST_CONTACT);
-
-        ModelManager expectedModel = new ModelManager(
-            new ModuleList(),
-            new ModuleList(),
-            getTypicalContactList(),
-            new TodoList(),
-            new EventList(),
-            new UserPrefs());
-        Contact resetContact = model.getFilteredContactList().get(INDEX_FIRST_CONTACT.getZeroBased());
-        resetContact = resetContact.markAsNotImportant();
-        expectedModel.setContact(contactToReset, resetContact);
-
-        showContactAtIndex(expectedModel, INDEX_SECOND_CONTACT);
-
-        String expectedMessage = String.format(ResetContactCommand.MESSAGE_RESET_CONTACT_SUCCESS, resetContact);
-
-        assertCommandSuccess(resetContactCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_validIndexNotImportantToNotImportantFilteredList_success() {
         showContactAtIndex(model, INDEX_FIRST_CONTACT);
 
         Contact contactToReset = model.getFilteredContactList().get(INDEX_FIRST_CONTACT.getZeroBased());
-        contactToReset = contactToReset.markAsNotImportant();
         ResetContactCommand resetContactCommand = new ResetContactCommand(INDEX_FIRST_CONTACT);
 
         ModelManager expectedModel = new ModelManager(
