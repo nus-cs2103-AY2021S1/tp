@@ -198,6 +198,8 @@ Given below is the activity diagram a user will go through when creating a routi
 
 ![Routine create activity](./images/RoutineCreateActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 #### 4.1.1 Design Considerations
 
 **Aspect: Whether to create a Routine and add exercises simultaneously in the same command**
@@ -283,11 +285,11 @@ execute("timetable_add_routine r/Leg Workout D/Monday T/1600-1700") API call.
 
 ### 4.3 Find exercises
 
-The find exercises feature is implemented using `FindExercisesCommandParser`, as well as the following command:
-* `FindExercisesCommand`, to be executed when the user inputs the command into fitNUS.
+The find exercises feature is implemented using `ExerciseFindCommandParser`, as well as the following command:
+* `ExerciseFindCommand`, to be executed when the user inputs the command into fitNUS.
 
-`FindExercisesCommandParser` takes in the user input and parses them to return a FindExercisesCommand containing the
-corresponding predicate for finding the exercises. When executed, `FindExercisesCommand` will set the predicate of
+`ExerciseFindCommandParser` takes in the user input and parses them to return a FindExercisesCommand containing the
+corresponding predicate for finding the exercises. When executed, `ExerciseFindCommand` will set the predicate of
 the respective `FilteredList` for exercises in `ModelManager` such that only exercises matching the predicate will be
 displayed in the list.
 
@@ -295,7 +297,7 @@ Given below is an example usage scenario and how the find exercise mechanism beh
 
 **Step 1:**
 
-The user types into fitNUS `find_exercises bench`.
+The user types into fitNUS `exercise_find bench`.
 
 **Step 2:**
 
@@ -305,17 +307,17 @@ method of `FitNusParser`.
 **Step 3:**
 
 `parseCommand` identifies that this is a command to find exercises, so it calls the `parse` method of
-`FindExercisesCommandParser` on the input.
+`ExerciseFindCommandParser` on the input.
 
 **Step 4:**
 
 Within `parse`, the keywords to match are added to a `List`, and an `ExerciseNameContainsKeywordsPredicate` object
-is created based on this list. A `FindExercisesCommand` object is created using this
+is created based on this list. A `ExerciseFindCommand` object is created using this
 `ExerciseNameContainsKeywordsPredicate` object.
 
 **Step 5:**
 
-`LogicManager` then calls the `execute` method of this returned `FindExercisesCommand`.
+`LogicManager` then calls the `execute` method of this returned `ExerciseFindCommand`.
 Within `execute`, `ModelManager`'s `updateFilteredExerciseList` method is called with the
 `ExerciseNameContainsKeywordsPredicate` object as its argument. This filters out the relevant exercises.
 
@@ -323,7 +325,7 @@ Within `execute`, `ModelManager`'s `updateFilteredExerciseList` method is called
 
 The GUI then lists the filtered exercises.
 
-Given below is the Sequence Diagram for interactions within the Logic component for the execute("find_exercises bench")
+Given below is the Sequence Diagram for interactions within the Logic component for the execute("exercise_find bench")
 API call.
 
 ![FindExercisesSequenceDiagram](images/FindExercisesSequenceDiagram.png)
@@ -468,6 +470,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`  | NUS student                       | check calories of popular food on fitNUS               | keep better records of my macros
 | `*`  | NUS student                        | know which bus I can take to the nearest gym               | -
 
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -618,7 +621,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-**Use Case 7 (UC07): Add routine to timetable**
+**Use Case 8 (UC08): Add routine to timetable**
 
 ***MSS***
 
@@ -645,7 +648,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-**Use Case 8 (UC08): Delete slot from timetable**
+**Use Case 9 (UC09): Delete slot from timetable**
 
 ***MSS***
 
@@ -661,7 +664,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use Case 9 (UC09): Add Calories**
+**Use Case 10 (UC10): Add Calories**
 
 ***MSS***
 
@@ -680,7 +683,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use Case 10 (UC10): Minus calories**
+**Use Case 11 (UC11): Minus calories**
 
 ***MSS***
 
@@ -699,7 +702,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case 11 (UC11): Set height**
+**Use case 12 (UC12): Set height**
 
 ***MSS***
 
@@ -718,7 +721,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case 12 (UC12): Set weight**
+**Use case 13 (UC13): Set weight**
 
 ***MSS***
 
