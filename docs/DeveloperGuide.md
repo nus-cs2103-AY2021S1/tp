@@ -684,14 +684,12 @@ The following describes the flow of how `AddAttendanceCommand` is performed.
 The following sequence diagram shows how the attendance adding operation works.
 
 ![AddAttendanceSequence](images/AddAttendanceSequenceDiagram.png)
-
-Figure 5.2.1.1. Sequence diagram for `AddAttendanceCommand` execution
+<div align="center">Figure 41: Add Attendance Sequence Diagram</div><br>
 
 The following activity diagram summarises the flow of events when `AddAttendanceCommand` is executed.
 
 ![AddAttendanceActivity](images/AddAttendanceActivityDiagram.png)
-
-Figure 5.2.1.2. Activity diagram for `AddAttendanceCommand` execution
+<div align="center">Figure 42: Add Attendance Activity Diagram</div><br>
 
 ##### 6.3.3.2 Delete Attendance Command
 
@@ -708,14 +706,12 @@ The following describes the flow of how `DeleteAttendanceCommand` is performed.
 The following sequence diagram shows how the attendance deleting operation works.
 
 ![DeleteAttendanceSequence](images/DeleteAttendanceSequenceDiagram.png)
-
-Figure 5.2.1.1. Sequence diagram for `DeleteAttendanceCommand` execution
+<div align="center">Figure 43: Delete Attendance Sequence Diagram</div><br>
 
 The following activity diagram summarises the flow of events when `DeleteAttendanceCommand` is executed.
 
 ![DeleteAttendanceActivity](images/DeleteAttendanceActivityDiagram.png)
-
-Figure 5.2.1.2. Activity diagram for `DeleteAttendanceCommand` execution
+<div align="center">Figure 44: Delete Attendance Activity Diagram</div><br>
 
 ### 6.4 Schedule Command
 
@@ -730,17 +726,15 @@ The `Predicate` argument will be `PREDICATE_SHOW_ALL_STUDENTS` which is a reusab
 6. The `Scheduler` then calls the method `resetData(List<Event>)` with the updated `LessonEvent` objects.
 7. The `CommandResult` is then returned.
 
+The following sequence diagram illustrates to execution of the `ScheduleViewCommand`:
+
+![ScheduleSequence](images/ScheduleSequenceDiagram.png)
+<div align="center">Figure 45: Schedule Activity Diagram</div><br>
+
 The following activity diagram summarizes the flow of events when the `ScheduleViewCommand` is being executed:
 
 ![ScheduleActivity](images/ScheduleActivityDiagram.png)
-
-Figure 6.4.1 Activity diagram for `ScheduleCommand` execution
-
-The following sequence diagram illustrates to execution of the `ScheduleViewCommand`.
-
-![ScheduleSequence](images/ScheduleSequenceDiagram.png)
-
-Figure 6.4.2 Sequence diagram for `ScheduleCommand` execution
+<div align="center">Figure 46: Schedule Activity Diagram</div><br>
 
 <div markdown="block" class="alert alert-info">
 
