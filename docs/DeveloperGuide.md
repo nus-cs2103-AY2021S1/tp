@@ -108,17 +108,28 @@ The sections below give more details of each component.
 
 <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
     <p>
-        <img src="images/UiClassDiagram.png"/>
+        <img src="images/UiClassDiagramP3.png" style="width: 50%"/>
     </p>
-    <figcaption>Figure 4 - UI Component Class Diagram</figcaption>
+    <figcaption>Figure 4a - UI Class Diagram (High Level) </figcaption>
+</figure>
+
+The UiComponents package in the above diagram has the following classes. 
+
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+    <p>
+        <img src="images/UiClassDiagramP2.png"/>
+    </p>
+    <figcaption>Figure 4b - UI Class Diagram - UiComponents package </figcaption>
 </figure>
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of several parts e.g.`CommandBox`, `ResultDisplay`, `ClientListPanel`, `StatusBarFooter`, `Homepage` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of several parts e.g.`CommandBox`, `ResultDisplay`, `Homepage` etc, as shown in Figure 4b above. 
+All of these subcomponents are part of the UiComponents package, and each part make up the entire GUI. 
+Every class within the `UiComponents` package, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx and ControlsFX UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T13-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UIComponents` uses JavaFx and ControlsFX UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T13-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component interacts with these external API: 
 
