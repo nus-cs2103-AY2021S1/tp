@@ -60,7 +60,7 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 CliniCal *--> "1" UniquePatientList
 CliniCal *--> "1" CommandHistory
-UniquePatientList o--> "*" Patient
+UniquePatientList o-down--> "*" Patient
 Patient *--> Name
 Patient *--> Phone
 Patient *--> IcNumber
@@ -69,17 +69,16 @@ Patient *--> Email
 Patient *--> ProfilePicture
 Patient *--> Sex
 Patient *--> BloodType
-Patient *--> "*" Allergy
+Patient *--> "                      \n*" Allergy
 Patient *--> ColorTag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> IcNumber
-IcNumber -[hidden]right-> Address
-Address -[hidden]right-> Email
-Email -[hidden]right-> ProfilePicture
-ProfilePicture -[hidden]right-> Sex
-Sex -[hidden]right-> BloodType
-Allergy -[hidden]right-> BloodType
+Name -[hidden]right> Patient
+IcNumber -[hidden]right> Patient
+Phone -[hidden]left> Patient
+BloodType -[hidden]right> Email
+Email -[hidden]right> ProfilePicture
+ProfilePicture -[hidden]right> Sex
+Sex -[hidden]right> BloodType
 
 CliniCal *--> "1" UniqueAppointmentList
 UniqueAppointmentList o--> "*" Appointment
@@ -87,6 +86,6 @@ Appointment *--> AppointmentDateTime
 Appointment *--> Name
 Appointment *--> IcNumber
 
-ModelManager -->"   *\n\nfiltered list" Patient : filtered list
+ModelManager -->"*\nfiltered list" Patient
 ModelManager -->"*\nfiltered list" Appointment
 @enduml

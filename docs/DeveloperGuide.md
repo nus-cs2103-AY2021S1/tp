@@ -164,7 +164,7 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the patient data in json format and read it back.
+* can save the patient and appointment data in json format and read it back.
 
 ### 2.6 Common classes
 
@@ -592,12 +592,20 @@ The following activity diagram summarizes the main steps taken to display the pa
         * Need to ensure that functionality of the `Profile` facade class is optimized. Our team assessed that the current 
           implementation is better as it is less prone to introduce new bugs to our existing codebase.
 
-### 3.7 Delete Appointment feature
+### 3.7 Appointment feature
 #### 3.7.1 Implementation
 
-This feature allows users to edit existing appointments. When an appointment is updated, the corresponding calendar GUI is updated via a listener in the `appointmentList`.
+This feature allows users to schedule and track upcoming appointments with patients. Each `Appointment` contains the appointment details stored as the attributes of the `Appointment` object. These attributes include the `Name` and `IcNumber` of the relevant patient and `AppointmentDateTime` of the appointment. 
 
-This feature comprises the `DeleteAppointmentCommand` class. However, much of the logic lies within the `CalendarDisplay` class as it contains the logic for updating the GUI of the calendar. Given below is an example usage scenario and how the mechanism behaves at each step.
+When an appointment is added, edited, or deleted, the corresponding calendar GUI is updated via a listener in the `ObservableList`.
+
+The mechanism utilises the following classes and methods to display the appointments:
+
+   * `DeleteAppointmentCommandParser#parse` - Parses the input to return a `DeleteAppointmentCommand` object
+   * `DeleteAppointmentCommand#execute` - Executes the command to delete the specified patient
+   * `VEventUtil` - Initializes a `VCalendar` object containing a mapped list of appointments and a `ICalendarAgenda` object containing the initialized `VCalendar` object
+
+This feature comprises the `AddAppointmentCommand`, `EditAppointmentCommand`, `DeleteAppointmentCommand` classes. However, much of the logic lies within the `CalendarDisplay` class as it contains the logic for updating the GUI of the calendar. Given below is an example usage scenario for `DeleteAppointmentCommand` and how the mechanism behaves at each step.
 
 <p align="center">
     <img src="images/DeleteAppointmentSequenceDiagram.png"/>
@@ -605,19 +613,32 @@ This feature comprises the `DeleteAppointmentCommand` class. However, much of th
     <em style="color:#CC5500">Figure 28. Component Interactions for DeleteAppointment Command</em>
 </p>
 
-Step 1. User inputs "deleteappt 1" command to delete the first appointment on the list. 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteAppointmentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+Step 1. User inputs `deleteappt 1` command to delete the first appointment on the list. 
 
 Step 2. User input is parsed to obtain the appointment index to delete.
 
-Step 3. After successful parsing of user input, the `DeleteAppointmentCommand#execute(Model model)` method is called.
+Step 3. After successful parsing of the input, the corresponding `DeleteAppointmentCommand` object is returned.
 
-Step 4. The `Model#deleteAppointment` method is then called which deletes the specified Appointment from the ObservableList.
+Step 4. The `DeleteAppointmentCommand#execute` method is called.
 
-Step 5. The modification of the ObservableList causes an event to be generated and forwarded to CalendarDisplay, as CalendarDisplay had set a listener on the ObservableList.
+Step 5. The `Model#deleteAppointment` method is then called which deletes the specified appointment from the ObservableList.
 
-Step 6. CalendarDisplay creates a new `VCalendar` with the new list and then creates a new `ICalendarAgenda` with the created `VCalendar`, which is then set as the calendar GUI.
+Step 6. The modification of the ObservableList causes an event to be generated and forwarded to `CalendarDisplay`, as `CalendarDisplay` had set a listener on the ObservableList.
 
-Step 6. As a result of the successful deletion of the appointment object, a `CommandResult` object is instantiated and returned to `LogicManager`.
+Step 7. `CalendarDisplay` creates a new `VCalendar` with the new list and then creates a new `ICalendarAgenda` with the new `VCalendar`, which is then set as the calendar GUI.
+
+Step 8. As a result of the successful deletion of the appointment object, a `CommandResult` object containing the deleted patient is instantiated and returned to `LogicManager`.
+
+The following diagram shows a summary of the steps taken when an `deleteappt` command is run.
+
+<p align="center">
+    <img src="images/DeleteAppointmentActivityDiagram.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 30. Activity Diagram for User Execution of DeleteAppointment Command</em>
+</p>
 
 #### 3.7.2 Design considerations
 
@@ -637,10 +658,10 @@ Step 6. As a result of the successful deletion of the appointment object, a `Com
 
 #### 3.8.1 Implementation
 
-This feature allows the user to save the details of each visitation of a patient. Each `Patient` has a `VisitHistory` object which contains a list of `Visit` objects,
+This feature allows users to save the details of each visitation of a patient. Each `Patient` has a `VisitHistory` object which contains a list of `Visit` objects,
 each containing the visitation details stored as the attributes of the `Visit` object. These attributes include the Diagnosis, Prescription and Comments of the visitation. 
 
-This feature is acheieved through a new Visitation Log pop-up window which allows the user to fill in the relevant details of the visitation. 
+This feature is achieved through a new Visitation Log pop-up window which allows the user to fill in the relevant details of the visitation. 
 
 The mechanism utilises the following classes and methods to display the patients' profile:
 
@@ -659,9 +680,9 @@ Given below is an example usage scenario for `AddVisitCommand` and how the mecha
     <em style="color:#CC5500">Figure 29. UI and Logic Component Interactions for AddVisit Command </em>
 </p>
 
-Step 1: User inputs `addvisit 1 ` command to add to the first patient's profile.
+Step 1: User inputs `addvisit 1` command to add to the first patient's profile.
 
-Step 2: User input is parsed to return a `AddVisitCommand` object is returned.
+Step 2: User input is parsed to return a `AddVisitCommand` object.
 
 Step 3: The `AddVisitCommand#execute` method is called and the patient whose visitation to be added to is returned in a `CommandResult` object.
 
@@ -678,7 +699,7 @@ The following diagram shows a summary of the steps taken when an `addvisit` comm
 <p align="center">
     <img src="images/AddVisitActivityDiagram.png"/>
     <br>
-    <em style="color:#CC5500">Figure 30. Activity Diagram for User Execution of Command</em>
+    <em style="color:#CC5500">Figure 30. Activity Diagram for User Execution of AddVisit Command</em>
 </p>
 
 #### 3.8.2 Design Considerations
