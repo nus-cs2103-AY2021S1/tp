@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_PUSH_U
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_PUSH_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PUSH_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GYM;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showExerciseAtIndex;
