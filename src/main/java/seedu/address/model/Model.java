@@ -97,20 +97,20 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Returns the archive mode.
-     * @return Archive mode.
+     * Returns the archive mode boolean property which contains: true if is in archive mode, false if in active mode.
+     * @return Archive mode boolean property.
      */
     BooleanProperty getIsArchiveModeProperty();
 
     /**
-     * Returns the boolean value of the archive mode.
-     * @return Boolean value of archive mode.
+     * Returns the archive mode: true if is in archive mode, false if in active mode.
+     * @return Archive mode.
      */
     boolean getIsArchiveMode();
 
     /**
      * Sets the archive mode.
-     * @param isArchiveMode Archive mode to be set.
+     * @param isArchiveMode If true, sets to archive mode, if false, sets to active mode.
      */
     void setIsArchiveMode(boolean isArchiveMode);
 

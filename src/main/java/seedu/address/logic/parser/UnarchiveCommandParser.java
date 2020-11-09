@@ -7,14 +7,14 @@ import seedu.address.logic.commands.UnarchiveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new ArchiveCommand object
+ * Parses input arguments and creates a new UnarchiveCommand object.
  */
 public class UnarchiveCommandParser implements Parser<UnarchiveCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the ArchiveCommand
-     * and returns a ArchiveCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * Parses the given {@code String} of arguments in the context of the UnarchiveCommand
+     * and returns a UnarchiveCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     @Override
     public UnarchiveCommand parse(String args) throws ParseException {
