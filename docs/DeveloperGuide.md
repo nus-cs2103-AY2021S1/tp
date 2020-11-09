@@ -423,7 +423,7 @@ Instead of using `DeleteSessionCommandParser`, it uses `AddScheduleCommandParser
 
  <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
      <p>
-         <img src="images/AddScheduleExecuteRef.png" style="width: 95%; height: auto;"/>
+         <img src="images/AddScheduleExecuteRef.png" style="width: 100%; height: auto;"/>
      </p>
      <figcaption>Figure 18 - Sequence diagram snippet for <code>AddScheduleCommand#execute(model)</code></figcaption>
  </figure>
