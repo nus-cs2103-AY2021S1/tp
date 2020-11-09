@@ -458,7 +458,7 @@ Outcome:
 the ingredient `Brown Sugar`.
 
 Before executing:<br>
-![BeforeIngredientFindCommandScreenshot](images/BeforeIngredientFindCommandCommand.png)
+![BeforeIngredientFindCommandScreenshot](images/BeforeIngredientFindCommandScreenshot.png)
 
 
 After executing:<br>
