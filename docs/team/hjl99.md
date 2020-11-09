@@ -9,24 +9,39 @@ ChopChop is a food recipe and ingredient inventory management system, which aims
 
 A summary of code contributions can be found here: [reposense](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=hjl99).
 
+
 ### New Features
 
-#### Filter Commands (Recipe and Ingredient)
+#### Filter Feature
 
-This feature allows the user to filter recipes or ingredients with various criteria, including keywords in search fields like 'Tag', 'Expiry Date' for Ingredients, and 'Ingredients' for Recipes. 
+This feature allows the user to filter recipes or ingredients with various criteria. Multiple multi-word search terms in any sequence are allowed, search results must fulfil all criteria input by the user.
 
-Multiple multi-word search terms in any sequence are allowed, search results must fulfil all criteria input by the user.
+While Find Command allows users to 
+
+#### Filter Recipes
+
+This feature allows the user to filter recipes with keywords in search fields 'Ingredients', 'Name' and 'Tag'. 
+
+#### Filter Ingredients
+
+This feature allows the user to filter recipes with keywords in search fields like 'Expiry Date' for Ingredients, 'Ingredients' for Recipes, 'Name' and 'Tag' for both. 
+
+
 
 PRs: [#144](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/144), [#157](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/157).
 
 
 ### Other Contributions
 
+#### Project Management
+
+Assisted in keeping track of deadlines and deliverables.
+
 #### Enhancements to Existing Features
 
-1. Added 'Tag' attribute for Recipes. ([#115](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/115), [#116](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/116)).
+1. Added additional 'tag' attribute for Recipes and enabled parser to process it. ([#115](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/115), [#116](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/116)).
 
-2. Increased code coverage by writing tests for recipe-related commands, filter feature and attributes involved. ([#176](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/176), [#182](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/182)).
+2. Increased code coverage by writing tests for Recipe commands, filter feature and attributes involved. ([#176](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/176), [#182](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/182)).
 
 3. Improve sample data when the application is first run. [#289](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/289)
 
@@ -34,15 +49,15 @@ PRs: [#144](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/144), [#157](https
 
 **User Guide**
 
-Added implementation detail for filter commands for [Recipe](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/docs/UserGuide.md#547filtering-recipes--filterrecipe-jialei) and [Ingredient](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/docs/UserGuide.md#555filtering-ingredients--filteringredient-jialei); updated [annotated UI diagrams](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/docs/UserGuide.md#4navigating-the-user-interface). 
+Added implementation detail of filter commands for [Recipe](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/docs/UserGuide.md#547filtering-recipes--filterrecipe-jialei) and [Ingredient](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/docs/UserGuide.md#555filtering-ingredients--filteringredient-jialei); updated [annotated UI diagrams](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/docs/UserGuide.md#4navigating-the-user-interface). 
 
-PRs: [#179](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/179), [#293](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/293), [#293](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/321).
+PRs: [#179](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/179), [#293](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/293), [#321](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/321).
 
 **Developer Guide**
 
-Added [Use Cases](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/docs/DeveloperGuide.md#a3use-cases), [Manual Testing Test Cases](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/docs/DeveloperGuide.md#binstructions-for-manual-testing), added in diagrams for Model and UI components.
+Added [Use Cases](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/docs/DeveloperGuide.md#a3use-cases), [Manual Testing Test Cases](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/docs/DeveloperGuide.md#binstructions-for-manual-testing) and diagrams for Model and UI components. 
 
-PRs: [#33](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/33), [#309](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/309).
+PRs: [#33](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/33), [#309](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/309), [#321](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/321).
 
 
 #### Community
