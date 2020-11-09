@@ -404,8 +404,7 @@ Format: `export DIRPATH [-o FILENAME]`
 Examples:
 * For Windows users:`export c:/mcgymmy` exports the save file as `mcgymmy.json` to `c:/mcgymmy`
 * For Windows users:`export c:/mcgymmy -o save_file` exports the save file as `save_file.json` to `c:/mcgymmy`
-* For Mac users: `export /Users/<username>/Desktop/save_file.json` exports `save_file.json` to the Desktop from McGymmy.
-
+* For Mac users: `export /Users/mcgymmy -o save_file` exports the save file as `save_file.json` to `/Users/mcgymmy`
 ![Export command example](images/CommandImagesForUG/Export.png)
 
 <div markdown="span" class="alert alert-primary">
@@ -492,9 +491,9 @@ Examples:
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** Be careful when creating a macro!
- It is possible to create a macro with errors!
- The commands in the macro will only be checked for errors when you run the macro itself.
- e.g. Entering `macro test; add` will create a new macro, but every time you execute the macro `test`, the error message from `add` telling you it requires the name parameter will be shown.
+* It is possible to create a macro with errors!
+* The commands in the macro will only be checked for errors when you run the macro itself.
+* e.g. Entering `macro test; add` will create a new macro, but every time you execute the macro `test`, the error message from `add` telling you it requires the name parameter will be shown.
 
 </div>
 
