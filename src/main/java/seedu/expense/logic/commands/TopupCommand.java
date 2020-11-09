@@ -33,6 +33,7 @@ public class TopupCommand extends Command {
     public static final String MESSAGE_INVALID_AMOUNT = "Amount to top-up the budget by cannot be negative. Please "
             + "specify the non-negative amount to top-up the budget by.\n"
             + "If you wish to decrease the amount in the budget, use the \"reduce\" command instead.";
+    public static final String MESSAGE_SUM_OVER_LIMIT = "Total budget cannot exceed 10e9.";
 
     private final Amount toAdd;
     private final Tag category;
@@ -66,6 +67,12 @@ public class TopupCommand extends Command {
 
         if (toAdd.smallerThan(Amount.zeroAmount())) {
             throw new CommandException(MESSAGE_INVALID_AMOUNT);
+        }
+
+        try {
+            model.getTotalBudget().getAmount().add(toAdd);
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(MESSAGE_SUM_OVER_LIMIT);
         }
 
         model.topupCategoryBudget(category, toAdd);

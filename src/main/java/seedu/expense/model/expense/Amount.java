@@ -53,7 +53,7 @@ public class Amount implements Comparable<Amount> {
      */
     public Amount(BigDecimal minTermAmount) {
         requireNonNull(minTermAmount);
-        checkArgument(isWithinRange(minTermAmount), MESSAGE_CONSTRAINTS);
+        checkArgument(isWithinMinTermRange(minTermAmount), MESSAGE_CONSTRAINTS);
         this.value = minTermAmount;
     }
 
@@ -80,6 +80,10 @@ public class Amount implements Comparable<Amount> {
 
     private static boolean isWithinRange(BigDecimal value) {
         return value.compareTo(MAX_VALUE) <= 0 && value.compareTo(MIN_VALUE) >= 0;
+    }
+
+    private static boolean isWithinMinTermRange(BigDecimal value) {
+        return value.compareTo(MAX_VALUE.multiply(new BigDecimal("100"))) <= 0 && value.compareTo(MIN_VALUE.multiply(new BigDecimal("100"))) >= 0;
     }
 
     /**
