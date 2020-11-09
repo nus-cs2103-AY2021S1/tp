@@ -23,13 +23,12 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to edit Mastery Check scores.
   * What it does: allows the user to edit Mastery Checks scores to either pass (1) or fail (0).
   * Justification: This feature improves the product significantly because the user needs to edit Mastery Check scores to keep track of the students' grades.
-<div style="page-break-after: always"></div>
   * Highlights: This enhancement required the construction of multiple new classes and tests (for both Consultation and Mastery Check variants of EditCommand, EditDescriptor and also TypicalMasteryChecks, TypicalConsultations etc.) that did not exist in the AB3 codebase and had to be designed from scratch.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=wireseo)
 * **Project management**:
   * In charge of implementation of all Consultations and Mastery Check related features and tests
-  * Oversaw the implementation and design of the GUI
+  * Oversaw the design of the GUI
   * Ensured that project deliverables are delivered on time
   * Refactored and restructured classes to appropriate packages
 
