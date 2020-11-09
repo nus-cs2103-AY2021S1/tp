@@ -21,20 +21,16 @@ It is written in Java, and has about 16 kLOC.
         - Justifications: This enhancement improved the product significantly as users will be able to easily copy or move activities that they have planned for their trips
         from the wish list to a travel plan instead of adding the activity to the travel plan, which would be much more cumbersome.
         - Highlights:
-            - This feature modifies all 4 components of Wanderlust: `Ui`, `Logic`, `Model` and `Storage`.
             - The copy and move commands differ from other commands in that they are the only commands that modify the list of activities of a travel plan not in the current directory.
         - Relevant pull requests: [\#135](https://github.com/AY2021S1-CS2103-T14-3/tp/pull/135)
 
     - Modified **add feature** from AB3 to fit Wanderlust
         - What it does: Allows user to add a `travelplan` or a `travelplanobject` in the application.
         - Highlights:
-            - This feature modifies all 4 components of Wanderlust: `Ui`, `Logic`, `Model` and `Storage`.
             - This feature relies on abstraction. The `AddTravelPlanCommand`, `AddActivityCommand`, `AddAccommodationCommand` and `AddFriendCommand` classes extend the `AddCommand` class which extends the `Command` class.
         - Relevant pull requests: [\#89](https://github.com/AY2021S1-CS2103-T14-3/tp/pull/89)
 
-    - Implemented the `Accommodation` feature
-        - What it does: An `Accommodation` is a `travelplanobject` that users can add to their travel plans to organise and keep track of their accommodations during their trips.
-        - Justification: As our target users are travel goers, they will likely want to keep track of their accommodation details during their trips. This feature allows them to do so in an organised and efficient manner.
+    - Implemented the `Accommodation` class
         - Relevant pull requests: [\#58](https://github.com/AY2021S1-CS2103-T14-3/tp/pull/58)
 
 - **Minor Enhancements**:
