@@ -494,7 +494,7 @@ This section describes bugs found in the current version of FaculType and
 feature ideas that have been proposed but currently don't have implementation details yet.
 Both of which are to be fixed/implemented in the next version of FaculType.
 
-### Current bugs:
+### Current bugs
 
 * Editing a contact's identifying attributes (name, phone, email) to be the same as another contact's causes problems due to the detection of duplicate contacts.
 This bug is inherited from the parent project AddressBook Level 3.
@@ -515,7 +515,7 @@ Example of the instructor bug:
 
 ![InstructorBug](images/InstructorBug.png)
 
-### Feature ideas:
+### Feature ideas
 
 * Order filter results of contacts and modules by how much they match the specified parameters (Coming soon).
 * Differentiate instructor tags in module cards for instructors with the same name (Coming soon).
