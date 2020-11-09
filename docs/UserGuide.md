@@ -280,11 +280,14 @@ Format: `undo`
     <em style="color:#CC5500">Figure 9. Example of Undo Command</em>
 </p>
 
-Example: You want to restore Alex Yeoh's patient details right after accidentally using the `edit` command.
+<div markdown="block" class="alert alert-warning">
+:book: <span style="font-weight:bold">Example: </span>
+You want to restore Alex Yeoh's patient details right after accidentally using the `edit` command.
 
-Step 1: Input `undo` into the command box and press <kbd>Enter</kbd>.
+**Step 1**: Input `undo` into the command box and press <kbd>Enter</kbd>.
 
-Step 2: On the Patient tab, you can check that Alex Yeoh's patient details are restored to the original state before the `edit` command.
+**Step 2**: On the Patient tab, you can check that Alex Yeoh's patient details are restored to the original state before the `edit` command.
+</div>
 
 #### 5.1.5 Redoing a command: `redo`
 
@@ -301,11 +304,14 @@ Format: `redo`
     <em style="color:#CC5500">Figure 10. Example of Redo Command</em>
 </p>
 
-Example: You want to restore Alex Yeoh's patient details right after accidentally using `undo` command on the `edit` command.
+<div markdown="block" class="alert alert-warning">
+:book: <span style="font-weight:bold">Example: </span>
+You want to restore Alex Yeoh's patient details right after accidentally using `undo` command on the `edit` command.
 
-Step 1: Input `redo` into the command box and press <kbd>Enter</kbd>.
+**Step 1**: Input `redo` into the command box and press <kbd>Enter</kbd>.
 
-Step 2: On the Patient tab, you can check that Alex Yeoh's patient details are restored to the original state before the `undo` command.
+**Step 2**: On the Patient tab, you can check that Alex Yeoh's patient details are restored to the original state before the `undo` command.
+</div>
 
 #### 5.1.6 Exiting the program: `exit`
 
@@ -339,11 +345,15 @@ Format: `add n/NAME p/PHONE_NUMBER ic/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOO
     <em style="color:#CC5500">Figure 11. Example of Add Patient Command</em>
 </p>
 
-Example: You want to add a new patient with specific personal details.
+<div markdown="block" class="alert alert-warning">
+:book: <span style="font-weight:bold">Example: </span>
+You want to add a new patient with specific personal details.
 
-Step 1: Input `add n/Betsy Yu ic/G7667353B e/betsyyu@example.com a/Newgate Prison p/1234567 g/penicillin s/F` into the command box and press <kbd>Enter</kbd>.
+**Step 1**: Input `add n/Betsy Yu ic/G7667353B e/betsyyu@example.com a/Newgate Prison p/1234567 g/penicillin s/F` into the command box and press <kbd>Enter</kbd>.
 
-Step 2: On the Patient tab, you can find your newly added patient at the bottom of the patient list.
+**Step 2**: On the Patient tab, you can find your newly added patient at the bottom of the patient list.
+</div>
+
 
 <div markdown="block" class="alert alert-info">
 
@@ -370,11 +380,14 @@ Format: `addpicture INDEX f/FILE_PATH`
 * All patient profiles are preloaded with a stock profile picture.
 * `addpicture` cannot be undone using `undo`. You can repeat the `addpicture` command to update the patient's profile with your desired profile picture.
 
-Example: You want to add a profile picture to the 3rd patient on the list.
+<div markdown="block" class="alert alert-warning">
+:book: <span style="font-weight:bold">Example: </span>
+You want to add a profile picture to the 3rd patient on the list.
 
-Step 1: Input `addpicture 3 f/data/profile_3.jpg` into the command box and press <kbd>Enter</kbd>.
+**Step 1**: Input `addpicture 3 f/data/profile_3.jpg` into the command box and press <kbd>Enter</kbd>.
 
-Step 2: On the Patient tab, you can find your newly added profile picture displayed on the patient's profile.
+**Step 2**: On the Patient tab, you can find your newly added profile picture displayed on the patient's profile.
+</div>
 
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
@@ -412,11 +425,14 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s
     <em style="color:#CC5500">Figure 13. Example of Edit Patient Command</em>
 </p>
 
-Example: You want to edit the details of the first patient.
+<div markdown="block" class="alert alert-warning">
+:book: <span style="font-weight:bold">Example: </span>
+You want to edit the details of the first patient.
 
-Step 1: Input `edit 1 p/35154520 g/aspirin ct/green g/recombinant interferons` into the command box and press <kbd>Enter</kbd>.
+**Step 1**: Input `edit 1 p/35154520 g/aspirin ct/green g/recombinant interferons` into the command box and press <kbd>Enter</kbd>.
 
-Step 2: On the Patient tab, you can find your newly edited patient inside the patient list.
+**Step 2**: On the Patient tab, you can find your newly edited patient inside the patient list.
+</div>
 
 <p align="center">
     <img src="images/editExample2.png"/>
@@ -451,11 +467,14 @@ Format: `delete INDEX`
     <em style="color:#CC5500">Figure 15. Example of Delete Patient Command</em>
 </p>
 
-Example: You want to delete the fifth patient.
+<div markdown="block" class="alert alert-warning">
+:book: <span style="font-weight:bold">Example: </span>
+You want to delete the fifth patient.
 
-Step 1: Input `delete 5` into the command box and press <kbd>Enter</kbd>.
+**Step 1**: Input `delete 5` into the command box and press <kbd>Enter</kbd>.
 
-Step 2: On the Patient tab, you can check that the specified patient is no longer inside the patient list.
+**Step 2**: On the Patient tab, you can check that the specified patient is no longer inside the patient list.
+</div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -477,11 +496,14 @@ Format: `clear`
     <em style="color:#CC5500">Figure 16. Example of Clear Command</em>
 </p>
 
-Example: You want to delete all the patients.
+<div markdown="block" class="alert alert-warning">
+:book: <span style="font-weight:bold">Example: </span>
+You want to delete all the patients.
 
-Step 1: Input `clear` into the command box and press <kbd>Enter</kbd>.
+**Step 1**: Input `clear` into the command box and press <kbd>Enter</kbd>.
 
-Step 2: On the Patient tab, you can check that there is no patient inside the patient list.
+**Step 2**: On the Patient tab, you can check that there is no patient inside the patient list.
+</div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -522,11 +544,14 @@ Format: `find KEYWORDS`
     <em style="color:#CC5500">Figure 17. Example of Find Command</em>
 </p>
 
-Example: You want to find all the patients with `yu` in their names.
+<div markdown="block" class="alert alert-warning">
+:book: <span style="font-weight:bold">Example: </span>
+You want to find all the patients with `yu` in their names.
 
-Step 1: Input `find yu` into the command box and press <kbd>Enter</kbd>.
+**Step 1**: Input `find yu` into the command box and press <kbd>Enter</kbd>.
 
-Step 2: On the Patient tab, you can check that the patient list only shows the patients with `yu` in their names.
+**Step 2**: On the Patient tab, you can check that the patient list only shows the patients with `yu` in their names.
+</div>
 
 #### 5.2.7 Listing all patients: `list`
 
@@ -563,13 +588,16 @@ Format: `profile INDEX`
     <em style="color:#CC5500">Figure 19. Example of Profile Window</em>
 </p>
 
-**Example**: You want to display the profile of the 1st patient on the list.
+<div markdown="block" class="alert alert-warning">
+:book: <span style="font-weight:bold">Example: </span>
+You want to display the profile of the 1st patient on the list.
 
 **Step 1**: Input `profile 1` into the command box and press <kbd>Enter</kbd> on your keyboard.
 
 **Step 2**: A window displaying the patient's profile will appear. All relevant patient records and visitation logs will be shown.
 
 **Step 3**: To close the patient profile window, you can click on the 'Close' button on the top-right section of the window. Alternatively, you can press the <kbd>ESC</kbd> key on your keyboard.
+</div>
 
 ### 5.3 Patient Visitation Commands
 
