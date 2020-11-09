@@ -172,6 +172,7 @@ Note(s):
 * [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields.
 * At least one of the optional fields must be provided.
 * If there are no more members in a meeting or module after they are deleted, then the meeting or module will be deleted as well.
+* All contacts will be shown after deleting a contact.
 
 Example(s):
 * `contact delete n/Roy Chan n/Jake Ng` delete contacts `Roy Chan` and `Jake Ng` from Modduke.
@@ -189,6 +190,7 @@ Note(s):
 Examples:
 *  `contact edit John Doe p/91234567 e/johndoe@example.com` Edits the phone number and email address of John Doe to be `91234567` and `johndoe@example.com` respectively.
 *  `contact edit Roy Chan n/Betsy Crower` Edits the name of Roy Chan to be `Betsy Crower` and clears all existing tags.
+*   All contacts will be shown after editing a contact.
 
 ### Clearing all contacts : `contact clear`
 
@@ -229,6 +231,7 @@ Format: `tag add CONTACT_NAME t/TAG_NAME...`
 
 Note(s):
 * Only 1 contact name can be used at a time but multiple tags can be added.
+* All contacts will be shown after adding a tag to a contact.
 
 Example(s):
 * `tag add Jay t/classmate t/friend`
@@ -242,6 +245,7 @@ Format: `tag delete CONTACT_NAME t/TAG_NAME...`
 Note(s)
 * Only 1 contact name can be used at a time but multiple tags can be deleted.
 * The contact has to have the given tag.
+* All contacts will be shown after deleting a tag from a contact.
 
 Example(s):
 * `tag delete Jay t/friend`
@@ -254,6 +258,7 @@ Format: `tag clear CONTACT_NAME`
 
 Note(s):
 * Only 1 contact name can be used at a time.
+* All contacts will be shown after clearing all tags of a contact.
 
 Example(s):
 * `tag clear Jay`
@@ -390,13 +395,14 @@ Example(s):
 
 ### Copy email address of contacts : `copy email`
 
-Copies email address of contacts with the given criteria to your clipboard.
+Copies email addresses of contacts with the given criteria to your clipboard.
 
 Format: `copy email [n/CONTACT_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`
 
 Note(s):
 * [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields.
 * At least one of the optional fields must be provided.
+* All contacts will be shown after copying the email addresses of contacts.
 
 Example(s):
 * `copy email n/Bob Ross`
@@ -411,6 +417,7 @@ Format: `copy phone [n/CONTACT_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`
 Note(s):
 * [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields.
 * At least one of the optional fields must be provided.
+* All contacts will be shown after copying the phone numbers of contacts.
 
 Example(s):
 * `copy phone m/CS2103`
