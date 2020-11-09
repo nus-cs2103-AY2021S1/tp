@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.taskmaster.model.Model;
@@ -25,10 +26,15 @@ public class RandomStudentCommandTest {
             new SessionName("Existing Session"),
             new SessionDateTime(LocalDateTime.of(2020, 11, 1, 12, 0)),
             getTypicalStudents());
+    private Model model;
+
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
+    }
 
     @Test
     public void execute_nullCurrentSessions_exceptionThrown() {
-        Model model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
 
         RandomStudentCommand randomStudentCommand = new RandomStudentCommand();
 
@@ -38,7 +44,6 @@ public class RandomStudentCommandTest {
 
     @Test
     public void execute_emptySessionList_exceptionThrown() {
-        Model model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         model.setSessions(new ArrayList<>());
 
         RandomStudentCommand randomStudentCommand = new RandomStudentCommand();
@@ -49,7 +54,6 @@ public class RandomStudentCommandTest {
 
     @Test
     public void execute_emptySession_exceptionThrown() {
-        Model model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         Session emptySession = new Session(
                 new SessionName("Empty Session"),
                 new SessionDateTime(LocalDateTime.of(2020, 11, 1, 12, 0)),
@@ -67,7 +71,6 @@ public class RandomStudentCommandTest {
     public void execute_success() {
         long seed = System.currentTimeMillis();
 
-        Model model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         model.addSession(existingSession);
         model.markAllStudents(AttendanceType.PRESENT);
 
