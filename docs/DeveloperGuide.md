@@ -89,7 +89,7 @@ The sections below give more details of each component.
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ExerciseListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindowForExercise.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/resources/view/MainWindowForExercise.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -101,7 +101,7 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/logic/LogicForExercise.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `ExerciseBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -141,7 +141,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/storage/StorageForExercise.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -163,7 +163,62 @@ This section describes some noteworthy details on how certain features are imple
 
 This section addresses how the `find` and `recall` commands work. 
 
-The `find` command allows users to search through the Exercise Book based on users' inputs. Users should enter at least one field. The search results can then be displayed in the GUI's Exercise Book.
+The `find` command allows users to search through the Exercise Book based on what users enter for the `Field`s. Users should enter at least one `Field`. The search results can then be displayed in the GUI's Exercise Book.
+
+Meanwhile, the `recall` command allows users to search for the most recent exercise with the specific name entered by the user.
+
+[NOTE]
+`Field`s here indicate which `Exercise` attributes we are interested in. Exact search finds `Exercise` objects with values that exactly match the user-specified values of the fields (`Name`, `Description`, `Date` ,`Calories`).
+Meanwhile, keyword search finds matches for the user-entered keywords in any part of the `Name` or any part of the `Description`.
+If the user uses exact search and keyword search together, it will find `Exercise` objects that match both the exact search and keyword search.
+
+The above commands rely on `FindCommand` and `RecallCommand` objects respectively. Objects of both classes use a `Predicate<Exercise>` object to filter through the `Exercise` list,
+and the exercises evaluated to be true by these predicates will be listed in GUI Exercise List.
+
+#### 4.1.1. Implementation
+
+To search via the user-specified `Exercise` attributes, We use `FindCommandParser` to create the `PropertiesMatchPredicate` with all the user inputs. This predicate returns true only when the exercise matches all the given fields.
+This predicate is then used to construct a new `FindCommand` object, which changes the GUI display when executed.
+
+The sequence diagram below demonstrates how the `find` command works:
+//diagram to add
+
+How the `find` command works:
+
+Step 1: `LogicManager` executes the user input, using `ExerciseBookParser` to realise this is a `find` command, and create a new `FindCommandParser` object.
+
+Step 2: The `FindCommandParser` object parses the user-entered arguments, and creates a `PropertiesMatchPredicate`.
+
+Step 3: This `PropertiesMatchPredicate` object is  then used to construct a new `FindCommand` object, returned to `LogicManager`.
+
+Step 4: `LogicManager` calls the `execute` method of the created `FindCommand`, which filters for `Exercise` objects that evaluate the predicate created previously to be true.
+It then returns a new CommandResult object reflecting the status of the execution. These changes are eventually reflected in the GUI.
+
+The `find` command therefore searches through the existing Exercise List and then displays the relevant search results in the GUI’s Exercise List.
+
+
+To search for the most recent exercise with the user-specified `Name`, we use `RecallCommandParser` to parse the user input and create a new `RecallCommand` object with the parsed input.
+The `RecallCommand` then goes through the existing Exercise List to find the most recent date, creates the `TheMostRecentDatePredicate`, and updates the GUI display when executed.
+
+The sequence diagram below demonstrates how the `recall` command works:
+//diagram to add
+
+How the `recall` command works:
+
+Step 1: `LogicManager` executes the user input, using `ExerciseBookParser` to realise this is a `recall` command, and create a new `RecallCommandParser` object.
+
+Step 2: The `RecallCommandParser` object parses the user-entered arguments, and creates a `RecallCommand` object which is returned to `LogicManager`.
+
+Step 3: `LogicManager` calls the `execute` method of the created `RecallCommand`, which creates the `TheMostRecentDatePredicate` and filters for `Exercise` objects that evaluate the predicate created previously to be true.
+It then returns a new CommandResult object reflecting the status of the execution. These changes are eventually reflected in the GUI.
+
+The `recall` command therefore searches for the most recent exercise with the specified name in the existing Exercise List and then displays the relevant search results in the GUI.
+
+#### 4.1.2. Design considerations
+
+##### Aspect: 
+
+##### Aspect: 
 
 
 
@@ -182,30 +237,6 @@ The `find` command allows users to search through the Exercise Book based on use
 
 
 
-
-
-
-
-
-
-
-
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedExerciseBook`. It extends `ExerciseBook` with an undo/redo history, stored internally as an `exerciseBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedExerciseBook#commit()` — Saves the current exercise book state in its history.
-* `VersionedExerciseBook#undo()` — Restores the previous exercise book state from its history.
-* `VersionedExerciseBook#redo()` — Restores a previously undone exercise book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitExerciseBook()`, `Model#undoExerciseBook()` and `Model#redoExerciseBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedExerciseBook` will be initialized with the initial exercise book state, and the `currentStatePointer` pointing to that single exercise book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
