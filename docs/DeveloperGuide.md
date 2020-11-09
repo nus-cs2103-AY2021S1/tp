@@ -134,94 +134,42 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Updating an exercise
 
-#### Proposed Implementation
+Author: Lee Wei Min
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+This section details how an `Exercise` is modified using the `update` command.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The update command 
+updates an existing exercise, where all fields are optional but at least one field to update must
+be specified. For more details, please refer to the [update section](https://ay2021s1-cs2103t-w17-2.github.io/tp/UserGuide.html#33-update-exercises--update) of the user guide
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+#### Implementation
 
-![UndoRedoState3](images/UndoRedoState3.png)
+We will use the following example command: `update 1 d/30 c/260 m/chest t/home`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+The below sequence diagram details the execution flow:
 
+Here are the steps:
+- Step 1: `LogicManager` calls its  `execute` method, supplying the argument "update 1 d/30 c/260 m/chest t/home", which was entered by the user. 
+- Step 2: `LogicManager` calls the `exerciseBookParser`'s `parseCommand` method, supplying the user input.
+- Step 3: In `parseCommand`, the user input is parsed and its command word (`update`) is matched to the `UpdateCommandParser`. `UpdateCommandParser`'s `parse` method is called, passing in the parsed arguments.
+- Step 4: In `UpdateCommandParser`'s `parse` method, a `EditExerciseDescriptor` object
+is created. Each field of the parsed arguments are added to the `EditExerciseDescriptor` object. `UpdateCommandParser` then creates an `UpdateCommand` object containing the index of the `exercise` to edit and the `EditExerciseDescriptor` object. In the sequence diagram, the argument `index` refers
+to the `Index` object representing the index of the first exercise, while `editExerciseDescriptor`
+refers to the `EditExerciseDescriptor` object that contains the data (from the parsed
+arguments) to update.
+- Step 5: `LogicManager` obtains the `UpdateCommand` object, which is referenced by the `command` variable. It then executes the `execute` method of  the `UpdateCommand` object.
+- Step 6: In the `execute` method, the `UpdateCommand` object calls `getFilteredExerciseList` to 
+to obtain `lastShownExerciseList`. The `Exercise` to edit is retrieved from the `lastShownExerciseList` using the `index`, and assigned to `exerciseToEdit`. Another `Exercise` object, named `editedExercise` is created to hold the data to be updated. The `UpdateCommand` object then calls the `setExercise` method of `Model`, with `exerciseToEdit` and `editedExercise`.
+- Step 7: A new `CommandResult` is created containing the message to be displayed to the user,
+which is "Edited Exercise: Name: running Description: 30 Date: 10-12-2020 Calories: 260 Muscles worked:[chest] Tags: [home]". This `CommandResult` is returned to `LogicManager`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The activation bar
+of commandResult should be joined to the side of the box representing the commandResult instance.
+Due to a limitation of PlantUML, it is not possible to do so here.
 </div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### Aspect: How to archive Data
-
-* **Current Choice:** Using Archive Command.
-  * Implementation: Have a separate Archive Command to let the User specify the file location.
-  * Pros: The user can specify the location where users want to save the data.
-  * Cons: Error prone. The user need to enter the file location specification which may be difficult for users who are not used to command prompt.
-
-
 
 --------------------------------------------------------------------------------------------------------------------
 

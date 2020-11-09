@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ExerciseBookParser" as ExerciseBookParser LOGIC_COLOR
+participant ":UpdateCommandParser" as UpdateCommandParser LOGIC_COLOR
+participant "command:UpdateCommand" as UpdateCommand LOGIC_COLOR
+participant "commandResult:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("update 1 d/30 c/260 \n m/chest t/home")
+activate LogicManager
+
+LogicManager -> ExerciseBookParser : parseCommand("update 1 d/30 c/260 \n m/chest t/home")
+activate ExerciseBookParser
+
+create UpdateCommandParser
+ExerciseBookParser -> UpdateCommandParser : UpdateCommandParser()
+activate UpdateCommandParser
+
+UpdateCommandParser --> ExerciseBookParser
+deactivate UpdateCommandParser
+
+ExerciseBookParser -> UpdateCommandParser : parse("1 d/30 c/260 \nm/chest t/home")
+activate UpdateCommandParser
+
+create UpdateCommand
+UpdateCommandParser -> UpdateCommand: UpdateCommand(index, editExerciseDescriptor)
+activate UpdateCommand
+
+UpdateCommand --> UpdateCommandParser : command
+deactivate UpdateCommand
+
+UpdateCommandParser --> ExerciseBookParser : command
+deactivate UpdateCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+UpdateCommandParser -[hidden]-> ExerciseBookParser
+destroy UpdateCommandParser
+
+ExerciseBookParser --> LogicManager : command
+deactivate ExerciseBookParser
+
+LogicManager -> UpdateCommand : execute()
+activate UpdateCommand
+
+UpdateCommand -> Model : getFilteredExerciseList()
+activate Model
+
+Model --> UpdateCommand: lastShownExerciseList
+deactivate Model
+
+UpdateCommand -> Model : setExercise(exerciseToEdit, editedExercise)
+activate Model
+
+Model --> UpdateCommand:
+deactivate Model
+
+create CommandResult
+UpdateCommand -> CommandResult : CommandResult("Edited Exercise:\n Name: running Description:30\n Date: 10-12-2020 Calories: 260\n Muscles worked:[chest] Tags: [home]"))
+activate CommandResult
+
+CommandResult --> UpdateCommand : commandResult
+deactivate CommandResult
+
+UpdateCommand --> LogicManager : commandResult
+deactivate UpdateCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
