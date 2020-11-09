@@ -15,7 +15,7 @@ This document specified architecture, software design decisions and features for
 ### **Scope**
 The intended audience of this document are developers, designers, and software testers.
 
-#### **About ProductiveNUS**
+### **About ProductiveNUS**
 ProductiveNUS is a desktop application targeted at Computing students of National University of Singapore (NUS) to help them manage and schedule their academic tasks efficiently.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -31,6 +31,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
+<br/>*Figure 1: Architecture Diagram*
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -61,20 +62,17 @@ Each of the four components,
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
-
-**How the architecture components interact with each other**
-
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
-
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<br/>*Figure 2: Class Diagram for Logic Component*
 
 The sections below give more details of each component.
 
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
+<br/>*Figure 3: Class Diagram for UI Component*
 
 ![Structure of the UI Component 2](images/UiClassDiagram2.png)
+<br/>*Figure 4: More information on Class Diagram for UI Component*
 
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -91,6 +89,7 @@ The `UI` component,
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
+<br/>*Figure 5: Class Diagram for Logic Component*
 
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -101,16 +100,10 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `UI`.
 1. In addition, the `CommandResult` object can also instruct the `UI` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
-
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
+<br/>*Figure 6: Class Diagram for Model Component*
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -127,11 +120,12 @@ The `Model`,
 Since `Lesson` and `Assignment` have several attributes in common, namely `Name`, `Time` and `ModuleCode`, an abstract parent class, `Task`, containing these shared attributes was created.
 
    !![Relationship between Task, Assignment and Lesson](images/TaskClassDiagram.png)
-   <br/>*Figure X: Class Diagram for Task*
+   <br/>*Figure 7: Class Diagram for Task*
 
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
+<br/>*Figure 8: Class Diagram for Storage Component*
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -231,7 +225,7 @@ The expected hours to complete is 5 and the schedule need to be between 01-01-20
 Given below is the sequence diagram for the interactions within `LogicManager` for the `execute ("schedule 3 hrs/5 af/01-01-2020 0000 by/23-12-2020 2359")` API call.
 
    ![Sequence Diagram for ScheduleCommand](images/ScheduleSequenceDiagram.png)
-   <br/>*Figure 1: Sequence Diagram for ScheduleCommand*
+   <br/>*Figure 9: Sequence Diagram for ScheduleCommand*
 
 ### Import timetable feature
 The user can import information about their lessons into ProductiveNUS using their NUSMods timetable URL.
@@ -276,6 +270,7 @@ The following is the usage scenario of when a user imports an NUSMods timetable.
 
 The following sequence diagram shows the sequence when LogicManager executes `import` command.
 ![Interactions Inside the Logic Component for the `import url/URL` Command](images/ImportSequenceDiagram.png)
+   <br/>*Figure 10: Sequence Diagram for ImportCommand*
 
 ### Find by specific fields feature
 
@@ -318,7 +313,7 @@ The following prefixes are used to identify the type of keywords:
 ##### Predicate classes 
 
 ![Class diagram for Predicate classes](images/PredicateClassDiagram.png)
-*Figure 2: Class diagram for Predicate classes*
+*Figure 11: Class diagram for Predicate classes*
 
 The following Predicate classes implements `Predicate<Assignment>` and specific ones are passed into the constructor of `FindCommand` when the user inputs keywords of its assigned field:
 
@@ -359,6 +354,7 @@ The following is a usage scenario of when a user wants to find assignments with 
 
 Given below is the sequence diagram for the interactions within `LogicManager` for the `execute(find n/Lab)` API call.
 ![Interactions Inside the Logic Component for the `find n/Lab` Command](images/FindSequenceDiagram.png)
+ <br/>*Figure 12: Sequence Diagram for FindCommand*
 
 
 ### Remind assignments feature
@@ -384,6 +380,7 @@ The following is a usage scenario of when the user wants to set reminders for th
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("remind 2 3")` API call.
 ![Interactions Inside the Logic Component for the `remind 2 3` Command](images/RemindMultipleSequenceDiagram.png)
+ <br/>*Figure 13: Sequence Diagram for RemindCommand*
 
 1. `execute("remind 2 3")` of `LogicManager` calls the `parseCommand` method of `ProductiveNusParser`.
 1. `parseCommand("remind 2 3")` parses the String `"remind 2 3"` and returns an initialized `RemindCommandParser` object. 
@@ -428,6 +425,7 @@ The following is a usage scenario of when the user wants to set a high priority 
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("prioritize 3 p/HIGH")` API call.
 ![Interactions Inside the Logic Component for the `prioritize 3 p/HIGH` Command](images/PrioritizeSequenceDiagram.png)
+ <br/>*Figure 14: Sequence Diagram for PrioritizeCommand*
 
 ### List by days feature
 
@@ -487,6 +485,7 @@ The following is a usage scenario of when the user wants to list assignments tha
  
  Given below is the sequence diagram for the interactions within `LogicManager` for the `execute(list 3)` API call.
 ![Interactions Inside the Logic Component for the `list 3` Command](images/ListSequenceDiagram.png)
+ <br/>*Figure 15: Sequence Diagram for ListCommand*
 
 
 ### Delete multiple assignments feature
@@ -531,6 +530,7 @@ The following is a usage scenario of when the user wants to delete the first and
  
  Given below is the sequence diagram for the interactions within `LogicManager` for the `execute(delete 1 2)` API call.
  ![Interactions Inside the Logic Component for the `delete 1 2` Command](images/DeleteSequenceDiagram.png)
+  <br/>*Figure 16: Sequence Diagram for DeleteCommand*
  
  
 ### Unremind, Unprioritize and Undone
@@ -558,7 +558,7 @@ As all three commands have a similar format (command word followed by an index) 
 The following is a Class diagram illustrating the relationship between the classes of the three commands and `NegateCommand`:
 
    ![Class diagram for NegateCommand, Unremind, Unprioritize and Undone](images/NegateCommandClassDiagram.png)
-   <br/>*Figure 3: Class diagram for NegateCommand, Unremind, Unpriortize and Undone*
+   <br/>*Figure 17: Class diagram for NegateCommand, Unremind, Unpriortize and Undone*
 
 
 The NegateCommand class contains the **final** class-level member `COMMAND_WORD` with String **"un"**, and private attribute `targetIndex` of type `Index`.
@@ -609,7 +609,7 @@ A usage scenario would be when a user wants to undo the most recent command that
 Given below is the sequence diagram for the interactions within `LogicManager` for the `execute ("undo")` API call.
 
    ![Sequence Diagram for UndoCommand](images/UndoSequenceDiagram.png)
-   <br/>*Figure 4: Sequence Diagram for UndoCommand*
+   <br/>*Figure 18: Sequence Diagram for UndoCommand*
 
 ### Updating of Upcoming tasks in real time
 
@@ -630,7 +630,7 @@ A `Timer` object is used alongside `javafx.concurrent.Task` to periodically chec
 Below is an Activity Diagram illustrating the flow of activities when the application starts up.
 
 ![Activity diagram for Auto updating of task list](images/AutoUpdateTaskListActivityDiagram.png)
-<br/>*Figure 5: Activity diagram for automated updating of UniqueTaskList*
+<br/>*Figure 19: Activity diagram for automated updating of UniqueTaskList*
 
 <div markdown="span" class="alert alert-info">
  **:information_source: Note:**
@@ -724,7 +724,7 @@ The following is a usage scenario when a user wants to add an assignment with th
 Given below is the sequence diagram for the interactions within `LogicManager` for the `execute ("add n/Lab mod/CS2103 d/10-10-2020 2359")` API call.
 
    ![Sequence Diagram for AddCommand](images/AddSequenceDiagram.png)
-   <br/>*Figure 6: Sequence Diagram for AddCommand*
+   <br/>*Figure 20: Sequence Diagram for AddCommand*
 
 ### Marking assignments as done and Setting reminders for assignments features
 
@@ -822,7 +822,7 @@ The following is a usage scenario when a user wants to mark the first and third 
 Given below is the sequence diagram for the interactions within `LogicManager` for the `execute ("done 1 3")` API call.
 
    ![Sequence Diagram for DoneCommand](images/DoneMultipleSequenceDiagram.png)
-   <br/>*Figure 7: Sequence Diagram for DoneCommand*
+   <br/>*Figure 21: Sequence Diagram for DoneCommand*
    
 ##### Setting reminders to assignments
 The usage scenario of a user setting reminders for the first and third assignment in his/her displayed assignment list is similar to the usage scenario above.
@@ -839,7 +839,7 @@ Here are the differences:
 Given below is the sequence diagram for the interactions within `LogicManager` for the `execute ("remind 1 3")` API call.
 
    ![Sequence Diagram for RemindCommand](images/RemindMultipleSequenceDiagram.png)
-   <br/>*Figure 8: Sequence Diagram for RemindCommand*
+   <br/>*Figure 22: Sequence Diagram for RemindCommand*
    
 --------------------------------------------------------------------------------------------------------------------
 
