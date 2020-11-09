@@ -16,10 +16,11 @@ Looking for a wonderful solution to simplify the complicated process of clinic m
 
 Nuudle is a **desktop application that helps nurses manage patient records and schedule appointments** in an accurate and efficient manner.
 It provides features that allows you to easily manage and keep track of the upcoming appointments in your clinic.
-Nuudle is optimised for those who prefer to work with a Command Line Interface (CLI) while still providing the benefits of a Graphical User Interface (GUI).
+
+Nuudle is simple and user-friendly. It is optimised for use via a Command Line Interface (CLI) while still providing you with the benefits of a Graphical User Interface (GUI).
 If you can type fast, Nuudle can manage your patients' appointments faster than traditional clinic management applications.
 
-Interested? Continue reading on to explore to wonders of Nuudle and enhance the way you schedule appointments for your patients.
+Interested? Continue reading on to explore the wonders of Nuudle and enhance the way you schedule appointments for your patients.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -749,6 +750,8 @@ This glossary provides definitions for the special terms used in the user guide.
 **Tag:** A word or phrase that indicates the medical condition of a patient.
 
 **GUI:** An acronym that stands for Graphic User Interface.
+
+**CLI:** An acronym that stands for Command Line Interface.
 
 **Command:** The text typed in by the user as an instruction for Nuudle.
 
