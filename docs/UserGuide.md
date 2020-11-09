@@ -35,12 +35,35 @@ This table below illustrates what each formatting means.
 | `[g/ALLERGY]…` | Words with `…` after them| Parameters that can be input multiple times including 0 times|`g/sulfa g/zyrtec` or `g/levocetirizine `|
 | [Blue underline](#2-about-this-document)| Blue words that show underline on mouse-over| A clickable hyperlink, to either an external webpage or other parts of this User Guide|[1. Introduction](#1-introduction)|
 
+<div markdown="block" class="alert alert-warning">
+* These sections give examples of how you can use the features of CliniCal.
+
+:book: <span style="font-weight:bold">Example: </span>
+You want to list all the patient data that was entered into CliniCal.
+
+**Step 1**: Input `list` into the command box and press <kbd>Enter</kbd>.
+
+**Step 2**: On the **Patients** tab, you can find all the patient data that have been entered into CliniCal.
+</div>
+
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+* These sections give information crucial to the use of CliniCal.
 
+**:information_source: Notes about the command format:**<br>
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+
+</div>
+
+<div markdown="block" class="alert alert-primary">
+
+* These sections give non-essential information that will help you maximise your productivity with CliniCal.
+
+:bulb: <span style="font-weight:bold">Tip: </span>
+
+* You can resize the window as you like, so that you can use CliniCal with another application side by side on your monitor.
 
 </div>
 
@@ -692,7 +715,7 @@ Format: `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION`
 :book: <span style="font-weight:bold">Example: </span> 
 You want to add an appointment with the first patient on the list.
 
-**Step 1**: Input `addappt 6 st/11/12/2020 15:00 d/120` into the command box and press Enter.
+**Step 1**: Input `addappt 6 st/11/12/2020 15:00 d/120` into the command box and press <kbd>Enter</kbd>.
 
 **Step 2**: On the **Overview** tab, you can find your newly added appointment saved inside the appointment list.
 
@@ -738,7 +761,7 @@ Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_START_
 :book: <span style="font-weight:bold">Example: </span>
 You want to reschedule the first appointment in the appointment list.
 
-**Step 1**: Input `editappt 6 st/12/12/2020 18:00 d/240` into the command box and press Enter.
+**Step 1**: Input `editappt 6 st/12/12/2020 18:00 d/240` into the command box and press <kbd>Enter</kbd>.
 
 **Step 2**: On the **Overview** tab, you can find the newly updated appointment inside the appointment list. 
 
@@ -782,7 +805,7 @@ Format: `deleteappt INDEX`
 :book: <span style="font-weight:bold">Example: </span>
 You want to delete your next upcoming appointment as your patient could not make it for the appointment.
 
-**Step 1**: Input `deleteappt 1` and press Enter.
+**Step 1**: Input `deleteappt 1` and press <kbd>Enter</kbd>.
 
 **Step 2**: The first appointment displayed will be removed from the appointment list immediately. You can also see that the appointment is no longer being displayed on the calendar.
 </div>
