@@ -1382,7 +1382,7 @@ Steps:
 
 Outcome: 
 
-1. Homerce will open up the *Financial Breakdown* window.
+1. Homerce will open up the *Help* window.
 
 ![help message](images/helpMessage.png)
 
@@ -1504,7 +1504,7 @@ You can copy and transfer the data folder into the same directory as Homerce on 
 
 |Action | Format | Examples
 |---------|---------|---------
-|**Find** | `findrev [dt/DATE]* [sc/SERVICE_CODE]*` | `findrev dt\22-10-2020`
+|**Find** | `findrev [dt/DATE]* [sc/SERVICE_CODE]*` | `findrev dt/22-10-2020`
 |**Sort**       | `sortrev ORDER`                                                  | `sortexp desc`
 |**List**       | `listrev`                                                        | 
 |**Clear**      | `clearrev`                                                       | 
