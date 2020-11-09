@@ -524,9 +524,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | \*       | OHS admin                | find a room by searching for the room number             | get the details of a specific room quickly.                                                               |
 | \* \*    | advanced user            | redo the previous command                                | do the same task without typing again, e.g. if two students wish to pay the same bill.                    |
 | \* \*    | careless user            | undo my last command                                     | fix any change that I made erroneously.                                                                   |
-<div style="page-break-after: always;"></div>
-| Priority | As a…                    | I can…                                                   | So that I can…                                                                                            |
-| -------- | ------------------------ | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | \* \*    | advanced user            | view previous commands                                   | check if I made an error in adding or deleting records.                                                   |
 | \* \* \* | OHS admin                | view a list of vacant rooms                              | start assigning rooms to students during check-in.                                                        |
 | \* \* \* | OHS admin                | view a room allocation for a student                     | check and inform a student of their room allocation during check in.                                      |
