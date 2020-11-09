@@ -19,6 +19,7 @@ Given below are my contributions to the project.
 * **New Features**: Added the ability to find tasks and lessons.
   * What it does: easy-to-use CLI commands to find a particular task or lesson according to a set of specified attributes.
   * Justifications: The `find-task` and `find-lesson` features are integral in managing a large amount of tasks and lessons.
+<div style="page-break-after: always;"></div>
   * Highlights: This feature requires deep integration with other features because the there are many attributes that a task/lesson
   can be searched for. Also, it requires rigorous analysis in deciding what specific attributes should be included in the search feature
   so as to allow users find what they want with ease. Lastly, since many attributes are involved, prudence is required in implementing the feature
@@ -54,7 +55,7 @@ Given below are my contributions to the project.
   * Redesign the `help` feature to display a much more user-friendly help window instead of just a 
   URL to the user guide implemented by the original ab3. The new help window now includes a summary view of all the commands in PlaNus.
   Users do not have to navigate to the user guide to look up for all the commands. [\#200](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/200)
-
+<div style="page-break-after: always;"></div>
 * **Documentation**:
   * User Guide:
     * Added hyperlinks to Table of Content [\#74](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/74)
