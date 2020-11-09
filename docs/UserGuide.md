@@ -603,9 +603,10 @@ Deletes all items and recipes. Your inventory will be empty after executing this
 
 **EXAMPLE:**
 - `cleari` followed by `listi`
-    - `listi` will indicate "You have no items in your inventory now."
 
 <img height="400" src="images/UG images/UG cleari.png"/>
+
+`listi` will indicate "You have no items in your inventory now."
 
 <div style="page-break-after: always;"></div>
 
@@ -625,9 +626,10 @@ Deletes all recipes.
 
 **EXAMPLE:**
 - `clearr` followed by `listr`
-    - `listr` will indicate "You have no recipes in your inventory now."
 
 <img height="400" src="images/UG images/UG clearr.png"/>
+
+`listr` will indicate "You have no recipes in your inventory now."
 
 <div style="page-break-after: always;"></div>
 
@@ -652,9 +654,10 @@ considers commands that adds, removes, or changes an item or recipe.
 
 **EXAMPLE:**
 - `addq -n Apple -q 10` followed by `undo`
-    - First command adds 10 <u>Apples</u>, `undo` removes the 10 <u>Apples</u>.
 
 <img height="400" src="images/UG images/UG undo.png"/>
+
+The `addq` command adds 10 <u>Apples</u>, `undo` removes the 10 <u>Apples</u>.
 
 <div style="page-break-after: always;"></div>
 
@@ -677,10 +680,11 @@ Reverses the effect of the previous undo command.
 
 **EXAMPLE:**
 - `addq -n Apple -q 10` followed by `undo` followed by `redo`
-    - First command adds 10 <u>Apples</u>, `undo` removes the 10 <u>Apples</u>,
-      `redo` re-adds the 10 <u>Apples</u>.
 
 <img height="400" src="images/UG images/UG redo.png"/>
+
+The `addq` command adds 10 <u>Apples</u>, `undo` removes the 10 <u>Apples</u>,
+`redo` re-adds the 10 <u>Apples</u>.
 
 <div style="page-break-after: always;"></div>
 
