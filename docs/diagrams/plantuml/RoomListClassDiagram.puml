@@ -12,9 +12,9 @@ Package Room {
 Class Room
 Class UniqueRoomList
 Class Patient
+Class RoomTasks
 
 Package Task {
-Class RoomTasks
 Class Task
 Class DateTimeDue
 Class Description
@@ -33,9 +33,9 @@ Room *--> "0..1" Patient
 Room *--> "1" RoomTasks
 RoomTasks .left.|> ReadOnlyList
 
-RoomTasks o--> "1" TaskList
+RoomTasks *--> "1" TaskList
 TaskList o--> "*" Task
 Task *--> "1" Description
-Task *--> "1" DateTimeDue
+Task *--> "0..1" DateTimeDue
 
 @enduml
