@@ -191,7 +191,7 @@ users can do the following:
 
 2) This adds the corresponding deadline to PlaNus. You can see the added deadline in the task list.
 
-    ![add deadline_result](./images/AddDeadlineCommandResult.png)
+    ![add deadline_result](images/AddDeadlineCommandResult.png)
 
 <br>
 <div markdown="block" class="alert alert-info">
@@ -232,9 +232,9 @@ users can do the following:
 
 2) This adds the corresponding event to PlaNus. You can see the added event in the task list and the calendar. The duration of the event will be recorded for time analysis.
 
-    ![add event_result](./images/AddEventCommandResult.png)
+    ![add event_result](images/AddEventCommandResult.png)
 
-    ![add event result](./images/AddEventCommandResult2.png)
+    ![add event result](images/AddEventCommandResult2.png)
 
 <br>
 
@@ -283,7 +283,7 @@ users can do the following:
 
 2) The status of the deadline has been set to complete, and the time taken to complete the task will be used for time analysis.
 
-    ![mark_as_done_result](./images/DoneCommandResult.png)
+    ![mark_as_done_result](images/DoneCommandResult.png)
 
 <br>
 
@@ -330,11 +330,11 @@ For example, if we want to change the first task start time to be an hour earlie
 
 3) This changes the start time of the sixth task to 10:00 which is one hour after than the original start time. You can view the task with the updated information in the task list.
 
-    ![edit task result](./images/EditTaskCommandResult.png)
+    ![edit task result](images/EditTaskCommandResult.png)
 
 4) If the task that is being edited is an event, the calendar will also be updated with the information.
 
-    ![edit task result](./images/EditTaskCommandResult2.png)
+    ![edit task result](images/EditTaskCommandResult2.png)
 
 Other examples:
 * `edit-task 1 title:play games` 
@@ -392,7 +392,7 @@ To find all tasks with titles containing the phrase "CS" (case-insensitive), use
 
 3) This lists all tasks with a title including the phrase `CS`.
 
-    ![find task result](./images/FindTaskCommandResult.png)
+    ![find task result](images/FindTaskCommandResult.png)
 
 Other examples:
 * `find-task title:play games` 
@@ -427,11 +427,11 @@ To delete the first task, users can do the following:
 
 2) Type `delete-task 1` in the command box.
 
-    ![delete task](./images/DeleteTaskCommand.png)
+    ![delete task](images/DeleteTaskCommand.png)
  
 3) This deletes the 1st task from PlaNus.
 
-    ![delete task result](./images/DeleteTaskCommandResult.png)
+    ![delete task result](images/DeleteTaskCommandResult.png)
 
 Other examples:
 * `list-task` followed by `delete-task 1 2` 
@@ -459,7 +459,7 @@ To show all lessons currently stored in PlaNus, users can do the following:
 * `list-lesson`
 
 2) This displays all lessons in the lesson list.
-    ![List lesson](./images/ListLesson.png)
+    ![List lesson](images/ListLesson.png)
 
 
 ### 3.2 Add a lesson : `lesson`
@@ -491,9 +491,9 @@ from 10 Aug 2020 to 10 Dec 2020, users can do the following:
 2) This adds the corresponding lesson to PlaNus. You can see the added lesson in the lesson list, calendar view and 
 time analysis.
 
-    ![add lesson result](./images/AddLessonCommandResult.png)
+    ![add lesson result](images/AddLessonCommandResult.png)
     
-    ![add lesson result](./images/AddLessonCommandResult2.png)
+    ![add lesson result](images/AddLessonCommandResult2.png)
 
 
 <br>
@@ -537,14 +537,14 @@ To edit a lesson, users can do the following:
 For example, if we want to change the first lesson to Tuesday, we can type
 `edit-lesson 1 day:Tuesday` in the command box.
 
-    ![edit lesson](./images/EditLessonCommand.png)
+    ![edit lesson](images/EditLessonCommand.png)
 
 3) This changes the day of the first lesson to every Tuesday. You can see that the calendar view and 
 time analysis is also updated.
 
-    ![edit lesson result](./images/EditLessonCommandResult.png)
+    ![edit lesson result](images/EditLessonCommandResult.png)
     
-    ![edit lesson result](./images/EditLessonCommandResult2.png)
+    ![edit lesson result](images/EditLessonCommandResult2.png)
 
 <br>
 
@@ -594,7 +594,7 @@ the following steps:
 
 3) This lists all lessons with a title including the phrase `Tutorial`.
 
-    ![find lesson result](./images/FindLessonCommandResult.png)
+    ![find lesson result](images/FindLessonCommandResult.png)
 
 Other examples include:
 * `find-lesson tag:CS2040` 
@@ -635,11 +635,11 @@ To delete the first two lessons, users can following the steps:
 
 2) Type `delete-lesson 1 2` in the command box.
 
-    ![delete lesson](./images/DeleteLessonCommand.png)
+    ![delete lesson](images/DeleteLessonCommand.png)
  
 3) This deletes the 1st and 2nd lesson from PlaNus.
 
-    ![delete lesson result](./images/DeleteLessonCommandResult.png)
+    ![delete lesson result](images/DeleteLessonCommandResult.png)
 
 
 Users can also delete lessons by first finding the lessons of interest, refer to [feature 3.4](#34-find-a-lesson--find-lesson)
@@ -664,7 +664,7 @@ To change the view to calendar view,
 
 2) The calendar view will appear as shown below. Users can use the calendar view to see what tasks and lessons they have in the entire month as shown below.
 
-![calendar view month](./images/CalendarViewMonth.png)
+![calendar view month](images/CalendarViewMonth.png)
 
 Calendar view displays:
 * Events
@@ -692,7 +692,7 @@ Users can change the application view back to standard view (displayed when the 
 Users can use the pie chart and list of modules to visualise how much time is spent on each module. Each module is 
 denoted by the `tag` on its task/lesson.
 
-![data analysis](./images/DataAnalysis.png)
+![data analysis](images/DataAnalysis.png)
 
 How does it work:
 * Each module has a **time spent on tasks** and **time spent on lessons**.
@@ -702,7 +702,7 @@ How does it work:
 
 Example:
 
-![data analysis example](./images/DataAnalysisExample.png)
+![data analysis example](images/DataAnalysisExample.png)
 * The first lesson in the list:
     * Title of "CS2105 Lecture"
     * Only occurred one time during the past week
