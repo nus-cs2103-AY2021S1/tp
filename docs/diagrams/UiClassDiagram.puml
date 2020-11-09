@@ -59,11 +59,6 @@ UpcomingAssignmentCard --|> UiPart
 UpcomingLessonCard --|> UiPart
 UpcomingTaskListPanel --|> UiPart
 
-UpcomingLessonCard ..> Model
-AssignmentCard ..> Model
-UpcomingAssignmentCard ..> Model
-ReminderCard ..> Model
-
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
