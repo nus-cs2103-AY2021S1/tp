@@ -16,7 +16,6 @@ fcd -> fcd: getSchoolPredicate()
 fcd -> fcd: getYearPredicate()
 return consolidatedPredicates
 
-
 end box
 
 box "Model" MODEL_COLOR_T1

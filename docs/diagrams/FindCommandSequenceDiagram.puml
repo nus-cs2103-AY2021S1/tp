@@ -10,7 +10,7 @@ Participant "d:FindStudentDescriptor" as fcd LOGIC_COLOR
 Participant "command:FindCommand" as fc LOGIC_COLOR
 
 
-[-> logic : execute
+[-> logic : execute()
 activate logic
 logic -> rp ++: parseCommand(commandText)
 create fcp
@@ -29,7 +29,7 @@ destroy fcp
 
 logic -> fc ++: execute(model)
 fc -> fcd++: getPredicates()
-return consolidatedPredicates
+return predicates
 
 end box
 
@@ -37,11 +37,12 @@ box "Model" MODEL_COLOR_T1
 
 Participant ":Model" as model MODEL_COLOR
 
-fc -> model++: updateFilteredPersonList(consolidatedPredicates)
+fc -> model++: updateFilteredStudentList(predicates)
 return
 return result
-return
 destroy fc
+destroy fcd
+return
 
 end box
 

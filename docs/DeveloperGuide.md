@@ -1588,7 +1588,25 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `exam stats 1`
    <br>Expected: Opens the exam statistics window of the first student in the displayed students list.
    
-### F.5 Notes Feature
+### F.5 Notebook Feature
+
+1. Adding a note to the notebook.
+    
+    1. Test case: `note add t/things to do d/mark practice papers`
+    <br>Expected: Note with title things to do is added and details shown in the results display.
+
+    2. Test case: `note add t/things to finish by tomorrow d/mark practice papers`
+    <br>Expected: No note is added due to a title that is too long. Error details shown in the results display.
+
+2. Deleting a note.
+
+   1. Prerequisites: At least one note in the notebook.
+
+   1. Test case: `note delete 1`
+   <br>Expected: First note is deleted from the notebook. Details of the deleted note shown in the result display.
+
+   1. Test case: `note delete 0`
+   <br>Expected: No note is deleted. Error details shown in the result display.
 
 ### F.6 Saving Data
 

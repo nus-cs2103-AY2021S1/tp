@@ -7,10 +7,6 @@ Participant ":LogicManager" as logic LOGIC_COLOR
 Participant ":ReeveParser" as parser LOGIC_COLOR
 Participant ":SortCommandParser" as commandParser LOGIC_COLOR
 Participant "command:SortCommand" as command LOGIC_COLOR
-Participant "nameComparator:NameComparator" as nameComparator LOGIC_COLOR
-Participant ":ClassTimeComparator" as classTimeComparator LOGIC_COLOR
-Participant ":YearComparator" as yearComparator LOGIC_COLOR
-Participant ":CommandResult" as result LOGIC_COLOR
 
 [-> logic : execute()
 activate logic
@@ -31,38 +27,11 @@ logic -> command ++: execute(model)
 endbox
 box "Model" MODEL_COLOR_T1
 Participant "model:Model" as model MODEL_COLOR
-
-opt If comparison means of command matches comparison means of Name Comparator
-
-    create nameComparator
-    command -> nameComparator ++:
-    return nameComparator
-    command -> model: updateSortedStudentList(nameComparator)
-    end
-
-opt If comparison means of command matches comparison means of Class Time Comparator
-
-    create classTimeComparator
-    command -> classTimeComparator ++:
-    return classTimeComparator
-    command -> model: updateSortedStudentList(classTimeComparator)
-    end
-
-opt If comparison means of command matches comparison means of Year Comparator
-
-    create yearComparator
-    command -> yearComparator ++:
-    return yearComparator
-    command -> model: updateSortedStudentList(yearComparator)
-    end
-
-
-create result
-command -> result ++
-return commandResult
-return commandResult
+    command -> model++: updateSortedStudentList(comparator)
+    return
 return
 destroy command
+return
 end box
 
 @enduml
