@@ -176,6 +176,8 @@ The *Class Diagram* below shows how the components in the `Upcoming Tab` interac
 
 ##### **Responsibilities**
 The `Upcoming Tab` consists of a list of an `UpcomingSectionCard` for the Overdue section, 7 `UpcomingSectionDayCards` to represent each day of the next week, and finally another `UpcomingSectionCard` for the Future section. Each `UpcomingSectionCard` comprises of a `TaskPanel` and each `UpcomingSectionDayCard` comprises of a `TaskPanel` and a `LessonPanel`.
+The *Sequence Diagram* below shows how the calendar feature in the Upcoming tab is populated.
+![fillCalendarDiagram](images/fillCalendarDiagram.png)
 
 #### **3.2.2. Module Tab** <a name="module-tab"></a>
 
