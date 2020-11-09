@@ -447,7 +447,7 @@ the `GUI` or `CLI`.
     * **Sequence Diagram** for `GUI`\
 ![showApptGuiSequenceDiagram](images/showAppt/ShowApptGuiSequenceDiagram.png)
         * Clicking on the Patient Card triggers the `PatientCard#onDoubleClick` controller which updates the 
-        static `AppointmentWindow` housed in MainWindow.
+        static `AppointmentWindow` **housed in MainWindow**.
         * The controller calls `MainWindow#setAppointmentWindow(patient)` to update the information of the 
         patient in `AppointmentWindow`. 
         * `AppointmentWindow` retrieves all the appointments of the patient and map the
@@ -461,19 +461,19 @@ to check if the patient is clicked and show the `AppointmentWindow` on the click
     * **Sequence Diagram** for `CLI`\
 ![showApptCliSequenceDiagram](images/showAppt/ShowApptCliSequenceDiagram.png)
 **Description**
-        1. The `MainWindow` takes in the String command from the user in the `UI`.
-        1. `MainWindow passes the String command to `LogicManager#execute()` under **Logic** showed in the Sequence Diagram.
+        1. The `MainWindow` takes in the String command from the user in the **UI**.
+        1. `MainWindow` passes the String command to `LogicManager#execute()` under **Logic** showed in the Sequence Diagram above.
         1. `ShowCommandparser#parse()` verifies the command is in the stipulated format.
         1. `LogicManager#execute()` executes the showAppt command.
         1. `ShowApptCommand#execute()` then verifies if only **ONE** patient with the **NRIC** is found.
          Otherwise, it throws a commandException which notifies the user about the exact error.
         1. If the patient is found successfully, `ShowApptCommand#execute()` updates the patient found
-         to the `AppointmentWindow` housed in `MainWindow` by calling the static method 
+         to the `AppointmentWindow` housed in MainWindow by calling the **static** method 
          `MainWindow#setAppointmentWindow(patient)`.
         1. The `MainWindow` receives the command result from `LogicManager#execute()` and checks if the command is
-        requires `AppointmentWindow` to be shown by calling the `isShowAppointment()` method in the command result.
-        1. Finally, `MainWindow` shows the calls the `show()` method in `AppointmentWindow`.
+        requires `AppointmentWindow` to be shown by calling the `CommandResult#isShowAppointment()`.
         1. The process in which the appointments are retrieved and rendered are similar to the `GUI` described above.
+        1. Finally, `MainWindow` shows the calls the `AppointmentWindow#show()`.
         
 <div markdown="block" class="alert alert-warning">
 **:warning: Important:** AppointmentWindow is **STATIC** (i.e. only **ONE** instance of AppointmentWindow is allowed).
