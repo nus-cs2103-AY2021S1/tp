@@ -321,7 +321,7 @@ The first 2 operations are exposed in the `Model` interface as `Model#canUndo()`
 Given below is an example usage scenario and how the undo mechanism behaves at each step.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The `ModelManager**` in the following diagrams is actually stored as `Pair<McGymmy<Pair<Predicate<Food>, MacroList>>`
+:information_source: **Note:** The `ModelManager**` in the following diagrams is actually stored as `Pair&ltMcGymmy&ltPair&ltPredicate&ltFood&gt, MacroList&gt&gt`
 </div>
 Step 1. The user launches the application for the first time. The `ModelManager` will be initialized with the empty `mcGymmyStack`.
 
