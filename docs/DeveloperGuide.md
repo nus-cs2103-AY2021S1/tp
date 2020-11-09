@@ -53,7 +53,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `dels 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -96,11 +96,11 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delstaff 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("dels 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `dels 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteStaffCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### 2.1.3 Model component
@@ -147,7 +147,7 @@ This section describes some noteworthy details on how certain features are imple
 ### 3.1 Overview of Staff and Applicants
 
 The class diagram below shows how applicant and staff are related to each other and the various classes they are 
-associated to. The following sections will elaborate more on the applicant and staff management sections.
+associated to. The following sections will elaborate more on the applicant and staff management systems.
 <br>
 
  <img src="images/ApplicantStaffClassDiagram.png" width="900" />
@@ -160,7 +160,7 @@ A staff record also contains `Leave`. More about how this is implemented is elab
 
 #### 3.2.1 Leave System
 
-The current leave recording system is facilitated by the `LogicManager` and `ModelManager`. The `Logic Manager` contains a `ModelManeger` which contains a filtered list of all staffs, `filteredStaffs`.
+The current leave recording system is facilitated by the `LogicManager` and `ModelManager`. The `LogicManager` contains a `ModelManeger` which contains a filtered list of all staffs, `filteredStaffs`.
 
 Given below is an example usage scenario and how the leave recording system behaves at each step.
 
@@ -186,30 +186,34 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 ##### Aspect: deleting leaves
 
 * **Alternative 1 (current choice):** The date the user inputs will delete the entire leave if it falls within the date range of a staff leave.
-* Pros: Standardises the behavior when deleting leaves.
-* Cons: Makes the user enter more commands to change leave information.
+    * Pros: Standardises the behavior when deleting leaves.
+    * Cons: Makes the user enter more commands to change leave information.
 
 * **Alternative 2:** dell will take in a date range and delete all the leave dates between that. If a leave is partially within the range, it truncates the leave instead.
-* Pros: Easier to delete leaves.
-* Cons: May cause the unintentional deletion of leaves.
+    * Pros: Easier to delete leaves.
+    * Cons: May cause the unintentional deletion of leaves.
 
 ##### Aspect: leave taken
 
 * **Alternative 1 (current choice):** Counts up from 0, records the total number of leaves taken.
-* Pros: Easy to implement.
+    * Pros: Easy to implement.
 
 * **Alternative 2:** Counts down from the default leave balance, records the number of leave days left.
-* Pros: Able to easily see how many days of leave each staff has left.
-* Cons: Harder to implement, needs to be paired with a command that sets the default leave.
+    * Pros: Able to easily see how many days of leave each staff has left.
+    * Cons: Harder to implement, needs to be paired with a command that sets the default leave.
   
 ### 3.3. Applicant Management System
 
 Each applicant record has the details of name, phone, email, address, interview date, application status and application. 
-The details name, phone, email, address are mandatory. The interview date is wrapped inside a Java
+The details name, phone, email, address are mandatory. 
+<br>
+The interview date is wrapped inside a Java
 [`optional`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html). 
 We have designed it to be as such so that the user can input the interview date at a later time or leave that detail in all cases.
+<br>
 Application Status is a field that contains one of the `PossibleApplicationStatus` which is an enumeration of all possible application statuses namely,
 receieved, processing, accepted, rejected.
+<br>
 An application also contains a `Application`. More about how this is implemented is elaborated below.
 
 #### 3.3.1 Application Management System:
@@ -234,7 +238,7 @@ These are the four possible panel states and the commands that will cause eva to
 * `APPLICANT_LIST`: `list a-`, `adda`
 * `APPLICANT_PROFILE`: `view` (on applicant list)
 
-As explained in the [Logic Component](#212-logic-component), these commands go through the `Logic Manger` and `Model Manager`
+As explained in the [Logic Component](#212-logic-component), these commands go through the `LogicManager` and `ModelManager`
 to be parsed and executed. However, the CommandResult returned to `MainWindow.java` lets Eva know that the panel state has changed.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `view 1` API call on a `staff list`.
@@ -320,7 +324,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User types in `adds n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…[c/COMMENTS]…`
 2.  Eva adds in the staff record
-3.  Eva displays the staff record added to User
+3.  Eva displays the staff record added to User<br>
     Use case ends.
 
 **Extensions**
@@ -331,8 +335,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a2. Eva requests the user to add in data again.
     * 1a3  User enters new data.
 
-    Steps 1a1-1a3 are repeated until the data entered are correct.
-    Use case resumes from step 2.
+    Steps 1a1-1a3 are repeated until the data entered are correct.<br>
+    Use case resumes from step 2.<br>
 
 * 1b. Eva detects invalid email, phone number or comment.
 
@@ -340,7 +344,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b2. Eva requests the user to add in data again.
     * 1b3. User enters new data.
 
-    Steps 1b1-1b3 are repeated until the data entered are correct.
+    Steps 1b1-1b3 are repeated until the data entered are correct.<br>
     Use case resumes from step 2.
 
 ***Use case: UC02 - Deleting a Record of staff***
@@ -349,7 +353,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User types in `dels INDEX`. 
 2. Eva deletes the staff record permanently.
-3. Eva displays the confirmed message of deletion of that staff record.  
+3. Eva displays the confirmed message of deletion of that staff record.  <br>
     Use case ends.
 
 **Extensions**
@@ -359,25 +363,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Eva informs the user that there are no such records.
     * 1a2. Eva requests the user to type the command in again. 
     * 1a3  User types in `dels INDEX` with correct index of staff
-    Steps 1a1-1a3 are repeated until the data entered are correct.
-    Use case resumes from step 2.
+    Steps 1a1-1a3 are repeated until the data entered are correct.<br>
+    Use case resumes from step 2.<br>
 
 * 1b. Eva does not detect any input for <index>.
 
     * 1b1. Eva requests the user to type the command in again. 
     * 1b2. User types in the new command `dels INDEX`.    
-    Steps 1b1-1b3 are repeated until the data entered are correct.
+    Steps 1b1-1b3 are repeated until the data entered are correct.<br>
     Use case resumes from step 2.
 
 ***Use Case UC03 - Edit a Record of staff***
 
 **MSS**
 
-1. User navigates to staff list by command 'list s-' or to staff profile while being on staff list via 'view INDEX'
+1. User navigates to staff list by command `list s-` or to staff profile while being on staff list via 'view INDEX'
 2. Eva shows a list of staffs with indexes beside each staff
-3. User types in edits INDEX [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [c/COMMENT] [id/INTERVIEW_DATE] to edit staff at INDEX
+3. User types in `edits INDEX [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [c/COMMENT] [id/INTERVIEW_DATE]` to edit staff at `INDEX`
 4. Eva updates the staff record according to input information.
-5. Eva displays the confirmed message of editing of staff record.
+5. Eva displays the confirmed message of editing of staff record. <br>
     Use case end.
 
 **Extensions**
@@ -386,21 +390,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. Eva requests the user to type the command in again with an index.  
     * 3a2. User types in the new edit command.    
-    Steps 3a1-3a2 are repeated until the data entered are correct.
-    Use case resumes from step 4.
+    Steps 3a1-3a2 are repeated until the data entered are correct.<br>
+    Use case resumes from step 4. <br> 
     
 * 3b. Eva does not detect any fields in input.
 
     * 3b1. Eva requests the user to type the command in again with at least one field.  
     * 3b2. User types in the new edit command.    
-    Steps 3b1-3b2 are repeated until the data entered are correct.
-    Use case resumes from step 4.
+    Steps 3b1-3b2 are repeated until the data entered are correct.<br>
+    Use case resumes from step 4. <br>
     
 * 3c. Eva detects that user is in a staff profile and input index does not match staff index.
 
     * 3c1. Eva requests the user to type the command in again with the index of the staff whose profile is being viewed.  
     * 3c2. User types in the new edit command.    
-    Steps 3c1-3c2 are repeated until the data entered are correct.
+    Steps 3c1-3c2 are repeated until the data entered are correct.<br>
     Use case resumes from step 4.
 
 
@@ -408,11 +412,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User navigates to staff list by command 'list s-' or to staff profile while being on staff list via 'view INDEX'
+1. User navigates to staff list by command `list s-` or to staff profile while being on staff list via `view INDEX`
 2. Eva shows a list of staffs with indexes beside each staff
 3. User types in `addc INDEX c/ ti/TITLE d/DATE desc/DESCRIPTION`. 
 4. Eva adds the comment to staff record permanently.
-5. Eva displays the confirmed message of addition of comment to that staff record.  
+5. Eva displays the confirmed message of addition of comment to that staff record.  <br>
     Use case ends.
 
 **Extensions**
@@ -422,15 +426,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Eva informs the user that there are no such records.
     * 3a2. Eva requests the user to type the command in again. 
     * 3a3  User types in `addc INDEX c/ ti/TITLE d/Date desc/DESCRIPTION` with correct index of staff
-    Steps 3a1-3a3 are repeated until the data entered are correct.
-    Use case resumes from step 4.
+    Steps 3a1-3a3 are repeated until the data entered are correct.<br>
+    Use case resumes from step 4.<br>
 
 * 3b. Eva does not detect any input for index.
 
     * 3b1. Eva requests the user to type the command in again. 
     * 3b2. User types in the new command `addc INDEX c/ ti/TITLE d/Date desc/DESCRIPTION`.    
-    Steps 3b1-3b3 are repeated until the data entered are correct.
-    Use case resumes from step 4.
+    Steps 3b1-3b3 are repeated until the data entered are correct.<br>
+    Use case resumes from step 4.<br>
     
 * 3c. Eva detects missing fields
 
@@ -438,16 +442,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3c2. Eva requests the user to add in data again.
     * 3c3  User enters new data.
 
-    Steps 3c1-3c3 are repeated until the data entered are correct.
-    Use case resumes from step 4.
+    Steps 3c1-3c3 are repeated until the data entered are correct.<br>
+    Use case resumes from step 4.<br>
     
 * 3d. Eva detects that user is in a staff profile and input index does not match staff index.
 
     * 3d1. Eva requests the user to type the command in again with the index of the staff whose profile is being viewed.  
     * 3d2. User types in the new add comment command.    
-    Steps 3d1-3d2 are repeated until the data entered are correct.
+    Steps 3d1-3d2 are repeated until the data entered are correct.<br>
     Use case resumes from step 4.
-    
+        
 
 ***Use case: UC05 - Deleting a Comment on staff***
 
@@ -457,7 +461,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Eva shows a list of staffs with indexes beside each staff
 3. User types in `delete INDEX c/ ti/TITLE_TO_DELETE`. 
 4. Eva deletes the comment with entered `TITLE_TO_DELETE` from staff record permanently.
-5. Eva displays the confirmed message of deletion of comment from staff record.  
+5. Eva displays the confirmed message of deletion of comment from staff record.  <br>
     Use case ends.
 
 **Extensions**
@@ -467,15 +471,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Eva informs the user that there are no such records.
     * 3a2. Eva requests the user to type the command in again. 
     * 3a3  User types in `delete INDEX c/ ti/TITLE_TO_DELETE` with correct index of staff
-    Steps 3a1-3a3 are repeated until the data entered are correct.
-    Use case resumes from step 4.
+    Steps 3a1-3a3 are repeated until the data entered are correct.<br>
+    Use case resumes from step 4.<br>
 
 * 3b. Eva does not detect any input for index.
 
     * 3b1. Eva requests the user to type the command in again. 
     * 3b2. User types in the new command `delete INDEX c/ ti/TITLE_TO_DELETE`.    
-    Steps 3b1-3b2 are repeated until the data entered are correct.
-    Use case resumes from step 4.
+    Steps 3b1-3b2 are repeated until the data entered are correct.<br>
+    Use case resumes from step 4.<br>    
     
 * 3c. Eva detects missing fields
 
@@ -483,25 +487,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3c2. Eva requests the user to add in data again.
     * 3c3  User enters new data.
 
-    Steps 3c1-3c3 are repeated until the data entered are correct.
-    Use case resumes from step 4.
+    Steps 3c1-3c3 are repeated until the data entered are correct.<br>
+    Use case resumes from step 4.<br>    
     
 * 3d. Eva detects that user is in a staff profile and input index does not match staff index.
 
     * 3d1. Eva requests the user to type the command in again with the index of the staff whose profile is being viewed.  
-    * 3d2. User types in the new delete comment command.    
-    Steps 3d1-3d2 are repeated until the data entered are correct.
+    * 3d2. User types in the new delete comment command.    <br>
+    Steps 3d1-3d2 are repeated until the data entered are correct.<br>
     Use case resumes from step 4.
 
 ***Use case: UC06 - Editing a Comment on staff***
 
 **MSS**
 
-1. User navigates to staff list by command 'list s-' or to staff profile while being on staff list via 'view INDEX'
+1. User navigates to staff list by command `list s-` or to staff profile while being on staff list via `view INDEX`
 2. Eva shows a list of staffs with indexes beside each staff
 3. User types in `editc INDEX c/ ti/TITLE_OF_COMMENT_TO_CHANGE d/DATE_OF_COMMENT_TO_CHANGE desc/NEW_DESCRIPTION`. 
 4. Eva edits the comment to staff record permanently.
-5. Eva displays the confirmed message of edition of comment to that staff record.  
+5. Eva displays the confirmed message of edition of comment to that staff record. <br> 
     Use case ends.
 
 **Extensions**
@@ -510,16 +514,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. Eva informs the user that there are no such records.
     * 3a2. Eva requests the user to type the command in again. 
-    * 3a3  User types in `editc INDEX c/ ti/TITLE_OF_COMMENT_TO_CHANGE d/DATE_OF_COMMENT_TO_CHANGE desc/NEW_DESCRIPTION` with correct index of staff
-    Steps 3a1-3a3 are repeated until the data entered are correct.
-    Use case resumes from step 4.
+    * 3a3  User types in `editc INDEX c/ ti/TITLE_OF_COMMENT_TO_CHANGE d/DATE_OF_COMMENT_TO_CHANGE desc/NEW_DESCRIPTION`
+     with correct index of staff
+    Steps 3a1-3a3 are repeated until the data entered are correct.<br>
+    Use case resumes from step 4.<br>
 
 * 3b. Eva does not detect any input for index.
 
     * 3b1. Eva requests the user to type the command in again. 
-    * 3b2. User types in the new command `editc INDEX c/ ti/TITLE_OF_COMMENT_TO_CHANGE d/DATE_OF_COMMENT_TO_CHANGE desc/NEW_DESCRIPTION`.    
-    Steps 3b1-3b3 are repeated until the data entered are correct.
-    Use case resumes from step 4.
+    * 3b2. User types in the new command `editc INDEX c/ ti/TITLE_OF_COMMENT_TO_CHANGE d/DATE_OF_COMMENT_TO_CHANGE desc/NEW_DESCRIPTION`.
+        
+    Steps 3b1-3b3 are repeated until the data entered are correct.<br>
+    Use case resumes from step 4.<br>    
     
 * 3c. Eva detects missing fields
 
@@ -527,16 +533,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3c2. Eva requests the user to add in data again.
     * 3c3  User enters new data.
 
-    Steps 3c1-3c3 are repeated until the data entered are correct.
-    Use case resumes from step 4.
+    Steps 3c1-3c3 are repeated until the data entered are correct.<br>
+    Use case resumes from step 4.<br>
     
 * 3d. Eva detects that user is in a staff profile and input index does not match staff index.
 
     * 3d1. Eva requests the user to type the command in again with the index of the staff whose profile is being viewed.  
     * 3d2. User types in the new edit comment command.    
-    Steps 3d1-3d2 are repeated until the data entered are correct.
-    Use case resumes from step 4.
     
+    Steps 3d1-3d2 are repeated until the data entered are correct.<br>
+    Use case resumes from step 4.
 
 ***Use case: UC07 - Adding a leave record to staff***
 
@@ -545,6 +551,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User types in `addl INDEX l/d/DATE [d/DATE]`
 2.  Eva adds in the leave to staff record based on index
 3.  Eva displays the updated staff to User
+    <br>
     Use case ends.
 
 **Extensions**
@@ -555,8 +562,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a2. Eva requests the user to add in data again.
     * 1a3  User enters new data.
 
-    Steps 1a1-1a3 are repeated until the data entered are correct.
-    Use case resumes from step 2.
+    Steps 1a1-1a3 are repeated until the data entered are correct.<br>
+    Use case resumes from step 2.<br>
 
 * 1b. Eva detects invalid date.
 
@@ -564,15 +571,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b2. Eva requests the user to add in data again.
     * 1b3. User enters new data.
 
-    Steps 1b1-1b3 are repeated until the data entered are correct.
-    Use case resumes from step 2.
+    Steps 1b1-1b3 are repeated until the data entered are correct.<br>
+    Use case resumes from step 2.<br>
     
 * 1c. Eva detects conflict in leave dates within the specified staff record.
 
     * 1a1. Eva informs the user that there are conflicting records.
     * 1a2. Eva requests the user to type the command in again. 
     * 1a3  User types in a new leave date.
-    Steps 1a1-1a3 are repeated until the data entered are correct.
+    Steps 1a1-1a3 are repeated until the data entered are correct.<br>
     Use case resumes from step 2.
 
 ***Use case: UC08 - Deleting a leave record from staff***
@@ -582,6 +589,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User types in `dell INDEX d/DATE`
 2.  Eva deletes the leave containing specified date from index specified staff record
 3.  Eva displays the updated staff to User
+<br>
     Use case ends.
 
 **Extensions**
@@ -592,8 +600,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a2. Eva requests the user to add in data again.
     * 1a3  User enters new data.
 
-    Steps 1a1-1a3 are repeated until the data entered are correct.
-    Use case resumes from step 2.
+    Steps 1a1-1a3 are repeated until the data entered are correct.<br>
+    Use case resumes from step 2. <br>
 
 * 1b. Eva detects invalid date.
 
@@ -601,25 +609,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b2. Eva requests the user to add in command again.
     * 1b3. User enters new command.
 
-    Steps 1b1-1b3 are repeated until the command entered is correct.
-    Use case resumes from step 2.
+    Steps 1b1-1b3 are repeated until the command entered is correct. <br>
+    Use case resumes from step 2.<br>
     
 * 1c. Eva detects no leave in index specified staff record containing specified date.
 
     * 1a1. Eva informs the user that there are no exiting leave records containing specified date.
     * 1a2. Eva requests the user to type the command in again. 
     * 1a3  User types in a new leave date.
-    Steps 1a1-1a3 are repeated until the data entered are correct.
-    Use case resumes from step 2.
+    Steps 1a1-1a3 are repeated until the data entered are correct.<br>
+    Use case resumes from step 2.<br>
 
 ***Use case: UC09 - Adding a record of applicant***
 
 **MSS**
 
-1.  User types in addapplicant n/<applicant_name> e/<email> p/<phoneno> a/<address> id/22/11/2020 
+1.  User types in `addapplicant n/<applicant_name> e/<email> p/<phoneno> a/<address> id/22/11/2020` 
 2.  Eva adds in the applicant record
-3.  Eva displays the applicant record added to User
-    Use case ends.
+3.  Eva displays the applicant record added to User.
+<br>    
+Use case ends.
 
 **Extensions**
 
@@ -631,14 +640,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Steps 1a1-1a3 are repeated until the data entered are correct.
     Use case resumes from step 2.
+<br>
 
 * 1b. Eva detects invalid email, phone number or interview date.
 
     * 1b1. Eva shows the valid format to key in the relevant field.
     * 1b2. Eva requests the user to add in data again.
-    * 1b3. User enters new data.
-
-    Steps 1b1-1b3 are repeated until the data entered are correct.
+    * 1b3. User enters new data. <br>
+    Steps 1b1-1b3 are repeated until the data entered are correct. <br>
     Use case resumes from step 2.
     
 ***Use case: UC10 - Deleting a Record of Applicant***
@@ -647,34 +656,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User navigates to applicant list by command 'list -applicants'.
 2. Eva shows a list of applicants with indexes beside each applicant. 
-3. User types in delapplicant INDEX.
+3. User types in `delapplicant INDEX`.
 4. Eva deletes the applicant record and all related information permanently.
 5. Eva displays the confirmed message of deletion of that applicant record.  
+<br>
     Use case ends.
 
 **Extensions**
 
 * 2a. Eva does not have any applicant records.
 
-    * 2a1. Eva shows error message if user types delapplication 1 as there are no applciant records.
+    * 2a1. Eva shows error message if user types `delapplication 1` as there are no applciant records. <br>
     Use case ends.
-
+    <br>
 * 3a. Eva does not detect any input for index.
 
     * 3b1. Eva requests the user to type the command in again in the correct format.  
-    * 3b2. User types in the new applicant_name of delete 1.    
-    Steps 3b1-3b2 are repeated until the data entered are correct.
+    * 3b2. User types in the new `applicant_name` of delete 1.    
+    Steps 3b1-3b2 are repeated until the data entered are correct. <br>
     Use case resumes from step 4.
     
 ***Use Case UC11 - Edit a Record of applicant***
 
 **MSS**
 
-1. User navigates to applicant list by command 'list a-' or to applicant profile while being on applicant list via 'view INDEX'
+1. User navigates to applicant list by command `list a-` or to applicant profile while being on applicant list via `view INDEX`
 2. Eva shows a list of applicants with indexes beside each applicant
-3. User types in edita INDEX [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [c/COMMENT] [id/INTERVIEW_DATE] to edit applicant at INDEX
+3. User types in `edita INDEX [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [c/COMMENT] [id/INTERVIEW_DATE]` to edit applicant at INDEX
 4. Eva updates the applicant record according to input information.
-5. Eva displays the confirmed message of editing of applicant record.
+5. Eva displays the confirmed message of editing of applicant record. <br>
     Use case end.
 
 **Extensions**
@@ -683,48 +693,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. Eva requests the user to type the command in again in the correct format.  
     * 3a2. User types in the new edit command.    
-    Steps 3a1-3a2 are repeated until the data entered are correct.
+    Steps 3a1-3a2 are repeated until the data entered are correct. <br>
     Use case resumes from step 4.
+    
     
 * 3b. Eva does not detect any fields in input.
 
     * 3b1. Eva requests the user to type the command in again with at least one field.  
     * 3b2. User types in the new edit command.    
-    Steps 3b1-3b2 are repeated until the data entered are correct.
+    Steps 3b1-3b2 are repeated until the data entered are correct. <br>
     Use case resumes from step 4.
+    
     
 * 3c. Eva detects that user is in a applicant profile and input index does not match applicant index.
 
     * 3c1. Eva requests the user to type the command in again with the index of the applicant whose profile is being viewed.  
     * 3c2. User types in the new edit command.    
-    Steps 3c1-3c2 are repeated until the data entered are correct.
+    Steps 3c1-3c2 are repeated until the data entered are correct. <br>
     Use case resumes from step 4.
+
 
 ***Use Case UC12 - Set the application status of an applicant***
 
 **MSS**
-1. User types in setappstatus 1 as/<appstatus>
-2. Eva shows all matched staff records to the <applicant_name> with indexes beside.
+1. User types in `setappstatus 1 as/<appstatus>`
+2. Eva shows all matched staff records to the` <applicant_name>` with indexes beside.
 3. User types in the index to delete
 4. Eva deletes the applicant record and all related information permanently.
-5. Eva displays the confirmed message of deletion of that applicant record.  
+5. Eva displays the confirmed message of deletion of that applicant record.  <br>
     Use case ends.
 
 **Extensions**
 
-* 1b. Eva does not detect any input for index or appstatus.
+* 1b. Eva does not detect any input for index or application status.
 
     * 1b1. Eva requests the user to type the command in again in the correct format. 
-    * 1b2. User types in the setappstatus INDEX <app_status>.    
-    Steps 1b1-1b3 are repeated until the data entered are correct.
+    * 1b2. User types in the `setappstatus INDEX <app_status>`.    
+    Steps 1b1-1b3 are repeated until the data entered are correct. <br>
     Use case resumes from step 2.
 
 ***Use case: UC13 - Adding an application to an applicant***
 
 **MSS**
 
-1. User types in `addapp <index_of_applicant> <filepath_of_resume>`
-2. Eva inserts the resume data into storage, under the applicant indicated.
+1. User types in `addapp <index_of_applicant> <filepath_of_resume>` 
+2. Eva inserts the resume data into storage, under the applicant indicated. <br>
    Use case ends.
 
 **Extensions**
@@ -733,10 +746,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Eva informs the user that the file cannot be found.
     Use case ends.
-    
+    <br>
 * 1b. Eva does not find the applicant specified.
 
-    * 1b1. Eva informs the user that the applicant's index specified cannot be found.
+    * 1b1. Eva informs the user that the applicant's index specified cannot be found. <br>
     Use case ends.
 
 ***Use case: UC14 - Deleting an application from an applicant***
@@ -745,25 +758,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User types in `delapp <index_of_applicant>`
 
-2. Eva removes the resume data from the applicant indicated.
+2. Eva removes the resume data from the applicant indicated. <br>
    Use case ends.
 
 **Extensions**
 
 * 1a. Eva does not find the applicant specified.
 
-    * 1a1. Eva informs the user that the applicant's index specified cannot be found.
+    * 1a1. Eva informs the user that the applicant's index specified cannot be found. <br>
     Use case ends.
 
 ***Use case: UC15 - Adding a Comment to applicant***
 
 **MSS**
 
-1. User navigates to applicant list by command 'list a-' or to applicant profile while being on applicant list via 'view INDEX'
+1. User navigates to applicant list by command `list a-` or to applicant profile while being on applicant list via `view INDEX`
 2. Eva shows a list of applicants with indexes beside each applicant.
 3. User types in `addc INDEX c/ ti/TITLE d/DATE desc/DESCRIPTION`. 
 4. Eva adds the comment to applicant record permanently.
 5. Eva displays the confirmed message of addition of comment to that applicant record.  
+<br>
     Use case ends.
 
 **Extensions**
@@ -773,24 +787,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Eva informs the user that there are no such records.
     * 3a2. Eva requests the user to type the command in again. 
     * 3a3  User types in `addc INDEX c/ ti/TITLE d/Date desc/DESCRIPTION` with correct index of applicant
-    Steps 3a1-3a3 are repeated until the data entered are correct.
+    Steps 3a1-3a3 are repeated until the data entered are correct. <br>
     Use case resumes from step 4.
+
 
 * 3b. Eva does not detect any input for index.
 
     * 3b1. Eva requests the user to type the command in again. 
     * 3b2. User types in the new command `addc INDEX c/ ti/TITLE d/Date desc/DESCRIPTION`.    
     Steps 3b1-3b3 are repeated until the data entered are correct.
-    Use case resumes from step 4.
+    Use case resumes from step 4. <br>
     
 * 3c. Eva detects missing fields
 
     * 3c1. Eva shows the correct format to key in data.
     * 3c2. Eva requests the user to add in data again.
     * 3c3  User enters new data.
-
-    Steps 3c1-3c3 are repeated until the data entered are correct.
+    Steps 3c1-3c3 are repeated until the data entered are correct. <br>
     Use case resumes from step 4.
+    <br>
     
 * 3d. Eva detects that user is in a applicant profile and input index does not match applicant index.
 
@@ -804,11 +819,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User navigates to applicant list by command 'list a-' or to applicant profile while being on applicant list via 'view INDEX'
+1. User navigates to applicant list by command `list a-` or to applicant profile while being on applicant list via `view INDEX`
 2. Eva shows a list of applicants with indexes beside each applicant
 3. User types in `delete INDEX c/ ti/TITLE_TO_DELETE`. 
 4. Eva deletes the comment with entered `TITLE_TO_DELETE` from applicant record permanently.
 5. Eva displays the confirmed message of deletion of comment from applicant record.  
+<br>
     Use case ends.
 
 **Extensions**
@@ -818,15 +834,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Eva informs the user that there are no such records.
     * 3a2. Eva requests the user to type the command in again. 
     * 3a3  User types in `delete INDEX c/ ti/TITLE_TO_DELETE` with correct index of applicant
-    Steps 3a1-3a3 are repeated until the data entered are correct.
+    Steps 3a1-3a3 are repeated until the data entered are correct.<br>
     Use case resumes from step 4.
-
+    <br>
+    
 * 3b. Eva does not detect any input for index.
 
     * 3b1. Eva requests the user to type the command in again. 
     * 3b2. User types in the new command `delete INDEX c/ ti/TITLE_TO_DELETE`.    
-    Steps 3b1-3b2 are repeated until the data entered are correct.
+    Steps 3b1-3b2 are repeated until the data entered are correct. <br>
     Use case resumes from step 4.
+    <br>
     
 * 3c. Eva detects missing fields
 
@@ -834,25 +852,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3c2. Eva requests the user to add in data again.
     * 3c3  User enters new data.
 
-    Steps 3c1-3c3 are repeated until the data entered are correct.
+    Steps 3c1-3c3 are repeated until the data entered are correct. <br>
     Use case resumes from step 4.
+    <br>
     
 * 3d. Eva detects that user is in a applicant profile and input index does not match applicant index.
 
     * 3d1. Eva requests the user to type the command in again with the index of the applicant whose profile is being viewed.  
     * 3d2. User types in the new delete comment command.    
-    Steps 3d1-3d2 are repeated until the data entered are correct.
+    Steps 3d1-3d2 are repeated until the data entered are correct. <br>
     Use case resumes from step 4.
 
 ***Use case: UC17 - Editing a Comment on applicant***
 
 **MSS**
 
-1. User navigates to applicant list by command 'list a-' or to applicant profile while being on applicant list via 'view INDEX'
+1. User navigates to applicant list by command `list a-` or to applicant profile while being on applicant list via `view INDEX`
 2. Eva shows a list of applicants with indexes beside each applicant
 3. User types in `editc INDEX c/ ti/TITLE_OF_COMMENT_TO_CHANGE d/DATE_OF_COMMENT_TO_CHANGE desc/NEW_DESCRIPTION`. 
 4. Eva edits the comment to applicant record permanently.
 5. Eva displays the confirmed message of edition of comment to that applicant record.  
+<br>
     Use case ends.
 
 **Extensions**
@@ -862,15 +882,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Eva informs the user that there are no such records.
     * 3a2. Eva requests the user to type the command in again. 
     * 3a3  User types in `editc INDEX c/ ti/TITLE_OF_COMMENT_TO_CHANGE d/DATE_OF_COMMENT_TO_CHANGE desc/NEW_DESCRIPTION` with correct index of applicant
-    Steps 3a1-3a3 are repeated until the data entered are correct.
+    Steps 3a1-3a3 are repeated until the data entered are correct. <br>
     Use case resumes from step 4.
+
 
 * 3b. Eva does not detect any input for index.
 
     * 3b1. Eva requests the user to type the command in again. 
     * 3b2. User types in the new command `editc INDEX c/ ti/TITLE_OF_COMMENT_TO_CHANGE d/DATE_OF_COMMENT_TO_CHANGE desc/NEW_DESCRIPTION`.    
-    Steps 3b1-3b3 are repeated until the data entered are correct.
+    Steps 3b1-3b3 are repeated until the data entered are correct. <br>
     Use case resumes from step 4.
+    
     
 * 3c. Eva detects missing fields
 
@@ -878,14 +900,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3c2. Eva requests the user to add in data again.
     * 3c3  User enters new data.
 
-    Steps 3c1-3c3 are repeated until the data entered are correct.
+    Steps 3c1-3c3 are repeated until the data entered are correct. <br>
     Use case resumes from step 4.
+    
     
 * 3d. Eva detects that user is in a applicant profile and input index does not match applicant index.
 
     * 3d1. Eva requests the user to type the command in again with the index of the applicant whose profile is being viewed.  
     * 3d2. User types in the new edit comment command.    
     Steps 3d1-3d2 are repeated until the data entered are correct.
+    <br>
     Use case resumes from step 4.
     
 
@@ -895,6 +919,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User types in `list s-`
 2. Eva shows all staff records with indexes beside.
+<br>
     Use case ends.
 
 **Extensions**
@@ -902,6 +927,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Eva does not find any staff records.
 
     * 1a1. Eva informs the user that no records exist.
+    <br>
     Use case ends.
 
 ***Use case: UC19 - list all applicant records***
@@ -910,6 +936,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User types in `list a-`
 2. Eva shows all applicant records with indexes beside.
+<br>
     Use case ends.
 
 **Extensions**
@@ -917,6 +944,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Eva does not find any applicant records.
 
     * 1a1. Eva informs the user that no records exist.
+    <br>
     Use case ends.
 
 ***Use case: UC20 - find staff records by name***
@@ -925,6 +953,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User types in `find s- Alex`
 2. Eva shows all staff records whose name contains "Alex" with indexes beside.
+<br>
     Use case ends.
     
 **Extensions**
@@ -932,6 +961,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Eva does not find any applicant records with the given name.
 
     * 1a1. Eva informs the user that no records exist.
+    <br>
     Use case ends.
 
 ***Use case: UC21 - find applicant records by name***
@@ -939,14 +969,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User types in `find a- Alex`
-2. Eva shows all applicant records whose name contains "Alex" with indexes beside.<br>
+2. Eva shows all applicant records whose name contains "Alex" with indexes beside.
+<br>
     Use case ends.
 
 **Extensions**
 
 * 1a. Eva does not find any applicant records with the given name.
 
-    * 1a1. Eva informs the user that no records exist.<br>
+    * 1a1. Eva informs the user that no records exist.
+    <br>
     Use case ends.
 
 ***Use case: UC22 - viewing staff profile***
@@ -954,6 +986,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User <u>opens staff list (UC22)</u>
 2. User types in `view 1`
 3. Eva shows Staff profile of staff at index 1 on staff list.
+    <br>
     Use case ends.
 
 **Extensions**
@@ -965,6 +998,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a3. User enters new command.
 
     Steps 1a1-1a3 are repeated until the command entered is correct.
+    <br>
     Use case resumes from step 3.
     
 * 1b. Eva detects that user is on staff profile panel.
@@ -973,6 +1007,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b2. User enters new command.
     
     Steps 1b1-1b3 are repeated until the command entered is from the correct panel.
+    <br>
     Use case resumes from step 3.
 
 ***Use case: UC23 - viewing applicant profile***
@@ -1070,7 +1105,7 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double clicking the jar file.<br>
         Expected: App launches into most recently viewed list.
 
-### 6.3 Add staff
+### 6.2 Add staff
 
 1. Adding a staff record
     
@@ -1084,7 +1119,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No staff is added as this record has the same name as the one entered in test case 1.
 
 
-### 6.4 Adding/deleting a comment
+### 6.3 Adding/deleting a comment
 
 1. Adding a comment to a staff while all staffs are being shown in a list.
 
@@ -1164,7 +1199,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Similar to (3) and (4), just that prerequisite is instead viewing applicant profile with command `view 1` on applicant list.
            
-### 6.5 Adding leave
+### 6.4 Adding leave
 
 1. Adding a leave to a staff on staff list
 
@@ -1192,7 +1227,7 @@ testers are expected to do more *exploratory* testing.
     1. Test cases same as previous.
     
 
-### 6.6 Saving data
+### 6.5 Saving data
 
 Eva generates a `data` directory to store databases and user preferences.
 
@@ -1212,7 +1247,7 @@ Eva generates a `data` directory to store databases and user preferences.
    Expected: Eva would not load staff database and leave staff list empty.
 
 
-### 6.7 Finding staffs and applicants
+### 6.6 Finding staffs and applicants
 
 1. Find an applicant with the given name.
 
