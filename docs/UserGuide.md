@@ -139,10 +139,10 @@ Note that this autocompletion can only be triggered at the end of input string e
 * Pressing `Enter` will lock in your current selection and take you out of Autocomplete mode.
 
 ### Command History
-Similar to other command lines, Modduke supports a command history function where pressing the up or down keys brings 
+Similar to other command lines, Modduke supports a command history function where pressing the up or down keys brings
 users back to previous successful commands.
 
-The `Up` key brings users to previous command wheras the `Down` key brings users to the next command in the command history 
+The `Up` key brings users to previous command wheras the `Down` key brings users to the next command in the command history
 queue.
 
 * Note that the commands must be successful to be logged into command history and that command history only tracks commands
@@ -183,7 +183,7 @@ Edits an existing contact in Modduke.
 
 Format: `contact edit CONTACT_NAME [n/NEW_NAME] [p/PHONE] [e/EMAIL]`
 
-Note(s): 
+Note(s):
 * At least one optional field must be provided
 
 Examples:
