@@ -427,8 +427,8 @@ A new method `MainWindow#fillInnerParts2` will change the contents of the Ui to 
 * Implementation still buggy: Ui does not update accordingly for student records.
 
 Alternative implementations considered:
-* Use FXML's tab feature to display class records:
-    - Does not support future expansion when sessions is implemented - there may be an indefinite amount of sessions created.
+* Use FXML's tab feature to display class records: Does not support future expansion when sessions is implemented - 
+there may be an indefinite amount of sessions created.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -943,4 +943,24 @@ The below testcases assume that you are in a session and have 7 students inside 
 
 ## **Appendix: Effort**
 
->>>>>>> master
+The process of morphing AddressBook into TAskmaster was rather challenging, and we have successfully to deal with the following dififculties:
+
+1. Integration Issues
+    
+    As each of us worked on features that were closely linked to each other, our team had to ensure that each of us followed sound
+    software engineering principles, especially the Open-Closed Principle. At every team meeting, we ensured that all of us agreed
+    on a particular design pattern before implementing each of our assigned features, and that our design pattern has sufficient
+    functional and data abstraction.
+    
+    The features had to be done sequentially, which made the integration much more challenging. For example, `StudentRecord` and `StudentRecordList`
+    had to be completed before `Session` and `SessionList` was implemented. Only after the feature for adding sessions have been created, could the
+    features for storing session data be implemented. Finally, as the GUI depended on the backend logic of `StudentRecord` and `Session` to be complete,
+    incremental additions to GUI had to always be completed last in the milestone.
+    
+    As a result, the design choices agreed upon at the start of every milestone had to be absolutely sound, as changing design patterns in the middle 
+    of a milestone could potentially have cascading repercussions down the chain of workflow.
+
+2. Difficulty of writing automated tests
+
+    Some features, especially the GUI, had difficulties implementing unit tests. As a result, testing for the GUI had to be done manually and through the
+    debugger. A lot of effort had to be made on Jin Feng's part to ensure that the testing was comprehensive.
