@@ -6,7 +6,7 @@
   * [1.2 Understanding the User Guide](#12-understanding-the-user-guide)
 - [2. Quick start](#2-quick-start)
   * [2.1 Setting up Reeve](#21-setting-up-reeve)
-  * [2.2 Making sense of Reeve's layout](#22-making-sense-of-reeves-layout-by-alex)
+  * [2.2 Making sense of Reeve's layout (BY: Alex Chua)](#22-making-sense-of-reeves-layout-by-alex)
 - [3. Features](#3-features)
   * [3.1 Understanding the command format](#31-understanding-the-command-format)
   * [3.2 General features](#32-general-features)
@@ -110,7 +110,7 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 
 1. Refer to the [Features](#3-features) section below for details of each command.
 
-### 2.2 Making sense of Reeve's layout (By: Alex)
+### 2.2 Making sense of Reeve's layout (By: Alex Chua)
 
 This section serves to help you understand the layout of **Reeve**. Please refer to the figure below (Figure 2) for help.
 
@@ -241,7 +241,7 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [
 
 </div>
 
-Example:
+Examples:
 * Suppose you want to add a student without any additional details.
     * You can use something like `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020`.
     * You should see a screen similar to the one shown below (Figure 6).
@@ -474,17 +474,17 @@ To view schedule:
 2.  The schedule panel, as labelled in Figure 13, will appear with all your classes for the week of 2nd November 2020 populated.
 
     ![Schedule Step 2](images/ScheduleStep2.png)
-    <div align="center">Figure 12: Shows the schedule panel in the weekly format</div><br>
+    <div align="center">Figure 13: Shows the schedule panel in the weekly format</div><br>
 
-3.  You can easily view you classes for the week. The Date bar labelled in the Figure __ below shows the day of the week as well as the date for your reference.
-    The Time bar in Figure __ shows the time in 24-hour clock format with 1-hour intervals. 
-    The Classes labelled in the figure below are colored brown to match the color of Reeve for a better visual experience.
-    Furthermore, the name of the student that you are tutoring during that slot is labelled for you to identify classes easily.
-    The red bar in Figure 13 indicates your current time.
+3.  You can easily view you classes for the week. The Date bar labelled in the Figure 14 below shows the day of the week as well as the date for your reference.
+    The Time bar in Figure 14 shows the time in 24-hour clock format with 1-hour intervals. 
+    The Classes labelled in Figure 14 are colored brown to match the color of Reeve for a better visual experience.
+    Furthermore, the name of the student that you are tutoring during that slot will be labelled for you to identify classes easily.
+    The red bar in Figure 14 indicates your current time.
     With the date, time and name of student shown in one view, you could plan your classes without a hassle.
 
     ![Schedule Step 3](images/ScheduleStep3.png)
-    <div align="center">Figure 13: Shows various component of your schedule</div><br>
+    <div align="center">Figure 14: Shows various component of your schedule</div><br>
 
 <div markdown="block" class="alert alert-info">
 :information_source: You could also click on the **Schedule** tab in the **Menu** to open or close the schedule. 
@@ -543,10 +543,10 @@ Example:
 
 Expected outcome:
 
-The following figure (Figure 14) shows the result of recording "How do I pass CS2101?" as a new question from Bernice Yu.
+The following figure (Figure 15) shows the result of recording "How do I pass CS2101?" as a new question from Bernice Yu.
 
 ![QuestionAddExpectedOutcome](images/QuestionAddExpectedOutcome.png)
-<div align="center">Figure 14: After entering add question command</div><br>
+<div align="center">Figure 15: After entering add question command</div><br>
 
 ##### 3.4.1.2 Resolving a question: `question solve`
 
@@ -574,10 +574,10 @@ Example:
 
 Expected outcome:
 
-The following figure (Figure 15) shows the result of resolving Bernice's second question.
+The following figure (Figure 16) shows the result of resolving Bernice's second question.
 
 ![QuestionSolveExpectedOutcome](images/QuestionSolveExpectedOutcome.png)
-<div align="center">Figure 15: After entering solve question command</div><br>
+<div align="center">Figure 16: After entering solve question command</div><br>
 
 ##### 3.4.1.3 Deleting a question: `question delete`
 
@@ -598,10 +598,10 @@ Example:
 
 Expected outcome:
 
-The following figure (Figure 16) shows the result of deleting Bernice's second question.
+The following figure (Figure 17) shows the result of deleting Bernice's second question.
 
 ![QuestionDeleteExpectedOutcome](images/QuestionDeleteExpectedOutcome.png)
-<div align="center">Figure 16: After entering delete question command</div><br>
+<div align="center">Figure 17: After entering delete question command</div><br>
 
 #### 3.4.2 Recording exams of a student: `exam` (By: Hogan)
 
@@ -650,10 +650,10 @@ Example:
 * Suppose you want to add a exam record to a student to monitor his academic progress.
     * You can use `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60` to add a new exam record to the first student in the displayed student list on the main panel
     with exam name `Mid Year 2020`, exam date `08/12/2020` and score `40/60` so that you can keep track of this particular exam record.
-    * You should see a screen similar to the one below (Figure 17) after entering the above command.
+    * You should see a screen similar to the one below (Figure 18) after entering the above command.
 
     ![AddExamCommandExpectedOutcomeUG](images/AddExamCommandExpectedOutcomeUG.png)
-    <div align="center">Figure 17: After entering add exam command</div><br>
+    <div align="center">Figure 18: After entering add exam command</div><br>
 
 ##### 3.4.2.2 Deleting an exam record for a student: `exam delete`
 
@@ -673,16 +673,16 @@ Format: `exam delete STUDENT_INDEX i/EXAM_INDEX`
 
 Example:
 * Suppose you have an outdated exam record or an exam record with wrong details such as the exam date or score and you wish to remove this exam record.
-    * For instance, if your current list looks similar to the figure below (Figure 18).
+    * For instance, if your current list looks similar to the figure below (Figure 19).
 
     ![DeleteExamExpectedOutcomeBefore](images/DeleteExamExpectedOutcomeBefore.png)
-    <div align="center">Figure 18: Before entering delete exam command</div><br>
+    <div align="center">Figure 19: Before entering delete exam command</div><br>
 
     * You can use `exam delete 1 i/1` to delete the first exam record on the first student in the displayed student list on the main panel. 
-    * You should see that you have successfully deleted the first exam record of the first student as shown below (Figure 19) after entering the above command.
+    * You should see that you have successfully deleted the first exam record of the first student as shown below (Figure 20) after entering the above command.
 
     ![DeleteExamExpectedOutcomeAfter](images/DeleteExamExpectedOutcomeAfter.png)
-    <div align="center">Figure 19: After entering delete exam command</div><br>
+    <div align="center">Figure 20: After entering delete exam command</div><br>
 
 ##### 3.4.2.3 Viewing exam statistics of a student: `exam stats`
 
@@ -702,10 +702,10 @@ Format: `exam stats STUDENT_INDEX`
 Examples:
 * Suppose you are trying to view the exam statistics of a particular student to view his academic progress so far in terms of his exam scores.
     * You can use `exam stats 1` to view the exam statistics of the first student in the displayed student list on the main panel.
-    * You should see a screen similar to the one below (Figure 20) when the above command is entered.
+    * You should see a screen similar to the one below (Figure 21) when the above command is entered.
 
     ![ExamStatsCommandExpectedOutcomeUG](images/ExamStatsCommandExpectedOutcomeUG.png)
-    <div align="center">Figure 20: Before entering exam stats command</div><br>
+    <div align="center">Figure 21: Before entering exam stats command</div><br>
 
 <div markdown="block" class="alert alert-info">
 
@@ -740,10 +740,10 @@ Examples:
 lesson on 31 Oct 2020, where he was absent, and the tutor has no feedback for him.
 
 Expected outcome:
-The following figure (Figure 21) shows the expected outcome after executing the above example.
+The following figure (Figure 22) shows the expected outcome after executing the above example.
 
 ![AddAttendanceExpectedOutcome](images/AddAttendanceExpectedOutcome.png)
-<div align="center">Figure 21: After entering add attendance command</div><br>
+<div align="center">Figure 22: After entering add attendance command</div><br>
 
 ##### 3.4.3.2 Deleting an attendance record for a student: `attendance delete`
 
@@ -758,18 +758,18 @@ Example:
 * `attendance delete 1 d/06/05/2010` deletes the attendance with the date 6 Apr 2020 from the 1st student in the displayed students list in **Reeve**.
 
 Expected outcome:
-The following figure (Figure 22) shows the expected outcome after executing the above example.
+The following figure (Figure 23) shows the expected outcome after executing the above example.
 
 ![DeleteAttendanceExpectedOutcome](images/DeleteAttendanceExpectedOutcome.png)
-<div align="center">Figure 22: After entering delete attendance command</div><br>
+<div align="center">Figure 23: After entering delete attendance command</div><br>
 
 ### 3.5 Notebook feature (By: Choon Siong)
 
 You can store notes containing small amounts of information inside the notebook. This is useful when you want to store information or details that is not related to any student and cannot do so anywhere else in Reeve.
-You should see the notes on the bottom right hand side of Reeve similar to the display shown below (Figure 23).
+You should see the notes on the bottom right hand side of Reeve similar to the display shown below (Figure 24).
 
 ![Location of notes panel](images/screenshots/Notes.png)
-<div align="center">Figure 23: Location of notes panel</div><br>
+<div align="center">Figure 24: Location of notes panel</div><br>
 
 #### 3.5.1 Adding a note `note add`
 
@@ -785,10 +785,10 @@ Example:
   
     * You can use `note add t/things to do d/mark practice papers` to add a new note with title `things to do` and description `mark practice papers` so that you can remind yourself later.
      
-    * You should see a screen similar to the screen below (Figure 24) when the above command is entered.
+    * You should see a screen similar to the screen below (Figure 25) when the above command is entered.
     
-    ![Adding a note](images/screenshots/Adding a note.png)
-    <div align="center">Figure 24: After entering add note command</div><br>
+    ![Adding a note](images/screenshots/AddingNote.png)
+    <div align="center">Figure 25: After entering add note command</div><br>
 
 #### 3.5.2 Editing a note `note edit`
 
