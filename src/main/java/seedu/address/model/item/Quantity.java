@@ -3,6 +3,8 @@ package seedu.address.model.item;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.item.exceptions.OverflowQuantityException;
+
 /**
  * Represents a Item's quantity in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidQuantity(String)}
@@ -51,9 +53,13 @@ public class Quantity implements Comparable<Quantity> {
      * @param quantity another quantity
      * @return Quantity of both quantity's value added up
      */
-    public Quantity add(Quantity quantity) {
+    public Quantity add(Quantity quantity) throws OverflowQuantityException {
         int value = Integer.parseInt(this.value) + Integer.parseInt(quantity.value);
-        return new Quantity(Integer.toString(value));
+        if (isValidQuantity(Integer.toString(value))) {
+            return new Quantity(Integer.toString(value));
+        } else {
+            throw new OverflowQuantityException("Quantity cannot exceed 9 digits!");
+        }
     }
 
     /**
