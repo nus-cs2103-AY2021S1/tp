@@ -38,7 +38,6 @@ deactivate Scheduler
 
 Model --> ScheduleCommand
 deactivate Model
-destroy Scheduler
 
 create CommandResult
 ScheduleCommand -> CommandResult
