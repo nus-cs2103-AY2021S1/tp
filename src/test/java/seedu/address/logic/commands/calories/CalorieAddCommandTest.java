@@ -1,11 +1,9 @@
 package seedu.address.logic.commands.calories;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +13,6 @@ import seedu.address.logic.commands.calorie.CalorieAddCommand;
 import seedu.address.model.FitNus;
 import seedu.address.model.ReadOnlyFitNus;
 import seedu.address.model.calorie.Calorie;
-import seedu.address.model.calorie.DailyCalorie;
 
 public class CalorieAddCommandTest {
 

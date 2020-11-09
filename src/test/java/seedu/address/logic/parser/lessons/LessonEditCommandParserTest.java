@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.LESSON_NAME_DESC_CS21
 import static seedu.address.logic.commands.CommandTestUtil.LESSON_TAG_DESC_EASY;
 import static seedu.address.logic.commands.CommandTestUtil.LESSON_TAG_DESC_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_NAME_CS2030;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_NAME_CS2106;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_TAG_EASY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_TAG_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -35,7 +34,7 @@ public class LessonEditCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, LessonEditCommand.MESSAGE_USAGE);
 
-    private LessonEditCommandParser parser = new LessonEditCommandParser();
+    private final LessonEditCommandParser parser = new LessonEditCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -66,8 +65,7 @@ public class LessonEditCommandParserTest {
 
     @Test
     public void parse_multipleNameFields_failure() {
-        Index targetIndex = INDEX_FIRST_LESSON;
-        String userInput = targetIndex.getOneBased() + LESSON_NAME_DESC_CS2030
+        String userInput = INDEX_FIRST_LESSON.getOneBased() + LESSON_NAME_DESC_CS2030
                 + LESSON_NAME_DESC_CS2030 + LESSON_TAG_DESC_LECTURE + LESSON_NAME_DESC_CS2106 + LESSON_TAG_DESC_EASY;
 
         assertParseFailure(parser, userInput, MESSAGE_INVALID_FORMAT);

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: fitNUS - User Guide
+title: User Guide
 ---
 By: `Team T09-2` Since: `September 2020`
 
