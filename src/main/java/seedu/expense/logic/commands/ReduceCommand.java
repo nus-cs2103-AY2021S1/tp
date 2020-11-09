@@ -30,12 +30,13 @@ public class ReduceCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New budget amount for %s: $%s";
     public static final String MESSAGE_INVALID_CATEGORY = "The \"%s\" category does not exist in the expense book. "
-            + "If you need to, please add it using the \"AddCat\" command first.";
+            + "If you need to, please add it using the \"" + AddCategoryCommand.COMMAND_WORD + "\" command first.";
     public static final String MESSAGE_INSUFFICIENT_BUDGET = "The budget amount for %s was insufficient -- "
             + "amount reduced to zero instead";
     public static final String MESSAGE_INVALID_AMOUNT = "Amount to reduce the budget by cannot be negative. Please "
             + "specify the non-negative amount to reduce the budget by.\n"
-            + "If you wish to increase the amount in the budget, use the \"topup\" command instead.";
+            + "If you wish to increase the amount in the budget, use the \""
+            + TopupCommand.COMMAND_WORD + "\" command instead.";
 
     private final Amount toSubtract;
     private final Tag category;

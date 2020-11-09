@@ -18,7 +18,7 @@ public class SwitchCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Switches a category expense in the expense book. "
         + "Parameters: "
-        + "[" + PREFIX_TAG + "TAG]...\n"
+        + "[" + PREFIX_TAG + "CATEGORY]...\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_TAG + "Food ";
 
