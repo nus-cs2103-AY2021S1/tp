@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.parser.exceptions.CaloriesOverflow;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Template;
@@ -123,16 +124,12 @@ public class ExerciseModelManager implements ExerciseModel {
 
     @Override
     public void deleteExercise(Exercise target) {
-
         this.exerciseBook.removeExercise(target);
-        if (goalBook.hasGoal(new Goal(target.getDate()))) {
-
-        }
     }
 
 
     @Override
-    public Optional<Goal> addExercise(Exercise exercise) {
+    public Optional<Goal> addExercise(Exercise exercise) throws CaloriesOverflow {
         exerciseBook.addExercise(exercise);
         updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISE);
 
@@ -148,6 +145,16 @@ public class ExerciseModelManager implements ExerciseModel {
         return Optional.empty();
     }
 
+
+    @Override
+    public boolean checkOverflow(Exercise e) {
+        return exerciseBook.checkOverflow(e);
+    }
+
+    @Override
+    public boolean checkOverflow(Exercise oldE, Exercise newE) {
+        return exerciseBook.checkOverflow(oldE, newE);
+    }
 
     @Override
     public void addTemplate(Template template) {
@@ -230,6 +237,7 @@ public class ExerciseModelManager implements ExerciseModel {
         requireNonNull(predicate);
         filteredExercises.setPredicate(predicate);
     }
+
 
     @Override
     public void resetAll() throws IOException {

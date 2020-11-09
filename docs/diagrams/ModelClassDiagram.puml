@@ -16,6 +16,7 @@ Class UserPrefs
 Class ReadOnlyUserPrefs
 
 Package Exercise {
+Class Exercise
 Class Name
 Class Date
 Class Description
@@ -55,6 +56,4 @@ Name -[hidden]right-> Name
 Date -[hidden]right-> Date
 Description -[hidden]right-> Description
 Calories -[hidden]right-> Calories
-
-ModelManager -->"1" Exercise : filtered list
 @enduml

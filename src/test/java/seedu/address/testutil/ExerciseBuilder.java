@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.logic.parser.exceptions.CaloriesOverflow;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
@@ -34,11 +35,15 @@ public class ExerciseBuilder {
     /**
      * Creates a {@code ExerciseBuilder} with the default details.
      */
-    public ExerciseBuilder() {
+    public ExerciseBuilder() throws RuntimeException {
         name = new Name(DEFAULT_NAME);
         description = new Description(DEFAULT_DESCRIPTION);
         date = new Date(DEFAULT_DATE);
-        calories = new Calories(DEFAULT_CALORIES);
+        try {
+            calories = new Calories(DEFAULT_CALORIES);
+        } catch (CaloriesOverflow err) {
+            throw new RuntimeException("Invalid Calories for Default_Exercise");
+        }
         muscleTags = new HashSet<>();
         tags = new HashSet<>();
     }
@@ -82,7 +87,7 @@ public class ExerciseBuilder {
     /**
      * Sets the {@code Calories} of the {@code Exercise} that we are building.
      */
-    public ExerciseBuilder withCalories(String calories) {
+    public ExerciseBuilder withCalories(String calories) throws CaloriesOverflow {
         this.calories = new Calories(calories);
         return this;
     }

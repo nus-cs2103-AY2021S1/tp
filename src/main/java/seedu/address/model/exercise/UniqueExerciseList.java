@@ -48,6 +48,10 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         return caloriesByDay;
     }
 
+    public Integer getCaloriesForDay(String date) {
+        return caloriesByDay.get(date);
+    }
+
     /**
      * Adds an exercise to the list.
      * The exercise must not already exist in the list.
@@ -57,6 +61,7 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         if (contains(toAdd)) {
             throw new DuplicateExerciseException();
         }
+
         internalList.add(toAdd);
         addCaloriesForDay(toAdd);
     }

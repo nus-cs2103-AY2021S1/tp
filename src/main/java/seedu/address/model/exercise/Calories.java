@@ -2,16 +2,14 @@ package seedu.address.model.exercise;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.math.BigInteger;
+import java.util.Objects;
+
+import seedu.address.logic.parser.exceptions.CaloriesOverflow;
+
 public class Calories {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Calories should be at least 1 digit long, or must be an integer";
-
-    /*
-     * The first character must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "\\d+";
+    public static final String MESSAGE_CONSTRAINTS = "Calories should be a integer.";
 
     public final String value;
 
@@ -20,7 +18,7 @@ public class Calories {
      *
      * @param calories A valid input.
      */
-    public Calories(String calories) {
+    public Calories(String calories) throws CaloriesOverflow {
         if (calories == null) {
             value = "0";
         } else {
@@ -32,8 +30,25 @@ public class Calories {
     /**
      * Returns true if a given string is a valid input.
      */
-    public static boolean isValidCalories(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidCalories(String test) throws CaloriesOverflow {
+        if (Objects.isNull(test)) {
+            throw new NullPointerException();
+        }
+
+        int x;
+        try {
+            x = Integer.parseInt(test);
+        } catch (Exception err) {
+            try {
+                new BigInteger(test);
+            } catch (Exception e1) {
+                //Test is invalid because it can't be casted into Integer or BigInteger.
+                return false;
+            }
+            throw new CaloriesOverflow();
+        }
+
+        return x >= 0;
     }
 
 
@@ -59,7 +74,7 @@ public class Calories {
      *
      * @param calories A valid input.
      */
-    public Calories subtract(Calories calories) {
+    public Calories subtract(Calories calories) throws CaloriesOverflow {
         Integer currentCalories = Integer.parseInt(value);
         Integer removedCalories = Integer.parseInt(calories.value);
         Integer newCalorie = currentCalories - removedCalories;
