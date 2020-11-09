@@ -465,7 +465,7 @@ Expected Outcome:
 
 Figure 4.4.2a Expected outcome of performing the `deleteTG` command
 
-#### 4.4.3 Edit a Tutorial Group: `editTG`
+#### 4.4.3 Edit a tutorial group: `editTG`
 Edits a module with the provided details.
 
 Format: `editTG INDEX [tg/TG_CODE] [day/DAY_OF_WEEK] [start/START_TIME] [end/END_TIME]`
