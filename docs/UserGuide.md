@@ -27,11 +27,13 @@ Interested? Continue reading on to explore the wonders of Nuudle and enhance the
 
 ## About
 
-This document provides you with all necessary information on the installation and complete usage of Nuudle. You can find comprehensive descriptions of all available features in our [Commands](#Commands) section and [Quick Start](#Quick-Start) section will help you with setting up.
+This document provides you with all necessary information on the installation and complete usage of Nuudle. You can find comprehensive descriptions of all available features in our [Commands](#commands) section and [Quick Start](#quick-start) section will help you with setting up.
+
+<div style="page-break-after: always;"></div>
 
 The guide also uses the following symbols and formatting:
 * Words that looks like [this]() can be clicked to navigate you to the related section of this user guide.
-* Words that looks like *this* are words related to Nuudle's [GUI](#glossary).
+* Words that looks like *this* are words related to Nuudle's GUI.
 * Words that looks like `this` are words used in commands of Nuudle.
 * Words that looks like <kbd>this</kbd> are keys that you can press using your keyboard
 
@@ -112,6 +114,9 @@ To get you started, here are some sample commands that you can try out:
 
 1. **`list`** : Lists all patients.
 
+  <div style="page-break-after: always;"></div>
+
+{:start="3"}
 1. **`add`**` n/John Doe i/S9730284G p/98765432 a/John street, block 123, #01-01` : Adds a patient named `John Doe` to the patient book.
 
 1. **`assign`**` 1 d/Tomorrow t/8.30am dur/30` : Creates an appointment for the 1st patient in the patient list for tomorrow 8.30am to 9am, assuming that the time slot is free.
@@ -200,6 +205,8 @@ This section emphasises on the common format across all command input.
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/hypertension` or as `n/John Doe`.
 
+<div style="page-break-after: always;"></div>
+
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
@@ -236,6 +243,8 @@ Formatted Date | Natural Date | Formatted Time | Natural Time
 
 **:exclamation: Important information about the command parameters**<br>
 
+<div style="page-break-after: always;"></div>
+
 * `DATE`
     * Please use the prefix `d/` when indicating a `DATE` value in your user input.
     * Please note that the `DATE` used for scheduling an appointment must be set in the future.
@@ -258,12 +267,11 @@ Formatted Date | Natural Date | Formatted Time | Natural Time
 * `DURATION`
     * We measure our `DURATION` inputs in minutes. For example, to enter a `DURATION` of 1 hour, kindly use `dur/60` as the input value.
     * The `DURATION` of an appointment must be a positive integer that is greater than or equal to 10 minutes.
-    * To provide you with a better user experience, we decided to display the time range of an appointment calculated by adding the `DURATION` you entered to the starting `TIME` of the appointment.
+    * To provide you with a better user experience, we decided to display the time range of an appointment calculated by adding the `DURATION` you entered to the starting `TIME` of the appointment.<br>
     ![Duration Display](images/CommandFormatDuration.png)
 
 
 </div>
-
 
 ### General
 
@@ -411,6 +419,8 @@ Nuudle automatically removes past appointments and saves them into an archive fo
 
 The appointments are grouped by their appointment months and saved in respective Comma-Separated Values (CSV) files. These files can be opened and viewed using Excel.
 
+<div style="page-break-after: always;"></div>
+
 #### Backing up the data
 
 Nuudle also keeps a backup of your data files from the previous Nuudle session in a backup folder. The backup data will be updated everytime you start up the Nuudle app.
@@ -445,6 +455,8 @@ Step-by-step illustration:
 2. The information of the added patient is displayed in the *result display box*.
 The patient is now added to the patient book.<br>
 ![AddCommand2](images/AddCommand2.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Editing a patient : `edit`
 
@@ -529,10 +541,16 @@ Examples to delete the remark for a patient at index 1:
 * `remark 1`
 
 Step by step illustration for deleting a remark:
+
+<div style="page-break-after: always;"></div>
+
 1. Suppose you want to delete the remark data for Bernice, simply enter `remark 2` in the command box and press <kbd>Enter</kbd>.<br>
 ![Command for 'Delete remark'](images/DeleteRemark.png)
-1. Bernice’s remark is now deleted and the particulars of the deleted remark is displayed in the result display box.
 
+<div style="page-break-after: always;"></div>
+
+{:start="2"}
+1. Bernice’s remark is now deleted and the particulars of the deleted remark is displayed in the result display box.<br>
 ![Result for 'Delete remark'](images/DeleteRemark2.png)
 <br>
 
@@ -563,6 +581,8 @@ Format: `find [n/NAME [MORE_NAMES]] [i/NRIC [MORE_NRICS]] [p/PHONE_NUMBER [MORE_
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 * The respective appointments of patients matching at least one keyword will also be returned.
 * The search requirements cannot be left empty, at least one search requirement (by name, NRIC, or phone number) has to be provided
+
+<div style="page-break-after: always;"></div>
 
 Examples:
 * `find n/John` returns patients whose name contains `john`.
@@ -623,6 +643,9 @@ applies for the other fields.
 * **Reschedules an appointment** at the specified `APPT_INDEX` for the patient it is tagged to.
 * Please click [here](#command-format) to refer to important formatting information for the `DATE`, `TIME` and `DURATION` fields.
 * **At least one** optional field must be provided to successfully execute the change command.
+
+<div style="page-break-after: always;"></div>
+
 * Appointment details will be updated according to the fields present in the user input. For fields that are absent, the appointment's original data will be used.
 
 
@@ -716,6 +739,9 @@ Suppose you want to check all the appointments on `05 nov 2021`, you can:
 1. Enter `view d/05 Nov 2021`.<br>
 ![ViewCommand1](images/View1.png)
 
+  <div style="page-break-after: always;"></div>
+
+{:start="2"}
 2. The number of appointments on that date are displayed in the *result display box* and the appointment details are displayed in the appointment book.<br>
 ![ViewCommand2](images/View2.png)
 
@@ -745,6 +771,7 @@ The list of appointments on the specified date is also displayed.<br>
 
 
 --------------------------------------------------------------------------------------------------------------------
+
 ### Command summary
 #### General
 
