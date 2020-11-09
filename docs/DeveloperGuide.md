@@ -130,15 +130,16 @@ The features mentioned are:
 - [Tagging system](#tags)
 - [Editing a flashcard](#edit-flashcard)
 - [Deleting a flashcard by index](#delete-by-index)
-- [Delete by Tags](#delete-by-tag)
+- [Deleting by Tags](#delete-by-tag)
 - [Finding flashcards](#find-flashcards)
 - [Setting difficulty for flashcards](#difficulty)
 - [Displaying statistics of a flashcard](#display-statistics-of-a-flashcard)
+- [Displaying statistics of flashcards by tag](#display-statistics-of-flahcards-by-tag)
 - [Clearing all flashcards](#clear-all-flashcards)
-- [Clear statistics of a flashcard](#clear-statistics-of-a-flashcard)
+- [Clearing statistics of a flashcard](#clear-statistics-of-a-flashcard)
 - [Testing a flashcard](#test-a-flashcard)
-- [Export](#exporting-flashcards)
-- [Import](#importing-flashcards)
+- [Exporting flashcards](#export-flashcards)
+- [Importing flashcards](#import-flashcards)
 
 ### Add flashcard with open-ended question
 
@@ -694,7 +695,7 @@ The following sequence diagram shows how the Clearstats mechanism works:
   * Pros: No "unnecessary" creation of a new `Flashcard` and `Statistics` object when a user requests to clear its statistics.
   * Cons: `Flashcard` and `Statisitcs` become difficult to debug.
 
-### Exporting Flashcards
+### Export flashcards
 
 #### Implementation
 
@@ -731,7 +732,7 @@ The following activity diagram summarizes what happens when a user executes an `
   * Cons: Difficult to implement.
   * Cons: Command becomes more complicated as the entire path needs to be typed out.
 
-### Importing Flashcards
+### Import flashcards
 
 #### Implementation
 
