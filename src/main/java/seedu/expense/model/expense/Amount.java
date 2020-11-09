@@ -56,14 +56,7 @@ public class Amount implements Comparable<Amount> {
         checkArgument(isWithinRange(minTermAmount), MESSAGE_CONSTRAINTS);
         this.value = minTermAmount;
     }
-
-    /**
-     * Returns new generic Amount instance for some internal functions.
-     */
-    public static Amount getGenericAmount() {
-        return new Amount(0);
-    }
-
+    
     /**
      * Converts an amount (rounded to two decimal places) into cents.
      */
