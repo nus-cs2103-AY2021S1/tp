@@ -1,5 +1,10 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULAR_CREDIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SEMESTER;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,5 +61,28 @@ public class ArgumentMultimap {
      */
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
+    }
+
+    /**
+     * Check if the arguments contain any "/". Returns true if any does.
+     *
+     * Also,
+     * returns true if the arguments contain "m/", "g/", "mc/" or "s/", this is true if user input
+     * has multiple same prefixes.
+     *
+     * @return
+     */
+    public boolean argsContainWrongPrefix() {
+        for (List<String> list : argMultimap.values()) {
+            String value = list.get(list.size() - 1);
+            if (value.contains("/")
+                && !value.contains(PREFIX_MOD_NAME.getPrefix())
+                && !value.contains(PREFIX_GRADE.getPrefix())
+                && !value.contains(PREFIX_MODULAR_CREDIT.getPrefix())
+                && !value.contains(PREFIX_SEMESTER.getPrefix())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

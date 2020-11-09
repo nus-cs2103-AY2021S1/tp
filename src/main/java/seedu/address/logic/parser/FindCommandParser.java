@@ -6,7 +6,9 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
+import seedu.address.model.semester.Semester;
+import seedu.address.model.semester.SemesterManager;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -20,6 +22,8 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
+        SemesterManager semesterManager = SemesterManager.getInstance();
+        Semester semester = semesterManager.getCurrentSemester();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -27,7 +31,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindCommand(new ModuleNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

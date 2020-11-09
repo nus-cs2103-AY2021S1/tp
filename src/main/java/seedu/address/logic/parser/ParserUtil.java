@@ -1,19 +1,19 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.SetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.module.GoalTarget;
+import seedu.address.model.module.Grade;
+import seedu.address.model.module.ModularCredit;
+import seedu.address.model.module.ModuleName;
+import seedu.address.model.semester.Semester;
+import seedu.address.model.semester.SemesterManager;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -41,84 +41,99 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static ModuleName parseName(String name) throws ParseException {
         requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        String trimmedName = name.trim().toUpperCase();
+        if (!ModuleName.isValidModName(trimmedName)) {
+            throw new ParseException(ModuleName.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new ModuleName(trimmedName);
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String semester} into a {@code Semester}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code semester} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static Semester parseSemester(String semester) throws ParseException {
+        requireNonNull(semester);
+        String trimmedSemester = semester.trim();
+        if (!SemesterManager.isValidSemester(trimmedSemester)) {
+            throw new ParseException(Messages.MESSAGE_INVALID_SEMESTER);
         }
-        return new Phone(trimmedPhone);
+        return Semester.valueOf(trimmedSemester);
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String modularCredit} into a {@code ModularCredit}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code name} is invalid and not an integer.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static ModularCredit parseModularCredit(String modularCredit) throws ParseException {
+        requireNonNull(modularCredit);
+        String trimmedModularCredit = modularCredit.trim();
+        try {
+            int integerModularCredit = Integer.parseInt(trimmedModularCredit);
+            if (!ModularCredit.isValidModularCredit(integerModularCredit)) {
+                throw new ParseException(ModularCredit.MESSAGE_INVALID_MODULAR_CREDIT);
+            }
+            return new ModularCredit(integerModularCredit);
+        } catch (NumberFormatException e) {
+            throw new ParseException(ModularCredit.MESSAGE_INVALID_MODULAR_CREDIT);
         }
-        return new Address(trimmedAddress);
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String grade} into an {@code Grade}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code grade} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static Grade parseGrade(String grade) throws ParseException {
+        requireNonNull(grade);
+        String trimmedGrade = grade.trim().toUpperCase();
+        if (!Grade.isValidGrade(trimmedGrade)) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Grade(trimmedGrade);
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String goal} into a {@code Goal}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code goal} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static GoalTarget parseGoal(String goal) throws ParseException {
+        requireNonNull(goal);
+        String trimmedGoal = goal.trim();
+
+        try {
+            int intGoal = Integer.parseInt(trimmedGoal);
+            if (!GoalTarget.isValidGoal(intGoal)) {
+                throw new ParseException(GoalTarget.MESSAGE_CONSTRAINTS);
+            }
+            return new GoalTarget(intGoal);
+        } catch (final NumberFormatException e) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, GoalTarget.MESSAGE_CONSTRAINTS));
         }
-        return new Tag(trimmedTag);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses a {@code String userInput} to ensure no trailing words after level.
+     * @param userInput user input of any.
+     * @throws ParseException if user input is present after level.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static void parseGoalLevel(String userInput) throws ParseException {
+        requireNonNull(userInput);
+        String trimmedGoal = userInput.trim();
+
+        if (!trimmedGoal.equals("")) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    SetCommand.MESSAGE_USAGE));
         }
-        return tagSet;
     }
 }

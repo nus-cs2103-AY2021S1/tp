@@ -1,24 +1,28 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all modules in all semesters in MyMods
+ * to the user regardless of whether the user
+ * keys in this command inside a semester or not.
  */
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all modules in all semesters.\n"
+            + "Example: " + COMMAND_WORD;
 
+    public static final String MESSAGE_SUCCESS = "Listed all modules in all semesters";
 
     @Override
     public CommandResult execute(Model model) {
-        requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, false, true, false);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof ListCommand; // instanceof handles nulls
     }
 }

@@ -1,9 +1,12 @@
 package seedu.address.ui;
 
+import java.time.LocalTime;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -31,18 +34,26 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ModuleListPanel moduleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CapBox capBox;
+    private SemBox semBox;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
+    private StackPane capBoxPlaceholder;
+
+    @FXML
+    private StackPane semBoxPlaceholder;
+
+    @FXML
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane moduleListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -60,12 +71,48 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
 
+        //Set default theme
+        setDefaultStyleSheet();
+
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
 
         helpWindow = new HelpWindow();
+    }
+
+    /**
+     * Sets the default stylesheet for main window when launched, default is
+     * "LightTheme.css" in the day(7am - 7pm),
+     * "DarkTheme.css" at night(7pm - 7am).
+     */
+    private void setDefaultStyleSheet() {
+        LocalTime morning = LocalTime.of(7, 0);
+        LocalTime night = LocalTime.of(19, 0);
+        LocalTime localTime = LocalTime.now();
+        if (localTime.isAfter(morning) && localTime.isBefore(night)) {
+            setStyleSheet("LightTheme");
+        } else {
+            setStyleSheet("DarkTheme");
+        }
+    }
+
+    /**
+     * Sets the stylesheet for MainWindow. Scene object is accessed from the Stage object,
+     * manipulating the stylesheet property of the Scene object.
+     *
+     * @param cssFileName css file name of the theme to be set
+     */
+    private void setStyleSheet(String cssFileName) {
+        assert cssFileName.equals("DarkTheme") || cssFileName.equals("LightTheme");
+        Scene scene = primaryStage.getScene();
+
+        String cssFile = MainWindow.class.getResource("/view/" + cssFileName + ".css").toExternalForm();
+
+        ObservableList<String> listOfStylesheet = scene.getStylesheets();
+        listOfStylesheet.clear();
+        listOfStylesheet.add(cssFile);
     }
 
     public Stage getPrimaryStage() {
@@ -78,6 +125,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -110,17 +158,25 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        moduleListPanel = new ModuleListPanel(logic.sortModuleListBySem());
+        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        //make result display draggable, applicable to height only
+        DragResizer.makeResizable(resultDisplayPlaceholder);
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getGradeBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        capBox = new CapBox(logic.generateCap());
+        capBoxPlaceholder.getChildren().add(capBox.getRoot());
+
+        semBox = new SemBox(logic.generateSem());
+        semBoxPlaceholder.getChildren().add(semBox.getRoot());
     }
 
     /**
@@ -163,8 +219,24 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    /**
+     * Set MainWindow to Dark theme when selected through menu.
+     */
+    @FXML
+    public void handleDarkThemeSelection() {
+        setStyleSheet("DarkTheme");
+    }
+
+    /**
+     * Set MainWindow to Light theme when selected through menu.
+     */
+    @FXML
+    public void handleLightThemeSelection() {
+        setStyleSheet("LightTheme");
+    }
+
+    public ModuleListPanel getModuleListPanel() {
+        return moduleListPanel;
     }
 
     /**
@@ -174,17 +246,27 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+            logic.resetFilteredList();
             CommandResult commandResult = logic.execute(commandText);
+            semBox.setSemDisplay(logic.generateSem());
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
-
             if (commandResult.isExit()) {
                 handleExit();
             }
+            if (!commandResult.isRecommendSu() && !commandResult.isFind()) {
+                capBox.setCapDisplay(logic.generateCap());
+            }
+            if (commandResult.isList() || commandResult.isRecommendSu() || commandResult.isFind()) {
+                moduleListPanel = new ModuleListPanel(logic.sortModuleListBySem());
+            } else {
+                moduleListPanel = new ModuleListPanel(logic.filterModuleListBySem());
+            }
+            moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
             return commandResult;
         } catch (CommandException | ParseException e) {

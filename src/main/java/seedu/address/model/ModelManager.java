@@ -11,34 +11,42 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.module.GoalTarget;
+import seedu.address.model.module.Module;
+import seedu.address.model.semester.SemesterManager;
+import seedu.address.model.util.CapCalculator;
+import seedu.address.model.util.McCalculator;
+import seedu.address.model.util.ModuleListFilter;
+import seedu.address.model.util.ModuleListSorter;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the grade book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final GradeBook gradeBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Module> filteredModules;
+    private GoalTarget goalTarget;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given gradeBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyGradeBook gradeBook, ReadOnlyUserPrefs userPrefs, GoalTarget goalTarget) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(gradeBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with grade book: " + gradeBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.gradeBook = new GradeBook(gradeBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.goalTarget = goalTarget;
+        filteredModules = new FilteredList<>(this.gradeBook.getModuleList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new GradeBook(), new UserPrefs(), new GoalTarget());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,67 +74,95 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getGradeBookFilePath() {
+        return userPrefs.getGradeBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setGradeBookFilePath(Path gradeBookFilePath) {
+        requireNonNull(gradeBookFilePath);
+        userPrefs.setGradeBookFilePath(gradeBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== GradeBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setGradeBook(ReadOnlyGradeBook gradeBook) {
+        this.gradeBook.resetData(gradeBook);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyGradeBook getGradeBook() {
+        return gradeBook;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasModule(Module module) {
+        requireNonNull(module);
+        return gradeBook.hasModule(module);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void deleteModule(Module target) {
+        gradeBook.removeModule(target);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void addModule(Module module) {
+        gradeBook.addModule(module);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void setModule(Module target, Module updatedModule) {
+        requireAllNonNull(target, updatedModule);
+
+        gradeBook.setModule(target, updatedModule);
+    }
+
+    //=========== Filtered Module List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Module} backed by the internal list of
+     * {@code versionedGradeBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Module> getFilteredModuleList() {
+        return filteredModules;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredModules.setPredicate(predicate);
+    }
+
+    /**
+     * Filters the module list according to semester.
+     *
+     * @return the filtered list of modules by semester.
+     */
+    @Override
+    public FilteredList<Module> filterModuleListBySem() {
+        return ModuleListSorter.sortModuleList(ModuleListFilter.filterModulesBySemester(filteredModules));
+    }
+
+    /**
+     * Sorts the module list according to semester.
+     *
+     * @return the filtered list of modules sorted by semester.
+     */
+    @Override
+    public FilteredList<Module> sortModuleListBySem() {
+        return ModuleListSorter.sortModuleList(filteredModules);
+    }
+
+    /**
+     * Resets the filtered list to contain all modules.
+     */
+    @Override
+    public void resetFilteredList() {
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     @Override
@@ -143,9 +179,61 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return gradeBook.equals(other.gradeBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredModules.equals(other.filteredModules);
     }
 
+    //=========== CAP Calculation ============================================================================
+
+    /**
+     * Calculates the CAP of the current list of modules and return it as a string.
+     *
+     * @return a string representation of the CAP to 2 significant figures.
+     */
+    @Override
+    public String generateCapAsString() {
+        double cap = generateCap();
+        return String.format("%.2f", cap);
+    }
+
+    /**
+     * Calculates the CAP of the current list of modules and returns it as a double.
+     *
+     * @return the CAP as a double value.
+     */
+    @Override
+    public double generateCap() {
+        return CapCalculator.calculateCap(filteredModules);
+    }
+
+    //=========== MC Calculation =============================================================================
+
+    @Override
+    public int getCurrentMc() {
+        return McCalculator.calculateMcTaken(filteredModules);
+    }
+
+    @Override
+    public int getMcFromSu() {
+        return McCalculator.calculateMcFromSu(filteredModules);
+    }
+
+    //=========== Goal Setting ===============================================================================
+    @Override
+    public void setGoalTarget(GoalTarget goalTarget) {
+        requireAllNonNull(goalTarget);
+        this.goalTarget = goalTarget;
+    }
+
+    @Override
+    public GoalTarget getGoalTarget() {
+        return goalTarget;
+    }
+
+    @Override
+    public String generateSem() {
+        SemesterManager semester = SemesterManager.getInstance();
+        return semester.getCurrentSemester().toString();
+    }
 }

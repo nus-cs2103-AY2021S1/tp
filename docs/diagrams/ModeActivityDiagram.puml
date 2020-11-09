@@ -1,0 +1,12 @@
+@startuml
+start
+:Users chooses which theme to be applied;
+if () then([User choose Dark])
+    :DarkTheme.css is applied to GUI;
+else ([User choose Light])
+    :LightTheme.css is applied to GUI;
+endif
+:Theme is applied;
+
+stop
+@enduml

@@ -1,11 +1,9 @@
 package seedu.address.commons.util;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Arrays;
 
 /**
  * Helper functions for handling strings.
@@ -26,16 +24,9 @@ public class StringUtil {
     public static boolean containsWordIgnoreCase(String sentence, String word) {
         requireNonNull(sentence);
         requireNonNull(word);
-
-        String preppedWord = word.trim();
-        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
-
-        String preppedSentence = sentence;
-        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
-
-        return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(preppedWord::equalsIgnoreCase);
+        sentence = sentence.toLowerCase();
+        word = word.toLowerCase();
+        return sentence.contains(word);
     }
 
     /**

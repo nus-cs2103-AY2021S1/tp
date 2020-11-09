@@ -4,19 +4,29 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.logic.commands.CommandTestUtil.setInvalidSemester;
+import static seedu.address.logic.commands.CommandTestUtil.setValidCorrectSemester;
+import static seedu.address.logic.commands.CommandTestUtil.setValidWrongSemester;
+import static seedu.address.logic.commands.CommandTestUtil.showModuleAtIndex;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalModules.COM_ORG;
+import static seedu.address.testutil.TypicalModules.EFF_COM;
+import static seedu.address.testutil.TypicalModules.GER;
+import static seedu.address.testutil.TypicalModules.getTypicalGradeBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.GetModuleIndex;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.module.GoalTarget;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleName;
+import seedu.address.model.semester.Semester;
+import seedu.address.model.semester.SemesterManager;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -24,68 +34,89 @@ import seedu.address.model.person.Person;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalGradeBook(), new UserPrefs(), new GoalTarget());
+
+    private final ModuleName nameFirstModule = COM_ORG.getModuleName();
+    private final ModuleName nameSecondModule = EFF_COM.getModuleName();
+
+    private final Index indexFirstModule =
+            GetModuleIndex.getIndex(model.getFilteredModuleList(), nameFirstModule);
+    private final Index indexSecondModule =
+            GetModuleIndex.getIndex(model.getFilteredModuleList(), nameSecondModule);
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+    public void constructor_nullModuleName_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new DeleteCommand(null));
+    }
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+    @Test
+    public void execute_validModuleNameUnfilteredList_success() {
+        setValidCorrectSemester();
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        Module moduleToDelete = model.getFilteredModuleList().get(indexFirstModule.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(nameFirstModule);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete);
+
+        ModelManager expectedModel = new ModelManager(model.getGradeBook(), new UserPrefs(), new GoalTarget());
+
+        expectedModel.deleteModule(moduleToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+    public void execute_moduleCodeNotInListUnfilteredList_throwsCommandException() {
+        setValidCorrectSemester();
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        String moduleNotInList = GER.getModuleName().fullModName;
+        ModuleName invalidModuleName = new ModuleName(moduleNotInList);
+        DeleteCommand deleteCommand = new DeleteCommand(invalidModuleName);
+
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_NAME);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        setValidCorrectSemester();
 
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        showModuleAtIndex(model, indexFirstModule);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        Module moduleToDelete = model.getFilteredModuleList().get(indexFirstModule.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(nameFirstModule);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
-        showNoPerson(expectedModel);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete);
+
+        Model expectedModel = new ModelManager(model.getGradeBook(), new UserPrefs(), new GoalTarget());
+        expectedModel.deleteModule(moduleToDelete);
+        showNoModule(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showModuleAtIndex(model, indexFirstModule);
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = indexSecondModule;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getGradeBook().getModuleList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteCommand deleteCommand = new DeleteCommand(nameSecondModule);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_NAME);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(COM_ORG.getModuleName());
+        DeleteCommand deleteSecondCommand = new DeleteCommand(EFF_COM.getModuleName());
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(COM_ORG.getModuleName());
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -101,9 +132,34 @@ public class DeleteCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
+    private void showNoModule(Model model) {
+        model.updateFilteredModuleList(p -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredModuleList().isEmpty());
+    }
+
+    @Test
+    public void execute_invalidSemester_throwsCommandException() {
+        setInvalidSemester();
+
+        DeleteCommand deleteCommand = new DeleteCommand(nameFirstModule);
+
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_COMMAND_SEQUENCE);
+    }
+
+    @Test
+    public void execute_wrongSemester_throwsCommandException() {
+        SemesterManager semesterManager = SemesterManager.getInstance();
+        setValidWrongSemester();
+
+        DeleteCommand deleteCommand = new DeleteCommand(nameFirstModule);
+        Semester semesterOfFirstModule = COM_ORG.getSemester();
+
+        String expectedMessage = Messages.MESSAGE_DELETE_MODULE_IN_WRONG_SEMESTER + semesterOfFirstModule + ".\n"
+                + Messages.MESSAGE_CURRENT_SEMESTER + semesterManager.getCurrentSemester() + ".\n"
+                + Messages.MESSAGE_DIRECT_TO_CORRECT_SEMESTER + semesterOfFirstModule
+                + Messages.MESSAGE_DIRECT_TO_CORRECT_SEMESTER_TO_DELETE;
+
+        assertCommandFailure(deleteCommand, model, expectedMessage);
     }
 }

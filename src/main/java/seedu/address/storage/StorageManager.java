@@ -7,25 +7,26 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.module.GoalTarget;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of GradeBook data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private GradeBookStorage gradeBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code GradeBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(GradeBookStorage gradeBookStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.gradeBookStorage = gradeBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -47,33 +48,39 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ GradeBook methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getGradeBookFilePath() {
+        return gradeBookStorage.getGradeBookFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public GoalTarget getGoalTarget() throws DataConversionException {
+        return gradeBookStorage.getGoalTarget();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyGradeBook> readGradeBook() throws DataConversionException, IOException {
+        return readGradeBook(gradeBookStorage.getGradeBookFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyGradeBook> readGradeBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return gradeBookStorage.readGradeBook(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveGradeBook(ReadOnlyGradeBook gradeBook, GoalTarget goalTarget) throws IOException {
+        saveGradeBook(gradeBook, gradeBookStorage.getGradeBookFilePath(), goalTarget);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveGradeBook(ReadOnlyGradeBook gradeBook, Path filePath, GoalTarget goalTarget)
+            throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        gradeBookStorage.saveGradeBook(gradeBook, filePath, goalTarget);
     }
 
 }

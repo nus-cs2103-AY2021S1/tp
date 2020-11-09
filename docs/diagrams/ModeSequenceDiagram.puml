@@ -1,0 +1,58 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR_T4
+participant "scene:Scene" as Scene UI_COLOR_T4
+participant "listOfStylesheet:ObservableList<String>" as list UI_COLOR_T4
+end box
+
+[-> MainWindow : handleLightThemeSelection()
+activate MainWindow
+
+MainWindow -> MainWindow : setStyleSheet("LightTheme")
+activate MainWindow
+
+create Scene
+MainWindow -> Scene : primaryStage.getScene()
+activate Scene
+
+Scene -> Scene
+activate Scene
+
+create list
+Scene -> list : getStylesheet()
+activate list
+
+list -> list : clear()
+activate list
+deactivate list
+
+ref over list
+self invocation
+add(MainWindow.class
+.getResource("/view/" + cssFileName + ".css")
+.toExternalForm()
+)
+end ref
+
+list --> Scene
+deactivate list
+list -[hidden]-> Scene
+destroy list
+
+Scene -> Scene
+deactivate Scene
+
+Scene --> MainWindow
+deactivate Scene
+Scene -[hidden]-> MainWindow
+destroy Scene
+
+MainWindow -> MainWindow
+deactivate MainWindow
+
+[<-- MainWindow
+deactivate MainWindow
+
+@enduml

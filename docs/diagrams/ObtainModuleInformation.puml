@@ -1,0 +1,47 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":AddCommand" as AddCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModularCredit" as ModularCredit MODEL_COLOR
+participant ":Module" as Module MODEL_COLOR
+participant ":ModuleInfoRetriever" as ModuleInfoRetriever MODEL_COLOR
+end box
+
+[-> AddCommandParser : parse("m/CS1101S g/A")
+activate AddCommandParser
+
+create ModularCredit
+AddCommandParser -> ModularCredit : new ModularCredit("CS1101S")
+activate ModularCredit
+
+ModularCredit -> ModuleInfoRetriever : retrieve("CS1101S")
+activate ModuleInfoRetriever
+
+ModuleInfoRetriever --> ModularCredit : d
+deactivate ModuleInfoRetriever
+
+ModularCredit --> AddCommandParser : d
+deactivate ModularCredit
+
+create Module
+AddCommandParser -> Module : new Module("CS1101S", "A", 4, "Y2S1")
+activate Module
+
+Module --> AddCommandParser : d
+deactivate Module
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser : d
+deactivate AddCommand
+
+[<--AddCommandParser
+deactivate AddCommandParser
+@enduml

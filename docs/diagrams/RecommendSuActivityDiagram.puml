@@ -1,0 +1,25 @@
+@startuml
+start
+:User executes command;
+:Retrieve user's Goal;
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([Goal is set])
+    :Get list of modules of user;
+    :Filter modules in the list;
+    if () then ([module is recommended to S/U])
+        : keep in filteredModuleList;
+    else ([else])
+        :remove from filteredModuleList;
+    endif
+    if () then ([filteredModuleList is empty])
+        : Inform no modules to recommend;
+    else ([else])
+        : List modules recommended to S/U;
+    endif
+else ([else])
+: Warn user that goal is not set;
+endif
+stop
+@enduml

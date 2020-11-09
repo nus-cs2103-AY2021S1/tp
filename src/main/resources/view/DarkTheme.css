@@ -3,6 +3,16 @@
     background-color: #383838; /* Used in the default.html file */
 }
 
+.rounded-box {
+    -fx-background-color: transparent;
+}
+
+.cap-text {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-fill: white;
+}
+
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
@@ -320,12 +330,13 @@
 #commandTextField {
     -fx-background-color: transparent #383838 transparent #383838;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
+    -fx-border-color: grey grey #ffffff grey;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
+    -fx-prompt-text-fill: grey;
 }
 
 #filterField, #personListPanel, #personWebpage {
@@ -333,7 +344,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: transparent, #545454, transparent, #545454;
     -fx-background-radius: 0;
 }
 
@@ -349,4 +360,26 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+/* Extension */
+.error {
+    -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
+}
+
+.list-cell:empty {
+    /* Empty cells will not have alternating colours */
+    -fx-background: #383838;
+    -fx-border-color: #383838;
+}
+
+.tag-selector {
+    -fx-border-width: 1;
+    -fx-border-color: white;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+}
+
+.tooltip-text {
+    -fx-text-fill: black;
 }

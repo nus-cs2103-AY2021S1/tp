@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Hong Kunnan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kunnan97.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/kunnan97)]
+[[portfolio](team/kunnan97.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
 
-### Johnny Doe
+### Zhang Xin Yue
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/xyzhangg.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/xyzhangg)]
+[[portfolio](team/xyzhangg.md)]
 
-* Role: Developer
+* Role: Documentation
 * Responsibilities: Data
 
-### Jean Doe
+### Augustine Kau
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/augustinekau.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/augustinekau)]
+[[portfolio](team/augustinekau.md)]
 
-* Role: Developer
+* Role: Code Quality
+* Responsibilities: UI
+
+### Li Xupeng
+
+<img src="images/pongzers.png" width="200px">
+
+[[github](http://github.com/pongzers)]
+[[portfolio](team/pongzers.md)]
+
+* Role: Testing
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Zhao Lingshan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhaolingshan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/zhaolingshan)]
+[[portfolio](team/zhaolingshan.md)]
 
-* Role: Developer
+* Role: Integration
 * Responsibilities: UI

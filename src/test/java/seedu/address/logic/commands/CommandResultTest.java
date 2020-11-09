@@ -14,7 +14,7 @@ public class CommandResultTest {
 
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, false)));
+        assertTrue(commandResult.equals(new CommandResult("feedback", false, false, false, false, false)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -29,10 +29,20 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("different")));
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, false)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, false, false, false)));
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false, false, false)));
+
+        // different isRecommendSU value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, true, false, false)));
+
+        // different isList value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, false, true, false)));
+
+        // different isFind value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, false, false, true)));
+
     }
 
     @Test
@@ -46,9 +56,23 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false).hashCode());
+        assertNotEquals(commandResult.hashCode(),
+                new CommandResult("feedback", true, false, false, false, false).hashCode());
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
+        assertNotEquals(commandResult.hashCode(),
+                new CommandResult("feedback", false, true, false, false, false).hashCode());
+
+        // different isRecommendSU value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(),
+                new CommandResult("feedback", false, false, true, false, false).hashCode());
+
+        // different isList value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(),
+                new CommandResult("feedback", false, false, false, true, false).hashCode());
+
+        // different isFind value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(),
+                new CommandResult("feedback", false, false, false, false, true).hashCode());
     }
 }
