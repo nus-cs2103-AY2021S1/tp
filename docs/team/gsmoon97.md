@@ -51,14 +51,17 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `add` `edit` `delete` and `editappt` [\#235](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/235), [\#165](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/165)
-    * Added screenshots for all the features [\#120](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/120)
-    * Made improvements to existing documentation based on peer reviews [\#140](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/140)
+    * Added documentation for the features `add`, `edit`, `delete`, and `editappt` [\#235](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/235), [\#165](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/165)
+    * Added screenshots for all features `history`, `clearhistory`, `undo`, `redo`, `add`, `addpicture`, `edit`, `delete`, `clear`, `find`, and `list` [\#274](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/274) [\#120](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/120)
+    * Made improvements to existing documentation for consistent styling and format [\#140](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/140)
   * Developer Guide:
+    * Added documentation for some parts of the Appointment Feature section [\#279](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/279)
+    * Added new use cases for the features `add`, `edit`, `delete`, `addappt`, `editappt`, and `deleteappt` [\#287](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/287), [\#96](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/96), [\#35](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/35)
     * Updated details of the diagrams `ModelClassDiagram` and `BetterModelClassDiagram` [\#96](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/96)
-    * Added implementation details and new use cases for the features `add` and `edit` [\#96](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/96), [\#35](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/35)
-    * Made improvements to existing documentation based on peer reviews [\#140](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/140)
+    * Added an activity diagram `DeleteAppointmentActivityDiagram` and `BetterModelClassDiagram` [\#279](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/279) [\#96](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/96)
+    * Made improvements to existing documentation for consistent styling and format [\#140](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/140)
 
 * **Community**:
+  * Reported bugs and suggestions for other teams in the class (example: [Practical Exam Dry Run](https://github.com/gsmoon97/ped/issues))
   * PRs reviewed (with non-trivial review comments): [\#234](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/234) [\#252](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/252) [\#67](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/67)
-  * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/398))
+  * Contributed to forum discussions (example: [Class Diagram of the AB3 Model](https://github.com/nus-cs2103-AY2021S1/forum/issues/398)
