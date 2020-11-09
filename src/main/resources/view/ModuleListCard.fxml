@@ -29,6 +29,7 @@
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
       <Label fx:id="modularCredits" layoutX="25.0" layoutY="71.0" styleClass="cell_small_label" text="\$modularCredits" />
+         <Label fx:id="gradePoints" layoutX="25.0" layoutY="71.0" styleClass="cell_small_label" text="\\$gradePoints" />
       <FlowPane fx:id="tags" />
     </VBox>
       <rowConstraints>

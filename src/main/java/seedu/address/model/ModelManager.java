@@ -58,7 +58,7 @@ public class ModelManager implements Model {
                         ReadOnlyContactList contactList, ReadOnlyTodoList todoList, ReadOnlyEventList eventList,
                         ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(moduleList, todoList, userPrefs);
+        requireAllNonNull(moduleList, archivedModuleList, contactList, todoList, eventList, userPrefs);
 
         logger.fine("Initializing with module list: " + moduleList + " and todo list" + todoList
                 + " and user prefs " + userPrefs);
