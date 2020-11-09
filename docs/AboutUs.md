@@ -14,7 +14,7 @@ You can reach us at the email `u_nikhila@comp.nus.edu.sg`
 <img src="images/ben-hanan.png" width="200px">
 
 [[github](http://github.com/Ben-Hanan)]
-[[portfolio](team/Ben-Hanan.md)]
+[[portfolio](team/ben-hanan.md)]
 
 * Role: Developer
 
@@ -23,7 +23,7 @@ You can reach us at the email `u_nikhila@comp.nus.edu.sg`
 <img src="images/hou-rui.png" width="200px">
 
 [[github](http://github.com/Hou-Rui)] 
-[[portfolio](team/Hou-Rui.md)]
+[[portfolio](team/hou-rui.md)]
 
 * Role: Developer
 
@@ -32,7 +32,7 @@ You can reach us at the email `u_nikhila@comp.nus.edu.sg`
 <img src="images/thespacecuber.png" width="200px">
 
 [[github](http://github.com/TheSpaceCuber)]
-[[portfolio](team/TheSpaceCuber.md)]
+[[portfolio](team/thespacecuber.md)]
 * Role: Developer
 
 ### Tin Kah Ong Isaac
@@ -40,7 +40,7 @@ You can reach us at the email `u_nikhila@comp.nus.edu.sg`
 <img src="images/isaactin.png" width="200px">
 
 [[github](http://github.com/IsaacTin)]
-[[portfolio](team/IsaacTin.md)]
+[[portfolio](team/isaactin.md)]
 
 * Role: Developer
 

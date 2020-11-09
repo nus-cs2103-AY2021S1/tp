@@ -19,6 +19,7 @@ import com.eva.commons.util.DateUtil;
 import com.eva.commons.util.StringUtil;
 import com.eva.logic.commands.AddLeaveCommand;
 import com.eva.logic.commands.CommentCommand;
+import com.eva.logic.commands.DeleteCommentCommand;
 import com.eva.logic.parser.exceptions.IndexParseException;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.comment.Comment;
@@ -149,7 +150,7 @@ public class ParserUtil {
      * @return Comment object created with input
      * @throws ParseException
      */
-    public static Comment parseComment(String comment) throws ParseException {
+    public static Comment parseAddOrEditComment(String comment) throws ParseException {
         requireNonNull(comment);
         ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(" " + comment,
                 PREFIX_DATE, PREFIX_TITLE, PREFIX_DESC);
@@ -172,13 +173,26 @@ public class ParserUtil {
                 throw new ParseException("Comment should not contain '|'");
             }
             return new Comment(DateUtil.dateParsed(date), desc, title);
-        } else if (!argMultiMap.getValue(PREFIX_TITLE).isEmpty()
-                && argMultiMap.getValue(PREFIX_DESC).isEmpty()
-                && argMultiMap.getValue(PREFIX_DATE).isEmpty()) {
+        } else {
+            throw new ParseException(CommentCommand.MESSAGE_USAGE);
+        }
+    }
+
+    /**
+     * Parses the commands inside comment input
+     * @param comment comment input
+     * @return Comment object created with input
+     * @throws ParseException
+     */
+    public static Comment parseDeleteComment(String comment) throws ParseException {
+        requireNonNull(comment);
+        ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(" " + comment,
+                PREFIX_TITLE);
+        if (!argMultiMap.getValue(PREFIX_TITLE).isEmpty()) {
             String title = argMultiMap.getValue(PREFIX_TITLE).get();
             return new Comment(title);
         } else {
-            throw new ParseException(CommentCommand.MESSAGE_USAGE);
+            throw new ParseException(DeleteCommentCommand.MESSAGE_DELETECOMMENT_USAGE);
         }
     }
     /**
@@ -231,12 +245,28 @@ public class ParserUtil {
      * @return Set of comment objects
      * @throws ParseException
      */
-    public static Set<Comment> parseComments(Collection<String> comments)
+    public static Set<Comment> parseAddOrEditComments(Collection<String> comments)
             throws ParseException {
         requireNonNull(comments);
         final Set<Comment> commentSet = new HashSet<>();
         for (String comment : comments) {
-            commentSet.add(parseComment(comment));
+            commentSet.add(parseAddOrEditComment(comment));
+        }
+        return commentSet;
+    }
+
+    /**
+     * Converts string with details of comments into a Comment object
+     * @param comments strings of details
+     * @return Set of comment objects
+     * @throws ParseException
+     */
+    public static Set<Comment> parseDeleteComments(Collection<String> comments)
+            throws ParseException {
+        requireNonNull(comments);
+        final Set<Comment> commentSet = new HashSet<>();
+        for (String comment : comments) {
+            commentSet.add(parseDeleteComment(comment));
         }
         return commentSet;
     }

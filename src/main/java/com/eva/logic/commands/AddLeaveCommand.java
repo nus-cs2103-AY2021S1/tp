@@ -23,6 +23,7 @@ import com.eva.model.person.staff.leave.Leave;
  */
 public class AddLeaveCommand extends Command {
     public static final String COMMAND_WORD = "addl";
+    public static final int MAX_LEAVE_LENGTH = 3650;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds specified leave(s) taken to the record of the staff taking leave "
@@ -38,6 +39,8 @@ public class AddLeaveCommand extends Command {
             + PREFIX_LEAVE + PREFIX_DATE + "20/10/2020 ";
 
     public static final String MESSAGE_SUCCESS = "Leave recorded: %1$s took %2$s";
+    public static final String MESSAGE_LEAVE_TOO_LONG = "This leave: %s is too long! "
+            + "Consider adding a leave with a more reasonable amount of time\n%s";
     public static final String MESSAGE_DUPLICATE_RECORD = "This staff: %s "
             + "has overlapping leave date during this period: %s";
     public static final String MESSAGE_WRONG_PANEL = "Please switch to staff list panel "
@@ -78,6 +81,10 @@ public class AddLeaveCommand extends Command {
         Staff staffToTakeLeave = lastShownList.get(targetIndex.getZeroBased());
         StringBuilder sb = new StringBuilder();
         for (Leave leave : toAdd) {
+            if (leave.getLeaveLength() > MAX_LEAVE_LENGTH) {
+                throw new CommandException(
+                        String.format(MESSAGE_LEAVE_TOO_LONG, leave, MESSAGE_USAGE));
+            }
             if (model.hasStaffLeave(staffToTakeLeave, leave)
                     || model.hasLeavePeriod(staffToTakeLeave, leave)) {
                 throw new CommandException(

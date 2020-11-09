@@ -69,7 +69,7 @@ The sections below give more details of each component.
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CurrentPanelHeader`, `ResultDisplay`, `CommandBox`, `HelpWindow`, and the various `Panels`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-There are four different possible `Panels` and/or `PanelStates` :
+There are four different possible `Panel` objects :
 * `StaffListPanel` : this is where the user can view the list of staffs in the database
 * `ApplicantListPanel` : this is where the user can view the list of applicants in the database
 * `StaffProfilePanel` : this is where the user can view the profile of a staff in the database
@@ -144,110 +144,128 @@ Classes used by multiple components are in the `com.eva.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 3.1 Staff Management System
+### 3.1 Overview of Staff and Applicants
 
-#### 3.1.1 Leave System
+The class diagram below shows how applicant and staff are related to each other and the various classes they are 
+associated to. The following sections will elaborate more on the applicant and staff management sections.
+<br>
 
-The proposed undo/redo mechanism is facilitated by `VersionedEvaStorage`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+ <img src="images/ApplicantStaffClassDiagram.png" width="900" />
 
-* `VersionedEvaStorage#commit()` — Saves the current eva database state in its history.
-* `VersionedEvaStorage#undo()` — Restores the previous eva database state from its history.
-* `VersionedEvaStorage#redo()` — Restores a previously undone eva database state from its history.
+### 3.2 Staff Management System
 
-These operations are exposed in the `Model` interface as `Model#commitEvaStorage()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Each staff record has the details of name, phone, email, address, leaves, tags, comments. 
+The details name, phone, email, address are mandatory.
+A staff record also contains `Leave`. More about how this is implemented is elaborated [here](#311-leave-system).
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+#### 3.2.1 Leave System
 
-Step 1. The user launches the application for the first time. The `VersionedEvaStorage` will be initialized with the initial eva database state, and the `currentStatePointer` pointing to that single eva database state.
+The current leave recording system is facilitated by the `LogicManager` and `ModelManager`. The `Logic Manager` contains a `ModelManeger` which contains a filtered list of all staffs, `filteredStaffs`.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+Given below is an example usage scenario and how the leave recording system behaves at each step.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the eva database. The `delete` command calls `Model#commitEvaStorage()`, causing the modified state of the eva database after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted eva database state.
+Similar to what was mentioned in the [Logic Component](#212-logic-component), the commands related to the leave system,
+`addl` and `dell`, are also executed and handled in the same way.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("addl 1 l/d/10/10/2020")` API call.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitEvaStorage()`, causing another modified eva database state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitEvaStorage()`, so the eva database state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous eva database state, and restores the eva database to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial EvaStorage state, then there are no previous EvaStorage states to restore. The `undo` command uses `Model#canUndoEvaStorage()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoEvaStorage()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the eva database to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `EvaStorageStateList.size() - 1`, pointing to the latest eva database state, then there are no undone EvaStorage states to restore. The `redo` command uses `Model#canRedoEvaStorage()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list s-`. Commands that do not modify the eva database, such as `list`, will usually not call `Model#commitEvaStorage()`, `Model#undoEvaStorage()` or `Model#redoEvaStorage()`. Thus, the `EvaStorageStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitEvaStorage()`. Since the `currentStatePointer` is not pointing at the end of the `EvaStorageStateList`, all eva database states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### 3.1.2 Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire eva database.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-  
-### 3.2. Applicant Management System
-
-Nikhila to update
-
-#### 3.2.1 Application System:
-
-Royce to update
+![Interactions Inside the Logic Component for the `delete 1` Command](images/AddLeaveSequenceDiagram.png)
 
 #### 3.2.2 Design consideration:
 
-##### Aspect: How undo & redo executes
+##### Aspect: adding multiple leaves at once
 
-* **Alternative 1 (current choice):** Saves the entire eva database.
+* **Alternative 1 (current choice):** addl can add multiple leaves at once.
+  * Pros: Makes it easier on the user to add leaves, not a drastic change from Alternative 2.
+  * Cons: Makes the command syntax a little more complicated, makes the implementation more complicated.
+
+* **Alternative 2:** addl should only allow the addition of one leave at once.
   * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+  * Cons: Less options for the user.
+  
+##### Aspect: deleting leaves
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 1 (current choice):** The date the user inputs will delete the entire leave if it falls within the date range of a staff leave.
+* Pros: Standardises the behavior when deleting leaves.
+* Cons: Makes the user enter more commands to change leave information.
 
+* **Alternative 2:** dell will take in a date range and delete all the leave dates between that. If a leave is partially within the range, it truncates the leave instead.
+* Pros: Easier to delete leaves.
+* Cons: May cause the unintentional deletion of leaves.
+
+##### Aspect: leave taken
+
+* **Alternative 1 (current choice):** Counts up from 0, records the total number of leaves taken.
+* Pros: Easy to implement.
+
+* **Alternative 2:** Counts down from the default leave balance, records the number of leave days left.
+* Pros: Able to easily see how many days of leave each staff has left.
+* Cons: Harder to implement, needs to be paired with a command that sets the default leave.
+  
+### 3.3. Applicant Management System
+
+Each applicant record has the details of name, phone, email, address, interview date, application status and application. 
+The details name, phone, email, address are mandatory. The interview date is wrapped inside a Java
+[`optional`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html). 
+We have designed it to be as such so that the user can input the interview date at a later time or leave that detail in all cases.
+Application Status is a field that contains one of the `PossibleApplicationStatus` which is an enumeration of all possible application statuses namely,
+receieved, processing, accepted, rejected.
+An application also contains a `Application`. More about how this is implemented is elaborated below.
+
+#### 3.3.1 Application Management System:
+
+The application management system consists of the following:
+   * Resume parser (found in `AddApplicationCommandParser`)
+     * The parser scans a resume text file using a given filepath to detect a given name, as well as experience as education history.
+     * Following which, the resume data will be stored as an application inside an applicant under Eva's database.
+     * Should the user want to delete an application, the `delapp` command will replace the application with a blank one.
+   * Sample resume generator (found in `ResumeTextFileGenerator`)
+     * This generator creates a sample resume text file in the data/resume.txt, where the `data` folder is in the same directory as the JAR file.
+     * The sample resume highlights the strict format that resume text files will have to follow.
+     
 ### 3.2. Panels (List/Profile) display
 
-Ben to update
+Eva currently uses the panel state defined in [GUISettings](https://github.com/AY2021S1-CS2103T-W13-1/tp/blob/master/src/main/java/com/eva/commons/core/GuiSettings.java)
+to know which panel state to display.
 
-_{more aspects and alternatives to be added}_
+These are the four possible panel states and the commands that will cause eva to switch to them:
+* `STAFF_LIST`: `list s-`, `adds`
+* `STAFF_PROFILE`: `view` (on staff list)
+* `APPLICANT_LIST`: `list a-`, `adda`
+* `APPLICANT_PROFILE`: `view` (on applicant list)
+
+As explained in the [Logic Component](#212-logic-component), these commands go through the `Logic Manger` and `Model Manager`
+to be parsed and executed. However, the CommandResult returned to `MainWindow.java` lets Eva know that the panel state has changed.
+
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `view 1` API call on a `staff list`.
+
+![Interactions Inside the Logic Component for the `view 1` Command](images/ViewSequenceDiagram.png)
+
+Given below is the Sequence Diagram for interactions within the `Ui` component for the command `view 1` on a `staff list`.
+
+![Interactions Inside the Ui Component for the `view 1` Command](images/ViewSequenceDiagram1.png)
+
+#### 3.2.2 Design consideration:
+
+##### Aspect: Having different panel states
+
+* **Alternative 1 (current choice):** Separate all four panels
+  * Pros: Gives users an individual page to view the information they want.
+  * Cons: Complicated to implement.
+
+* **Alternative 2:** Have all the information on one panel
+  * Pros: Easy to implement.
+  * Cons: Cluttered and unfocused view.
+
+##### Aspect: Storing panel state in GUISettings
+
+* **Alternative 1 (current choice):** saves the panel state in GUISettings.
+  * Pros: Enables last viewed panel state to persist after app closure.
+  * Cons: Complicated to implement
+
+* **Alternative 2:** pass around an object containing the panel state.
+  * Pros: Easy to implement.
+  * Cons: Does not allow panel state to persist after app closure.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -281,11 +299,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------   | ---------------------------------------------------------------------- |
-| `* * *`  | first timer                                | be able to use software straight away without configuring complex settings |                              |
-| `* * *`  | HR manager                                 | store information about all the staff in my company like their role, designation and their project team name, etc.|   |
-| `* * *`  | Director of Human Resources                | I want to have quick and easy access to all HR information|                                               |
-| `* * *`  | organised HR manager                       | add data of applicants           | have these data at one place in a neat manner                          |
-| `* *`    | organised HR manager                       | delete data of applicants        | have these data at one place in a neat manner                          |
+| `* * *`  | first timer                                | be able to use software straight away without configuring complex settings | use the app with minimal prior training                             |
+| `* * *`  | HR manager                                 | store information about all the staff in my company like their role, designation and their project team name, etc.| make more informed decisions   |
+| `* * *`  | HR manager                                 | I want to have quick and easy access to all HR information| perform my tasks efficiently                                              |
+| `* * *`  | HR manager                                 | I want to be able to record the leaves my staffs take | plan and keep an account of my staffs                                             |
+| `* * *`  | organised HR manager                       | add and delete data of applicants           | have these data at one place in a neat manner                          |
+| `* *`    | organised HR manager                       | add and delete delete data of staffs        | have these data at one place in a neat manner                          |
 | `* *`    | busy HR staff with a lot of things to do   |  know my interview appointments with the applicants quickly| I will not forget any such appointments and attend necessary interviews |
 | `* *`    | HR manager                                 | easily keep track of applicant’s application status |clear understanding of the recruitment process at any given point of time |
 | `*`      | Programmer as a part-time HR manager       | automate Eva workflow            | simplify workflow as much as possible
@@ -434,7 +453,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User navigates to staff list by command 'list s-' or to staff profile while being on staff list via 'view INDEX'
+1. User navigates to staff list by command `list s-` or to staff profile while being on staff list via `view INDEX`
 2. Eva shows a list of staffs with indexes beside each staff
 3. User types in `delete INDEX c/ ti/TITLE_TO_DELETE`. 
 4. Eva deletes the comment with entered `TITLE_TO_DELETE` from staff record permanently.
@@ -523,7 +542,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User types in `addleave <index> l/d/DATE [d/DATE]`
+1.  User types in `addl INDEX l/d/DATE [d/DATE]`
 2.  Eva adds in the leave to staff record based on index
 3.  Eva displays the updated staff to User
     Use case ends.
@@ -560,7 +579,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User types in `deleteleave <index> d/DATE`
+1.  User types in `dell INDEX d/DATE`
 2.  Eva deletes the leave containing specified date from index specified staff record
 3.  Eva displays the updated staff to User
     Use case ends.
@@ -704,7 +723,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User types in `addapplication <index_of_applicant> <filepath_of_resume>`
+1. User types in `addapp <index_of_applicant> <filepath_of_resume>`
 2. Eva inserts the resume data into storage, under the applicant indicated.
    Use case ends.
 
@@ -724,7 +743,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User types in `deleteapplication <index_of_applicant>`
+1. User types in `delapp <index_of_applicant>`
 
 2. Eva removes the resume data from the applicant indicated.
    Use case ends.
@@ -947,10 +966,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Steps 1a1-1a3 are repeated until the command entered is correct.
     Use case resumes from step 3.
+    
+* 1b. Eva detects that user is on staff profile panel.
+    
+    * 1b1. Eva requests the user to change to the correct panel, in this case, staff list.
+    * 1b2. User enters new command.
+    
+    Steps 1b1-1b3 are repeated until the command entered is from the correct panel.
+    Use case resumes from step 3.
 
 ***Use case: UC23 - viewing applicant profile***
 
-Similar to UC26, except that User <u>opens applicant list (UC23)</u> in step 1.
+1. User <u>opens applicant list (UC23)</u>
+2. User types in `view 1`
+3. Eva shows Applicant profile of applicant at index 1 on applicant list.
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva detect invalid index.
+
+    * 1a1. Eva shows the valid format to key in index.
+    * 1a2. Eva requests the user to type in command again.
+    * 1a3. User enters new command.
+
+    Steps 1a1-1a3 are repeated until the command entered is correct.
+    Use case resumes from step 3.
+    
+* 1b. Eva detects that user is on applicant profile panel.
+    
+    * 1b1. Eva requests the user to change to the correct panel, in this case, applicant list.
+    * 1b2. User enters new command.
+    
+    Steps 1b1-1b3 are repeated until the command entered is from the correct panel.
+    Use case resumes from step 3.
 
 ***Use case: UC24 - help***
 
@@ -964,7 +1013,7 @@ Similar to UC26, except that User <u>opens applicant list (UC23)</u> in step 1.
 
 **MSS**
 
-1. User types in `clear`
+1. User types in `clear <list_type>`
 2. Eva clears all entries. <br>
     Use case ends.
     
@@ -982,11 +1031,11 @@ Similar to UC26, except that User <u>opens applicant list (UC23)</u> in step 1.
 2.  Should be able to hold up to 1000 total records of staff, applicants, comments, leave and applications without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands in Eva than using the mouse.
 
-*{More to be added}*
 
 ### 5.5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, macOS
+* **Panel State**: The panel which the application is on. Possible panel states: Staff List, Applicant List, Staff Profile, Applicant Profile.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1014,29 +1063,28 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
-### 6.2 Deleting a person
-
-1. Deleting a person while all persons are being shown.
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
+1. Saving panel state
+    
+    1. Change the panel state by using the `list` or `view` commands. Close the window.
+    
+    1. Re-launch the app by double clicking the jar file.<br>
+        Expected: App launches into most recently viewed list.
 
 ### 6.3 Add staff
 
-### 6.4 Add/del comment
+1. Adding a staff record
+    
+    1. Test case: `adds n/Kristina p/90000020 e/email@email.com a/somewhere c/ ti/Title d/10/10/2010 desc/Description`
+       Expected: New staff record is added with the given details.
+       
+    1. Test case: `adds n/Christina p/90000020 a/somewhere c/ ti/Title d/10/10/2010 desc/Description`
+       Expected: No staff is added because essential email field is missing.
+       
+    1. Test case: `adds n/Kristina p/90000020 e/email@email.com a/somewhere c/ ti/Title d/10/10/2010 desc/Description`
+       Expected: No staff is added as this record has the same name as the one entered in test case 1.
+
+
+### 6.4 Adding/deleting a comment
 
 1. Adding a comment to a staff while all staffs are being shown in a list.
 
@@ -1116,7 +1164,33 @@ testers are expected to do more *exploratory* testing.
 
     1. Similar to (3) and (4), just that prerequisite is instead viewing applicant profile with command `view 1` on applicant list.
            
-### 6.5 Add/del leave
+### 6.5 Adding leave
+
+1. Adding a leave to a staff on staff list
+
+    1. Prerequisites: list all staffs using the `list s-` command. Multiple staffs in list.
+    
+    1. Test case: `addl 1 l/d/10/10/2020`
+       Expected: leave with date 10/10/2020 will be added to staff at index 1. Success message is shown.
+       
+    1. Test case: `addl 1 l/d/10/10/2020`
+       Expected: command rejected. Error message shown informing that this is a duplicate leave.
+       
+    1. Test case: `addl 1 l/d/02/02/2020 d/03/02/2020 l/d/09/02/2020`
+       Expected: leave with date range 02/02/2020 to 03/02/2020 and leave with date 09/02/2020 added to staff at index 1. Success message is shwon
+       
+    1. Test case: `addl 0 l/d/10/10/2020`
+       Expected: command rejected. Error message shown informing that index is invalid.
+       
+    1. Other incorrect commands to try: `addl x`, `addl`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous
+
+1. Adding a leave to a staff on staff profile
+    
+    1. Prerequisites: list all staffs using the `list s-` command. `view 1` to view the first staff.
+    
+    1. Test cases same as previous.
+    
 
 ### 6.6 Saving data
 
@@ -1138,7 +1212,7 @@ Eva generates a `data` directory to store databases and user preferences.
    Expected: Eva would not load staff database and leave staff list empty.
 
 
-### 6.7 Find staff and applicants
+### 6.7 Finding staffs and applicants
 
 1. Find an applicant with the given name.
 
@@ -1161,3 +1235,4 @@ Eva generates a `data` directory to store databases and user preferences.
     1. Test case: `find Joe`<br>
        Expected: An error message as well as command usage shows up to inform the user of wrong command format.
 
+These test cases are not exhaustive and you can create more as you learn more about how the product works and is implemented.

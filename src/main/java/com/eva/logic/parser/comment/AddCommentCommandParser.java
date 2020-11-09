@@ -42,7 +42,7 @@ public class AddCommentCommandParser {
                 || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                            AddCommentCommand.MESSAGE_USAGE));
+                            AddCommentCommand.MESSAGE_ADDCOMMENT_USAGE));
         }
 
         try {
@@ -87,6 +87,6 @@ public class AddCommentCommandParser {
                 throw new ParseException(AddCommentCommand.MESSAGE_ADDCOMMENT_USAGE);
             }
         }
-        return Optional.of(ParserUtil.parseComments(comments));
+        return Optional.of(ParserUtil.parseAddOrEditComments(comments));
     }
 }

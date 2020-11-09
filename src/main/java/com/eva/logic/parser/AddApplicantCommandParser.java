@@ -51,7 +51,7 @@ public class AddApplicantCommandParser implements Parser<AddApplicantCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Set<Comment> commentList = ParserUtil.parseComments(argMultimap.getAllValues(PREFIX_COMMENT));
+        Set<Comment> commentList = ParserUtil.parseAddOrEditComments(argMultimap.getAllValues(PREFIX_COMMENT));
         ApplicationStatus applicationStatus = new ApplicationStatus("received");
         Optional<InterviewDate> interviewDate = arePrefixesPresent(argMultimap, PREFIX_INTERVIEW_DATE)
                 ? Optional.of(ParserUtil.parseInterviewDate(argMultimap.getValue(PREFIX_INTERVIEW_DATE).get()))

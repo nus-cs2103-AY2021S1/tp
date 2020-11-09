@@ -37,7 +37,7 @@ public class DeleteCommentCommandParser {
                 || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                            DeleteCommentCommand.MESSAGE_USAGE));
+                            DeleteCommentCommand.MESSAGE_DELETECOMMENT_USAGE));
         }
 
         try {
@@ -81,6 +81,6 @@ public class DeleteCommentCommandParser {
                 throw new ParseException(DeleteCommentCommand.MESSAGE_DELETECOMMENT_USAGE);
             }
         }
-        return Optional.of(ParserUtil.parseComments(comments));
+        return Optional.of(ParserUtil.parseDeleteComments(comments));
     }
 }
