@@ -917,7 +917,8 @@ Edit the details of an existing client.
 <b>MSS</b>
 1. User requests to list all clients.
 2. Homerce shows a list of clients.
-3. User edits an existing client's details by providing the updated details.
+3. User edits an existing client's details by providing the 
+   updated details.
 4. Homerce updates the details of the selected client.
 5. Homerce updates the client list.
 6. Homerce updates the client's details in the appointment manager.
@@ -974,7 +975,8 @@ Edit the details of an existing service.
 <b>MSS</b>
 1. User requests to list all services.
 2. Homerce shows a list of services.
-3. User edits an existing service's details by providing the updated details.
+3. User edits an existing service's details by providing the 
+   updated details.
 4. Homerce updates the details of the selected service.
 5. Homerce updates the service list.
 6. Homerce displays the updated list and a successful message.
@@ -1093,7 +1095,8 @@ Add a revenue earned by the business into Homerce.
 
 <b>Preconditions: Revenue list must exist.</b>
 
-<b>Guarantees: A new revenue will be added to the revenue list upon marking the appointment as done.</b>
+<b>Guarantees: A new revenue will be added to the revenue list 
+    upon marking the appointment as done.</b>
 
 <b>MSS</b>
 1. User <ins>mark appointment as done(UC005)</ins>.
@@ -1135,7 +1138,8 @@ Find a revenue in the revenue list.
 
 <b>Preconditions: Revenue exists in revenue list.</b>
 
-<b>Guarantees: Display all revenues in the revenue list that matches the search value.</b>
+<b>Guarantees: Display all revenues in the revenue list that matches 
+    the search value.</b>
 
 <b>MSS</b>
 1. User requests to list all revenues that match the search value.
@@ -1162,7 +1166,8 @@ Add an expense incurred by the business into Homerce.
 
 <b>Preconditions: Expense list must exist.</b>
 
-<b>Guarantees: A new expense will be added to the expense list upon successful command.</b>
+<b>Guarantees: A new expense will be added to the expense list 
+    upon successful command.</b>
 
 <b>MSS</b>
 1. User adds an expense by providing details.
@@ -1210,7 +1215,8 @@ List all the expenses sorted by value in the expense list.
 
 <b>Preconditions: Expense exists in expense list.</b>
 
-<b>Guarantees: All expenses in the expense list will be displayed in sorted order.</b>
+<b>Guarantees: All expenses in the expense list will be displayed 
+    in sorted order.</b>
 
 <b>MSS</b>
 1. User requests to sort all expenses by descending or ascending order.
@@ -1246,7 +1252,8 @@ Use case ends.
 <br>
 <pre>
 UC014: Breakdown finances
-Creates a breakdown of revenues, expenses and profit for a given month of a year.
+Creates a breakdown of revenues, expenses and profit for 
+    a given month of a year.
 
 <b>System: Homerce</b>
 
@@ -1254,7 +1261,8 @@ Creates a breakdown of revenues, expenses and profit for a given month of a year
 
 <b>Preconditions: Revenue and Expense lists must exist.</b>
 
-<b>Guarantees: A breakdown of revenue, expenses, and profit for the specified time period.</b>
+<b>Guarantees: A breakdown of revenue, expenses, and profit for 
+    the specified time period.</b>
 
 <b>MSS</b>
 1. User requests to view a breakdown of finances for a particular month of a year.
