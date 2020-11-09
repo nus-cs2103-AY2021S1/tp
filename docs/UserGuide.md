@@ -571,7 +571,7 @@ Example:
 
 Adds an application (resume details) to an applicant with the specified index under Eva.
 
-Format: `addapp INDEX [filepath]`
+Format: `addapp INDEX FILEPATH`
 
  - An applicant should be created prior to the addition of its application.
 

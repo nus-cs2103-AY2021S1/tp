@@ -188,11 +188,11 @@ An application also contains a `Application`. More about how this is implemented
 #### 3.3.1 Application Management System:
 
 The application management system consists of the following:
-   * Resume parser
+   * Resume parser (found in `AddApplicationCommandParser`)
      * The parser scans a resume text file using a given filepath to detect a given name, as well as experience as education history.
      * Following which, the resume data will be stored as an application inside an applicant under Eva's database.
      * Should the user want to delete an application, the `delapp` command will replace the application with a blank one.
-   * Sample resume generator
+   * Sample resume generator (found in `ResumeTextFileGenerator`)
      * This generator creates a sample resume text file in the data/resume.txt, where the `data` folder is in the same directory as the JAR file.
      * The sample resume highlights the strict format that resume text files will have to follow.
      
