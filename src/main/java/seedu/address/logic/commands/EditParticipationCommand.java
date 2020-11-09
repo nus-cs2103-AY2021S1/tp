@@ -21,12 +21,11 @@ public class EditParticipationCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the participation score of the student identified by the index number used in the "
-            + "displayed student list.\n"
+            + "displayed student list by adding to the existing score.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_PARTICIPATION + "PARTICIPATION SCORE "
-            + "[" + PREFIX_PARTICIPATION + "PARTICIPATION SCORE]...\n"
+            + PREFIX_PARTICIPATION + "PARTICIPATION_SCORE\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PARTICIPATION + "-2";
+            + PREFIX_PARTICIPATION + "5";
 
     public static final String MESSAGE_EDIT_PARTICIPATION_SUCCESS = "%s's participation score is %s/%s";
     public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view";

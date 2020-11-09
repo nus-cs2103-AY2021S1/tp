@@ -24,8 +24,8 @@ public class DeleteAttendanceCommand extends Command {
             + ": Removes the attendance of the student identified by the index number used in the "
             + "displayed student list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_WEEK + "WEEK NUMBER "
-            + "[" + PREFIX_WEEK + "WEEK NUMBER]...\n"
+            + PREFIX_WEEK + "WEEK_NUMBER "
+            + "[" + PREFIX_WEEK + "WEEK_NUMBER]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_WEEK + "2";
 
