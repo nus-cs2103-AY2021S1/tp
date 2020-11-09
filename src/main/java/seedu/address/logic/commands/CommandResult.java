@@ -15,10 +15,14 @@ public class CommandResult {
 
     private final boolean showCalendar;
 
-    /** Help information should be shown to the user. */
+    /**
+     * Shows help information to user.
+     */
     private final boolean showHelp;
 
-    /** The application should exit. */
+    /**
+     * Exits the application.
+     */
     private final boolean exit;
 
     /**

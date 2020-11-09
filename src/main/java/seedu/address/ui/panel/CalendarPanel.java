@@ -20,6 +20,9 @@ import seedu.address.model.task.Task;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.schedule.UpcomingSchedule;
 
+/**
+ * A CalendarPanel class that represents a calendar.
+ */
 public class CalendarPanel extends UiPart<Region> {
     private static final String FXML = "panel/CalendarPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(CalendarPanel.class);

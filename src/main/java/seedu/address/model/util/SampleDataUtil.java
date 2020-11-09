@@ -29,6 +29,8 @@ import seedu.address.model.task.event.StartDateTime;
  */
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
+        String event1Date = "19-11-2020";
+        String event2Date = "25-11-2020";
         return new Task[] {
             Deadline.createDeadline(new Title("Borrow books"), new DeadlineDateTime("25-11-2020 09:00"),
                     Description.defaultDescription(), new Tag("CS1101S")), // incomplete deadline
@@ -36,11 +38,13 @@ public class SampleDataUtil {
                     new Description("Programming Assignment 2 of CS3230, Very hard."),
                     new Tag("CS3230"), Status.createCompleteStatus(),
                     new Duration(20), DoneDateTime.createDoneNow()), // completed deadline
-            Event.createUserEvent(new Title("Source Academy Avenger Meeting"), new StartDateTime("19-11-2020 13:00"),
-                    new EndDateTime("25-11-2020 18:00"), Description.defaultDescription(),
+            Event.createUserEvent(new Title("Source Academy Avenger Meeting"),
+                    new StartDateTime(event1Date + " 13:00"),
+                    new EndDateTime(event1Date + " 18:00"), Description.defaultDescription(),
                     new Tag("CS1101S")), // event 1
-            Event.createUserEvent(new Title("CS2105 project"), new StartDateTime("18-11-2020 13:00"),
-                    new EndDateTime("25-11-2020 15:00"), Description.defaultDescription(),
+            Event.createUserEvent(new Title("CS2105 project"),
+                    new StartDateTime(event2Date + " 13:00"),
+                    new EndDateTime(event2Date + " 15:00"), Description.defaultDescription(),
                     new Tag(("CS2105"))) // event 2
         };
     }
