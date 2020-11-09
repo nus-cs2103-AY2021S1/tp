@@ -18,6 +18,7 @@ title: User Guide
 <div style="page-break-after: always;"></div>
 
 ## Introduction <a name="introduction"></a>
+
 <img src="images/tCheckLogo.png" width="200" height="200" />
 
 Welcome to the User Guide of **tCheck**!
@@ -68,18 +69,18 @@ We have structured this User Guide in a way so that you can find what you need e
 
    * Manpower Management
 
-   * Other general features
+   * Other General Features
 
 ### 2. Reading this document <a name="reading-this-document"></a>
 
 This section introduces you to some key technical terms, symbols and syntax that are used throughout this guide.
-You may want to familarize yourself with them before moving on to the next section.
+You may want to familarise yourself with them before moving on to the next section.
 
 #### 2.1 Terminology related to the GUI
 
 Figure 2 shows the GUI of **tCheck**, annotated with descriptions for all components of the GUI.
 
-<img src="images/tCheckInfographic.png" width="1000" height="700" />
+<img src="images/tCheckInfographic.png" width="1000"/>
 Figure 2 - Annotated GUI of tCheck
 
 #### 2.2 General Symbols and Syntax 
@@ -127,14 +128,14 @@ The following points explain the format of a command.
    e.g. If the command specifies `p/PHONE_NUMBER e/EMERGENCY_CONTACT`, `e/EMERGENCY_CONTACT p/PHONE_NUMBER` is also acceptable.
     
 
-#### 2.4 Prefix process and usage
+#### 2.4 Prefix processing and usage
 
 The table below explains some important features of how prefix(es) are processed in tCheck to help you understand and use prefix(es) in commands.
 
 Situation | What will happen
 -------|------------------------------
 Duplicate (2 or more) valid prefixes detected | Only the last prefix and its following parameter are accepted and processed as part of the command.
-Invalid prefix entered | tCheck will not recognize this "prefix" and thus it will be processed as part of the parameter for the nearest previous valid prefix, which may result in error for the parameter.
+Invalid prefix entered | tCheck will not recognise this "prefix" and thus it will be processed as part of the parameter for the nearest previous valid prefix, which may result in error for the parameter.
 Unexpected prefix(es) entered for commands which do not take in any parameter | tCheck will not accept or process these prefix(es) because all words entered after the command words will be ignored. 
 
 **Example 1:**
@@ -150,8 +151,8 @@ Thus, the command will be processed in the same way as `i-set i/Boba m/90`.
 
 **How the command is processed:**
 
-In this example, the prefixes `M/`, `P/`, `B/`, `L`, `G` and `S/` are valid but `T/` is invalid. Hence, the situation of
-invalid prefix entered takes place. Since tCheck will not be able to recognize the `T/` entered as a prefix. Thus, it will be treated as
+In this example, the prefixes `M/`, `P/`, `B/`, `L/`, `G/` and `S/` are valid but `T/` is invalid. Hence, the situation of
+invalid prefix entered takes place. Since tCheck will not be able to recognise the `T/` entered as a prefix. Thus, it will be treated as
 part of the parameter for the nearest previous prefix, which is `S/`. This will cause the command to fail because `10 T/20` is an invalid format for amount and appropriate error message will be shown.
 
 **Example 3:**
@@ -274,6 +275,8 @@ After executing:<br>
 
 ### 2. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
 
+The Ingredients Tracking features allows you to keep an inventory of the ingredients for a T-Sugar store inside the Ingredient Tracker.
+You are able to view data related to ingredients tracking in the Ingredient Tracker inside the _Main View_.
 
 <div markdown="block" class="alert alert-info">
 
@@ -314,6 +317,17 @@ Format: `i-set i/INGREDIENT_NAME m/AMOUNT`
 
 * Sets the `INGREDIENT_NAME` to the specified `AMOUNT`.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about amounts:** <br>
+
+You can use one or two leading zeros when setting the amounts if you prefer, as long as the total number of digits entered for the amount is less than or equal to three, except for zero. Zero will always be displayed as one single "0".
+This applies for both setting one ingredient's level and setting all ingredients' levels.
+
+For example, tCheck accepts `07`, `007` and `070` as valid parameters for `AMOUNT`, but `0007` is rejected.
+
+</div>
+
 Example:
 
 Let's say you want to set the ingredient Milk's level to 90 L. 
@@ -329,10 +343,10 @@ Outcome:
 
 Before the execution:
 
-<img src="images/IngredientSetCommand.png" width="850" height="595" />
+![IngredientSetCommand](images/IngredientSetCommand.png)
 Figure above shows tCheck's GUI during the command is being entered.
 
-<img src="images/IngredientSetCommandResultDisplay.png" width="850" height="595" />
+![IngredientSetCommandResultDisplay](images/IngredientSetCommandResultDisplay.png)
 Figure above showing tCheck's GUI after pressing "Enter". Note that the amount for Milk is updated in Ingredient Tracker section inside the _Main View_.
 
 #### 2.2 Setting all ingredients' levels to different specified amounts : `i-set-all`
@@ -356,10 +370,10 @@ Outcome:
 1. The _Result Display_ will show a success message.
 2. You can now see that tCheck has updated all ingredients' levels to the specified amounts in the Ingredient Tracker inside the _Main View_.
 
-<img src="images/IngredientSetAllCommand.png" width="850" height="595" />
+![IngredientSetAllCommand](images/IngredientSetAllCommand.png)
 Figure above shows tCheck's GUI during the command is being entered.
 
-<img src="images/IngredientSetAllCommandResultDisplay.png" width="850" height="595" />
+![IngredientSetAllCommandResultDisplay](images/IngredientSetAllCommandResultDisplay.png)
 Figure above showing tCheck's GUI after pressing "Enter". Note that all amounts for the ingredients are updated in Ingredient Tracker inside the _Main View_.
 
 #### 2.3 Setting all ingredients to different levels : `i-set-default`
@@ -383,7 +397,13 @@ Outcome:
 1. The _Result Display_ will show a success message.
 2. You can now see that tCheck has updated all ingredients' levels to the pre-determined default amounts in the Ingredient Tracker inside the _Main View_.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:** <br>
+
 tCheck GUI behaves similarly to examples given in the previous command, except no parameters are taken in.
+
+</div>
 
 #### 2.4 Listing all ingredients' levels : `i-list`
 Lists the ingredient's levels of all ingredient types.
@@ -862,7 +882,7 @@ Format: `c-archive-all`
 
 Example:
 
-Let's say after you familiarize yourself with tCheck, you want to remove all sample data in employee directory. But
+Let's say after you familiarise yourself with tCheck, you want to remove all sample data in employee directory. But
  you don't want to permanently delete those data, so that you can use them as a reference in the future. To archive
   all employees, you can follow these instructions:
 
