@@ -336,13 +336,10 @@ Example of the instructor bug:
 **A**: No. Use `switch` to switch the active semester first and then use `assign`.
 
 **Q**: What happens if I accidentally clear all my data using `reset`?<br>
-**A**: FaculType currently does not support `undo` command so it is not possible to retrieve deleted data. Please ensure that you wish to delete all your data before doing `reset`.
+**A**: FaculType currently does not support an `undo` operation so it is not possible to retrieve deleted data. Please ensure that you wish to delete all your data before using `reset`.
 
 **Q**: When and why does FaculType use sample data?<br>
-**A**: FaculType uses sample data when the user first launches the app. The purpose of providing sample data is to give users opportunity to get familiar with FaculType. So, after you are familiar with the application, you can do `reset` before inserting your real data.
-
-**Q**: Why is my data missing?
-**A**: Ensure that your json files are in the correct folder and format. Otherwise, FaculType will use empty lists.
+**A**: FaculType uses sample data when the application is first launched. The purpose of providing sample data is to let users experiment with the data while getting familiar with FaculType. If you wish to insert your own data, you can use `reset`.
 
 --------------------------------------------------------------------------------------------------------------------
 
