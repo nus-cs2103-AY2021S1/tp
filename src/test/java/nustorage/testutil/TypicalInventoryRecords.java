@@ -1,6 +1,5 @@
 package nustorage.testutil;
 
-
 import static nustorage.logic.commands.CommandTestUtil.COST_1;
 import static nustorage.logic.commands.CommandTestUtil.COST_2;
 import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_A;

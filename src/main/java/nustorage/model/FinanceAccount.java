@@ -75,6 +75,10 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
         return financeRecords.getFinanceRecord(recordId);
     }
 
+    public FinanceRecordList getFinanceRecordList() {
+        return this.financeRecords;
+    }
+
     /**
      * Removes the finance record with the corresponding index
      *

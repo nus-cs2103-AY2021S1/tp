@@ -9,7 +9,7 @@ import nustorage.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new DeleteInventoryRecordCommand object
  */
-public class DeleteInventoryRecordCommandParser {
+public class DeleteInventoryRecordCommandParser implements Parser<DeleteInventoryRecordCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteInventoryRecordCommand
