@@ -1425,7 +1425,7 @@ User can create two types of flashcards - containing open end question or multip
 
    1. For some test cases listed bellow to work, user's first three flashcards should be the same as the sample starting flashcards that was provided.
 
-1. Test Case 1: `edit 1 q/Edited quesiton ans/New answer`<br>
+1. Test Case 1: `edit 1 q/Edited question ans/New answer`<br>
    Expected: The flashcard with index 1 is edited with the specified parameters. The details of the question will be shown in the display window on the side.
 
 1. Test Case 2: `edit 1 t/`<br>
