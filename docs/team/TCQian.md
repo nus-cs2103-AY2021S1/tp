@@ -102,6 +102,3 @@ Given below are my contributions to the project.
 * **Community**:
   * Set up milestones in GitHub
 
-* **Tools**:
-
-* _{you can add/remove categories in the list above}_
