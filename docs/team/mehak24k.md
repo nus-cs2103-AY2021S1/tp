@@ -9,7 +9,7 @@ DSAce is a desktop definition book application used for teaching Data Structures
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to flip a flashcard.
+* **New Feature**: Added the ability to flip a flashcard using the `flip` command.
   * What it does: allows the user to flip a flashcard to either show or hide the definition of the term in the flashcard.
   * Justification: This feature improves the product significantly because a user should be able to view or hide the definition of the term in the flashcard as required to help them memorise and test themselves.
   * Highlights: This enhancement affects the GUI and state of the definition book significantly. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to the properties of a flashcard and the GUI of the application.
@@ -33,8 +33,10 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Contributed to introduction and list of features covered in the application. [\#19](https://github.com/AY2021S1-CS2103-T14-2/tp/pull/19)
+    * Contributed to `flip` command feature
   * Developer Guide:
-    * Added implementation details of the `flip` flashcard feature. (TBC)
+    * Added implementation details of the `flip` flashcard feature.
+    * Added implementation details of the Quiz component high-level logic and the `start attempt` command.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#103](https://github.com/nus-cs2103-AY2021S1/ip/pull/103), [\#129](https://github.com/nus-cs2103-AY2021S1/ip/pull/129)
