@@ -775,17 +775,17 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect marking deadline as done commands to try: `done`, `done 1`, `done x:20` (where x is larger than the list size or negative number or index of event/completed deadline task)<br>
       Expected: error status message will be shown.
 
-### Adding a event
+### Adding an event
 
-1. Adding a event while all tasks are being shown
+1. Adding an event while all tasks are being shown
 
    1. Prerequisites:  List all tasks using the `list-task` command. Multiple events exists in the task list.
 
    1. Test case: `event title:Project meeting date:10-11-2020 from:09:00 to:12:30 tag:CS2103T`<br>
-      Expected: a new event with title 'Project meeting' is added to the task list, a event card will be displayed with the detailed info about the event.
+      Expected: a new event with title 'Project meeting' is added to the task list, an event card will be displayed with the detailed info about the event.
 
    1. Test case: `event title:Project meeting date:10-11-2020 from:09:00 to:12:30 tag:CS2103T`<br>
-      Expected: No event is added because a event with the same details already exists in the task list. Status message informs user that event already exists.
+      Expected: No event is added because an event with the same details already exists in the task list. Status message informs user that event already exists.
 
    1. Test case: `event title:Another Project meeting date:10-11-2020 from:09:00 to:12:30 tag:CS2103T`<br>
       Expected: No event is added because the event time is overlapping with another event that exists in the task list.
@@ -811,7 +811,7 @@ testers are expected to do more *exploratory* testing.
       1. Test case: `edit-task 1 date: 29-11-2020`<br>
             Expected: No task will be edited as you cannot edit deadline with date attribute.
 
-   1. Prerequisites: The first task in the list is a event task.
+   1. Prerequisites: The first task in the list is an event.
       1. Test case: `edit-task 1 date: 29-11-2020`<br>
         Expected: The event date of the first task displayed in the task list will be updated to "29-11-2020".
       1. Test case: `edit-task 1 datetime: 29-11-2020 23:59`<br>
@@ -942,20 +942,3 @@ testers are expected to do more *exploratory* testing.
  1. Test case: `exit`<br>
     Expected: The window of the program will close.
 
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases … }_
-
-|      |      |
-| ---- | ---- |
-|      |      |
-|      |      |
-|      |      |
-|      |      |
-|      |      |
-|      |      |
-|      |      |
