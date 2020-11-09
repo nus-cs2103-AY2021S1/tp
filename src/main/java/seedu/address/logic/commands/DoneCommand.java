@@ -108,8 +108,6 @@ public class DoneCommand extends Command {
         Remind updatedRemind = assignmentToMarkAsDone.getRemind();
         Schedule updatedSchedule = assignmentToMarkAsDone.getSchedule();
         Priority priority = assignmentToMarkAsDone.getPriority();
-        // TODO: following method (and method in createRemindedCommand violates Law of Demeter.
-        //  might have to think of another way to do this after this iteration
         Done done = assignmentToMarkAsDone.getDone().markAsDone();
 
         return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedRemind, updatedSchedule,

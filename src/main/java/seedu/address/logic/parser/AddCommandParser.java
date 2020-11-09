@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
@@ -24,6 +26,7 @@ import seedu.address.model.task.Time;
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
+    private static final int FROM_START_OF_STRING = 0;
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -34,15 +37,25 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         boolean isRemindPresent = args.matches(".*\\bremind\\b.*");
         boolean isRemindTypo = false;
-        boolean isPriorityPresent = args.matches(".*\\bp/\\b.*");
+        boolean isPriorityPresent = args.matches(".*\\bp/.*");
 
         if (!isRemindPresent) {
-            isRemindTypo = args.matches(".*re[a-z]*$");
+            isRemindTypo = args.matches(".*\\bre[a-z]*.*");
         }
 
         if (isRemindPresent || isRemindTypo) {
-            // remove remind from args as ArgumentTokenizer cannot parse remind without prefix
-            String argsWithoutRemind = args.replace(" remind", "");
+            String argsWithoutRemind;
+
+            if (isRemindTypo) {
+                Pattern typoPattern = Pattern.compile("\\bre[a-z]*\\b");
+                Matcher matcher = typoPattern.matcher(args);
+                matcher.find(FROM_START_OF_STRING);
+                String remindTypoWord = matcher.group();
+                argsWithoutRemind = args.replace(remindTypoWord, "");
+            } else {
+                // remove remind from args as ArgumentTokenizer cannot parse remind without prefix
+                argsWithoutRemind = args.replace(" remind", "");
+            }
             argMultimap = ArgumentTokenizer.tokenize(argsWithoutRemind, PREFIX_NAME, PREFIX_DEADLINE,
                     PREFIX_MODULE_CODE, PREFIX_PRIORITY);
         } else {
@@ -57,7 +70,8 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Time deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
-        ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
+        ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE_CODE)
+                .get().toUpperCase());
         Remind remind = new Remind();
         Schedule schedule = new Schedule();
         Done done = new Done();
