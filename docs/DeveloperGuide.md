@@ -737,7 +737,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
  2.  FitEgo shows a list of Clients
  3.  User requests to edit a specific Client in the list
  4.  FitEgo edits the Client according to the specified details  
-Use case ends.
+     Use case ends.
 
 **Extensions**
 
@@ -760,7 +760,7 @@ Use case ends.
  2.  FitEgo shows a list of Clients
  3.  User requests to delete a specific Client in the list
  4.  FitEgo deletes the Client  
-Use case ends.
+     Use case ends.
 
 **Extensions**
 
@@ -776,10 +776,11 @@ Use case ends.
 
 * 3b. The given index refers to a Client associated with one or more Schedule.
     
-    * 3b1. FitEgo asks a confirmation from the User to delete all related information.
+    * 3b1. FitEgo asks a confirmation from the User to delete all Client-related information.
     * 3b2. User confirms.
     
       Steps 3b1 are repeated until User confirms.
+
       Use case resumes from step 4.
             
 * 3c. User requests to force delete a specific Client in the list.
@@ -796,7 +797,7 @@ Use case ends.
 
  1.  User requests to find some Client based on keyword or text.
  2.  FitEgo displays the Client's whose name matches the keyword or text.
-Use case ends.
+     Use case ends.
 
 **Extensions**
 
@@ -864,7 +865,7 @@ Similar to [UC03 (Delete a Client)](#uc03), but replace Client with Session.
  1.  FitEgo shows a list of Sessions.
  2.  User requests to filter the Session List by a period.
  3.  FitEgo filters the Session List according to the specified period and updates the title displayed.
-Use case ends.
+     Use case ends.
 
 **Extensions**
 
@@ -886,7 +887,7 @@ Use case ends.
  1. FitEgo shows a list of Clients and list of Sessions.
  2. User requests to add a specific Schedule between a specified Client from Client List and Session from Session List.
  3. FitEgo adds the Schedule.
-Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -910,7 +911,7 @@ Use case ends.
  1.  FitEgo shows a list of Clients and list of Sessions.
  2.  User requests to edit a specific Schedule in the list. (i.e. updated Session index, update payment, update weight)
  3.  FitEgo edits the Schedule according to the specified details.
-Use case ends.
+     Use case ends.
 
 **Extensions**
 
@@ -933,7 +934,7 @@ Use case ends.
  1. FitEgo shows a list of Clients and list of Sessions.
  2. User requests to delete a Schedule associated with a specified Client from the Client List and Session from the Session List.
  3. FitEgo deletes the Schedule.
-Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -957,8 +958,7 @@ Use case ends.
  2.  FitEgo displays Help Window with the User Guide link.
  3.  User selects the link to access the User Guide. 
  4.  FitEgo opens the User Guide in user's default browser.
- 
-Use case ends.
+     Use case ends.
 
 **Extensions**
  - 3a. User closes the Help Window. 
@@ -976,7 +976,6 @@ Use case ends.
 2.  FitEgo displays Settings Window.
 3.  User makes changes to settings. 
 4.  FitEgo saves changes to settings. 
-
     Use case ends.
 
 **Extensions**
