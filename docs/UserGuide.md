@@ -307,7 +307,7 @@ Examples:
 
 The image below shows what you would see after executing the last example given. Notice that no other staffs are listed as there is only one Alex.
 
-![findStaff](images/ugimages/FindStaff.jpeg)
+![findStaff](images/ugimages/FindStaff.png)
 
 #### 3.3.4. View : `view`
 
@@ -547,7 +547,7 @@ Examples:
 
 The image below shows what you would see after executing the last example given above.
 
-![findApplicant](images/ugimages/FindApplicant.jpeg)
+![findApplicant](images/ugimages/FindApplicant.png)
 
 #### 3.4.4. View : `view`
 
