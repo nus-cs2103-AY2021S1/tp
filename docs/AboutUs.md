@@ -29,7 +29,7 @@ You can reach us at the email `ktaekwon000 [at] gmail dot com`.
 * Role: Developer
 * Responsibilities: UI
 
-### Taekwon Kim
+### Tae Kwon Kim
 
 <img src="images/ktaekwon000.png" width="200px">
 
