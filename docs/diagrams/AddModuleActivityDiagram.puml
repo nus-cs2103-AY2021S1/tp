@@ -1,0 +1,22 @@
+@startuml
+start
+:User inputs add module command;
+:AddModuleCommandParser checks input;
+if () then ([not all required fields present])
+    :Throw ParseException;
+    end
+else ([else])
+    :Parse all inputs;
+    :Model contains module;
+        if () then ([yes])
+            :Throw CommandException;
+            end
+        else ([no])
+            :Check all participants are valid;
+            if () then ([yes])
+                :Add Module to the model;
+                stop
+            else ([no])
+                :Throw CommandException;
+                end
+@enduml
