@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/zhiayang.md)]
 
 * Role: Technical Lead
-* Responsibilities: Command Parser, code integration
+* Responsibilities: Command Parser, Code Integration
 
 ### Seow Alex
 
@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/seowalex)]
 [[portfolio](team/seowalex.md)]
 
-* Role: Code quality/Integration
+* Role: Code Quality / Integration
 
 ### Travis Toh
 
@@ -56,3 +56,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/hjl99.md)]
 
 * Role: Deliverables and Deadlines / Scheduling and Tracking
+* Responsibilities: Filter and Recipe Model
