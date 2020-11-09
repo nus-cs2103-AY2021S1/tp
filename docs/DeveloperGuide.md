@@ -1,11 +1,11 @@
 ---
 layout: page
 title: Developer Guide
----
+
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Introduction**
 
@@ -18,13 +18,12 @@ The intended audience of this document are developers, designers, and software t
 ### **About ProductiveNUS**
 ProductiveNUS is a desktop application targeted at Computing students of National University of Singapore (NUS) to help them manage and schedule their academic tasks efficiently.
 
---------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -66,6 +65,8 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -73,6 +74,8 @@ The sections below give more details of each component.
 
 ![Structure of the UI Component 2](images/UiClassDiagram2.png)
 <br/>*Figure 4: More information on Class Diagram for UI Component*
+
+<div style="page-break-after: always;"></div>
 
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -85,6 +88,8 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -100,6 +105,8 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `UI`.
 1. In addition, the `CommandResult` object can also instruct the `UI` to perform certain actions, such as displaying help to the user.
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -114,6 +121,8 @@ The `Model`,
 * stores a `Model` object that represents the current `Model` before the most recent command.
 * exposes an unmodifiable `ObservableList<Assignment>` and an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
+<div style="page-break-after: always;"></div>
+
 #### Task, Lesson and Assignment
 `Lesson` and `Assignment` are two important classes in ProductiveNus; `Lesson` stores information about the lessons imported from NUSMods while `Assignment` stores information about the assignments added by the user. 
 
@@ -121,6 +130,8 @@ Since `Lesson` and `Assignment` have several attributes in common, namely `Name`
 
    !![Relationship between Task, Assignment and Lesson](images/TaskClassDiagram.png)
    <br/>*Figure 7: Class Diagram for Task*
+
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -137,7 +148,7 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -164,6 +175,8 @@ Users may find it difficult to manually come up with a working schedule in order
 We understand this inconvenience and decided to implement the schedule feature, that will suggest a time slot
 where the users can do their assignment within a preferred period and at a
 specific time which they are free from all lessons and other assignment.
+
+<div style="page-break-after: always;"></div>
 
 #### Current Implementation
 
@@ -204,6 +217,8 @@ The `ScheduleCommandParser` class implements `Parser<ScheduleCommand>`, which is
 The user's arguments will be parsed using the `parse` method to create a new `ScheduleCommand` object for `ScheduleCommandParser` class.
 It calls `parseIndex`, `parseExpectedHour` and `parseTime` method from `ParserUtil` class. A `ParseException` is caught if the parsing is unsuccessful.
 
+<div style="page-break-after: always;"></div>
+
 #### Usage Scenario
 
 The following is a usage scenario when a user wants to schedule the third assignment in his/her displayed assignment list.
@@ -226,6 +241,8 @@ Given below is the sequence diagram for the interactions within `LogicManager` f
 
    ![Sequence Diagram for ScheduleCommand](images/ScheduleSequenceDiagram.png)
    <br/>*Figure 9: Sequence Diagram for ScheduleCommand*
+
+<div style="page-break-after: always;"></div>
 
 ### Import timetable feature
 The user can import information about their lessons into ProductiveNUS using their NUSMods timetable URL.
@@ -256,6 +273,8 @@ url.
 `ImportCommandParser` and makes a HTTP GET request to NUSMods API. NUSMods sends `TimetableRetriever` the relevant JSON
 data. The data is parsed and returns as a list of `Lessons`.
 
+<div style="page-break-after: always;"></div>
+
 #### Usage Scenario
 
 The following is the usage scenario of when a user imports an NUSMods timetable.
@@ -271,6 +290,8 @@ The following is the usage scenario of when a user imports an NUSMods timetable.
 The following sequence diagram shows the sequence when LogicManager executes `import` command.
 ![Interactions Inside the Logic Component for the `import url/URL` Command](images/ImportSequenceDiagram.png)
    <br/>*Figure 10: Sequence Diagram for ImportCommand*
+
+<div style="page-break-after: always;"></div>
 
 ### Find by specific fields feature
 
@@ -299,6 +320,8 @@ As a student user, the following scenarios are likely:
 
 We thus concluded that finding by specific fields would be beneficial for users, and it would make it easier and more convenient for them to view assignments based on their needs.
 
+<div style="page-break-after: always;"></div>
+
 #### Current Implementation
 
 ##### Prefixes used in identifying keywords
@@ -324,6 +347,8 @@ The following Predicate classes implements `Predicate<Assignment>` and specific 
 
 The keywords are stored in a `List<String>` attribute `keywords` that is passed into the constructor of the predicate so that the `test` method can evaluate the keywords for the specific attribute of an assignment, being name, module code, deadline or priority, to return a boolean value.
 
+<div style="page-break-after: always;"></div>
+
 ##### FindCommandParser Class
 The `FindCommandParser` class implements `Parser<FindCommand>` and it is responsible for parsing input arguments with the `parse` method to create a new `FindCommand` object. It contains private methods which checks for the presence of multiple prefixes and invalid keywords, which will throw a `ParseException` if detected.
 
@@ -339,6 +364,8 @@ Upon successful parsing, a `FindCommand` object is returned.
 The `FindCommand` class extends abstract class `Command` and it is responsible for finding assignments based on the user's input keywords. It contains static `String` attributes of error messages to be displayed in the event of invalid user input, and a `Predicate<Assignment>` attribute, `predicate`. The constructor of `FindCommand` takes in a `Predicate<Assignment>` depending on the prefix or keywords in the user's input and its attribute `predicate` is initialized to this value.
  
  It overrides the method `execute` to return a `CommandResult` object, which provides the result of command execution. In the `execute` method, it calls the `updatedFilteredAssignmentList` method of a `Model` object, `model`, it takes in, so that the filter of the filtered assignment list will be updated by the given predicate and a list of filtered assignments will be displayed to the user, along with an indication message on the number of assignments listed.
+
+<div style="page-break-after: always;"></div>
 
 #### Usage Scenario
 
@@ -356,6 +383,7 @@ Given below is the sequence diagram for the interactions within `LogicManager` f
 ![Interactions Inside the Logic Component for the `find n/Lab` Command](images/FindSequenceDiagram.png)
  <br/>*Figure 12: Sequence Diagram for FindCommand*
 
+<div style="page-break-after: always;"></div>
 
 ### Remind assignments feature
 The user can set reminders for a single assignment or multiple assignments at a time.
@@ -375,6 +403,8 @@ Displaying reminded assignments in a list separate from the main assignment list
 - `RemindCommandParser` implements `Parser<RemindCommand>` and it parses the user's input to return a `RemindCommand` object.
 - The constructor of `RemindCommand` takes in `List<Index>`, and each `Index` in `List<Index>` is parsed from the zero based index of the user's input.
 
+<div style="page-break-after: always;"></div>
+
 #### Usage Scenario
 The following is a usage scenario of when the user wants to set reminders for the 2nd and 3rd assignment in their displayed assignment list.
 
@@ -391,6 +421,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 1. The `checkForInvalidIndexes` method of the `CommandLogic` is then called to check for any indexes not found in the displayed assignment list.
 1. The `setAssignment` method of `Model` is repeatedly called, once for each `Index` in `List<Index>`. In this case, the loop terminates after 2 times.
 1. A `CommandResult` object is returned from `execute()`.
+
+<div style="page-break-after: always;"></div>
 
 ### Prioritize assignments feature
 The user can set priorities for a single assignment.
@@ -411,6 +443,8 @@ that are of greater priority.
 - `PrioritizeCommandParser` implements `Parser<PrioritizeCommand>` and it parses the user's input to return a `PrioritizeCommand` object.
 - The constructor of `PrioritizeCommand` takes in `Index` and `Priority`.
 
+<div style="page-break-after: always;"></div>
+
 #### Usage Scenario
 The following is a usage scenario of when the user wants to set a high priority for the 3rd assignment in their displayed assignment list.
 
@@ -426,6 +460,8 @@ The following is a usage scenario of when the user wants to set a high priority 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("prioritize 3 p/HIGH")` API call.
 ![Interactions Inside the Logic Component for the `prioritize 3 p/HIGH` Command](images/PrioritizeSequenceDiagram.png)
  <br/>*Figure 14: Sequence Diagram for PrioritizeCommand*
+
+<div style="page-break-after: always;"></div>
 
 ### List by days feature
 
@@ -443,6 +479,8 @@ For example, if the current date and time is 22/10/2020 1200, assignments with d
 - It is different from the `find` command as users can list all assignments with deadlines within a time period (from the current date to a number of days later),
 whereas finding assignments by date or time will only display assignments due on the particular day or time.
 
+<div style="page-break-after: always;"></div>
+
 #### Current Implementation
 
 ##### ListCommandParser Class
@@ -454,6 +492,8 @@ If input argument is found, it is then checked with Regular Expressions whether 
 The `ListCommand` class extends abstract class `Command` and it is responsible for listing assignments based on the user's input command. It contains static `String` attributes of error messages to be displayed in the event of invalid user input, and an `Optional<Index>` attribute, `numberOfDays`. There are overloaded constructors for `ListCommand`, one being empty and the other taking in an `Index` parameter. Within the empty constructor, the `numberOfDays` attribute will be initialized with an empty `Optional` instance and within the parameterized constructor, `numberOfDays` attribute will be initialized with the `Optional` of its parameter.
 
 It overrides the method `execute` to return a `CommandResult` object, which provides the result of command execution. In the `execute` method, if `numberOfDays` is empty, a predicate `PREDICATE_SHOW_ALL_ASSIGNMENT` is passed into the `updatedFilteredAssignmentList` method of a `Model` object, `model`. If `numberOfDays` is not empty, `showLimitedAssignments` method with return type `Predicate<Assignment>` is passed into the `updatedFilteredAssignmentList` method. The `showLimitedAssignments` method uses lambda expressions to filter assignments with deadlines that fall within the number of days window inputted by the user.
+
+<div style="page-break-after: always;"></div>
 
 ##### Design Considerations
 As the list command allows for users to enter an optional index, we decided that there should be overloaded constructors for this command, one being empty and the other populated with the parameter `Index`. We decided to use `Optional<Index>` as the type for `numberOfDays` attribute in `ListCommand` class because the user input might or might not have an input argument. 
@@ -472,6 +512,7 @@ The following are design considerations we had and its comparisons:
 
 * **Cons**: Optional requires a different thinking. For example `null` has to get replaced with `Optional.empty()`.
 
+<div style="page-break-after: always;"></div>
 
 #### Usage scenario
 The following is a usage scenario of when the user wants to list assignments that are due within the next 3 days from the current date and time.
@@ -487,6 +528,7 @@ The following is a usage scenario of when the user wants to list assignments tha
 ![Interactions Inside the Logic Component for the `list 3` Command](images/ListSequenceDiagram.png)
  <br/>*Figure 15: Sequence Diagram for ListCommand*
 
+<div style="page-break-after: always;"></div>
 
 ### Delete multiple assignments feature
 The user can delete one or multiple assignments at a time.
@@ -497,6 +539,8 @@ It implements the following operations:
 
 #### Reasons for Implementation
 It will provide convenience to users who want to delete more than one assignment at a time, and it makes the process of removing completed assignments faster.
+
+<div style="page-break-after: always;"></div>
 
 #### Current Implementation
 
@@ -515,6 +559,8 @@ When deleting multiple assignments, it calls this method repeatedly with a for l
 
 Since the index of assignments in the list will update after each delete in the loop, we sorted the list from the largest index to the smallest, and implemented deleting of assignments from the largest index in the list to maintain order.
 
+<div style="page-break-after: always;"></div>
+
 #### Usage Scenario
 The following is a usage scenario of when the user wants to delete the first and second assignment in his displayed assignment list:
 
@@ -532,6 +578,7 @@ The following is a usage scenario of when the user wants to delete the first and
  ![Interactions Inside the Logic Component for the `delete 1 2` Command](images/DeleteSequenceDiagram.png)
   <br/>*Figure 16: Sequence Diagram for DeleteCommand*
  
+ <div style="page-break-after: always;"></div>
  
 ### Unremind, Unprioritize and Undone
 
@@ -552,6 +599,8 @@ It is also likely that the user's schedule is constantly changing. For example, 
 
 Hence, the unremind, unprioritize and undone commands help users to easily manage their continuously changing schedule.
 
+<div style="page-break-after: always;"></div>
+
 #### Current implementations
 As all three commands have a similar format (command word followed by an index) and all start with the prefix "un", all three commands extends the **abstract** `NegateCommand` class in order to enforce abstraction principles (Figure X).
 
@@ -568,6 +617,7 @@ The NegateCommand class also extends from the abstract `Command` class in order 
 #### Design considerations
 By implementing the abstract `NegateCommand` class, any future implementation of commands with similar functionality as unremind, unprioritize and undone will simply extend from the `NegateCommand` class, thereby enforcing the **Open-Closed Principle**.
 
+<div style="page-break-after: always;"></div>
 
 ### Undo
 The user can undo all previous commands one at a time.
@@ -594,6 +644,8 @@ If there is no previous command, a `CommandException` will be thrown.
 Otherwise, `getPreviousModel` will be called to get the version of the `Model` before the most recent command and
 the current `Model` will be replaced with it.
 
+<div style="page-break-after: always;"></div>
+
 #### Usage Scenario
 
 A usage scenario would be when a user wants to undo the most recent command that changes the data of the assignments
@@ -611,6 +663,8 @@ Given below is the sequence diagram for the interactions within `LogicManager` f
    ![Sequence Diagram for UndoCommand](images/UndoSequenceDiagram.png)
    <br/>*Figure 18: Sequence Diagram for UndoCommand*
 
+<div style="page-break-after: always;"></div>
+
 ### Updating of Upcoming tasks in real time
 
 The displayed task list under `Upcoming tasks` updates in real time when the deadline of an assignment or the end time of a lesson has passed.
@@ -624,6 +678,8 @@ The updating of `Upcoming tasks` in real time is implemented with **multithreadi
 As the GUI of ProductiveNUS is implemented using JavaFX, Thread safety using synchronised thread actions cannot be achieved as JavaFx is modelled to execute on a **single JavaFX-Launcher thread.** Therefore, this feature makes use of `javafx.concurrent.Task<V>` for multithreading operations, which is designed to handle multithreading operations for JavaFX applications in a **thread-safe manner**.
 
 A `Timer` object is used alongside `javafx.concurrent.Task` to periodically check `UniqueTaskList` in `ProductiveNus` every second. The `Timer` object has `isDaemon` set to true. If the deadline of the upcoming assignment or the end time of the upcoming lesson has passed, the `updateTasks()` method in `ProductiveNus class` is called. The `Timer` object can be found in the private method `autoUpdateTaskList()` method in `ProductiveNus`, which is called in the `ProductiveNus constructor` when the user runs ProductiveNus.
+
+<div style="page-break-after: always;"></div>
 
 #### Usage Scenario
 
@@ -646,6 +702,7 @@ Due to limitations of PlantUML, arrows are not able to point towards the branch 
     1. If the user exits ProductiveNUS, the `Timer` thread stops running.
 1. ProductiveNUS closes.
 
+<div style="page-break-after: always;"></div>
 
 ### Adding an assignment feature
 
@@ -673,6 +730,8 @@ As a student user, the following scenarios are likely:
 
 We decided to allow the user to include the priority level and remind tag if he/she wants to do so. We understand that not all users will 
 know the priority level of the assignment at the point he/she is adding the assignment and thus we made the priority level and remind keywords optional.
+
+<div style="page-break-after: always;"></div>
 
 #### Current Implementation
 
@@ -710,6 +769,8 @@ to return a new `AddCommand` object.
 In the event that the keywords have an invalid format, such as the `Deadline` keyword not being in the required `dd-MM-yyyy HHmm` form for example,
 a `ParseException` will be thrown. 
 
+<div style="page-break-after: always;"></div>
+
 #### Usage Scenario
 The following is a usage scenario when a user wants to add an assignment with the name 'Lab', module 'CS2103', and deadline '10-10-2020 2359'.
 
@@ -727,6 +788,8 @@ Given below is the sequence diagram for the interactions within `LogicManager` f
 
    ![Sequence Diagram for AddCommand](images/AddSequenceDiagram.png)
    <br/>*Figure 20: Sequence Diagram for AddCommand*
+
+<div style="page-break-after: always;"></div>
 
 ### Marking assignments as done and Setting reminders for assignments features
 
@@ -763,6 +826,8 @@ As a student user, the following scenarios are likely:
 
 We decided to create a `Your reminders` section in our GUI, allowing users to display only the assignments that have reminders set.
 
+<div style="page-break-after: always;"></div>
+
 #### Current Implementation
 
 ##### DoneCommand Class and RemindCommand Class
@@ -795,11 +860,14 @@ The created assignment will be added to the `List<Assignment`, `assignmentsToRem
 The above process repeats until all assignments corresponding to all indexes in `targetedIndexes` are accounted for.
 A new `CommandResult` containing `assignmentsToRemind` or `assignmentsToMarkDone` list will be returned for `RemindCommand` and `DoneCommand` respectively.
 
+
 ##### DoneCommandParser Class and RemindCommandParser Class
 The `DoneCommandParser` class and `RemindCommandParser` class implements `Parser<DoneCommand>` and `Parser<RemindCommand>` respectively, which is responsible for parsing the user's input arguments.
 The user's arguments will be parsed using the `parse` method to create a new `DoneCommand` and `RemindCommand` object for `DoneCommandParser` and `RemindCommandParser` class respectively.
 It calls `parseIndexes` method from `ParserUtil` class to parse the string user input into multiple `Index` which is then stored in a `List<Index>` named `parsedIndexes`.
  A `ParseException` is caught if the parsing is unsuccessful.
+ 
+ <div style="page-break-after: always;"></div>
  
 #### Usage Scenario
 
@@ -826,6 +894,9 @@ Given below is the sequence diagram for the interactions within `LogicManager` f
    ![Sequence Diagram for DoneCommand](images/DoneMultipleSequenceDiagram.png)
    <br/>*Figure 21: Sequence Diagram for DoneCommand*
    
+   
+<div style="page-break-after: always;"></div>
+
 ##### Setting reminders to assignments
 The usage scenario of a user setting reminders for the first and third assignment in his/her displayed assignment list is similar to the usage scenario above.
 
@@ -843,7 +914,7 @@ Given below is the sequence diagram for the interactions within `LogicManager` f
    ![Sequence Diagram for RemindCommand](images/RemindMultipleSequenceDiagram.png)
    <br/>*Figure 22: Sequence Diagram for RemindCommand*
    
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -853,7 +924,7 @@ Given below is the sequence diagram for the interactions within `LogicManager` f
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -869,6 +940,8 @@ Given below is the sequence diagram for the interactions within `LogicManager` f
 * More convenient than typical apps as lessons and assignments are managed in just one app so there is no need to switch between different ones.
 * Faster than typical mouse/GUI driven apps as most features are accomplished by typing simple commands.
 * Easier to manage schedule than typical scheduling apps as assignments are automatically scheduled.
+
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -886,6 +959,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | slow/confused student | i can access and view my academic duties easily | quickly find out what i need to do for the week |
 | `* * ` | beginner user | view a summary of the features | quickly learn about the features available |
 | `* * ` | experienced user | use shortcuts in my commands | manage my academic schedule quicker |
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -916,6 +991,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 **Use case: UC02 - Delete an assignment**
 
@@ -935,6 +1011,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
 
 **Use case: UC03 - Import timetable**
 
@@ -961,6 +1038,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
       Use case resumes at step 3.
 
+<div style="page-break-after: always;"></div>
 
 **Use case: UC04 - Remind**
 
@@ -981,6 +1059,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
 
 **Use case: UC05 - List assignments and lessons**
 
@@ -1003,6 +1082,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC06 - Prioritize assignment**
 
 **MSS**
@@ -1018,7 +1099,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. ProductiveNUS shows an error message.
 
         Use case ends.
-    
+<div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -1035,7 +1117,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **User**: NUS Computing student
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -1060,6 +1142,8 @@ These instructions only provide a starting point for testers to work on; testers
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.    
+
+<div style="page-break-after: always;"></div>
 
 ### Adding assignments
 1. Adding an assignment without priority and remind.
@@ -1096,6 +1180,8 @@ These instructions only provide a starting point for testers to work on; testers
 
     1. Test case: `add n/Lab 1 mod/CS2100 d/10-10-2022 2359 p/MEDIUM remin`<br>
     Expected: No assignment added. Error details shown in the Message Box.
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting assignments
 
@@ -1144,6 +1230,7 @@ These instructions only provide a starting point for testers to work on; testers
     1. Test case: `delete 1 2 3`<br>
                 Expected: First, second and third assignment is deleted from the list. Details of the deleted assignments shown in the Message Box.
                            
+<div style="page-break-after: always;"></div>
 
 ### Listing assignments
 
@@ -1165,6 +1252,8 @@ These instructions only provide a starting point for testers to work on; testers
    
    1. Test case: `list a`<br>
       Expected: Error details shown in the Message Box.           
+ 
+ <div style="page-break-after: always;"></div>
  
 ### Finding assignments
 
@@ -1217,6 +1306,8 @@ These instructions only provide a starting point for testers to work on; testers
     1. Test case: `find p/high medium`<br>
       Expected: Assignments HIGH or MEDIUM priority is displayed. Message with number of assignments listed is displayed in Message Box.
 
+<div style="page-break-after: always;"></div>
+
 ### Importing timetable
 
 1. Importing a timetable for the first time
@@ -1224,6 +1315,8 @@ These instructions only provide a starting point for testers to work on; testers
        Expected: No lessons imported. Error details shown in the status message.
     1. Test case: `import url/https://nusmods.com/timetable/sem-1/share?CS2100=TUT:01&EC1301=TUT:S28`<br>
        Expected: The corresponding lessons imported. Success message shown in the status message. Imported lessons are shown in the task list.
+
+<div style="page-break-after: always;"></div>
 
 ### Setting reminders for assignments
 
@@ -1275,6 +1368,8 @@ These instructions only provide a starting point for testers to work on; testers
    1. Other incorrect remind commands to try: `remind`, `remnid 0`, `remind x x`, `...` (where x is the assignment list index of an assignment that is found in `Your reminders`)<br>
       Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
+
 ### Removing reminded assignments
 
 1. Removing reminders for assignments found in `Your reminders` when `Your reminders` is non-empty
@@ -1297,7 +1392,10 @@ These instructions only provide a starting point for testers to work on; testers
       
    1. Other incorrect unremind commands to try: `unremind`, `unremnid 1`, `...`
       Expected: Similar to previous.
+           
       
+<div style="page-break-after: always;"></div>
+
 ### Marking assignments as done
 
 1. Marking one assignment as done while all assignments are being shown
@@ -1348,6 +1446,8 @@ These instructions only provide a starting point for testers to work on; testers
    1. Other incorrect done commands to try: `done`, `done 0 1`, `done x x`, `...` (where x is the assignment list index of an assignment that has been marked as done)<br>
       Expected: Similar to previous.
       
+<div style="page-break-after: always;"></div>
+      
 ### Marking assignments as not done
 
 1. Marking assignments as not done while all assignment are being shown
@@ -1374,7 +1474,8 @@ These instructions only provide a starting point for testers to work on; testers
    1. Other incorrect done commands to try: `undone`, `undon 1`, `undone x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
       
-      
+<div style="page-break-after: always;"></div>
+
 ### Automated updating of task list
 1. Assignments in task list
 
@@ -1398,6 +1499,7 @@ These instructions only provide a starting point for testers to work on; testers
    1. Wait till the current time passes the end time of the lesson (if end time is 1230, wait till the clock on your computer is 1230).<br>
       Expected: The first task is removed from `Upcoming tasks`.
       
+ <div style="page-break-after: always;"></div>
  
 ### Saving data
 
@@ -1405,7 +1507,7 @@ These instructions only provide a starting point for testers to work on; testers
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+<div style="page-break-after: always;"></div>
 
 ## Effort
 Difficulty level: Hard
@@ -1425,8 +1527,6 @@ Another challenged faced was that while AB3 only deals with one entity (Person),
 As beginner users of JavaFX, reading and understanding the code base of the implementation of the AB3 GUI was especially difficult. Learning JavaFX alongside implementing the features of ProductiveNUS and changing the code base to suit our needs, implementing our desired GUI definitely posed a challenge.
 
 Furthermore, JavaFX has its own set of classes for multithreading implementations. As we were unfamiliar with JavaFX, we first tried to implement multithreading using the Java 11 API. It was only after debugging for a few hours did we realise that using the conventional Thread class in Java 11 would not be feasible as JavaFX does not support multithreading using with the normal Java 11 API.
-
-### Effort required
 
 ### Achievements
 #### JavaFx
