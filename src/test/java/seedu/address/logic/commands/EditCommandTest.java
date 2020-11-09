@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalMeetings.getTypicalMeetingBook;
@@ -152,6 +153,7 @@ public class EditCommandTest {
         Person personInList = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(ALICE.getName(),
                 new EditPersonDescriptorBuilder(personInList).build());
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
     }
@@ -177,6 +179,7 @@ public class EditCommandTest {
 
         EditCommand editCommand = new EditCommand(new Name("test"),
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED);
     }
