@@ -44,8 +44,8 @@ interested in using the product.
 * **Enhancements to existing features**:
     * Laid down the structure of the student class. ([\#42](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/42))
     * Updated the add command to accommodate student class. ([\#62](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/62))
-    * Updated the GUI color scheme and layout. ([\#76](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/76), [\#81](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/81) and [\#231](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/231))
-    * Updated UG and DG structure and flow. ([\#126](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/126) and [\#233](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/233))
+    * Updated the GUI color scheme and layout. ([\#76](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/76), [\#81](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/81) and [\#233](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/233))
+    * Updated UG and DG structure and flow. ([\#126](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/126) and [\#231](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/231))
 
 * **Documentation**:
     * User Guide:

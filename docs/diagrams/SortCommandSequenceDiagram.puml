@@ -1,0 +1,38 @@
+@startuml
+!include ./style.puml
+
+box "Logic" LOGIC_COLOR_T1
+
+Participant ":LogicManager" as logic LOGIC_COLOR
+Participant ":ReeveParser" as parser LOGIC_COLOR
+Participant ":SortCommandParser" as commandParser LOGIC_COLOR
+Participant "command:SortCommand" as command LOGIC_COLOR
+
+[-> logic : execute()
+activate logic
+logic -> parser ++: parseCommand(commandText)
+create commandParser
+parser -> commandParser ++:
+return
+parser -> commandParser ++: parse(args)
+create command
+commandParser -> command ++: args
+return command
+return command
+return command
+destroy commandParser
+
+
+logic -> command ++: execute(model)
+
+endbox
+box "Model" MODEL_COLOR_T1
+Participant "model:Model" as model MODEL_COLOR
+    command -> model++: updateSortedStudentList(comparator)
+    return
+return
+return
+destroy command
+end box
+
+@enduml

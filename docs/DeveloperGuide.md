@@ -27,6 +27,8 @@
             * [6.2.6.1 Add detail command](#6261-add-detail-command)
             * [6.2.6.2 Edit detail command](#6262-edit-detail-command)
             * [6.2.6.3 Delete detail command](#6263-delete-detail-command)
+        * [6.2.7 Sort command](#626-sort-command)
+
     * [6.3 Student academic details features](#63-student-academic-details-features)
         * [6.3.1 Question commands](#631-question-commands)
             * [6.3.1.1 Add question command](#6311-add-question-command)
@@ -41,7 +43,7 @@
             * [6.3.3.1 Add attendance command](#6331-add-attendance-command)
             * [6.3.3.2 Delete attendance command](#6332-delete-attendance-command)
     * [6.4 Schedule command](#64-schedule-command)
-    * [6.5 Notes command](#65-notes-command)
+    * [6.5 Notebook feature](#65-notebook-feature)
 - [7. Documentation](#7-documentation)
 - [8. Logging](#8-logging)
 - [9. Testing](#9-testing)
@@ -57,7 +59,7 @@
     * [F.2 General Features](#f2-general-features)
     * [F.3 Administrative Features](#f3-student-administrative-features)
     * [F.4 Academic Features](#f4-student-academic-features)
-    * [F.5 Notes Features](#f5-notes-feature)
+    * [F.5 Notebook Features](#f5-notebook-feature)
     * [F.6 Saving Data](#f6-saving-data)
 
 
@@ -478,6 +480,25 @@ The following activity diagram summarises the flow of events when `DeleteDetailC
 ![DeleteDetailActivity](images/DeleteDetailActivityDiagram.png)
 <div align="center">Figure 26: Delete detail Activity Diagram</div><br>
 
+#### 6.2.7 Sort Command
+
+This is an explanation of how `SortCommand` works.
+
+1. After the `SortCommand` is successfully parsed, `SortCommand#execute(Model model)` is called to execute the command.
+2. The `comparisonMeans` stored within the `SortCommand` is checked against `NameComparator.COMPARISON_MEANS`, `ClassTimeComparator.COMPARISON_MEANS` and `YearComparator.COMPARISON_MEANS`.
+3. If `comparisonMeans` matches the comparison means of `NameComparator`, `NameComparator.COMPARISON_MEANS`, a new `NameComparator` is created and `Model#updateSortedStudentList(Comparator<? extends Student> comparator)` called.
+4. Step 3 is repeated similarly for `ClassTimeComparator` and `YearComparator`.
+5. If `comparisonMeans` matches no comparison means in steps 3 and 4, a `CommandException` is thrown.
+6. The student list is sorted and a `CommandResult` with the success message is returned. 
+
+The following activity diagram summarises the flow of events when `SortCommand` is executed.
+
+![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)
+
+The following sequence diagram shows how the `SortCommand` execution works.
+
+![SortCommandSequenceDiagram](images/SortCommandSequenceDiagram.png)
+
 ### 6.3 Student academic details features
 
 This section describes some key details on how academic details features are implemented.
@@ -757,7 +778,50 @@ The following are the various design choices made regarding the feature and alte
     This would violate the data integrity of the `Student` we currently have and introduce additional complexity in
     maintaining both data structures.
 
-### 6.5 Notes Command
+### 6.5 Notebook feature
+
+This section describes the implementation of the notebook feature and the various commands relating to notebook.
+
+The notebook feature comprises three specific commands extending `NoteCommand`:
+
+* `AddNoteCommand` – Adds a note to the notebook.
+* `EditNoteCommand` – Edits a note in the notebook.
+* `DeleteNoteCommand` – Deletes a note from the notebook
+
+The following class diagram shows how the various commands relate to each other. (refer to [5.3 Logic Component](#54-logic-component) for higher-level details about the design)
+
+![NoteCommandClassDiagram](images/NoteCommandClassDiagram.png)
+
+#### 6.5.1 Add note command
+
+This section describes how `AddNoteCommand` is performed.
+
+1. Upon successful parsing of the user input, `AddNoteCommand#execute(Model model)` is called which checks whether there is already a note with the same title in `NotesList` using `Model#hasNote(Note toAdd)`.
+2. If a duplicate note is found, a `CommandException` is thrown, and the note will not be added.
+3. Otherwise, `Model#addNote(Note toAdd)` will be called, and the note will be added.
+4. A `CommandResult` will be returned with the success message.
+
+#### 6.5.2 Edit note command
+
+This section describes how `EditNoteCommand` is performed.
+
+1. Upon successful parsing of the user input, `EditNoteCommand#execute(Model model)` is called.
+2. During the execution, `Model#getNotebook()` is called to retrieve the notebook in Reeve and `ReadOnlyNotebook#getNotesList()` is called from the notebook to retrieve the list of notes.
+3. The `Index` is checked to ensure that it is valid; if it is not, a `CommandException` is thrown, and no note will be edited.
+4. The note at `index` is retrieved, and a new note, `editedNote` is created based on this note and the `EditNoteDescriptor` stored within the `EditNoteCommand`.
+5. `editedNote` is checked to ensure that it is not the same as the original note retrieved. A `CommandException` is thrown if it is the same note.
+6. `Model#setNote(Note notetoEdit, Note editedNote)` is called to edit `noteToEdit` to `editedNote` in `model`.
+7. A `CommandResult` will be returned with the success message.
+
+#### 6.5.3 Delete note command
+
+This section describes how `DeleteNoteCommand` is performed.
+
+1. Upon successful parsing of the user input, `DeleteNoteCommand#execute(Model model)` is called.
+2. During the execution, `Model#getNotebook()` is called to retrieve the `ReadOnlyNotebook` in Reeve and `ReadOnlyNotebook#getNotesList()` is called to retrieve the `List<Note>`.
+3. The `Index` is checked to ensure that it is valid; if it is not, a `CommandException` is thrown, and no note will be deleted.
+4. The `Note` at `Index` is removed from the notebook using `Model#deleteNote(Note noteToDelete)`.
+5. A `CommandResult` will be returned with the success message.
 
 ## 7. **Documentation**
 Refer to the [Documentation guide](Documentation.md).
@@ -792,31 +856,34 @@ Refer to the [DevOps guide](DevOps.md).
 ## **Appendix B: User Stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
-                                                 
+                                     
 | Priority | As a …​                            | I want to …​                                       | So that I can…​                                                                     |
-| -------- | --------------------------------------| ----------------------------------------------------- | ----------------------------------------------------------------------              |
-| `* * *`  | private tutor ready to use Reeve      | view a list of commands and how to use them           | learn how the application works or in case I forgot how some of the commands work   |
-| `* * *`  | private tutor ready to use Reeve      | add my students' details                              | store them and retrieve them whenever I need                                        |
-| `* * *`  | private tutor                         | view my students' preferred tutoring location         | figure out how to get that location                                                 |
-| `* * *`  | private tutor                         | edit my students' personal details                    | update outdated data                                                                |
-| `* * *`  | private tutor                         | view my student's details                             | refer to them when needed                                                           |
-| `* * *`  | private tutor                         | add additional details to each student                | add other miscellaneous details which can allow me to better cater to student needs |
-| `* * *`  | private tutor with many students      | find a student's record                               | retrieve students' data with ease                                                   |
-| `* * *`  | private tutor                         | find students who have not paid their fees            | remind students who have yet to pay me for my services                              |
-| `* * *`  | private tutor who is a long-term user | delete students' data                                 | remove irrelevant data of students who are no longer my tutees                      |
-|  `* *`   | private tutor                         | record questions that my students raised              | find the answers to them after the lesson                                           |
-|  `* *`   | private tutor                         | record solutions to the questions raised              | use them as reference for answering future similar questions                        |
-|  `* *`   | private tutor                         | delete questions I do not need anymore                | focus on the questions I need to pay attention to                                   |
-|  `* *`   | private tutor                         | input my student’s school test scores                 | keep track of their progress                                                        |
-|  `* *`   | private tutor                         | track my students' attendance                         | keep track of students' lesson records                                              |
-|  `* *`   | private tutor                         | input feedback to specific lessons                    | improve my capabilities as a tutor                                                  |
-|  `* *`   | private tutor                         | view a list of notes/reminders                        | keep track of tasks I have yet to do                                                |
-|  `* *`   | private tutor                         | view my tutoring schedule for a particular day        | plan ahead of my lessons for that day                                               |
-|  `* *`   | private tutor                         | view my tutoring schedule for a week                  | plan for the week ahead                                                             |
-|   `*`    | private tutor                         | view my students' academic progress                   | know which students need more help                                                  |
-|   `*`    | private tutor ready to use Reeve      | view the type of student details that are displayed   | focus on the details that I am currently concerned with                             |
-|   `*`    | private tutor that is impatient       | be able to get the command results in a reasonable time | save time                                                                         |
-|   `*`    | private tutor that is using Reeve for the first time      | view Reeve with sample data        | visualize how Reeve looks like when I use it                                       |
+| -------- | ----------------------------------------------------------| ------------------------------------------------------- | ----------------------------------------------------------------------              |
+| `* * *`  | private tutor ready to use Reeve                          | view a list of commands and how to use them             | learn how the application works or in case I forgot how some of the commands work   |
+| `* * *`  | private tutor ready to use Reeve                          | add my students' details                                | store them and retrieve them whenever I need                                        |
+| `* * *`  | private tutor                                             | view my students' preferred tutoring location           | figure out how to get that location                                                 |
+| `* * *`  | private tutor                                             | edit my students' personal details                      | update outdated data                                                                |
+| `* * *`  | private tutor                                             | view my student's details                               | refer to them when needed                                                           |
+| `* * *`  | private tutor                                             | add additional details to each student                  | add other miscellaneous details which can allow me to better cater to student needs |
+| `* * *`  | private tutor with many students                          | find a student's record                                 | retrieve students' data with ease                                                   |
+| `* * *`  | private tutor                                             | find students who have not paid their fees              | remind students who have yet to pay me for my services                              |
+| `* * *`  | private tutor who is a long-term user                     | delete students' data                                   | remove irrelevant data of students who are no longer my tutees                      |
+|  `* *`   | private tutor                                             | record questions that my students raised                | find the answers to them after the lesson                                           |
+|  `* *`   | private tutor                                             | record solutions to the questions raised                | use them as reference for answering future similar questions                        |
+|  `* *`   | private tutor                                             | delete questions I do not need anymore                  | focus on the questions I need to pay attention to                                   |
+|  `* *`   | private tutor                                             | input my student’s school test scores                   | keep track of their progress                                                        |
+|  `* *`   | private tutor                                             | track my students' attendance                           | keep track of students' lesson records                                              |
+|  `* *`   | private tutor                                             | input feedback to specific lessons                      | improve my capabilities as a tutor                                                  |
+|  `* *`   | private tutor                                             | keep track of notes                                     | store small pieces of information in case I forget                                  |
+|  `* *`   | private tutor                                             | view my tutoring schedule for a particular day          | plan ahead of my lessons for that day                                               |
+|  `* *`   | private tutor                                             | be able to view students in alphabetical order          | look for students easily                                                            |
+|  `* *`   | private tutor                                             | be able to my view my students in lesson time order     | know which students to prioritise when preparing lessons                            |
+|  `* *`   | private tutor                                             | be able to group my students by their year of study     | look at questions and queries together for one cohort together                      |
+|  `* *`   | private tutor                                             | view my tutoring schedule for a week                    | plan for the week ahead                                                             |
+|   `*`    | private tutor                                             | view my students' academic progress                     | know which students need more help                                                  |
+|   `*`    | private tutor ready to use Reeve                          | view the type of student details that are displayed     | focus on the details that I am currently concerned with                             |
+|   `*`    | private tutor that is impatient                           | be able to get the command results in a reasonable time | save time                                                                           |
+|   `*`    | private tutor that is using Reeve for the first time      | view Reeve with sample data                             | visualize how Reeve looks like when I use it                                        |
 
 ## **Appendix C: Use Cases**
 
@@ -936,7 +1003,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
 **MSS**
 
-1.  User enters a command to find all students that match the given search parameter (name, school, year or subject).
+1.  User enters a command to find all students that match the given search parameter (name, school, year).
 2.  Reeve displays all students matching the criteria.
 
     Use case ends.
@@ -964,6 +1031,31 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 2. Reeve displays a success message.
 
    Use case ends.
+  
+**UC00: Sorting the list of students**
+
+**MSS**
+
+1.  User enters a command to sort students by a given method (name, class time, year).
+2.  Reeve sorts the list of students by the method.
+3.  Reeve displays the student list in the new order
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User provides input with invalid format.
+    * 1a1. Reeve displays expected format.
+
+      Use case resumes at step 1.
+* 1b. User provides input without a search parameter.
+    * 1a1. Reeve displays a message indicating a search parameter was not provided.
+
+      Use case resumes at step 1.
+* 1c. User provides invalid means to sort students.
+    * 1c1. Reeve displays a message indicating that sorting means in valid and valid sorting means.
+
+      Use case resumes at step 1.
 
 **UC10: Adding an additional detail to a student**
 
@@ -1320,6 +1412,71 @@ Use cases also assume that whenever an invalid command is entered by the user, R
     * 3b1. Reeve displays an error message.
 
       Use case resumes at step 2.
+ 
+**UC23: Adding a note to the notebook**
+
+**MSS**
+
+1. User enters a command to add a note to the notebook.
+2. Reeve saves the note into the notebook and displays a success message
+
+* 1a. User provides input with missing fields.
+    * 1a1. Reeve displays an error message.
+
+      Use case resumes at step 1.
+
+* 1b. User provides invalid input.
+    * 1b1. Reeve displays an error message and input constraints.
+
+      Use case resumes at step 1.
+
+**UC24: Editing a note in the notebook**
+
+**MSS**
+
+1.  User enters command to edit a specific note in the notebook and provides needed parameters.
+2.  Reeve updates the specified note with the input parameters and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User provides input with invalid index.
+    * 1a1. Reeve displays an error message and requests for input with valid index.
+
+      Use case resumes at step 1.
+* 1b. User provides input without any parameters.
+    * 1b1. Reeve requests for input with parameters.
+
+      Use case resumes at step 1.
+* 1c. User provides input with invalid format.
+	* 1c1. Reeve requests for input with valid format.
+
+	  Use case resumes at step 1.
+
+**UC24: Editing a note in the notebook**
+
+**MSS**
+
+1.  User enters command to edit a specific note in the notebook and provides needed parameters.
+2.  Reeve updates the specified note with the input parameters and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User provides input with invalid index.
+    * 1a1. Reeve displays an error message and requests for input with valid index.
+
+      Use case resumes at step 1.
+* 1b. User provides input without any parameters.
+    * 1b1. Reeve requests for input with parameters.
+
+      Use case resumes at step 1.
+* 1c. User provides input with invalid format.
+	* 1c1. Reeve requests for input with valid format.
+
+	  Use case resumes at step 1.
 
 ## **Appendix D: Non-Functional Requirements**
 
@@ -1398,7 +1555,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School v/Blk 33 West Coast Rd #21-214 t/15 1430-1630 f/25 d/10/10/2020 a/Likes Algebra`
     <br>Expected: Expected: No student is added as due to invalid class time. Error details displayed in the result display.
 
-1. Deleting a student while all students are being shown.
+2. Deleting a student while all students are being shown.
 
    1. Prerequisites: At least one student in the students list.
 
@@ -1411,21 +1568,21 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. Finding students with overdue fees (i.e last payment date is more than one month ago) while all students are shown.
+3. Finding students with overdue fees (i.e last payment date is more than one month ago) while all students are shown.
 
    1. Prerequisite: Set at least one student's last payment date to within one month of the current date with `edit` command. Multiple students in the list.
 
    1. Test case: `overdue`<br>
       Expected: All students except those whose payment date is within one month from the current date are listed. The number of students found is displayed.
 
-1. Finding students with overdue fees while some students are hidden.
+4. Finding students with overdue fees while some students are hidden.
 
    1. Prerequisite: Hide some students with overdue fees with `find` command.
 
    1. Test case: `overdue`<br>
       Expected: All students except those whose payment date is within one month from the current date are displayed again. The number of students found is displayed.
 
-1. Viewing schedule of classes
+5. Viewing schedule of classes
 
     1. Prerequisites: There are students stored in Reeve currently with non-overlapping class times.
 
@@ -1443,6 +1600,22 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `schedule m/weekly d/02-11-2020`
        Expected: Displays error message indicating invalid date format.
+
+6. Finding a student while all students are being shown with several matching students
+
+   1. Prerequisites: List all students using the `list` command. Two students in the list. One student has name _Samuel_ and has school _yishun secondary_. Another student has name _Sam_ and has school _yishun sec school_.
+
+   1. Test case: `find n/samuel`<br>
+      Expected: Only the student with name _Samuel_ and school _yishun secondary_ shows up in the list.
+
+   2. Test case: `find n/sam`<br>
+      Expected: Only the student with name _Sam_ and school _yishun sec school_ showsinp on the list.
+
+   3. Test case: `find s/yishun sec`<br>
+      Expected: Both students show up in the list.
+
+   4. Incorrect find commands to try: `find`, `find samuel`, `find yishun sec`
+      Expected: No changes show up on the list. Error details shown in the status message.
 
 ### F.4 Student Academic Features
 
@@ -1475,6 +1648,62 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `exam stats 1`
    <br>Expected: Opens the exam statistics window of the first student in the displayed students list.
+   
+### F.5 Notes Feature
+
+### F.6 Saving Data
+
+1. Dealing with missing data files
+
+   1. Test case: `data/addressbook.json` missing or deleted<br>
+      Expected: Reeve initialises with sample student data, notebook data is intact.
+
+   1. Test case: `data/notebook.json` missing or deleted<br>
+      Expected: Reeve initialises with sample notebook data, student data is intact.
+
+1. Dealing with corrupted data files (Student data)
+
+   1. Prerequisite: Ensure `data/addressbook.json` is present. Modify the data using `edit` or `delete` to create `data/addressbook.json` if absent.
+
+   1. Test case: delete a random field from a random student in `addressbook.json`<br>
+      Expected: Reeve initialises with an empty student list.
+
+   1. Test case: duplicate a student's record again in `addressbook.json`<br>
+      Expected: Similar to previous.
+
+   1. Test case: invalid data in `addressbook.json` (e.g add special characters to the "name" field) <br>
+      Expected: Similar to previous.
+
+1. Dealing with corrupted data files (Notebook data)
+
+   1. Prerequisite: Ensure `data/notebook.json` is present. Modify the data using note commands to create `data/notebook.json` if absent.
+
+   1. Test case: "description" field has more than 80 characters<br>
+      Expected: Reeve initialises with an empty notebook.
+
+   1. Test case: "title" field has more than 15 characters<br>
+      Expected: Reeve initialises with an empty notebook.
+
+   1. Test case: duplicate note in `notebook.json`<br>
+      Expected: Similar to previous.
+
+### F.4 Finding students with overdue fees
+
+1. Finding students with overdue fees (i.e last payment date is more than one month ago) while all students are shown.
+
+   1. Prerequisite: Set at least one student's last payment date to within one month of the current date with `edit` command. Multiple students in the list.
+
+   1. Test case: `overdue`<br>
+      Expected: All students except those whose payment date is within one month from the current date are listed. The number of students found is displayed.
+
+1. Finding students with overdue fees while some students are hidden.
+
+   1. Prerequisite: Hide some students with overdue fees with `find` command.
+
+   1. Test case: `overdue`<br>
+      Expected: All students except those whose payment date is within one month from the current date are displayed again. The number of students found is displayed.
+
+### F.5 Managing questions from students
 
 1. Adding questions to a student.
 
@@ -1524,6 +1753,29 @@ testers are expected to do more *exploratory* testing.
        
     1. Test case: `question delete 1 i/QUESTION_INDEX`
        Expected: Question at `QUESTION_INDEX` is removed. Details of deleted question included in status message.
+
+### F.00 Schedule
+
+1. Viewing schedule of classes
+
+    1. Prerequisites: There are students stored in Reeve currently with non-overlapping class times.
+    
+    1. Test case: `schedule m/weekly d/02/11/2020`
+       Expected: Shows the schedule of classes in the whole week of 02/11/2020.
+       
+    1. Test case: `schedule m/daily d/02/11/2020`
+       Expected: Shows the schedule of classes in the day of 02/11/2020.
+       
+    1. Test case: `schedule m/dAiLy d/02/11/2020`
+       Expected: Shows the schedule successfully as the case letters of the view mode does not matter.
+    
+    1. Test case: `schedule m/day d/02/11/2020`
+       Expected: Displays error message indicating invalid view mode.
+       
+    1. Test case: `schedule m/weekly d/02-11-2020`
+       Expected: Displays error message indicating invalid date format.
+
+### F.0 Managing additional details in students
 
 1. Adding details to a student.
 
@@ -1606,6 +1858,24 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
 
 ### F.5 Notes Feature
+
+1. Adding a note to the notebook.
+    
+    1. Test case: `note add t/things to do d/mark practice papers`
+    <br>Expected: Note with title things to do is added and details shown in the results display.
+
+    2. Test case: `note add t/things to finish by tomorrow d/mark practice papers`
+    <br>Expected: No note is added due to a title that is too long. Error details shown in the results display.
+
+2. Deleting a note.
+
+   1. Prerequisites: At least one note in the notebook.
+
+   1. Test case: `note delete 1`
+   <br>Expected: First note is deleted from the notebook. Details of the deleted note shown in the result display.
+
+   1. Test case: `note delete 0`
+   <br>Expected: No note is deleted. Error details shown in the result display.
 
 ### F.6 Saving Data
 

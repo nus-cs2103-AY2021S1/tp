@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+abstract class "{abstract}\nCommand" {
+}
+
+abstract class "{abstract}\nNoteCommand" {
+}
+
+class AddNoteCommand {
+}
+
+class EditNoteCommand {
+}
+
+class DeleteNoteCommand {
+}
+
+AddNoteCommand --up|> "{abstract}\nNoteCommand"
+EditNoteCommand --up|> "{abstract}\nNoteCommand"
+DeleteNoteCommand --up|> "{abstract}\nNoteCommand"
+"{abstract}\nNoteCommand" --up|> "{abstract}\nCommand"
+
+@enduml
