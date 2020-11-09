@@ -122,6 +122,7 @@ simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. All the informatio
  **:clipboard: Pointers to note:**<br>
 * `DEADLINE_OF_ASSIGNMENT` must be in the format dd-MM-yyyy and time in the format HHmm (24-hour).
 * `[remind]` has to be the last parameter. For example, `add n/Lab report d/23-04-2020 1230 mod/CS2100 remind p/HIGH` will not be accepted. Instead, you should enter `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH remind`.
+* The assignment that you are adding has to be unique and it cannot already exist in your assignment list. 
 </div>
 
 <div markdown="span" class="alert alert-success">
@@ -451,12 +452,12 @@ the command line based on the indexes labelled in the figure.
    
 2) The two assignments will be marked as done and each assignment will have a green tick displayed as labelled in the figure. 
 
-   ![UserGuideDoneCommandTicksAdded](images/UserGuideDoneCommandSuccess.PNG)
+   ![UserGuideDoneCommandTicksAdded](images/UserGuideDoneCommandTicks.PNG)
    *Figure 23: Added ticks labelled*
 
 3) A message that includes the information of the assignments marked as done will be displayed in the Command Box.
 
-   ![UserGuideDoneCommandSuccess](images/UserGuideDoneCommandTicks.PNG)
+   ![UserGuideDoneCommandSuccess](images/UserGuideDoneCommandSuccess.PNG)
    *Figure 24: Message shown in Command Box labelled*
    
 <div markdown="block" class="alert alert-primary">
