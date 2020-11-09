@@ -21,7 +21,7 @@ Given below are my contributions to the project.
 
 * **Bug fix**: Disabled invalid user input for all single word such as `Clear`. `Clear xx` is not supported now. (Pull requests [\#160]())
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jialin7878&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=zeying99&sort=groupTitle&sortWithin=title&since=2020-08-14&until=2020-11-09&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Enhancements to existing features**:
   * Updated the GUI of priority (Pull requests [\#66]())
