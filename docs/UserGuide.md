@@ -22,6 +22,8 @@ The _Common Cents_ interface and commands consist of a few levels: `Application`
 
 --------------------------------------------------------------------------------------------------------------------
 # 1. Quick Start
+
+*(Written by Jordan Yoong)* <br>
 Below are steps to help you set up and start your Common Cents experience!
 
 1\. Ensure you have Java `11` or above installed in your Computer.
@@ -165,6 +167,8 @@ your Entries in Common Cents.
 --------------------------------------------------------------------------------------------------------------------
 
 # 5. Features
+*(Written by Jordan Yoong)* <br>
+
 Here are some general notes about the commands in _Common Cents_. 
 
 <div markdown="block" class="alert alert-info">
@@ -199,6 +203,7 @@ found in its own section below.
 App-Level commands deals with interactions with the app, _Common Cents_, itself.
 
 ### 5.1.1 Viewing help : `help`
+*(Written by Jordan Yoong)* <br>
 
 You can use this command when you are at a lost or want to view an overview of how to use the application.
 This command will return a message explaining how to access the help page (**Figure 5.1-1**). 
@@ -218,6 +223,7 @@ You can click on the `Copy URL` button to copy the link to clipboard and paste i
 <p align="center"> <sub> <b>Figure 5.1-1</b>: Help message </sub> </p>
  
 ### 5.1.2 Exiting the program : `exit`
+*(Written by Jordan Yoong)* <br>
 
 You can use this command when you are done with what you need to do and want to close the application.
 
@@ -238,6 +244,7 @@ You can use this command when you are done with what you need to do and want to 
 Entry-Level commands involve managing the entries which are either expenses or revenues in an account. 
 
 ### 5.2.1 Adding an entry: `add`
+*(Written by Jordan Yoong)* <br>
 
 You can use this command when you want to add an entry (expense/revenue) to the tracker.
 
@@ -278,6 +285,7 @@ You can use this command when you want to add an entry (expense/revenue) to the 
 </div>
 
 ### 5.2.2 Deleting an entry: `delete`
+*(Written by Jordan Yoong)* <br>
 
 You can use this command to remove an entry (expense/revenue) from the tracker when you do not want to keep track of 
 it anymore.
@@ -315,6 +323,7 @@ it anymore.
 </div>
 
 ### 5.2.3 Editing an entry: `edit`
+*(Written by Jordan Yoong)* <br>
 
 You can use this to make edits to any existing entries in the tracker when the details of the entry are wrongly keyed.
 
@@ -413,6 +422,7 @@ list, with the updated `ENTRY INDEX`.
 </div>
 
 ### 5.2.5 Listing all entries: `list`
+*(Written by Jordan Yoong)* <br>
 
 You can use this command to list all entries in the current account when you want to have an overview of your account.
 
@@ -428,6 +438,7 @@ You can use this command to list all entries in the current account when you wan
 
 
 ### 5.2.6 Clearing all expenses or revenue: `clear`
+*(Written by Jordan Yoong)* <br>
 
 You can use this command to clear all entries from a particular category when you do not need to track them anymore.
  
@@ -483,7 +494,6 @@ The `profit` function will show deficits as a negative number if the total expen
 
 
 ### 5.2.8 Undoing Entry-level commands: `undo`
-
 *(Written by Lim Zi Yang)* <br>
 
 You can use this command to return to the state of the entry prior to the previous command.
@@ -529,11 +539,9 @@ before you exit the app!
 </div>
 
 ## 5.3 Account-level Commands
-
 Account-Level commands involve managing the different accounts in the app. 
 
 ### 5.3.1 Adding new account: `newacc`
-
 *(Written by Lim Zi Yang)* <br>
 
 You can create a new account to manage a different set of entries with this command. 
@@ -562,7 +570,6 @@ You can create a new account to manage a different set of entries with this comm
 </div>
 
 ### 5.3.2 Deleting an account: `deleteacc`
-
 *(Written by Lim Zi Yang)* <br>
 
 You can remove an account by using this command. This command is useful for clearing accounts you are no longer using.
@@ -607,7 +614,6 @@ irreversible action and cannot be undone. Do delete your account with caution!
 </div>
 
 ### 5.3.3 Editing the name of the current account: `editacc`
-
 *(Written by Lim Zi Yang)* <br>
 
 You can edit the name of the current account you are on using this command.
@@ -637,7 +643,6 @@ and edit the name from there.
 </div>
 
 ### 5.3.4 Listing accounts you have: `listacc`
-
 *(Written by Lim Zi Yang)* <br>
 
 You can check the accounts you have in the app by using this command. Each account will be numbered with an index and 
@@ -657,7 +662,6 @@ displayed as their names.
 <p align="center"> <sub> <b>Figure 5.3-4</b>: All the accounts are listed in the Result Display </sub> </p>
 
 ### 5.3.5 Switching accounts: `switchacc`
-
 *(Written by Lim Zi Yang)* <br>
 
 You can use this command to switch to the desired account. This is useful if you want to manage entries in the 
@@ -697,12 +701,10 @@ commands anymore. Do confirm the changes made to the entries in the account befo
 
 --------------------------------------------------------------------------------------------------------------------
 # 6. Frequently Asked Questions (FAQ)
-
 This section contains a few frequently asked questions with regard to _Common Cents_.
 
 ## 6.1 General Inquiry
 *(Written by Nicholas Canete)* <br>
-
 
 This section features general questions about _Common Cents_ that are not specific to the features.
 
@@ -749,6 +751,8 @@ Please follow the format of the commands closely in the [Features](#5-features) 
 --------------------------------------------------------------------------------------------------------------------
 
 # 7. Command Summary
+*(Written by Jordan Yoong)* <br>
+
 The table below summarises the above commands in the order of appearance in this User Guide for your reference. 
 
 Action | Format
