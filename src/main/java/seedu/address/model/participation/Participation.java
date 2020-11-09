@@ -43,10 +43,6 @@ public class Participation {
         tasks = new HashSet<>();
     }
 
-    public void changeRole(Role role) {
-        this.role = role;
-    }
-
     /**
      * Assigns task to the person
      *

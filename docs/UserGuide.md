@@ -639,7 +639,7 @@ Action | Format, Examples | Scope: | `PROJECT_LIST` | `PERSON_LIST` | `PROJECT` 
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **Scope**: The confines of when certain commands will work.
-* **Teammate**: A member of the user's team in a project.
+* **Teammate**: A member of the user's team in a particular project.
 * **Person** A person that could be in any number of the user's team's projects.
 * **Project** A software project with at least a GitHub repository link and a deadline.
 * **Task** Something to be done for a project with a certain progress status.
