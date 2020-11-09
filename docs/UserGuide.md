@@ -825,8 +825,8 @@ Constraints:
 Only the recipe name is searched, and only full words are matched, case-insensitively. In the case of multiple search keywords, recipes containing <b>any</b> of those words will be returned.
 
 Examples:
-- `find recipe cake` will match **Chocolate Cake** and **Strawberry Cake**, but *not* **Pancakes**.
-- `find recipe milk cake` will match **Milk Tea** and **Carrot Cake**.
+- `find recipe cake` will match *Chocolate Cake* and *Strawberry Cake*, but **not** *Pancakes*.
+- `find recipe milk cake` will match *Milk Tea* and *Carrot Cake*.
 
 To illustrate, suppose you want to search for recipes with names containing 'cake', you would use `find recipe cake`:
 <a name="Figure-11-1"></a>
@@ -882,25 +882,25 @@ Constraints:
 
 Examples:
 - `filter recipe /name ginger`<br />
-  This matches **Gingerbread Man** and **Ginger Chicken Soup**, the only recipes whose names include **ginger**.
+  This matches *Gingerbread Man* and *Ginger Chicken Soup*, the only recipes whose names include *ginger*.
 
 - `filter recipe /name sweet /name cake`<br />
-  This matches **Sweet Choco Cake** and **Sweet Caramel Cake**, the only recipes whose names include <i>both</i> **sweet** and **cake**.
+  This matches *Sweet Choco Cake* and *Sweet Caramel Cake*, the only recipes whose names include **both** *sweet* and *cake*.
 
 - `filter recipe /tag family reunion`<br />
-  This matches **Spring Rolls** and **Hot Pot**, the only recipes tagged **family reunion**.
+  This matches *Spring Rolls* and *Hot Pot*, the only recipes tagged *family reunion*.
 
 - `filter recipe /tag snacks /tag sweet` <br />
-  This matches **Chocolate Cookie** and **Gummy Bears**, the only recipes tagged <i>both</i> **snacks** and **sweet**.
+  This matches *Chocolate Cookie* and *Gummy Bears*, the only recipes tagged <i>both</i> *snacks* and *sweet*.
 
 - `filter recipe /ingredient eggs` <br />
-  This matches **Egg Tart** and **Scrambled Eggs**, assuming they are the only recipes using **eggs**.
+  This matches *Egg Tart* and *Scrambled Eggs*, assuming they are the only recipes using *eggs*.
 
 - `filter recipe /ingredient chicken /ingredient cheese /ingredient pineapple` <br />
-  This matches **Chicken Quesadilla**, assuming it is the only recipe using **chicken**, **cheese**, and **pineapple**.
+  This matches *Chicken Quesadilla*, assuming it is the only recipe using *chicken*, *cheese*, and *pineapple*.
 
 - `filter recipe /tag local dish /name chicken /ingredient chicken /ingredient white rice /tag family favourite /name rice` <br />
-  This matches **Chicken Rice**, assuming it is the only recipe that matches all the criteria specified.
+  This matches *Chicken Rice*, assuming it is the only recipe that matches all the criteria specified.
 
 To illustrate, suppose you had the following two recipes:
 
@@ -911,7 +911,7 @@ To illustrate, suppose you had the following two recipes:
   Figure 12.1: <i>The starting recipes</i>
 </div>
 
-Then, if you wanted to search for recipes with tags **christmas** and **baked**, using ingredients **honey**, **ginger root**, and **molasses**, and whose names contain keywords **men** and **bread**, you would use this command (separated into lines for clarity):
+Then, if you wanted to search for recipes with tags *christmas* and *baked*, using ingredients *honey*, *ginger root*, and *molasses*, and whose names contain keywords *men* and *bread*, you would use this command (separated into lines for clarity):
 ```
 filter recipe
   /name men /name bread
@@ -919,7 +919,7 @@ filter recipe
   /ingredient honey /ingredient ginger /ingredient molasses
 ```
 
-After executing the command, similar to the effect of [`find recipe`](#FindRecipeCommand) command, the recipe list has changed, showing only the matching recipe, **Gingerbread Men**:
+After executing the command, similar to the effect of [`find recipe`](#FindRecipeCommand) command, the recipe list has changed, showing only the matching recipe, *Gingerbread Men*:
 
 <a name="Figure-12-2"></a>
 <div style="text-align: center; padding-bottom: 2em">
@@ -1192,24 +1192,24 @@ Constraints:
 
 Examples:
 - `filter ingredient /name dark chocolate` <br />
-  This matches **dark chocolate** and **dark chocolate syrup**, assuming they are the only ingredients whose names contain **dark chocolate**.
+  This matches *dark chocolate* and *dark chocolate syrup*, assuming they are the only ingredients whose names contain *dark chocolate*.
 
 - `filter ingredient /name dark chocolate /name syrup` <br />
-  This matches **dark chocolate syrup**, assuming it is the only ingredient whose name contains both **dark chocolate** and **syrup**.
+  This matches *dark chocolate syrup*, assuming it is the only ingredient whose name contains both *dark chocolate* and *syrup*.
 
 - `filter ingredient /tag bitter taste` <br />
-  This matches **bitter melon** and **dark chocolate**, assuming they are the only ingredients tagged with **bitter taste**.
+  This matches *bitter melon* and *dark chocolate*, assuming they are the only ingredients tagged with *bitter taste*.
 
 - `filter ingredient /tag frequently used /tag sweet` <br />
-  This matches **sugar**, if it is the only ingredient tagged <i>both</i> **frequently used** and **sweet**.
+  This matches *sugar*, if it is the only ingredient tagged <i>both</i> *frequently used* and *sweet*.
 
 - `filter ingredient /expiry 2020-12-01 /expiry 2020-10-31 /expiry 2023-01-01` <br />
-  This matches **apple**, if it is the only ingredient expiring before **2020-10-31**. Note that only the earliest date is considered here (in this case, 31st October 2020), and the rest are ignored.
+  This matches *apple*, if it is the only ingredient expiring before *2020-10-31*. Note that only the earliest date is considered here (in this case, 31st October 2020), and the rest are ignored.
 
 - `filter ingredient /tag powdery /expiry 2020-12-31 /tag bakery /name soda` <br />
-  This matches **baking soda**, assuming it is the only ingredient that matches all the specified criteria.
+  This matches *baking soda*, assuming it is the only ingredient that matches all the specified criteria.
 
-To illustrate, suppose you want to search for ingredients tagged both **bakery** and **sweet**, expiring before **2021-12-31** and containing **sugar** in the name; you can use `filter ingredient /tag bakery /expiry 2021-12-31 /tag sweet /name sugar`:
+To illustrate, suppose you want to search for ingredients tagged both *bakery* and *sweet*, expiring before *2021-12-31* and containing *sugar* in the name; you can use `filter ingredient /tag bakery /expiry 2021-12-31 /tag sweet /name sugar`:
 
 <a name="Figure-18-1"></a>
 <div style="text-align: center; padding-bottom: 2em">
@@ -1217,7 +1217,7 @@ To illustrate, suppose you want to search for ingredients tagged both **bakery**
 Figure 18.1: <i>The initial list of ingredients</i>
 </div>
 
-After executing the command, similar to the effect of **filter recipe** command, the ingredient list has changed, showing the only matching ingredients, **Brown Sugar** and **Granulated Sugar**:
+After executing the command, similar to the effect of *filter recipe* command, the ingredient list has changed, showing the only matching ingredients, *Brown Sugar* and *Granulated Sugar*:
 
 <a name="Figure-18-2"></a>
 <div style="text-align: center; padding-bottom: 2em">
@@ -1225,7 +1225,7 @@ After executing the command, similar to the effect of **filter recipe** command,
 Figure 18.2: <i>The ingredients matching all the provided criteria</i>
 </div>
 
-Note that **Honey**, which was also tagged **bakery** and **sweet** and would expire before **2021-12-31**, was not included because its name does not contain **sugar**.
+Note that *Honey*, which was also tagged *bakery* and *sweet* and would expire before *2021-12-31*, was not included because its name does not contain *sugar*.
 
 To reset the search filter or go back to the full ingredient view, you can click the Ingredients button or run the `list ingredients` command.
 
@@ -1249,10 +1249,10 @@ edit ingredient <#REF>
 
 Examples:
 - `edit ingredient #4 /tag:add frozen` <br/>
-  This tags the fourth ingredient currently shown in the ingredient list with **frozen**.
+  This tags the fourth ingredient currently shown in the ingredient list with *frozen*.
 
 - `edit ingredient sprinkles /tag:delete fridge` <br/>
-  This removes the tag **fridge** from the ingredient named 'sprinkles'.
+  This removes the tag *fridge* from the ingredient named 'sprinkles'.
 
 
 
