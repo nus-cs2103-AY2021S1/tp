@@ -11,7 +11,7 @@ public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric or hyphen.\n"
             + "Hyphen is not allowed as the start or the end of a tag.";
-    public static final String VALIDATION_REGEX = "^([\\p{Alnum}]+)[\\p{Alnum}-]*([\\p{Alnum}]+)$";
+    public static final String VALIDATION_REGEX = "^([\\p{Alnum}]+)[\\p{Alnum}-]*([\\p{Alnum}]*)$";
 
     public final String tagName;
 

@@ -38,7 +38,7 @@ public class TagTest {
 
     @Test
     public void invalidTagName_multipleHyphen_throwsIllegalArgumentException() {
-        constructor_invalidTagName_throwsIllegalArgumentException("---");
+        constructor_invalidTagName_throwsIllegalArgumentException("--");
     }
 
     @Test
@@ -64,6 +64,12 @@ public class TagTest {
     @Test
     public void invalidTagName_startsAndEndsWithHyphen_throwsIllegalArgumentException() {
         constructor_invalidTagName_throwsIllegalArgumentException("-my-tag-");
+    }
+
+    @Test
+    public void validTagName_singleCharacter() {
+        constructor_validTagName("a");
+        constructor_validTagName("1");
     }
 
     @Test
