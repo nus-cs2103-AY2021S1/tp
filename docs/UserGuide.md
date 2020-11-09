@@ -33,6 +33,9 @@ Jarvis is a desktop app for CS1101S Teaching Assistants (Avengers), optimized fo
         * [6.1.4 Notes about truncation](#614-notes-about-truncation)
         * [6.1.5 Notes about Summary feature](#615-notes-about-summary-feature)
     - [6.2 Viewing help : `help`](#62-viewing-help--help)
+    
+    <div style="page-break-after: always;"></div>
+    
     - [6.3 Adding Information : `add`](#63-adding-information--add)
         * [6.3.1 Adding Consultations : `add -c`](#631-adding-consultations---c)
         * [6.3.2 Adding Mastery Checks : `add -mc`](#632-adding-mastery-checks---mc)
@@ -77,7 +80,7 @@ Jarvis is a desktop app for CS1101S Teaching Assistants (Avengers), optimized fo
     - [8.1 Difference Between Consultations and Mastery Checks](#81-difference-between-consultations-and-mastery-checks)
 9. [FAQ](#9-faq)
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 1. Overview
 
@@ -102,7 +105,7 @@ We have highlighted several features below that we feel are reflective of our de
 
 1. Important information such as `Student`, `Mission`, `Quest`, etc will not be deleted when the user keys in the wrong login information. We wish to give users the benefit of doubt and not delete their information as we do believe accidents can happen.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 2. About the User Guide
 This section aims to remind you of the important parts to take note of while reading the user guide.
@@ -116,7 +119,7 @@ Symbol | Meaning
  ⚠️   | This symbol indicates that there is something important for you to take note of.
  ✏️   | This symbol indicates that an example is provided.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 3. Quick start
 
@@ -158,7 +161,7 @@ please check that you have installed the correct driver:
 
 1. Do note that the sample data displayed on initial startup of Jarvis will not be saved. This means that subsequent launches of Jarvis will only contain user-inputted data.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 4. Navigating Jarvis
 
@@ -233,7 +236,7 @@ this flexibility with you, the user in mind.
  1. Clicking on the tabs.
 </div>
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 5. Logging into Jarvis
 
@@ -265,7 +268,7 @@ Upon success, all information from Source Academy will be visible to you. The st
 The `Telegram` and `E-mail` fields are test values as these information are not available on Source Academy.
 You will have to edit them using the [Editing Student Information](#642-editing-student-information---s) command below.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 6. Features
 
@@ -669,7 +672,7 @@ Note that only `Student`, `Consultation`, `Mastery Check` and `Task` data are sa
 are likely to change frequently and hence, will not need to be persisted.
 </div>
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 7. Command Summary
 
@@ -731,6 +734,8 @@ are likely to change frequently and hence, will not need to be persisted.
 | Function | Format, Examples |
 | -------- | ---------------- |
 | Provide help with program commands | `help` |
+
+<div style="page-break-after: always;"></div>
 
 ## 8. Glossary
 ### 8.1 Difference Between `Consultations` and `Mastery Checks`
