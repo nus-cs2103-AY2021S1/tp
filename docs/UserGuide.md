@@ -534,7 +534,7 @@ Example: `sort -activity datetime`
 
 ### 4. Sorting by importance (L)
 
-Sorts the given travel plan object list by its importance level, starting from the highest level of importance.
+Sorts the given travel plan object list by importance level, starting from the most important.
 
 This command is only applicable to Activity list.
 
@@ -627,6 +627,7 @@ Format: `help`
 Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
