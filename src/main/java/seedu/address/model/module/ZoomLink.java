@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Zoom Link for a module in the module list.
+ * Represents a Zoom Link for a module in the Module List.
  * Guarantees: immutable; is valid as declared in {@link #isValidZoomLink(String)}
  */
 public class ZoomLink {

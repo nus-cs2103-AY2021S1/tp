@@ -20,10 +20,10 @@ public class Contact {
     private final ContactName name;
     private final Email email;
     private final Telegram telegram;
+    private final boolean isImportant;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
-    private final boolean isImportant;
 
     /**
      * Creates and initialises a Contact object without a Telegram field.
