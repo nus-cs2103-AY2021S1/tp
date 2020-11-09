@@ -193,7 +193,7 @@ Given below is an example usage scenario and how the Add Multiple Choice Questio
 
 Step 1. The user launches the application for the first time. `QuickCache` will be initialized with the initial state.
 
-Step 2. The user executes `addmcd q/question ans/1 c/first c/second` command to add a flashcard.
+Step 2. The user executes `addmcq q/question ans/1 c/first c/second` command to add a flashcard.
 The following sequence diagram shows how the input is parsed:
 
 ![AddMcqSequenceDiagram](images/AddMcqParserSequenceDiagram.png)
