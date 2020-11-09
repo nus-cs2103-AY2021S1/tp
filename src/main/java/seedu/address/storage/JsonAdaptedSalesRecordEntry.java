@@ -6,15 +6,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Drink;
 import seedu.address.model.SalesRecordEntry;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-
 /**
  * Jackson-friendly version of {@link SalesRecordEntry}.
  */
 class JsonAdaptedSalesRecordEntry {
-
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "SalesRecordEntry's %s field is missing!";
+    public static final String INVALID_NUMBER_SOLD = "NumberSold is not a string of non-negative integer.";
 
     private final String drink;
     private final String numberSold;
@@ -45,7 +41,7 @@ class JsonAdaptedSalesRecordEntry {
      */
     public SalesRecordEntry toModelType() throws IllegalValueException {
         if (drink == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(Drink.MESSAGE_CONSTRAINTS);
         }
         if (!Drink.isValidDrinkName(drink)) {
             throw new IllegalValueException(Drink.MESSAGE_CONSTRAINTS);
@@ -53,11 +49,16 @@ class JsonAdaptedSalesRecordEntry {
         final Drink modelDrinkName = Drink.valueOf(drink);
 
         if (numberSold == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalValueException(INVALID_NUMBER_SOLD);
         }
-        if (!Drink.isValidNumberSold(numberSold)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        try {
+            if (Integer.valueOf(numberSold) < 0) {
+                throw new IllegalValueException(INVALID_NUMBER_SOLD);
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalValueException(INVALID_NUMBER_SOLD);
         }
+
         final Integer modelNumberSold = Integer.valueOf(numberSold);
 
         return new SalesRecordEntry(modelDrinkName, modelNumberSold);

@@ -18,10 +18,10 @@ public class FindByTagTodayCommand extends Command {
     public static final String COMMAND_WORD = "c-today";
 
     public static final String MESSAGE_SUCCESS = "Today is %2$s."
-            + "\nThere are total %1$s employees working today."
-            + "\nThey are listed below.";
+            + "\nThere are total %1$s employees available today."
+            + "\nThey are listed below in the Employee Directory.";
     public static final String MESSAGE_NO_EMPLOYEE = "Today is %1$s."
-            + "\nBased on the contact list, no employee is working today.";
+            + "\nBased on the tCheck's Employee Directory, no employee is available today.";
 
     @Override
     public CommandResult execute(Model model) {

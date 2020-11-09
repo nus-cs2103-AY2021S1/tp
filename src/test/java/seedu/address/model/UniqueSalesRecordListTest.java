@@ -15,11 +15,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.sales.exception.DuplicateSalesRecordException;
 import seedu.address.model.sales.exception.SalesRecordNotFoundException;
+import seedu.address.testutil.TypicalSalesRecordEntries;
 
 public class UniqueSalesRecordListTest {
 
     private final UniqueSalesRecordList uniqueSalesRecordList = new UniqueSalesRecordList();
-    private final SalesRecordEntry entry = new SalesRecordEntry(Drink.BSBM, 100);
+    private final SalesRecordEntry entry = TypicalSalesRecordEntries.BSBM;
 
     @Test
     public void contains_nullSalesRecordEntry_throwsNullPointerException() {
@@ -90,6 +91,17 @@ public class UniqueSalesRecordListTest {
     }
 
     @Test
+    public void getNumberSoldOfEntry_nullDrink_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueSalesRecordList.getNumberSoldOfEntry(null));
+    }
+
+    @Test
+    public void getNumberSoldOfEntry_success() {
+        uniqueSalesRecordList.add(entry);
+        assertEquals(entry.getNumberSold(), uniqueSalesRecordList.getNumberSoldOfEntry(entry.getDrink()));
+    }
+
+    @Test
     public void remove_nullSalesRecordEntry_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueSalesRecordList.remove(null));
     }
@@ -127,9 +139,11 @@ public class UniqueSalesRecordListTest {
     @Test
     public void setSalesRecord_uniqueSalesRecordList_replacesOwnListWithProvidedUniqueSalesRecordList() {
         uniqueSalesRecordList.add(entry);
+        // expected list
         UniqueSalesRecordList expectedUniqueSalesRecordList = new UniqueSalesRecordList();
         SalesRecordEntry newEntry = new SalesRecordEntry(Drink.BSBBT, 30);
         expectedUniqueSalesRecordList.add(newEntry);
+
         uniqueSalesRecordList.setSalesRecord(expectedUniqueSalesRecordList);
         assertEquals(expectedUniqueSalesRecordList, uniqueSalesRecordList);
     }
@@ -143,11 +157,14 @@ public class UniqueSalesRecordListTest {
     @Test
     public void setSalesRecord_list_replacesOwnListWithProvidedList() {
         uniqueSalesRecordList.add(entry);
-        SalesRecordEntry newEntry = new SalesRecordEntry(Drink.BSBBT, 30);
+        // provided list
+        SalesRecordEntry newEntry = TypicalSalesRecordEntries.BSBBT;
         List<SalesRecordEntry> salesRecordEntryList = Collections.singletonList(newEntry);
+
         uniqueSalesRecordList.setSalesRecord(salesRecordEntryList);
         UniqueSalesRecordList expectedUniqueSalesRecordList = new UniqueSalesRecordList();
         expectedUniqueSalesRecordList.add(newEntry);
+
         assertEquals(expectedUniqueSalesRecordList, uniqueSalesRecordList);
     }
 
@@ -167,9 +184,12 @@ public class UniqueSalesRecordListTest {
     @Test
     public void setSalesRecord_map_replacesOwnListWithProvidedMap() {
         uniqueSalesRecordList.add(entry);
-        SalesRecordEntry newEntry = new SalesRecordEntry(Drink.BSBBT, 30);
-        Map<Drink, Integer> salesMap = Collections.singletonMap(Drink.BSBBT, 30);
+        // provided map
+        SalesRecordEntry newEntry = TypicalSalesRecordEntries.BSBBT;
+        Map<Drink, Integer> salesMap = Collections.singletonMap(newEntry.getDrink(), newEntry.getNumberSold());
+
         uniqueSalesRecordList.setSalesRecord(salesMap);
+
         UniqueSalesRecordList expectedUniqueSalesRecordList = new UniqueSalesRecordList();
         expectedUniqueSalesRecordList.add(newEntry);
         assertEquals(expectedUniqueSalesRecordList, uniqueSalesRecordList);
@@ -177,19 +197,19 @@ public class UniqueSalesRecordListTest {
 
     @Test
     public void sort_correctlySortsInDescendingOrder() {
-        SalesRecordEntry entryTwo = new SalesRecordEntry(Drink.BSBBT, 30);
-        SalesRecordEntry entryThree = new SalesRecordEntry(Drink.BSBGT, 70);
+        SalesRecordEntry entryTwo = TypicalSalesRecordEntries.BSBBT;
+        SalesRecordEntry entryThree = TypicalSalesRecordEntries.BSBGT;
 
         uniqueSalesRecordList.add(entry);
-        uniqueSalesRecordList.add(entryTwo);
         uniqueSalesRecordList.add(entryThree);
+        uniqueSalesRecordList.add(entryTwo);
 
         uniqueSalesRecordList.sort();
 
         UniqueSalesRecordList sortedList = new UniqueSalesRecordList();
         sortedList.add(entry);
-        sortedList.add(entryThree);
         sortedList.add(entryTwo);
+        sortedList.add(entryThree);
 
         assertEquals(sortedList, uniqueSalesRecordList);
     }
