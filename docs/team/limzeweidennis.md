@@ -24,23 +24,17 @@ Given below are my contributions to the project.
       respectively. 
       * Highlights: This feature enables the user to view all stocks, or bookmarked stocks or stocks with low quantity. <br>
       
-    * **New Feature**: Added the ability to bookmark existing items in the storage. (Pull Request 
+    * **New Feature**: Added the ability to bookmark and unbookmark existing items in the storage. (Pull Request 
     [#150](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/150),
     [#155](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/155))
       * What it does: Allows the user to bookmark the desired stocks.
       * Justification: This feature improves the user experience as user can bookmark the stocks so as to push the stock
-      to the toip of stock for easier viewing.
-      * Highlights: This feature coupled with the list feature allows the user to view all the bookmarked stocks. <br>
-      
-    * **New Feature**: Added the ability to unbookmark bookmarked items in the storage. (Pull Request 
-    [#150](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/150),
-    [#155](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/155))
-      * What it does: Allows the user to unbookmark bookmarked stocks.
-      * Justification: This feature improves the user experience as user can remove the priority from the bookmarked stocks
+      to the top of stock for easier viewing. The user can also remove the priority from the bookmarked stocks
       once the user deem the importance of the stock is reduced. This way the other stocks not bookmarked 
       can be seen as well.
-      * Highlights: This feature enables the user to unbookmark the stock if the user makes a mistake or when the user
-      deem that the stock is of less importance.  <br>
+      * Highlights: This feature coupled with the list feature allows the user to view all the bookmarked stocks. It 
+      also enables the user to unbookmark the stock if the user makes a mistake or when the user deems that the stock
+      is of less importance. <br>
       
     * **New Feature**: Added the ability for the user to find help. (Pull Request 
     [#99](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/99), 
@@ -87,10 +81,8 @@ Given below are my contributions to the project.
 [#114](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/114)
 [#150](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/150)
 [#207](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/207))
-  * Came up with the design of the UI (stockTable, resultDisplay, commandBox and enterButton).
-  * Edited the colour scheme using recommendations from groupmates.
-  * Created the table in help window.
-  * Updated the help window to include a clickable link. <br>
+  * Came up with the design and colour scheme of the UI (stockTable, resultDisplay, commandBox and enterButton).
+  * Updated the help window to include a summary table and a clickable link. <br>
   
 * **Git & Repository**:
     * Used GitHub Projects feature to create kanban boards to track user stories.
