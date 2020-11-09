@@ -43,8 +43,8 @@ DisplayController -down-> RecipeViewPanel
 DisplayController -down-> IngredientViewPanel
 DisplayController -down-> RecipeDisplay
 MainWindow *-down-> CommandBox
-DisplayController *-down-> RecommendationViewPanel
-DisplayNavigator -right-> DisplayController
+DisplayController o-down-> RecommendationViewPanel
+DisplayNavigator -right-> "1" DisplayController
 
 RecipeViewPanel *-down-> RecipeCard
 IngredientViewPanel *-down-> IngredientCard
