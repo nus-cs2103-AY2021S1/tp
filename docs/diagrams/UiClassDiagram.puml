@@ -17,7 +17,6 @@ Class FoodListPanel
 Class FoodCard
 Class OrderListPanel
 Class OrderCard
-Class StatusBarFooter
 Class CommandBox
 }
 
@@ -40,7 +39,6 @@ MainWindow *-down-> ResultDisplay
 MainWindow *-down-> VendorListPanel
 MainWindow *-down-> FoodListPanel
 MainWindow *-down-> OrderListPanel
-MainWindow *-down-> StatusBarFooter
 
 VendorListPanel -down-> VendorCard
 FoodListPanel -down-> FoodCard
@@ -54,7 +52,6 @@ VendorListPanel --|> UiPart
 VendorCard --|> UiPart
 FoodListPanel --|> UiPart
 FoodCard --|> UiPart
-StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
 VendorCard ..> Model
@@ -66,7 +63,6 @@ MainWindow -left-> Logic
 VendorListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow -[hidden]-|> UiPart
 @enduml

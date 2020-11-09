@@ -122,11 +122,6 @@ The `Model`,
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
 
 ### Storage component
 
@@ -250,11 +245,13 @@ Step 3: The user enters the command `add 2 3` which adds item 2 from the menu wi
 
 Step 4: `Model#getFilteredMenuItemList()` is executed to retrieve the list of menu items from the current vendor.
 
-Step 5: AddCommand checks whether the index and quantity inputted is valid. Index and Quantity is valid.
+Step 5: `SupperStrikers` creates an AddCommandParser and calls `AddCommandParser#parse()` with argument "2 3".
 
-Step 6: An OrderItem object is created from the retrieved menu item and input quantity.
+Step 6: AddCommandParser checks whether the index and quantity inputted is valid. Index and Quantity is valid, then an AddCommand is created.
 
-Step 7: `Model#addOrderItem()` is executed to add the OrderItem into the `Model`.
+Step 7: An OrderItem object is created from the retrieved menu item and input quantity.
+
+Step 8: `Model#addOrderItem()` is executed to add the OrderItem into the `Model`.
 
 
 
@@ -269,7 +266,6 @@ Step 7: `Model#addOrderItem()` is executed to add the OrderItem into the `Model`
 The following diagram summarises the sequence when the RemoveCommand is executed.
 
 ![RemoveCommandDiagram](images/RemoveCommandDiagram.png)
-
 
 
 Given below is an example usage scenario and how the RemoveCommand behaves at each step.
@@ -481,8 +477,6 @@ the change is not saved. Therefore, the method `orderHistory#clear()` should not
 understands the effect of doing so. This also means if a method changes the order and it should be able to be undone, 
 `saveChanges()` must be called at the end of the method.
 
-_{more aspects and alternatives to be added}_
-
 ### Friendly Syntax
 
 The friendly syntax allows users to type in just the prefix of a command to execute it.
@@ -620,7 +614,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | NUS resident | tag an item in my supper order | mention my preferences for that item |
 | `* *` | NUS resident | remove tags from an item in my supper order| fix any mistakes made while tagging that item |
 
-*{More to be added}*
 
 ### Use cases
 
@@ -1060,7 +1053,6 @@ Precondition: User has already selected a particular vendor
 
     Use case ends.
 
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -1068,7 +1060,6 @@ Precondition: User has already selected a particular vendor
 2.  Should be able to hold up to 1000 items without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
 
 ### Glossary
 
@@ -1102,7 +1093,6 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by using the java -jar supperstrikers.jar command.<br>
        Expected: The most recent window size and location is retained.
 
-2. _{ more test cases …​ }_
 
 ### Selecting a vendor
 
@@ -1122,7 +1112,6 @@ testers are expected to do more *exploratory* testing.
    5. Other incorrect delete commands to try: `vendor x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
 
 ### Adding an item
 
@@ -1142,7 +1131,6 @@ testers are expected to do more *exploratory* testing.
    5. Other incorrect add commands to try: `add`, `add -1 -1`, `add x y`, `...` (where x is larger than the menu size)<br>
       Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
 
 ### Removing an item
 
@@ -1164,7 +1152,6 @@ testers are expected to do more *exploratory* testing.
 
    6. Other incorrect delete commands to try: `remove`, `remove -1 -1`,`remove x y`, `...` (where x is larger than the list size or y is larger than the user's order quantity amount)<br>
       Expected: Similar to previous.
-2. _{ more test cases …​ }
 
 ### Saving data
 
@@ -1176,4 +1163,3 @@ testers are expected to do more *exploratory* testing.
    
    3. Rerun the SupperStrikers.jar in an empty folder.
 
-2. _{ more test cases …​ }_
