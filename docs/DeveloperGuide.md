@@ -813,7 +813,7 @@ Use case ends.
 2. System shows/lists all the rooms in the hotel and also whether it is occupied/ unoccupied.
 Use case ends.
 
-**Exctensions**
+**Extensions**
 *  2a. System realises that there are no rooms existing.
     * 2a1. System displays an error message.
 Use case ends.
@@ -822,13 +822,39 @@ Use case ends.
 
 **MSS**
 
-1. User requests to search for an empty room to accommodate patient
-2. System peeks the first room from Priority Queue
-3. System shows the empty room with lowest room number
+1. User requests to search for an empty room to accommodate patient.
+2. System peeks the first room from Priority Queue.
+3. System shows the empty room with lowest room number.
 Use case ends.
 
 **Extensions**
-*  2a. System realises that there 
+*  2a. System realises that there are no rooms.
+    * 2a1. System displays an error message.
+*  2b. System realises that there are no empty rooms.
+    * 2b1. System displays an error message.
+Use case ends.
+
+**Use case: Initialise rooms**
+
+**MSS**
+
+1. User requests to change number of rooms.
+2. User inputs the number of rooms to change into.
+3. System changes the number of rooms in the system.
+4. System displays all the current rooms and success message.
+Use case ends.
+
+**Extensions**
+* 3a. System realises that user inputs values other than integer.
+   * 3a1. System displays an error message.
+* 3b. System realises that the integer input is zero.
+   * 3b1. System displays an error message.
+* 3c. System realises that the integer input is negative.
+   * 3c1. System displays an error message.
+* 3d. System realises that the number of rooms input is less than number of occupied room
+   * 3d1. System displays an error message.
+Use case ends.
+
 ### A4. Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
