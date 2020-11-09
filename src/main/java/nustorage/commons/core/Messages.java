@@ -13,5 +13,6 @@ public class Messages {
             + "please delete the inventory or edit the inventory cost.";
     public static final String MESSAGE_INVENTORY_RECORDS_LISTED_OVERVIEW = "%1$d inventory records listed!";
     public static final String MESSAGE_INVALID_INVENTORY_DISPLAYED_INDEX = "The inventory index provided is invalid";
-
+    public static final String MESSAGE_EMPTY_INVENTORY_LIST = "The inventory is currently empty,"
+            + " please add an inventory record before editing.";
 }

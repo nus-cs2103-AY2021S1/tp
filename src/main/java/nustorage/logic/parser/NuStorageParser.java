@@ -49,9 +49,6 @@ public class NuStorageParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-        case ListInventoryCommand.COMMAND_WORD:
-            return new ListInventoryCommand();
-
         case CreateInventoryRecordCommand.COMMAND_WORD:
             return new CreateInventoryRecordCommandParser().parse(arguments);
 
@@ -81,6 +78,9 @@ public class NuStorageParser {
 
         case ListFinanceRecordsCommand.COMMAND_WORD:
             return new ListFinanceRecordsCommand();
+
+        case ListInventoryCommand.COMMAND_WORD:
+            return new ListInventoryCommand();
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

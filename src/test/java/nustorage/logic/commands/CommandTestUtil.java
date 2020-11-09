@@ -16,6 +16,7 @@ import nustorage.commons.core.index.Index;
 import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.Model;
 import nustorage.model.record.FinanceRecord;
+import nustorage.model.record.InventoryRecord;
 import nustorage.testutil.EditFinanceDescriptorBuilder;
 
 /**
@@ -33,18 +34,25 @@ public class CommandTestUtil {
     public static final String ITEM_NAME_2 = "ITEM_NAME_2";
     public static final String ITEM_NAME_3 = "ITEM_NAME_3";
 
-    public static final double COST_1 = 0;
+    public static final double EDGE_COST = 0;
+    public static final double COST_1 = 27.5;
     public static final double COST_2 = 13.7;
-    public static final double COST_3 = 27.5;
     public static final double NEGATIVE_COST = -35.5;
 
     public static final int QUANTITY_1 = 10;
-    public static final int QUANTITY_2 = 0;
-    public static final int QUANTITY_3 = 17;
+    public static final int QUANTITY_2 = 17;
+    public static final int EDGE_QUANTITY = 0;
     public static final double DOUBLE_QUANTITY = 13.5;
     public static final int NEGATIVE_QUANTITY = -3;
 
-    public static final String COST_DESC_1 = " " + PREFIX_ITEM_COST + COST_1;
+    public static final Integer INDEX_ONE = 1;
+    public static final Integer INDEX_TEN = 10;
+    public static final String INDEX_ZERO_DESC = " 0";
+    public static final String INDEX_ONE_DESC = " 1";
+    public static final String INDEX_NEGATIVE_VALUE_DESC = " -30";
+
+    public static final String COST_DESC_1 = " " + PREFIX_ITEM_COST + EDGE_COST;
+    public static final String COST_DESC_2 = " " + PREFIX_ITEM_COST + COST_1;
     public static final String NEGATIVE_COST_DESC = " " + PREFIX_ITEM_COST + NEGATIVE_COST;
 
     public static final String ITEM_NAME_DESC_1 = " " + PREFIX_ITEM_DESCRIPTION + ITEM_NAME_1;
@@ -58,17 +66,17 @@ public class CommandTestUtil {
     public static final int ID_B = 92502649;
     public static final int ID_C = 57396892;
     public static final int ID_D = 29730103;
+    public static final int EDGE_ID = 0;
 
     public static final double AMOUNT_A = 0.10;
     public static final double AMOUNT_B = 17.17;
     public static final double AMOUNT_C = 128.99;
     public static final double AMOUNT_D = 9999999;
-    public static final double AMOUNT_WITH_INVENTORY_A = COST_1 * QUANTITY_1;
+    public static final double AMOUNT_WITH_INVENTORY_A = EDGE_COST * QUANTITY_1;
+    public static final double EDGE_AMOUNT = 0;
 
     public static final boolean HAS_INVENTORY_A = false;
-    public static final boolean HAS_INVENTORY_B = false;
-    public static final boolean HAS_INVENTORY_C = false;
-    public static final boolean HAS_INVENTORY_D = false;
+    public static final boolean HAS_INVENTORY_B = true;
 
     public static final String DATE_STRING_A = "2020-10-01";
     public static final String DATE_STRING_B = "2019-01-01";
@@ -175,5 +183,19 @@ public class CommandTestUtil {
         model.updateFilteredFinanceList(record -> record.getID() == id);
 
         assertEquals(1, model.getFilteredFinanceList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the inventory record at the given {@code targetIndex} in
+     * {@code model}
+     */
+    public static void showInventoryRecordAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredInventory().size());
+
+        InventoryRecord inventoryRecord = model.getFilteredInventory().get(targetIndex.getZeroBased());
+        final int id = inventoryRecord.getFinanceId();
+        model.updateFilteredInventoryList(record -> record.getFinanceId() == id);
+
+        assertEquals(1, model.getFilteredInventory().size());
     }
 }

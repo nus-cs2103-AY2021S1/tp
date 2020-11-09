@@ -29,6 +29,7 @@ public class UpdateInventoryCommand extends Command {
     public static final String MESSAGE_UPDATE_INVENTORY_SUCCESS = "Updated Item quantity: %1$s";
     public static final String MESSAGE_NOT_UPDATED = "The change in quantity field must be provided.";
     public static final String MESSAGE_INVALID_UPDATE_OPERATION = "You cannot update this item by that quantity!";
+    public static final String MESSAGE_MISSING_QUANTITY = "The q/ parameter seems to be missing!";
 
     private final Index index;
     private final UpdateInventoryDescriptor updateInventoryDescriptor;
@@ -86,7 +87,7 @@ public class UpdateInventoryCommand extends Command {
         Integer newQuantity = updateQuantityBy + oldQuantity;
         Double unitCost = inventoryRecord.getUnitCost();
 
-        if (newQuantity < 0) {
+        if (newQuantity < 0 || newQuantity > 2000000000) {
             throw new CommandException(MESSAGE_INVALID_UPDATE_OPERATION);
         }
 
@@ -94,6 +95,29 @@ public class UpdateInventoryCommand extends Command {
         LocalDateTime newDateTime = inventoryRecord.getDateTime();
 
         return new InventoryRecord(itemDescription, newQuantity, unitCost, newDateTime);
+    }
+
+    private Index getIndex() {
+        return this.index;
+    }
+
+    private UpdateInventoryDescriptor getUpdateInventoryDescriptor() {
+        return this.updateInventoryDescriptor;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof UpdateInventoryCommand)) {
+            return false;
+        }
+
+        UpdateInventoryCommand otherCommand = (UpdateInventoryCommand) other;
+        return index.equals(otherCommand.getIndex())
+                && updateInventoryDescriptor.equals(otherCommand.getUpdateInventoryDescriptor());
     }
 
     /**
@@ -136,14 +160,14 @@ public class UpdateInventoryCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditInventoryCommand.EditInventoryDescriptor)) {
+            if (!(other instanceof UpdateInventoryDescriptor)) {
                 return false;
             }
 
             // state check
-            EditInventoryCommand.EditInventoryDescriptor e = (EditInventoryCommand.EditInventoryDescriptor) other;
+            UpdateInventoryDescriptor descriptor = (UpdateInventoryDescriptor) other;
 
-            return getChangeInQuantity().equals(e.getQuantity());
+            return getChangeInQuantity().equals(descriptor.getChangeInQuantity());
         }
     }
 }

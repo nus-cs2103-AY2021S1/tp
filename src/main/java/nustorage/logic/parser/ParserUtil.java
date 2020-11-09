@@ -2,6 +2,8 @@ package nustorage.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -16,13 +18,20 @@ import nustorage.logic.parser.exceptions.ParseException;
  */
 public class ParserUtil {
 
+    public static final String MESSAGE_MISSING_INDEX = "Index must be filled.";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_AMOUNT = "Amount is not a decimal value.";
     public static final String MESSAGE_INVALID_DATETIME = "Date must be of the format yyyy-mm-dd HH:mm";
-    public static final String MESSAGE_INVALID_QUANTITY = "Quantity must be an integer"
-            + " and more than or equals to zero.";
-    public static final String MESSAGE_INVALID_ITEM_COST = "Item cost must be more than or equals to zero.";
-    public static final String MESSAGE_INVALID_YESNO = "Yes/No input must be one of the following: yes/y/no/n.";
+    public static final String MESSAGE_INVALID_QUANTITY = "Quantity must be an integer,"
+            + " more than or equal to zero, and has an upper limit of 2,000,000,000";
+    public static final String MESSAGE_INVALID_CHANGE_IN_QUANTITY = "Quantity must be an integer,"
+            + " and has an upper limit of 2,000,000,000 and a lower limit of -2,000,000,000";
+    public static final String MESSAGE_INVALID_ITEM_COST = "Item cost must be more than or equal to zero,"
+            + " and has an upper limit of 2000,000,000"
+            + "\nWill be rounded up to the nearest 2 decimal place.";
+    public static final String MESSAGE_LONG_ITEM_COST = "Please round up your cost to the nearest 2 decimal place.";
+    public static final String MESSAGE_INVALID_YES_NO = "Yes/No input must be one of the following: yes/y/no/n.";
+    public static final String MESSAGE_INVALID_ITEM_NAME = "Item name cannot be empty";
 
     /**
      * Parses {@code a} into an double and returns it
@@ -30,23 +39,39 @@ public class ParserUtil {
     public static double parseItemCost(String itemCost) throws ParseException {
         requireNonNull(itemCost);
         String trimmedAmount = itemCost.trim();
+        if (trimmedAmount.length() > 12) {
+            throw new ParseException(MESSAGE_LONG_ITEM_COST);
+        }
         try {
             double cost = Double.parseDouble(trimmedAmount);
-            if (cost < 0) {
+            if (cost < 0 || cost > 2000000000) {
                 throw new ParseException(MESSAGE_INVALID_ITEM_COST);
             }
-            return cost;
+            return round(cost);
         } catch (NumberFormatException ex) {
             throw new ParseException(MESSAGE_INVALID_ITEM_COST);
         }
     }
 
     /**
+     * Rounds double value to 2 decimal places
+     */
+    public static double round(double value) {
+        BigDecimal bd = BigDecimal.valueOf(value);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
+
+    /**
      * Parses {@code itemDescription} into an String and returns it. Leading and trailing whitespaces will be
      * trimmed.
      */
-    public static String parseItemDescription(String itemDescription) {
-        return itemDescription.trim();
+    public static String parseItemDescription(String itemDescription) throws ParseException {
+        String itemDes = itemDescription.trim();
+        if (itemDes.isEmpty()) {
+            throw new ParseException((MESSAGE_INVALID_ITEM_NAME));
+        }
+        return itemDes;
     }
 
     /**
@@ -58,12 +83,28 @@ public class ParserUtil {
         String trimmedQuantity = quantity.trim();
         try {
             int itemQuantity = Integer.parseInt(trimmedQuantity);
-            if (itemQuantity < 0) {
+            if (itemQuantity < 0 || itemQuantity > 2000000000) {
                 throw new ParseException(MESSAGE_INVALID_QUANTITY);
             }
-            return Integer.parseInt(trimmedQuantity);
+            return itemQuantity;
         } catch (NumberFormatException e) {
             throw new ParseException(MESSAGE_INVALID_QUANTITY);
+        }
+    }
+
+    /**
+     * Parses {@code quantity} into an int and returns it. Leading and trailing whitespaces will be trimmed.
+     * @param quantity the change in quantity to be parsed
+     * @return the parsed change in quantity
+     * @throws ParseException if the quantity is invalid
+     */
+    public static int parseChangeInQuantity(String quantity) throws ParseException {
+        String trimmedQuantity = quantity.trim();
+        try {
+            int itemQuantity = Integer.parseInt(trimmedQuantity);
+            return itemQuantity;
+        } catch (NumberFormatException e) {
+            throw new ParseException(MESSAGE_INVALID_CHANGE_IN_QUANTITY);
         }
     }
 
@@ -134,7 +175,7 @@ public class ParserUtil {
         if (yesNoString.equals("no") || yesNoString.equals("n")) {
             return false;
         }
-        throw new ParseException(MESSAGE_INVALID_YESNO);
+        throw new ParseException(MESSAGE_INVALID_YES_NO);
     }
 
     /**
@@ -144,6 +185,9 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+        if (trimmedIndex.isEmpty()) {
+            throw new ParseException(MESSAGE_MISSING_INDEX);
+        }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
