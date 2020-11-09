@@ -1,6 +1,6 @@
 @startuml
 start
-:User executes Assign command;
+:User executes assign command;
 if () then ([at least one module is specified
  and all specified modules exist])
     if () then ([contact is not assigned to

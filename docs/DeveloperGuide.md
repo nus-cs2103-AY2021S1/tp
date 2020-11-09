@@ -274,7 +274,7 @@ The following sequence diagram shows how the unassign operation works:
 
 ![UnassignSequenceDiagram](images/UnassignSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes a unassign command:
+The following activity diagram summarizes what happens when a user executes an unassign command:
 
 ![UnassignActivityDiagram](images/UnassignActivityDiagram.png)
 
@@ -288,7 +288,7 @@ The following sequence diagram shows how the unassignall operation works:
 
 ![UnassignallSequenceDiagram](images/UnassignallSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes a unassignall command:
+The following activity diagram summarizes what happens when a user executes an unassignall command:
 
 ![UnassignallActivityDiagram](images/UnassignallActivityDiagram.png)
 
@@ -317,7 +317,7 @@ The following sequence diagram shows how the cclear operation works:
 
 ![CclearSequenceDiagram](images/CclearSequenceDiagram.png)
 
-The follow activity diagram summarizes what happens when a user executes a Cclearcommand:
+The follow activity diagram summarizes what happens when a user executes a cclear command:
 
 ![CclearActivityDiagram](images/CclearActivityDiagram.png)
 
@@ -333,7 +333,7 @@ The following sequence diagram shows how the mclear operation works:
 
 ![MclearSequenceDiagram](images/MclearSequenceDiagram.png)
 
-The follow activity diagram summarizes what happens when a user executes a Mclearcommand:
+The follow activity diagram summarizes what happens when a user executes a mclear command:
 
 ![MclearActivityDiagram](images/MclearAcitivityDiagram.png)
 

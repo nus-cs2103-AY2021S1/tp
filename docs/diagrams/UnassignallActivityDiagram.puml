@@ -1,6 +1,6 @@
 @startuml
 start
-:User executes Unassignall command;
+:User executes unassignall command;
 
 :Unassign all contacts from all modules;
 :Update GUI to show changes;
