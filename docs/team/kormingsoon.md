@@ -4,7 +4,7 @@ Given below are my contributions to the project.
 
 Overview:
 
-This document is a project portfolio that documents all contributions made to PropertyFree's development by Dianne.  
+This document is a project portfolio that documents all contributions made to PropertyFree's development by Kor Ming Soon.  
 
 ___  
 
