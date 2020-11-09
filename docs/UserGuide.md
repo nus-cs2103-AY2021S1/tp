@@ -578,7 +578,7 @@ Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:** <br>
+**:information_source: Notes:** <br>
 * PHONE_NUMBER and EMERGENCY_CONTACT must be 8-digit number and start with 8 or 9.<br>
 </div>
 
@@ -706,7 +706,7 @@ Format: `c-tag-find KEYWORD [MORE_KEYWORDS]`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**<br>
+**:information_source: Notes:**<br>
 In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
 . You may set an employee's tags when adding the employee into tCheck (refer to `c-add` command), or edit the
 tag(s) by editing employee's information feature (refer to `c-edit` command).<br>
@@ -744,7 +744,7 @@ Format: `c-today`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**<br>
+**:information_source: Notes:**<br>
 In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
 . You may set an employee's tags when adding the employee into tCheck (refer to `c-add` command), or edit the
 tag(s) by editing employee's information feature (refer to `c-edit` command).<br>
@@ -787,7 +787,7 @@ Format: `c-tomorrow`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**<br>
+**:information_source: Notes:**<br>
 In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
 . You may set an employee's tags when adding the employee into tCheck (refer to `c-add` command), or edit the
 tag(s) by editing employee's information feature (refer to `c-edit` command).<br>
