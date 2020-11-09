@@ -30,7 +30,9 @@ AddressBook-Level3 project created by the [SE-EDU initiative](https://se-educati
     1. [Use cases](#use_cases)
     1. [Non-Functional Requirements](#nfr)
     1. [Glossary](#glossary)
+    
     <div style="page-break-after: always;"></div>
+    
 1. [**Appendix: Instructions for Manual Testing**](#manual_testing)
     1. [Launching and Shutting Down](#launch_shutdown)
     1. [Deleting a Flashcard](#deleting_a_flashcard)
@@ -92,6 +94,7 @@ The sections below give more details of each component.
 
 <div style="page-break-after: always;"></div>
 
+
 ### <a name="ui_component"></a>UI Component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -109,6 +112,7 @@ The `UI` component,
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
 <div style="page-break-after: always;"></div>
+
 
 ### <a name="logic_component"></a>Logic Component
 
@@ -132,6 +136,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 <div style="page-break-after: always;"></div>
 
+
 ### <a name="model_component"></a>Model Component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -146,6 +151,7 @@ The `Model`,
 * does not depend on any of the other three components.
 
 <div style="page-break-after: always;"></div>
+
 
 ### <a name="storage_component"></a>Storage Component
 
@@ -169,6 +175,7 @@ Classes used by multiple components are in the `seedu.forgetfulnus.commons` pack
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
+
 ## <a name="implementation"></a>**Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -354,6 +361,7 @@ The following sequence diagram briefly outlines the execution process with respe
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
+
 ## <a name="documentation_etc"></a>**Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -363,6 +371,7 @@ The following sequence diagram briefly outlines the execution process with respe
 * [DevOps guide](DevOps.md)
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
+
 ## <a name="requirements"></a>**Appendix: Requirements**
 
 ### <a name="product_scope"></a>Product scope
@@ -396,6 +405,7 @@ Priority | As a... | I want to... | So that I...
 * | user | hard reset my score history | can start over from scratch.
 
 <div style="page-break-after: always;"></div>
+
 ### <a name="use_cases"></a>Use Cases
 
 (For all use cases below, the **System** is `ForgetfulNUS` and the **Actor** is the `user`, unless specified otherwise)
@@ -552,6 +562,7 @@ Priority | As a... | I want to... | So that I...
 * **CLI:** Command Line Interface
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
+
 ## <a name="manual_testing"></a>**Appendix: Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
@@ -578,6 +589,7 @@ testers are expected to do more *exploratory* testing.
       Expected: The most recent window size and location is retained.
 
 <div style="page-break-after: always;"></div>
+
 ### <a name="deleting_a_flashcard"></a>Deleting a Flashcard
 
 1. Deleting a flashcard while all flashcards are being shown
@@ -607,6 +619,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 <div style="page-break-after: always;"></div>
+
 ### <a name="sorting_flashcards"></a>Sorting Flashcards
 
 1. Sorting the glossary while all flashcards are being shown
@@ -636,7 +649,8 @@ testers are expected to do more *exploratory* testing.
    1. Other sorting parameters to try: `english`, `latest`, `easytohard`, `reversegerman`, `...`<br>
       Expected: Glossary is successfully sorted according to the parameter input. Original glossary is also sorted. Filtered glossary still shown.
 
-<div style="page-break-after: always;"></div>      
+<div style="page-break-after: always;"></div> 
+
 ### <a name="viewing_scores"></a> Viewing Past Scores
 
 1.  Viewing a non-empty score list
@@ -661,7 +675,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `scores` <br>
     Expected: A message is shown stating that no past scores have been saved.
 
-<div style="page-break-after: always;"></div>    
+<div style="page-break-after: always;"></div> 
+
 ### <a name="saving_data"></a>Saving Data
 
 1. Dealing with missing/corrupted data files
