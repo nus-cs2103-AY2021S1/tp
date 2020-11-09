@@ -97,7 +97,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `cdel 1`.
 
-<figure style="width:50%; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid ">
     <p>
         <img src="images/ArchitectureSequenceDiagram.png"/>
     </p>
@@ -773,12 +773,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3b. The given index refers to a Client associated with one or more Schedule.
     
-    * 3b1. FitEgo asks a confirmation from the User to delete all Client-related information.
-    * 3b2. User confirms.
+    * 3b1. FitEgo shows an instruction to force delete.
     
-      Steps 3b1 are repeated until User confirms.
-
-      Use case resumes from step 4.
+      Use case ends.
             
 * 3c. User requests to force delete a specific Client in the list.
 
