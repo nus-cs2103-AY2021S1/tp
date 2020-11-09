@@ -56,7 +56,10 @@ else
 end
 FindCommand --> LogicManager
 deactivate FindCommand
+FindCommand -[hidden]-> LogicManager : result
+destroy FindCommand
 
+[<--LogicManager
 deactivate LogicManager
 @enduml
 
