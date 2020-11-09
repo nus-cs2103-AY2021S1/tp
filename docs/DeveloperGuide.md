@@ -165,12 +165,11 @@ This section addresses how the `find` and `recall` commands work.
 
 The `find` command allows users to search through the Exercise Book based on what users enter for the `Field`s. Users should enter at least one `Field`. The search results can then be displayed in the GUI's Exercise Book.
 
-Meanwhile, the `recall` command allows users to search for the most recent exercise with the specific name entered by the user.
-
-[NOTE]
 `Field`s here indicate which `Exercise` attributes we are interested in. Exact search finds `Exercise` objects with values that exactly match the user-specified values of the fields (`Name`, `Description`, `Date` ,`Calories`).
 Meanwhile, keyword search finds matches for the user-entered keywords in any part of the `Name` or any part of the `Description`.
 If the user uses exact search and keyword search together, it will find `Exercise` objects that match both the exact search and keyword search.
+
+Meanwhile, the `recall` command allows users to search for the most recent exercise with the specific name entered by the user.
 
 The above commands rely on `FindCommand` and `RecallCommand` objects respectively. Objects of both classes use a `Predicate<Exercise>` object to filter through the `Exercise` list,
 and the exercises that evaluate the predicates to be true will be listed in GUI Exercise List.
@@ -181,7 +180,8 @@ To search via the user-specified `Exercise` attributes, We use `FindCommandParse
 This predicate is then used to construct a new `FindCommand` object, which changes the GUI display when executed.
 
 The sequence diagram below demonstrates how the `find` command works:
-//diagram to add
+
+![findSequenceDiagram](images/FindSequenceDiagram.png)
 
 How the `find` command works:
 
@@ -201,7 +201,7 @@ To search for the most recent exercise with the user-specified `Name`, we use `R
 The `RecallCommand` then goes through the existing Exercise List to find the most recent date, creates the `TheMostRecentDatePredicate`, and updates the GUI display when executed.
 
 The sequence diagram below demonstrates how the `recall` command works:
-//diagram to add
+![findSequenceDiagram](images/recallSequenceDiagram.png)
 
 How the `recall` command works:
 
