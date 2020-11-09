@@ -420,16 +420,14 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 Step 1. The user launches the application for the first time. The `VersionedInventory` will be initialized with
 the initial inventory state, and the `currentStatePointer` pointing to that single inventory state.
 
-![UndoRedoState0](images/UndoRedoState0.png)
-
-<div style="page-break-after: always;"></div>
+<img src="images/UndoRedoState0.png" alt="UndoRedoState0" height="300">
 
 Step 2. The user executes `deli -n Bob’s 28th finger` (a `DeleteItemCommand`) command to delete the matching item in
 the inventory. The `deli` command calls `Model#commitInventory()`, causing the modified state of the inventory
 after the `deli -n Bob’s 28th finger` command executes to be saved in the `inventoryStateList`, and the
 `currentStatePointer` is shifted to the newly inserted inventory state.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+<img src="images/UndoRedoState1.png" alt="UndoRedoState1" height="300">
 
 <div style="page-break-after: always;"></div>
 
@@ -437,18 +435,16 @@ Step 3. The user executes `addi -n Bob’s 6th regret -q 8` (a `AddItemCommand`)
 The `addi` command also calls `Model#commitInventory()`, causing another modified inventory state to be
 saved into the `inventoryStateList`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+<img src="images/UndoRedoState2.png" alt="UndoRedoState2" height="300">
 
 **Note:** If a command fails its execution, it will not call `Model#commitInventory()`, so the inventory
 state will not be saved into the `inventoryStateList`.
-
-<div style="page-break-after: always;"></div>
 
 Step 4. The user now decides that adding the item was a mistake, and decides to undo that action by executing the
 `undo` command. The `undo` command will call `Model#undoInventory()`, which will shift the `currentStatePointer`
 once to the left, pointing it to the previous inventory state, and restores the inventory to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+<img src="images/UndoRedoState3.png" alt="UndoRedoState3" height="300">
 
 **Note:** If the `currentStatePointer` is at index 0, pointing to the initial `Inventory` state, then there are 
 no previous `Inventory` states to restore. The `undo` command checks if this is the case. If so, it will return 
@@ -476,22 +472,20 @@ Step 5. The user then decides to execute the command `listi`. Commands that do n
 `listi`, will usually not call `Model#commitInventory()`, `Model#undoInventory()` or `Model#redoInventory()`.
 Thus, the `inventoryStateList` remains unchanged.
 
-![UndoRedoState4](images/UndoRedoState4.png)
-
-<div style="page-break-after: always;"></div>
+<img src="images/UndoRedoState4.png" alt="UndoRedoState4" height="300">
 
 Step 6. The user executes `clear`, which calls `Model#commitInventory()`. Since the `currentStatePointer`
 is not pointing at the end of the `inventoryStateList`, all inventory states after the `currentStatePointer`
 will be purged. Reason: It no longer makes sense to redo the `addi -n Bob’s 6th regret -q 8` command. This is the
 behavior that most modern desktop applications follow.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+<img src="images/UndoRedoState5.png" alt="UndoRedoState5" height="300">
 
 <div style="page-break-after: always;"></div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+<img src="images/CommitActivityDiagram.png" alt="CommitActivityDiagram" height="500">
 
 <div style="page-break-after: always;"></div>
 
