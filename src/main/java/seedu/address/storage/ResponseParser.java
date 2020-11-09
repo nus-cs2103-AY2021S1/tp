@@ -18,7 +18,10 @@ public class ResponseParser {
         return responses;
     }
 
-    private Response parseResponseFields(String stringResponse) {
+    /**
+     * Returns parsed Response
+     */
+    public Response parseResponseFields(String stringResponse) {
         String[] responseFields = stringResponse.split("###");
         String response = responseFields[0];
         boolean isCorrect = responseFields[1].equals("true");
