@@ -272,8 +272,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | expert user                                | view all archived clients      | see the clients that I am no longer working with                       |
 | `* *`    | expert user                                | unarchive clients              | display them when I start working with them again                      |
 | `* *`    | regular user                               | clear all clients              | delete irrelevant client data when I move to a new company             |
-
-
+| `* *`    | regular user                               | add existing policies          | keep track of policies my company offers and the policies my clients subscribe to|
+| `* *`    | regular user                               | clear all policies             | delete irrelevant policy data when I move to a new company             |
 ### Use cases
 
 (For all use cases below, the **System** is `I4I` and the **Actor** is the `user`, unless specified otherwise)
