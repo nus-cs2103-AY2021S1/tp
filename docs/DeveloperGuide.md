@@ -353,7 +353,8 @@ The command text is passed into `LogicManager` (an implementation of Logic) whic
 
 If the fields are all valid, a new `Task` object would be created and passed into the `AddTaskCommand` class. 
 
-Within the `AddTaskCommand` class, an instance of `AddTaskCommand` is created, along with an instance of the task created in the same class and this instance of `Command` is passed back to `LogicManager`.
+Within the `AddTaskCommand` class, an instance of `AddTaskCommand` is created, along with an instance of the task
+ is created in the same class and this instance of `Command` is passed back to `LogicManager`.
 
 LogicManager then calls the method `execute` of the `AddTaskCommand` which stores the task into the respective project's task list.
 
