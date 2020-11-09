@@ -91,6 +91,7 @@ The Logic component parses and executes the commands. <br>
 or affect the `Model` directly (e.g. adding an account).
 * Based on the changes the command execution made, the `CommandResultFactory` generates a `CommandResult` object which encapsulates
 the result of the command execution and is passed back to the `Ui`.
+<div style="page-break-after: always;"></div>
 * In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deleteacc 1")` _API_ call.
@@ -126,7 +127,7 @@ The `ActiveAccount`,
 * stores an `ObservableList<Revenue>` that can be `observed` e.g. the _UI_ can be bounde to this list so that the _UI_ automatically updates when the data in the list change.
 * stores an `Optional<ActiveAccount>` that represents the previous state of the `ActiveAccount`.
 * does not depend on any of the other four components.
-
+<div style="page-break-after: always;"></div>
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `CommonCents`, which `Entry` references. This allows `CommonCents` to only require one `Tag` object per unique `Tag`, instead of each `Entry` needing their own `Tag` object.<br>
@@ -178,6 +179,7 @@ and `ActiveAccount#addRevenue`, and in `Model` as `Model#setAccount`.
 Given below is an example usage scenario and how the find entries mechanism behaves 
 at each step.
 
+<div style="page-break-after: always;"></div>
 * Step 1. The user inputs the edit command to edit the entries of a specified index and entry
 type (Expense or Revenue) from current `ActiveAccount`. `CommandParser` identifies the command word `edit`
 and calls `AddCommandParser#parse(String args)` to parse the input into a valid `AddCommand`.
@@ -222,6 +224,7 @@ operations:
 
 Given below is an example usage scenario and how the delete mechanism behaves at each step.
 
+<div style="page-break-after: always;"></div>
 * Step 1: The user inputs the delete command to specify which entry to delete in the specified category
 of `ActiveAccount`. `CommandParser` identifies the command word `delete` and calls `DeleteCommandParser#parse(String args)`
 to parse the input into a valid `DeleteCommand`.
@@ -255,7 +258,7 @@ Explanation why a certain design is chosen.
         * Allows Parser to filter out invalid commands
     * Cons: Less convenience for the user. 
 
-
+<div style="page-break-after: always;"></div>
 ### Edit entries feature 
 *(Written by Nicholas Canete)* <br>
 
@@ -340,6 +343,7 @@ Given below is an example usage scenario and how the clear command mechanism beh
 of `ActiveAccount`. `CommandParser` identifies the command word `clear` and calls `ClearCommandParser#parse(String args)`
 to parse the input into a valid `ClearCommand`.
 
+<div style="page-break-after: always;"></div>
 * Step 2: `ClearCommand` starts to be executed. In the execution:
     * If user input does not specify a category, both _Expense_ and _Revenue_ Lists will be cleared.
     * If the user input for category matches that of the _Expense_ keyword, Expense List will be cleared.
