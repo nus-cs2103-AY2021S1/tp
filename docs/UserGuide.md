@@ -1,5 +1,8 @@
 # 1. Welcome
-Calo is a desktop app that is **designed for keeping track of calories burnt throughout the day**. It is optimized for use via a **Command Line Interface (CLI)** while still having Graphical User Interface (GUI). If you are a skilled typer, you can carry out various tasks such as adding new exercises and checking records for previous days much faster than the traditional GUI apps.
+Calo is a desktop app that is **designed for keeping track of calories burnt throughout the day**.
+It is optimized for use via a **Command Line Interface (CLI)** while still having Graphical User Interface (GUI).
+If you are a skilled typer, you can carry out various tasks such as adding new exercises and checking records for
+previous days much faster than the traditional GUI apps.
 
 
 - [1. Welcome](#1-welcome)
@@ -33,15 +36,16 @@ Calo is a desktop app that is **designed for keeping track of calories burnt thr
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
    Note how the app contains some sample data.
-    ![Sample UI With Explanation](images/Ui.png)
+    ![Sample UI With Explanation](images/Ui.png)  
+    
 5. Type the command in the command box and press Enter to execute it. For the details of each command, refer to the Features below.
 
 ---
 
 # 3. Features
 
-<div markdown="block" class="alert alert-info">
-    <b>:information_source: Notes about the command format:</b>
+<div markdown="block" class="alert alert-info"> 
+:information_source: Notes about the command format:
 
     - Words in `UPPER_CASE` are the parameters to be supplied by the user.
     e.g. in `add e/EXERCISE c/CALORIES`, `EXERCISE` is a parameter which can be used as `add e/Push Up c/1000`.
@@ -75,7 +79,7 @@ Adds an exercise to the application, with date, calories burnt, muscles worked a
 
 ![add command message](images/addCommandMessage.png)
 
-Format: `add n/EXERCISE d/DESCRIPTION [at/DATE] [c/CALORIES] [m/MUSCLE]... [t/TAG]...`
+Format: `add n/EXERCISE d/DESCRIPTION [at/DATE] [c/CALORIES] [m/MUSCLE] [t/TAG]...`
 
 - The format for the DATE should be in the form of DD-MM-YYYY.
 - If DATE is not provided, the default date will be the current day.
@@ -171,15 +175,17 @@ The file name must ends with the extension `.json`
 
 
 Examples:
-- `archive f/data\file_name.json`
-- `archive f/C:\Users\user_name\Desktop\FILE_NAME.json`
+- `archive f/data/file_name.json`
+- `archive f/C:/Users/user_name/Desktop/FILE_NAME.json`
 
 
 <div markdown="block" class="alert alert-info">
+    :information_source:
+    
     <b> Absolute Path </b>: Path that contains root element, e.g. C:\Users\user_name\Desktop\FILE_NAME.json<br>
     <b> Relative Path </b>: Path will take reference from the file that contains <b>Calo.jar</b> For example, if Calo is inside
-    the <mark>C:\Users\UserName\App</mark> and the user entered <mark>data\archived_file.json</mark> as the destination, the archived file will be
-    at <mark>C:\Users\UserName\App\data\archived_file.json</mark>
+    the <mark>C:/Users/UserName/App</mark> and the user entered <mark>data\archived_file.json</mark> as the destination, the archived file will be
+    at <mark>C:/Users/UserName/App/data/archived_file.json</mark>
 </div>
 
 ## 3.11. Recall : `recall`
