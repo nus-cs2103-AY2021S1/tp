@@ -1,0 +1,17 @@
+{
+  "bookings" : [ {
+    "id" : 11,
+    "roomId" : 2103,
+    "personId" : 23,
+    "startDate" : "2020-10-05",
+    "endDate" : "2020-10-10",
+    "isActive" : false
+  }, {
+    "id" : 12,
+    "roomId" : 2103,
+    "personId" : 23,
+    "startDate" : "2020-10-05",
+    "endDate" : "2020-10-10",
+    "isActive" : false
+  } ]
+}

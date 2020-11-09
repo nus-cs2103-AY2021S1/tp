@@ -7,8 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -16,11 +18,11 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.*;
+import seedu.address.model.booking.Booking;
 import seedu.address.model.person.Person;
+import seedu.address.model.room.Room;
+import seedu.address.model.roomservice.RoomService;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -99,12 +101,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getPersonBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setPersonBookFilePath(Path addressBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getBookingBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setBookingBookFilePath(Path bookingBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -114,17 +126,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setPersonBook(ReadOnlyPersonBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyPersonBook getPersonBook() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean hasPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPersonWithId(Integer id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Person getPersonWithId(Integer id) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -139,12 +161,167 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addRoom(Room r) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setRooms(List<Room> rooms) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Integer> getAvailableRooms(ObservableList<Integer> unavailableRooms) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void resetData(ReadOnlyRoomBook newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetData(ReadOnlyBookingBook newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String displayRooms(ObservableList<Integer> rooms) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String displaySingleRooms(ObservableList<Integer> rooms) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String displayDoubleRooms(ObservableList<Integer> rooms) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String displaySuiteRooms(ObservableList<Integer> rooms) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasRoom(int roomId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Room getRoom(Integer roomId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyRoomBook getRoomBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addBooking(Booking b) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setBookings(List<Booking> bookings) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setBooking(Booking target, Booking editedBooking) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Integer> getUnavailableRooms(LocalDate startDate, LocalDate endDate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setBookingBook(ReadOnlyBookingBook newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteBooking(Booking target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteBookingByPersonId(Integer personId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasBooking(Booking booking) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasBookingWithId(Integer roomId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Booking getBookingWithId(Integer id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyBookingBook getBookingBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setBookingInactive(int roomId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setBookingActive(int bookingId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Booking> getFilteredBookingList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredBookingList(Predicate<Booking> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        //=========== RoomServiceBook ================================================================================
+        @Override
+        public void addRoomService(RoomService rs) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<RoomService> getRoomServicesForBooking(Integer bookingId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setRoomServiceBook(ReadOnlyRoomServiceBook roomServiceBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyRoomServiceBook getRoomServiceBook() {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -186,8 +363,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyPersonBook getPersonBook() {
+            return new PersonBook();
         }
     }
 

@@ -37,6 +37,29 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Returns true if the list contains a person with the given id
+     */
+    public boolean hasPersonWithId(Integer id) {
+        requireNonNull(id);
+        return internalList.stream().anyMatch(person -> person.getId().equals(id));
+    }
+
+    /**
+     * Returns a {@code Person} with the corresponding id.
+     * @throws PersonNotFoundException if person does not exist.
+     */
+    public Person getPersonWithId(Integer id) {
+        requireNonNull(id);
+        if (!hasPersonWithId(id)) {
+            throw new PersonNotFoundException();
+        }
+
+        return internalList.stream()
+                .filter(person -> person.getId().equals(id))
+                .findFirst().get();
+    }
+
+    /**
      * Adds a person to the list.
      * The person must not already exist in the list.
      */
@@ -79,11 +102,6 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
     /**
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
@@ -95,6 +113,11 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+    }
+
+    public void setPersons(UniquePersonList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
     }
 
     /**

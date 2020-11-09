@@ -1,9 +1,12 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonWithId;
+import static seedu.address.testutil.TypicalBookings.getTypicalBookingBook;
+import static seedu.address.testutil.TypicalPersons.VALID_PERSON_ID_ALICE;
+import static seedu.address.testutil.TypicalPersons.getTypicalPersonBook;
+import static seedu.address.testutil.TypicalRoomService.getTypicalRoomServiceBook;
+import static seedu.address.testutil.TypicalRooms.getTypicalRoomBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +25,10 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalPersonBook(), new UserPrefs(), getTypicalRoomBook(),
+                getTypicalBookingBook(), getTypicalRoomServiceBook());
+        expectedModel = new ModelManager(model.getPersonBook(), new UserPrefs(), model.getRoomBook(),
+                model.getBookingBook(), model.getRoomServiceBook());
     }
 
     @Test
@@ -33,7 +38,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonWithId(model, VALID_PERSON_ID_ALICE);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

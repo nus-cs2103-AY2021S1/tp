@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes command;
+
+if () then ([else])
+    :Send error message to
+    user indicating the invalid parameter(s) entered in the command;
+
+else ([valid parameters entered])
+    :Create Booking that stores the parameters entered;
+    :Save Booking to BookingBook;
+endif
+stop
+
+@enduml

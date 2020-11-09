@@ -6,15 +6,27 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.commands.AddBookingCommand;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ArchiveBookingCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteBookingCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditBookingCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterRoomCommand;
+import seedu.address.logic.commands.FindBookingCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.GetBillCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.HomeCommand;
+import seedu.address.logic.commands.ListBookingCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListRoomCommand;
+import seedu.address.logic.commands.RoomServiceCommand;
+import seedu.address.logic.commands.UnarchiveBookingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -67,6 +79,42 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case AddBookingCommand.COMMAND_WORD:
+            return new AddBookingCommandParser().parse(arguments);
+
+        case ArchiveBookingCommand.COMMAND_WORD:
+            return new ArchiveBookingCommandParser().parse(arguments);
+
+        case UnarchiveBookingCommand.COMMAND_WORD:
+            return new UnarchiveBookingCommandParser().parse(arguments);
+
+        case ListBookingCommand.COMMAND_WORD:
+            return new ListBookingCommand();
+
+        case ListRoomCommand.COMMAND_WORD:
+            return new ListRoomCommandParser().parse(arguments);
+
+        case FilterRoomCommand.COMMAND_WORD:
+            return new FilterRoomCommandParser().parse(arguments);
+
+        case GetBillCommand.COMMAND_WORD:
+            return new GetBillCommandParser().parse(arguments);
+
+        case FindBookingCommand.COMMAND_WORD:
+            return new FindBookingCommandParser().parse(arguments);
+
+        case DeleteBookingCommand.COMMAND_WORD:
+            return new DeleteBookingCommandParser().parse(arguments);
+
+        case EditBookingCommand.COMMAND_WORD:
+            return new EditBookingCommandParser().parse(arguments);
+
+        case RoomServiceCommand.COMMAND_WORD:
+            return new RoomServiceCommandParser().parse(arguments);
+
+        case HomeCommand.COMMAND_WORD:
+            return new HomeCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

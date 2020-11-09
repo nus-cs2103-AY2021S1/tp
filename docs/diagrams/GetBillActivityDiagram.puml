@@ -1,0 +1,23 @@
+@startuml
+start
+:User executes Get Bill Command;
+
+if () then ([else])
+    :Send error message to
+    user indicating the invalid parameter(s) entered in the command;
+
+else ([valid parameters entered])
+    if () then ([Booking Id not found])
+        :Send error message to
+        user indicating that the Booking Id is not found;
+
+    else ([else])
+        :Retrieve Room from Room Book;
+        :Compute base price of the room;
+        :Get Room Services ordered by room from Room Service Book;
+        :Prepare receipt and compute final price of stay;
+    endif
+
+endif
+stop
+@enduml

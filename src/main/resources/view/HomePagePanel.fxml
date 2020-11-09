@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+
+<VBox fx:id="homePage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox fx:id="roomsAvailableGroup">
+        <Label fx:id="roomsAvailableTitle" />
+        <Label fx:id="singleRoomsText" />
+        <Label fx:id="doubleRoomsText" />
+        <Label fx:id="suiteRoomsText" />
+    </VBox>
+    <Region minHeight="12" maxHeight="12" prefHeight="12" />
+    <VBox fx:id="roomServicesGroup">
+        <Label fx:id="roomServicesTitle" />
+        <Label fx:id="wifiService" />
+        <Label fx:id="diningService" />
+        <Label fx:id="massageService" />
+    </VBox>
+    <Region minHeight="12" maxHeight="12" prefHeight="12" />
+    <VBox maxHeight="121" minHeight="121" prefHeight="121" fx:id="recentBookingsGroup">
+        <Label fx:id="recentBookingsTitle" />
+        <ListView fx:id="recentBookingsView" />
+    </VBox>
+</VBox>

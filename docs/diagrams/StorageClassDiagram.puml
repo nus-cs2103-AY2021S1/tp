@@ -4,21 +4,55 @@ skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
+Package Storage {
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
-Interface AddressBookStorage <<Interface>>
 
 Class StorageManager
 Class JsonUserPrefsStorage
-Class JsonAddressBookStorage
+
+Package PersonBookStorage {
+Interface PersonBookStorage <<Interface>>
+Class JsonPersonBookStorage
+Class JsonSerializablePersonBook
+Class JsonAdaptedPerson
+Class JsonAdaptedTag
+}
+
+Package BookingBookStorage {
+Interface BookingBookStorage <<Interface>>
+Class JsonBookingBookStorage
+Class JsonSerializableBookingBook
+Class JsonAdaptedBooking
+}
+
+Package RoomServiceStorage {
+Interface RoomServiceBookStorage <<Interface>>
+Class JsonRoomServiceBookStorage
+Class JsonSerializableRoomServiceBook
+Class JsonAdaptedRoomService
+}
+}
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
-StorageManager o--> AddressBookStorage
+StorageManager o--> PersonBookStorage
+StorageManager o--> BookingBookStorage
+StorageManager o--> RoomServiceBookStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage .right.> JsonSerializablePerson
-JsonSerializablePerson .right.> JsonAdaptedTag
+
+JsonPersonBookStorage .up.|> PersonBookStorage
+JsonPersonBookStorage .down.> JsonSerializablePersonBook
+JsonSerializablePersonBook .down.> JsonAdaptedPerson
+JsonAdaptedPerson .right.> JsonAdaptedTag
+
+JsonBookingBookStorage .up.|> BookingBookStorage
+JsonBookingBookStorage .down.> JsonSerializableBookingBook
+JsonSerializableBookingBook .down.> JsonAdaptedBooking
+
+JsonRoomServiceBookStorage .up.|> RoomServiceBookStorage
+JsonRoomServiceBookStorage .down.> JsonSerializableRoomServiceBook
+JsonSerializableRoomServiceBook .down.> JsonAdaptedRoomService
+
 @enduml

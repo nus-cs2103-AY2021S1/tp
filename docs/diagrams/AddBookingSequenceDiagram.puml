@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "c:AddBookingCommand" as AddBookingCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":BookingBook" as BookingBook MODEL_COLOR
+end box
+[-> LogicManager : execute(addBooking)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(addBooking)
+activate AddressBookParser
+
+create AddBookingCommand
+AddressBookParser -> AddBookingCommand
+activate AddBookingCommand
+
+AddBookingCommand --> AddressBookParser
+deactivate AddBookingCommand
+
+AddressBookParser --> LogicManager : c
+deactivate AddressBookParser
+
+LogicManager -> AddBookingCommand : execute()
+activate AddBookingCommand
+
+AddBookingCommand -> Model : addBooking()
+activate Model
+
+Model -> BookingBook : addBooking()
+activate BookingBook
+
+BookingBook --> Model :
+deactivate BookingBook
+
+Model --> AddBookingCommand
+deactivate Model
+
+AddBookingCommand --> LogicManager : result
+deactivate AddBookingCommand
+AddBookingCommand -[hidden]-> LogicManager : result
+destroy AddBookingCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

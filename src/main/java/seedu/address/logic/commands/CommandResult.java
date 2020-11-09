@@ -17,6 +17,24 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The application should show personList. */
+    private final boolean showPersonList;
+
+    /** The application should show bookingList. */
+    private final boolean showBookingList;
+
+    /**
+     * Constructs a {@code CommandResult} with additional fields for showing person and booking list.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         boolean showPersonList, boolean showBookingList) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.showPersonList = showPersonList;
+        this.showBookingList = showBookingList;
+    }
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -24,6 +42,8 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.showPersonList = false;
+        this.showBookingList = false;
     }
 
     /**
@@ -46,6 +66,14 @@ public class CommandResult {
         return exit;
     }
 
+    public boolean isShowPersonList() {
+        return showPersonList;
+    }
+
+    public boolean isShowBookingList() {
+        return showBookingList;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -65,7 +93,7 @@ public class CommandResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, showPersonList, showBookingList);
     }
 
 }

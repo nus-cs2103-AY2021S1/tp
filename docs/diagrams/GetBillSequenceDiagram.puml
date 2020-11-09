@@ -1,0 +1,92 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":GetBillCommandParser" as GetBillCommandParser LOGIC_COLOR
+participant ":GetBillCommand" as GetBillCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":BookingBook" as BookingBook MODEL_COLOR
+participant ":RoomBook" as RoomBook MODEL_COLOR
+participant ":RoomServiceBook" as RoomServiceBook MODEL_COLOR
+end box
+
+[-> LogicManager: execute(getBill)
+activate LogicManager
+
+LogicManager -> AddressBookParser: parseCommand(getBill)
+activate AddressBookParser
+
+AddressBookParser -> GetBillCommandParser: parse()
+activate GetBillCommandParser
+
+GetBillCommandParser --> AddressBookParser
+deactivate GetBillCommandParser
+destroy GetBillCommandParser
+
+AddressBookParser --> LogicManager: GetBillCommand
+deactivate AddressBookParser
+destroy AddressBookParser
+
+LogicManager -> GetBillCommand: execute()
+activate GetBillCommand
+
+GetBillCommand -> Model : hasBookingWithId()
+activate Model
+
+Model -> BookingBook
+activate BookingBook
+
+BookingBook --> Model
+deactivate BookingBook
+
+Model --> GetBillCommand
+deactivate Model
+
+GetBillCommand -> Model : getBookingWithId()
+activate Model
+
+Model -> BookingBook
+activate BookingBook
+
+BookingBook --> Model
+deactivate BookingBook
+
+Model --> GetBillCommand : Booking
+deactivate Model
+
+GetBillCommand -> Model : getRoom()
+activate Model
+
+Model -> RoomBook
+activate RoomBook
+
+RoomBook --> Model
+deactivate RoomBook
+
+Model --> GetBillCommand : Room
+deactivate Model
+
+GetBillCommand -> Model : getRoomServicesForBooking()
+activate Model
+
+Model -> RoomServiceBook
+activate RoomServiceBook
+
+RoomServiceBook --> Model
+deactivate RoomServiceBook
+
+Model --> GetBillCommand : ObservableList<RoomService>
+deactivate Model
+
+GetBillCommand --> LogicManager : Result
+deactivate GetBillCommand
+destroy GetBillCommand
+
+[<-- LogicManager
+deactivate LogicManager
+@enduml

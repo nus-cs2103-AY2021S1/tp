@@ -15,7 +15,10 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
+    private static Integer nextAvailableId;
+
     // Identity fields
+    private final Integer id;
     private final Name name;
     private final Phone phone;
     private final Email email;
@@ -25,7 +28,7 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null. Used for creating a new Person with a unique id.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -34,6 +37,32 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.id = nextAvailableId;
+        nextAvailableId += 1;
+    }
+
+    /**
+     * Every field must be present and not null. Used for creating a Person with existing id.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Integer id) {
+        requireAllNonNull(name, phone, email, address, tags, id);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.id = id;
+    }
+
+    /**
+     * Sets next available id to be used
+     */
+    public static void setNextAvailableId(Integer id) {
+        Person.nextAvailableId = id;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public Name getName() {
@@ -70,8 +99,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
+                && otherPerson.getId().equals(getId());
     }
 
     /**
@@ -89,7 +117,8 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
+        return otherPerson.getId().equals(getId())
+                && otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
@@ -105,7 +134,10 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append("Id: ")
+                .append(getId())
+                .append(" Name: ")
+                .append(getName())
                 .append(" Phone: ")
                 .append(getPhone())
                 .append(" Email: ")
