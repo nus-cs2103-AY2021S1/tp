@@ -108,7 +108,7 @@ Format: `update INDEX [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [m/MUS
 For this command, `update 4 n/Push Up`, the exercises will be changed as follow.
 
 ### Before
-![before update](images/bforeUpdate.png)
+![before update](images/beforeUpdate.png)
 
 ### After
 ![after update](images/afterUpdate.png)
@@ -187,7 +187,7 @@ Examples:
 
 
 <div markdown="block" class="alert alert-info"> 
-**:information_source: Notes about the command format: <br>**
+:information_source: Notes about the command format:
 
 * **Absolute Path:** 
   Path that contains root element, e.g. C:\Users\user_name\Desktop\FILE_NAME.json
@@ -210,6 +210,7 @@ Example:
 - `recall Pull Up` finds the most recent exercise with the name `Pull Up`. In the following example,
 there is two of such exercise on '09-11-2020' and '05-10-2020' so only the former is shown.
 
+### Before Recall Command
 ![Before Recall](images/beforeRecall.png)
 ### After Recall Command
 ![After Recall](images/afterRecall.png)
