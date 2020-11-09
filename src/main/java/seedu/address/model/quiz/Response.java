@@ -33,7 +33,7 @@ public class Response {
     }
 
     /**
-     * Executes the command and returns the result.
+     * Checks if answer is correct.
      * @throws InvalidQuestionAnswerException if the response is not valid.
      */
     public void markResponse() throws InvalidQuestionAnswerException {
