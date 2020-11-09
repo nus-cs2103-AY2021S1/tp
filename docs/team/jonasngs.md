@@ -33,7 +33,8 @@ Given below are my contributions to the project.
                             [\#553](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/553)
                             [\#555](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/555)
 
-<div style="page-break-after: always;"></div>                              
+<div style="page-break-after: always;"></div>        
+                      
 * **Enhancement:** Implemented contact list management feature. 
                    This feature includes the following functionalities: add contact, delete contact, edit contact, clear contact, list contact
   * **What it does:** This feature allows users to keep track of module related contacts while managing all their contact details.               
