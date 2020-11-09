@@ -1,0 +1,23 @@
+{
+  "tasks": [ {
+    "index": "0101",
+    "weekNumber": "1",
+    "description": "Admin One",
+    "officialDeadline": "2020-10-10",
+    "customizedDeadline": null,
+    "category": "Admin",
+    "remark": "No remark",
+    "isCustomized": false,
+    "isDone": false
+  }, {
+    "index": "0101",
+    "weekNumber": "1",
+    "description": "Admin Two",
+    "officialDeadline": "2020-10-10",
+    "customizedDeadline": null,
+    "category": "Admin",
+    "remark": "No remark",
+    "isCustomized": false,
+    "isDone": false
+  } ]
+}

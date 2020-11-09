@@ -1,14 +1,19 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2021S1-CS2103-T14-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103-T14-4/tp/actions)
 
+![Ui](docs/images/w6.png)
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+Ace CS2103/T helps CS2103/T students manage their tasks. It is optimized for CLI users so that each task can be managed faster by typing in commands.
+
+Ace CS2103/T is a **desktop app for managing task requirements of CS2103/T, optimized for use via Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Ace CS2103/T can get your learning tasks managed faster than traditional GUI apps.
+* If you are interested in using Ace CS2103/T, head over to the [_Quick Start_ section of the **User Guide**](https://ay2021s1-cs2103-t14-4.github.io/tp/UserGuide.html#quick-start).
+* If you are interested about developing Ace CS2103/T, the [**Developer Guide**](https://ay2021s1-cs2103-t14-4.github.io/tp/DeveloperGuide.html) is a good place to start.
+
+**Documentation**
+* [Homepage](https://ay2021s1-cs2103-t14-4.github.io/tp/)
+* [AboutUs](https://ay2021s1-cs2103-t14-4.github.io/tp/AboutUs.html)
+* [UserGuide](https://ay2021s1-cs2103-t14-4.github.io/tp/UserGuide.html)
+* [DeveloperGuide](https://ay2021s1-cs2103-t14-4.github.io/tp/DeveloperGuide.html)
+
+**Acknowledgements**
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).

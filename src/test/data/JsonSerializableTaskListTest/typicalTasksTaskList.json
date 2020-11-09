@@ -1,0 +1,84 @@
+{
+  "_comment": "TaskList save file which contains the same Tasks values as in TypicalTasks#getTypicalTaskList()",
+  "tasks" : [ {
+    "index": "0101",
+    "weekNumber": "1",
+    "description": "Admin One",
+    "officialDeadline": "2020-10-10",
+    "customizedDeadline": null,
+    "category": "Admin",
+    "remark": "No remark",
+    "isCustomized": false,
+    "isDone": false
+  }, {
+    "index": "0102",
+    "weekNumber": "1",
+    "description": "Admin Two",
+    "officialDeadline": null,
+    "customizedDeadline": "2020-10-20",
+    "category": "Admin",
+    "remark": "No remark",
+    "isCustomized": true,
+    "isDone": false
+  }, {
+    "index": "0201",
+    "weekNumber": "2",
+    "description": "Topic One",
+    "officialDeadline": "2020-10-10",
+    "customizedDeadline": null,
+    "category": "Topic",
+    "remark": "No remark",
+    "isCustomized": false,
+    "isDone": false
+  }, {
+    "index": "0202",
+    "weekNumber": "2",
+    "description": "Topic Two",
+    "officialDeadline": null,
+    "customizedDeadline": "2020-10-20",
+    "category": "Topic",
+    "remark": "No remark",
+    "isCustomized": true,
+    "isDone": false
+  }, {
+    "index": "0301",
+    "weekNumber": "3",
+    "description": "Ip One",
+    "officialDeadline": "2020-10-10",
+    "customizedDeadline": null,
+    "category": "Ip",
+    "remark": "No remark",
+    "isCustomized": false,
+    "isDone": false
+  }, {
+    "index": "0302",
+    "weekNumber": "3",
+    "description": "Ip Two",
+    "officialDeadline": null,
+    "customizedDeadline": "2020-10-20",
+    "category": "Ip",
+    "remark": "No remark",
+    "isCustomized": true,
+    "isDone": false
+  }, {
+    "index": "0401",
+    "weekNumber": "4",
+    "description": "Tp One",
+    "officialDeadline": "2020-10-10",
+    "customizedDeadline": null,
+    "category": "Tp",
+    "remark": "No remark",
+    "isCustomized": false,
+    "isDone": false
+  }, {
+    "index": "0402",
+    "weekNumber": "4",
+    "description": "Tp Two",
+    "officialDeadline": null,
+    "customizedDeadline": "2020-10-20",
+    "category": "Tp",
+    "remark": "No remark",
+    "isCustomized": true,
+    "isDone": false
+  } ]
+}

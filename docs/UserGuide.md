@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Ace CS2103/T is a **desktop app for managing task requirements of CS2103/T, optimized for use via Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Ace CS2103/T can get your learning tasks managed faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,29 +14,41 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Copy the file to the folder you want to use as the _home folder_ for your Ace CS2103/T.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Make sure your computer screen resolution reaches the minimum requirement (1095 * 770).
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will get you the link for user guide.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`**`6` : Lists all tasks for week 6.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
+   * **`deadline`**`i/0601 c/2020-09-16` : Adds a deadline 2020-09-16 to task indexed at 0601.
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [About UI](#about-ui) below for details on the app UI.
+
+7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+## About UI
+* Tasks are displayed in 4 columns for 4 categories of CS2103/T tasks, namely Admin, Topic, IP and TP.
+* Time range of tasks displayed in each column is shown in the header of the column, beside the task category.
+  For example, `Week 1 to Week 13` means the tasks listed in the column range from week 1 to 13. `Week 13 to Week 13` means the tasks listed in the column
+  are all from week 13.
+* When the app is first opened, task list for the current week will be displayed as default. You may navigate to any week using `list` command.
+* You may refer to the progress bar at the top left corner of the app for the current week number and the relative completion of the semester (assuming 13 weeks in total for a semester).
+* Tasks are colored coded for different status of completion. 
+  * Green: task is done
+  * Grey: task is pending and official deadline has not passed
+  * Red: task is pending and official deadline has passed (task is overdue)
+
 
 ## Features
 
@@ -45,102 +57,158 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `list WEEK_NUMBER`, `WEEK_NUMBER` is a parameter which can be used as `list 6`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE [r/REMARK] a/CATEGORY` can be used as `add i/0111 w/1 d/new customised task c/2020-09-01 a/Admin` or as `add i/0111 w/1 d/new customised task c/2020-09-01 r/new remark a/Admin`.
 
 </div>
 
-### Viewing help : `help`
+### Viewing help: `help`
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+Lists the website for the user guide.
 
 Format: `help`
 
+### Finding relevant tasks: `find`
 
-### Adding a person: `add`
+Lists all tasks that contain the keyword.
 
-Adds a person to the address book.
+Format: `find KEYWORD`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+* The KEYWORD is a letter string in the description and remark of tasks to be returned.
+* Operates rough search in the task list. KEYWORD is case-insensitive.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Example:
+* `find project`: Returns all tasks containing keyword “project” in their descriptions or remarks.
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+### List tasks: `list`
 
-### Listing all persons : `list`
+Lists all tasks in a specific week.
 
-Shows a list of all persons in the address book.
+Format: `list WEEK_NUMBER`
 
-Format: `list`
+* The WEEK_NUMBER is a integer in the range [1,13] representing a teaching week.
 
-### Editing a person : `edit`
+Example:
+* `list 6`: Returns all tasks in teaching week 6.
 
-Edits an existing person in the address book.
+### Adding a customised deadline: `deadline`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Adds a customised deadline to a task.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Format: `deadline i/TASK_INDEX c/DEADLINE`
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* The task indexed at TASK_INDEX will be given a DEADLINE.
+* The deadline should be given in the format: "YYYY-MM-DD"
+* Note: the customised deadline should be BEFORE the official deadline if the task is not overdue yet. No restriction if the official deadline has passed.
 
-### Locating persons by name: `find`
+Example:
+* `deadline i/0601 c/2020-09-10`: Adds a customised deadline on 10th September 2020 to the first task of teaching week 6 which is indexed at TASK_NUMBER 0601.
 
-Finds persons whose names contain any of the given keywords.
+### Adding a customised task: `add`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Adds a customised task in the task manager.
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Format: `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE [r/REMARK] a/CATEGORY`
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* The task with INDEX as index, WEEKNUMBER as week number, DESCRIPTION as description, DEADLINE as customised deadline, REMARK as remark, CATEGORY as the category will be added into task list.
+* The INDEX, WEEKNUMBER, DESCRIPTION, DEADLINE and CATEGORY are compulsory, the REMARK is optional.
+* The first letter of CATEGORY has to be in caps. Available categories: Ip, Tp, Topic, Admin
+* The index should follow the naming convention below:
+   * always start with 0
+   * only contain numbers
+   * be at least 4 digits long
+   * should not be blank
+   * E.g. `0101`: first task of week 1, `01314`: 14th task of week 13
+* The index should be consistent with week number. E.g. `01215` is a valid index for tasks in week 12, while `01115` is invalid for week 12 tasks.
 
-### Deleting a person : `delete`
+Example:
+* `add i/0109 w/1 d/update documentation c/2020-08-14 r/check tp dashboard a/Tp`:
+Task to update documentation with deadline set on 2020-08-14 of category tp with a remark to check tp dashboard is added to the task list.
 
-Deletes the specified person from the address book.
+### Deleting a customised task: `delete`
 
-Format: `delete INDEX`
+Deletes a customised task in the task manager. An exception will occur if task indicated by index is a default task.
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `delete TASK_INDEX`
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* The task indexed at TASK_INDEX will be deleted. 
+* Only customised tasks can be deleted.
+* You cannot delete a task if it does not exit in the task list.
 
-### Clearing all entries : `clear`
+Example:
+* `delete 0109`: Task indexed at 0109 will be deleted.
 
-Clears all entries from the address book.
+### Editing a task: `edit`
 
-Format: `clear`
+Edits a task in the task manager.
+
+Format: `edit i/INDEX [d/DESCRIPTION] [c/DEADLINE] [r/REMARK]`
+
+* The task with INDEX as index will be updated with DESCRIPTION as the new description, DEADLINE as the new customised deadline, REMARK as the new remark, CATEGORY as the category will be added into task list.
+* The INDEX is compulsory, all other parameters are optional.
+* For default task, only DEADLINE and REMARK can be edited.
+* For customised task, DESCRIPTION, DEADLINE and REMARK can be edited.
+
+Example:
+* `edit i/0101 c/2020-09-01 r/updated remark`:
+Default task indexed at 0101 updates with "2020-09-01" as its customised deadline and "updated remark" as its remark.
+* `edit i/0109 d/updated description r/updated remark`:
+Customised task indexed at 0109 updates with "updated description" as its new description.
+
+### Mark a task as done: `done`
+
+Marks a task in the task manager as done or undone.
+
+Format of `done`: `done TASK_INDEX`
+
+* The task at TASK_INDEX will be marked as done.
+* You can only mark a pending (undone) task as done. 
+
+Example:
+* `done 0101`:
+Mark task with index 0101 as done.
+
+### Mark a task as undone: `undone`
+
+Format of `undone`: `undone TASK_INDEX`
+
+* The task at TASK_INDEX will be marked as pending.
+* You can only mark a done task as pending.
+
+Example:
+* `undone 0101`:
+Mark task with index 0101 as pending.
+
+### Filter selected tasks based on various criteria: `filter`
+
+Filters the tasks based on selected criteria and order them by deadline.
+
+Format 1: `filter w/WEEKNUMBER k/KEYWORD l/DEADLINETYPE` <br>
+Format 2: `filter k/KEYWORD l/DEADLINETYPE` <br>
+Format 3: `filter w/WEEKNUMBER k/KEYWORD` <br>
+Format 4: `filter k/KEYWORD`
+
+* The `KEYWORD` can be "pending" or "done". The task manager will filter tasks based on the done status of tasks. It is compulsory for all formats.
+* The `WEEKNUMBER` can be used to specify which week the user select, it is optional. Without it, you are filtering ALL tasks in the task list.
+* The `DEADLINETYPE` can be "official" or "customised", which specify which deadline type the selected task should be ranked by in ascending order.
+* In Format 1,2, the KEYWORD can only be "pending"
+* In Format 3,4, the KEYWORD can only be "done"
+
+Example:
+* `filter k/done`: Display all the completed tasks.
+* `filter w/4 k/done`: Display all the completed tasks in week 4.
+* `filter k/pending l/official`: Display all the pending tasks ranked in ascending order of their official deadline (i.e. task with nearest deadline will be displayed at top).
+* `filter k/pending l/customised`: Display all the pending tasks ranked in ascending order of their customised deadline (i.e. task with nearest deadline will be displayed at top).
+* `filter w/4 k/pending l/official`: Display all the pending tasks ranked in ascending order of their customised deadline (i.e. task with nearest deadline will be displayed at top) in week 4.
+
+### Back to home page of current week : `home`
+
+Back to the home page that display all tasks of the current week.
+
+Format: `home`
+
 
 ### Exiting the program : `exit`
 
@@ -148,31 +216,30 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Archiving data files `[coming in v2.0]`
-
-_{explain the feature here}_
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Ace CS2103/T home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**Add** | `add i/INDEX w/WEEKNUMBER d/DESCRIPTION c/DEADLINE r/REMARK a/CATEGORY` <br> e.g. `add i/0109 w/1 d/update documentation c/2020-10-02 r/check tp dashboard a/Tp`
+**Deadline** | `deadline i/TASK_NUMBER c/DEADLINE` <br> e.g., `deadline i/0601 c/2020-09-20`
+**Delete** | `delete TASK_NUMBER`<br> e.g., `delete 0109`
+**Done** | `done TASK_INDEX` <br> e.g., `done 0101`
+**Edit** | `edit i/INDEX [d/DESCRIPTION] [c/DEADLINE] [r/REMARK]` <br> e.g. `edit i/0101 c/2020-09-01 r/updated remark`
+**Exit** | `exit`
+**Filter** | `filter [w/WEEKNUMBER] k/KEYWORD [l/DEADLINETYPE]` e.g., `filter w/4 k/pending l/official` <br>
+**Find** | `find KEYWORD` e.g., `find project` <br>
+**Home** | `home`<br>
+**Help** | `help`<br>
+**List** | `list WEEK_NUMBER`  e.g., `list 6` <br>
+**Undone** | `undone TASK_INDEX` <br> e.g., `undone 0101`
+

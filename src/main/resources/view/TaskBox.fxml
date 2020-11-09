@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="164.0" prefWidth="210.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane prefHeight="400.0" prefWidth="200.0" styleClass="GridPane">
+        <columnConstraints>
+          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="30.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+        </rowConstraints>
+         <children>
+
+            <VBox fx:id="box" prefHeight="180.0" prefWidth="200.0" maxWidth="250" styleClass="VBox">
+               <children>
+                  <Label fx:id="index" maxHeight="-Infinity" minHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="Label" text="Index: None" wrapText="true" />
+                  <Label fx:id="weekNumber" maxHeight="-Infinity" minHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="Label" text="Week Number: None" wrapText="true" />
+                  <Label fx:id="description" maxHeight="-Infinity" minHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="Label" text="Description: None" wrapText="true" />
+                  <Label fx:id="officialDeadline" maxHeight="-Infinity" minHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="Label" text="Official Deadline: None" wrapText="true" />
+                  <Label fx:id="customizedDeadline" maxHeight="-Infinity" minHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="Label" text="Customized Deadline: None" wrapText="true" />
+                  <Label fx:id="remark" maxHeight="-Infinity" minHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="Label" text="Remark: None" wrapText="true" />
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+   </children>
+</StackPane>

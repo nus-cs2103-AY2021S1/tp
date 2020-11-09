@@ -142,6 +142,16 @@
      -fx-border-top-width: 1px;
 }
 
+.progress-bar .bar {
+    -fx-background-color:
+        -fx-box-border,
+        linear-gradient(to bottom, derive(-fx-accent,95%), derive(-fx-accent,10%)),
+        red; /* this line is the background color of the bar */
+    -fx-background-insets: 0, 1, 2;
+    -fx-padding: 0.416667em; /* 5 */
+    -fx-pref-width: 300px
+}
+
 .status-bar {
     -fx-background-color: derive(#1d1d1d, 30%);
 }

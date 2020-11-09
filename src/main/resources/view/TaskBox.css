@@ -1,0 +1,124 @@
+.HBox {
+    -fx-background-radius: 10;
+}
+
+.progress-bar .bar {
+    -fx-accent: #87CEFA;
+    -fx-border-radius: 10;
+    -fx-background-radius: 100;
+    -fx-pref-width: 300px;
+    -fx-pref-height: 50px;
+}
+.progress-bar .track {
+    -fx-background-radius: 100;
+}
+.bar {
+    fx-background-radius: 10;
+}
+
+.GridPane {
+    -fx-background-radius: 10;
+}
+
+.VBox {
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+.pending-task {
+    -fx-background-color:  #D3D3D3;
+}
+
+.done-task {
+    -fx-background-color:  #32cd32;
+}
+
+.overdue-task {
+    -fx-background-color:  #ff4500;
+}
+
+.Label {
+    -fx-padding: 5;
+}
+
+.error {
+    -fx-text-fill: #d06651 !important;
+}
+
+.feedback-box .label {
+    -fx-text-fill: black !important;
+}
+
+#commandTextField {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-color: #6495ED #B0C4DE #6495ED #B0C4DE;
+    -fx-border-insets: 0;
+    -fx-border-width: 1;
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 13pt;
+    -fx-text-fill: black;
+}
+
+#feedbackDisplay .content {
+    -fx-background-color: #F5F5F5;
+    -fx-background-radius: 0;
+}
+
+.color1 {
+    -fx-background-color: #FFF0F5;
+}
+
+.color2 {
+    -fx-background-color: #E1FFFF;
+}
+
+.color3 {
+    -fx-background-color: #FFFFE0;
+}
+
+.color4 {
+    -fx-background-color: #F0FFF0;
+}
+
+
+.category-box {
+      -fx-alignment: "CENTER";
+      -fx-background-radius: 10;
+      -fx-label-padding: 10, 10, 10, 10;
+      -fx-background-color: #AFEEEE;
+      -fx-border-radius: 10;
+      -fx-text-alignment: "CENTER";
+      -fx-text-fill: #3cc4a9
+}
+
+.list-cell {
+    -fx-label-padding: 10 0 10 10;
+    -fx-graphic-text-gap : 0;
+    -fx-padding: 10 0 10 10;
+}
+
+.list-cell:filled:even {
+    -fx-background-color: #3c3e3f
+}
+
+.list-cell:filled:odd {
+    -fx-background-color: #515658
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: #424d5f
+}
+
+.list-cell:filled:selected #cardPane {
+    -fx-border-color: #3e7b91;
+    -fx-border-width: 1
+}
+
+.list-cell .label {
+    -fx-text-fill: black
+}
+
+.list-cell:empty {
+    /* Empty cells will not have alternating colours */
+    -fx-background: transparent;
+}

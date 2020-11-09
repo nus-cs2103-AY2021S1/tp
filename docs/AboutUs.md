@@ -9,51 +9,45 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Gao Gui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/perpetual09.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/Perpetual09)]
+[[portfolio](https://ay2021s1-cs2103-t14-4.github.io/tp/team/perpetual09.html)]
 
 * Role: Developer
-* Responsibilities: Data
 
-### Jean Doe
+### Jin Yuze
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/unicornjin.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/UnicornJin)]
+[[portfolio](https://ay2021s1-cs2103-t14-4.github.io/tp/team/unicornjin.html)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+### Ong Li Jin
 
-### James Doe
+<img src="images/onglijin.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/onglijin)]
+[[portfolio](https://ay2021s1-cs2103-t14-4.github.io/tp/team/onglijin.html)]
 
 * Role: Developer
-* Responsibilities: UI
+
+### Xia Liyi
+
+<img src="images/xia-liyi.png" width="200px">
+
+[[github](http://github.com/xia-liyi)]
+[[portfolio](https://ay2021s1-cs2103-t14-4.github.io/tp/team/xia-liyi.html)]
+
+* Role: Developer
+
+### Zhang Yunjie
+
+<img src="images/zhang-yunjie.png" width="200px">
+
+[[github](http://github.com/zhang-yunjie)]
+[[portfolio](https://ay2021s1-cs2103-t14-4.github.io/tp/team/zhang-yunjie.html)]
+
+* Role: Developer
