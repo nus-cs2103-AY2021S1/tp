@@ -4,6 +4,7 @@
 participant ":RetagCommand" as RetagCommand LOGIC_COLOR
 participant "model:Model" as Model LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "tag:Tag" as Tag LOGIC_COLOR
 
 [-> RetagCommand : execute()
 activate RetagCommand
@@ -20,19 +21,14 @@ activate Model
 Model --> RetagCommand : false
 deactivate Model
 
-RetagCommand --> RetagCommand : getTagName()
-activate RetagCommand
+create Tag
+RetagCommand --> Tag :
+activate Tag
 
-RetagCommand --> RetagCommand : tagName
-deactivate RetagCommand
+Tag --> RetagCommand : newTag
+deactivate Tag
 
-RetagCommand --> RetagCommand : getFileAddress()
-activate RetagCommand
-
-RetagCommand --> RetagCommand : fileAddress
-deactivate RetagCommand
-
-RetagCommand -> Model : setTag()
+RetagCommand -> Model : setTag(oldTag, newTag)
 activate Model
 
 Model --> RetagCommand :

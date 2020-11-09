@@ -141,6 +141,9 @@ stores a `Label`, which is an optional field in `Tag`. A `Label` must only conta
 one word. `Label` allows the user to label their tagged file. The purpose is to keep label short and concise, as it only 
 serves as extra information of a tagged file.
 
+This sequence diagram shows a successful execution of `LabelCommand`.
+![LabelCommandSuccessExecution](images/LabelCommandSequenceDiagram.png)
+
 ### Adding of Tags: TagCommand
 
 [TagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/TagCommand.java) 
