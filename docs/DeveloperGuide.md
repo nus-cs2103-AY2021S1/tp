@@ -1289,11 +1289,11 @@ User can create two types of flashcards - containing open end question or multip
       Expected: QuickCache responds with an error message indicating that the flashcard already exists (added in Test Case 1). Flashcard is not added.
    
    1. Test Case 4: `add q/Test OEQ 1 ans/Test ans 1 t/Invalid Tag`<br>
-      Expected: QuickCache responds with an error message indicating that tag field is invalid. Flashcard is not added.
+      Expected: QuickCache responds with an error message indicating that tag field is invalid. Flashcard is not added.<br>
       :information_source: Note that flashcards containing similar questions and answers but different tags are treated as different flashcards.
 
    1. Test Case 5: `add q/Test OEQ 1 ans/Test ans 1 d/Invalid Difficulty`<br>
-      Expected: QuickCache responds with an error message indicating that difficulty field is invalid. Flashcard is not added.
+      Expected: QuickCache responds with an error message indicating that difficulty field is invalid. Flashcard is not added.<br>
       :information_source: Note that flashcards containing similar questions and answers but different difficulty are treated as different flashcards.
 
    1. Some incorrect `add` commands with missing fields to try: `add`, `add q/ ans/Test ans 1`, `add q/Test OEQ 1 ans/`, `add q/Test OEQ 1 ans/Test ans 1 t/`<br>
@@ -1317,11 +1317,11 @@ User can create two types of flashcards - containing open end question or multip
       Expected: QuickCache responds with an error message indicating that the flashcard already exists (added in Test Case 1). Flashcard is not added.
    
    1. Test Case 4: `addmcq q/Test MCQ 1 ans/1 c/Choice1 c/Choice2 t/Invalid Tag`<br>
-      Expected: QuickCache responds with an error message indicating that tag field is invalid. Flashcard is not added.
+      Expected: QuickCache responds with an error message indicating that tag field is invalid. Flashcard is not added.<br>
       :information_source: Note that flashcards containing similar questions and answers but different tags are treated as different flashcards.
 
    1. Test Case 5: `addmcq q/Test MCQ 1 ans/1 c/Choice1 c/Choice2 d/Invalid Difficulty`<br>
-      Expected: QuickCache responds with an error message indicating that difficulty field is invalid. Flashcard is not added.
+      Expected: QuickCache responds with an error message indicating that difficulty field is invalid. Flashcard is not added.<br>
       :information_source: Note that flashcards containing similar questions and answers but different difficulty are treated as different flashcards.
    
    1. Test Case 6: `addmcq q/Test MCQ 1 ans/3 c/Choice1 c/Choice2`<br>
@@ -1345,7 +1345,7 @@ User can create two types of flashcards - containing open end question or multip
 1. Test Case 1: `open 1`<br>
    Expected: First flashcard is opened. Details of the question and options (for multiple choice questions) will be displayed.
 
-1. Test Case 1: `open 0`<br>
+1. Test Case 2: `open 0`<br>
    Expected: No flashcard is opened. Error details shown in display.
 
 1. Other incorrect `open` commands to try: `open`, `open x` (where x is more than the last index in flashcard list), `open Invalid`<br>
@@ -1510,7 +1510,7 @@ There are 2 ways to display statistics of flashcards – by index or by tags.
 1. Test Case 1: `clearstats 1`<br>
    Expected: Statistics for the first flashcard is cleared.
 
-1. Test Case 1: `clearstats 0`<br>
+1. Test Case 2: `clearstats 0`<br>
    Expected: No flashcard statistics is cleared. Error details shown in display.
 
 1. Other incorrect `clearstats` commands to try: `clearstats`, `clearstats x` (where x is more than the last index in flashcard list), `clearstats Invalid`<br>
