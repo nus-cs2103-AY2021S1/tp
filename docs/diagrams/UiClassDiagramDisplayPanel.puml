@@ -1,0 +1,67 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+package DisplayPanel <<Rectangle>> {
+Class HiddenDisplayPanel #FFFFFF
+}
+Class "{abstract}\nUiPart" as UiPart
+Class UpcomingSchedule
+Class TaskListPanel
+Class StatsSummaryPanel
+Class LessonListPanel
+Class CalendarPanel
+Class CalendarDayPanel
+Class StatsSummaryCard
+Class LessonCard
+Class EventCard
+Class DeadlineCard
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+UpcomingSchedule --|> UiPart
+TaskListPanel --|> UiPart
+StatsSummaryPanel --|> UiPart
+LessonListPanel --|> UiPart
+CalendarPanel --|> UiPart
+CalendarDayPanel --|> UiPart
+StatsSummaryCard --|> UiPart
+LessonCard --|> UiPart
+EventCard --|> UiPart
+DeadlineCard --|> UiPart
+
+DisplayPanel *-left-> TaskListPanel
+DisplayPanel *-left-> LessonListPanel
+DisplayPanel *-left-> StatsSummaryPanel
+DisplayPanel *-right-> CalendarPanel
+DisplayPanel *-down-> UpcomingSchedule
+
+TaskListPanel -down-> EventCard
+TaskListPanel -down-> DeadlineCard
+
+EventCard .right.> Model
+DeadlineCard .right.> Model
+
+LessonListPanel -down-> LessonCard
+
+LessonCard .right.> Model
+
+StatsSummaryPanel -down-> StatsSummaryCard
+StatsSummaryPanel .right.> Model
+
+StatsSummaryCard .right.> Model
+
+CalendarPanel *-down-> CalendarDayPanel
+CalendarPanel --> UpcomingSchedule
+
+CalendarDayPanel --> UpcomingSchedule
+
+LessonListPanel -[Hidden]right-> TaskListPanel
+TaskListPanel -[Hidden]right-> StatsSummaryPanel
+@enduml

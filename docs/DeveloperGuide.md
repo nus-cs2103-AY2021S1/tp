@@ -66,12 +66,17 @@ The sections below give more details of each component.
 
 ### UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component MainWindow](images/UiClassDiagramMainWindow.png)<br>
+Structure of the UI Component MainWindow<br>
+![Structure of the UI Component DisplayPanel](images/UiClassDiagramDisplayPanel.png)<br>
+Structure of the UI Component for DisplayPanel<br>
+![Structure of the UI Component UpcomingSchedule](images/UiClassDiagramUpcomingSchedule.png)<br>
+Structure of the UI Component for UpcomingSchedule and below<br>
 
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `DisplayPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -342,11 +347,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -871,10 +871,10 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites:  List all tasks using the `list-task` command. Multiple deadline in the task list.
 
-   1. Test case: `deadline title:Return book datetime:02-01-2020 18:00`<br>
+   1. Test case: `deadline title:Tutorial homework datetime:10-11-2020 18:00 tag:CS2100`<br>
       Expected: a new deadline with title 'Return book' is added to the task list, a deadline card will be displayed with the detailed info about the deadline.
 
-   1. Test case: `deadline title:Return book datetime:02-01-2020 18:00`<br>
+   1. Test case: `deadline title:Tutorial homework datetime:10-11-2020 18:00 tag:CS2100`<br>
       Expected: No deadline is added because a deadline with the same details already exists in the task list. Status message informs user that deadline already exists.
 
    1. Test case: `deadline title:Buy breakfast `<br>
@@ -889,9 +889,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: 
        1. clear all records inside the exiting PlaNus using `clear` command<br>
-       1. input `deadline title:Return book 1 datetime:02-01-2020 18:00` command to add a new deadline <br>
-       1. input `deadline title:Return book 2 datetime:02-01-2020 18:00` command to add a new deadline <br>
-       1. input `deadline title:Return book 3 datetime:02-01-2020 18:00` command to add a new deadline <br>
+       1. input `deadline title:Tutorial homework 1 datetime:10-11-2020 18:00 tag:CS2100` command to add a new deadline <br>
+       1. input `deadline title:Tutorial homework 2 datetime:10-11-2020 18:00 tag:CS2100` command to add a new deadline <br>
+       1. input `deadline title:Tutorial homework 3 datetime:10-11-2020 18:00 tag:CS2100` command to add a new deadline <br>
        1. input `event title:Project meeting date:15-11-2020 from:09:00 to:12:30 tag:CS2103T` command to add a new event <br>
 
    1. Test case: `done 1:20`<br>
