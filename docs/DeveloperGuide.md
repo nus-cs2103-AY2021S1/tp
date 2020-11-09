@@ -117,11 +117,9 @@ The `Model`,
 * does not depend on any of the other three components.
 
 
-<<<<<<< HEAD
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram2.png)
-=======
->>>>>>> c67c86b1bcec1180f1c5a75ab0c1ec3eff05fa9f
 
 ### Storage component 
 
@@ -149,13 +147,9 @@ is converted to data that can be stored in the text file.
 
 ![save Sequence Diagram](images/store6.png)
 
-<<<<<<< HEAD
-## **Implementation**
-=======
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation** 
->>>>>>> c67c86b1bcec1180f1c5a75ab0c1ec3eff05fa9f
 
 This section describes some noteworthy details on how certain features are implemented.
 
