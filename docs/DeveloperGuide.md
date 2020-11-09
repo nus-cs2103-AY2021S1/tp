@@ -266,14 +266,17 @@ classes, as shown below. Current version of `Calo` is still 'light' enough for t
 ![Calories Graph Call Stack](images/CaloriesGraphCallStack.png)
 
 ### 4.3. Template
-(Roy)  
-This section describes some noteworthy details on how certain features are implemented.
+(Xu Zeng)
+
+Because Calo encourages users to keep track of their daily workouts fast, a template function is created for users to 
+type in the same exercises using the created template, without having to type the whole exercise. This helps users improve
+the efficiency of keeping track of workouts.
+
+#### 4.3.1 Implementation
 I added the template class which stores information about a template. The template class has attributes name, calories,
 muscleTags, and tags. The class has the get methods for the different attributes and a toString method to convert the 
 template to a string in a more readable format. The class also has one parseToArgument() method which converts the 
-template to the command argument. The class has one static method writeToFile which takes in template lists as parameter
-and write the content of the list into the file. The class also has an equals method which takes in a template object 
-and check whether the template object is equal to the template itself.
+template to the command argument. 
 I also added a templateList class which stores the information about the template list in the app. The class has the 
 following static methods:
 -	getTemp: returns the template that has a specific name
@@ -282,13 +285,27 @@ following static methods:
 -	readTask: read the template list from the file
 -	checkEqual: Check whether the given template is equal to any of the template in the list
 -	reset: empty the content of templatelist
-The methods in the templateList classes are all static because it will be easier to just call the method in the 
-templateList instead of having to create a new templateList object.
+
 Two new parsers are also created for the command of creating a new template and the command of adding exercise from the 
 template respectively. The parse method in AddExerciseFromTemplateParser parses the command of adding the exercise 
 using the template and returns a new AddCommand object. The parse method in AddTemplateCommand parses the command 
 of creating a new template and returns a new AddTemplateCommand object.
 The template list is stored in the data file folder as a txt file.
+
+#### 4.3.2 Design Consideration
+
+**Aspect**: Should the operation methods in TemplateList be static?
+
+* **Alternative 1 (current choice):** static. 
+  * Pros: Easy to call the methods.
+
+
+* **Alternative 2:** Non-static.
+  * Pros: Follows the same format as other classes.
+
+**Reason for option 1**:   
+Option 1 easier to call the methods.
+
 
 ### 4.4. GoalBook
 (Nauman Sajid)  
