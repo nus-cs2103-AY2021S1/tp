@@ -28,24 +28,25 @@ This document provides you with all necessary information on the installation an
 
 The guide also uses the following symbols and formatting:
 * Words that looks like [this]() can be clicked to navigate you to the related section of this user guide.
+* Words that looks like *this* are words related to Nuudle's [GUI](#glossary).
 * Words that looks like `this` are words used in commands of Nuudle.
 * Words that looks like <kbd>this</kbd> are keys that you can press using your keyboard
 
 <div markdown="block" class="alert alert-info">
 
-*:information_source: This icon is used to indicate additional useful notes and information.*<br>
+:information_source: This icon is used to indicate additional useful notes and information.<br>
 
 </div>
 
 <div markdown="block" class="alert alert-warning">
 
-*:exclamation: This icon is used to indicate important information.*<br>
+:exclamation: This icon is used to indicate important information.<br>
 
 </div>
 
 <div markdown="span" class="alert alert-primary">
 
-*:bulb: This icon is used to indicate useful tips of Nuudle.*<br>
+:bulb: This icon is used to indicate useful tips of Nuudle.<br>
 
 </div>
 
@@ -56,20 +57,16 @@ The guide also uses the following symbols and formatting:
 
 ## Quick Start
 
-This section provides a step-to-step guide on how to install Nuudle and get it to run on your computer. It also shows the different sections that make up Nuudle's user interface and various sample commands.
+This section provides a step-by-step guide on how to install Nuudle and get it to run on your computer. It also shows the different sections that make up Nuudle's user interface and various sample commands.
 
 Let's get started! :smiley:
 
 ### Installing Nuudle
 
 Follow these steps to get started with Nuudle:
-
 1. Ensure you have **Java 11** or above installed in your Computer.
-
 1. Download the latest version of Nuudle from [here](https://github.com/ay2021s1-cs2103t-t12-4/tp/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for Nuddle.
-
+1. Copy the file to the folder you want to use as the home folder for Nuddle.
 1. Double-click the file to start up Nuudle. An application window similar to the one below should appear in a few seconds.<br>
    Notice how Nuudle also comes with some sample data to get you started.<br>
    ![Ui](images/Ui.png)
@@ -90,15 +87,15 @@ The layout of Nuudle can be divided into 2 main areas:
 The command execution area consists of the *Command Box* and the *Result Display Box*.
 
 The *Command Box* is the area where you can type in your command and subsequently execute it by pressing <kbd>Enter</kbd>.
-The result from the execution will then be displayed on the *Result Display Box*.
+The result from the execution will then be displayed in the *Result Display Box*.
 
 To get you started, here are some sample commands that you can try out:
 
-1. **`help`** : Shows the help window. 
+1. **`help`** : Shows the help window.
 
 1. **`list`** : Lists all patients.
 
-1. **`add`**` n/John Doe i/S9730284G p/98765432 a/John street, block 123, #01-01` : Adds a patient named `John Doe` to the Patient Book.
+1. **`add`**` n/John Doe i/S9730284G p/98765432 a/John street, block 123, #01-01` : Adds a patient named `John Doe` to the patient book.
 
 1. **`assign`**` 1 d/Tomorrow t/8.30am dur/30` : Creates an appointment for the 1st patient in the patient list for tomorrow 8.30am to 9am, assuming that the time slot is free.
 
@@ -112,7 +109,6 @@ To get you started, here are some sample commands that you can try out:
 
 To learn more about the various commands used in Nuudle, head down to our [Commands](#commands) section.
 
-
 Alternatively, you can visit our [Command Summary](#command-summary) section to get a quick overview of Nuudle's commands.
 
 #### Viewing data
@@ -123,7 +119,7 @@ The main viewing area consists of the *Patient Book*, the *Appointment Book* and
   ![PatientCard](images/PatientCard.png)
   
   * The *Patient Index* is a numbering system used in the Patient Book, which allows you to easily reference the patient by using the index shown.
-  Throughout the document and the application, we use the term `PATIENT_INDEX` to refer to this Patient Index.
+  Throughout the document and the application, we use the term `PATIENT_INDEX` to refer to this numbering.
 
   * The *Medical Condition* here is a tag that help nurses easily identify any identified allergy, illness and more.
   This medical condition can be added as a tag when [adding a new patient](#adding-a-patient--add) or by [editing an existing patient](#editing-a-patient--edit).
@@ -135,13 +131,13 @@ The main viewing area consists of the *Patient Book*, the *Appointment Book* and
 ![AppointmentCard](images/AppointmentCard.png)
 
   * Similar to the Patient Index, the *Appointment Index* is a numbering system used in the Appointment Book.
-  We use the term `APPT_INDEX` to refer to this Appointment Index.
+  We use the term `APPT_INDEX` to refer to this numbering.
 
   * Another important part of an appointment is the *Appointment Status*. There are four status types used in Nuudle and the meaning of each status is shown in the table below:
 
-  **Appointment Status** | **Meaning**
+  **Appointment Status** | **What it means**
   :---------------:|:----------------
-  ![StatusDone](images/StatusDone.png) | A completed appointment that is marked as done using the `done` command
+  ![StatusDone](images/StatusDone.png) | A completed appointment that has been marked as done using the `done` command
   ![StatusUpcoming](images/StatusUpcoming.png) | An uncompleted appointment that will be happening in the future.
   ![StatusOngoing](images/StatusOngoing.png) | An appointment that is currently ongoing but is still uncompleted.
   ![StatusExpired](images/StatusExpired.png) | An appointment that has already passed but is still uncompleted.
@@ -155,9 +151,9 @@ The main viewing area consists of the *Patient Book*, the *Appointment Book* and
   ![AppointmentOverview](images/AppointmentOverview.png)
   
   With it, you can: 
-  * keep track of the total number of expected appointment for the day.
+  * keep track of the total number of expected appointments for the day.
   * stay updated on the remaining number of appointments to be completed for the day.
-  * get an estimate on how busy the clinic will be for the week
+  * get an estimate on how busy the clinic will be for the rest of the week.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -166,11 +162,11 @@ The main viewing area consists of the *Patient Book*, the *Appointment Book* and
 The command is the main way to schedule appointment for a patient with Nuudle.
 
 This section introduces three types of commands:
-1. [general commands](#general-commands)
-2. [patient management](#patient-management)
-3. [appointment management](#appointment-management)
+1. [General](#general)
+2. [Patient Management](#patient-management)
+3. [Appointment Management](#appointment-management)
  
-An overview of all the commands is also provided in the [command summary](#command-summary).
+An overview of all the commands is also provided in the [Command Summary](#command-summary).
 
 ### Command format
 
@@ -195,20 +191,27 @@ This section emphasises on the common format across all command input.
 
 * Indexes must be a **positive integer**: 1, 2, 3, ...
 
-* Date and time can be written in the following formats:
+* Date and time can be written using various commonly used formats or even using natural language.
+A summary of the supported formats and languages is shown in the table below:
 
-Date Formats | Time Formats | Natural Date | Natural Time
+<div markdown="block" style="background-color: #f8f9fa; position: center" >
+
+Formatted Date | Natural Date | Formatted Time | Natural Time
 :---------------:|:----------------:|:----------------:|:----------------:
-02/12/2020 | 2300 | Today | Morning (8AM)
-02-12-2020 | 11:00PM | Tomorrow | Noon (12PM)
-12/02/2020 | 11.00PM | Yesterday | Evening (7PM)
-12-02-2020 | 11PM | Upcoming day<br>of the week | Night (10PM)
-2020/12/02 | | | Midnight (11:59PM)
-2020-12-02 |
-02-Dec-2020 |
-02-December-2020 |
+02/12/2020 | Today | 2300 | Morning (8AM)
+02-12-2020 | Tomorrow | 11:00PM | Noon (12PM)
+12/02/2020 | Monday | 11.00PM | Evening (7PM)
+12-02-2020 | Tuesday | 11PM | Night (10PM)
+2020/12/02 | Wednesday |
+2020-12-02 | Thursday |
+2-Dec-2020 | Friday |
+2 Dec 2020 | Saturday |
+2-December-2020 | Sunday |
+2 December 2020 |
 
-Click here to [FAQ](#faq)
+</div>
+
+* For all date formats, the year can be omitted if it is the same as the current year.
 
 </div>
 
@@ -342,15 +345,18 @@ Format: `exit`
 
 #### Retrieving previously entered commands
 
-By pressing the <kbd>↑</kbd> and <kbd>↓</kbd> arrow keys in the command box, you can cycle through the previously executed commands.
+By pressing the <kbd>↑</kbd> and <kbd>↓</kbd> arrow keys in the *command box*, you can cycle through the previously executed commands.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** You can use this feature together with `undo` command to correct a wrongly executed command. The steps below illustrate how this correction can be done:<br>
+:bulb: **Tip:** You can use this feature together with `undo` command to correct a wrongly executed command.
+
+<br>
+The steps below illustrate how this correction can be done:<br>
 
 1. Use the `undo` command to first reverse the previous command execution.<br>
 
-2. Next, use the <kbd>↑</kbd> arrow key in the command box to retrieve the original command.<br>
+2. Next, use the <kbd>↑</kbd> arrow key in the *command box* to retrieve the original command.<br>
 
 3. You can then edit the original command and execute it by pressing the <kbd>Enter</kbd> key.<br>
 
@@ -396,10 +402,10 @@ Examples:
 * `add n/Betsy Crowe i/S9123456G t/friend a/NUS Utown p/1234567 t/asthma`
 
 Step-by-step illustration:
-1. Enter `add n/Nuudle Numberone i/S7564832U p/84729741 a/UTown r/first visit` in command box.<br>
+1. Enter `add n/Nuudle Numberone i/S7564832U p/84729741 a/UTown r/first visit` in the *command box*.<br>
 ![AddCommand1](images/AddCommand1.png)
 
-2. The information of the added patient is displayed in the result box.
+2. The information of the added patient is displayed in the *result display box*.
 The patient is now added to the patient book.<br>
 ![AddCommand2](images/AddCommand2.png)
 
@@ -420,11 +426,11 @@ Examples:
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and deletes all existing tags.
 
 Step-by-step illustration:<br>
-1. Suppose a patient, Charlotte, changes her phone number from `84812305` to `91234567`, simply type `edit 3 p/91234567` in the command box and press <kbd>Enter</kbd>.<br>
+1. Suppose a patient, Charlotte, changes her phone number from `84812305` to `91234567`, simply type `edit 3 p/91234567` in the *command box* and press <kbd>Enter</kbd>.<br>
 ![EditCommand1](images/EditCommand1.png)
 
 2. Charlotte's phone number is now updated and the change is also reflected in the relevant appointments.
-The particulars of the edited patient is displayed in the result display box.<br>
+The particulars of the edited patient is displayed in the *result display box*.<br>
 ![EditCommand2](images/EditCommand2.png)
 
 #### Deleting a patient : `delete`
@@ -512,7 +518,7 @@ Suppose you want to find a patient named as `alex` or with a phone number of `99
 1. Enter `find n/alex p/99998888 i/S1234567I`.<br>
 ![FindCommand1](images/Find1.png)
 
-2. The number of patients found and the number of appointments of these patients are displayed in the result box, and the corresponding patient and appointment details are displayed in the patient and appointment book respectively.<br>
+2. The number of patients found and the number of appointments of these patients are displayed in the *result display box*, and the corresponding patient and appointment details are displayed in the patient and appointment book respectively.<br>
 ![FindCommand2](images/Find2.png)
 
 
@@ -539,10 +545,10 @@ Examples:
 
 Step-by-step illustration:<br>
 Suppose `Alex Yeoh`, the first patient in the list calls to book an appointment on `02 Jan 2021` at `1130`, you can:
-1. Enter `assign 1 d/02 Jan 2021 t/1130` in the command box.<br>
+1. Enter `assign 1 d/02 Jan 2021 t/1130` in the *command box*.<br>
 ![AssignCommand1](images/Assign1.png)
 
-2. The information of the added appointment is displayed in the result box.<br>
+2. The information of the added appointment is displayed in the *result display box.*<br>
 ![AssignCommand2](images/Assign2.png)
 
 #### Reschedules an appointment for a patient : `change`
@@ -599,7 +605,7 @@ Here, we use `cancel 1` as the appointment to cancel is the first appointment in
 ![CancelCommand2](images/CancelCommand2.png)
 
 3. The 10.30am appointment is cancelled and removed from the appointment book.
-The cancelled appointment details is also displayed in the result display box.<br>
+The cancelled appointment details is also displayed in the *result display box*.<br>
 ![CancelCommand3](images/CancelCommand3.png)
 
 
@@ -619,10 +625,10 @@ Example:
 * `view d/today` followed by `done 1` marks the 4th appointment happening on today's date as completed.
 
 Step-by-step illustration:
-1. Enter `done 1` in command box <br>
+1. Enter `done 1` in the *command box* <br>
 ![DoneCommand1](images/DoneCommand1.png)
 
-2. The result display box shows the success message and the appointment is marked as down <br>
+2. The *result display box* shows the success message and the appointment is marked as down <br>
 ![DoneCommand2](images/DoneCommand2.png)
 
 #### Listing upcoming appointments by date : `view`
@@ -644,7 +650,7 @@ Suppose you want to check all the appointments on `05 nov 2021`, you can:
 1. Enter `view d/05 Nov 2021`.<br>
 ![ViewCommand1](images/View1.png)
 
-2. The number of appointments on that date are displayed in the result box and the appointment details are displayed in the appointment book.<br>
+2. The number of appointments on that date are displayed in the *result display box* and the appointment details are displayed in the appointment book.<br>
 ![ViewCommand2](images/View2.png)
 
 #### Listing available time slots by date : `avail`
@@ -664,17 +670,17 @@ Example:
 * `avail d/today` shows the list of all available (free) time slots within the operation time of the clinic today.
 
 Step-by-step illustration:
-1. Enter `avail d/05-Nov-2021` in command box.<br>
+1. Enter `avail d/05-Nov-2021` in the *command box*.<br>
 ![AvailCommand1](images/AvailCommand1.png)
 
-2. The available time slots of the day and the earliest available time slot is displayed in the result box.
+2. The available time slots of the day and the earliest available time slot is displayed in the *result display box*.
 The list of appointments on the specified date is also displayed.<br>
 ![AvailCommand2](images/AvailCommand2.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
 ### Command summary
-#### General command
+#### General
 
 Action | Format
 -------|----------
@@ -749,5 +755,3 @@ This glossary provides definitions for the special terms used in the user guide.
 
 **Operating Hours**: The working period of the clinic. This is set from 8:00am to 10:00pm by default.
 
-
---------------------------------------------------------------------------------------------------------------------
