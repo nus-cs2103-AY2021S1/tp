@@ -25,7 +25,7 @@
         + [3.3.8.1 Adding a detail: `detail add`](#3381-adding-a-detail-detail-add)
         + [3.3.8.2 Editing a detail: `detail edit`](#3382-editing-a-detail-detail-edit)
         + [3.3.8.3 Deleting a detail: `detail delete`](#3383-deleting-a-detail-detail-delete)
-    + [3.3.9 Viewing lesson schedule: `schedule` (By: Alex Chua)](#339-viewing-lesson-schedule-schedule-by-alex)
+    + [3.3.9 Viewing lesson schedule: `schedule` (By: Alex Chua)](#339-viewing-lesson-schedule-schedule-by-alex-chua)
     + [3.3.10 Clearing all entries: `clear`](#3310-clearing-all-entries-clear)
   * [3.4 Features for managing student academic details](#34-features-for-managing-student-academic-details)
     + [3.4.1 Recording questions from a student: `question` (By: Ying Gao)](#341-recording-questions-from-a-student-question-by-ying-gao)
@@ -54,13 +54,13 @@
 Are you looking for a one-stop application that can handle all your private tutoring needs? Then you are in luck!
 
 **Reeve** is a desktop application for **private tutors to better manage both administrative and academic details of their students**, optimised for use via a
-**Command Line Interface (CLI)** for receiving inputs while still having the benefits of a **Graphical User Interface (GUI)** for displaying information. In addition, **Reeve** comes with a customisable personal scheduler to assist you keeping track of your classes. **Reeve** also allows you to set timely reminders for yourself.
+**Command Line Interface (CLI)** for receiving inputs while still having the benefits of a **Graphical User Interface (GUI)** for displaying information. In addition, **Reeve** comes with a customisable personal scheduler to assist you in keeping track of your classes. **Reeve** also allows you to set timely reminders for yourself.
 
 Get to experience all the above without even having to move your mouse at all!
 
 Also, did we mention that you are able to achieve all the above **without internet access at all**?
 
-If you are a private tutor that wants to not only manage your students' administrative details with ease but to also better meet their needs, then **Reeve** is made for you!
+If you are a private tutor that wants to not only manage your students' administrative and academic details with ease but to also better meet their needs, then **Reeve** is made for you!
 
 Let's dive into the User Guide to find out more!
 
@@ -127,7 +127,7 @@ This section serves to help you understand the layout of **Reeve**. Please refer
 
 3. **Result Display**
 
-    The result display is where Reeve provides responses to your commands.
+    The result display is where **Reeve** provides responses to your commands.
 
 4. **Notes Panel**
 
@@ -135,7 +135,7 @@ This section serves to help you understand the layout of **Reeve**. Please refer
 
 5. **Command Box**
 
-    The command box allows you to type any commands that is accepted in Reeve.
+    The command box allows you to type any commands that is accepted in **Reeve**.
 
 ## 3. Features
 
@@ -202,7 +202,7 @@ Format: `exit`
 
 ### 3.3 Features for managing student administrative details
 
-Reeve's student administrative features allows you to keep track of key administrative details of each of your students such as phone number, class venue, tuition fee, etc.
+**Reeve's** student administrative features allows you to keep track of key administrative details of each of your students such as phone number, class venue, tuition fee, etc.
 Thereafter, you will be able to view, edit find or delete these students.
 
 #### 3.3.1 Adding a student: `add` (By: Hogan)
@@ -445,7 +445,7 @@ The following figure (Figure 11) shows the expected outcome after executing the 
 ![DeleteDetailExpectedOutcome](images/DeleteDetailExpectedOutcome.png)
 <div align="center">Figure 11: After entering delete detail command</div><br>
 
-#### 3.3.9 Viewing lesson schedule: `schedule` (By: Alex)
+#### 3.3.9 Viewing lesson schedule: `schedule` (By: Alex Chua)
 
 You can view your classes on a timetable in either a daily or weekly format.
 
@@ -478,7 +478,7 @@ To view schedule:
 
 3.  You can easily view you classes for the week. The Date bar labelled in the Figure 14 below shows the day of the week as well as the date for your reference.
     The Time bar in Figure 14 shows the time in 24-hour clock format with 1-hour intervals. 
-    The Classes labelled in Figure 14 are colored brown to match the color of Reeve for a better visual experience.
+    The Classes labelled in Figure 14 are colored brown to match the color of **Reeve** for a better visual experience.
     Furthermore, the name of the student that you are tutoring during that slot will be labelled for you to identify classes easily.
     The red bar in Figure 14 indicates your current time.
     With the date, time and name of student shown in one view, you could plan your classes without a hassle.
@@ -504,7 +504,7 @@ Format: `clear`
 
 ### 3.4 Features for Managing Student Academic Details
 
-Reeve's student academics features allows you to keep track of key academic details of each of your students such as questions, exams and etc.
+**Reeve's** student academics features allows you to keep track of key academic details of each of your students such as questions, exams and etc.
 Thereafter, you will be able to view, edit or delete these details of each student.
 
 #### 3.4.1 Recording questions from a student: `question` (By: Ying Gao)
@@ -678,7 +678,7 @@ Example:
     ![DeleteExamExpectedOutcomeBefore](images/DeleteExamExpectedOutcomeBefore.png)
     <div align="center">Figure 19: Before entering delete exam command</div><br>
 
-    * You can use `exam delete 1 i/1` to delete the first exam record on the first student in the displayed student list on the main panel. 
+    * You can use `exam delete 1 i/1` to delete the first exam record of the first student in the displayed student list on the main panel. 
     * You should see that you have successfully deleted the first exam record of the first student as shown below (Figure 20) after entering the above command.
 
     ![DeleteExamExpectedOutcomeAfter](images/DeleteExamExpectedOutcomeAfter.png)
@@ -686,8 +686,8 @@ Example:
 
 ##### 3.4.2.3 Viewing exam statistics of a student: `exam stats`
 
-To gauge how one of your students are doing with their examinations, this command allows you to view a graphical
-representation of all recorded examinations in the form of a exam score percentage to exam date line graph. 
+To gauge how any of your students are doing with their examinations, this command allows you to view a graphical
+representation of all recorded examinations of a student in the form of a exam score percentage to exam date line graph. 
 
 Format: `exam stats STUDENT_INDEX`
 
@@ -765,8 +765,8 @@ The following figure (Figure 23) shows the expected outcome after executing the 
 
 ### 3.5 Notebook feature (By: Choon Siong)
 
-You can store notes containing small amounts of information inside the notebook. This is useful when you want to store information or details that is not related to any student and cannot do so anywhere else in Reeve.
-You should see the notes on the bottom right hand side of Reeve similar to the display shown below (Figure 24).
+You can store notes containing small amounts of information inside the notebook. This is useful when you want to store information or details that is not related to any student and cannot do so anywhere else in **Reeve**.
+You should see the notes on the bottom right hand side of **Reeve** similar to the display shown below (Figure 24).
 
 ![Location of notes panel](images/screenshots/Notes.png)
 <div align="center">Figure 24: Location of notes panel</div><br>
@@ -872,7 +872,7 @@ This section provides the answers to Frequently Asked Questions (FAQ) by users.
 Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **Reeve** home folder.
 
 2. Do I have to manually save my data?<br>
-Reeve automatically saves data in the hard disk automatically after any command that changes the data. There is no need to save manually.
+**Reeve** automatically saves data in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 3. How do I view the full details of my student?<br>
 Type `toggle` and press `Enter`, your student's full details will be displayed.
@@ -883,7 +883,7 @@ Your student's data file can be found in the same file as the application.
 
 5. How can I set the application window to a fix size whenever I open it?<br>
 **Reeve** automatically save your preferred window size when you close it.
-Hence, you could adjust the window size to your preferred one before closing Reeve.
+Hence, you could adjust the window size to your preferred one before closing **Reeve**.
 **Reeve** will automatically open according to this size.
 
 6. I forgot what are the various commands and their format, where can I find the list of commands?<br>
