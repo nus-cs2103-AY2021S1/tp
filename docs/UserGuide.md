@@ -10,17 +10,18 @@ TAskmaster is a **desktop app for managing students, optimized for use via a Com
     - [Installation](#installation "Go to Installation")
     - [Usage](#usage "Go to Usage")
 - [Walkthrough](#walkthrough "Go to Walkthrough")
-- [Commands](#commands "Go to Commands")
+- [Command Overview](#command-overview "Go to Command Overview")
+- [Student Commands](#student-commands "Go to Student Commands")
     - [Adding a student: `add-student`](#adding-a-student-add-student "Go to Adding a student")
     - [Listing all students: `list-students`](#listing-all-students-list-students "Go to Listing all students")
     - [Finding students by name: `find-students`](#finding-students-by-name-find-students "Go to Finding students by name")
     - [Editing a student: `edit-student`](#editing-a-student-edit-student "Go to Editing a student")
     - [Deleting a student: `delete-student`](#deleting-a-student-delete-student "Go to Deleting a student")
+- [Session Commands](#session-commands "Go to Session Commands")
     - [Adding a session: `add-session`](#adding-a-session-add-session "Go to Adding a session")
-    - [Delete a session: `delete-session`](#delete-a-session-delete-session "Go to Deleting a session")
+    - [Deleting a session: `delete-session`](#deleting-a-session-delete-session "Go to Deleting a session")
     - [Changing the current session: `goto`](#changing-the-current-session-goto "Go to Changing the current session")
     - [Marking a student's attendance: `mark`](#marking-a-students-attendance-mark "Go to Marking a student's attendance")
-    - [Marking all students' attendance: `mark all`](#marking-all-students-attendance-mark-all "Go to Marking all students' attendance")
     - [Scoring students' participation: `score`](#scoring-students-participation-score "Go to Scoring students' participation mark")
     - [View lowest-scoring students: `lowest-score`](#view-lowest-scoring-students-lowest-score "Go to View lowest scoring students")
     - [Get a random student: `random-student`](#get-a-random-student-random-student "Go to Get a Random Student")
@@ -118,12 +119,14 @@ Note that you will not be allowed to use any session view commands outside of a 
 When you are done with TAskmaster, use the `exit` command to close the application.
  * Data will be saved automatically.
 
-## Commands
+## Command Overview
 > Command format:
 > - Words in `UPPER_CASE` are parameters supplied by the user.
 > - Items in square brackets are optional.
 > - Items with ellipses (`...`) after them can be used multiple times including zero times.
 > - Parameters can be in any order.
+
+## Student Commands
 
 ### Adding a student: `add-student`
 Adds a student into the student list.
@@ -199,6 +202,11 @@ Example usage:
 ```
 delete-student 3
 ```
+
+<br>
+
+## Session Commands
+> Note that Session commands can *only* be executed within a session view.
 
 ### Adding a session: `add-session`
 Adds a session into the session list.
@@ -291,7 +299,7 @@ lowest-score
 - Lists the records of all present students in the current session with the lowest score.
 - Will show no students if the student record list has no present students.
 
-### Get random student: `random-student`
+### Get a random student: `random-student`
 Displays a random present student from the current session
 ```
 random-student
@@ -339,6 +347,7 @@ Commands labelled with an asterisk (*) can only be used when a session is select
 
 ## Storage
 The TAskmaster stores the running list of students and sessions automatically to JSON files when they are updated.
+This means that your data is saved even if the app is not shutdown with the `exit` command.
 
 **Student data** is stored in `data/taskmaster.json`
 **Session data** is stored in `data/session_list.json`

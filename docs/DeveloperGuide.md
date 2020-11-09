@@ -312,9 +312,21 @@ Author: **Jaya Rengam**
 
 ![Structure of the Storage Component](images/NewStorageClassDiagram.png)
 
-A new method `JsonTaskmasterStorage#saveSessionList` will store the SessionList in the running Taskmaster to a separate .json file.
+**Implementation details**
+
+A new method `JsonTaskmasterStorage#saveSessionList` will store the `SessionList` in the running `Taskmaster` to a separate .json file.
 * The SessionList will be represented by a `JsonSerializableSessionList`, which contains a `List<JsonSerializableSession>`
-* Each `JsonSerializableSession` will contain a `List<JsonAdaptedStudentRecord>`
+* Each `JsonSerializableSession` will contain a `List<JsonAdaptedStudentRecord>`, along with two fields for its name and date-time.
+* The respective fields of each class are converted into Json values using the existing `toString()` methods available.
+* For the conversion of each JSON serializable class back to its model type:
+    * `StudentRecord`: Check for null (empty) values, then pass the field to its constructor.(The `Double` value for `ClassParticipation` is parsed first.)
+    * `Session`: 
+        `SessionName` is created directly from the stored string, while the corresponding `SessionDateTime` JSON field needs to first be parsed to a `LocalDateTime` before it can be converted.
+        For the `StudentRecords`, maintain a list of NusnetIds in addition to a list of StudentRecords. 
+        Loop through the list of `JsonAdaptedStudentRecords`, converting them to `StudentRecord`, and check for duplicate `NusnetId` before adding them to the list.
+    * `SessionList`:
+        Create a new `SessionList`, then loop through the list of `JsonSerializableSessions`; after each `Session` is converted, 
+        check that the `SessionList` does not already have a session with the same name before adding it.
 
 **To-Do:**
 * Update `TaskmasterStorage` interface (add `saveSessionList(ReadOnlyTaskmaster taskmaster)` method)
@@ -326,9 +338,42 @@ A new method `JsonTaskmasterStorage#saveSessionList` will store the SessionList 
 * This implementation of the feature uses Jackson libraries/formatting that is used in existing AB3 Storage classes
 <br>
 
-Alternative implementations:
-* Store the SessionList as a JSON field in the existing Taskmaster file
-    * Doing it this way would mean that the file would be repeatedly overwritten and any format errors will invalidate the whole file, including the StudentList.
+**Alternative implementations:**
+* Store the `SessionList` as a JSON field in the existing `Taskmaster` file
+    * Doing it this way would mean that the file would be repeatedly overwritten and any format errors will invalidate the whole file, including the list of students.
+    
+* Store each `Session` in a separate file, like what was done with the old `AttendanceList`
+    * A possible implementation method would be to have the relevant `Session` file is updated when the taskmaster is in a particular session. This would require some kind of additional field in `Taskmaster` 
+    which would be responsible for keeping track of what sessions have been created that is accessed to load the require file when the user requests to change the session.
+    
+    * Advantage: Session files can be viewed, transferred or even edited individually, and formatting errors in one Session file will not affect other data. 
+    
+    * Disadvantages:
+        - The primary disadvantage to this implementation would be that it would no longer make sense for Sessions not in use to be loaded in memory, 
+        unless session-related commands are rewritted to trigger a storage operation when the implementation is changed. This would require a refactoring of the code in a way that would increase coupling, 
+        and fundamentally change the nature of `CommandResult`, as it would now have to contain information about the session being modified, 
+        so that `LogicManager` is able to tell `Storage` which session file to update.
+        - Not having Sessions not loaded in memory would affect future features of the product regarding `StudentRecord`. 
+        For example, a command that calculates the average class participation/attendance rate of a particular student across all `Sessions` that they have attended,
+        or a command to view all absences over the course of the semester. <br>
+        To implement these commands, it would make sense for all Sessions to already be loaded into `Taskmaster` so that they are easily searchable.
+        - This might also result in the user having to manage a lot of files.     
+            
+**Future Expansion**
+
+Refactoring Storage: <br>
+An improvement that could be done to the code would be to abstract out the `Storage` instruction to a new abstract class or interface, following the Command pattern.
+Subclasses of this abstract class can then be used to save/load different `Model` classes. <br>
+These storage instructions can then be created and run within `Commands`, instead of within `LogicManager`. However, this would require that `Commands` take in `Storage` as an additional parameter.
+ 
+* This would then allow for the addition of storage-related features, such as:
+    * saving all attendance records of a particular student to a file for viewing
+        * This would allow for TAs to print the attendance in an easy-to-read format that they can then use to mark student's attendance on the official platform for their module.
+    * saving student records from one particular Session to a file for viewing
+    * saving the current state of the Taskmaster to a new file for backup purposes (that file can then be loaded with a new Command)
+        * This could even be done in the background, to prevent accidental deletion of data from the `clear` command or otherwise.
+
+<br>
 
 ### Class Participation Score
 
@@ -601,6 +646,7 @@ Extensions
 
 <br>
 
+> Note: The following use cases **all** have the precondition that the user is in a session view.
 
 **Use Case: Mark a student's attendance**
 
@@ -671,10 +717,48 @@ Extensions
     * 1b1. System shows an error message.
         Use case resumes at step 1.
 
+<br>
 
-*{More to be added}*
+**Use Case: View all students with the lowest participation score**
 
+**MSS**
+1. User requests to view all students with the lowest participation score.
+2. System shows all students with the lowest participation score.
 
+Extensions
+* 1a. System is not within the context of a session.
+    * 1a1. System shows an error message.
+    Use case ends.
+    
+* 1b. The given input is invalid.
+    * 1b1. System shows an error message.
+        Use case resumes at step 1.
+
+* 1c. There are no students present.
+    * 1b1. System shows an error message.
+       
+<br>
+
+**Use case: Get a random student which is present**
+
+**MSS**
+1. User requests to view a random student.
+2. System shows a student picked at random who is present
+
+Extensions
+* 1a. System is not within the context of a session.
+    * 1a1. System shows an error message.
+    Use case ends.
+    
+* 1b. The given input is invalid.
+    * 1b1. System shows an error message.
+        Use case resumes at step 1.
+        
+* 1c. There are no students present.
+    * 1b1. System shows an error message.
+    Use case ends.
+    
+<br>
 
 ### Non-Functional Requirements
 
@@ -856,10 +940,12 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `random-student` followed by `mark all a/absent`<br>
        Expected: All students in the student record list, **not just the random student**, are marked absent.
-
+       UI updates to shows all student records.
+       
     1. Test case: `lowest-score` followed by `mark all a/absent`<br>
        Expected: All students in the student record list, **not just those with the lowest score**, are marked absent.
-
+       UI updates to shows all student records.
+       
     1. Other incorrect add commands to try: `mark all a/x` (where x is not a valid attendance type)<br>
        Expected: Similar to previous.
 
@@ -892,6 +978,40 @@ The below testcases assume that you are in a session and have 7 students inside 
     Expected: No scores changed, an error shows that the input is invalid as it is negative.
     3. Test case: `score all cp/10.52`  
     Expected: No scores changed, an error shows that the input is invalid as it is greater than 10.
+    4. Test case: `random-student` followed by `score all a/8`<br>
+       Expected: All students in the student record list, **not just the random student**, have their scores updated. 
+       UI updates to show all student records.
+    5. Test case: `lowest-score` followed by `mark all a/absent`<br>
+       Expected: All students in the student record list, **not just those with the lowest score**, have their scores updated. 
+       UI updates to shows all student records.
+
+### Showing a student with the lowest score
+
+1. Getting the present student(s) with the lowest score
+    1. Prerequisite: A newly-created session with at least 3 students.
+    
+    1. Test case: Enter `mark all a/present`, `score all cp/5.0`, `mark 1 a/absent`, then enter `lowest-score` <br>
+    Expected: Only the students marked as present appear in the list
+   
+    1. Test case: Enter `mark all a/present`, `score all cp/5.0`, `mark 1 a/absent`, `score 1 cp/0`, then enter `lowest-score` <br>
+    Expected: Only the students marked as present (with score 5.0) appear in the list.
+    
+    1. Test case: Enter `lowest-score` (all student attendance should be `NO RECORD`) <br>
+    Expected: No students in the student record list are shown, an error shows that there are no present students in the session.
+
+### Showing a random student who is present
+
+1. Getting a random student who is present
+    1. Prerequisite: A newly-created session with at least 3 students.
+    
+    1. Test case: Enter `mark all a/present`, then enter `random-student` a few times. <br>
+    Expected: Different students, one at a time, should appear in no particular order. 
+   
+    1. Test case: Enter `mark 1 a/present`, then enter `random-student` a few times. <br>
+    Expected: Only the first student should appear each time.
+    
+    1. Test case: Enter `random-student` (all student attendance should be `NO RECORD`) <br>
+    Expected: No students in the student record list are shown, an error shows that there are no present students in the session.
 
 ### Clearing contents of student and session list
 
@@ -928,15 +1048,30 @@ The below testcases assume that you are in a session and have 7 students inside 
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. If there is no file at the default location `./data/taskmaster.json`, sample data will be loaded into the `Taskmaster` upon startup. 
+      This sample data can be found in [`model/util/SampleDataUtil.java`](https://github.com/AY2021S1-CS2103-F09-1/tp/blob/master/src/main/java/seedu/taskmaster/model/util/SampleDataUtil.java)
+   1. If either the `Taskmaster` or `SessionList` storage files have invalid formatting/values, the application loads with an empty Taskmaster.
+   For testing, invalid data can easily be created by starting a new TAskmaster and then editing the fields/formatting in the created JSON files.
 
-1. _{ more test cases …​ }_
+2. Updating storage files during the running of the program
+   
+   1. Prerequisite: Start with a new TAskmaster
+   
+   1. Test case: Add a student `add-student n/John Tan u/johntan98 e/johntan98@gmail.com i/e0012345 t/tardy`, then close and restart the application <br>
+   Expected: In `data/taskmaster.json`, there should be a new JSON field representing the student added and his details. <br>
+   When restarted, the UI should show one student named 'John Tan' with the details as shown above.
+   
+   1. Test case: Add a student `add-student n/John Tan u/johntan98 e/johntan98@gmail.com i/e0012345 t/tardy`, then add a session `add-session s/First Session dt/23-10-2020 0900`, 
+   then close and restart the application. <br>
+   Expected: In `data/session_list.json`, there should be a new JSON field representing the session and its details. In the `records` field, 
+   the student's name and nusnetId should be filled in correctly, and his class participation and attendance type should be set to their default values.<br>
+   When restarted, the UI should show one session which shows the corresponding student record when the view is changed.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
 
-The process of morphing AddressBook into TAskmaster was rather challenging, and we have successfully to deal with the following dififculties:
+The process of morphing AddressBook into TAskmaster was rather challenging, and we have successfully to deal with the following difficulties:
 
 1. Integration Issues
     
@@ -952,6 +1087,18 @@ The process of morphing AddressBook into TAskmaster was rather challenging, and 
     
     As a result, the design choices agreed upon at the start of every milestone had to be absolutely sound, as changing design patterns in the middle 
     of a milestone could potentially have cascading repercussions down the chain of workflow.
+
+2. Integrating model with UI
+
+   Another major challenge we faced was in integrating the model with the UI.
+   
+   1. Updating StudentRecords with Immutability
+   
+   2. Ensuring that the list of student records is updated properly in session view <br>
+   When implementing the `random-student` and `lowest-score` commands, we ran into various difficulties as a result of how the existing application was coded.
+   We had to modify how the list of student records from the running session was stored in `Model`, to allow for the student record lists of different sessions to be loaded.
+   In the absence of UI tests, we also had to debug the running of the program extensively to identify how and when the student record list was being updated in the UI, and 
+   adjust our code accordingly. In this process, we found ourselves having to refactor the code several times until we settled on a solution that was working properly.
 
 2. Difficulty of writing automated tests
 
