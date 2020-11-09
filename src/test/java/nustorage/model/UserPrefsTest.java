@@ -16,13 +16,13 @@ public class UserPrefsTest {
     @Test
     public void getInventoryFilePath_returnsTrue() {
         UserPrefs userPref = new UserPrefs();
-        assertTrue(userPref.getInventoryFilePath().toString().equals("data/inventory.json"));
+        assertTrue(userPref.getInventoryFilePath().toString().contains("inventory"));
     }
 
     @Test
     public void getFinanceAccountFilePath_returnsTrue() {
         UserPrefs userPref = new UserPrefs();
-        assertTrue(userPref.getFinanceAccountFilePath().toString().equals("data/financeAccount.json"));
+        assertTrue(userPref.getFinanceAccountFilePath().toString().contains("financeAccount"));
     }
 
     @Test
