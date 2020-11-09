@@ -10,6 +10,7 @@ import seedu.address.logic.commands.exercise.ExerciseFindCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exercise.ExerciseNameContainsKeywordsPredicate;
+import seedu.address.model.util.Name;
 
 /**
  * Parses input arguments and creates a new ExerciseFindCommand object
@@ -24,12 +25,12 @@ public class ExerciseFindCommandParser implements Parser<ExerciseFindCommand> {
     public ExerciseFindCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
 
-        Pattern pattern = Pattern.compile("[^A-Za-z0-9]");
-        Matcher matcher = pattern.matcher(trimmedArgs);
+        String validRegex = "[\\p{Alnum}][\\p{Alnum} ]*";
+
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExerciseFindCommand.MESSAGE_USAGE));
-        } else if (matcher.find()) {
+        } else if (!trimmedArgs.matches(validRegex)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExerciseFindCommand.MESSAGE_USAGE));
         }
