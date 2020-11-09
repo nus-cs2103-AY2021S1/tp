@@ -31,7 +31,7 @@ Given below are my contributions to the project.
   * Highlights: Highly user-centric and is extremely convenient to use. A lot of my peers who tested our application really liked this feature and I use it a lot during testing and documentations. 
   Requires understanding of JavaFX's KeyEvent and KeyCode.
   * Credits: 
-    * The implementation of such feature is inspired by: [BillBoard](https://github.com/AY1920S1-CS2103T-F12-4/main/blob/master/)
+    * The implementation of such feature is inspired by: [BillBoard](https://github.com/AY1920S1-CS2103T-F12-4/main/)
     * For understanding of KeyEvent and KeyCode:  [KeyEvent](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/input/KeyEvent.html), [KeyCode](https://docs.oracle.com/javafx/2/api/javafx/scene/input/KeyCode.html)
 
 * **New Feature**: Clear command history
