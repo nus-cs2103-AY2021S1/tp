@@ -1,0 +1,63 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":XYZParser" as XYZParser LOGIC_COLOR
+participant ":ArgumentTokenizer" as argumentTokenizer LOGIC_COLOR
+participant ":ArgumentMultiMap" as argumentMultiMap LOGIC_COLOR
+participant ":XYZCommand" as XYZCommand LOGIC_COLOR
+participant ":CommandResult" as commandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as model MODEL_COLOR
+end box
+
+[-> XYZParser : from previous diagram
+
+activate XYZParser LOGIC_COLOR
+
+create argumentTokenizer
+XYZParser -> argumentTokenizer : "new ArgumentTokenizer()"
+activate argumentTokenizer LOGIC_COLOR
+
+argumentTokenizer -> XYZParser
+deactivate argumentTokenizer
+
+XYZParser -> argumentTokenizer : "tokenize()"
+activate argumentTokenizer LOGIC_COLOR
+
+create argumentMultiMap
+argumentTokenizer -> argumentMultiMap : "new ArgumentMultiMap()"
+activate argumentMultiMap LOGIC_COLOR
+
+argumentMultiMap -> argumentTokenizer
+deactivate argumentMultiMap
+
+argumentTokenizer -> XYZParser
+deactivate argumentTokenizer
+
+create XYZCommand
+XYZParser -> XYZCommand : new XYZCommand()
+activate XYZCommand LOGIC_COLOR
+
+XYZCommand -> XYZParser
+deactivate XYZCommand
+
+[<- XYZParser : to previous diagram
+
+deactivate XYZParser
+
+[-> XYZCommand : from LogicManager "execute()"
+
+activate XYZCommand LOGIC_COLOR
+
+XYZCommand -> model
+activate model MODEL_COLOR
+
+deactivate model
+
+XYZCommand -> commandResult : "execute()"
+activate commandResult LOGIC_COLOR
+
+@enduml
