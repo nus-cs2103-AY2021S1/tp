@@ -385,16 +385,49 @@ The following activity diagram summarizes what happens when the user inputs a co
 
 ### 4.5 Appointment feature (by Gabriel Teo Yu Xiang)
 
-The appointment feature will enable clinics to manage patient's appointments within Hospify, thus avoiding the need for spreadsheets.
-Users have the ability to show, add, delete, edit appointments within the app. 
-
 #### 4.5.1 Implementation
-##### Overview:
+
+The appointment feature will enable clinics to manage patient's appointments within Hospify, thus avoiding the need for spreadsheets.
+Users have the ability to show, add, edit and delete appointments within Hospify.
+The following are the additions required for this feature:
 
 * An `Appointment` class is created in the `patient` package.
 * A new prefix `appt/` to be used with the new `Appointment` field.
 * 4 new commands specifically for managing patients' appointments, `showAppt`, `addAppt`, `editAppt` and `deleteAppt`.
 * 3 new additional prefixes `oldappt/`, `newappt/` and `d/` to represent old appointments, new appointments, and appointment description respectively, which are to be used in the `editAppt` command.
+
+##### Overview:
+
+To understand how the `Appointment` feature can be used, let us take a look at an overview of how the `addAppt` command is implemented first.
+
+1. After the input is entered by the user, the `LogicManager#execute(String commandText)` method calls the `HospifyParser#parseCommand(String userInput)` method for Hospify to parse and interpret the user input.
+
+2. Based on `addAppt` command word, an `AddApptCommandParser` object is created and the `AddApptCommandParser#parse(String args)` method is called for the `AddApptCommandParser` to parse and interpret the arguments in the user input.
+
+3. Subsequently, an `AddApptCommand` object is created and returned as an output to the `LogicManager#execute(String commandText)` method.
+
+4. The `LogicManager#execute(String commandText)` method then calls upon the `AddApptCommand#execute(Model model)` method, which in turn calls the `Model#setPatient(Patient patient 1, Patient patient 2)` and `Model#updateFilteredPatientList(boolean true)` methods to add the new `Appointment` for the patient.
+
+5. Finally, a new `CommandResult` object is returned with a success message when the `Appointment` is added to the patient.
+
+The sequence diagram below illustrates how the operation of adding an `Appointment` works.
+
+![AddAppointmentSequenceDiagram](images/UML_Diagrams/AddAppointmentSequenceDiagram.png)<br>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note on sequence diagram:**<br>
+
+* The lifeline for `AddApptCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+* For simplicity, the complete line of user input for the `addAppt` command is omitted, originally referring to `S1234567A appt/28/09/2022 20:00 d/Eye Check-up`, which is further simplified to `... appt/DATE TIME` in the sequence diagram.
+
+* Similarly, `patient 1` and `patient 2` represent the `Patient` object before and after adding the `Appointment` respectively,<br>
+and `PREDICATE_SHOW_ALL_PATIENTS` has been simplified to `true` in the sequence diagram, since it is always evaluated to `true` in its implementation.
+
+* The steps above illustrate a typical successful execution of the `addAppt` command. In the usage scenario below, we will summarise all other commands related to the `Appointment` feature.
+
+</div>
 
 Given below is an example usage scenario using a Patient with `NRIC` **S1234567A**.
 

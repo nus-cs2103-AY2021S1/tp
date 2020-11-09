@@ -33,8 +33,9 @@ reschedule appointment])
     and new appointment timings;
 else ([user needs to reschedule and
 change appointment description])
-    :User specifies old and new appointment
-    timings, as well as new appointment description;
+    :User specifies old and
+    new appointment timings, as well as
+    new appointment description;
 endif
 stop
 }
