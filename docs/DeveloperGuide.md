@@ -144,8 +144,8 @@ This section describes some noteworthy details on how certain features are imple
 The user can get a suggested schedule to work on an assignment by providing the following fields:
 - Index of the assignment in the displayed assignment list
 - Expected hours to complete the assignment
-- Date and time after which you want to start working on the assignment  
-- Date and time before which you want to finish the assignment
+- Date and time after which the user want to start working on the assignment  
+- Date and time before which the user want to finish the assignment
 
 A suggested time slot will be provided to the users. The suggested schedule will have the following conditions:
 - Expected hours for an assignment ranges from 1 to 5 hours.
@@ -153,8 +153,7 @@ A suggested time slot will be provided to the users. The suggested schedule will
 - Suggested time slot will not clash with any of the suggested time for other assignments and lessons.
 
 It implements the following operation:
-* `schedule 1 hrs/5 af/01-01-2020 0000 by/23-12-2020 2359` - Suggest a schedule for the 1st assignment in the displayed assignment list,
-given that the time to work on the assignment is 5 hours, and the user want to do the assignment between 01-01-2020 0000 and 23-12-2020 2359.
+* `schedule 1 hrs/5 af/01-01-2020 0000 by/23-12-2020 2359` - Suggests a schedule for the 1st assignment in the displayed assignment, given that the user expects to spend 5 hours to work on the assignment and wishes to complete it sometime between 01-01-2020 0000 and 23-12-2020 2359.
 
 #### Reasons for Implementation
 Users may find it difficult to manually come up with a working schedule in order to finish their assignments.
@@ -222,7 +221,7 @@ The expected hours to complete is 5 and the schedule need to be between 01-01-20
 Given below is the sequence diagram for the interactions within `LogicManager` for the `execute ("schedule 3 hrs/5 af/01-01-2020 0000 by/23-12-2020 2359")` API call.
 
    ![Sequence Diagram for ScheduleCommand](images/ScheduleSequenceDiagram.png)
-   <br/>*Figure X: Sequence Diagram for ScheduleCommand*
+   <br/>*Figure 1: Sequence Diagram for ScheduleCommand*
 
 ### Import timetable feature
 The user can import information about their lessons into ProductiveNUS using their NUSMods timetable URL.
@@ -309,7 +308,7 @@ The following prefixes are used to identify the type of keywords:
 ##### Predicate classes 
 
 ![Class diagram for Predicate classes](images/PredicateClassDiagram.png)
-*Figure X: Class diagram for Predicate classes*
+*Figure 2: Class diagram for Predicate classes*
 
 The following Predicate classes implements `Predicate<Assignment>` and specific ones are passed into the constructor of `FindCommand` when the user inputs keywords of its assigned field:
 
@@ -554,7 +553,7 @@ As all three commands have a similar format (command word followed by an index) 
 The following is a Class diagram illustrating the relationship between the classes of the three commands and `NegateCommand`:
 
    ![Class diagram for NegateCommand, Unremind, Unprioritize and Undone](images/NegateCommandClassDiagram.png)
-   <br/>*Figure X: Class diagram for NegateCommand, Unremind, Unpriortize and Undone*
+   <br/>*Figure 3: Class diagram for NegateCommand, Unremind, Unpriortize and Undone*
 
 
 The NegateCommand class contains the **final** class-level member `COMMAND_WORD` with String **"un"**, and private attribute `targetIndex` of type `Index`.
@@ -566,7 +565,7 @@ By implementing the abstract `NegateCommand` class, any future implementation of
 
 
 ### Undo
-The user can undo all previous commands once at a time.
+The user can undo all previous commands one at a time.
 
 It implements the operation `undo` - Turn ProductiveNUS back to the state before entering the most recent command that is not `undoCommand`.
 
@@ -605,7 +604,7 @@ A usage scenario would be when a user wants to undo the most recent command that
 Given below is the sequence diagram for the interactions within `LogicManager` for the `execute ("undo")` API call.
 
    ![Sequence Diagram for UndoCommand](images/UndoSequenceDiagram.png)
-   <br/>*Figure X: Sequence Diagram for UndoCommand*
+   <br/>*Figure 4: Sequence Diagram for UndoCommand*
 
 ### Updating of Upcoming tasks in real time
 
@@ -626,7 +625,7 @@ A `Timer` object is used alongside `javafx.concurrent.Task` to periodically chec
 Below is an Activity Diagram illustrating the flow of activities when the application starts up.
 
 ![Activity diagram for Auto updating of task list](images/AutoUpdateTaskListActivityDiagram.png)
-<br/>*Figure X: Activity diagram for automated updating of UniqueTaskList*
+<br/>*Figure 5: Activity diagram for automated updating of UniqueTaskList*
 
 <div markdown="span" class="alert alert-info">
  **:information_source: Note:**
@@ -720,7 +719,7 @@ The following is a usage scenario when a user wants to add an assignment with th
 Given below is the sequence diagram for the interactions within `LogicManager` for the `execute ("add n/Lab mod/CS2103 d/10-10-2020 2359")` API call.
 
    ![Sequence Diagram for AddCommand](images/AddSequenceDiagram.png)
-   <br/>*Figure X: Sequence Diagram for AddCommand*
+   <br/>*Figure 6: Sequence Diagram for AddCommand*
 
 ### Marking assignments as done and Setting reminders for assignments features
 
@@ -818,7 +817,7 @@ The following is a usage scenario when a user wants to mark the first and third 
 Given below is the sequence diagram for the interactions within `LogicManager` for the `execute ("done 1 3")` API call.
 
    ![Sequence Diagram for DoneCommand](images/DoneMultipleSequenceDiagram.png)
-   <br/>*Figure X: Sequence Diagram for DoneCommand*
+   <br/>*Figure 7: Sequence Diagram for DoneCommand*
    
 ##### Setting reminders to assignments
 The usage scenario of a user setting reminders for the first and third assignment in his/her displayed assignment list is similar to the usage scenario above.
@@ -835,7 +834,7 @@ Here are the differences:
 Given below is the sequence diagram for the interactions within `LogicManager` for the `execute ("remind 1 3")` API call.
 
    ![Sequence Diagram for RemindCommand](images/RemindMultipleSequenceDiagram.png)
-   <br/>*Figure X: Sequence Diagram for RemindCommand*
+   <br/>*Figure 8: Sequence Diagram for RemindCommand*
    
 --------------------------------------------------------------------------------------------------------------------
 
