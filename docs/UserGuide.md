@@ -559,7 +559,16 @@ These visitation logs store the following as a short summary of a patient's visi
 
 #### 5.3.1 Adding a new visitation log for patient: `addvisit`
 
-Display a new window to add a new visitation log for the specified patient.
+Displays a new window to add a new visitation log for the specified patient.
+
+Format: `addvisit INDEX [vd/VISIT_DATE]`
+
+* `INDEX` refers to the patient's index number as shown in the displayed patient list.
+* `VISIT_DATE` refers to the date of visitation.
+    * `VISIT_DATE` is optional. If no visit date is being specified in the command, then the current date on the local machine will be used to record the patient's visit.
+    * It follows the format of `dd/MM/yyyy`, for example `23/10/2020`.
+    * Do note that for numerical inputs `1-9`, you will need to include an additional `0` in front. For example, enter `05` instead of `5`.
+    * Only dates before and *up till and including today* are accepted.
 
 <p align="center">
     <img src="images/addVisitExample.png"/>
@@ -567,16 +576,9 @@ Display a new window to add a new visitation log for the specified patient.
     <em style="color:#CC5500">Figure 20. Example of Add Visit Command</em>
 </p>
 
-Format: `addvisit INDEX [vd/VISIT_DATE]`
-
-* `INDEX` refers to the patient's index number as shown in the displayed patient list.
-* `VISIT_DATE` refers to the date of visitation.
-    * It follows the format of `dd/MM/yyyy`, for example `23/10/2020`.
-    * Do note that for numerical inputs `1-9`, you will need to include an additional `0` in front. For example, enter `05` instead of `5`.
-    * Only dates before and *up till and including today* are accepted.
-* `VISIT_DATE` is optional. If no visit date is being specified in the command, then the current date on the local machine will be used to record the patient's visit.
-
-**Example**: You want to add a visitation log to the 1st patient on the list.
+<div markdown="block" class="alert alert-warning">
+:book: <span style="font-weight:bold">Example: </span> 
+You want to add a visitation log with date 23/10/2020 to the 1st patient on the list.
 
 **Step 1**: Input `addvisit 1 vd/23/10/2020` into the command box and press <kbd>Enter</kbd>.
 
@@ -587,19 +589,32 @@ Format: `addvisit INDEX [vd/VISIT_DATE]`
 
 **Step 4**: The window will close, and a message will be displayed to indicate that the visitation log has been successfully saved.
 
+</div>
+
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
 
-* Use <kbd>SHIFT</kbd> + <kbd>TAB</kbd> and <kbd>CTRL</kbd> + <kbd>TAB</kbd> to move to the previous and next text box respectively!
-* Do note that after entering relevant details for the Comments text box, your mouse cursor will automatically move to the Save button 
+* You may press <kbd>CTRL</kbd> + <kbd>TAB</kbd> on your keyboard to move to the next text box.
+* You may press <kbd>SHIFT</kbd> + <kbd>TAB</kbd> on your keyboard to move to the previous text box.
+* After entering relevant details for the Comments text box, your mouse cursor will automatically move to the Save button 
   if you press <kbd>CTRL</kbd> + <kbd>TAB</kbd>. At this point, you can simply press <kbd>ENTER</kbd> to save the visitation log.
-* You can press <kbd>Esc</kbd> or the close button at the top right to close the window without saving.
-
+* Otherwise, you can also press <kbd>Esc</kbd> or the close window button to close the window without saving.
 </div>
 
 #### 5.3.2 Editing patient's visitation log: `editvisit`
 
-Display a new window to edit the visitation log for a specified patient.
+Displays a new window to edit the visitation log for a specified patient.
+
+Format: `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]`
+
+* `INDEX` refers to the patient's index number as shown in the displayed patient list.
+* `VISIT_INDEX` refers to the visitation's index number as shown in the patient's profile.
+* Both indexes **must be a positive number** 1, 2, 3, …​
+* `VISIT_DATE` refers to the new date of visitation that you wish to amend to.
+    * `VISIT_DATE` is optional. If no visit date is being specified in the command, then the date of the visitation will remain the same.
+    * It follows the format of `dd/MM/yyyy`, for example `23/10/2020`.
+    * Do note that for numerical inputs `1-9`, you will need to include an additional `0` in front. For example, enter `05` instead of `5`.
+    * Only dates before and *up till and including today* are accepted.
 
 <p align="center">
     <img src="images/editVisitExample.png"/>
@@ -607,16 +622,20 @@ Display a new window to edit the visitation log for a specified patient.
     <em style="color:#CC5500">Figure 21. Example of Edit Visit Command</em>
 </p>
 
-Format: `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]`
+<div markdown="block" class="alert alert-warning">
+:book: <span style="font-weight:bold">Example: </span> 
+You want to edit the 1st visitation log belonging to the 2nd patient on the list.
 
-* `INDEX` refers to the patient's index number as shown in the displayed patient list.
-* `VISIT_INDEX` refers to the visitation's index number as shown in the patient's profile.
-  * Both indexes **must be positive numbers**, eg. 1, 2, 3, …
-* `VISIT_DATE` refers to the new date of visitation that you wish to amend to.
-    * It follows the format of `dd/MM/yyyy`, for example `23/10/2020`.
-    * Do note that for numerical inputs `1-9`, you will need to include an additional `0` in front. For example, enter `05` instead of `5`.
-    * Only dates before and *up till and including today* are accepted.
-* `VISIT_DATE` is optional. If no visit date is being specified in the command, then the date of the visitation will remain the same.
+**Step 1**: Input `editvisit 2 i/1` into the command box and press <kbd>Enter</kbd>.
+
+**Step 2**: A window displaying the three parameters - Diagnosis, Prescription and Comments will be shown. Type in updated
+            details in each text box.
+
+**Step 3**: Click on the 'Save' button or press <kbd>CTRL</kbd> + <kbd>S</kbd> on your keyboard to save the visitation log.
+
+**Step 4**: The window will close, and a message will be displayed to indicate that the visitation log has been successfully updated.
+
+</div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -624,32 +643,32 @@ Format: `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]`
 
 * If you do not wish to change the date, it is not required to enter the same date again, even though CliniCal will still accept it.
 * The date "01/01/1900" is reserved for internal usage, please do not use this date!
+
+</div>
+
+<div markdown="block" class="alert alert-primary">
+:bulb: <span style="font-weight:bold">Tip: </span>
+
 * You can use `editvisit` followed by the patient index to check if the patient has any existing visitation logs.
     * A message pop-up will appear if the patient has no existing visitation logs.
     * If the patient has existing visitation logs, then you will see an error informing you to input the visitation index.
-    
+* You may press <kbd>CTRL</kbd> + <kbd>TAB</kbd> on your keyboard to move to the next text box.
+* You may press <kbd>SHIFT</kbd> + <kbd>TAB</kbd> on your keyboard to move to the previous text box.
+* After entering relevant details for the Comments text box, your mouse cursor will automatically move to the Save button 
+  if you press <kbd>CTRL</kbd> + <kbd>TAB</kbd>. At this point, you can simply press <kbd>ENTER</kbd> to save the visitation log.
+* Otherwise, you can also press <kbd>Esc</kbd> or the close window button to close the window without saving.
+
 </div>
-
-
-
-
-**Example**: You want to edit the 1st visitation log belonging to the 2nd patient on the list.
-
-**Step 1**: Input `editvisit 2 i/1` into the command box and press <kbd>Enter</kbd>.
-
-**Step 2**: A window displaying the three parameters - Diagnosis, Prescription and Comments will be shown. Type in updated
-            details in each text box.
-
-   * You may press <kbd>CTRL</kbd> + <kbd>TAB</kbd> on your keyboard to move to the next text box.
-   * You may press <kbd>SHIFT</kbd> + <kbd>TAB</kbd> on your keyboard to move to the previous text box.
-
-**Step 3**: Click on the 'Save' button or press <kbd>CTRL</kbd> + <kbd>S</kbd> on your keyboard to save the visitation log.
-
-**Step 4**: The window will close, and a message will be displayed to indicate that the visitation log has been successfully updated.
 
 #### 5.3.3 Deleting patient's visitation log: `deletevisit`
 
 Delete the patient's visitation log.
+
+Format: `deletevisit INDEX i/VISIT_INDEX`
+
+* `INDEX` refers to the patient's index number as shown in the displayed patient list.
+* `VISIT_INDEX` refers to the visitation's index number as shown in the patient's profile.
+* Both indexes **must be a positive number** 1, 2, 3, …​
 
 <p align="center">
     <img src="images/deleteVisitExample.png"/>
@@ -657,21 +676,18 @@ Delete the patient's visitation log.
     <em style="color:#CC5500">Figure 22. Example of Delete Visit Command</em>
 </p>
 
-Format: `deletevisit INDEX i/VISIT_INDEX`
-
-* `INDEX` refers to the patient's index number as shown in the displayed patient list.
-* `VISIT_INDEX` refers to the visitation's index number as shown in the patient's profile.
-  * Both indexes **must be positive numbers**, eg. 1, 2, 3, …
-
-**Example**: You want to delete the 2nd visitation log belonging to the 1st patient on the list.
+<div markdown="block" class="alert alert-warning">
+:book: <span style="font-weight:bold">Example: </span> 
+You want to delete the 2nd visitation log belonging to the 1st patient on the list.
 
 **Step 1**: Input `deletevisit 1 i/2` into the command box and press <kbd>Enter</kbd>.
 
-**Step 2**: A message will be displayed to indicate that the patient's second visitation log has been successfully deleted.
+**Step 2**: A message will be displayed to indicate that the patient's 2nd visitation log has been successfully deleted.
 
-<div markdown="block" class="alert alert-info">
+</div>
 
-**:information_source: Note:**<br>
+<div markdown="block" class="alert alert-primary">
+:bulb: <span style="font-weight:bold">Tip: </span>
 
 * You can use `deletevisit` followed by the patient index to check if the patient has any existing visitation logs.
     * A message pop-up will appear if the patient has no existing visitation logs.
