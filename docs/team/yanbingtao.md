@@ -126,7 +126,9 @@ Given below are my contributions to the project.
      [#62](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/62),
      [#105](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/105),
      [#168](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/168),
-     [#169](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/169)
+     [#169](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/169),
+     [#254](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/254),
+     [#257](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/257)
     
 * **Documentation**:
   * AboutUs page:
