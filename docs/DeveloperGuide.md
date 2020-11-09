@@ -4,14 +4,14 @@
 1.[ About This Guide](#1-about-this-guide)  
 2.[ Setting Up](#2-setting-up)  
 3.[ Design](#3-design)  
-* [3.1. Architecture](#31-architecture)  
+* [3.1. Architecture](#31-architecture)
 * [3.2. Ui Component](#32-ui-component)
 * [3.3. Logic Component](#33-logic-component)
 * [3.4. Model Component](#34-model-component)
 * [3.4. Storage Component](#35-storage-component)
 * [3.4. Common Class](#36-common-classes)
 
-4.[ Implementation](#4-implementation) 
+4.[ Implementation](#4-implementation)  
 5.[ Documentation, Logging and Testing](#5-documentation-logging-testing-configuration-dev-ops)  
 6.[ Appendix A: Requirements](#6-appendix-a-requirements)  
 7.[ Appendix B: User Stories](#7-appendix-b-user-stories)  
@@ -250,7 +250,7 @@ classes, as shown below. Current version of Calo is still 'light' enough for the
 
 ![Calories Graph Call Stack](images/CaloriesGraphCallStack.png)
 
-#### 4.3. Template
+### 4.3. Template
 (Roy)  
 This section describes some noteworthy details on how certain features are implemented.
 I added the template class which stores information about a template. The template class has attributes name, calories,
@@ -275,20 +275,20 @@ using the template and returns a new AddCommand object. The parse method in AddT
 of creating a new template and returns a new AddTemplateCommand object.
 The template list is stored in the data file folder as a txt file.
 
-### 4.5. GoalBook
+### 4.4. GoalBook
 Author: Nauman Sajid
 Calo has been designed to ensure that a user is accountable for this own progress. A key aspect of this accountability is
 ensuring that the user sets clear goals and meets them. To achieve this we have created a goalBook which is similar
 to the exerciseBook. The goalBook helps the user track and update his goals.
 
 
-#### 4.5.1. Implementation
+#### 4.4.1. Implementation
 The goalBook is implemented via a `HashMap` which makes it distinct from an ExerciseBook. The goal command creates a 
 goal with the `Key` being the `Date` and the `Value` being an `Calorie` goal. The goalBook is updated whenever an exercise
 is added or deleted for a particular Date.
 
 
-#### 4.5.2. Design Consideration
+#### 4.4.2. Design Consideration
 
 *Aspect*: Should the goalBook be separate from the Exercise Book?
 
@@ -302,7 +302,7 @@ Pros: Fewer files.
 *Reason for option 1*:   
 Option 1 allows easier debugging. As the goal Book has been seperated from the Exercise Book.
 
-### Updating an exercise
+### 4.5. Updating an exercise
 
 Author: Lee Wei Min
 
@@ -313,7 +313,7 @@ updates an existing exercise, where all fields are optional but at least one fie
 be specified. For more details, please refer to the [update section](https://ay2021s1-cs2103t-w17-2.github.io/tp/UserGuide.html#33-update-exercises--update) of the user guide
 </div>
 
-==== Implementation
+#### 4.5.1. Implementation
 
 We will use the following example command: `update 1 d/30 c/260 m/chest t/home`.
 
@@ -347,7 +347,7 @@ of commandResult should be joined to the side of the box representing the comman
 Due to a limitation of PlantUML, it is not possible to do so here.
 </div>
 
-==== Design Considerations
+#### 4.5.2. Design Considerations
 
 ===== Aspect: Process of updating the new data in `model`
 
@@ -375,35 +375,31 @@ The following activity diagram summarizes what happens when a user executes an `
 
 ![UndoRedoState5](images/UpdateActivityDiagram.png)
 
-### Proposed Implementation of Undo
+### 4.6. Searching for specific `exercise`
 
-### 4.1. Searching for specific `exercise`
-
-(by Xinyi)
-=======
+(Xinyi)
 
 This section addresses how the `find` and `recall` commands work. 
 
 The `find` command allows users to search through the Exercise Book based on what users enter for the `Field`s. Users should enter at least one `Field`. The search results can then be displayed in the GUI's Exercise Book.
 
-Meanwhile, the `recall` command allows users to search for the most recent exercise with the specific name entered by the user.
-
-
-[NOTE]
 `Field`s here indicate which `Exercise` attributes we are interested in. Exact search finds `Exercise` objects with values that exactly match the user-specified values of the fields (`Name`, `Description`, `Date` ,`Calories`).
 Meanwhile, keyword search finds matches for the user-entered keywords in any part of the `Name` or any part of the `Description`.
 If the user uses exact search and keyword search together, it will find `Exercise` objects that match both the exact search and keyword search.
 
-The above commands rely on `FindCommand` and `RecallCommand` objects respectively. Objects of both classes use a `Predicate<Exercise>` object to filter through the `Exercise` list,
-and the exercises evaluated to be true by these predicates will be listed in GUI Exercise List.
+Meanwhile, the `recall` command allows users to search for the most recent exercise with the specific name entered by the user.
 
-#### 4.1.1. Implementation
+The above commands rely on `FindCommand` and `RecallCommand` objects respectively. Objects of both classes use a `Predicate<Exercise>` object to filter through the `Exercise` list,
+and the exercises that evaluate the predicates to be true will be listed in GUI Exercise List.
+
+#### 4.6.1. Implementation
 
 To search via the user-specified `Exercise` attributes, We use `FindCommandParser` to create the `PropertiesMatchPredicate` with all the user inputs. This predicate returns true only when the exercise matches all the given fields.
 This predicate is then used to construct a new `FindCommand` object, which changes the GUI display when executed.
 
 The sequence diagram below demonstrates how the `find` command works:
-//diagram to add
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
 How the `find` command works:
 
@@ -422,7 +418,7 @@ To search for the most recent exercise with the user-specified `Name`, we use `R
 The `RecallCommand` then goes through the existing Exercise List to find the most recent date, creates the `TheMostRecentDatePredicate`, and updates the GUI display when executed.
 
 The sequence diagram below demonstrates how the `recall` command works:
-//diagram to add
+![recallSequenceDiagram](images/recallSequenceDiagram.png)
 
 How the `recall` command works:
 
@@ -435,7 +431,7 @@ It then returns a new CommandResult object reflecting the status of the executio
 
 The `recall` command therefore searches for the most recent exercise with the specified name in the existing Exercise List and then displays the relevant search results in the GUI.
 
-#### 4.1.2. Design considerations
+#### 4.6.2. Design considerations
 
 ##### Aspect: Case-sensitivity for user inputs
 * **Alternative 1 (current choice):** The inputs for `Name`, `Description`, and `Keyword` are case-insensitive.
