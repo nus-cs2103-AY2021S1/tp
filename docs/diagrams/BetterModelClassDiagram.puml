@@ -10,11 +10,11 @@ UniqueAllergyList -[hidden]down- UniquePatientList
 UniqueAllergyList -[hidden]down- UniquePatientList
 
 UniqueAllergyList *-right-> "*" Allergy
-UniquePatientList o-right-> Patient
+UniquePatientList o-right-> "*" Patient
 
-Patient -up-> "*" Allergy
+Patient -up-> "     *" Allergy
 
 Patient *--> Name
-Patient *--> Phone
 Patient *--> IcNumber
+Patient *--> Phone
 @enduml
