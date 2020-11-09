@@ -1,13 +1,11 @@
 package seedu.address.logic.parser.modulelistparsers;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TARGET_CAP;
 
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.modulelistcommands.TargetCapCalculatorCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -19,15 +17,13 @@ public class TargetCapCalculatorParser implements Parser<TargetCapCalculatorComm
      * @throws ParseException if the user input does not conform the expected format
      */
     public TargetCapCalculatorCommand parse(String args) throws ParseException {
-        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_TARGET_CAP);
-        ArgumentMultimap argMultimap = tokenizer.tokenize();
-        if (!arePrefixesPresent(argMultimap, PREFIX_TARGET_CAP)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    TargetCapCalculatorCommand.MESSAGE_USAGE));
+        try {
+            double targetCap = Double.parseDouble(args);
+            return new TargetCapCalculatorCommand(targetCap);
+        } catch (NumberFormatException ne) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, TargetCapCalculatorCommand.MESSAGE_USAGE), ne);
         }
-        double targetCap = Double.parseDouble(argMultimap.getValue(PREFIX_TARGET_CAP).get());
-        return new TargetCapCalculatorCommand(targetCap);
     }
 
     /**

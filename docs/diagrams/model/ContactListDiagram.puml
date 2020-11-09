@@ -13,5 +13,6 @@ UniqueContactList o-right->"*" Contact
 
 Contact *-->"1" Name
 Contact *-->"1" Email
-Contact *-->"1" Telegram
+Contact *-->"0..1" Telegram
+Contact *-->"*" Tag
 @enduml

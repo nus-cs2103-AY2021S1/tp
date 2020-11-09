@@ -20,18 +20,27 @@
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
       <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label fx:id="id" styleClass="cell_big_label">
+        <Label wrapText="true" fx:id="id" styleClass="cell_big_label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+        <Label wrapText="true" fx:id="name" styleClass="cell_big_label" text="\$first" />
+        <Label fx:id="isImportant" styleClass="cell_important_label" text="" />
       </HBox>
-      <FlowPane fx:id="tags" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="telegram" styleClass="cell_small_label" text="\$telegram" />
-      <Label fx:id="isImportant" styleClass="cell_small_label" text="\$isImportant" />
+        <Label style="-fx-font-size: 1;" />
+      <HBox>
+        <Label textAlignment="JUSTIFY" wrapText="true" styleClass="cell_small_label_header" text="Email: " />
+        <Label wrapText="true" fx:id="email" styleClass="cell_small_label" text="\$email" />
+      </HBox>
+        <Label style="-fx-font-size: 2;" />
+      <HBox>
+        <Label styleClass="cell_small_label_header" text="Telegram: " />
+        <Label fx:id="telegram" styleClass="cell_small_label" text="\$telegram" />
+      </HBox>
+      <Label style="-fx-font-size: 5;" />
+      <FlowPane fx:id="contactTags" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

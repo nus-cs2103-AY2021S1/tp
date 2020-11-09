@@ -36,8 +36,4 @@ public class RedoCommand extends Command {
                 || (other instanceof RedoCommand); // instanceof handles nulls
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

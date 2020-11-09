@@ -1,11 +1,13 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Stores the list of criteria to be used when finding matching {@code Task}.
+ * Stores the list of predicate to be used when finding matching {@code Task}.
  */
 public class FindTaskCriteria {
 
@@ -20,6 +22,7 @@ public class FindTaskCriteria {
      * @param predicate Predicate to be added.
      */
     public void addPredicate(Predicate<Task> predicate) {
+        requireNonNull(predicate);
         predicateList.add(predicate);
     }
 

@@ -22,6 +22,9 @@ public class UnarchiveModuleCommand extends Command {
 
     public static final String MESSAGE_UNARCHIVE_MODULE_SUCCESS = "Un-Archived module: %1$s";
 
+    public static final String MESSAGE_VIEW_UNARCHIVED_MODULES_CONSTRAINT =
+            "You are not currently viewing archived modules";
+
     private final Index targetIndex;
 
     public UnarchiveModuleCommand(Index targetIndex) {
@@ -31,10 +34,12 @@ public class UnarchiveModuleCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Module> lastShownList = model.getFilteredArchivedModuleList();
-
+        List<Module> lastShownList = model.getFilteredModuleList();
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+        }
+        if (!model.getModuleListDisplay()) {
+            throw new CommandException(MESSAGE_VIEW_UNARCHIVED_MODULES_CONSTRAINT);
         }
 
         Module moduleToUnarchive = lastShownList.get(targetIndex.getZeroBased());
@@ -46,12 +51,8 @@ public class UnarchiveModuleCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteModuleCommand // instanceof handles nulls
+                || (other instanceof UnarchiveModuleCommand // instanceof handles nulls
                 && targetIndex.equals(((UnarchiveModuleCommand) other).targetIndex)); // state check
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

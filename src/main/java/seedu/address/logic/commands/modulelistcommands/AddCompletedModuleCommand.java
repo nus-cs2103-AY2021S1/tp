@@ -47,18 +47,19 @@ public class AddCompletedModuleCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
         model.addModule(toAdd);
+        model.commitModuleList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddModuleCommand // instanceof handles nulls
+                || (other instanceof AddCompletedModuleCommand // instanceof handles nulls
                 && toAdd.equals(((AddCompletedModuleCommand) other).toAdd));
     }
 
     @Override
-    public boolean isExit() {
-        return false;
+    public String toString() {
+        return COMMAND_WORD + " " + toAdd.toString();
     }
 }

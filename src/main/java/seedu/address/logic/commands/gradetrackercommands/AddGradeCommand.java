@@ -26,7 +26,7 @@ public class AddGradeCommand extends Command {
             + PREFIX_GRADE + " GRADE "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2100 "
-            + PREFIX_GRADE + "0.90";
+            + PREFIX_GRADE + "90.00";
 
     public static final String MESSAGE_SUCCESS = "New grade %1$s added.";
     public static final String MESSAGE_GRADE_NOT_ADDED = "Module to add to not found.";
@@ -52,7 +52,7 @@ public class AddGradeCommand extends Command {
         Module module = null;
         List<Module> lastShownList = model.getFilteredModuleList();
         for (Module eachModule : lastShownList) {
-            if (eachModule.getName().fullName.equals(moduleToAdd)) {
+            if (eachModule.getName().equals(moduleToAdd)) {
                 module = eachModule;
                 break;
             }
@@ -66,8 +66,4 @@ public class AddGradeCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, gradeToAdd));
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

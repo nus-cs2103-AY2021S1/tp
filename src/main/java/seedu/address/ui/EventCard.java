@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -12,6 +15,7 @@ import seedu.address.model.event.Event;
  */
 public class EventCard extends UiPart<Region> {
     private static final String FXML = "EventListCard.fxml";
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM uuuu HH:mm");
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -42,10 +46,10 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText(displayedIndex + ". ");
         name.setText(event.getName().getName());
-        dateTime.setText(event.getTime().getStart().toString());
-        //event.getTags().stream()
-        //        .sorted(Comparator.comparing(tag -> tag.tagName))
-        //        .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        dateTime.setText(event.getTime().getStart().format(formatter));
+        event.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

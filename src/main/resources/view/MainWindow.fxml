@@ -35,13 +35,14 @@
                          </Menu>
                        </menus>
                      </MenuBar>
-                     <SplitPane dividerPositions="0.29797979797979796" prefHeight="165.0" prefWidth="475.0" VBox.vgrow="ALWAYS">
+                     <SplitPane dividerPositions="0.45" prefHeight="165.0" prefWidth="475.0" VBox.vgrow="ALWAYS">
                        <items>
                          <AnchorPane fx:id="viewItemsDisplay" minHeight="0.0" minWidth="0.0" prefHeight="141.0" prefWidth="151.0">
                               <children>
                                  <VBox prefHeight="152.0" prefWidth="151.33333333333334" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                                       <StackPane fx:id="viewItemDisplayPanel" prefHeight="154.0" prefWidth="135.0" VBox.vgrow="ALWAYS" />
+                                       <VBox fx:id="viewItemDisplayPanel" prefHeight="154.0" prefWidth="135.0" VBox.vgrow="ALWAYS" />
+                                       <AnchorPane fx:id="calenderPlaceHolder" prefHeight="200.0" prefWidth="200.0" />
                                     </children>
                                  </VBox>
                               </children></AnchorPane>
