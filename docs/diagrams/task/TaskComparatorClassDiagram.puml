@@ -1,0 +1,23 @@
+@startuml
+
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package comparator {
+Interface Comparator <<Interface>>
+class TaskComparatorByName
+class TaskComparatorByPriority
+class TaskComparatorByDate
+class DateComparator
+class TaskNameComparator
+}
+
+TaskComparatorByName ..|> Comparator
+TaskComparatorByPriority ..|> Comparator
+TaskComparatorByDate ..|> Comparator
+TaskComparatorByName ..> TaskNameComparator
+TaskComparatorByDate ..> DateComparator
+
+@enduml
