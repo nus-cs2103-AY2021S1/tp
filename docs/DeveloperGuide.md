@@ -920,7 +920,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Unassign all contacts from all module(s)**
+**Use case: Unassign all contacts from all modules**
 
 **MSS**
 
