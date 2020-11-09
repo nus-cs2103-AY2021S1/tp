@@ -1319,7 +1319,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### F.1 Launch and shutdown
+### 1. Launch and shutdown
 
 1. Initial launch
 
@@ -1335,7 +1335,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file<br>
        Expected: The data of all the flashcards is retained.
 
-### F.2 Creating a flashcard
+### 2. Creating a flashcard
 
 User can create two types of flashcards - containing open end question or multiple choice question.
 
@@ -1414,7 +1414,7 @@ User can create two types of flashcards - containing open end question or multip
    1. Some incorrect `addmcq` commands with duplicate prefix to try: `addmcq q/Test MCQ 1 q/Test MCQ 2 ans/1 c/Choice1 c/Choice2`, `addmcq q/Test MCQ 1 ans/1 ans/2 c/Choice1 c/Choice2`<br>
       Expected: QuickCache responds with an error message and no flashcard is added.
 
-### F.3 Opening a flashcard
+### 3. Opening a flashcard
 
 1. Prerequisites: 
 
@@ -1431,7 +1431,7 @@ User can create two types of flashcards - containing open end question or multip
 1. Other incorrect `open` commands to try: `open`, `open x` (where x is more than the last index in flashcard list), `open Invalid`<br>
    Expected: Error message will appear with instructions on how to use the `open` command.
 
-### F.4 Editing a flashcard
+### 4. Editing a flashcard
 
 1. Prerequisites: 
 
@@ -1441,7 +1441,7 @@ User can create two types of flashcards - containing open end question or multip
 
    1. For some test cases listed bellow to work, user's first three flashcards should be the same as the sample starting flashcards that was provided.
 
-1. Test Case 1: `edit 1 q/Edited quesiton ans/New answer`<br>
+1. Test Case 1: `edit 1 q/Edited question ans/New answer`<br>
    Expected: The flashcard with index 1 is edited with the specified parameters. The details of the question will be shown in the display window on the side.
 
 1. Test Case 2: `edit 1 t/`<br>
@@ -1478,28 +1478,28 @@ User can create two types of flashcards - containing open end question or multip
 1. Other incorrect `edit` commands to try: `edit`, `edit x` (where x is more than the last index in flashcard list), `edit Invalid`<br>
    Expected: Error message will appear with instructions on how to use the `edit` command.
 
-### F.5 Finding flashcards
+### 5. Finding flashcards
 
 Users can fins flashcards both through keywords using the `q/` prefix and through tags using the `t/` prefix.
 
 1. Prerequisites: For some test cases listed bellow to work, user should have the sample starting flashcards that was provided stored in QuickCache.
 
 1. Test Case 1: `find q/Sample`<br>
-   Expected: Finds all flashcards containing the keyword `Sample` (not case sensative) in its question. Found flashcards will be listed out.
+   Expected: Finds all flashcards containing the keyword `Sample` (not case-sensitive) in its question. Found flashcards will be listed out.
 
 1. Test Case 2: `find q/Sample q/Singapore`<br>
-   Expected: Finds all flashcards containing the keyword `Sample` and `Singapore` (not case sensative) in its question. Found flashcards will be listed out.
+   Expected: Finds all flashcards containing the keyword `Sample` and `Singapore` (not case-sensitive) in its question. Found flashcards will be listed out.
 
 1. Test Case 3: `find t/OEQ`<br>
-   Expected: Finds all flashcards containing the tag `OEQ` (case sensative). Found flashcards will be listed out.
+   Expected: Finds all flashcards containing the tag `OEQ` (case-sensitive). Found flashcards will be listed out.
 
 1. Test Case 4: `find q/Sample t/OEQ t/General`<br>
-   Expected: Finds all flashcards containing the tags `OEQ` and `General` (case sensative) and keyword `Sample` (not case sensative) in its question. Found flashcards will be listed out.
+   Expected: Finds all flashcards containing the tags `OEQ` and `General` (case-sensitive) and keyword `Sample` (not case-sensitive) in its question. Found flashcards will be listed out.
 
 1. Other incorrect `find` commands to try: `find`, `find Something`, `find q/`, `find t/`<br>
    Expected: Error message will appear with instructions on how to use the `find` command.
 
-### F.6 Deleting flashcards
+### 6. Deleting flashcards
 
 There are 2 ways to delete flashcards – by index or by tags.
 
@@ -1526,7 +1526,7 @@ There are 2 ways to delete flashcards – by index or by tags.
    1. Test Case 1: `clear`
       Expected: All flashcards deleted from QuickCache.
 
-### F.7 Testing a flashcard
+### 7. Testing a flashcard
 
 1. Prerequisites: List all flashcards using the `list` command. There is at least one flashcard stored in QuickCache.
 
@@ -1535,8 +1535,8 @@ There are 2 ways to delete flashcards – by index or by tags.
    1. Test Case 1: `test 1 ans/Singapore`<br>
       Expected: Checks if answer provided matches with the answer stored in the open ended question within the first flashcard. Users starting off with the sample questions will expect test to be correct. Flashcard statistics will be updated.<br>
       <div markdown="block" class="alert alert-info">
-
-      :information_source: Answers are not case sensitive.
+  
+      :information_source: Answers are not case-sensitive.
     
       </div>
    1. Test Case 2: `test 1 ans/`<br>
@@ -1547,7 +1547,7 @@ There are 2 ways to delete flashcards – by index or by tags.
    1. Test Case 1: `test 2 o/2`<br>
       Expected: Checks if option provided matches with the option stored in the multiple choice question within the second flashcard. Users starting off with the sample questions will expect test to be correct. Flashcard statistics will be updated.<br>
       <div markdown="block" class="alert alert-info">
-
+  
       :information_source: Answers are not case sensitive.
       
       </div>
@@ -1557,7 +1557,7 @@ There are 2 ways to delete flashcards – by index or by tags.
    1. Other incorrect `test` commands to try: `test`, `test x ans/...` (where x is 0 or larger than the list size)<br>
       Expected: Error message will appear with instructions on how to use the test command.
 
-### F.8 Displaying statistics
+### 8. Displaying statistics
 
 There are 2 ways to display statistics of flashcards – by index or by tags.
 
@@ -1585,7 +1585,7 @@ There are 2 ways to display statistics of flashcards – by index or by tags.
    1. Test Case 3: `stats t/`<br>
       Expected: Error message will appear on display. Tags cannot be empty.
 
-### F.9 Clearing statistics in a flashcard
+### 9. Clearing statistics in a flashcard
 
 1. Prerequisites: 
 
@@ -1602,7 +1602,7 @@ There are 2 ways to display statistics of flashcards – by index or by tags.
 1. Other incorrect `clearstats` commands to try: `clearstats`, `clearstats x` (where x is more than the last index in flashcard list), `clearstats Invalid`<br>
    Expected: Error message will appear with instructions on how to use the `clearstats` command.
 
-### F.10 Sharing flashcards
+### 10. Sharing flashcards
 
 User can choose to import or export their data
 
