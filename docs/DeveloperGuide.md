@@ -651,7 +651,10 @@ should be able to accomplish most of the tasks faster using commands than using 
 |Low   |`l/low`,`l/l`, `l/L`    |![Low Priority](images/Priority Bar/LowPriority.png)   |![Low Priority](images/Priority Bar/LowPriorityArchived.png) | 
 |Medium   |`l/medium`,`l/m`, `l/M`    |![Medium Priority](images/Priority Bar/MediumPriority.png)   |  ![Medium Priority](images/Priority Bar/MediumPriorityArchived.png) |
 |High   |`l/high`,`l/h`, `l/H`    |![High Priority](images/Priority Bar/HighPriority.png)   |![High Priority](images/Priority Bar/HighPriorityArchived.png) |
+
+
 --------------------------------------------------------------------------------------------------------------------
+
 
 ## **Appendix: Instructions for manual testing**
 
@@ -678,7 +681,7 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by using the `java -jar` command.<br>
       Expected: The most recent window size and location is retained.
         
- ### Listing all active clients
+### Listing all active clients
  
  1. Listing all active clients
  
@@ -687,7 +690,7 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `list`<br>
        Expected: All active clients listed. Success message shown. "Active Client List" is shown below the success message.
        
-       ![List All Active Clients](images/listAllActiveClients.png)
+       ![List All Active Clients](images/listAllActiveClients.PNG)
  
  
 ### Listing all archived clients
@@ -700,7 +703,7 @@ testers are expected to do more *exploratory* testing.
        Expected: All archived clients listed. Success message shown. "Archived Client List" is shown below the success message.
        The color of the priority indicator for each archived client is [darkened](#glossary). 
        
-       ![List All Archived Clients](images/listAllArchivedClients.png)
+       ![List All Archived Clients](images/listAllArchivedClients.PNG)
        
        
 ### Adding a client
