@@ -109,12 +109,12 @@ Here are some general information you would need to know about our commands as y
 
 <div markdown="span" class="alert alert-info">
 
+**:information_souce:Notes about input format**
 
 In Eva, you can store information about staff and applicants. Information includes details like name, phone number 
 and more. As such, in order to store these details in a neat and tidy manner, be sure to follow these guidelines
 on storing these details as shown in the table below.
-
-</div>
+<br>
 
 | Field       | Constraints                                                                                                                                                                                                                                                                                                                                             | Example                                                                                                                                                                 |
 |-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -123,6 +123,7 @@ on storing these details as shown in the table below.
 | **Email**   | should be of the format local-part@domain where the local-part should contain alphanumeric characters or special characters which includes ( !#$%&'*+/=?`{&#124;}~^.-_ ) excluding the parentheses.The domain name should have at least 2 characters and contain only alphanumeric with a period or a hyphen for   the characters in between if needed. | `john_doe@email.com`                                                                                                                                                    |
 | **Tag**     | can only contain alphanumeric characters.                                                                                                                                                                                                                                                                                                               | `hardworking`                                                                                                                                                           |
 | **Date**    | must be in the format `DD/MM/YYYY`                                                                                                                                                                                                                                                                                                                      | 6th of July 2020 represented as `06/07/2020`<br> Note: Eva automatically corrects wrong dates like 30/02/2020 and 31/11/2020 to 29/02/2020 and 30/11/2020 respectively. |
+</div>
 
 <div markdown="block" class="alert alert-primary">
 
