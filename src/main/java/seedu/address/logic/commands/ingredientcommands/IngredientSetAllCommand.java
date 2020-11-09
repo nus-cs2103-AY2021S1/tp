@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_BROWN_SUGAR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GREEN_TEA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MILK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PEARL;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INGREDIENTS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientName;
 
 /**
- * Set all ingredients in the ingredient book to different specified amounts.
+ * Sets all ingredients in the ingredient book to different specified amounts.
  */
 public class IngredientSetAllCommand extends Command {
 
@@ -76,7 +77,7 @@ public class IngredientSetAllCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
+        model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
         List<Ingredient> lastShownList = model.getFilteredIngredientList();
 
         IngredientBook toSet = new IngredientBook();
@@ -99,11 +100,16 @@ public class IngredientSetAllCommand extends Command {
         ReadOnlyIngredientBook readOnlyFilledBook = filledBook;
 
         model.setIngredientBook(readOnlyFilledBook);
-        model.updateFilteredIngredientList(Model.PREDICATE_SHOW_ALL_INGREDIENTS);
+        model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, filledBook));
     }
 
+    /**
+     * Checks if any amount is changed from the current version of ingredient.
+     *
+     * @return true if there is no change, false otherwise
+     */
     protected static boolean noChangeToCurrentAmount(Model model, Amount milkAmount, Amount pearlAmount,
                                                      Amount bobaAmount, Amount blackTeaAmount, Amount greenTeaAmount,
                                                      Amount brownSugarAmount) {
