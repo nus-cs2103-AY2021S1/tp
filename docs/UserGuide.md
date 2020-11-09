@@ -602,6 +602,7 @@ Format: `exit`
 
 In this section, we will be looking at some of the frequently asked questions from our users.
 
+<div markdown="block" class="alert alert-info">
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the **data file** with the `hospify.json` 
 that is in the **data file** of your other computer.
@@ -614,7 +615,9 @@ Figure 17.1.1 Go to the **Data File**
 the web and paste the `hospify.json` file in the **data file** of your new **Hospify** app.
 ![replace json file](images/faq/replace_json.PNG)
 Figure 17.1.2 Replace `hospify.json` file
+</div>
 
+<div markdown="block" class="alert alert-info">
 **Q**: I cannot run the `JAR` file! How do I get the program to run?<br/>
 **A**: Check if you have at least `Java 11` installed on your Computer.
 
@@ -670,15 +673,20 @@ Figure 17.2.6 Running jar from Mac terminal
  the official Java website [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
 </div>
 
+</div>
+
+<div markdown="block" class="alert alert-info">
 **Q**: How do I get the latest version of **Hospify**?\
 **A**: As of the latest version, **Hospify** does not support updating within the application. In order to get the
  latest version, go to the **GitHub releases** [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases/tag/v1.3) to download the latest version.\
 ![download jar](images/faq/download_jar.PNG)\
 Figure 17.3.1 Download latest jar file
+</div>
 
+<div markdown="block" class="alert alert-info">
 **Q**: My question is not listed in the FAQ. What should I do?\
 **A**: For inquires, please send email to our developer team at **hospify_enquiry@gmail.com**.
-
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
