@@ -7,15 +7,15 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started** 
+## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design** 
+## **Design**
 
-### Architecture 
+### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -55,7 +55,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### UI component 
+### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -72,7 +72,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component 
+### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagramNew.png)
 
@@ -103,7 +103,7 @@ The execution for the `end attempt` command is similar.
 ![Interactions Inside the Logic Component for the `start attempt` Command](images/StartAttemptSequenceDiagram.png)
 
 
-### Model component 
+### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -118,7 +118,7 @@ The `Model`,
 
 
 
-### Storage component 
+### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -146,11 +146,11 @@ is converted to data that can be stored in the text file.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation** 
+## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Sort feature 
+### Sort feature
 
 The sort feature sorts the flashcards in the flashcard list in either ascending or descending order of priority. This feature is implemented
 by creating an instance of `SortCommand` that can be executed on the model of the flashcard list. This particular implementation of the sort
@@ -170,7 +170,7 @@ The following activity diagram shows how user input is processed:
 
 ![sort1](images/Sort1.png)
 
-### Flip feature 
+### Flip feature
 
 The flip feature flips a flashcard to either show or hide its definition. This feature is implemented by creating an instance of a `FlipCommand` which
 is then executed on the model of the flashcard list. This implementation was chosen because it preserves the original fields in a Flashcard such as the
@@ -187,12 +187,12 @@ The following sequence diagram shows how the flip feature works:
 
 ![flip0](images/Flip0.png)
 
-### Quiz feature 
+### Quiz feature
 
 The proposed quiz feature defines a set of sample questions related to CS2040S, containing both MCQ and True-False
  questions, for users to test their knowledge of CS2040S content.
 
-#### Implementation 
+#### Implementation
 
 The feature is facilitated by `QuizPaser`, `Performance`, `Attempt`, `Response` and `Question`.
 `Performance` is a public class that keeps track of past attempts by storing `Attempt` as an internal
@@ -232,7 +232,7 @@ The following shows a Class Diagram of the structure of Quiz components:
 The general workflow of quiz feature is represented by the following Activity Diagram:
 ![QuizWorkflow](images/QuizActivityDiagram.png)
 
-### Enter Quiz Feature 
+### Enter Quiz Feature
 The `enter quiz` command switches interface from Flashcard mode to Quiz mode. This feature is implemented by creating an
 instance of `EnterQuizCommand` that can be executed on the model. The `EnterQuizCommand` will return an instance of
 `CommandResult` which will inform the `MainWindow` whether it is time to call `handleQuiz()` method to change to current UI.
@@ -246,7 +246,7 @@ This activity diagram shows the possible user flow for a user who wants to check
 
 ![Performance](images/Performance_ActivityDiagram.png)
 
-### View Attempt feature 
+### View Attempt feature
 
 The view attempt feature allows the user to view a past quiz record given by its index.
  This feature is implemented
@@ -261,7 +261,7 @@ The following sequence diagram shows how the view attempt feature works:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops** 
+## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -271,9 +271,9 @@ The following sequence diagram shows how the view attempt feature works:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements** 
+## **Appendix: Requirements**
 
-### Product scope 
+### Product scope
 
 **Target user profile**:
 
@@ -291,7 +291,7 @@ Concepts and definitions are organised according to different levels of priority
 Students can bookmark where they left off and resume going through the questions later.
 Students can organise (specify the sequence) the flashcards as well.
 
-### User stories 
+### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
