@@ -43,13 +43,14 @@ Given below are my contributions to the project.
   * README:
     * Updated README to stay updated to current Nuudle project details ([\#40](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/40))
   * User Guide:
-    * Added details for the `assign`, `cancel` and data archiving feature. ([\#42](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/42))
     * Authored details on the Nuudle's supported date time format. ([\#49](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/49))
-    * Authored details on Nuudle's file backup feature. ([\#123](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/123))
+    * Authored details on Nuudle's file backup and data archiving feature. ([\#42](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/42), [\#123](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/123))
+    * Updated the `edit`, `clear` and `cancel` command. ([\#49](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/49), [\#196](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/196))
+    * Authored the Using Nuudle segment to introduce Nuudle's GUI layout. ([\#196](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/196))
   * Developer Guide:
     * Authored the non-functional requirements and glossary segment. ([\#50](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/50))
     * Updated and maintained the Storage design section, and the corresponding Storage UML class diagram. ([\#110](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/110), [\#139](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/139))
-    * Added implementation details on the data archiving feature, with the appropriate UML diagrams. ([\#118](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/118))
+    * Added implementation details on the data archiving feature, with the appropriate UML diagrams. ([\#118](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/118), [\#187](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/187))
     * Added more manual testing instructions to the appendix section for manually testing data archiving and data corruption handling feature. ([\#131](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/131))
 
 * **Community**:
