@@ -12,9 +12,10 @@ if () then ([given flashcard index is valid])
     statistics set to zero for all attributes;
     :Replace old flashcard with updated
     flashcard;
+    :Pass the result to the UI;
 else ([else])
     :Throw CommandException;
-    :UI catches CommandException;
+    :Pass the CommandException to the UI;
 endif
     :UI displays results to User;
 stop
