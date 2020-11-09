@@ -152,6 +152,11 @@ public class AddCategoryCommandTest {
         }
 
         @Override
+        public Amount tallyExpenses() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Expense> getFilteredExpenseList() {
             throw new AssertionError("This method should not be called.");
         }

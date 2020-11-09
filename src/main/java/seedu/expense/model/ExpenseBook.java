@@ -2,6 +2,7 @@ package seedu.expense.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
@@ -289,7 +290,30 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
         return tallyBudgets().subtract(tallyExpenses());
     }
 
+    @Override
+    public String getBudgetBarLabel() {
+        ArrayList<Tag> checkedTagList = new ArrayList<>();
+        tags.getTags().stream().map(tag -> Expense.getGenericExpenseWithTag(tag))
+                .filter(expense -> expenses.getFilteredList().getPredicate().test(expense))
+                .map(expense -> expense.getTag()).forEach(checkedTagList::add);
+        return getBudgetLabelFromList(checkedTagList);
+    }
+
     //// util methods
+
+    private String getBudgetLabelFromList(ArrayList<Tag> list) {
+        if (list.size() > 1) {
+            // Show total budget if Expenses of all tags in UniqueTagList passes
+            // predicate from expenses.getFilteredList()
+            return "Total";
+        } else if (list.size() == 1) {
+            // Exactly one tag matches
+            return list.get(0).toString();
+        } else {
+            // No match
+            return "Default";
+        }
+    }
 
     @Override
     public String toString() {

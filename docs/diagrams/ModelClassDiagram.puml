@@ -24,6 +24,11 @@ Class Amount
 Class Remark
 }
 
+Package Tag {
+Class UniqueTagList
+Class Tag
+}
+
 Package Budget {
 Interface Budget <<Interface>>
 Class UniqueCategoryBudgetList
@@ -66,6 +71,11 @@ CategoryBudget *--> Amount
 CategoryBudget *--> "1" Tag
 Budget ^.right. UniqueCategoryBudgetList
 Budget ^.. CategoryBudget
+
+ExpenseBook *--> "1" AliasMap
+
+ExpenseBook *--> "1" UniqueTagList
+UniqueTagList o--> "*" Tag
 
 Class HiddenOutside2 #FFFFFF
 HiddenOutside2 -[hidden]-> Amount

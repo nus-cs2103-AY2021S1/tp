@@ -254,6 +254,11 @@ public class AliasCommandTest {
         public void deleteAlias(AliasEntry entry) {
             this.am.removeAlias(entry);
         }
+
+        @Override
+        public Amount tallyExpenses() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
 }

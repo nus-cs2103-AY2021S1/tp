@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.expense.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.expense.model.ExpenseBook.DEFAULT_TAG;
 import static seedu.expense.testutil.Assert.assertThrows;
+import static seedu.expense.testutil.TypicalExpenses.getTypicalExpenseBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -20,9 +22,11 @@ import seedu.expense.commons.core.GuiSettings;
 import seedu.expense.logic.commands.exceptions.CommandException;
 import seedu.expense.model.ExpenseBook;
 import seedu.expense.model.Model;
+import seedu.expense.model.ModelManager;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.ReadOnlyUserPrefs;
 import seedu.expense.model.Statistics;
+import seedu.expense.model.UserPrefs;
 import seedu.expense.model.alias.AliasEntry;
 import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.budget.Budget;
@@ -57,6 +61,14 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubWithExpense(validExpense);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_EXPENSE, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_sumExpensesTooLarge_failure() {
+        Expense largeExpense = new ExpenseBuilder().withAmount(Amount.MAX_VALUE.toPlainString()).build();
+        AddCommand addCommand = new AddCommand(largeExpense);
+        Model model = new ModelManager(getTypicalExpenseBook(), new UserPrefs(), new AliasMap());
+        assertCommandFailure(addCommand, model, AddCommand.MESSAGE_SUM_OVER_LIMIT);
     }
 
     @Test
@@ -149,6 +161,11 @@ public class AddCommandTest {
 
         @Override
         public void setExpense(Expense target, Expense editedExpense) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Amount tallyExpenses() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -293,6 +310,11 @@ public class AddCommandTest {
         public void addExpense(Expense expense) {
             requireNonNull(expense);
             expensesAdded.add(expense);
+        }
+
+        @Override
+        public Amount tallyExpenses() {
+            return Amount.zeroAmount();
         }
 
         @Override

@@ -27,7 +27,7 @@ public class PieChartData implements ChartDataCollector {
     public ObservableList<PieChart.Data> retrieveData() {
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
         getDataAsMap().entrySet().stream().filter(entry -> entry.getValue() > 0).map(entry ->
-                new PieChart.Data(entry.getKey() + " [$" + entry.getValue() + "]",
+                new PieChart.Data(entry.getKey() + " [$" + getTwoDecimalPlaces(entry.getValue()) + "]",
                         entry.getValue())).forEach(pieChartData::add);
         return pieChartData;
     }
@@ -52,7 +52,11 @@ public class PieChartData implements ChartDataCollector {
     public String getDataAsString() {
         StringBuilder sb = new StringBuilder();
         getDataAsMap().entrySet().stream().map(entry -> "[" + entry.getKey() + " : $"
-                + entry.getValue() + "] ").forEach(sb::append);
+                + getTwoDecimalPlaces(entry.getValue()) + "] ").forEach(sb::append);
         return sb.toString();
+    }
+
+    public String getTwoDecimalPlaces(Double amt) {
+        return String.format("%.2f", amt);
     }
 }
