@@ -527,7 +527,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | \* \*    | advanced user            | redo the previous command                                | do the same task without typing again, e.g. if two students wish to pay the same bill.                    |
 | \* \*    | careless user            | undo my last command                                     | fix any change that I made erroneously.                                                                   |
 | \* \*    | advanced user            | view previous commands                                   | check if I made an error in adding or deleting records.                                                   |
-| \* \* \* | OHS admin                | view a list of vacant rooms                              | start assigning rooms to students before the semester starts.                                             |
+| \* \* \* | OHS admin                | view a list of vacant rooms                              | start assigning rooms to students during check-in.                                                        |
 | \* \* \* | OHS admin                | view a room allocation for a student                     | check and inform a student of their room allocation during check in.                                      |
 | \* \* \* | OHS admin                | allocate a room to a student                             | allocate a student to a room before the semester starts.                                                  |
 | \* \* \* | OHS admin                | delete a room allocation for a student                   | update vacancies when a student applies to leave their room.                                              |
@@ -995,7 +995,7 @@ testers are expected to do more *exploratory* testing.
 ### Restoring deleted items
 1. Restoring a room when list of bin items is being viewed
 
-  1. Prerequisites: List all bin items using the `bin` item command. A room at index 1 in the list of bin items.
+   1. Prerequisites: List all bin items using the `bin` item command. A room at index 1 in the list of bin items.
 
    1. Test case: `restore 1`<br>
       Expected: First room is restored from the list. The room is added to the room list (visible if `rooms` command is issued). Timestamp in the status bar is updated.
@@ -1009,7 +1009,7 @@ testers are expected to do more *exploratory* testing.
 ### Permanent deletion of bin items after expiry 
 1. Verifying permanent deletion of bin items when the list of bin items is viewed. Note: remember to ensure that the pre-requisites are satisfied before either of the test cases is tried.
 
-  1. Prerequisites: Set bin expiry time to 20 days via `set-bin-expiry 20`. Multiple items in the bin deleted on the current date. 
+   1. Prerequisites: Set bin expiry time to 20 days via `set-bin-expiry 20`. Multiple items in the bin deleted on the current date.
 
    1. Test case: Change system time to 21 days in the future (procedure for [Mac](https://support.apple.com/en-za/guide/mac-help/mchlp2996/mac) and [Windows 10](https://support.microsoft.com/en-us/windows/how-to-set-your-time-and-time-zone-dfaa7122-479f-5b98-2a7b-fa0b6e01b261)). Restart ResiReg.<br>
     Expected: All bin items should be cleared from the bin item list. 
