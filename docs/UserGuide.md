@@ -454,6 +454,7 @@ entries, use the `delete` command instead.
 </div>
 
 ### 5.2.7 Calculating net profits based on expenses and revenues: `profit` 
+_(Written by Cheok Su Anne)_
 
 If you wish to calculate the profits you have currently, you may use this command to do so.
  
