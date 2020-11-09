@@ -484,10 +484,16 @@ assignments will contain the following fields:
   * The assignment takes up a percentage of the final grade, `ASSIGNMENT_PERCENTAGE`.
 
   * Your `ASSIGNMENT_RESULT` can only range from `0.00 - 100`
+  
+  * Your assignment would only be seen through using the `viewmodule`.
 
   Example:
   * `addassignment n/CS2100 a/Quiz 1 %/5 r/80` adds an assignment called `Quiz 1` to the module `CS2100`. `Quiz 1`
   carries `5`% of the final grade and the result for this assignment is `80`.
+
+  Expected Outcome: 
+  
+  ![AddAssignment](images/GradeTracker/AddAssignment.PNG)
 
 #### Editing an assignment in a module: `editassignment`
 
