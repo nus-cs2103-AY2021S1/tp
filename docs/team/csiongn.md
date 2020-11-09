@@ -28,7 +28,7 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
     * User Guide:
         * Updated documentation for the command `find` ([\#38](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/38) and [\#60](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/60))
         * Added documentation for the command `sort` ([\#130](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/130))
-        * Added documentation for notebook feature ([\#228](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/128))
+        * Added documentation for notebook feature ([\#228](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/228))
     * Developer Guide:
         * Added implementation details of the `find` and `sort` and command ([\#250](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/250))
         * Added implementation details of the notebook ([\#250](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/250))
