@@ -1337,8 +1337,12 @@ User can create two types of flashcards - containing open end question or multip
    
    1. Test Case 4: `add q/Test OEQ 1 ans/Test ans 1 t/Invalid Tag`<br>
       Expected: QuickCache responds with an error message indicating that tag field is invalid. Flashcard is not added.<br>
+      <div markdown="block" class="alert alert-info">
+      
       :information_source: Note that flashcards containing similar questions and answers but different tags are treated as different flashcards.
-
+      
+      </div>
+      
    1. Test Case 5: `add q/Test OEQ 1 ans/Test ans 1 d/Invalid Difficulty`<br>
       Expected: QuickCache responds with an error message indicating that difficulty field is invalid. Flashcard is not added.<br>
       <div markdown="block" class="alert alert-info">
@@ -1438,8 +1442,12 @@ User can create two types of flashcards - containing open end question or multip
 
 1. Test Case 5: `edit 1 d/`<br>
    Expected: Difficulty tag is removed from the flashcard with index 1. The details of the question will be shown in the display window on the side.<br>
+   <div markdown="block" class="alert alert-info">
+   
    :information_source: User can also use `edit 1 d/UNSPECIFIED` to achieve the same result.
-
+   
+   </div>
+   
 1. Test Case 6: `edit 1 c/Choice1`<br>
    Expected: Error message displayed. Choices should not be provided for open ended questions.
 
