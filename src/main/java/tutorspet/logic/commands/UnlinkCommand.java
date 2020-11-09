@@ -34,7 +34,7 @@ public class UnlinkCommand extends Command {
             + PREFIX_STUDENT_INDEX + "STUDENT_INDEX (must be a positive integer) "
             + PREFIX_CLASS_INDEX + "CLASS_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_STUDENT_INDEX + "1"
+            + PREFIX_STUDENT_INDEX + "1 "
             + PREFIX_CLASS_INDEX + "1";
 
     public static final String MESSAGE_SUCCESS = "Removed %1$s from %2$s.";
