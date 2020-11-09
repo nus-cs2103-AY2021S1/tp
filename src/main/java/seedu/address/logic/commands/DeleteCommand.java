@@ -21,8 +21,7 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the patient identified by the index number used in the displayed patient list.\n"
-            + " or deletes the patient by his NRIC number."
+            + ": Deletes the specified patient from Hospify via index or NRIC.\n"
             + "Parameters: INDEX (must be a positive integer) or NRIC (e.g. S1234567A)\n"
             + "Example: " + COMMAND_WORD + " 3\n"
             + "Example: " + COMMAND_WORD + " S1234567A";

@@ -33,9 +33,9 @@ public class DeleteApptCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes an appointment at the "
             + "specified time for the patient specified "
-            + "by the NRIC of the patient. \n"
-            + "Parameters: [NRIC] "
-            + "[" + PREFIX_APPOINTMENT + "APPOINTMENT TIME] \n"
+            + "by his or her NRIC.\n"
+            + "Parameters: NRIC "
+            + PREFIX_APPOINTMENT + "DATE TIME\n"
             + "Example: " + COMMAND_WORD + " S1234567A "
             + PREFIX_APPOINTMENT + "28/09/2022 20:00";
 
