@@ -55,6 +55,10 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `start attempt`.
+
+<img src="images/ArchitectureSequenceDiagramQuiz.png" width="574" />
+
 The sections below give more details of each component.
 
 ### UI component
@@ -98,6 +102,12 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("start attempt")` API call.
+The execution for the `end attempt` command is similar.
+
+![Interactions Inside the Logic Component for the `start attempt` Command](images/StartAttemptSequenceDiagram.png)
+
 
 ### Model component
 
@@ -176,6 +186,23 @@ default.
 The following activity diagram shows how user input is processed:
 
 ![sort1](images/Sort1.png)
+
+### Flip feature
+
+The flip feature flips a flashcard to either show or hide its definition. This feature is implemented by creating an instance of a `FlipCommand` which
+is then executed on the model of the flashcard list. This implementation was chosen because it preserves the original fields in a Flashcard such as the
+definition. The command execution also works in a similar way to the other commands that were initially implemented.
+
+The following class diagram describes the implementation of the flip feature:
+
+![flip1](images/Flip1.png)
+
+The visible definition of a flashcard is toggled back and forth through a method in the `Flashcard` class through this command. The visible definition is
+reflected in the user interface.
+
+The following sequence diagram shows how the flip feature works:
+
+![flip0](images/Flip0.png)
 
 ### [Proposed] Quiz feature
 

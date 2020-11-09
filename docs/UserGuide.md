@@ -305,6 +305,14 @@ Format: `delete INDEX`
 * The index refers to the index number associated with the deleted flashcard, as shown in the displayed flashcard list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+* Quiz mode is now active.
+* You can now only use commands relevant to the quiz interface.
+
+Examples:
+* `enter quiz`
+
+### Checking performance : `performance`
+
 Examples:
 * `list` followed by `delete 2` deletes the second flashcard in the list.
 
@@ -334,6 +342,12 @@ open for extension (i.e easier to implement more commands specific to quiz mode)
 Starts a new quiz attempt.
 
 Format: `start attempt`
+
+* An attempt is started.
+* You can now answer the quiz questions.
+
+Examples:
+* `start attempt`
 
 ### Answering a quiz question : `answer`
 
