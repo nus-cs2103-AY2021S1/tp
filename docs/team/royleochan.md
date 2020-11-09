@@ -11,7 +11,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the feature where users can manage agendas and notes for meetings in the meeting add and meeting view command. ([\#159](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/159))
   * What it does: Allows the user to add and edit both agendas and notes for meetings.
-  * Justification: This feature improves the product significantly for a NUS student who have to manage information regarding project meetings or consultations for a module. For example, if a student has a consultation with a professor or ta, the student can add all the concepts he wishes to clarify as agendas for easy reference during the consultation. After the consultation, he can consolidate and add all the notes he took down during the consultation.
+  * Justification: This feature improves the product significantly for a NUS student who have to manage agendas and notes regarding project meetings or consultations for a module.
   * Highlights: This enhancement required understanding across several architectural components which includes the logic, model and storage.
 
 * **New Feature**: Added a meeting view command that allows users to view a selected meeting's full details. ([\#159](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/159), [\#163](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/163))
