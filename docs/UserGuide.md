@@ -87,9 +87,8 @@ and ```seller``` are created automatically and ***cannot be modified***.
 that PropertyFree accepts is of **26 characters or lesser** (including spaces).
 
 2. Names are `CASE SENSITITVE` (i.e Dianne and dianne are recognised as two different names).
-2. The length of the phone number of any clients
-
-that PropertyFree accepts is of **10 numbers or lesser** and `+` should not be added.
+3. The length of the phone number of any clients that PropertyFree accepts is of **10 numbers or lesser** 
+and `+` should not be added.
 
 # Keyboard Navigation
 1. When the `CommandBox` is not in focused (i.e when cursor is not blinking):
@@ -119,9 +118,9 @@ Note that apart from `CTRL / CONTROL` + `RIGHT / LEFT ARROW KEY` , there are `Ca
 
 <div markdown="span" class="alert alert-info">
 
-- Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add-p n/PROPERTY_NAME`, `PROPERTY_NAME` is a parameter which can be used as `add-p n/Sunrise Residences`.
+- Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add-p n/PROPERTY_NAME`, `PROPERTY_NAME` is a parameter which can be used as `add-p n/Sunrise Residences`. <br><br>
 
-- Items in square brackets are optional. e.g. `edit-p [n/PROPERTY_NAME]` implies that `PROPERTY_NAME` is an optional parameter.
+- Items in square brackets are optional. e.g. `edit-p [n/PROPERTY_NAME]` implies that `PROPERTY_NAME` is an optional parameter. <br><br>
 
 - Items in brackets are for integer numbers only. e.g <INDEX_NUMBER> can be <5>.
 </div>  
