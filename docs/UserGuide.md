@@ -761,3 +761,17 @@ Command | Description | Compatible View
 `deleteStudent INDEX` | Deletes a student from the current Student view | STUDENT
 `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [id/STUDENT_ID] [t/TAG]...` | Edits a student in the current Student view | STUDENT
 `findStudent KEYWORD` | Finds student(s) whose name(s) contain the keyword in the current Student view | STUDENT
+
+### 6.6 Attendance Commands
+
+| Command                                                      | Description                                                  | Compatible View |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | --------------- |
+| `addAttendance INDEX week/WEEK_NUMBER [week/WEEK_NUMBER]...` | Adds the attendance of a student for specific week(s)        | STUDENT         |
+| `deleteAttendance INDEX week/WEEK_NUMBER [week/WEEK_NUMBER]...` | Deletes the attendance of a student for specific week(s)     | STUDENT         |
+| `viewAttendance INDEX`                                       | Shows the attendance of target student by specifying the week(s) that the student has attended | STUDENT         |
+| `attendanceBelow UPPER_BOUND`                                | Finds and lists all students in the current Student view whose attendance score falls below the provided score | STUDENT         |
+| `editParticipation INDEX score/PARTICIPATION_SCORE`          | Edits the participation score of a student by adding to or deducting from their existing score by the provided score | STUDENT         |
+| `participationBelow UPPER_BOUND`                             | Finds and lists all students in the current Student view whose participation score falls below the provided score. | STUDENT         |
+
+
+
