@@ -15,9 +15,9 @@ Class JsonUserLoginStorage
 Class JsonAddressBookStorage
 
 StorageManager .left.|> Storage
-StorageManager o-right-> UserPrefsStorage
-StorageManager o--> AddressBookStorage
-StorageManager o--> UserLoginStorage
+StorageManager -right-> UserPrefsStorage
+StorageManager --> AddressBookStorage
+StorageManager --> UserLoginStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonUserLoginStorage .left.|> UserLoginStorage

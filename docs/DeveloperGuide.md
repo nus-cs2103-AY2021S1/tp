@@ -331,7 +331,7 @@ The sequence diagram for the `ViewMissionDeadlineCommand` is shown below:
 ![Sequence Diagram of ViewMissionDeadlineCommand](images/ViewMissionDeadlineSequenceDiagram.png)
 
 The `LogicManager` will call the `parseCommand` method of `AddressBookParser`, which then passes the second argument to the `ViewCommandParser` object.
-The `ViewCommandParser`, after parsing the necessary arguments through static methods of the ParserUtil class, will return a `ViewMissionDeadlineCommand` object.
+The `ViewCommandParser`, after parsing the necessary arguments through static methods of the `ParserUtil` class, will return a `ViewMissionDeadlineCommand` object.
 This object will then be returned to the `LogicManager`. Next, the `LogicManager` will call the `execute(model)` method using the
 `ViewMissionDeadlineCommand` object. In this method, it will use the `Model` object to call the method `updateMissionList()`, with parameter `PREDICATE_SHOW_ALL_MISSIONS` which will show all the missions. When completed, the `execute(model)` will return a
 `CommandResult` object with the success message to the `LogicManager`, indicating that the command execution is a success.
@@ -379,7 +379,7 @@ The following diagram shows the overview of `AddCommand` detailed Class Diagram 
 ![Class Diagram of Add Commands](images/AddXYZCommandClassDiagram.png)
 
 * The class `AddCommand` contains 3 subclasses: `AddTaskCommand`, `AddConsultationCommand` and `AddMasteryCheckCommand`.
-* These `AddCommand` subclasses interacts with `Model` and the related class models each AddCommand is supposed to execute with.
+* These `AddCommand` subclasses interacts with `Model` and the related class models each `AddCommand` is supposed to execute with.
 * Upon successful `AddCommand`, these subclasses communicates with `Model` to add `Task`, `Consultation` and `MasteryCheck` into `Model`.
 
 #### 4.3.4 Structure of AddCommandParser
@@ -413,7 +413,7 @@ The sequence diagram for the `AddTaskCommand` adding an `Event` is shown below:
 ![Sequence Diagram of Add Task](images/AddTaskSequenceDiagram.png)
 
 The `LogicManager` will call the `parseCommand` method of `AddressBookParser`, which then passes the second argument to the newly created `AddCommandParser` object.
-The `AddCommandParser` will then call specific parse method, in this case, `parseEvent` method of `TaskCommandParser`. `TaskCommandParser` returns an `Event` object
+The `AddCommandParser` will then call the specific parse method, in this case, `parseEvent` method of `TaskCommandParser`. `TaskCommandParser` returns an `Event` object
 created to `AddCommandParser` so that it can return a new `AddTaskCommand` created with the `Event` object.
 This object will then be returned to the `LogicManager`. Next, the `LogicManager` will call the `execute(model)` method using the
 `AddTaskCommand` object. In this method, it will use the `Model` object to call the method `hasEvent()`, which checks if there is a duplicated `Event` in the `Model`.

@@ -35,6 +35,6 @@ class ScraperManager implements Scraper {
     /' Methods '/
 }
 
-ScraperManager o-> "1" UserLogin
+ScraperManager -> "1" UserLogin
 
 @enduml
