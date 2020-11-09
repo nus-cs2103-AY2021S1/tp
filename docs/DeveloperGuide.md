@@ -1034,7 +1034,8 @@ The below testcases assume that you are in a session and have 7 students inside 
       Expected: No session is deleted. Status message informs user that there are no sessions in the session list with that name.
 
    1. Other incorrect delete commands to try: `delete-session`, `delete-session First Session`<br>
-      Expected: Similar to previous.
+      Expected: Error details shown in the status message.
+
 
 ### Exiting the program
 
