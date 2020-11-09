@@ -43,17 +43,17 @@ public class SampleDataUtil {
 
     public static Contact[] getSampleContacts() {
         return new Contact[] {
-                new Contact(new ContactName("Alex Yeoh"), new Email("alexyeoh@example.com"),
+            new Contact(new ContactName("Alex Yeoh"), new Email("alexyeoh@example.com"),
                     new Telegram("@alexyeoh"), getTagSet("friends"), false),
-                new Contact(new ContactName("Bernice Yu"), new Email("berniceyu@example.com"),
+            new Contact(new ContactName("Bernice Yu"), new Email("berniceyu@example.com"),
                     new Telegram("@bernice"), getTagSet("colleagues", "friends"), true),
-                new Contact(new ContactName("Charlotte Oliveiro"), new Email("charlotte@example.com"),
+            new Contact(new ContactName("Charlotte Oliveiro"), new Email("charlotte@example.com"),
                     new Telegram("@charlotte"), getTagSet("neighbours"), true),
-                new Contact(new ContactName("David Li"), new Email("lidavid@example.com"),
+            new Contact(new ContactName("David Li"), new Email("lidavid@example.com"),
                     new Telegram("@david"), getTagSet("family"), false),
-                new Contact(new ContactName("Irfan Ibrahim"), new Email("irfan@example.com"),
+            new Contact(new ContactName("Irfan Ibrahim"), new Email("irfan@example.com"),
                     new Telegram("@irfan"), getTagSet("classmates"), false),
-                new Contact(new ContactName("Roy Balakrishnan"), new Email("royb@example.com"),
+            new Contact(new ContactName("Roy Balakrishnan"), new Email("royb@example.com"),
                     new Telegram("@roybala"), getTagSet("colleagues"), true)
         };
     }
