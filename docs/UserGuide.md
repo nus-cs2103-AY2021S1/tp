@@ -217,7 +217,8 @@ users can do the following:
 
 * Multiple inputs of the same attribute is not allowed. 
   E.g. `deadline title:Return book title:Borrow book datetime:02-01-2020 18:00` is not allowed as the `title` attribute is input twice.
-  </div>
+
+</div>
 
 <br>
 
