@@ -365,7 +365,7 @@ Originally, we intended to define two `Patient` to be equals if they have the sa
 Keeping in mind the ease of usage of Covigent for users, we chose to identify `Patient` uniquely by `Name` only. As such, when users need to manipulate the data of a `Patient`, all they need to input is the `Name`. Furthermore, we believes that since Covigent is used by small hotels, there is a very low chance of two patients having the same names.
 
 ##### Features related to Patient
-Having looked at the design of `Patient`, we can now explore the possible features related to `Patient`. In particular, our commands support [create, read, update, delete](#412-create-read-update-delete) and [search](#413-search-patient). 
+Having looked at the design of `Patient`, we can now explore the possible features related to `Patient`. In particular, our commands support [create, read, update, delete](#414-create-read-update-delete) and [search](#415-search-patient). 
 
 The features comprise of five commands namely,
 * `AddPatientCommand` - Adding patients
