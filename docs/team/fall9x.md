@@ -38,20 +38,18 @@ Kept track of deadlines for project milestones, updated Gradle dependencies and 
 
 #### Enhancements to Existing Features
 
-1. Enhance ingredient model to consist of multiple sets of quantity+expiry date ([#59](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/59), [#75](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/75)).
-
-2. Increased code coverage by writing a series of GUI tests ([#178](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/178), [#261](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/261).
+1. Increased code coverage by writing a series of GUI and non-GUI tests ([#178](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/178), [#189](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/189), [#190](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/190), [#261](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/261)).
 
 
 
 #### Documentation
 **User Guide**
 
-Added detailed walkthrough for the GUI ([#175](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/175), [#197](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/197), [#279](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/279)
+Added detailed walkthrough for the GUI ([#175](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/175), [#197](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/197), [#279](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/279)).
 
 **Developer Guide**
 
-Primary custodian for the Developer Guide, ensured consistent formatting, phrasing, and visuals. Added implementation details for the UI ([#175](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/175), [#296](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/296), [#300](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/300), [#303](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/303), [#319](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/319), .)
+Primary custodian for the Developer Guide, ensured consistent formatting, phrasing, and visuals. Added user stories, use cases, parts of the instructions for manual testing and implementation details for the UI ([#175](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/175), [#296](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/296), [#300](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/300), [#303](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/303), [#319](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/319), [#322](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/322)).
 
 
 
