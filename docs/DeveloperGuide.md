@@ -6,6 +6,7 @@ by Team W12-2
 ## **Table of Contents**
 * [Section 1 - Preface](#section-1---preface)
 * [Section 2 - Using this document](#section-2---using-this-document)
+    * [Section 2.2 - Formatting](#section-22---formatting)
 * [Section 3 - Setting up, getting started](#section-3---setting-up-getting-started)
 * [Section 4 - Design](#section-4---design)
     * [4.1 - High-Level Architecture](#section-41---high-level-architecture)
@@ -37,13 +38,32 @@ by Team W12-2
 
 
 ## **Section 1 - Preface**
-This is a Developer Guide to Trackr. A student and task management system for Teaching Assistants of all faculties who want to manage their students from various modules and tutorial groups, all in one place.
-
+**Trackr** is a desktop module management application made for Teaching Assistants of all faculties. It is designed 
+with a focus on the Command Line Interface (CLI), while still retaining the benfits of a simple yet intuitive Graphical User Interface (GUI). 
+**Trackr** allows Teaching Assistants to keep track of Modules, Tutorial Groups, and Students they teach all in one location.
 
 ---
 
 ## **Section 2 - Using this Document**
+This Developer Guide will help you understand the thought processes behind the design and implementation of 
+**Trackr**. It will begin with how to [get started](#section-3---setting-up-getting-started), followed by the [design](#section-4---design) and [implementation](#section-5---implementation), and ending with 
+the [documentation]((#section-6---documentation-logging-testing-configuration-dev-ops)) for this project. 
 
+This section will provide you the [formatting]() used in this throughout the document so that understand in quick and simple.
+For more information on confusing terms encountered, you can check the [glossary](#appendix-e---glossary) for clarification. 
+
+### Section 2.2 - Formatting
+
+This document is written in a manner where formatting is applied to text in order to convey different meanings. The table below will explain what these formatting uses are, what they look like, and what they mean in the context of the document.
+
+| Formatting    | Meaning                                                      |
+| ------------- | ------------------------------------------------------------ |
+| `code`        | Words in 'code' format refer to class names or fields within classes. |
+| *Italics*     | Words in italics refer to the type of diagrams used.|
+| [Underline]() | Words that are in blue and underlined when hovered over refer to hyperlinks. Hyperlinks are clickable, and bring you either to different parts of this document or to external websites, for the convenience of navigating quickly to different parts of the document or the web. |
+| **Bold**      | Words in bold refer to important points within the document. |
+
+---
 
 ## **Section 3 - Setting up, getting started**
 
@@ -96,7 +116,6 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 The sections below give more details of each component.
 
 ### Section 4.2 - UI component
-The UI Component defines what the user will see and interact with while using Trackr. `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 <figcaption> Figure 4.2a Class Diagram of the UI Component </figcaption>
@@ -104,10 +123,15 @@ The UI Component defines what the user will see and interact with while using Tr
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The `UI` Component defines what the user will see and interact with while using Trackr. `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class. The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` Component defines what the user will see and interact with while using Trackr. 
+
+`MainWindow` is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter`, `ViewDisplay` etc. 
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class. The `UI` component uses JavaFx UI framework. 
+The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. 
+For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) 
+is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
-
 -   executes user commands using the `Logic` component.
 -   listens for changes to `Model` data so that the `UI` can be updated with the modified data.
 

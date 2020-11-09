@@ -63,7 +63,7 @@ public class TutorialGroupBuilder {
      * @return
      */
     public TutorialGroupBuilder withEndTime(String endTimeString) {
-        this.startTime = new TimeOfDay(endTimeString);
+        this.endTime = new TimeOfDay(endTimeString);
         return this;
     }
 

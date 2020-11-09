@@ -37,7 +37,7 @@ Interface (GUI). It is written in Java, and currently has over 10kLoC.
 - Contributions to documentation:
   - Wrote introductory sections of UG and updated table of contents with the correct links to the correct sections in the UG.
   - Ensured formatting consistency across the entire UG, setting conventions of how to present information in our UG and fixing grammatical errors / typos.
-  - Wrote section on attendance features, namely commands that involve attendance.
+  - Wrote section on attendance features, namely commands that involve attendance, specifically Section 4.6 - Attendance Features.
 - Contributions to the DG:
   - Wrote / edited design section for DG and updated / created diagrams for them, specifically Section 4 - Design.
   - Wrote / edited section on saving and loading mechanism for Trackr and updated the diagram for it, specifically Section 5.9 - Data saving and loading.

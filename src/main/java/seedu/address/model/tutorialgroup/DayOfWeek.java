@@ -32,7 +32,8 @@ public class DayOfWeek {
     /**
      * Returns true if a given string is a valid ID.
      */
-    public static boolean isValidDayOfWeek(String day) {
+    public static boolean isValidDayOfWeek(String day) throws NullPointerException {
+        requireNonNull(day);
         List<String> daysOfWeek = Arrays.asList("MON", "TUE", "WED", "THU", "FRI");
         return daysOfWeek.contains(day);
     }
