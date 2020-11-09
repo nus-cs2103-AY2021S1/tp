@@ -309,7 +309,7 @@ _Written by: Yun Qing_
 
 ## 5. Features
 
-This section covers all the commands that you can type into the Command Box of Covigent. The commands are categorised into [patient features](#52-patients), [room features](#53-room) and [task features](#54-room). If it is the first time that you are using the command, we recommend that you refer to [Command Format](#51-command-format) to find out how to interpret the format of the commands.
+This section covers all the commands that you can type into the Command Box of Covigent. The commands are categorised into [patient features](#52-patient), [room features](#53-room) and [task features](#54-task). If it is the first time that you are using the command, we recommend that you refer to [Command Format](#51-command-format) to find out how to interpret the format of the commands.
 
 _Written by: Yun Qing_
 
@@ -734,6 +734,7 @@ Format: `listroom` All the rooms in Covigent.
 2. `listroom abdcfbhfr` all rooms will be listed
 3. `listroom 21232198` all rooms will be listed
 4. `listroom 123ebhbh11` all rooms will be listed
+
 **:information_source: Important Information:** <br />
 * If there are no rooms, then no rooms will be mentioned and informs user to initialize rooms using the `initroom` command.
 * You need at least one room for this command to work.<br />
