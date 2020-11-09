@@ -258,7 +258,7 @@ Explanation why a certain design is chosen.
         * Allows Parser to filter out invalid commands
     * Cons: Less convenience for the user. 
 
-
+<div style="page-break-after: always;"></div>
 ### Edit entries feature 
 *(Written by Nicholas Canete)* <br>
 
