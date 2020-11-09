@@ -21,10 +21,10 @@ Refer to [Quick Start](#QuickStart) for a short tutorial on how to set up Bamboo
 1. Ensure that Java Version 11 or above is installed in your computer
 2. Download the latest Bamboo Release `ExpenseBook.jar` [here](https://github.com/AY2021S1-CS2103-W14-3/tp/releases/tag/v1.3).
 3. Copy the file to the folder you want to use as the home directory for Bamboo.
-4. Double-click the file to start the app. It should open in a new window.  
+4. Double-click the file to start the app. It should open in a new window.
     OR Navigate to the directory on terminal and run `java -jar ExpenseBook.jar`.
 5. Type in commands with arguments in the command input box above, and press `Enter` to execute them.
-6. Use the `help` command to find out the list of commands available, or we'd recommend checking out the 
+6. Use the `help` command to find out the list of commands available, or we'd recommend checking out the
 [Features](#Features) section for a comprehensive guide!
 7. Let's grow our wealth together!
 
@@ -41,7 +41,7 @@ This section explains the format of commands in this User Guide.
 
 ## Features <a name="Features"></a>
 
-### Basic 
+### Basic
 1. **Add an Expense**
     - Adds new expense record.
     - Command: `add`
@@ -113,7 +113,7 @@ This section explains the format of commands in this User Guide.
     - Increases the amount of budget in a specific category by a user-defined amount.
     - Command: `topup`
     - [Usage](#topup)
-    
+
 1. **Reduce Budget (by Category)**
     - Reduces the amount of budget in a specific category by a user-defined amount.
     - Command: `reduce`
@@ -128,10 +128,10 @@ This section explains the format of commands in this User Guide.
     - Finds expenses by keywords, date, tags.
     - Command: `find`
     - [Usage](#find)
-    
-1. **Sort Expenses**  
+
+1. **Sort Expenses**
     - Sort by **date, description (alphabetical), amount**, with option of reverse sort.
-    - Command: `sort` 
+    - Command: `sort`
     - [Usage](#sort)
 
 1. **Add Command Shortcut**
@@ -155,7 +155,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 1. **expense**
     - An expense is a cost incurred in or required for something. Every entry in **Bamboo** is an expense.
     - Bamboo treats 2 expenses as identical if they have the same **Description**, **Amount**, and **Date**.
-    - Restrictions: Bamboo cannot store duplicate expenses i.e. 2 expenses are identical according to the criterion above.  
+    - Restrictions: Bamboo cannot store duplicate expenses i.e. 2 expenses are identical according to the criterion above.
     - Refer to [Commands](#commands) to see how to manage expenses using Bamboo.
 
 1. **description**
@@ -168,7 +168,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
 1. **amount**<a name="amount"></a>
     - Amount of money spent in expense.
-    - **NOTE**: Amounts provided must be between 0 and 10e<sup>9</sup>    
+    - **NOTE**: Amounts provided must be between 0 and 10e<sup>9</sup>
     - Works only in complement with [add](#add), [edit](#edit), [find](#find), [sort](#sort), [topup](#topup)
     - Prefix: `-$`
     - Format: `-$<dollars>[.<cents>]`
@@ -320,7 +320,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
     ![topup_example](images/ug_example/topup_example.PNG)
     &nbsp;
-    
+
 1. **Reduce Category Budget `reduce`** <a name="reduce"></a>
     - Reduces the budget of a **particular category** by the amount specified by the user.
     - The amount in any budget cannot fall below zero (any reduction in budget beyond the amount present would cause a _reduction to zero_).
@@ -331,7 +331,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Input constraints:
       - The category specified must exist in the Expense Book. Otherwise, it must be [created](#addCat) before it can be reduced.
       - The input amount must be non-negative (see [Amount](#amount)) and cannot exceed 10e<sup>9</sup>.
-      
+
     ![reduce_example](images/ug_example/reduce_example)
     &nbsp;
 
@@ -359,7 +359,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
     ![remark_example](./images/ug_example/remark_example.PNG)
     &nbsp;
-    
+
 1. **Sort Expenses `sort`** <a name="sort"></a>
     - Sorts expenses which are current displayed.
     - **Sorting keywords** (and thus criterion) include:
@@ -376,7 +376,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     |------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
     |![sort_example_3](./images/ug_example/sort_example_3.PNG) <br> _Multi-parameter sort will take the last sorting keyword if there are duplicates_|![sort_example_4](./images/ug_example/sort_example_4.PNG) <br> _Sorting after using `Find`_                                                                                    |
     &nbsp;
-    
+
 1. **Switch Category `switch`** <a name="switch"></a>
     - Switches expense book to requested category.
     - Displays all expenses tagged under requested category.
@@ -407,7 +407,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Example: `alias add spent`
     - Each command may only have up to one shortcut at each time. If a new shortcut is provided for a command, the old shortcut will be un-mapped.
     - Reversing the two parameters will remove the particular shortcut from the command.
-        - Example: `alias spent add` 
+        - Example: `alias spent add`
 
     ![alias_example](./images/ug_example/alias_example.PNG)
     _Map "spent" to "add" command_
@@ -423,19 +423,19 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Removes all existing shortcuts defined by user.
     - Format: `resetAlias`
     - Example: `resetAlias`
-    
+
     ![resetAlias_example](./images/ug_example/resetAlias_example.PNG)
-    
+
 1. **Graph Command `graph`** <a name="graph"></a>
     - Opens a window that displays a pie chart representing categorical expenses.
     - Format: `graph`
     - Example: `graph`
-    - Note: The pie chart does not update dynamically. 
+    - Note: The pie chart does not update dynamically.
       If a command that edits the Expense Book is entered while the graph window is open, the pie chart will not be updated.
       User must re-enter the graph command to update the pie chart accordingly.
-    
+
     ![graph_example](./images/ug_example/graph_example.PNG)
-    
+
 1. **Display Help `help`** <a name="help"></a>
     - Displays a help link to the User Guide, which comprehensively covers Bamboo's commands.
     - Format: `help`
@@ -443,12 +443,12 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
     ![help_example](./images/ug_example/help_example.PNG)
     &nbsp;
-      
+
 1. **Clear All Expenses `clear`** <a name="clear"></a>
     - Clears all expenses from Bamboo, resulting in an empty expense book.
     - Format: `clear`
     - Example: `clear`
-    
+
     ![clear_example](images/ug_example/clear_example.png)
 
 1. **Exit Application `exit`** <a name="exit"></a>

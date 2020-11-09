@@ -12,7 +12,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to add shortcuts (aliases) to each command.
   * What it does: allows users to add up to ONE customised command word for all commands except alias and resetAlias. Restrictions on user input and more specific usage details can be found in the User Guide.
   * Justification: As an experienced user, the user should be able to customise the command word using alias shortcuts for faster workflow. Being experienced also likely means that he is either a long-time user or a frequent user. The alias and resetAlias commands cannot have aliases as a neat fail-safe.
-  * Highlights: `find [oldAlias] [newAlias]` will override the old alias with the new alias. If there are no aliases currently for a command, then simply use `find [defaultCommandWord] [newAlias]`. 
+  * Highlights: `find [oldAlias] [newAlias]` will override the old alias with the new alias. If there are no aliases currently for a command, then simply use `find [defaultCommandWord] [newAlias]`.
   * Additional model classes implemented for this feature: `AliasMap`, `AliasEntry`, and their JSON Storage Formatting Classes
   * Credits: *{AliasMap class design inspired by AddressBook3's AddressBook class}*
 
@@ -21,8 +21,8 @@ Given below are my contributions to the project.
   * Justification: A user may have not used the app for quite some time, and forgot all the aliases he/she have customised. Since aliases will not be visible in user guide, he/she can simply run `resetAlias` and can resume using the app with the command words as shown in the user guide.
 
 * **Updated Feature**: Altered find command to perform partial description keyword or date matching or both.
-  * What it does: filters expenses list to only show expenses with description that partially contains one of the keywords (e.g. `find -d pasta` will include in its output an expense with a description containing the word `pastafarian`) and contains one of the dates. 
-  * Justification: This feature allows users to filter out expenses for a particular day or expenses whose description contains a particular keyword. These features are important for users to be able to reflect on his total spending on a particular day or on a particular item, and learn from any spending mistakes. 
+  * What it does: filters expenses list to only show expenses with description that partially contains one of the keywords (e.g. `find -d pasta` will include in its output an expense with a description containing the word `pastafarian`) and contains one of the dates.
+  * Justification: This feature allows users to filter out expenses for a particular day or expenses whose description contains a particular keyword. These features are important for users to be able to reflect on his total spending on a particular day or on a particular item, and learn from any spending mistakes.
   * Credits: The current find feature implementation was enhanced from AddressBook3’s find feature which allowed us to do description matching, from which date matching was then extended.
   * Other: Previously implemented and subsequently removed tag matching support due to the introduction of expense book categories in the Bamboo project.
 
@@ -39,7 +39,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Updated documentation for the features `find` and `alias` (Pull requests [\#88](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/88), [\#165](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/165)) 
+    * Updated documentation for the features `find` and `alias` (Pull requests [\#88](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/88), [\#165](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/165))
     * Added documentation for the features `resetAlias` [\#165](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/165)
   * Developer Guide:
     * Added implementation details of the `alias` feature. [\#165](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/165)

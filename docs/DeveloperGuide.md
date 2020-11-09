@@ -275,7 +275,7 @@ Sample usage: By default, the only command word for `FindCommand` is `"find"`
 * `alias find get` -> The user can now trigger a `FindCommand` with `"get"` alias. The `"find"` command word will still work.
 * `alias get find` -> The "get" alias is removed from `AliasMap` object and only `"find"` can now trigger `FindCommand`. In other words, `FindCommand` no longer has an alias.
 
-To maintain some degree of simplicity and neatness, we require that `AliasCommand` and `ResetAliasCommand` cannot have aliases themselves. Furthermore, any custom alias is restricted to 10 case-sensitive alphabetical characters and each command can only have up to a single alias at any point in time. Default command words of each `Command` subclasses cannot be used as aliases. 
+To maintain some degree of simplicity and neatness, we require that `AliasCommand` and `ResetAliasCommand` cannot have aliases themselves. Furthermore, any custom alias is restricted to 10 case-sensitive alphabetical characters and each command can only have up to a single alias at any point in time. Default command words of each `Command` subclasses cannot be used as aliases.
 
 To allow for customisation to remain even after the user exits the app and subsequently restarts it, a customised alias-to-command mapping will be stored in JSON format, which can be converted to `AliasMap` and `AliasEntry` objects when Bamboo runs.
 
@@ -283,7 +283,7 @@ The `ExpenseBookParser`'s `parseCommand()` method takes in an AliasMap object in
 
 Step 1. The user launches the application for the first time. Assume no alias is present (by default, aliases in the JSON file will be the default command word).
 
-Step 2. The user inputs `alias find get` to update the alias for `FindCommand` as `”get”`.  
+Step 2. The user inputs `alias find get` to update the alias for `FindCommand` as `”get”`.
 This will not only update the current AliasMap object, but will also update the JSON mapping with the help of StorageManager which handles all types of storage including JsonAliasMapStorage.
 
 The following is a sequence diagram showing how it works:
@@ -724,9 +724,9 @@ Similar to U9, except it's the opposite.
 
 * 1a. The category does not exist in the expense book.
     * 1a1. Bamboo shows an error message.
-    
+
       Use case ends.
-      
+
 * 1b. The specified amount is invalid.
     * 1b1. Bamboo shows an error message.
 
