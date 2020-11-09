@@ -2,10 +2,13 @@
 layout: page
 title: Phyo Han Project Portfolio Page
 ---
+### Summary of Project
+Calo is a desktop app that is designed for keeping track of calories burnt throughout the day.
+It is optimized for use via a Command Line Interface (CLI) while still having Graphical User Interface (GUI) so that
+Skilled users can carry out various tasks such as adding new exercises and checking records for previous days
+much faster than the traditional GUI apps.  
 
-## Project: AddressBook Level 3
-
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+We built Calo upon the [Address Book Level 3 (AB3) project](https://github.com/se-edu/addressbook-level3).
 
 ## Summary of Contributions
 
