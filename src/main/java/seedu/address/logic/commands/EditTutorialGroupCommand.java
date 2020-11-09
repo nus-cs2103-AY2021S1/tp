@@ -88,7 +88,8 @@ public class EditTutorialGroupCommand extends Command {
     }
 
     private static TutorialGroup createEditedTutorialGroup(TutorialGroup tutorialGroupToEdit,
-                                                           EditTutorialGroupDescriptor editTutorialGroupDescriptor) {
+                                                           EditTutorialGroupDescriptor editTutorialGroupDescriptor)
+        throws CommandException {
         assert tutorialGroupToEdit != null;
 
         TutorialGroupId updatedId = editTutorialGroupDescriptor.getId()
@@ -99,6 +100,10 @@ public class EditTutorialGroupCommand extends Command {
             .orElse(tutorialGroupToEdit.getStartTime());
         TimeOfDay updatedEndTime = editTutorialGroupDescriptor.getEndTime()
             .orElse(tutorialGroupToEdit.getEndTime());
+
+        if (!TimeOfDay.isValidTimes(updatedStartTime, updatedEndTime)) {
+            throw new CommandException(TimeOfDay.TIME_CONSTRAINTS);
+        }
 
         return new TutorialGroup(updatedId, updatedDayOfWeek, updatedStartTime,
             updatedEndTime, tutorialGroupToEdit.getUniqueStudentList());

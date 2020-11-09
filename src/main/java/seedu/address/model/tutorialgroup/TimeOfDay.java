@@ -13,7 +13,7 @@ import java.time.format.DateTimeParseException;
 public class TimeOfDay {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "START_TIME and END_TIME are supposed to take the form of 'HH:MM'";
+            "START_TIME and END_TIME are supposed to take the form of a 24HR CLOCK 'HH:MM'";
     public static final String TIME_CONSTRAINTS =
             "START_TIME is supposed to be BEFORE END_TIME";
 
@@ -50,6 +50,13 @@ public class TimeOfDay {
         int startTimeInteger = Integer.parseInt(start.replace(":", ""));
         int endTimeInteger = Integer.parseInt(end.replace(":", ""));
         return endTimeInteger - startTimeInteger > 0;
+    }
+
+    /**
+     * Returns true if start Time is before end Time
+     */
+    public static boolean isValidTimes(TimeOfDay start, TimeOfDay end) {
+        return start.getTime().compareTo(end.getTime()) == -1;
     }
 
     public LocalTime getTime() {
