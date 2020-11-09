@@ -96,6 +96,8 @@ Given below are my contributions to the project.
   [2](https://github.com/luo-git/ped/issues/3),
   [3](https://github.com/luo-git/ped/issues/6))
 
+<div style="page-break-after: always;"></div>
+
 ## Contributions to the User Guide (Extract)
 
 As the information age encroaches out lives, our digital footprint has become larger and larger.
@@ -111,6 +113,8 @@ It is optimised for use under Command Line Interface (CLI).
 By using our application, you can tag frequently used files/folders with a short nickname, and open them
 with a single command. We hope by using our application, you can manage your files easily. You can
 make your life easier one file at a time, and free up your precious time to spend on things you truly enjoy.
+
+<div style="page-break-after: always;"></div>
 
 ## Contributions to the Developer Guide (Extract)
 
