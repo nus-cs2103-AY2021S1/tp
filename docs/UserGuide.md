@@ -322,6 +322,8 @@ Example of the tag bug:
 
 ![TagBug](images/TagBug.png)
 
+<div style="page-break-after: always;"></div>
+
 * No validation of instructor existence for modules. Adding a non-existent instructor by editing the 
 `addressbook.json` file will not throw any error.
 
@@ -362,6 +364,7 @@ Action | Format, Examples
 **List all contacts** | `clist`
 **List all modules** | `mlist`
 **Switch active semester** | `switch`
+
 <div style="page-break-after: always;"></div>
 
 Action | Format, Examples
