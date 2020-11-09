@@ -130,6 +130,7 @@ public class UniqueTaskList implements Iterable<Task> {
             }
             internalList.set(index, deadlines[i].markAsDone(durations[i]));
         }
+        Collections.sort(internalList);
     }
 
     /**
