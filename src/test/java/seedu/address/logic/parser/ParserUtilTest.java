@@ -15,6 +15,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attendance.Attendance;
+import seedu.address.model.consultation.Day;
+import seedu.address.model.consultation.Time;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -31,6 +33,7 @@ public class ParserUtilTest {
     private static final String INVALID_DATE_4 = "-21/12/2020";
     private static final String INVALID_DATE_5 = "30/02/2020";
     private static final String INVALID_DATE_6 = "31/06/1998";
+    private static final String INVALID_TIME = "25:18";
 
 
     private static final String VALID_NAME = "Rachel Walker";
@@ -39,6 +42,7 @@ public class ParserUtilTest {
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_DATE = "22/12/2000";
+    private static final String VALID_TIME = "23:59";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -83,6 +87,63 @@ public class ParserUtilTest {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
         Name expectedName = new Name(VALID_NAME);
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+    }
+
+    @Test
+    public void parseDay_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDay((String) null));
+    }
+
+    @Test
+    public void parseDay_invalidValue_throwsParseException() {
+        // dd exceeds 1-31 range
+        assertThrows(ParseException.class, () -> ParserUtil.parseDay(INVALID_DATE_1));
+
+        // MM exceeds 1-12 range
+        assertThrows(ParseException.class, () -> ParserUtil.parseDay(INVALID_DATE_2));
+
+        // negative values
+        assertThrows(ParseException.class, () -> ParserUtil.parseDay(INVALID_DATE_4));
+
+        // special dates
+        assertThrows(ParseException.class, () -> ParserUtil.parseDay(INVALID_DATE_5));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDay(INVALID_DATE_6));
+    }
+
+    @Test
+    public void parseDay_validValueWithoutWhitespace_returnsAttendance() throws Exception {
+        Day expectedDay = Day.fromDateString(VALID_DATE);
+        assertEquals(expectedDay, ParserUtil.parseDay(VALID_DATE));
+    }
+
+    @Test
+    public void parseDay_validValueWithWhitespace_returnsTrimmedAttendance() throws Exception {
+        String dateWithWhitespace = WHITESPACE + VALID_DATE + WHITESPACE;
+        Day expectedDay = Day.fromDateString(VALID_DATE);
+        assertEquals(expectedDay, ParserUtil.parseDay(dateWithWhitespace));
+    }
+
+    @Test
+    public void parseTime_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTime((String) null));
+    }
+
+    @Test
+    public void parseTime_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTime(INVALID_TIME));
+    }
+
+    @Test
+    public void parseTime_validValueWithoutWhitespace_returnsAttendance() throws Exception {
+        Time expectedTime = Time.fromTimeString(VALID_TIME);
+        assertEquals(expectedTime, ParserUtil.parseTime(VALID_TIME));
+    }
+
+    @Test
+    public void parseTime_validValueWithWhitespace_returnsTrimmedAttendance() throws Exception {
+        String timeWithWhitespace = WHITESPACE + VALID_TIME + WHITESPACE;
+        Time expectedTime = Time.fromTimeString(VALID_TIME);
+        assertEquals(expectedTime, ParserUtil.parseTime(timeWithWhitespace));
     }
 
     @Test

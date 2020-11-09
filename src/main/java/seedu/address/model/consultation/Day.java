@@ -3,9 +3,10 @@ package seedu.address.model.consultation;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Objects;
 
 
@@ -13,16 +14,25 @@ import java.util.Objects;
  * Represents a Consultation's date in classes.
  */
 public class Day implements Comparable<Day> {
-    public static final String MESSAGE_CONSTRAINTS = "Accepted date format: dd/MM/yyyy (e.g. 27/03/1998)";
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+    public static final String MESSAGE_CONSTRAINTS = "Please check if the date provided is valid."
+            + "\n\n"
+            + "Accepted date format: dd/MM/yyyy (e.g. 27/03/1998)."
+            + "\n"
+            + "Day should be in the range 1-31"
+            + "\n"
+            + "Month should be 01-12"
+            + "\n"
+            + "Year should be a 4 digit numeric value, with the exception of 0000";
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/uuuu")
+            .withResolverStyle(ResolverStyle.STRICT);
 
-    public final Date date;
+    public final LocalDate date;
 
     /**
      * Users should only use fromDateString to safely generate the day of consultation
      * @param date Date.
      */
-    private Day(Date date) {
+    private Day(LocalDate date) {
         assert date != null;
         this.date = date;
     }
@@ -35,10 +45,13 @@ public class Day implements Comparable<Day> {
      */
     public static final Day fromDateString(String input) {
         requireNonNull(input);
-        Date date;
+
+        LocalDate date;
+        String trimmedInput = input.trim();
         try {
-            date = DATE_FORMAT.parse(input);
-        } catch (ParseException e) {
+            date = LocalDate.parse(trimmedInput, DATE_FORMAT);
+        } catch (DateTimeParseException e) {
+
             checkArgument(false, MESSAGE_CONSTRAINTS);
             return null; // Never triggers as the above will throw an invalid argument exception
         }
@@ -52,9 +65,11 @@ public class Day implements Comparable<Day> {
      * @return Presence of valid day.
      */
     public static boolean isValidDay(String test) {
+        assert(test != null);
+        String trimmedTest = test.trim();
         try {
-            Date date = DATE_FORMAT.parse(test);
-        } catch (ParseException e) {
+            LocalDate date = LocalDate.parse(trimmedTest, DATE_FORMAT);
+        } catch (DateTimeParseException e) {
             return false;
         }
         return true;
