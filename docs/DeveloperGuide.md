@@ -736,12 +736,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                 | I want to …​                | So that I can …​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | project team leader | add a new teammate |                      |  
-| `* * *`  | project team leader | edit a teammate |  change details of a teammate                     |  
+| `* * *`  | project team leader   | add a project                  |                      |
+| `* * *`  | project team leader | add a new person |                      |  
+| `* * *`  | project team leader | edit a person |  change details of a person                     |  
 | `* * *`  | project team leader | add a teammate to another project | have a teammate in multiple projects |
 | `* * *`  | project team leader | remove a teammate from a project | remove a teammate when he leaves a project   |
-| `* * *`  | project team leader | delete a teammate | remove a teammate who has left my team entirely |
-| `* * *`  | project team leader   | add a project                  |                      |
+| `* * *`  | project team leader | delete a person | remove a person that will never collaborates again |
 | `* *`  | project team leader  | view projects of a teammate      | assess a specific teammate's workload |
 | `* *` | project team leader   | view a dashboard of tasks my project   | see at a glance what needs to be done for a project  |
 | `* * *`| forgetful user | add in teammate's information           | keep track of my teammate's contact information                                                 |
