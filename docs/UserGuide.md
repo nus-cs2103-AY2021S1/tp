@@ -790,7 +790,6 @@ Command | Description | Compatible View
 `listTG` | Lists all tutorial groups in the Tutorial Group view | TUTORIAL GROUP
 `viewStudent INDEX` | Shows the student list of a target tutorial group | TUTORIAL GROUP
 `listStudent` | Lists all students in the Student view | STUDENT
-`viewAttendance INDEX` | Shows the attendance for Target student | STUDENT
 `prevView` | Returns to the previous view | ANY
 
 
