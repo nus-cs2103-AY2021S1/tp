@@ -1,6 +1,7 @@
-# Marcus Duigan Xing Yu - Project Portfolio
-
-___
+---
+layout: page
+title: Marcus Duigan's Project Portfolio Page
+---
 
 ## Project: PropertyFree
 
@@ -91,13 +92,14 @@ ___
 * **Documentation**:
   * User Guide:
     * Added documentation for the bid features
-    * Added table of command summary for easier reference
+    * Added table of command summary for easier reference Pull request: [#283](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/283)
     * Did cosmetic tweaks to existing documentation of all bid features
     * Reviewed and standardized entire user guide. Pull requests: [#283](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/283), [#286](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/286/files)
   * Developer Guide:
     * Added implementation details for the general `add` and `list` feature. Pull request: [#297](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/297)
     * Added implementation details for the specific bid auto sort feature and bids/meetings validity check feature. Pull request: [#297](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/297)
     * Updated Overall Architecture model and description. Pull request: [#297](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/297)
+    * Updated User Stories and Non-Functional requirements. Pull Request: [#344](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/344)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments) outside of practical exams for other teams (pull requests [#245](https://github.com/AY2021S1-CS2103T-W16-4/tp/issues/245),
