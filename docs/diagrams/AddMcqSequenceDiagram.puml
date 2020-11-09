@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "t:AddMultipleChoiceQuestionCommand" as AddMultipleChoiceQuestionCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":QuickCache" as QuickCache MODEL_COLOR
+participant "flashcards:UniqueFlashcardList" as Flashcards MODEL_COLOR
+participant "internalList:ObservableList<Flashcard>" as ObservableList MODEL_COLOR
+end box
+[-> LogicManager : execute("add q/question ans/1 c/first c/second")
+activate LogicManager
+
+ref over LogicManager, AddMultipleChoiceQuestionCommand : Parse AddMultipleChoiceQuestionCommand
+
+LogicManager -> AddMultipleChoiceQuestionCommand : execute()
+activate AddMultipleChoiceQuestionCommand
+
+AddMultipleChoiceQuestionCommand -> Model : addFlashcard()
+activate Model
+
+Model -> QuickCache :addFlashcard()
+activate QuickCache
+
+QuickCache -> Flashcards :addFlashcard()
+activate Flashcards
+
+Flashcards -> ObservableList : add()
+activate ObservableList
+return
+
+return
+
+return
+
+return
+
+return result
+
+AddMultipleChoiceQuestionCommand -[hidden]-> LogicManager
+destroy AddMultipleChoiceQuestionCommand
+
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

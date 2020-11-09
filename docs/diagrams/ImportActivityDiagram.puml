@@ -1,0 +1,9 @@
+@startuml
+start
+:User executes import command;
+:Storage reads the specified import file;
+:Flashcards from the read is added into local QuickCache;
+:Pass the result to the UI;
+:UI displays results to User;
+stop
+@enduml

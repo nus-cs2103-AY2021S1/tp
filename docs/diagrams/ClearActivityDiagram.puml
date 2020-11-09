@@ -1,0 +1,9 @@
+@startuml
+start
+:User executes clear command;
+:Empty instance of QuickCache is created;
+:Existing QuickCache in model is replaced with the new empty instance of QuickCache;
+:Command result is passed to UI;
+:UI displays successful clear message to User;
+stop
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+start
+:User executes export command;
+:Model returns the previously filtered list;
+:New QuickCache is created;
+:Previously filtered list is copied into new QuickCache;
+:Storage exports QuickCache into specified output file;
+:Pass the result to the UI;
+:UI displays results to User;
+stop
+@enduml

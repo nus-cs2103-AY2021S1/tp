@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+
+group Parse Edit Command
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":QuickCacheParser" as QuickCacheParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "t:EditCommand" as EditCommand LOGIC_COLOR
+end box
+
+activate LogicManager
+
+LogicManager -> QuickCacheParser : parseCommand("edit 1 ans/answer")
+activate QuickCacheParser
+
+create EditCommandParser
+QuickCacheParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser -> QuickCacheParser
+deactivate EditCommandParser
+
+QuickCacheParser -> EditCommandParser : parse("1 ans/answer")
+activate EditCommandParser
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+EditCommand --> EditCommandParser : t
+deactivate EditCommand
+
+EditCommandParser -> QuickCacheParser : t
+deactivate EditCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> QuickCacheParser
+destroy EditCommandParser
+
+QuickCacheParser --> LogicManager : t
+deactivate QuickCacheParser
+end
+@enduml

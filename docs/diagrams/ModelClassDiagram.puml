@@ -4,53 +4,57 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Package Model <<Rectangle>> {
+Class ModelManager
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
-Class Model
-Class ModelManager
+Interface ReadOnlyQuickCache <<Interface>>
+Class QuickCache
 Class UserPrefs
-Class ReadOnlyUserPrefs
+Interface ReadOnlyUserPrefs <<Interface>>
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
-}
-
-Package Tag {
-Class Tag
+package Flashcard <<Rectangle>> {
+class MultipleChoiceQuestion
+class OpenEndedQuestion
+interface Question <<Interface>>
+class Answer
+class Choice
+class Tag
+class Difficulty
+class UniqueFlashcardList
+class Flashcard
+class Statistics
 }
 }
 
 Class HiddenOutside #FFFFFF
+
+MultipleChoiceQuestion -[dashed]-|> Question
+OpenEndedQuestion -[dashed]-|> Question
+MultipleChoiceQuestion *--> "1..*" Choice
+MultipleChoiceQuestion *--> "1" Answer
+OpenEndedQuestion *--> "1" Answer
+
+Flashcard *--> "1" Question
+Flashcard *--> "*" Tag
+Flashcard *--> "1" Difficulty
+Flashcard *--> "1" Statistics
+
+
+UniqueFlashcardList o--> "*" Flashcard
+QuickCache *--> "1" UniqueFlashcardList
+QuickCache -[dashed]-|> ReadOnlyQuickCache
+
+
+ModelManager o--> "1" QuickCache
+ModelManager -[dashed]up-|> Model
+ModelManager o-right-> "1" UserPrefs
+ModelManager --> "*" Flashcard : filtered list
+UserPrefs -[dashed]-|> ReadOnlyUserPrefs
+Model -[dashed]-> ObservableList
+
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
-
-ModelManager .up.|> Model
-Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
-UserPrefs .up.|> ReadOnlyUserPrefs
-
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
-
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
-
-ModelManager -->"1" Person : filtered list
+hide empty members
+hide circle
 @enduml

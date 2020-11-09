@@ -1,0 +1,65 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "t:ExportCommand" as ExportCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "lastShownList:ObservableList<Flashcard>" as ObservableList MODEL_COLOR
+participant ":Storage" as Storage MODEL_COLOR
+participant "lastShownQC:QuickCache" as QuickCache MODEL_COLOR
+end box
+[-> LogicManager : execute("export out.json")
+activate LogicManager
+
+ref over LogicManager, ExportCommand : Parse Export Command
+
+LogicManager -> ExportCommand : execute()
+activate ExportCommand
+
+ExportCommand -> Model : getFilteredFlashcardList()
+activate Model
+
+Model -> ObservableList
+activate ObservableList
+
+ObservableList -> Model
+deactivate ObservableList
+
+Model --> ExportCommand : lastShownList
+deactivate Model
+
+create QuickCache
+ExportCommand -> QuickCache
+activate QuickCache
+
+QuickCache -> ExportCommand : lastShownQC
+deactivate QuickCache
+
+ExportCommand -> QuickCache : setFlashcards(lastShownList)
+activate QuickCache
+
+QuickCache -> ExportCommand
+deactivate QuickCache
+
+ExportCommand -> Storage : saveQuickCache(lastShownQC)
+activate Storage
+
+Storage -> ExportCommand
+deactivate Storage
+
+ExportCommand --> LogicManager : result
+deactivate ExportCommand
+ExportCommand -[hidden]-> LogicManager : result
+destroy QuickCache
+destroy Storage
+destroy ExportCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+
+@enduml

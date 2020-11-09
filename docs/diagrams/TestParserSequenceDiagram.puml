@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+
+group Parse Test Command
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":QuickCacheParser" as QuickCacheParser LOGIC_COLOR
+participant ":TestCommandParser" as TestCommandParser LOGIC_COLOR
+participant "t:TestCommand" as TestCommand LOGIC_COLOR
+end box
+
+activate LogicManager
+
+LogicManager -> QuickCacheParser : parseCommand("test 1 ans/Example Answer")
+activate QuickCacheParser
+
+create TestCommandParser
+QuickCacheParser -> TestCommandParser
+activate TestCommandParser
+
+TestCommandParser -> QuickCacheParser
+deactivate TestCommandParser
+
+QuickCacheParser -> TestCommandParser : parse("1 ans/Example Answer")
+activate TestCommandParser
+
+create TestCommand
+TestCommandParser -> TestCommand
+activate TestCommand
+
+TestCommand --> TestCommandParser : t
+deactivate TestCommand
+
+TestCommandParser -> QuickCacheParser : t
+deactivate TestCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TestCommandParser -[hidden]-> QuickCacheParser
+destroy TestCommandParser
+
+QuickCacheParser --> LogicManager : t
+deactivate QuickCacheParser
+end
+@enduml

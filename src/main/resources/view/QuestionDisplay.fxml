@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="placeHolder" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <VBox fx:id="displayBox">
+            <children>
+                <TextArea fx:id="questionDisplay" editable="false" maxHeight="500.0" minHeight="100.0" prefHeight="300.0" styleClass="result-display" wrapText="true">
+                    <padding>
+                        <Insets top="3.0"/>
+                    </padding>
+                </TextArea>
+                <TextArea fx:id="answerDisplay" editable="false" maxHeight="500.0" minHeight="50.0" prefHeight="300.0" styleClass="result-display" wrapText="true">
+                    <padding>
+                        <Insets top="3.0"/>
+                    </padding>
+                </TextArea>
+                <TextArea fx:id="outcomeDisplay" editable="false" maxHeight="-Infinity" prefHeight="20.0" styleClass="result-display" wrapText="true">
+                    <padding>
+                        <Insets top="3.0"/>
+                    </padding>
+                </TextArea>
+            </children>
+            <StackPane.margin>
+                <Insets/>
+            </StackPane.margin>
+        </VBox>
+    </children>
+</StackPane>
