@@ -315,7 +315,8 @@ e.g. `Mon-Lecture` and `Wed-Lecture`.
   
   </div>
   
-  Expected Outcome: <br>
+  Expected Outcome: 
+  
   ![AddZoom](images/Module/AddZoomUG.PNG)
 
 #### Editing a zoom link of a specific lesson in a module: `editzoom`
@@ -357,7 +358,8 @@ Edits a zoom link of a specific lesson in a module.
       
    </div>
 
-   Expected Outcome: <br>
+   Expected Outcome: 
+   
    ![EditZoom](images/Module/EditZoomUG.PNG)
    
 
@@ -387,7 +389,8 @@ Deletes a zoom link for a specific lesson from an existing module.
         
   </div>
 
-  Expected Outcome: <br>
+  Expected Outcome: 
+  
   ![DeleteZoom](images/Module/DeleteZoomUG.PNG)
   
 
@@ -882,7 +885,8 @@ Example:
 `addcontact n/Amy e/Amy@gmail.com te/@Amytele t/friend` adds a new contact with the name `Amy`, email `Amy@gmail.com`, telegram `@Amytele` and a tag `friend`
  
 Expected Outcome:
-![AddContactOutcome](images/Contact/AddContactUG.PNG)
+
+![AddContactOutcome](images/contact/AddContactUG.PNG)
 
 
 #### Locating contacts: `findcontact`
@@ -925,8 +929,9 @@ Expected Outcome:
   
   `findcontact n/amy` finds all contacts with the word `amy` in their name
   
-  Expected Outcome: <br>
-  ![FindContact](images/Contact/FindContactUG.PNG)
+  Expected Outcome: 
+  
+  ![FindContact](images/contact/FindContactUG.PNG)
   
   Other helpful examples:
 
@@ -954,8 +959,9 @@ Expected Outcome:
  
  Example: `listcontact`
  
- Expected Outcome: <br>
- ![ListContact](images/Contact/ListContactUG.PNG)
+ Expected Outcome: 
+ 
+ ![ListContact](images/contact/ListContactUG.PNG)
 
 
 #### Editing a contact: `editcontact`
@@ -981,8 +987,9 @@ Expected Outcome:
  
  `editcontact 2 n/amy lee e/amy-lee@gmail.com t/classmate` edits the second contact in the displayed contact list with the name `amy lee`, email `amy-lee@gmail.com` and tag `classmate`
  
- Expected Outcome: <br>
- ![EditContact](images/Contact/EditContactUG.PNG)
+ Expected Outcome: 
+ 
+ ![EditContact](images/contact/EditContactUG.PNG)
 
 
 
@@ -1002,8 +1009,9 @@ Example:
 
 `deletecontact 2` deletes the second contact in the displayed contact list
 
-Expected Outcome: <br>
-![DeleteContact](images/Contact/DeleteContactUG.PNG)
+Expected Outcome: 
+
+![DeleteContact](images/contact/DeleteContactUG.PNG)
 
 
 #### Sorting contacts: `sortcontact`
@@ -1076,7 +1084,7 @@ Format: `clearcontact`
 Example: `clearcontact`
 
 Expected Outcome: <br>
-![ClearContact](images/Contact/ClearContactUG.PNG)
+![ClearContact](images/contact/ClearContactUG.PNG)
 
 
 ### Scheduler Features
