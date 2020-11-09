@@ -82,7 +82,6 @@ public class EditTaskCommand extends Command {
             project.addTask(taskToEdit);
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-
         if (editedTask.hasAnyAssignee()) {
             editedTask.getAssignees().forEach(assignee -> project.getParticipation(assignee).deleteTask(taskToEdit));
             editedTask.getAssignees().forEach(assignee -> project.getParticipation(assignee).addTask(editedTask));
