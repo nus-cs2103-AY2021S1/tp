@@ -1,0 +1,13 @@
+@startuml
+start
+
+:User executes delete by index command;
+:QuickCache parses the user input;
+if () then ([input is valid])
+    :Delete the flashcard at the specified index;
+else ([input is invalid])
+    :Throw ParseException;
+endif
+
+stop
+@enduml
