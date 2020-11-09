@@ -21,6 +21,9 @@ public class ServiceManager implements ReadOnlyServiceManager {
     private final UniqueServiceList services;
     private final Logger logger;
 
+    /**
+     * Initializes a new ServiceManager with an empty list of services.
+     */
     public ServiceManager() {
         this.logger = Logger.getLogger("Service Manager");
         this.services = new UniqueServiceList();
