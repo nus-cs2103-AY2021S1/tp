@@ -547,7 +547,7 @@ Step by step illustration for deleting a remark:
 1. Suppose you want to delete the remark data for Bernice, simply enter `remark 2` in the command box and press <kbd>Enter</kbd>.<br>
 ![Command for 'Delete remark'](images/DeleteRemark.png)
 
-<div style="page-break-after: always;"></div>
+  <div style="page-break-after: always;"></div>
 
 {:start="2"}
 1. Bernice’s remark is now deleted and the particulars of the deleted remark is displayed in the result display box.<br>
