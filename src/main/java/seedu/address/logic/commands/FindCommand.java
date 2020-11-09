@@ -34,7 +34,15 @@ public class FindCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE_NUMBER [MORE_PHONE_NUMBERS]]\n"
             + "Example: " + COMMAND_WORD + " n/alex p/99998888 i/S1234567I";
 
-    public static final String MESSAGE_NO_FIND = "At least one field to edit must be provided";
+    public static final String MESSAGE_NO_FIND = "At least one field to edit must be provided. Use "
+            + PREFIX_NAME + " to search by name, "
+            + PREFIX_NRIC + " to search by Nric or "
+            + PREFIX_PHONE + " to search by phone number.";
+    public static final String MESSAGE_NO_NRIC = "At least one Nric should be provided to find patients by Nric";
+    public static final String MESSAGE_NO_PHONE =
+            "At least one phone number should be provided to find patients by phone number";
+    public static final String MESSAGE_NO_NAME = "At least one name keyword should be provided to find patients whose "
+            + "names contain any of the provided keywords";
     private final FindPatientDescriptor descriptor;
 
     public FindCommand(FindPatientDescriptor descriptor) {

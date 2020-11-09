@@ -36,15 +36,27 @@ public class FindCommandParser implements Parser<FindCommand> {
         FindPatientDescriptor findPatientDescriptor = new FindPatientDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            String[] nameKeywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
+            String nameArguments = argMultimap.getValue(PREFIX_NAME).get();
+            if (nameArguments.isBlank()) {
+                throw new ParseException(FindCommand.MESSAGE_NO_NAME);
+            }
+            String[] nameKeywords = nameArguments.split("\\s+");
             findPatientDescriptor.setNamePredicate(nameKeywords);
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            String[] phones = argMultimap.getValue(PREFIX_PHONE).get().split("\\s+");
+            String phoneArguments = argMultimap.getValue(PREFIX_PHONE).get();
+            if (phoneArguments.isBlank()) {
+                throw new ParseException(FindCommand.MESSAGE_NO_PHONE);
+            }
+            String[] phones = phoneArguments.split("\\s+");
             findPatientDescriptor.setPhonePredicate(phones);
         }
         if (argMultimap.getValue(PREFIX_NRIC).isPresent()) {
-            String[] nrics = argMultimap.getValue(PREFIX_NRIC).get().split("\\s+");
+            String nricArguments = argMultimap.getValue(PREFIX_NRIC).get();
+            if (nricArguments.isBlank()) {
+                throw new ParseException(FindCommand.MESSAGE_NO_NRIC);
+            }
+            String[] nrics = nricArguments.split("\\s+");
             findPatientDescriptor.setNricPredicate(nrics);
         }
 
