@@ -16,7 +16,6 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 * **Other enhancements implemented**:
     * **Created `sort` command** to allow sorting of the student list by name, class time or year of study. ([\#112](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/112))
         * Justification: This feature is important as it allows private tutors to navigate through the list of students better depending on the needs of the tutor.
-        * Highlights: This involved substantial reading on the documentation of how
     * **Enhanced `find` command** to allow searching by multiple criteria and **added support** for searching by name, school and year of study. ([\#60](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/60))
 * **Code contribution**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=csiongn)
 * **Other contributions**:
