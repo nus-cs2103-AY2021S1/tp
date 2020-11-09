@@ -12,6 +12,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 
+/**
+ * Encapsulates methods and information to un-archive a module identified using it's displayed index
+ * from the archived module list.
+ */
 public class UnarchiveModuleCommand extends Command {
     public static final String COMMAND_WORD = "unarchivemodule";
 
@@ -27,6 +31,13 @@ public class UnarchiveModuleCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates and initialises a new UnarchiveModuleCommand for the un-archiving of a module in the archived
+     * module list.
+     *
+     * @param targetIndex Index object encapsulating the index of the target module in the filtered displayed
+     *                    module list.
+     */
     public UnarchiveModuleCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

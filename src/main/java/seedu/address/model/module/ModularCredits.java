@@ -3,6 +3,9 @@ package seedu.address.model.module;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Module's modular credits value.
+ */
 public class ModularCredits {
     public static final String MESSAGE_CONSTRAINTS =
             "Modular Credits should be in the form of an number and cannot be less than zero.";
@@ -11,7 +14,7 @@ public class ModularCredits {
     /**
      * Constructs a {@code ModularCredits}.
      *
-     * @param modularCredits A number in string form
+     * @param modularCredits A valid modular credits value.
      */
     public ModularCredits(double modularCredits) {
         requireNonNull(modularCredits);

@@ -14,7 +14,8 @@ import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 
 /**
- * Determines CAP needed for ongoing modules for user to reach target CAP
+ * Encapsulates methods and information to determines CAP details needed for ongoing modules for user to
+ * reach target CAP.
  */
 public class TargetCapCalculatorCommand extends Command {
     public static final String COMMAND_WORD = "targetcap";
@@ -32,7 +33,9 @@ public class TargetCapCalculatorCommand extends Command {
     private final double targetCap;
 
     /**
-     * Creates an AddCommand to add the specified {@code Module}
+     * Creates and initialises a new TargetCapCalculatorCommand for calculating target CAP details.
+     *
+     * @param targetCap Target cap used to calculate details for user.
      */
     public TargetCapCalculatorCommand(double targetCap) {
         requireNonNull(targetCap);
@@ -59,8 +62,8 @@ public class TargetCapCalculatorCommand extends Command {
 
     /**
      * Calculates CAP needed for current ongoing modules to reach target CAP.
+     *
      * @param modules List of modules
-     * @return
      */
     public double calculateCapNeeded(List<Module> modules) throws CapCalculationException {
         double currentCap;

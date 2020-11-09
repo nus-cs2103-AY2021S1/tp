@@ -259,8 +259,6 @@ public class ModelManager implements Model {
         if (getModuleListDisplay()) {
             this.moduleListDisplay.addModule(module);
         }
-        //updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
-        //updateFilteredArchivedModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     @Override
@@ -282,10 +280,6 @@ public class ModelManager implements Model {
     public void unarchiveModule(Module target) {
         deleteArchivedModule(target);
         moduleList.addModule(target);
-        /*if (!getModuleListDisplay()) {
-            moduleListDisplay.addModule(module);
-        }
-        addModule(target);*/
     }
     @Override
     public void displayArchivedModules() {

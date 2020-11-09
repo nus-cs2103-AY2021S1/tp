@@ -14,6 +14,9 @@ import seedu.address.logic.commands.modulelistcommands.modulelistexceptions.CapC
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 
+/**
+ * Encapsulates methods and information to calculate CAP.
+ */
 public class CalculateCapCommand extends Command {
     public static final String COMMAND_WORD = "calculatecap";
     public static final String MESSAGE_CONSTRAINTS = "You do not have any completed modules for CAP to be calculated";
@@ -21,7 +24,7 @@ public class CalculateCapCommand extends Command {
             + "Example: " + COMMAND_WORD;
     private double cap;
     /**
-     * Creates and initialises a new CalculateCapCommand object.
+     * Creates and initialises a new CalculateCapCommand for calculating CAP.
      */
     public CalculateCapCommand() {
     }
@@ -53,9 +56,9 @@ public class CalculateCapCommand extends Command {
         String message = "Your CAP for completed mods has been successfully calculated : " + numberFormat.format(cap);
         return message;
     }
-
     /**
      * Calculates CAP score with a given list of modules.
+     *
      * @param modules List of modules
      */
     public static double calculateCap(List<Module> modules) throws CapCalculationException {

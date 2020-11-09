@@ -17,6 +17,7 @@ import java.util.HashMap;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.contactlistcommands.EditContactCommand.EditContactDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
 import seedu.address.logic.commands.todolistcommands.EditTaskDescriptor;
 import seedu.address.model.Model;
@@ -26,7 +27,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.EventNameContainsKeyWordsPredicate;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleLesson;
-import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
+import seedu.address.model.module.NameContainsKeywordsPredicate;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
@@ -162,8 +163,8 @@ public class CommandTestUtil {
     public static final String INVALID_EVENT_DATE = "123-2-2020 1200";
     public static final EditContactDescriptor DESC_AMY;
     public static final EditContactDescriptor DESC_BOB;
-    public static final EditModuleDescriptor DESC_CS2030;
-    public static final EditModuleDescriptor DESC_CS2103T;
+    public static final EditModuleCommand.EditModuleDescriptor DESC_CS2030;
+    public static final EditModuleCommand.EditModuleDescriptor DESC_CS2103T;
 
     // ================================== GradeTrackerTest ===================================== //
     public static final String VALID_ASSIGNMENT_NAME_1 = "Quiz 1";
@@ -256,7 +257,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredModuleList().size());
         Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
         final String[] splitName = module.getName().fullName.split("\\s+");
-        model.updateFilteredModuleList(new ModuleNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredModuleList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
         assertEquals(1, model.getFilteredModuleList().size());
     }
     /**
@@ -268,7 +269,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredModuleList().size());
         Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
         final String[] splitName = module.getName().fullName.split("\\s+");
-        model.updateFilteredModuleList(new ModuleNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredModuleList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
         assertEquals(1, model.getFilteredModuleList().size());
     }
 
