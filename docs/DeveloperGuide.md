@@ -1023,11 +1023,11 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
 1. Adding a Client while all Clients are being shown
 
    1. Test case: `cadd n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/injured-thigh t/allergy-dairy` <br>
-      Expected: First contact is added to the list. <br>
-      Details of the added contact shown in the status message.
+      Expected: Client is added to the list. <br>
+      Details of the added Client shown in the status message.
     
    1. Other incorrect Add Client commands to try: <br>
-       `cadd n/John Doe p/98765432 a/311, Clementi Ave 2, #02-25 t/injured-thigh` (exercise type not added), <br>
+       `cadd n/John Doe p/98765432 a/311, Clementi Ave 2, #02-25 t/injured-thigh` (email not added), <br>
        `cadd n/John Doe p/98765432 e/example.com a/311, Clementi Ave 2, #02-25 t/injured-thigh t/allergy-dairy` (invalid email address) <br>
       Expected: Client is not added. Error details are shown in the status message.
 
@@ -1036,20 +1036,21 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
 1. Editing a Client while all Clients are being shown
 
    1. Test case: `cedit 1 p/91234567` <br>
-      Expected: First contact is added to the list. <br>
-      Details of the added contact shown in the status message.
+      Expected: First Client's details has been edited. <br>
+      Details of the edited Client shown is in the status message.
 
    1. Other incorrect Add Client commands to try: 
        `cedit 0 p/91234567` (index out of bound) <br>
-      Expected: Client is not edited. Error details are shown in the status message.
+      Expected: Client details is not edited. <br>
+      Error details are shown in the status message.
       
 ### 6.4 Deleting a Client
 
 1. Deleting a Client while all Clients are being shown
 
    1. Test case: `cdel 1` <br>
-      Expected: First contact is removed from the list. <br>
-      Details of the added contact shown in the status message.
+      Expected: First Client is being deleted from the list. <br>
+      Details of the deleted Client is shown in the status message.
 
 ### 6.5 Adding a Session
 
