@@ -791,16 +791,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### System: Teammates Tracking System (TMTS)
 
-**Use Case: UC3 - Add A Teammate**
+**Use Case: UC3 - Add A Person**
 
 **Actor:** User
 
 **MSS:**
 
-1. User creates a new teammate's profile.
-2. TMTS asks for the details of the teammates such as `personName`, `phone`, `email`, and `gitUserName`.
+1. User creates a new person's profile.
+2. TMTS asks for the details of the person such as `personName`, `phone`, `email`, and `gitUserName`.
 3. User keys in the details.
-4. TMTS stores the teammate's profile into the data file.
+4. TMTS stores the person's profile into the data file.
 
    Use case ends.
 
@@ -811,15 +811,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    
    Use case resumes at 3.
 
-**Use Case: UC4 - Edit An Existing Teammates**
+**Use Case: UC4 - Edit An Existing Person**
 
 **Actor:** User
 
 **MSS:**
 
-1. User chooses to edit a teammate's profile.
-2. PTS asks for the `gitUserName` of the teammate whose profile is to be edited.
-3. User keys in the `gitUserName` of the teammate.
+1. User chooses to edit a person's profile.
+2. PTS asks for the `gitUserName` of the person whose profile is to be edited.
+3. User keys in the `gitUserName` of the person.
 4. Same as <u>UC3</u> 2-4.
 
    Use case ends.
