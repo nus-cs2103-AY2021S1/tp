@@ -911,7 +911,7 @@ deleteses INDEX
 
 **:green_book: Examples**:
 * `deleteses 1` followed by `no` results in nothing changed.
-* `deleteses 2` followed by `yes` deletes the 2nd session in the session list.
+* `deleteses 5` followed by `yes` deletes the 5th session in the session list. (**Figure 5.4.2**)
 
 </div>
 
