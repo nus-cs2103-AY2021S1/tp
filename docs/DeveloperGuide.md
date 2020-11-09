@@ -435,7 +435,7 @@ Step 3. The user executes `addi -n Bob’s 6th regret -q 8` (a `AddItemCommand`)
 The `addi` command also calls `Model#commitInventory()`, causing another modified inventory state to be
 saved into the `inventoryStateList`.
 
-<img src="images/UndoRedoState2.png" alt="UndoRedoState2" height="300">
+<img src="images/UndoRedoState2.png" alt="UndoRedoState2" height="200">
 
 **Note:** If a command fails its execution, it will not call `Model#commitInventory()`, so the inventory
 state will not be saved into the `inventoryStateList`.
@@ -444,7 +444,7 @@ Step 4. The user now decides that adding the item was a mistake, and decides to 
 `undo` command. The `undo` command will call `Model#undoInventory()`, which will shift the `currentStatePointer`
 once to the left, pointing it to the previous inventory state, and restores the inventory to that state.
 
-<img src="images/UndoRedoState3.png" alt="UndoRedoState3" height="300">
+<img src="images/UndoRedoState3.png" alt="UndoRedoState3" height="200">
 
 **Note:** If the `currentStatePointer` is at index 0, pointing to the initial `Inventory` state, then there are 
 no previous `Inventory` states to restore. The `undo` command checks if this is the case. If so, it will return 
