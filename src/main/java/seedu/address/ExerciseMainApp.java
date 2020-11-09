@@ -94,9 +94,9 @@ public class ExerciseMainApp extends Application {
             exerciseBookOptional = storage.readExerciseBook();
             if (!exerciseBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ExerciseBook");
-                initialData = exerciseBookOptional.get();
-            } else {
                 initialData = SampleDataUtil.getSampleExerciseBook();
+            } else {
+                initialData = exerciseBookOptional.get();
             }
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ExerciseBook");
