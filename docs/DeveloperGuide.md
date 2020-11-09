@@ -1015,7 +1015,233 @@ testers are expected to do more *exploratory* testing.
     1. Run `java -jar PropertyFree.jar`.  
 
        Expected: Shows the GUI with data loaded from the json files. 
+
+### Testing Bidder and Seller Features
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** as the implementation of Bidder and Seller are similar, do note that the the manual testing section for `Bidder` and `Seller` can be tested similarly.
+
+- For example: in the following segment, `Adding a bidder while all bidders are being shown.`, the command which is given for bidder
+`add-b` can be changed to `add-s`. The output will be similar to that as mentioned but in the context of `Seller` instead.
+
+</div>
+
+#### Adding a bidder while all bidders are being shown.
+
+1. Prerequisite: No other bidders have the exact **same name** or **same phone number**.
+
+2. Restriction: Name cannot exceed 26 characters with spaces included and the phone number cannot exceed 10 digits (inclusive).
+
+3. Test case: `add-b n/Kor Ming Soon p/8222222`
+
+    Expected: A bidder with the name: `Kor Ming Soon`, phone: `82222222` will be created and assigned a unique `BidderId`.
+    A visual `Tag` with the role `bidder` is also assigned.
+    ```
+     New bidder added:   
+     Name: Kor Ming Soon
+     Phone number: 82222716
+     Id: B1
+     Tag: bidder
+    ```
+#### Edit a bidder while all bidders are being shown.
+
+1. Prerequisite: A bidder exists inside the bidder list with the index `3`, this will also imply that there are bidders indexed
+at `1` and `2` as the indexes are sequentially ordered.
+
+2. Restriction: No other bidders have the exact **same name** or **same phone number**.
+
+3. Test case: `edit-b 3 n/Nigel Ng Yong Sheng` 
+
+   Expected: The bidder which belongs at index 3, will have his or her name edited to the input which is `Nigel Ng Yong Sheng`.
+   Other details of the bidder will remain the same (i.e phone number, tag, and Bidder Id).
+    ```
+    Edited Bidder:
+    Name: Nigel Ng Yong Sheng
+    Phone number: 82222716
+    Id: B3
+    Tag: bidder
+    ```
+
+4. Test case: `edit-b 2 p/1784695`
     
+    Expected: The bidder which belongs at index 2, will have his or her phone number edited to the input which is `1784695`.
+   Other details of the bidder will remain the same (i.e name, tag, and Bidder Id).
+   ```
+   Edited Bidder:
+   Name: Kor Ming Soon
+   Phone number: 1784695
+   Id: B1
+   Tag: bidder
+   ```
+
+#### Delete a bidder while all bidders are being shown.
+
+Note that bidder and seller delete functions are slightly different, and both will be elaborated.
+
+1. Prerequisite: A bidder with exists inside the bidder list with the index `3`, this will also imply that there are bidders indexed
+at `1` and `2` as the indexes are sequentially ordered.
+
+2. Test case: `delete-b 3` 
+
+   Expected: The bidder which belongs at index `3`, will be deleted. The result display would output the information of the bidder
+   who was deleted (i.e name, phone number, tag and id). In addition, all `Meeting` and `Bid` which contain the `Id` of the bidder who
+   was deleted will be deleted as well. 
+   ```
+   Deleted Bidder:    
+   Name: Nigel Ng Yong Sheng
+   Phone number: 82222716
+   Id: B3
+   Tag: bidder
+   All related bids and meetings have been deleted.
+   ```
+
+#### Delete a seller while all sellers are being shown.
+
+Note that bidder and seller delete functions are slightly different, and both will be elaborated.
+
+1. Prerequisite: A seller with exists inside the seller list with the index `3`, this will also imply that there are sellers indexed
+at `1` and `2` as the indexes are sequentially ordered.
+
+2. Test case: `delete-s 3` 
+
+   Expected: The seller which belongs at index `3`, will be deleted. The result display would output the information of the seller
+   who was deleted (i.e name, phone number, tag and id). In addition, all `Property` which contains the `Id` of the seller who
+   was deleted will be deleted as well. Property in turn will delete all `Bid` and `Meeting` relating to the Property's `Id`. 
+   ```
+   Deleted Seller:    
+   Name: Kor Ming Soon
+   Phone number: 1784695
+   Id: B2
+   Tag: bidder
+   All related bids and meetings have been deleted.
+   ```
+   
+#### Find a bidder while all bidders are being shown.
+
+1. Prerequisite: A bidder with a name containing `Kor` is inside the bidder list.
+
+2. Test case: `find-b Kor`
+
+    Expected: The list will be filtered accordingly to the user input, which in this case is `Kor`, so all bidders
+    whose name contain `Kor` will be shown. 
+    ```
+   1 bidder(s) listed!
+    ```
+    Note that the names which are filtered contain the name `Kor` in full (i.e other names such as
+    `Kore` or `exampleKor` will not be filtered.)
+    
+#### List a bidder while only some bidders are being shown.
+
+1. Prerequisite: The bidder list is currently filtered (i.e a `find` command has been executed).
+
+2. Test case: `list-b`
+
+    Expected: The list will show in full all the bidders who are existing in the list.  
+    ```
+    Displaying full bidder list.
+    ```
+
+### Testing Property Features
+
+#### Adding a property while all property are being shown.
+
+1. Prerequisite: Seller id must exist inside the seller list.
+
+2. Restrictions:
+    -  Price must be greater than 0 and less or equals to 1 trillion.
+    -  Price will be truncated to 2 decimal places.
+    -  PropertyName, Address and PropertyType have a maximum of 100 characters
+
+3. Test case: `add-p n/Sunrise s/S1 ap/100 t/Landed a/99 Sunrise Street r/No`
+
+    Expected: A property with the name: `Sunrise`, seller id: `S1`, asking price: `$100.00`, property type: `Landed`,
+    address: `99 Sunrise Street` (note that the is_Rental will only be reflected if the `r/` input is `yes`).
+    ```
+    New property added: Sunrise
+    Property Id: P1
+    Address: 99 Sunrise Street
+    Property type: Landed
+    Asking price: $100.00
+    Seller Id: S1
+    ```
+
+#### Listing a property while some property are being shown.
+
+1. Prerequisite: The property list is currently filtered (i.e a `find` command has been executed). 
+
+2. Test case: `list-p`
+
+    Expected: The list will show in full all the properties that are existing in the list.
+    ```
+    Displaying full property list.
+    ```
+   
+#### Editing a property while all property are being shown.
+
+1. Prerequisite: 
+    - A property exists inside the property list with the index `3`, this will also imply that there are property indexed
+   at `1` and `2` as the indexes are sequentially ordered.
+   - No other properties in the list contain the address "23 Cove Street".
+
+2. Restrictions: 
+    - Address is unique and the user input (if editing address) must not match any other properties' address in the list.
+
+3. Test case: `edit-p 1 n/Cove Residences a/23 Cove Street`
+
+    Expected: A property indexed at 1 will be edited with the new information
+     name: `Cove Residences`, address: `23 Cove Street`. The other fields will remain unedited.
+    ```
+    Edited Property: Cove Residences
+    Property id: P4
+    Address: 23 Cove Street
+    Property type: HDB
+    Asking price: $99.00
+    Seller id: S20
+    ```
+
+#### Deleting a property while all property are being shown.
+
+1. Prerequisite: property exists inside the property list with the index `3`, this will also imply that there are property indexed
+   at `1` and `2` as the indexes are sequentially ordered.
+
+2. Test case: `delete-p 3`
+
+    Expected: A property indexed at 3 will be deleted. The result display would output the information of the property
+    that was deleted (i.e name, seller id etc). In addition, all `Bid` and `Meeting` relating to the deleted property's `Id` would be
+    deleted as well.
+    ```
+    Deleted Property: Sunrise Avenue
+    Property id: P23
+    Address: Block 123
+    Property type: HDB
+    Asking price: $100.00
+    Seller id: S2
+    All related bids and 
+    meetings have been 
+    deleted.
+    ```
+   
+#### Finding a property while all property are being shown.
+
+1. Prerequisite: 
+    - A property exists inside the property list with the index `3`, this will also imply that there are property indexed
+   at `1` and `2` as the indexes are sequentially ordered.
+
+2. Restrictions: 
+    - The search is case insensitive, all attributes e.g cove will match Cove
+    - Only full words will be match e.g sun will not match sunrise
+    - Properties matching at least one keyword will be considered a match e.g sunrise view will match sunrise avenue when
+    `sun` is input
+
+3. Test case: `find-p n/Cove Sunrise ap/<= 100 r/no`
+
+    Expected: Displays all properties whose names contains either Cove or Sunrise, 
+    asking price is less than or equals to 100, and is not a rental property.
+   ```
+   2 properties listed!
+   ```
+   
+
 ### Testing Bids Features  
 
 For all test cases for bid features, the GUI will automatically switch to the bid tab.  
@@ -1068,7 +1294,7 @@ For all test cases for bid features, the GUI will automatically switch to the bi
 
 2. Restrictions:  
     - At least one optional field must be provided.  
-    - All restrictions and prerequisites from ![Adding a Bid](#adding-a-bid) hold.  
+    - All restrictions and prerequisites from [Adding a Bid](#adding-a-bid) hold.  
 
 3. Test case: `edit-bid 1 b/P99 c/B12 m/1.20`  
 
@@ -1111,10 +1337,11 @@ For all test cases for meeting features, the GUI will automatically switch to th
     - Date is of the format `DD-MM-YYYY` and cannot be a past date.  
     - Time is of the format `HH-MM`. The timings can clash each other and the hours and minutes will overflow (eg `24:30` is same as `00:30`).  
 
-3. Test case: `add-m q/v b/B1 p/P1 v/2 ALBERT PARK d/11-12-2021 s/12:30 e/13:00`  
+3. Test case: add-m q/v b/B1 p/P1 v/2 ALBERT PARK d/11-12-2021 s/12:30 e/13:00  
 
    Expected: Adds the meeting to the meeting list, with the following message displayed:  
-   ```
+   
+  ```
    New meeting added: 
    Meeting Type: Viewing
    Bidder Id: B1
@@ -1123,15 +1350,16 @@ For all test cases for meeting features, the GUI will automatically switch to th
    Date: 11-12-2021
    Start Time: 12:30
    End Time: 13:00
-   ```  
-   
+  ```
+  
 #### Deleting an Existing Meeting  
 
 1. Prerequisite: The meeting to be deleted must exist in the meeting list.  
 
-2. Test case: `delete-m 3`.  
+2. Test case: delete-m 3.  
 
    Expected: The meeting at index 3 will be deleted, with the following message displayed:  
+   
    ```
    Deleted Meeting: 
    Meeting Type: Viewing
@@ -1141,8 +1369,9 @@ For all test cases for meeting features, the GUI will automatically switch to th
    Date: 11-12-2021
    Start Time: 12:30
    End Time: 13:00
-   ```  
-   The exact information depends on the meeting being deleted.  
+   ```
+   The exact information depends on the meeting being deleted.
+
    
 #### View the List of All Meetings  
 
@@ -1159,7 +1388,7 @@ For all test cases for meeting features, the GUI will automatically switch to th
 
 2. Restrictions:  
     - At least one optional field is required.  
-    - The prerequisites and restrictions of ![Adding a Meeting](#add-a-meeting) hold.  
+    - The prerequisites and restrictions of [Adding a Meeting](#add-a-meeting) hold.  
 
 3. Test case: `edit-m 2 v/eunos`.  
 
@@ -1240,3 +1469,4 @@ For all test cases for meeting features, the GUI will automatically switch to th
    ```  
    
    Expected: Displays the previous month in `Calendar`.  
+   

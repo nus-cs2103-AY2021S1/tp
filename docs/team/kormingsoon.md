@@ -1,32 +1,32 @@
----
-layout: page
-title: Kor Ming Soon's Project Portfolio Page
-___
 ## Project: PropertyFree
 
 Given below are my contributions to the project.
 
 Overview:
 
-This document is a project portfolio that documents all contributions made to PropertyFree's development by Ming Soon.
-___
+This document is a project portfolio that documents all contributions made to PropertyFree's development by Dianne.  
+
+___  
 
 ## Description of Project:
 
 PropertyFree is a real estate management application meant for property agents to organize their properties and meetings more efficiently.
 Other application can keep track of meetings and schedules but there are relatively few applications that help track properties 
-and associate them with meetings with clients.
+and associate them with meetings with clients.  
 
 For our project we hope to make it more streamlined for agents to keep track of their property and have clear information about those properties
-and there clients.
+and their clients.  
+
 ___
 
-##Developers of PropertyFree:
+## Developers of PropertyFree:
 
 PropertyFree is developed by a group of second year Computer Science Students from the School of Computing, National
 University if Singapore. This was developed for the team projects assignment for the module CS2103 and is a
-brown-field project adapting from existing projects.
+brown-field project adapting from existing projects.  
+
 ___
+
 
 ## My Contributions to PropertyFree
 
@@ -90,6 +90,12 @@ Below are the details of my contribution:
   such as after executing `Find`.
   
 #### User Interface Functions
+
+The `CalendarView` (both `.java` and `.fxml`) was referenced from:
+- [Senior Team Project](https://github.com/SirGoose3432/javafx-calendar/blob/master/src/FullCalendarView.java) 
+- [External Github Repo](https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java)
+
+Major edits mostly done in `.fxml` to fit the look to PropertyFree.
 
 * **New Feature**: Implemented the `AutoTab` switching function for PropertyFree
   * **What it does**: Changes the tab from entity to entity depending on the command executed by the user.
