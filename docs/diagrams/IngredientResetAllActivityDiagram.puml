@@ -5,7 +5,7 @@ start
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([not all ingredients' levels are already at zero])
+if () then ([not all ingredients have zero ingredient's levels])
     :Replace the ingredients that have
     non-zero ingredient's levels by new
     ingredient objects that have the
@@ -13,10 +13,11 @@ if () then ([not all ingredients' levels are already at zero])
     ingredient's levels;
     :Show a success message to the user;
 else ([else])
-    :Show a message to the user
-    stating that all ingredients'
-    levels are already at zero
-    before the command is entered;
+    :Show an error message to the
+    user stating that all ingredients
+    already have zero ingredient's
+    levels before the execution of the
+    command;
 endif
 stop
 @enduml

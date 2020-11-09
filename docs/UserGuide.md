@@ -43,23 +43,13 @@ You can start from the [Quick Start](#quick-start) section to learn how to obtai
 
 1. Copy the file to the folder you want to use as the _home folder_ for your tCheck.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note
+1. Double-click the file to start the app. The graphic user interface (GUI) similar to the figure below should appear in a few seconds. Note
 how the figure below shows some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press "Enter" on your keyboard to execute it. e.g. typing **`help`** and pressing "Enter" will open the help window.<br>
-   Some example commands you can try:
 
-   * **`c-add`**`n/John Doe p/98765432 e/81234567 a/Blk 123 Brooklin Street t/parttime` : Adds an employee
-    named `John Doe` to tCheck.
-
-   * **`c-delete`**`3` : Deletes the 3rd employee shown in the current list of employees.
-
-   * **`c-clear`** : Deletes all employees.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## 3. About this document <a name="about"></a>
@@ -311,7 +301,7 @@ Format: `s-rank`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about ingredients:**<br>
+**:information_source: Notes about ingredients<a name="commands-ingredients-tracking-notes-about-ingredients"></a>:**<br>
 
 * Unit of measurement for ingredients:<br>
    * Unit for solid items / jelly (Pearl, Boba and Brown Sugar) : **KG**<br>
@@ -426,7 +416,7 @@ Format: `i-list`
 
 Example:
 
-Let's say you want to list all the ingredients. 
+Let's say you want to see the list of all the ingredients.
 You can follow these instructions:
 
 1. Type `i-list` into the _Command Box_.
@@ -442,7 +432,7 @@ Outcome:
 Figure x. A screenshot showing the outcome of an `i-list` command
 
 #### 2.5 Finding ingredients by keywords : `i-find`
-Finds all ingredients that contain the KEYWORD(s) in their names.
+Finds all ingredients that contain one or more keywords in their names.
 
 Format: `i-find KEYWORD [MORE_KEYWORDS]`
 
@@ -467,16 +457,22 @@ Outcome:
 2. The Ingredient Tracker inside the _Main View_ will show the ingredient `Black Tea`, the ingredient `Green Tea` and 
 the ingredient `Brown Sugar`.
 
-![IngredientFindCommandScreenshot](images/IngredientFindCommandScreenshot.png)
+Before executing:<br>
+![BeforeIngredientFindCommandScreenshot](images/BeforeIngredientFindCommandCommand.png)
+
+
+After executing:<br>
+![AfterIngredientFindCommandScreenshot](images/AfterIngredientFindCommandScreenshot.png)
 
 Figure x. A screenshot showing the outcome of an `i-find` command
 
 #### 2.6 Resetting all ingredients' levels to zero : `i-reset-all`
-Resets the ingredients' levels of all ingredient types to zero.
+Resets the ingredient's levels of all ingredient types to zero.
 
 Format: `i-reset-all`
 
-Let's say you want to reset all ingredients' levels to zero, and the ingredient's levels are not currently all at zero.
+Let's say you want to reset all ingredients' levels to zero when one or more ingredients have 
+non-zero ingredient's levels.
 You can follow these instructions:
 
 1. Type ` i-reset-all` into the _Command Box_.
@@ -485,7 +481,8 @@ You can follow these instructions:
 Outcome:
 
 1. The _Result Display_ will show a success message.
-2. You can now see that tCheck has updated all the ingredients' levels to zero in the Ingredient Tracker inside the _Main View_.
+2. You can now see that all ingredients' levels are zero in the Ingredient Tracker inside 
+the _Main View_.
 
 ![IngredientResetAllCommandScreenshot](images/IngredientResetAllCommandScreenshot.png)
 
@@ -500,13 +497,13 @@ Format: `i-restock`
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**<br>
-Refer to the "Notes about ingredients" below the [Commands - Ingredients Tracking](#commands-ingredients-tracking)
+Refer to the [Notes about ingredients](#commands-ingredients-tracking-notes-about-ingredients)
 for details on the pre-determined default levels of different types of ingredients.
 </div>
 
 Example: 
 
-Let's say you want to find out which ingredients you need to restock.
+Let's say you want to see a list of ingredients that you need to restock.
 You can follow these instructions:
 
 1. Type ` i-restock` into the _Command Box_.
@@ -1088,7 +1085,7 @@ Action | Format, Examples
 **Set all ingredients to default**  | `i-set-default` <br> e.g., `i-set-default`
 **List**| `i-list`
 **Find**| `i-find KEYWORD [MORE_KEYWORDS]`  <br> e.g., `i-find milk sugar`
-**Reset all ingredients to zero**| `i-reset-all`
+**Reset all ingredients' levels to zero**| `i-reset-all`
 **View all ingredients that the user should restock**| `i-restock`
 
 ### Manpower Management
