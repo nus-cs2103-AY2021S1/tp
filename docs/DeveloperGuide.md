@@ -1038,10 +1038,10 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
    1. Prerequisites: There should be at least 1 Client in the Client List.
     
    1. Test case: `cedit 1 p/91234567` <br>
-      Expected: First Client's details has been edited. <br>
+      Expected: First Client's detail (phone number) is edited. <br>
       Details of the edited Client shown is in the status message.
 
-   1. Other incorrect Add Client commands to try: 
+   1. Other incorrect Edit Client commands to try: 
        `cedit 0 p/91234567` (index out of bound) <br>
       Expected: Client details is not edited. <br>
       Error details are shown in the status message.
@@ -1143,7 +1143,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
       does not exist inside the `clients` list. <br>
       Expected: FitEgo notices an invalid storage format and start with an empty addressbook.
       
-   2. Test case: Open `data/addressbook.json` and change one of the Schedule's `startTime` or `endTime` so that the
+   2. Test case: Open `data/addressbook.json` and change one of the Schedule's `startTime` or `endTime` so that the  
       resulting interval does not exist inside the Session List. <br>
       Expected: Similar to previous.
 
