@@ -1,4 +1,3 @@
-# Munnamgi Harsha Vardhan Reddy - Project Portfolio
 ___
 ## Project: PropertyFree
 
@@ -7,6 +6,7 @@ Given below are my contributions to the project.
 Overview:
 
 This document is a project portfolio that documents all contributions made to PropertyFree's development by Harsha.
+
 ___
 
 
