@@ -20,7 +20,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added features that allows the user to calculate relevant CAP details.
   * What it does: Calculates the user's CAP details based on completed modules that the user has stored in the application.
   * Justification: This feature fits the purpose of the application very well because the application is academic focused. The user most likely will want to be able to calculate his/her academic details.
-  * Highlights: This enhancement is much more useful when used in conjunction with other commands. For example, the `addcmodule` command was designed to enhance this feature.
+  * Highlights: This enhancement is much more useful when used in conjunction with other <div style="page-break-after: always;"></div> commands. For example, the `addcmodule` command was designed to enhance this feature.
 
 * **New Feature**: Added command that allows the user to archive/unarchive his/her modules.
   * What it does: CAP5Buddy keeps track of two lists for its module tracker component : A _Regular_ module list , and a _Archived_ module list. This enhancement allows users to move modules between the two lists and archive/unarchive modules on command.
