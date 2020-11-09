@@ -36,10 +36,6 @@ public class LessonAddCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + LESSON_NAME_DESC_CS2106
                 + LESSON_TAG_DESC_LECTURE, new LessonAddCommand(expectedLesson));
 
-        // multiple lessons - last lesson accepted
-        assertParseSuccess(parser, LESSON_NAME_DESC_CS2030 + LESSON_NAME_DESC_CS2106
-                + LESSON_TAG_DESC_LECTURE, new LessonAddCommand(expectedLesson));
-
         // multiple tags - all accepted
         Lesson expectedLessonMultipleTags = new LessonBuilder(CS2106)
                 .withTags(VALID_LESSON_TAG_LECTURE, VALID_LESSON_TAG_EASY).build();
