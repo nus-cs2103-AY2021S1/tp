@@ -36,6 +36,7 @@ Given below are my contributions to the project.
     - Called for regular meetings and provided a clear agenda
     - Divided the labor between group mates
     - Consistently gave constructive feedback to members
+    - Managed v1.4 release
 <br>
 * **Enhancements to existing features**:
     - Customized the GUI and came up with the design for the application.
@@ -44,9 +45,11 @@ Given below are my contributions to the project.
     - User Guide
         - added documentation for get started, leaves, list and view
         - added visual aids for the commands
+        - improved flow, structure and phrasing of the ug to make it more user friendly
     - Developer Guide
         - Updated design changes for Ui, model and common classes
         - Added implementations for the leave system and application panels
+        - Updated testing guide
     - Non trivial pull requests: [#87](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/87), [#236](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/236), [#251](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/251)
 <br>
 * **Community**:
