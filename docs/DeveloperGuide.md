@@ -2029,102 +2029,6 @@ Use case ends.
 
 ## Todo list use cases
 
-## General feature use cases
-
-**Use case: Undo previous command**
-
-  **MSS**
-  1. User requests to undo previous command.
-  2. CAP5BUDDY undoes the previous command.
-  
-  Use case ends.
-
-  **Extensions**
-
-  * 2a. There are no commands to undo.
-
-    * CAP5BUDDY shows an error message.
-
-      Use case resumes at step 1.
-      
-**Use case: Redo undone command**
-
-  **MSS**
-  1. User requests to redo most recent undone command.
-  2. CAP5BUDDY redoes the undone command.
-  
-  Use case ends.
-
-  **Extensions**
-
-  * 2a. There are no commands to redo.
-
-    * CAP5BUDDY shows an error message.
-
-      Use case resumes at step 1.
-      
-**Use case: UC01 Add a new Module**
-
-**MSS**
-
-1. User wants to add a new module to track.
-2. User enters the command for adding a module: `add [module name/code]`
-3. CAP5BUDDY adds the module into storage and display the success message.
-
-*{More to be added}*
-
-**Use case: UC02 - Delete a module**
-
-**MSS**
-
-1. User requests to show all the existing modules.
-2. CAP5BUDDY displays a list of the modules.
-3. User wants to delete a specific module from the list.
-4. User enters the command for module deletion: `delete [module name/code]`
-4. CAP5BUDDY deletes that module from the list.
-
-**Extensions**
-* 2a. The list is empty.
-
-  Use case ends here.
-
-* 3a. The given index is invalid or does not exist.
-
-  * 3a1. CAP5BUDDY displays an error message.
-
-    Use case resumes at step 2.
-
-*{More to be added}*
-
-**Use case: UC03 - Edit a module**
-
-**MSS**
-
-1. User requests to show all the existing modules.
-2. CAP5BUDDY displays all the modules in a list.
-3. User wants to edit a specific module from the list.
-4. User enters the new information for that module.
-5. CAP5BUDDY overwrites the existing information of that module.
-
-**Extensions**
-* 2a. The list is empty.
-
-  Use case ends here.
-
-* 3a. The given index is invalid or does not exist.
-
-  * 3a1. CAP5BUDDY displays an error message.
-
-    Use case resumes at step 2.
-
-* 4a. The new information is empty
-
-  * 4a1. CAP5BUDDY display an error message.
-
-  Use case resumes at step 2.
-
-  *{More to be added}*
-
 **Use case: Add a task to todo list**
 
 **MSS**
@@ -2221,6 +2125,102 @@ Use case ends.
   * 3a1. The prompt message disappears and CAP5BUDDY does not archive the task.
 
   Use case ends.
+
+  *{More to be added}*
+
+## General feature use cases
+
+**Use case: Undo previous command**
+
+  **MSS**
+  1. User requests to undo previous command.
+  2. CAP5BUDDY undoes the previous command.
+  
+  Use case ends.
+
+  **Extensions**
+
+  * 2a. There are no commands to undo.
+
+    * CAP5BUDDY shows an error message.
+
+      Use case resumes at step 1.
+      
+**Use case: Redo undone command**
+
+  **MSS**
+  1. User requests to redo most recent undone command.
+  2. CAP5BUDDY redoes the undone command.
+  
+  Use case ends.
+
+  **Extensions**
+
+  * 2a. There are no commands to redo.
+
+    * CAP5BUDDY shows an error message.
+
+      Use case resumes at step 1.
+      
+**Use case: UC01 Add a new Module**
+
+**MSS**
+
+1. User wants to add a new module to track.
+2. User enters the command for adding a module: `add [module name/code]`
+3. CAP5BUDDY adds the module into storage and display the success message.
+
+*{More to be added}*
+
+**Use case: UC02 - Delete a module**
+
+**MSS**
+
+1. User requests to show all the existing modules.
+2. CAP5BUDDY displays a list of the modules.
+3. User wants to delete a specific module from the list.
+4. User enters the command for module deletion: `delete [module name/code]`
+4. CAP5BUDDY deletes that module from the list.
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends here.
+
+* 3a. The given index is invalid or does not exist.
+
+  * 3a1. CAP5BUDDY displays an error message.
+
+    Use case resumes at step 2.
+
+*{More to be added}*
+
+**Use case: UC03 - Edit a module**
+
+**MSS**
+
+1. User requests to show all the existing modules.
+2. CAP5BUDDY displays all the modules in a list.
+3. User wants to edit a specific module from the list.
+4. User enters the new information for that module.
+5. CAP5BUDDY overwrites the existing information of that module.
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends here.
+
+* 3a. The given index is invalid or does not exist.
+
+  * 3a1. CAP5BUDDY displays an error message.
+
+    Use case resumes at step 2.
+
+* 4a. The new information is empty
+
+  * 4a1. CAP5BUDDY display an error message.
+
+  Use case resumes at step 2.
 
   *{More to be added}*
 
