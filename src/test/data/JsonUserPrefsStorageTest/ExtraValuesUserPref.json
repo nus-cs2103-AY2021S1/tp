@@ -1,13 +1,16 @@
 {
   "guiSettings" : {
-    "windowWidth" : 1000.0,
-    "windowHeight" : 500.0,
-    "extra" : "some value ",
+    "windowWidth" : 600,
+    "windowHeight" : 740,
     "windowCoordinates" : {
       "x" : 300,
       "y" : 100,
-      "z" : 99
+      "z" : 50
     }
   },
-  "addressBookFilePath" : "addressbook.json"
+  "moduleListFilePath" : "data\\moduleList.json",
+  "archivedModuleListFilePath" : "data\\archive\\archivedModuleList.json",
+  "contactListFilePath" : "data\\contactList.json",
+  "todoListFilePath" : "data\\todoList.json",
+  "eventListFilePath" : "data\\eventList.json"
 }
