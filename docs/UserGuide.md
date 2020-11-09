@@ -601,7 +601,7 @@ __Result:__ Tabs switched.
 
 ---
 
-#### 5.3.5. Undo/Redo the previous command: `undo`/`redo`[coming in v2.0]`
+#### 5.3.5. Undo/Redo the previous command: `undo`/`redo`[coming in v2.0]
 
 [_This feature is planned for v2.0_]
 

@@ -16,6 +16,7 @@ import nustorage.commons.core.index.Index;
 import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.Model;
 import nustorage.model.record.FinanceRecord;
+import nustorage.model.record.InventoryRecord;
 import nustorage.testutil.EditFinanceDescriptorBuilder;
 
 /**
@@ -182,5 +183,19 @@ public class CommandTestUtil {
         model.updateFilteredFinanceList(record -> record.getID() == id);
 
         assertEquals(1, model.getFilteredFinanceList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the inventory record at the given {@code targetIndex} in
+     * {@code model}
+     */
+    public static void showInventoryRecordAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredInventory().size());
+
+        InventoryRecord inventoryRecord = model.getFilteredInventory().get(targetIndex.getZeroBased());
+        final int id = inventoryRecord.getFinanceId();
+        model.updateFilteredInventoryList(record -> record.getFinanceId() == id);
+
+        assertEquals(1, model.getFilteredInventory().size());
     }
 }
