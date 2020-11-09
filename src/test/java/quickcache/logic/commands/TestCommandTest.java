@@ -152,6 +152,23 @@ class TestCommandTest {
     }
 
     @Test
+    public void execute_optionBigInvalidIndexMcqUnfilteredListCorrect_failure() {
+        Flashcard flashcard = model.getFilteredFlashcardList().get(INDEX_FIRST_MCQ_FLASHCARD.getZeroBased());
+        Question question = flashcard.getQuestion();
+        Answer answer = flashcard.getAnswer();
+        Answer userAnswer = flashcard.getAnswer();
+        TestAnswerDescriptor descriptor = new TestAnswerDescriptor();
+
+        Index bigInvalidIndex = TypicalIndexes.VERY_BIG_INDEX_FLASHCARD;
+        descriptor.setOption(new Option(String.valueOf(bigInvalidIndex.getOneBased())));
+
+        TestCommand testCommand = new TestCommand(INDEX_FIRST_MCQ_FLASHCARD, descriptor);
+        String expectedMessage = TestCommand.MESSAGE_OPTION_INVALID;
+
+        assertCommandFailure(testCommand, model, expectedMessage);
+    }
+
+    @Test
     public void execute_invalidIndex_throwsCommandException() {
         showFlashcardAtIndex(model, TypicalIndexes.INDEX_FIRST_FLASHCARD);
 

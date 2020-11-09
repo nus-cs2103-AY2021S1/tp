@@ -87,6 +87,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -100,7 +101,7 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-
+<div style="page-break-after: always;"></div>
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -160,6 +161,10 @@ The following sequence diagram shows how the flashcard is added:
 
 ![AddOpenEndedSequenceDiagram](images/AddOpenEndedSequenceDiagram.png)
 
+The following activity diagram summarizes what happens when a user executes add open ended question  command on a specified flashcard:
+
+![AddOpenEndedActivityDiagram](images/AddOpenEndedActivityDiagram.png)
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, QuickCache will not create the flashcard.
 </div>
 
@@ -192,6 +197,10 @@ Step 3. This will result in the creation of a flashcard with an multiple choice 
 The following sequence diagram shows how flashcard is added:
 
 ![AddMcqSequenceDiagram](images/AddMcqSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes add multiple choice question  command on a specified flashcard:
+
+![AddMcqActivityDiagram](images/AddMcqActivityDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, QuickCache will not create the flashcard.
 </div>
