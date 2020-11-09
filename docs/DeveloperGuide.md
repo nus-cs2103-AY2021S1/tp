@@ -487,16 +487,17 @@ was updated, the `addHeightRecord` and `addWeightRecord` methods would be called
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | administrative staff                                       | add a patient along with their details (fields)               |   keep track of their details                                                                     |
-| `* * *`  | administrative staff                                     | delete a patient's records                | remove unwanted records from the system                                  |
-| `* * *`  | administrative staff                                      | search for a patient's information          | retrieve his/her details |
-| `* * *` | administrative staff| edit a patient's details | update their details
-| `* * *` | doctor | add a medical note | keep track of their medical history and store consultation notes
-| `* * *` | doctor | delete a medical note | remove wrong entries
-| `* * *` | doctor | edit a medical note | correct wrong entries
-
+| -------- | ------------------------------------------ | -------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions           | refer to instructions when I forget how to use the App                 |
+| `* * *`  | administrative staff                       | add a patient along with their details (fields) |   keep track of their details                           |
+| `* * *`  | administrative staff                       | delete a patient's records       | remove unwanted records from the system                                |
+| `* * *`  | administrative staff                       | search for a patient's information | retrieve his/her details                                             |
+| `* * *`  | administrative staff                       | edit a patient's details         | update their details                                                   |
+| `* * *`  | doctor                                     | add a medical note               | keep track of their medical history and store consultation notes       |
+| `* * *`  | doctor                                     | delete a medical note            | remove wrong entries                                                   |
+| `* * *`  | doctor                                     | edit a medical note              | correct wrong entries                                                  |
+| `* * *`  | doctor                                     | view a patient's medical details | decide on the appropriate treatment or prescription for the patient    |
+| `* *`    | doctor                                     | view a chart of a patient's height and weight | track the progress of my patient over a period of time    |
 
 ### Use cases
 
@@ -582,12 +583,85 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. MediBook detects if the given IC is invalid.
+* 1a. MediBook detects if the given index is invalid.
 
     * 1a1. MediBook shows an error message.
-    * 1a2. User requests to delete a specific patient by changing the input IC.
-     Steps 1a1-1a2 are repeated until the IC provided is valid.
+    * 1a2. User requests to delete a specific patient by changing the input index.
+     Steps 1a1-1a2 are repeated until the index provided is valid.
      Use case resumes from step 2.
+     
+**UC05 Accessing a patient's profile**
+
+**MSS**
+
+1.  User requests to access a specific patient's profile.
+2.  MediBook display's the patient's profile.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. MediBook detects if the given index is invalid.
+
+    * 1a1. MediBook shows an error message.
+    * 1a2. User requests to delete a specific patient by changing the input index.
+     Steps 1a1-1a2 are repeated until the index provided is valid.
+     Use case resumes from step 2.
+     
+**UC06 Adding a medical note to a patient's profile**
+
+**MSS**
+
+1.  User <ins>accesses a specific patient's profile (UC05)</ins>.
+2.  User requests to add a medical note to the patient's profile.
+3.  MediBook adds a medical note to the patient's profile.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. MediBook detects an error in the syntax of the command.
+    * 2a1. MediBook shows an error message.
+    * 2a2. User requests to find the patient again but with an updated syntax.
+    Steps 2a1-2a2 are repeated until the syntax of the command is correct.
+    Use case resumes from step 3.
+    
+**UC07 Editing a medical note in a patient's profile**
+
+**MSS**
+
+1.  User <ins>accesses a specific patient's profile (UC05)</ins>.
+2.  User requests to edit a medical note in the patient's profile.
+3.  MediBook edits the medical note specified by the user.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. MediBook detects an error in the syntax of the command.
+    * 2a1. MediBook shows an error message.
+    * 2a2. User requests to find the patient again but with an updated syntax.
+    Steps 2a1-2a2 are repeated until the syntax of the command is correct.
+    Use case resumes from step 3.
+    
+**UC08 Deleting a medical note from a patient's profile**
+
+**MSS**
+
+1.  User <ins>accesses a specific patient's profile (UC05)</ins>.
+2.  User requests to delete a medical note from the patient's profile.
+3.  MediBook deletes the medical note specified by the user.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. MediBook detects if the given index is invalid.
+
+    * 2a1. MediBook shows an error message.
+    * 2a2. User requests to delete a specific patient by changing the input index.
+     Steps 2a1-2a2 are repeated until the index provided is valid.
+     Use case resumes from step 3.
 
 
 
@@ -597,8 +671,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Should be simple enough for those who are not proficient in using computers to use.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -622,53 +694,48 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   a. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the Login GUI. The window size may not be optimum.
+   b. Double-click the jar file Expected: Shows the Login GUI. The window size may not be optimum.
    
-   1. User can login using a username or password if they already have one or pick the `create account` option instead.
+   c. User can login using a username or password if they already have one or pick the `create account` option instead.
    
-   1. After users login/create account, the GUI will show a set of sample contacts.
+   d. After users login/create account, the GUI will show a set of sample contacts.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   a. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   b. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 ### Deleting a patient
 
 1. Deleting a patient while all patients are being shown
 
-   1. Test case: `delete 1`<br>
+   a. Test case: `delete 1`<br>
       Expected: Patient with index 1 in the list is deleted from the program. Details of the deleted patient shown in the status message. Timestamp in the status bar is updated.
 
-   2. Test case: `delete`<br>
+   b. Test case: `delete`<br>
       Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
 
-   3. Other incorrect delete commands to try: `delete <index outside of list range>`, `delete x` <br>
+   c. Other incorrect delete commands to try: `delete <index outside of list range>`, `delete x` <br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. To simulate missing data file:
+   a. To simulate missing data file:
       1. Delete medibook.json file located in <project_root>/data.
       2. Run MediBook.
       
       Expected: MediBook starts up with a sample list of 6 patients.
 
-   2. To simulate corrupted file:
+   b. To simulate corrupted file:
       1. Locate medibook.json file located in <project_root>/data.
       2. Change the field input of a patient to a wrong format. e.g. Change the IC of a patient in the json file to start with 'A' instead of the legal letters 'S,T,F,G'.
       3. Run MediBook.
       
       Expected: MediBook starts up with no patients in the list. A warning is displayed in console "Data file not in the correct format. Will be starting with an empty MediBook".
 
-2. _{ more test cases …​ }_

@@ -52,6 +52,7 @@ Given below are my contributions to the project.
     * Added implementation details for the enhanced `find` command.
     * Added implementation details for the `Context` interface.
     * Added implementation details for the `Record` class.
+    * Added some use cases.
     * Added and updated multiple sequence/class diagrams.
 
 * **Community**:
