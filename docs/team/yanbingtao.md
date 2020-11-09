@@ -137,6 +137,16 @@ Given below are my contributions to the project.
     * Added documentation for Non-functional requirements of the product under _Appendix: Requirements_ in v1.1.
     (Pull Request: [#26](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/26))
     * Added documentation (explanations, sequence diagrams, activity diagrams, class diagrams, etc) for the features
-    `c-archive`, `c-unarchive`, `c-archive-all` v1.3.
+    `c-archive`, `c-unarchive`, `c-archive-all` in v1.3.
     (Pull Request: [#99](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/99))
-
+    * Added documentation and edited the class diagram for UI component under _Design_ in v1.4.
+    (Pull Request: [#253](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/253))
+    * Added documentation and the class diagram for `Person` sub-component in Model component under _Design_ in v1.4.
+    (Pull Request: [#253](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/253))
+    * Added documentation and edited the class diagram for Storage component under _Design_ in v1.4.
+    (Pull Request: [#253](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/253))
+    * Edited use cases (UC01 & UC02) based on our implementation under _Appendix: Requirements_ in v1.4.
+    (Pull Request: [#253](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/253))
+    * Added documentation for manual testing ("Archiving an employee" section) under _Appendix: Instructions for manual
+     testing_ in v1.4.
+    (Pull Request: [#253](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/253))
