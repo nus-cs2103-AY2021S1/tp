@@ -176,7 +176,7 @@ For example, you can enter`add q/Sample Question ans/Sample Answer`
     ![addOpenEnded2](images/addOpenEnded2.png)
 
 <div markdown="block" class="alert alert-danger">
-:exclamation: You cannot add a flashcard with empty question and empty answer. Additionally, <code>DIFFICULTY</code> 
+:exclamation: You cannot add a flashcard with empty question and empty answer. Additionally, <code>DIFFICULTY</code>
 can only be set to <code>LOW</code>, <code>MEDIUM</code>, <code>HIGH</code> or <code>UNSPECIFIED</code>.
 </div>
 
@@ -252,7 +252,7 @@ You have successfully edited a flashcard.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source:<br> 
+:information_source:<br>
 - When editing tags, the existing tags of the flashcard will be removed i.e adding of tags is not cumulative.
 - You can remove all the flashcard’s tags by typing <code>t/</code> without specifying any tags after it.
 - You can remove the flashcard’s difficulty by typing d/ without specifying any difficulty after it. Or you can manually set it to <code>d/UNSPECIFIED</code>.
@@ -584,15 +584,15 @@ You can export all flashcards from the last displayed list into a file named `FI
 3. Press enter and the file containing the flashcards will be exported into the `export` folder, located in the same directory as `QuickCache.jar`
 
     ![ExportStep3a](./images/ExportStep3a.png)
-    
+
     Here is the file location on Mac OS.
-    
+
     ![ExportStep3b](./images/ExportStep3b.png)
 
     ![ExportStep3c](./images/ExportStep3c.png)
-    
+
     Here is the file location on Windows.
-    
+
     ![ExportStep3bW](./images/ExportStep3bW.png)
 
     ![ExportStep3cW](./images/ExportStep3cW.png)
@@ -605,7 +605,7 @@ Voila! You have successfully exported your flashcards into a file.
 
 You can import external flashcards into your local QuickCache as well.
 
-1. Create an `import` folder in the same directory as where `QuickCache.jar` is located. The pictures shown are the equivalents 
+1. Create an `import` folder in the same directory as where `QuickCache.jar` is located. The pictures shown are the equivalents
 for both Mac OS and Windows.
 
     ![ImportStep1](./images/ImportStep1.png)
@@ -654,15 +654,15 @@ For your convenience, QuickCache data are saved in the hard disk automatically a
 **Q**: Why can't I open QuickCache on my device?<br>
 **A**: There are a few potential reasons as to why QuickCache is not opening on your device:
 
-1. You first need to ensure that your device is a **desktop device** as QuickCache is not supported on mobile devices. 
+1. You first need to ensure that your device is a **desktop device** as QuickCache is not supported on mobile devices.
 2. Next, you need to ensure that you have **Java 11 or above** installed on your device. You can refer to this [guide to check your java version](https://superuser.com/questions/1221096/how-do-i-check-what-version-of-java-i-have-installed).
-3. Double clicking QuickCache doesn't work on every desktop device. If you are experiencing problems with this, you can try using terminal or the command prompt to navigate to the folder where `quickcache.jar` is located and then proceeed to execute the following command **`java -jar quickcache.jar`**. Note that if you rename `quickcache.jar` you have to tweak the command accordingly.
+3. Double clicking QuickCache doesn't work on every desktop device. If you are experiencing problems with this, you can try using terminal or the command prompt to navigate to the folder where `quickcache.jar` is located and then proceed to execute the following command **`java -jar quickcache.jar`**. Note that if you rename `quickcache.jar` you have to tweak the command accordingly.
 
 **Q**: How do I transfer my flashcards to my friend?<br>
 **A**: You can first [export](#export) the flashcards that are stored in QuickCache into your desired file format. After exporting, you can proceed to send the file to your friend over your favourite messaging application. Upon receving the file, your friend can then proceed to [import](#import) the flashcards into QuickCache.
 
 **Q**: How can I contribute to QuickCache?<br>
-**A**: There are a few ways you can contribute to QuickCache: 
+**A**: There are a few ways you can contribute to QuickCache:
 
 * If you are an investor, you can reach out to us [here](mailto:damith@comp.nus.edu.sg).
 * If you are a developer, we greatly welcome you to contribute to QuickCache by submitting a pull request [here](https://github.com/AY2021S1-CS2103T-T13-2/tp/pulls). You can view QuickCache's source code at this [link](https://github.com/AY2021S1-CS2103T-T13-2/tp).
@@ -788,15 +788,23 @@ If you need to quickly look up a command, we have added a table below to summari
          	</td>
         </tr>
         <tr>
-        	<td rowspan=2>
+        	<td rowspan=3>
         		<Strong>Flashcard Statistics</Strong>
         	</td>
-        	<td rowspan=1>stats</td>
+        	<td rowspan=2>stats</td>
         	<td rowspan=1>
-        		Display statistics:<code>stats INDEX </code>
+        		Display statistics of a single flashcard:<code>stats INDEX </code>
         	</td>
         	<td rowspan=1>
         		<code>stats 1</code>
+        	</td>
+        </tr>
+        <tr>
+        	<td rowspan=1>
+        		Display statistics based on tags:<code>stats t/TAG...</code>
+        	</td>
+        	<td rowspan=1>
+        		<code>stats t/MCQ</code>
         	</td>
         </tr>
         <tr>

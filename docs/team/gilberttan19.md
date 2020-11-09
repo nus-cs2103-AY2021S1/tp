@@ -21,6 +21,8 @@ My team decided to a create an application that helps students manage their flas
 
 In total, QuickCache took a total of 10 weeks to complete.
 
+<div style="page-break-after: always;"></div>
+
 ### 2. Summary of Contributions
 
 I am in charge of code quality in the team, and I am responsible for creating features such as adding flashcard with both open ended and multiple choice question, editing the flashcard and deleting the flashcard.
@@ -56,24 +58,22 @@ The following describes the feature and enhancement I have already done in the p
 
 Given below is other contributions that I have made to the project.
 
-#### 2.3.1 Project management
+* **Project management**:
   * Managed 30 issues on GitHub
   * Helped in checking the code quality
 
-#### 2.3.2 Enhancements to existing features
+* **Enhancements to existing features**:
   * Wrote additional tests for existing features to increase coverage (Pull requests [\#203](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/203), [\#221](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/221)
   * Morph the Logic and Model of AddressBook to have a UniqueFlashcardList. (Pull requests [\#37](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/37))
   * Refactored remnant code from Person to Flashcard. (Pull requests [\#248](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/248))
 
-#### 2.3.3 Documentation
+* **Documentation**:
+  * User Guide:
+    * Added the documentation for the features `delete`, `add`, `edit`, and `addmcq` (Pull requests [\#152](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/152). [\#137](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/137))
+    * Added the preface for the quick start section. (Pull requests [\#141](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/141))
 
-##### 2.3.3.1 User Guide
-  * Added the documentation for the features `delete`, `add`, `edit`, and `addmcq` (Pull requests [\#151](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/151 ),[\#152](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/152))
-  * Added the preface for the quick start section. (Pull requests [\#141](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/141))
-
-##### 2.3.3.2 Developer Guide
-  * Added implementation details of the `delete`, `add`, `edit`, abd `addmcq` feature. (Pull requests [\#128](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/128), [\#229](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/229))
-
-#### 2.3.4 Community
+  * Developer Guide:
+    * Added implementation details of the `delete`, `add`, `edit`, abd `addmcq` feature. (Pull requests [\#128](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/128), [\#229](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/229))
+* **Community**:
   * PRs reviewed (with non-trivial review comments): (Pull requests [\#115](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/115), [\#85](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/85), [\#227](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/227))
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/GilbertTan19/ped/issues/1), [2](https://github.com/GilbertTan19/ped/issues/2), [3](https://github.com/GilbertTan19/ped/issues/3))
