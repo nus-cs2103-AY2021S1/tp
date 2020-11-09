@@ -70,12 +70,12 @@ public class UniqueModuleListTest {
     }
 
     @Test
-    public void setStudent_targetModuleNotInList_throwsShowableNotFoundException() {
+    public void setModule_targetModuleNotInList_throwsShowableNotFoundException() {
         assertThrows(ShowableNotFoundException.class, () -> uniqueModuleList.setModule(CS2100, CS2100));
     }
 
     @Test
-    public void setStudent_editedModuleIsSameModule_success() {
+    public void setModule_editedModuleIsSameModule_success() {
         uniqueModuleList.addModule(CS2100);
         uniqueModuleList.setModule(CS2100, CS2100);
         UniqueModuleList expectedUniqueModuleList = new UniqueModuleList();
@@ -134,7 +134,7 @@ public class UniqueModuleListTest {
     }
 
     @Test
-    public void setStudentList_uniqueModuleList_replacesOwnListWithProvidedUniqueModuleList() {
+    public void setModuleList_uniqueModuleList_replacesOwnListWithProvidedUniqueModuleList() {
         uniqueModuleList.addModule(CS2100);
 
         UniqueModuleList expectedUniqueModuleList = new UniqueModuleList();
