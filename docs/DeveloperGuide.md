@@ -23,6 +23,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Design**
 
 ### Architecture
@@ -89,6 +91,9 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -108,6 +113,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 
@@ -135,6 +142,9 @@ The `Patient`,
 * stores `Allergy`, `Condition` and `Treatment` objects, where each patient can store any number of such objects.
 * `Allergy`, `Condition` and `Treatment` are considered "medical details"/"medical tags", and inherit from the `Tag` class.
 
+
+<div style="page-break-after: always;"></div>
+
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -152,6 +162,9 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.medibook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -380,6 +393,9 @@ The corresponding UI element is displayed on the bottom left of the `PatientProf
 It contains a JavaFX `ListView` displaying `MedicalNoteCard` instances.
 The corresponding UI element is displayed on the right of the `PatientProfile` UI element.
 * `PersonalDetailsRow` represents a single `patient` personal detail. It provides the graphics for a row in the `ListView` of `PersonalDetailsCard`.
+
+<div style="page-break-after: always;"></div>
+
 * `MedicalDetailsRow` represents a single `patient` personal detail. It provides the graphics for a row in the `ListView` of `MedicalDetailsCard`.
 * `MedicalNoteCard` represents a single `MedicalNote`. It provides the graphics for an element in the `ListView` of `MedicalNotesPanel`.
 `PatientChartCard` represents a UI element displaying the height, weight and BMI charts of a `patient`.
@@ -411,6 +427,9 @@ maintaining the command design pattern.
 When any command that can affect the logic within `LogicManager` is executed (such as `EditCommand`, `AccessCommand` etc..), the relevant
 command objects would call the relevant setter method from the class that implements the `Context` interface. `LogicManager` then retrieves
 this information from that very same class, thereby solving the issue without causing any cyclic dependencies while maintaining the command design pattern.
+
+
+<div style="page-break-after: always;"></div>
 
 Note:
 
@@ -528,6 +547,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
+
+<div style="page-break-after: always;"></div>
+
 * 1a. MediBook detects an invalid username, password, name or MCR.
     *1a1. MediBook shows an error message.
     *1a2. User requests to create an account again with edited inputs.
@@ -571,6 +593,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a2. User requests to find the patient again but with an updated syntax.
     Steps 1a1-1a2 are repeated until the syntax of the command is correct.
     Use case resumes from step 2.
+
+<div style="page-break-after: always;"></div>
+
 
 **UC04 Delete a patient**
 
@@ -669,6 +694,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
+
+<div style="page-break-after: always;"></div>
+
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Should be simple enough for those who are not proficient in using computers to use.
 
