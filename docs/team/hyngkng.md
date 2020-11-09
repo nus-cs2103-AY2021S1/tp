@@ -26,7 +26,7 @@ ProductiveNUS is a desktop application targeted at Computing students of Nationa
   [\#276](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/276/files)
   * **What:** Allows the user to import their NUSMods lesson information into ProductiveNUS.
   * **Why:** This feature improves the product significantly because a user can conveniently refer to their timetable on ProductiveNUS instead of having to go to NUSMods. Other commands such as Schedule also works best if the user can import their weekly timetable.
-  * **Note:** This enhancement retrieves data from the NUSMods API. A new model class Lesson is also implemented to support the import command.
+  * **Note:** This enhancement retrieves data from the NUSMods API by sending a HTTP GET request. A new model class Lesson is also implemented to support the import command.
   * **Credits:** Code implemented is adapted from examples on [Baldeung](https://www.baeldung.com/java-http-request) and the [NUSMods API](https://api.nusmods.com/v2/).
 
 * **Created the Priority class**
@@ -50,19 +50,22 @@ ProductiveNUS is a desktop application targeted at Computing students of Nationa
   [\#163](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/163/files),
   [\#170](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/170/files),
   [\#248](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/248/files)
-  * I added the Import and Prioritize/Unprioritize segments of the User Guide. I also made format changes to ensure that the document is standardised.
+  * I added the Import and Prioritize/Unprioritize segments of the User Guide.
+  * I also made format changes to ensure that the document is standardised.
 
 ### My Contributions to the Developer Guide
   [\#59](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/59/files),
   [\#61](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/61/files),
   [\#134](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/134/files),
   [\#272](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/272/files)
-  * I added the Import and Prioritize/Unprioritize segments of the Developer Guide. I also made format changes to ensure the document is standardised.
+  * I added the Import and Prioritize/Unprioritize segments of the Developer Guide.
+  * I also made format changes to ensure the document is standardised.
 
 ### My Contributions to team-based tasks
   [\#180](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/180/files),
   [\#254](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/254/files)
-  * I helped to refactor and rename all "AddressBook" to "ProductiveNUS". I also helped with formatting issues with the User Guide.
+  * I helped to refactor and rename all "AddressBook" to "ProductiveNUS".
+  * I also helped with formatting issues with the User Guide.
 
 ### My Review Contributions
   * **PRs reviewed:**
