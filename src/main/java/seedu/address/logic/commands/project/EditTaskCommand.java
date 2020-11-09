@@ -129,7 +129,7 @@ public class EditTaskCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        // short circuit if same object
+        // short circuit if is same object
         if (other == this) {
             return true;
         }
