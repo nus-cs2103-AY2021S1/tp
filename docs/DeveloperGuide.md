@@ -1059,22 +1059,22 @@ Use case ends.
 
 **MSS**
 
-1. Hotel staff requests to search for an empty room to accommodate patient.
-2. Covigent finds out empty room.
-3. Covigent shows the empty room with lowest room number and displays success message.
+1. Hotel Staff requests to delete a task from a room.
+2. Covigent deletes the task from the room.
 
 Use case ends.
 
 **Extensions**
 * 1a. Covigent realizes that the specified room does not exist.
-    * 1a1. Covigent displays an error message.
-    
-Use case ends.
-    
-* 1b. Covigent realizes that the specified task does not exist.
-    * 1b1. Covigent displays an error message.
-    
-Use case ends.
+     * 1a1. Covigent displays an error message.
+     
+ Use case ends.
+
+ * 1b. Covigent realizes that the specified task does not exist.
+     * 1b1. Covigent displays an error message.
+     
+ Use case ends.
+
 
 **Use case: UC12 Edit a task in a room**
 
@@ -1087,30 +1087,25 @@ Use case ends.
 Use case ends.
 
 **Extensions**
-* 2a. System realises that user does not input any number of rooms.
-   * 2a1. System displays an error message.
-   
-Use case ends.
+* 1a. Covigent realizes that no optional fields are input.
+    * 1a1. Covigent displays an error message.
+    
+ Use case ends.
 
-* 3a. System realises that user inputs values other than integer.
-   * 3a1. System displays an error message.
-   
-Use case ends.
+ * 1b. Covigent realizes that the specified room does not exist.
+     * 1b1. Covigent displays an error message.
+     
+ Use case ends.
 
-* 3b. System realises that the integer input is zero.
-   * 3b1. System displays an error message.
-   
-Use case ends.
+ * 1c. Covigent realizes that the specified task does not exist.
+     * 1c1. Covigent displays an error message.
+     
+ Use case ends.
 
-* 3c. System realises that the integer input is negative.
-   * 3c1. System displays an error message.
-   
-Use case ends.
-
-* 3d. System realises that the number of rooms input is less than number of occupied room.
-   * 3d1. System displays an error message.
-   
-Use case ends.
+ * 1d. Covigent realizes that the new information for the task is the same as the original.
+    * 1d1. Covigent displays an error message.
+    
+ Use case ends.
 
 **Use case: UC13 Search Task**
 
