@@ -464,10 +464,10 @@ should be able to accomplish most of the tasks faster using commands than using 
 
 |Priority Type   |Syntax  |Picture(Unarchived)   |Picture(archived) |
 |---|---|---|---|
-|Undefined   |`l/undefined`,`l/u`, `l/U`   |![Undefined Priority](docs/images/Priority Bar/UndefinedPriority.png) |![Undefined Priority](docs/images/Priority Bar/UndefinedPriorityArchived.png) |
-|Low   |`l/low`,`l/l`, `l/L`    |![Low Priority](docs/images/Priority Bar/LowPriority.png)   |![Low Priority](docs/images/Priority Bar/LowPriorityArchived.png) | 
-|Medium   |`l/medium`,`l/m`, `l/M`    |![Medium Priority](docs/images/Priority Bar/MediumPriority.png)   |  ![Medium Priority](docs/images/Priority Bar/MediumPriorityArchived.png) |
-|High   |`l/high`,`l/h`, `l/H`    |![High Priority](docs/images/Priority Bar/HighPriority.png)   |![High Priority](docs/images/Priority Bar/HighPriorityArchived.png) |
+|Undefined   |`l/undefined`,`l/u`, `l/U`   |![Undefined Priority](images/Priority Bar/UndefinedPriority.png) |![Undefined Priority](images/Priority Bar/UndefinedPriorityArchived.png) |
+|Low   |`l/low`,`l/l`, `l/L`    |![Low Priority](images/Priority Bar/LowPriority.png)   |![Low Priority](images/Priority Bar/LowPriorityArchived.png) | 
+|Medium   |`l/medium`,`l/m`, `l/M`    |![Medium Priority](images/Priority Bar/MediumPriority.png)   |  ![Medium Priority](images/Priority Bar/MediumPriorityArchived.png) |
+|High   |`l/high`,`l/h`, `l/H`    |![High Priority](images/Priority Bar/HighPriority.png)   |![High Priority](images/Priority Bar/HighPriorityArchived.png) |
 =======
 
 
