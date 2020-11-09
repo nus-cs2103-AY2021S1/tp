@@ -32,11 +32,11 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=wilinetan)
 
+<div style="page-break-after: always;"></div>
+
 * **Project management**:
   * In charge of implementation of the Graphic User Interface
   * Ensure that project deliverables are delivered on time
-
-<div style="page-break-after: always;"></div>
 
 * **Enhancements to existing features**:
   * Implemented the GUI layout and color scheme (Pull requests [\#183](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/183), [\#272](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/272), [\#275](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/275))
