@@ -294,6 +294,7 @@ Format: `flip INDEX`
 
 Examples:
 * `list` followed by `flip 2` flips the second flashcard in the flashcard list.
+* `find p/low` followed by `flip 1` flips the first flashcard in the filtered flashcard list.
 
 ### Deleting a flashcard : `delete`
 
