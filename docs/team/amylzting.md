@@ -74,7 +74,7 @@ Given below are my contributions to the project.
     `findexact` (PR [\#120](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/120), [\#276](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/267)),
     `note` (PR [\#154](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/154)),
     `notedelete` (PR [\#154](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/154), [\#272](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/272)),
-    and `stockview` (Pull request [\#272](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/272))
+    and `stockview` (PR [\#272](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/272))
     
   * Developer Guide:
     * Added implementation and UML diagrams for Find and FindExact features (PR [\#163](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/163), [\#165](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/165)),
@@ -90,18 +90,13 @@ Given below are my contributions to the project.
     * Added documentation for `non-functional requirements` and `glossary`sections. (PR [\#62](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/62))
     
 * **Testing**:
-   * Created unit tests for `find` feature (find command parser, find command). (Pull request [\#129](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/129))
-   * Created integration tests for `find` feature (find command). (Pull request [\#129](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/129))
-   * Created unit tests for `findexact` feature (findexact command parser, findexact command). (Pull request [\#159](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/159))
-   * Created integration tests for `findexact` feature (findexact command). (Pull request [\#159](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/159))
-   * Created unit tests for `note` feature (note command parser, note command). (Pull request [\#259](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/259))
-   * Created integration tests for `note` feature (note command). (Pull request [\#259](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/259))
-   * Created unit tests for `notedelete` feature (notedelete command parser, notedelete command). (Pull request [\#259](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/259))
-   * Created integration tests for `notedelete` feature (notedelete command). (Pull request [\#259](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/259))
-   * Created unit tests for `stockview` feature (stockview command parser, stockview command). (Pull request [\#265](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/265))
-   * Created integration tests for `stockview` feature (stockview command). (Pull request [\#265](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/265))
-   * Created tests for `FindUtil`. (Pull request [\#259](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/259))
-   * Created tests for `Note` and `NoteIndex`. (Pull request [\#259](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/259))
+   * Created unit and integration tests for `find` feature (find command parser, find command, PR [\#129](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/129)),
+   `findexact` feature (findexact command parser, findexact command, PR [\#159](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/159)),
+   `note` feature (note command parser, note command, PR [\#259](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/259)),
+   `notedelete` feature (notedelete command parser, notedelete command, PR [\#259](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/259)),
+   and `stockview` feature (stockview command parser, stockview command, PR [\#265](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/265)).
+   * Created tests for `FindUtil`. (PR [\#259](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/259))
+   * Created tests for `Note` and `NoteIndex`. (PR [\#259](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/259))
    * Created unit tests for predicates package classes `LocationContainsKeywordsPredicate`,
-   `NameContainsKeywordsPredicate`, `SerialNumberContainsKeywordsPredicate` and `SourceContainsKeywordsPredicate`. (Pull request [\#127](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/127))
-   * Created tests for `ParserUtil` to increase code coverage. (Pull request [\#343](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/343))
+   `NameContainsKeywordsPredicate`, `SerialNumberContainsKeywordsPredicate` and `SourceContainsKeywordsPredicate`. (PR [\#127](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/127))
+   * Created tests for `ParserUtil` to increase code coverage. (PR [\#343](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/343))
