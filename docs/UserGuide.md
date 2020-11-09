@@ -1,11 +1,9 @@
-# 1. Welcome
 `Calo` is a desktop app that is **designed for keeping track of calories burnt throughout the day**.
 It is optimized for use via a **Command Line Interface (CLI)** while still having Graphical User Interface (GUI).
 If you are a skilled typer, you can carry out various tasks such as adding new exercises and checking records for
 previous days much faster than the traditional GUI apps.
 
 
-- [1. Welcome](#1-welcome)
 - [2. Quick start](#2-quick-start)
 - [3. Features](#3-features)
   - [3.1. Understanding the display](#31-understanding-the-display)
