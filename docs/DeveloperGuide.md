@@ -751,10 +751,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error messages.
+    * 2a1. FRMS displays an error messages.<br>
 	  Use case ends.
 * 2b. FRMS detects a duplicate recipe.
-    * 2b1. FRMS displays an error messages.
+    * 2b1. FRMS displays an error messages.<br>
       Use case ends.
 
 <a name="U02"></a>
@@ -771,13 +771,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 3a. There are no recipes in the FRMS.
-    * 3a1. FRMS displays an error message.
+    * 3a1. FRMS displays an error message.<br>
       Use case ends.
 * 3b. The recipe to be deleted is not the FRMS.
-    * 3b1. FRMS displays an error message.
+    * 3b1. FRMS displays an error message.<br>
 	  Use case ends.
 
 
@@ -796,16 +796,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 3a. FRMS detects an invalid input parameter.
-    * 3a1. FRMS displays an error message.
+    * 3a1. FRMS displays an error message.<br>
       Use case ends.
 * 4a. There are no recipes in the FRMS.
-    * 4a1. FRMS displays an error message.
+    * 4a1. FRMS displays an error message.<br>
       Use case ends.
 * 4b. The recipe to be edited is not the FRMS.
-    * 4b1. FRMS displays an error message.
+    * 4b1. FRMS displays an error message.<br>
 	  Use case ends.
 
 
@@ -823,10 +823,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays error messages.
+    * 2a1. FRMS displays error messages.<br>
 	  Use case ends.
 * 3a. There are no recipes in the FRMS.
-     * 3a1. FRMS displays an error message.
+     * 3a1. FRMS displays an error message.<br>
        Use case ends.
 
 
@@ -844,13 +844,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 3a. There are no recipes in the FRMS.
-    * 3a1. FRMS displays an error message.
+    * 3a1. FRMS displays an error message.<br>
       Use case ends.
 * 3b. The recipe to be displayed is not the FRMS.
-    * 3b1. FRMS displays an error message.
+    * 3b1. FRMS displays an error message.<br>
 	  Use case ends.
 
 <a name="U06"></a>
@@ -867,13 +867,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 3a. There are no recipes in the FRMS.
-    * 3a1. FRMS displays an error message.
+    * 3a1. FRMS displays an error message.<br>
       Use case ends.
 * 3b. There are no recipes that match the filter conditions in the FRMS.
-    * 3b1. FRMS displays an error message.
+    * 3b1. FRMS displays an error message.<br>
       Use case ends.
 
 
@@ -891,13 +891,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 3a. There are no recipes in the FRMS.
-    * 3a1. FRMS displays an error message.
+    * 3a1. FRMS displays an error message.<br>
       Use case ends.
 * 3b. The recipe to be displayed is not the FRMS.
-    * 3b1. FRMS displays an error message.
+    * 3b1. FRMS displays an error message.<br>
 	  Use case ends.
 
 
@@ -915,10 +915,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays error messages.
+    * 2a1. FRMS displays error messages.<br>
 	  Use case ends.
 * 3a. There are no recipes in the FRMS.
-     * 3a1. FRMS displays an error message.
+     * 3a1. FRMS displays an error message.<br>
        Use case ends.
 
 
@@ -936,13 +936,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 3a. There are no recipe statistics in the FRMS.
-    * 3a1. FRMS displays an error message.
+    * 3a1. FRMS displays an error message.<br>
       Use case ends.
 * 3b. There are no recipe statistics for the given parameters in the FRMS.
-    * 3b1. FRMS displays an error message.
+    * 3b1. FRMS displays an error message.<br>
       Use case ends.
 
 
@@ -960,14 +960,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions:**
 
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 2b. FRMS detects a duplicate recipe but the unit of measurement for the quantity of the ingredients are the same.
     * 2b1. FRMS updates the quantity of the ingredient.
-    * 2b2. FRMS displays a confirmation message.
+    * 2b2. FRMS displays a confirmation message.<br>
       Use case ends.
 * 2c. FRMS detects a duplicate recipe but the unit of measurement for the quantity of the ingredients are different.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 
 
@@ -984,13 +984,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions:**
 
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 3a. There are no ingredients in the FRMS.
-    * 3a1. FRMS displays an error message.
+    * 3a1. FRMS displays an error message.<br>
       Use case ends.
 * 3b. The ingredient to be deleted is not the FRMS.
-    * 3b1. FRMS displays an error message.
+    * 3b1. FRMS displays an error message.<br>
 	  Use case ends.
 
 
@@ -1009,16 +1009,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 3a. FRMS detects an invalid input parameter.
-    * 3a1. FRMS displays an error message.
+    * 3a1. FRMS displays an error message.<br>
       Use case ends.
 * 4a. There are no ingredients in the FRMS.
-    * 4a1. FRMS displays an error message.
+    * 4a1. FRMS displays an error message.<br>
       Use case ends.
 * 4b. The ingredient to be edited is not the FRMS.
-    * 4b1. FRMS displays an error message.
+    * 4b1. FRMS displays an error message.<br>
 	  Use case ends.
 
 
@@ -1036,10 +1036,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays error messages.
+    * 2a1. FRMS displays error messages.<br>
 	  Use case ends.
 * 3a. There are no ingredients in the FRMS.
-     * 3a1. FRMS displays an error message.
+     * 3a1. FRMS displays an error message.<br>
        Use case ends.
 
 
@@ -1057,13 +1057,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 3a. There are no ingredients in the FRMS.
-    * 3a1. FRMS displays an error message.
+    * 3a1. FRMS displays an error message.<br>
       Use case ends.
 * 3b. There are no ingredients that match the filter conditions in the FRMS.
-    * 3b1. FRMS displays an error message.
+    * 3b1. FRMS displays an error message.<br>
       Use case ends.
 
 
@@ -1081,13 +1081,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 3a. There are no ingredient statistics in the FRMS.
-    * 3a1. FRMS displays an error message.
+    * 3a1. FRMS displays an error message.<br>
       Use case ends.
 * 3b. There are no ingredient statistics for the given parameters in the FRMS.
-    * 3b1. FRMS displays an error message.
+    * 3b1. FRMS displays an error message.<br>
       Use case ends.
 
 
