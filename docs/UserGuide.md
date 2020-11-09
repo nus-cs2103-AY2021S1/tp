@@ -15,6 +15,7 @@ title: User Guide
         * [FAQ](#FAQ)
     * [Command summary](#command-summary)
 
+<div style="page-break-after: always;"></div>
 
 ## Introduction <a name="introduction"></a>
 
@@ -26,7 +27,7 @@ Are you a bubble tea store manager (from T-Sugar) looking to reduce your time sp
 management? Look no further, as tCheck can assist you with these tasks.
 
 tCheck is a desktop application that offers an integrated system to efficiently manage a bubble tea shop, of 
-the (imaginary) brand T-sugar, by providing sales tracking, ingredient tracking and manpower management. It is an
+the (imaginary) brand T-sugar, by providing sales tracking, ingredients tracking and manpower management. It is an
 application optimized for the Command Line Interface (CLI); this means that you use this application by typing
 commands into a _Command Box_. If you are a fast typist, then you will be able to update and retrieve the
 information in tCheck more efficiently, as opposed to using other applications that requires a mouse.
@@ -35,7 +36,8 @@ This User Guide will help you get started with tCheck and learn how to use the f
 You can start from the [Quick Start](#quick-start) section to learn how to obtain tCheck to begin managing
  your store more efficiently.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Quick start <a name="quick-start"></a>
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -44,23 +46,13 @@ You can start from the [Quick Start](#quick-start) section to learn how to obtai
 
 1. Copy the file to the folder you want to use as the _home folder_ for your tCheck.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note
+1. Double-click the file to start the app. The graphic user interface (GUI) similar to the figure below should appear in a few seconds. Note
 how the figure below shows some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press "Enter" on your keyboard to execute it. e.g. typing **`help`** and pressing "Enter" will open the help window.<br>
-   Some example commands you can try:
 
-   * **`c-add`**`n/John Doe p/98765432 e/81234567 a/Blk 123 Brooklin Street t/parttime` : Adds an employee
-    named `John Doe` to tCheck.
-
-   * **`c-delete`**`3` : Deletes the 3rd employee shown in the current list of employees.
-
-   * **`c-clear`** : Deletes all employees.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## About this document <a name="about"></a>
@@ -174,6 +166,8 @@ Thus, tCheck will ignore all words come after the command word `help` and the co
 --------------------------------------------------------------------------------------------------------------------
 ## Features <a name="features"></a>
 
+This section provides the details and commands for all tCheck's features.
+
 ### 1. Commands - Sales Tracking <a name="commands-sales-tracking"></a>
 The Sales Tracking features allows you to keep a record of the sales of the bubble tea drinks inside the
 Sales Tracker. You are able to view data related to sales tracking in the Sales Tracker inside the _Main View_.
@@ -183,19 +177,14 @@ Sales Tracker. You are able to view data related to sales tracking in the Sales 
 **:information_source: Notes about available drinks:**<br>
 
 Currently, there are 6 types of drinks that can be tracked by tCheck's Sales Tracker. The drinks and their respective
- abbreviations are shown as below:<br>
+ abbreviations are shown as below: <br>
 
-* `BSBM`  : Brown Sugar Boba Milk<br>
-
-* `BSBBT` : Brown Sugar Boba Black Tea<br>
-
-* `BSBGT` : Brown Sugar Boba Green Tea<br>
-
-* `BSPM`  : Brown Sugar Pearl Milk<br>
-
-* `BSPBT` : Brown Sugar Pearl Black Tea<br>
-
-* `BSPGT` : Brown Sugar Pearl Green Tea<br>
+* `BSBM`  : Brown Sugar Boba Milk
+* `BSBBT` : Brown Sugar Boba Black Tea
+* `BSBGT` : Brown Sugar Boba Green Tea
+* `BSPM`  : Brown Sugar Pearl Milk
+* `BSPBT` : Brown Sugar Pearl Black Tea
+* `BSPGT` : Brown Sugar Pearl Green Tea
 
 </div>
 
@@ -208,7 +197,7 @@ Format: `s-update DRINK [MORE_DRINKS]`
 * where `DRINK` is formatted as `A/NUM`
     * `A` refers to the drink's abbreviation.
     * `NUM` refers to the number of drinks sold. It should be a **non-negative unsigned integer** that is 
-less than or equal to 99999999.
+less than or equal to 9,999,999.
 * The sales of at least one drink item should be recorded when using this command.
 
 Example: 
@@ -290,7 +279,7 @@ You are able to view data related to ingredients tracking in the Ingredient Trac
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about ingredients:**<br>
+**:information_source: Notes about ingredients<a name="commands-ingredients-tracking-notes-about-ingredients"></a>:**<br>
 
 * Unit of measurement for ingredients:<br>
    * Unit for solid items / jelly (Pearl, Boba and Brown Sugar) : **KG**<br>
@@ -422,7 +411,7 @@ Format: `i-list`
 
 Example:
 
-Let's say you want to list all the ingredients. 
+Let's say you want to see the list of all the ingredients.
 You can follow these instructions:
 
 1. Type `i-list` into the _Command Box_.
@@ -438,7 +427,7 @@ Outcome:
 Figure x. A screenshot showing the outcome of an `i-list` command
 
 #### 2.5 Finding ingredients by keywords : `i-find`
-Finds all ingredients that contain the KEYWORD(s) in their names.
+Finds all ingredients that contain one or more keywords in their names.
 
 Format: `i-find KEYWORD [MORE_KEYWORDS]`
 
@@ -463,16 +452,22 @@ Outcome:
 2. The Ingredient Tracker inside the _Main View_ will show the ingredient `Black Tea`, the ingredient `Green Tea` and 
 the ingredient `Brown Sugar`.
 
-![IngredientFindCommandScreenshot](images/IngredientFindCommandScreenshot.png)
+Before executing:<br>
+![BeforeIngredientFindCommandScreenshot](images/BeforeIngredientFindCommandCommand.png)
+
+
+After executing:<br>
+![AfterIngredientFindCommandScreenshot](images/AfterIngredientFindCommandScreenshot.png)
 
 Figure x. A screenshot showing the outcome of an `i-find` command
 
 #### 2.6 Resetting all ingredients' levels to zero : `i-reset-all`
-Resets the ingredients' levels of all ingredient types to zero.
+Resets the ingredient's levels of all ingredient types to zero.
 
 Format: `i-reset-all`
 
-Let's say you want to reset all ingredients' levels to zero, and the ingredient's levels are not currently all at zero.
+Let's say you want to reset all ingredients' levels to zero when one or more ingredients have 
+non-zero ingredient's levels.
 You can follow these instructions:
 
 1. Type ` i-reset-all` into the _Command Box_.
@@ -481,7 +476,8 @@ You can follow these instructions:
 Outcome:
 
 1. The _Result Display_ will show a success message.
-2. You can now see that tCheck has updated all the ingredients' levels to zero in the Ingredient Tracker inside the _Main View_.
+2. You can now see that all ingredients' levels are zero in the Ingredient Tracker inside 
+the _Main View_.
 
 ![IngredientResetAllCommandScreenshot](images/IngredientResetAllCommandScreenshot.png)
 
@@ -496,13 +492,13 @@ Format: `i-restock`
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**<br>
-Refer to the "Notes about ingredients" below the [Commands - Ingredients Tracking](#commands-ingredients-tracking)
+Refer to the [Notes about ingredients](#commands-ingredients-tracking-notes-about-ingredients)
 for details on the pre-determined default levels of different types of ingredients.
 </div>
 
 Example: 
 
-Let's say you want to find out which ingredients you need to restock.
+Let's say you want to see a list of ingredients that you need to restock.
 You can follow these instructions:
 
 1. Type ` i-restock` into the _Command Box_.
@@ -999,6 +995,9 @@ After executing:<br>
 Figure x. Screenshot showing the outcome of an `c-unarchive 1` command
 
 ### 4. Commands - General <a name="commands-general"></a>
+
+This section provides an overview of the general commands used in tCheck.
+
 #### 4.1 Viewing help : `help`
 
 Show a message explaining how to access the help page, which is the tCheck User Guide.
@@ -1029,6 +1028,9 @@ Exits the program.
 Format: `exit`
 
 ### 5. Other Features <a name="other-features"></a>
+
+This section provides an overview of the other features of tCheck which do not use a command.
+
 #### 5.1 Saving the data :
 All tCheck data (i.e. ingredient data, sales data, employees' data) are saved in the hard disk automatically after each
  command. There is no need to save manually.
@@ -1074,7 +1076,6 @@ Action | Format, Examples
 **List**| `s-list`
 **Find**| `s-find KEYWORD [MORE_KEYWORDS]` <br> e.g., `s-find BSBM BSBBT`
 
-
 ### Ingredients Tracking
 
 Action | Format, Examples
@@ -1084,7 +1085,7 @@ Action | Format, Examples
 **Set all ingredients to default**  | `i-set-default` <br> e.g., `i-set-default`
 **List**| `i-list`
 **Find**| `i-find KEYWORD [MORE_KEYWORDS]`  <br> e.g., `i-find milk sugar`
-**Reset all ingredients to zero**| `i-reset-all`
+**Reset all ingredients' levels to zero**| `i-reset-all`
 **View all ingredients that the user should restock**| `i-restock`
 
 ### Manpower Management
@@ -1102,7 +1103,6 @@ Action | Format, Examples
 **Archive an employee** |  `c-archive INDEX`<br> e.g., `c-archive 1`  
 **Archive all employees** |  `c-archive-all` <br>
 **Unarchive** | `c-unarchive INDEX`<br> e.g., `c-unarchive 1` 
-
 
 ### General
 
