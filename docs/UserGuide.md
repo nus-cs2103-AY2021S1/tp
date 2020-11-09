@@ -107,53 +107,13 @@ Here are some general information you would need to know about our commands as y
 
 </div>
 
-<div markdown="span" class="alert alert-info">
+<span markdown="span" class="alert alert-info">
 
 
 In Eva, you can store information about staff and applicants. Information includes details like name, phone number 
 and more. As such, in order to store these details in a neat and tidy manner, be sure to follow these guidelines
 on storing these details:
 
-<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-    <thead>
-        <tr>
-            <th>Field</th>
-            <th>Constraints</th>
-            <th>Example</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td >Name</td>
-            <td > can contain only alphanumeric characters and has a character limit of 70 characters. </td>
-            <td ><code>`John Doe`</code></td>
-        </tr>
-         <tr>
-            <td >Phone</td>
-            <td >can only contain numbers, and must be between 8 and 20 digits long. </td>
-            <td ><code> 6590018978 </code></td>
-        </tr>
-         <tr>
-            <td > Tag </td>
-            <td > can only contain alphanumeric characters.</td>
-            <td ><code> hardworking </code></td>
-        </tr>
-        <tr>
-            <td > Email </td>
-            <td > should be of the format local-part@domain where the local-part should contain alphanumeric characters or special characters which includes ( !#$%&'*+/=?`{&#124;}~^.-_ ) excluding the parentheses.
-                <br> The domain name should have at least 2 characters and contain only alphanumeric with a period or a hyphen for the characters in between if needed. 
-            </td>
-            <td ><code> john_doe@email.com </code></td>
-        </tr>
-        <tr>
-            <td > Date </td>
-            <td > must be in the format <code>DD/MM/YYYY</code></td>
-            <td > 6th of July 2020 represented as <code>06/07/2020</code> 
-                <br> Note: Eva automatically corrects wrong dates like 30/02/2020 and 31/11/2020 to 29/02/2020 and 30/11/2020 respectively.
-            </td>
-         </tr>
-    </tbody>
-</table>
 
 | Field       | Constraints                                                                                                                                                                                                                                                                                                                                             | Example                                                                                                                                                                 |
 |-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -163,7 +123,7 @@ on storing these details:
 | **Tag**     | can only contain alphanumeric characters.                                                                                                                                                                                                                                                                                                               | `hardworking`                                                                                                                                                           |
 | **Date**    | must be in the format `DD/MM/YYYY`                                                                                                                                                                                                                                                                                                                      | 6th of July 2020 represented as `06/07/2020`<br> Note: Eva automatically corrects wrong dates like 30/02/2020 and 31/11/2020 to 29/02/2020 and 30/11/2020 respectively. |
 
-</div>
+</span>
 
 <div markdown="block" class="alert alert-primary">
 
