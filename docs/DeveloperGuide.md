@@ -132,7 +132,7 @@ The `UI` component,
 * Consists of a `MainWindow` that is made up of many different parts that inherit from the abstract `UiPart` class.
 
 The `MainWindow` is made up of 
-* A `PatientListPanel` that displays the list of patients. The layout is defined by `PatientCard`.
+* A `PatientListPanel` that displays the list of patients. The layout is defined by `PatientCard` and `PatientDetailsPanel`.
 * A `RoomListPanel` that displays the list of rooms. The layout is defined by `RoomCard` and `RoomDetailPanel`.
 * A `RoomTaskListPanel` that displays the list of tasks. The layout is defined by `TaskCard`.
 * A `HelpWindow` that displays the link to the help page.
@@ -238,7 +238,7 @@ The `PatientRecords` class is in charge of maintaining the data of the patients 
 
 The `RoomList` class is in charge of maintaining the data in the rooms and in ensuring the uniqueness of rooms according to the room numbers. As each room stores the data of the patient who resides in the room and the tasks meant for the room, it incorporates data from both `Patient` and `RoomTasks`. `RoomTasks` class is in charge of maintaining the data of the tasks in a room. The full details of `Patient` can be found in the previous class diagram for `PatientRecords` so it is no longer reflected in the class diagram for `RoomList`. The class diagram for `RoomList` is shown below.  
 <p align="center">
-    <img src="images/dg/RoomListClassDiagram.png">
+    <img src="images/dg/RoomListClassDiagram.png" width="350" height="700">
     <br />
     <i>Figure 9. Class Diagram for RoomList</i>
 </p>
@@ -250,7 +250,7 @@ The `RoomList` class is in charge of maintaining the data in the rooms and in en
 The `RoomTaskRecords` class is in charge of maintaining the data regarding the association of a task in a room. The `RoomTaskAssociation` class acts as an association class that ties `Task` and `Room` together so that the `Task` object does not need to know of the details of `Room` and we are still able to identify the room number that `Task` belongs to and its index in `Room`. The class diagram for `RoomTaskRecords` is shown below.
 
 <p align="center">
-    <img src="images/dg/RoomTaskRecordsClassDiagrams.png">
+    <img src="images/dg/RoomTaskRecordsClassDiagrams.png" width="350" height="400">
     <br />
     <i>Figure 10. Class Diagram for RoomTaskRecords</i>
 </p>
@@ -301,7 +301,7 @@ The class diagrams for the above stated adapted classes are shown below
  </p>
  
   <p align="center">
-      <img src="images/dg/JsonSerializablePatientRecords.png">
+      <img src="images/dg/JsonSerializablePatientRecords.png" width="350" height="250">
       <br />
       <i>Figure 14. Structure of the JsonSerializablePatientRecords</i>
   </p>
@@ -874,14 +874,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Hotel Staff requests to add a patient into the system.
-2. Covigent adds the patient into the system.
+1. Hotel Staff requests to add a patient into Covigent.
+2. Covigent adds the patient.
 3. Covigent shows the details of the newly added patient.
 
 Use case ends.
 
 **Extensions**
-* 2a. Covigent realises that the patient name already exists in the system.
+* 2a. Covigent realises that the patient name already exists.
     * 2a1. Covigent displays an error message.
     
 Use case ends.
@@ -895,14 +895,14 @@ Use case ends.
 
 **MSS**
 
-1. Hotel Staff requests to delete a patient from the system.
+1. Hotel Staff requests to delete a patient from Covigent.
 2. Covigent deletes the patient and removes the patient from the room he/she is residing in.
 3. Covigent shows the details of the deleted patient.
 
 Use case ends.
 
 **Extensions**
-* 2a. Covigent realizes the patient does not exist in the system.
+* 2a. Covigent realizes the patient does not exist.
     * 2a1. Covigent displays an error message.
     
 Use case ends.
@@ -928,7 +928,7 @@ Use case ends.
 **MSS**
 
 1. Hotel Staff requests to search patients with a criterion.
-2. Covigent searches the patients with the inputted criteria.
+2. Covigent searches the patients with the input criteria.
 3. Covigent shows the search results.
 
 Use case ends.
@@ -971,8 +971,8 @@ Use case ends.
 Use case ends.
 
 **Extensions**
-* 1a. System realizes that there are no rooms existing.
-   * 1a1. System displays an error message.
+* 1a. Covgient realizes that there are no rooms existing.
+   * 1a1. Covigent displays an error message.
    
 Use case ends.
 
@@ -987,13 +987,13 @@ Use case ends.
 Use case ends.
 
 **Extensions**
-*  1a. System realizes that there are no rooms.
-    * 1a1. System displays an error message.
+*  1a. Covigent realizes that there are no rooms.
+    * 1a1. Covigent displays an error message.
     
 Use case ends.
   
-*  1b. System realizes that there are no empty rooms.
-    * 1b1. System displays an error message.
+*  1b. Covigent realizes that there are no empty rooms.
+    * 1b1. Covigent displays an error message.
     
 Use case ends.
 
@@ -1111,32 +1111,21 @@ Use case ends.
 
 **MSS**
 
-1. User requests to search for a task before a specific date.
-2. User inputs the specific date.
-3. System searches for tasks before the specific date.
-4. System displays the tasks before the specific date and success message.
+1. Hotel Staff requests to search for a task before a specific date.
+2. Hotel Staff inputs the specific date.
+3. Covigent searches for tasks before the specific date.
+4. Covigent displays the tasks before the specific date and success message. 
 
 Use case ends.
 
 **Extensions**
-* 1a. Covigent realizes that no optional fields are input.
-   * 1a1. Covigent displays an error message.
-   
+* 2a. Covigent realizes that the format of the date is incorrect.
+    * 2a1. Covigent displays an error message.
 Use case ends.
 
-* 1b. Covigent realizes that the specified room does not exist.
-    * 1b1. Covigent displays an error message.
+* 3a. Covigent realizes that there is no task matching the criteria. 
+    * 3a1. Covigent displays an error message.
     
-Use case ends.
-
-* 1c. Covigent realizes that the specified task does not exist.
-    * 1c1. Covigent displays an error message.
-    
-Use case ends.
-
-* 1d. Covigent realizes that the new information for the task is the same as the original.
-   * 1d1. Covigent displays an error message.
-   
 Use case ends.
 
 ### A4. Non-Functional Requirements
@@ -1197,7 +1186,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `addpatient n/John Doe`<br>
       **Expected**: No patient is added. Error details shown in the result box. 
 
-   1. Other incorrect add patient commands to try: `addpatient n/John Doe t/37.0 d/20200101-20190114 p/91234567 a/22`
+   1. Other incorrect add patient commands to try: `addpatient n/John Doe t/37.0 d/20200101-20190114 p/91234567 a/22` <br>
       **Expected**: Similar to previous.
 
 1. **Allocating a patient to a room in Covigent**
