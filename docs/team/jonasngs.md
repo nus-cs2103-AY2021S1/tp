@@ -11,10 +11,9 @@ Given below are my contributions to the project.
 * **Enhancement:** Implemented the feature to find items using multiple search parameters. 
                    This includes the following functionalities: find contact, find task.
   * **What it does:** This feature allows the user to filter contacts, tasks and events using multiple search parameters. 
-  * **Justification:** This feature enhances the product significantly as users might store large numbers of different contacts, tasks and events, and locating a specific 
+  * **Justification:** This feature enhances the product significantly as users might store many contacts, tasks and events, and locating specific 
                    information may be tedious. 
-  * **Highlights:** This feature required in-depth analysis of the implementation of Contact and Task so that 
-      search parameters to find contacts and tasks with could be identified. As users can provide a variable number of search parameters, defensive programming was employed
+  * **Highlights:** This feature required in-depth analysis of the implementation of Contact and Task. As users can provide a variable number of search parameters, defensive programming was employed
       to ascertain exactly which search parameters were provided before the command is executed.
   * Relevant Pull requests: [\#156](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/156)
                             [\#257](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/257)
@@ -24,7 +23,7 @@ Given below are my contributions to the project.
 * **Enhancement:** Implemented zoom link management feature. This includes the following functionalities: add zoom link, edit zoom link, delete zoom link
   * **What is does:** This feature allows users to manage a list of zoom links for various module lessons in each distinct module.           
   * **Justification:** This feature enhances the product significantly since users are enrolled in numerous modules 
-                   and might have a substantial number of zoom links to keep track of. These features can allow users to manage zoom links more efficiently.
+                   and might have a substantial number of zoom links to keep track of.
   * **Highlights:** In-depth analysis of Module and its behaviour is required since ZoomLink and ModuleLesson is coupled with module.
                 This is important as it prevents unexpected regressions when zoom link commands are modified.
   * Relevant Pull requests: [\#80](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/80)
@@ -40,10 +39,8 @@ Given below are my contributions to the project.
                    that users need to access on a regular basis. As users are enrolled in numerous lessons, the number of contacts to track can be overwhelming.                
   * **Highlights:**
     * This feature requires development in all the components of Cap 5 Buddy: `Logic`, `Model`, `Storage` and `Ui`. As such,
-      in-depth analysis of how the components interacted with each other was required. Also, it does not that all contact fields as compulsory when creating contacts.
-    * This feature considers that it would be impractical to specify all contact fields as compulsory when creating contacts. As such, several contact fields were made optional.
-      Since certain contact details of a contact might be absent, defensive programming was used extensively to ensure such cases were handled appropriately 
-      to prevent potential bugs from surfacing.
+      in-depth analysis of how the components interacted with each other was required. Also, it provides flexibility for users 
+      as not all contact fields are compulsory when creating contacts.
   * Relevant Pull requests: [\#228](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/228)
                             [\#249](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/249)
                             [\#250](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/250)
