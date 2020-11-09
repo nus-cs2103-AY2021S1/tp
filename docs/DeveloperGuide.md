@@ -343,6 +343,7 @@ Given below is an example usage scenario and how the clear command mechanism beh
 of `ActiveAccount`. `CommandParser` identifies the command word `clear` and calls `ClearCommandParser#parse(String args)`
 to parse the input into a valid `ClearCommand`.
 
+<div style="page-break-after: always;"></div>
 * Step 2: `ClearCommand` starts to be executed. In the execution:
     * If user input does not specify a category, both _Expense_ and _Revenue_ Lists will be cleared.
     * If the user input for category matches that of the _Expense_ keyword, Expense List will be cleared.
