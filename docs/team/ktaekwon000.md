@@ -27,6 +27,8 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Made necessary edits to various sections. (Pull request [\#246](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/246))
+    * Restructured parts of the User Guide. (Pull request [\#281](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/281))
+    * Documented formatting features of the User Guide. (Pull request [\#282](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/282))
     <div style="page-break-after: always;"></div>
   * Developer Guide:
     * Added the introduction to the document and the guide to set up the repo for development. (Pull request [\#111](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/111))
