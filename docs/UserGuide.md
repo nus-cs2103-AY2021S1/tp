@@ -14,11 +14,12 @@ Welcome to Nuudle’s User Guide! :smiley:
 
 Looking for a wonderful solution to simplify the complicated process of clinic management? Look no further!
 
-Nuudle is a **desktop app that helps nurses manage patient records and schedule appointments** in an accurate and efficient manner.
+Nuudle is a **desktop application that helps nurses manage patient records and schedule appointments** in an accurate and efficient manner.
+It provides features that allows you to easily manage and keep track of the upcoming appointments in your clinic.
+Nuudle is optimised for those who prefer to work with a Command Line Interface (CLI) while still providing the benefits of a Graphical User Interface (GUI).
+If you can type fast, Nuudle can manage your patients' appointments faster than traditional clinic management applications.
 
-We hope that this document will help you in your journey in exploring the wonders of Nuudle app and enhance the way you schedule appointments for your patients.
-
-To begin your journey, head down to our [Quick Start](#quick-start) or explore the various [Features](#features) that we offer. The document will provide you with all the necessary information you need to start your journey!
+Interested? Continue reading on to explore to wonders of Nuudle and enhance the way you schedule appointments for your patients.
 
 --------------------------------------------------------------------------------------------------------------------
 
