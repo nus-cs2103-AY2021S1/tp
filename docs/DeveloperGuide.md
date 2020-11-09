@@ -346,7 +346,7 @@ The new task command has to be prefixed with 'addtask' and include **some** of t
 
  *The system validates each field upon entry by the user, and failing the validation, will display to the user that the command failed, and requesting the user to try again.*
 
-Given below is an example usage scenario and how the add task and edit task mechanism behaves at each step.
+Given below is an example usage scenario of how the add task mechanism behaves at each step.
 
 After entering the project scope of a chosen project, the user enters the command to add a new task such as "addtask tn/Create Person class tp/25 td/9-11-2020 00:00:00".
 The command text is passed into `LogicManager` (an implementation of Logic) which passes the raw text into the `MainCatalogueParser` to validate the first command word, which in this case is `addtask`. A new instance of `AddTaskCommandParser` class is then created which proceeds to parse the various fields of the command. Any invalid fields such as invalid field prefixes or invalid format of data would throw an exception at this stage. 
