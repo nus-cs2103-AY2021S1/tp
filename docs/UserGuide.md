@@ -364,7 +364,7 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-**Add a Flashcard** | `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> [d/<DIFFICULTY>] [s/<GENDER>] [t/<TAGS>...]` <br> e.g., `add g/Vergesslichkeit e/Forgetfulness d/hard`
+**Add a Flashcard** | `add g/<GERMAN PHRASE> e/<ENGLISH PHRASE> [d/<DIFFICULTY>] [s/<GENDER>] [t/<TAGS>...]` <br> e.g. `add g/Vergesslichkeit e/forgetfulness d/hard`
 **Edit a Flashcard** | `edit INDEX [g/<GERMAN PHRASE>] [e/<ENGLISH PHRASE>] [d/<DIFFICULTY>] [s/<GENDER>] [t/<TAG>]...` <br> e.g. `edit 2 d/easy t/chapter3`
 **Delete a Flashcard** | `delete INDEX` <br> e.g. `delete 3`
 **Clear All Flashcards** | `clear`
