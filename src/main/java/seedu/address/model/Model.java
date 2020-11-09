@@ -16,7 +16,7 @@ import seedu.address.model.goal.Goal;
 /**
  * The API of the Model component.
  */
-public interface ExerciseModel {
+public interface Model {
     /**
      * {@code Predicate} that always evaluate to true
      */

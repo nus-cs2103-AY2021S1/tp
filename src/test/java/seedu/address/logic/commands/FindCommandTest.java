@@ -14,21 +14,21 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ExerciseModel;
-import seedu.address.model.ExerciseModelManager;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Name;
-import seedu.address.model.exercise.PropertiesMatchPredicateForExercise;
+import seedu.address.model.exercise.PropertiesMatchPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private ExerciseModel model = new ExerciseModelManager(getTypicalExerciseBook(), null, new UserPrefs());
-    private ExerciseModel expectedModel = new ExerciseModelManager(getTypicalExerciseBook(), null, new UserPrefs());
+    private Model model = new ModelManager(getTypicalExerciseBook(), null, new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalExerciseBook(), null, new UserPrefs());
 
     @Test
     public void equals() {
@@ -37,11 +37,11 @@ public class FindCommandTest {
             Description description = new Description("test");
             Date date = new Date("10-10-2020");
             Calories calories = new Calories("224");
-            PropertiesMatchPredicateForExercise firstPredicate =
-                    new PropertiesMatchPredicateForExercise(name, description, date,
+            PropertiesMatchPredicate firstPredicate =
+                    new PropertiesMatchPredicate(name, description, date,
                             calories, Collections.singletonList("first"));
-            PropertiesMatchPredicateForExercise secondPredicate =
-                    new PropertiesMatchPredicateForExercise(name, description, date,
+            PropertiesMatchPredicate secondPredicate =
+                    new PropertiesMatchPredicate(name, description, date,
                             calories, Collections.singletonList("second"));
 
             FindCommand findFirstCommand = new FindCommand(firstPredicate);
@@ -73,8 +73,8 @@ public class FindCommandTest {
         String input = " ";
         assert input != null;
         List<String> keywords = Arrays.asList(input.split("\\s+"));
-        PropertiesMatchPredicateForExercise predicate =
-                new PropertiesMatchPredicateForExercise(null, null, null, null, keywords);
+        PropertiesMatchPredicate predicate =
+                new PropertiesMatchPredicate(null, null, null, null, keywords);
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredExerciseList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

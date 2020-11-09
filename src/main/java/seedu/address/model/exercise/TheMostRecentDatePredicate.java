@@ -2,7 +2,7 @@ package seedu.address.model.exercise;
 
 import java.util.function.Predicate;
 
-public class TheMostRecentDatePredicateForExercise implements Predicate<Exercise> {
+public class TheMostRecentDatePredicate implements Predicate<Exercise> {
 
     private final Name name;
     private final Date date;
@@ -10,7 +10,7 @@ public class TheMostRecentDatePredicateForExercise implements Predicate<Exercise
     /**
      * Creates a predicate to look for exercises with specified name and date.
      */
-    public TheMostRecentDatePredicateForExercise(Name name, Date date) {
+    public TheMostRecentDatePredicate(Name name, Date date) {
         this.name = name;
         this.date = date;
     }

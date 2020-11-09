@@ -24,8 +24,8 @@ import seedu.address.model.goal.Goal;
 /**
  * Represents the in-memory model of the exercise book data.
  */
-public class ExerciseModelManager implements ExerciseModel {
-    private static final Logger logger = LogsCenter.getLogger(ExerciseModelManager.class);
+public class ModelManager implements Model {
+    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final ExerciseBook exerciseBook;
     private final UserPrefs userPrefs;
@@ -34,10 +34,10 @@ public class ExerciseModelManager implements ExerciseModel {
     private final FilteredList<Template> filteredTemplates;
 
     /**
-     * Initializes a ExerciseModelManager with the given exerciseBook and userPrefs.
+     * Initializes a ModelManager with the given exerciseBook and userPrefs.
      */
-    public ExerciseModelManager(ReadOnlyExerciseBook exerciseBook,
-                                ReadOnlyGoalBook goalBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyExerciseBook exerciseBook,
+                        ReadOnlyGoalBook goalBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(exerciseBook, userPrefs);
         logger.fine("Initializing with exercise book: " + exerciseBook + " and user prefs " + userPrefs);
@@ -49,11 +49,11 @@ public class ExerciseModelManager implements ExerciseModel {
         this.filteredTemplates = new FilteredList<>(this.exerciseBook.getTemplateList());
     }
 
-    public ExerciseModelManager(ReadOnlyExerciseBook exerciseBook) {
+    public ModelManager(ReadOnlyExerciseBook exerciseBook) {
         this(exerciseBook, new GoalBook(), new UserPrefs());
     }
 
-    public ExerciseModelManager() {
+    public ModelManager() {
         this(new ExerciseBook(), new GoalBook(), new UserPrefs());
     }
 
@@ -252,12 +252,12 @@ public class ExerciseModelManager implements ExerciseModel {
         }
 
         // instanceof handles nulls
-        if (!(obj instanceof ExerciseModelManager)) {
+        if (!(obj instanceof ModelManager)) {
             return false;
         }
 
         // state check
-        ExerciseModelManager other = (ExerciseModelManager) obj;
+        ModelManager other = (ModelManager) obj;
         return exerciseBook.equals(other.exerciseBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredExercises.equals(other.filteredExercises);

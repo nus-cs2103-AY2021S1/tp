@@ -20,13 +20,13 @@ public class ExerciseStorageManagerTest {
     @TempDir
     public Path testFolder;
 
-    private StorageManagerForExercise storageManager;
+    private StorageManager storageManager;
 
     @BeforeEach
     public void setUp() {
         JsonExerciseBookStorage exerciseBookStorage = new JsonExerciseBookStorage(getTempFilePath("eb"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManagerForExercise(exerciseBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(exerciseBookStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {

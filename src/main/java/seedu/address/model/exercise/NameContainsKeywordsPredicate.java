@@ -5,10 +5,10 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 
-public class NameContainsKeywordsPredicateForExercise implements Predicate<Exercise> {
+public class NameContainsKeywordsPredicate implements Predicate<Exercise> {
     private final List<String> keywords;
 
-    public NameContainsKeywordsPredicateForExercise(List<String> keywords) {
+    public NameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -21,7 +21,7 @@ public class NameContainsKeywordsPredicateForExercise implements Predicate<Exerc
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicateForExercise // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicateForExercise) other).keywords)); // state check
+                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
     }
 }

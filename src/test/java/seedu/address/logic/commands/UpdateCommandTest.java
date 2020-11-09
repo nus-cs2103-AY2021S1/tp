@@ -21,8 +21,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.exceptions.CaloriesOverflow;
 import seedu.address.model.ExerciseBook;
-import seedu.address.model.ExerciseModel;
-import seedu.address.model.ExerciseModelManager;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.testutil.EditExerciseDescriptorBuilder;
@@ -34,7 +34,7 @@ import seedu.address.testutil.ExerciseBuilder;
  */
 class UpdateCommandTest {
 
-    private ExerciseModel model = new ExerciseModelManager(getTypicalExerciseBook(), null, new UserPrefs());
+    private Model model = new ModelManager(getTypicalExerciseBook(), null, new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -45,8 +45,8 @@ class UpdateCommandTest {
 
         String expectedMessage = String.format(UpdateCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
-        ExerciseModel expectedModel =
-                new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()), null, new UserPrefs());
+        Model expectedModel =
+                new ModelManager(new ExerciseBook(model.getExerciseBook()), null, new UserPrefs());
 
         expectedModel.setExercise(model.getFilteredExerciseList().get(0), editedExercise);
 
@@ -69,8 +69,8 @@ class UpdateCommandTest {
                     .withDate(VALID_DATE_PUSH_UP).withCalories(VALID_CALORIES_PUSH_UP).build();
             UpdateCommand updateExerciseCommand = new UpdateCommand(indexLastExercise, descriptor);
             String expectedMessage = String.format(UpdateCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
-            ExerciseModel expectedModel =
-                    new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()), null, new UserPrefs());
+            Model expectedModel =
+                    new ModelManager(new ExerciseBook(model.getExerciseBook()), null, new UserPrefs());
             expectedModel.setExercise(lastExercise, editedExercise);
             assertCommandSuccess(updateExerciseCommand, model, expectedMessage, expectedModel);
         } catch (CaloriesOverflow err) {
@@ -87,7 +87,7 @@ class UpdateCommandTest {
 
         String expectedMessage = String.format(UpdateCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
-        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()), null,
+        Model expectedModel = new ModelManager(new ExerciseBook(model.getExerciseBook()), null,
                 new UserPrefs());
 
         assertCommandSuccess(updateExerciseCommand, model, expectedMessage, expectedModel);
@@ -104,7 +104,7 @@ class UpdateCommandTest {
 
         String expectedMessage = String.format(UpdateCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
-        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()), null,
+        Model expectedModel = new ModelManager(new ExerciseBook(model.getExerciseBook()), null,
                 new UserPrefs());
         expectedModel.setExercise(model.getFilteredExerciseList().get(0), editedExercise);
 

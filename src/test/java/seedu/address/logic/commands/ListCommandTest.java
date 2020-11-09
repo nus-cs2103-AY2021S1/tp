@@ -8,8 +8,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.ExerciseModel;
-import seedu.address.model.ExerciseModelManager;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 /**
@@ -17,13 +17,13 @@ import seedu.address.model.UserPrefs;
  */
 public class ListCommandTest {
 
-    private ExerciseModel model;
-    private ExerciseModel expectedModel;
+    private Model model;
+    private Model expectedModel;
 
     @BeforeEach
     public void setUp() {
-        model = new ExerciseModelManager(getTypicalExerciseBook(), null, new UserPrefs());
-        expectedModel = new ExerciseModelManager(model.getExerciseBook(), null, new UserPrefs());
+        model = new ModelManager(getTypicalExerciseBook(), null, new UserPrefs());
+        expectedModel = new ModelManager(model.getExerciseBook(), null, new UserPrefs());
     }
 
     @Test

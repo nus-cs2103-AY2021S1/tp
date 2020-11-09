@@ -4,12 +4,12 @@ import java.io.IOException;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ExerciseModel;
+import seedu.address.model.Model;
 
 /**
  * Represents a command with hidden internal logic and the ability to be executed.
  */
-public abstract class CommandForExercise {
+public abstract class Command {
 
     /**
      * Executes the command and returns the result message.
@@ -18,6 +18,6 @@ public abstract class CommandForExercise {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute(ExerciseModel model) throws CommandException, IOException, ParseException;
+    public abstract CommandResult execute(Model model) throws CommandException, IOException, ParseException;
 
 }

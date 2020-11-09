@@ -24,7 +24,7 @@ import seedu.address.model.exercise.MuscleTag;
 /**
  * Parses input arguments and creates a new UpdateExerciseCommand object
  */
-public class UpdateExerciseCommandParser implements ExerciseParser<UpdateCommand> {
+public class UpdateCommandParser implements ExerciseParser<UpdateCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the UpdateExerciseCommand
      * and returns an UpdateExerciseCommand object for execution.

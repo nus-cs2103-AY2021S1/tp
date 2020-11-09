@@ -5,12 +5,12 @@ import static seedu.address.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEM
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.ExerciseModel;
-import seedu.address.model.ExerciseModelManager;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 
 public class ExitCommandTest {
-    private ExerciseModel model = new ExerciseModelManager();
-    private ExerciseModel expectedModel = new ExerciseModelManager();
+    private Model model = new ModelManager();
+    private Model expectedModel = new ModelManager();
 
     @Test
     public void execute_exit_success() {
