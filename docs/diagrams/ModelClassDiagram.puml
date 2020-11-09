@@ -60,14 +60,14 @@ AddressBook .up.|> ReadOnlyAddressBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
+ModelManager --> "1" AddressBook
+ModelManager -left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
-ModelManager o-right-> "1" UserLogin
+ModelManager -right-> "1" UserLogin
 UserLogin .up.|> ReadOnlyUserLogin
 
 AddressBook *--> "1" UniqueStudentList
-UniqueStudentList o--> "*" Student
+UniqueStudentList --> "*" Student
 Student *--> Name
 Student *--> Telegram
 Student *--> Email
@@ -75,22 +75,22 @@ Student *--> Email
 Name -[hidden]right-> Telegram
 
 AddressBook *--> "1" UniqueTasksList
-UniqueTasksList o--> "*" Task
+UniqueTasksList --> "*" Task
 Todo -up-|> Task
 Deadline -up-|> Task
 Event -up-|> Task
 
 AddressBook *--> "1" MasteryCheckList
-MasteryCheckList o--> "*" MasteryCheck
+MasteryCheckList --> "*" MasteryCheck
 MasteryCheck -up-|> Consultation
 
 AddressBook *--> "1" ConsultationList
-ConsultationList o--> "*" Consultation
+ConsultationList --> "*" Consultation
 
 AddressBook *--> "1" QuestList
-QuestList o--> "*" Quest
+QuestList --> "*" Quest
 
 AddressBook *--> "1" MissionList
-MissionList o--> "*" Mission
+MissionList --> "*" Mission
 
 @enduml
