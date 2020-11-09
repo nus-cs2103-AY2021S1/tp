@@ -919,8 +919,9 @@ Format: `clearcontact`
 Creates and add a new Event with the specified information from the user input
 
   Format: `addevent n/EVENT_NAME d/DATE_TIME [t/TAG]`
-
+<p aligin="center"><img src="images/AddEventExample.png" border="2px solid black"></p>
    Examples:
+    * `addevent n/CS2100 Assignment 1 d/10-9-2020 1200 t/Important` adds an Event called C2100 Assignment 1 with the deadline of 10-9-2020 1200 and the tagging of important.
     * `addevent n/CS2103T exams d/12-12-2020 1200` adds an Event called CS2103T into the Scheduler with the date 12-12-2020.
     * `addevent n/CS2103T exams d/12-12-2020 1200 t/Important` adds an Event called CS2103T into the Scheduler with the date 12-12-2020 and the tag of Important.
     * `addevent n/CS2103T exams d/12-12-2020 1200 t/Important t/Urgent` adds an Event called CS2103T into the Scheduler with the date 12-12-2020 and the tag of Important and Urgent.
@@ -941,21 +942,12 @@ as event name and the event date.
 
   Format: `editevent index [n/new name] [d/new date]`<br>
   **Note:** All fields are optional but at least 1 of them must be present.
-
+<p aligin="center"><img src="images/EditEventExample.png" border="2px solid black"></p>
    Examples:
-    * `editevent 1 n/CS2103T assignment d/2-4-2020 1200 t/Important` edits the event of index 1 with the new name of CS2103T, new date and time of 2-4-2020 1200 and the new tag of Important.
+    * `editevent 1 n/CS2103T assignment d/2-4-2020 1200 t/NotImportant` edits the event of index 1 with the new name of CS2103T, new date and time of 2-4-2020 1200 and the new tag of NotImportant.
     * `editevent 1 n/CS2100` edits the event of index 1 with the new name of CS2103T.
     * `editevent 1 d/3-3-2020 1300` edits the event of index 1 with the new date time of 3-3-2020 1300.
-    * `editevent 1 t/Not Important` edits the event of index 1 with the new tag of Not Important.
-
-#### Viewing an Event from the Scheduler: `viewevent`
-
-You can choose to view a particular event from the list by entering the index.
-
-  Format: `viewevent index`
-
-   Example:
-    * `viewevent 1` views the event details of index 1 from the EventList.
+    * `editevent 1 t/NotImportant` edits the event of index 1 with the new tag of Not Important.
 
 #### Finding an Event from the Scheduler: `findevent`
 
@@ -963,7 +955,7 @@ You can search for a particular event based on the name and date. This will retu
 
   Format: `findevent [n/EVENT_NAME] [d/DATE_TIME]`
   **Note:** All fields are optional but at least 1 of them must be present.
-   
+
    Examples:
     * `findevent n/CS2103T` finds all events that have **CS2103T** in their event name.
     * `findevent d/1-1-2020 1200` finds all event that have the date and time of **1 Jan 2020 12:00**.
@@ -1046,7 +1038,7 @@ Action | Format, Examples
 **Calculate CAP** | `calculatecap` <br> e.g. `calculatecap`
 **Calculate Target CAP details** | `targetcap tc/TARGET_CAP` <br> e.g. `targetcap 4.5`
 
-## Command Summary for ContactList
+## Command Summary for Contact List
 
 Action | Format, Examples
 -------|-------------------------
@@ -1069,7 +1061,6 @@ Action | Format, Examples
 **Delete Event** | `deleteevent index` <br> e.g. `deleteevent 1`
 **Edit Event** | `editevent index [n/EVENT_NAME] [d/DATE_TIME] [t/TAG]` <br> e.g. `editevent 1 n/CS2100 d/2-1-2020 t/Done`
 **Find Event** | `findevent [n/EVENT_NAME] [d/DATE_TIME]` <br> e.g. `findevent n/CS2103T`
-**View Event** | `viewevent index` <br> e.g. `viewevent 1`
 
 ## Command summary for general features
 
