@@ -282,9 +282,19 @@ You can use `list` or `find` (e.g `find n/Amy`) to display her information again
 
 </div>
 
+<div markdown="block" class="alert alert-danger">
+:warning: You cannot add additional details with this command.
+</div>
+
 Examples:
-*  `edit 1 n/Alex p/99999999 s/Meridian Junior College` Edits the name, phone number and school of the 1st student to be `Alex`, `99999999` and `Meridian Junior College` respectively.
-*  `edit 3 v/Blk 33 West Coast Rd #21-214 t/1 1430-1630` Edits the venue and time of the third student to be `Blk 33 West Coast Rd #21-214` and `1 1430-1630` respectively.
+*  `edit 1 n/Arthur p/98727030 s/Meridian Junior College` edits the name, phone number and school of the 1st student to be `Arthur`, `98727030` and `Meridian Junior College` respectively.
+
+Expected Outcome:
+The following figure (Figure __) shows the expected outcome after executing the above example.
+
+[!EditCommandExpectedOutcome](images/EditCommandExpectedOutcome.png)
+
+Figure __: Expected Outcome after editing student.
 
 #### 3.3.4 Locating students: `find` (By: Choon Siong)
 
@@ -388,7 +398,14 @@ Format: `detail add STUDENT_INDEX t/DETAIL_TEXT`
 
 Examples:
 * `detail add 1 t/Smart` adds the "Smart" detail to the 1st student in **Reeve**.
-* `detail add 3 t/Punctual` adds the "Punctual" detail to the 3rd student in **Reeve**.
+
+Expected Outcome:
+The following figure (Figure __) shows the expected outcome after executing the above example.
+
+[!AddDetailExpectedOutcome](images/AddDetailExpectedOutcome.png)
+
+Figure __: Expected Outcome after adding detail.
+
 
 #### 3.3.8.2 Editing a detail: `detail edit`
 
@@ -402,7 +419,13 @@ Format: `detail edit STUDENT_INDEX i/DETAIL_INDEX t/DETAIL_TEXT`
 
 Examples:
 * `detail edit 1 i/2 t/Handsome` edits the 2nd detail for the 1st student in **Reeve**, to "Handsome".
-* `detail edit 5 i/8 t/Smart` edits the 8th detail for the 5th student in **Reeve**, to "Smart".
+
+Expected Outcome:
+The following figure (Figure __) shows the expected outcome after executing the above example.
+
+[!EditDetailExpectedOutcome](images/EditDetailExpectedOutcome.png)
+
+Figure __: Expected Outcome after editing detail.
 
 #### 3.3.8.3 Deleting a detail: `detail delete`
 
@@ -416,7 +439,14 @@ Format: `detail delete STUDENT_INDEX i/DETAIL_INDEX`
 
 Examples:
 * `detail delete 1 i/3` deletes the 3rd detail for the 1st student in **Reeve**.
-* `detail delete 4 i/1` deletes the 1st detail for the 4th student in **Reeve**.
+
+Expected Outcome:
+The following figure (Figure __) shows the expected outcome after executing the above example.
+
+[!DeleteDetailExpectedOutcome](images/DeleteDetailExpectedOutcome.png)
+
+Figure __: Expected Outcome after deleting detail.
+
 
 #### 3.3.9 Viewing lesson schedule: `schedule` (By: Alex)
 
@@ -465,7 +495,7 @@ Viewing it this way would open up your schedule of the current week in the weekl
 You could use this as quick way to open up schedule for the current week.
 </div>
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-danger">
 :warning: A class duration of less than an hour may not be shown fully on the schedule.
 </div>
 
@@ -718,8 +748,14 @@ Format: `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS [f/FEEDB
 Examples:
 * `attendance add 1 d/31/10/2020 a/absent` adds to the 1st student in **Reeve** a new attendance record for a
 lesson on 31 Oct 2020, where he was absent, and the tutor has no feedback for him.
-* `attendance add 2 d/08/12/2020 a/present f/attentive` adds to the 2nd student in **Reeve** a new attendance record
-for a lesson on 8 Dec 2020, where he was present, and the tutor noted he was attentive.
+
+Expected Outcome:
+The following figure (Figure __) shows the expected outcome after executing the above example.
+
+[!AddAttendanceExpectedOutcome](images/AddAttendanceExpectedOutcome.png)
+
+Figure __: Expected Outcome after adding attendance.
+
 
 ##### 3.4.3.2 Deleting an attendance record for a student: `attendance delete`
 
@@ -732,6 +768,13 @@ Format: `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`
 
 Example:
 * `attendance delete 1 d/19/04/2020` deletes the attendance with the date 19 Apr 2020 from the 1st student in the displayed students list in **Reeve**.
+
+Expected Outcome:
+The following figure (Figure __) shows the expected outcome after executing the above example.
+
+[!DeleteAttendanceExpectedOutcome](images/DeleteAttendanceExpectedOutcome.png)
+
+Figure __: Expected Outcome after deleting attendance.
 
 ### 3.5 Notebook feature (By: Choon Siong)
 
@@ -793,7 +836,7 @@ Table 2: Summary of commands in **Reeve**
 Action | Format, Examples
 --------|------------------
 **Add Student** | `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]...​` <br> e.g. `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
-**Edit Student** | `edit STUDENT_INDEX [n/NAME] [p/PHONE] [n/NAME] [p/PHONE] [v/CLASS_VENUE] [s/SCHOOL] [sb/SUBJECT] [y/YEAR] [t/CLASS_TIME]`<br> e.g.`edit 1 n/Alex p/99999999 s/Meridian Junior College`
+**Edit Student** | `edit STUDENT_INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/LAST_PAYMENT_DATE] ` <br> e.g. `edit 1 n/Arthur p/98727030 s/Meridian Junior College`
 **Find Student** | `find [n/NAME] [s/SCHOOL] [y/YEAR]`<br> e.g. `find n/alex s/yishun`
 **List Students** | `list`
 **Delete Student** | `delete STUDENT_INDEX`<br> e.g. `delete 3`
