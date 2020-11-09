@@ -436,7 +436,7 @@ _Written by Ming De_
 
 
 #### 4.1.5 Search
-**Implementation**
+
 The following is a detailed explanation of the operations that `SearchPatientCommand` performs.
 
 **Step 1.** The `SearchPatientCommand#execute(Model model)` method is executed and checks the `criteriaToSearch` via `confirmCriteria(SearchPatientDescriptor searchPatientDescriptor)`. 
@@ -637,7 +637,8 @@ The API calls for these operations first proceed to `Room`, which redirects them
 `TaskList` emulates the other `List` classes in Covigent such as `UniquePatientList` and `UniqueRoomList`, exposing only an unmodifiable `ObservableList<Task>`.
 This `ObservableList<Task>` is subsequently returned by `RoomTasks` in the `getReadOnlyList()` method to fulfill its contract with the `ReadOnlyList<Task>` interface.
 
-##### 4.3.3 Design Considerations
+#### 4.3.3 Design Considerations
+
 **Aspect: Retrieving list of tasks from `Room`**
 
 * Option 1: Supplying a getter for `RoomTasks` in `Room`
@@ -737,7 +738,7 @@ The sequence diagram for `EditTaskCommand` can be found below.
 _Written by Yee Hong_
 
 #### 4.3.5 Search 
-**Implementation**
+
 The following is a detailed explanation of the operations that `SearchTaskCommand` performs.
 
 **Step 1.** The `SearchTaskCommand#execute(Model model)` method is executed and it gets information of `task` from each `room` in the `roomList`.
