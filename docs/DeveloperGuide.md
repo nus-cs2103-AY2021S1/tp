@@ -82,7 +82,7 @@ The class diagram of the UI component is shown below:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/UiClassDiagram.png" /> <br />
-Figure 3: <i>The class diagram of the UI component</i>
+Figure 3.1: <i>The class diagram of the UI component</i>
 </div>
 
 **Interface**: [`Ui.java`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/ui/Ui.java)
@@ -96,18 +96,18 @@ The `UI` component:
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `list ingredients`:
-
-<div style="text-align: center; padding-bottom: 2em">
-<img src="images/dg/UiSequenceDiagram.png" style="width: 75%" /> <br />
-Figure 4: <i>A sequence diagram showing the execution of <code>list ingredients</code></i>
-</div>
-
 The following activity diagram shows the general flow of events for the Ui component when the application is launched:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="diagrams/ui/UiLauchActivityDiagram.png" style="width: 45%"> <br />
-Figure 5: <i>An activity diagram for the Ui during application launch</i>
+Figure 3.2: <i>An activity diagram for the Ui during application launch</i>
+</div>
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user issues the command `list ingredients`:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/dg/UiSequenceDiagram.png" style="width: 75%" /> <br />
+Figure 3.3: <i>A sequence diagram showing the execution of <code>list ingredients</code></i>
 </div>
 
 
@@ -121,7 +121,7 @@ The class diagram of the Logic component is shown below:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="diagrams/logic/cls-overall.png" /> <br />
-Figure 6: <i>The class diagram of the Logic component</i>
+Figure 4.1: <i>The class diagram of the Logic component</i>
 </div>
 
 **Interface**: [`Logic.java`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/logic/Logic.java)
@@ -137,7 +137,7 @@ This is the general flow of events when a command is executed:
 For example, this is a sequence diagram showing the deletion of a recipe:
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/DeleteSequenceDiagram.png" style="width: 95%" /> <br />
-Figure 7: <i>A sequence diagram showing the execution of <code>delete recipe #1</code> in the Logic component</i>
+Figure 4.2: <i>A sequence diagram showing the execution of <code>delete recipe #1</code> in the Logic component</i>
 </div>
 
 
@@ -159,7 +159,7 @@ The class diagram of the *Model* component is shown below:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/ModelClassDiagram.png" /> <br />
-Figure 8: <i>The class diagram of the Model component</i>
+Figure 5.1: <i>The class diagram of the Model component</i>
 </div>
 
 **Interface**: [`Model.java`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/model/Model.java)
@@ -174,7 +174,7 @@ The Model component:
 Of note in the Model component are the `Recipe` and `Ingredient` classes; below is the class diagram for both:
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/RecipeIngredient.png"> <br/>
-Figure 9: <i>The class diagram for Recipes and Ingredients</i>
+Figure 5.2: <i>The class diagram for Recipes and Ingredients</i>
 </div>
 
 Note that an instance of `Recipe` only stores `IngredientReferences` to the ingredients it uses, and not the actual `Ingredients` themselves — since the actual instance of the ingredient that will be used by the recipe is indeterminate.
@@ -195,7 +195,7 @@ The class diagram of the *Storage* component is shown below:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/StorageClassDiagram.png"> <br />
-Figure 10: <i>The class diagram of the Storage component</i>
+Figure 6: <i>The class diagram of the Storage component</i>
 </div>
 
 **Interface**: [`Storage.java`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/storage/Storage.java)
@@ -247,7 +247,7 @@ The command parser is part of the *Logic* component, and is responsible for taki
 Shown below is the class diagram for the various Parser components:
 <div style="text-align: center; padding-bottom: 2em">
 <img src="diagrams/logic/cls-parser.png" style="width: 85%"> <br />
-Figure 999: <i>The class diagram for the parser</i>
+Figure 7.1: <i>The class diagram for the parser</i>
 </div>
 
 Notably, there are various wrapper classes to ensure type safety, namely `CommandArguments`, `ArgName`, and `ItemReference`, used instead of passing raw strings around in an error-prone manner.
@@ -296,7 +296,7 @@ One of the more complex commands to parse is the `add recipe` command; here is t
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="diagrams/logic/seq-parser-add-recipe.png" style="width: 95%"> <br />
-Figure 999: <i>A sequence diagram for parsing an <code>add recipe</code> command</i>
+Figure 7.2: <i>A sequence diagram for parsing an <code>add recipe</code> command</i>
 </div>
 
 
@@ -353,7 +353,7 @@ The main brains of the tab completer lies in determining which <i>kind</i> of it
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="diagrams/logic/act-tabcomplete.png" style="width: 45%"> <br />
-Figure 999: <i>A high-level activity diagram for the tab completer</i>
+Figure 8: <i>A high-level activity diagram for the tab completer</i>
 </div>
 
 <i>Developer's note: the activity diagram could have been made a lot more detailed, but it would have been completely unreadable.</i>
@@ -376,7 +376,7 @@ The relationships between the various quantity-related classes are shown below:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="diagrams/model/cls-quantity.png" style="width: 45%"> <br />
-Figure 999: <i>The class diagram for the quantity components</i>
+Figure 9: <i>The class diagram for the quantity components</i>
 </div>
 
 The `Quantity` interface contains a static method that handles parsing a quantity from a string; in the current implementation, it needs to have explicit knowledge about the supported units (in the sense that it lists `Mass`, `Count`, etc). It attempts to parse the input with each unit's parser and returns the first one that succeeds:
@@ -432,7 +432,7 @@ For example, here is the output of `help add recipe`:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/help_message_2.png" style="width: 45%"> <br />
-Figure 999: <i>The output of `help add recipe`</i>
+Figure 10: <i>The output of `help add recipe`</i>
 </div>
 
 This requires two pieces to cooperate:
@@ -473,7 +473,7 @@ It is mainly supported by `UsageList` and `Usage` in the Model component. `Usage
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/UsageClassDiagram.png" style="width: 45%"> <br />
-Figure 999: <i>Usage component in Model</i>
+Figure 11: <i>Usage component in Model</i>
 </div>
 
 The `Model` interface exposes various operations to support the addition and removal of usages, and getting statistics from `UsageList`.
@@ -558,7 +558,7 @@ It is executed with an object of `StatsRecipeTopCommand` which is created after 
 The sequence diagram below shows the sequence of interactions between the `Model` and the `Logic` components after the user command `stats recipe top` is executed.
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/StatsRecipeTopSequenceDiagram.png"> <br />
-Figure ???: <i>The sequence diagram of the execution of StatsRecipeTopCommand </i>
+Figure 12.1 <i>The sequence diagram of the execution of StatsRecipeTopCommand </i>
 </div>
 
 1. `Logic` uses `CommandParser` to parse the user input.
@@ -571,7 +571,7 @@ Figure ???: <i>The sequence diagram of the execution of StatsRecipeTopCommand </
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/RecipeTopCmdStatsBox.png" style="width: 40%"> <br />
-Figure 8000. GUI of statistics box after `stats recipe top` command is executed</i>
+Figure 12.2. GUI of statistics box after `stats recipe top` command is executed</i>
 </div>
 
 
@@ -595,7 +595,7 @@ The `HistoryManager` is initialised with an empty list of `CommandHistory`s, as 
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/state/UndoRedoState0.png"> <br />
-Figure 999: <i>The initial state of HistoryManager</i>
+Figure 13.1: <i>The initial state of HistoryManager</i>
 </div>
 
 Step 2. The user executes `delete recipe #5` to delete the 5th recipe from the recipe book.
@@ -604,7 +604,7 @@ The `currentIndex` pointer is also incremented by one, as the application is cur
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/state/UndoRedoState1.png"> <br />
-Figure 999: <i>The state of HistoryManager after command "delete recipe #5"</i>
+Figure 13.2: <i>The state of HistoryManager after command "delete recipe #5"</i>
 </div>
 
 Step 3. The user executes `add recipe beef noodles` to add a new recipe.
@@ -613,7 +613,7 @@ The `currentIndex` pointer is once again incremented by one.
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/state/UndoRedoState2.png"> <br />
-Figure 999: <i>The state of HistoryManager after command "add recipe beef noodles"</i>
+Figure 13.3: <i>The state of HistoryManager after command "add recipe beef noodles"</i>
 </div>
 
 Step 4. The user now desires to undo the last action, and executes the `undo` command.
@@ -622,14 +622,14 @@ The command's `Undoable#undo()` operation will then be executed.
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/state/UndoRedoState3.png"> <br />
-Figure 999: <i>The state of HistoryManager after command "undo"</i>
+Figure 13.4: <i>The state of HistoryManager after command "undo"</i>
 </div>
 
 The following sequence diagram shows how the undo operation works:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/UndoSequenceDiagram.png"> <br />
-Figure 999: <i>A sequence diagram for an <code>undo</code> command</i>
+Figure 13.5: <i>A sequence diagram for an <code>undo</code> command</i>
 </div>
 
 The `redo` command does the opposite — it calls `HistoryManager#redo()`, which executes the command `currentIndex` is pointing to, and decrements the `currentIndex` by one.
@@ -640,14 +640,14 @@ Since the `currentIndex` is not pointing to the end of the `CommandHistory` list
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/state/UndoRedoState4.png"> <br />
-Figure 999: <i>The state of HistoryManager after command "list recipes"</i>
+Figure 13.6: <i>The state of HistoryManager after command "list recipes"</i>
 </div>
 
 The following activity diagram summarises what happens when a user executes a new command:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/CommitActivityDiagram.png"> <br />
-Figure 999: <i>An activity diagram for the undo/redo feature</i>
+Figure 13.7: <i>An activity diagram for the undo/redo feature</i>
 </div>
 
 <h4>Design considerations</h4>
