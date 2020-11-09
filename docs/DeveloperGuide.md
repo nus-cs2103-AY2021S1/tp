@@ -624,7 +624,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <p>
     The user have already set a goal for the specific day. <br> 
       1a1. `Calo` shows an error message, information the user about the pre-existing goal. <br>  
-    Use case ends.  
+    Use case ends.<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -730,8 +730,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Calories Graph**: The graph that displays the trend of the user's calories burnt in the past 6 days (including the current day).
 * **Exercise Tag**: Additional Tag that you want to assign to the `Exercise`.
 * **Muscle Tag**: The muscles that the `Exercise` works out.
-
---------------------------------------------------------------------------------------------------------------------
+ 
 
 ## 11. Appendix F: Instructions for manual testing
 
@@ -752,23 +751,23 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 ### Deleting an exercise
-1. Deleting an exercise while all exercises are being shown
-   1. Prerequisites: List all exercises using the `list` command. Multiple exercises in the list.
+1. Deleting an exercise while all exercises are being shown<br>
+   1. Prerequisites: List all exercises using the `list` command. Multiple exercises in the list.<br>
    2. Test case: `delete 1`<br>
-      Expected: First `Exercise` is deleted from the list. Details of the deleted `Exercise` shown in the status message. Timestamp in the status bar is updated.
+      Expected: First `Exercise` is deleted from the list. Details of the deleted `Exercise` shown in the status message. Timestamp in the status bar is updated.<br>
    3. Test case: `delete 0`<br>
-      Expected: No `Exercise` is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No `Exercise` is deleted. Error details shown in the status message. Status bar remains the same.<br>
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+      Expected: Similar to previous.<br>
 
 ### Listing all exercise entries
-1. List all `Exercise` entries
-   1. Prerequisites: `Calo` starts up successfully
+1. List all `Exercise` entries<br>
+   1. Prerequisites: `Calo` starts up successfully<br>
    2. Test case: `list`<br>
-      Expected: All `Exercise` entries belonging to the `ExerciseBook` will be displayed in the left panel.
+      Expected: All `Exercise` entries belonging to the `ExerciseBook` will be displayed in the left panel.<br>
 
 ### Adding a goal successfully
-1. Creating goal for a date. For example, 09-11-2020.
-    1.  Prerequisites: There is no pre-existing goal for the same date.
-    2.  Test case: `goal c\360 at\09-11-2020`
-        Expected: `New goal added: 360`
+1. Creating goal for a date. For example, 09-11-2020.<br>
+    1.  Prerequisites: There is no pre-existing goal for the same date.<br>
+    2.  Test case: `goal c\360 at\09-11-2020`<br>
+        Expected: `New goal added: 360`<br>
