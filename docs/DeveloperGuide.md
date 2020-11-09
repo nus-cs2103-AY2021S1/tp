@@ -380,7 +380,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### 7.4.2 Design consideration:
 
-##### 7.4.2.1 Aspect: How undo executes
+#### 7.4.2.1 Aspect: How undo executes
 
 * **Alternative 1 (current choice):** Saves the entire ModelManger database.
   * Pros: Easy to implement.
