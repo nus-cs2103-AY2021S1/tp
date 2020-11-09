@@ -25,7 +25,7 @@ I implemented the abstract Task class, which is the parent class of `Assignment`
 [\#143](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/143)
 [\#152](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/152)
 
-I implemented the remind and unremind list command which allows the user to **set/remove reminders for one assignments at a time**. The user can set reminders for **multuiple assignments at a time** as well. This feature improves the product because a user may forget assignments that have faraway deadline and the app should provide a convenient way for users to be reminded to finish their assignments. A user can make mistakes when setting reminders for assignments as well, thus the app should provide a way for users to rectify their mistake. While implementing the unremind command, I also implemented the abstract `NegateCommand` class which `UnremindCommand` extends from. The `NegateCommand` was implemented to **enforce OOP principles** as other commands similar to unremind (unprioritize and undone) also extends from `NegateCommand`.
+I implemented the remind and unremind list command which allows the user to **set/remove reminders for one assignments at a time**. The user can set reminders for **multuiple assignments at a time** as well. This feature improves the product because a user may forget assignments that have faraway deadline and the app should provide a convenient way for users to be reminded to finish their assignments. A user can make mistakes when setting reminders for assignments as well, thus the app should provide a way for users to rectify their mistake. While implementing the unremind command, I also implemented the abstract `NegateCommand` class which `UnremindCommand` extends from. It was implemented to **enforce OOP principles** as other similar commands similar (unprioritize and undone) also extends `NegateCommand`.
   
 * **Automated updating of task list**
 [\#144](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/144)
@@ -76,8 +76,10 @@ During v1.2b, there was a bug in the code which was causing the test cases in `J
   [4](https://github.com/ChooJiaXin/ped/issues/4), 
   [5](https://github.com/ChooJiaXin/ped/issues/5))
 
+<div style="page-break-after: always;"></div>
+
 * **My Contributions to User Guide**
-  * I added documentation for remind, unremind and automated features and enhancements under features. I also added the icon usages, command syntax, as well as date and time format under About segment. I also helped to fix any formatting errors found in the User Guide. 
+  * I added documentation for remind, unremind and automated features and enhancements under features. I also added icon usages, command syntax, as well as date and time format sections under About segment. I also helped to fix any formatting errors found in the User Guide. 
   [\#94](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/94), 
   [\#128](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/128), 
   [\#150](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/150), 
