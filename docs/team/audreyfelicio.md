@@ -49,21 +49,38 @@ Given below are my contributions to the project.
     was needed.
 
 * **Git & Repository**:
-  * Created the team repository by forking from `nus-cs2103-AY2021S1/tp`.
-  * Set up the team repository as specified by the `CS2103T` module requirements.
+  * Created and set up project repository.
   * Used GitHub Projects feature to create kanban boards to track user stories. ([Link](https://github.com/AY2021S1-CS2103T-T15-3/tp/projects/1))
-  * Provided help to team members about Git, GitHub, and forking workflow.
-  * Setup codecov for the team to track coverage for tests (Pull requests [\#69](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/69), [\#301](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/301))
+  * Setup codecov for the team to track coverage for tests (Pull requests
+  [\#69](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/69),
+  [\#301](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/301))
   * Managed the issue tracker: [Link to issues created](https://github.com/AY2021S1-CS2103T-T15-3/tp/issues?q=is%3Aissue+is%3Aclosed+author%3Aaudreyfelicio)
 
 * **Reviews & Merging**:
-  * PRs reviewed (with non-trivial review comments): [\#62](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/62), [\#64](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/64), [\#156](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/156), [\#213](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/213), [\#256](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/256)
+  * PRs reviewed (with non-trivial review comments): 
+  [\#62](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/62),
+  [\#64](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/64),
+  [\#156](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/156),
+  [\#213](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/213),
+  [\#256](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/256)
   * All PRs reviewed: [Link to PRs reviewed](https://github.com/AY2021S1-CS2103T-T15-3/tp/pulls?page=2&q=is%3Apr+reviewed-by%3Aaudreyfelicio+is%3Aclosed)
 
 * **Bugs & Forums**:
-  * Fixed bugs in update feature (Pull requests [\#222](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/222), [\#258](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/258))
-  * Fixed bugs in suggestion feature (Pull request [\#261](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/261))
-  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AudreyFelicio/ped/issues/1), [2](https://github.com/AudreyFelicio/ped/issues/2), [3](https://github.com/AudreyFelicio/ped/issues/3), [4](https://github.com/AudreyFelicio/ped/issues/4), [5](https://github.com/AudreyFelicio/ped/issues/5), [6](https://github.com/AudreyFelicio/ped/issues/6), [7](https://github.com/AudreyFelicio/ped/issues/7), [8](https://github.com/AudreyFelicio/ped/issues/8), [9](https://github.com/AudreyFelicio/ped/issues/9), [10](https://github.com/AudreyFelicio/ped/issues/10))
+  * Fixed bugs in `update` and `suggestion` features (Pull requests
+  [\#222](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/222),
+  [\#258](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/258),
+  [\#261](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/261))
+  * Reported bugs and suggestions for other teams in the class (examples:
+  [1](https://github.com/AudreyFelicio/ped/issues/1),
+  [2](https://github.com/AudreyFelicio/ped/issues/2),
+  [3](https://github.com/AudreyFelicio/ped/issues/3),
+  [4](https://github.com/AudreyFelicio/ped/issues/4),
+  [5](https://github.com/AudreyFelicio/ped/issues/5),
+  [6](https://github.com/AudreyFelicio/ped/issues/6),
+  [7](https://github.com/AudreyFelicio/ped/issues/7),
+  [8](https://github.com/AudreyFelicio/ped/issues/8),
+  [9](https://github.com/AudreyFelicio/ped/issues/9),
+  [10](https://github.com/AudreyFelicio/ped/issues/10))
 
 * **Testing**:
   * Created both unit and integration tests for `update`, `suggestion`, and `sort` features. (Pull requests
@@ -79,9 +96,9 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added prefixes table. (Pull request [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274))
-    * Added command information and summary table. (Pull request [\#252](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/252))
-    * Added invalid prefixes warning. (Pull request [\#252](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/252))
+    * Added prefixes table, command information, command summary table, and invalid prefixes warning. (Pull requests
+     [\#252](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/252),
+     [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274))
     * Added documentation for `update`, `sort`, and `suggestion` features. (Pull requests
     [\#121](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/121),
     [\#145](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/145),
@@ -101,15 +118,16 @@ Given below are my contributions to the project.
     [\#293](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/293),
     [\#344](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/344))
     * Added sequence and class diagrams for `Logic` API. (Pull request [\#221](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/221))
-    * Added user stories in the form of a table. (Pull request [\#51](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/51), [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284))
+    * Added user stories in the form of a table. (Pull requests
+    [\#51](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/51),
+    [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284))
     * Added effort appendix to justify project effort and workload. (Pull request [\#293](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/293))
 
 * **Project Management**:
-  * Created meeting rooms via Zoom for regular team meeting every week.
-  * Ensured meeting time is chosen such that everyone can attend.
-  * Ensured everyone attended the meeting on time.
   * Managed releases `v1.1` - `v1.4` (5 releases) on GitHub.
 
 * **UI**:
-  * Updated the table in help window and adjusted font. (Pull request [\#219](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/219))
+  * Updated the table in help window and adjusted font. (Pull requests
+  [\#219](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/219),
+  [\#344](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/344))
   * Gave feedback during the initial design of UI and helped with picking color scheme.
