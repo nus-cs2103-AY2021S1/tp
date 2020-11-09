@@ -22,9 +22,10 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = "Formats: \n"
             + COMMAND_WORD + " " + PREFIX_NAME + "NAME_OF_ASSIGNMENT [MORE_NAME_OF_ASSIGNMENT]\n"
-            + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "MODULE_CODE [MORE_MODULE_CODE]\n"
-            + COMMAND_WORD + " " + PREFIX_DEADLINE + " DATE_OR_TIME_OF_DEADLINE [MORE_DATE_OR_TIME_OF_DEADLINE]\n"
-            + COMMAND_WORD + " " + PREFIX_PRIORITY + " PRIORITY [MORE_PRIORITY]";
+            + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "MODULE_CODE_OF_ASSIGNMENT [MORE_MODULE_CODE_OF_ASSIGNMENT]\n"
+            + COMMAND_WORD + " " + PREFIX_DEADLINE
+            + " DUE_DATE_OR_TIME_OF_ASSIGNMENT [MORE_DUE_DATE_OR_TIME_OF_ASSIGNMENT]\n"
+            + COMMAND_WORD + " " + PREFIX_PRIORITY + " PRIORITY_OF_ASSIGNMENT [MORE_PRIORITY_OF_ASSIGNMENT]";
 
     public static final String INVALID_DATE_OR_TIME_MESSAGE =
             "Deadline field should have date or time keywords in the format dd-MM-yyyy and HHmm respectively.\n"

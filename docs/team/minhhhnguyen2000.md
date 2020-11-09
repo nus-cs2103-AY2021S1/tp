@@ -19,14 +19,14 @@ Given below are my contributions to the project.
     * What it does: allows the user to undo all previous commands one at a time.
     * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
     * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives.
+    
+* **GUI**: Redesigned and implemented the GUI.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=minhhhnguyen2000)
 
-* **Project management**:
-  * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
-
 * **Enhancements to existing features**:
-  * Updated the GUI to support all new features
+  * Refactored Person Class to Assignment Class
+  * Created Schedule Class
   * Wrote additional tests for existing features to increase coverage
 
 * **Documentation**:
@@ -34,16 +34,10 @@ Given below are my contributions to the project.
     * Added documentation for the features `schedule`, `unschedule` and `undo`
     * Added documentation for `FAQ`
   * Developer Guide:
-    * Added implementation details of the `schedule`, `unschedule` and `undo` features.
-    * Added design consideration of the `GUI`
+    * Added implementation details of the `schedule`, `unschedule` and `undo` features and their Sequence Diagram.
+    * Added design consideration of the `GUI` and modify the Class Diagram for UI.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+  * Vocal during weekly team meetings
+  * PRs reviewed
+  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/minhhhnguyen2000/ped/issues/1), [2](https://github.com/minhhhnguyen2000/ped/issues/2), [3](https://github.com/minhhhnguyen2000/ped/issues/3))
