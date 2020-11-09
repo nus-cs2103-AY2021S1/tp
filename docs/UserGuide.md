@@ -519,7 +519,8 @@ assignments will contain the following fields:
 
   Expected Outcome: 
   
-  ![AddAssignment](images/GradeTracker/AddAssignment.PNG)
+ <p aligin="center"><img src="docs/images/GradeTracker/AddAssignment.PNG" border="2px solid black"></p>
+
 
 #### Editing an assignment in a module: `editassignment`
 
@@ -580,8 +581,7 @@ To be implemented:
    
    Expected Outcome: 
      
-   ![AddGrade](images/GradeTracker/AddGrade.PNG)
-
+<p aligin="center"><img src="docs/images/GradeTracker/AddGrade.PNG" border="2px solid black"></p>
 
 #### Calculating Cumulative Average Point(CAP): `calculatecap`
 
