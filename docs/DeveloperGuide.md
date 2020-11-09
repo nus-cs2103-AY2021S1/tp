@@ -692,7 +692,7 @@ The following sequence diagram shows how the Clearstats mechanism works:
 
 * **Alternative:** Edit the `Statistics` of the `Flashcard` directly
   * Pros: No "unnecessary" creation of a new `Flashcard` and `Statistics` object when a user requests to clear its statistics.
-  * Cons: `Flashcard` and `Statisitcs` become difficult to debug.
+  * Cons: `Flashcard` and `Statistics` become difficult to debug.
 
 ### Exporting Flashcards
 
