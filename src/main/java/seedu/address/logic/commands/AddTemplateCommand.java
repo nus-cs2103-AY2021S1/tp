@@ -9,11 +9,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.io.IOException;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ExerciseModel;
+import seedu.address.model.Model;
 import seedu.address.model.exercise.Template;
 import seedu.address.model.exercise.TemplateList;
 
-public class AddTemplateCommand extends CommandForExercise {
+public class AddTemplateCommand extends Command {
     public static final String COMMAND_WORD = "create";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates an exercise template. "
@@ -35,7 +35,7 @@ public class AddTemplateCommand extends CommandForExercise {
     }
 
     @Override
-    public CommandResult execute(ExerciseModel model) throws CommandException, IOException {
+    public CommandResult execute(Model model) throws CommandException, IOException {
         requireNonNull(model);
 
         if (TemplateList.checkEqual(toCreate)) {

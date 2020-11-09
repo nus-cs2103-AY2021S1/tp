@@ -7,8 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.CaloriesOverflow;
-import seedu.address.model.ExerciseModel;
-import seedu.address.model.ExerciseModelManager;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Weight;
@@ -19,11 +19,11 @@ import seedu.address.testutil.ExerciseBuilder;
  */
 public class AddCommandIntegrationTest {
 
-    private ExerciseModel model;
+    private Model model;
 
     @BeforeEach
     public void setUp() {
-        model = new ExerciseModelManager(getTypicalExerciseBook(), null, new UserPrefs());
+        model = new ModelManager(getTypicalExerciseBook(), null, new UserPrefs());
     }
 
     @Test
@@ -31,8 +31,8 @@ public class AddCommandIntegrationTest {
         try {
             Exercise validExercise = new ExerciseBuilder().build();
 
-            ExerciseModel expectedModel =
-                    new ExerciseModelManager(model.getExerciseBook(), null, new UserPrefs());
+            Model expectedModel =
+                    new ModelManager(model.getExerciseBook(), null, new UserPrefs());
             expectedModel.addExercise(validExercise);
 
             String expectedMessage = String.format(AddCommand.MESSAGE_SUCCESS, validExercise)

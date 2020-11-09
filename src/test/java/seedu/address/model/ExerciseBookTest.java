@@ -17,7 +17,7 @@ import seedu.address.testutil.ExerciseBuilder;
 import seedu.address.testutil.TypicalExercise;
 
 public class ExerciseBookTest {
-    private static final Logger logger = LogsCenter.getLogger(ExerciseModelManager.class);
+    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final ExerciseBook exerciseBook = new ExerciseBook();
 

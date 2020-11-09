@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.ExerciseModel;
-import seedu.address.model.ExerciseModelManager;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.exercise.Exercise;
 
@@ -24,7 +24,7 @@ import seedu.address.model.exercise.Exercise;
  */
 public class DeleteCommandTest {
 
-    private ExerciseModel model = new ExerciseModelManager(getTypicalExerciseBook(), null, new UserPrefs());
+    private Model model = new ModelManager(getTypicalExerciseBook(), null, new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -33,7 +33,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EXERCISE_SUCCESS, exerciseToDelete);
 
-        ExerciseModelManager expectedModel = new ExerciseModelManager(model.getExerciseBook(), null, new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getExerciseBook(), null, new UserPrefs());
         expectedModel.deleteExercise(exerciseToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -56,7 +56,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EXERCISE_SUCCESS, exerciseToDelete);
 
-        ExerciseModel expectedModel = new ExerciseModelManager(model.getExerciseBook(), null, new UserPrefs());
+        Model expectedModel = new ModelManager(model.getExerciseBook(), null, new UserPrefs());
         expectedModel.deleteExercise(exerciseToDelete);
         showNoExercise(expectedModel);
 
@@ -102,7 +102,7 @@ public class DeleteCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoExercise(ExerciseModel model) {
+    private void showNoExercise(Model model) {
         model.updateFilteredExerciseList(p -> false);
 
         assertTrue(model.getFilteredExerciseList().isEmpty());

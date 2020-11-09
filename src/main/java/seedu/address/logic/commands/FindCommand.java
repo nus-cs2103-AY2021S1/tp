@@ -8,14 +8,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.model.ExerciseModel;
-import seedu.address.model.exercise.PropertiesMatchPredicateForExercise;
+import seedu.address.model.Model;
+import seedu.address.model.exercise.PropertiesMatchPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand extends CommandForExercise {
+public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
@@ -33,14 +33,14 @@ public class FindCommand extends CommandForExercise {
             + PREFIX_DATE + "10-10-2020 "
             + PREFIX_CALORIES + "100 ";
 
-    private final PropertiesMatchPredicateForExercise predicate;
+    private final PropertiesMatchPredicate predicate;
 
-    public FindCommand(PropertiesMatchPredicateForExercise predicate) {
+    public FindCommand(PropertiesMatchPredicate predicate) {
         this.predicate = predicate;
     }
 
     @Override
-    public CommandResult execute(ExerciseModel model) {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredExerciseList(predicate);
         return new CommandResult(

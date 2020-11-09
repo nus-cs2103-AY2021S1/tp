@@ -30,7 +30,7 @@ import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Name;
-import seedu.address.model.exercise.PropertiesMatchPredicateForExercise;
+import seedu.address.model.exercise.PropertiesMatchPredicate;
 import seedu.address.testutil.EditExerciseDescriptorBuilder;
 import seedu.address.testutil.ExerciseBuilder;
 import seedu.address.testutil.ExerciseUtil;
@@ -96,7 +96,7 @@ public class ExerciseBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " "
                         + "n/Push Up d/test at/10-10-2020 c/224 k/foo bar baz");
-        assertEquals(new FindCommand(new PropertiesMatchPredicateForExercise(name,
+        assertEquals(new FindCommand(new PropertiesMatchPredicate(name,
                 description, date, calories, keywords)), command);
     }
 

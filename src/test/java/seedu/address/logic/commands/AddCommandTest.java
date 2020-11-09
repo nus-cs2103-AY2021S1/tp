@@ -19,7 +19,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.parser.exceptions.CaloriesOverflow;
 import seedu.address.model.ExerciseBook;
-import seedu.address.model.ExerciseModel;
+import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyExerciseBook;
 import seedu.address.model.ReadOnlyGoalBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -37,7 +37,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_exerciseAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingExerciseAdded modelStub = new ModelStubAcceptingExerciseAdded();
+        ModelStubAcceptingAdded modelStub = new ModelStubAcceptingAdded();
         Exercise validExercise = new ExerciseBuilder().build();
         CommandResult commandResult = new AddCommand(validExercise).execute(modelStub);
 
@@ -68,7 +68,7 @@ public class AddCommandTest {
     /**
      * A default model stub that have all of the methods failing.
      */
-    private class ModelStub implements ExerciseModel {
+    private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -219,7 +219,7 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the exercise being added.
      */
-    private class ModelStubAcceptingExerciseAdded extends ModelStub {
+    private class ModelStubAcceptingAdded extends ModelStub {
         final ArrayList<Exercise> exercisesAdded = new ArrayList<>();
         final HashMap<String, Integer> caloriesByDay = new HashMap<>();
 

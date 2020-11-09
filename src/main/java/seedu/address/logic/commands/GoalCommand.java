@@ -5,11 +5,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ExerciseModel;
+import seedu.address.model.Model;
 import seedu.address.model.goal.Goal;
 
 
-public class GoalCommand extends CommandForExercise {
+public class GoalCommand extends Command {
     public static final String COMMAND_WORD = "goal";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a goal to Calo. \n"
@@ -42,7 +42,7 @@ public class GoalCommand extends CommandForExercise {
      * @throws CommandException
      */
     @Override
-    public CommandResult execute(ExerciseModel model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
         if (model.hasGoal(goal)) {

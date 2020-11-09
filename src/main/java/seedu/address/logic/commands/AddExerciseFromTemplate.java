@@ -12,12 +12,12 @@ import java.util.Optional;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ExerciseModel;
+import seedu.address.model.Model;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Weight;
 import seedu.address.model.goal.Goal;
 
-public class AddExerciseFromTemplate extends CommandForExercise {
+public class AddExerciseFromTemplate extends Command {
 
     public static final String COMMAND_WORD = "addt";
 
@@ -53,7 +53,7 @@ public class AddExerciseFromTemplate extends CommandForExercise {
     }
 
     @Override
-    public CommandResult execute(ExerciseModel model) throws CommandException, ParseException {
+    public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
         if (model.hasExercise(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EXERCISE);

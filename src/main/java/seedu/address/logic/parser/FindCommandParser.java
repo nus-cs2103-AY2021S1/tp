@@ -15,7 +15,7 @@ import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Name;
-import seedu.address.model.exercise.PropertiesMatchPredicateForExercise;
+import seedu.address.model.exercise.PropertiesMatchPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -66,7 +66,7 @@ public class FindCommandParser implements ExerciseParser<FindCommand> {
             keywords = argMultimap.getValue(PREFIX_KEYWORD).get().split("\\s+");
         }
 
-        return new FindCommand(new PropertiesMatchPredicateForExercise(name, description, date, calories,
+        return new FindCommand(new PropertiesMatchPredicate(name, description, date, calories,
                 keywords == null ? null : Arrays.asList(keywords)));
     }
 

@@ -9,16 +9,16 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.ExerciseBook;
-import seedu.address.model.ExerciseModel;
-import seedu.address.model.ExerciseModelManager;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.exercise.TemplateList;
 
 public class ClearCommandTest {
     @Test
     public void execute_emptyExerciseBook_success() {
-        ExerciseModel model = new ExerciseModelManager(new ExerciseBookNoWritingStubs());
-        ExerciseModel expectedModel = new ExerciseModelManager();
+        Model model = new ModelManager(new ExerciseBookNoWritingStubs());
+        Model expectedModel = new ModelManager();
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
@@ -28,13 +28,13 @@ public class ClearCommandTest {
         ExerciseBookNoWritingStubs exerciseBook = new ExerciseBookNoWritingStubs();
         exerciseBook.resetData(getTypicalExerciseBook());
 
-        ExerciseModel model = new ExerciseModelManager(exerciseBook, null,  new UserPrefs());
+        Model model = new ModelManager(exerciseBook, null,  new UserPrefs());
 
         //Since the methods mutable the exercise book parsed into it
         ExerciseBookNoWritingStubs exerciseBook2 = new ExerciseBookNoWritingStubs();
         exerciseBook2.resetData(getTypicalExerciseBook());
 
-        ExerciseModel expectedModel = new ExerciseModelManager(exerciseBook2, null, new UserPrefs());
+        Model expectedModel = new ModelManager(exerciseBook2, null, new UserPrefs());
         expectedModel.setExerciseBook(new ExerciseBook());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
