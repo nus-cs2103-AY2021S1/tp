@@ -863,6 +863,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | staff of a quarantine facility | look at all the rooms| find out which rooms are occupied and which are not |
 | `* *`| staff of a quarantine facility | initialise the number of rooms many times with previous information retained | define correct number of rooms if mistake is made I can correct it without having to tediously key in information again|
 |`* * `| staff of a quarantine facility | find out an empty room | to allocate patient to that empty room easily without having to search through the rooms for an empty room |
+| `* * `| careless staff of a quarantine facility | edit a task | to allow for me to easily change a mistake that I made while adding tasks |
+| `* * `| forgetful staff of a quarantine facility | search a task | to allow for me to easily search for a task that end before a certain due date |
 
 ### A3. Use cases
 
@@ -1000,8 +1002,10 @@ Use case ends.
 
 **MSS**
 
-1. Hotel Staff requests to delete a task from a room.
-2. Covigent deletes the task from the room.
+1. Hotel staff requests to search for an empty room to accommodate patient.
+2. Covigent finds out empty room.
+3. Covigent shows the empty room with lowest room number and displays success message.
+
 Use case ends.
 
 **Extensions**
@@ -1023,6 +1027,28 @@ Use case ends.
 Use case ends.
 
 **Extensions**
+* 2a. System realises that user does not input any number of rooms.
+   * 2a1. System displays an error message.
+* 3a. System realises that user inputs values other than integer.
+   * 3a1. System displays an error message.
+* 3b. System realises that the integer input is zero.
+   * 3b1. System displays an error message.
+* 3c. System realises that the integer input is negative.
+   * 3c1. System displays an error message.
+* 3d. System realises that the number of rooms input is less than number of occupied room
+   * 3d1. System displays an error message.
+Use case ends.
+
+**Use case: Search Task**
+
+**MSS**
+
+1. User requests to search for a task before a specific date.
+2. User inputs the specific date.
+3. System searches for tasks before the specific date.
+4. System displays the tasks before the specific date and success message.
+
+**Extensions**
 * 1a. Covigent realizes that no optional fields are input.
    * 1a1. Covigent displays an error message.
 Use case ends.
@@ -1038,7 +1064,6 @@ Use case ends.
 * 1d. Covigent realizes that the new information for the task is the same as the original.
    * 1d1. Covigent displays an error message.
 Use case ends.
-
 
 ### A4. Non-Functional Requirements
 
