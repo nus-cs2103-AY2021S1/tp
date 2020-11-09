@@ -35,6 +35,8 @@ Given below are my contributions to the project.
         
 * **Enhancement:** Implemented contact list management feature. 
                    This feature includes the following functionalities: add contact, delete contact, edit contact, clear contact, list contact
+  <div style="page-break-after: always;"></div>
+  
   * **What it does:** This feature allows users to keep track of module related contacts while managing all their contact details.               
   * **Justification:** This feature enhances the product significantly as module contacts are vital information
                    that users access on a regular basis. As users are enrolled in numerous lessons, the number of contacts to track can be overwhelming.                
