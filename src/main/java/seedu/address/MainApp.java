@@ -115,18 +115,16 @@ public class MainApp extends Application {
             initialSalesBookData = salesBookOptional.orElseGet(SampleDataUtil::getSampleSalesBook);
             initialAddressBookData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty tCheck");
             initialAddressBookData = new AddressBook();
             initialSalesBookData = new SalesBook();
             initialIngredientBookData = new IngredientBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty tCheck");
             initialAddressBookData = new AddressBook();
             initialSalesBookData = new SalesBook();
             initialIngredientBookData = new IngredientBook();
         }
-
-        IngredientBook sample = new IngredientBook();
 
         return new ModelManager(initialAddressBookData, initialSalesBookData, initialIngredientBookData, userPrefs);
     }

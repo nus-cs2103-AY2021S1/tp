@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":tCheckParser" as tCheckParser LOGIC_COLOR
+participant ":TCheckParser" as TCheckParser LOGIC_COLOR
 participant ":IngredientResetAllCommand" as IngredientResetAllCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -14,18 +14,18 @@ end box
 [-> LogicManager : execute("i-reset-all")
 activate LogicManager
 
-LogicManager -> tCheckParser : parseCommand("i-reset-all")
-activate tCheckParser
+LogicManager -> TCheckParser : parseCommand("i-reset-all")
+activate TCheckParser
 
 create IngredientResetAllCommand
-tCheckParser -> IngredientResetAllCommand
+TCheckParser -> IngredientResetAllCommand
 activate IngredientResetAllCommand
 
-IngredientResetAllCommand --> tCheckParser
+IngredientResetAllCommand --> TCheckParser
 deactivate IngredientResetAllCommand
 
-tCheckParser --> LogicManager :
-deactivate tCheckParser
+TCheckParser --> LogicManager :
+deactivate TCheckParser
 
 LogicManager -> IngredientResetAllCommand : execute()
 activate IngredientResetAllCommand
