@@ -87,7 +87,7 @@ public class Event extends Task implements TimeSlot {
         return this.startDateTime.getValue().toLocalDate();
     }
     @Override
-    public LocalDateTime getStartTime() {
+    public LocalDateTime getDateTime() {
         return startDateTime.getValue();
     }
     @Override
