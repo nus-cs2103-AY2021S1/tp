@@ -69,7 +69,6 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireAllNonNull(model, activeAccount);
         assert (expensePredicate != null || revenuePredicate != null);
-        assert (activeAccount != null);
 
         if (expensePredicate != null) {
             activeAccount.updateFilteredExpenseList(expensePredicate);
