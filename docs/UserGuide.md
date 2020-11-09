@@ -168,11 +168,11 @@ the [Features](#5-features) below.
 Description refers to the textual information that is associated with the Entry that Common Cents receives from you, in
 order to provide more information about the Entry.  
 
-<div style="page-break-after: always;"></div>
 ### 4.2.3 Amount 
 Amount is the numeric value associated with the Entry that Common Cents receives from you. All amounts, for both expenses
 and revenues must be given as a positive value.
 
+<div style="page-break-after: always;"></div>
 ### 4.2.4 Tags
 Tags refer to short textual prompts attached to an Entry, with the purpose of giving extra information and identity for
 your Entries in Common Cents.
