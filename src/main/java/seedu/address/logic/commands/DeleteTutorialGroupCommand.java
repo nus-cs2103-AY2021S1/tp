@@ -21,8 +21,7 @@ public class DeleteTutorialGroupCommand extends Command {
 
     public static final String MESSAGE_DELETE_TUTORIAL_SUCCESS = "Deleted Tutorial Group: %1$s";
 
-    public static final String MESSAGE_NOT_IN_TUTORIAL_VIEW = "You are currently not in the Tutorial Group view. "
-        + "Run listTG to go back to the tutorial group view.";
+    public static final String MESSAGE_NOT_IN_TUTORIAL_VIEW = "You are currently not in the Tutorial Group view. ";
 
     private final Index targetIndex;
 

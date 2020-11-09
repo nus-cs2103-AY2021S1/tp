@@ -16,10 +16,7 @@ public class FindTutorialGroupCommand extends Command {
         + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
         + "Example: " + COMMAND_WORD + " B014 B015";
 
-    public static final String MESSAGE_NOT_IN_TUTORIAL_VIEW = "You are currently not in the Tutorial view. "
-        + "Run listMod to go back to the module view.";
-    public static final String MESSAGE_IN_MODULE_VIEW = "You are currently in Module View. "
-        + "Use viewTG MOUDLE_INDEX to view the Tutorial Groups of the Module you want";
+    public static final String MESSAGE_NOT_IN_TUTORIAL_VIEW = "You are currently not in the Tutorial Group view. ";
 
     private final TutorialContainsKeywordsPredicate predicate;
 
@@ -31,9 +28,7 @@ public class FindTutorialGroupCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.isInModuleView()) {
-            throw new CommandException(MESSAGE_IN_MODULE_VIEW);
-        } else if (model.isInStudentView()) {
+        if (!model.isInTutorialGroupView()) {
             throw new CommandException(MESSAGE_NOT_IN_TUTORIAL_VIEW);
         }
 

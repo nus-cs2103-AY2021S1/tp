@@ -34,8 +34,8 @@ public class AddStudentCommand extends Command {
             + PREFIX_TAG + "CS2100";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in current tutorial group";
-    public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the current tutorial group";
+    public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view. ";
 
     private final Student toAdd;
 
