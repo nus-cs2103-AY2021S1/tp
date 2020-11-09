@@ -877,15 +877,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Hotel Staff requests to add a patient into the system.
 2. Covigent adds the patient into the system.
 3. Covigent shows the details of the newly added patient.
+
 Use case ends.
 
 **Extensions**
 * 2a. Covigent realises that the patient name already exists in the system.
     * 2a1. Covigent displays an error message.
+    
 Use case ends.
 
 * 2b. Covigent realises that the patient information being entered does not conform to the system format.
     * 2b1. Covigent displays an error message.
+    
 Use case ends.
 
 **Use case: UC02 Delete a patient**
@@ -895,11 +898,13 @@ Use case ends.
 1. Hotel Staff requests to delete a patient from the system.
 2. Covigent deletes the patient and removes the patient from the room he/she is residing in.
 3. Covigent shows the details of the deleted patient.
+
 Use case ends.
 
 **Extensions**
 * 2a. Covigent realizes the patient does not exist in the system.
     * 2a1. Covigent displays an error message.
+    
 Use case ends.
 
 **Use case: UC03 Edit a patient**
@@ -909,11 +914,13 @@ Use case ends.
 1. Hotel Staff inputs the new information about the patient.
 2. Covigent edits the patient information to the new information.
 3. Covigent shows the details of the edited patient.
+
 Use case ends.
 
 **Extensions**
 * 1a. Covigent realizes that no optional fields are input.
    * 1a1. Covigent displays an error message.
+   
 Use case ends.
 
 **Use case: UC04 Search for a patient**
@@ -923,11 +930,13 @@ Use case ends.
 1. Hotel Staff requests to search patients with a criterion.
 2. Covigent searches the patients with the inputted criteria.
 3. Covigent shows the search results.
+
 Use case ends.
 
 **Extensions**
 * 2a. Covigent realizes that no such patient is recorded
    * 2a1. Covigent displays an error message.
+   
 Use case ends.
 
 **Use case: UC05 Allocate a patient to a room**
@@ -937,15 +946,18 @@ Use case ends.
 1. Hotel Staff adds a patient to Covigent (UC01).
 2. Hotel Staff requests to allocate the patient to a specified room.
 3. Covigent adds the patient to the specified room.
+
 Use case ends.
 
 **Extensions**    
 * 2a. Covigent realizes that the specified room does not exist.
     * 2a1. Covigent displays an error message.
+    
 Use case ends.   
   
 * 2b. Covigent realizes that the specified room is not empty.
    * 2b1. Covigent displays an error message.
+   
 Use case ends.
 
 
@@ -955,11 +967,13 @@ Use case ends.
 
 1. Hotel Staff requests to list all the rooms in quarantine facility.
 2. Covigent lists all the rooms in the hotel and whether they are occupied or unoccupied.
+
 Use case ends.
 
 **Extensions**
 * 1a. System realizes that there are no rooms existing.
    * 1a1. System displays an error message.
+   
 Use case ends.
 
 **Use case: UC07 Find empty room**
@@ -969,15 +983,18 @@ Use case ends.
 1. Hotel Staff requests to search for an empty room to accommodate patient.
 2. Covigent finds an empty room.
 3. Covigent shows the room to Hotel Staff.
+
 Use case ends.
 
 **Extensions**
 *  1a. System realizes that there are no rooms.
-    * 1a1. System displays an error message.  
+    * 1a1. System displays an error message.
+    
 Use case ends.
   
 *  1b. System realizes that there are no empty rooms.
     * 1b1. System displays an error message.
+    
 Use case ends.
 
 **Use case: UC08 Initialize rooms**
@@ -988,15 +1005,18 @@ Use case ends.
 2. Hotel Staff inputs the number of rooms to change into.
 3. Covigent changes the number of rooms in the system.
 4. Covigent displays all the current rooms.
+
 Use case ends.
 
 **Extensions**
 * 2a. Covigent realizes that the Hotel Staff inputs an invalid number.
    * 2a1. Covigent displays an error message.
+   
 Use case ends.
 
 * 2b. Covigent realizes that the number of rooms input is less than number of occupied room
    * 2b1. Covigent displays an error message.
+   
 Use case ends.
 
 **Use case: UC09 Search for a room**
@@ -1006,15 +1026,18 @@ Use case ends.
 1. Hotel Staff requests to search for a room with the given patient.
 2. Hotel Staff inputs the name of the patient to find the corresponding room.
 3. Covigent displays the room details that the patient resides in.
+
 Use case ends.
 
 **Extensions**
 * 2a. Covigent realizes that the patient does not exists in the system.
     * 2a1. Covigent displays an error message.
+    
 Use case ends.
 
 * 2b. Covigent realizes that the patient is not allocated to any room.
     * 2b1. Covigent displays an error message.
+    
 Use case ends.
 
 **Use case: UC10 Add a task to a room**
@@ -1023,11 +1046,13 @@ Use case ends.
 
 1. Hotel Staff requests to add a task to a room.
 2. Covigent adds the task to the room.
+
 Use case ends.
 
 **Extensions**
 * 1a. Covigent realizes that the specified room does not exist.
     * 1a1. Covigent displays an error message.
+    
 Use case ends.
 
 **Use case: UC11 Delete a task from a room**
@@ -1043,10 +1068,12 @@ Use case ends.
 **Extensions**
 * 1a. Covigent realizes that the specified room does not exist.
     * 1a1. Covigent displays an error message.
+    
 Use case ends.
     
 * 1b. Covigent realizes that the specified task does not exist.
     * 1b1. Covigent displays an error message.
+    
 Use case ends.
 
 **Use case: UC12 Edit a task in a room**
@@ -1056,27 +1083,33 @@ Use case ends.
 1. Hotel Staff inputs the new information about the task.
 2. Covigent edits the task information to the new information.
 3. Covigent shows the details of the edited task.
+
 Use case ends.
 
 **Extensions**
 * 2a. System realises that user does not input any number of rooms.
    * 2a1. System displays an error message.
+   
 Use case ends.
 
 * 3a. System realises that user inputs values other than integer.
    * 3a1. System displays an error message.
+   
 Use case ends.
 
 * 3b. System realises that the integer input is zero.
    * 3b1. System displays an error message.
+   
 Use case ends.
 
 * 3c. System realises that the integer input is negative.
    * 3c1. System displays an error message.
+   
 Use case ends.
 
-* 3d. System realises that the number of rooms input is less than number of occupied room
+* 3d. System realises that the number of rooms input is less than number of occupied room.
    * 3d1. System displays an error message.
+   
 Use case ends.
 
 **Use case: UC13 Search Task**
@@ -1087,23 +1120,28 @@ Use case ends.
 2. User inputs the specific date.
 3. System searches for tasks before the specific date.
 4. System displays the tasks before the specific date and success message.
+
 Use case ends.
 
 **Extensions**
 * 1a. Covigent realizes that no optional fields are input.
    * 1a1. Covigent displays an error message.
+   
 Use case ends.
 
 * 1b. Covigent realizes that the specified room does not exist.
     * 1b1. Covigent displays an error message.
+    
 Use case ends.
 
 * 1c. Covigent realizes that the specified task does not exist.
     * 1c1. Covigent displays an error message.
+    
 Use case ends.
 
 * 1d. Covigent realizes that the new information for the task is the same as the original.
    * 1d1. Covigent displays an error message.
+   
 Use case ends.
 
 ### A4. Non-Functional Requirements
