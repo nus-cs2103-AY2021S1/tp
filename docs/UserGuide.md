@@ -416,14 +416,14 @@ Please take note that this action is irreversible.**
 
 </div>
 
-Format: `dell INDEX d/DATE`
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**
 If a leave record has a date range that lasts from 08/11/2020 to 12/11/2020, any date keyed in that date range will cause the whole record to be deleted.<br>
 
 </div>
+
+Format: `dell INDEX d/DATE`
 
 Examples:
 * `list s-` followed by `dell 2 d/09/10/2020` deletes the leave record of which the given date coincides with from the 2nd person in shown list.
@@ -453,6 +453,8 @@ Staff List.
 ![clearStaff](images/ugimages/ClearStaff.png)
 
 ### 3.4. Applicant commands
+
+Staff commands give you the ability to keep track of your applicants which help you make good recruitment decisions.
 
 <div markdown="block" class="alert alert-info">
 
@@ -641,7 +643,6 @@ The image below shows what you would see after executing the last example given 
 
 Deletes an application from an applicant with the specified index under Eva.
 
-
 <div markdown="block" class="alert alert-danger">
 
 :exclamation: **Important! <br>
@@ -649,13 +650,13 @@ Please take note that this action is irreversible.**
 
 </div>
 
-Format: `delapp INDEX`
-
 <div markdown="span" class="alert alert-info">
 
 **:information_source: Note:** `delapp` replaces the current application of the target applicant with a blank application. <br>
 
 </div>
+
+Format: `delapp INDEX`
 
 Example:
 * `delapp 1`
