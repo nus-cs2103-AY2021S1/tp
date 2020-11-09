@@ -31,6 +31,10 @@ public class Grade {
         return test >= 0 && test <= 100;
     }
 
+    public String toDisplay() {
+        return String.format("%.2f",gradeResult);
+    }
+
     @Override
     public String toString() {
         return Double.toString(this.gradeResult);
