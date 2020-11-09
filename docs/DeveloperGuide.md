@@ -338,6 +338,8 @@ The below sequence diagram details the execution flow:
 
 ![UpdateSequenceDiagram](images/UpdateSequenceDiagram.png)
 
+Note: If you find the text above too small, you might want to check out the diagram [here](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/docs/images/UpdateSequenceDiagram.png).
+
 Here are the steps:
 Step 1: `LogicManager` calls its  `execute` method, supplying the argument "update 1 d/30 c/260 m/chest t/home", which was entered by the user.  
 
@@ -366,7 +368,9 @@ Due to a limitation of PlantUML, it is not possible to do so here.
 
 #### 4.5.2. Design Considerations
 
-Aspect: Process of updating the new data in `model`
+
+**Aspect**: Process of updating the new data in `model`
+
 
 * **Alternative 1 (Current choice)**: Replace `Exercise` to be updated in `UniqueExerciseList` of `ExerciseBook` with another `Exercise` object containing the updated data.
   * Pros: Atomic updates.
@@ -379,7 +383,9 @@ Aspect: Process of updating the new data in `model`
   * Pros: Will use less memory (no new `Exercise` object will be created)
   * Cons:If an error occurs in the middle of the process, the fields which were updated would not recover the original values.
 
+
 #### 4.5.3. Summary
+
 
 The following activity diagram summarizes what happens when a user executes an `update` command:
 
@@ -496,39 +502,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | user                                       | add an exercise                | keep track of calories burnt through the day                           |
-| `* * *`  | user                                       | create a template | store exercises that I do frequently for future reference. |
-| `* * *`  | user                                       | create an exercise based on template | record exercises that I do frequently faster. |
-| `* * *`  | user                                       | delete an exercise in case I key in wrongly |  |
-| `* * *`  | user                                       | have a system that tolerate invalid/incomplete command |           |
-| `* * *`  | data conscious user                        | list down all the exercises for the day | monitor the calories burned accurately |
-| `* * *`  | user                                       | see all the templates I have created | |
-| `* * *`  | user                                       | see my progress for the past week | know the progress that I have been making so far |
-| `* *`    | user                                       | add tags to an Exercise | |
-| `* *`    | user                                       | create an exercise from template with different details such as calories | account for the same exercises that I did with different intensity  |
+| `* *`  | user who leads an active lifestyle                                        | create an exercise template | store exercises that I do frequently for future reference |
+| `* *`  | user who leads an active lifestyle                                       | create an exercise based on an exercise template | record exercises that I do frequently more efficiently |
+| `* * *`  | user                                       | delete an exercise |  |
+| `* * *`  | clumsy user                                       | have a system that tolerates invalid/incomplete command |           |
+| `* *`  | data conscious user                        | list down all the exercises for the day | monitor the calories burned accurately |
+| `* *`  | data conscious user                                       | list all the exercise templates I have created | |
+| `* *`  | motivated user                                           | see my progress for the past week | know the progress that I have been making so far |
+| `* *`    | detailed-oriented user                                       | add tags to an Exercise | I can group my exercises accordingly|
+| `* *`    | detailed-oriented user                                       | create an exercise from template with different details such as calories | account for the same exercises that I did with different intensity  |
 | `* *`    | user                                       | clear all information stored in the application | |
-| `* *`    | user                                       | find the most recent information of a particular exercise | |
-| `* *`    | user                                       | indicate which are the muscle group that an exercise work on | better track which muscles that I have worked on |
-| `* *`    | user                                       | know how much more calories I need to burn to reach the goal | |
-| `* *`    | user                                       | set a goal for a day | |
+| `* *`    | forgetful user                                       | find the most recent information of a particular exercise | calibrate my exercise accordingly|
+| `* *`    | user who is a fitness junkie                                     | indicate which are the muscle groups that an exercise works on | better track which muscles that I have worked on |
+| `* *`    | motivated user                                       | know how much more calories I need to burn to reach the goal | |
+| `* *`    | motivated user                                       | set a goal for a day | I can keep track of my goal and aim to reach it|
+| `* *`    | visual user                                       | view total calories burnt on a graph             |  |
 | `* *`    | user                                       | update an exercise             |  |
-| `*`    | user                                       | save my data in a file         | import the saved data into the new computer |
+| `* *`    | user                                       | save my data in a file         | import the saved data into the new computer |
+| `* * *`    | new user                                       | view details on command usage and formats         |  |
 
 ### 8. Appendix C: Use cases
 
-(For all use cases below, the **System** is the `Calo` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Calo` application and the **Actor** is the `user`, unless specified otherwise)
 
 #### **Use case: Add an exercise**
 
 *MSS*
-1.  User requests to add an exercise  
-2.  Calo adds the exercise and displays on the Graph.  
-  Use case ends.
+1.  User requests to add an exercise. 
+2.  Calo adds the exercise to the current list of exercises and displays it (in the left panel).
+3.  Calo updates the calories burnt (for the date of the exercise) on the graph.
+   Use case ends.
 
 *Extensions*
 <p>
-    The request have some missing compulsory information.<br>  
-      1a1. Calo shows an error message, information the user about the correct format and information necessary.<br>  
-    Use case ends.  
+    1a. The request contains some missing compulsory information.<br> 
+      1a1. Calo shows an error message, displaying the correct command format.<br>  
+    Use case ends. 
+</p>
+
+<p>
+    1b. An exercise with the same name, description, date and exercise tags exists.<br>
+      1b1. Calo shows an error message, informing the user about duplicate template.<br>  
+    Use case ends.
 </p>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -536,94 +551,86 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Add a template**
 
 *MSS*
-1.  User requests to create a template for an exercise  
-2.  Calo adds the template and displays on the Template Panel.  
+1.  User requests to create a template for an exercise.
+2.  Calo adds the template to the current list of templates and displays it (right panel).  
   Use case ends.
 
 *Extensions*
 <p>
-    The request have some missing compulsory information. <br> 
-      1a1. Calo shows an error message, information the user about the correct format and information necessary. <br>  
+    1a. The request contains some missing compulsory information.<br> 
+      1a1. Calo shows an error message, displaying the correct command format. <br>  
     Use case ends.  
 </p>
 
 <p>
-    Template with the same name exists.<br>
-      1a1. Calo shows an error message, informing the user about duplicate template.<br>  
+    1b. A template with the same name exists.<br>
+      1b1. Calo shows an error message, informing the user about duplicate template.<br>  
     Use case ends.<br>
 </p>
 
+
 --------------------------------------------------------------------------------------------------------------------
 
-#### **Use case: Add a goal**
+#### **Use case: Add an exercise based on an existing template**
 
 *MSS*
-1.  User requests to create a goal for a day.  
-2.  Calo adds the template and displays on the Template Panel.    
-  Use case ends.
+1.  User requests to add an exercise from an existing template.
+2.  Calo adds the exercise (based off the template) to the current list of exercises and displays it (in the left panel).
+3.  Calo updates the calories burnt (for the date of the exercise) on the graph.  
+   Use case ends.
 
 *Extensions*
 <p>
-    The request have some missing compulsory information. <br> 
-      1a1. Calo shows an error message, information the user about the correct format and information necessary. <br>  
-    Use case ends.  
-</p>
-
-<p>
-    The user have already set a goal for the specific day. <br> 
-      1a1. Calo shows an error message, information the user about the pre-existing goal. <br>  
-    Use case ends.  
-</p>
-
---------------------------------------------------------------------------------------------------------------------
-
-#### **Use case: Archive data**
-  *MSS*
-1.  User requests to archive data to a different file location
-2.  Calo archives data to the specified location
-    Use case ends.
-
-*Extensions*
-<p>
-    1a. User does not have permission to create file at specified location <br>
-      1a1. Calo shows a message indicating that file cannot be created at specified file.<br>
+    1a. The template does not exist.<br>
+      1a1. Calo shows an error message, informing the user about the missing template.<br>  
     Use case ends.
 </p>
 
+<p>
+    1b. An exercise with the same name, description, date and exercise tags exists.<br>
+      1b1. Calo shows an error message, informing the user about duplicate template.<br>  
+    Use case ends.
+</p>
+
+
 --------------------------------------------------------------------------------------------------------------------
 
-#### **Use case: Create Template**
+
+#### **Use case: Add a goal**
+
+
 *MSS*
-1.  User requests to create a template for an exercise  
-2.  Calo adds the template and displays on the Template Panel.  
+1.  User requests to create a goal for the day.  
+2.  Calo adds the goal and displays a message informing the user about the new goal.    
+  Use case ends.
+
+*Extensions*
+<p>
+    1a. The request contains some missing compulsory information.<br> 
+      1a1. Calo shows an error message, displaying the correct command format. <br>  
+    Use case ends.  
+</p>
+
+<p>
+    1b. The user has already set a goal for the same day. <br> 
+      1b1. Calo shows an error message, displaying that a goal is already present on the date specified.<br>  
+    Use case ends.  
+</p>
+
+
+#### **Use case: Archive data**
+
+  *MSS*
+1.  User requests to archive data to a different file location.
+2.  Calo archives data to the specified location.  
+
     Use case ends.
 
 *Extensions*
 <p>
-    The request have some missing compulsory information.<br>
-      1a1. Calo shows an error message, information the user about the correct format and information necessary.<br>
-    Use case ends.<br>
-</p>
-
-<p>
-    Template with the same name exists.<br>  
-      1a1. Calo shows an error message, informing the user about duplicate template.<br>  
-    Use case ends.<br>
-</p>
-
---------------------------------------------------------------------------------------------------------------------
-
-#### **Use case: Add Exercise based on Template**
-*MSS*
-1.  User requests to add an exercise from a template he previously created.
-2.  Calo adds the template and displays on the Exercise Panel.  
-    Use case ends.
-
-*Extensions*
-<p>
-    The template does not exist.<br>
-      1a1. Calo shows an error message, information the user about the template does not exist.<br>  
-    Use case ends.<br>
+    1a. User does not have the permission to create the file at the specified location. <br>
+      1a1. Calo shows an error message, displaying that the file cannot be created at the specified location.<br>
+    Use case ends.
 </p>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -631,15 +638,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Find exercises with a keyword**
 
 *MSS*  
-1.  User requests to find exercises with a keyword
-2.  Calo shows a list of exercises which contain the keyword
+1.  User requests to find exercises with a keyword.
+2.  Calo shows a list of exercises which contain the keyword.
     Use case ends.
 
 *Extensions*
 <p>
-    The list is empty <br>
-      1a1. Calo shows a message indicating that no such exercise exists.<br>
-    Use case ends.<br>
+    1a. No exercises contain the keyword. <br>
+      1a1. Calo shows an error message, displaying that no such exercise exists.<br>
+    Use case ends.
 </p>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -647,15 +654,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Recall exercises with a keyword**
 
 *MSS*  
-1.  User requests to recall the most recent time he did an exercise.
+1.  User requests to recall the most recent time where he performed the exercise.
 2.  Calo shows the details of the most recent exercise with the given time.
     Use case ends.
 
 *Extensions*
 <p>
-    The user have never done the exercise.<br>
-      1a1. Empty list is shown.<br>
-    Use case ends.<br>
+    1a. The user has not added that exercise before.<br>
+      1a1. Calo displays an empty list.<br>
+    Use case ends.
 </p>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -664,13 +671,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *MSS*
 
-1.  User requests to update a specific exercise in the list
-2.  Calo updates the exercise and the Calories Graph changes accordingly.
-    Use case ends.<br>
+1.  User requests to update a specific exercise.
+2.  Calo updates the exercise and displays the message informing the user about the updated exercise.
+3.  Calo updates the calories burnt (for the date of the exercise) on the graph.
+    Use case ends.
+
 *Extensions*
 <p>
-    1a. The index is invalid<br>
-      1a1. Calo shows a message indicating that no such exercise exists.<br>
+    1a. The index is invalid.<br>
+      1a1. Calo displays an error message, indicating that the index is invalid.<br>
     Use case ends.
 </p>
 
@@ -681,14 +690,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *MSS*
 
 1.  User requests to delete a specific exercise in the list.
-2.  Calo deletes the exercise
-
+2.  Calo deletes the exercise.  
     Use case ends.
 
 *Extensions*
 <p>
-    1a. The index is invalid<br>
-      1a1. Calo shows a message indicating that no such exercise exists.<br>
+    1a. The index is invalid.<br>
+      1a1. Calo displays an error message, indicating that the index is invalid.<br>
     Use case ends.
 </p>
 
@@ -697,9 +705,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: List exercises**
 
 *MSS*
-1.  User requests to list exercises
-2.  Calo shows a list of exercises
+1.  User requests to list all the exercises.
+2.  Calo displays a list of exercises (in the left panel)
   Use case ends.
+
+*Extensions*
+<p>
+    1a. The list of exercises is empty.<br>
+      1a1. Calo displays an empty list.<br>
+    Use case ends.
+</p>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -707,15 +722,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 exercise items without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Application does not access the internet.
 
 ### 10. Appendix E: Glossary
 
-* **Calories Graph**: the graph that displays the trends of the user's calories burnt in the past 6 days (including today)
-* **Exercise**: an exercise record entered by the user, consisting of exercise name, description, and date (optionally calories)
-* **Exercise Tag**: Additional Tag that you want to assign to the Exercise you just did.
+* **CLI**: Command Line Interface. It is a a text-based user interface.
+* **GUI**: Graphical User Interface. It is a user interface that includes graphical elements.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Muscle Tag**: the muscles that the exercise works out.
-* **Template**: a skeleton of the template without date, muscleTag and exerciseTag. It exists to ensure that the user key in exercises, that he does frequently, more quickly.
+* **Exercise**: An `Exercise` record entered by the user, consisting of exercise `Name`, `Description`, and `Date` at minimum (`Calories`, `MuscleTag` and `ExerciseTag` are optional).
+* **Template**: A skeleton of the template without `Date`, `MuscleTag` and `ExerciseTag`. It helps the user key in frequent exercises more efficiently.
+* **Calories Graph**: The graph that displays the trend of the user's calories burnt in the past 6 days (including the current day).
+* **Exercise Tag**: Additional Tag that you want to assign to the `Exercise`.
+* **Muscle Tag**: The muscles that the `Exercise` works out.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 11. Appendix F: Instructions for manual testing
@@ -730,27 +749,24 @@ testers are expected to do more *exploratory* testing.
 ### Launch and shutdown
 1. Initial launch
    1. Download the jar file and copy into an empty folder
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample `Exercise` entries. The window size may not be optimum.
 1. Saving window preferences
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-1. _{ more test cases …​ }_
 
 ### Deleting an exercise
 1. Deleting an exercise while all exercises are being shown
    1. Prerequisites: List all exercises using the `list` command. Multiple exercises in the list.
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-   1. Test case: `delete 0`<br>
-      Expected: No exercise is deleted. Error details shown in the status message. Status bar remains the same.
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   2. Test case: `delete 1`<br>
+      Expected: First `Exercise` is deleted from the list. Details of the deleted `Exercise` shown in the status message. Timestamp in the status bar is updated.
+   3. Test case: `delete 0`<br>
+      Expected: No `Exercise` is deleted. Error details shown in the status message. Status bar remains the same.
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-1. _{ more test cases …​ }_
 
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-1. _{ more test cases …​ }_
+### Listing all exercise entries
+1. List all `Exercise` entries
+   1. Prerequisites: Calo starts up successfully
+   2. Test case: `list`<br>
+      Expected: All `Exercise` entries belonging to the `ExerciseBook` will be displayed in the left panel.
