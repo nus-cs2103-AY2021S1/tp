@@ -136,31 +136,42 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Priority Feature
+### Priority Feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed priority feature would involve the UI javafx feature as well as a newly implemented field for the Clientlist.This field for the Clientlist would affect the UI of the ClientList. 
+The proposed priority feature would involve the UI `javafx` feature as well as a newly implemented field for the `Person`.
+This field for the `Person` would affect the UI of the I4I. 
 
-There would be 4 settings for the priority feature: High, Medium, Low, Undefined. If a user never include any of the settings, it would default to undefined. The priority feature would change the entries in the Clientlist, changing the colors of the UI for each entry based on the priority assigned for the Client. 
+There would be 4 settings for the priority feature: `High`, `Medium`, `Low`, `Undefined`. 
+If a user never include any of the settings, it would default to `Undefined`. 
+The priority feature would change the entries in the client list, changing the colors of the UI for each entry based on the `Priority` assigned for the `Person`. 
 
 ![Proposed UI](images/UIPriority.png)
 
-Firstly, an optional `priority` field would be added to the `Person` class. 
+Firstly, an optional `Priority` field would be added to the `Person` class. 
 
-Given below is an example usage scenario and how the priority mechanism behaves when a user is added. Note that this addition of users via addcommand is the same command used when the user launches the application for the first time. 
+Given below is an example usage scenario and how the priority mechanism behaves when a client is added. 
+Note that this addition of clients via the add command is the same command used when the user launches the application for the first time. 
 
-Step 1. The user will add a client using the GUI and specifies the user to be added. The `AddCommandParser` will check if there was an empty string input for the priority field, if there is, we will set it as Undefined. If the user puts any other input other than the predefined inputs(H for high, M for medium, L for low), the user will get an error message. 
+Step 1. The user will add a client using the GUI and specifies the user to be added. 
+The `AddCommandParser` will check if there was an empty string input for the `Priority` field, 
+if there is, we will set it as `Undefined`. 
+If the user puts any other input other than the predefined inputs (`H` for high, `M` for medium, `L` for low), the user will get an error message. 
 
-Step 2: The `AddCommandParser` object will parse the command into an `AddCommand` object in the logic package to check if the user is a duplicated user or not.  If the person is a valid person, the person would be wrapped into a `Model` and passed to the `UI`.
+Step 2: The `AddCommandParser` object will parse the command into an `AddCommand` object in the `Logic` package to check if the user is an existing user or not.  
 
-Step 3: In the UI, as it is an `AddCommand` object, the `MainWindow` will update the `PersonListPanel`, which will call the `updateItem` method based on the Person and the priority. This will go to the `PersonListViewCell`, and would attempt to create a person class. 
+Step 3: In the UI, as it is an `AddCommand` object, the `MainWindow` will update the `PersonListPanel`, 
+which will call the `updateItem` method based on the `Person` and the `Priority`. This will go to the `PersonListViewCell`, and would attempt to create a `PersonCard` object. 
 
-Step 4: To identify between the different levels of priority, I propose to use a to have a `PriortyIndicatorComponent` class to identify the type of person it is based on the archive status and the priority. The `PriorityIndicatorComponent` class will construct the indicator border and background using `Paint` elements from the `ColorPicker` class. The `PersonList` object will set the background and border based on the returned border and background. 
+Step 4: To identify between the different levels of priority, we used a `PriortyIndicatorComponent` class 
+to identify the type of person, based on the archive status and the priority. 
+The `PriorityIndicatorComponent` class will construct the indicator border and background using `Paint` elements from the `ColorPicker` class. 
+The `PersonCard` object will set the background and border based on the returned border and background. 
 
-Step 5: This `PersonList` Object would be returned to the `PersonListViewCell`, updated on the `PersonListPanel` and finally shown in the `Mainwindow`. 
+Step 5: This `PersonCard` object would be returned to the `PersonListViewCell`, updated on the `PersonListPanel` and finally shown in the `MainWindow`. 
 
-The following sequence diagram shows how the Priority operation works:
+The following Sequence Diagram shows how the priority operation works in the UI:
 
 ![Proposed Sequence Diagram](images/ImplementationPrioritySequence.png)
 
@@ -168,10 +179,10 @@ The following sequence diagram shows how the Priority operation works:
 
 ##### Aspect: How Priority feature works.
 
-* **Alternative 1 (current choice):** Create a parser to settle the image inside the UI class. 
-  * Pros: Decreased coupling, easier to find bugs.
+* **Alternative 1 (current choice):** Create a parser to settle the image inside the UI module. 
+  * Pros: Decreased coupling, easier to identify bugs.
 
-* **Alternative 2:** Do aside the parser, just put the switch cases inside the PersonListViewCell
+* **Alternative 2:** Do aside the parser, just put the switch cases inside the `PersonListViewCell`
   itself.
   * Pros: Will use less memory (No need to show the parser field).
   * Cons: Increased coupling
@@ -194,15 +205,15 @@ Example:
 
 * `PolicyName#isValidPolicyName` & `PolicyDescription#isValidPolicyDescription`
 
-As shown in [**`Model`**](#model-component) above, each Person has an optional `Policy` field.
+As shown in [**`Model`**](#model-component) above, each `Person` has an optional `Policy` field.
 The `Policy` field can be added to a client using the `add` command, which is specified by the
-PolicyName Prefix followed by a valid PolicyName. The PolicyName must be valid and a corresponding
+`PolicyName`'s prefix followed by a valid `PolicyName`. The `PolicyName` must be valid and a corresponding
 `Policy` must already be in the `PolicyList` maintained by `ModelManager`. The specific `Policy` object
 is then referenced from the `PolicyList` and maintained in the `Person` object.
 
-Thus, Commands to add `Policy` objects into the `PolicyList` have been implemented.
+Thus, commands to add `Policy` objects into the `PolicyList` have been implemented.
 
-Given below is the Sequence Diagram that shows how the Add Policy Command `addp` works.
+Given below is the Sequence Diagram that shows how the `AddPolicyCommand`'s `addp` works.
 
 ![AddPolicyCommand](images/AddPolicySequenceDiagram.png)
 
@@ -211,26 +222,26 @@ Given below is the Sequence Diagram that shows how the Add Policy Command `addp`
 
 First, `ClientListParser` will parse if the correct command, `addp` in this case, is called. Then,
 `AddPolicyCommandParser` will parse the parameters for  `Policy`'s name and description for their validity
-and values. `AddPolicyCommandParser` then constructs an `AddPolicyCommand` with the given Policy using the
-name and description. The Command object is returned to `LogicManager` which calls the execute 
+and values. `AddPolicyCommandParser` then constructs an `AddPolicyCommand` with the given `Policy` using the
+name and description. The `Command` object is returned to `LogicManager` which calls the execute 
 method of the `Command`. Execute checks if the `Policy` already exists in the `PolicyList` stored
-in Model and if it is not, then the `Policy` is added to the `PolicyList`.
+in `Model` and if it is not, then the `Policy` is added to the `PolicyList`.
 
 A command used to clear the `PolicyList`, `clearp` was also implemented to give the user 
 more control over the `PolicyList`. `clearp` clears the `PolicyList` as well as all the 
 `Policy`s allocated to clients through interaction with `Model`'s `ClientList` and `PolicyList`.
-The Command works similar to the Add Policy Command as illustrated in the sequence diagram
+The command works similar to the `AddPolicyCommand` as illustrated in the sequence diagram
 in terms of parsing and command creation, but works differently in `Model` as it clears all
 `Policy` objects from the `PolicyList` as well as the `Policy` field of `Person` in
  the `ClientList`.
 
-`PolicyList` is a List class stored in `Model`. It stores multiple `Policy` objects in a 
+`PolicyList` is a `List` class stored in `Model`. It stores multiple `Policy` objects in a 
 `HashMap`. A `HashMap` was used
 because checking if a key is in the `HashMap` can be done quickly. Additionally, `HashMap` 
 was chosen over `HashTable` because we do not require the Collection to be synchronized. 
 Thus, `HashMap` is more apt due to its higher efficiency and speed.
 
-Lastly, `PolicyList` is also stored in memory as `json` file. This requires json-adapted classes to be
+Lastly, `PolicyList` is also stored in memory as json file. This requires json-adapted classes to be
 created. The storage classes are shown in [**`Storage`**](#storage-component). They were implemented
 using AB3's storage classes as template.
 
