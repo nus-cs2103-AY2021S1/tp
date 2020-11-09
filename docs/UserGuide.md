@@ -247,8 +247,10 @@ The prompt contains the format of the edit command to be keyed in. The format is
 ![LoginUsernamePasswordInput](images/userguide/editLoginDetails.png)
 
 To log in, simply edit your login details with the following command:
+
 <br>**Format: `edit -l u/LUMINUS_USERNAME p/LUMINUS_PASSWORD`**
-<br>Examples:
+
+<br>✏️ Examples:
 * `edit -l u/nusstu\e1234567 p/testpassword`
 
 An example of the command being inputted:
@@ -311,6 +313,7 @@ You will have to edit them using the [Editing Student Information](#642-editing-
 ### 6.2 Viewing help : `help`
 
 Shows a message explaining how to access the help page.
+
 <br>**Format: `help`**
 
 ### 6.3 Adding Information : `add`
@@ -318,6 +321,7 @@ Shows a message explaining how to access the help page.
 #### 6.3.1 Adding `Consultations` : `-c`
 
 Adds a `Consultation` session with a `Student` at a specific date and time.
+
 <br>**Format: `add -c NAME d/YYYY-MM-DD t/HH:MM`**
 
 ![AddConsultations](images/userguide/addConsultation.png)
@@ -335,6 +339,7 @@ Adds a `Consultation` session with a `Student` at a specific date and time.
 #### 6.3.2 Adding `Mastery Checks` : `-mc`
 
 Adds a `Mastery Check` session with a `Student` at a specific `date` and `time`.
+
 <br>**Format: `add -mc NAME d/YYYY-MM-DD t/HH:MM`**
 
 ![AddMasteryChecks](images/userguide/addMasteryCheck.png)
@@ -354,6 +359,7 @@ Adds a `Mastery Check` session with a `Student` at a specific `date` and `time`.
 #### 6.3.3 Adding `Todos` : `-t`
 
 Adds your personal `Todo` with a `description`.
+
 <br>**Format: `add -t DESCRIPTION`**
 
 <br>✏️ Examples:
@@ -367,6 +373,7 @@ Adds your personal `Todo` with a `description`.
 #### 6.3.4 Adding `Events` : `-e`
 
 Adds your personal `Event` with a `description`, to attend at a specific date and time.
+
 <br>**Format: `add -e DESCRIPTION d/YYYY-MM-DD t/HH:MM`**
 
 <br>✏️ Examples:
@@ -380,6 +387,7 @@ Adds your personal `Event` with a `description`, to attend at a specific date an
 #### 6.3.5 Adding `Deadlines` : `-d`
 
 Adds your personal `Deadline` with a `description`, to complete by a specific date and time.
+
 <br>**Format: `add -d DESCRIPTION d/YYYY-MM-DD t/HH:MM`**
 
 <br>✏️ Examples:
@@ -397,7 +405,9 @@ Adds your personal `Deadline` with a `description`, to complete by a specific da
 #### 6.4.1 Editing Login Information : `-l`
 
 You can use tags to specify the field to be edited.
+
 <br>**Format: `edit -l [u/LUMINUS_USERNAME] [p/LUMINUS_PASSWORD]`**
+
 <br>✏️ Examples:
 * `edit -l u/nusstu\e1234567 p/testpassword`
 * `edit -l p/testpassword`
@@ -418,7 +428,9 @@ as we choose to give you the benefit of doubt of keying in the wrong login detai
 #### 6.4.2 Editing `Student` Information : `-s`
 
 Edits the fields of a `Student`.
+
 <br>**Format: `edit -s INDEX [n/NAME] [t/TELEGRAM] [e/EMAIL]`**
+
 <br>✏️ Examples:
 * `edit -s 1 e/koolguy@gmail.com t/handsome`
 * `edit -s 3 n/Timots`
@@ -430,8 +442,8 @@ You can refer to the screenshot below for how the input will look like.
 #### 6.4.3 Editing `Mastery Checks` : `-mc`
 
 At least one of the optional parameters must be provided.
-
 Edits the score of a `Mastery Check` session with a `Student`.
+
 <br>**Format: `edit -mc INDEX s/SCORE`**
 
 ![EditMasteryCheck](images/userguide/editMasteryCheck.png)
@@ -451,6 +463,7 @@ Edits the score of a `Mastery Check` session with a `Student`.
 #### 6.5.1 Deleting `Consultations` : `-c`
 
 Deletes a `Task` based on the `INDEX` you specify.
+
 <br>**Format: `delete -c INDEX`**
 
 ![DeleteConsultation](images/userguide/deleteConsultation.png)
@@ -465,6 +478,7 @@ Deletes a `Task` based on the `INDEX` you specify.
 #### 6.5.2 Deleting `Mastery Checks` : `-mc`
 
 Deletes a `Mastery Check` based on the `INDEX` you specify.
+
 <br>**Format: `delete -mc INDEX`**
 
 ![DeleteMasteryCheck](images/userguide/deleteMasteryCheck.png)
@@ -479,6 +493,7 @@ Deletes a `Mastery Check` based on the `INDEX` you specify.
 #### 6.5.3 Deleting `Tasks` : `-t`
 
 Deletes a `Task` based on the `TASK_ID` you specify.
+
 <br>**Format: `delete -t TASK_ID`**
 
 ![DeleteTask](images/userguide/deleteTask.png)
@@ -486,6 +501,11 @@ Deletes a `Task` based on the `TASK_ID` you specify.
 <br>✏️ Examples:
 * `delete -t T3`
 * `delete -t D2`
+
+<div markdown="block" class="alert alert-info">
+* Note that TASK_ID, once given, is permanent and no other Tasks can receive that TASK_ID even after the deletion of the original one. 
+* The Index for Consultation and MasteryCheck is not unique and they will change according to the GUI's displayed list, which is unlike the TASK_ID for `Task`s.
+</div>
 
 ### 6.6 Viewing Information : `view`
 
@@ -498,14 +518,14 @@ Please take note of the command inputted into the command box to understand how 
 
 ![ViewAllStudentsCommand](images/userguide/viewAllStudents.png)
 
-#### 6.6.2 Viewing `Student` with keyword : `-s [NAME]`
+#### 6.6.2 Viewing `Student` with keyword : `-s NAME`
 
-Shows all `Students` that match (partial and full) the name entered after the command. The name is case-sensitive
-and partial name matches will work, the following is an example. If you would like to look for your student Tommy
-Hilfiger, you can simply type in `view -s Tom` and the student will be displayed. A full match on the other hand would be as such: key in the command `view -s John Doe` and John
+Shows all `Students` that match (partial and full) the name entered after the command. The following is an example where the name is case-sensitive
+and partial name matches will work. If you would like to look for your student Tommy Hilfiger, you can simply type in `view -s Tom` 
+and the student will be displayed. A full match on the other hand would be as such: key in the command `view -s John Doe` and John
 Doe will be displayed.
 
-<br>**Format: `view -s [NAME]`**
+<br>**Format: `view -s NAME`**
 
 ![ViewOneStudentCommand](images/userguide/viewOneStudent.png)
 
@@ -515,15 +535,15 @@ Doe will be displayed.
 #### 6.6.3 Viewing deadline for `Missions` : `-m`
 
 Shows the deadline for the current `Missions`.
+
 <br>**Format: `view -m`**
 
 ![ViewMissionDeadline](images/userguide/viewMissionDeadline.png)
 
-You may also click on the `Mission` tab to do so.
-
 #### 6.6.4 Viewing ungraded `Missions` : `-um`
 
 Shows the `Missions` that you have not yet graded.
+
 <br>**Format: `view -um`**
 
 ![ViewUngradedMissions](images/userguide/viewUngradedMission.png)
@@ -531,9 +551,8 @@ Shows the `Missions` that you have not yet graded.
 #### 6.6.5 Viewing deadline for `Quests` : `-q`
 
 Shows the deadline for the current `Quests`.
-<br>**Format: `view -q`**
 
-You may also click on the `Quest` tab to do so.
+<br>**Format: `view -q`**
 
 #### 6.6.6 Viewing ungraded `Quests` : `-uq`
 
@@ -545,80 +564,100 @@ Shows the `Quests` that you have not yet graded.
 
 Shows all confirmed `Consultation` sessions, both past and upcoming.
 <br>**Format: `view -c`**
+
 <br>✏️ Examples:
 * `view -c`
 
 #### 6.6.8 Viewing past `Consultations` : `-cp`
 
 Shows all past `Consultation` sessions.
+
 <br>**Format: `view -cp`**
+
 <br>✏️ Examples:
 * `view -cp`
 
-<br>⚠️ Notes:
+<div markdown="block" class="alert alert-info">
 * When the `Consultation` time is the same as the local time (year, month, date, hour, and minute all equal), it is considered to have occurred in the past.
+</div>
 
 #### 6.6.9 Viewing upcoming `Consultations`: `-cu`
 
 Shows all upcoming `Consultation` sessions.
+
 <br>**Format: `view -cu`**
+
 <br>✏️ Examples:
 * `view -cu`
 
-<br>⚠️ Notes:
+<div markdown="block" class="alert alert-info">
 * When the time of the `Consultation` displayed by `view -cu` is earlier than the local time (to year, month, date, hour, and minute) and then caught up eventually, it is still considered as an upcoming `Consultation` when you enter `view -cu`. This is to encourage the tutors to have this screen open while holding the `Consultation` session. When you switch to another command, such as `view -c` or `view -cp`, and then come back, you may see the updated filtered `Consultation` list with the current local time as the standard.
+</div>
 
 #### 6.6.10 Viewing all `Mastery Checks` : `-mc`
 
 Shows all confirmed `Mastery Check` sessions, both past and upcoming.
+
 <br>**Format: `view -mc`**
+
 <br>✏️ Examples:
 * `view -mc`
 
 #### 6.6.11 Viewing past `Mastery Checks` : `-mcp`
 
 Shows all past `Mastery Check` sessions.
+
 <br>**Format: `view -mcp`**
+
 <br>✏️ Examples:
 * `view -mcp`
 
-<br>⚠️ Notes:
+<div markdown="block" class="alert alert-info">
 * When the `Mastery Check` time is the same as the local time (year, month, date, hour, and minute all equal), it is considered to have occurred in the past.
+</div>
 
 #### 6.6.12 Viewing upcoming `Mastery Checks` : `-mcu`
 
 Shows all upcoming `Mastery Check` sessions.
+
 <br>**Format: `view -mcu`**
+
 <br>✏️ Examples:
 * `view -mcu`
 
-<br>⚠️ Notes:
+<div markdown="block" class="alert alert-info">
 * When the time of the `Mastery Check` displayed by `view -mcu` is earlier than the local time (to year, month, date, hour, and minute) and then caught up eventually, it is still considered as an upcoming `Mastery Check` when you enter `view -mcu`. This is to encourage the tutors to have this screen open while holding the `Mastery Check` session. When you switch to another command, such as `view -mc` or `view -mcp`, and then come back, you may see the updated filtered `Mastery Check` list with the current local time as the standard.
+</div>
 
 #### 6.6.13 Viewing all `Tasks` : `-t`
 
 Shows the list of all your current `Tasks`.
 This includes `Todo`, `Event` and `Deadline`, which are all considered `Tasks`.
+
 <br>**Format: `view -t`**
 
 #### 6.6.14 Viewing all `Todos` : `-tt`
 
 Shows the list of all your current `Todos`.
+
 <br>**Format: `view -tt`**
 
 #### 6.6.15 Viewing all `Events` : `-te`
 
 Shows the list of all your current `Events`.
+
 <br>**Format: `view -te`**
 
 #### 6.6.16 Viewing all `Deadlines` : `-td`
 
 Shows the list of all your current `Deadlines`.
+
 <br>**Format: `view -td`**
 
 ### 6.7 Exiting the program : `exit`
 
 Exits the program.
+
 <br>**Format: `exit`**
 
 ### 6.8 Saving the data
@@ -626,7 +665,6 @@ Exits the program.
 Jarvis data are saved in the file `jarvis.json` automatically after any command that changes the data. There is no need to save manually.
 
 <div markdown="block" class="alert alert-info">
-
 Note that only `Student`, `Consultation`, `Mastery Check` and `Task` data are saved to the hard drive since `Mission` and `Quest` data
 are likely to change frequently and hence, will not need to be persisted.
 </div>
@@ -649,16 +687,16 @@ are likely to change frequently and hence, will not need to be persisted.
 
 | Function | Tag | Format, Examples |
 | -------- | --- | ---------------- |
-| Edit Login information | -l | edit -l u/LUMINUS_USERNAME p/LUMINUS_PASSWORD |
-| Edit `Student` information | -s | edit -s INDEX n/NAME t/TELEGRAM e/EMAIL |
-| Edit `Mastery Check` | -mc | edit -mc INDEX /SCORE |
+| Edit Login information | -l | edit -l [u/LUMINUS_USERNAME] [p/LUMINUS_PASSWORD] |
+| Edit `Student` information | -s | edit -s INDEX [n/NAME] [t/TELEGRAM] [e/EMAIL] |
+| Edit `Mastery Check` | -mc | edit -mc INDEX s/SCORE |
 
 ### 7.3 Delete Command Summary
 
 | Function | Tag | Format, Examples |
 | -------- | --- | ---------------- |
-| Delete `Consultation` | -c | delete -c NAME <br>E.g. delete -c → 3 / delete -c John Doe 2 |
-| Delete `Mastery Check` | -mc | delete -mc NAME <br>E.g. delete -mc → 3 / delete -mc John Doe 2 |
+| Delete `Consultation` | -c | delete -c NAME <br>E.g. delete -c 2 |
+| Delete `Mastery Check` | -mc | delete -mc NAME <br>E.g. delete -mc 2 |
 | Delete `Task` | -t | delete -t TASK_ID |
 
 ### 7.4 View Command Summary
@@ -666,7 +704,7 @@ are likely to change frequently and hence, will not need to be persisted.
 | Function | Tag | Format, Examples |
 | -------- | --- | ---------------- |
 | View all `Students` | -s | view -s |
-| View `Student` with keyword | -s | view -s NAME |
+| View `Student` with keyword | -s | view -s INDEX |
 | View deadlines for `Missions` | -m | view -m |
 | View ungraded `Missions` | -um | view -um |
 | View deadlines for `Quests` | -q | view -q |
