@@ -6,11 +6,11 @@ title: User Guide
 ## Introduction
 
 Do you even find yourself struggling to manage all the different kinds of module information that you have to track? Are there too 
-many modules, contacts, tasks and events to remember? Well, do not worry, CAP5BUDDY is here to help.
+many modules, contacts, tasks and events to remember? Well, do not worry, CAP5Buddy is here to help.
 
-Cap 5 Buddy is a desktop application that helps NUS SoC students to keep track of their module details efficiently.
+CAP5Buddy is a desktop application that helps NUS SoC students to keep track of their module details efficiently.
 It helps you to centralize key module details, contacts and information while following your study progress. It is optimized for use via a Command Line Interface (CLI), while still having the 
-benefits of a Graphical User Interface (GUI). If you can type fast, Cap 5 Buddy can help you manage your module 
+benefits of a Graphical User Interface (GUI). If you can type fast, CAP5Buddy can help you manage your module 
 details and information more efficiently than traditional GUI apps.
 
 
@@ -25,12 +25,12 @@ details and information more efficiently than traditional GUI apps.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `cap5buddy.jar` from [here](https://github.com/AY2021S1-CS2103T-F12-3/tp/releases).
+1. Download the latest `CAP5Buddy.jar` from [here](https://github.com/AY2021S1-CS2103T-F12-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ Cap 5 Buddy application.
+1. Copy the file to the folder you want to use as the _home folder_ for the CAP5Buddy application.
 
 1. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. <br>
-   ![GUI](images/OverallGUISnapShot.png)
+![GUI](images/ui.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
