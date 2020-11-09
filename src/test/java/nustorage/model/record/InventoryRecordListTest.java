@@ -15,13 +15,14 @@ import static nustorage.logic.commands.CommandTestUtil.ITEM_NAME_2;
 import static nustorage.logic.commands.CommandTestUtil.ITEM_NAME_3;
 import static nustorage.logic.commands.CommandTestUtil.QUANTITY_1;
 import static nustorage.logic.commands.CommandTestUtil.QUANTITY_2;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDateTime;
 import nustorage.model.Inventory;
 import nustorage.model.record.exceptions.InventoryRecordNotFoundException;
 import nustorage.testutil.TypicalInventoryRecords;
