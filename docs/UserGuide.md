@@ -558,7 +558,7 @@ _Written by: Wai Lok_
 
 ### 5.3 Room
 
-This section contains all the commands related to rooms. You can [initialise](#531-initialise-rooms-in-hotel-initroom), [allocate](#532-allocate-patient-to-room-allocateroom),[search](#533-search-by-room-number-searchroom) and [find](#536-find-the-first-free-room-findemptyroom) the rooms which you need.
+This section contains all the commands related to rooms. You can [initialise](#531-initialise-rooms-in-hotel-initroom), [allocate](#532-allocate-patient-to-room-allocateroom), [search](#533-search-by-room-number-searchroom) and [find](#536-find-the-first-free-room-findemptyroom) the rooms which you need.
 If you want an overview of the rooms, you can [list](#535-list-the-current-rooms-listroom) out all the rooms in Covigent. If you are unsure of how to interpret the command format, head back to [Command Format](#51-command-format) before executing the commands!
 
 
@@ -574,6 +574,8 @@ Field | Description
 `NUMBER_OF_ROOMS` | The number of rooms you wish to have in hotel
 
 **:information_source: Important Information:** <br />
+* The maximum number of rooms that can be defined is 500 as most boutique hotels have a maximum of 500 rooms.
+* If suppose you `initroom x` and x is already the number of rooms, no error would be seen to improve user experience.
 * If the number of rooms is less than the number of patients error is thrown when decreasing the number of existing rooms.
 * Adds `NUMBER_OF_ROOMS` rooms into the hotel system, if there were previously added information that information for respective rooms will still be there.
 <br />
