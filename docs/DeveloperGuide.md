@@ -1011,23 +1011,49 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
 
 1. Adding a Client while all Clients are being shown
 
-   1. Test case: `cadd n/David …` <br>
-      Expected: First contact is added to the list. Details of the added contact shown in the status message.
+   1. Test case: `cadd n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/injured-thigh t/allergy-dairy` <br>
+      Expected: First contact is added to the list. 
+      Details of the added contact shown in the status message.
+    
+   1. Other incorrect Add Client commands to try: 
+       `cadd n/John Doe p/98765432 a/311, Clementi Ave 2, #02-25 t/injured-thigh` (exercise type not added),
+       `cadd n/John Doe p/98765432 e/example.com a/311, Clementi Ave 2, #02-25 t/injured-thigh t/allergy-dairy` (invalid email address) <br>
+      Expected: Client is not added. Error details are shown in the status message.
 
+### 6.3 Editing a Client
 
-### 6.3 Adding a Session
+1. Editing a Client while all Clients are being shown
+
+   1. Test case: `cedit 1 p/91234567` <br>
+      Expected: First contact is added to the list. 
+      Details of the added contact shown in the status message.
+
+   1. Other incorrect Add Client commands to try: 
+       `cedit 0 p/91234567` (index out of bound) <br>
+      Expected: Client is not edited. Error details are shown in the status message.
+      
+### 6.4 Deleting a Client
+
+1. Deleting a Client while all Clients are being shown
+
+   1. Test case: `cdel 1` <br>
+      Expected: First contact is removed from the list. 
+      Details of the added contact shown in the status message.
+
+### 6.5 Adding a Session
 
 1. Adding a Session while all Clients are being shown.
 
     1. Test case: `sadd g/Machoman Gym ex/Endurance at/29/09/2020 1600 t/120` <br>
-       Expected: Session is added to the list, and it is shown in order. Details of the added Session shown in the status message.
+       Expected: Session is added to the list, and it is shown in order. 
+       Details of the added Session shown in the status message.
        
     1. Other incorrect Add Session commands to try: 
         `sadd g/machoman ex/endurance at/29/09/2020 t/120` (wrong date format),
         `sadd g/machoman ex/endurance at/29/09/2020 1600 t/0` (invalid duration) <br>
        Expected: Session is not added. Error details are shown in the status message.
 
-### 6.4 Editing a Session
+### 6.6 Editing a Session
 
 1. Editing a Session while all Sessions are being shown.
 
@@ -1036,14 +1062,14 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
    1. Test case: `sedit 1 g/Machoman at/29/09/2020 1600 t/120`<br>
       Expected: First Session's gym location and timing is edited. Details of the edited Session is shown in the status message.
       
-### 6.5 Deleting a Session
+### 6.7 Deleting a Session
 
 1. Deleting a Session while all Sessions are being shown.
 
    1. Test case: `sdel 1 f/` <br>
-       Expected: The 1st Session in the Session List will be deleted alongside all Schedules associated to the Session. Details of the deleted Session is shown in the status message.
+      Expected: The 1st Session in the Session List will be deleted alongside all Schedules associated to the Session. Details of the deleted Session is shown in the status message.
 
-### 6.6 Viewing Sessions within Period
+### 6.8 Viewing Sessions within Period
 
 1. Viewing Sessions within Period while the Session List is non-empty.
 
@@ -1056,7 +1082,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
    1. Other incorrect View Session commands to try: `sview`, `sview p/+2s` (where unit of time is not d/m/y), `...` <br>
       Expected: View of Session List is unchanged. Error details shown in the status message.
       
-### 6.7 Adding a Schedule
+### 6.9 Adding a Schedule
 
 1. Adding a Schedule while all Clients and Sessions are being shown.
 
@@ -1067,7 +1093,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
       Details of the added Schedule is shown in the status message.
       
 
-### 6.8 Editing a Schedule
+### 6.10 Editing a Schedule
 
 1. Editing a Schedule while all Schedules are being shown.
 
@@ -1078,7 +1104,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
       Details of the edited Schedule is shown in the status message.
 
 
-### 6.9 Deleting a Schedule
+### 6.11 Deleting a Schedule
 
 1. Deleting a Schedule while all Clients and Sessions are being shown.
 
@@ -1088,7 +1114,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
       Expected: Delete the Schedule associated with first Client in the Client List and first Session in the Session List.
       Details of the deleted Schedule is shown in the status message.
 
-### 6.10 Saving data
+### 6.12 Saving data
 
 1. Dealing with missing/corrupted data files
 
