@@ -634,10 +634,6 @@ Step 7. After execution, `CommandResult` will contain a message indicating that 
 
 Step 7. The user executes `stats 1` command to display the `Statistics` of the first flashcard in the list on the GUI. The user sees that the `Statistics` is reset.
 
-The following sequence diagram shows how the parser operation works:
-
-![ClearStatsSequenceDiagram](images/ClearStatsParserSequenceDiagram.png)
-
 The following sequence diagram shows how the Clearstats mechanism works:
 
 ![ClearStatsSequenceDiagram](images/ClearStatsSequenceDiagram.png)
