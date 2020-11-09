@@ -1,3 +1,8 @@
+---
+layout: page
+title: Covigent - User Guide
+---
+
 # Covigent - User Guide
 
 1. [Introduction](#1-introduction)
