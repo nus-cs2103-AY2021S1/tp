@@ -53,7 +53,7 @@ Given below are my contributions to the project:
 <br>
 * **Documentation**:
   * [User Guide](https://ay2021s1-cs2103t-w10-2.github.io/tp/UserGuide.html):
-    * Transfer the user guide's draft from google document to UserGuide.md: [\#31](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/31))
+    * Transfer the user guide's draft from google document to UserGuide.md: [\#31](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/31)
     * Updated `add Recipe` documentation: [\#117](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/117)
     * Added documentation for the features `eatR`, `calories`, `clearR`, `clearF` and `clearC`: ([\#51](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/51), [\#117](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/117), [\#170](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/170))
     * Added break page for pdf converting purpose: [#294](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/294)
