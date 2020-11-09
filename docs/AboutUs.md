@@ -9,51 +9,54 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Chu Kim Guan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/teamphotos/soaza.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/soaza)]
+[[portfolio](team/soaza.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Dev Ops
 
-### Johnny Doe
+### Yeoh Hui Qing
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/teamphotos/yeohhq.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yeohhq)]
+[[portfolio](team/yeohhq.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: DevOps + Documentation
 
-### James Doe
+### Gordon Foo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/teamphotos/gordonfgz.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/gordonfgz)]
+[[portfolio](team/gordonfgz.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Dev Ops
+
+### Jim Vincent Engay
+
+<img src="images/teamphotos/jimvae.png" width="200px">
+
+[[github](http://github.com/jimvae)]
+[[portfolio](team/jimvae.md)]
+
+* Role: Developer
+* Responsibilities: Ui + Testing
+
+### Chew Hoa Shen
+
+<img src="images/teamphotos/chshen1998.png" width="200px">
+
+[[github](http://github.com/chshen1998)]
+[[portfolio](team/chshen1998.md)]
+
+* Role: Developer
+* Responsibilities: Data + Threading
+
+

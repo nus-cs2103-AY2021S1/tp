@@ -2,9 +2,11 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
@@ -14,7 +16,8 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.patient.Patient;
 import seedu.address.storage.Storage;
 
 /**
@@ -44,7 +47,11 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
-
+        if (commandResult.canBeUndone()) {
+            model.getUserHistoryManager().addHistory(new Pair(new ArrayList<>(model.getAddressBook().getPatientList()),
+                    new ArrayList<>(model.getAddressBook().getAppointmentList())));
+            model.getUserHistoryManager().resetRedoHistory();
+        }
         try {
             storage.saveAddressBook(model.getAddressBook());
         } catch (IOException ioe) {
@@ -60,8 +67,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Patient> getFilteredPatientList() {
+        return model.getFilteredPatientList();
+    }
+
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return model.getFilteredAppointmentList();
     }
 
     @Override
@@ -77,5 +89,17 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public void setStartFilteredAppointmentList() throws ParseException, CommandException {
+        Command command = addressBookParser.parseCommand("a-list");
+        command.execute(model);
+    }
+
+    @Override
+    public void checkNewlyMissedAppointments() throws ParseException, CommandException {
+        Command command = addressBookParser.parseCommand("a-new-misses");
+        command.execute(model);
     }
 }

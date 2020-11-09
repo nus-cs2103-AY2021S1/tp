@@ -1,0 +1,12 @@
+{
+  "patients": [ {
+    "name": "Hans Muster",
+    "gender" : "Male",
+    "birthdate": "2019-02-30",
+    "bloodtype" : "A*",
+    "phone": "9482424",
+    "email": "invalid@email!3e",
+    "address": "4th street",
+    "remark" : ""
+  } ]
+}

@@ -17,6 +17,9 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The command can be undone. */
+    private final boolean canUndo;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -24,6 +27,7 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.canUndo = false;
     }
 
     /**
@@ -31,7 +35,22 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with for commands that cannot be undone(example Undo)
+     * @param feedbackToUser
+     * @param showHelp
+     * @param exit
+     * @param canUndo
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean canUndo) {
+        requireNonNull(feedbackToUser);
+        this.feedbackToUser = feedbackToUser;
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.canUndo = canUndo;
     }
 
     public String getFeedbackToUser() {
@@ -40,6 +59,10 @@ public class CommandResult {
 
     public boolean isShowHelp() {
         return showHelp;
+    }
+
+    public boolean canBeUndone() {
+        return canUndo;
     }
 
     public boolean isExit() {
