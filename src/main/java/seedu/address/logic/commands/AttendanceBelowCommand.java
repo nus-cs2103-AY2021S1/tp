@@ -13,8 +13,8 @@ public class AttendanceBelowCommand extends Command {
     public static final String COMMAND_WORD = "attendanceBelow";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Shows a new list of students whose attendance score falls below the upper bound. " + "\n"
-            + "Parameters: UPPER_BOUND (must be one positive integer) "
+            + ": Shows a new list of students whose attendance score falls below the upper bound.\n"
+            + "Parameters: UPPER_BOUND (must be one positive integer)\n"
             + "Example: " + COMMAND_WORD + " 5 ";
 
     public static final String MESSAGE_ATTENDANCE_BELOW_SUCCESS = "Here are the students whose attendance are below %s";
