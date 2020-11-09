@@ -7,12 +7,6 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Introduction
 
-### 1.2 Audience 
-
-The Developer Guide is designed for those who are interested in understanding the architecture and other aspects of software design
-of tCheck. In particular, this guide has been written with the current and future tCheck developers in mind because it details
-the knowledge necessary to know to be able to modify the codebase and customize tCheck for specific operational needs or extend current functionalities.
-
 ## **Introduction**
 
 tCheck is a desktop application that offers an integrated system to efficiently manage a bubble tea shop, of 
@@ -110,7 +104,7 @@ The `UI` component,
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying 
 the help window to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("c-delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -298,7 +292,7 @@ user in the `s-update` command
     * Cons: There are not many operations to do with `Drink`s. It is only used to represent a constant set of
      drink types.
 
-## \[Completed\] Finding sales data of some drinks
+### \[Completed\] Finding sales data of some drinks
 
 Finds specific drinks' sales data feature allows the user to get the sales data of a drink quickly. The command is:
 
@@ -364,7 +358,7 @@ Given below is an example usage scenario for the aforementioned three commands a
 Step 1. The user, a T-Sugar store manager, launches tCheck for the very first time. The `IngredientBook` will be initialized with a `UniqueIngredientList` containing the six pre-defined ingredients, namely `Milk`, `Pearl`, `Boba`, `Black Tea` , `Green Tea` and `Brown Sugar`, with an amount of 0 set for all.
 
 ![IngredientBookState0](images/IngredientBookState.png)
-Figure Set Ingredients' levels - 1 shows the relationship between Model and Ingredient Book after tCheck is launched.
+shows the relationship between Model and Ingredient Book after tCheck is launched.
 
 Step 2. The user executes `i-set-default` to set the amounts of all ingredients to the default levels of the store, which are 50 L for liquids and 20 KG for solids. The `i-set-default` command calls `Model#setIngredientBook(ReadOnlyIngredientBook ingredientBook)`, causing the initial ingredient book to be replaced by the `ingredientBook` with the amounts of ingredients to be equal to the ingredients' default levels.
 
@@ -386,13 +380,11 @@ Furthermore,
 The following sequence diagram shows how the set ingredients' levels operation works, using `i-set i/Milk m/100` as an example:
 
 ![SetSequenceDiagram](images/SetSequenceDiagram.png)
-Figure Set Ingredients' levels - 2.
 
 The following activity diagram summarizes what happens when a user executes a new command which is one of the three commands for setting ingredients' levels
 Please note that only the command words of the respective commands are shown to represent the commands in this diagram:
 
 ![SetActivityDiagram](images/SetActivityDiagram.png)
-Figure Set Ingredients' levels - 3.
 
 #### Design consideration:
 
@@ -605,6 +597,44 @@ And the software doesn't need to handle huge amount of data. On the other hand, 
 used, `Logic` and `Model` have to deal another set of data. Consequently, application's overall complexity will be
 increased.
 
+
+### \[Completed\] Edit employees's contact information feature
+
+Compared with the original implementation, this feature adds emergency contact information of the employee. It can help
+the user to contact some staff when emergency situation happens. The command is:
+
+- `c-edit INDEX [n/NAME] [p/PHONE] [e/EMERGENCY_CONTACT] [t/TAG] ...`
+
+#### Implementation
+
+The completed edit employee's contact information is facilitated by `AddressBook`. It implements `ReadOnlyAddressBook`
+interface and offers method to edit the application's `AddressBook`. Particularly, it changes Person's constructor and
+function declarations to add emergency there.
+
+Given below is an example usage scenario and how the edit mechanism behaves at each step.
+
+Step 1: The user launches the application for the first time. Because now there isn't any information in addressbook.
+The user can't edit now.
+
+Step 2: The user executes `c-add n/Betsy Crowe e/81234567 p/91234567 t/morning shift t/part-time`. The `add` command calls
+`Model#addPerson()` to add Besty's information in the `AddressBook`. The updated `AddressBook` is stored in
+`addressbook.json`.
+
+Step 3: The user executes `c-edit 1 n/Besty Crowe e/84749110 p/81234567 t/morning shift t/part-time` to change Besty Crowe's
+phone number. This`edit` command calls `Model#setPerson()` to replace the original Besty Crowe's information in the
+`Addressbook`, causing the updated `Addressbook` to be stored in `addressbook.json`, overwriting the former one.
+
+#### Design Consideration
+
+##### Aspect: How to display the emergency contact
+
+* **Alternative 1 (current choice):** Displays the emergency contact of the similar format
+with phone number, using a prefix to identify them.
+  * Pros: Easy to implement.
+  * Cons: May seem a little redundancy.
+* **Alternative 2:** Use different icons to represent phone and emergency contact
+  * Pros: Will be easy to tell from.
+  * Cons: Need more work.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -903,8 +933,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `c-delete`, `c-delete x`, `...` (where x is larger than the Employee Directory's size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 
 ### Updating sales of drinks

@@ -20,15 +20,15 @@ Class UserPrefs
 Class ReadOnlyUserPrefs
 
 Package Person {
-Class HiddenModel #FFFFFF
+
 }
 
 Package SalesRecordEntry {
-Class HiddenModel #FFFFFF
+
 }
 
 Package Ingredient {
-Class HiddenModel #FFFFFF
+
 }
 }
 
