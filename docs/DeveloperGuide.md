@@ -190,10 +190,10 @@ The following activity diagram summarizes what happens when a user executes a fi
 ##### Aspect: How findmod executes
 
 * **Alternative 1 (current choice):** AND searching from multiple attributes and AND searching between keywords for module name and instructor attributes. Module code attribute only allows single keywords.
-  * Pros : Provides the ability to narrow down the search results by adding more attributes. Single keyword for module code attribute allows for more focused module code searches.
+  * Pros : Provides the ability to narrow down the search results by adding more attributes and keywords. Single keyword for module code attribute allows for more focused module code searches.
   * Cons : Unable to have a more general search and unable to search for multiple modules with different module codes.
 
-* **Alternative 2:** And searching across attributes and OR searching between keywords for name and instructor attributes. 
+* **Alternative 2:** And searching across attributes and OR searching between keywords for module name and instructor attributes. 
   * Pros : Provides the ability for a very general and flexible search.
   * Cons : Unable to have a more focused search, might be more confusing for the user to narrow down his/her searches.
 
@@ -439,12 +439,29 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the contact being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+--------------------------------------------------------------------------------------------------------------------
 
-### \[Proposed\] Data archiving
+## **Current bugs and feature ideas**
 
-_{Explain here how the data archiving feature will be implemented}_
+This section describes bugs found in the current version of FaculType and 
+feature ideas that have been proposed but currently don't have implementation details yet.
+Both of which are to be fixed/implemented in the next version of FaculType.
 
+### Current bugs:
+
+* Editing a contact's identifying attributes (name, phone, email) to be the same as another contact's causes problems due to the detection of duplicate contacts.
+This bug is inherited from the parent project AddressBook Level 3.
+* A tag in a contact card and an instructor tag in a module card may be cut off if the text inside is too long or if there are too many tags.
+This bug is inherited from the parent project AddressBook Level 3.
+
+Example of the tag bug:
+
+![TagBug](images/TagBug.png)
+
+### Feature ideas:
+
+* Order filter results of contacts and modules by how much they match the specified parameters.
+* Differentiate instructor tags in module cards for instructors with the same name.
 
 --------------------------------------------------------------------------------------------------------------------
 
