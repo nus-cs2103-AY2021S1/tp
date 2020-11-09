@@ -28,7 +28,7 @@ public class AddCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_GERMAN_PHRASE + "Vergesslichkeit "
-            + PREFIX_ENGLISH_PHRASE + "Forgetfulness "
+            + PREFIX_ENGLISH_PHRASE + "forgetfulness "
             + PREFIX_DIFFICULTY_TAG + "hard "
             + PREFIX_GENDER_TAG + "f "
             + PREFIX_TAG + "chapter1 ";
