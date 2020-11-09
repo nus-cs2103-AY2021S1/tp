@@ -47,9 +47,9 @@ with a focus on the Command Line Interface (CLI), while still retaining the benf
 ## **Section 2 - Using this Document**
 This Developer Guide will help you understand the thought processes behind the design and implementation of 
 **Trackr**. It will begin with how to [get started](#section-3---setting-up-getting-started), followed by the [design](#section-4---design) and [implementation](#section-5---implementation), and ending with 
-the [documentation]((#section-6---documentation-logging-testing-configuration-dev-ops)) for this project. 
+the [documentation](#section-6---documentation-logging-testing-configuration-dev-ops) for this project. 
 
-This section will provide you the [formatting]() used in this throughout the document so that understand in quick and simple.
+This section will provide you the [formatting](#section-22---formatting) used in this throughout the document so that understand in quick and simple.
 For more information on confusing terms encountered, you can check the [glossary](#appendix-e---glossary) for clarification. 
 
 ### Section 2.2 - Formatting
@@ -60,7 +60,7 @@ This document is written in a manner where formatting is applied to text in orde
 | ------------- | ------------------------------------------------------------ |
 | `code`        | Words in 'code' format refer to class names or fields within classes. |
 | *Italics*     | Words in italics refer to the type of diagrams used.|
-| [Underline]() | Words that are in blue and underlined when hovered over refer to hyperlinks. Hyperlinks are clickable, and bring you either to different parts of this document or to external websites, for the convenience of navigating quickly to different parts of the document or the web. |
+| [Underline](#section-22---formatting) | Words that are in blue and underlined when hovered over refer to hyperlinks. Hyperlinks are clickable, and bring you either to different parts of this document or to external websites, for the convenience of navigating quickly to different parts of the document or the web. |
 | **Bold**      | Words in bold refer to important points within the document. |
 
 ---
