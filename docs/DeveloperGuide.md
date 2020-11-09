@@ -27,7 +27,7 @@
             * [6.2.6.1 Add detail command](#6261-add-detail-command)
             * [6.2.6.2 Edit detail command](#6262-edit-detail-command)
             * [6.2.6.3 Delete detail command](#6263-delete-detail-command)
-        * [6.2.7 Sort command](#626-sort-command)
+        * [6.2.7 Sort command](#627-sort-command)
     * [6.3 Student academic details features](#63-student-academic-details-features)
         * [6.3.1 Question commands](#631-question-commands)
             * [6.3.1.1 Add question command](#6311-add-question-command)
