@@ -44,21 +44,39 @@ previous days much faster than the traditional GUI apps.
 
 # 3. Features
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+
+* Items in square brackets are optional.<br>
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+
+* Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+</div>
+
+
 <div markdown="block" class="alert alert-info"> 
-:information_source: Notes about the command format:
+:information_source: Notes about the command format: <br>
 
-    - Words in `UPPER_CASE` are the parameters to be supplied by the user.
-    e.g. in `add e/EXERCISE c/CALORIES`, `EXERCISE` is a parameter which can be used as `add e/Push Up c/1000`.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user. <br>
+  e.g. in `add e/EXERCISE c/CALORIES`, `EXERCISE` is a parameter which can be used as `add e/Push Up c/1000`.
 
-    - Items in square brackets are optional.
-    e.g `e/EXERCISE c/CALORIES [at/DATE]` can be used as `e/Push Up c/1000 at/29-09-2020` or as `e/Push Up c/1000`.
+* Items in square brackets are optional.
+  e.g `e/EXERCISE c/CALORIES [at/DATE]` can be used as `e/Push Up c/1000 at/29-09-2020` or as `e/Push Up c/1000`.
 
-    - Items with `…`​ after them can be used multiple times including zero times.
-    e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/gym`, `t/school t/house` etc.
+* Items with `…`​ after them can be used multiple times including zero times.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/gym`, `t/school t/house` etc.
 
-    - Parameters can be in any order.
-    e.g. if the command specifies `e/EXERCISE c/CALORIES`, `c/CALORIES e/EXERCISE` is also acceptable.
-
+* Parameters can be in any order.
+  e.g. if the command specifies `e/EXERCISE c/CALORIES`, `c/CALORIES e/EXERCISE` is also acceptable.
 </div>
 
 ## 3.1. Understanding the Display
@@ -183,6 +201,7 @@ Examples:
     :information_source:
     
     <b> Absolute Path </b>: Path that contains root element, e.g. C:\Users\user_name\Desktop\FILE_NAME.json<br>
+    
     <b> Relative Path </b>: Path will take reference from the file that contains <b>Calo.jar</b> For example, if Calo is inside
     the <mark>C:/Users/UserName/App</mark> and the user entered <mark>data\archived_file.json</mark> as the destination, the archived file will be
     at <mark>C:/Users/UserName/App/data/archived_file.json</mark>
@@ -206,7 +225,7 @@ Adds an exercise template.
 
 Format: `create n/NAME d/DESCRIPTION c/CALORIES`
 
-Examples:<br>
+Examples:  
 - `create n/pushup c/100` Creates the exercise template with the name push up, description half an hour and calories 100.
 
 ## 3.13. Add an exercise using template : `addt`
