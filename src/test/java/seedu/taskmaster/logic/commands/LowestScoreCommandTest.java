@@ -4,10 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskmaster.commons.core.Messages.MESSAGE_RECORDS_LISTED_OVERVIEW;
+import static seedu.taskmaster.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taskmaster.testutil.TypicalStudents.getScoredTaskmaster;
 import static seedu.taskmaster.testutil.TypicalStudents.getTypicalPresentStudentRecords;
 import static seedu.taskmaster.testutil.TypicalStudents.markAllAsPresentInTypicalSession;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +19,10 @@ import seedu.taskmaster.model.Model;
 import seedu.taskmaster.model.ModelManager;
 import seedu.taskmaster.model.Taskmaster;
 import seedu.taskmaster.model.UserPrefs;
+import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.record.ScoreEqualsPredicate;
+import seedu.taskmaster.model.session.Session;
+import seedu.taskmaster.model.session.SessionDateTime;
 import seedu.taskmaster.model.session.SessionName;
 
 /**
@@ -40,6 +47,33 @@ public class LowestScoreCommandTest {
         // null -> returns false
         assertFalse(lowestScoreCommand.equals(null));
 
+    }
+
+    @Test
+    public void execute_emptySession_exceptionThrown() {
+        Session emptySession = new Session(
+                new SessionName("Empty Session"),
+                new SessionDateTime(LocalDateTime.of(2020, 11, 1, 12, 0)),
+                new ArrayList<>());
+        model.addSession(emptySession);
+
+        LowestScoreCommand lowestScoreCommand = new LowestScoreCommand();
+
+        String expectedMessage = "The student record list has no students who are present!";
+
+        assertCommandFailure(lowestScoreCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_noStudentsPresent_exceptionThrown() {
+        model.changeSession(new SessionName("Typical session 2"));
+        model.markAllStudents(AttendanceType.ABSENT);
+
+        LowestScoreCommand lowestScoreCommand = new LowestScoreCommand();
+
+        String expectedMessage = "The student record list has no students who are present!";
+
+        assertCommandFailure(lowestScoreCommand, model, expectedMessage);
     }
 
     @Test

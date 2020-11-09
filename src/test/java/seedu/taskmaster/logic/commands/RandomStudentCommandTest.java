@@ -62,7 +62,7 @@ public class RandomStudentCommandTest {
 
         RandomStudentCommand randomStudentCommand = new RandomStudentCommand();
 
-        String expectedMessage = "The session list has no present students!";
+        String expectedMessage = "The student record list has no students who are present!";
 
         assertCommandFailure(randomStudentCommand, model, expectedMessage);
     }
