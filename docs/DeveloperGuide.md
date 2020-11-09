@@ -348,6 +348,9 @@ Explanation why a certain design is chosen.
     * Cons: Less convenience for the user. 
 
 ### Calculate net profits feature
+_(Written by Cheok Su Anne)_
+
+This feature allows the user to calculate profits made in an account.
 
 #### Implementation
 The calculate net profits mechanism is facilitated by `GetProfitCommand`. It extends `Command` and is identified by `CommonCentsParser`. The `GetProfitCommand` interacts with `Account` and the interaction is managed by `ActiveAccount`. As such, it implements the following operations:   
