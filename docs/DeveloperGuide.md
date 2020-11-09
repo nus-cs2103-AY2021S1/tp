@@ -207,13 +207,13 @@ The `Storage` component,
 * can save the ingredient book data in json format and read it back.
 * can save the sales book data in json format and read it back.
 
-<div style="page-break-after: always;"></div>
-
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -485,6 +485,8 @@ The `UniqueIngredientList` in `IngredientBook` contains the six pre-defined ingr
 `Boba`, `Black Tea` , `Green Tea` and `Brown Sugar`, with an amount of 0 for all ingredients except `Milk`, which 
 has an amount of 5 in units of litres.
 
+<div style="page-break-after: always;"></div>
+
 Step 2. The user executes the `i-reset-all` command to reset the ingredient's levels of all ingredient types to zero. 
 The `i-reset-all` command calls `Model#getFilteredIngredientList()`, which returns the list of ingredients recorded by 
 the `IngredientBook`. The `i-reset-all` command then checks the list of ingredients to see whether the ingredient's 
@@ -492,8 +494,6 @@ levels of all ingredient types are already zero before the `i-reset-all` command
 the ingredients. Since all ingredients' levels are already zero except `Milk`, the `i-reset-all` command 
 calls `Model#setIngredient(Ingredient target, Ingredient newAmount)`, causing the ingredient `target`, which is `Milk`, 
 to be replaced by the ingredient `newAmount` which has the same ingredient name and a zero ingredient's level.
-
-<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Notes:** If there are multiple ingredients that 
 have nonzero ingredient's levels, `Model#setIngredient(Ingredient target, Ingredient newAmount)` will be called 
@@ -1063,6 +1063,7 @@ testers are expected to do more *exploratory* testing.
    )<br>
       Expected: No employee is archived. Error details shown in the status message.
 
+<div style="page-break-after: always;"></div>
 
 ### Updating sales of drinks
 
