@@ -53,9 +53,6 @@ class JsonAdaptedProject {
         if (projectOccupied != null) {
             this.projectOccupied.addAll(projectOccupied);
         }
-        //        if (participations != null) {
-        //            this.participations.addAll(participations);
-        //        }
     }
 
     /**

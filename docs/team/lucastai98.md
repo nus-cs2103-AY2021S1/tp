@@ -48,7 +48,7 @@ Given below are my contributions to the project.
     * Added the glossary of terms (Pull request: [\#272](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/272))
   * Developer Guide:
     * Wrote the implementation of the design of the storage.
-    * Wrote the implementation of task feature. (Pull request: [\#181](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/181))
+    * Wrote most of the implementation of task feature. (Pull request: [\#181](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/181))
     * Added the glossary of terms (Pull request: [\#272](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/272))
 
 * **Community**:

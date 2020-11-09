@@ -3,7 +3,7 @@ layout: page
 title: Taskmania
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+![CI Status](https://github.com/se-edu/AY2021S1-CS2103T-W10-3/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-W10-3/tp/actions)
 [![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
 
 ![Ui](images/Ui.png)
