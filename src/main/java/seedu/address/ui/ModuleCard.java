@@ -33,13 +33,9 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label address;
-    @FXML
-    private FlowPane zoomLinks;
-    @FXML
     private Label modularCredits;
     @FXML
-    private FlowPane assignments;
+    private Label gradePoints;
     @FXML
     private FlowPane tags;
 
@@ -51,15 +47,11 @@ public class ModuleCard extends UiPart<Region> {
         this.module = module;
         id.setText(displayedIndex + ". ");
         name.setText(module.getName().fullName);
-        module.getAllLinks().forEach((key, link) -> zoomLinks.getChildren().add(new Label(key + " Link : "
-                + link.getLink())));
         modularCredits.setText(module.getModularCredits().toString());
-        module.getGradeTracker().getAssignments().stream()
-                .sorted(Comparator.comparing(assignment -> assignment.getAssignmentName().get().assignmentName))
-                .forEach(assignment -> assignments.getChildren().add(
-                        new Label(assignment.getAssignmentName().get().assignmentName)));
-        assignments.setHgap(10);
-        assignments.setVgap(10);
+        module.getGradeTracker().getGradePoint()
+                .ifPresentOrElse(x -> gradePoints.setText(x.toString() + " grade points"), () ->
+                        gradePoints.setText(""));
+        modularCredits.setText("Modular Credits: " + module.getModularCredits().toString());
         module.getTagsForUi().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

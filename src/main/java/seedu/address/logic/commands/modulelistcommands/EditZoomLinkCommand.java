@@ -80,9 +80,12 @@ public class EditZoomLinkCommand extends Command {
         if (!moduleToEdit.containsLesson(lesson)) {
             throw new CommandException(MESSAGE_INVALID_LESSON);
         }
-
         Module updatedModule = moduleToEdit.editZoomLink(lesson, editedLink);
-        model.setModule(moduleToEdit, updatedModule);
+        if (model.getModuleListDisplay()) {
+            model.setArchivedModule(moduleToEdit, updatedModule);
+        } else {
+            model.setModule(moduleToEdit, updatedModule);
+        }
         model.commitModuleList();
         logger.info("Zoom link has been edited");
         return new CommandResult(String.format(MESSAGE_EDIT_ZOOM_SUCCESS, editedLink, lesson));
