@@ -288,7 +288,7 @@ execute("timetable_add_routine r/Leg Workout D/Monday T/1600-1700") API call.
 The find exercises feature is implemented using `ExerciseFindCommandParser`, as well as the following command:
 * `ExerciseFindCommand`, to be executed when the user inputs the command into fitNUS.
 
-`ExerciseFindCommandParser` takes in the user input and parses them to return a FindExercisesCommand containing the
+`ExerciseFindCommandParser` takes in the user input and parses them to return a `ExerciseFindCommand` containing the
 corresponding predicate for finding the exercises. When executed, `ExerciseFindCommand` will set the predicate of
 the respective `FilteredList` for exercises in `ModelManager` such that only exercises matching the predicate will be
 displayed in the list.
@@ -447,6 +447,7 @@ Refer to the guide [here](DevOps.md).
 **Value proposition**: provide a platform for NUS students of any fitness experience to conveniently plan their workout
 around their classes.
 
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -597,7 +598,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use Case 6 (UC07): Find routines**
+**Use Case 7 (UC07): Find routines**
 
 ***MSS***
 

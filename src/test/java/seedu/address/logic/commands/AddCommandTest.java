@@ -270,11 +270,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<DailyCalorie> getFilteredDailyCalorieList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public int getCalories() {
             throw new AssertionError("This method should not be called.");
         }
@@ -301,11 +296,6 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Slot> getFilteredSlotList(String day) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredCalorieLog(Predicate<DailyCalorie> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

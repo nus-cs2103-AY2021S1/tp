@@ -117,13 +117,6 @@ public interface Model {
     ObservableList<Body> getFilteredBody();
 
     /**
-     * Updates the filter of the filtered calorie log to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredCalorieLog(Predicate<DailyCalorie> predicate);
-
-    /**
      * Updates the filter of the filtered exercise list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
@@ -253,8 +246,6 @@ public interface Model {
     void minusCalories(Calorie calorie);
 
     ObservableList<DailyCalorie> getFilteredDailyCalorie();
-
-    ObservableList<DailyCalorie> getFilteredDailyCalorieList();
 
     int getCalories();
 }

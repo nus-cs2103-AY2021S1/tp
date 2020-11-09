@@ -103,7 +103,6 @@ public class CalorieMinusCommandTest {
      * Stub that accepts any DailyCalorie added to it.
      */
     private static class ModelStubAcceptingDailyCalorie extends ModelStub {
-        final ArrayList<DailyCalorie> dailyCalories = new ArrayList<>();
         private int calories = 1001;
 
         @Override

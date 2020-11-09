@@ -222,11 +222,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<DailyCalorie> getFilteredDailyCalorieList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public ObservableList<Body> getFilteredBody() {
         throw new AssertionError("This method should not be called.");
     }
@@ -243,11 +238,6 @@ public class ModelStub implements Model {
 
     @Override
     public void updateFilteredLessonList(Predicate<Lesson> predicate) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void updateFilteredCalorieLog(Predicate<DailyCalorie> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 }

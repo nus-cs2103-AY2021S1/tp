@@ -53,32 +53,9 @@ public class CalorieAddCommandTest {
     }
 
     /**
-     * Stub used to contain a single DailyCalorie.
-     */
-    private class ModelStubWithDailyCalorie extends ModelStub {
-        private final DailyCalorie dailyCalorie;
-
-        ModelStubWithDailyCalorie(DailyCalorie dailyCalorie) {
-            requireNonNull(dailyCalorie);
-            this.dailyCalorie = dailyCalorie;
-        }
-
-        @Override
-        public int getCalories() {
-            return dailyCalorie.getCalories();
-        }
-
-        @Override
-        public void addCalories(Calorie calorie) {
-            dailyCalorie.addCalories(calorie);
-        }
-    }
-
-    /**
      * Stub that accepts any DailyCalorie added to it.
      */
     private class ModelStubAcceptingDailyCalorie extends ModelStub {
-        final ArrayList<DailyCalorie> dailyCalories = new ArrayList<>();
         private int calories = 0;
 
         @Override

@@ -31,25 +31,4 @@ public class TestUtil {
         }
         return SANDBOX_FOLDER.resolve(fileName);
     }
-
-    /**
-     * Returns the middle index of the lesson in the {@code model}'s lesson list.
-     */
-    public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredLessonList().size() / 2);
-    }
-
-    /**
-     * Returns the last index of the lesson in the {@code model}'s lesson list.
-     */
-    public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredLessonList().size());
-    }
-
-    /**
-     * Returns the lesson in the {@code model}'s lesson list at {@code index}.
-     */
-    public static Lesson getLesson(Model model, Index index) {
-        return model.getFilteredLessonList().get(index.getZeroBased());
-    }
 }

@@ -44,9 +44,6 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of lessons */
     ObservableList<Lesson> getFilteredLessonList();
 
-    /** Returns an unmodifiable view of the filtered list of slots */
-    ObservableList<Slot> getFilteredSlotList();
-
     /** Returns an unmodifiable view of the filtered list of slots, filtered by chosen day */
     ObservableList<Slot> getFilteredSlotList(String day);
 
