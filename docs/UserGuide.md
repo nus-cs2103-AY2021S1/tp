@@ -390,6 +390,8 @@ assignments will contain the following fields:
   * The index **must be a positive integer** 1, 2, 3...
 
   * Your new `ASSIGNMENT_RESULT` can only range from `0.00 - 100`
+  
+  * The `viewmodule` command needs to be called again to update the assignment visually.
 
   Examples of usage:
    * `editassignment 1 n/CS2100 a/Quiz 1` edits the assignment at position `1` of the module `CS2100` with a new
@@ -398,6 +400,10 @@ assignments will contain the following fields:
    * `editassignment 1 n/CS2100 %/20 r/80` edits the assignment at position `1` of the module `CS2100` with a new
    assignment percentage, `20`% of the final grade, and a new assignment result, `80`.
 
+To be implemented:
+  * We are working on showing the assignment changes without the need to call `viewmodule` again as we see the
+  possible hassle involved.
+  
 #### Deleting an assignment in a module: `deleteassignment`
 
   Deletes an assignment at the specified position in the specified module.

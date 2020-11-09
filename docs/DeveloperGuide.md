@@ -397,7 +397,7 @@ Each `Module` can only have one `GradeTracker` which manages the assignments und
 The `GradeTracker` stores a `UniqueAssignmentList` that ensures assignments within the list are not duplicates of each other.
 Each `Assignment` contains the following three fields: an `AssignmentName`, `AssignmentPercentage` and `AssignmentResult`.
 
-![Structure of the Grade Tracker Component](images/GradeTrackerDiagram.png)
+![Structure of the Grade Tracker Component](images/GradeTracker/GradeTrackerDiagram.png)
 
 The list of all `GradeTracker` related features are:
 1. Add an Assignment: Adds a new assignment to the `GradeTracker`.
@@ -418,16 +418,11 @@ This feature is facilitated by the following classes:
   * It implements `AddAssignmentCommand#execute()` which executes the creation of the `Assignment` and adds the
   assignment to the module identified by the `ModuleName` that was parsed.
 
-When an `assignment` is added, it follows the sequence diagram as shown below. The sequence flows similarly 
-to the rest of the project as the command is parsed and then executed.
-
-![Sequence Diagram of the Add Assignment Command](images/AddAssignmentSequenceDiagram.png)
-
 Given below is an example usage scenario and how the mechanism for adding an `Assignment` behaves at each step:
 
 Step 1. `LogicManager` receives the user input `addassignment n/CS2100 a/Quiz 1 %/20 r/85` from `Ui`
 
-Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create a `AddAssignmentParser`
+Step 2. `LogicManager` calls `ParserManager`, which calls `GradeTrackerParser#parseCommand()` to create a `AddAssignmentParser`
 
 Step 3. Additionally, `AddAssignmentParser` will call the `AddAssignmentParser#parse()` method to parse the command arguments
 
@@ -440,9 +435,12 @@ Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()`
 `Module#addAssignment()` is executed with the `Assignment`, adding the assignment to the module's `GradeTracker`.
 
 Step 7. The `Model#setModule()` operation exposed in the Model interface is invoked to replace the original module
-with the updated module containing the assignemnt. 
+with the updated module containing the assignment. 
 
 Step 8. A `CommandResult` from the command execution is returned to `LogicManager`
+
+The sequence diagram for Add Assignment Command functions similarly to the sequence diagram for Delete Assignment. You can
+view the sequence diagram for Delete Assignment [here](#delete-assignment-feature) for reference.
 
 #### Design consideration:
 
@@ -479,7 +477,7 @@ Given below is an example usage scenario and how the mechanism for editing an `A
 
 Step 1. `LogicManager` receives the user input `editassignment 1 n/CS2100 a/Quiz 1` from `Ui`
 
-Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create an `EditAssignmentParser`
+Step 2. `LogicManager` calls `ParserManager`, which then calls `GradeTrackerParser#parseCommand()` to create an `EditAssignmentParser`
 
 Step 3. Additionally, `EditAssignmentParser` will call the `EditAssignmentParser#parse()` method to parse the command arguments
 
@@ -492,6 +490,8 @@ Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()`
 `GradeTracker` replaces the `Assignment` with a new one created using the `EditAssignmentDescriptor`.
 
 Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+
+![Edit Assignment Command Sequence Diagram](images/GradeTracker/EditAssignmentSequenceDiagram.png)
 
 #### Design consideration:
 
@@ -511,7 +511,7 @@ make mistakes in selecting the right assignment to edit.
 ####Delete Assignment Feature
 
 This feature allows `assignments` within a `GradeTracker` to be deleted. The assignment to be deleted is identified
-by the module name that stores the gradetracker it is under and the index of the assignment. The grade tracker of the module to act on must
+by the module name that stores the grade tracker it is under and the index of the assignment. The grade tracker of the module to act on must
 currently have a valid assignment to target.
 
 This feature requires the following classes:
@@ -526,7 +526,7 @@ Given below is an example usage scenario and how the mechanism for deleting an `
 
 Step 1. `LogicManager` receives the user input `deleteassignment 1 n/CS2100` from `Ui`
 
-Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create a `DeleteAssignmentParser`
+Step 2. `LogicManager` calls `ParserManager`, which then calls `GradeTrackerParser#parseCommand()` to create a `DeleteAssignmentParser`
 
 Step 3. Additionally, `DeleteAssignmentParser` will call the `DeleteAssignmentParser#parse()` method to parse the command arguments
 
@@ -540,6 +540,9 @@ Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()`
 Step 7. The `Model#setModule()` operation is run to update the model with the newly updated module.
 
 Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Below is the sequence diagram for the `DeleteAssignmentCommand`:
+![Delete Assignment Command Sequence Diagram](images/GradeTracker/DeleteAssignmentCommandSequenceDiagram.png)
 
 #### Design consideration:
 
@@ -573,7 +576,7 @@ Given below is an example usage scenario and how the mechanism for adding a grad
 
 Step 1. `LogicManager` receives the user input `addgrade n/CS2100 g/80` from `Ui`
 
-Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create a `AddGradeParser`
+Step 2. `LogicManager` calls `ParserManager`, which then calls `GradeTrackerParser#parseCommand()` to create an `AddGradeParser`
 
 Step 3. Additionally, `AddGradeParser` will call the `AddGradeParser#parse()` method to parse the command arguments
 
@@ -588,6 +591,9 @@ Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()`
 Step 7. The `Model#setModule()` operation is run to update the model with the newly updated module.
 
 Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+
+The sequence diagram for Add Grade Command functions similarly to the sequence diagram for Delete Assignment. You can
+view the sequence diagram for Delete Assignment [here](#delete-assignment-feature) for reference.
 
 #### Design consideration:
 
