@@ -105,11 +105,8 @@ public class Project {
                 return false;
             }
         }
-        if (tasks.contains(task)) {
-            return false;
-        } else {
-            return tasks.add(task);
-        }
+        return tasks.add(task);
+
     }
 
     /**

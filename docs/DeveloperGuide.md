@@ -993,12 +993,12 @@ should be able to accomplish most of the tasks faster using commands than using 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
-* **Teammate**: A person belonging to a project of the team leader's team.
 * **Participation**: The class of an object that handles the relations between a Project object and Person Object.
 * **Scope**: The confines of when certain commands will work.
-<!-- may add more: e.g. person, participation, start, user, index -->
-<!-- I dont think you need to clarify those terms as they are self explanatory -->
-
+* **Teammate**: A member of the user's team in a project.
+* **Person** A person that could be in any number of the user's team's projects.
+* **Project** A software project with a GitHub repository link and a deadline.
+* **Task** Something to be done for a project with a certain progress status.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -1072,6 +1072,22 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `deleteteammate`, `delete teammate ...`,  where the input is incomplete
     or the command is incorrect. <br> Expected: Similar to previous.
+    
+### Editing a Teammate from project scope
+
+1. Editing a teammate while in a project's view
+   1. Prerequisites: Have a valid teammate in a project created as described just above, and enter project scope with
+    `startproject 1`. 
+
+   1. Test case: `editteammate LucasTai98 mn/Wiener `<br>
+      Expected: Teammate's name is changed to Wiener, everything else, including the GitUserName, is changed
+      . Feedback to the user tells the user it is successful.
+   1. Test case: `editteammate LucasTai98`<br>
+      Expected: No teammate is edited. Taskmania complains that no data to change the attributes of Teammate were
+       included.
+
+   1. Other incorrect delete commands to try: `editteammate`, `editteammate $%%v`,  where the input is incorrect or 
+   . <br> Expected: Similar to previous.
 
 ### Saving data
 
