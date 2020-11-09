@@ -1,7 +1,10 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.DEFAULT_DATE_TIME_FORMATTER;
 
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,7 +23,9 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer between "
+                                                           + "1 and 99999 inclusive.";
+    private static final int MAX_INDEX = 99999;
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -32,7 +37,47 @@ public class ParserUtil {
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
-        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+        int indexToBe = Integer.parseInt(trimmedIndex);
+        if (indexToBe > MAX_INDEX) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromOneBased(indexToBe);
+    }
+
+    /**
+     * Parses {@code clientIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parseClientIndex(String clientIndex) throws ParseException {
+        requireNonNull(clientIndex);
+        String trimmedIndex = clientIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        int indexToBe = Integer.parseInt(trimmedIndex);
+        if (indexToBe > MAX_INDEX) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromZeroBased(indexToBe);
+    }
+
+    /**
+     * Parses {@code orderIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parseOrderIndex(String orderIndex) throws ParseException {
+        requireNonNull(orderIndex);
+        String trimmedIndex = orderIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        int indexToBe = Integer.parseInt(trimmedIndex);
+        if (indexToBe > MAX_INDEX) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromZeroBased(indexToBe);
     }
 
     /**
@@ -93,6 +138,18 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static LocalDateTime parseDate(String s) throws ParseException {
+        requireNonNull(s);
+        try {
+            return LocalDateTime.parse(s, DEFAULT_DATE_TIME_FORMATTER);
+        } catch (DateTimeException e) {
+            throw new ParseException(e.getMessage());
+        }
     }
 
     /**

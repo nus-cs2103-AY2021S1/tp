@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+
+box "Logic" LOGIC_COLOR_T1
+participant ":LogicManager" as LM LOGIC_COLOR
+participant ":AddressBookParser" as ABP LOGIC_COLOR
+participant "c:UpdateClientCommandParser" as CP LOGIC_COLOR
+participant "f:UpdateClientFields" as UP LOGIC_COLOR
+participant "u:UpdateClientCommand" as UCC LOGIC_COLOR
+end box
+
+box "Model" MODEL_COLOR_T1
+participant ":Model" as M LOGIC_COLOR
+end box
+
+[->LM: execute("update-client --clientid 1 - -name john cena")
+activate LM
+
+LM->ABP: parseCommand("update-client --clientid 1 - -name john cena")
+activate ABP
+
+create CP
+ABP->CP
+activate CP
+
+CP-->ABP
+deactivate CP
+
+ABP->CP: parse("--clientid 1 - -name john cena")
+activate CP
+
+create UP
+CP->UP
+activate UP
+
+UP-->CP
+deactivate UP
+
+create UCC
+CP->UCC: updateClientCommand(f)
+
+activate UCC
+UCC-->CP: u
+deactivate UCC
+
+CP-->ABP: u
+deactivate CP
+CP-[hidden]->ABP
+destroy CP
+
+ABP-->LM: u
+deactivate ABP
+
+LM->UCC: execute()
+activate UCC
+
+UCC->M: setClient(clientToUpdate, newClient)
+activate M
+
+M-->UCC: result
+deactivate M
+
+UCC-->LM: result
+deactivate UCC
+
+[<-- LM
+deactivate LM
+@enduml

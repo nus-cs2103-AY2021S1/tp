@@ -1,0 +1,67 @@
+@startuml
+!include style.puml
+
+box "Logic" LOGIC_COLOR_T1
+participant ":LogicManager" as LM LOGIC_COLOR
+participant ":AddressBookParser" as ABP LOGIC_COLOR
+participant "o:UpdateOrderCommandParser" as OP LOGIC_COLOR
+participant "f:UpdateOrderFields" as UP LOGIC_COLOR
+participant "u:UpdateOrderCommand" as UOC LOGIC_COLOR
+end box
+
+box "Model" MODEL_COLOR_T1
+participant ":Model" as M LOGIC_COLOR
+end box
+[->LM: execute("update-order --orderid 1 - -description textbook")
+activate LM
+
+LM->ABP: parseCommand("update-order --orderid 1 - -description textbook")
+activate ABP
+
+create OP
+ABP->OP
+activate OP
+
+OP-->ABP
+deactivate OP
+
+ABP->OP: parse("--orderid 1 - -description textbook")
+activate OP
+
+create UP
+OP->UP
+activate UP
+
+UP-->OP
+deactivate UP
+
+create UOC
+OP->UOC: updateOrderCommand(f)
+
+activate UOC
+UOC-->OP: u
+deactivate UOC
+
+OP-->ABP: u
+deactivate OP
+OP-[hidden]->ABP
+destroy OP
+
+ABP-->LM: u
+deactivate ABP
+
+LM->UOC: execute()
+activate UOC
+
+UOC->M: setOrder(orderToUpdate, newOrder)
+activate M
+
+M-->UOC: result
+deactivate M
+
+UOC-->LM: result
+deactivate UOC
+
+[<-- LM
+deactivate LM
+@enduml

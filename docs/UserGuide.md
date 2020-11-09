@@ -3,38 +3,13 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+# LogOnce
+![LogOnce Header](images/LogOnceHeader.png)
+
+**LogOnce** is a one-stop logistics tracker app for clerks to monitor shipping statuses of all clients and perform common logistics operations. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, LogOnce can get your tracking tasks done faster than traditional GUI apps. **This application is currently being developed and has not been deployed yet.**
 
 * Table of Contents
 {:toc}
-
---------------------------------------------------------------------------------------------------------------------
-
-## Quick start
-
-1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`list`** : Lists all contacts.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -44,135 +19,527 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in angle brackets `<parameter>` are the parameters to be supplied by the user.<br>
+e.g. in `order --description <order description --client <client ID>`, `<client ID>` is a integer parameter such as `123`.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+* Words with `--` before them indicate keywords that must be used unless otherwise specified.<br>
+e.g. `order --description Wooden Table --client 301`. `--description` and `--client` must be typed used.
+  
+* Words within `()` indicate optional keywords or tokens (most notably for `find` and `find-order`)
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+* In the case of duplicate parameters, the very last instance of the parameter will be used.<br>
+e.g. `delete-order --order 00001 --order 00002 --order 00003` will delete Order #00003 instead of the other two 
+orders.
 
 </div>
 
-### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+## Graphical User Interface (GUI)
+------------------------------------------------------------------------------------------------------------------------
+Upon opening the application, you will be met with something like the scene below.
 
-![help message](images/helpMessage.png)
+![Landing page](images/gui-demo/landing.png)
 
-Format: `help`
+Click on the `Clients` button to navigate back to this page, or click on the `Orders` button to navigate to the orders page.
+
+### View the list of clients
+![Client list](images/gui-demo/landing.png)
+
+The first thing you see when clicking on `Clients` from anywhere in the application is a list of all clients currently stored in the application.
+
+### Creating a new client
+
+To create a new client, click on the `Add` button to bring up the Client creation form.
+
+![Client creation form](images/gui-demo/createclient.png)
+
+Fill in all the fields in the form, then click on `Create` to create the client. If there are errors in the input, or if any of the fields are empty, a warning will be displayed in red beside the relevant field.
+
+### Viewing client information
+
+To view more information about a client, **double-click** on a client in the list to bring up the information panel.
+
+![Client information panel](images/gui-demo/clientinfo.png)
+
+Click on the `Edit` button to edit the currently selected client, or click on the `Delete` button to delete the currently selected client.
+
+### Editing the client
+
+To modify the client's information, click on the `Edit` button from the client's information panel. This will bring up a form to edit the client's information.
+
+![Client editing form](images/gui-demo/editclient.png)
+
+The form will be filled in with the client's current information by default. Make any changes you need to, then click on `Save` to save your changes.
+
+If you wish to discard any unsaved changes to the client's information, click on `Reset` to reset each field to the client's original information.
+
+### Deleting the client
+
+To delete the client, click on the `Delete` button from the client information panel. The client will be deleted, and their entry will be removed from the list of clients.
+
+### View the list of orders
+
+Upon clicking on the `Orders` button on the left navigation bar, the list of orders will be displayed.
+
+![Order list](images/gui-demo/orders.png)
+
+### Creating a new order
+
+To create a new order, click on the `Add` button at the bottom of the list of orders. This will bring up the order creation form.
+
+![Order creation form](images/gui-demo/createorder.png)
+
+Fill in all the fields in the form, then click on `Create` to create the order. If there are errors in the input, or if any of the fields are empty, a warning will be displayed in red beside the relevant field.
+
+### Viewing order information
+
+To view more information about a order, **double-click** on a order in the list to bring up the information panel.
+
+![Order information panel](images/gui-demo/orderinfo.png)
+
+Click on the `Edit` button to edit the currently selected order, or click on the `Delete` button to delete the currently selected order.
+
+### Editing the order
+
+To modify the order's information, click on the `Edit` button from the order information panel. This will bring up a form to edit the order's information.
+
+![order editing form](images/gui-demo/editorder.png)
+
+The form will be filled in with the order's current information by default. Make any changes you need to, then click on `Save` to save your changes.
+
+If you wish to discard any unsaved changes to the order information, click on `Reset` to reset each field to the order's original information.
+
+### Mark an order as completed 
+
+To mark an order as complete, click on the `Done` button from the order information panel. The status of the order will change from "Incomplete" to "Completed", and the red bar will turn to green.
+
+If the order is already completed, clicking on the `Done` button will throw an error, but will not affect the status of the order.
+
+### Deleting the order
+
+To delete the order, click on the `Delete` button from the order information panel. The order will be deleted, and the corresponding entry will be removed from the list of orders.
+
+### Undoing an action
+
+In the event that you made a mistake in the previous command/edit/creation action, simply click on the Undo button at the bottom bar of the middle panel in order to undo your last action. You can undo all actions up to the point where you first opened the application.
+
+### Help
+
+Click on the `Help` button on the left navigation bar to bring up pop-up window will appear with a button that will allow you to copy the link into your clipboard.
+
+![Help window](images/gui-demo/help.png)
+
+To access the User Guide, simply copy the link into your browser and visit it.
+
+### Exit
+
+Click on the `Exit` button on the left navigation bar to quit the application. Data will be saved automatically on exit.
 
 
-### Adding a person: `add`
+## Commands
+------------------------------------------------------------------------------------------------------------------------
 
-Adds a person to the address book.
+### Adding an Order: `order`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+**Description** : Creates an order made by a client. The order of the orders made by the client will be (by default) the natural ordering.<br>
+Orders will be assigned an ID number automatically when created. This ID number is not unique and must be used in conjunction with the client ID to identify an order.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+**Format** :  `order --description <order description> --client <client ID> --address <address> --date <date of delivery>` 
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+`<order description>` must exist in the order command
 
-### Listing all persons : `list`
+`<client id>` must exist in the order command (an order is always linked to a client)
 
-Shows a list of all persons in the address book.
+`<address>` must exist in the order command (describes the address that the order will be sent to)
 
-Format: `list`
 
-### Editing a person : `edit`
+**Remark** : 
+`<date of delivery>` must exist in the order command, and must follow the ***YYYY-MM-DD HHmm*** format (describes the date the order must be delivered by) 
+`<address>` can be different from the client's own address
 
-Edits an existing person in the address book.
+**Valid Usage Example** :<br>
+Before adding order:
+![Before Add Order](images/BeforeAddOrderCommand.png)
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+After adding order:
+![After Add Order](images/AfterAddOrderCommand.png)
+`order --description shoes --client 1 --address 22 college avenue drive --date 2020-10-31 2359` : creates an order ordered by client 123 called “shoes” that is to be delivered to "22 college avenue drive" by "2020-10-31 2359"
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+------------------------------------------------------------------------------------------------------------------------
 
-### Locating persons by name: `find`
+### Adding a Client : `client`
 
-Finds persons whose names contain any of the given keywords.
+**Description** : Creates a new client with the name `<client name>`, the address `<client address>`, the email `<client email>` and 
+the phone number `<client phone number>`.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+**Format** : `client --name <client name> --address <client address> --email <client email> --phone <client phone no.>`
+  
+`<client name>` must not be blank.<br>
+`<client address>` must not be blank. <br>
+`<client email>` must not be blank. <br>
+`<client phone>` must not be blank.
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+**Valid Usage Example** :<br>
+Before adding client:
+![Before Add Client](images/BeforeAddClientCommand.png)
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+After adding client:
+![After Add Client](images/AfterAddClientCommand.png)
+`client --name John Wick --address New York Continental --email johnwick@kgoomail.com --phone 91234567` : 
+adds a client named John Wick whose address is the New York Continental, whose email is johnwick@kgoomail.com and 
+whose phone number is 91234567.
 
-### Deleting a person : `delete`
+------------------------------------------------------------------------------------------------------------------------
 
-Deletes the specified person from the address book.
+### Listing Orders : `list-order` 
 
-Format: `delete INDEX`
+**Description** : Returns a list of orders. The list will be sorted by the order ID that was assigned when the order was created. 
+The feature also works when clicking on the "Orders" GUI button.
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+**Format** : `list-order`<br>
+Displays a list of all orders in the order list (and the client that placed the order respectively).
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+**Valid Usage Example**:<br>
+![Before List Orders](images/BeforeListOrderCommand.png)
+Shows a filtered order list
 
-### Clearing all entries : `clear`
+![After List Orders](images/AfterListOrderCommand.png)
+Shows full unfiltered order list
 
-Clears all entries from the address book.
+------------------------------------------------------------------------------------------------------------------------
 
-Format: `clear`
+### Listing Clients : `list-client`
 
-### Exiting the program : `exit`
+**Description** : Returns a list of clients. The list will be sorted by the client ID that was assigned when the client was created.
+The feature also works when clicking on the "Clients" GUI button.
 
-Exits the program.
+**Format** : `list-client`<br>
+Displays a list of all clients in the client list.
 
-Format: `exit`
+**Valid Usage Example**:<br>
+![Before Client Orders](images/BeforeListClientCommand.png)
+Shows a filtered client list
 
-### Saving the data
+![After Client Orders](images/AfterListClientCommand.png)
+Shows full unfiltered client list
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+------------------------------------------------------------------------------------------------------------------------
 
-### Archiving data files `[coming in v2.0]`
+### Undo Commands : `undo`
 
-_{explain the feature here}_
+**Description** : Restores the address book to the state before the previous undoable command was executed.
 
---------------------------------------------------------------------------------------------------------------------
+**Format** : `undo` 
+ 
+------------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+### Deleting an Order : `delete-order`
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Description** : Deletes an order from order list.
 
---------------------------------------------------------------------------------------------------------------------
+**Format** : `delete-order --order <order id>`
+
+Deletes the order that is identified as `<order id>`. 
+
+Note that `<order index>` is the **unique order ID** given to each order when added and is **not** based on the order 
+index in the order list.
+
+`<order id>` must exist as a valid unique order ID in the order list **between `1` and `99999` inclusive**.
+
+To identify the unique order ID of a client, view the 5 digit ID number assigned to the order to the **right** of 
+the client's name. For example, if the first line of the order information is `2. Order #00005`, then the 
+order's unique order ID is `5`.
+
+**Invalid Usage Example** :<br>
+![Invalid Order Command](images/InvalidDeleteOrderCommand.png)
+Order index should be a valid unique order ID in the order list
+
+**Valid Usage Example** :<br>
+![Valid Order Command](images/ValidDeleteOrderCommand.png)
+`delete-order --order 2` : deletes the order with unique order ID #00002
+
+**Other Valid Usages** :<br>
+Entering order ID with as many leading zeroes (e.g `00000000001`) will still work as long as the order id without the
+leading zeroes (e.g `1`) is a valid unique client ID in the client list.
+
+------------------------------------------------------------------------------------------------------------------------
+
+### Deleting a Client : `delete-client`
+
+**Description** : Deletes a client from client list and orders linked to that client.
+
+**Format** : `delete-client --client <client id>`
+
+Deletes the client who is identified as `<client id>` and orders linked to `<client id>`. 
+
+Note that `<client id>` is the **unique client ID** given to each client when added and is **not** based on the client 
+index in the client list. 
+
+`<client id>` must exist as a valid unique client ID in the client list **between `1` and `99999` inclusive**.
+
+To identify the unique client ID of a client, view the 5 digit ID number assigned to the client in **brackets** beside 
+the client's name. For example, if the first line of the client information is `1. Kim Kardashian [ID#00003]`, then the 
+client's unique client ID is `3`.
+
+**Invalid Usage Example** :<br>
+![Invalid Client Command](images/InvalidDeleteClientCommand.png)
+Client ID should be a valid unique client ID in the client list
+
+**Valid Usage Example 1** : Deleting Client with Empty Order List <br>
+![Valid Client Command 1](images/ValidDeleteClientCommand.png)
+`delete-client --client 1` : deletes the client with unique client ID #00001
+In this case, no orders are deleted as no orders are linked to the client
+
+**Valid Usage Example 2** : Delete Client with Non-Empty Order List <br>
+![Valid Client Command 2](images/DeleteClient4Command.png)
+`delete-client --client 4` : deletes the client with unique client ID #00004
+
+Original Order List :
+![Original Order List](images/OriginalOrderList.png)
+
+After client #00004 is deleted :
+![Delete Orders Linked to Client 4](images/DeletedOrdersFromDeletedClient.png)
+All orders in order list that are linked to client with unique ID `#00004` are deleted
+
+**Other Valid Usages** :<br>
+Entering client ID with as many leading zeroes (e.g `00000000001`) will still work as long as the client id without the 
+leading zeroes (e.g `1`) is a valid unique client ID in the client list.
+
+------------------------------------------------------------------------------------------------------------------------
+
+### Completing Orders : `done`
+
+**Description** : Marks a certain order as done.
+
+**Format** : `done <order id>`
+
+Marks `Order` with `<order id>` as done.
+
+`<order id>` must exist in the order list.
+`<order id>` is a unique number assigned to each order.
+
+**Valid Usage Example** :<br>
+Before completing order:
+![Before Done Command](images/BeforeDoneCommand.png)
+
+After completing order:
+![After Done Command](images/AfterDoneCommand.png)
+`done 3` : Marks the order with an order ID of 3 as complete (#00003 as represented in the GUI).
+
+------------------------------------------------------------------------------------------------------------------------
+
+### Finding clients : `find`
+
+**Description** : Finds clients by their name and optionally by their phone number, email address and residential address.
+
+**Format** : `find <name keywords> (--address <address keywords>) (--email <email address>) (--phone <phone number>)`
+
+This command will return clients that match all the tokens provided. The matching criteria for each token
+will be explained below.
+
+If any of the optional tokens are present, `<name keywords>` may be left blank.
+
+Other than `<name keywords>` and `<address keywords>` all other search terms must be an exact match.
+
+The different fields are detailed below:
+* `<name keywords>` is any amount of keywords, each separated by a space. A client's whose name contains any of these
+keywords will be considered a match.
+
+* `<address keywords>` is any amount of keywords, each separated by a space. The matching of these keywords works the same
+as it does for `<name keywords>`.
+
+* `<email address>` is a string that should be a valid email address.
+ 
+* `<phone number>` is a string of numbers only with a minimum length of 3.
+
+**Valid Usage Examples**:<br>
+Before find client command:
+![Before Find Command](images/BeforeFindAliceCommand.png)
+
+After find client command:
+![After Find Command](images/AfterFindAliceCommand.png)
+* `find alice --phone 9123 --address changi` will display any clients with 'Alice' in their names, with a phone number of 
+9123 and who live in Changi. This would be a very specific search, as phone numbers must be an exact match.
+
+
+Before find client command:
+![Before Find Command](images/BeforeFindBobCharlesCommand.png)
+
+After find client command:
+![After Find Command](images/AfterFindBobCharlesCommand.png)
+* `find bob charles --address queenstown commonwealth` will display any clients with either 'Bob' or 'Charles' in their names who also
+live in Queenstown or Commonwealth. This would be a more general search, as each client only has to match one keyword in
+each category of searching.
+
+------------------------------------------------------------------------------------------------------------------------
+
+### Finding orders : `find-order`
+
+**Description** : Finds orders by their description and optionally by their attached client IDs, delivery addresses and delivery dates.
+Very similar usage to `find`
+
+**Format** : `find-order <description keywords> (--address <address keywords>) (--date <date>) (--client <client ID>)`
+
+This command will return orders that match all the tokens provided. The matching criteria for each token
+will be explained below.
+
+If any of the optional tokens are present, `<description keywords>` may be left blank.
+
+Other than `<name keywords>` and `<address keywords>` all other search terms must be an exact match
+
+The different fields are detailed below:
+* `<description keywords>` is any amount of keywords, each separated by a space. An order whose description contains any of these
+keywords will be considered a match.
+
+* `<address keywords>` is any amount of keywords, each separated by a space. The matching of these keywords works the same
+as it does for `<description keywords>`.
+
+* `<client ID>` is an integer that should be between 1 and 99999 inclusive.
+ 
+* `<date>` is a string of numbers separated by dashes in the format of `YYYY-MM-DD`.
+
+**Valid Usage Examples**:<br>
+Before find order command:
+![Before Find Command](images/BeforeAddOrderCommand.png)
+
+After find order command:
+![After Find Command](images/AfterFindiPhoneCommand.png)
+* `find-order iPhone --date 2020-10-23` will find all orders that contain `iPhone` in their description that are also delivered
+on 23rd October 2020
+
+Before find order command:
+![Before Find Command](images/BeforeFindOrderCommand.png)
+
+After find order command:
+![After Find Command](images/AfterFindCoatCommand.png)
+* `find-order --date 2020-11-24 --address Jurong Clementi` will find all orders delivered on 24th November 2020 that contain either
+`Jurong` or `Clementi` in their delivery address.
+
+------------------------------------------------------------------------------------------------------------------------
+
+### Updating orders: `update-order`
+
+**Description** : Modifies a specified order with the new information provided in this command.
+
+**Format** : `update-order --order <order ID of order to be changed> (--description <new order description>) (--client <new client id>) (--address <new address>) (--date <new delivery date>)`
+
+This command will update the data fields of the order with the new information given in the command. The criteria for each field is similar to the criteria for the fields in `order`, and are given below.
+
+Each of the fields in parentheses are optional, and their parameter tags may be left out of the command if desired.
+
+`<order ID of order to be changed>` must be an existing order ID.
+
+`<new order description>` should not be blank.
+
+`<new client id>` the new client ID this order should be tagged to. (note: client ID can be any number from 1 to 99999 inclusive)
+
+`<new address>` should not be blank.
+
+`<new delivery date>` should not be left blank, and must be in the format `YYYY-MM-DD HHmm`.
+
+**Examples**:
+* `update-order --order 1 --description jeans` will update the description of the order with order ID 1 to `jeans`
+
+Before:
+![update order example 1 before](images/update_order_example_1_before.png)
+
+After:
+![update order example 1 after](images/update_order_example_1_after.png)
+
+* `update-order --order 2 --date 2020-12-12 1500 --description china ware` will update the date of the order with order ID 2 to `2020-12-12 1500` and also update the description of the order with order ID 2 to `china ware`
+
+Before:
+![update order example 2 before](images/update_order_example_2_before.png)
+
+After:
+![update order example 2 after](images/update_order_example_2_after.png)
+
+------------------------------------------------------------------------------------------------------------------------
+
+### Updating clients: `update-client`
+**Description** : Modifies a specified client with the new information provided in this command.
+
+**Format** : `update-client --client <client ID of client to be changed> (--name <new name>) (--phone <new phone number>) (--address <new address>) (--email <new email>)`
+
+This command will update the data fields of the client with the new information given in the command. The criteria for each field is similar to the criteria for the fields in `client`, and are given below.
+
+Each of the fields in parentheses are optional, and their parameter tags may be left out of the command if desired.
+
+`<client ID of client to be changed>` should consist of only positive numbers, and should correspond to the client ID of an existing client.
+
+`<new name>` should not be blank.
+
+`<new phone>` should not be blank, and should be at least 3 digits long and must be a positive number.
+
+`<new address>` should not be blank.
+
+`<new email>` should not be blank, and should be of a valid email format.
+
+**Examples**:
+* `update-client --client 1 --name paul tan zhi rong` will update the name of the client with client ID 1 to `paul tan zhi rong`
+
+Before:
+![update client example 1 before](images/update_client_example_1_before.png)
+
+After:
+![update client example 1 after](images/update_client_example_1_after.png)
+
+* `update-client --client 2 --address 51 commonwealth drive #05-123 --phone 94582153` will update the address of the client with client ID 2 to `51 commonwealth drive #05-123` and update the phone number of the client with client ID 2 to `94582153`
+
+Before:
+![update client example 2 before](images/update_client_example_2_before.png)
+
+After:
+![update client example 2 after](images/update_client_example_2_after.png)
+
+------------------------------------------------------------------------------------------------------------------------
+
+### Help Command : `help`
+
+**Description** : Displays a help window with the URL link to LogOnce's User Guide.
+
+**Format** : `help`
+
+This command allows user to copy the URL link to LogOnce's user guide for reference to the available commands which can 
+be used in the application.
+
+------------------------------------------------------------------------------------------------------------------------
+
+### Clear Command : `clear`
+
+**Description** : Clears all clients in client list and all orders in order list.
+
+**Format** : `clear`
+
+This command allows user to reset all existing in the client list and order list permanently.
+
+------------------------------------------------------------------------------------------------------------------------
+
+### Exit Command : `exit`
+
+**Description** : Exits application
+
+**Format** : `exit`
+
+This command allows user to exit from the LogOnce application window.
+
+------------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
+Action | Format
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**Order** | `order --description <order description> --client <client ID> --address <address> --date <date>`
+**Client** | `client --name <client name> --address <client address>`
+**Delete** | `delete-order --order <order id>` <br> `delete-client --client <client id>`
+**List** | `list-order` <br> `list-client` <br>
+**Done** | `done --order <order id>`
+**Find** | `find <name keywords> (--address <address keywords>) (--email <email address>) (--phone <phone number>)`
+**FindOrder**| `find-order <description keywords> (--address <address keywords>) (--date <date>) (--client <client ID>)`
+**Undo**| `undo`
+**Update Order** | `update-order --order <order ID of order to be changed> (--description <new order description>) (--client <new client id>) (--address <new address>) (--date <new delivery date>)`
+**Update Client** | `update-client --client <client ID of client to be changed> (--name <new name>) (--phone <new phone number>) (--address <new address>) (--email <new email>)`
 **Help** | `help`
+**Clear** | `clear`
+**Exit** | `exit`
