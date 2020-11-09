@@ -26,7 +26,7 @@ Given below are my contributions to the project.
     that the priority was changed. Hence, I decided on this rectangular implementation.
     * Secondly, the actual implementation involved tweaking the fxml files in `PersonCard`. It was not as simple as just adding a single rectangle into the `PersonCard` field or a list. 
     This is because the rectangle is immutable and would not change size based on the size of the GUI. There were many workarounds for this which involved implementing a new rectangle
-    class. But I realised that one can just extend the personcard with a region followed by a `HBox`, and coloring the `Hbox`. This ensures that the priority indicator rectangle would change 
+    class. But I realised that one can just extend the personcard with a region followed by a `HBox`, and coloring the `HBox`. This ensures that the priority indicator rectangle would change 
     size based on the size of the GUI. 
     * Lastly, I wanted to tie this in with another feature that my teammate did since our UI still looked like the basic AB3 UI. 
     Hence, I decided to change the color of the priority indicator when we are in a different archived list, making it easier for one to realise that they are in a different list intuitively. 
@@ -43,11 +43,11 @@ Given below are my contributions to the project.
   * What it does: Changed the names and app icon of the existing AB3 class and methods to I4I.
   * Justification: To give a personalised brand for the app and make it different from the AB3. 
   * Highlights: Changed all references of AddressBook/AB3 to ClientList/I4I in all instances of the code, class names and all documentation except for the tutorials.
-  * Credits: flaticon for the (icon)[https://www.flaticon.com/free-icon/family_3076656] for our app.
+  * Credits: flaticon for the [icon](https://www.flaticon.com/free-icon/family_3076656) for our app.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the following features: `Priority` and `add`.
+    * Added documentation for the following features: `priority` and `add`.
     * Did cosmetic tweaks to existing documentation of the following features:`clear` and `exit`.
     
   * Developer Guide:
