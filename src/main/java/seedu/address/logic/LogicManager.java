@@ -18,7 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyExerciseBook;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Template;
-import seedu.address.storage.StorageForExercise;
+import seedu.address.storage.Storage;
 import seedu.address.storage.StorageForGoal;
 
 /**
@@ -30,14 +30,14 @@ public class LogicManager implements Logic {
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
-    private final StorageForExercise storage;
+    private final Storage storage;
     private final StorageForGoal goalStorage;
     private final ExerciseBookParser exerciseBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
-    public LogicManager(Model model, StorageForExercise storage, StorageForGoal goalStorage) {
+    public LogicManager(Model model, Storage storage, StorageForGoal goalStorage) {
         this.model = model;
         this.storage = storage;
         this.goalStorage = goalStorage;

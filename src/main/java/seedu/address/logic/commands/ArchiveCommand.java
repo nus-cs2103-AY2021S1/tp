@@ -9,7 +9,7 @@ import java.nio.file.Path;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.storage.StorageForExercise;
+import seedu.address.storage.Storage;
 
 public class ArchiveCommand extends Command {
 
@@ -24,7 +24,7 @@ public class ArchiveCommand extends Command {
 
     private final Path specifiedLocation;
 
-    private StorageForExercise storage;
+    private Storage storage;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
@@ -38,7 +38,7 @@ public class ArchiveCommand extends Command {
      * Set the storage which contains the content of the apps.
      * @param storage The storage.
      */
-    public void setStorage(StorageForExercise storage) {
+    public void setStorage(Storage storage) {
         this.storage = storage;
     }
 
