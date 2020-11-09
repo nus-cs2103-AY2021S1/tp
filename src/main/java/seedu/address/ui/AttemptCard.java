@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -13,6 +15,7 @@ import seedu.address.model.quiz.Attempt;
 public class AttemptCard extends UiPart<Region> {
 
     private static final String FXML = "AttemptListCard.fxml";
+    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MMM-yyyy    HH:mm");
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -46,13 +49,8 @@ public class AttemptCard extends UiPart<Region> {
         super(FXML);
         this.attempt = attempt;
         id.setText(displayedIndex + ". ");
-        attemptDate.setText(attempt.getTimestamp().toLocalDate().toString());
-        // score.setText(Integer.toString(attempt.calculateScore()));
+        attemptDate.setText(dtf.format(attempt.getTimestamp()));
         score.setText(attempt.attemptAnalysis());
-        //        priority.setText("Priority: " + attempt.getPriority().priority);
-        //        attempt.getTags().stream()
-        //                .sorted(Comparator.comparing(tag -> tag.tagName))
-        //                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
