@@ -17,7 +17,7 @@ the knowledge necessary to know to be able to modify the codebase and customize 
 
 tCheck is a desktop application that offers an integrated system to efficiently manage a bubble tea shop, of 
 the (imaginary) brand T-sugar, by providing sales tracking, ingredients tracking and manpower management. It is 
-optimized for the Command Line Interface (CLI), so that users can update and retrieve the information more efficiently.
+optimised for the Command Line Interface (CLI), so that users can update and retrieve the information more efficiently.
 
 ### Purpose of Document
 This document specifies the architecture and software design for the application, tCheck.
@@ -315,7 +315,7 @@ It exposes to `#Model updateFilteredSalesList(Predicate<SalesRecordEntry> predic
 Given below is an example usage scenario and how the find drinks' sales data mechanism behaves at each step.
 
 Step 1. The user launches the application. If the storage file for the sales book is empty, `SalesBook` will
-be initialized with the six pre-defined drinks, namely `BSBM`, `BSBBT`, `BSBGT`, `BSPM`, `BSPBT` and `BSPGT`
+be initialised with the six pre-defined drinks, namely `BSBM`, `BSBBT`, `BSBGT`, `BSPM`, `BSPBT` and `BSPGT`
 with the sales data of 0 for all. If the storage file for the sales book is not empty, `SalesBook` will read the
 data from the storage file.
 
