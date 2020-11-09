@@ -415,12 +415,16 @@ The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
+![UndoSequenceRefDiagram](images/UndoSequenceRefDiagram.png)
+
+
 <div markdown="block" class="alert alert-info">
  
  :information_source: **Note:**:
-
- * The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
- * Some of the interactions with the utility classes, such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+ 
+* The reference diagram should have a notation on the top left of the diagram but due to a limitation of PlantUML, the notation is represented by a title instead.
+* The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+* Some of the interactions with the utility classes, such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
    of the undo command. 
    
 </div>
@@ -490,10 +494,14 @@ The following sequence diagram shows how an edit account operation works:
 
 ![EditAccountSequenceDiagram](images/EditAccountSequenceDiagram.png)
 
+![EditAccountSequenceRefDiagram](images/EditAccountSequenceRefDiagram.png)
+
+
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Note:**
 
+* The reference diagram should have a notation on the top left of the diagram but due to a limitation of PlantUML, the notation is represented by a title instead.
 * The lifeline for `EditAccountCommandParser` and `EditAccountCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, their lifeline reach the end of diagram.
 * Some of the interactions with the utility classes, such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
 of the edit account command. 

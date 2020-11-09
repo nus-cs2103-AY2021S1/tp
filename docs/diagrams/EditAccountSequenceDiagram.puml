@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":CommonCentsParser" as CommonCentsParser LOGIC_COLOR
 participant ":EditAccountCommandParser" as EditAccountCommandParser LOGIC_COLOR
-participant "u:EditAccountCommand" as EditAccountCommand LOGIC_COLOR
+participant "e:EditAccountCommand" as EditAccountCommand LOGIC_COLOR
 end box
 
 'box ActiveAccount ACTIVEACCOUNT_COLOR_T1
@@ -13,8 +13,9 @@ end box
 'end box
 
 box Model MODEL_COLOR_T1
-participant ":ActiveAccountManager" as ActiveAccount MODEL_COLOR
-participant ":ModelManager" as Model MODEL_COLOR
+'participant ":ActiveAccountManager" as ActiveAccount MODEL_COLOR
+'participant ":ModelManager" as Model MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
 end box
 
 [-> LogicManager : execute("editacc 1 n/new name")
@@ -45,17 +46,19 @@ deactivate CommonCentsParser
 LogicManager -> EditAccountCommand: execute()
 activate EditAccountCommand
 
-EditAccountCommand -> ActiveAccount: setName("new name")
-activate ActiveAccount
+'EditAccountCommand -> ActiveAccount: setName("new name")
+'activate ActiveAccount
+'
+'ActiveAccount --> EditAccountCommand
+'deactivate ActiveAccount
+'
+'EditAccountCommand -> Model: setAccount(previousAccount, newAccount)
+'activate Model
+'
+'Model --> EditAccountCommand
+'deactivate Model
 
-ActiveAccount --> EditAccountCommand
-deactivate ActiveAccount
-
-EditAccountCommand -> Model: setAccount(previousAccount, newAccount)
-activate Model
-
-Model --> EditAccountCommand
-deactivate Model
+ref over EditAccountCommand, Model: updating new name
 
 EditAccountCommand --> LogicManager : result
 deactivate EditAccountCommand
