@@ -23,6 +23,6 @@ JsonSerializableCommonCents .right.> JsonAdaptedAccount
 JsonAdaptedAccount .right.> JsonAdaptedEntry
 JsonAdaptedEntry .right.> JsonAdaptedTag
 
-JsonAdaptedEntry --|> JsonAdaptedExpense
-JsonAdaptedEntry --|> JsonAdaptedRevenue
+JsonAdaptedExpense --|> JsonAdaptedEntry
+JsonAdaptedRevenue --|> JsonAdaptedEntry
 @enduml

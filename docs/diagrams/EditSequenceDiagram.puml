@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommonCentsParser" as CommonCentsParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant ":EditCommand" as EditCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ActiveAccountManager" as ActiveAccount MODEL_COLOR
+participant ":ModelManager" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit 1 c/revenue a/20")
+activate LogicManager
+
+LogicManager -> CommonCentsParser: parseCommand("edit 1 c/revenue a/20")
+activate CommonCentsParser
+
+CommonCentsParser -> EditCommandParser: parse("1 c/revenue a/20")
+activate EditCommandParser
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+EditCommand -> EditCommandParser
+deactivate EditCommand
+
+EditCommandParser --> CommonCentsParser
+deactivate EditCommandParser
+
+CommonCentsParser --> LogicManager
+deactivate CommonCentsParser
+
+LogicManager -> EditCommand: execute(model, activeAccount)
+activate EditCommand
+autoactivate on
+EditCommand -> EditCommand: createEditedEntry
+return editedEntry
+autoactivate off
+
+opt entryToEdit instanceof Expense
+EditCommand -> ActiveAccount: setExpense(entryToEdit, editedEntry)
+activate ActiveAccount
+
+ActiveAccount --> EditCommand
+else
+end
+
+opt (entryToEdit instance of Revenue)
+EditCommand -> ActiveAccount: setRevenue(entryToEdit, editedEntry)
+
+
+ActiveAccount --> EditCommand
+else
+end
+autoactivate on
+ActiveAccount -> ActiveAccount: getAccount()
+return editedAccount
+autoactivate off
+ActiveAccount -> Model: setAccount(editedAccount)
+activate Model
+deactivate ActiveAccount
+deactivate Model
+
+
+EditCommand --> LogicManager
+deactivate EditCommand
+
+deactivate LogicManager
+@enduml

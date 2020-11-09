@@ -1,9 +1,11 @@
 package seedu.cc.model.account;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.cc.commons.core.index.Index;
 import seedu.cc.model.account.entry.Entry;
 import seedu.cc.model.account.entry.Expense;
 import seedu.cc.model.account.entry.Revenue;
@@ -104,6 +106,12 @@ public interface ActiveAccount {
      * {@code target} must exist in the account.
      */
     void setRevenue(Revenue target, Revenue editedRevenue);
+
+    /**
+     * Gets entry at specified index
+     * {@code index} must be within range of filtered revenue or entry list and is zero-based
+     */
+    Entry getEntryAtIndex(Index index, List<? extends Entry> list);
 
     /**
      * Clears all entries in the expense list.

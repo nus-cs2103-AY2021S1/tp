@@ -4,14 +4,20 @@ import static seedu.cc.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.cc.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 import static seedu.cc.logic.parser.util.CliSyntax.PREFIX_KEYWORDS;
 
+import java.util.List;
+
 import seedu.cc.commons.core.Messages;
 import seedu.cc.logic.commands.Command;
 import seedu.cc.logic.commands.CommandResult;
 import seedu.cc.logic.commands.CommandResultFactory;
 import seedu.cc.model.Model;
 import seedu.cc.model.account.ActiveAccount;
+import seedu.cc.model.account.entry.Entry;
+import seedu.cc.model.account.entry.Expense;
 import seedu.cc.model.account.entry.ExpenseDescriptionContainsKeywordsPredicate;
+import seedu.cc.model.account.entry.Revenue;
 import seedu.cc.model.account.entry.RevenueDescriptionContainsKeywordsPredicate;
+
 
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
@@ -26,8 +32,11 @@ public class FindCommand extends Command {
         + "Example 1: " + COMMAND_WORD + " k/canvas cases\n"
         + "Example 2: " + COMMAND_WORD + " k/canvas c/expense\n"
         + "Example 3: " + COMMAND_WORD + " k/cases c/revenue\n";
+
     public static final String PREFIXES = PREFIX_KEYWORDS + "KEYWORDS\n" + "["
             + PREFIX_CATEGORY + "CATEGORY" + "]" + "\n";
+
+
     private final ExpenseDescriptionContainsKeywordsPredicate expensePredicate;
     private final RevenueDescriptionContainsKeywordsPredicate revenuePredicate;
 
@@ -60,6 +69,7 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireAllNonNull(model, activeAccount);
         assert (expensePredicate != null || revenuePredicate != null);
+        assert (activeAccount != null);
 
         if (expensePredicate != null) {
             activeAccount.updateFilteredExpenseList(expensePredicate);
@@ -68,18 +78,32 @@ public class FindCommand extends Command {
             activeAccount.updateFilteredRevenueList(revenuePredicate);
         }
 
-        boolean isNoExpenseFoundWithOnlyExpensePredicate =
-            activeAccount.getFilteredExpenseList().size() == 0 && expensePredicate != null && revenuePredicate == null;
-        boolean isNoRevenueFoundWithOnlyRevenuePredicate =
-            activeAccount.getFilteredRevenueList().size() == 0 && revenuePredicate != null && expensePredicate == null;
-        boolean isNoEntryFound = activeAccount.getFilteredExpenseList().size() == 0
-                            && activeAccount.getFilteredRevenueList().size() == 0;
+        List<Expense> expenseList = activeAccount.getFilteredExpenseList();
+        List<Revenue> revenueList = activeAccount.getFilteredRevenueList();
 
-        if (isNoEntryFound || isNoExpenseFoundWithOnlyExpensePredicate || isNoRevenueFoundWithOnlyRevenuePredicate) {
+        boolean isNoExpenseFound =
+            isNoExpenseFoundWithOnlyExpensePredicate(expenseList);
+        boolean isNoRevenueFound =
+            isNoRevenueFoundWithOnlyRevenuePredicate(revenueList);
+        boolean isNoEntryFound = isNoEntryInListFound(expenseList) && isNoEntryInListFound(revenueList);
+
+        if (isNoEntryFound || isNoExpenseFound || isNoRevenueFound) {
             return CommandResultFactory.createDefaultCommandResult(Messages.MESSAGE_EMPTY_FILTERED_LIST);
         } else {
             return CommandResultFactory.createDefaultCommandResult(Messages.MESSAGE_ENTRIES_UPDATED);
         }
+    }
+
+    private boolean isNoExpenseFoundWithOnlyExpensePredicate(List<? extends Entry> list) {
+        return list.isEmpty() && expensePredicate != null && revenuePredicate == null;
+    }
+
+    private boolean isNoRevenueFoundWithOnlyRevenuePredicate(List<? extends Entry> list) {
+        return list.isEmpty() && revenuePredicate != null && expensePredicate == null;
+    }
+
+    private boolean isNoEntryInListFound(List<? extends Entry> list) {
+        return list.isEmpty();
     }
 
     @Override

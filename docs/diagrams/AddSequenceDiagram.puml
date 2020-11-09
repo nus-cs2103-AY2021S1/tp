@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommonCentsParser" as CommonCentsParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":AddCommand" as AddCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ActiveAccountManager" as ActiveAccount MODEL_COLOR
+participant ":ModelManager" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add c/revenue d/Sales a/20 t/books")
+activate LogicManager
+
+LogicManager -> CommonCentsParser: parseCommand("add c/revenue d/Sales a/20 t/books")
+activate CommonCentsParser
+
+CommonCentsParser -> AddCommandParser: parse("c/revenue d/Sales a/20 t/books")
+activate AddCommandParser
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand -> AddCommandParser
+deactivate AddCommand
+
+AddCommandParser --> CommonCentsParser
+deactivate AddCommandParser
+
+CommonCentsParser --> LogicManager
+deactivate CommonCentsParser
+
+LogicManager -> AddCommand: execute(model, activeAccount)
+activate AddCommand
+
+
+alt entry instanceof Expense
+AddCommand -> ActiveAccount: addExpense(entry)
+activate ActiveAccount
+
+ActiveAccount --> AddCommand
+else
+end
+
+alt (entry instanceof Revenue)
+AddCommand -> ActiveAccount: addRevenue(entry)
+
+
+ActiveAccount --> AddCommand
+else
+end
+autoactivate on
+ActiveAccount -> ActiveAccount: getAccount()
+return editedAccount
+autoactivate off
+ActiveAccount -> Model: setAccount(editedAccount)
+activate Model
+deactivate ActiveAccount
+deactivate Model
+
+
+AddCommand --> LogicManager
+deactivate AddCommand
+
+deactivate LogicManager
+@enduml

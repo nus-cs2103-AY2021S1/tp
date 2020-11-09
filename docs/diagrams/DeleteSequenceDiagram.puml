@@ -1,79 +1,45 @@
-@startuml
+DeleteSequenceDiagram.puml@startuml
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":CommonCentsParser" as CommonCentsParser LOGIC_COLOR
-participant ":DeleteAccountCommandParser" as DeleteAccountCommandParser LOGIC_COLOR
-participant "d:DeleteAccountCommand" as DeleteAccountCommand LOGIC_COLOR
-participant ":CommandResultFactory" as CommandResultFactory LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
+participant ":DeleteCommand" as DeleteCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
+participant ":ActiveAccountManager" as ActiveAccount MODEL_COLOR
 end box
 
-[-> LogicManager : execute("deleteacc 1")
+[-> LogicManager : execute("delete 1 c/expense")
 activate LogicManager
 
-LogicManager -> CommonCentsParser : parseCommand("deleteacc 1")
+LogicManager -> CommonCentsParser: parseCommand("delete 1 c/expense")
 activate CommonCentsParser
 
-create DeleteAccountCommandParser
-CommonCentsParser -> DeleteAccountCommandParser
-activate DeleteAccountCommandParser
+CommonCentsParser -> DeleteCommandParser: parse("delete 1 c/expense")
+activate DeleteCommandParser
 
-DeleteAccountCommandParser --> CommonCentsParser
-deactivate DeleteAccountCommandParser
+create DeleteCommand
+DeleteCommandParser -> DeleteCommand
+activate DeleteCommand
 
-CommonCentsParser -> DeleteAccountCommandParser : parse("1")
-activate DeleteAccountCommandParser
+DeleteCommand -> DeleteCommandParser
+deactivate DeleteCommand
 
-create DeleteAccountCommand
-DeleteAccountCommandParser -> DeleteAccountCommand
-activate DeleteAccountCommand
+DeleteCommandParser --> CommonCentsParser
+deactivate DeleteCommandParser
 
-DeleteAccountCommand --> DeleteAccountCommandParser : d
-deactivate DeleteAccountCommand
-
-DeleteAccountCommandParser --> CommonCentsParser : d
-deactivate DeleteAccountCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteAccountCommandParser -[hidden]-> CommonCentsParser
-destroy DeleteAccountCommandParser
-
-CommonCentsParser --> LogicManager : d
+CommonCentsParser --> LogicManager
 deactivate CommonCentsParser
 
-LogicManager -> DeleteAccountCommand : execute()
-activate DeleteAccountCommand
+LogicManager -> DeleteCommand: execute(model, activeAccount)
+activate DeleteCommand
 
-DeleteAccountCommand -> Model : deleteAccount(1)
-activate Model
+DeleteCommand --> LogicManager
+deactivate DeleteCommand
 
-Model --> DeleteAccountCommand
-deactivate Model
-
-DeleteAccountCommand -> CommandResultFactory : createDefaultCommandResult()
-activate CommandResultFactory
-
-create CommandResult
-CommandResultFactory -> CommandResult
-activate CommandResult
-
-CommandResult --> CommandResultFactory : result
-deactivate CommandResult
-
-CommandResultFactory --> DeleteAccountCommand : result
-deactivate CommandResultFactory
-
-DeleteAccountCommand --> LogicManager : result
-deactivate DeleteAccountCommand
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteAccountCommand -[hidden]-> LogicManager
-destroy DeleteAccountCommand
-
-[<--LogicManager
 deactivate LogicManager
 @enduml
+

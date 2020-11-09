@@ -3,6 +3,8 @@ package seedu.cc.logic.commands.entrylevel;
 import static seedu.cc.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.cc.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.cc.commons.core.Messages;
 import seedu.cc.commons.core.category.Category;
@@ -16,6 +18,7 @@ import seedu.cc.model.account.ActiveAccount;
 import seedu.cc.model.account.entry.Entry;
 import seedu.cc.model.account.entry.Expense;
 import seedu.cc.model.account.entry.Revenue;
+
 
 
 /**
@@ -54,8 +57,8 @@ public class DeleteCommand extends Command {
         int index = targetIndex.getZeroBased();
         boolean isExpense = this.category.isExpense();
         boolean isRevenue = this.category.isRevenue();
-        boolean isInvalidExpenseIndex = isExpense && (index >= expenseList.size());
-        boolean isInvalidRevenueIndex = isRevenue && (index >= revenueList.size());
+        boolean isInvalidExpenseIndex = isExpense && isInvalidIndex(index, expenseList);
+        boolean isInvalidRevenueIndex = isRevenue && isInvalidIndex(index, revenueList);
 
         if (isInvalidExpenseIndex || isInvalidRevenueIndex) {
             throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_INDEX);
@@ -78,6 +81,10 @@ public class DeleteCommand extends Command {
         model.setAccount(activeAccount.getAccount());
         return CommandResultFactory
             .createCommandResultForEntryListChangingCommand(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, entry));
+    }
+
+    private boolean isInvalidIndex(int index, List<? extends Entry> list) {
+        return index >= list.size() || index < 0;
     }
 
     @Override
