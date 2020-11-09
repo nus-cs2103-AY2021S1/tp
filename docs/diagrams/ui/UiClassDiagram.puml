@@ -1,5 +1,5 @@
 @startuml
-!include style.puml
+!include ../style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
@@ -66,6 +66,7 @@ RecommendationCard --|> UiPart
 
 RecipeCard ..> Model
 IngredientCard ..> Model
+RecommendationCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
