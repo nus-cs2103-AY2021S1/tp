@@ -52,20 +52,20 @@ to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/MainApp.java). 
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/zookeep/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/zookeep/MainApp.java). 
 It is responsible for the following situations:
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#36-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components:
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from and writes data to the hard disk.
+* [**`UI`**](#32-ui-component): The UI of the App.
+* [**`Logic`**](#33-logic-component): The command executor.
+* [**`Model`**](#34-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#35-storage-component): Reads data from and writes data to the hard disk.
 
 Each of the four components
 
@@ -99,14 +99,14 @@ The Class Diagram for the UI Component is shown below (*Figure 4*)
 <p align="center"><i>Figure 4: Class Diagram of UI Component</i></p>
 
 **API** :
-[`Ui.java`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/zookeep/ui/Ui.java)
 
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `AnimalListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in 
 matching `.fxml` files that are in the `src/main/resources/view` folder. 
-For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) 
+For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/zookeep/ui/MainWindow.java) 
 is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component
@@ -123,7 +123,7 @@ The Class Diagram for the Logic Component is shown below (*Figure 5*)
 <p align="center"><i>Figure 5: Class Diagram of Logic Component</i></p>
 
 **API** :
-[`Logic.java`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/zookeep/logic/Logic.java)
 
 1. `Logic` uses the `ZooKeepBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -148,7 +148,7 @@ The Class Diagram for the Model Component is shown below (*Figure 7*)
 
 <p align="center"><i>Figure 7: Class Diagram of Model Component</i></p>
 
-**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/zookeep/model/Model.java)
 
 The `Model`,
 
@@ -172,7 +172,7 @@ The Class Diagram for the Storage Component is shown below (*Figure 8*)
 
 <p align="center"><i>Figure 8: Class Diagram of Storage Component</i></p>
 
-**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/zookeep/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -589,8 +589,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | zookeeper with many animals in the ZooKeepBook | sort animals by name and type           | locate a specific animal easily                                                 |
 | `*`      | experienced user | use shortcut commands to carry out tasks           | save time without needing to type the full length commands                                                 |
 
-*{More to be added}*
-
 ### 6.3. Use cases
 
 (For all use cases below, the **System** is the `ZooKeepBook` and the **Actor** is the `user`, unless specified otherwise)
@@ -882,8 +880,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Data persistence**: data provided by the user can be saved and updated to the hard drive, and can also be loaded once system is booted up again
 * **Data archiving**: the process of moving data that is no longer actively used to a specified directory for long-term retention.
-
-*{More to be added, if necessary}*
 
 --------------------------------------------------------------------------------------------------------------------
 
