@@ -331,13 +331,16 @@ The following class diagram showcases the relationship between the main classes 
 <br>**Diagram 3.1.1: Class diagram for classes involved in the assign feature of the Logic component**
 
 ![AssignModelClassDiagram](images/AssignModelClassDiagram.png)
-<br>**Diagram 3.1.1: Class diagram for classes involved in the assign feature of the Model component**
+<br>**Diagram 3.1.2: Class diagram for classes involved in the assign feature of the Model component**
 
 Here below is an example usage scenario and how the `assign` feature works at each step:
 1. User enters respective input into the app.
 
 2. The input is handled by the `LogicManager#execute(String)`, which then calls and passes the input to the `NuudleParser#parseCommand(String)` method.
 
+<div style="page-break-after: always;"></div>
+
+{:start="3"}
 3. `NuudleParser` finds out the command word `assign` in the user input and creates an `AssignCommandParser`to parse the input according to the format specified for `AssignCommand`.
 
 4. `AssignCommandParser` parses the user input and checks the input validation for correct types (eg. `Integer` for `Index` and alphanumeric characters for `Name`) via the `AssignCommandParser#parser(String)` method.
@@ -357,11 +360,11 @@ Here below is an example usage scenario and how the `assign` feature works at ea
 11.  Lastly, the `AssignCommand` creates a `CommandResult` with `MESSAGE_SUCCESS`, and returns it into `LogicManager`.
 
 ![AssignSequenceDiagram](images/AssignSequenceDiagram.png)
-<br>**Diagram 5.2.1: Sequence diagram showcasing the Assign Command process**
+<br>**Diagram 3.1.3: Sequence diagram showcasing the Assign Command process**
 
 The following activity diagram summarises the general workflow for the Assign Command:
 ![AssignActivityDiagram](images/AssignActivityDiagram.png)
-<br>**Diagram3.1.3: Activity diagram showcasing the Assign Command execution flow**
+<br>**Diagram 3.1.4: Activity diagram showcasing the Assign Command execution flow**
 
 #### 3.2 Design Considerations
 
@@ -460,6 +463,8 @@ The following activity diagram summarises the general workflow for the Edit Comm
     increases the difficulty of debugging and maintaining the code base.
 
 ##### Aspect: How to update corresponding `appointment` instance
+
+<div style="page-break-after: always;"></div>
 
 * **Alternative 1 (current choice):** Separate updating `appointment` from editing `patient`
     * Pros: Draws clear distinction between the responsibilities of `appointmentBook` and `patientBook`. Reduces the coupling.
@@ -585,6 +590,8 @@ The following activity diagram summarizes the above steps when a user uses the r
 
     * Cons: Increases the code base, may increase coupling as objects are passed around between the classes.
     More tests have to be written for the respective classes, thus increasing the cost of testing.
+
+<div style="page-break-after: always;"></div>
 
 * **Alternative 2:** Parse and Execute in the same class
     * Pros: Size of code base is reduced. Fewer objects are passed between classes thereby reducing coupling.
@@ -713,6 +720,9 @@ Given below is an example usage scenario and how the edit mechanism behaves at e
 
 8: `AvailableCommand` obtains a copy of the `FilteredAppointmentList` by calling the `Model#getFilteredAppointmentList()` method.
 
+<div style="page-break-after: always;"></div>
+
+{:start="9"}
 9: `AvailableCommand` creates a `timeSlotsMessage` by calling the  `Model#findAvailableTimeSlots(List<Appointment>, Boolean)` method.
 
 10: Lastly, `AvailableCommand` creates a `CommandResult` with `SuccessMessage` and `timeSlotsMessage` and returns it to `LogicManager`.
@@ -740,6 +750,8 @@ The following activity diagram summarises the general workflow for the Available
     * Cons: No separation between classes violates the Single Responsibility Principle. Compromises the readability of the code and
     increases the difficulty of debugging and maintaining the code base.
 
+<div style="page-break-after: always;"></div>
+
 ##### Aspect: How to obtain available `timeInterval` instance
 
 * **Alternative 1 (current choice):** Create `TimeInterval` and `TimeIntervalList` models to represent the time slots and create `scheduleManager` model to handle operations related to `TimeInterval`
@@ -765,6 +777,8 @@ The following activity diagram summarises the general workflow for the Available
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
+
+<div style="page-break-after: always;"></div>
 
 ### Product scope
 **Target user profile story**:
