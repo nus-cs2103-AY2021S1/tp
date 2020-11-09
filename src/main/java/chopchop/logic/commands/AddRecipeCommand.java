@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
-import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.Step;
 import chopchop.model.attributes.Tag;
 import chopchop.model.ingredient.IngredientReference;
