@@ -27,10 +27,8 @@ Given below are my contributions to the project.
   * Justification: The Addressbook-level3 used a lot of booleans in its command result's constructor. A factory method was
   created to improve the code quality. 
   * Related Pull Requests: [\#152](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/152)
-  
 <div style="page-break-after: always;"></div>
 
-  
 ### Features
 * **Added and wrote tests for the ability to find specific entries.**
   * What it does: allows the user to find specific entries/revenues that have a keyword or a list of keywords.
@@ -52,7 +50,6 @@ Given below are my contributions to the project.
                            [\#150](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/150)
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=lettuceman4&tabRepo=AY2021S1-CS2103T-T13-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
-
 <div style="page-break-after: always;"></div>
 
 ### Project Management
@@ -60,7 +57,6 @@ Given below are my contributions to the project.
 * **Managed the punctuality of deliverables:** Reminded teammates of tasks and their deadlines. Helped with unfinished tasks.
 
 * **Community**: 
-
   * PR(s) reviewed (with non-trivial review comments): [\#279](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/279)
   * Reported bugs and suggestions for other teams in the class (examples: 
   [\#240](https://github.com/AY2021S1-CS2103T-W12-3/tp/issues/240), 

@@ -27,6 +27,7 @@ Given below are my contributions to the project.
 * **Added the ability to add entries**
   * What it does: allows the user to add `Expense` or `Revenue` in Common Cents with a compulsory description,
   amount and optional tags.
+  <div style="page-break-after: always;"></div>
   * Justification: This is a core feature because it allows the app to track `Expense` and `Revenue` in the
   first place and fulfills the fundamental need for the app for budgeting.
   * Highlights: The implementation of this feature revealed an early problem of a weak UI layer between 
@@ -58,7 +59,7 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial changes to codebase): 
-    [\#52](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/52), 
+  [\#52](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/52), 
   [\#86](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/86)
   * Reported bugs and suggestions for other teams in the class (examples: 
   [\#171](https://github.com/AY2021S1-CS2103T-W11-3/tp/issues/171), 
@@ -83,6 +84,7 @@ Given below are my contributions to the project.
     * Created static helper/stub classes to aid in testing for other teammates (examples: 
     [\#87](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/87), 
     [\#154](https://github.com/AY2021S1-CS2103T-W11-3/tp/issues/154))
+<div style="page-break-after: always;"></div>
 
 ### Documentation
 
@@ -91,5 +93,5 @@ Given below are my contributions to the project.
 * **Added documentation for the `Components` section**: [#4](https://ay2021s1-cs2103t-t13-4.github.io/tp/UserGuide.html#4-components)
 * **Added General Inquiries into FAQ section:** [#6.1](https://ay2021s1-cs2103t-t13-4.github.io/tp/UserGuide.html#61-general-inquiry)
 #### Developer Guide:
-  * **Added implementation details of the `add` entry feature**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#add-entries-feature)
-  * **Added implementation details of the `edit` entry feature**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#edit-entries-feature)
+* **Added implementation details of the `add` entry feature**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#add-entries-feature)
+* **Added implementation details of the `edit` entry feature**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#edit-entries-feature)

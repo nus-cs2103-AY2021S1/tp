@@ -36,7 +36,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
+* [**`UI`**](#ui-component): The _UI_ of the App.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
@@ -44,9 +44,9 @@ The rest of the App consists of four components.
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding _API_ `interface` mentioned in the previous point.
 
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
+For example, the `Logic` component (see the class diagram given below) defines its _API_ in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
@@ -60,14 +60,14 @@ The sections below give more details of each component.
 
 ### UI component
 
-The UI component represents elements directly interacting with the user.
+The _UI_ component represents elements directly interacting with the user.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 
-**API:** The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `AccountListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+**API:** The _UI_ consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `AccountListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses _JavaFx_ _UI_ framework. The layout of these _UI_ parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/ui/Ui.java)
 
@@ -75,7 +75,7 @@ The `UI` component uses JavaFx UI framework. The layout of these UI parts are de
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
-* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Listens for changes to `Model` data so that the _UI_ can be updated with the modified data.
 
 ### Logic component
 The Logic component parses and executes the commands. <br>
@@ -91,9 +91,10 @@ The Logic component parses and executes the commands. <br>
 or affect the `Model` directly (e.g. adding an account).
 * Based on the changes the command execution made, the `CommandResultFactory` generates a `CommandResult` object which encapsulates
 the result of the command execution and is passed back to the `Ui`.
+<div style="page-break-after: always;"></div>
 * In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deleteacc 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deleteacc 1")` _API_ call.
 
 ![Interactions Inside the Logic Component for the `deleteacc 1` Command](images/DeleteAccountSequenceDiagram.png)
 
@@ -112,7 +113,7 @@ The model component stores the relevant data for _Common Cents_. The model compo
 
 The `Model`,
 
-* responsible for managing the data of Accounts.
+* responsible for managing the data of _Common Cents_ which holds all the accounts.
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the CommonCents data.
 * stores an unmodifiable list of Accounts.
@@ -122,11 +123,11 @@ The `ActiveAccount`,
 
 * responsible for managing the data of the currently active Account.
 * stores a `Account` object that represents the current Account that the user is managing.
-* stores an `ObservableList<Expense>` that can be `observed` e.g. the UI can be bounde to this list so that the UI automatically updates when the data in the list change.
-* stores an `ObservableList<Revenue>` that can be `observed` e.g. the UI can be bounde to this list so that the UI automatically updates when the data in the list change.
+* stores an `ObservableList<Expense>` that can be `observed` e.g. the _UI_ can be bounde to this list so that the _UI_ automatically updates when the data in the list change.
+* stores an `ObservableList<Revenue>` that can be `observed` e.g. the _UI_ can be bounde to this list so that the _UI_ automatically updates when the data in the list change.
 * stores an `Optional<ActiveAccount>` that represents the previous state of the `ActiveAccount`.
 * does not depend on any of the other four components.
-
+<div style="page-break-after: always;"></div>
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `CommonCents`, which `Entry` references. This allows `CommonCents` to only require one `Tag` object per unique `Tag`, instead of each `Entry` needing their own `Tag` object.<br>
@@ -178,6 +179,7 @@ and `ActiveAccount#addRevenue`, and in `Model` as `Model#setAccount`.
 Given below is an example usage scenario and how the find entries mechanism behaves 
 at each step.
 
+<div style="page-break-after: always;"></div>
 * Step 1. The user inputs the edit command to edit the entries of a specified index and entry
 type (Expense or Revenue) from current `ActiveAccount`. `CommandParser` identifies the command word `edit`
 and calls `AddCommandParser#parse(String args)` to parse the input into a valid `AddCommand`.
@@ -222,6 +224,7 @@ operations:
 
 Given below is an example usage scenario and how the delete mechanism behaves at each step.
 
+<div style="page-break-after: always;"></div>
 * Step 1: The user inputs the delete command to specify which entry to delete in the specified category
 of `ActiveAccount`. `CommandParser` identifies the command word `delete` and calls `DeleteCommandParser#parse(String args)`
 to parse the input into a valid `DeleteCommand`.
@@ -255,7 +258,7 @@ Explanation why a certain design is chosen.
         * Allows Parser to filter out invalid commands
     * Cons: Less convenience for the user. 
 
-
+<div style="page-break-after: always;"></div>
 ### Edit entries feature 
 *(Written by Nicholas Canete)* <br>
 
@@ -340,6 +343,7 @@ Given below is an example usage scenario and how the clear command mechanism beh
 of `ActiveAccount`. `CommandParser` identifies the command word `clear` and calls `ClearCommandParser#parse(String args)`
 to parse the input into a valid `ClearCommand`.
 
+<div style="page-break-after: always;"></div>
 * Step 2: `ClearCommand` starts to be executed. In the execution:
     * If user input does not specify a category, both _Expense_ and _Revenue_ Lists will be cleared.
     * If the user input for category matches that of the _Expense_ keyword, Expense List will be cleared.
@@ -415,12 +419,16 @@ The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
+![UndoSequenceRefDiagram](images/UndoSequenceRefDiagram.png)
+
+
 <div markdown="block" class="alert alert-info">
  
  :information_source: **Note:**:
-
- * The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
- * Some of the interactions with the utility classes, such as `CommandResult`, `CommandResultFactory` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+ 
+* The reference diagram should have a notation on the top left of the diagram but due to a limitation of PlantUML, the notation is represented by a title instead.
+* The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+* Some of the interactions with the utility classes, such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
    of the undo command. 
    
 </div>
@@ -429,6 +437,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
 <div markdown="span" class="alert alert-info">:information_source: **Note:** `ActiveAccount#setPreviousState()` is only called in `add`, `delete`, `edit`, and `clear` commands. 
 Hence, the `undo` command only works on the previously stated _entry-level_ commands.
 
@@ -490,12 +499,16 @@ The following sequence diagram shows how an edit account operation works:
 
 ![EditAccountSequenceDiagram](images/EditAccountSequenceDiagram.png)
 
+![EditAccountSequenceRefDiagram](images/EditAccountSequenceRefDiagram.png)
+
+
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Note:**
 
+* The reference diagram should have a notation on the top left of the diagram but due to a limitation of PlantUML, the notation is represented by a title instead.
 * The lifeline for `EditAccountCommandParser` and `EditAccountCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, their lifeline reach the end of diagram.
-* Some of the interactions with the utility classes, such as `CommandResult`, `CommandResultFactory` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+* Some of the interactions with the utility classes, such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
 of the edit account command. 
 
 </div>
@@ -512,7 +525,8 @@ Explanation why a certain design is chosen.
 * **Alternative 1 (current choice):** Accounts can only be edited if they are active.
   * Pros: Easy to implement.
   * Cons: Less flexibility for user.
-
+  
+<div style="page-break-after: always;"></div>
 * **Alternative 2:** Accounts can be edited by retrieving them from the account list with an index input.
   * Pros: More flexibility for user.
   * Cons: It is difficult to implement and manage because we need to consider whether the account to be edited
@@ -605,6 +619,7 @@ Given below is an example usage scenario and how the calculate net profits mecha
 
 The following sequence diagram shows how a calculate net profits operation works: 
 
+<div style="page-break-after: always;"></div>
 ![CalculateProfitSequenceDiagram](images/CalculateProfitSequenceDiagram.png)
 
 <div markdown="block" class="alert alert-info">
@@ -624,7 +639,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 #### Design consideration
 Explanation why a certain design is chosen.
 
-##### Aspect: How calculate net profits executes:
+##### Aspect: How calculate net profits executes
 * **Choice:** Calculates the net profits by retrieving the expense and revenue lists from the account. 
     * Pros: Easy to implement 
 
@@ -654,9 +669,9 @@ This section highlights the problems that _Common Cents_ solves by describing th
 * Is reasonably comfortable using CLI apps
 
 **Value proposition**: 
-* Can manage financial entries faster than a typical mouse/GUI driven app
-* Provides a simple UI for business owners to see all the desired information easily
-* Provides an aesthetic UI which is pleasant to the eye
+* Can manage financial entries faster than a typical mouse/_GUI_ driven app
+* Provides a simple _UI_ for business owners to see all the desired information easily
+* Provides an aesthetic _UI_ which is pleasant to the eye
 
 ### User stories
 This section describes the features of _Common Cents_ from an end-user perspective. 
@@ -861,8 +876,9 @@ For all use cases below, the **System** is the `CommonCents` and the **Actor** i
       Use case resumes at step 1.    
 </div>
 
+<div style="page-break-after: always;"></div>
 <div markdown="block" class="alert alert-success">
-
+ 
 **Use Case: UC09 - Undoing an add command**
 
 **MSS**
@@ -1030,7 +1046,7 @@ For all use cases below, the **System** is the `CommonCents` and the **Actor** i
 
 **MSS**
 
-1. User requests to find some specific entries (UC16).
+1. User requests to <u> find some specific entries (UC16)</u>.
 2. User requests to list all entries.
 3. Commmon Cents displays all entries again before find command was used.
 
@@ -1184,7 +1200,7 @@ For all use cases below, the **System** is the `CommonCents` and the **Actor** i
 ### Non-Functional Requirements
 This specifies criteria that can be used to judge the operation of _Common Cents_.
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1.  Should work on any _Mainstream OS_ as long as it has _Java_ `11` or above installed.
 2.  Should be able to hold up to 1000 entries per account without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Should be able to perform simple arithmetic with up to 1000 entries without a significant drop in performance.
@@ -1195,8 +1211,13 @@ This specifies criteria that can be used to judge the operation of _Common Cents
 Definitions of certain terms used in this Developer Guide.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Entry-level commands**: Commands that interacts with expenses or revenues.
-* **Account-level commands**: Commands that interacts with accounts.
+* **API**: Application Programming Interface
+* **UI**: User Interface
+* **GUI**: Graphical User Interface
+* **Java**: An object oriented programming language
+* **JavaFX**: Standard Graphical User Interface Library for Java Standard Edition
+* **Entry-level commands**: Commands that interacts with expenses or revenues
+* **Account-level commands**: Commands that interacts with accounts
 
 
 --------------------------------------------------------------------------------------------------------------------
