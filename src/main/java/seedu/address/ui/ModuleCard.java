@@ -37,6 +37,8 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private Label modularCredits;
     @FXML
+    private Label gradePoints;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -47,6 +49,10 @@ public class ModuleCard extends UiPart<Region> {
         this.module = module;
         id.setText(displayedIndex + ". ");
         name.setText(module.getName().fullName);
+        modularCredits.setText(module.getModularCredits().toString());
+        module.getGradeTracker().getGradePoint()
+                .ifPresentOrElse(x -> gradePoints.setText(x.toString() + " grade points"), () ->
+                        gradePoints.setText(""));
         modularCredits.setText("Modular Credits: " + module.getModularCredits().toString());
         module.getTagsForUi().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
