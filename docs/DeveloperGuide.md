@@ -56,6 +56,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ### Section 4.1 - High-Level Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
+<figcaption> Figure 4.1a Architecture Diagram of Trackr </figcaption>
 
 The **_Architecture Diagram_** given above explains the high-level design of Trackr. Given below is a quick overview of each component.
 
@@ -84,6 +85,7 @@ Each of the four components,
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+<figcaption> Figure 4.1b Class Diagram of the Logic Component </figcaption>
 
 **How the architecture components interact with each other**
 
@@ -97,6 +99,7 @@ The sections below give more details of each component.
 The UI Component defines what the user will see and interact with while using Trackr. `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
+<figcaption> Figure 4.2a Class Diagram of the UI Component </figcaption>
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
@@ -111,6 +114,7 @@ The `UI` component,
 ### Section 4.3 - Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
+<figcaption> Figure 4.3a Class Diagram of the Logic Component </figcaption>
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
@@ -126,13 +130,14 @@ The `Logic` component contains the `TrackrParser` object that creates `Parser` o
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deleteTG 1")` API call.
 
 ![Interactions Inside the Logic Component for the `deleteTG 1` Command](images/DeleteSequenceDiagram.png)
+<figcaption> Figure 4.3b Sequence Diagram of DeleteTutorialGroupCommand </figcaption>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTutorialGroupCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 ### Section 4.4 - Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
+<figcaption> Figure 4.4a Class Diagram of the Model Component </figcaption>
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -151,6 +156,7 @@ The `Model` component,
 ### Section 4.5 - Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
+<figcaption> Figure 4.5a Class Diagram of the Storage Component </figcaption>
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -181,7 +187,7 @@ Trackr has three different data types:
 - `TutorialGroup`: The tutorial groups that the user is teaching
 - `Student`: The students currently being taught by the user
 
-As mentioned in [insert design diagram number], 
+As shown in Figure 4.4a, 
 Trackr stores these data in the following manner: UniqueModuleList contains Modules. Each module has a UniqueTutorialGroupList 
 that stores all the Tutorial Groups of that particular Module. Lastly, each Tutorial Group has a UniqueStudentList that stores all the
 Students of that particular Tutorial Group.
@@ -199,8 +205,8 @@ Trackr's three data type also share the same commands, which are:
 Since Trackr stores and manages its data recursively, the commands for Module, Tutorial Group and Student work similarly.
 
 #### Design Considerations:
-**Aspect: List to contain the models**
-- Alternative 1: Use a single generic `UniqueList` that contains the models.
+**Aspect: List to contain the data types**
+- Alternative 1: Use a single generic `UniqueList` that contains the data types.
     - Pros: Code that is easier to maintain due to abstraction. 
     - Cons: Harder to implement.
 - Alternative 2 (Current choice): Use a separate `UniqueList` for each model such as `UniqueModuleList`.
@@ -221,8 +227,10 @@ Each command class extends `Command`.
 Given below is an example of the interaction between the Model and the `AddModuleCommand` of Trackr.
 
 ![AddModuleSequenceDiagram](images/AddModSequenceDiagram.png)
+<figcaption> Figure 5.1a Sequence Diagram of AddModuleCommand</figcaption>
 
 ![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
+<figcaption> Figure 5.1b Activity Diagram of AddModuleCommand</figcaption>
 
 Step 1. The user executes `addMod m/CS2103T` to add a module called CS2103T to Trackr. The `addMod` command calls
 `LogicManager#execute(String)`.
@@ -268,8 +276,10 @@ Each command class extends `Command`.
 Given below is an example of the interaction between the Model and the `DeleteModuleCommand` of Trackr.
 
 ![DeleteModuleSequenceDiagram](images/DeleteModuleSequenceDiagram.png)
+<figcaption> Figure 5.2a Sequence Diagram of DeleteModuleCommand</figcaption>
 
 ![DeleteCommandActivityDiagram](images/DeleteCommandActivityDiagram.png)
+<figcaption> Figure 5.2b Activity Diagram of DeleteModuleCommand</figcaption>
 
 Step 1. The user executes `deleteMod 1` to delete the first module in the displayed list. The `deleteMod` command calls
 `LogicManager#execute(String)`.
@@ -315,8 +325,10 @@ Each command class extends `Command`.
 Given below is an example of the interaction between the Model and the `EditModuleCommand` of Trackr.
 
 ![EditModuleSequenceDiagram](images/EditModuleSequenceDiagram.png)
+<figcaption> Figure 5.3a Sequence Diagram of EditModuleCommand</figcaption>
 
 ![EditCommandActivityDiagram](images/EditCommandActivityDiagram.png)
+<figcaption> Figure 5.3b Activity Diagram of EditModuleCommand</figcaption>
 
 Step 1. The user executes `editMod 1 m/CS2100` to edit the first module in the displayed list. The `editMod` command 
 calls `LogicManager#execute(String)`.
@@ -364,8 +376,10 @@ Each command class extends `Command`.
 Given below is an example of the interaction between the Model and the `FindModuleCommand` of Trackr.
 
 ![FindModuleSequenceDiagram](images/FindModuleSequenceDiagram.png)
+<figcaption> Figure 5.4a Sequence Diagram of FindModuleCommand</figcaption>
 
 ![FindCommandActivityDiagram](images/FindCommandActivityDiagram.png)
+<figcaption> Figure 5.4b Activity Diagram of FindModuleCommand</figcaption>
 
 Step 1. The user executes `findMod cs2100` to find module(s) that contain the keyword _cs2100_. The `findMod` command 
 calls `LogicManager#execute(String)`.
@@ -418,8 +432,10 @@ Each command class extends `Command`.
 Given below is an example of the interaction between the Model and the `ListModuleCommand` of Trackr.
 
 ![ListModSequenceDiagram](images/ListModuleCommandSequenceDiagram.png)
+<figcaption> Figure 5.5a Sequence Diagram of ListModuleCommand</figcaption>
 
 ![ListCommandActivityDiagram](images/ListCommandActivityDiagram.png)
+<figcaption> Figure 5.5b Activity Diagram of ListModuleCommand</figcaption>
 
 Step 1. The user executes `listMod` to view all the modules in Trackr. The `listMod` command calls
 `LogicManager#execute(String)`.
@@ -465,8 +481,10 @@ is no View command for `Module`. Each command class extends `Command`.
 Given below is an example of the interaction between the Model and the `ViewTutorialGroupCommand` of Trackr.
 
 ![ViewTGSequenceDiagram](images/ViewTutorialGroupCommandSequenceDiagram.png)
+<figcaption> Figure 5.6a Sequence Diagram of ViewTutorialGroupCommand</figcaption>
 
 ![ViewTGActivityDiagram](images/ViewTutorialGroupCommandActivityDiagram.png)
+<figcaption> Figure 5.6b Activity Diagram of ViewTutorialGroupCommand</figcaption>
 
 Step 1. The user executes `viewTG 1` to view the tutorial groups of the first module within the Module View. The
 `viewTG` command calls `LogicManager#execute(String)`.
@@ -506,8 +524,10 @@ The command class extends `Command`.
 Given below is an example of the interaction between the Model and the `ClearCommand` of Trackr.
 
 ![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
+<figcaption> Figure 5.7a Sequence Diagram of ClearCommand</figcaption>
 
 ![ClearCommandActivityDiagram](images/ClearCommandActivityDiagram.png)
+<figcaption> Figure 5.7b Activity Diagram of ClearCommand</figcaption>
 
 ### Section 5.8 - Exit Command - `exit`
 
@@ -523,8 +543,10 @@ The command class extends `Command`.
 Given below is an example of the interaction between the Model and the `ExitCommand` of Trackr.
 
 ![ExitCommandSequenceDiagram](images/ExitCommandSequenceDiagram.png)
+<figcaption> Figure 5.8a Sequence Diagram of ExitCommand</figcaption>
 
 ![ExitCommandActivityDiagram](images/ExitCommandActivityDiagram.png)
+<figcaption> Figure 5.8b Activity Diagram of ExitCommand</figcaption>
 
 ### Section 5.9 - Data saving and loading
 
@@ -558,6 +580,7 @@ Step 4. Once all layers of the Json objects have been converted to their corresp
 The following activity diagram summarizes how data from the Json file is read and loaded when a user starts up the application:
 
 ![LoadJsonActivityDiagram](images/LoadJsonActivityDiagram.png)
+<figcaption> Figure 5.9a Activity Diagram of data saving and loading</figcaption>
 
 #### Design consideration:
 
