@@ -48,6 +48,7 @@ ExpenseBook .up.|> ReadOnlyExpenseBook
 ModelManager .up.|> Model
 Model .right.> ObservableList
 ModelManager o--> "1" ExpenseBook
+ModelManager o-right-> "1" AliasMap
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
@@ -65,8 +66,6 @@ CategoryBudget *--> Amount
 CategoryBudget *--> "1" Tag
 Budget ^.right. UniqueCategoryBudgetList
 Budget ^.. CategoryBudget
-
-ExpenseBook *--> "1" AliasMap
 
 Class HiddenOutside2 #FFFFFF
 HiddenOutside2 -[hidden]-> Amount
