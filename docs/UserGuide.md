@@ -102,6 +102,8 @@ As you can see, **Figure 3-1** below shows the default user interface (UI) of _C
 
 You can find the description for each UI component shown in the table below.<br> 
 
+<div style="page-break-after: always;"></div>
+
 UI component | Description
 --------|------------------
 *Menu bar* | Displays the menu bar of _Common Cents_. You can use this to access the User Guide or exit the application. 
