@@ -47,7 +47,7 @@ ensure project deliverables are done on time and in the right format
 <img src="images/nicholas-gcc.png" width="200px">
 
 [[github](https://github.com/nicholas-gcc)]
-[[portfolio](team/nic-cv.pdf)]
+[[portfolio](team/nicholas-gcc.md)]
 
 * Role: Code Quality
 * Responsibilities: Looks after code quality, ensures adherence to coding standards, etc.
