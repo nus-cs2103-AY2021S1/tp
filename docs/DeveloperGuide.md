@@ -1121,6 +1121,7 @@ Use case ends.
 **Extensions**
 * 2a. Covigent realizes that the format of the date is incorrect.
     * 2a1. Covigent displays an error message.
+    
 Use case ends.
 
 * 3a. Covigent realizes that there is no task matching the criteria. 
