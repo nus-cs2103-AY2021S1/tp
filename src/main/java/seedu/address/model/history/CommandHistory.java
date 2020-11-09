@@ -2,6 +2,7 @@ package seedu.address.model.history;
 
 import java.util.Stack;
 
+//Solution below adapted from https://github.com/AY1920S1-CS2103T-F12-4/main/blob/master/src/main/java/seedu/billboard/model/history/CommandHistory.java
 /**
  * Represents command history in the address book.
  */
