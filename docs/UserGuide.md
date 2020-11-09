@@ -75,8 +75,10 @@ The following diagram illustrates the name of each Gui component and how they ar
 ## 3.2. Add exercises : `add`
 
 Adds an exercise to the application, with date, calories burnt, muscles worked and tags as optional.
+Notices how the exercise appears at the end of the list and the result bar will show the equivalent weight that you burnt.
+If you have set a goal for the day, it will also tell you how much more calories to burn to achieve your goal.
 
-![add command message](images/addCommandMessage.png)
+![add command message](images/AddCommand.png)
 
 Format: `add n/EXERCISE d/DESCRIPTION [at/DATE] [c/CALORIES] [m/MUSCLE] [t/TAG]...`
 
@@ -91,18 +93,9 @@ Examples:
 
 Updates an existing exercise.
 
-### Before
-![before update](images/exerciseBeforeUpdate.png)
-
-### Command
-![update command](images/updateCommand.png)
-
-### After
-![after update](images/exerciseAfterUpdate.png)
-
 Format: `update INDEX [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [m/MUSCLE]... [t/TAG]...`
 - Edits the workout at the specified `INDEX`. The index refers to the index number shown in the displayed workout list. The index **must be a positive integer** 1, 2, 3, …​
-- At least one of the optional fields must be provided.
+- **At least one** of the optional fields must be provided.
 - Existing values of the exercise will be updated to the input values.
 - When editing tags/muscles, the existing tags/muscles of the exercise will be removed i.e adding of tags/muscles is not cumulative.
 - You can remove all the exercise/muscle's tags by typing t/ or m/ respectively (without specifying any tags after it).
@@ -112,10 +105,16 @@ Format: `update INDEX [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [m/MUS
 - `update 1 m/` will remove all the previous muscle tags from the 1st exercise.
 - `update 1 n/` will result in an error since the name of the 1st exercise is blank.
 
+For this command, `update 4 n/Push Up`, the exercises will be changed as follow.
+
+### Before
+![before update](images/bforeUpdate.png)
+
+### After
+![after update](images/afterUpdate.png)
+
 ## 3.4. Delete : `delete`
 Deletes an exercise that a user has previously added.
-
-![delete command message](images/deleteCommandMessage.png)
 
 Format: `delete INDEX`
 
@@ -124,19 +123,24 @@ Format: `delete INDEX`
 - The index must be a positive integer: 1, 2, 3, …​
 
 Example:
-- `delete 2` Deletes the second exercise in the displayed list.
+- `delete 4` Deletes the second exercise in the displayed list. Result can be seen below.
+
+### Before
+![before delete](images/beforeDelete.png)
+
+### After
+![after delete](images/afterDelete.png)
+
 
 ## 3.5. List: `list`
 Lists out all the exercises that the user has keyed in.
 
-![list command message](images/listCommandMessage.png)
-
 Format: `list`
 
 ## 3.6. Find exercises: `find`
-Finds exercises that match all the input fields.
+Finds exercises that match all the input fields in the Exercsie Panel.
 
-![find command message](images/findCommandMessage.png)
+
 
 Format: `find [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [k/KEYWORD...]`
 - For name, description, date, and calories, only exercises that exactly match the inputs will be listed. These fields are case-insensitive. e.g. `Run` will match `run`.
@@ -145,7 +149,8 @@ Format: `find [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [k/KEYWORD...]
 - in v1.4, find command does not support muscles and tags.
 
 Example:
-- find n/running
+- `find n/Push Up` will return the result below, when there is only one matching `Push Up`.
+![find command message](images/findCommand.png)
 
 ## 3.7. Clearing all entries : `clear`
 
@@ -168,10 +173,13 @@ The application will save the data automatically to the default file path after 
 ## 3.10. Archive : `archive`
 Archive the data into a different file location.
 
-Format: `archive f/FILE_LOCATION\FILE_NAME.json`  
+Format: `archive f/FILE_LOCATION/FILE_NAME.json`  
 The format of the file location accept both Absolute and Relative Path.
 The file name must ends with the extension `.json`
 
+You should see the following response in the [Response Box](#31-understanding-the-display)
+
+[Archive Message](images/ArchiveMessage.png)
 
 Examples:
 - `archive f/data/file_name.json`
@@ -194,14 +202,17 @@ Examples:
 ## 3.11. Recall : `recall`
 Recalls the most recent exercise with the specified name.
 
-![recall command message](images/recallCommandMessage.png)
-
 Format: `recall EXERCISE`
 - the name of exercise is case-insensitive. e.g. `push up` will match `PUSH UP`.
 - Only exercises that are on or before the current day will be listed. Exercises with future dates will not be recalled.
 
 Example:
-- `recall run` finds the most recent exercise with the name `run`.
+- `recall Pull Up` finds the most recent exercise with the name `Pull Up`. In the following example,
+there is two of such exercise on '09-11-2020' and '05-10-2020' so only the former is shown.
+
+![Before Recall](images/beforeRecall.png)
+### After Recall Command
+![After Recall](images/afterRecall.png)
 
 ## 3.12. Add templates : `create`
 Adds an exercise template.
@@ -210,11 +221,13 @@ Adds an exercise template.
 Format: `create n/NAME d/DESCRIPTION c/CALORIES`
 
 Examples:  
-- `create n/pushup c/100` Creates the exercise template with the name push up, description half an hour and calories 100.
+- `create n/pushup c/100` Creates the exercise template with the name push up, description half an hour and calories 100
+and will be shown in the Template Panel.
+
+![Create Template](images/createTemplate.png)
 
 ## 3.13. Add an exercise using template : `addt`
 Adds an exercise using template.
-
 
 Format: `addt temp/NAME d/DESCRIPTION at/DATE [c/CALORIES]`
 - The format for the DATE should be in the form of DD-MM-YYYY.  
@@ -224,10 +237,11 @@ Format: `addt n/NAME at/DATE [c/CALORIES]`
 - The user can input calorie value to overwrite the default calorie value defined by the template. If the user inputs no calories, then the exercise will have the default calorie value in the template.
 
 Examples:<br>
+- `addt temp/pushup d/half an hour at/09-06-2020` Creates the exercise using the template called pushup with the date 09-06-2020, description half an hour and default calories 100.
 - `addt temp/pushup d/half an hour at/09-07-2020 c/260` Creates the exercise using the template called pushup with the date 09-07-2020, description half an hour and calories 260.
 
-- `addt temp/pushup d/half an hour at/09-06-2020` Creates the exercise using the template called pushup with the date 09-06-2020, description half an hour and default calories 100.
-
+For the last example of command, this will be the result.
+![Addt](images/addtCommand.png)
 
 ## 3.14. Viewing help : `help`
 
@@ -249,20 +263,20 @@ will help you create a goal of the number of calories to be burnt on a particula
 
 - Adding exercises on a particular date with goal will update your goal for that day accordingly.
 
+Format:goal `c/CALORIES at/DATE`
+
 Examples:<br>
 
 -  `goal c/69 at/09-11-2020`  Creates a goal of 69 calories to be burnt on 09-11-2020.
 -  `goal c/420 at/23-12-2023` Creates a goal of 420 calories to burnt on 23-12-2023
 
-
-Format:goal `c/CALORIES at/DATE`
-
+![Goal](images/goalCommand.jpg)
 
 ---
 ## 4. FAQ
 
 *Q*: How do I transfer my data to another Computer?<br>
-*A*: Transfer the file “data” that is contained in the same file as your .jar file from your old computer to your new computer.
+*A*: Download `Calo` on your new computer. Transfer the `data` file from your old computer to your new folder.
 
 *Q*: How to load my archived file?<br>
 *A*: For now, you can delete the `testing.json` file in the `data` folder and rename the archived file of your choices to `testing.json`. In subsequent updates, we will introduce a command to load archived files via Command Line Interface.
@@ -273,7 +287,7 @@ Format:goal `c/CALORIES at/DATE`
 
 | Action     | Format, Examples                                                                                                                                                      |
 | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| *Add*    | `add n/EXERCISE d/DESCRIPTION at/DATE [c/CALORIES] [m/MUSCLES_WORKED] [t/TAG]..` <br> e.g., `add n/running d/10 mins at/31-12-2020 c/100 m/chest,arm t/home t/gym` |
+| *Add*    | `add n/EXERCISE d/DESCRIPTION [at/DATE] [c/CALORIES] [m/MUSCLES_WORKED] [t/TAG]..` <br> e.g., `add n/running d/10 mins at/31-12-2020 c/100 m/chest,arm t/home t/gym` |
 | *Clear* | `clear`|
 | *Delete* | `delete INDEX`<br> e.g., `delete 2`     |                                                                                                                              |
 | *Update*   | `update INDEX [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES]​ [m/MUSCLES_WORKED] [t/TAG]..`<br> e.g., `update 1 n/Push up d/30 at/09-07-2020 c/260 m/chest,arm t/home t/gym`                                           |
@@ -284,4 +298,5 @@ Format:goal `c/CALORIES at/DATE`
 | *Exit* | `exit`|
 | *Recall*   | `recall EXERCISE` <br> e.g.,`recall running`  
 | *Create*   | `create n/EXERCISE c/CALORIES` <br> e.g., `create n/pushup c/100`
-| *Addt*     | `addt temp/EXERCISE at/DATE [c/CALORIES]` <br> e.g., `addt temp/pushup d/half an hour at/09-07-2020 c/260`
+| *Addt*     | `addt temp/EXERCISE at/DATE [c/CALORIES]` <br> e.g., `addt temp/pushup d/half an hour at/09-07-2020 c/260` |
+| *Goal* | `goal c/CALORIES at/DATE` |
