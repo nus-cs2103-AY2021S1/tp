@@ -118,6 +118,9 @@ UI component | Description
 *Revenue list* | Displays all the revenues in your current account in a panel.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 # 4. Components
 *(Written by Nicholas Canete)* <br>
 
