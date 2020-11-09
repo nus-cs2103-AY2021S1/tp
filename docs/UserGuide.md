@@ -344,11 +344,11 @@ Adds a `Mastery Check` session with a `Student` at a specific `date` and `time`.
 * `add -mc Mary Jane d/2021-01-02 t/09:15`
 
 <div markdown="block" class="alert alert-info">
-When you add a `Mastery Check` for a future date while displaying only past `Mastery Checks`, make sure to enter `view -mc` to view the complete list to check if the `Mastery Check` has been added correctly.
-Similarly, when you add a `Mastery Check` for a past date while displaying only future `Mastery Check`, make sure to enter `view -mc`.
-`NAME` does not have to correspond to an existing student; this is so that the tutor may freely use any nicknames or other identifiers as they see fit. However, it may not be left empty.
-Because date and time is considered in order, the d/ prefix must come earlier than t/.
-When a `Mastery Check` is first added, a `FAIL` default value will be assigned.
+* When you add a `Mastery Check` for a future date while displaying only past `Mastery Checks`, make sure to enter `view -mc` to view the complete list to check if the `Mastery Check` has been added correctly.
+* Similarly, when you add a `Mastery Check` for a past date while displaying only future `Mastery Check`, make sure to enter `view -mc`.
+* `NAME` does not have to correspond to an existing student; this is so that the tutor may freely use any nicknames or other identifiers as they see fit. However, it may not be left empty.
+* Because date and time is considered in order, the d/ prefix must come earlier than t/.
+* When a `Mastery Check` is first added, a `FAIL` default value will be assigned.
 </div>
 
 #### 6.3.3 Adding `Todos` : `-t`
@@ -361,8 +361,7 @@ Adds your personal `Todo` with a `description`.
 * `add -t Return calculator to Mary`
 
 <div markdown="block" class="alert alert-info">
-
-The way to input is similar to the screenshot of adding `Mastery Check` above, only without the date and time.
+* The way to input is similar to the screenshot of adding `Mastery Check` above, only without the date and time.
 </div>
 
 #### 6.3.4 Adding `Events` : `-e`
@@ -375,8 +374,7 @@ Adds your personal `Event` with a `description`, to attend at a specific date an
 * `add -e CS2103T team meeting d/2020-09-27 t/10:30`
 
 <div markdown="block" class="alert alert-info">
-
-An `Event` requires extra date and time specifications in order to create. The way to input is similar to the screenshot of adding `Mastery Check` above.
+* An `Event` requires extra date and time specifications in order to create. The way to input is similar to the screenshot of adding `Mastery Check` above.
 </div>
 
 #### 6.3.5 Adding `Deadlines` : `-d`
@@ -389,8 +387,7 @@ Adds your personal `Deadline` with a `description`, to complete by a specific da
 * `add -d Research project report d/2020-10-05 t/10:30`
 
 <div markdown="block" class="alert alert-info">
-
-Similar to `Event`, a `Deadline` requires extra date and time specifications in order to create. You can refer to the screenshot of adding `Mastery Check` above for a real-life example of how the command would look like.
+* Similar to `Event`, a `Deadline` requires extra date and time specifications in order to create. You can refer to the screenshot of adding `Mastery Check` above for a real-life example of how the command would look like.
 </div>
 
 
@@ -426,6 +423,10 @@ Edits the fields of a `Student`.
 * `edit -s 1 e/koolguy@gmail.com t/handsome`
 * `edit -s 3 n/Timots`
 
+<div markdown="block" class="alert alert-info">
+You can refer to the screenshot below for how the input will look like.
+</div>
+
 #### 6.4.3 Editing `Mastery Checks` : `-mc`
 
 At least one of the optional parameters must be provided.
@@ -440,9 +441,9 @@ Edits the score of a `Mastery Check` session with a `Student`.
 * `edit -mc 3 s/1`
 
 <div markdown="block" class="alert alert-info">
-Do note that the `SCORE` parameter can only be 0 or 1, according to the actual restrictions of `Mastery Check` pass/fail in CS1101S.
-The `INDEX` parameter should be a non-zero unsigned integer that is a valid index currently displayed along with the target `Mastery Check`.
-Jarvis allows editing to the same value; even if no values are actually updated by the command, it will display a success message.
+* Do note that the `SCORE` parameter can only be 0 or 1, according to the actual restrictions of `Mastery Check` pass/fail in CS1101S.
+* The `INDEX` parameter should be a non-zero unsigned integer that is a valid index currently displayed along with the target `Mastery Check`.
+* Jarvis allows editing to the same value; even if no values are actually updated by the command, it will display a success message.
 </div>
 
 ### 6.5 Deleting Information : `delete`
@@ -457,8 +458,9 @@ Deletes a `Task` based on the `INDEX` you specify.
 <br>✏️ Examples:
 * `delete -c 3`
 
-<br>⚠️ Notes:
+<div markdown="block" class="alert alert-info">
 * The `INDEX` parameter should be a non-zero unsigned integer that is a valid index currently displayed along with the target `Consultation`.
+</div>
 
 #### 6.5.2 Deleting `Mastery Checks` : `-mc`
 
@@ -470,8 +472,9 @@ Deletes a `Mastery Check` based on the `INDEX` you specify.
 <br>✏️ Examples:
 * `delete -mc 3`
 
-<br>⚠️ Notes:
+<div markdown="block" class="alert alert-info">
 * The `INDEX` parameter should be a non-zero unsigned integer that is a valid index currently displayed along with the target `Mastery Check`.
+</div>
 
 #### 6.5.3 Deleting `Tasks` : `-t`
 
@@ -494,8 +497,6 @@ Please take note of the command inputted into the command box to understand how 
 <br>**Format: `view -s`**
 
 ![ViewAllStudentsCommand](images/userguide/viewAllStudents.png)
-
-You may also click on the `Student` tab to do so.
 
 #### 6.6.2 Viewing `Student` with keyword : `-s [NAME]`
 
