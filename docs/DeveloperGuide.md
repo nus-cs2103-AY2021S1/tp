@@ -142,18 +142,17 @@ Given below is an example usage scenario and how the priority mechanism behaves 
 
 Step 1. The user will add a client using the GUI and specifies the user to be added. The `AddCommandParser` will check if there was an empty string input for the priority field, if there is, we will set it as Undefined. If the user puts any other input other than the predefined inputs(H for high, M for medium, L for low), the user will get an error message. 
 
-Step 2: The `AddCommandParser` object will parse the command into an `addcommand` object in the logic package to check if the user is a duplicated user or not.  If the person is a valid person, the person would be wrapped into a `Model` and passed to the `UI`.
+Step 2: The `AddCommandParser` object will parse the command into an `AddCommand` object in the logic package to check if the user is a duplicated user or not.  If the person is a valid person, the person would be wrapped into a `Model` and passed to the `UI`.
 
 Step 3: In the UI, as it is an `AddCommand` object, the `MainWindow` will update the `PersonListPanel`, which will call the `updateItem` method based on the Person and the priority. This will go to the `PersonListViewCell`, and would attempt to create a person class. 
 
-Step 4: To identify between the different levels of priority, I propose to use a to have the `PersonCard` identify the type of person it is and would adjust the GUI based on it.
- This PersonCard will make use of components from the PriorityIndicator Components class to construct the indicator used by `PersonCard`. To create further abstraction, the colors used will be taken from the Color
+Step 4: To identify between the different levels of priority, I propose to use a to have a `PriortyIndicatorComponent` class to identify the type of person it is based on the archive status and the priority. The `PriorityIndicatorComponent` class will construct the indicator border and background using `Paint` elements from the `ColorPicker` class. The `PersonList` object will set the background and border based on the returned border and background. 
 
-Step 5: This card would be returned back to the PersonListViewCell, updated on the PersonListPanel and finally shown in the Mainwindow. 
+Step 5: This `PersonList` Object would be returned to the `PersonListViewCell`, updated on the `PersonListPanel` and finally shown in the `Mainwindow`. 
 
 The following sequence diagram shows how the Priority operation works:
 
-![Proposed Sequence Diagram](images/ImplementationSuggestionSequence.png)
+![Proposed Sequence Diagram](images/ImplementationPrioritySequence.png)
 
 #### Design consideration:
 
