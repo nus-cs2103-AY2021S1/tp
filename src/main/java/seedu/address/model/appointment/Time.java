@@ -20,9 +20,10 @@ public class Time {
     // Closes at 10pm
     public static final LocalTime CLOSING_TIME = LocalTime.of(22, 0);
 
+    public static final String MESSAGE_OPERATING_HOURS = "from " + OPENING_TIME.format(TIME_FORMAT)
+            + " to " + CLOSING_TIME.format(TIME_FORMAT);
     public static final String MESSAGE_CONSTRAINTS = "The appointment time period should fall within "
-            + "the opening hours: from " + OPENING_TIME.format(TIME_FORMAT)
-            + " to " + CLOSING_TIME.format(TIME_FORMAT)
+            + "the opening hours: " + MESSAGE_OPERATING_HOURS
             + "\nThe appointment duration should also be considered.";
 
     private final LocalTime value;
