@@ -1294,7 +1294,7 @@ For all test cases for bid features, the GUI will automatically switch to the bi
 
 2. Restrictions:  
     - At least one optional field must be provided.  
-    - All restrictions and prerequisites from ![Adding a Bid](#adding-a-bid) hold.  
+    - All restrictions and prerequisites from [Adding a Bid](#adding-a-bid) hold.  
 
 3. Test case: `edit-bid 1 b/P99 c/B12 m/1.20`  
 
@@ -1388,7 +1388,7 @@ For all test cases for meeting features, the GUI will automatically switch to th
 
 2. Restrictions:  
     - At least one optional field is required.  
-    - The prerequisites and restrictions of ![Adding a Meeting](#add-a-meeting) hold.  
+    - The prerequisites and restrictions of [Adding a Meeting](#add-a-meeting) hold.  
 
 3. Test case: `edit-m 2 v/eunos`.  
 
