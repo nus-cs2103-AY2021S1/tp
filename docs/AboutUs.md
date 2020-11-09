@@ -29,7 +29,7 @@ You can reach us at the email `ktaekwon000 [at] gmail dot com`.
 * Role: Developer
 * Responsibilities: UI
 
-### Taekwon Kim
+### Kim Tae Kwon
 
 <img src="images/ktaekwon000.png" width="200px">
 
@@ -39,7 +39,7 @@ You can reach us at the email `ktaekwon000 [at] gmail dot com`.
 * Role: Developer
 * Responsibilities: Deliverables and Deadlines
 
-### Geon Sik Moon
+### Moon Geon Sik
 
 <img src="images/gsmoon97.png" width="200px">
 
