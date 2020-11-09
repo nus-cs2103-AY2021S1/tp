@@ -16,7 +16,7 @@ faster than most traditional GUI expense-trackers out there!
 This User Guide will show you how to navigate the User Interface (UI), give you step-by-step instructions on using commands, tips and tricks on how to maximise your experience with _Common Cents_ and clarify most doubts that you may have.
 
 The _Common Cents_ interface and commands consist of a few levels: `Application` level, `Account` level and `Entry` level.<br>
-* `Application` level commands deal with interactions with the app itself.<br>
+* `App` level commands deal with interactions with the app itself.<br>
 * `Account` level commands deal with managing the different accounts in the app.<br>
 * `Entry` level commands deal with managing the entries which are either expenses or revenues in an account.
 
@@ -209,6 +209,7 @@ Here are some general notes about the commands in _Common Cents_.
 
 The commands are separated into three categories: App-Level commands, Entry-Level commands and Account-Level Commands.
 
+<div style="page-break-after: always;"></div>
 Each level interacts with _Common Cents_ differently to maximise your experience. More details about each level are 
 found in its own section below.  
 
@@ -430,7 +431,7 @@ description (**Figure 5.2-5**)
 
 :bulb: **Tip:** When there are a lot of entries, and you want to delete something, 
 you can use `find` to search for it in the list and use [`delete INDEX`](#522-deleting-an-entry-delete) to remove it from the updated
-list, with the updated `ENTRY INDEX`.
+list, with the updated `INDEX`.
 
 </div>
 
@@ -776,9 +777,9 @@ Action | Format
 [**Add**](#521-adding-an-entry-add) | `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
 [**Delete**](#522-deleting-an-entry-delete) | `delete INDEX c/CATEGORY`
 [**Edit**](#523-editing-an-entry-edit) | `edit INDEX c/CATEGORY [d/DESCRIPTION] [a/AMOUNT] [t/TAG]`
-[**Find**](#524-locating-entries-by-description-find) | `find k/KEYWORD [MORE_KEYWORDS]`
+[**Find**](#524-locating-entries-by-description-find) | `find k/KEYWORD [MORE_KEYWORDS] [c/CATEGORY]`
 [**List**](#525-listing-all-entries-list) | `list`
-[**Clear**](#526-clearing-all-expenses-or-revenue-clear) | `clear c/CATEGORY`
+[**Clear**](#526-clearing-all-expenses-or-revenue-clear) | `clear [c/CATEGORY]`
 [**Profit**](#527-calculating-net-profits-based-on-expenses-and-revenues-profit) | `profit`
 [**Undo**](#528-undoing-entry-level-commands-undo) | `undo`
 [**New Account**](#531-adding-new-account-newacc) | `newacc n/NAME`
