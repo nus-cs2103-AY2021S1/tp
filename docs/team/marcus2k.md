@@ -33,20 +33,20 @@ Given below are my contributions to the project.
   * Reviewed and merged PRs
 
 * **Enhancements to existing features**:
-  * Updated the find command (Pull requests [\#42]())
-  * Wrote additional tests for `alias` and `resetAlias` feature to increase coverage from 62.84% to 65.05% (Pull requests [\#154]())
-  * Add feature restrictions or update behaviours with justifications (Pull requests [\#84]())
+  * Updated the find command (Pull requests [\#42](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/42))
+  * Wrote additional tests for `alias` and `resetAlias` feature to increase coverage from 62.84% to 65.05% (Pull requests [\#154](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/154))
+  * Add feature restrictions or update behaviours with justifications (Pull requests [\#84](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/84))
 
 * **Documentation**:
   * User Guide:
-    * Updated documentation for the features `find` and `alias` (Pull requests [\#88](), [\#165]()) 
-    * Added documentation for the features `resetAlias` [\#165]()
+    * Updated documentation for the features `find` and `alias` (Pull requests [\#88](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/88), [\#165](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/165)) 
+    * Added documentation for the features `resetAlias` [\#165](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/165)
   * Developer Guide:
-    * Added implementation details of the `alias` feature. [\#165]()
+    * Added implementation details of the `alias` feature. [\#165](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/165)
 
 * **Community**:
-  * Reported bugs: [\#163](), [\#153]()
-  * PRs reviewed and merged: [\#37](), [\#14](), [\#66](), [\#89](), [\#95]()
+  * Reported bugs: [\#163](https://github.com/AY2021S1-CS2103-W14-3/tp/issues/163), [\#153](https://github.com/AY2021S1-CS2103-W14-3/tp/issues/153)
+  * PRs reviewed and merged: [\#37](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/37), [\#14](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/14), [\#66](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/66), [\#89](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/89), [\#95](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/95)
   * Asked question in forum [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/130)
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S1-CS2103-F09-3/tp/issues/176), [2](https://github.com/AY2021S1-CS2103-F09-3/tp/issues/175), [3](https://github.com/AY2021S1-CS2103-F09-3/tp/issues/174), [4](https://github.com/AY2021S1-CS2103-F09-3/tp/issues/172))
 
