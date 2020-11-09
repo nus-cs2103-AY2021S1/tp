@@ -491,9 +491,9 @@ Examples:
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** Be careful when creating a macro!
-* It is possible to create a macro with errors!
-* The commands in the macro will only be checked for errors when you run the macro itself.
-* e.g. Entering `macro test; add` will create a new macro, but every time you execute the macro `test`, the error message from `add` telling you it requires the name parameter will be shown.
+- It is possible to create a macro with errors!
+- The commands in the macro will only be checked for errors when you run the macro itself.
+- e.g. Entering `macro test; add` will create a new macro, but every time you execute the macro `test`, the error message from `add` telling you it requires the name parameter will be shown.
 
 </div>
 
