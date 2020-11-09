@@ -86,18 +86,22 @@ public class ExpenseBookParser {
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
+            checkSingleWordCommand(arguments);
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
+            checkSingleWordCommand(arguments);
             return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
+            checkSingleWordCommand(arguments);
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
+            checkSingleWordCommand(arguments);
             return new HelpCommand();
 
         case RemarkCommand.COMMAND_WORD:
@@ -128,9 +132,16 @@ public class ExpenseBookParser {
             return new ResetAliasCommandParser().parse(arguments);
 
         case GraphCommand.COMMAND_WORD:
+            checkSingleWordCommand(arguments);
             return new GraphCommand();
 
         default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
+
+    private void checkSingleWordCommand(String args) throws ParseException {
+        if (!args.isEmpty()) {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }

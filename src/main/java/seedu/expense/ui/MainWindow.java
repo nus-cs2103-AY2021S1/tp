@@ -209,7 +209,8 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (!commandResult.isShowBudgetDisplay() || (commandResult.isShowHelp() && !budgetDisplay.isVisible())) {
+            if (!commandResult.isShowBudgetDisplay() || ((commandResult.isShowHelp()
+                    || commandResult.isShowGraph()) && !budgetDisplay.isVisible())) {
                 budgetDisplay.hide();
             } else {
                 budgetDisplay.show();
