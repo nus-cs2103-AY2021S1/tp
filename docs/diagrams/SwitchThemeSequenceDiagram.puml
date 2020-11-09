@@ -5,9 +5,9 @@ Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR
 Participant ":Logic" as logic LOGIC_COLOR
 
-user -[USER_COLOR]> ui : "timeline"
+user -[USER_COLOR]> ui : "light"
 activate ui UI_COLOR
-ui -[UI_COLOR]> logic : execute(timeline)
+ui -[UI_COLOR]> logic : execute(light)
 activate logic LOGIC_COLOR
 logic -[LOGIC_COLOR]> ui : return CommandResult
 deactivate logic
@@ -43,7 +43,7 @@ else triggerDarkTheme
 else else
 end
 
-ui -[UI_COLOR]> user : TimelineWindow shown or focused
+ui -[UI_COLOR]> user : Light theme set successfully
 deactivate
 
 @enduml

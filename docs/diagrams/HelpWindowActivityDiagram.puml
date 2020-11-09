@@ -1,0 +1,21 @@
+@startuml
+!include style.puml
+
+start
+:User executes help command;
+
+if () then ([command is invalid])
+    :Throw ParseException;
+    end
+else ([else])
+    :Command is executed;
+    :HelpWindow removes existing stylesheet;
+    :HelpWindow checks for the current theme;
+if () then ([current theme is dark theme])
+    :HelpWindow adds and uses dark theme stylesheet;
+else ([current theme is light theme])
+    :HelpWindow adds and uses light theme stylesheet;
+endif
+:HelpWindow is shown;
+stop
+@enduml
