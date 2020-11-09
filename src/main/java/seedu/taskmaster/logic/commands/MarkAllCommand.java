@@ -3,12 +3,9 @@ package seedu.taskmaster.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_ATTENDANCE_TYPE;
 
-import java.util.List;
-
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.model.Model;
 import seedu.taskmaster.model.record.AttendanceType;
-import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.session.exceptions.SessionException;
 
 public class MarkAllCommand extends MarkCommand {
@@ -30,8 +27,7 @@ public class MarkAllCommand extends MarkCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
-            List<StudentRecord> lastShownList = model.getFilteredStudentRecordList();
-            model.markAllStudentRecords(lastShownList, attendanceType);
+            model.markAllStudents(attendanceType);
         } catch (SessionException sessionException) {
             throw new CommandException(sessionException.getMessage());
         }

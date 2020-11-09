@@ -70,9 +70,14 @@ public class StudentRecordListManager implements StudentRecordList {
      * Marks the attendance of students represented by the list of {@code nusnetIds} with {@code attendanceType}.
      */
     @Override
-    public void markAllStudentAttendances(List<NusnetId> nusnetIds, AttendanceType attendanceType) {
-        for (NusnetId nusnetId : nusnetIds) {
-            markStudentAttendance(nusnetId, attendanceType);
+    public void markAllStudentAttendances(AttendanceType attendanceType) {
+        for (int i = 0; i < internalList.size(); i++) {
+            StudentRecord studentRecord = internalList.get(i);
+            EditStudentRecordDescriptor descriptor = new EditStudentRecordDescriptor();
+            descriptor.setAttendanceType(attendanceType);
+
+            StudentRecord markedStudentRecord = createEditedStudentRecord(studentRecord, descriptor);
+            internalList.set(i, markedStudentRecord);
         }
     }
 
@@ -104,13 +109,18 @@ public class StudentRecordListManager implements StudentRecordList {
         }
     }
 
-    /**
-     * Updates participation score of all students in the list of {@code nusnetIds} with {@code attendanceType}.
-     */
     @Override
-    public void scoreAllParticipation(List<NusnetId> nusnetIds, double score) {
-        for (NusnetId nusnetId : nusnetIds) {
-            scoreStudentParticipation(nusnetId, score);
+    public void scoreAllParticipation(double score) {
+        for (int i = 0; i < internalList.size(); i++) {
+            StudentRecord studentRecord = internalList.get(i);
+
+            if (studentRecord.getAttendanceType() == AttendanceType.PRESENT) {
+                EditStudentRecordDescriptor descriptor = new EditStudentRecordDescriptor();
+                descriptor.setClassParticipation(new ClassParticipation(score));
+
+                StudentRecord scoredStudentRecord = createEditedStudentRecord(studentRecord, descriptor);
+                internalList.set(i, scoredStudentRecord);
+            }
         }
     }
 
