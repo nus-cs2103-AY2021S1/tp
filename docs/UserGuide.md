@@ -2,6 +2,7 @@
 layout: page
 title: User Guide
 ---
+![Nuudle Logo](images/nuudleLogo.png)
 
 * Table of Contents
 {:toc}
@@ -65,17 +66,27 @@ Let's get started! :smiley:
 
 ### Installing Nuudle
 
-Follow these steps to get started with Nuudle:
+Follow these steps to get started:
 
-1. Ensure you have **Java 11** or above installed in your Computer.
+1. Ensure you have **Java 11** or above installed on your Computer. 
+    * To find out the Java version you have installed, click [here](https://www.java.com/en/download/help/version_manual.xml).
+    * If Java is not installed on your computer, click [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) to download it.
 
-1. Download the latest version of Nuudle from [here](https://github.com/ay2021s1-cs2103t-t12-4/tp/releases).
+1. Proceed to Nuudle's download page [here](https://github.com/ay2021s1-cs2103t-t12-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the home folder for Nuddle.
+1. Click on the link displayed in the following picture to download Nuudle's application file.
+![GitHub download page](images/QuickStart.png)
 
-1. Double-click the file to start up Nuudle. An application window similar to the one below should appear in a few seconds.<br>
-   Notice how Nuudle also comes with some sample data to get you started.<br>
-   ![Ui](images/Ui.png)
+1. Save the file to a folder where you want to store the Nuddle application and it's related data.
+![GitHub download page](images/QuickStart2.png)
+
+1. Double-click the `Nuudle application` to start Nuudle up. 
+An application window similar to the one below should appear in a few seconds.<br>
+![GitHub download page](images/QuickStart3.png)
+
+    * Notice how Nuudle comes with sample data to get you started.<br>
+    ![Ui](images/Ui.png)
+1. Congratulations! Nuudle is now ready for your perusal :smiley:
 
 ### Using Nuudle
 
@@ -226,10 +237,30 @@ Formatted Date | Natural Date | Formatted Time | Natural Time
 **:exclamation: Important information about the command parameters**<br>
 
 * `DATE`
+    * Please use the prefix `d/` when indicating a `DATE` value in your user input.
+    * Please note that the `DATE` used for scheduling an appointment must be set in the future.
+    * Please refer to the following [link](#command-format) for the different `DATE` formats we support in our Nuudle application.
 
 * `TIME`
+    * Please use the prefix `t/` when indicating a `TIME` value in your user input.
+    * Please note that the `TIME` used for scheduling an appointment must be set in the future.
+    * Please refer to the following [link](#command-format) for the different `TIME` formats we support in our Nuudle application.
+
 
 * `APPT_INDEX` & `PATIENT_INDEX`
+    * Unlike `DATE` and `TIME`, we do not require users to enter a prefix before the `INDEX` value.
+    * Please note that the index used **must be a positive integer**. For example, valid index values include 1, 2, 3, etc …
+    * The `APPT_INDEX` refers to the number shown in the displayed appointment book located on the right side of the UI.
+    ![Appointment Index](images/CommandFormatAppt.png)
+    * The `PATIENT_INDEX` refers to the number shown in the displayed patient book located on the left side of the UI.
+    ![Patient Index](images/CommandFormatPatient.png)
+
+* `DURATION`
+    * We measure our `DURATION` inputs in minutes. For example, to enter a `DURATION` of 1 hour, kindly use `dur/60` as the input value.
+    * The `DURATION` of an appointment must be a positive integer that is greater than or equal to 10 minutes.
+    * To provide you with a better user experience, we decided to display the time range of an appointment calculated by adding the `DURATION` you entered to the starting `TIME` of the appointment.
+    ![Duration Display](images/CommandFormatDuration.png)
+
 
 </div>
 
@@ -441,64 +472,82 @@ The particulars of the edited patient is displayed in the *result display box*.<
 
 #### Deleting a patient : `delete`
 
-Deletes the specified patient from the patient book.
+Deletes a patient from the patient book.
 
 Format: `delete PATIENT_INDEX`
 
 * Deletes the patient at the specified `PATIENT_INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* Deleting a patient will also delete all the appointments of the person.
+* Please click [here](#command-format) for important formatting information regarding the `PATIENT_INDEX` field.
+* Do note that deleting a patient will also delete all corresponding appointments belonging to that patient.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd patient in the displayed patient list.
-* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+* `delete 2` <br>Deletes the 2nd patient displayed in the patient book.
+* Calling `find Betsy` followed by `delete 1` deletes the 1st patient displayed in the resulting patient book of the `find` command.
 
+Step by step illustration:
+1. Suppose you want to delete Alex, which is currently at the top of the patient book, from your database.<br>Simply enter `delete 1` in the command box and press <kbd>Enter</kbd>.<br>
 ![DeleteCommand](images/DeleteCommand.png)
 
-#### Adding a remark for a patient : `remark`
+1. Alex is now deleted from the database and the patient book is updated accordingly. 
+![DeleteCommand](images/DeleteCommand2.png)
 
-Adds a remark to an existing patient in the patient book for nurses to store additional data unique to the patient.
+
+#### Adding a remark to a patient: `remark`
+
+Looking to add additional data unique to your patient besides the basic fields? Look no further. Use this command to add or delete a remark to an existing patient.
 
 Format: `remark PATIENT_INDEX [r/REMARK]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-We implemented our remarks feature to empower you with the ability to add extra information to a patient's bio data!
-So don't be shy and feel free to add anything under the sun that is applicable for the patient.
-</div>
+<br> Alternatively, you can use the edit command to add or edit remarks if you wish to change multiple fields (eg. Phone number) at the same time.
+</div><br>
 
 * **Adds a remark** for the patient at the specified `PATIENT_INDEX`.
-* `PATIENT_INDEX` here refers to the number shown on the left side of the displayed patient book.
-* Please note that the index used **must be a positive integer** 1, 2, 3, …​
-* A remark is an **optional field** and can be left blank if it is not applicable.
+* Please click [here](#command-format) for important formatting information for the `PATIENT_INDEX` field.
+* A remark is an **optional field** and can be left blank if you wish to delete the existing `REMARK`.
 * A patient will have `NIL` displayed as his/her remark status if it was left empty.
 * To **override** a remark, simply use the remark command as described above.
- Alternatively, you can also use the edit command to add or edit remarks if you wish to change multiple fields (eg. Phone number) at the same time.
 * If you wish to **delete** a patient's remark, simply use either of the following commands:
     * `remark PATIENT_INDEX`
     * `remark PATIENT_INDEX r/`
 
-Examples to add remarks:
-*  `remark 2 r/Has been visiting Dr John` Adds a remark `Has been visiting Dr John` to the patient currently displayed second from the top in the patient list.
-*  `remark 1 r/Can only converse in mandarin` Adds a remark `Can only converse in mandarin` to the patient currently displayed at the top of the patient list.
+Examples to add remark:
+*  `remark 2 r/Has been visiting Dr John` <br>Adds a remark `Has been visiting Dr John` to the patient currently displayed second from the top in the patient list.
+*  `remark 1 r/Can only converse in mandarin` <br>Adds a remark `Can only converse in mandarin` to the patient currently displayed at the top of the patient list.
 
-![result for 'Add remark'](images/addRemark.png)
+Step by step illustration for adding a remark:
+1. Suppose you want to add additional information for your regular patient, Bernice, by indicating her preferred dentist.
+<br>Simply enter `remark 2 r/Has been visiting Dr John` in the command box and press <kbd>Enter</kbd>.<br>
+![Command for 'Add remark'](images/addRemark.png)
+1. Bernice’s remark is now updated and the particulars of the added remark is displayed in the result display box.
+![Result for 'Add remark'](images/AddRemark2.png)
+
 <br>
-
 Examples to delete the remark for a patient at index 1:
+
 * `remark 1 r/`
 * `remark 1`
 
-![result for 'Empty remark'](images/nullRemark.png)
+Step by step illustration for deleting a remark:
+1. Suppose you want to delete the remark data for Bernice, simply enter `remark 2` in the command box and press <kbd>Enter</kbd>.<br>
+![Command for 'Delete remark'](images/DeleteRemark.png)
+1. Bernice’s remark is now deleted and the particulars of the deleted remark is displayed in the result display box.
+
+![Result for 'Delete remark'](images/DeleteRemark2.png)
 <br>
 
 #### Listing all patients : `list`
 
-Shows a list of all patients in the patient book.
+If you like to reset the displayed patient or appointment book to it's original state after using a command like `find` or `view`, use this command to display the full list of all patients and appointments in NUUDLE.
 
 Format: `list`
 
+Step by step illustration:
+1. Suppose you used the `find` command previously to locate appointments that belonged to a patient, Alex, and now wish to reset the displayed lists to their original states, simply type `list` in the command box and press <kbd>Enter</kbd>.<br>
 ![ListCommand](images/ListCommand.png)
+
+2. Both the appointment and patient books are updated to display all patient and appointment data.
+![ListCommand](images/ListCommand2.png)
 
 #### Locating patients by name : `find`
 
@@ -557,40 +606,51 @@ Suppose `Alex Yeoh`, the first patient in the list calls to book an appointment 
 2. The information of the added appointment is displayed in the *result display box.*<br>
 ![AssignCommand2](images/Assign2.png)
 
-#### Reschedules an appointment for a patient : `change`
+#### Reschedules an existing appointment: `change`
 
-Reschedules or modifies an existing appointment with a new date, time or duration.
+If a patient wish to change his/her appointment details, you can use this command to assist you. It helps you to reschedule or modify an existing appointment with a new date, time or duration.
 
-Do note that the duration used here is **measured in minutes** and must be **at least 10 minutes**!
+Do note that duration is **measured in minutes** and must be **at least 10 minutes long**!
 
 Format: `change APPT_INDEX [d/DATE] [t/TIME] [dur/DURATION]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you would only like to change the duration of an appointment while keeping it's original date and time, simply
+<br>If you would only like to change the duration of an appointment while keeping it's original date and time, simply
 enter the new `DURATION` with it's corresponding `APPT_INDEX`! There is no need to retype it's date and time. The same
 applies for the other fields.
 </div>
 
 * **Reschedules an appointment** at the specified `APPT_INDEX` for the patient it is tagged to.
-* The `APPT_INDEX` refers to the number shown in the displayed appointment book located on the right side of the UI.
-* Please note that the index used **must be a positive integer** 1, 2, 3, …
-* Please note that the `DATE` and `TIME` used for rescheduling must be set in the future.
-* **At least one** of the optional fields must be present for a successful execution of the change command.
+* Please click [here](#command-format) to refer to important formatting information for the `DATE`, `TIME` and `DURATION` fields.
+* **At least one** optional field must be provided to successfully execute the change command.
+* Appointment details will be updated according to the fields present in the user input. For fields that are absent, the appointment's original data will be used.
+
+
+Examples:
+*  `change 3 d/02-03-2021` <br> Reschedules the 3rd appointment displayed in the appointment book to 2nd March 2021 with it's original time, duration and patient.
+*  `change 2 d/12-05-2021 t/1530 dur/60` <br> Reschedules the 2nd appointment displayed in the appointment book to 12th May 2021, 3:30PM with a duration of 1 hour for it's original patient.
 
 * If you wish to **modify** the duration of an existing appointment, simply call the command in the following format:
     * `change 1 dur/NEW_DURATION`: <br>Extends the duration of the first appointment at `APPT_INDEX` 1 to the `NEW_DURATION` with the same date and start time.
 
-* Some examples of **rescheduling** an appointment with a new `DATE`,`TIME` or `DURATION`:
-    * `change 1 d/NEW_DATE dur/NEW_DURATION`: <br>Reschedules an appointment to the `NEW_DATE` with the `NEW_DURATION` at it's original `TIME`.
-    * `change 1 t/NEW_TIME dur/NEW_DURATION`: <br>Reschedules an appointment to the `NEW_TIME` with the `NEW_DURATION` at it's original `DATE`.
-    * `change 1 d/NEW_DATE t/NEW_TIME dur/NEW_DURATION`: <br>Reschedules an appointment to the `NEW_DATE` and `NEW_TIME` with the `NEW_DURATION`.
-* Any other combinations of the optional fields are supported as well.
+Step by step illustration:
+<br>Example 1: Changing date
+1. Suppose a patient, Charlotte, wants to reschedule her appointment to the following day at the same time. <br>Simply type 
+`change 1 d/tomorrow` in the command box and press <kbd>Enter</kbd>.<br>
+![Change Command Date Example](images/ChangeCommandDate.png)
 
-Examples to reschedule appointments:
-*  `change 3 d/02-03-2021` <br> Reschedules the 3rd appointment in the appointment book to 2nd March 2021 with it's time, duration and patient.
-*  `change 2 d/12-05-2021 t/1530 dur/60` <br> Reschedules the 2nd appointment in the appointment list to 12th May 2021, 3:30PM with a duration of 1 hour with it's original patient.
+1. Charlotte's original appointment on the 9th of November, 3-4pm is now successfully rescheduled to 10th November at the same time.
+ ![Change Command Date result](images/ChangeCommandDate2.png)
 
-![ChangeCommand](images/ChangeCommand.png)
+<br>Example 2: Changing time and duration
+1. Suppose the nurse received updates from the dentist and is now required to increase the duration of Charlotte's appointment to 1.5 hours
+and as a result, has to push her appointment time-slot back to 7pm.
+<br>Simply enter `change 4 t/1900 dur/90` in the command box and press <kbd>Enter</kbd>.<br>
+ ![Change Command Date result](images/ChangeCommandTime.png)
+1. Charlotte's appointment is now shifted to 7pm with a new duration of 1.5 hour, thus resulting in a new end time at 8:30pm. 
+ ![Change Command Date result](images/ChangeCommandTime2.png)
+
+* Any other optional field combinations are supported as well.
 
 #### Canceling an appointment : `cancel`
 
