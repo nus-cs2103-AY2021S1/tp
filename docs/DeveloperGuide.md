@@ -173,9 +173,9 @@ Both options are equally feasible. However, Alternative 1 was chosen to avoid co
 
 #### Implementation
 
-The find module mechanism is facilitated by `FindModCommand` and `FindModCommandParser`. It allows users to search for modules based on their respective attributes which are the module code, module name and instructors teaching the module.
+The find module mechanism is facilitated by `FindModCommand` and `FindModCommandParser`. It allows users to search for modules based on their respective attributes which are the module code, module name and instructors of the module.
 It uses `ModelManager#updateFilteredModuleList(Predicate p)` which is exposed in the Model interface as `Model#updateFilteredModuleList(Predicate p)`.
-The method updates the current module list and filters it according to the given predicate which will then be reflected accordingly in the GUI.
+The method updates the active semester module list and filters it according to the given predicate which will then be reflected accordingly in the GUI.
 
 The following sequence diagram shows how the find module by module attributes operation works:
 
@@ -207,7 +207,7 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 The delete module mechanism is facilitated by the `DelmodCommand` and the `DelmodCommandParser`.
 It uses an operation `AddressBook#removeModule()` which is exposed in the `Model` interface as `Model#deleteModule()`.
-Then, the `removeModuleWithCode()` operation is called in `UniqueModuleList`. `UniqueModuleList#removeModuleWithCode()` will remove the module with the specified code
+Then, the `removeModuleWithCode()` operation is called in the active semester `UniqueModuleList`. `UniqueModuleList#removeModuleWithCode()` will remove the module with the specified code
 from the module list.
 
 Given below is the example usage scenario and how the delete module mechanism behaves at each step.
@@ -218,7 +218,7 @@ Given below is the example usage scenario and how the delete module mechanism be
 
 3. The `DelmodCommand` then calls `Model#deleteModule()` after checking for the existence of the specified module.
 
-4. The module with the specified module code will be deleted from the current semester's `UniqueModuleList` in `AddressBook`.
+4. The module with the specified module code will be deleted from the active semester `UniqueModuleList` in `AddressBook`.
 
 The following sequence diagram shows how the deleting of the module works:
 
@@ -280,7 +280,7 @@ Both are equally viable options but Alternative 1 was chosen so `Person` would n
 
 ### Unassign feature
 
-The assign feature is facilitated by `UnassignCommand` and `UnassignCommandParser`.
+The unassign feature is facilitated by `UnassignCommand` and `UnassignCommandParser`.
 It uses an operation `AddressBook#unassignInstructor()` which is exposed in the `Model` interface as `Model#unassignInstructor()`.
 Then, the `unassignInstructor()` operation is called in both `UniqueModuleList` and `Module`. `Module#unassignInstructor()` will remove the instructor from the module's set of instructors.
 
@@ -299,7 +299,7 @@ The following activity diagram summarizes what happens when a user executes an u
 
 ### Unassignall feature
 
-The assign feature is facilitated by `UnassignallCommand` and `UnassignallCommandParser`.
+The unassignall feature is facilitated by `UnassignallCommand` and `UnassignallCommandParser`.
 It uses an operation `AddressBook#unassignAllInstructors()` which is exposed in the `Model` interface as `Model#unassignAllInstructors()`.
 Then, the `unassignAllInstructors()` operation is called in both `UniqueModuleList` and `Module`. `Module#unassignAllInstructors()` will remove all instructors from all modules' set of instructors.
 
@@ -322,10 +322,10 @@ The following activity diagram summarizes what happens when a user executes an u
 
 * **Alternative 1 (current choice):** Unassigns all instructors from all modules.
  * Pros : More efficient to unassign all instructors from all modules.
- * Cons : Less efficient to unassign a certain instructor from all modules he/she teaches.
+ * Cons : Less efficient to unassign a certain instructor from all modules he/she instructs.
 
-* **Alternative 2:** Unassign a certain instructor from all modules he/she teaches.
- * Pros : More efficient to unassign a certain instructor from all modules he/she teaches.
+* **Alternative 2:** Unassign a certain instructor from all modules he/she instructs.
+ * Pros : More efficient to unassign a certain instructor from all modules he/she instructs.
  * Cons : Less efficient to unassign all instructors from all modules.
 
 ### Clear all contacts feature
@@ -484,7 +484,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the contact being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+  * Cons: We must ensure that the implementation of each individual command is correct.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1460,3 +1460,45 @@ Expected : Error message saying "Module list is already empty".
 
 1. Test case: `unassignall abcd`
    Expected: No contact is unassigned. Error details shown in the status message.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+### Changes from AB3
+
+The team modified some features of AB3. A person originally had a name, phone number, email, address, and tags. In FaculType, a person no longer has an address, but has a department, office, and remark.
+These additional attributes required the team to change the `Person` class inside of the `Model` component, which in turn caused the other classes using `Person` to be updated as well.
+The `add` and `edit` commands are modified to support these new attributes. The team has also modified the `find` command. In AB3, the find command can only `find` based on a person's name.
+In FaculType, the `find` command can find persons based on any attribute they have (e.g. name, phone number, office, etc.).
+
+The team added a new entity `Module` for module management. Modules have their own list, so now FaculType has two types of lists for persons and modules, compared to only one list for persons in AB3.
+Since there are now two types of lists, the team added additional commands to complement the `clear` and `list` commands. `clear` is renamed to reset and would reset all data in FaculType.
+`cclear` and `mclear` as well as `clist` and `mlist` are the respective equivalents of AB3's `clear` and `list` for the person list and the module list. 
+Modules can be added and deleted with `addmod` and `delmod` The team implemented the `findmod` command which is
+similar to the `find` command but for modules, and it allows searching by module attributes.
+
+The team added `assign`, `unassign` and `unassignall` to manage the person-module relationship.
+A second module list was required to implement the two-semester system. The team added `switch` to toggle between these two module lists.
+All the commands above related to module management and assignment are all new features that do not exist in AB3.
+
+The team modified the GUI to accommodate these changes, including the color scheme and overall structure. The team designed a logo for FaculType to become the program's icon.
+
+The project is harder to develop than AB3 because FaculType has two entity types (compared to one in AB3) and the module entity type has to have two separate lists.
+
+### Difficulties and Challenges
+
+As most of the developer team had never worked on a brown-field project before, working on the project seemed like a monumental task at first, even with the tutorials provided.
+Familiarizing oneself to the large codebase took up quite some time, and the team ended up learning the codebase while working on new features. A small change in one part of the codebase sometimes required a lot of changes in other areas of the codebase.
+The fact that the software architecture was somewhat similar to that of the individual project (iP) made it slightly easier to understand.
+
+JavaFX also proved to be difficult to master. A lot of GUI bugs occured and fixing them was very challenging.
+
+### Effort Required
+
+The team had to meet up at least once a week to discuss the current week's deliverables and assign each team member to certain tasks.
+Some additional meetings were held for intensive manual testing of the application.
+A working product had to be done by the end of each week, even if the current iteration was not finished yet. This way it was easier to identify bugs and feature changes that had to be made.
+
+Each team member had to be ready to review PRs every day of the week and continuous communication through a chat group was necessary to ensure everybody was on the same page.
+Documentation files had to be updated regularly to ensure every feature listed in the files is accurate as of the current feature's implementation.
