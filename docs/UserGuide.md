@@ -108,7 +108,7 @@ The following table explains the technical terms used in this user guide.
 | Technical Term | What it means |
 | ---------------| --------------|
 | Command Word | The first word of a command. tCheck uses this command word to decide what kinds of actions it should perform. |
-| Prefix | It is the character before every "/". It is used to distinguish different kinds of parameters. |
+| Prefix | It is the characters before every "/". They are used to distinguish different kinds of parameters. |
 | Parameter | The words after every "/". They are values given to a command to perform the specified action.|
 
 **Example:** <br>
@@ -129,7 +129,7 @@ The following points explain the format of a command.
     or as `c-add n/Betsy Crowe e/81234567 p/89007413 a/Blk 120 ABC Road`.
 
 * Items with `...​` after them can be used multiple times, including zero times.<br>
-   e.g. `[t/TAG]...` can be used as `  ` (i.e. 0 times), `t/Friday`, `t/Friday t/PartTime`, etc.
+   e.g. `[t/TAG] ...` can be used as `  ` (i.e. 0 times), `t/Friday`, `t/Friday t/PartTime`, etc.
 
 * Parameters can be in any order.<br>
    e.g. If the command specifies `p/PHONE_NUMBER e/EMERGENCY_CONTACT`, `e/EMERGENCY_CONTACT p/PHONE_NUMBER` is also acceptable.
