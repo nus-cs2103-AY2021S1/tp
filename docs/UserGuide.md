@@ -31,6 +31,7 @@ Jarvis is a desktop app for CS1101S Teaching Assistants (Avengers), optimized fo
         * [6.1.2 Notes about Jarvis' relationship with Source Academy](#612-notes-about-jarvis-relationship-with-source-academy)
         * [6.1.3 Notes about Tasks](#613-notes-about-tasks)
         * [6.1.4 Notes about truncation](#614-notes-about-truncation)
+        * [6.1.5 Notes about Summary feature](#615-notes-about-summary-feature)
     - [6.2 Viewing help : `help`](#62-viewing-help--help)
     - [6.3 Adding Information : `add`](#63-adding-information--add)
         * [6.3.1 Adding Consultations : `add -c`](#631-adding-consultations---c)
@@ -106,7 +107,7 @@ We have highlighted several features below that we feel are reflective of our de
 ## 2. About the User Guide
 This section aims to remind you of the important parts to take note of while reading the user guide.
 
-### 2.1. Symbols
+### 2.1 Symbols
 When reading this user guide, various symbols may appear occasionally to draw your attention to important information.
 The meaning for each symbol is as follows:
 
@@ -121,7 +122,7 @@ Symbol | Meaning
 
 1. Ensure you have Java 11 or above installed in your Computer.
 
-1. Download the latest _`jarvis.jar`_ and your operating system's _Chrome Driver_ from [here](https://github.com/AY2021S1-CS2103T-W11-2/tp/releases/tag/v1.3).
+1. Download the latest _`jarvis.jar`_ and your operating system's _Chrome Driver_ from [here](https://github.com/AY2021S1-CS2103T-W11-2/tp/releases/tag/v1.4).
 It is crucial to have the Chrome Driver in order for Jarvis to start up. If the GUI does not launch,
 please check that you have installed the correct driver:
     1. Windows: chromedriver.exe
@@ -148,11 +149,11 @@ please check that you have installed the correct driver:
 1. Type the command in the command box and press Enter to execute it. E.g. typing help and pressing Enter will open the help window.
    Some example commands you can try:
    * `view -s:  Lists all Students.`
-   * `view -s John Doe: Lists information about a Student named John Doe.`
+   * `view -s NAME: Lists information about a Student named John Doe.`
    * `add -t DESCRIPTION: Adds a Todo task with specified description.`
    * `edit -s STUDENT_ID: Edits Student's Name, Email, Telegram.`
    * `exit: Exits the app.`
-
+<br/>
 1. Refer to the [Features](#6-features) below for details of each command.
 
 1. Do note that the sample data displayed on initial startup of Jarvis will not be saved. This means that subsequent launches of Jarvis will only contain user-inputted data.
@@ -167,6 +168,8 @@ this box.
 
 ### 4.1 UI Layout
 
+   ![Jarvis](images/userguide/uiLayout.png)
+
    * The user interface is split into five separate segments.
         1. Top bar - Passive information, such as a summary for the user, greeting message, week number, topic for
          the week and today's date is presented to the user. An explanation on each information can be found below.
@@ -174,9 +177,11 @@ this box.
         1. Feedback Box - The feedback shown to the user for a given inputted command.
         1. Information Panel - A detailed list on the information stored within Jarvis.
         1. Tab Switcher - A tab switcher for browsing through the different types of information stored in Jarvis.
-   ![Jarvis](images/userguide/uiLayout.png)
 
 #### 4.1.1 Top Bar
+    
+   ![Jarvis](images/userguide/topBar.png)
+
    * The top bar includes the following components.
         1. Summary information - A quick summary indicating the number of ungraded `Missions` and `Quests`, upcoming
            `Consultations` and `Mastery Checks` as well as all `Tasks` in Jarvis. Do note that graded `Missions` and
@@ -192,8 +197,6 @@ this box.
         1. Shortcut icons - These icons are positioned here for your convenience to quickly navigate to Source Academy
          with the blue diamond on the left, and Jarvis' user guide with the white book icon on the right.
         1. Jarvis logo.
-
-   ![Jarvis](images/userguide/topBar.png)
 
 #### 4.1.2 Command Box
 
@@ -213,8 +216,7 @@ this box.
 
    * The tab switcher contains clearly marked tabs: `Student`, `Mission`, `Quest`, `Consultation`, `Mastery Check`, `Task`.
    * `Todo`, `Event` and `Deadline` are all variants of `Task`.
-   * Clicking on each tab will give you the information you require for that field.
-   * The icons correspond respectively to the Source Academy and User Guide (this) websites.
+   * Clicking on each tab will give you the information you require for that field.  
 
 <br>
  > ⚠️ The core features of Jarvis are based on `Students`, `Missions`, `Quests`, `Consultations`, `Mastery Checks` and
@@ -240,16 +242,18 @@ The following is the prompt upon first login, you are prompted to key in your So
 ![NoLoginDetails](images/userguide/loginPrompt.png)
 
 ### 5.1 Prompt
-   * The prompt contains the format of the edit command to be keyed in. The format is reinstated below for clarity.
+The prompt contains the format of the edit command to be keyed in. The format is reinstated below for clarity.
+
+![LoginUsernamePasswordInput](images/userguide/editLoginDetails.png)
 
 To log in, simply edit your login details with the following command:
+
 <br>**Format: `edit -l u/LUMINUS_USERNAME p/LUMINUS_PASSWORD`**
-<br>Examples:
+
+<br>✏️ Examples:
 * `edit -l u/nusstu\e1234567 p/testpassword`
 
 An example of the command being inputted:
-
-![LoginUsernamePasswordInput](images/userguide/editLoginDetails.png)
 
 ### 5.2 Updated Details Summary
 Within the red rectangle box, Jarvis will notify you if the login was successful and the login information entered.
@@ -282,10 +286,10 @@ You will have to edit them using the [Editing Student Information](#642-editing-
    <br> e.g. if the command specifies `t/TELEGRAM e/EMAIL` and the user enters `t/TELEGRAM t/TELEGRAM2 e/EMAIL e/EMAIL2 e/EMAIL3`, Jarvis recognizes the input as `t/TELEGRAM2 e/EMAIL3`.
 
 #### 6.1.2 Notes about Jarvis' relationship with Source Academy
-   * Students’ names that are under the Avenger will be fetched automatically from [sourceacademy.nus.edu.sg](sourceacademy.nus.edu.sg) upon startup.
+   * Students’ names that are under the Avenger will be fetched automatically from [https://sourceacademy.nus.edu.sg](https://sourceacademy.nus.edu.sg) upon startup.
    * LumiNUS username and passwords will be stored in plaintext.
 
-#### 6.1.3 Notes about `Tasks`
+#### 6.1.3 Notes about Tasks
    * Each `Task` you create, be it `Todo`, `Event` or `Deadline`, there will be an unique Task ID assigned to each of them, so
    that there will be no 2 of the same ID in your Task List at any point of time. The Task ID is reflected as
    <br>eg. D1, E5, T21
@@ -298,25 +302,26 @@ You will have to edit them using the [Editing Student Information](#642-editing-
    
 #### 6.1.5 Notes about Summary feature
    * As mentioned above under the section explaining the top bar, the `Summary` feature is updated when Jarvis is
-   launched and after a user command is successfully executed. As such, the values in the `Summary
-   ` will remain the same, even if
+   launched and after a user command is successfully executed. As such, the values in the `Summary` will remain the same, even if
    the current time has passed the date and time of a `Consultation` or `Mastery Check`. Also, if a `Mission` or
    `Quest` is graded while Jarvis is open, the number of ungraded `Mission` and `Quests` will remain the same.
    * To get the updated values, simply re-start Jarvis or type in a command and hit the enter key on your keyboard.
-   * The `Summary` feature will display all `Task`s stored in Jarvis, regardless of a `Deadline` or `Event`'s date and
+   * The `Summary` feature will display all `Tasks` stored in Jarvis, regardless of a `Deadline` or `Event`'s date and
     time. This is in contrast to `Consultations` and `Mastery Checks` where only the upcoming ones are included in
     the count.
 
 ### 6.2 Viewing help : `help`
 
 Shows a message explaining how to access the help page.
+
 <br>**Format: `help`**
 
 ### 6.3 Adding Information : `add`
 
 #### 6.3.1 Adding `Consultations` : `-c`
 
-Adds a `Consultation` session with a `Student` at a specific `date` and `time`.
+Adds a `Consultation` session with a `Student` at a specific date and time.
+
 <br>**Format: `add -c NAME d/YYYY-MM-DD t/HH:MM`**
 
 ![AddConsultations](images/userguide/addConsultation.png)
@@ -334,6 +339,7 @@ Adds a `Consultation` session with a `Student` at a specific `date` and `time`.
 #### 6.3.2 Adding `Mastery Checks` : `-mc`
 
 Adds a `Mastery Check` session with a `Student` at a specific `date` and `time`.
+
 <br>**Format: `add -mc NAME d/YYYY-MM-DD t/HH:MM`**
 
 ![AddMasteryChecks](images/userguide/addMasteryCheck.png)
@@ -342,16 +348,18 @@ Adds a `Mastery Check` session with a `Student` at a specific `date` and `time`.
 * `add -mc John Doe d/2020-09-20 t/13:30`
 * `add -mc Mary Jane d/2021-01-02 t/09:15`
 
-<br>⚠️ Notes:
+<div markdown="block" class="alert alert-info">
 * When you add a `Mastery Check` for a future date while displaying only past `Mastery Checks`, make sure to enter `view -mc` to view the complete list to check if the `Mastery Check` has been added correctly.
 * Similarly, when you add a `Mastery Check` for a past date while displaying only future `Mastery Check`, make sure to enter `view -mc`.
 * `NAME` does not have to correspond to an existing student; this is so that the tutor may freely use any nicknames or other identifiers as they see fit. However, it may not be left empty.
 * Because date and time is considered in order, the d/ prefix must come earlier than t/.
 * When a `Mastery Check` is first added, a `FAIL` default value will be assigned.
+</div>
 
 #### 6.3.3 Adding `Todos` : `-t`
 
 Adds your personal `Todo` with a `description`.
+
 <br>**Format: `add -t DESCRIPTION`**
 
 <br>✏️ Examples:
@@ -359,13 +367,13 @@ Adds your personal `Todo` with a `description`.
 * `add -t Return calculator to Mary`
 
 <div markdown="block" class="alert alert-info">
-
-The way to input is similar to the screenshot of adding `Mastery Check` above, only without the date and time.
+* The way to input is similar to the screenshot of adding `Mastery Check` above, only without the date and time.
 </div>
 
 #### 6.3.4 Adding `Events` : `-e`
 
-Adds your personal `Event` with a `description`, to attend at a specific `date` and `time`.
+Adds your personal `Event` with a `description`, to attend at a specific date and time.
+
 <br>**Format: `add -e DESCRIPTION d/YYYY-MM-DD t/HH:MM`**
 
 <br>✏️ Examples:
@@ -373,13 +381,13 @@ Adds your personal `Event` with a `description`, to attend at a specific `date` 
 * `add -e CS2103T team meeting d/2020-09-27 t/10:30`
 
 <div markdown="block" class="alert alert-info">
-
-An `Event` requires extra `date` and `time` specifications in order to create. The way to input is similar to the screenshot of adding `Mastery Check` above.
+* An `Event` requires extra date and time specifications in order to create. The way to input is similar to the screenshot of adding `Mastery Check` above.
 </div>
 
 #### 6.3.5 Adding `Deadlines` : `-d`
 
-Adds your personal `Deadline` with a `description`, to complete by a specific `date` and `time`.
+Adds your personal `Deadline` with a `description`, to complete by a specific date and time.
+
 <br>**Format: `add -d DESCRIPTION d/YYYY-MM-DD t/HH:MM`**
 
 <br>✏️ Examples:
@@ -387,8 +395,7 @@ Adds your personal `Deadline` with a `description`, to complete by a specific `d
 * `add -d Research project report d/2020-10-05 t/10:30`
 
 <div markdown="block" class="alert alert-info">
-
-Similar to `Event`, a `Deadline` requires extra `date` and `time` specifications in order to create. You can refer to the screenshot of adding `Mastery Check` above for a real-life example of how the command would look like.
+* Similar to `Event`, a `Deadline` requires extra date and time specifications in order to create. You can refer to the screenshot of adding `Mastery Check` above for a real-life example of how the command would look like.
 </div>
 
 
@@ -398,7 +405,9 @@ Similar to `Event`, a `Deadline` requires extra `date` and `time` specifications
 #### 6.4.1 Editing Login Information : `-l`
 
 You can use tags to specify the field to be edited.
+
 <br>**Format: `edit -l [u/LUMINUS_USERNAME] [p/LUMINUS_PASSWORD]`**
+
 <br>✏️ Examples:
 * `edit -l u/nusstu\e1234567 p/testpassword`
 * `edit -l p/testpassword`
@@ -419,16 +428,22 @@ as we choose to give you the benefit of doubt of keying in the wrong login detai
 #### 6.4.2 Editing `Student` Information : `-s`
 
 Edits the fields of a `Student`.
+
 <br>**Format: `edit -s INDEX [n/NAME] [t/TELEGRAM] [e/EMAIL]`**
+
 <br>✏️ Examples:
 * `edit -s 1 e/koolguy@gmail.com t/handsome`
 * `edit -s 3 n/Timots`
 
+<div markdown="block" class="alert alert-info">
+You can refer to the screenshot below for how the input will look like.
+</div>
+
 #### 6.4.3 Editing `Mastery Checks` : `-mc`
 
 At least one of the optional parameters must be provided.
-
 Edits the score of a `Mastery Check` session with a `Student`.
+
 <br>**Format: `edit -mc INDEX s/SCORE`**
 
 ![EditMasteryCheck](images/userguide/editMasteryCheck.png)
@@ -437,16 +452,18 @@ Edits the score of a `Mastery Check` session with a `Student`.
 * `edit -mc 1 s/0`
 * `edit -mc 3 s/1`
 
-<br>⚠️ Notes:
+<div markdown="block" class="alert alert-info">
 * Do note that the `SCORE` parameter can only be 0 or 1, according to the actual restrictions of `Mastery Check` pass/fail in CS1101S.
 * The `INDEX` parameter should be a non-zero unsigned integer that is a valid index currently displayed along with the target `Mastery Check`.
 * Jarvis allows editing to the same value; even if no values are actually updated by the command, it will display a success message.
+</div>
 
 ### 6.5 Deleting Information : `delete`
 
 #### 6.5.1 Deleting `Consultations` : `-c`
 
 Deletes a `Task` based on the `INDEX` you specify.
+
 <br>**Format: `delete -c INDEX`**
 
 ![DeleteConsultation](images/userguide/deleteConsultation.png)
@@ -454,12 +471,14 @@ Deletes a `Task` based on the `INDEX` you specify.
 <br>✏️ Examples:
 * `delete -c 3`
 
-<br>⚠️ Notes:
+<div markdown="block" class="alert alert-info">
 * The `INDEX` parameter should be a non-zero unsigned integer that is a valid index currently displayed along with the target `Consultation`.
+</div>
 
 #### 6.5.2 Deleting `Mastery Checks` : `-mc`
 
 Deletes a `Mastery Check` based on the `INDEX` you specify.
+
 <br>**Format: `delete -mc INDEX`**
 
 ![DeleteMasteryCheck](images/userguide/deleteMasteryCheck.png)
@@ -467,12 +486,14 @@ Deletes a `Mastery Check` based on the `INDEX` you specify.
 <br>✏️ Examples:
 * `delete -mc 3`
 
-<br>⚠️ Notes:
+<div markdown="block" class="alert alert-info">
 * The `INDEX` parameter should be a non-zero unsigned integer that is a valid index currently displayed along with the target `Mastery Check`.
+</div>
 
 #### 6.5.3 Deleting `Tasks` : `-t`
 
 Deletes a `Task` based on the `TASK_ID` you specify.
+
 <br>**Format: `delete -t TASK_ID`**
 
 ![DeleteTask](images/userguide/deleteTask.png)
@@ -480,6 +501,11 @@ Deletes a `Task` based on the `TASK_ID` you specify.
 <br>✏️ Examples:
 * `delete -t T3`
 * `delete -t D2`
+
+<div markdown="block" class="alert alert-info">
+* Note that TASK_ID, once given, is permanent and no other Tasks can receive that TASK_ID even after the deletion of the original one. 
+* The Index for Consultation and MasteryCheck is not unique and they will change according to the GUI's displayed list, which is unlike the TASK_ID for `Task`s.
+</div>
 
 ### 6.6 Viewing Information : `view`
 
@@ -492,16 +518,14 @@ Please take note of the command inputted into the command box to understand how 
 
 ![ViewAllStudentsCommand](images/userguide/viewAllStudents.png)
 
-You may also click on the `Student` tab to do so.
+#### 6.6.2 Viewing `Student` with keyword : `-s NAME`
 
-#### 6.6.2 Viewing `Student` with keyword : `-s [NAME]`
-
-Shows all `Students` that match (partial and full) the name entered after the command. The name is case-sensitive
-and partial name matches will work, the following is an example. If you would like to look for your student Tommy
-Hilfiger, you can simply type in `view -s Tom` and the student will be displayed. A full match on the other hand would be as such: key in the command `view -s John Doe` and John
+Shows all `Students` that match (partial and full) the name entered after the command. The following is an example where the name is case-sensitive
+and partial name matches will work. If you would like to look for your student Tommy Hilfiger, you can simply type in `view -s Tom` 
+and the student will be displayed. A full match on the other hand would be as such: key in the command `view -s John Doe` and John
 Doe will be displayed.
 
-<br>**Format: `view -s [NAME]`**
+<br>**Format: `view -s NAME`**
 
 ![ViewOneStudentCommand](images/userguide/viewOneStudent.png)
 
@@ -511,15 +535,15 @@ Doe will be displayed.
 #### 6.6.3 Viewing deadline for `Missions` : `-m`
 
 Shows the deadline for the current `Missions`.
+
 <br>**Format: `view -m`**
 
 ![ViewMissionDeadline](images/userguide/viewMissionDeadline.png)
 
-You may also click on the `Mission` tab to do so.
-
 #### 6.6.4 Viewing ungraded `Missions` : `-um`
 
 Shows the `Missions` that you have not yet graded.
+
 <br>**Format: `view -um`**
 
 ![ViewUngradedMissions](images/userguide/viewUngradedMission.png)
@@ -527,9 +551,8 @@ Shows the `Missions` that you have not yet graded.
 #### 6.6.5 Viewing deadline for `Quests` : `-q`
 
 Shows the deadline for the current `Quests`.
-<br>**Format: `view -q`**
 
-You may also click on the `Quest` tab to do so.
+<br>**Format: `view -q`**
 
 #### 6.6.6 Viewing ungraded `Quests` : `-uq`
 
@@ -541,80 +564,100 @@ Shows the `Quests` that you have not yet graded.
 
 Shows all confirmed `Consultation` sessions, both past and upcoming.
 <br>**Format: `view -c`**
+
 <br>✏️ Examples:
 * `view -c`
 
 #### 6.6.8 Viewing past `Consultations` : `-cp`
 
 Shows all past `Consultation` sessions.
+
 <br>**Format: `view -cp`**
+
 <br>✏️ Examples:
 * `view -cp`
 
-<br>⚠️ Notes:
+<div markdown="block" class="alert alert-info">
 * When the `Consultation` time is the same as the local time (year, month, date, hour, and minute all equal), it is considered to have occurred in the past.
+</div>
 
 #### 6.6.9 Viewing upcoming `Consultations`: `-cu`
 
 Shows all upcoming `Consultation` sessions.
+
 <br>**Format: `view -cu`**
+
 <br>✏️ Examples:
 * `view -cu`
 
-<br>⚠️ Notes:
+<div markdown="block" class="alert alert-info">
 * When the time of the `Consultation` displayed by `view -cu` is earlier than the local time (to year, month, date, hour, and minute) and then caught up eventually, it is still considered as an upcoming `Consultation` when you enter `view -cu`. This is to encourage the tutors to have this screen open while holding the `Consultation` session. When you switch to another command, such as `view -c` or `view -cp`, and then come back, you may see the updated filtered `Consultation` list with the current local time as the standard.
+</div>
 
 #### 6.6.10 Viewing all `Mastery Checks` : `-mc`
 
 Shows all confirmed `Mastery Check` sessions, both past and upcoming.
+
 <br>**Format: `view -mc`**
+
 <br>✏️ Examples:
 * `view -mc`
 
 #### 6.6.11 Viewing past `Mastery Checks` : `-mcp`
 
 Shows all past `Mastery Check` sessions.
+
 <br>**Format: `view -mcp`**
+
 <br>✏️ Examples:
 * `view -mcp`
 
-<br>⚠️ Notes:
+<div markdown="block" class="alert alert-info">
 * When the `Mastery Check` time is the same as the local time (year, month, date, hour, and minute all equal), it is considered to have occurred in the past.
+</div>
 
 #### 6.6.12 Viewing upcoming `Mastery Checks` : `-mcu`
 
 Shows all upcoming `Mastery Check` sessions.
+
 <br>**Format: `view -mcu`**
+
 <br>✏️ Examples:
 * `view -mcu`
 
-<br>⚠️ Notes:
+<div markdown="block" class="alert alert-info">
 * When the time of the `Mastery Check` displayed by `view -mcu` is earlier than the local time (to year, month, date, hour, and minute) and then caught up eventually, it is still considered as an upcoming `Mastery Check` when you enter `view -mcu`. This is to encourage the tutors to have this screen open while holding the `Mastery Check` session. When you switch to another command, such as `view -mc` or `view -mcp`, and then come back, you may see the updated filtered `Mastery Check` list with the current local time as the standard.
+</div>
 
 #### 6.6.13 Viewing all `Tasks` : `-t`
 
 Shows the list of all your current `Tasks`.
 This includes `Todo`, `Event` and `Deadline`, which are all considered `Tasks`.
+
 <br>**Format: `view -t`**
 
 #### 6.6.14 Viewing all `Todos` : `-tt`
 
 Shows the list of all your current `Todos`.
+
 <br>**Format: `view -tt`**
 
 #### 6.6.15 Viewing all `Events` : `-te`
 
 Shows the list of all your current `Events`.
+
 <br>**Format: `view -te`**
 
 #### 6.6.16 Viewing all `Deadlines` : `-td`
 
 Shows the list of all your current `Deadlines`.
+
 <br>**Format: `view -td`**
 
 ### 6.7 Exiting the program : `exit`
 
 Exits the program.
+
 <br>**Format: `exit`**
 
 ### 6.8 Saving the data
@@ -622,7 +665,6 @@ Exits the program.
 Jarvis data are saved in the file `jarvis.json` automatically after any command that changes the data. There is no need to save manually.
 
 <div markdown="block" class="alert alert-info">
-
 Note that only `Student`, `Consultation`, `Mastery Check` and `Task` data are saved to the hard drive since `Mission` and `Quest` data
 are likely to change frequently and hence, will not need to be persisted.
 </div>
@@ -645,16 +687,16 @@ are likely to change frequently and hence, will not need to be persisted.
 
 | Function | Tag | Format, Examples |
 | -------- | --- | ---------------- |
-| Edit Login information | -l | edit -l u/LUMINUS_USERNAME p/LUMINUS_PASSWORD |
-| Edit `Student` information | -s | edit -s INDEX n/NAME t/TELEGRAM e/EMAIL |
-| Edit `Mastery Check` | -mc | edit -mc INDEX /SCORE |
+| Edit Login information | -l | edit -l [u/LUMINUS_USERNAME] [p/LUMINUS_PASSWORD] |
+| Edit `Student` information | -s | edit -s INDEX [n/NAME] [t/TELEGRAM] [e/EMAIL] |
+| Edit `Mastery Check` | -mc | edit -mc INDEX s/SCORE |
 
 ### 7.3 Delete Command Summary
 
 | Function | Tag | Format, Examples |
 | -------- | --- | ---------------- |
-| Delete `Consultation` | -c | delete -c NAME <br>E.g. delete -c → 3 / delete -c John Doe 2 |
-| Delete `Mastery Check` | -mc | delete -mc NAME <br>E.g. delete -mc → 3 / delete -mc John Doe 2 |
+| Delete `Consultation` | -c | delete -c NAME <br>E.g. delete -c 2 |
+| Delete `Mastery Check` | -mc | delete -mc NAME <br>E.g. delete -mc 2 |
 | Delete `Task` | -t | delete -t TASK_ID |
 
 ### 7.4 View Command Summary
@@ -662,7 +704,7 @@ are likely to change frequently and hence, will not need to be persisted.
 | Function | Tag | Format, Examples |
 | -------- | --- | ---------------- |
 | View all `Students` | -s | view -s |
-| View `Student` with keyword | -s | view -s NAME |
+| View `Student` with keyword | -s | view -s INDEX |
 | View deadlines for `Missions` | -m | view -m |
 | View ungraded `Missions` | -um | view -um |
 | View deadlines for `Quests` | -q | view -q |
@@ -698,4 +740,4 @@ are likely to change frequently and hence, will not need to be persisted.
 ## 9. FAQ
 
 `Q: How do I transfer my data to another Computer?`
-<br>`A: Install the app in the other computer and overwrite the empty data file(.json file) it creates with the file(.json file) that contains the data of your previous Jarvis home folder.`
+<br>`A: Install the app in the other computer and overwrite the empty data file (jarvis.json file) it creates with the file (jarvis.json file) that contains the data of your previous Jarvis home folder.`
