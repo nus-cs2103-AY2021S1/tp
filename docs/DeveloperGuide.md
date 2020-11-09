@@ -285,11 +285,11 @@ execute("timetable_add_routine r/Leg Workout D/Monday T/1600-1700") API call.
 
 ### 4.3 Find exercises
 
-The find exercises feature is implemented using `FindExercisesCommandParser`, as well as the following command:
-* `FindExercisesCommand`, to be executed when the user inputs the command into fitNUS.
+The find exercises feature is implemented using `ExerciseFindCommandParser`, as well as the following command:
+* `ExerciseFindCommand`, to be executed when the user inputs the command into fitNUS.
 
-`FindExercisesCommandParser` takes in the user input and parses them to return a FindExercisesCommand containing the
-corresponding predicate for finding the exercises. When executed, `FindExercisesCommand` will set the predicate of
+`ExerciseFindCommandParser` takes in the user input and parses them to return a FindExercisesCommand containing the
+corresponding predicate for finding the exercises. When executed, `ExerciseFindCommand` will set the predicate of
 the respective `FilteredList` for exercises in `ModelManager` such that only exercises matching the predicate will be
 displayed in the list.
 
@@ -297,7 +297,7 @@ Given below is an example usage scenario and how the find exercise mechanism beh
 
 **Step 1:**
 
-The user types into fitNUS `find_exercises bench`.
+The user types into fitNUS `exercise_find bench`.
 
 **Step 2:**
 
@@ -307,17 +307,17 @@ method of `FitNusParser`.
 **Step 3:**
 
 `parseCommand` identifies that this is a command to find exercises, so it calls the `parse` method of
-`FindExercisesCommandParser` on the input.
+`ExerciseFindCommandParser` on the input.
 
 **Step 4:**
 
 Within `parse`, the keywords to match are added to a `List`, and an `ExerciseNameContainsKeywordsPredicate` object
-is created based on this list. A `FindExercisesCommand` object is created using this
+is created based on this list. A `ExerciseFindCommand` object is created using this
 `ExerciseNameContainsKeywordsPredicate` object.
 
 **Step 5:**
 
-`LogicManager` then calls the `execute` method of this returned `FindExercisesCommand`.
+`LogicManager` then calls the `execute` method of this returned `ExerciseFindCommand`.
 Within `execute`, `ModelManager`'s `updateFilteredExerciseList` method is called with the
 `ExerciseNameContainsKeywordsPredicate` object as its argument. This filters out the relevant exercises.
 
@@ -325,7 +325,7 @@ Within `execute`, `ModelManager`'s `updateFilteredExerciseList` method is called
 
 The GUI then lists the filtered exercises.
 
-Given below is the Sequence Diagram for interactions within the Logic component for the execute("find_exercises bench")
+Given below is the Sequence Diagram for interactions within the Logic component for the execute("exercise_find bench")
 API call.
 
 ![FindExercisesSequenceDiagram](images/FindExercisesSequenceDiagram.png)
