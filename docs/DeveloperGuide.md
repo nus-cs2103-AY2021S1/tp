@@ -36,9 +36,9 @@ It is optimized for use via a Command Line Interface (CLI) while still having th
     - [4.3 Add Command](#43-add-command)
         * [4.3.1 What is AddCommand](#431-what-is-addcommand)
         * [4.3.2 Structure of AddCommand](#432-structure-of-addcommand)
+        <div style="page-break-after: always;"></div>
         * [4.3.3 Structure of AddXYZCommand](#433-structure-of-addxyzcommand)
         * [4.3.4 Structure of AddCommandParser](#434-structure-of-addcommandparser)
-        <div style="page-break-after: always;"></div>
         * [4.3.5 Path Diagram of AddTaskCommand](#435-path-diagram-of-addtaskcommand)
         * [4.3.6 Sequence Diagram of AddTaskCommand](#436-sequence-diagram-of-addtaskcommand)
     - [4.4 Delete Command](#44-delete-command)
