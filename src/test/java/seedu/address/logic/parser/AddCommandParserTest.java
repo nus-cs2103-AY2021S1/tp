@@ -31,7 +31,6 @@ import static seedu.address.testutil.TypicalAssignments.LAB_REMIND;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.task.ModuleCode;
