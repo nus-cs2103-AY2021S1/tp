@@ -103,6 +103,8 @@ Symbol | Meaning
 :information_source: | Important information
 :bulb: | Tips
 
+<div style="page-break-after: always;"></div>
+
 ## 4. **Getting Started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
