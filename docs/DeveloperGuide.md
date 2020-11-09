@@ -454,7 +454,7 @@ The following sequence diagram shows how the resetting all ingredients' levels o
 `i-reset-all` command calls `Model#setIngredient(Ingredient target, Ingredient newAmount)` only once. This happens when 
 only one ingredient's level is not at zero before the execution of the `i-reset-all` command. 
 
-![Reset all Ingredients' Levels Sequence Diagram](images/IngredientResetAllActivityDiagram.png)
+![Reset all Ingredients' Levels Sequence Diagram](images/IngredientResetAllSequenceDiagram.png)
 
 <div markdown="block" class="alert alert-info">:information_source: **Notes:** The lifeline for 
 `IngredientResetAllCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, 
@@ -465,7 +465,7 @@ The following activity diagram summarises what happens when a user executes the 
 Note that as shown in the activity diagram, if the ingredient's levels of all ingredient types are at zero 
 before the execution of the `i-reset-all` command, an error message will be shown to the user.
 
-![Reset all Ingredients' Levels Activity Diagram](images/IngredientResetAllActivityDiagram.png)
+![Reset all Ingredients' Levels Activity Diagram](images/IngredientResetAllSequenceDiagram.png)
 
 #### Design considerations:
 
