@@ -7,26 +7,31 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyClientList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.policy.PolicyList;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of ClientList data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private ClientListStorage clientListStorage;
     private UserPrefsStorage userPrefsStorage;
+    private PolicyListStorage policyListStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code ClientListStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(ClientListStorage clientListStorage,
+                          UserPrefsStorage userPrefsStorage,
+                          PolicyListStorage policyListStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.clientListStorage = clientListStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.policyListStorage = policyListStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -47,33 +52,60 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ ClientList methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getClientListFilePath() {
+        return clientListStorage.getClientListFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyClientList> readClientList() throws DataConversionException, IOException {
+        return readClientList(clientListStorage.getClientListFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyClientList> readClientList(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return clientListStorage.readClientList(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveClientList(ReadOnlyClientList clientList) throws IOException {
+        saveClientList(clientList, clientListStorage.getClientListFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveClientList(ReadOnlyClientList clientList, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        clientListStorage.saveClientList(clientList, filePath);
+    }
+
+    // ================ PolicyList methods ==============================
+
+    @Override
+    public Path getPolicyListFilePath() {
+        return policyListStorage.getPolicyListFilePath();
+    }
+
+    @Override
+    public Optional<PolicyList> readPolicyList() throws DataConversionException, IOException {
+        return policyListStorage.readPolicyList();
+    }
+
+    @Override
+    public Optional<PolicyList> readPolicyList(Path filePath) throws DataConversionException, IOException {
+        return policyListStorage.readPolicyList(filePath);
+    }
+
+    @Override
+    public void savePolicyList(PolicyList policyList) throws IOException {
+        policyListStorage.savePolicyList(policyList);
+    }
+
+    @Override
+    public void savePolicyList(PolicyList policyList, Path filePath) throws IOException {
+        policyListStorage.savePolicyList(policyList, filePath);
     }
 
 }

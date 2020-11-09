@@ -7,38 +7,48 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.policy.Policy;
+import seedu.address.model.policy.PolicyList;
+import seedu.address.model.policy.PolicyName;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the client list data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final ClientList clientList;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final BooleanProperty isArchiveMode;
+    private final PolicyList policyList;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given clientList and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyClientList clientList, ReadOnlyUserPrefs userPrefs, PolicyList policyList) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(clientList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with client list: " + clientList + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.clientList = new ClientList(clientList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.clientList.getPersonList());
+        filteredPersons.setPredicate(PREDICATE_SHOW_ALL_ACTIVE); // initialised to show all active persons
+        isArchiveMode = new SimpleBooleanProperty(false);
+        this.policyList = policyList;
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new ClientList(), new UserPrefs(), new PolicyList());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,57 +76,68 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getClientListFilePath() {
+        return userPrefs.getClientListFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
-    }
-
-    //=========== AddressBook ================================================================================
-
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setClientListFilePath(Path clientListFilePath) {
+        requireNonNull(clientListFilePath);
+        userPrefs.setClientListFilePath(clientListFilePath);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public Path getPolicyListFilePath() {
+        return userPrefs.getPolicyListFilePath();
+    }
+
+    @Override
+    public void setPolicyListFilePath(Path policyListFilePath) {
+        requireAllNonNull(policyListFilePath);
+        userPrefs.setPolicyListFilePath(policyListFilePath);
+    }
+
+    //=========== ClientList ================================================================================
+
+    @Override
+    public void setClientList(ReadOnlyClientList clientList) {
+        this.clientList.resetData(clientList);
+    }
+
+    @Override
+    public ReadOnlyClientList getClientList() {
+        return clientList;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return clientList.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        clientList.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        clientList.addPerson(person);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_ACTIVE);
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        clientList.setPerson(target, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedClientList}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -129,6 +150,53 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Archive Mode =============================================================
+
+    @Override
+    public boolean getIsArchiveMode() {
+        return isArchiveMode.get();
+    }
+
+    @Override
+    public BooleanProperty getIsArchiveModeProperty() {
+        return isArchiveMode;
+    }
+
+    @Override
+    public void setIsArchiveMode(boolean isArchiveMode) {
+        this.isArchiveMode.set(isArchiveMode);
+    }
+
+    //=========== PolicyList ================================================================================
+
+    @Override
+    public PolicyList getPolicyList() {
+        return policyList;
+    }
+
+    @Override
+    public void addPolicy(Policy policy) {
+        policyList.add(policy);
+    }
+
+    @Override
+    public boolean hasPolicy(Policy policy) {
+        return policyList.contains(policy);
+    }
+
+    @Override
+    public boolean hasPolicy(PolicyName policyName) {
+        return policyList.contains(policyName);
+    }
+
+    @Override
+    public void clearPolicyList() {
+        clientList.clearPolicy();
+        policyList.clear();
+    }
+
+    //=========== Equals =============================================================
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -140,12 +208,12 @@ public class ModelManager implements Model {
         if (!(obj instanceof ModelManager)) {
             return false;
         }
-
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return clientList.equals(other.clientList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && policyList.equals(other.policyList)
+                && (isArchiveMode.get() == other.isArchiveMode.get());
     }
-
 }

@@ -34,12 +34,16 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ArchiveModeBox archiveModeBox;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane archiveModePlaceholder;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -116,7 +120,10 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        archiveModeBox = new ArchiveModeBox(logic.getIsArchiveModeProperty());
+        archiveModePlaceholder.getChildren().add(archiveModeBox.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getClientListFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -189,6 +196,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
+            logger.info("Error message: " + e.getMessage());
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }

@@ -5,10 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENTSOURCE_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NOTE_DOG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_LOW;
 
 import org.junit.jupiter.api.Test;
 
@@ -51,8 +53,16 @@ public class EditPersonDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different tags -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        // different clientSources -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withClientSources(VALID_CLIENTSOURCE_HUSBAND).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different notes -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withNote(VALID_NOTE_DOG).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different priority -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPriority(VALID_PRIORITY_LOW).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

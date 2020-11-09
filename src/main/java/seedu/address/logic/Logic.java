@@ -2,12 +2,13 @@ package seedu.address.logic;
 
 import java.nio.file.Path;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyClientList;
 import seedu.address.model.person.Person;
 
 /**
@@ -24,19 +25,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the ClientList.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getClientList()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyClientList getClientList();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' client list file path.
      */
-    Path getAddressBookFilePath();
+    Path getClientListFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -47,4 +48,16 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the boolean value of the archive mode.
+     * @return Boolean value of archive mode.
+     */
+    boolean getIsArchiveMode();
+
+    /**
+     * Returns the archive mode.
+     * @return Archive mode.
+     */
+    BooleanProperty getIsArchiveModeProperty();
 }

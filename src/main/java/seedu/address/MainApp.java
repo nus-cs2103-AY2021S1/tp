@@ -15,16 +15,20 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
+import seedu.address.model.ClientList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyClientList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.model.policy.PolicyList;
+import seedu.address.model.util.SampleClientDataUtil;
+import seedu.address.model.util.SamplePolicyDataUtil;
+import seedu.address.storage.ClientListStorage;
+import seedu.address.storage.JsonClientListStorage;
+import seedu.address.storage.JsonPolicyListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.PolicyListStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -36,7 +40,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 6, 0, true);
+    public static final Version VERSION = new Version(1, 4, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -48,7 +52,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing ClientList ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,8 +60,9 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        ClientListStorage clientListStorage = new JsonClientListStorage(userPrefs.getClientListFilePath());
+        PolicyListStorage policyListStorage = new JsonPolicyListStorage(userPrefs.getPolicyListFilePath());
+        storage = new StorageManager(clientListStorage, userPrefsStorage, policyListStorage);
 
         initLogging(config);
 
@@ -69,28 +74,50 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s client list and {@code userPrefs}. <br>
+     * The data from the sample client list will be used instead if {@code storage}'s client list is not found,
+     * or an empty client list will be used instead if errors occur when reading {@code storage}'s client list.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyClientList> clientListOptional;
+        ReadOnlyClientList initialClientData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            clientListOptional = storage.readClientList();
+            if (!clientListOptional.isPresent()) {
+                logger.info("Client List data file not found. Will be starting with a sample ClientList");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialClientData = clientListOptional.orElseGet(SampleClientDataUtil::getSampleClientList);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning(
+                    "Client List data file not in the correct format. Will be starting with an empty ClientList");
+            initialClientData = new ClientList();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning(
+                    "Problem while reading from the Client List data file. Will be starting with an empty ClientList");
+            initialClientData = new ClientList();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        Optional<PolicyList> policyListOptional;
+        PolicyList initialPolicyData;
+        try {
+            policyListOptional = storage.readPolicyList();
+            if (!policyListOptional.isPresent()) {
+                logger.info("Policy List data file not found. Will be starting with a sample PolicyList");
+            }
+            initialPolicyData = policyListOptional.orElseGet(SamplePolicyDataUtil::getSamplePolicyList);
+        } catch (DataConversionException e) {
+            logger.warning(
+                    "Policy List data file not in the correct format. Will be starting with an empty PolicyList");
+            initialPolicyData = new PolicyList();
+        } catch (IOException e) {
+            logger.warning(
+                    "Problem while reading from the Policy List data file. Will be starting with an empty PolicyList");
+            initialPolicyData = new PolicyList();
+        }
+
+        initialClientData.updateClientListWithPolicyList(initialPolicyData);
+
+        return new ModelManager(initialClientData, userPrefs, initialPolicyData);
     }
 
     private void initLogging(Config config) {
@@ -151,7 +178,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty ClientList");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,13 +194,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting ClientList " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Client List ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

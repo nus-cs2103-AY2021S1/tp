@@ -1,0 +1,86 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ClientListParser" as ClientListParser LOGIC_COLOR
+participant ":AddPolicyCommandParser" as AddPolicyCommandParser LOGIC_COLOR
+participant "p:Policy" as Policy LOGIC_COLOR
+participant "a:AddPolicyCommand" as AddPolicyCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addp pn/Life Time pd/Covers COVID")
+activate LogicManager
+
+LogicManager -> ClientListParser : parseCommand("addp pn/Life Time pd/Covers COVID")
+activate ClientListParser
+
+create AddPolicyCommandParser
+ClientListParser -> AddPolicyCommandParser
+activate AddPolicyCommandParser
+
+AddPolicyCommandParser --> ClientListParser
+deactivate AddPolicyCommandParser
+
+
+ClientListParser -> AddPolicyCommandParser : parse("pn/Life Time pd/Covers COVID")
+activate AddPolicyCommandParser
+
+create Policy
+AddPolicyCommandParser -> Policy
+activate Policy
+
+Policy --> AddPolicyCommandParser : p
+deactivate Policy
+
+create AddPolicyCommand
+AddPolicyCommandParser -> AddPolicyCommand : AddPolicyCommand(p)
+activate AddPolicyCommand
+
+AddPolicyCommand --> AddPolicyCommandParser : a
+deactivate AddPolicyCommand
+
+AddPolicyCommandParser --> ClientListParser : a
+deactivate AddPolicyCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddPolicyCommandParser -[hidden]-> ClientListParser
+destroy AddPolicyCommandParser
+
+ClientListParser --> LogicManager : a
+deactivate ClientListParser
+
+LogicManager -> AddPolicyCommand : execute()
+activate AddPolicyCommand
+
+AddPolicyCommand -> Model : hasPolicy(p)
+activate Model
+
+Model --> AddPolicyCommand : false
+deactivate Model
+
+AddPolicyCommand -> Model : addPolicy(p)
+activate Model
+
+Model --> AddPolicyCommand
+deactivate Model
+
+create CommandResult
+AddPolicyCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddPolicyCommand
+deactivate CommandResult
+
+AddPolicyCommand --> LogicManager : result
+deactivate AddPolicyCommand
+
+[<--LogicManager
+destroy AddPolicyCommand
+deactivate LogicManager
+@enduml

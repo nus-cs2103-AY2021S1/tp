@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="Insurance4Insurance" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/I4I.png" />
   </icons>
   <scene>
     <Scene>
@@ -41,6 +41,13 @@
 
         <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
                    minHeight="100" prefHeight="100" maxHeight="100">
+          <padding>
+            <Insets top="5" right="10" bottom="5" left="10" />
+          </padding>
+        </StackPane>
+
+        <StackPane VBox.vgrow="NEVER" id="archiveModePlaceholder" fx:id="archiveModePlaceholder"
+                   minHeight="30" prefHeight="30" maxHeight="30">
           <padding>
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>

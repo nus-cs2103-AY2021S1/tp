@@ -21,7 +21,7 @@ public class PersonCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on ClientList level 4</a>
      */
 
     public final Person person;
@@ -33,13 +33,25 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private FlowPane phone;
     @FXML
-    private Label address;
+    private FlowPane address;
     @FXML
-    private Label email;
+    private FlowPane email;
     @FXML
-    private FlowPane tags;
+    private FlowPane note;
+    @FXML
+    private FlowPane priority;
+    @FXML
+    private FlowPane clientSources;
+    @FXML
+    private FlowPane policyName;
+    @FXML
+    private FlowPane policyDescription;
+    @FXML
+    private Region fillerShape;
+    @FXML
+    private HBox priorityShape;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -49,12 +61,49 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        if (person.getPhone() != null) {
+            phone.getChildren().add(new Label(person.getPhone().value));
+        }
+
+        if (person.getAddress() != null) {
+            address.getChildren().add(new Label(person.getAddress().value));
+        }
+
+        if (person.getEmail() != null) {
+            email.getChildren().add(new Label(person.getEmail().value));
+        }
+
+        if (person.getNote() != null) {
+            note.getChildren().add(new Label(person.getNote().noteName));
+        }
+
+        if (person.getPolicy() != null) {
+            policyName.getChildren().add(new Label("Policy name: " + person.getPolicy().getPolicyName().value));
+            policyDescription.getChildren().add(new Label("Description: " + person.getPolicy().getDescription().value));
+        }
+        priority.getChildren().add(new Label(person.getPriority().value));
+
+        person.getClientSources().stream()
+                .sorted(Comparator.comparing(clientSource -> clientSource.clientSourceName))
+                .forEach(clientSource -> clientSources.getChildren().add(
+                        new Label(clientSource.clientSourceName)
+                ));
+
+        setPriorityShape(person);
+    }
+
+    /**
+     * Sets the color and border color for the priority indicator based on the Person class.
+     * It uses components from the PriorityIndicatorComponent Class.
+     */
+    private void setPriorityShape(Person person) {
+        boolean isArchive = person.getIsArchive();
+        String priority = person.getPriority().value;
+        priorityShape.setBorder(
+                PriorityIndicatorComponent.getBorder(isArchive, priority));
+        priorityShape.setBackground(
+                PriorityIndicatorComponent.getBackground(isArchive, priority));
     }
 
     @Override
