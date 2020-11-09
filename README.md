@@ -2,7 +2,7 @@
 
 # Calo
 
-**UI image coming soon**
+![Ui](docs/images/Ui.png)
 
 Tired of noting down your workouts?
 
