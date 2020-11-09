@@ -46,6 +46,8 @@ Given below are my contributions to the project.
       window also allows the user to view the user guide for more detailed help.
       * Highlights: This feature enables the user to seek help when using Warenager.  <br>
 
+<div style="page-break-after: always;"></div>
+
 * **Testing**: (Pull Request
 [#155](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/155)
 [#271](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/271)
