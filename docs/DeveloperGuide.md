@@ -107,7 +107,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
  
 ### 5.1 Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+<img src="images/ArchitectureDiagram.png" align="center" width="450" />
 <div align="center">Figure 1: Architecture Diagram</div><br>
 
 The ***Architecture Diagram*** given above (Figure 1) explains the high-level design of the App. Given below is a quick overview of each component.
@@ -138,21 +138,21 @@ Each of the four components,
 
 For example, the `Logic` component (Figure 2) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+<img src="images/LogicClassDiagram.png" align="center" />
 <div align="center">Figure 2: Logic Component Class Diagram</div><br>
 
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below (Figure 3) shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram.png" align="center" width="574" />
 <div align="center">Figure 3: Architecture Sequence Diagram</div><br>
 
 The sections below give more details of each component.
 
 ### 5.2 UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<img src="images/UiClassDiagram.png" align="center" />
 <div align="center">Figure 3: Ui Component Class Diagram</div><br>
 
 **API** :
@@ -169,7 +169,7 @@ The `UI` component,
 
 ### 5.3 Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+<img src="images/LogicClassDiagram.png" align="center" />
 <div align="center">Figure 4: Logic Component Class Diagram</div><br>
 
 **API** :
@@ -276,8 +276,7 @@ The following describes the flow of how `ToggleStudentCardCommand` is performed.
 The following sequence diagram shows how the `ToggleStudentCardCommand` execution works.
 
 ![ToggleStudentCardSequenceDiagram](images/ToggleStudentCardSequenceDiagram.png)
-
-Figure \___. Sequence diagram for `ToggleStudentCardCommand` execution
+<div align="center">Figure 12: ToggleStudentCard Sequence Diagram</div><br>
 
 The following explains the design considerations of the `toggle` command.
 
@@ -317,17 +316,15 @@ a `CommandException` is thrown and the student will not be added.
 A new `CommandResult` is returned with a success message and the added student.
 6. The student is be added into `UniqueStudentList` and a success message is shown in the result display.
 
+The following sequence diagram summarizes the execution of the `AddCommand`:
+
+![Execution of Add Student Command](images/AddStudentSequenceDiagram.png)
+<div align="center">Figure 13: Add Student Sequence Diagram</div><br>
+
 The following activity diagram summarizes the flow of events when the `AddCommand` is being executed:
 
 ![Flow of Add Student Command](images/AddStudentActivityDiagram.png)
-
-Figure ___. Activity Diagram for `AddCommand`
-
-The following sequence diagram summarizes the execution of the `AddCommand`
-
-![Execution of Add Student Command](images/AddStudentSequenceDiagram.png)
-
-Figure /__. Sequence Diagram for `AddCommand`
+<div align="center">Figure 14: Add Student Activity Diagram</div><br>
 
 #### 6.2.2 Edit Student Command
 
@@ -345,14 +342,12 @@ The following describes the flow of how `EditCommand` is executed.
 The following sequence diagram shows how the `EditCommand` execution works.
 
 ![EditSequence](images/EditStudentSequenceDiagram.png)
-
-Figure \___. Sequence diagram for `EditCommand` execution
+<div align="center">Figure 15: Edit Student Sequence Diagram</div><br>
 
 The following activity diagram summarizes the flow of events when the `EditCommand` is executed.
 
 ![EditActivity](images/EditStudentActivityDiagram.png)
-
-Figure \___. Activity diagram for `EditCommand` execution
+<div align="center">Figure 16: Add Student Sequence Diagram</div><br>
 
 #### 6.2.3 Delete Student Command
 
@@ -371,21 +366,23 @@ the specified `Index` is a valid index based on the `UniqueStudentList`, in the 
 
 #### 6.2.4 Find Student Command
 
-This is an explanation of how `FindCommand` works.
+The following describes the flow of how `FindCommand` is performed.
 
-This is an activity diagram showing the high level idea of how `FindCommand` is executed.
+1. After the `FindCommand`  is created by parsing user input, `FindCommand::execute` is called.
+2. The method then calls `getPredicates()` of the `FindStudentDescriptor` stored within `FindCommand` to obtain a `List<Predicate>` to search with.
+3. The predicates within `List<Predicate>`are then combined into `consolidatedPredicate`.
+4. The `FilteredList<Student>` within the `Model` is then updated using `Model#updateFilteredPersonList(Predicate predicate)` for display.
+5. A new `CommandResult` will be returned with the success message.
 
-![FindCommandActivityDiagram](images/FindCommandActivityDiagram.png)
-
-This is a sequence diagram together with an explanation of the implementation.
+The following sequence diagram shows how the `FindCommand` execution works.
 
 ![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+<div align="center">Figure 17: Add Student Sequence Diagram</div><br>
 
- 1. After the `FindCommand`  is created by parsing user input, `FindCommand::execute` is called.
- 2. The method then calls `getPredicates()` of the `FindStudentDescriptor` stored within `FindCommand` to obtain a `List<Predicate>` to search with.
- 3. The predicates within `List<Predicate>`are then combined into `consolidatedPredicate`.
- 4. The `FilteredList<Student>` within the `Model` is then updated using `Model#updateFilteredPersonList(Predicate predicate)` for display.
- 5. A new `CommandResult` will be returned with the success message.
+The following activity diagram summarizes the flow of events when the `FindCommand` is executed.
+
+![FindCommandActivityDiagram](images/FindCommandActivityDiagram.png)
+<div align="center">Figure 18: Find Student Activity Diagram</div><br>
 
 #### 6.2.5 Overdue Command
 
@@ -400,14 +397,12 @@ The following describes the flow of how `OverdueCommand` is executed.
 The following sequence diagram shows how the `OverdueCommand` execution works.
 
 ![OverdueSequence](images/OverdueSequenceDiagram.png)
-
-Figure 5.1.5.1. Sequence diagram for `OverdueCommand` execution
+<div align="center">Figure 19: Overdue Sequence Diagram</div><br>
 
 The following activity diagram summarises the flow of events when `OverdueCommand` is executed.
 
 ![OverdueActivity](images/OverdueActivityDiagram.png)
-
-Figure 5.1.5.2. Activity diagram for `OverdueCommand` execution
+<div align="center">Figure 20: Overdue Activity Diagram</div><br>
 
 #### 6.2.6 Detail Commands
 
@@ -430,14 +425,12 @@ The following describes the flow of how `AddDetailCommand` is performed.
 The following sequence diagram shows how the detail adding operation works.
 
 ![AddDetailSequence](images/AddDetailSequenceDiagram.png)
-
-Figure 5.2.1.1. Sequence diagram for `AddDetailCommand` execution
+<div align="center">Figure 21: Add detail Sequence Diagram</div><br>
 
 The following activity diagram summarises the flow of events when `AddDetailCommand` is executed.
 
 ![AddDetailActivity](images/AddDetailActivityDiagram.png)
-
-Figure 5.2.1.2. Activity diagram for `AddDetailCommand` execution
+<div align="center">Figure 22: Add detail activity Diagram</div><br>
 
 ##### 6.2.6.2 Edit Detail Command
 
@@ -455,14 +448,12 @@ The following describes the flow of how `EditDetailCommand` is performed.
 The following sequence diagram shows how the detail editing operation works.
 
 ![EditDetailSequence](images/EditDetailSequenceDiagram.png)
-
-Figure 5.2.1.1. Sequence diagram for `EditDetailCommand` execution
+<div align="center">Figure 23: Edit detail Sequence Diagram</div><br>
 
 The following activity diagram summarises the flow of events when `EditDetailCommand` is executed.
 
 ![EditDetailActivity](images/EditDetailActivityDiagram.png)
-
-Figure 5.2.1.2. Activity diagram for `EditDetailCommand` execution
+<div align="center">Figure 24: Edit detail Activity Diagram</div><br>
 
 ##### 6.2.6.3 Delete Detail Command
 
@@ -480,14 +471,12 @@ The following describes the flow of how `DeleteDetailCommand` is performed.
 The following sequence diagram shows how the detail deleting operation works.
 
 ![DeleteDetailSequence](images/DeleteDetailSequenceDiagram.png)
-
-Figure 5.2.1.1. Sequence diagram for `DeleteDetailCommand` execution
+<div align="center">Figure 25: Delete detail Sequence Diagram</div><br>
 
 The following activity diagram summarises the flow of events when `DeleteDetailCommand` is executed.
 
 ![DeleteDetailActivity](images/DeleteDetailActivityDiagram.png)
-
-Figure 5.2.1.2. Activity diagram for `DeleteDetailCommand` execution
+<div align="center">Figure 26: Delete detail Activity Diagram</div><br>
 
 ### 6.3 Student academic details features
 
@@ -516,14 +505,12 @@ The following describes the flow of how `AddQuestionCommand` is performed.
 The following sequence diagram shows how the question adding operation works.
 
 ![AddQuestionSequence](images/AddQuestionSequenceDiagram.png)
-
-Figure 5.2.1.1. Sequence diagram for `AddQuestionCommand` execution
+<div align="center">Figure 27: Add Question Sequence Diagram</div><br>
 
 The following activity diagram summarises the flow of events when `AddQuestionCommand` is executed.
 
 ![AddQuestionActivity](images/AddQuestionActivityDiagram.png)
-
-Figure 5.2.1.2. Activity diagram for `AddQuestionCommand` execution
+<div align="center">Figure 28: Add Question Activity Diagram</div><br>
 
 ##### 6.3.1.2 Solve Question Command
 
@@ -540,14 +527,12 @@ The following describes the flow of how `SolveQuestionCommand` is performed.
 The following sequence diagram shows how the question solving operation works.
 
 ![SolveQuestionSequence](images/SolveQuestionSequenceDiagram.png)
-
-Figure 5.2.2.1. Sequence diagram for `SolveQuestionCommand` execution
+<div align="center">Figure 29: Solve Question Sequence Diagram</div><br>
 
 The following activity diagram summarises the flow of events when `SolveQuestionCommand` is executed.
 
 ![SolveQuestionActivity](images/SolveQuestionActivityDiagram.png)
-
-Figure 5.2.2.2. Activity diagram for `SolveQuestionCommand` execution
+<div align="center">Figure 30: Solve Question Activity Diagram</div><br>
 
 ##### 6.3.1.3 Delete Question Command
 
@@ -564,14 +549,12 @@ The following describes the flow of how `DeleteQuestionCommand` is performed.
 The following sequence diagram shows how the question deletion operation works.
 
 ![DeleteQuestionSequence](images/DeleteQuestionSequenceDiagram.png)
-
-Figure 5.2.3.1. Sequence diagram for `DeleteQuestionCommand` execution
+<div align="center">Figure 31: Delete Question Sequence Diagram</div><br>
 
 The following activity diagram summarises the flow of events when `DeleteQuestionCommand` is executed.
 
 ![DeleteQuestionActivity](images/DeleteQuestionActivityDiagram.png)
-
-Figure 5.2.3.2. Activity diagram for `DeleteQuestionCommand` execution
+<div align="center">Figure 32: Delete Question Activity Diagram</div><br>
 
 ##### 6.3.1.4 Design considerations
 
@@ -594,8 +577,7 @@ The Exam commands keep track of exam records of a student. They comprise of the 
 The structure of exam commands is as shown below:
 
 ![ExamCommandClass](images/ExamCommandClassDiagram.png)
-
-Figure \___. Class diagram of exam commands.
+<div align="center">Figure 33: Exam Command Class Diagram</div><br>
 
 ##### 6.3.2.1 Add exam command
 
@@ -613,14 +595,12 @@ The following describes the flow of how `AddExamCommand` is performed.
 The following sequence diagram shows how the exam adding operation works.
 
 ![AddExamSequence](images/AddExamSequenceDiagram.png)
-
-Figure 5.2.3.1. Sequence diagram for `AddExamCommand` execution
+<div align="center">Figure 34: Add Exam Sequence Diagram</div><br>
 
 The following activity diagram summarises the flow of events when `AddExamCommand` is executed.
 
 ![AddExamActivity](images/AddExamActivityDiagram.png)
-
-Figure 5.2.3.2. Activity diagram for `AddExamCommand` execution
+<div align="center">Figure 35: Add Exam Activity Diagram</div><br>
 
 ##### 6.3.2.2 Delete exam command
 
@@ -643,14 +623,12 @@ The following describes the flow of how `DeleteExamCommand` is performed.
 The following sequence diagram shows how the exam deleting operation works.
 
 ![DeleteExamSequence](images/DeleteExamSequenceDiagram.png)
-
-Figure 5.2.3.1. Sequence diagram for `DeleteExamCommand` execution
+<div align="center">Figure 36: Delete Exam Sequence Diagram</div><br>
 
 The following activity diagram summarises the flow of events when `DeleteExamCommand` is executed.
 
 ![DeleteExamActivity](images/DeleteExamActivityDiagram.png)
-
-Figure 5.2.3.2. Activity diagram for `DeleteExamCommand` execution
+<div align="center">Figure 37: Delete Exam Activity Diagram</div><br>
 
 ##### 6.3.2.3 Exam Stats command
 
@@ -665,14 +643,12 @@ The following describes the flow of how `ExamStatsCommand` is performed.
 The following sequence diagram shows how the exam stats operation works.
 
 ![ExamStatsSequenceDiagram](images/ExamStatsSequenceDiagram.png)
-
-Figure \___. Sequence diagram for `ExamStatsCommand` execution
+<div align="center">Figure 39: Exam Stats Sequence Diagram</div><br>
 
 The following activity diagram summarises the flow of events when `ExamStatsCommand` is executed.
 
 ![ExamStatsActivityDiagram](images/ExamStatsActivityDiagram.png)
-
-Figure \___. Activity diagram for `ExamStatsCommand` execution
+<div align="center">Figure 40: Exam Stats Activity Diagram</div><br>
 
 The following explains the design considerations of the `exam stats` command.
 
