@@ -82,7 +82,7 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103-F10-3/tp/tree/master/src/main/java/seedu/fma/logic/Logic.java)
 
-1. `Logic` uses the `LogBookParser` class to parse the user command.
+1. `Logic` uses the `FixMyAbsParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a log).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -101,7 +101,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103-F10-3/tp/tree/master/src/main/java/seedu/fma/model/Model.java)
 
-The `Model`,
+The `Model` component,
 
 - stores a `UserPref` object that represents the user’s preferences.
 - stores the logbook data.
@@ -147,7 +147,7 @@ Step 2. The user input is passed into the `AddExCommandParser#parse()` method an
 
 ![AddExClassDiagram](images/AddExerciseStep2.png)
 
-Step 3. A new `AddExCommand` is returned with the created `Exercise` object as a parameter. The `Exercise` object is then added to the `Model`.
+Step 3. A new `AddExCommand` is returned with the created `Exercise` object as an attribute. The `Exercise` object is then added to the `Model`.
 
 ![AddExClassDiagram](images/AddExerciseStep3.png)
 
@@ -176,7 +176,7 @@ Step 1. The user executes the command `add e/Pushups r/50 c/Managed to increase 
 
 Step 2. The user input is passed into the `AddCommandParser#parse()` method and instances of `Exercise`, `Rep` and `Comment` are created using the `ParserUtil` class, from user input. These new instances are passed as parameters to the `Log` constructor, and a new `Log` object is created as a result. Each `Log` instantiates with a new `dateTime` field, which calls the `LocalDateTime#now()` method alongside the current system clock of the user's computer.`
 
-Step 3. A new `AddCommand` is returned with the created `Log` object as a parameter. The `Log` object is then added to the `Model`.
+Step 3. A new `AddCommand` is returned with the created `Log` object as an attribute. The `Log` object is then added to the `Model`.
 
 The following sequence diagram shows how the `Add Log` feature works:
 
@@ -208,7 +208,7 @@ Step 1. The user executes the command `find Push ups`. `FixMyAbsParser` creates 
 
 Step 2. The user input is passed into the `FindCommandParser#parse()` method, which then creates a new `NameContainsKeywordsPredicate` object, with the user input as the parameter. This object checks if there is a match between the keyword and the tested `Log`. 
 
-Step 3. As a result of the `FindCommandParser#parse()` method, a new `FindCommand` is returned with the created `NameContainsKeywordsPredicate` object as a parameter. Upon calling `FindCommand#execute()`, the model is updated through `Model#updateFilteredLogList()`, and the new filtered log list is displayed to the user.
+Step 3. As a result of the `FindCommandParser#parse()` method, a new `FindCommand` is returned with the created `NameContainsKeywordsPredicate` object as an attribute. Upon calling `FindCommand#execute()`, the model is updated through `Model#updateFilteredLogList()`, and the new filtered log list is displayed to the user.
 
 The following sequence diagram shows how the `find` feature works:
 
@@ -308,8 +308,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* `     | unmotivated user          | have reminders of the last time I exercised      | feel more motivated to start exercising again                  |
 | `* `     | careless user             | be able to undo actions                          | fix any mistakes I may have done regarding input               |
 
-_{More to be added}_
-
 ### Use cases
 
 (For all use cases below, the **System** is `FixMyAbs` and the **Actor** is the `user`, unless specified otherwise)
@@ -320,6 +318,7 @@ _{More to be added}_
 
 1. User requests to create a specific log
 2. FixMyAbs creates the log
+3. FixMyAbs shows a success message
 
    Use case ends.
 
@@ -345,6 +344,7 @@ _{More to be added}_
 2. FixMyAbs shows a list of all recorded logs
 3. User requests to edit a specific log in the list
 4. FixMyAbs edits the log according to user specifications
+5. FixMyAbs shows a success message
 
    Use case ends.
 
@@ -352,7 +352,9 @@ _{More to be added}_
 
 - 2a. The list of logs is empty.
 
-  Use case ends.
+  - 2a1. FixMyAbs shows an error message.
+
+    Use case ends.
 
 - 3a. The given index is invalid.
 
@@ -368,6 +370,7 @@ _{More to be added}_
 2. FixMyAbs shows a list of all recorded logs
 3. User requests to delete a specific log in the list
 4. FixMyAbs deletes the log
+5. FixMyAbs shows a success message
 
    Use case ends.
 
@@ -375,7 +378,9 @@ _{More to be added}_
 
 - 2a. The list of logs is empty.
 
-  Use case ends.
+  - 2a1. FixMyAbs shows an error message.
+  
+    Use case ends.
 
 - 3a. The given index is invalid.
 
@@ -406,6 +411,7 @@ _{More to be added}_
 
 1. User requests to create a specific exercise
 2. FixMyAbs creates the exercise
+3. FixMyAbs shows a success message
 
    Use case ends.
 
@@ -429,6 +435,7 @@ _{More to be added}_
 
 1. User requests to edit the calories per rep of an existing exercise.
 2. FixMyAbs edits the indicated exercise
+3. FixMyAbs shows a success message
     
    Use case ends.
 
@@ -516,7 +523,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `edit 1`<br>
       Expected: No log is edited. Error details shown in the status message.
 
-   1. Other incorrect edit commands to try: `edit`, `edit x ...` (where x is larger than the list size or less than 1)<br>
+   1. Other incorrect edit commands to try: `edit`, `edit x ...` (where x is an integer larger than the list size or less than 1)<br>
       Expected: Similar to previous.
       
 ### Deleting a log
@@ -531,7 +538,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete 0`<br>
       Expected: No log is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size or less than 1)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x` (where x is an integer larger than the list size or less than 1)<br>
       Expected: Similar to previous.
       
 ### Adding an exercise
