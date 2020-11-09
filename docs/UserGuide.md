@@ -305,13 +305,12 @@ This section includes some general notes on Jarvis.
    * Students’ names that are under the Avenger will be fetched automatically from [https://sourceacademy.nus.edu.sg](https://sourceacademy.nus.edu.sg) upon startup.
    * LumiNUS username and passwords will be stored in plaintext.
 
+<div style="page-break-after: always;"></div>
+
 #### 6.1.3 Notes about Tasks
    * Each `Task` you create, be it `Todo`, `Event` or `Deadline`, there will be an unique Task ID assigned to each of them, so
    that there will be no 2 of the same ID in your Task List at any point of time. The Task ID is reflected as
    <br>eg. D1, E5, T21
-   
-   <div style="page-break-after: always;"></div>
-   
    * The first alphabet "T", "E" and "D" refers to `Todo`, `Event`, and `Deadline` respectively, and the number followed
    after the alphabet is the index of the `Task` you created with respect to all the `Tasks` you ever created.
 
@@ -334,6 +333,8 @@ This section includes some general notes on Jarvis.
 Shows a message explaining how to access the help page.
 
 <br>**Format: `help`**
+
+<div style="page-break-after: always;"></div>
 
 ### 6.3 Adding Information : `add`
 
