@@ -77,7 +77,7 @@ Jarvis is a desktop app for CS1101S Teaching Assistants (Avengers), optimized fo
     - [7.5 Exit Command Summary](#75-exit-command-summary)
     - [7.6 Help Command Summary](#76-help-command-summary)
     
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
 
 8. [Glossary](#8-glossary)
     - [8.1 Difference Between Consultations and Mastery Checks](#81-difference-between-consultations-and-mastery-checks)
