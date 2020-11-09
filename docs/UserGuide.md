@@ -41,7 +41,7 @@ To get started using Warenager,
     
     </div>
 
-2. Download the latest `[CS2103T-T15-3][Warenager].jar` from [here](https://github.com/AY2021S1-CS2103T-T15-3/tp/releases).
+2. Download the latest `Warenager.jar` from [here](https://github.com/AY2021S1-CS2103T-T15-3/tp/releases).
 
 3. Copy the jar file you have just downloaded to the folder you want to use as the _home folder_ for your Warenager.
 
