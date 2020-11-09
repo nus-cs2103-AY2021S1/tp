@@ -145,7 +145,7 @@ The `Model`,
 * does not depend on any of the other three components.
 
 
-<div align="center" markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has an `Allergy` list in the `CliniCal` application, which `Patient` references. This allows `CliniCal` to only require one `Allergy` object per unique `Allergy`, instead of each `Patient` needing their own `Allergy` object.
+<div align="left" markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has an `Allergy` list in the `CliniCal` application, which `Patient` references. This allows `CliniCal` to only require one `Allergy` object per unique `Allergy`, instead of each `Patient` needing their own `Allergy` object.
     <img src="images/BetterModelClassDiagram.png"/>
     <br>
     <em style="color:#CC5500">Figure 8. Alternative structure for Model component</em>

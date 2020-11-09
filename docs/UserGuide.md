@@ -462,16 +462,19 @@ Format: `delete INDEX`
   * The index **must be a positive number**, eg. 1, 2, 3, …
 
 <p align="center">
-    <img src="images/deleteExample.png"/>
+    <img src="images/deleteExampleBefore.png"/>
     <br>
-    <em style="color:#CC5500">Figure 15. Example of Delete Patient Command</em>
+    <em style="color:#CC5500">Figure 15.1 Example of Delete Patient Command (Before)</em>
+    <img src="images/deleteExampleAfter.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 15.2 Example of Delete Patient Command (After)</em>
 </p>
 
 <div markdown="block" class="alert alert-warning">
 :book: <span style="font-weight:bold">Example: </span>
-You want to delete the fifth patient.
+You want to delete the 6th patient.
 
-**Step 1**: Input `delete 5` into the command box and press <kbd>Enter</kbd>.
+**Step 1**: Input `delete 6` into the command box and press <kbd>Enter</kbd>.
 
 **Step 2**: On the Patient tab, you can check that the specified patient is no longer inside the patient list.
 </div>
