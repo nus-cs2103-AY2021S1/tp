@@ -157,7 +157,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <figcaption> Figure 4.3b Sequence Diagram of DeleteTutorialGroupCommand </figcaption>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTutorialGroupCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
+</div>
 ### Section 4.4 - Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -173,9 +173,6 @@ The `Model` component,
 -   stores the Trackr data.
 -   exposes unmodifiable `ObservableList<Module>`, `ObservableList<TutorialGroup>` and `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 -   does not depend on any of the other three components.
-
-
-</div>
 
 ### Section 4.5 - Storage component
 
