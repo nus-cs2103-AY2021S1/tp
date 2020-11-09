@@ -28,7 +28,7 @@ Class UniquePersonList
 Class Priority
 }
 
-Package ClientSource {
+Package ClientSource\n {
 Class ClientSource
 }
 
@@ -63,8 +63,8 @@ Person *--> "0..1" Phone
 Person *--> "0..1" Email
 Person *--> "0..1" Address
 Person *--> "*" ClientSource
-Person *--> "0..1" Policy
-Person *--> "0..1" Note
+Person *--> "0..1  " Policy
+Person *--> "0..1 " Note
 Person *--> "1" Priority
 
 Name -[hidden]right-> Phone
@@ -74,7 +74,7 @@ Address -[hidden]right-> Email
 ModelManager -->"1" Person : filtered list
 
 ModelManager o--> "1" PolicyList
-PolicyList o--> "*" Policy
+PolicyList o--> " *" Policy
 Policy *--> "1" PolicyName
 Policy *--> "1" PolicyDescription
 

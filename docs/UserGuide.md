@@ -14,7 +14,7 @@ Interface (CLI) while still having the benefits of a Graphic User Interface (GUI
 
 ## Quick start
 
-1. Ensure you have Java `11` installed in your Computer. 
+1. Ensure you have Java `11` installed in your Computer.  
    You can check the version by opening a command window, and running the `java -version` command.
 
 2. Download the latest `[CS2103-T16-2][Insurance4Insurance].jar` from [here](https://github.com/AY2021S1-CS2103-T16-2/tp/releases).
