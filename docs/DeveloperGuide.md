@@ -197,6 +197,8 @@ The below sequence diagram details the execution flow:
 
 ![UpdateSequenceDiagram](images/UpdateSequenceDiagram.png)
 
+Note: If you find the text above too small, you might want to check out the diagram [here](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/docs/images/UpdateSequenceDiagram.png).
+
 Here are the steps:
 - Step 1: `LogicManager` calls its  `execute` method, supplying the argument "update 1 d/30 c/260 m/chest t/home", which was entered by the user.
 
