@@ -978,7 +978,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect set commands to try: `i-set i/Milk m/1.2`, `i-set i/Milk m/1000`, `i-set i/Milk`<br>
       Expected: The amount of milk is unchanged. Corresponding error messages are shown in _Result Display_.
 
-### F.1 Archiving an employee
+### Archiving an employee
 
 1. Archiving an employee and hides his/her info from the active/unarchived employee directory.
 
