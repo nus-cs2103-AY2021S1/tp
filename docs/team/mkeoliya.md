@@ -20,7 +20,7 @@ Given below are a summary of my contributions to the project.
   * Highlights: This feature affects all binnable items that can be added in the future. As before, [two design choices were considered](https://ay2021s1-cs2103-t16-3.github.io/tp/DeveloperGuide.html#design-considerations), but practicality and simplicity of code drove the first choice to be picked (refer to the Developer Guide).
   
 * **Enhancements to existing features**:
-  * Modified AB3 to ResiReg, and support a `Student` class : [#82](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/82)
+  * Modified AB3 to ResiReg, and support a `Student` class : [#71](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/71)
     - Entailed a heavy refactoring, the addition of multiple fields to the Student class, design choice for creating a `FacultyEnum` and extending AB3 to ensure it could support more than one type of item. 
 
 <div style="page-break-after: always;"></div>
