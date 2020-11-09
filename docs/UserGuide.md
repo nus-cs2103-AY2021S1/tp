@@ -33,7 +33,7 @@ title: User Guide
    4.4 [Tutorial Group Features](#44-tutorial-group-features)<br>
    --- 4.4.1 [Add a tutorial group: `addTG`](#441-add-a-tutorial-group-addtg)<br>
    --- 4.4.2 [Delete a tutorial group: `deleteTG`](#442-delete-a-tutorial-group-deletetg)<br>
-   --- 4.4.3 [Edit a Tutorial Group: `editTG`](#443-edit-a-tutorial-group-edittg)<br>
+   --- 4.4.3 [Edit a tutorial group: `editTG`](#443-edit-a-tutorial-group-edittg)<br>
    --- 4.4.4 [Find a tutorial group: `findTG`](#444-find-a-tutorial-group-findtg)<br>
    4.5 [Student Features](#45-student-features)<br>
    --- 4.5.1 [Add a student: `addStudent`](#451-add-a-student-addstudent)<br>
