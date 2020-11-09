@@ -181,6 +181,7 @@ Step 5: During the executation, `ArchiveCommand` interacts with `Storage` who wi
 Step 6: If the user has no permission to write on the specific file location, an error message will appear on user screen.
 Else, a success message will appear on the user Response Box.  
 
+![Archive Sequence Diagram](images/ArchiveSequenceDiagram.png)
 
 
 #### 4.1.2. Design Consideration
@@ -215,11 +216,17 @@ during this rendering process, `CaloriesGraph` takes in `HashMap` that contains 
 for that day as the value. `CaloriesGraph` will then take values for the most recent 7 days (including today) and display
 them on the Calories Graph.
 
+
+Step 1: User enter a valid command.  
+Step 2: The command is passed to the `LogicManager` which parse and execute the command.  
+Step 3: After the update is done, `MainWindow` called `getCaloriesByDay()` which is a HashMap that contains the summarised information.  
+Step 4: `MainWinodw` re-render all its `Ui` component including `CaloriesGraph`.  
+
+![Flow Diagram for Calories Graph](images/CaloriesGraphFlowDiagram.png)
+
+The following is the Sequence Diagram that describes the process in slightly more detail, including the method call.  
 ![Sequence Diagram for Calories Graph](images/CaloriesGraph.png)
-
-
-Test 1 2 3
-![Sequence Diagram for Calories Graph](diagrams/CaloriesGraph.puml)
+`
 
 #### 4.2.2. Design Consideration
 
@@ -240,6 +247,8 @@ everything after a command anyway. The only downside to current implementation i
 in order to get the `HashMap` in `UniqueExerciseList` that contains the relevant information, it needs to be called through numerous
 classes, as shown below. Current version of Calo is still 'light' enough for the system to handle the stress, but given time
 `CaloriesGraph` should be refactored to fulfill the Observer Design Pattern especially when `Calo` get more complicated.
+
+![Calories Graph Call Stack](images/CaloriesGraphCallStack.png)
 
 #### 4.3. Template
 (Roy)  

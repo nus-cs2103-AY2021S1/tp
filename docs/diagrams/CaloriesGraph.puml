@@ -59,14 +59,15 @@ destroy XYZCommand
 MainWindow<--LogicManager
 deactivate LogicManager
 
-MainWindow --> LogicManager : getCaloriesByDay()
+MainWindow -> LogicManager : getCaloriesByDay()
 activate LogicManager
 
 MainWindow<--LogicManager
 deactivate LogicManager
 
-create CaloriesGraph
 MainWindow -> CaloriesGraph : CaloriesGraph(CaloriesByDay)
+activate CaloriesGraph
 
-CaloriesGraph -> MainWindow
+CaloriesGraph --> MainWindow
+deactivate CaloriesGraph
 @enduml
