@@ -123,10 +123,10 @@ public class ExerciseModelManager implements ExerciseModel {
 
     @Override
     public void deleteExercise(Exercise target) {
-        
+
         this.exerciseBook.removeExercise(target);
         if (goalBook.hasGoal(new Goal(target.getDate()))) {
-            
+
         }
     }
 
@@ -135,11 +135,11 @@ public class ExerciseModelManager implements ExerciseModel {
     public Optional<Goal> addExercise(Exercise exercise) {
         exerciseBook.addExercise(exercise);
         updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISE);
-        
+
         if (goalBook.hasGoal(new Goal(exercise.getDate()))) {
-            Calories calorie= new Calories(String.valueOf(getCaloriesByDay().get(exercise.getDate().value)));
+            Calories calorie = new Calories(String.valueOf(getCaloriesByDay().get(exercise.getDate().value)));
             Goal goal = goalBook.getGoal(exercise.getDate());
-            goal.updateGoal(calorie);
+            goal = goal.updateGoal(calorie);
             //goalBook.removeGoal(goal);
             //goal = goal.updateGoal(exercise.getCalories());
             //goalBook.addGoal(goal);
