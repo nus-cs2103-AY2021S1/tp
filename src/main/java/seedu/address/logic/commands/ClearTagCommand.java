@@ -2,6 +2,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
 import java.util.List;
@@ -33,6 +34,7 @@ public class ClearTagCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         // check if Person exists in address book
         boolean isValidContact = model.hasPersonName(targetName);
         if (!isValidContact) {

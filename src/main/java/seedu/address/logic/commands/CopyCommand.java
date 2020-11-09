@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -50,6 +51,7 @@ public class CopyCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> people;
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         if (moduleNames.isEmpty()) {
             // finds Persons that match the predicate only
             people = model.getUpdatedFilteredPersonList(predicate);
