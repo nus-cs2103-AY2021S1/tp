@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 
-class ExerciseModelManagerTest {
-    private ExerciseModelManager modelManager = new ExerciseModelManager();
+class ModelManagerTest {
+    private ModelManager modelManager = new ModelManager();
 
     @Test
     public void constructor() {
@@ -95,8 +95,8 @@ class ExerciseModelManagerTest {
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ExerciseModelManager(exerciseBook, userPrefs);
-        ExerciseModelManager modelManagerCopy = new ExerciseModelManager(exerciseBook, userPrefs);
+        modelManager = new ModelManager(exerciseBook, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(exerciseBook, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -109,7 +109,7 @@ class ExerciseModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ExerciseModelManager(differentExerciseBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentExerciseBook, userPrefs)));
 
         /*
         // different filteredList -> returns false

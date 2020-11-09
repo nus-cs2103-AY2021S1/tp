@@ -3,13 +3,13 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.ExerciseModel;
+import seedu.address.model.Model;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Name;
-import seedu.address.model.exercise.TheMostRecentDatePredicateForExercise;
+import seedu.address.model.exercise.TheMostRecentDatePredicate;
 
-public class RecallCommand extends CommandForExercise {
+public class RecallCommand extends Command {
 
     public static final String COMMAND_WORD = "recall";
 
@@ -33,7 +33,7 @@ public class RecallCommand extends CommandForExercise {
     }
 
     @Override
-    public CommandResult execute(ExerciseModel model) {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         java.util.Date currentDay = new java.util.Date();
         filteredExercises = model.getFilteredExerciseList();
@@ -47,7 +47,7 @@ public class RecallCommand extends CommandForExercise {
                 }
             }
         }
-        model.updateFilteredExerciseList(new TheMostRecentDatePredicateForExercise(name, date));
+        model.updateFilteredExerciseList(new TheMostRecentDatePredicate(name, date));
         return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredExerciseList().size()));
     }
 

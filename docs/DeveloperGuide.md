@@ -128,7 +128,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/model/ExerciseModel.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
@@ -897,3 +897,9 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Calo starts up successfully
    2. Test case: `list`<br>
       Expected: All `Exercise` entries belonging to the `ExerciseBook` will be displayed in the left panel.
+
+### Adding a goal successfully
+1. Creating goal for a date. For example, 09-11-2020.
+    1.  Prerequisites: There is no pre-existing goal for the same date.
+    2.  Test case: `goal c\360 at\09-11-2020`
+        Expected: `New goal added: 360`

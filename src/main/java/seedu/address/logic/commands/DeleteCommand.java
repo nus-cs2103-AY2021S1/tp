@@ -7,13 +7,13 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ExerciseModel;
+import seedu.address.model.Model;
 import seedu.address.model.exercise.Exercise;
 
 /**
  * Deletes an exercise identified using it's displayed index from the Calo.
  */
-public class DeleteCommand extends CommandForExercise {
+public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
@@ -31,7 +31,7 @@ public class DeleteCommand extends CommandForExercise {
     }
 
     @Override
-    public CommandResult execute(ExerciseModel model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Exercise> lastShownList = model.getFilteredExerciseList();
 

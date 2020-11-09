@@ -14,16 +14,16 @@ import seedu.address.model.UserPrefs;
 /**
  * Manages storage of AddressBook data in local storage.
  */
-public class StorageManagerForExercise implements StorageForExercise {
+public class StorageManager implements StorageForExercise {
 
-    private static final Logger logger = LogsCenter.getLogger(StorageManagerForExercise.class);
+    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private ExerciseBookStorage exerciseBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManagerForExercise(ExerciseBookStorage exerciseBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(ExerciseBookStorage exerciseBookStorage, UserPrefsStorage userPrefsStorage) {
         super();
         this.exerciseBookStorage = exerciseBookStorage;
         this.userPrefsStorage = userPrefsStorage;

@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.ExerciseModel;
+import seedu.address.model.Model;
 import seedu.address.model.exercise.Exercise;
 
 /**
@@ -35,21 +35,21 @@ public class ExerciseTestUtil {
     /**
      * Returns the middle index of the exercise in the {@code model}'s exercise list.
      */
-    public static Index getMidIndex(ExerciseModel model) {
+    public static Index getMidIndex(Model model) {
         return Index.fromOneBased(model.getFilteredExerciseList().size() / 2);
     }
 
     /**
      * Returns the last index of the exercise in the {@code model}'s exercise list.
      */
-    public static Index getLastIndex(ExerciseModel model) {
+    public static Index getLastIndex(Model model) {
         return Index.fromOneBased(model.getFilteredExerciseList().size());
     }
 
     /**
      * Returns the exercise in the {@code model}'s exercise list at {@code index}.
      */
-    public static Exercise getExercise(ExerciseModel model, Index index) {
+    public static Exercise getExercise(Model model, Index index) {
         return model.getFilteredExerciseList().get(index.getZeroBased());
     }
 }

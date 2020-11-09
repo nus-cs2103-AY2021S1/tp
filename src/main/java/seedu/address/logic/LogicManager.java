@@ -9,12 +9,12 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.ArchiveCommand;
-import seedu.address.logic.commands.CommandForExercise;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ExerciseBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ExerciseModel;
+import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyExerciseBook;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Template;
@@ -24,12 +24,12 @@ import seedu.address.storage.StorageForGoal;
 /**
  * The main LogicManager of the app.
  */
-public class LogicManagerForExercise implements LogicForExercise {
+public class LogicManager implements Logic {
 
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
-    private final Logger logger = LogsCenter.getLogger(LogicManagerForExercise.class);
+    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
-    private final ExerciseModel model;
+    private final Model model;
     private final StorageForExercise storage;
     private final StorageForGoal goalStorage;
     private final ExerciseBookParser exerciseBookParser;
@@ -37,7 +37,7 @@ public class LogicManagerForExercise implements LogicForExercise {
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
-    public LogicManagerForExercise(ExerciseModel model, StorageForExercise storage, StorageForGoal goalStorage) {
+    public LogicManager(Model model, StorageForExercise storage, StorageForGoal goalStorage) {
         this.model = model;
         this.storage = storage;
         this.goalStorage = goalStorage;
@@ -49,7 +49,7 @@ public class LogicManagerForExercise implements LogicForExercise {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult = null;
-        CommandForExercise command = exerciseBookParser.parseCommand(commandText);
+        Command command = exerciseBookParser.parseCommand(commandText);
 
         if (command instanceof ArchiveCommand) {
             ArchiveCommand cmd = (ArchiveCommand) command;

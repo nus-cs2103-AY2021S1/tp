@@ -4,18 +4,20 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMP;
 
 import java.util.Optional;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ExerciseModel;
+import seedu.address.model.Model;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Weight;
 import seedu.address.model.goal.Goal;
 
-public class AddExerciseFromTemplate extends CommandForExercise {
+public class AddExerciseFromTemplate extends Command {
 
     public static final String COMMAND_WORD = "addt";
 
@@ -24,7 +26,9 @@ public class AddExerciseFromTemplate extends CommandForExercise {
             + PREFIX_TEMP + "TEMPLATE NAME "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_DATE + "DATE "
-            + "[" + PREFIX_CALORIES + "CALORIES]\n"
+            + "[" + PREFIX_CALORIES + "CALORIES] "
+            + "[" + PREFIX_MUSCLE + "MUSCLES] "
+            + "[" + PREFIX_TAG + "TAGS]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TEMP + "PUSH_UP "
             + PREFIX_DESCRIPTION + "half an hour "
@@ -49,7 +53,7 @@ public class AddExerciseFromTemplate extends CommandForExercise {
     }
 
     @Override
-    public CommandResult execute(ExerciseModel model) throws CommandException, ParseException {
+    public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
         if (model.hasExercise(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EXERCISE);

@@ -13,7 +13,7 @@ import seedu.address.model.ReadOnlyExerciseBook;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Template;
 
-public interface LogicForExercise {
+public interface Logic {
 
     public CommandResult execute(String commandText) throws CommandException, ParseException, IOException;
 
