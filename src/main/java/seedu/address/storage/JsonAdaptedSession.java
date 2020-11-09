@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-import static seedu.address.model.session.Interval.MESSAGE_END_AFTER_START_CONSTRAINTS;
+import static seedu.address.model.session.Interval.MESSAGE_DURATION_CONSTRAINTS;
 import static seedu.address.model.session.Interval.MESSAGE_END_TIME_CONSTRAINTS;
 import static seedu.address.model.session.Interval.MESSAGE_START_TIME_CONSTRAINTS;
 
@@ -88,7 +88,7 @@ public class JsonAdaptedSession {
         final int duration = (int) startDateTime.until(endDateTime, ChronoUnit.MINUTES);
 
         if (!Interval.isValidInterval(duration)) {
-            throw new IllegalValueException(MESSAGE_END_AFTER_START_CONSTRAINTS);
+            throw new IllegalValueException(MESSAGE_DURATION_CONSTRAINTS);
         }
 
         Interval modelInterval = new Interval(startDateTime, duration);

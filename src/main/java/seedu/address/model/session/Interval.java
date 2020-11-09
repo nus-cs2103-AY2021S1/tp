@@ -20,7 +20,6 @@ public class Interval {
             + "dd/MM/yyyy HHmm pattern";
     public static final String MESSAGE_END_TIME_CONSTRAINTS = "End time must be a valid date and time and follows "
             + "dd/MM/yyyy HHmm pattern";
-    public static final String MESSAGE_END_AFTER_START_CONSTRAINTS = "End time should be after start time.";
     public static final String MESSAGE_DURATION_CONSTRAINTS =
             "Duration (in minutes) must be a positive integer less than 2,147,483,648";
 
