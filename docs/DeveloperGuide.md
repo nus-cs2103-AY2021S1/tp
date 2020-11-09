@@ -145,7 +145,7 @@ In this section, we will be highlighting some key features and how they are bein
 
 ### 4.1 Find by name or NRIC feature (by Cao Qin)
 
-The find feature enables users to find patients by specifying their names (anyone from their first name, middle name or last name) or Nric numbers.
+The find feature enables users to find patients by specifying their names (anyone from their first names, middle names or last names) or Nric numbers.
 
 #### 4.1.1 Implementation
 
@@ -153,9 +153,9 @@ The following are the changes made to achieve this feature:
 
 * A `KeywordPredicate` class is added under the `model/patient` package. 
 * `FindCommand` class is modified to keep a KeywordPredicate object as a filed.
-* `FindCommandParser` class is modified to parser both patients' name and nric number.
+* `FindCommandParser` class is modified to parser both patients' names and nric numbers.
 
-Given below is an example usage scenario of this feature using both name and Nric as inputs.
+Given below is a usage scenario of this feature using both name and Nric as inputs.
 
 Step 1. The user executes `add n/Alex Yeoh ic/S0000001A p/87438807 e/alexyeoh@example.com a/Blk 30 Geylang Street 29, #06-40 mr/www.sample.com/01` to add a patient named Alex Yeho and with a Nric number “S0000001A”.
 
@@ -169,7 +169,7 @@ Step 5. The user executes `find Alex S0000002A` command to find 2 patients: one 
 
 Step 6. The user executes `list` command to view the full list of patients.
 
-The sequence diagram below illustrates Logic and Model Components when the user executes `find Alex S0000002A` command as in Step 5. 
+The sequence diagram below illustrates the interaction between Logic and Model components when the user executes `find Alex S0000002A` command as in Step 5. 
 
 ![FindSequenceDiagram](images/UML_Diagrams/FindSequenceDiagram.png)
 
@@ -181,14 +181,14 @@ The sequence diagram below illustrates Logic and Model Components when the user 
 
 </div>
 
-In the **Logic** Component, after user inputs `find Alex S0000002A`, these are the key methods:
-* `LogicManager#execute("find Alex S0000002A")` : The `LogicManager` takes in the command text string ("find Alex S0000002").
-* `HospifyParser#parseCommand("find")` : The `HospifyParser` parses the users' input and recognizes the command word, "find", and a `FindCommand` is created.
-* `FindCommand#execute(model)` : The `FindCommand` uses the `updateFilteredPatientList` method of `Model` to update the displayed patients list and returns a `CommandResult` object which represents the result of a
+In the **Logic** Component, when user inputs `find Alex S0000002A`, these are the key methods invoked:
+* `LogicManager#execute("find Alex S0000002A")`: The `LogicManager` takes in the command text string ("find Alex S0000002").
+* `HospifyParser#parseCommand("find")`: The `HospifyParser` parses the users' input and recognizes the command word, "find", and a `FindCommand` is created.
+* `FindCommand#execute(model)`: The `FindCommand` uses the `updateFilteredPatientList` method of `Model` to update the displayed patients list and returns a `CommandResult` object which represents the result of a
 command execution.
 
-In the **Model** Component, the following key method is used:
-* `Model#updateFilteredPatientLis(predicate)` : `Model` uses this method to update the displayed patients list.
+In the **Model** Component, This is the key method invoked:
+* `Model#updateFilteredPatientLis(predicate)`: `Model` uses this method to update the displayed patients list.
 
 The following activity diagram summarizes what happens when the user inputs a find command.
 ![FindActivityDiagram](images/UML_Diagrams/findActivityDiagram.png)
