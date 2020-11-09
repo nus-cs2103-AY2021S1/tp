@@ -19,6 +19,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.REMIND_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_LAB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LAB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalAssignments.HW;
@@ -53,7 +54,6 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_LAB + DEADLINE_DESC_LAB
                 + MODULE_CODE_DESC_LAB, new AddCommand(expectedAssignment));
 
-        // TODO JERRY: Find out why an Add Command without priority passes the test case as well eg. expectedAssignment
         // all compulsory fields with priority
         assertParseSuccess(parser, NAME_DESC_LAB + DEADLINE_DESC_LAB + MODULE_CODE_DESC_LAB + PRIORITY_DESC,
                 new AddCommand(expectedAssignmentWithPriority));
@@ -80,7 +80,7 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, CommandTestUtil.VALID_NAME_LAB + DEADLINE_DESC_LAB + MODULE_CODE_DESC_LAB,
+        assertParseFailure(parser, VALID_NAME_LAB + DEADLINE_DESC_LAB + MODULE_CODE_DESC_LAB,
                 expectedMessage);
 
         // missing deadline prefix
@@ -92,7 +92,7 @@ public class AddCommandParserTest {
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, CommandTestUtil.VALID_NAME_LAB + VALID_DEADLINE_LAB + DESC_HW,
+        assertParseFailure(parser, VALID_NAME_LAB + VALID_DEADLINE_LAB + DESC_HW,
                 expectedMessage);
     }
 
