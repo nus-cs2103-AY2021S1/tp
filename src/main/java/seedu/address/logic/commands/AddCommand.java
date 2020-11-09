@@ -35,7 +35,7 @@ public class AddCommand extends Command {
             + PREFIX_TELEGRAM + "johndoetele "
             + PREFIX_TAG + "T10";
 
-    public static final String MESSAGE_SUCCESS = "New student added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New student added: %1$s\nYou may view results in the Students tab.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in TAsker";
 
     private final Person toAdd;

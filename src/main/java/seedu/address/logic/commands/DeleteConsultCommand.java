@@ -20,7 +20,8 @@ public class DeleteConsultCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Consultation deleted: %1$s";
+    public static final String MESSAGE_SUCCESS = "Consultation deleted: %1$s\nYou may view results in the "
+        + "Consultations tab.";
 
     private final Index targetIndex;
 

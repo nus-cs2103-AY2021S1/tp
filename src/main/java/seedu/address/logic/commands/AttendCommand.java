@@ -30,7 +30,8 @@ public class AttendCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_DATE + "27/03/1998";
 
     public static final String MESSAGE_ALREADY_ATTENDED = "%1$s already attended on %2$s";
-    public static final String MESSAGE_ATTEND_SUCCESS = "Added attendance for person: %1$s";
+    public static final String MESSAGE_ATTEND_SUCCESS = "Added attendance for student: %1$s\nYou may view results in "
+        + "the Attendance tab.";
 
     private final Index targetIndex;
     private final Attendance attendance;

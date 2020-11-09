@@ -27,7 +27,7 @@ public class ShowAttendanceCommand extends Command {
             + PREFIX_DATE + "DATE\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_DATE + "27/03/1998";
 
-    public static final String MESSAGE_SUCCESS = "%s was %s on %s";
+    public static final String MESSAGE_SUCCESS = "%s was %s on %s\nYou may view results in the Attendance tab.";
 
     private final Index targetIndex;
     private final Attendance attendance;

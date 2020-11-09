@@ -8,7 +8,8 @@ import seedu.address.model.Model;
 public class ListConsultCommand extends Command {
     public static final String COMMAND_WORD = "list-consult";
 
-    public static final String MESSAGE_SUCCESS = "Listed all consultations!";
+    public static final String MESSAGE_SUCCESS = "Listed all consultations!\nYou may view results in the "
+        + "Consultations tab.";
 
 
     @Override

@@ -30,7 +30,8 @@ public class UnattendCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_DATE + "27/03/1998";
 
     public static final String MESSAGE_ALREADY_UNATTENDED = "%1$s already unattended on %2$s";
-    public static final String MESSAGE_UNATTEND_SUCCESS = "Removed attendance for person: %1$s";
+    public static final String MESSAGE_UNATTEND_SUCCESS = "Removed attendance for person: %1$s\nYou may view results "
+        + "in the Attendance tab.";
 
     private final Index targetIndex;
     private final Attendance attendance;

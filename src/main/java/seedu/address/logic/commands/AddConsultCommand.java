@@ -32,7 +32,8 @@ public class AddConsultCommand extends Command {
             + PREFIX_ADDRESS + "SOC Basement "
             + PREFIX_TYPE + "personal ";
 
-    public static final String MESSAGE_SUCCESS = "New consultation added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New consultation added: %1$s\nYou may view results in the "
+        + "Consultations tab.";
     public static final String MESSAGE_DUPLICATE_CONSULTATION = "This consultation slot has already been taken up!";
     public static final String MESSAGE_WRONG_LOCATION_GROUP_CONSULTATION =
             "Group consultations sharing the same time slot should be at the same location!";
