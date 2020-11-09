@@ -51,10 +51,10 @@ Given below are my contributions to the project.
 - User Guide
     - Added documentation for commands: `adds`, `adda`, `dela`, `setas`, `clear s-` and `clear a-` commands
     - Also explained each constraints of inputs for all fields(name, email, phone number, address, date, tag) 
-    - Added overview on flow of UG to help users understand the arrangement of different sections in ug
+    - Added overview on flow of UG to help users understand the arrangement of different sections
 - Developer's Guide
-    - Write about certain Use Cases
-    - Draw the class diagram to show overview of staff and applicants. 
+    - Write about Use Cases 1, 9, 10, 12.
+    - Draw the class diagram to show overview of staff and applicants and explain overview of staff and applicants.
     - Write about manual testing for adding a staff.
     
 **Community:**
