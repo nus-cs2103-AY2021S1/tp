@@ -593,8 +593,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: Archive data**
-  *MSS*
+**Use case: Archive data**  
+*MSS*
 1.  User requests to archive data to a different file location
 2.  `Calo` archives data to the specified location
     Use case ends.
@@ -610,7 +610,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Add a goal**
 1.  User requests to create a goal for a day.  
 2.  `Calo` adds the template and displays on the Template Panel.    
-  Use case ends.
+  Use case ends.  
 
 *Extensions*
 <p>
@@ -623,8 +623,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     The user have already set a goal for the specific day. <br> 
       1a1. `Calo` shows an error message, information the user about the pre-existing goal. <br>  
     Use case ends.<br>
-
-
+</p>
 
 
 **Use case: Find exercises with a keyword**
