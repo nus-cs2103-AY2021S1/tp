@@ -159,7 +159,37 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 * Stores a UniqueModuleList
 * Duplicate Modules are not allowed
 
-## Scheduler
+## Scheduler List
+<p aligin="center"><img src ="images/EventListClassDiagram.png" border="1px solid black"></p>p>
+
+#### EventList class
+**EventList class** : [`EventList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/EventList.java)
+
+* Holds and stores all the events.
+* Saves to `Storage` after each execution of a command.
+* Stores a `UniqueEventList` that ensures no duplicates of events.
+* Duplicate events are not allowed.
+#### Event class
+**Event class** : [`Event.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/event/Event.java)
+
+* Holds the `EventName` and `EventTime` of the created Event.
+* EventName and EventTime cannot be null.
+* Events are considered to be the same if the EventName is equal.
+* `Tags` are optional for each event.
+
+#### EventName class
+**EventName class** : [`EventName.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/event/EventName.java)
+
+* Holds the date for the name of the String.
+* Acts like a logic container for the name of the event.
+
+#### EventTime class
+**EventTime class** : [`EventTime.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/event/EventTime.java)
+
+* Holds the date and time of the event.
+* Stores the date and time as a LocalDateTime object.
+* Follows a strict input format of : day-month-year 24h time, e.g. `5-12-2020 1200`
+* Throws an error if the wrong format or invalid date is enterred.
 
 ## Contact List
 
@@ -214,6 +244,48 @@ TodoList will be explained more comprehensively in the [TodoList feature](#33-to
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### 3.1 Logic
+![Structure of the XYZ command](images/GeneralLogicSequenceDiagram1.png)
+![Structure of the XYZ command](images/GeneralLogicSequenceDiagram2.png)
+
+#### Implementation
+The idea of this implementation is to abstract the overall process into a more OOP focused design, where each class only handles the functions
+that is relevant to its responsibility. As we have many features that each have their own commands, we decided to
+create a new Facade class `ParserManager` to handle which Feature parser to call. Feature parser are those in charge of
+handling all commands related to that feature. For instance, `ModuleListParser` will be selected by the ParserManager when
+a module related command is called.
+
+After the appropriate feature parser is selected, the user input is passed into it to be broken down. It splits the user input into
+command word and arguments, where the command word is checked and the respective sub-parser is called. For instance, if the
+command word is `addmodule`, then the sub-parser that will be called is `AddModuleParser`. The argument is then passed into the
+sub-parser and tokenized by `ArgumentTokenizer` and a `ArgumentMultiMap` is returned, which is a HashMap of the strings for each
+prefix enterred. The relevant supporting classes are then created based on the strings under each prefix, and the appropriate
+command is created.
+
+The returned command is then executed by the `LogicManager`, which will execute the function of the command. The respecitve changes are
+changed in the model provided in the command. At the end, a `CommandResult` is returned where the results are stored in.
+
+#### Design consideration:
+
+##### Aspect: Whether to create a Facade class `ParserManager` to handle all the individual parsers.
+
+
+##### Aspect: Whether to create a custom parser for each of the feature to handle their respective commands.
+Option 1 **(Current implementation)**: A custom Parser in charge of all **Scheduler** related commands **only**.
+Pros: 
+- More OOP orientated.
+- More defensive programming.
+Cons:
+- More Parsers to handle by the ParserManager
+
+Option 2: Place the Scheduler related parser together with the rest of the other parsers for other features, like module list, etc.
+Pros:
+- Faster to implement.
+- Less effort needed, simply add on to the existing Parser.
+Cons:
+- Mess and less readable, hard to distinguish between different commands.
+- Higher chance of errors, as we are mixing all the different parsers for every feature into a single Parser.
+- LONG methods.
 
 ## 3.1 Module list management features
 
@@ -1161,52 +1233,11 @@ Step 6. A `CommandResult` from the command execution is returned to `LogicManage
 
 Alternative 2 was chosen as it conformed with the standard practice of handling errors using exception. Moreover, it removes any room for 
 ambiguity by ensuring all constraints related to the command are made known to the users.
-
-
-
-
     
 ### 3.4 Event list management feature
 
-### Scheduler feature
-![Structure of the Add Event command](images/AddEventSequenceDiagram.png)
-#### Proposed Implementation
-The idea of this feature is to be able to allow the user to keep track of his/her current events that
-will be happening. Events can be either a one time event like an exam for a particular module, or a recurring
-event like a weekly tutorial class.
-
-How we are currently implementing this feature is by following the same implementation as the AB3. We have an event
-object under the Model package. Two classes called EventName and EventTime act as information containers to store
-the respective data and help support the Event class.
-
-We also make sure in the Logic package, there are personal sub-parsers for each of the existing Event
-related commands, and an overall Parser known as SchedulerParser that is in charge of managing all of the
-sub-parsers of the Scheduler. 
-
-Each of the commands of the Scheduler will always return a CommandResult class, that is basically an information
-container that stores all the relevant data of the results. This CommandResult object is then passes back up to the
-UiManager, where it is then passed to the GUI components for it to be displayed.
-
-#### Design consideration:
-
-##### Aspect: Whether to create a new Parser for Scheduler.
-Option 1 **(Current implementation)**: A custom Parser in charge of all **Scheduler** related commands **only**.
-Pros: 
-- More OOP orientated.
-- More defensive programming.
-Cons:
-- More Parsers to handle by the ParserManager
-
-Option 2: Place the Scheduler related parser together with the rest of the other parsers for other features, like module list, etc.
-Pros:
-- Faster to implement.
-- Less effort needed, simply add on to the existing Parser.
-Cons:
-- Mess and less readable, hard to distinguish between different commands.
-- Higher chance of errors, as we are mixing all the different parsers for every feature into a single Parser.
-- LONG methods.
-
 ### Add Event Feature
+![Add Event Sequence Diagram](images/AddEventSequenceDiagram.png)
 
 #### Implementation
 The way this feature is currently implemented is similar to that of AB3. In the `Logic` component, we are using a specialised parser called
