@@ -18,11 +18,7 @@ public class DeadlineDateTime extends DateTime {
      */
     public DeadlineDateTime(String dateTime) {
         super(dateTime);
-        if (value.equals(DateTimeUtil.DEFAULT_DATETIME)) {
-            this.isFilled = false;
-        } else {
-            isFilled = true;
-        }
+        this.isFilled = !value.isEqual(DateTimeUtil.DEFAULT_DATETIME);
     }
 
     public static DeadlineDateTime createNullDeadlineDateTime() {
@@ -46,7 +42,6 @@ public class DeadlineDateTime extends DateTime {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeadlineDateTime // instanceof handles nulls
-                && (value.equals(((DeadlineDateTime) other).value)
-                    || isFilled && ((DeadlineDateTime) other).isFilled())); // state check
+                && (value.isEqual(((DeadlineDateTime) other).value))); // state check
     }
 }

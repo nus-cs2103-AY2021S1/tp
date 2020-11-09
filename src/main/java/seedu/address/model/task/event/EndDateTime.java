@@ -71,6 +71,6 @@ public class EndDateTime extends DateTime {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof EndDateTime // instanceof handles nulls
-                && (value.equals(((EndDateTime) other).value))); // state check
+                && (value.isEqual(((EndDateTime) other).value))); // state check
     }
 }

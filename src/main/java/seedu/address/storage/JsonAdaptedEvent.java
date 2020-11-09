@@ -10,14 +10,13 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 import seedu.address.model.task.event.EndDateTime;
 import seedu.address.model.task.event.Event;
 import seedu.address.model.task.event.StartDateTime;
 
 /**
- * Jackson-friendly version of {@link Task}.
+ * Jackson-friendly version of {@link Event}.
  */
 class JsonAdaptedEvent {
 

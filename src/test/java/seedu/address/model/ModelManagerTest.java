@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.DEADLINE1;
-import static seedu.address.testutil.TypicalTasks.DEADLINE2;
+import static seedu.address.testutil.TypicalPlanus.DEADLINE1;
+import static seedu.address.testutil.TypicalPlanus.DEADLINE2;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

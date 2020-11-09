@@ -57,7 +57,7 @@ public class DoneDateTime extends DateTime {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DoneDateTime // instanceof handles nulls
-                && (value.equals(((DoneDateTime) other).value)
+                && (value.isEqual(((DoneDateTime) other).value)
                 || isFilled && ((DoneDateTime) other).isFilled())); // state check
     }
 }

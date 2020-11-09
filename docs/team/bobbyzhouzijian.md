@@ -49,7 +49,11 @@ Given below are my contributions to the project.
   * Manage the milestones `v1.2`, `v1.3` and `v1.4` (including issues and deadlines) on GitHub. 
 
 * **Code contributed**: 
-My code contributions to PlaNus can be found via the [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=bobbyzhouzijian&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other).
+  * My code contributions to PlaNus can be found via the [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=bobbyzhouzijian&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other).
+
+* **Enhancement to existing features**:
+  * Added test cases to many existing features and classes [\#274](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/274)
+  * Refactored code to improve code quality [\#270](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/270), [\#267](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/267)
 
 * **Documentation**:
   * User Guide:
@@ -59,6 +63,8 @@ My code contributions to PlaNus can be found via the [RepoSense link](https://nu
   * Developer Guide:
     * Updated NFRs and Glossaries [\#94](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/94)
     * Updated documentation for the section `Appendix:Requirements` [\#246](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/246)
+    * Added `AddLessonSequenceDiagram`, `StatsClassDiagram`, `StatsDataSequenceDiagram` and `TimeAnalysisAcvitityDiagram` [\#275](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/275) 
+    * Refactored existing UML diagrams in the `Implementation` section from ab3 to fit the design of PlaNus [\#275](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/275)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#56](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/56),
