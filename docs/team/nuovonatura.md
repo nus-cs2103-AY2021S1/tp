@@ -3,11 +3,16 @@ layout: page
 title: Li Gangwei's Project Portfolio Page
 ---
 
+## Introduction
+
+This page serves to document my contributions to the project PlaNus under NUS module CS2103T in AY20/21 semester 1. 
+
 ## Project: PlaNus
 
-PlaNus is a desktop application for **managing tasks, optimized for use via a Command Line
-Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can
-type fast, PlaNus can get your tasks managed faster than traditional GUI apps.
+PlaNus is a **task managing desktop application** for students in NUS with many projects and deadlines, 
+optimized for use via a Command Line Interface (CLI) with the benefits of Graphical User Interface (GUI).
+PlaNus reduces the time spent by students in task management as adding tasks and lessons is now simple and quick!
+
 
 Given below are my contributions to the project.
 
