@@ -478,6 +478,8 @@ Edits the score of a `Mastery Check` session with a `Student`.
 
 ![EditMasteryCheck](images/userguide/editMasteryCheck.png)
 
+<div style="page-break-after: always;"></div>
+
 <br>✏️ Examples:
 * `edit -mc 1 s/0`
 * `edit -mc 3 s/1`
