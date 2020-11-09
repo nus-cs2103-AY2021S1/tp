@@ -467,7 +467,7 @@ When extending ChopChop to include new commands, it is important to follow these
 #### 4.5.1&ensp;Current implementation
 
 The statistics feature keeps track of the recipes that were made and the ingredients that were consumed in the process.
-The feature spans across the 4 components of the App.
+The feature spans across the 4 main components of the ChopChop.
 It is mainly supported by `UsageList` and `Usage` in the Model component. `UsageList` and `Usage` are similar to `EntryBook` and `Entry` respectively in terms of their purpose.
 
 
@@ -546,8 +546,8 @@ This section details the design considerations of the statistics feature.
 For more information on the Parser, view [4.1 Command Parser](#41command-parser). 
 
 
-The7 supported statistics commands are `StatsRecipeTopCommand`, `StatsRecipeMadeCommand`, `StatsIngredientUsedCommand`, `StatsRecipeRecentCommand` and `StatsIngredientRecentCommand` which update the `recipeList` in `StatsBox`, as well as `StatsRecipeClearCommand` and `StatsIngredientClearCommand` which remove all `Usage` in their respective `UsageList`.
-All the statistics commands function in a similar way so we will go through just one of commands in details below.
+The 7 supported statistics commands are `StatsRecipeTopCommand`, `StatsRecipeMadeCommand`, `StatsIngredientUsedCommand`, `StatsRecipeRecentCommand` and `StatsIngredientRecentCommand` which update the `recipeList` in `StatsBox`, as well as `StatsRecipeClearCommand` and `StatsIngredientClearCommand` which remove all `Usage` in their respective `UsageList`.
+All the statistics commands function in a similar way so we will go through just one of the commands in details below.
 
 <a name="view-top-recipes"></a>
 <h4>View top recipes command</h4>
@@ -571,7 +571,7 @@ Figure 12.1 <i>The sequence diagram of the execution of StatsRecipeTopCommand </
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/RecipeTopCmdStatsBox.png" style="width: 40%"> <br />
-Figure 12.2. GUI of statistics box after `stats recipe top` command is executed</i>
+Figure 12.2. <i> GUI of statistics box after `stats recipe top` command is executed </i>
 </div>
 
 
@@ -1735,7 +1735,7 @@ Here are the steps you can follow and execute in order, to create a sample usage
 
 #### B.4.1&ensp;Viewing recipes made in a given time frame 
 
-1. View recipes with 3 recipes A, B and C that were made at least 1 minute apart from each other.
+1. View recipes made with past recipe usage records.
 
     1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
     
@@ -1755,6 +1755,7 @@ Here are the steps you can follow and execute in order, to create a sample usage
         Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box returns to default panel showing recently made recipes.
    
 1. View recipes made with no past recipe usage records
+
     1. Prerequisites: No recipe usages saved. This can be done by executing `stats recipe clear` which should clear all recipe usages.
     
     1. Test case: `stats recipe made`<br>
@@ -1773,7 +1774,7 @@ Here are the steps you can follow and execute in order, to create a sample usage
         Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box shows "No recipes were made recently".
 
 #### B.4.2&ensp;Viewing recipes made most recently
-1. View recipes with 3 recipes A, B and C were made in this order.
+1. View recipes made with past recipe usage records.
 
     1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
     
@@ -1795,7 +1796,7 @@ Here are the steps you can follow and execute in order, to create a sample usage
         
    
 #### B.4.3&ensp;Viewing recipes made most frequently
-1. View most made recipes with records of recipe made.
+1. View recipes made with past recipe usage records.
 
     1. Prerequisites: Cleared previous usage records and made recipe A 3 times and recipe B once.
     
@@ -1811,7 +1812,7 @@ Here are the steps you can follow and execute in order, to create a sample usage
         Expected: The stats box shows "No recipes were made recently"
 
 #### B.4.4&ensp;Clearing recipe usages
-1. Clear records of recipe usages after making Recipes A, B and C.
+1. Clear records of recipe usages when there are past recipe usage records.
 
     1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
     
@@ -1832,7 +1833,7 @@ Here are the steps you can follow and execute in order, to create a sample usage
    
 #### B.4.5&ensp;Viewing ingredients used in a given time frame 
 
-1. View ingredients with 3 ingredients A, B and C (used in this order) that were used at least 1 minute apart from each other.
+1. View ingredients used with past ingredient usage records.
     1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
     
     1. Test case: `stats ingredient used`<br>
@@ -1869,7 +1870,7 @@ Here are the steps you can follow and execute in order, to create a sample usage
         Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box returns to default panel showing recently made recipes.
    
 #### B.4.6&ensp;Viewing ingredients used most recently
-1. View ingredients with 3 ingredients A, B and C were made in this order.
+1. View ingredients used with past ingredient usage records.
 
     1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
 
@@ -1883,7 +1884,7 @@ Here are the steps you can follow and execute in order, to create a sample usage
         Expected: The stats box shows "No ingredients were made" with no lists shown below.
    
 #### B.4.7&ensp;Clearing ingredient usages
-1. Clear records of ingredient usages after making Ingredients A, B and C.
+1. Clear records of ingredient usages when there are past ingredient usage records.
 
     1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
 
@@ -1922,6 +1923,7 @@ In addition, a comprehensive set of tests were written for each command parser t
 
 #### C.1.3&ensp;Statistics and Recommendations
 The development of the statistics feature follows a depth-first approach because it requires additional classes and operations across all major components in ChopChop.
+Likewise, the recipe recommendations feature spans across all major components in ChopChop. It uses existing data structures such as `FilteredList` to compute its recommendations.
 
 #### C.1.4&ensp;Automated GUI Testing
 To ensure that our ChopChop GUI conform to its expected behaviour, we implemented Unit tests that test the individual components components comprehensively.
