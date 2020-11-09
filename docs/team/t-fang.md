@@ -24,6 +24,8 @@ Given below are my contributions to the project.
 * **New Feature**: Added `TaskSorterCommand` to sort the task list (Pull Request [\#188](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/188))
   * What is does: allows the user to sort the task list by task name, deadline, progress, and done status
   * Justification: Users may want to change the way the task list is presented so that the tasks are sorted in a desired order. This can provide more insights into the status of different tasks (e.g. sort by deadline shows tasks that are due soon at the top of the task list).
+<div style="page-break-after: always;"></div>
+
 * **New Feature**: Added `DeleteTaskCommand` to delete a task from the task list (Pull Request [\#271](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/271))
     * What is does: allows the user to delete a task from the task list and remove all information related to that task.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=T-Fang&tabRepo=AY2021S1-CS2103T-W10-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code). Note: we initially had a Meeting class, but we decided to remove it due to time constraints. Therefore, some of my codes written for the Meeting class may not be reflected on the RepoSense such as Meeting Filter (Pull Request [\#135](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/135)) and AllMettingsCommand (Pull Request [\#138](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/138))
