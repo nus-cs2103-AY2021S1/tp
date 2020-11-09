@@ -24,10 +24,6 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_DATE = "Meeting Date is not in valid format. dd-MM-yyy";
-    public static final String MESSAGE_INVALID_DATE_CURRENT = "Meeting Date keyed in has passed or is invalid.";
-    public static final String MESSAGE_INVALID_STARTTIME = "Start time is not in valid format. HH:mm";
-    public static final String MESSAGE_INVALID_ENDTIME = "End time is not in valid format. HH:mm";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -128,6 +124,9 @@ public class ParserUtil {
             Date currentActualDate = Calendar.getInstance().getTime();
             if (dateObject.before(currentActualDate)) {
                 throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS_PAST_DATE);
+            }
+            if (dateObject.after(formatter.parse("01-01-2050"))) {
+                throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS_FUTURE_DATE);
             }
             String dateString = formatter.format(dateObject);
             return new MeetingDate(dateString);

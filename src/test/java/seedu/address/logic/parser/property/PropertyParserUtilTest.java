@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.property.PropertyCommandTestUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.price.PriceFilter;
 import seedu.address.model.property.Address;
@@ -35,6 +36,9 @@ class PropertyParserUtilTest {
     @Test
     public void parsePropertyName_invalidName_throwsParseException() {
         assertThrows(ParseException.class, () -> PropertyParserUtil.parsePropertyName(INVALID_PROPERTY_NAME));
+        assertThrows(ParseException.class, () ->
+                PropertyParserUtil.parsePropertyName(PropertyCommandTestUtil
+                        .getStringWithCharacters(PropertyName.MAX_LENGTH + 1)));
     }
 
     @Test
@@ -43,6 +47,11 @@ class PropertyParserUtilTest {
         assertEquals(expected, PropertyParserUtil.parsePropertyName(VALID_PROPERTY_NAME_ANCHORVALE));
         assertEquals(expected,
                 PropertyParserUtil.parsePropertyName("\t " + VALID_PROPERTY_NAME_ANCHORVALE));
+        expected = new PropertyName(PropertyCommandTestUtil.getStringWithCharacters(PropertyName.MAX_LENGTH));
+        assertEquals(expected, PropertyParserUtil.parsePropertyName(PropertyCommandTestUtil
+                .getStringWithCharacters(PropertyName.MAX_LENGTH)));
+        assertEquals(expected, PropertyParserUtil.parsePropertyName("\t " + PropertyCommandTestUtil
+                .getStringWithCharacters(PropertyName.MAX_LENGTH)));
     }
 
     @Test
@@ -53,6 +62,9 @@ class PropertyParserUtilTest {
     @Test
     public void parsAddress_invalidAddress_throwsParseException() {
         assertThrows(ParseException.class, () -> PropertyParserUtil.parseAddress(""));
+        assertThrows(ParseException.class, () ->
+                PropertyParserUtil.parseAddress(PropertyCommandTestUtil
+                        .getStringWithCharacters(Address.MAX_LENGTH + 1)));
     }
 
     @Test
@@ -61,6 +73,9 @@ class PropertyParserUtilTest {
         assertEquals(expected, PropertyParserUtil.parseAddress(VALID_PROPERTY_ADDRESS_ANCHORVALE));
         assertEquals(expected,
                 PropertyParserUtil.parseAddress("\t " + VALID_PROPERTY_ADDRESS_ANCHORVALE));
+        expected = new Address(PropertyCommandTestUtil.getStringWithCharacters(Address.MAX_LENGTH));
+        assertEquals(expected, PropertyParserUtil.parseAddress(PropertyCommandTestUtil
+                .getStringWithCharacters(Address.MAX_LENGTH)));
     }
 
     @Test
@@ -71,6 +86,9 @@ class PropertyParserUtilTest {
     @Test
     public void parsePropertyType_invalidPropertyType_throwsParseException() {
         assertThrows(ParseException.class, () -> PropertyParserUtil.parsePropertyType(INVALID_PROPERTY_PROPERTY_TYPE));
+        assertThrows(ParseException.class, () ->
+                PropertyParserUtil.parsePropertyType(PropertyCommandTestUtil
+                        .getStringWithCharacters(PropertyType.MAX_LENGTH + 1)));
     }
 
     @Test
@@ -80,6 +98,9 @@ class PropertyParserUtilTest {
                 PropertyParserUtil.parsePropertyType(VALID_PROPERTY_PROPERTY_TYPE_ANCHORVALE));
         assertEquals(expected,
                 PropertyParserUtil.parsePropertyType("\t " + VALID_PROPERTY_PROPERTY_TYPE_ANCHORVALE));
+        expected = new PropertyType(PropertyCommandTestUtil.getStringWithCharacters(PropertyType.MAX_LENGTH));
+        assertEquals(expected, PropertyParserUtil.parsePropertyType(PropertyCommandTestUtil
+                .getStringWithCharacters(PropertyType.MAX_LENGTH)));
     }
 
     @Test

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Developer Guide
+title: User Guide
 ---
 * Table of Contents
 {:toc}
@@ -118,10 +118,9 @@ Note that apart from `CTRL / CONTROL` + `RIGHT / LEFT ARROW KEY` , there are `Ca
 **Command format**
 
 <div markdown="span" class="alert alert-info">
-:information_source: Note that the usage of the term `ENTITY` represents any of the following entities in PropertyFree:<br>`Property`, `Seller`, `Bidder`, `Bid` and `Meeting`
- <li>  Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add-p n/PROPERTY_NAME`, `PROPERTY_NAME` is a parameter which can be used as `add-p n/Sunrise Residences`. </li>
- <li>  Items in square brackets are optional. e.g. `edit-p [n/PROPERTY_NAME]` implies that `PROPERTY_NAME` is an optional parameter. </li>
- <li> Items in brackets are for integer numbers only. e.g <INDEX_NUMBER> can be <5>. </li>
+ <li>  Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add-p n/PROPERTY_NAME`, `PROPERTY_NAME` is a parameter which can be used as `add-p n/Sunrise Residences`. </li>  
+ <li>  Items in square brackets are optional. e.g. `edit-p [n/PROPERTY_NAME]` implies that `PROPERTY_NAME` is an optional parameter. </li>  
+ <li> Items in brackets are for integer numbers only. e.g <INDEX_NUMBER> can be <5>. </li>  
 </div>  
 
 
@@ -426,10 +425,10 @@ Adds a property and its relevant details to the property list.
 💡 Property name refers to the generic brand name and can be the same for multiple properties, whereas address refers to the full address of the property and must be unique.  
 
 <div markdown="span" class="alert alert-info">
-:information_source: Note that the usage of the term `ENTITY` represents any of the following entities in PropertyFree:<br>`Property`, `Seller`, `Bidder`, `Bid` and `Meeting`
- <li>  :warning: The seller id must exist inside the seller list.  </li>
- <li>  :warning: Price must be greater than 0 and less or equals to 1 trillion. </li>
- <li>  :warning: Price will be truncated to 2 decimal place. </li>
+ :warning: The seller id must exist inside the seller list.<br>
+ :warning: Price must be greater than 0 and less or equals to 1 trillion.<br>
+ :warning: Price will be truncated to 2 decimal place.<br>
+ :warning: PropertyName, Address and PropertyType can have a maximum of 100 characters.
 </div>  
    
 Example:
@@ -721,7 +720,7 @@ attribute.
 | Property ID| `P1`  `P4` | The property has to exist to create the meeting. The letter "P" has to be capitalised.|
 | Venue| `Bedok Mall Starbucks` `Tampines St 3, BLK 222, #05-211`| Represents meeting venue. This does not have to be at the property itself. The length of the name of the venue can be as long as you want. |
 | Date| `12-12-2021` `12-08-2021`| Date has to be of the format `DD-MM-YYYY` and cannot be a past date.|
-| Start Time, End Time| `16:20` `14:20`| Time has to be of the format `HH:MM`. The meetings timings are allowed to clash each other and can be past midnight.|
+| Start Time, End Time| `16:20` `14:20`| Time has to be of the format `HH:MM`. The meetings timings are allowed to clash each other and can be past midnight. The timings area allowed to overflow(if 24:30 is keyed in the output will be 00:30).|
 
 💡 Note that we currently do not support conflicts between the start and end time of a meeting. 
 The user has to take into account if the start or end time that is added will overlap with any existing meetings in the meeting book.
@@ -940,7 +939,9 @@ will be highlighted in `CalenderView`.
 
 2. User would be able to mark if listed property is a closed deal or not.
 
-3. Meeting date will be able to handle dates beyond the year of 2050 (exclusive).
+3. Check for clash of `Meeting` timings across the different timings that are listed.
+
+4. User will not be able to create a `Meeting` with a very long venue length.
 
 # Thank You For Using PropertyFree!
 

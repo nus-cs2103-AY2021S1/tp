@@ -3,7 +3,6 @@ package seedu.address.logic.parser.property;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_ASKING_PRICE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_IS_CLOSED_DEAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_IS_RENTAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_PROPERTY_ID;
@@ -19,7 +18,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.property.AskingPricePredicate;
 import seedu.address.model.property.PropertyAddressContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyIdContainsKeywordsPredicate;
-import seedu.address.model.property.PropertyIsClosedDealPredicate;
 import seedu.address.model.property.PropertyIsRentalPredicate;
 import seedu.address.model.property.PropertyNameContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyTypeContainsKeywordsPredicate;
@@ -45,8 +43,7 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
                         PREFIX_PROPERTY_SELLER_ID,
                         PREFIX_PROPERTY_TYPE,
                         PREFIX_PROPERTY_ASKING_PRICE,
-                        PREFIX_PROPERTY_IS_RENTAL,
-                        PREFIX_PROPERTY_IS_CLOSED_DEAL);
+                        PREFIX_PROPERTY_IS_RENTAL);
 
         FindPropertyDescriptor findPropertyDescriptor = new FindPropertyDescriptor();
         if (argMultimap.getValue(PREFIX_PROPERTY_PROPERTY_ID).isPresent()) {
@@ -89,12 +86,6 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
                     new PropertyIsRentalPredicate(
                             PropertyParserUtil
                                     .parseIsRental(argMultimap.getValue(PREFIX_PROPERTY_IS_RENTAL).get())));
-        }
-        if (argMultimap.getValue(PREFIX_PROPERTY_IS_CLOSED_DEAL).isPresent()) {
-            findPropertyDescriptor.setIsClosedDealPredicate(
-                    new PropertyIsClosedDealPredicate(
-                            PropertyParserUtil
-                                    .parseIsClosedDeal(argMultimap.getValue(PREFIX_PROPERTY_IS_CLOSED_DEAL).get())));
         }
 
         if (!findPropertyDescriptor.isAnyFieldFound()) {
