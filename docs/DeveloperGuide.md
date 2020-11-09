@@ -30,6 +30,7 @@ AddressBook-Level3 project created by the [SE-EDU initiative](https://se-educati
     1. [Use cases](#use_cases)
     1. [Non-Functional Requirements](#nfr)
     1. [Glossary](#glossary)
+    <div style="page-break-after: always;"></div>
 1. [**Appendix: Instructions for Manual Testing**](#manual_testing)
     1. [Launching and Shutting Down](#launch_shutdown)
     1. [Deleting a Flashcard](#deleting_a_flashcard)
@@ -47,6 +48,8 @@ Refer to the guide [_Setting Up and Getting Started_](SettingUp.md).
 ### <a name="architecture"></a>Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
+
+<div style="page-break-after: always;"></div>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -77,6 +80,8 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
@@ -84,6 +89,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### <a name="ui_component"></a>UI Component
 
@@ -100,6 +107,8 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+
+<div style="page-break-after: always;"></div>
 
 ### <a name="logic_component"></a>Logic Component
 
@@ -121,6 +130,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### <a name="model_component"></a>Model Component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -133,6 +144,8 @@ The `Model`,
 * stores the glossary data.
 * exposes an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
+
+<div style="page-break-after: always;"></div>
 
 ### <a name="storage_component"></a>Storage Component
 
@@ -155,6 +168,7 @@ the `Model`’s respective `FlashCard` and `Score` classes. Similarly, `JsonScor
 Classes used by multiple components are in the `seedu.forgetfulnus.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 ## <a name="implementation"></a>**Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -178,6 +192,8 @@ The following activity diagram summarises what happens for the `DifficultyTag` w
 ![DifficultyTagActivityDiagram](images/DifficultyTagActivityDiagram.png)
 
 For `GenderTag` the activity diagram is similar, with the default tag being set to `NONE` instead. Note that even if a flashcard does not appear to have a `GenderTag`  on the UI, each flashcard will always have a `GenderTag`. The UI will just not display anything for a `NONE` state.
+
+<div style="page-break-after: always;"></div>
 
 ### <a name="quizzing"></a> Quizzing
 The proposed quiz feature for users to test their vocabulary is facilitated by `Model` and `Command`. It does so by allowing a command to set `Model` to quiz mode. When the model is in quiz mode, it will take in commands allowing users to attempt to type the correct definition, skip the flashcard under test or end the quiz.
@@ -216,6 +232,8 @@ Quizzing also works in tandem with `find` and `sort` features, allowing users to
 
 During quizzing, only `try`, `next` and `end` commands are allowed to be used. All other commands except `help` and `exit` will remind the user that they are in quiz mode and to end the quiz first before using any other commands.
 
+<div style="page-break-after: always;"></div>
+
 ### <a name="random"></a> Random Quizzing
 
 This feature is facilitated by `RandomQuizCommand` and `RandomQuizCommandParser` and `Model`.
@@ -248,6 +266,8 @@ The following activity diagram summarises what happens when a user executes the 
 
 ![RandomQuizActivityDiagram](images/RandomQuizActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### <a name="scoring"></a> Saving Score History
 
 This feature saves scores from previous rounds of quizzing. It is facilitated by classes in the `Command`, `Model` and `Storage` components.
@@ -264,6 +284,8 @@ Each time the quiz mode is entered and ended, a `Score` object is created and ad
 * `ScoreList#getScoreList()`
 
 The following activity diagram summarises how scores are incremented: 
+
+<div style="page-break-after: always;"></div>
 
 ![IncrementScoreActivityDiagram](images/IncrementScoresActivityDiagram.png)
 
@@ -286,6 +308,7 @@ multiple scores. This would cause duplication of data in the `scores.json` data 
     * A feature to test all flashcards associated with a particular score, allowing users to improve their performance
     * A feature to display whether each flashcard was answered correctly in a particular round of quizzing. Storing `Flashcard`s allows this information to easily be added to each `Flashcard` as a data field.
 
+<div style="page-break-after: always;"></div>
 
 ### <a name="sorting"></a> Sorting
 
@@ -330,6 +353,7 @@ The following sequence diagram briefly outlines the execution process with respe
    Using a mutable Glossary also makes the code more vulnerable.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 ## <a name="documentation_etc"></a>**Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -338,6 +362,7 @@ The following sequence diagram briefly outlines the execution process with respe
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 ## <a name="requirements"></a>**Appendix: Requirements**
 
 ### <a name="product_scope"></a>Product scope
@@ -370,6 +395,7 @@ Priority | As a... | I want to... | So that I...
 * | user | be reminded to quiz myself daily | can be reminded to consistently put in effort to revise.
 * | user | hard reset my score history | can start over from scratch.
 
+<div style="page-break-after: always;"></div>
 ### <a name="use_cases"></a>Use Cases
 
 (For all use cases below, the **System** is `ForgetfulNUS` and the **Actor** is the `user`, unless specified otherwise)
@@ -525,6 +551,7 @@ Priority | As a... | I want to... | So that I...
 * **Index:** Position of flashcard in the list of flashcards displayed to the user
 * **CLI:** Command Line Interface
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 ## <a name="manual_testing"></a>**Appendix: Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
@@ -550,6 +577,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
+<div style="page-break-after: always;"></div>
 ### <a name="deleting_a_flashcard"></a>Deleting a Flashcard
 
 1. Deleting a flashcard while all flashcards are being shown
@@ -577,7 +605,8 @@ testers are expected to do more *exploratory* testing.
       
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-      
+
+<div style="page-break-after: always;"></div>
 ### <a name="sorting_flashcards"></a>Sorting Flashcards
 
 1. Sorting the glossary while all flashcards are being shown
@@ -606,7 +635,8 @@ testers are expected to do more *exploratory* testing.
       
    1. Other sorting parameters to try: `english`, `latest`, `easytohard`, `reversegerman`, `...`<br>
       Expected: Glossary is successfully sorted according to the parameter input. Original glossary is also sorted. Filtered glossary still shown.
-      
+
+<div style="page-break-after: always;"></div>      
 ### <a name="viewing_scores"></a> Viewing Past Scores
 
 1.  Viewing a non-empty score list
@@ -630,7 +660,8 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Score list is empty (easily done through `reset scores`)
     1. Test case: `scores` <br>
     Expected: A message is shown stating that no past scores have been saved.
-    
+
+<div style="page-break-after: always;"></div>    
 ### <a name="saving_data"></a>Saving Data
 
 1. Dealing with missing/corrupted data files
