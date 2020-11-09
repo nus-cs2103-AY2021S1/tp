@@ -25,20 +25,19 @@ public class EditTutorialGroupCommand extends Command {
     public static final String COMMAND_WORD = "editTG";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the specifics of the Tutorial Group specified "
-        + "by the index number used in the displayed Tutorial Group list. "
+        + "by the index number used in the displayed Tutorial Group list. All parameters except INDEX are optional."
+        + " There must be at least one value of the Tutorial Group changed. "
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "TUTORIAL_GROUP_INDEX "
+        + "TUTORIAL_GROUP_DAY_OF_WEEK "
+        + "TUTORIAL_GROUP_START_TIME (24HR HH:MM FORMAT) "
+        + "TUTORIAL_GROUP_END_TIME (24HR HH:MM FORMAT) \n"
         + "Example: " + COMMAND_WORD + " 1 "
-        + PREFIX_TUTORIAL_GRP + "B015"
-        + PREFIX_TUTORIAL_GRP_DAY + "DAY_OF_WEEK "
-        + PREFIX_TUTORIAL_GRP_START_TIME + "START_TIME (24HR HH:MM FORMAT) "
-        + PREFIX_TUTORIAL_GRP_END_TIME + "END_TIME (24HR HH:MM FORMAT) \n"
-        + "Example: " + COMMAND_WORD + " "
         + PREFIX_TUTORIAL_GRP + "T03 "
         + PREFIX_TUTORIAL_GRP_DAY + "MON "
         + PREFIX_TUTORIAL_GRP_START_TIME + "11:00 "
-        + PREFIX_TUTORIAL_GRP_END_TIME + "13:00";;
+        + PREFIX_TUTORIAL_GRP_END_TIME + "13:00";
 
     public static final String MESSAGE_EDIT_TUTORIAL_SUCCESS = "Edited Tutorial Group: %1$s";
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "This Tutorial  already exists in this Module.";
@@ -89,7 +88,8 @@ public class EditTutorialGroupCommand extends Command {
     }
 
     private static TutorialGroup createEditedTutorialGroup(TutorialGroup tutorialGroupToEdit,
-                                                           EditTutorialGroupDescriptor editTutorialGroupDescriptor) {
+                                                           EditTutorialGroupDescriptor editTutorialGroupDescriptor)
+        throws CommandException {
         assert tutorialGroupToEdit != null;
 
         TutorialGroupId updatedId = editTutorialGroupDescriptor.getId()
@@ -100,6 +100,10 @@ public class EditTutorialGroupCommand extends Command {
             .orElse(tutorialGroupToEdit.getStartTime());
         TimeOfDay updatedEndTime = editTutorialGroupDescriptor.getEndTime()
             .orElse(tutorialGroupToEdit.getEndTime());
+
+        if (!TimeOfDay.isValidTimes(updatedStartTime, updatedEndTime)) {
+            throw new CommandException(TimeOfDay.TIME_CONSTRAINTS);
+        }
 
         return new TutorialGroup(updatedId, updatedDayOfWeek, updatedStartTime,
             updatedEndTime, tutorialGroupToEdit.getUniqueStudentList());
