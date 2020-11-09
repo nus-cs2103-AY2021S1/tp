@@ -125,6 +125,10 @@ public class FinanceRecord {
         return this.dateTime.toLocalTime().format(dtf);
     }
 
+    public Boolean getHasInventory() {
+        return this.hasInventory;
+    }
+
     public String getDatetimeString() {
         return DATETIME_FORMAT.format(dateTime);
     }
