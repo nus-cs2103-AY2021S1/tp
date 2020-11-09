@@ -57,7 +57,7 @@ public class SuggestionAlgorithm {
      * @return The edit distance between source and target strings
      * @throws IllegalArgumentException if either source or target is null
      */
-    //@@author crwohlfeil-reused
+    //@@author pennhanlee-reused
     //Reused from https://github.com/crwohlfeil/damerau-levenshtein/blob/master/src/main/java/com/codeweasel/
     // DamerauLevenshtein.java with minor modifications
     public int calculateDistance(String source, String target) {
