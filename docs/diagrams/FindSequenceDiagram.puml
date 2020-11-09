@@ -51,12 +51,16 @@ ActiveAccount --> FindCommand
 deactivate ActiveAccount
 
 else revenuePredicate and expensePredicate not null
+
 FindCommand -> ActiveAccount: updateFilteredRevenueList()
 activate ActiveAccount
 ActiveAccount --> FindCommand
+deactivate ActiveAccount
 
 FindCommand -> ActiveAccount: updateFilteredExpenseList()
+activate ActiveAccount
 ActiveAccount --> FindCommand
+deactivate ActiveAccount
 
 deactivate ActiveAccount
 end
