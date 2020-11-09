@@ -21,16 +21,15 @@ if () then ([Task])
         endif
     endif
     :Add to total time for
-    all tasks under its
-    module tag;
+    all tasks under its tag;
 else ([Lesson])
     :Calculate time
     spent on all lessons
     that has passed;
     : Add to total time
     taken for all lessons
-    under its module tag;
+    under its tag;
 endif
-    :Add the time to total time taken for the module tag;
+    :Add the time to total time taken for the tag;
 stop
 @enduml
