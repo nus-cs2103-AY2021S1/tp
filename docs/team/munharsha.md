@@ -1,6 +1,7 @@
-# Munnamgi Harsha Vardhan Reddy - Project Portfolio
-
-___
+---
+layout: page
+title: Munnamgi Harsha Vardhan Reddy's Project Portfolio Page
+---
 
 ## Project: PropertyFree
 
