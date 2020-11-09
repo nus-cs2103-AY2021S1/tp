@@ -2,6 +2,10 @@
 layout: page
 title: Isaac Tin's Project Portfolio Page
 ---
+<img src="images/isaactin.png" width="200px">
+
+[[github](http://github.com/IsaacTin)]
+
 
 ## Project: Eva
 
@@ -10,6 +14,7 @@ Eva is a desktop HR management application. The user interacts with it using a C
 Given below are my contributions to the project.
 
 **New Features:**
+
 - Adding of a Comment to Staff/applicant
   - What it does: allows user to add a Comment with compulsory fields title, date and description into a staff/applicant.
   - Justification: This feature allows user to keep track of miscellaneous information of a staff/applicant that might be important in the future.
@@ -32,13 +37,14 @@ Given below are my contributions to the project.
 
   
 
-Code contributed:
+**Code contributed:**
 [RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=IsaacTin&tabRepo=AY2021S1-CS2103T-W13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
 Project management:
-- Manage reviews on Pull Requesuts
+- Manage reviews on Pull Requests
 
 Enhancements to existing features:
+
 - Behaviour of program in different panels
     - Created the behaviour of application while in different panels (Staff profile panel, Applicant list panel etc.)
     - Adapted edit commands to edit staff and edit applicant commands.
@@ -47,6 +53,7 @@ Enhancements to existing features:
 Documentation:
 - User Guide
     - Added documentation for commands: addcomments deletecomments editcomments editstaff editapplicant
+    
 - Developer's Guide
     - Write about Use Case 
     
