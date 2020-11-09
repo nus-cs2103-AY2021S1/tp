@@ -46,6 +46,7 @@ AddressBook-Level3 project created by the [SE-EDU initiative](https://se-educati
 Refer to the guide [_Setting Up and Getting Started_](SettingUp.md).
 
 <div style="page-break-after: always;"></div>
+
 ## <a name="design"></a>**Design**
 ### <a name="architecture"></a>Architecture
 
