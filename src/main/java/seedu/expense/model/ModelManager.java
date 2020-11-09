@@ -146,6 +146,16 @@ public class ModelManager implements Model {
         expenseBook.topupCategoryBudget(category, amount);
     }
 
+    @Override
+    public boolean categoryBudgetHasAmount(Tag category, Amount amount) {
+        return expenseBook.categoryBudgetHasAmount(category, amount);
+    }
+
+    @Override
+    public void reduceCategoryBudget(Tag category, Amount amount) {
+        expenseBook.reduceCategoryBudget(category, amount);
+    }
+
     //=========== AliasMap ================================================================================
 
     @Override

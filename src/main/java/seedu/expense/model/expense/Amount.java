@@ -16,11 +16,12 @@ public class Amount implements Comparable<Amount> {
             "Expense Amount restrictions:\n"
             + "Amount Format: should only contain numbers and 1 '.', and should be in the <dollars>.<cents> format.\n"
             + "    \".<cents>\" input is optional but <dollars> should contain at least 1 digit.\n"
-            + "Value Restrictions: 0 to 10e9 inclusive";
-    public static final String VALIDATION_REGEX = "(?<dollars>\\d+)(.(?<cents>\\d{1,2}))?";
+            + "Value Restrictions: -10e9 to 10e9 inclusive";
+    public static final String VALIDATION_REGEX = "(?<dollars>\\-??\\d+)(.(?<cents>\\d{1,2}))?";
     private static final RoundingMode ROUNDING_MODE = RoundingMode.HALF_EVEN;
     private static final BigDecimal MAX_VALUE = new BigDecimal("10e9");
-    private static final BigDecimal MIN_VALUE = new BigDecimal("0");
+    private static final BigDecimal MIN_VALUE = new BigDecimal("-10e9");
+    private static final BigDecimal ZERO_VALUE = new BigDecimal("0");
 
     // value in Amount stored as cents
     protected final BigDecimal value;
@@ -52,6 +53,7 @@ public class Amount implements Comparable<Amount> {
      */
     public Amount(BigDecimal minTermAmount) {
         requireNonNull(minTermAmount);
+        checkArgument(isWithinRange(minTermAmount), MESSAGE_CONSTRAINTS);
         this.value = minTermAmount;
     }
 

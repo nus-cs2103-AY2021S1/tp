@@ -21,6 +21,7 @@ import seedu.expense.logic.commands.FindCommand;
 import seedu.expense.logic.commands.GraphCommand;
 import seedu.expense.logic.commands.HelpCommand;
 import seedu.expense.logic.commands.ListCommand;
+import seedu.expense.logic.commands.ReduceCommand;
 import seedu.expense.logic.commands.RemarkCommand;
 import seedu.expense.logic.commands.ResetAliasCommand;
 import seedu.expense.logic.commands.SortCommand;
@@ -104,6 +105,9 @@ public class ExpenseBookParser {
 
         case TopupCommand.COMMAND_WORD:
             return new TopupCommandParser().parse(arguments);
+
+        case ReduceCommand.COMMAND_WORD:
+            return new ReduceCommandParser().parse(arguments);
 
         case AddCategoryCommand.COMMAND_WORD:
             return new AddCategoryCommandParser().parse(arguments);

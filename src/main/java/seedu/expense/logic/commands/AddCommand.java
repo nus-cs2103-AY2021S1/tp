@@ -8,6 +8,7 @@ import static seedu.expense.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.expense.logic.commands.exceptions.CommandException;
 import seedu.expense.model.Model;
+import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 
 /**
@@ -34,6 +35,8 @@ public class AddCommand extends Command {
             + "Expense should be updated ";
     public static final String MESSAGE_DEFAULT = "The category '%s' does not exist yet"
             + " -- tagging as 'Default' instead. ";
+    public static final String MESSAGE_INVALID_AMOUNT = "Amount of the expense cannot be negative. Please "
+            + "specify a non-negative amount of the expense.";
 
     private final Expense toAdd;
 
@@ -51,6 +54,10 @@ public class AddCommand extends Command {
 
         if (model.hasExpense(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EXPENSE);
+        }
+
+        if (toAdd.getAmount().smallerThan(Amount.zeroAmount())) {
+            throw new CommandException(MESSAGE_INVALID_AMOUNT);
         }
 
         if (!model.hasCategory(toAdd.getTag())) {
