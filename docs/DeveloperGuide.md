@@ -554,11 +554,12 @@ Priority | As a... | I want to... | So that I...
 
 ### <a name="glossary"></a>Glossary
 
+* **CLI:** Command Line Interface
 * **Mainstream OS:** Windows, Linux, Unix, OS-X
 * **Flashcard:** An item containing (a) a German phrase (b) the corresponding English definition (c) an associated Difficulty Tag (d) (optional) an associated Gender Tag (e) (optional) one or more Tags
 * **German phrase:** German text of any length
 * **Index:** Position of flashcard in the list of flashcards displayed to the user
-* **CLI:** Command Line Interface
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
