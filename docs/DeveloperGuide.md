@@ -101,6 +101,8 @@ Classes in this component:
 * Provides utility to be used by other classes.
 * Helps with error handling.
 
+---
+
 #### 2.3.2. UI component
 
 This section shows the structure and logic of the `UI` component of NUStorage. It shows a generalised view of the `UI` component within the packages.
@@ -123,6 +125,8 @@ The `UI` component:
 
 * Executes user commands using the `Logic` component.
 * Updates itself with modified data whenever there are changes made by the user.
+
+---
 
 #### 2.3.3. Logic component
 
@@ -149,6 +153,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 ![Interactions Inside the Logic Component for the `delete_finance 1` Command](images/DeleteFinanceSequenceDiagram.png)<br>
 *Figure 5: Sequence Diagram of Delete Finance Command*
 
+---
+
 #### 2.3.4. Model component
 
 This section shows the structure and logic of the `Model` component of NUStorage. It shows a generalised view of the `Model` component within the packages.
@@ -166,6 +172,8 @@ The `Model`,
 * Stores Inventory and financeAccount data.
 * Exposes unmodifiable `ObservableList<InventoryRecord>` and `ObservableList<FinanceRecord>` that can be 'observed' e.g. the UI can be bound to the lists so that the UI automatically updates when the data in the lists change.
 * Does __not__ depend on any of the other three components (UI, Logic and Storage).
+
+---
 
 #### 2.3.5. Storage component
 
@@ -264,6 +272,8 @@ Refer to [Figure 24](#37-ui-sequence-diagram) at the end of section 3 for the se
 
 With this, the Create Inventory Record command fully finishes executing and NUStorage's UI displays the status messages for the user to see.
 
+---
+
 ### 3.2. Delete Records Command Feature
 
 This section explains the implementation of the Delete Record command feature.
@@ -298,6 +308,8 @@ This happens when `UiManager#fillInnerParts()` is called.
 Refer to [Figure 24](#37-ui-sequence-diagram) at the end of section 3 for the sequence diagram for UI.
 
 With this, the Delete Inventory Record command fully finishes executing and NUStorage's UI displays the status messages for the user to see.
+
+---
 
 ### 3.3. Edit Records Command Feature
 
@@ -336,7 +348,10 @@ Refer to [Figure 24](#37-ui-sequence-diagram) at the end of section 3 for the se
 
 With this, the Edit Finance Record command fully finishes executing and NUStorage's UI displays the status messages for the user to see.
 
+---
+
 ### 3.4 Find Records Command Feature
+
 This section explains the implementation of the Find Record command feature.
 As the implementation of finding Inventory / Finance Records are similar, this section will focus only on the implementation of the finding of __Inventory Records__.
 
@@ -367,6 +382,8 @@ Refer to [Figure 24](#37-ui-sequence-diagram) at the end of section 3 for the se
 
 With this, the Find Inventory record command fully finishes executing and NUStorage's UI displays the status messages for the user to see.
 
+---
+
 ### 3.5. List Records Command Feature
 
 This section explains the implementation of the List Records command feature.
@@ -392,6 +409,8 @@ The `CommandResult` object returned previously is now used to create a new `Comm
 All of this happens when `UiManager#fillInnerParts()` is called. Refer to [Figure 24](#37-ui-sequence-diagram) at the end of section 3 for the sequence diagram for UI.
 
 With this, the List Inventory record command fully finishes executing and NUStorage's UI displays the status messages for the user to see.
+
+---
 
 ### 3.6. Update Inventory Records Command Feature
 
@@ -423,6 +442,8 @@ The `CommandResult` object returned previously is now used to create a new `Comm
 This happens when `UiManager#fillInnerParts()` is called. Refer to [Figure 24](#37-ui-sequence-diagram) at the end of section 3 for the sequence diagram for UI.
 
 With this, the Update Inventory record command fully finishes executing and NUStorage's UI displays the status messages for the user to see.
+
+---
 
 ### 3.7. UI Sequence Diagram
 
@@ -457,6 +478,8 @@ The following shows the sequence diagram for executing `UiManager#start()`.
 
 **Value proposition**: manage inventories and finances faster than the typical paper and pen
 
+---
+
 ### 5.2. User Stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -469,6 +492,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | small business owner | add and remove inventories     | update my inventory status |
 | `* *`    | accountant | edit my financial records | update my financial status |
 | `*`      | user | be able to exit the app safely | ... |
+
+---
 
 ### 5.3. Use Cases
 
@@ -487,6 +512,8 @@ For all use cases (unless specified otherwise):
 4. NUStorage creates the record in the list
 
    __Use case ends.__
+
+---
 
 #### 5.3.2. Use case: Remove an inventory record
 
@@ -509,6 +536,8 @@ For all use cases (unless specified otherwise):
 
       __Use case resumes at step 2.__
 
+---
+
 #### 5.3.3. Use case: Add a finance record
 
 **MSS**
@@ -519,6 +548,8 @@ For all use cases (unless specified otherwise):
 4. NUStorage adds the record to the list
 
    __Use case ends.__
+
+---
 
 #### 5.3.4. Use case: Remove a finance record
 
@@ -541,6 +572,8 @@ For all use cases (unless specified otherwise):
 
       __Use case resumes at step 2.__
 
+---
+
 #### 5.3.5. Use case: List finance/inventory records
 
 **MSS**
@@ -554,12 +587,16 @@ For all use cases (unless specified otherwise):
 
   __Use case ends.__
 
+---
+
 #### 5.3.6. Use case: Save finance/inventory records
 
 **MSS**
 
 1. User requests to save the current data stored
 2. NUStorage saves both finance and inventory records and shows a success message
+
+---
 
 #### 5.3.7. Use case: Exiting the application
 
@@ -568,6 +605,8 @@ For all use cases (unless specified otherwise):
 1. User requests to exit NUStorage
 2. NUStorage saves both finance and inventory records and shows a goodbye message
 3. NUStorage terminates after 1.5 seconds
+
+---
 
 ### 5.4. Non-Functional Requirements
 
@@ -613,6 +652,8 @@ testers are expected to do more *exploratory* testing.
 
    1. NUStorage automatically saves any changes made to records while the application is in use. Closing and re-opening the application will not result in any data loss.
 
+---
+
 ### 6.2. Adding/Creating a Record
 
 1. Adding/Creating a financial/inventory record.
@@ -632,6 +673,8 @@ testers are expected to do more *exploratory* testing.
      `add`, `add_record`, `add_inventory i/MacBook`, `add_finance amt/1000 at/2020-13-13` <br>
      Expected: No record is added/created. Error details shown in the status message.
 
+---
+
 ### 6.3. Deleting a Record
 
 1. Deleting a record while all inventory/financial records are being shown.
@@ -648,8 +691,10 @@ testers are expected to do more *exploratory* testing.
    Expected: No record is deleted. Error details shown in the status message.
 
    5. Other incorrect delete commands to try:<br>
-   `delete_finance `, `delete_inventory x`, `delete 1`<br>
+   `delete_finance`, `delete_inventory x`, `delete 1`<br>
    Expected: No record is added. Error details shown in the status message.
+
+---
 
 ### 6.4. Editing a Record
 
@@ -669,6 +714,8 @@ testers are expected to do more *exploratory* testing.
    5. Other incorrect edit commands to try:<br>
    `edit_finance 0 amt/3000 at/2021-01-02`, `edit_inventory x i/Pasta q/100`(where x is larger than the number of inventory records in the list)<br>
    Expected: No records are edited. Error details shown in the status message.
+
+---
 
 ### 6.5. Listing Records
 
@@ -706,6 +753,8 @@ testers are expected to do more *exploratory* testing.
    `find phone`, `find_inventory `, `find-finance 1000`.
    Expected: No records will be displayed. Error details shown in the status message.
 
+---
+
 ## 7. Appendix: Proposed Features for Future Implementation
 
 1. Customizable Commands<br>
@@ -720,6 +769,8 @@ testers are expected to do more *exploratory* testing.
    1. Currently, NUStorage saves inventory as records. For business that constantly deals with the same set of items daily, it might seem tiresome to constantly have to add inventory records of the same item.
 
    2. Thus, we plan to implement a feature that allows users to 'save' a certain inventory item for reuse, allowing them to only have to type the quantity when adding records.
+
+---
 
 ## 8. Glossary and Terms
 
