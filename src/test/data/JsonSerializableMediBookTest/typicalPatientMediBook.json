@@ -1,0 +1,130 @@
+{
+  "_comment": "MediBook save file which contains the same Patient values as in TypicalPatients#getTypicalMediBook()",
+  "patients" : [ {
+    "ic" : "S9777777R",
+    "name" : "Alice Pauline",
+    "dateOfBirth": "15-09-1997",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "height": "174",
+    "weight": "48.5",
+    "bmi": "16.0",
+    "bloodType": "A+",
+    "allergies" : [ "cat fur (Fel d 1)" ],
+    "conditions" : [ "Migraine" ],
+    "treatments" : [ "Ibuprofen" ],
+    "record" : {
+      "heightRecord": { },
+      "weightRecord": { }
+    }
+  }, {
+    "ic" : "S9234567A",
+    "name" : "Benson Meier",
+    "dateOfBirth": "01-03-1992",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "height": "170",
+    "weight": "63.5",
+    "bmi": "22.0",
+    "bloodType": "AB+",
+    "allergies" : [ "shellfish", "dust mites" ],
+    "conditions" : [ "knee sprain" ],
+    "treatments" : [ "Physiotherapy" ],
+    "record" : {
+      "heightRecord": { },
+      "weightRecord": { }
+    }
+  }, {
+    "ic" : "S9876543W",
+    "name" : "Carl Kurz",
+    "dateOfBirth": "16-01-1998",
+    "phone" : "95352563",
+    "email" : "heinz@example.com",
+    "address" : "wall street",
+    "height": "162",
+    "weight": "80.8",
+    "bmi": "30.8",
+    "bloodType": "B+",
+    "allergies" : [ "peanut" ],
+    "conditions" : [ "fever" ],
+    "treatments" : [ "epinephrine", "Paracetamol" ],
+    "record" : {
+      "heightRecord": { },
+      "weightRecord": { }
+    }
+  }, {
+    "ic" : "T0054321P",
+    "name" : "Daniel Meier",
+    "dateOfBirth": "10-10-2000",
+    "phone" : "87652533",
+    "email" : "cornelia@example.com",
+    "address" : "10th street",
+    "height": "183",
+    "weight": "70.3",
+    "bmi": "21.0",
+    "bloodType": "A-",
+    "allergies" : [ "potatoes" ],
+    "conditions" : [ "Type I diabetes" ],
+    "treatments" : [ "Insulin pump" ],
+    "record" : {
+      "heightRecord": { },
+      "weightRecord": { }
+    }
+  }, {
+    "ic" : "F7654321Q",
+    "name" : "Elle Meyer",
+    "dateOfBirth": "05-10-1976",
+    "phone" : "9482224",
+    "email" : "werner@example.com",
+    "address" : "michegan ave",
+    "height": "177",
+    "weight": "43.5",
+    "bmi": "13.9",
+    "bloodType": "B-",
+    "allergies" : [ ],
+    "conditions" : [ ],
+    "treatments" : [ ],
+    "record" : {
+      "heightRecord": { },
+      "weightRecord": { }
+    }
+  }, {
+    "ic" : "S7543210A",
+    "name" : "Fiona Kunz",
+    "dateOfBirth": "02-07-1975",
+    "phone" : "9482427",
+    "email" : "lydia@example.com",
+    "address" : "little tokyo",
+    "height": "168",
+    "weight": "50.5",
+    "bmi": "17.9",
+    "bloodType": "O+",
+    "allergies" : [ "Penicillin" ],
+    "conditions" : [ ],
+    "treatments" : [ ],
+    "record" : {
+      "heightRecord": { },
+      "weightRecord": { }
+    }
+  }, {
+    "ic" : "T0232323I",
+    "name" : "George Best",
+    "dateOfBirth": "14-07-2002",
+    "phone" : "9482442",
+    "email" : "anna@example.com",
+    "address" : "4th street",
+    "height": "169",
+    "weight": "69.2",
+    "bmi": "24.2",
+    "bloodType": "A+",
+    "allergies" : [ ],
+    "conditions" : [ "fever" ],
+    "treatments" : [ "Paracetemol" ],
+    "record" : {
+      "heightRecord": { },
+      "weightRecord": { }
+    }
+  } ]
+}

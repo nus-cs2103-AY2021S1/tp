@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>> {
+
+Package MedicalNote <<Rectangle>> {
+Interface ReadOnlyMedicalNoteList <<Interface>>
+Class MedicalNoteList
+Class ObservableList
+Class MedicalNoteComparator
+Class Comparator <<Interface>>
+Class MedicalNote
+}
+}
+
+Class HiddenOutside #FFFFFF
+Model --> MedicalNoteList
+
+MedicalNoteList .right.|> ReadOnlyMedicalNoteList
+MedicalNoteList o.down.> "1" MedicalNoteComparator
+MedicalNoteComparator .down.|> Comparator
+MedicalNoteList *-down-> "1" ObservableList
+
+ObservableList *-down-> "*" MedicalNote
+
+@enduml

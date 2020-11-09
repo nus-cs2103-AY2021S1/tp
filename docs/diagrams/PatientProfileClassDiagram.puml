@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+
+package PatientProfile <<Rectangle>>{
+Class PatientProfile
+Class PersonalDetailsCard
+Class PersonalDetailsRow
+Class MedicalDetailsCard
+Class MedicalDetailsRow
+Class MedicalNotesPanel
+Class MedicalNoteCard
+Class PatientChartCard
+}
+
+PatientProfile *--> "1" PersonalDetailsCard
+PatientProfile *--> "1" MedicalDetailsCard
+PatientProfile *--> "1" MedicalNotesPanel
+PatientProfile *--> "1" PatientChartCard
+
+PersonalDetailsCard --> "4..10" PersonalDetailsRow
+MedicalDetailsCard --> "1" MedicalDetailsRow
+MedicalNotesPanel --> "*" MedicalNoteCard
+
+@enduml

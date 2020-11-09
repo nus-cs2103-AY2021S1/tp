@@ -1,0 +1,14 @@
+{
+  "patients": [ {
+    "ic": "S7777777R",
+    "name": "Patient with invalid name field: Ha!ns Mu@ster",
+    "dateOfBirth": "25-10-1977",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "address": "4th street",
+    "height": "170",
+    "weight": "55.9",
+    "bmi": "19.3",
+    "bloodType": "O+"
+  } ]
+}

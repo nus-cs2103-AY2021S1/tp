@@ -1,0 +1,15 @@
+@startuml
+start
+:User inputs details;
+:Logic executes the string input;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([user details are of an acceptable format])
+    :Logic calls Storage to save the user details;
+else ([incorrect format])
+    :Logic throws a invalid value error;
+endif
+stop
+@enduml

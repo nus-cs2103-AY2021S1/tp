@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+
+participant ":MainWindow" as MainWindow UI_COLOR
+box PatientProfile UI_COLOR_T1
+participant ":PatientProfile" as PatientProfile UI_COLOR
+participant ":PersonalDetailsCard" as PersonalDetailsCard UI_COLOR
+participant ":PersonalDetailsRow" as PersonalDetailsRow UI_COLOR
+participant ":MedicalDetailsCard" as MedicalDetailsCard UI_COLOR
+participant ":MedicalDetailsRow" as MedicalDetailsRow UI_COLOR
+participant ":MedicalNotesPanel" as MedicalNotesPanel UI_COLOR
+participant ":MedicalNoteCard" as MedicalNoteCard UI_COLOR
+participant ":PatientChartCard" as PatientChartCard UI_COLOR
+end box
+
+create PatientProfile
+MainWindow -> PatientProfile: PatientProfile(patient)
+activate PatientProfile
+
+create PersonalDetailsCard
+PatientProfile -> PersonalDetailsCard
+activate PersonalDetailsCard
+
+PersonalDetailsCard -> PersonalDetailsCard: fillListView()
+activate PersonalDetailsCard
+loop for all details
+    create PersonalDetailsRow
+    PersonalDetailsCard -> PersonalDetailsRow
+    activate PersonalDetailsRow
+
+    PersonalDetailsCard <-- PersonalDetailsRow
+    deactivate PersonalDetailsRow
+end
+deactivate PersonalDetailsCard
+
+PatientProfile <-- PersonalDetailsCard
+deactivate PersonalDetailsCard
+
+create MedicalDetailsCard
+PatientProfile -> MedicalDetailsCard
+activate MedicalDetailsCard
+
+loop for all details
+    create MedicalDetailsRow
+    MedicalDetailsCard -> MedicalDetailsRow
+    activate MedicalDetailsRow
+
+    MedicalDetailsCard <-- MedicalDetailsRow
+    deactivate MedicalDetailsRow
+end
+
+PatientProfile <-- MedicalDetailsCard
+deactivate MedicalDetailsCard
+
+create MedicalNotesPanel
+PatientProfile -> MedicalNotesPanel
+activate MedicalNotesPanel
+
+loop for all medical notes
+    create MedicalNoteCard
+    MedicalNotesPanel -> MedicalNoteCard
+    activate MedicalNoteCard
+
+    MedicalNotesPanel <-- MedicalNoteCard
+    deactivate MedicalNoteCard
+end
+
+PatientProfile <-- MedicalNotesPanel
+deactivate MedicalNotesPanel
+
+create PatientChartCard
+PatientProfile --> PatientChartCard
+activate PatientChartCard
+
+PatientProfile <-- PatientChartCard
+deactivate PatientChartCard
+
+MainWindow <-- PatientProfile
+deactivate PatientProfile
+
+@enduml

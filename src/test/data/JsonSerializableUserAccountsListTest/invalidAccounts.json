@@ -1,0 +1,19 @@
+{
+  "accounts" : [
+    {
+      "username": "user1",
+      "password": "password1",
+      "doctorName": "Doct@",
+      "doctorMcr": "M1234512Q"
+    }, {
+      "username": "user2",
+      "password": "password2",
+      "doctorName": "te#",
+      "doctorMcr": "M6543SA"
+    }, {
+      "username": "user3",
+      "password": "password3",
+      "doctorName": "a!!@",
+      "doctorMcr": "MQEW3T"
+    } ]
+}

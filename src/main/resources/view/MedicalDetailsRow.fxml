@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+
+<HBox id="row" fx:id="row" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <AnchorPane>
+        <Label fx:id="fieldName" styleClass="cell_small_label" prefWidth="100.0" />
+    </AnchorPane>
+    <AnchorPane>
+        <FlowPane fx:id="tags" prefWidth="150" />
+    </AnchorPane>
+</HBox>

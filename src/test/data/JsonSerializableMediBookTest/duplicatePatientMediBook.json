@@ -1,0 +1,39 @@
+{
+  "patients": [ {
+    "ic" : "S9777777R",
+    "name" : "Alice Pauline",
+    "dateOfBirth": "15-09-1997",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "height": "174",
+    "weight": "48.5",
+    "bmi": "16.0",
+    "bloodType": "A+",
+    "allergies" : [ "cat fur (Fel d 1)" ],
+    "conditions" : [ "Migraine" ],
+    "treatments" : [ "Ibuprofen" ],
+    "record" : {
+      "heightRecord": { },
+      "weightRecord": { }
+    }
+  }, {
+    "ic" : "S9777777R",
+    "name" : "Alice Pauline",
+    "dateOfBirth": "15-09-1997",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "height": "174",
+    "weight": "48.5",
+    "bmi": "16.0",
+    "bloodType": "A+",
+    "allergies" : [ "cat fur (Fel d 1)" ],
+    "conditions" : [ "Migraine" ],
+    "treatments" : [ "Ibuprofen" ],
+    "record" : {
+      "heightRecord": { },
+      "weightRecord": { }
+    }
+  } ]
+}

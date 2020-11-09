@@ -1,0 +1,38 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>> {
+
+Class Name
+Class Date
+
+
+Package Doctor {
+Class Doctor
+Class Mcr
+}
+
+Package MedicalNote <<Rectangle>> {
+Class Content
+Class MedicalNote
+}
+
+}
+
+MedicalNote *-down-> "1" Content
+MedicalNote "*" o-down-> "1" Doctor
+MedicalNote *-down-> "1" Date
+
+Doctor *--> "1" Name
+Doctor *--> "1" Mcr
+
+MedicalNote -[hidden]right-> Doctor
+Date -[hidden]down-> Mcr
+Date -[hidden]down-> Name
+
+
+
+@enduml

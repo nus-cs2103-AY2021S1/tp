@@ -5,55 +5,63 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at wangjunhao@u.nus.edu, foojingyi@u.nus.edu, E0415577@u.nus.edu, divakar@u.nus.edu, e0425943@u.nus.edu.
 
-## Project team
+## Project Team
 
-### John Doe
+### Wang Jun Hao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wang-jun-hao.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/wang-jun-hao)]
+[[portfolio](team/wang-jun-hao.md)]
 
-* Role: Project Advisor
+* Role: **Leader**
+* Responsibilities:
+    * Team Lead
+    * Deliverables and Deadlines
 
-### Jane Doe
+### Divakar
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/divakarmal.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/divakarmal)]
+[[portfolio](team/divakarmal.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: **Developer**
+* Responsibilities:
+    * Documentation
 
-### Johnny Doe
+### Wong Zheng Zhi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wong-zz.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/Wong-ZZ)]
+[[portfolio](team/wong-zz.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: **Developer**
+* Responsibilities:
+    * Integration
+    * Testing
 
-### Jean Doe
+### Foo Jing Yi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/foojingyi.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/foojingyi)]
+[[portfolio](team/foojingyi.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: **Developer**
+* Responsibilities:
+    * Code Quality
 
-### James Doe
+### Preston Toh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/prestontyr.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/PrestonTYR)]
+[[portfolio](team/prestontyr.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: **Developer**
+* Responsibilities:
+    * Scheduling and Tracking

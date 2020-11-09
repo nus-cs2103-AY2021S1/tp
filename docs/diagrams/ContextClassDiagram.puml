@@ -1,0 +1,19 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+
+Interface "Context" <<Interface>> MODEL_COLOR
+
+class LogicManager LOGIC_COLOR
+abstract class Command LOGIC_COLOR
+Interface "Model" <<Interface>> MODEL_COLOR
+Interface "Storage" <<Interface>> STORAGE_COLOR
+
+LogicManager -.-> Model
+LogicManager -.-> Command
+LogicManager -.-> Storage
+
+Model -.-|> Context
+
+Command -.-> Context
+@enduml

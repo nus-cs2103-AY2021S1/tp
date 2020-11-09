@@ -1,0 +1,62 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MediBookParser" as MediBookParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant ":FindCommand" as FindCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(input)
+activate LogicManager
+
+LogicManager -> MediBookParser : parseCommand(input)
+activate MediBookParser
+
+create FindCommandParser
+MediBookParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser --> MediBookParser
+deactivate FindCommandParser
+
+MediBookParser -> FindCommandParser : parse(arguments)
+activate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand : FindCommand(predicates)
+activate FindCommand
+
+FindCommand --> FindCommandParser
+deactivate FindCommand
+
+FindCommandParser --> MediBookParser
+deactivate FindCommandParser
+
+
+MediBookParser --> LogicManager
+deactivate MediBookParser
+destroy FindCommandParser
+
+LogicManager -> FindCommand : execute(model)
+activate FindCommand
+
+FindCommand -> Model : updateFilteredPatientList(predicate)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+FindCommand -[hidden]-> LogicManager : result
+destroy FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

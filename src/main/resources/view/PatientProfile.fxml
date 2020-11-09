@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+
+<?import javafx.scene.layout.RowConstraints?>
+<GridPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" minWidth="250" prefWidth="1000" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="ALWAYS" />
+    </rowConstraints>
+    <SplitPane dividerPositions="0.5" orientation="VERTICAL" GridPane.columnIndex="0">
+        <items>
+            <AnchorPane fx:id="personalDetailsCard" minHeight="0.0" minWidth="0.0" />
+            <AnchorPane fx:id="medicalDetailsCard" minHeight="0.0" minWidth="0.0" />
+        </items>
+    </SplitPane>
+    <SplitPane dividerPositions="0.5" GridPane.columnIndex="1" prefWidth="2300.0">
+        <items>
+            <AnchorPane fx:id="medicalNotesPanel" minHeight="0.0" minWidth="0.0" />
+            <AnchorPane fx:id="patientChartCard" minHeight="0.0" minWidth="0.0" />
+        </items>
+    </SplitPane>
+</GridPane>

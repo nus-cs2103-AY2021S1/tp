@@ -1,0 +1,86 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MediBookParser" as MediBookParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant ":EditCommand" as EditCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Patient" as Patient MODEL_COLOR
+participant ":Record" as Record MODEL_COLOR
+end box
+
+[-> LogicManager : execute(input)
+activate LogicManager
+
+LogicManager -> MediBookParser : parseCommand(input)
+activate MediBookParser
+
+create EditCommandParser
+MediBookParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> MediBookParser
+deactivate EditCommandParser
+
+MediBookParser -> EditCommandParser : parse(arguments)
+activate EditCommandParser
+
+create EditCommand
+EditCommandParser -> EditCommand : EditCommand(index, editPatientDescriptor)
+activate EditCommand
+
+EditCommand --> EditCommandParser
+deactivate EditCommand
+
+EditCommandParser --> MediBookParser
+deactivate EditCommandParser
+
+
+MediBookParser --> LogicManager
+deactivate MediBookParser
+destroy EditCommandParser
+
+LogicManager -> EditCommand : execute(model)
+activate EditCommand
+
+EditCommand -> Model : getFilteredPatientList().get(index)
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+EditCommand --> Patient : getRecord()
+activate Patient
+
+Patient --> EditCommand
+deactivate Patient
+
+alt wasHeightUpdated
+EditCommand --> Record : addHeightRecord(height)
+activate Record
+
+Record --> EditCommand
+deactivate Record
+end
+
+alt wasWeightUpdated
+EditCommand --> Record : addWeightRecord(weight)
+activate Record
+
+Record --> EditCommand
+deactivate Record
+end
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+EditCommand -[hidden]-> LogicManager : result
+destroy EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

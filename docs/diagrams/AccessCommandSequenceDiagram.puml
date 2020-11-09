@@ -1,0 +1,78 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MediBookParser" as MediBookParser LOGIC_COLOR
+participant ":AccessCommandParser" as AccessCommandParser LOGIC_COLOR
+participant "a:AccessCommand" as AccessCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> MainWindow : executeCommand("access 1")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("access 1")
+activate LogicManager
+
+LogicManager -> MediBookParser : parseCommand("access 1")
+activate MediBookParser
+
+create AccessCommandParser
+MediBookParser -> AccessCommandParser
+activate AccessCommandParser
+
+AccessCommandParser --> MediBookParser
+deactivate AccessCommandParser
+
+MediBookParser -> AccessCommandParser : parse("1")
+activate AccessCommandParser
+
+create AccessCommand
+AccessCommandParser -> AccessCommand
+activate AccessCommand
+
+AccessCommand --> AccessCommandParser : a
+deactivate AccessCommand
+
+AccessCommandParser --> MediBookParser : a
+deactivate AccessCommandParser
+'Hidden arrow to position the access marker below the end of the activation bar.
+AccessCommandParser -[hidden]-> MediBookParser
+destroy AccessCommandParser
+
+MediBookParser --> LogicManager : a
+deactivate MediBookParser
+
+LogicManager -> AccessCommand : execute()
+activate AccessCommand
+
+AccessCommand -> Model : accessPatient(1)
+activate Model
+
+Model --> AccessCommand
+deactivate Model
+
+create CommandResult
+AccessCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AccessCommand
+deactivate CommandResult
+
+AccessCommand --> LogicManager : result
+deactivate AccessCommand
+
+LogicManager --> MainWindow : result
+deactivate LogicManager
+
+MainWindow --> MainWindow : handleProfile()
+@enduml

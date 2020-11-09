@@ -1,0 +1,25 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR
+skinparam classBackgroundColor LOGIC_COLOR
+
+Interface "Predicate<T>" <<Interface>>
+
+class FieldContainsKeywordsPredicate
+Class FileUtil
+Class FindCommand
+class FindCommandParser
+class Model
+
+FieldContainsKeywordsPredicate .up-|> "Predicate<T>"
+FieldContainsKeywordsPredicate .-> FileUtil
+FieldContainsKeywordsPredicate .left-> Prefix
+
+FindCommand o--up> "1..*" FieldContainsKeywordsPredicate
+FindCommand .-> Model
+
+FindCommandParser .-> FindCommand
+FindCommandParser .-> FieldContainsKeywordsPredicate
+FindCommandParser .-> Prefix
+@enduml

@@ -1,0 +1,25 @@
+{
+  "patients": [ {
+    "ic": "S7777777R",
+    "name": "Valid Patient",
+    "dateOfBirth": "25-10-1977",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "address": "4th street",
+    "height": "168",
+    "weight": "60.1",
+    "bmi": "21.3",
+    "bloodType": "A+"
+  }, {
+    "ic": "S7777777R",
+    "name": "Patient With Invalid Phone Field",
+    "dateOfBirth": "25-10-1977",
+    "phone": "948asdf2424",
+    "email": "hans@example.com",
+    "address": "4th street",
+    "height": "172",
+    "weight": "60.2",
+    "bmi": "20.3",
+    "bloodType": "B+"
+  } ]
+}

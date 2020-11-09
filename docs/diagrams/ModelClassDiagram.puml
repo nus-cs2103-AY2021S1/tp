@@ -5,52 +5,96 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyMediBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class MediBook
+Class ReadOnlyMediBook
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
+Package Patient {
+Class Patient
+Class IC
+Class DateOfBirth
+Class Height
+Class Weight
+Class Bmi
+Class BloodType
 Class Address
 Class Email
-Class Name
 Class Phone
-Class UniquePersonList
+Class Record
+Class UniquePatientList
 }
 
-Package Tag {
+Package CommonFields {
+Class Date
+Class Name
+}
+
+Package MedicalDetail {
 Class Tag
+Class Allergy
+Class Condition
+Class Treatment
+}
+
+Package MedicalNote {
+Class MedicalNoteList
 }
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+MediBook .up.|> ReadOnlyMediBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" MediBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Allergy -down-|> Tag
+Condition -down-|> Tag
+Treatment -down-|> Tag
 
-Name -[hidden]right-> Phone
+MediBook *--> "1" UniquePatientList
+UniquePatientList o--> "*" Patient
+Patient *--> "1" IC
+Patient *--> "1" DateOfBirth
+Patient *--> "1" Name
+Patient *--> "1" Phone
+Patient *--> "0..1" Email
+Patient *--> "0..1" Address
+Patient *--> "0..1" Height
+Patient *--> "0..1" Weight
+Patient *--> "0..1" BloodType
+Patient *--> "0..1" Bmi
+Patient *--> "*" Allergy
+Patient *--> "*" Condition
+Patient *--> "*" Treatment
+Patient *--> "1" MedicalNoteList
+Patient *--> "1" Record
+Bmi --> Height
+Bmi --> Weight
+
+DateOfBirth *--> Date
+
+DateOfBirth -[hidden]down-> Date
+Date -[hidden]right-> Name
+
+IC -[hidden]right-> Name
+DateOfBirth -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+Bmi -[hidden]down-> Height
+Bmi -[hidden]down-> Weight
+Tag -[hidden]down-> MedicalNoteList
 
-ModelManager -->"1" Person : filtered list
+
+ModelManager -->"1" Patient : filtered list
 @enduml
