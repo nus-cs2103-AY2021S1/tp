@@ -13,9 +13,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.contactlistcommands.EditContactDescriptor;
+import seedu.address.logic.commands.contactlistcommands.EditContactCommand.EditContactDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
+import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.ContactNameContainsKeywordsPredicate;
@@ -23,7 +23,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.EventNameContainsKeyWordsPredicate;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleLesson;
-import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
+import seedu.address.model.module.NameContainsKeywordsPredicate;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
 import seedu.address.testutil.contact.EditContactDescriptorBuilder;
@@ -61,6 +61,7 @@ public class CommandTestUtil {
     public static final String VALID_MODULENAME_CS2030 = "CS2030";
     public static final String VALID_MODULENAME_CS2103T = "CS2103T";
     public static final String VALID_MODULENAME_ES2660 = "ES2660";
+    public static final String INVALID_MODULENAME_CSA200 = "CSA200";
 
     public static final String VALID_TAG_CORE_MODULE = "Core";
     public static final String VALID_TAG_UNGRADED_MODULE = "Ungraded";
@@ -115,18 +116,22 @@ public class CommandTestUtil {
     public static final String INVALID_EVENT_DATE = "123-2-2020 1200";
     public static final EditContactDescriptor DESC_AMY;
     public static final EditContactDescriptor DESC_BOB;
-    public static final EditModuleDescriptor DESC_CS2030;
-    public static final EditModuleDescriptor DESC_CS2103T;
+    public static final EditModuleCommand.EditModuleDescriptor DESC_CS2030;
+    public static final EditModuleCommand.EditModuleDescriptor DESC_CS2103T;
 
     // ================================== GradeTrackerTest ===================================== //
     public static final String VALID_ASSIGNMENT_NAME_1 = "Quiz 1";
     public static final String VALID_ASSIGNMENT_NAME_2 = "Oral Presentation 2";
+    public static final String INVALID_ASSIGNMENT_NAME = "Quiz 2(@b)";
     public static final double VALID_ASSIGNMENT_PERCENTAGE_1 = 10;
     public static final double VALID_ASSIGNMENT_PERCENTAGE_2 = 20;
-    public static final double VALID_ASSIGNMENT_RESULT_1 = 0.8;
-    public static final double VALID_ASSIGNMENT_RESULT_2 = 0.9;
-    public static final double VALID_GRADE_1 = 0.9;
-    public static final double VALID_GRADE_2 = 0.9;
+    public static final double INVALID_ASSIGNMENT_PERCENTAGE = -1;
+    public static final double VALID_ASSIGNMENT_RESULT_1 = 70;
+    public static final double VALID_ASSIGNMENT_RESULT_2 = 90;
+    public static final double INVALID_ASSIGNMENT_RESULT = -1;
+    public static final double VALID_GRADE_1 = 90;
+    public static final double VALID_GRADE_2 = 85;
+    public static final double INVALID_GRADE = -1;
 
     static {
         VALID_ZOOMLINKS_CS2030.put(new ModuleLesson(VALID_MODULE_LESSON_LECTURE), new ZoomLink(VALID_ZOOM_LINK_CS2030));
@@ -197,7 +202,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredModuleList().size());
         Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
         final String[] splitName = module.getName().fullName.split("\\s+");
-        model.updateFilteredModuleList(new ModuleNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredModuleList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
         assertEquals(1, model.getFilteredModuleList().size());
     }
     /**
@@ -209,7 +214,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredModuleList().size());
         Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
         final String[] splitName = module.getName().fullName.split("\\s+");
-        model.updateFilteredModuleList(new ModuleNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredModuleList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
         assertEquals(1, model.getFilteredModuleList().size());
     }
 
