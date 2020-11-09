@@ -517,17 +517,14 @@ Here is an example with steps to follow:
 
 1) You want to schedule assignments with the name "CS2106 Lab" as shown in the figure below with an expected hour of 5 hours
 and need to be done by a week from now (although the actual deadline is longer).
-
     ![UserGuideScheduleCommand](images/UserGuideScheduleCommand.PNG)
     *Figure 28: Assignment to schedule*
 
 2) You can simply enter `schedule 3 hrs/5 af/01-01-2020 0000 by/23-12-2020 2359` into the command box.
-
     ![UserGuideScheduleCommandInput](images/UserGuideScheduleCommandInput.PNG)
     *Figure 29: Command inputted by user*
 
 3) The suggested time slot will be displayed in the assignment card.
-    
     ![UserGuideScheduleCommandResult](images/UserGuideScheduleCommandResult.PNG)
     *Figure 30: Message shown in Command Box and suggested schedule displayed in the assignment card*
 
@@ -577,14 +574,12 @@ You can undo all previous commands one at a time if you make mistakes in command
 Here is an example with steps to follow:
 
 1) You accidentally delete the first assignment by entering `delete 1` command.
-
     ![UserGuideUndoCommandDeleteInput](images/UserGuideUndoCommandDeleteInput.PNG)
     *Figure 33: Delete the first assignment*
     ![UserGuideUndoCommandDeleteResult](images/UserGuideUndoCommandDeleteResult.PNG)
     *Figure 34: Result after deleting the first assignment*
     
 2) You can enter `undo` to undo the `delete 1` command.
-
     ![UserGuideUndoCommandInput](images/UserGuideUndoCommandInput.PNG)
     *Figure 35: Undo the delete command*
     ![UserGuideUndoCommandResult](images/UserGuideUndoCommandResult.PNG)
