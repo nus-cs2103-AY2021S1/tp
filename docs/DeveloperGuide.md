@@ -103,8 +103,10 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the client list data.
+* stores the policy list data.
+* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' 
+e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 ### Storage component
@@ -115,7 +117,8 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the client list data in json format and read it back.
+* can save the policy list data in json format and read it back.
 
 ### Common classes
 
@@ -655,7 +658,7 @@ testers are expected to do more *exploratory* testing.
 
    2. Re-launch the app by using the `java -jar` command.<br>
       Expected: The most recent window size and location is retained.
-      
+        
  ### Listing all active clients
  
  1. Listing all active clients
