@@ -18,15 +18,14 @@ Given below are my contributions to the project.
 
 * **Enhancement:** Implemented the feature to find items using multiple search parameters
 
-  * What it does: This feature allows the user to filter contacts, tasks and events using multiple search parameters. 
-                  This feature includes the following functionalities: `find contact`, `find task`.
+  * **What it does:** This feature allows the user to filter contacts, tasks and events using multiple search parameters. 
+                  This includes the following functionalities: `find contact`, `find task`.
   
-  * Justification: This feature enhances the product significantly by allowing users to conduct more accurate and refined searches for module details.
-                   Finding the necessary module details is crucial for users who might store large numbers of different contacts, tasks and events in their application.
-                   Implementing a feature which allows users to find items using multiple search parameters can narrow down the search results, increasing
-                   the probability of users being able to retrieve their intended search result easily, hence improving user experience.
+  * **Justification:** This feature enhances the product significantly as users might store large numbers of different contacts, tasks and events, and locating a specific 
+                   information may be tedious. A feature to find items using multiple search parameters allows searches to be more accurate and refined, 
+                   and can narrow down the search results. This increases the probability of users being able to retrieve their intended search result easily.
   
-  * Highlights: 
+  * **Highlights:** 
   
     * This feature required in-depth analysis of the underlying implementation of `Contact` and `Task` so that the appropriate 
       search parameters to find matching contacts and tasks with could be identified.
@@ -43,24 +42,17 @@ Given below are my contributions to the project.
                             [\#419](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/419)
                             [\#600](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/600)
 
-* **Enhancement:** Implementation of zoom link management feature
+* **Enhancement:** Implemented zoom link management feature
 
-  * What is does: This feature allows users to manage a list of zoom links for various module lessons in each distinct module.
-                  This feature includes the following functionalities: `add zoom link`, `edit zoom link`, `delete zoom link`
+  * **What is does:** This feature allows users to manage a list of zoom links for various module lessons in each distinct module.
+                  This includes the following functionalities: `add zoom link`, `edit zoom link`, `delete zoom link`
   
-  * Justification: This feature enhances the product significantly since zoom links have become one of the most frequently accessed information 
-                   related to a module due to the shifts to online learning. As students are enrolled in numerous modules, each with a different set of lessons, 
-                   the number of zoom links to keep track of can be substantial. Hence, efficient management of zoom links is crucial for Cap 5 Buddy which functions as a module tracking application. 
-  * Highlights:
+  * **Justification:** This feature enhances the product significantly since users are enrolled in numerous modules 
+                   and might have a substantial number of zoom links to manage and keep track of. These features can allow users to manage zoom links more efficiently.
   
-    * In-depth analysis of `Module` and its behaviour is required since `ZoomLink` and `ModuleLesson` is coupled with module.
-      This is important as it can prevent unexpected regressions when zoom link related commands are modified.
-      
-    * The design and implementation of this feature is open to future extensions since it would be practical to store 
-      other types of module related website links as well. OOP principles have been considered to determine how zoom links
-      should be encapsulated. 
-    
-  
+  * **Highlights:** In-depth analysis of `Module` and its behaviour is required since `ZoomLink` and `ModuleLesson` is coupled with module.
+                This is important as it can prevent unexpected regressions when zoom link related commands are modified.
+ 
   * Relevant Pull requests: [\#80](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/80)
                             [\#96](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/96)
                             [\#428](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/428)
@@ -68,29 +60,23 @@ Given below are my contributions to the project.
                             [\#553](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/553)
                             [\#555](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/555)
   
-  
-* **Enhancement:** Implement contact list management feature
+* **Enhancement:** Implemented contact list management feature
 
-  * What it does: This feature allows users to keep track of all module related contacts while managing all their contact details efficiently.
+  * **What it does:** This feature allows users to keep track of all module related contacts while managing all their contact details.
                   This feature includes the following functionalities: `add contact`, `delete contact`, `edit contact`, `clear contact`, `list contact`
 
-  * Justification: This feature can enhance the product significantly as module related contacts are one of the most vital module information
-                   that users need to access on a regular basis. As users can be enrolled in several modules, each having
-                   a distinct set of lessons, the number of contacts to track can be overwhelming. Allowing users to manage 
-                   different contacts and their respective details this can add value to Cap 5 Buddy as a module tracking application.
+  * **Justification:** This feature can enhance the product significantly as module related contacts are one of the most vital module information
+                   that users need to access on a regular basis. As users are enrolled in numorous lessons, the number of contacts to track can be overwhelming. 
                    
-  * Highlights:
+  * **Highlights:**
     
     * This feature requires development in all the components of Cap 5 Buddy: `Logic`, `Model`, `Storage` and `Ui`. As such,
       in-depth analysis of how the components interacted with each other was required.
       
-    * This feature considers that it would be impractical to specify all contact fields as compulsory when creating contacts.
-      This can encourage more flexibility for users.
-      
-    * Careful implementation of contact related commands and methods is required as certain contact details of a particular contact
-      might be absent. Defensive programming was employed extensively to ensure such cases were handled appropriately 
+    * This feature considers that it would be impractical to specify all contact fields as compulsory when creating contacts. As such, several contact fields were made optional.
+      Since certain contact details of a contact might be absent, defensive programming was employed extensively to ensure such cases were handled appropriately 
       to prevent potential bugs from surfacing.
-
+      
   * Relevant Pull requests: [\#228](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/228)
                             [\#249](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/249)
                             [\#250](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/250)
