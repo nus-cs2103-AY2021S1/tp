@@ -19,42 +19,32 @@ Given below are my contributions to the project.
  commands, `c-archive` or `c-archive-all`, respectively. 
  (Pull Request: [#66](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/66),
  [#77](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/77))
-  * Commands: `c-archive` or `c-archive-all`
   
 * **Added _unarchive_ feature**: Allows user to unarchive a single employee's contact information by using
  commands `c-unarchive`. (Pull Request: [#76](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/76))
-  * Command: `c-unarchive`
   
 * **Added _list-all-archived-employees_ feature**: Allows user to see a list of all archived employees. 
 (Pull Request: [#67](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/67))
-  * Command: `c-archive-list`
   
 * **Added _find-today's-available-manpower_ feature**: Allows user to see a list of today's available employees.
 (Pull Request: [#141](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/141))
-  * Command: `c-today`
   
 * **Added _find-tomorrow's-available-manpower_ feature**: Allows user to see a list of tomorrow's available employees.
 (Pull Request: [#141](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/141))
-  * Command: `c-tomorrow`
 
 * **Added _find-tag_ feature**: Allows user to find all the matched employees whose tag(s) contains the given keyword(s).
 (Pull Request: [#141](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/141))
-  * Command: `c-tag-find`
-  
+
 * **Implemented _`salesbook` storage_**: can save the sales record data in `salesbook` in json format and read it
  back. (Pull Request: [#96](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/96))
-  * Command: tCheck will auto-save the data after each command executed. When program starts, data will be read from
-   the json file to application.
-  
+
 * **Implemented _calendar-pane_ in GUI**: can show a calendar for the current month.
 (Pull Request: [#135](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/135))
-  * Command: The calendar will always be shown in the GUI.
 
 
 * **Separated the main pane to 4 panes**: can display sales record data, ingredient tracking data,
  employees' contact info, and a calendar independently. 
  (Pull Request: [#89](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/89))
-
 
 * **Enhancements to existing features**:
   * Improved the contact GUI by adding a title in front of each data. 
