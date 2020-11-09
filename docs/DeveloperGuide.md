@@ -863,6 +863,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | staff of a quarantine facility | look at all the rooms| find out which rooms are occupied and which are not |
 | `* *`| staff of a quarantine facility | initialise the number of rooms many times with previous information retained | define correct number of rooms if mistake is made I can correct it without having to tediously key in information again|
 |`* * `| staff of a quarantine facility | find out an empty room | to allocate patient to that empty room easily without having to search through the rooms for an empty room |
+
 ### A3. Use cases
 
 (For all use cases below, the **System** is `Covigent` and the **Actor** is the `user`, unless specified otherwise)
