@@ -45,6 +45,8 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 The rest of the App consists of four components.
 
+<div style="page-break-after: always;"></div>
+
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
