@@ -204,8 +204,8 @@ This sequence diagram shows a successful execution of `UntagCommand`.
 [RetagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/RetagCommand.java)
 rename the `Tag` specified by the unique tag name with a different tag name.
 
-This command checks the presence of the `Tag` using `java.io.File.exists()`, and that the new tag name is unique, i.e. not present in the `AddressBook`.
-It then gets the filepath of the `Tag` before safely deleting it. Then, a new `Tag` is created with the filepath, and the new tag name.
+This command checks the presence of the `TagName` using `model.findFilteredTagList()`, and that the new tag name is unique, i.e. not present in the `AddressBook`.
+It then sets the tag with the new `TagName`.
 
 This sequence diagram shows a successful execution of `RetagCommand`.
 ![RetagCommandSuccessExecution](images/RetagSequenceDiagram.png)
