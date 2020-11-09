@@ -174,19 +174,6 @@ Given below is an example usage scenario and how the leave recording system beha
 Step 1. While looking at the staff list, the command: `addl 1 l/d/10/10/2020` is executed by the user to add a leave with the date 10/10/2020 to the 1st person in the staff list.
 The `addl` command calls 
 
-
-#### 3.2.2 Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire eva database.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
   
 ### 3.3. Applicant Management System
 
@@ -196,25 +183,19 @@ The details name, phone, email, address are mandatory. The interview date is wra
 We have designed it to be as such so that the user can input the interview date at a later time or leave that detail in all cases.
 Application Status is a field that contains one of the `PossibleApplicationStatus` which is an enumeration of all possible application statuses namely,
 receieved, processing, accepted, rejected.
-An application also contains a `Application`. More about how this is implemented is elaborated [here](#321-application-system).
+An application also contains a `Application`. More about how this is implemented is elaborated below.
 
-#### 3.3.1 Application System:
+#### 3.3.1 Application Management System:
 
-Royce to update
-
-#### 3.3.2 Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire eva database.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
+The application management system consists of the following:
+   * Resume parser
+     * The parser scans a resume text file using a given filepath to detect a given name, as well as experience as education history.
+     * Following which, the resume data will be stored as an application inside an applicant under Eva's database.
+     * Should the user want to delete an application, the `delapp` command will replace the application with a blank one.
+   * Sample resume generator
+     * This generator creates a sample resume text file in the data/resume.txt, where the `data` folder is in the same directory as the JAR file.
+     * The sample resume highlights the strict format that resume text files will have to follow.
+     
 ### 3.2. Panels (List/Profile) display
 
 Ben to update
@@ -407,7 +388,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User navigates to staff list by command 'list s-' or to staff profile while being on staff list via 'view INDEX'
+1. User navigates to staff list by command `list s-` or to staff profile while being on staff list via `view INDEX`
 2. Eva shows a list of staffs with indexes beside each staff
 3. User types in `delete INDEX c/ ti/TITLE_TO_DELETE`. 
 4. Eva deletes the comment with entered `TITLE_TO_DELETE` from staff record permanently.
@@ -677,7 +658,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User types in `addapplication <index_of_applicant> <filepath_of_resume>`
+1. User types in `addapp <index_of_applicant> <filepath_of_resume>`
 2. Eva inserts the resume data into storage, under the applicant indicated.
    Use case ends.
 
@@ -697,7 +678,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User types in `deleteapplication <index_of_applicant>`
+1. User types in `delapp <index_of_applicant>`
 
 2. Eva removes the resume data from the applicant indicated.
    Use case ends.
@@ -967,7 +948,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User types in `clear`
+1. User types in `clear <list_type>`
 2. Eva clears all entries. <br>
     Use case ends.
     
