@@ -38,7 +38,8 @@ public class ParserUtilTest {
     private static final String INVALID_WEIGHT_LIMIT_1 = "10";
     private static final String INVALID_WEIGHT_LIMIT_2 = "1000";
     private static final String INVALID_CALORIE_FORMAT = "1234.56";
-    private static final String INVALID_CALORIE_LIMIT = "0";
+    private static final String INVALID_CALORIE_LIMIT_1 = "0";
+    private static final String INVALID_CALORIE_LIMIT_2 = "10000";
 
     private static final String VALID_LESSON_NAME = "GER1000";
     private static final String VALID_EXERCISE_NAME = "Seated Leg Press";
@@ -268,8 +269,13 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseCalorie_invalidCalorieLimit_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseCalorie(INVALID_CALORIE_LIMIT));
+    public void parseCalorie_invalidCalorieLowerLimit_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCalorie(INVALID_CALORIE_LIMIT_1));
+    }
+
+    @Test
+    public void parseCalorie_invalidCalorieUpperLimit_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCalorie(INVALID_CALORIE_LIMIT_2));
     }
 
     @Test

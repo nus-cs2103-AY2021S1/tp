@@ -21,9 +21,12 @@ public class CalorieTest {
         // invalid range checks -> returns false
         assertFalse(Calorie.isValidCalorie(-1));
         assertFalse(Calorie.isValidCalorie(0));
+        assertFalse(Calorie.isValidCalorie(10000));
+        assertFalse(Calorie.isValidCalorie(10001));
 
         // valid range checks -> returns true
         assertTrue(Calorie.isValidCalorie(1));
         assertTrue(Calorie.isValidCalorie(100));
+        assertTrue(Calorie.isValidCalorie(9999));
     }
 }

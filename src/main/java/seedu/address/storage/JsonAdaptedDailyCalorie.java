@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.calorie.Calorie;
 import seedu.address.model.calorie.DailyCalorie;
 
 /**
@@ -56,7 +57,6 @@ class JsonAdaptedDailyCalorie {
         int modelCalories;
         try {
             modelCalories = Integer.parseInt(calories);
-            modelDailyCalorie.addCalories(modelCalories);
         } catch (NumberFormatException e) {
             throw new IllegalValueException(INVALID_CALORIE_MESSAGE_FORMAT);
         }
@@ -64,6 +64,7 @@ class JsonAdaptedDailyCalorie {
         if (modelCalories < 0) {
             throw new IllegalValueException(INVALID_CALORIE_MESSAGE_FORMAT);
         }
+        modelDailyCalorie.addCalories(new Calorie(modelCalories));
         return modelDailyCalorie;
     }
 }

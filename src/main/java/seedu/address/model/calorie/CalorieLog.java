@@ -63,7 +63,7 @@ public class CalorieLog implements Iterable<DailyCalorie> {
         for (DailyCalorie entry : internalList) {
             if (entry.getDate().equals(LocalDate.now())) {
                 int index = internalList.indexOf(entry);
-                entry.addCalories(calorie.getCalorie());
+                entry.addCalories(calorie);
                 internalList.set(index, entry);
                 isContained = true;
                 break;
@@ -76,7 +76,7 @@ public class CalorieLog implements Iterable<DailyCalorie> {
                 internalList.remove(0);
             }
             DailyCalorie newDay = new DailyCalorie(LocalDate.now());
-            newDay.addCalories(calorie.getCalorie());
+            newDay.addCalories(calorie);
             internalList.add(newDay);
             Collections.sort(internalList);
         }
@@ -92,7 +92,7 @@ public class CalorieLog implements Iterable<DailyCalorie> {
         for (DailyCalorie entry : internalList) {
             if (entry.getDate().equals(LocalDate.now())) {
                 int index = internalList.indexOf(entry);
-                entry.minusCalories(calorie.getCalorie());
+                entry.minusCalories(calorie);
                 internalList.set(index, entry);
                 isContained = true;
                 break;

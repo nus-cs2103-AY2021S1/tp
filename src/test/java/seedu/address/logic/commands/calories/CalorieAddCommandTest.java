@@ -4,9 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
@@ -14,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.CalorieAddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ModelStub;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FitNus;
 import seedu.address.model.ReadOnlyFitNus;
 import seedu.address.model.calorie.Calorie;
@@ -33,18 +30,6 @@ public class CalorieAddCommandTest {
                 commandResult.getFeedbackToUser());
     }
 
-    @Test
-    public void execute_invalidCalorieInput_throwsCommandException() {
-        CalorieAddCommand command = new CalorieAddCommand(new Calorie(2147483647));
-        ModelStub modelStub = new ModelStubWithDailyCalorie(
-                new DailyCalorie(LocalDate.of(2020, 11, 3)));
-
-        //To tip the integer value to be too large
-        modelStub.addCalories(new Calorie(1));
-
-        assertThrows(CommandException.class,
-                CalorieAddCommand.MESSAGE_FAILURE, () -> command.execute(modelStub));
-    }
     @Test
     public void equals() {
         CalorieAddCommand firstCommand = new CalorieAddCommand(new Calorie(10));
@@ -85,7 +70,7 @@ public class CalorieAddCommandTest {
 
         @Override
         public void addCalories(Calorie calorie) {
-            dailyCalorie.addCalories(calorie.getCalorie());
+            dailyCalorie.addCalories(calorie);
         }
     }
 

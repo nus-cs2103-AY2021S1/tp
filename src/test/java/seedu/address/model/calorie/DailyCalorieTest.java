@@ -30,11 +30,11 @@ public class DailyCalorieTest {
         assertTrue(d1.isSameDailyCalorie(d2));
 
         // same LocalDate, different calories -> returns true
-        d1.addCalories(10);
+        d1.addCalories(new Calorie(10));
         assertTrue(d1.isSameDailyCalorie(d2));
 
         // same LocalDate, same calories -> returns true
-        d2.addCalories(10);
+        d2.addCalories(new Calorie(10));
         assertTrue(d1.isSameDailyCalorie(d2));
 
     }
@@ -59,7 +59,7 @@ public class DailyCalorieTest {
         assertFalse(d1.equals(5));
 
         // same LocalDate, different DailyCalorie -> returns false
-        d2.addCalories(1500);
+        d2.addCalories(new Calorie(1500));
         assertFalse(d1.equals(d2));
 
         // different LocalDate, same DailyCalorie -> returns false
@@ -71,12 +71,12 @@ public class DailyCalorieTest {
 
     @Test
     public void minus() {
-        d1.addCalories(1000);
-        d2.addCalories(1000);
-        d1.minusCalories(10);
+        d1.addCalories(new Calorie(1000));
+        d2.addCalories(new Calorie(1000));
+        d1.minusCalories(new Calorie(10));
         assertFalse(d1.getCalories() == d2.getCalories());
 
-        d2.minusCalories(10);
+        d2.minusCalories(new Calorie(10));
 
         assertEquals(d1.getCalories(), d2.getCalories());
     }
@@ -85,7 +85,7 @@ public class DailyCalorieTest {
     public void miscellaneous() {
         assertEquals(d1.hashCode(), d1.hashCode());
         assertEquals(d1.toString(), d2.toString());
-        d2.addCalories(10);
+        d2.addCalories(new Calorie(10));
         assertNotEquals(d1.hashCode(), d2.hashCode());
 
         assertNotEquals(d1.toString(), d2.toString());
