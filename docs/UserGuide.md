@@ -168,7 +168,7 @@ Format: `listpersons`
 
 Example: `listpersons` lists all persons in the catalogue to the user.
 
-# 2.2 Projects management
+## 2.2 Projects management
 
 ### 2.2.1 Start work on an existing project `startproject`
 
@@ -284,7 +284,7 @@ Note: Please enter a valid repository URL. Taskmania is an offline application a
 
 Example: `edit 1 n/ResidentEvil d/ new horror` changes the name of the first project in the list to **Evil project**, and the description to **new horror**.
 
-# 2.3 Tasks management within a project
+## 2.3 Tasks management within a project
 
 ### 2.3.1 Add task to a project `addtask`
 
@@ -462,7 +462,7 @@ Format: `viewtask INDEX `
 
 Example: `viewtask 1` displays all information from task number 1 in the list.
 
-# 2.4 Teammate and person management within a project
+## 2.4 Teammate and person management within a project
 
 ### 2.4.1 Create a new person `addperson`
 
