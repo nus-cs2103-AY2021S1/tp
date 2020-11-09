@@ -98,6 +98,13 @@ public class Project {
      * @return true if the task to be added is unique in the project, and false otherwise.
      */
     public boolean addTask(Task task) {
+        Object[] taskArray = tasks.toArray();
+
+        for (Object o : taskArray) {
+            if (task.equals(o)) {
+                return false;
+            }
+        }
         if (tasks.contains(task)) {
             return false;
         } else {

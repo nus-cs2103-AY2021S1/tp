@@ -31,6 +31,8 @@ public class TypicalTasks {
             + SampleDataUtil.getTask1().get(2);
     public static final String TASK_A_DESCRIPTION = " " + PREFIX_DESCRIPTION + " "
             + SampleDataUtil.getValidTask().get(1);
+    public static final String TASK_B_DESCRIPTION = " " + PREFIX_DESCRIPTION + " "
+            + SampleDataUtil.getTask1().get(1);
 
     public static final Task TASK_A = new TaskBuilder()
             .withTaskName(SampleDataUtil.getValidTask().get(0))
