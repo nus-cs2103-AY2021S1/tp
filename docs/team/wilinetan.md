@@ -39,6 +39,8 @@ Given below are my contributions to the project.
   * In charge of implementation of the Graphic User Interface
   * Ensure that project deliverables are delivered on time
 
+<br>
+
 * **Enhancements to existing features**:
   * Implemented the GUI layout and color scheme (Pull requests [\#183](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/183), [\#272](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/272), [\#275](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/275))
   * Personalized the GUI with user's name (Pull request [\#210](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/210))
