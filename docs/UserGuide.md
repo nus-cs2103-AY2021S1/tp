@@ -30,8 +30,8 @@ this [link](https://ay2021s1-cs2103t-t12-3.github.io/tp/).
     * [3.3. Edit a lesson: `edit-lesson`](#33-edit-a-lesson--edit-lesson)
     * [3.4. Find a lesson: `find-lesson`](#34-find-a-lesson--find-lesson)
     * [3.5. Delete a lesson: `delete-lesson`](#35-delete-a-lesson--delete-lesson)
-  * [4. Calendar View](#4-calendar-view)
-  * [5. Data Analysis](#5-data-analysis)
+  * [4. Calendar View: `calendar`](#4-calendar-view)
+  * [5. Time Analysis](#5-time-analysis)
 * [Glossary](#glossary)
 * [Input format summary](#input-format-summary)
 * [Command summary](#command-summary)
@@ -41,6 +41,7 @@ this [link](https://ay2021s1-cs2103t-t12-3.github.io/tp/).
 PlaNus is a **task managing desktop application** for students in NUS with many projects and deadlines, optimized for use via a Command Line Interface (CLI) with the benefits of Graphical User Interface (GUI). PlaNus reduces the time spent by students in task management as adding tasks and lessons is now simple and quick!
 
 Objectives of PlaNus:
+
 1. Provide students with a detailed breakdown of how much time they spend on their tasks and lessons in their respective modules.
 2. Allow students to have a calendar view of their schedule.
 
@@ -49,31 +50,38 @@ Objectives of PlaNus:
 --------------------------------------------------------------------------------------------------------------------
 
 ## Set-up
+
 (Done by: Gabriella)
 
 1. Ensure you have Java 11 or above installed in your computer.
+
 2. Download the latest planus.jar from **[here](https://github.com/AY2021S1-CS2103T-T12-3/tp/releases/)**.
 
-    ![setup](images/Setup.png)
+   ![setup](images/Setup.png)
 
 3. Copy the file to the folder you want to use as the home folder for PlaNus.
+
 4. Double-click the file to start the app. Upon launching PlaNus, you should see the following user interface.
 
-    ![sample PlaNus](images/SamplePlanus.png)
+   ![sample PlaNus](images/SamplePlanus.png)
 
 5. Alternatively, in command prompt (for Windows) or terminal (in MacOS), go to the directory where planus.jar is stored and enter `java -jar planus.jar`.To open command prompt (for Windows) or terminal (in MacOS), simply search for them in your computer.
+
 6. You may try out some commands listed in the [command summary](#command-summary) to explore the app.
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 This section is a comprehensive walkthrough of the features in PlaNus.
 
 <div markdown="block" class="alert alert-info">
 
+
 **:information_source: Notes about the command format**<br>
+
 * Words highlighted are code snippets. <br>
-    - e.g. `title`
+  - e.g. `title`
 * Words in **upper case** are the parameters (i.e. user input) to be supplied by the user.<br>
   - e.g. in `event title:TITLE`, `TITLE` is a parameter which users can determine.
   - For example, users can type `title:homework 1` or `title:assignment`.
@@ -96,6 +104,7 @@ This section shows features that deal with the general functionality of PlaNus a
 
 
 ### 1.1 Show all commands : `help`
+
 (Done by: Gabriella)
 
 Shows the user a link to the user guide.
@@ -103,14 +112,16 @@ Shows the user a link to the user guide.
 Format: `help`
 
 1. Type in `help` into the command box.
+
 2. A pop-up window with some sample commands and a link to the user guide will appear as shown below.
 
-    ![help message](images/HelpMessage.png)
+   ![help message](images/HelpMessage.png)
 
 
 <br>
 
 ### 1.2 Clear the program : `clear`
+
 (Done by: Gabriella)
 
 Users can clear all the tasks in the PlaNus.
@@ -118,16 +129,17 @@ Users can clear all the tasks in the PlaNus.
 Format: `clear`
 
 1. Type in `clear` into the command box.
-<br>
+   <br>
 
 2. All the tasks and lessons in PlaNus will be cleared as shown below.
-<br>
+   <br>
 
     ![clear success message](images/ClearSuccessMessage.png)
 
 <br>
 
 ### 1.3 Exit the program : `exit`
+
 (Done by: Gabriella)
 
 Users can exit PlaNus.
@@ -147,6 +159,7 @@ creating, reading, updating and deleting a task. A task can be either a
 `event` or `deadline`. <br>
 
 ### 2.1 List all tasks : `list-task`
+
 (Done by: Beining)
 
 Shows the user a list of all the tasks in PlaNus.
@@ -159,11 +172,12 @@ To show all tasks currently stored in PlaNus, users can do the following:
 
 2. A success message will appear and list of all tasks will be shown in the task panel.
 
-    ![list tasks](images/ListTasks.png)
+   ![list tasks](images/ListTasks.png)
 
 <br>
 
 ### 2.2 Add a deadline : `deadline`
+
 (Done by: Beining)
 
 
@@ -175,10 +189,10 @@ A deadline is a task that has a compulsory deadline date and time.
 Format: `deadline title:TITLE [desc:DESCRIPTION] datetime:DATE_TIME [tag:MODULE_CODE]`
 
 * Adds a deadline to PlaNus,
-    * with the specified title in `title:TITLE`,
-    * with the specified description in `description:DESCRIPTION`,
-    * with a date and time in `datetime:DATE_TIME` of when this deadline should be completed before,
-    * with a tag in `tag:MODULE_CODE` indicating the module of which this deadline belongs to.
+  * with the specified title in `title:TITLE`,
+  * with the specified description in `description:DESCRIPTION`,
+  * with a date and time in `datetime:DATE_TIME` of when this deadline should be completed before,
+  * with a tag in `tag:MODULE_CODE` indicating the module of which this deadline belongs to.
   * the added deadline will be tracked for time analysis if it has a tag.
 
 Examples:
@@ -187,24 +201,28 @@ To add a deadline with title "Return book", and a date and time of "02-01-2020 1
 users can do the following:
 
 1) Type in the command box the following command:
+
 * `deadline title:Return book datetime:02-01-2020 18:00`
 
 2) This adds the corresponding deadline to PlaNus. You can see the added deadline in the task list.
 
-    ![add deadline_result](./images/AddDeadlineCommandResult.png)
+    ![add deadline_result](images/AddDeadlineCommandResult.png)
 
 <br>
+
 <div markdown="block" class="alert alert-info">
+
 
 **:information_source: Notes**<br>
 
 * Multiple inputs of the same attribute is not allowed. 
-E.g. `deadline title:Return book title:Borrow book datetime:02-01-2020 18:00` is not allowed as the `title` attribute is input twice.
-</div>
+  E.g. `deadline title:Return book title:Borrow book datetime:02-01-2020 18:00` is not allowed as the `title` attribute is input twice.
+  </div>
 
 <br>
 
 ### 2.3 Add an event : `event`
+
 (Done by: Beining)
 
 Users can add an event.
@@ -215,10 +233,10 @@ An event is a task that has a start time, end time and a date.
 Format: `event title:TITLE date:DATE from:START_TIME to:END_TIME [desc:DESCRIPTION] [tag:MODULE_CODE]`
 
 * Adds an event to PlaNus,
-    * with the specified title in `title:TITLE`,
-    * with the specified description in `desc:DESCRIPTION`,
-    * on the date specified in `date:DATE`, starting from the time specified in `from:START_TIME` to the time specified in `to:END_TIME`,
-    * with a tag in `tag:MODULE_CODE` indicating the module of which this deadline belongs to.
+  * with the specified title in `title:TITLE`,
+  * with the specified description in `desc:DESCRIPTION`,
+  * on the date specified in `date:DATE`, starting from the time specified in `from:START_TIME` to the time specified in `to:END_TIME`,
+  * with a tag in `tag:MODULE_CODE` indicating the module of which this deadline belongs to.
   * the added event will be tracked for time analysis if it has a tag.
   * Event must not overlap with existing events or lessons.
 
@@ -228,27 +246,30 @@ To add an event with title "Project meeting", and a date "07-11-2020" with start
 users can do the following:
 
 1) Type in the command box the following command:
+
 * `event title:Project meeting date:07-11-2020 from:09:00 to:12:30 tag:CS2103T`
 
 2) This adds the corresponding event to PlaNus. You can see the added event in the task list and the calendar. The duration of the event will be recorded for time analysis.
 
-    ![add event_result](./images/AddEventCommandResult.png)
+    ![add event_result](images/AddEventCommandResult.png)
 
-    ![add event result](./images/AddEventCommandResult2.png)
+    ![add event result](images/AddEventCommandResult2.png)
 
 <br>
 
 <div markdown="block" class="alert alert-info">
 
+
 **:information_source: Notes**<br>
 
 * Multiple inputs of the same attribute is not allowed. 
-E.g. `event title:Project meeting title:Group meeting date:07-11-2020 from:09:00 to:12:30 tag:CS2103T` is not allowed as the `title` attribute is input twice.
-</div>
+  E.g. `event title:Project meeting title:Group meeting date:07-11-2020 from:09:00 to:12:30 tag:CS2103T` is not allowed as the `title` attribute is input twice.
+  </div>
 
 <br>
 
 ### 2.4 Mark a deadline as done : `done`
+
 (Done by: Beining)
 
 Users can mark a specified deadline in PlaNus as done.
@@ -265,29 +286,31 @@ Format: `done INDEX:TIME_TAKEN...`
 **:information_source: Notes**<br>
 
 * There are two type of tasks, event and deadline.
-    * Only a deadline can be marked as done through this command, an error message will be shown if the user attempts to mark an event as done.
+  * Only a deadline can be marked as done through this command, an error message will be shown if the user attempts to mark an event as done.
 * After the user has marked a deadline as done, the user cannot edit the deadline or undo the done command anymore.
-</div>
+  </div>
 
 Examples:
 
 * `list-task` followed by `done 2:30 3:60`
-    * Marks the 2nd and the 3rd tasks in the results of the `list` command status to be done, and records that the user has spent 30 minutes to finish the 2nd task, and 60 minutes to finish the 3rd task.
+  * Marks the 2nd and the 3rd tasks in the results of the `list` command status to be done, and records that the user has spent 30 minutes to finish the 2nd task, and 60 minutes to finish the 3rd task.
 * `find-task title:homework` followed by `done 1:20`
-    * Marks the 1st task in the results of the `find` command status to be done and record the time taken to complete the deadline as 20 minutes.
+  * Marks the 1st task in the results of the `find` command status to be done and record the time taken to complete the deadline as 20 minutes.
 
 To mark the first deadline in the current task list as done and recording the time spent on it as 50 minutes,
 users can do the following:
 1) Type in the command box the following command:
-    * `done 1:50`
+
+   * `done 1:50`
 
 2) The status of the deadline has been set to complete, and the time taken to complete the task will be used for time analysis.
 
-    ![mark_as_done_result](./images/DoneCommandResult.png)
+    ![mark_as_done_result](images/DoneCommandResult.png)
 
 <br>
 
 ### 2.5 Edit a task : `edit-task`
+
 (Done by: Gangwei)
 
 Users can edit a task by a set of attributes given below.
@@ -305,18 +328,18 @@ Format: `edit-task INDEX ATTRIBUTE_1:NEW_VALUE ATTRIBUTE_2:NEW_VALUE ...`
 * If different fields are provided in the command, all the provided fields of the specified task will be updated.
 * If a deadline has a status of **complete**, it cannot be edited.
 * Fields that the user can modify differ by the type of task(Event or Deadline) the user is trying to modify.
-</div>
+  </div>
 
   * Available attributes for both deadline and event in 4 include:
     * `title:` edits the title of the specified task
     * `desc:` edits the description of the specified task
     * `tag:` edits the tag of the specified task
   * Available attributes for **deadline only** in v1.4 include:
-      * `datetime:` edits the date and time of the specified deadline
+    * `datetime:` edits the date and time of the specified deadline
   * Available attributes for **event only** in v1.4 include:
-      * `date:` edits the date of the specified event
-      * `from:` edits the start time of the specified event
-      * `to:` edits the end time of the specified event
+    * `date:` edits the date of the specified event
+    * `from:` edits the start time of the specified event
+    * `to:` edits the end time of the specified event
 
 Examples:
 
@@ -330,35 +353,38 @@ For example, if we want to change the first task start time to be an hour earlie
 
 3) This changes the start time of the sixth task to 10:00 which is one hour after than the original start time. You can view the task with the updated information in the task list.
 
-    ![edit task result](./images/EditTaskCommandResult.png)
+    ![edit task result](images/EditTaskCommandResult.png)
 
 4) If the task that is being edited is an event, the calendar will also be updated with the information.
 
-    ![edit task result](./images/EditTaskCommandResult2.png)
+    ![edit task result](images/EditTaskCommandResult2.png)
 
 Other examples:
+
 * `edit-task 1 title:play games` 
-    * Edits the first task in the results of the `list-task` command, changing its title to `play games`.
+  * Edits the first task in the results of the `list-task` command, changing its title to `play games`.
 * `edit-task 3 desc:This is very urgent!` 
-    * Edits the third task in the results of the `list-task` command, changing its description to "This is very urgent!".
+  * Edits the third task in the results of the `list-task` command, changing its description to "This is very urgent!".
 * `find-task title:homework` followed by`edit-task 2 desc:Homework is difficult date:01-01-2020` 
-    * Edits the second task in the results of the `find-task` command if the task is an event, changing its date to 01-01-2020 and its description to "Homework is difficult", otherwise, PlaNus will notify the user of the incompatible error.
+  * Edits the second task in the results of the `find-task` command if the task is an event, changing its date to 01-01-2020 and its description to "Homework is difficult", otherwise, PlaNus will notify the user of the incompatible error.
 * `edit-task 1 tag:CS2103T` 
-    * Edits the first task in the results of the `list-task` command, changing its tag to "CS2103T".
+  * Edits the first task in the results of the `list-task` command, changing its tag to "CS2103T".
 
 <br>
 
 <div markdown="block" class="alert alert-info">
 
+
 **:information_source: Notes**<br>
 
 * Multiple inputs of the same attribute is not allowed. 
-E.g. `edit-task title:play games title:watch tv` is not allowed as the `title` attribute is input twice.
-</div>
+  E.g. `edit-task title:play games title:watch tv` is not allowed as the `title` attribute is input twice.
+  </div>
 
 <br>
 
 ### 2.6 Find a task by an attribute : `find-task`
+
 (Done by: Gangwei)
 
 Users can find a task by a set of attributes given below.
@@ -367,14 +393,16 @@ Format: `find-task ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...`
 
 <div markdown="block" class="alert alert-info">
 
+
 **:information_source: Notes**<br>
 
 * If the user provides different attributes in the command, tasks that match all attributes will be displayed.
 
 * If the user provides multiple search phrases of the same attribute in the command, tasks that match any of the search phrases will be displayed.
-</div>
+  </div>
 
 Available attributes in v1.4 include:
+
 * `title:` finds all tasks which contain the search phrase in the given title
 * `desc:` finds all tasks which contain the search phrase in the given description
 * `date:` finds all tasks happening on or due the searched date
@@ -388,26 +416,28 @@ To find all tasks with titles containing the phrase "CS" (case-insensitive), use
 1) List all tasks by typing `list-task` in the command box.
 
 2) Type the following command in the command box: 
-    * `find-task title:CS` 
+
+   * `find-task title:CS` 
 
 3) This lists all tasks with a title including the phrase `CS`.
 
-    ![find task result](./images/FindTaskCommandResult.png)
+    ![find task result](images/FindTaskCommandResult.png)
 
 Other examples:
+
 * `find-task title:play games` 
-    * Lists all tasks with a title including the phrase `play games`.
+  * Lists all tasks with a title including the phrase `play games`.
 * `find-task tag:CS2040` 
-    * Lists all tasks with a tag containing `CS2040`.
+  * Lists all tasks with a tag containing `CS2040`.
 * `find-task date:01-01-2020` .
-    * List all tasks happening on or due `01-01-2020`
+  * List all tasks happening on or due `01-01-2020`
 * `find-task title:dinner title:lunch`.
-    * List all tasks with the title including either `dinner` or `lunch`.
+  * List all tasks with the title including either `dinner` or `lunch`.
 
 <br>
 
-
 ### 2.7 Delete a task : `delete-task`
+
 (Done by: Gangwei)
 
 Users can delete the specified task from PlaNus.
@@ -418,7 +448,7 @@ Format: `delete-task INDEX...`
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, ...
 * The user can provide more than 1 index at the same time, eg. `delete-task 1 2 3`.
-    *  However, if one of the index is invalid, the whole command will not be executed, and an error message will be shown.
+  *  However, if one of the index is invalid, the whole command will not be executed, and an error message will be shown.
 
 Examples:
 
@@ -428,17 +458,18 @@ To delete the first task, users can do the following:
 
 2) Type `delete-task 1` in the command box.
 
-    ![delete task](./images/DeleteTaskCommand.png)
+    ![delete task](images/DeleteTaskCommand.png)
  
 3) This deletes the 1st task from PlaNus.
 
-    ![delete task result](./images/DeleteTaskCommandResult.png)
+    ![delete task result](images/DeleteTaskCommandResult.png)
 
 Other examples:
+
 * `list-task` followed by `delete-task 1 2` 
-    * Deletes the 1st task followed by the 2nd task in the results of the `list-task` command.
+  * Deletes the 1st task followed by the 2nd task in the results of the `list-task` command.
 * `find-task title:homework` followed by `delete-task 1` 
-    * Deletes the 1st task in the results of the `find-task` command.
+  * Deletes the 1st task in the results of the `find-task` command.
 
 <br>
 
@@ -448,6 +479,7 @@ This section shows features that a user can use to manage lessons. A lesson happ
 recurring manner that have a start and end time, and a start and end date.
 
 ### 3.1 List all lessons :`list-lesson`
+
 (Done by: Gangwei)
 
 Shows the user a list of all the lessons in PlaNus.
@@ -457,13 +489,15 @@ Format: `list-lesson`
 To show all lessons currently stored in PlaNus, users can do the following:
 
 1) Type in the command box the following command:
+
 * `list-lesson`
 
 2) This displays all lessons in the lesson list.
-    ![List lesson](./images/ListLesson.png)
+    ![List lesson](images/ListLesson.png)
 
 
 ### 3.2 Add a lesson : `lesson`
+
 (Done by: Zijian)
 
 Users can add a lesson to PlaNus.
@@ -471,15 +505,17 @@ Users can add a lesson to PlaNus.
 Format: `lesson title:TITLE tag:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME to:TIME start:DATE end:DATE`
 
 * Adds a lesson to PlaNus, 
-    * with the title specified in `title:TITLE`, 
-    * starting from the date specified in `start:DATE` to the date specified in `end:DATE`, on the days specified in `day:DAY` from the time specified in `from:TIME` to the time specified in `to:TIME`.
+  * with the title specified in `title:TITLE`, 
+  * starting from the date specified in `start:DATE` to the date specified in `end:DATE`, on the days specified in `day:DAY` from the time specified in `from:TIME` to the time specified in `to:TIME`.
+
 <div markdown="block" class="alert alert-info">
+
 
 **:information_source: Notes**<br>
 
 * The format of day in `day:DAY` must be as follows (case-insensitive):
   * Monday, Tuesday, ..., Sunday
-</div>
+    </div>
 
 Examples:
 
@@ -487,28 +523,31 @@ To add a lesson named "CS2101 Tutorial" which is under module "CS2101", and happ
 from 10 Aug 2020 to 10 Dec 2020, users can do the following:
 
 1) Type in the command box the following command:
+
 * `lesson title:CS2101 Tutorial tag:CS2101 desc:Most exciting tutorial in NUS! day:Monday from:10:00 to:12:00 start:10-08-2020 end:10-12-2020`
 
 2) This adds the corresponding lesson to PlaNus. You can see the added lesson in the lesson list, calendar view and 
 time analysis.
 
-    ![add lesson result](./images/AddLessonCommandResult.png)
+    ![add lesson result](images/AddLessonCommandResult.png)
     
-    ![add lesson result](./images/AddLessonCommandResult2.png)
-
+    ![add lesson result](images/AddLessonCommandResult2.png)
 
 <br>
+
 <div markdown="block" class="alert alert-info">
+
 
 **:information_source: Notes**<br>
 
 * Multiple inputs of the same attribute is not allowed. 
-E.g. `lesson title:Tutorial title:Lecture tag:CS2103T day:Monday from:10:00 to:12:00 start:10-08-2020 end:10-12-2020` is not allowed as the `title` attribute is input twice.
-</div>
+  E.g. `lesson title:Tutorial title:Lecture tag:CS2103T day:Monday from:10:00 to:12:00 start:10-08-2020 end:10-12-2020` is not allowed as the `title` attribute is input twice.
+  </div>
 
 <br>
 
 ### 3.3 Edit a lesson : `edit-lesson`
+
 (Done by: Zijian)
 
 Users can edit a lesson in PlaNus. When a lesson is edited, all the occurrences of the particular lesson will be updated.
@@ -517,49 +556,52 @@ Format: `edit-lesson INDEX [title:TITLE] [tag:MODULE_CODE] [desc:DESCRIPTION] [d
 
 <div markdown="block" class="alert alert-info">
 
+
 **:information_source: Notes**<br>
 
 * `INDEX` refers to the index of the lesson in the lesson list.
 
 * The format of day in `day:DAY` must be as follows (case-insensitive):
   * Monday, Tuesday, ..., Sunday
-</div>
+    </div>
 
 * Edit a lesson in PlaNus
-    * The values of the specified lesson will be changed to the new values specified in the `edit-lesson` command.
+  * The values of the specified lesson will be changed to the new values specified in the `edit-lesson` command.
 
 Examples:
 
 To edit a lesson, users can do the following:
 
 1) Display all lessons by typing `list-lesson` in the command box. This will display all lessons.
- 
+
 2) Choose the lesson you want to edit. Find its index which is displayed on the top-left corner.
 For example, if we want to change the first lesson to Tuesday, we can type
 `edit-lesson 1 day:Tuesday` in the command box.
 
-    ![edit lesson](./images/EditLessonCommand.png)
+    ![edit lesson](images/EditLessonCommand.png)
 
 3) This changes the day of the first lesson to every Tuesday. You can see that the calendar view and 
 time analysis is also updated.
 
-    ![edit lesson result](./images/EditLessonCommandResult.png)
+    ![edit lesson result](images/EditLessonCommandResult.png)
     
-    ![edit lesson result](./images/EditLessonCommandResult2.png)
+    ![edit lesson result](images/EditLessonCommandResult2.png)
 
 <br>
 
 <div markdown="block" class="alert alert-info">
 
+
 **:information_source: Notes**<br>
 
 * Multiple inputs of the same attribute is not allowed. 
-E.g. `edit-lesson 1 title:tutorial 1 title:tutorial 2` is not allowed as the `title` attribute is input twice.
-</div>
+  E.g. `edit-lesson 1 title:tutorial 1 title:tutorial 2` is not allowed as the `title` attribute is input twice.
+  </div>
 
 <br>
 
 ### 3.4 Find a lesson : `find-lesson`
+
 (Done by: Zijian)
 
 Users can find a lesson by a set of attributes given below.
@@ -568,14 +610,16 @@ Format: `find-lesson ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...`
 
 <div markdown="block" class="alert alert-info">
 
+
 **:information_source: Notes**<br>
 
 * If the user provides different attributes in the command, lesson that match all attributes will be displayed.
 
 * If the user provides multiple search phrases of the same attribute in the command, lessons that match any of the search phrases will be displayed.
-</div>
+  </div>
 
 Available attributes in v1.4 include:
+
 * `title:` finds all lessons which contain the search phrase in the given title
 * `desc:` finds all lessons which contain the search phrase in the given description
 * `date:` finds all lessons happening on the searched date
@@ -591,26 +635,29 @@ the following steps:
 1) List all lessons by typing `list-lesson` in the command box:
 
 2) Type the following command in the command box: 
-    * `find-lesson title:tutorial` 
+
+   * `find-lesson title:tutorial` 
 
 3) This lists all lessons with a title including the phrase `Tutorial`.
 
-    ![find lesson result](./images/FindLessonCommandResult.png)
+    ![find lesson result](images/FindLessonCommandResult.png)
 
 Other examples include:
+
 * `find-lesson tag:CS2040` 
-    * Lists all lessons with a tag containing 'CS2040'.
+  * Lists all lessons with a tag containing 'CS2040'.
 * `find-lesson date:01-01-2020` .
-    * List all lessons happening on 01-01-2020.
+  * List all lessons happening on 01-01-2020.
 * `find-lesson title:dinner title:lunch`.
-    * List all
-     lessons with the title including either `dinner` or `lunch`.
+  * List all
+    lessons with the title including either `dinner` or `lunch`.
 * `find-lesson datetime:01-01-2020 14:00` 
-    * Lists all lessons happening on 01-01-2020 at 14:00.
+  * Lists all lessons happening on 01-01-2020 at 14:00.
 
 <br>
 
 ### 3.5 Delete a Lesson : `delete-lesson`
+
 (Done by: Zijian)
 
 Users can delete a specified set of lessons from PlaNus.
@@ -619,12 +666,13 @@ Format: `delete-lesson INDEX...`
 
 <div markdown="block" class="alert alert-info">
 
+
 **:information_source: Notes**<br>
 
 * `INDEX` refers to the index of the lesson in the lesson list.
 
 * `...` means that there can be multiple indexes supplied. If all indexes are valid,
-all lessons of the specified indexes will be deleted. 
+  all lessons of the specified indexes will be deleted. 
 
 </div>
 
@@ -636,97 +684,108 @@ To delete the first two lessons, users can following the steps:
 
 2) Type `delete-lesson 1 2` in the command box.
 
-    ![delete lesson](./images/DeleteLessonCommand.png)
+    ![delete lesson](images/DeleteLessonCommand.png)
  
 3) This deletes the 1st and 2nd lesson from PlaNus.
 
-    ![delete lesson result](./images/DeleteLessonCommandResult.png)
+    ![delete lesson result](images/DeleteLessonCommandResult.png)
 
 
 Users can also delete lessons by first finding the lessons of interest, refer to [feature 3.4](#34-find-a-lesson--find-lesson)
 for more information. Sample usage:
+
 * `find-lesson title:Lab` followed by `delete-lesson 1` 
-    * Deletes the 1st lesson in the results of the `find-lesson` command.
+  * Deletes the 1st lesson in the results of the `find-lesson` command.
 
 <br>
 
 ## 4. Calendar View
-(Done by: Marcus and Gangwei)
 
-**Change to Calendar View**
+(Done by: Marcus)
 
-Users can change the application view to calendar view.
+PlaNus has two application views:
+
+* Task and Lesson view
+* Calendar view
+
+<br>
+
+Users can change the **application view** to **calendar view**.
 
 Format: `calendar`
 
-To change the view to calendar view,
+Example:
 
 1) Type in `calendar` into the command box.
 
-2) The calendar view will appear as shown below. Users can use the calendar view to see what tasks and lessons they have in the entire month as shown below.
+2) The calendar view will appear as shown below.
 
-![calendar view month](./images/CalendarViewMonth.png)
+![calendar view month](images/CalendarViewMonth.png)
 
-Calendar view displays:
-* Events
-* Lessons
+Users can use the calendar view to:
+
+* See how many events and lessons they have on each day of the current month in the calendar's **month view**.
+* See what events and lessons they have for a particular day in the calendar's **day view**.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes**<br>
 
-* Boxes in grey are days not in the current month and therefore unclickable. However, it displays the lesson and event numbers for the users. 
-
-* Users can click on each box in the calendar view to view specific schedule in the day view on the right. 
+* The days in the **calendar view** that are in grey are not in the current month, and therefore they cannot be clicked. However, it still displays the number of events and lessons on that day.
 
 </div>
 
-**Change to Standard View**
+**Changing back to Task and Lesson View**
 
-Users can change the application view back to standard view (displayed when the app starts) by issuing a `list-task` command or a `list-lesson` command. 
+Users can change the application view back to Task and Lesson view (displayed when the app starts) by issuing a `list-task` command or a `list-lesson` command. 
 
 <br>
 
-## 5. Data Analysis
+## 5. Time Analysis
+
 (Done by: Marcus)
 
-Users can use the pie chart and list of modules to visualise how much time is spent on each module. Each module is 
+Users can use the pie chart and list of modules to visualise how much time is spent on each module **in the past week**. Each module is 
 denoted by the `tag` on its task/lesson.
 
-![data analysis](./images/DataAnalysis.png)
+![data analysis](images/DataAnalysis.png)
 
 How does it work:
+
 * Each module has a **time spent on tasks** and **time spent on lessons**.
-* When a `deadline` is marked as done, it contributes towards **time spent on tasks** for that module. 
+* When a `deadline` is marked as done, it contributes towards **time spent on tasks** for that module.
 * When an `event` has occurred, it contributes towards **time spent on tasks** for that module.
 * When a `lesson` has occurred, it contributes towards **time spent on a lesson** for that module.
 
 Example:
 
-![data analysis example](./images/DataAnalysisExample.png)
+![data analysis example](images/DataAnalysisExample.png)
+
 * The first lesson in the list:
-    * Title of "CS2105 Lecture"
-    * Only occurred one time during the past week
-    * Has a duration of 2 hours from 14:00 to 16:00
+  * Title of "CS2105 Lecture"
+  * Only occurred one time during the past week
+  * Has a duration of 2 hours from 14:00 to 16:00
 
 Therefore, the **time analysis for the week** will show that the **time spent on lessons** with the CS2105 `tag` as
 120 minutes (2 hours).
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes**<br>
 
 * Version 1.4:
-    * Only time spent on each module in the **past week** is displayed.
+  * Only time spent on each module in the **past week** is displayed.
 
 * In the next iteration:
-    * A breakdown of time spent on each module in the **past week** and of **all time** is displayed.
-</div>
+  * A breakdown of time spent on each module in the **past week** and of **all time** is displayed.
+    </div>
 
 <br>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
+
 * Task: An event or a deadline
 * Event: Consists of a start and end time, and a date
 * Deadline: Consists of a deadline date and time
@@ -736,32 +795,34 @@ Therefore, the **time analysis for the week** will show that the **time spent on
 
 ## Command summary
 
-| Action     | Format, Examples                                             |
-| ---------- | ------------------------------------------------------------ |
-| **Help**   | `help`                                                       |
-| **Clear all**   | `clear`                                                       |
-| **Exit**   | `exit`                                                       |
-| **List task**   | `list-task` |
-| **Add Event**  | `event title:TITLE [desc:DESCRIPTION] date:DATE from:TIME to:TIME tag:MODULE_CODE` <br> e.g. `event title:CS2103T Group meeting date:23-10-2020 from:20:00 to:22:00 tag:CS2103T` |
+| Action            | Format, Examples                                             |
+| ----------------- | ------------------------------------------------------------ |
+| **Help**          | `help`                                                       |
+| **Clear all**     | `clear`                                                      |
+| **Exit**          | `exit`                                                       |
+| **List task**     | `list-task`                                                  |
+| **Add Event**     | `event title:TITLE [desc:DESCRIPTION] date:DATE from:TIME to:TIME tag:MODULE_CODE` <br> e.g. `event title:CS2103T Group meeting date:23-10-2020 from:20:00 to:22:00 tag:CS2103T` |
 | **Add Deadline**  | `deadline title:TITLE [desc:DESCRIPTION] datetime:DATETIME tag:MODULE_CODE` <br> e.g. `deadline title:Assignment2 submission datetime:23-10-2020 18:00 tag:CS2103T` |
-| **Delete task** | `delete-task INDEX...` <br> e.g. `delete-task 3`, `delete-task 3, 4, 5`                       |
-| **Done task**   | `done INDEX:TIME_TAKEN...`<br> e.g. `done 1:20`, `done 1:20 2:60 3:120`    |
-| **Find task**   | `find-task ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...` <br> e.g.`find-task title:dinner date:02-02-2020` |
-| **Edit task**   | `edit-task INDEX [title:TITLE] [date:DATE] [desc:DESCRIPTION] [tag:MODULE_CODE] [datetime:DEADLINE (deadline only)] [date:EVENT_DATE (event only)] [start:START_TIME (event only)] [end:END_TIME (event only)]`<br>e.g. `edit-task 1 date:02-02-2020 12:00 tag:CS2101` |
-| **List lesson** | `list-lesson` |
-| **Add Lesson** | `lesson title:TITLE tag:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME to:TIME start:DATE end:DATE`<br>e.g.`lesson title:CS2103T Lecture tag:CS2103T desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:01-01-2020 end:01-05-2020` |
-| **Edit lesson**   | `edit-lesson INDEX [title:TITLE] [tag:MODULE_CODE] [desc:DESCRIPTION] [day:DAY] [from:TIME] [to:TIME] [start:DATE] [end:DATE]` <br> `e.g.edit-lesson 1 start:10-10-2020`                                                       |
+| **Delete task**   | `delete-task INDEX...` <br> e.g. `delete-task 3`, `delete-task 3, 4, 5` |
+| **Done task**     | `done INDEX:TIME_TAKEN...`<br> e.g. `done 1:20`, `done 1:20 2:60 3:120` |
+| **Find task**     | `find-task ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...` <br> e.g.`find-task title:dinner date:02-02-2020` |
+| **Edit task**     | `edit-task INDEX [title:TITLE] [date:DATE] [desc:DESCRIPTION] [tag:MODULE_CODE] [datetime:DEADLINE (deadline only)] [date:EVENT_DATE (event only)] [start:START_TIME (event only)] [end:END_TIME (event only)]`<br>e.g. `edit-task 1 date:02-02-2020 12:00 tag:CS2101` |
+| **List lesson**   | `list-lesson`                                                |
+| **Add Lesson**    | `lesson title:TITLE tag:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME to:TIME start:DATE end:DATE`<br>e.g.`lesson title:CS2103T Lecture tag:CS2103T desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:01-01-2020 end:01-05-2020` |
+| **Edit lesson**   | `edit-lesson INDEX [title:TITLE] [tag:MODULE_CODE] [desc:DESCRIPTION] [day:DAY] [from:TIME] [to:TIME] [start:DATE] [end:DATE]` <br> `e.g.edit-lesson 1 start:10-10-2020` |
 | **Find lesson**   | `find-lesson ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...` <br> e.g. `find-lesson title:Tutorial` |
-| **Delete lesson**   | `delete-lesson INDEX...` <br> e.g. `delete-lesson 1 2 3` |
-| **Calendar View** | `calendar` |
+| **Delete lesson** | `delete-lesson INDEX...` <br> e.g. `delete-lesson 1 2 3`     |
+| **Calendar View** | `calendar`                                                   |
 
 ## Input format summary
+
 All the keywords mentioned in the command should follow the format stated below:
 
-| keyword     | Format, Examples                                             |
-| ---------- | ------------------------------------------------------------ |
-| **date**   | `dd-MM-yyyy`  <br> e.g. 23-10-2020                                                    |
-| **time**   | `HH:mm`  <br> e.g. 10:00                                                   |
+| keyword  | Format, Examples                   |
+| -------- | ---------------------------------- |
+| **date** | `dd-MM-yyyy`  <br> e.g. 23-10-2020 |
+| **time** | `HH:mm`  <br> e.g. 10:00           |
+
 | **datetime** | `dd-MM-yyyy HH:mm` <br> e.g. 21-10-2020 10:00 
 | **day**  |  `Monday/Tuesday/Wednesday/Thursday/Friday/Saturday/Sunday` |
 | **from, to, time** | `HH:mm` <br> e.g. 18:00      |
