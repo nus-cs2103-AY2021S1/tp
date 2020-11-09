@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Munnamgi Harsha Vardhan Reddy's Project Portfolio Page
+title: Harsha Vardhan's Project Portfolio Page
 ---
 
 #### Description of Project:

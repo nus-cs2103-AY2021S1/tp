@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Dianne Loh Wen Hui's Project Portfolio Page
+title: Dianne Loh's Project Portfolio Page
 ---  
 
 #### Description of Project:
