@@ -19,6 +19,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
+<div style="page-break-after: always;"></div>
+
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 <div markdown="span" class="alert alert-primary">
@@ -47,6 +49,8 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
+<div style="page-break-after: always;"></div>
+
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
 **How the architecture components interact with each other**
@@ -56,6 +60,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -73,6 +79,8 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -86,6 +94,8 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
+<div style="page-break-after: always;"></div>
+
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
@@ -93,11 +103,15 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103-T14-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+
+<div style="page-break-after: always;"></div>
 
 The `Model`,
 
@@ -120,6 +134,8 @@ The `Model`,
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103-T14-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
+<div style="page-break-after: always;"></div>
+
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save FaculType data in json format and read it back.
@@ -129,6 +145,8 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -150,6 +168,8 @@ The following sequence diagram shows how the find by attributes operation works:
  end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes what happens when a user executes a find command:
 
 ![FindActivityDiagram](images/FindActivityDiagram.png)
@@ -169,6 +189,8 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 Both options are equally feasible. However, Alternative 1 was chosen to avoid confusion for prospective users.
 
+<div style="page-break-after: always;"></div>
+
 ### Find modules by attributes feature
 
 #### Implementation
@@ -185,6 +207,9 @@ The following sequence diagram shows how the find module by module attributes op
  end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 <br/>
+
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes what happens when a user executes a findmod command:
 
 ![FindmodActivityDiagram](images/FindmodActivityDiagram.png)
@@ -200,6 +225,8 @@ The following activity diagram summarizes what happens when a user executes a fi
 * **Alternative 2:** And searching across attributes and OR searching between keywords for module name and instructor attributes.
   * Pros : Provides the ability for a very general and flexible search.
   * Cons : Unable to have a more focused search, might be more confusing for the user to narrow down his/her searches.
+
+<div style="page-break-after: always;"></div>
 
 ### Delete modules feature
 
@@ -220,6 +247,8 @@ Given below is the example usage scenario and how the delete module mechanism be
 
 4. The module with the specified module code will be deleted from the active semester `UniqueModuleList` in `AddressBook`.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the deleting of the module works:
 
 ![DelmodSequenceDiagram](images/DelmodSequenceDiagram.png)
@@ -232,6 +261,8 @@ The following sequence diagram shows how the deleting of the module works:
 The following activity diagram summarizes what happens when a user executes a delmod command:
 
 ![DelmodActivityDiagram](images/DelmodActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Design consideration:
 
@@ -252,6 +283,8 @@ The assign feature is facilitated by `AssignCommand` and `AssignCommandParser`.
 It uses an operation `AddressBook#assignInstructor()` which is exposed in the `Model` interface as `Model#assignInstructor()`.
 Then, the `assignInstructor()` operation is called in both `UniqueModuleList` and `Module`. `Module#assignInstructor()` will add the instructor to the module's set of instructors.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the assign operation works:
 
 ![AssignSequenceDiagram](images/AssignSequenceDiagram.png)
@@ -264,6 +297,8 @@ The following sequence diagram shows how the assign operation works:
 The following activity diagram summarizes what happens when a user executes an assign command:
 
 ![AssignActivityDiagram](images/AssignActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Design consideration:
 
@@ -284,6 +319,8 @@ The unassign feature is facilitated by `UnassignCommand` and `UnassignCommandPar
 It uses an operation `AddressBook#unassignInstructor()` which is exposed in the `Model` interface as `Model#unassignInstructor()`.
 Then, the `unassignInstructor()` operation is called in both `UniqueModuleList` and `Module`. `Module#unassignInstructor()` will remove the instructor from the module's set of instructors.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the unassign operation works:
 
 ![UnassignSequenceDiagram](images/UnassignSequenceDiagram.png)
@@ -296,6 +333,8 @@ The following sequence diagram shows how the unassign operation works:
 The following activity diagram summarizes what happens when a user executes an unassign command:
 
 ![UnassignActivityDiagram](images/UnassignActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Unassignall feature
 
@@ -312,6 +351,8 @@ The following sequence diagram shows how the unassignall operation works:
 </div>
 <br/>
 
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes what happens when a user executes an unassignall command:
 
 ![UnassignallActivityDiagram](images/UnassignallActivityDiagram.png)
@@ -327,6 +368,8 @@ The following activity diagram summarizes what happens when a user executes an u
 * **Alternative 2:** Unassign a certain instructor from all modules he/she instructs.
  * Pros : More efficient to unassign a certain instructor from all modules he/she instructs.
  * Cons : Less efficient to unassign all instructors from all modules.
+
+<div style="page-break-after: always;"></div>
 
 ### Clear all contacts feature
 
@@ -346,6 +389,8 @@ The following sequence diagram shows how the cclear operation works:
 </div>
 <br/>
 
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes what happens when a user executes a cclear command:
 
 ![CclearActivityDiagram](images/CclearActivityDiagram.png)
@@ -358,6 +403,9 @@ It implements the following operations:
 * `AddressBook#clearMod()` — Clear all modules from the active semester module list.
 
 These operations are exposed in the `Model` interface as `Model#clearMod()` and `UniqueModuleList` class as `UniqueModuleList#clearAll()`
+
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the mclear operation works:
 
 ![MclearSequenceDiagram](images/MclearSequenceDiagram.png)
@@ -367,7 +415,10 @@ The following sequence diagram shows how the mclear operation works:
 </div>
 <br/>
 
-The follow activity diagram summarizes what happens when a user executes a mclear command:
+
+<div style="page-break-after: always;"></div>
+
+The following activity diagram summarizes what happens when a user executes a mclear command:
 
 ![MclearActivityDiagram](images/MclearActivityDiagram.png)
 
@@ -381,6 +432,8 @@ AddressBook has two module lists, one for each semester, and one additional `Uni
 `AddressBook#switchModuleList()` toggles which module list is referenced by `activeModules`.
 All `AddressBook` operations on `UniqueModuleList` are done on `activeModules`.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the switch operation works:
 
 ![SwitchSequenceDiagram](images/SwitchSequenceDiagram.png)
@@ -393,6 +446,8 @@ The following sequence diagram shows how the switch operation works:
 The following activity diagram summarizes what happens when a user executes a switch command:
 
 ![SwitchActivityDiagram](images/SwitchActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Design consideration:
 
@@ -417,6 +472,8 @@ The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It ex
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
+<div style="page-break-after: always;"></div>
+
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial FaculType state, and the `currentStatePointer` pointing to that single FaculType state.
@@ -427,6 +484,8 @@ Step 2. The user executes `delete 5` command to delete the 5th contact in FaculT
  `Model#commitAddressBook()`, causing the modified state of FaculType after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted FaculType state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
+
+<div style="page-break-after: always;"></div>
 
 Step 3. The user executes `add n/David …​` to add a new contact. The `add` command also calls `Model#commitAddressBook
 ()`, causing another modified FaculType state to be saved into the `addressBookStateList`.
@@ -447,6 +506,8 @@ than attempting to perform the undo.
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
@@ -461,6 +522,8 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Step 5. The user then decides to execute the command `list`. Commands that do not modify FaculType, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
@@ -468,6 +531,8 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all FaculType states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
+
+<div style="page-break-after: always;"></div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -488,6 +553,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Current bugs and feature ideas**
 
 This section describes bugs found in the current version of FaculType and
@@ -501,9 +568,13 @@ This bug is inherited from the parent project AddressBook Level 3.
 * A tag in a contact card and an instructor tag in a module card may be cut off if the text inside is too long or if there are too many tags.
 This bug is inherited from the parent project AddressBook Level 3.
 
+<div style="page-break-after: always;"></div>
+
 Example of the tag bug:
 
 ![TagBug](images/TagBug.png)
+
+<div style="page-break-after: always;"></div>
 
 * No validation of instructor existence for modules. Adding a non-existent instructor by editing the 
 `addressbook.json` file will not throw any error.
@@ -522,6 +593,8 @@ Example of the instructor bug:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -531,6 +604,8 @@ Example of the instructor bug:
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -559,6 +634,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                | see usage instructions             | refer to instructions when I forget how to use the App                               |
 | `* * *`  | user                    | add a new contact                  |                                                                                      |
 | `* * *`  | user                    | delete a contact                   | remove contacts that I no longer need                                                |
+
+<div style="page-break-after: always;"></div>
+
+| Priority | As a …​                                 | I want to …​                   | So that I can…​                                                 |
+| -------- | ------------------------| -----------------------------------|--------------------------------------------------------------------------------------|
 | `* * *`  | user                    | find a contact by attributes       | locate details of contacts without having to go through the entire list              |
 | `* * *`  | forgetful user          | add remarks to contacts            | remember certain details about them                                                  |
 | `* * *`  | faculty leader          | store a contact's office           | keep track of where to find them                                                     |
@@ -570,11 +650,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | faculty leader          | find modules by attributes         | locate modules without having to go through the entire list                          |
 | `* * *`  | faculty leader          | find modules by the instructor's name | locate modules instructed by the instructor                                       |
 | `* * *`  | faculty leader          | assign a contact to various modules       | keep track of the modules they instruct                                       |
+
+<div style="page-break-after: always;"></div>
+
+| Priority | As a …​                                 | I want to …​                   | So that I can…​                                                 |
+| -------- | ------------------------| -----------------------------------|--------------------------------------------------------------------------------------|
 | `* * *`  | faculty leader          | unassign a contact from various modules   | update the assignment data if they no longer instruct those modules           |
 | `* * *`  | faculty leader          | unassign all instructors from all modules | quickly reset the assignment data if I need to change most of the assignments |
 | `* * *`  | user                    | clear all contacts                  |                                                                                     |
 | `* * *`  | faculty leader          | clear all modules                   | discard all the semester's information                                              |
 | `* * *`  | faculty leader          | be able to switch semesters easily   | manage the other semester without having to reassign instructors                   |
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -615,6 +702,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. FaculType updates the module list to show modules active in the other semester
 
    Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: Clearing all contacts**
 
@@ -659,6 +748,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
       Use case ends.      
 
+<div style="page-break-after: always;"></div>
+
 **Use case: Asking for help**
 
 **MSS**
@@ -700,6 +791,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: Delete a contact**
 
 **MSS**
@@ -733,6 +826,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  FaculType edits the contact
 
     Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Extensions**
 
@@ -774,6 +869,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. FaculType shows an error message.
 
       Use case resumes at step 2.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: Find contact(s)**
 
@@ -821,6 +918,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: Delete a module**
 
 **MSS**
@@ -865,6 +964,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. FaculType shows an error message.
 
       Use case resumes at step 2.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: Assign a contact to module(s)**
 
@@ -914,6 +1015,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Extensions**
 
 *   2a. The contact list is empty.
@@ -955,6 +1058,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Extensions**
 
 *   2a. The contact list is empty.
@@ -988,6 +1093,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -1018,6 +1125,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Assignment**: A module handled by a contact. Assignment links a contact with a module. Once linked, the contact can be considered an instructor.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -1051,6 +1160,8 @@ testers are expected to do more *exploratory* testing.
 1. Test case: `list x`
    Expected: Both lists remain in their original state. Error details shown in the status message.
        
+<div style="page-break-after: always;"></div>
+
 ### Listing all contacts 
 
 1. Test case: `clist`
@@ -1087,6 +1198,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Test case: `reset x`
    Expected: Nothing is changed or deleted. Error details shown in the status message.
+
+<div style="page-break-after: always;"></div>
 
 ### Clearing all contacts from the contact list
 
@@ -1126,6 +1239,8 @@ Expected : Error message saying "Module list is already empty".
     
 1. Test case: `exit x`
    Expected: No changes. The application remains running. Error details shown in the status message.
+
+<div style="page-break-after: always;"></div>
 
 ### Saving data
 
@@ -1199,6 +1314,8 @@ Expected : Error message saying "Module list is already empty".
       Expected: All contact and module information will be deleted and FaculType will restart with the placeholder
        contact and module information.
 
+<div style="page-break-after: always;"></div>
+
 ### Adding a contact
 
 1. Adding a contact while all contacts are being shown
@@ -1243,6 +1360,8 @@ Expected : Error message saying "Module list is already empty".
    1. Test case: `add n/Alex Yeoh p/987654321 e/alexyeoh@example.com d/FASS o/AS5-04-03`
    Expected: The contact is not added. Error details shown in the status message. 
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a contact
 
 1. Deleting a contact while all contacts are being shown
@@ -1263,6 +1382,8 @@ Expected : Error message saying "Module list is already empty".
    1. Prerequisites: Filter contacts by attributes using the `find` command. Other prerequisites are similar to previous.
 
    1. Test cases similar to previous.
+
+<div style="page-break-after: always;"></div>
 
 ### Editing a contact
 
@@ -1293,6 +1414,8 @@ Expected : Error message saying "Module list is already empty".
 
    1. Test cases similar to previous.
    Expected: Similar to each respective test cases, but the contact list is reset to show all contacts.
+
+<div style="page-break-after: always;"></div>
 
 ### Adding or editing a remark
 
@@ -1334,6 +1457,8 @@ Expected : Error message saying "Module list is already empty".
 1. Other incorrect find commands to try: `find p/abcdef`, `find`, `find Alice`, `...`
    Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
+
 ### Adding a module
 
 1. Adding a module while all modules are being shown
@@ -1357,6 +1482,8 @@ Expected : Error message saying "Module list is already empty".
 
    1. Test cases similar to previous.
    Expected: Similar to each respective test cases, but the module list is reset to show all modules.
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting a module
 
@@ -1393,6 +1520,8 @@ Expected : Error message saying "Module list is already empty".
 1. Other incorrect find module commands to try: `findmod m/CS**`, `findmod`, `findmod Alice`, `...`
    Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
+
 ### Assigning a contact to one or more modules
 
 1. Assigning a contact while all contacts are being shown
@@ -1424,6 +1553,8 @@ Expected : Error message saying "Module list is already empty".
 
    1. Test cases similar to previous.
 
+<div style="page-break-after: always;"></div>
+
 ### Unassigning a contact from one or more modules
 
 1. Unassigning a contact while all contacts are being shown
@@ -1452,6 +1583,8 @@ Expected : Error message saying "Module list is already empty".
 
    1. Test cases similar to previous.
 
+<div style="page-break-after: always;"></div>
+
 ### Unassigning all contacts
 
 1. Prerequisites: There exists multiple modules and contacts in FaculType.
@@ -1463,6 +1596,8 @@ Expected : Error message saying "Module list is already empty".
    Expected: No contact is unassigned. Error details shown in the status message.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Effort**
 
@@ -1486,6 +1621,8 @@ All the commands above related to module management and assignment are all new f
 The team modified the GUI to accommodate these changes, including the color scheme and overall structure. The team designed a logo for FaculType to become the program's icon.
 
 The project is harder to develop than AB3 because FaculType has two entity types (compared to one in AB3) and the module entity type has to have two separate lists.
+
+<div style="page-break-after: always;"></div>
 
 ### Difficulties and Challenges
 
