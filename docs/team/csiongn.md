@@ -15,7 +15,7 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
     * What it does: **Reeve's notebook** allows tutors to keep track of notes containing small amounts of information unrelated to students .
     * Justification: This feature is important for a private tutor as there are times when there is information relating to tutoring that needs to be stored but it is not related to any student. This helps to make Reeve a one stop location for storing all kinds of information.
-    * Highlights: This involved substantial work integrating with the existing modified GUI as the notes panel needed to be of a fixed size after resizing while not overlapping with any other sections. The code, while adapted from address book code, also needed integration with Reeve to ensure proper reading and writing when the program is run. 
+    * Highlights: This involved substantial work integrating with the existing modified GUI as the notes panel needed to be of a fixed size after resizing while not overlapping with any other sections. The code, while adapted from address book code, also needed integration with Reeve to ensure proper reading and writing to storage when the program is run. 
 * **Other enhancements implemented**:
     * **Created `sort` command** to allow sorting of the student list by name, class time or year of study. ([\#112](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/112))
         * Justification: This feature is important as it allows private tutors to navigate through the list of students better depending on the needs of the tutor.
