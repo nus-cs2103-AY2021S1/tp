@@ -6,4 +6,4 @@ coverage:
     patch: off
 
 ignore:
-  - "src/main/seedu.address/ui"
+  - "src/main/seedu/address/ui"
