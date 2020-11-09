@@ -33,9 +33,9 @@ I contributed to the UG's sections on commands and command summary, as well as t
 
 ### Contributions to Developer Guide
 
-I contributed to the Logic section of the developer guide, which documents how user commands are processed and executed by our programme. I also created the class diagram for the Logic section and the sequence diagram for the `delete_finance` command.
+I contributed to the storage sections of the developer's guide, which documents the logic flow of reading and saving data to and from the stroage file in `.json` data format.
 
-I contributed to the storage sections of the developer guide, which documents the logic flow of writing and loading data from the stroage file. I also created class diagrams and sequence diagrams for the storage components.
+I also created class diagrams and sequence diagrams for the storage components to visualise relationship between storage classes, logic and dataflow between these classes.
 
 ### Contributions to Team Based Task
 
