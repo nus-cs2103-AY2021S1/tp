@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.todolistcommands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
@@ -44,7 +45,7 @@ public class AddTaskCommand extends Command {
      * Creates an AddTaskCommand to add the specified {@code Task}
      */
     public AddTaskCommand(Task task) {
-        assert task != null;
+        requireNonNull(task);
         logger.info("Adding a task: \n" + task.toString());
         toAdd = task;
     }

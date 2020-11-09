@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  */
 public class ArgumentTokenizer {
 
-    /** User input to be tokenized. Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}*/
+    /** String containing user input to be tokenized. */
     private final String userInput;
     /** Array of prefixes which will be used to tokenize the user input. */
     private final Prefix[] prefixes;

@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 
 /**
- * Adds a module to the module list.
+ * Encapsulates methods and information to add a module into the module list.
  */
 public class AddModuleCommand extends Command {
 
@@ -29,7 +29,6 @@ public class AddModuleCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the module list";
-
     private final Module module;
 
     /**
