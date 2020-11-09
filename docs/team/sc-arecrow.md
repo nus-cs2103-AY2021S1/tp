@@ -45,6 +45,11 @@ particular session.
     This was challenging as it required an in-depth analysis and consideration on how to reconcile the different ways
     that the mark command vs the mark attendance method identifies which record is supposed to be marked. 
 
+- **New Feature:** Added the ability to list all student records in a session.
+    - What it does: Allows a TA to view the records of all students enrolled in that session.
+    - Justification: Since TAskmaster has some functionality to filter the student record list, this feature enables the
+    TA to "reset" the list and view all the records.
+
 - **Code contributed:** [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=sc-arecrow)
 
 - **Project Management:**

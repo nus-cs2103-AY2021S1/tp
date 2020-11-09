@@ -252,11 +252,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void clearAttendance() {
-            throw new AssertionError("This method should not be called");
-        }
-
-        @Override
         public SimpleObjectProperty<Session> getCurrentSession() {
             throw new AssertionError("This method should not be called.");
         }

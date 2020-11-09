@@ -17,7 +17,8 @@ import seedu.taskmaster.model.student.exceptions.DuplicateStudentException;
 import seedu.taskmaster.model.student.exceptions.StudentNotFoundException;
 
 /**
- * Represents a list of students' attendance.
+ * Represents a list of student records.
+ * A student is identified by their NUSNET ID.
  */
 public class StudentRecordListManager implements StudentRecordList {
     private final ObservableList<StudentRecord> internalList = FXCollections.observableArrayList();
@@ -25,8 +26,8 @@ public class StudentRecordListManager implements StudentRecordList {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Initialises an {@code StudentRecordListManager} with the given {@code students}.
-     * The attendance of each student is marked as {@code NO_RECORD}.
+     * Initialises a {@code StudentRecordListManager} with the given {@code students}.
+     * The attendance of each student is initialised as {@code NO_RECORD}.
      */
     public static StudentRecordList of(List<Student> students) {
         List<StudentRecord> studentRecords = students
@@ -40,7 +41,7 @@ public class StudentRecordListManager implements StudentRecordList {
     }
 
     /**
-     * Marks the attendance of a student represented by their {@code nusnetId} with {@code attendanceType}.
+     * Marks the attendance of a student identified by their {@code nusnetId} with given {@code attendanceType}.
      */
     @Override
     public void markStudentAttendance(NusnetId nusnetId, AttendanceType attendanceType) {
@@ -67,7 +68,7 @@ public class StudentRecordListManager implements StudentRecordList {
     }
 
     /**
-     * Marks the attendance of students represented by the list of {@code nusnetIds} with {@code attendanceType}.
+     * Marks the attendances of all {@code StudentRecords} with given {@code attendanceType}.
      */
     @Override
     public void markAllStudentAttendances(AttendanceType attendanceType) {
@@ -83,7 +84,7 @@ public class StudentRecordListManager implements StudentRecordList {
 
 
     /**
-     * Updates participation score of a student represented by their {@code nusnetId} to {@code score}.
+     * Updates participation score of a student identified by their {@code nusnetId} to {@code score}.
      */
     @Override
     public void scoreStudentParticipation(NusnetId nusnetId, double score) {
@@ -109,6 +110,10 @@ public class StudentRecordListManager implements StudentRecordList {
         }
     }
 
+    /**
+     * Updates the {@code ClassParticipation} of all {@code StudentRecords} which are {@code PRESENT} with the
+     * given {@code score}.
+     */
     @Override
     public void scoreAllParticipation(double score) {
         for (int i = 0; i < internalList.size(); i++) {
@@ -124,6 +129,9 @@ public class StudentRecordListManager implements StudentRecordList {
         }
     }
 
+    /**
+     * Replaces the contents of this list with {@code replacement}.
+     */
     @Override
     public void setStudentRecords(StudentRecordListManager replacement) {
         requireNonNull(replacement);
@@ -131,8 +139,8 @@ public class StudentRecordListManager implements StudentRecordList {
     }
 
     /**
-     * Replaces the contents of this list with {@code attendances}.
-     * {@code attendances} must not contain duplicate students.
+     * Replaces the contents of this list with {@code studentRecords}.
+     * {@code studentRecords} must not contain records representing the same student.
      */
     @Override
     public void setStudentRecords(List<StudentRecord> studentRecords) {
@@ -145,7 +153,7 @@ public class StudentRecordListManager implements StudentRecordList {
     }
 
     /**
-     * Returns the lowest score amongst all students in the student list.
+     * Returns the lowest score amongst all present students in the student list.
      */
     @Override
     public double getLowestScore() {
@@ -165,7 +173,7 @@ public class StudentRecordListManager implements StudentRecordList {
     }
 
     /**
-     * Returns the backing list as an unmodifiable {@code ObservableList}
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     @Override
     public ObservableList<StudentRecord> asUnmodifiableObservableList() {
@@ -203,7 +211,7 @@ public class StudentRecordListManager implements StudentRecordList {
     /**
      * Creates and returns a {@code StudentRecord} with the details of {@code studentRecordToEdit}
      * edited with {@code editStudentRecordDescriptor}.
-     * Note that the {@code name} and {@code nusnetId} should not be edited.
+     * Note that name and NUSNET ID should not be edited.
      */
     private static StudentRecord createEditedStudentRecord(
             StudentRecord studentRecordToEdit,
@@ -221,7 +229,7 @@ public class StudentRecordListManager implements StudentRecordList {
     }
 
     /**
-     * Returns true if {@code studentRecords} contains only unique students.
+     * Returns true if {@code studentRecords} contains only records of unique students and no duplicate students.
      */
     private boolean studentsAreUnique(List<StudentRecord> studentRecords) {
         for (int i = 0; i < studentRecords.size() - 1; i++) {
@@ -236,7 +244,7 @@ public class StudentRecordListManager implements StudentRecordList {
 
     /**
      * Stores the details to edit the student record with. Each non-empty field value will replace the
-     * corresponding field value of the student record. Note that the name and nusnetId cannot be changed.
+     * corresponding field value of the student record. Note that name and NUSNET ID cannot be changed.
      */
     public static class EditStudentRecordDescriptor {
         private AttendanceType attendanceType;

@@ -184,7 +184,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     }
 
     /**
-     * Marks the attendance of a {@code target} student with {@code attendanceType} in the current session.
+     * Marks the attendance of a {@code target} student record with {@code attendanceType} in the current session.
      *
      * @throws NoSessionException If the session list is empty.
      * @throws NoSessionSelectedException If no session has been selected.
@@ -206,8 +206,8 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     }
 
     /**
-     * Marks the attendance of a student given the {@code nusnetId}
-     * with {@code attendanceType} in the current session.
+     * Marks the attendance of a student record identified by its {@code nusnetId} with {@code attendanceType} in the
+     * current session.
      *
      * @throws NoSessionException If the session list is empty.
      * @throws NoSessionSelectedException If no session has been selected.
@@ -229,8 +229,8 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     }
 
     /**
-     * Marks the attendance of all student records in the {@code studentRecordList} of the {@code currentSession},
-     * with the given {@code attendanceType}.
+     * Marks the attendance of all student records in the {@code studentRecordList} of the current session with the
+     * given {@code attendanceType}.
      *
      * @throws NoSessionException If the session list is empty.
      * @throws NoSessionSelectedException If no session has been selected.
@@ -353,24 +353,6 @@ public class Taskmaster implements ReadOnlyTaskmaster {
 
     public ObservableList<Session> getSessionList() {
         return sessions.asUnmodifiableObservableList();
-    }
-
-    /**
-     * Sets the {@code AttendanceType} of all {@code StudentRecords} to NO_RECORD in the current session.
-     *
-     * @throws NoSessionException If the session list is empty.
-     * @throws NoSessionSelectedException If no session has been selected.
-     */
-    public void clearAttendance() throws NoSessionException, NoSessionSelectedException {
-        if (sessions.isEmpty()) {
-            throw new NoSessionException();
-        }
-
-        if (!sessions.isEmpty() && currentSession.get() == null) {
-            throw new NoSessionSelectedException();
-        }
-
-        currentSession.get().clearAttendance();
     }
 
     public boolean inSession() {

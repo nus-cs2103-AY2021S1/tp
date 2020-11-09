@@ -8,17 +8,24 @@ import seedu.taskmaster.model.Model;
 import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.session.exceptions.SessionException;
 
+/**
+ * Marks the attendance of all student records in the student record list.
+ */
 public class MarkAllCommand extends MarkCommand {
     public static final String COMMAND_WORD = "mark all";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks attendances of all students in the student list.\n"
+            + ": Marks attendances of all records in the student record list.\n"
             + "Parameters: "
             + PREFIX_ATTENDANCE_TYPE + "ATTENDANCE_TYPE (must be 'present', 'absent' or 'no_record') \n"
             + "Example: " + COMMAND_WORD + PREFIX_ATTENDANCE_TYPE + "present";
 
-    public static final String MESSAGE_MARK_ALL_SUCCESS = "Marked all students as %1$s";
+    public static final String MESSAGE_MARK_ALL_SUCCESS = "Marked all student records as %1$s";
 
+    /**
+     * Instantiates a new {@code MarkAllCommand}.
+     * Each mark all command contains an {@code attendanceType} to mark the records with.
+     */
     public MarkAllCommand(AttendanceType attendanceType) {
         super(null, attendanceType);
     }
