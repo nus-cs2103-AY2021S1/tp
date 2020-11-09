@@ -625,6 +625,7 @@ Deleting your account means all the data of the entries in the account is lost a
 irreversible action and cannot be undone. Do delete your account with caution!
 
 </div>
+
 <div style="page-break-after: always;"></div>
 ### 5.3.3 Editing the name of the current account: `editacc`
 *(Written by Lim Zi Yang)* <br>
