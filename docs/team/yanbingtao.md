@@ -72,14 +72,11 @@ Given below are my contributions to the project.
     * Updated my information in the AboutUs page of the project website.
   * User Guide:
     * Added documentation for the features `c-archive`, `c-archive-all`, `c-archive-list`, `storage` in v1.1.
-    (Pull Request: [#27](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/27))
+    (Pull Request: [#27](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/27),
+    [#112](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/112))
     * Added table-of-contents and internal links in v1.1.
     (Pull Request: [#36](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/36))
-    * Added numberings in the _Features_ section in v1.1.
-    (Pull Request: [#36](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/36))
     * Added documentation for the features `c-unarchive` in v1.3.
-    (Pull Request: [#112](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/112))
-    * Updated documentation for the features `c-archive`, `c-archive-all`, `c-archive-list`, `storage` in v1.3.
     (Pull Request: [#112](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/112))
     * Added documentation for the features `c-today`, `c-tomorrow`, `c-tag-find` in v1.3.
     (Pull Request: [#145](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/145))
