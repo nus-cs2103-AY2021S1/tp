@@ -1,0 +1,46 @@
+{
+  "_comment": "ZooKeepBook save file which contains the same Animal values as in TypicalAnimals#getTypicalZooKeepBook()",
+  "animals" : [ {
+    "name" : "Ahmeng",
+    "id" : "123",
+    "species" : "Orangutan",
+    "medicalConditions" : [ "Deceased" ],
+    "feedTimes" : [ ]
+  }, {
+    "name" : "Buttercup",
+    "id" : "456",
+    "species" : "Reticulated Python",
+    "medicalConditions" : [ "Skin Infection", "Inclusion Body Disease" ],
+    "feedTimes" : [ "1300", "1800" ]
+  }, {
+    "name" : "Coco",
+    "id" : "125",
+    "species" : "Chihuahua",
+    "medicalConditions" : [ ],
+    "feedTimes" : [ "1200" ]
+  }, {
+    "name" : "Esther",
+    "id" : "126",
+    "species" : "Pig",
+    "medicalConditions" : [ "Swine Flu" ],
+    "feedTimes" : [ ]
+  }, {
+    "name" : "Grecia",
+    "id" : "134",
+    "species" : "Toucan",
+    "medicalConditions" : [ ],
+    "feedTimes" : [ "0600", "1200", "1800" ]
+  }, {
+    "name" : "Nemo",
+    "id" : "1212",
+    "species" : "Clownfish",
+    "medicalConditions" : [ ],
+    "feedTimes" : [ "0800", "1300", "1900" ]
+  }, {
+    "name" : "Pasha",
+    "id" : "1234",
+    "species" : "White Tiger",
+    "medicalConditions" : [ "Obese" ],
+    "feedTimes" : [ ]
+  } ]
+}

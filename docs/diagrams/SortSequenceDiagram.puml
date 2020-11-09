@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ZooKeepBookParser" as ZooKeepBookParser LOGIC_COLOR
+participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
+participant "sortCommand:SortCommand" as SortCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ZooKeepBook" as ZooKeepBook MODEL_COLOR
+end box
+
+[-> LogicManager : execute("sort name")
+activate LogicManager
+
+LogicManager -> ZooKeepBookParser : parseCommand("sort name")
+activate ZooKeepBookParser
+
+create SortCommandParser
+ZooKeepBookParser -> SortCommandParser
+activate SortCommandParser
+
+SortCommandParser --> ZooKeepBookParser
+deactivate SortCommandParser
+
+ZooKeepBookParser -> SortCommandParser : parse("name")
+activate SortCommandParser
+
+create SortCommand
+SortCommandParser -> SortCommand
+activate SortCommand
+
+SortCommand --> SortCommandParser
+deactivate SortCommand
+
+SortCommandParser --> ZooKeepBookParser : sortCommand
+deactivate SortCommandParser
+
+ZooKeepBookParser --> LogicManager : sortCommand
+deactivate ZooKeepBookParser
+
+LogicManager -> SortCommand : execute(model)
+activate SortCommand
+
+SortCommand -> Model : sortAnimals(animalComparator)
+activate Model
+
+Model -> ZooKeepBook : sortAnimals(animalComparator)
+activate ZooKeepBook
+
+Model -> Model : updateFilteredAnimalList(predicate)
+activate Model
+
+Model --> Model
+deactivate Model
+
+ZooKeepBook --> Model
+deactivate ZooKeepBook
+
+Model --> SortCommand
+deactivate Model
+
+SortCommand --> LogicManager : commandResult
+deactivate SortCommand
+
+destroy SortCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

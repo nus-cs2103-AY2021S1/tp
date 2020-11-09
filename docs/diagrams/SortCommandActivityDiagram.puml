@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes sort command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([Correct sort category is inputted])
+    :Sorts animal list in zookeepbook;
+    :Display success message and sorted animal list;
+else ([else])
+    :Return error message to indicate sorting is not successful;
+endif
+stop
+@enduml

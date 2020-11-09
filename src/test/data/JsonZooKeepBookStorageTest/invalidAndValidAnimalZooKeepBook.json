@@ -1,0 +1,11 @@
+{
+  "animals": [ {
+    "name": "Valid Animal",
+    "id": "123",
+    "species": "Lion"
+  }, {
+    "name": "Animal With Invalid Id Field",
+    "id": "asd123",
+    "species": "Chihuahua"
+  } ]
+}

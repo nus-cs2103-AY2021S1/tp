@@ -2,177 +2,633 @@
 layout: page
 title: User Guide
 ---
+<pre>
+                                    *Brings food over*
+            
+             ----------------  /'--.._ `'-="""=-'` _..--'\
+             | my lunch? :D |  |   ~. )  _     _  ( .~   |
+             ----------------   \  '~/   a  _  a   \~'  /
+                             \   \  `|     / \     |`  /
+                              \___`'--\    \_/    /--'`
+                                      .'._  J__.-'.
+                                      / /  '-/_ `-  \
+                                     / -"-'-.  '-.__/
+                                     \__,-.\/     | `\
+                                     /  ;---.  .--'   |
+                                    |     /\'-'      /
+                                    '.___.\   _.--;'`)
+                                    
+            
+            Welcome to ZooKeep! We know your zookeeping duties are hard,
+            so we're here to make your life easier with some automation!
+            
+            
+            ASCII art by Joan G. Stark.
+</pre>
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+If this is your first time using `ZooKeep`, this guide will serve to provide a reference for you to get familiar with the application.
 
-* Table of Contents
-{:toc}
+<div class="toc-no-bullet-points">
+<!-- Referenced from https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff -->
+<b>Table of Contents</b>
+  * Table of Contents
+  {:toc}
+</div>
 
---------------------------------------------------------------------------------------------------------------------
+## 1. Introduction (Jun Cheng)
+This section gives you a quick overview about ZooKeep.
 
-## Quick start
+`ZooKeep` is a desktop app for managing animals under a zookeeper’s care, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, `ZooKeep` can get your management tasks done faster than traditional GUI apps.
+
+## 2. Legend (Malcolm)
+The following are symbols you should look out for when using this guide.
+
+<div markdown="span" class="alert alert-info">
+
+**:information_source: Provides additional information.**
+
+</div>
+
+<div markdown="span" class="alert alert-primary">
+
+**:bulb: Provides tips while performing the feature stated.**
+
+</div>
+
+<div markdown="span" class="alert alert-warning">
+
+**:exclamation: Provides input constraints for the command.**
+
+</div>
+
+## 3. Quick start (Jeremy)
+You can follow the steps below to get started with ZooKeep.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. You can download the latest `ZooKeep.jar` from [here](https://github.com/AY2021S1-CS2103T-W15-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy `ZooKeep.jar` to the folder you want to use as the _home folder_ for the app.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+1. Double-click the file to start the app. The GUI similar to *Figure 1* below should appear in a few seconds. Note how the app contains some sample data.<br>
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+    <p align="center"><img src="images/Ui.png"/></p>
 
-   * **`list`** : Lists all contacts.
+    <p align="center"><i>Figure 1: GUI shown upon starting ZooKeep</i></p>
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+1. Type the command you want in the command box and press Enter to execute it, e.g. typing **`help`** and pressing Enter will open the help window.
+   <br> Here are some example commands you can try:
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
+   * **`list`** : Lists all animals.
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. You can refer to the features below for the details of each command. For the convenience of new users, the [basic features](#4-basic-features-malcolm) are listed first, followed by additional [advanced features](#5-advanced-features-zhi-yuan) which may be useful for the user.
 
---------------------------------------------------------------------------------------------------------------------
-
-## Features
+## 4. Basic features (Malcolm)
+This section provides you with the most basic features to get you started with ZooKeep.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are the parameters that you will supply when entering the command.<br>
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Hershey`.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+* You can choose not to include the fields in square brackets.<br>
+  e.g `n/NAME [m/MEDICAL_CONDITION]` can be used as `n/Hershey m/Flu` or as `n/Hershey`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Fields with `…`​ after them indicate that you can enter them multiple times or omit them if unneeded.<br>
+  e.g. `[f/FEED_TIME]…​` can be used as ` ` (i.e. 0 times), `f/0600`, `f/0600 f/1800` etc.
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+* You can enter the parameters in any order you like.<br>
+  e.g. if the command specifies `n/NAME s/SPECIES i/ID`, `n/NAME i/ID s/SPECIES` is also acceptable.
+  
+* If you accidentally repeat any non-optional parameter fields when keying in a command, only the latest parameter entered will be recorded.<br>
+  e.g. if the command specifies `add n/Buttercup i/123 s/Python n/Nemo i/456`, `ZooKeep` will record it as `add n/Nemo i/456 s/Python`.
 
 </div>
 
-### Viewing help : `help`
+### 4.1. Viewing help: `help` (Aizat)
 
-Shows a message explaning how to access the help page.
+If you ever need any help on how to use `ZooKeep` or want to see what features it supports, type `help` into the
+input box, and `ZooKeep` will show a message as shown in *Figure 2* below explaining how you can access the help page.
 
-![help message](images/helpMessage.png)
+<p align="center"><img src="images/helpMessage.png"/></p>
+
+<p align="center"><i>Figure 2: Help message shown upon entering command</i></p>
 
 Format: `help`
 
+Expected Outcome: 
+```
+Opened help window.
+```
+A message is displayed containing a link to this User Guide.
 
-### Adding a person: `add`
+---
 
-Adds a person to the address book.
+### 4.2. Exiting the program: `exit` (Malcolm)
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
+After you finish using `ZooKeep`, you can use this command to close it.
 
 Format: `exit`
 
-### Saving the data
+Expected Outcome:
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Your `ZooKeep` application closes.
 
-### Archiving data files `[coming in v2.0]`
+---
 
-_{explain the feature here}_
+### 4.3. Listing all animals: `list` (Malcolm)
 
---------------------------------------------------------------------------------------------------------------------
+This command is used when you need to display all the animals stored in your `ZooKeep` book, such
+as when you have finished filtering animals using the `find` command.
 
-## FAQ
+Format: `list`
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+Expected Outcome:
+```
+Listed all animals
+```
+All animals in your `ZooKeep` book are displayed.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## Command summary
+### 4.4. Clearing all entries: `clear` (Zhi Yuan)
+
+You can use this to clear all the entries of your `ZooKeep` book and start the application with a clean slate.
+
+Format: `clear`
+
+Expected Outcome:
+```
+ZooKeepBook has been cleared!
+```
+All animals in your `ZooKeep` book are cleared.
+
+---
+
+### 4.5. Adding an animal: `add` (Jeremy)
+
+When you get new animals assigned to you, you can use `add` to make new entries for them to keep track of any
+important information. Compulsory entries you need to add are the animals' names, species and ID number.
+You can choose to add optional fields like medical conditions and feed times if necessary. 
+
+Format: `add n/NAME s/SPECIES i/ID [m/MEDICAL_CONDITION]… [f/FEED_TIME]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+An animal can have any number of medical conditions and feed times (including 0).
+</div>
+
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Constraints:**<br>
+
+* If you enter an `ID` with leading zeroes, those zeroes will be trimmed during command execution.
+
+* `ID` should be a number from 100 to 999999, inclusive.
+
+* `ID` of animal to add must not already exist in your `ZooKeep` book.
+
+* `FEED_TIME` must be a valid time in 24 hour format *(HHmm)*.
+</div>
+
+Examples:
+* `add n/Hershey s/Rufous Hummingbird i/193`
+* `add n/Lonesome George s/Galapagos Tortoise i/117 m/Flu f/1200`
+
+Example Usage:
+```
+add n/Kai Kai s/Giant Panda i/200 m/Sunstroke f/1230 f/1400
+```
+
+<p align="center"><img src="images/user-guide/addinganimal.png"/></p>
+
+<p align="center"><i>Figure 3: User entering add command</i></p>
+
+Expected Outcome:
+```
+New animal added
+Name: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Sunstroke] Feed times: [1230][1400]
+```
+
+<p align="center"><img src="images/user-guide/addedanimal.png"/></p>
+
+<p align="center"><i>Figure 4: User executing add command</i></p>
+
+As illustrated in *Figure 4* above, an animal with the name `Kai Kai`, ID `200`, species `Giant Panda`, medical condition `Sunstroke`
+and feed times of `1230 hrs` and `1400 hrs` is added to your `ZooKeep` book.
+
+---
+
+### 4.6. Deleting an animal: `delete` (Aizat)
+
+When a particular animal in your `ZooKeep` book is no longer under your care, you can use this command to 
+delete that animal by entering its `ID`. `ID` refers to the id number shown in the displayed animal list.
+
+Format: `delete ID`
+
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Constraints:**<br>
+
+* If you enter an `ID` with leading zeroes, those zeroes will be trimmed during command execution.
+
+* `ID` should be a number from 100 to 999999, inclusive.
+
+* `ID` of animal to delete must exist in your `ZooKeep` book.
+</div>
+
+Example Usage:
+```
+delete 200
+```
+
+<p align="center"><img src="images/user-guide/deletinganimal.png"/></p>
+
+<p align="center"><i>Figure 5: User entering delete command</i></p>
+
+Expected Outcome:
+```
+Deleted Animal
+Name: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Sunstroke] Feed times: [1230][1400]
+```
+
+<p align="center"><img src="images/user-guide/deletedanimal.png"/></p>
+
+<p align="center"><i>Figure 6: User executing delete command</i></p>
+
+The animal with ID `200` is deleted from your `ZooKeep` book, as shown in *Figure 6* above.
+
+---
+
+### 4.7. Undoing a command: `undo` (Zhi Yuan)
+
+When you make a mistake in your `ZooKeep` book, such as an accidental `delete`, you can perform this operation which
+undoes the most recently used command. No changes will be made if no previous state exists, meaning that you cannot
+undo if you just started up the application.
+
+Format: `undo`
+
+Example usage:
+Refer to the scenario in the `delete` section above as illustrated in *Figure 5 & 6*, where you just deleted
+Kai Kai from your `ZooKeep` book. Now you decide to use undo to bring Kai Kai back into your book by typing `undo`
+as seen in *Figure 7* below:
+
+<p align="center"><img src="images/user-guide/undoingcommand.png"/></p>
+
+<p align="center"><i>Figure 7: User entering undo command</i></p>
+
+Expected Outcome:
+```
+Undo successful
+```
+
+<p align="center"><img src="images/user-guide/undonecommand.png"/></p>
+
+<p align="center"><i>Figure 8: User executing undo command</i></p>
+
+The previous command is undone, and as seen in *Figure 8* above, Kai Kai is now back in your `ZooKeep` book!
+
+---
+
+### 4.8. Redoing an undo: `redo` (Jun Cheng)
+
+You can use this command to quickly redo a command that was just undone by undo. For example, after you `undo` an
+accidental `delete`, you can use `redo` to perform the delete again. You can only use redo if `undo`
+was used before and no edit to your `ZooKeep` book was made in between, otherwise this command will do nothing.
+
+Format: `redo`
+
+Example usage:
+Refer to *Figures 7 & 8* above where you just executed the undo command. You decide to delete Kai Kai from your
+`ZooKeep` book after all, and type redo into the interface as shown in *Figure 9*:
+
+<p align="center"><img src="images/user-guide/redoingcommand.png"/></p>
+
+<p align="center"><i>Figure 9: User entering redo command</i></p>
+
+Expected Outcome:
+```
+Redo successful
+```
+
+<p align="center"><img src="images/user-guide/redidcommand.png"/></p>
+
+<p align="center"><i>Figure 10: User executing redo command</i></p>
+
+The undone command is redone. It will show Kai Kai deleted from your `ZooKeep` book as seen in *Figure 10*.
+
+---
+
+## 5. Advanced features (Zhi Yuan)
+
+When you are comfortable with the basic features, you can try the follow advanced features to achieve more.
+
+### 5.1. Appending information to an animal's fields: `append` (Jeremy)
+
+If you forgot to add the medical conditions and/or feed times for a particular animal, you can use this feature to
+append the missing information to the respective fields of the animal with the specified `ID` instead of deleting and adding
+that same animal again. `ID` here refers to the id number shown in the displayed animal list.
+
+Format: `append ID [m/MEDICAL_CONDITION]… [f/FEED_TIME]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+An animal can have any number of medical conditions and feed times (including 0).
+</div>
+
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Constraints:**<br>
+
+* At least one medical condition or feed time must be specified.
+
+* If you enter an `ID` with leading zeroes, those zeroes will be trimmed during command execution.
+
+* `ID` should be a number from 100 to 999999, inclusive.
+
+* `ID` of animal must exist in your `ZooKeep` book.
+
+* `FEED_TIME` must be a valid time in 24 hour format *(HHmm)*.
+</div>
+
+Examples:
+* `append 200 f/1900`
+* `append 200 m/Flu`
+
+Example Usage:
+```
+append 200 m/Flu
+```
+
+<p align="center"><img src="images/user-guide/appendingmedical.png"/></p>
+
+<p align="center"><i>Figure 11: User entering append command</i></p>
+
+Expected Outcome:
+```
+Appended Animal Details
+Name: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Flu][Sunstroke] Feed times: [1230][1400]
+```
+
+<p align="center"><img src="images/user-guide/appendedmedical.png"/></p>
+
+<p align="center"><i>Figure 12: User executing append command</i></p>
+
+The medical condition "Flu" is appended to the medical conditions of the animal with `ID` 200. *Figure 12* above
+reflects what you will see in your `ZooKeep` book.
+
+---
+
+### 5.2. Replacing an animal's fields: `replace` (Jeremy)
+
+If you made a mistake while entering the information of an animal in your `ZooKeep` book, instead of deleting the animal
+and entering all the information again, you can use this command to replace only the incorrect fields
+of the animal after specifying its `ID`. `ID` refers to the id number shown in the displayed animal list. Note that
+if this command is used on an animal's `MEDICAL_CONDITION`s or `FEED_TIME`s, all of its previous 
+`MEDICAL_CONDITION`s or `FEED_TIME`s will be replaced.
+
+Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL_CONDITION]… [f/FEED_TIME]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+An animal can have any number of medical conditions and feed times (including 0). You can use *m/* or *f/* to clear all the existing medical conditions or feed times of an animal respectively.
+</div>
+
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Constraints:**<br>
+
+* At least one field to replace must be specified.
+
+* If you enter an `ID` with leading zeroes, those zeroes will be trimmed during command execution.
+
+* `ID` should be a number from 100 to 999999, inclusive.
+
+* `ID` of animal must exist in your `ZooKeep` book.
+
+* `FEED_TIME` must be a valid time in 24 hour format *(HHmm)*.
+</div>
+
+Examples:
+* `replace 200 i/2910`
+* `replace 200 i/2910 n/Jirachi`
+* `replace 200 i/2910 m/`
+
+Example Usage:
+```
+replace 200 i/2910 n/Jirachi
+```
+
+<p align="center"><img src="images/user-guide/replacingfields.png"/></p>
+
+<p align="center"><i>Figure 13: User entering replace command</i></p>
+
+Expected Outcome:
+```
+Replaced Animal Details
+Name: Jirachi ID: 2910 Species: Giant Panda Medical conditions: [Flu][Sunstroke] Feed times: [1230][1400]
+```
+
+<p align="center"><img src="images/user-guide/replacedfields.png"/></p>
+
+<p align="center"><i>Figure 14: User executing replace command</i></p>
+
+*Figure 14* above shows the animal with ID `200` having its ID replaced with `2910` and its name 
+replaced with `Jirachi`.
+
+---
+
+### 5.3. Finding animals by their fields: `find` (Jun Cheng)
+
+You may find yourself in situations where you need to retrieve a specific group of animals from your `ZooKeep` book. For
+example, you may need to find animals with the same feed times or similar medical conditions.
+You can use this command to find and list all animals in your `ZooKeep` book whose fields contain any of the specified 
+argument keywords (at least 1). The argument keywords do not need to exactly match the values in the fields; only a 
+partial match is needed.
+
+Format: `find KEYWORD [MORE KEYWORDS]…`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Keyword matching is case insensitive.
+</div>
+
+Examples:
+* `find Ahmeng Buttercup Coco` finds all animals with the fields (name) containing any of the specified keywords.
+* `find 1200` finds all animals with the field (id or feed time) containing the specified keyword.
+* `find be` finds all animals with the fields containing the specified keyword. If there is an animal named 'Bell' and another
+animal with a medical condition called 'Benign Tumour', both animals will be listed due to a partial match.
+
+Example Usage:
+```
+find Kai Kai
+```
+
+<p align="center"><img src="images/user-guide/findinganimal.png"/></p>
+
+<p align="center"><i>Figure 15: User entering find command</i></p>
+
+Expected Outcome:
+```
+1 animals listed!
+```
+
+<p align="center"><img src="images/user-guide/foundanimal.png"/></p>
+
+<p align="center"><i>Figure 16: User executing find command</i></p>
+
+The animal with name `Kai Kai` is displayed as seen in *Figure 16* above.
+
+---
+
+### 5.4. Sorting animals: `sort` (Malcolm)
+
+If you need to create some sort of ordering in your `ZooKeep` book, such as a chronological order by feed times to organise
+your feeding schedule, this feature helps you to sort all your animals by the given category and updates the list of animals accordingly.
+
+Format: `sort CATEGORY`
+
+These are the category options you can sort the animals by:
+
+* `name`: Sorts all animals by their name in alphabetical order (case-insensitive).
+* `id`: Sorts all animals by their id in ascending order.
+* `feedtime`: Sorts all animals by their earliest feed time in chronological order.
+* `medical`: Sorts all animals by their number of medical conditions in ascending order.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The category input is case insensitive.
+</div>
+
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Constraints:**<br>
+
+* The `CATEGORY` must be a valid sorting category as specified above.
+
+* Only one sorting category can be specified at a time.
+
+</div>
+
+Examples:
+* `sort name`
+* `sort id`
+
+Example Usage:
+```
+sort id
+```
+
+<p align="center"><img src="images/user-guide/sortinglist.png"/></p>
+
+<p align="center"><i>Figure 17: User entering sort command</i></p>
+
+Expected Outcome:
+```
+Sorted all animals by id
+```
+
+<p align="center"><img src="images/user-guide/sortedlist.png"/></p>
+
+<p align="center"><i>Figure 18: User executing sort command</i></p>
+
+The animals in your `ZooKeep` book are sorted by their ID, in ascending order. *Figure 18* above should correspond
+with what you see.
+
+---
+
+### 5.5. Saving a snapshot of animal data: `snap` (Aizat)
+
+This command is useful for storing important archives in the `data/snapshots` folder of your `ZooKeep` application, in case you need
+to refer to the information of animals that have been deleted long ago. When executed, this command will
+create a snapshot of the current `ZooKeep` book data, saved as a file with the user specified file name.
+
+Please refer to the [FAQ](#6-faq-aizat) to find out how to load a snapshot that you have saved.
+
+Format: `snap FILE_NAME`
+
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Constraints:**<br>
+
+* `FILE_NAME` can only contain alphanumeric characters, hyphens `-` and underscores `_`.
+
+* `FILE_NAME` must be at least 1 character long and at most 100 characters long.
+
+* `FILE_NAME` must not already exist in the `data/snapshots` folder.
+</div>
+
+Examples:
+* `snap zookeepbook_19-10-2020` 
+* `snap archive_1`
+
+Example Usage:
+```
+snap zookeepbook_19-10-2020
+```
+
+<p align="center"><img src="images/user-guide/beforesnap.png"/></p>
+
+<p align="center"><i>Figure 19: User entering snap command</i></p>
+
+Expected Outcome:
+```
+Current ZooKeepBook saved as zookeepbook_19-10-2020.json
+```
+
+<p align="center"><img src="images/user-guide/aftersnap.png"/></p>
+
+<p align="center"><i>Figure 20: User executing snap command</i></p>
+
+<p align="center"><img src="images/user-guide/snapresult.png"/></p>
+
+<p align="center"><i>Figure 21: The directory where the archived file is located</i></p>
+
+A file named `zookeepbook_19-10-2020.json` is created in the `data/snapshots` directory as seen in *Figure 21*.
+This file contains the state of your `ZooKeep` book data at the point in time when the command
+was executed.
+
+---
+
+## 6. FAQ (Aizat)
+This section lists some of the frequently asked questions.
+
+**Q**: How do I transfer my data to a new computer?<br>
+**A**: First, install the app on your new computer. Next, copy over the `zookeepbook.json` file
+       from your old computer and paste it into the `data` folder of your new computer.
+
+**Q**: How can I manually save new data that I enter into the application?<br>
+**A**: You do not need to manually save data as animal data is saved in the hard disk 
+       automatically as a file named `zookeepbook.json` after any command that changes the data. 
+       Please do not manually edit this file as it may result in loss of data or unexpected 
+       behaviour when running the application.
+
+**Q**: How can I load a snapshot that I created using the `snap` command?<br>
+**A**: First, go to your `data` folder and rename your `zookeepbook.json` file into something else,
+       such as `zookeepbook_current.json`. Next, copy the snapshot you wish to load, paste it into
+       the `data` folder and rename this snapshot to `zookeepbook.json`. The next time you launch
+       `ZooKeep`, your snapshot will be loaded.
+
+**Q**: Can I record the feed times of a specific animal in any order I prefer?<br>
+**A**: The feed time will be arranged in chronological order regardless of the order entered for easier reference.
+
+**Q**: Can I search for animals based on a certain alphabet or half specified keywords?<br>
+**A**: Yes. The keywords entered as parameters can be used for partial matching.
+
+## 7. Command summary (Zhi Yuan)
+If you need a quick reference guide, the following tables should help.
+
+**Basic commands**
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
 **Help** | `help`
+**Exit** | `exit`
+**List** | `list`
+**Clear** | `clear`
+**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL_CONDITION]… [f/FEED_TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Flu f/1200`
+**Delete** | `delete ID` <br> e.g. `delete 193`
+**Undo** | `undo`
+**Redo** | `redo`
+
+**Advanced commands**
+
+Action | Format, Examples
+--------|------------------
+**Append** | `append ID [m/MEDICAL_CONDITION]… [f/FEED_TIME]…` <br> e.g. `append 1307 f/1900`
+**Replace** | `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL_CONDITION]… [f/FEED_TIME]…` <br> e.g. `replace 1307 i/2910 n/Jirachi`
+**Find** | `find KEYWORD [MORE KEYWORDS]…` <br> e.g. `find Ahmeng Buttercup Coco`
+**Sort** | `sort CATEGORY` <br> e.g. `sort name` 
+**Snap** | `snap FILE_NAME` <br> e.g. `snap zookeepbook_19-10-2020`

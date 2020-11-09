@@ -1,0 +1,19 @@
+@startuml
+start
+:User executes undo command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([exists at least one previous state])
+    :Retrieve current state from history;
+    :Add current state to redo;
+    :Remove current state from history;
+    :Set ZooKeepBook to most
+    recent state (previous state);
+else ([else])
+    :Return error message
+    (undo unsuccessful);
+endif
+stop
+@enduml

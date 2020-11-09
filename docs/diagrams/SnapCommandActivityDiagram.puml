@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes snap command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([Valid file name is inputted])
+    :Creates a json with the specified
+    file name in the data/snapshots directory;
+    :Display success message;
+else ([else])
+    :Return error message indicating
+    snap command is not successful;
+endif
+stop
+@enduml

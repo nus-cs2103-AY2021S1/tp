@@ -1,0 +1,23 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title After command "redo"
+
+package "States (History stack)" {
+    class State1 as "__book0:ReadOnlyZooKeepBook__"
+    class State2 as "__book1:ReadOnlyZooKeepBook__"
+    class State3 as "__book2:ReadOnlyZooKeepBook__"
+}
+
+package "States (Redo stack)" {
+}
+
+State1 -[hidden]up-> State2
+State2 -[hidden]up-> State3
+
+class Pointer as "Top of stack" #FFFFF
+
+Pointer -left-> State3
+@end

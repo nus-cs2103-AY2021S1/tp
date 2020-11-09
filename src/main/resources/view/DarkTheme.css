@@ -89,12 +89,12 @@
 
 .list-view {
     -fx-background-insets: 0;
-    -fx-padding: 0;
     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
+    -fx-background-radius: 10;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
 }
@@ -112,7 +112,7 @@
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
+    -fx-border-color: #ffcd78;
     -fx-border-width: 1;
 }
 
@@ -121,7 +121,8 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
 }
@@ -130,6 +131,12 @@
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
+}
+
+.cell_small_label_description {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 13px;
+    -fx-text-fill: #ffcd78 !important;
 }
 
 .stack-pane {
@@ -308,6 +315,7 @@
 }
 
 #cardPane {
+    -fx-border-radius: 10;
     -fx-background-color: transparent;
     -fx-border-width: 0;
 }
@@ -328,7 +336,7 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #animalListPanel, #animalWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
@@ -337,16 +345,39 @@
     -fx-background-radius: 0;
 }
 
-#tags {
+#medicalConditions {
     -fx-hgap: 7;
     -fx-vgap: 3;
 }
 
-#tags .label {
+#medicalConditions .label {
     -fx-text-fill: white;
     -fx-background-color: #3e7b91;
-    -fx-padding: 1 3 1 3;
+    -fx-padding: 0 3 0 3;
+    -fx-border-radius: 1;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#feedTimes {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#feedTimes .label {
+    -fx-text-fill: white;
+    -fx-background-color: #913e50;
+    -fx-padding: 0 3 0 3;
     -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#species .label {
+    -fx-text-fill: white;
+    -fx-background-color: #3e7b91;
+    -fx-padding: 0 3 0 3;
+    -fx-border-radius: 1;
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
