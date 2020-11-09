@@ -1233,7 +1233,7 @@ include: `s-list`, `i-set-default`, `i-list`, `i-reset-all`, `i-restock`, `c-lis
 
 <div style="page-break-after: always;"></div>
 
-## Command summary <a name="command-summary"></a>
+## Command Summary <a name="command-summary"></a>
 
 ### Sales Tracking
 
