@@ -966,7 +966,8 @@ For all use cases below, the **System** is the `CommonCents` and the **Actor** i
 </div>
 
 <div markdown="block" class="alert alert-success">
-
+ 
+<div style="page-break-after: always;"></div>
 **Use Case: UC15 - Finding specific revenues**
 
 **MSS**
