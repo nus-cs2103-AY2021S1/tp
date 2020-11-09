@@ -445,7 +445,7 @@ You can follow these instructions:
 Outcome:
 
 1. The _Result Display_ will show a success message.
-2. The Ingredient Tracker inside the _Main View_ will show the list of ingredients.
+2. The Ingredient Tracker inside the _Main View_ will show the list of all the ingredients.
 
 ![IngredientListCommandScreenshot](images/IngredientListCommandScreenshot.png)
 
@@ -477,8 +477,9 @@ Outcome:
 2. The Ingredient Tracker inside the _Main View_ will show the ingredient `Black Tea`, the ingredient `Green Tea` and 
 the ingredient `Brown Sugar`.
 
+
 Before the execution:<br>
-![BeforeIngredientFindCommandScreenshot](images/BeforeIngredientFindCommandCommand.png)
+![BeforeIngredientFindCommandScreenshot](images/BeforeIngredientFindCommandScreenshot.png)
 
 _Figure 9a. A screenshot showing the view before executing `i-find` command_
 
@@ -493,7 +494,7 @@ Resets the ingredient's levels of all ingredient types to zero.
 Format: `i-reset-all`
 
 Let's say you want to reset all ingredients' levels to zero when one or more ingredients have 
-non-zero ingredient's levels.
+nonzero ingredient's levels.
 You can follow these instructions:
 
 1. Type ` i-reset-all` into the _Command Box_.
@@ -509,7 +510,7 @@ the _Main View_.
 
 _Figure 10. A screenshot showing the outcome of an `i-reset-all` command_
 
-#### 2.7 Listing all ingredients that user should restock : `i-restock`
+#### 2.7 Listing all ingredients that the user should restock : `i-restock`
 Lists the ingredient's levels of all ingredient types that fall below their pre-determined default levels and require the user to 
 restock. The list also includes the amount needed for each ingredient to reach its pre-determined default level.
 
@@ -1161,7 +1162,7 @@ Action | Format, Examples
 **List**| `i-list`
 **Find**| `i-find KEYWORD [MORE_KEYWORDS]`  <br> e.g., `i-find milk sugar`
 **Reset all ingredients' levels to zero**| `i-reset-all`
-**View all ingredients that the user should restock**| `i-restock`
+**List all ingredients that the user should restock**| `i-restock`
 
 ### Manpower Management
 

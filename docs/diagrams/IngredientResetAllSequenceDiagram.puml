@@ -11,10 +11,10 @@ end box
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
-[-> LogicManager : execute("i-reset-all")
+[-> LogicManager : execute(i-reset-all)
 activate LogicManager
 
-LogicManager -> TCheckParser : parseCommand("i-reset-all")
+LogicManager -> TCheckParser : parseCommand(i-reset-all)
 activate TCheckParser
 
 create IngredientResetAllCommand
