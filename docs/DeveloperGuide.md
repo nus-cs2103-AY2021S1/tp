@@ -513,7 +513,7 @@ In tCheck, each employee is modeled as `Person` object. The archiving employee f
 Given below shows how the `c-archive`, `c-unarchive`, and `c-archive-all` mechanism works in steps based on different scenarios. Two activity diagrams are provided before each detailed explanation to describe how tCheck handles an archiving/unarchiving commands. Three sequence diagrams are attached after the description
 
 ##### 1. Archive an employee
-![Structure of the Storage Component](images/ArchiveActivityDiagram.png)
+![ArchiveActivityDiagram](images/ArchiveActivityDiagram.png)
 
 User can archive a specific employee (modeled as a `Person` in the code) by entering the `c-archive INDEX` command. The
  following steps describe how this behavior is implemented:
@@ -527,7 +527,7 @@ Step 3: The `Person` will have a new `ArchivedStatus` value, which will be set t
 
 Step 4: The current `FilteredList` will be updated to only show active `Persons`, facilitated by the predicate `Model#PREDICATE_SHOW_ALL_ACTIVE_PERSONS`
 
-![Structure of the Storage Component](images/ArchiveSequenceDiagram.png)
+![ArchiveSequenceDiagram](images/ArchiveSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveCommand`
  should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -536,7 +536,7 @@ Step 4: The current `FilteredList` will be updated to only show active `Persons`
 
 ##### 2. Unarchive an employee
 
-![Structure of the Storage Component](images/UnarchiveActivityDiagram.png)
+![UnarchiveActivityDiagram](images/UnarchiveActivityDiagram.png)
 
 User can unarchive an already-archived employee(modeled as `Person` in the code) by entering the `c-unarchive INDEX
 ` command. The following steps describe how this behavior is implemented:
@@ -549,7 +549,7 @@ Step 3: The `Person` will have a new `ArchivedStatus` value, which will be set t
 
 Step 4: The current `FilteredList` will be updated to only show active `Persons`, facilitated by the predicate `Model#PREDICATE_SHOW_ALL_ACTIVE_PERSONS`
 
-![Structure of the Storage Component](images/UnarchiveSequenceDiagram.png)
+![UnarchiveSequenceDiagram](images/UnarchiveSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnarchiveCommand` should
  end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -565,7 +565,7 @@ Step 2: For each `Person` in the observable 'PersonList', `ArchiveAllCommand` wi
 
 Step 3: The current `FilteredList` will be updated to only show the empty active `Persons`, facilitated by the predicate `Model#PREDICATE_SHOW_ALL_ACTIVE_PERSONS`
 
-![Structure of the Storage Component](images/ArchiveAllSequenceDiagram.png)
+![ArchiveAllSequenceDiagram](images/ArchiveAllSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveAllCommand` should
  end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
