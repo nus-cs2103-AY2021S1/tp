@@ -28,6 +28,18 @@ else isShowTimeline
     ui-> ui : handleShowTimeline()
     activate ui UI_COLOR
     deactivate ui UI_COLOR
+else isTriggerUpdateTimeline
+    ui-> ui : updateTimeline()
+    activate ui UI_COLOR
+    deactivate ui UI_COLOR
+else triggerLightTheme
+    ui-> ui : setStyleSheet(Themes.LIGHT_THEME)
+    activate ui UI_COLOR
+    deactivate ui UI_COLOR
+else triggerDarkTheme
+    ui-> ui : setStyleSheet(Themes.DARK_THEME)
+    activate ui UI_COLOR
+    deactivate ui UI_COLOR
 else else
 end
 
