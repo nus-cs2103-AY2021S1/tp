@@ -464,6 +464,8 @@ The following activity diagram summarises the general workflow for the Edit Comm
 
 ##### Aspect: How to update corresponding `appointment` instance
 
+<div style="page-break-after: always;"></div>
+
 * **Alternative 1 (current choice):** Separate updating `appointment` from editing `patient`
     * Pros: Draws clear distinction between the responsibilities of `appointmentBook` and `patientBook`. Reduces the coupling.
     * Cons: Increases numbers of lines of code and increases the cost of testing since more tests have to be carried out.
@@ -588,6 +590,8 @@ The following activity diagram summarizes the above steps when a user uses the r
 
     * Cons: Increases the code base, may increase coupling as objects are passed around between the classes.
     More tests have to be written for the respective classes, thus increasing the cost of testing.
+
+<div style="page-break-after: always;"></div>
 
 * **Alternative 2:** Parse and Execute in the same class
     * Pros: Size of code base is reduced. Fewer objects are passed between classes thereby reducing coupling.
@@ -716,6 +720,9 @@ Given below is an example usage scenario and how the edit mechanism behaves at e
 
 8: `AvailableCommand` obtains a copy of the `FilteredAppointmentList` by calling the `Model#getFilteredAppointmentList()` method.
 
+<div style="page-break-after: always;"></div>
+
+{:start="9"}
 9: `AvailableCommand` creates a `timeSlotsMessage` by calling the  `Model#findAvailableTimeSlots(List<Appointment>, Boolean)` method.
 
 10: Lastly, `AvailableCommand` creates a `CommandResult` with `SuccessMessage` and `timeSlotsMessage` and returns it to `LogicManager`.
@@ -743,6 +750,8 @@ The following activity diagram summarises the general workflow for the Available
     * Cons: No separation between classes violates the Single Responsibility Principle. Compromises the readability of the code and
     increases the difficulty of debugging and maintaining the code base.
 
+<div style="page-break-after: always;"></div>
+
 ##### Aspect: How to obtain available `timeInterval` instance
 
 * **Alternative 1 (current choice):** Create `TimeInterval` and `TimeIntervalList` models to represent the time slots and create `scheduleManager` model to handle operations related to `TimeInterval`
@@ -768,6 +777,8 @@ The following activity diagram summarises the general workflow for the Available
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
+
+<div style="page-break-after: always;"></div>
 
 ### Product scope
 **Target user profile story**:
