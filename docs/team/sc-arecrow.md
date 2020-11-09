@@ -10,10 +10,9 @@ having the benefits of a Graphical User Interface (GUI). If you are a CS Teachin
 TAskmaster can help you track your students' attendance and class participation faster than traditional GUI apps.
 
 TAskmaster helps a TA to keep track of the students they are currently teaching. It records identification details such 
-as name and NUSNET ID, as well as contact details, like telegram handle and email. 
-
-TAskmaster also helps a TA to track students' attendance for a lesson. A TA can also use TAskmaster to find students
-that are present at the lesson to call on to answer questions, and award class participation score correspondingly.
+as name and NUSNET ID, as well as contact details, like telegram handle and email. TAskmaster also helps a TA to track 
+students' attendance for a lesson. A TA can also use TAskmaster to find students that are present at the lesson to call
+on to answer questions, and award class participation score correspondingly.
 
 Given below are my contributions to the project.
 
@@ -22,8 +21,7 @@ Given below are my contributions to the project.
     updates when certain changes are made, such as marking a student's attendance or awarding class participation score.
     Each record contains the name and NUSNET ID of the represented student, their attendance and class participation
     score. \
-    **Important**: the student record list in each session is **independent** of the student list maintained by
-    TAskmaster.
+    **Important**: the student record list in each session is **independent** of the student list.
     * Justification: This feature is essential to the product as a TA should be able to see and change certain details
     of the student records in a session setting, without modifying the student list separately maintained by TAskmaster.
     * Highlights: This enhancement requires the implementation of an immutable `StudentRecord` class and a
@@ -41,7 +39,7 @@ particular session.
     teaching the class. 
     * Highlights: This enhancement requires some contemplation to be made on the implementation of the mark attendance method.
     This was challenging as it required an in-depth analysis and consideration on how to reconcile the different ways
-    that the mark command vs the mark attendance method identifies which record is supposed to be marked. 
+    that the command vs the method identifies which record is supposed to be marked. 
 
 * **New Feature:** Added the ability to list all student records in a session.
     * What it does: Allows a TA to view the records of all students enrolled in that session.
@@ -63,11 +61,10 @@ particular session.
     [#232](https://github.com/AY2021S1-CS2103-F09-1/tp/pull/232),
     [#239](https://github.com/AY2021S1-CS2103-F09-1/tp/pull/239),
     [#240](https://github.com/AY2021S1-CS2103-F09-1/tp/pull/240))
-    * Improved the GUI in `v1.4` by fixing some bugs related to resizing of the application window, and changing the look of the
-    following components: (PR [#170](https://github.com/AY2021S1-CS2103-F09-1/tp/pull/170))
-    * Redesigned `Attendance` and related classes in `v1.2` to `StudentRecord` in `v1.3`
-    (PR [#77](https://github.com/AY2021S1-CS2103-F09-1/tp/pull/77))
-    * Refactor names to update AB3 code to TAskmaster code:
+    * Improved the GUI in `v1.4` by fixing some bugs related to resizing of the application window, and changing the look of various
+    visual components. (PR [#170](https://github.com/AY2021S1-CS2103-F09-1/tp/pull/170))
+    * Redesigned `Attendance` and related classes to `StudentRecord`. (PR [#77](https://github.com/AY2021S1-CS2103-F09-1/tp/pull/77))
+    * Refactor names to update AB3 code to TAskmaster code.
     (PR [#43](https://github.com/AY2021S1-CS2103-F09-1/tp/pull/43))
 
 * **Documentation:**
