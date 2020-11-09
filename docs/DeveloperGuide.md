@@ -179,8 +179,12 @@ The method updates the current module list and filters it according to the given
 
 The following sequence diagram shows how the find module by module attributes operation works:
 
-![FindmodActivityDiagram](images/FindmodSequenceDiagram.png)
+![FindmodSequenceDiagram](images/FindmodSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindModCommandParser` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+<br/>
 The following activity diagram summarizes what happens when a user executes a findmod command:
 
 ![FindmodActivityDiagram](images/FindmodActivityDiagram.png)
@@ -218,7 +222,12 @@ Given below is the example usage scenario and how the delete module mechanism be
 
 The following sequence diagram shows how the deleting of the module works:
 
-![DelmodActivityDiagram](images/DelmodSequenceDiagram.png)
+![DelmodSequenceDiagram](images/DelmodSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DelmodCommandParser` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+<br/>
 
 The following activity diagram summarizes what happens when a user executes a delmod command:
 
@@ -247,6 +256,11 @@ The following sequence diagram shows how the assign operation works:
 
 ![AssignSequenceDiagram](images/AssignSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AssignCommandParser` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+<br/>
+
 The following activity diagram summarizes what happens when a user executes an assign command:
 
 ![AssignActivityDiagram](images/AssignActivityDiagram.png)
@@ -274,6 +288,11 @@ The following sequence diagram shows how the unassign operation works:
 
 ![UnassignSequenceDiagram](images/UnassignSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnassignCommandParser` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+<br/>
+
 The following activity diagram summarizes what happens when a user executes an unassign command:
 
 ![UnassignActivityDiagram](images/UnassignActivityDiagram.png)
@@ -287,6 +306,11 @@ Then, the `unassignAllInstructors()` operation is called in both `UniqueModuleLi
 The following sequence diagram shows how the unassignall operation works:
 
 ![UnassignallSequenceDiagram](images/UnassignallSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnassignallCommandParser` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+<br/>
 
 The following activity diagram summarizes what happens when a user executes an unassignall command:
 
@@ -317,7 +341,12 @@ The following sequence diagram shows how the cclear operation works:
 
 ![CclearSequenceDiagram](images/CclearSequenceDiagram.png)
 
-The follow activity diagram summarizes what happens when a user executes a cclear command:
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `OneWordCommandParser` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+<br/>
+
+The following activity diagram summarizes what happens when a user executes a cclear command:
 
 ![CclearActivityDiagram](images/CclearActivityDiagram.png)
 
@@ -333,9 +362,14 @@ The following sequence diagram shows how the mclear operation works:
 
 ![MclearSequenceDiagram](images/MclearSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `OneWordCommandParser` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+<br/>
+
 The follow activity diagram summarizes what happens when a user executes a mclear command:
 
-![MclearActivityDiagram](images/MclearAcitivityDiagram.png)
+![MclearActivityDiagram](images/MclearActivityDiagram.png)
 
 ### Switch active semester feature
 
@@ -350,6 +384,11 @@ All `AddressBook` operations on `UniqueModuleList` are done on `activeModules`.
 The following sequence diagram shows how the switch operation works:
 
 ![SwitchSequenceDiagram](images/SwitchSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `OneWordCommandParser` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+<br/>
 
 The following activity diagram summarizes what happens when a user executes a switch command:
 
