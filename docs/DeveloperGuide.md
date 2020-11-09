@@ -329,7 +329,7 @@ This feature comprises the `AddProfilePictureCommand` class. Given below is an e
     <em style="color:#CC5500">Figure 18. Logic Component Interactions for AddProfilePicture Command</em>
 </p>
 
-Step 1. User inputs "addpicture 1 f/data/images.png" command to add profile picture to the first patient. 
+Step 1. User inputs "addpicture 1 f/data/images.png" command to add profile picture to the 1st patient. 
 
 Step 2. User input is parsed to obtain the patient index and file path of the desired profile picture.
 
@@ -557,16 +557,16 @@ Given below is an example usage scenario and how the mechanism behaves at each s
     <em style="color:#CC5500">Figure 26. Sequence Diagram for ProfileCommand</em>
 </p>
 
-Step 1. User inputs "profile 1" command to display the first patient's profile.
+Step 1. User inputs "profile 1" command to display the 1st patient's profile.
 
 Step 2. Input command is parsed to obtain the patient's index, and a `ProfileCommand` object is returned. 
 
-Step 3. The `ProfileCommand#execute(Model model)` method is called and this returns a `CommandResult` object with the first `Patient` instance.
+Step 3. The `ProfileCommand#execute(Model model)` method is called and this returns a `CommandResult` object with the 1st `Patient` instance.
 
 Step 4. Next, `MainWindow#executeCommand` method is executed which in turn calls `ProfileWindow#setup` method. This causes `ProfileWindow` to be 
-        loaded with all relevant details that belongs to the first `Patient`. 
+        loaded with all relevant details that belongs to the 1st `Patient`. 
 
-Step 5. Finally, `MainWindow#handleProfilePanel()` method is executed to display the first patient's profile.
+Step 5. Finally, `MainWindow#handleProfilePanel()` method is executed to display the 1st patient's profile.
 
 The following activity diagram summarizes the main steps taken to display the patient's profile.
 
@@ -601,9 +601,9 @@ When an appointment is added, edited, or deleted, the corresponding calendar GUI
 
 The mechanism utilises the following classes and methods to display the appointments:
 
-   * `DeleteAppointmentCommandParser#parse` - Parses the input to return a `DeleteAppointmentCommand` object
-   * `DeleteAppointmentCommand#execute` - Executes the command to delete the specified patient
-   * `VEventUtil` - Initializes a `VCalendar` object containing a mapped list of appointments and a `ICalendarAgenda` object containing the initialized `VCalendar` object
+   * `XYZAppointmentCommandParser#parse` - Parses the input to return a `XYZAppointmentCommand` object
+   * `XYZAppointmentCommand#execute` - Executes the XYZ command to manipulate the specified appointment
+   * `VEventUtil` - Initializes a `VCalendar` object containing a mapped list of appointments and then initializes a `ICalendarAgenda` object containing the initialized `VCalendar` object
 
 This feature comprises the `AddAppointmentCommand`, `EditAppointmentCommand`, `DeleteAppointmentCommand` classes. However, much of the logic lies within the `CalendarDisplay` class as it contains the logic for updating the GUI of the calendar. Given below is an example usage scenario for `DeleteAppointmentCommand` and how the mechanism behaves at each step.
 
@@ -616,13 +616,13 @@ This feature comprises the `AddAppointmentCommand`, `EditAppointmentCommand`, `D
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteAppointmentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Step 1. User inputs `deleteappt 1` command to delete the first appointment on the list. 
+Step 1. User inputs `deleteappt 1` command to delete the 1st appointment on the list. 
 
 Step 2. User input is parsed to obtain the appointment index to delete.
 
 Step 3. After successful parsing of the input, the corresponding `DeleteAppointmentCommand` object is returned.
 
-Step 4. The `DeleteAppointmentCommand#execute` method is called.
+Step 4. The `DeleteAppointmentCommand#execute(Model model)` method is called.
 
 Step 5. The `Model#deleteAppointment` method is then called which deletes the specified appointment from the ObservableList.
 
@@ -680,7 +680,7 @@ Given below is an example usage scenario for `AddVisitCommand` and how the mecha
     <em style="color:#CC5500">Figure 29. UI and Logic Component Interactions for AddVisit Command </em>
 </p>
 
-Step 1: User inputs `addvisit 1` command to add to the first patient's profile.
+Step 1: User inputs `addvisit 1` command to add to the 1st patient's profile.
 
 Step 2: User input is parsed to return a `AddVisitCommand` object.
 
@@ -795,35 +795,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `CliniCal` and the **Actor** is the `user`, unless specified otherwise)
 
-##### Use case: UC01 - Delete a patient
+##### Use case: UC01 - Add a patient
 
 **MSS**
 
-1.  User requests to list patients
-2.  CliniCal shows a list of patients
-3.  User requests to delete a specific patient in the list
-4.  CliniCal deletes the patient
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. CliniCal shows an error message.
-
-      Use case resumes at step 2.
-
-##### Use case: UC02 - Add a patient
-
-**MSS**
-
-1.  User keys in command to add a patient
-2.  CliniCal shows an updated list of patients
+1.  User requests to add a new patient.
+2.  CliniCal adds a new patient with the provided details.
 
     Use case ends.
 
@@ -831,39 +808,84 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given command is invalid.
     * 1a1. CliniCal shows an error message.
+    
+    Use case resumes at step 1.
+    
+* 1b. The given parameter is invalid.
+    * 1b1. CliniCal shows an error message.
+    
+    Use case resumes at step 1.
+    
+* 1c. Not all the mandatory parameters are provided.
+    * 1b1. CliniCal shows an error message.
+    
+    Use case resumes at step 1.
 
-  Use case resumes at step 1.
-
-##### Use case: UC03 - Edit a patient
+##### Use case: UC02 - Edit a patient
 
 **MSS**
 
-1.  User requests to list patients
-2.  CliniCal shows a list of patients
-3.  User requests to edit a specific patient in the list, providing the details to edit the patient with
-4.  CliniCal edits the patient
+* Precondition: User is able to see the patient list.
+
+1.  User requests to edit the details of a specified patient in the list.
+2.  CliniCal edits the patient, based on the provided details.
+3.  CliniCal shows an updated patient list.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The patient cannot be found.
-    * 3a1. CliniCal shows an error message.
+* 1a. The patient cannot be found.
+    * 1a1. CliniCal shows an error message.
 
-    Use case resumes at Step 3.
+    Use case resumes at step 1.
+    
+* 1b. The given command is invalid.
+    * 1b1. CliniCal shows an error message.
+    
+    Use case resumes at step 1.
+ 
+* 1c. The given parameter is invalid.
+    * 1c1. CliniCal shows an error message.
+    
+    Use case resumes at step 1.
+    
+##### Use case: UC03 - Delete a patient
 
-* 3b. The patient cannot be found.
-    * 3b1. CliniCal shows an error message.
+**MSS**
 
-    Use case resumes at Step 3.
+* Precondition: User is able to see the patient list.
+
+1.  User requests to delete a specific patient in the list.
+2.  CliniCal deletes the patient.
+3.  CliniCal shows an updated patient list.
+
+    Use case ends.
+
+**Extensions**
+    
+* 1a. The patient cannot be found.
+    * 1a1. CliniCal shows an error message.
+
+    Use case resumes at step 1.
+    
+* 1b. The given command is invalid.
+    * 1b1. CliniCal shows an error message.
+    
+    Use case resumes at step 1.
+ 
+* 1c. The given parameter is invalid.
+    * 1c1. CliniCal shows an error message.
+    
+    Use case resumes at step 1.
 
 ##### Use case: UC04 - Add a patient's profile picture using command line interface
 
 **MSS**
 
-1.  User keys in command to add profile picture to patient
-2.  CliniCal adds the profile picture to the specified patient
-3.  CliniCal shows an updated list of patients
+1.  User keys in command to add profile picture to patient.
+2.  CliniCal adds the profile picture to the specified patient.
+3.  CliniCal shows an updated list of patients.
 
     Use case ends.
 
@@ -946,9 +968,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to clear command history.
 2. CliniCal shows a message that the command history is cleared.
 
-      Use case ends.
+    Use case ends.
       
-##### Use case: UC10 - Displaying patient's profile
+##### Use case: UC10 - Display patient's profile
 
 **MSS**
 
@@ -965,7 +987,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
     
-##### Use case: UC11 - Editing patient's visitation logs
+##### Use case: UC11 - Edit patient's visitation logs
 
 **MSS**
 
@@ -990,7 +1012,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. There are no amendments to be made.<br>
     Use case ends.
     
-##### Use case: UC12 - Deleting patient's visitation logs
+##### Use case: UC12 - Delete patient's visitation logs
 
 **MSS**
 
@@ -1013,16 +1035,92 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add appointment for a particular patient by keying in the patient index, appointment date, time and duration.
-2. CliniCal shows a message that the appointment is successfully added and displays the updated appointment list and calendar in the overview tab.
+* Precondition: User is on the overview tab.
+
+1.  User requests to add a new appointment.
+2.  CliniCal adds the new appointment.
+3.  CliniCal shows an updated appointment list and an updated calendar.
 
       Use case ends.    
       
 **Extensions**
-      
+    
 * 1a. The given command is invalid.
     * 1a1. CliniCal shows an error message.
-      
+    
+    Use case resumes at step 1.
+ 
+* 1b. The given parameter is invalid.
+    * 1b1. CliniCal shows an error message.
+    
+    Use case resumes at step 1.
+
+* 1c. The new appointment time clashes with another appointment.
+    * 1c1. CliniCal shows an error message.
+    
+    Use case resumes at step 1.
+    
+##### Use case: UC14 - Edit appointment
+
+**MSS**
+
+* Precondition: User is on the overview tab.
+
+1.  User requests to edit the details of a specified appointment in the list.
+2.  CliniCal edits the appointment.
+3.  CliniCal shows an updated appointment list and an updated calendar.
+
+    Use case ends.
+    
+**Extensions**
+    
+* 1a. The patient cannot be found.
+    * 1a1. CliniCal shows an error message.
+
+    Use case resumes at step 1.
+    
+* 1b. The given command is invalid.
+    * 1b1. CliniCal shows an error message.
+    
+    Use case resumes at step 1.
+ 
+* 1c. The given parameter is invalid.
+    * 1c1. CliniCal shows an error message.
+    
+    Use case resumes at step 1.
+
+* 1d. The new appointment time clashes with another appointment.
+    * 1d1. CliniCal shows an error message.
+    
+    Use case resumes at step 1.
+
+##### Use case: UC15 - Delete appointment
+
+**MSS**
+
+* Precondition: User is on the overview tab.
+
+1.  User requests to delete a specific appointment in the list.
+2.  CliniCal deletes the appointment.
+3.  CliniCal shows an updated appointment list and an updated calendar.
+
+    Use case ends.
+    
+**Extensions**
+    
+* 1a. The appointment cannot be found.
+    * 1a1. CliniCal shows an error message.
+
+    Use case resumes at step 1.
+    
+* 1b. The given command is invalid.
+    * 1b1. CliniCal shows an error message.
+    
+    Use case resumes at step 1.
+ 
+* 1c. The given parameter is invalid.
+    * 1c1. CliniCal shows an error message.
+    
     Use case resumes at step 1.
 
 ## **Appendix D: Non-Functional Requirements**
@@ -1066,40 +1164,52 @@ testers are expected to do more *exploratory* testing.
 
 ##### F.2 Adding a patient
 
-1. Adding a new patient to the list
+1. Adding a new patient to the patient list
 
    1. Test case: `add n/John Doe p/12345678 ic/s1234567a`<br>
-      Expected: A patient named John Doe should be added into the list with his phone number and IC number.
+       Expected: A patient named John Doe should be added to the patient list with the provided phone number and NRIC.
+   
+   1. Test case: `add n/John Doe`<br>
+       Expected: No patient is added. Error message will be shown as phone number and NRIC are missing.
+       
+   1. Test case: `add n/John Doe p/12345678 ic/s1234567a s/male`<br>
+       Expected: No patient is added. Error message will be shown as an invalid sex is given.
+       
+   1. Other incorrect commands to try: `add 1`, `add` 
+       Expected: No patient is added. Error message will be shown as an invalid command is given.
 
-   1. Test case: `add`<br>
-      Expected: No patient is added. Error details shown in the status message. Status bar remains the same.
-      
+##### F.3 Editing a patient
 
-##### F.3 Deleting a patient
+1. Editing the details of a patient
+
+   1. Prerequisites: There is at least more than one patient in the patient list.
+
+   1. Test case: `edit 1 g/sulfa g/aspirin`<br>
+       Expected: The existing allergy tags (if applicable) of the 1st patient are replaced with new allergy tags, `sulfa` and `aspirin`.
+   
+   1. Test case: `edit 1 p/1234567890`<br>
+       Expected: No patient is edited. Error message will be shown as invalid phone number is provided.
+       
+   1. Test case: `edit 0 n/John Doe`<br>
+       Expected: No patient is edited. Error message will be shown as an invalid index is provided.
+       
+   1. Other incorrect commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+   
+##### F.4 Deleting a patient
 
 1. Deleting a patient while all patients are being shown
 
    1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First patient is deleted from the list. Details of the deleted patient shown in the status message. Timestamp in the status bar is updated.
+      Expected: 1st patient is deleted from the list. Details of the deleted patient shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
       Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-##### F.4 Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. Prerequisites: The json file saved contains data for at least one patient.
-   
-   1. Test case: Corrupted json file<br>
-      Open up `data/clinical.json` in a text editor and change any field to an invalid value. For example, try including an alphabet in the phone number of a patient.<br>
-      Expected: The application should start gracefully with an empty set of data, without crashing. The application will log an error to the console.
-
 
 ##### F.5 Displaying patient's profile
 
@@ -1108,7 +1218,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all patients using the list command. Multiple patients in the list.
    
    1. Test case: `profile 2`<br>
-       Expected: A separate window that displays details of the second patient will appear. Relevant patient records, as well as
+       Expected: A separate window that displays details of the 2nd patient will appear. Relevant patient records, as well as
        past visitation logs will be shown.
    
    1. Test case: `profile -1`<br>
@@ -1161,7 +1271,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all patients using the list command. Patients, each with visitation logs, are in the list.
     
     1. Test case: `editvisit 1 i/2`<br>
-        Expected: The first patient's second visitation log will be available to edit. A separate window displaying the three fields (Diagnosis, Prescription, Comments) with existing visitation log details filled, will appear.
+        Expected: 1st patient's 2nd visitation log will be available to edit. A separate window displaying the three fields (Diagnosis, Prescription, Comments) with existing visitation log details filled, will appear.
         After editing the relevant details, saving the visitation log will result in a success message being shown in the main window. 
     
     1. Test case: `editvisit 1 i/2 vd/31/07/2020`<br>
@@ -1183,7 +1293,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all patients using the list command. Patients, each with visitation logs, are in the list.
     
     1. Test case: `deletevisit 1 i/2`<br>
-        Expected: Deletes the second visitation log of the first patient in the patient list. A success message will be shown in the main window.
+        Expected: Deletes the 2nd visitation log of the 1st patient in the patient list. A success message will be shown in the main window.
         
     1. Test case: `deletevisit 1`<br>
         Expected: Error message will be shown as no visitation log index is given.
@@ -1199,7 +1309,7 @@ testers are expected to do more *exploratory* testing.
 1. Adding a new appointment to the appointment list and calendar
 
    1. Test case: `addappt 1 st/11/11/2020 12:00 d/60`<br>
-      Expected: An appointment containing the details of the first patient, appointment date, starting and ending time will be added to the appointment list and reflected in the calendar.
+      Expected: An appointment containing the details of the 1st patient, appointment date, starting and ending time will be added to the appointment list and reflected in the calendar.
 
    1. Test case: `addappt`<br>
       Expected: No appointment is added. Error details shown in the status message. Status bar remains the same.
@@ -1207,18 +1317,44 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect add appointment commands to try: `addappt x st/11/11/2020 12:00 d/60` (where x is larger than the list size), `addappt 0 st/11/11/2020 12:00 d/60`, `addappt 0 st/42/42/2020 25:00 d/2147483647`<br>
       Expected: Similar to previous.  
       
-##### F.11 Deleting an appointment
+##### F.11 Editing an appointment
+
+1. Editing the details of an appointment
+
+   1. Test case: `editappt 1 d/30`<br>
+      Expected: The duration of the 1st appointment is edited to 30 minutes and the change is updated in the appointment list and calendar. Details of the edited appointment is shown in the result display box.
+
+   1. Test case: `editappt 0`<br>
+      Expected: No appointment is edited. Error details are shown in the result display area.
+      
+   1. Test case: `editappt 1 d/0`<br>
+      Expected: No appointment is edited. Error details are shown in the result display area.
+
+   1. Other incorrect delete commands to try: `editappt`, `editappt x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.       
+
+##### F.12 Deleting an appointment
 
 1. Deleting an appointment in the appointment list and calendar
 
    1. Test case: `deleteappt 1`<br>
-      Expected: First appointment is deleted from the list and removed from calendar. Details of the deleted appointment shown in the status message. Timestamp in the status bar is updated.
+      Expected: 1st appointment is deleted from the list and removed from calendar. Details of the deleted appointment shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `deleteappt 0`<br>
       Expected: No appointment is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `deleteappt`, `deleteappt x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.       
+      Expected: Similar to previous.  
+      
+##### F.13 Saving data
+
+1. Dealing with missing/corrupted data files
+
+   1. Prerequisites: The json file saved contains data for at least one patient.
+   
+   1. Test case: Corrupted json file<br>
+      Open up `data/clinical.json` in a text editor and change any field to an invalid value. For example, try including an alphabet in the phone number of a patient.<br>
+      Expected: The application should start gracefully with an empty set of data, without crashing. The application will log an error to the console. 
        
 ## **Appendix G: Effort**
 
