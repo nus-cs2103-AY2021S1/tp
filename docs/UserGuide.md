@@ -8,22 +8,28 @@ DSAce is a **desktop app for creating flashcards and practising quiz questions f
 ## Table of Contents
 * [Quick start](#quick-start)
 * [Features](#features)
-   * [**`help`** : Viewing help.](#viewing-help--help)
-   * [**`add`** : Adding a flashcard.](#adding-a-flashcard--add)
-   * [**`list`** : Listing all flashcards.](#listing-all-flashcards--list)
-   * [**`sort`** : Sorting all flashcards.](#sorting-all-flashcards--sort)
-   * [**`edit`** : Editing a flashcard.](#editing-a-flashcard--edit)
-   * [**`find`** : Locating flashcards by name/tag/priority.](#locating-flashcards-by-nametagpriority-find)
-   * [**`delete`** : Deleting a flashcard.](#deleting-a-flashcard--delete)
-   * [**`flip`** : Flipping a flashcard.](#flipping-a-flashcard--flip)
-   * [**`clear`** : Clearing all flashcards.](#clearing-all-entries--clear)
-   * [**`enter quiz`** : Entering Quiz mode.](#entering-quiz-mode--enter-quiz)
-   * [**`answer`** : Answering a quiz question.](#answering-a-quiz-question--answer)
-   * [**`leave quiz`** : Leaving Quiz mode.](#leaving-quiz-mode--leave-quiz)
-   * [**`exit`** : Exiting the program.](#exiting-the-program--exit)
-   * [**`performance`** : Opening performance interface.](#checking-performance--performance)
-   * [**`view`** : Viewing previous an attempt result.](#viewing-a-specific-historical-attempt--view)
-   * [**`list`** : List historical attempts.](#listing-historical-attempts-results--list)
+   * [General Commands](#general-commands)
+      * [**`help`** : Viewing help.](#viewing-help--help)
+      * [**`exit`** : Exiting the program.](#exiting-the-program--exit)
+   * [Flashcard Commands](#flashcard-management)
+      * [**`add`** : Adding a flashcard.](#adding-a-flashcard--add)
+      * [**`list`** : Listing all flashcards.](#listing-all-flashcards--list)
+      * [**`sort`** : Sorting all flashcards.](#sorting-all-flashcards--sort)
+      * [**`edit`** : Editing a flashcard.](#editing-a-flashcard--edit)
+      * [**`find`** : Locating flashcards by name/tag/priority.](#locating-flashcards-by-nametagpriority-find)
+      * [**`delete`** : Deleting a flashcard.](#deleting-a-flashcard--delete)
+      * [**`flip`** : Flipping a flashcard.](#flipping-a-flashcard--flip)
+      * [**`clear`** : Clearing all flashcards.](#clearing-all-entries--clear)
+   * [Quiz Commands](#quiz-commands)
+      * [**`enter quiz`** : Entering Quiz mode.](#entering-quiz-mode--enter-quiz)
+      * [**`start attempt`** : Starts a quiz attempt.](#entering-quiz-mode--start-attempt)
+      * [**`answer`**: Answers a question in the quiz.](#entering-quiz-mode--answer)
+      * [**`end attempt`** : Ends a quiz attempt.](#entering-quiz-mode--end-attempt)
+      * [**`leave quiz`** : Leaving Quiz mode.](#leaving-quiz-mode--leave-quiz)
+   * [Performance Commands](#performance-commands)
+      * [**`performance`** : Opening performance interface.](#checking-performance--performance)
+      * [**`view`** : Viewing previous an attempt result.](#viewing-a-specific-historical-attempt--view)
+      * [**`list`** : List past quiz attempts.](#listing-historical-attempts-results--list)
    * [Saving the data.](#saving-the-data)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
@@ -383,7 +389,12 @@ Format: `exit`
 ## Performance interface
 
 <div markdown="block" class="alert alert-info">
+<<<<<<< HEAD
 Only commands listed in this section are valid in the performance interface.
+=======
+* Command line below are only workable under perfomance interface.
+* New table of performance will pop out. Can be closed by clicking 'close' button of the window.
+>>>>>>> 8ca0a28e6660fdd6c2842fd11c6e28ef4cdc5b66
 </div>
 
 ### Listing past attempt results: `list`
@@ -427,6 +438,12 @@ DSAce data is saved in the home folder automatically after any command that chan
 Q: How do I transfer my data to another computer? <br>
 A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the
  data from your previous DSAce home folder.
+
+Q: How do I make my own quiz questions? <br>
+A: CRUD quiz questions are part of our future plans.
+
+Q: Why is there a need for both enter quiz and start attempt? <br>
+A: This makes it easier to implement other quiz mode commands in the future (open for extension).
 
 --------------------------------------------------------------------------------------------------------------------
 
