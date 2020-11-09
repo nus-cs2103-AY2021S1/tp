@@ -770,3 +770,9 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Calo starts up successfully
    2. Test case: `list`<br>
       Expected: All `Exercise` entries belonging to the `ExerciseBook` will be displayed in the left panel.
+
+### Adding a goal successfully
+1. Creating goal for a date. For example, 09-11-2020.
+    1.  Prerequisites: There is no pre-existing goal for the same date.
+    2.  Test case: `goal c\360 at\09-11-2020`
+        Expected: `New goal added: 360`
