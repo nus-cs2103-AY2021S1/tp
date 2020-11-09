@@ -31,7 +31,8 @@ Given below are my contributions to the project.
     * Justification : This is a nice-to-have feature for the application because it acts as a shortcut for stall managers to start using tCheck. Instead of manually adjusting each of the ingredient's level, all levels can be set to default using a short command.
     * Related PR(s) (non-exhaustive):
     [#78](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/78)
-    
+<div style="page-break-after: always;"></div>
+
   * Added `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` command.
     * What it does : Allow a to set all ingredients' levels to different specified amounts for all available ingredients in a T-sugar stall.
     * Justification : This is also a nice-to-have feature for the application. It enables expert users to conveniently set all available ingredients' levels in one single command.
@@ -49,8 +50,6 @@ Given below are my contributions to the project.
 
   * Added issues assigned to milestone v1.1, v1.2, 1.3 and v1.4.
   * Managed v1.4 release on GitHub.
-  * Closed and noted issues reported for Practical Examination Dry Run.
-  * Actively reviewed teammates' pull requests and assisted merging.
   
 * **Quality assurance**:
 
@@ -80,8 +79,6 @@ Given below are my contributions to the project.
     [#91](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/91)
     
 * **Community involvement**:
-
-  * Contributed to forum discussion on GitHub.
   * Offered non-trivial suggestions to pull requests reviewed.
   * Related PR(s) (non-exhaustive):
   [#252](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/252)
