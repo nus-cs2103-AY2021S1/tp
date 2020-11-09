@@ -382,9 +382,9 @@ Format: `addpicture INDEX f/FILE_PATH`
 
 <div markdown="block" class="alert alert-warning">
 :book: <span style="font-weight:bold">Example: </span>
-You want to add a profile picture to the 3rd patient on the list.
+You want to add a profile picture to the 1st patient on the list.
 
-**Step 1**: Input `addpicture 3 f/data/profile_3.jpg` into the command box and press <kbd>Enter</kbd>.
+**Step 1**: Input `addpicture 1 f/data/profile_1.jpg` into the command box and press <kbd>Enter</kbd>.
 
 **Step 2**: On the Patient tab, you can find your newly added profile picture displayed on the patient's profile.
 </div>
@@ -531,7 +531,7 @@ Format: `find KEYWORDS`
     * `benson` will match `Benson`
 * The search keyword entered can consist of just one word or even multiple keywords. 
     * `Benson` or `Benson Meier`
-* Patient will be matched even if the keyword matches the search parameters only partially 
+* Patient will be matched even if the keyword matches the search parameters only partially. Keywords have to be matched consecutively.
     * `Ben` will match `Benson`, `7435696` will match `S7435696B`.
 * The order of the keywords does not matter. 
     * `Meier Benson` will match `Benson Meier`
