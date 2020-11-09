@@ -28,16 +28,18 @@ We took the entire semester (13 weeks) to build QuickCache and added 15,000 line
 ### 2. Summary of Contributions
 
 My primary role was to help develop these enhancements for QuickCache:
+
   * Develop a system to organise the flashcards in QuickCache
   * Delete flashcards based on their categories
   * Find flashcards based on their categories
   * Improve the GUI from the original AB3
   
-  In addition, I served as the Documentation Lead and my responsibilities included:
-    * Managing the accuracy and correctness of UML diagrams
-    * Planning the overall structure of both the User Guide and Developer Guide
-    * Coordinating and delegating jobs to my teammates to ensure proper documentation
-    * Ensuring the correctness of the contents of all documentations
+In addition, I served as the Documentation Lead and my responsibilities included:
+
+  * Managing the accuracy and correctness of UML diagrams
+  * Planning the overall structure of both the User Guide and Developer Guide
+  * Coordinating and delegating jobs to my teammates to ensure proper documentation
+  * Ensuring the correctness of the contents of all documentations
 
 ### 3. Code Contributions
 
