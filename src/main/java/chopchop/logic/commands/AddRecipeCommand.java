@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
+import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.Step;
 import chopchop.model.attributes.Tag;
 import chopchop.model.ingredient.IngredientReference;
@@ -54,8 +55,11 @@ public class AddRecipeCommand extends Command implements Undoable {
             var seenIngredients = new HashSet<String>();
             for (var ingr : this.ingredients) {
                 if (seenIngredients.contains(ingr.getName())) {
-
                     return CommandResult.error("Ingredient '%s' was specified twice", ingr.getName());
+                }
+
+                if (ingr.getQuantity().isZero()) {
+                    return CommandResult.error("Quantity should not be zero (for ingredient '%s')", ingr.getName());
                 }
 
                 seenIngredients.add(ingr.getName());
