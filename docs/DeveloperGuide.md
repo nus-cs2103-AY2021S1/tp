@@ -439,12 +439,29 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the contact being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+--------------------------------------------------------------------------------------------------------------------
 
-### \[Proposed\] Data archiving
+## **Current bugs and feature ideas**
 
-_{Explain here how the data archiving feature will be implemented}_
+This section describes bugs found in the current version of FaculType and 
+feature ideas that have been proposed but currently don't have implementation details yet.
+Both of which are to be fixed/implemented in the next version of FaculType.
 
+### Current bugs:
+
+* Editing a contact's identifying attributes (name, phone, email) to be the same as another contact's causes problems due to the detection of duplicate contacts.
+This bug is inherited from the parent project AddressBook Level 3.
+* A tag in a contact card and an instructor tag in a module card may be cut off if the text inside is too long or if there are too many tags.
+This bug is inherited from the parent project AddressBook Level 3.
+
+Example of the tag bug:
+
+![TagBug](images/TagBug.png)
+
+### Feature ideas:
+
+* Order filter results of contacts and modules by how much they match the specified parameters.
+* Differentiate instructor tags in module cards for instructors with the same name.
 
 --------------------------------------------------------------------------------------------------------------------
 

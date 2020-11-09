@@ -14,6 +14,8 @@ FaculType is a **desktop app** for managing **faculty members and their modules*
     * [Contact Management](#contact-management)
     * [Module Management](#module-management)
     * [Instructor Assignment](#instructor-assignment)
+    * [Upcoming Features](#upcoming-features)
+* [Current Bugs](#current-bugs)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
@@ -287,6 +289,28 @@ Examples :
 Unassigns all contacts from all modules in the active semester.
 
 Format: `unassignall`
+
+### Upcoming Features
+
+The following features are not done yet and will be implemented in the next update.
+
+* Order filter results of contacts and modules by how much they match the specified parameters.
+* Differentiate instructor tags in module cards for instructors with the same name.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Current Bugs
+
+The following bugs still occur in the current version of FaculType and will be fixed in the next update. Using features in the following ways should be avoided.
+
+* Editing a contact's identifying attributes (name, phone, email) to be the same as another contact's causes problems due to the detection of duplicate contacts.
+This bug is inherited from the parent project AddressBook Level 3.
+* A tag in a contact card and an instructor tag in a module card may be cut off if the text inside is too long or if there are too many tags.
+This bug is inherited from the parent project AddressBook Level 3.
+
+Example of the tag bug:
+
+![TagBug](images/TagBug.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
