@@ -37,8 +37,8 @@ and their clients.
   
   * **Highlights**:
    My implementation of the `Edit` function prevents any clients from having the same name or same phone number 
-      [(RepoSense link)](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=kormingsoon&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
-##### My Contributions to PropertyFree: User Interface Functions [(RepoSense link)](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=kormingsoon&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+      
+#### My Contributions to PropertyFree: User Interface Functions [(RepoSense link)](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=kormingsoon&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **New Feature**: Implemented the `AutoTab` switching function for PropertyFree
   * **What it does**: Changes the tab from entity to entity depending on the command executed by the user.
