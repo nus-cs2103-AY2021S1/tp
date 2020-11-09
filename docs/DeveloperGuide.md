@@ -488,22 +488,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | user                                       | add an exercise                | keep track of calories burnt through the day                           |
-| `* * *`  | user                                       | create a template | store exercises that I do frequently for future reference. |
-| `* * *`  | user                                       | create an exercise based on template | record exercises that I do frequently faster. |
-| `* * *`  | user                                       | delete an exercise in case I key in wrongly |  |
-| `* * *`  | user                                       | have a system that tolerate invalid/incomplete command |           |
-| `* * *`  | data conscious user                        | list down all the exercises for the day | monitor the calories burned accurately |
-| `* * *`  | user                                       | see all the templates I have created | |
-| `* * *`  | user                                       | see my progress for the past week | know the progress that I have been making so far |
-| `* *`    | user                                       | add tags to an Exercise | |
-| `* *`    | user                                       | create an exercise from template with different details such as calories | account for the same exercises that I did with different intensity  |
+| `* *`  | user who leads an active lifestyle                                        | create an exercise template | store exercises that I do frequently for future reference |
+| `* *`  | user who leads an active lifestyle                                       | create an exercise based on an exercise template | record exercises that I do frequently more efficiently |
+| `* * *`  | user                                       | delete an exercise |  |
+| `* * *`  | clumsy user                                       | have a system that tolerates invalid/incomplete command |           |
+| `* *`  | data conscious user                        | list down all the exercises for the day | monitor the calories burned accurately |
+| `* *`  | data conscious user                                       | list all the exercise templates I have created | |
+| `* *`  | motivated user                                           | see my progress for the past week | know the progress that I have been making so far |
+| `* *`    | detailed-oriented user                                       | add tags to an Exercise | I can group my exercises accordingly|
+| `* *`    | detailed-oriented user                                       | create an exercise from template with different details such as calories | account for the same exercises that I did with different intensity  |
 | `* *`    | user                                       | clear all information stored in the application | |
-| `* *`    | user                                       | find the most recent information of a particular exercise | |
-| `* *`    | user                                       | indicate which are the muscle group that an exercise work on | better track which muscles that I have worked on |
-| `* *`    | user                                       | know how much more calories I need to burn to reach the goal | |
-| `* *`    | user                                       | set a goal for a day | |
+| `* *`    | forgetful user                                       | find the most recent information of a particular exercise | calibrate my exercise accordingly|
+| `* *`    | user who is a fitness junkie                                     | indicate which are the muscle groups that an exercise works on | better track which muscles that I have worked on |
+| `* *`    | motivated user                                       | know how much more calories I need to burn to reach the goal | |
+| `* *`    | motivated user                                       | set a goal for a day | I can keep track of my goal and aim to reach it|
+| `* *`    | visual user                                       | view total calories burnt on a graph             |  |
 | `* *`    | user                                       | update an exercise             |  |
-| `*`    | user                                       | save my data in a file         | import the saved data into the new computer |
+| `* *`    | user                                       | save my data in a file         | import the saved data into the new computer |
+| `* * *`    | new user                                       | view details on command usage and formats         |  |
 
 ### 8. Appendix C: Use cases
 
