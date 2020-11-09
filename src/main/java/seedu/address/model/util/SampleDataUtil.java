@@ -136,13 +136,13 @@ public class SampleDataUtil {
     public static Meeting[] getSampleMeetings() {
         return new Meeting[] {
             new Paperwork(new BidderId("B1"), new PropertyId("P2"),
-                        new MeetingDate("15 OCT 2020"), new Venue("Marina Bay"),
+                        new MeetingDate("15-10-2021"), new Venue("Marina Bay"),
                     new StartTime("12:00"), new EndTime("13:00")),
             new Admin(new BidderId("B5"), new PropertyId("P6"),
-                        new MeetingDate("19 OCT 2020"), new Venue("Bedok"),
+                        new MeetingDate("19-10-2022"), new Venue("Bedok"),
                     new StartTime("14:00"), new EndTime("15:00")),
             new Viewing(new BidderId("B3"), new PropertyId("P4"),
-                        new MeetingDate("21 OCT 2020"), new Venue("Tampines"),
+                        new MeetingDate("21-10-2023"), new Venue("Tampines"),
                     new StartTime("16:00"), new EndTime("17:00"))
         };
     }

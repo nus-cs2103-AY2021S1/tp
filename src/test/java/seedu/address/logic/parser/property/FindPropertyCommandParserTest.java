@@ -6,7 +6,6 @@ import static seedu.address.logic.commands.property.PropertyCommandTestUtil.INVA
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.PROPERTY_ADDRESS_DESC_ANCHORVALE;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.PROPERTY_ASKING_PRICE_DESC_BEDOK;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.PROPERTY_ID_DESC_ANCHORVALE;
-import static seedu.address.logic.commands.property.PropertyCommandTestUtil.PROPERTY_IS_CLOSED_DEAL_DESC_ANCHORVALE;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.PROPERTY_IS_RENTAL_DESC_ANCHORVALE;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.PROPERTY_IS_RENTAL_DESC_BEDOK;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.PROPERTY_NAME_DESC_ANCHORVALE;
@@ -16,7 +15,6 @@ import static seedu.address.logic.commands.property.PropertyCommandTestUtil.PROP
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.PROPERTY_TYPE_DESC_ANCHORVALE;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.PROPERTY_TYPE_DESC_BEDOK;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_PROPERTY_ADDRESS_ANCHORVALE;
-import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_PROPERTY_IS_CLOSED_DEAL_ANCHORVALE;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_PROPERTY_IS_RENTAL_ANCHORVALE;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_PROPERTY_IS_RENTAL_BEDOK;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_PROPERTY_NAME_ANCHORVALE;
@@ -34,7 +32,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.property.FindPropertyCommand;
 import seedu.address.logic.commands.property.FindPropertyCommand.FindPropertyDescriptor;
 import seedu.address.model.price.PriceFilter;
-import seedu.address.model.property.IsClosedDeal;
 import seedu.address.model.property.IsRental;
 import seedu.address.testutil.property.FindPropertyDescriptorBuilder;
 
@@ -63,16 +60,13 @@ public class FindPropertyCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
 
-        // only for askingPrice, isRental, isClosedDeal
+        // only for askingPrice, isRental
 
         // invalid asking price
         assertParseFailure(parser, INVALID_PROPERTY_ASKING_PRICE, PriceFilter.MESSAGE_CONSTRAINTS);
 
         // invalid is rental
         assertParseFailure(parser, INVALID_PROPERTY_IS_RENTAL, IsRental.MESSAGE_CONSTRAINTS);
-
-        // invalid isClosedDeal
-        assertParseFailure(parser, INVALID_PROPERTY_IS_CLOSED_DEAL, IsClosedDeal.MESSAGE_CONSTRAINTS);
 
         // invalid askingPrice followed by valid address
         assertParseFailure(parser, INVALID_PROPERTY_ASKING_PRICE + VALID_PROPERTY_ADDRESS_ANCHORVALE,
@@ -95,7 +89,6 @@ public class FindPropertyCommandParserTest {
                 + PROPERTY_SELLER_ID_DESC_ANCHORVALE
                 + PROPERTY_TYPE_DESC_ANCHORVALE
                 + PROPERTY_IS_RENTAL_DESC_ANCHORVALE
-                + PROPERTY_IS_CLOSED_DEAL_DESC_ANCHORVALE
                 + PROPERTY_ID_DESC_ANCHORVALE;
 
         FindPropertyDescriptor descriptor = new FindPropertyDescriptorBuilder()
@@ -105,7 +98,6 @@ public class FindPropertyCommandParserTest {
                 .withSellerIdPredicate(VALID_PROPERTY_SELLER_ID_ANCHORVALE)
                 .withPropertyTypePredicate(VALID_PROPERTY_PROPERTY_TYPE_ANCHORVALE)
                 .withIsRentalPredicate(VALID_PROPERTY_IS_RENTAL_ANCHORVALE)
-                .withIsClosedDealPredicate(VALID_PROPERTY_IS_CLOSED_DEAL_ANCHORVALE)
                 .withPropertyIdPredicate(VALID_PROPERTY_PROPERTY_ID_ANCHORVALE)
                 .build();
         FindPropertyCommand expectedCommand = new FindPropertyCommand(descriptor);
@@ -170,13 +162,6 @@ public class FindPropertyCommandParserTest {
         userInput = PROPERTY_IS_RENTAL_DESC_ANCHORVALE;
         descriptor = new FindPropertyDescriptorBuilder()
                 .withIsRentalPredicate(VALID_PROPERTY_IS_RENTAL_ANCHORVALE).build();
-        expectedCommand = new FindPropertyCommand(descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // is closed deal
-        userInput = PROPERTY_IS_CLOSED_DEAL_DESC_ANCHORVALE;
-        descriptor = new FindPropertyDescriptorBuilder()
-                .withIsClosedDealPredicate(VALID_PROPERTY_IS_CLOSED_DEAL_ANCHORVALE).build();
         expectedCommand = new FindPropertyCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

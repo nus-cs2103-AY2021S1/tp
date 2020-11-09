@@ -125,16 +125,6 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     }
 
     /**
-     * Removes property with {@code sellerId} from this {@code PropertyBook}. A property
-     * with this {@code sellerId} must exist in the property book.
-     *
-     * @param sellerId the sellerId of which to remove the property.
-     */
-    public void removeAllPropertiesWithSellerId(SellerId sellerId) {
-        properties.removeAllWithSellerId(sellerId);
-    }
-
-    /**
      * Gets property with {@code id} from this {@code PropertyBook}. A
      * property with this {@code id} must exist in the property book.
      *

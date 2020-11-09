@@ -13,6 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.id.PropertyId;
 import seedu.address.model.property.Property;
+import seedu.address.model.property.exceptions.PropertyNotFoundException;
 
 /**
  * Deletes a property identified using it's displayed index from the property book.
@@ -51,6 +52,7 @@ public class DeletePropertyCommand extends Command {
         } else {
             throw new AssertionError("Either targetId or targetIndex must be null.");
         }
+        model.deleteProperty(propertyToDelete);
         return new CommandResult(String.format(
                 MESSAGE_DELETE_PROPERTY_SUCCESS, propertyToDelete)).setEntity(EntityType.PROPERTY);
     }
@@ -79,13 +81,15 @@ public class DeletePropertyCommand extends Command {
         }
 
         Property propertyToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteProperty(propertyToDelete);
         return propertyToDelete;
     }
 
-    private Property deleteByPropertyId(Model model) {
-        Property propertyToDelete = model.getPropertyById(targetId);
-        model.deletePropertyByPropertyId(targetId);
-        return propertyToDelete;
+    private Property deleteByPropertyId(Model model) throws CommandException {
+        try {
+            Property propertyToDelete = model.getPropertyById(targetId);
+            return propertyToDelete;
+        } catch (PropertyNotFoundException e) {
+            throw new CommandException(PropertyNotFoundException.ERROR_MESSAGE);
+        }
     }
 }

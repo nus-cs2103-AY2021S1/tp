@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.showPropertyAtIndex;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROPERTY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROPERTY;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
@@ -107,7 +106,7 @@ public class DeletePropertyCommandTest {
     public void executeById_propertyDoesNotExist_throwsCommandException() {
         PropertyId targetId = new PropertyId(model.getPropertyBook().getPropertyList().size() + 1);
         DeletePropertyCommand command = new DeletePropertyCommand(null, targetId);
-        assertThrows(PropertyNotFoundException.class, () -> command.execute(model));
+        assertCommandFailure(command, model, PropertyNotFoundException.ERROR_MESSAGE);
     }
 
     @Test

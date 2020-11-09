@@ -23,11 +23,9 @@ import seedu.address.model.bidbook.BidBook;
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.price.PriceFilter;
 import seedu.address.model.property.AskingPricePredicate;
-import seedu.address.model.property.IsClosedDeal;
 import seedu.address.model.property.IsRental;
 import seedu.address.model.property.PropertyAddressContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyIdContainsKeywordsPredicate;
-import seedu.address.model.property.PropertyIsClosedDealPredicate;
 import seedu.address.model.property.PropertyIsRentalPredicate;
 import seedu.address.model.property.PropertyNameContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyTypeContainsKeywordsPredicate;
@@ -127,7 +125,7 @@ public class FindPropertyCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPropertyList());
 
-        // asking price, isRental, isClosedDeal - ParseException caught in Parser
+        // asking price, isRental - ParseException caught in Parser
     }
 
     @Test
@@ -195,16 +193,6 @@ public class FindPropertyCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(PROPERTY_A, PROPERTY_B), model.getFilteredPropertyList());
 
-        // is closed deal - only one keyword
-        PropertyIsClosedDealPredicate isClosedDealPredicate =
-                prepareIsClosedDealPredicate("active");
-        descriptor = new FindPropertyDescriptor();
-        descriptor.setIsClosedDealPredicate(isClosedDealPredicate);
-        command = new FindPropertyCommand(descriptor);
-        expectedModel.updateFilteredPropertyList(isClosedDealPredicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(PROPERTY_A, PROPERTY_B), model.getFilteredPropertyList());
-
         // asking price - only one keyword
         expectedMessage = String.format(MESSAGE_PROPERTY_LISTED_OVERVIEW, 1);
         AskingPricePredicate askingPricePredicate =
@@ -267,10 +255,4 @@ public class FindPropertyCommandTest {
         return new PropertyIsRentalPredicate(new IsRental(userInput.trim()));
     }
 
-    /**
-     * Parses {@code userInput} into a {@code PropertyIsClosedDealPredicate}.
-     */
-    private PropertyIsClosedDealPredicate prepareIsClosedDealPredicate(String userInput) {
-        return new PropertyIsClosedDealPredicate(new IsClosedDeal(userInput.trim()));
-    }
 }
