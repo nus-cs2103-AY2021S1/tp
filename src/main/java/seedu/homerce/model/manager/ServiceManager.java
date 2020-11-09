@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
@@ -18,17 +19,25 @@ import seedu.homerce.model.service.UniqueServiceList;
 public class ServiceManager implements ReadOnlyServiceManager {
 
     private final UniqueServiceList services;
+    private final Logger logger;
 
+    /**
+     * Initializes a new ServiceManager with an empty list of services.
+     */
     public ServiceManager() {
+        this.logger = Logger.getLogger("Service Manager");
         this.services = new UniqueServiceList();
+        logger.info("Initialized new Service Manager.");
     }
 
     /**
      * Creates an ServiceManager using the Services in the {@code toBeCopied}
      */
     public ServiceManager(ReadOnlyServiceManager toBeCopied) {
+        this.logger = Logger.getLogger("Service Manager");
         this.services = new UniqueServiceList();
         resetData(toBeCopied);
+        logger.info("A new Service Manager is created from ReadOnlyServiceManager.");
     }
 
     //// list overwrite operations
@@ -47,6 +56,7 @@ public class ServiceManager implements ReadOnlyServiceManager {
     public void resetData(ReadOnlyServiceManager newData) {
         requireNonNull(newData);
         setServices(newData.getServiceList());
+        logger.info("Service Manager data is reseted.");
     }
 
     //// service-level operations

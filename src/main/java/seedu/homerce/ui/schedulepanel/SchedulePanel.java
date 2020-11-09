@@ -59,10 +59,11 @@ public class SchedulePanel extends UiPart<Region> {
      * Fills the grid pane with the slots.
      */
     public void construct() {
+        logger.info("Constructing Schedule Panel.");
         constructGrid();
         addDateDisplaySlotsToGrid();
         if (appointments.size() == 0) {
-            System.out.println("No appointments in schedule");
+            logger.info("No appointments in schedule");
             return;
         }
         addAppointmentSlotsToGrid();

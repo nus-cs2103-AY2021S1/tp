@@ -687,7 +687,9 @@ be indicated using the first column of the grid.
 
 In this section, we will use the following UML object diagram to describe the interaction between objects in the schedule view.
 
-*Figure 24. Workflow of a `breakdownfinance` command*
+![Object diagram for schedule](images/ScheduleObjectDiagram.png)
+
+*Figure 24. Associations between related objects of the schedule view feature* 
 
 #### 4.8.3 Design Consideration
 
@@ -699,15 +701,15 @@ In this section, we will use the following UML object diagram to describe the in
 | **Option 2 (current choice)** <br> Display appointments in a weekly view | Lowers the usage of scrolling. | More effort is required as commands have to be created to allow the user to navigate between different weeks. |
 
 Reason for choosing option 2:
-* Reduce the usage of mouse scrolling making it a more keyboard focused app where commands are used to navigate between weeks of a schedule.
-* Easier to digest a weekly view instead of the entire list of appointments.
+* Reduce the usage of mouse scrolling making it a more command line interface(CLI) focused app where commands are used to navigate between weeks of a schedule.
+* As a user, it is easier to digest a weekly view instead of the entire list of appointments.
 
 **Aspect: Number of days to display in the schedule view**
 
 |              |  **Pros**  | **Cons** |
 | -------------|------------|----------|
 | **Option 1 (current choice)** <br> Display all days of a week in the schedule view even if the day does not have any appointments. | Allows the user to have a standardised schedule view for every week and results in better scaling with the screen display | Results in a lot of whitespace when there are low number of appointments scheduled. |
-| **Option 2** <br> Display only days with appointments | Allows the user to only see what he/she needs, easier to implement as well. | Can cause confusion to the user as dates that do not have appointments will be skipped. E.g. A user will only see appointments on 20/11 and 25/11 if the other dates have no appointments. |
+| **Option 2** <br> Display only days with appointments | Allows the user to only see what he/she needs and easier to implement as well. | Can cause confusion to the user as dates that do not have appointments will be skipped. E.g. A user will only see appointments on 20/11 and 25/11 if the other dates have no appointments. |
 
 Reason for choosing option 1:
 * Visually more pleasing for the user.
