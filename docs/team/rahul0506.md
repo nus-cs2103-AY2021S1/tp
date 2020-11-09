@@ -60,10 +60,7 @@ Given below are my contributions to the project.
     [\#80](https://github.com/AY2021S1-CS2103T-F13-1/tp/pull/80)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * Some PRs reviewed: [\#85](https://github.com/AY2021S1-CS2103T-F13-1/tp/pull/85), [\#66](https://github.com/AY2021S1-CS2103T-F13-1/tp/pull/66)
 
 * **Testing**
   * Wrote test cases for find command and associated classes/methods: 
