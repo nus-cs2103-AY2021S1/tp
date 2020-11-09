@@ -1364,7 +1364,7 @@ testers are expected to do more *exploratory* testing.
     
 #### Mark an Appointment as done/undone
 
-1. Marking an appointment as done in the Appointment Tracker
+1. Marking an appointment as done in the Appointment Manager
 
    1. Prerequisites: List all appointments using the `listapt` command, such that multiple appointments are in the list. The index provided is valid, and the specified appointment is currently marked as undone. 
    
@@ -1377,7 +1377,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect formats to try: `done`, `done x` (where x is larger than the appointment list size, or x refers to an appointment that is already done)
         1. Expected: Similar to previous.
             
-1. Marking an appointment as undone in the Appointment Tracker
+1. Marking an appointment as undone in the Appointment Manager
 
    1. Prerequisites: List all appointments using the `listapt` command, such that multiple appointments are in the list. The index provided is valid, and the specified appointment is currently marked as done. 
    
