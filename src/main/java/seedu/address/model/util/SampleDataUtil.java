@@ -1,12 +1,15 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.FitNus;
 import seedu.address.model.ReadOnlyFitNus;
+import seedu.address.model.exercise.Exercise;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.routine.Routine;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,6 +24,22 @@ public class SampleDataUtil {
             new Lesson(new Name("GET4000"), getTagSet("priority")),
             new Lesson(new Name("GES5000"), getTagSet("fun")),
             new Lesson(new Name("GEX6000"), getTagSet("hard"))
+        };
+    }
+
+    public static Routine[] getSampleRoutines() {
+        return new Routine[] {
+                new Routine(new Name("Leg Day")),
+                new Routine(new Name("Upper Body Workout")),
+                new Routine(new Name("Arm Routine"))
+        };
+    }
+
+    public static Exercise[] getSampleExercise() {
+        return new Exercise[] {
+                new Exercise(new Name("Bench Press"), new HashSet<>()),
+                new Exercise(new Name("Shoulder Press"), new HashSet<>()),
+                new Exercise(new Name("Squats"), new HashSet<>())
         };
     }
 
