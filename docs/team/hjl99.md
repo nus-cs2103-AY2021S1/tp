@@ -24,7 +24,7 @@ PRs: [#117](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/117).
 
 #### Enhancements to Existing Features
 
-1. Added 'Tag' attribute for both Recipe and Ingredient. ([#115](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/115), [#116](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/116)).
+1. Added 'Tag' attribute for Recipes. ([#115](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/115), [#116](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/116)).
 
 2. Increased code coverage by writing tests for recipe-related commands, filter feature and attributes involved. ([#176](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/176), [#182](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/182)).
 
