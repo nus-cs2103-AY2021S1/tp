@@ -312,6 +312,16 @@ Example of the tag bug:
 
 ![TagBug](images/TagBug.png)
 
+* No validation of instructor existence for modules. Adding a non-existent instructor by editing the 
+`addressbook.json` file will not throw any error.
+
+Example of the instructor bug:
+
+![JSONFileComposite](images/JSONFileComposite.png)
+
+
+![InstructorBug](images/InstructorBug.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ

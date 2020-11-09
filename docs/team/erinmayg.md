@@ -99,7 +99,7 @@ Given below are my contributions to the project.
     [\#262](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/262)
     * Added the manual testing for most features:
     [\#262](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/262),
-    [\#272](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/272),
+    [\#272](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/272)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 
