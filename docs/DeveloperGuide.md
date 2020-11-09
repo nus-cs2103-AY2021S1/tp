@@ -112,10 +112,10 @@ The `Model`,
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP
 ) model is given below. It has a `Tag` list in the `CanoeCoach`, which `Student` references. This allows `CanoeCoach` to
  only require one `Tag` object per unique `Tag`, instead of each `Student` needing their own `Tag` object. At the same time, each student contains references to 5 day objects, each storing the dismissal time of Monday, Tuesday, Wednesday, Thursday and Friday. <br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
 
+![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 ### Storage component
 
@@ -136,13 +136,45 @@ Classes used by multiple components are in the `seedu.canoe.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### AnyMatchPredicateList / AllMatchPredicateList
+
+### AnyMatchPredicateList
+
+### Implementation
+
+The `AnyMatchPredicateList` class implements the `Predicate` interface provided by the Java util library.
+
+The `AnyMatchPredicateList` class has only one field which is a list of predicates passed to it when the constructor is called.
+
+The list of predicates can consist of any predicate relating to a field inside of the `Student` class.
+
+The `AnyMatchPredicateList` class has a `AnyMatchPredicateList#test()` method with a `Student` object as a parameter. This method will return true if the passed `Student` matches any of the predicates in the predicate list.
+
+The usage of the `AnyMatchPredicateList` class is for filtering of the `Student` `ObservableList` inside of the `Model` interface.
+
+Below is a sequence diagram of the execution of `CommonTimeCommand` which uses the `AnyMatchPredicateList` class to filter students:
+
+![CommonTimeCommandSequenceDiagram](images/CommonTimeCommandSequenceDiagram.png)
+
+In the diagram above, the `CommonTimeCommandParser` will parse the arguments and add any necessary `Predicates` into the `AnyMatchPredicateList` which is passed as an argument during the creation of the `CommonTimeCommand`.
+
+This `AnyMatchPredicateList` is then used to filter the student list in the method `Model#updateFilteredStudentList()` which takes in the predicate list as an argument.
+
+### AllMatchPredicateList
+
+The `AllMatchPredicateList` has a similar implementation to the `AnyMatchPredicateList`. The only difference is that the `AllMatchPredicateList#test()` method returns true only if the passed `Student` matches **ALL** of the predicates in the predicate list.
+
+The following class diagram shows the relationship between AnyMatchPredicateList and AllMatchPredicateList and the fields inside of the Student class:
+
+![PredicateListClassDiagram](images/PredicateListClassDiagram.png)
+
 ### Training Class
 
 #### Implementation
 
 The Training Class represents a Training Session that Students can attend.
 
-Training Class has 2 fields, a LocalDateTime that stores the date and time of the Training Session, and a HashSet of Students that stores the unique Students attending the Training Session. 
+Training Class has 2 fields, a LocalDateTime that stores the date and time of the Training Session, and a HashSet of Students that stores the unique Students attending the Training Session.
 
 A Training Session is initialised with no Students in the HashSet by default.
 
@@ -505,7 +537,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user     | delete a Training session that was already created | make changes to the schedule |
 | `* * *`  | user     | add students to a training session | view who are the students to expect for a training |
 | `* * *`  | user     | delete students from a training session | remove students who are unable to come for training |
-| `* * `   | user     | view the trainings that a student will be attending | determine the number of sessions he has attended |
+| `* * `   | user     | view the trainings that a student will be attending | determine the number of sessions he will be attending |
+| `* * `   | user     | mark the student as having attended the training | determine the number of sessions he has attended |
+| `* * `   | user     | view the students who have poor attendance | determine who are the students whom I need to monitor |
 
 ### Use cases
 
@@ -793,6 +827,30 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
+### Find common dismissal time among Students
+
+1. Finding the latest dismissal times among all specified Students for all days of the week.
+
+    1. No prerequisites need to be fulfilled.
+
+    1. Test case: `common-time id/` <br>
+       Expected: Empty field detected. Error details shown in the status message.
+
+    1. Test case: `common-time ay/` <br>
+       Expected: Same as previous.
+
+    1. Test case: `common-time id/1,2,2,3,4` <br>
+       Expected: Duplicate Ids detected. Error details shown in the status message.
+
+    1. Test case: `common-time id/1,2,3,4` <br>
+       Expected: The latest dismissal times for Students with id 1, 2, 3, and 4 are shown in the results message.
+
+    1. Test case: `common-time ay/6` <br>
+       Expected: Academic year does not exist. Error details shown in the status message.
+
+    1. Test case: `common-time ay/2` <br>
+       Expected: The latest dismissal times for Students in the academic year 2 are shown in the results message.
+
 ### Creating a new Training Session
 
 1. Creating a new Training Session while all students are being shown.
@@ -813,7 +871,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `training` <br>
        Expected: Similar to previous.
-   
+
     1. Other incorrect commands to try: `training x`, where x are alphabets, or do not follow the date time formatting.
 
 ### Deleting a Training Session
@@ -824,22 +882,22 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `delete-training 1` <br>
        Expected: The first Training Session is deleted. The details of the deleted Training shown in the status message.
-  
+
     1. Test case: `delete-training -1` <br>
        Expected: No Training Session is created. Error details shown in the status message.
-   
+
     1. Test case: `delete-training a` <br>
        Expected: Similar to previous.
 
     1. Test case: `delete-training` <br>
        Expected: Similar to previous.
-  
+
     1. Other incorrect commands to try: `delete-training x`, where x are all non-numeric, or is a number greater than the number of Training Sessions in the Training list.
 
 ### Adding Student to Training Session
 
 1. Adding a student while all students are being shown
- 
+
     1. Prerequisites: List all students and trainings using the `list` command. Multiple students in the list. Multiple Training sessions in the list.
 
     1. Test case: `ts-add 1 id/1` <br>
@@ -882,16 +940,16 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `ts-delete 1 id/-1,1` <br>
        Expected: Similar to previous.
- 
+
     1. Test case: `ts-delete 1 id/` <br>
        Expected: Similar to previous.
-  
+
     1. Test case: `ts-delete 1` <br>
        Expected: Similar to previous.
- 
+
     1. Test case: `ts-delete` <br>
        Expected: Similar to previous.
-    
+
     1. Other incorrect commands to try: `ts-delete x id/y,y,y`, where x is greater than the number of Training Sessions, and y is not the Id of any Student.
 
 ### Adding all Students to a Training Session
@@ -913,3 +971,37 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
 
     1. Other incorrect commands to try: `ts-addall x`, where x are all non-numeric, or corresponds to a Training Session with all Students in the Student List already inside.
+    
+### Marking the Attendance of a Student
+
+1. Marking the Attendance of a Student.
+
+    1. Prerequisites: There is at least one Training Session in the Training list that has passed, and at least 1 student who is attending that training. In the test cases, assume that the
+    student has id 1.
+
+    1. Test case: `mark-attendance 1 id/1` <br>
+       Expected: Student's Attendance for Training will be successfully marked.
+
+    1. Test case: `mark-attendance 1 id/-1` <br>
+       Expected: Invalid id. Error details shown in the status message.
+
+    1. Test case: `mark-attendance 1 id/5` <br>
+       Expected: Assuming that student with id 5 is not attending the training, error details shown in the status message.
+
+    1. Test case: `mark-attendance 3 id/1` <br>
+           Expected: Assuming that training does exist but has not passed, Attendance will not be marked. error details shown in the status message.
+
+    1. Test case: `mark-attendance -1 id/1` <br>
+       Expected: Invalid training index. Error details shown in the status message.
+
+    1. Test case: `mark-attendance 1 id/1,2,3` <br>
+       Expected: Assuming that students with id 1, 2 and 3 and all valid students, the Students' Attendances for Training will be successfully marked.
+
+### Find all Students with a Bad Attendance Record
+
+1. Finding all students who have missed more than three prior training sessions
+
+    1. No prerequisites need to be fulfilled.
+
+    1. Test case: `find-bad-students` <br>
+       Expected: A list of Students with a bad attendance record (missed more than three prior training sessions) will be shown in the results message.
