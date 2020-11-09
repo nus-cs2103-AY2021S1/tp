@@ -14,7 +14,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to add / delete sessions. (Relevant PR(s): [\#72](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/72), [\#97](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/97))
   * What it does: This feature allows the user to create and delete fitness sessions.
-  * Justification: This feature is core to the product because the user needs to create a session before they can schedule a client.
+  * Justification: This feature is core to the product because the user needs to create a session before they can schedule a client. I also lay the foundation for other team members to work on the session model.
   * Highlights: This enhancement required an in-depth analysis of design alternatives.
   The implementation was challenging as it deals with dates, the notion of "overlapping" dates, and handling schedules related to the session.
 
@@ -56,11 +56,11 @@ Given below are my contributions to the project.
   * Helped others debug and find solution during team meetings. For example, together with Wei Jie and Kelvin, we integrate the tab pane in client's information page.
   * Posted issues and discussions on issue tracker. (Some examples: 
   [\#98](https://github.com/AY2021S1-CS2103T-T13-3/tp/issues/98), [\#107](https://github.com/AY2021S1-CS2103T-T13-3/tp/issues/107), [\#223](https://github.com/AY2021S1-CS2103T-T13-3/tp/issues/223))
+  * PRs reviewed (with non-trivial review comments): [\#101](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/101), [\#230](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/230), [\#231](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/231)     
 
 * **Tools**:
-  * Integrated a new Github plugin (PlantUML) to the team repo.
+  * Integrated new Github plugins (PlantUML and Codecov) to the team repo.
   
-* **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#101](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/101), [\#230](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/230), [\#231](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/231)                                           
-    * Reported bugs and suggestions for Group [CS2103T-T15-4](https://ay2021s1-cs2103t-t15-4.github.io/tp/UserGuide.html) on CATcher.
+* **Community**:                                 
+  * Reported bugs and suggestions for Group [CS2103T-T15-4](https://ay2021s1-cs2103t-t15-4.github.io/tp/UserGuide.html) on CATcher.
 
