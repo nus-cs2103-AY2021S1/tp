@@ -7,9 +7,7 @@ title: Marcus Duigan's Project Portfolio Page
 
 PropertyFree is a real estate management application meant for property agents to organize their properties and meetings more efficiently.
 Other application can keep track of meetings and schedules but there are relatively few applications that help track properties 
-and associate them with meetings with clients.
-
-For our project we hope to make it more streamlined for agents to keep track of their property and have clear information about those properties
+and associate them with meetings with clients. For our project we hope to make it more streamlined for agents to keep track of their property and have clear information about those properties
 and there clients.
 
 #### My Contributions to PropertyFree
@@ -53,22 +51,18 @@ and there clients.
 
 * **Project management**:
   * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
-  * Integration of `CodeCov` 
-  * Managed overall UserGuide.md to ensure standardization and proper formatting
+  * Integration of `CodeCov` and managed overall UserGuide.md to ensure standardization and proper formatting
 
 * **Enhancements to existing features**:
-  * Wrote additional tests for existing bid features to increase coverage. Pull requests: [#262](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/262), [#150](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/150), [#200](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/200/files?file-filters%5B%5D=.java&file-filters%5B%5D=.json)
-  * Wrote tests for other features. Pull requests: [#262](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/262)
+  * Wrote additional tests for existing bid features and other features to increase coverage. Pull requests: [#262](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/262), [#150](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/150), [#200](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/200/files?file-filters%5B%5D=.java&file-filters%5B%5D=.json), [#262](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/262)
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the bid features
+    * Added documentation and consmetic tweaks for the bid features
     * Added table of command summary for easier reference Pull request: [#283](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/283)
-    * Did cosmetic tweaks to existing documentation of all bid features
     * Reviewed and standardized entire user guide. Pull requests: [#283](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/283), [#286](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/286/files)
   * Developer Guide:
-    * Added implementation details for the general `add` and `list` feature. Pull request: [#297](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/297)
-    * Added implementation details for the specific bid auto sort feature and bids/meetings validity check feature. Pull request: [#297](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/297)
+    * Added implementation details for the general `add`, `list`, specific bid auto sort and bids/meetings validity check feature Pull request: [#297](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/297), [#297](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/297)
     * Updated Overall Architecture model and description. Pull request: [#297](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/297)
     * Updated User Stories and Non-Functional requirements. Pull Request: [#344](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/344)
 
