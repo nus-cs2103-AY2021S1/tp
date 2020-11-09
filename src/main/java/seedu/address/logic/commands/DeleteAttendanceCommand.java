@@ -30,7 +30,7 @@ public class DeleteAttendanceCommand extends Command {
             + PREFIX_WEEK + "3";
 
     public static final String MESSAGE_DELETE_ATTENDANCE_SUCCESS = "%s is present on %s";
-    public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view";
+    public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view. ";
 
     private final Index index;
     private final int[] weeksToDelete;

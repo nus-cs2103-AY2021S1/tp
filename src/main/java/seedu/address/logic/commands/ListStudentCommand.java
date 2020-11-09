@@ -17,7 +17,7 @@ public class ListStudentCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_VIEWING_TUTORIAL_GROUPS_SUCCESS = "Viewing all students of: %1$s";
-    public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view";
+    public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view. ";
 
     public ListStudentCommand() { }
 

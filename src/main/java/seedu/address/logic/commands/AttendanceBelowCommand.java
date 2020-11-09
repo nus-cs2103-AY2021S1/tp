@@ -18,7 +18,7 @@ public class AttendanceBelowCommand extends Command {
             + "Example: " + COMMAND_WORD + " 5";
 
     public static final String MESSAGE_ATTENDANCE_BELOW_SUCCESS = "Here are the students whose attendance are below %s";
-    public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view";
+    public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view. ";
 
     private final AttendanceBelowSpecifiedScorePredicate predicate;
     private final int upperBound;
