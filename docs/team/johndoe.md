@@ -1,11 +1,11 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: FaculType
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+FaculType is a desktop app for managing faculty members and their modules, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI) created with JavaFX. It is written in Java, and has about 11 kLoC.
 
 Given below are my contributions to the project.
 

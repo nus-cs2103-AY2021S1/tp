@@ -1,7 +1,10 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_KEYWORD;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -14,22 +17,25 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Office;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_DEPARTMENT = " ";
+    private static final String INVALID_OFFICE = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_DEPARTMENT = "Computer Science";
+    private static final String VALID_OFFICE = "COM2-03-01";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -103,26 +109,42 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+    public void parseDepartment_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDepartment((String) null));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+    public void parseDepartment_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDepartment(INVALID_DEPARTMENT));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
+    public void parseDepartment_validValueWithoutWhitespace_returnsAddress() throws Exception {
+        Department expectedDepartment = new Department(VALID_DEPARTMENT);
+        assertEquals(expectedDepartment, ParserUtil.parseDepartment(VALID_DEPARTMENT));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+    public void parseOffice_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseOffice((String) null));
+    }
+
+    @Test
+    public void parseOffice_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseOffice(INVALID_OFFICE));
+    }
+
+    @Test
+    public void parseOffice_validValueWithoutWhitespace_returnsAddress() throws Exception {
+        Office expectedOffice = new Office(VALID_OFFICE);
+        assertEquals(expectedOffice, ParserUtil.parseOffice(VALID_OFFICE));
+    }
+
+    @Test
+    public void parseDepartment_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
+        String addressWithWhitespace = WHITESPACE + VALID_DEPARTMENT + WHITESPACE;
+        Department expectedAddress = new Department(VALID_DEPARTMENT);
+        assertEquals(expectedAddress, ParserUtil.parseDepartment(addressWithWhitespace));
     }
 
     @Test
@@ -189,8 +211,35 @@ public class ParserUtilTest {
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
         Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+        Set<Tag> expectedTagSet = new HashSet<>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseString_validString_returnsString() {
+        String validString = "Valid String";
+        try {
+            String resultString = ParserUtil.parseString(validString);
+            assertEquals(validString, resultString);
+        } catch (ParseException e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void parseString_null_throwsParseException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseString(null));
+    }
+
+    @Test
+    public void parseString_emptyString_throwsParseException() {
+        String emptyString = "";
+        try {
+            ParserUtil.parseString(emptyString);
+            fail();
+        } catch (ParseException e) {
+            assertEquals(MESSAGE_EMPTY_KEYWORD, e.getMessage());
+        }
     }
 }

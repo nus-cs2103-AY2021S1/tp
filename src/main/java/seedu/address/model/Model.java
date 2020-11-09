@@ -5,6 +5,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 
 /**
@@ -13,6 +16,9 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -58,10 +64,15 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Returns true if contact list is empty.
      */
-    void deletePerson(Person target);
+    boolean isEmptyPersonList();
+
+    /**
+     * Clear all modules from the contact list.
+     * The list must have at least one contact.
+     */
+    void clearContacts();
 
     /**
      * Adds the given person.
@@ -70,11 +81,23 @@ public interface Model {
     void addPerson(Person person);
 
     /**
+     * Deletes the given person.
+     * The person must exist in the address book.
+     */
+    void deletePerson(Person target);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Clear all modules from the module list.
+     * The list must have at least one module.
+     */
+    void clearMod();
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
@@ -84,4 +107,75 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns true if a module with the same identity as {@code module} exists in the address book.
+     */
+    boolean hasModule(Module module);
+
+    /**
+     * Returns true if a module has a module code of {@code moduleCode} exists in the address book.
+     */
+    boolean hasModuleCode(ModuleCode moduleCode);
+
+    /**
+     * Returns true if module list is empty.
+     */
+    boolean isEmptyModuleList();
+
+    /**
+     * Adds the given module.
+     * {@code module} must not already exist in the address book.
+     */
+    void addModule(Module module);
+
+    /**
+     * Removes the module with the given {@code moduleCode}.
+     * Module with the {@code moduleCode} must exist in the address book.
+     */
+    void deleteModule(ModuleCode moduleCode);
+
+    /**
+     * Assigns an {@code instructor} to the module with the given {@code moduleCode}.
+     * The module with the {@code moduleCode} must exist in the address book.
+     */
+    void assignInstructor(Person instructor, ModuleCode moduleCode);
+
+    void unassignAllInstructors();
+
+    /**
+     * Unassigns an {@code instructor} from the module with the given {@code moduleCode}.
+     * The module with the {@code moduleCode} must exist in the address book.
+     */
+    void unassignInstructor(Person instructor, ModuleCode moduleCode);
+
+    /**
+     * Unassigns an {@code instructor} from all modules.
+     */
+    void unassignInstructorFromAll(Person instructor) throws CommandException;
+
+    /**
+     * Returns true if the module with the given {@code moduleCode} has {@code instructor}.
+     */
+    boolean moduleCodeHasInstructor(ModuleCode moduleCode, Person instructor);
+
+    /**
+     * Switches the active module list.
+     */
+    void switchModuleList();
+
+    /**
+     * Returns the active semester.
+     */
+    int getSemester();
+
+    /** Returns an unmodifiable view of the filtered person list. */
+    ObservableList<Module> getFilteredModuleList();
+
+    /**
+     * Updates the filter of the filtered module list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredModuleList(Predicate<Module> predicate);
+
 }

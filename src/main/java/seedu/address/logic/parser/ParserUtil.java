@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_MODULE_CODE;
+import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_KEYWORD;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -9,9 +11,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleName;
+import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Office;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -25,6 +30,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -66,18 +72,33 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String department} into an {@code Department}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code department} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Department parseDepartment(String department) throws ParseException {
+        requireNonNull(department);
+        String trimmedDepartment = department.trim();
+        if (!Department.isValidDepartment(trimmedDepartment)) {
+            throw new ParseException(Department.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Department(trimmedDepartment);
+    }
+
+    /**
+     * Parses a {@code String office} into an {@code Office}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Office} is invalid.
+     */
+    public static Office parseOffice(String office) throws ParseException {
+        requireNonNull(office);
+        String trimmedOffice = office.trim();
+        if (!Office.isValidOffice(trimmedOffice)) {
+            throw new ParseException(Office.MESSAGE_CONSTRAINTS);
+        }
+        return new Office(trimmedOffice);
     }
 
     /**
@@ -120,5 +141,62 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String moduleCode} into a {@code ModuleCode}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code moduleCode} is invalid.
+     */
+    public static ModuleCode parseModuleCode(String moduleCode) throws ParseException {
+        requireNonNull(moduleCode);
+        String trimmedModuleCode = moduleCode.trim();
+        if (!ModuleCode.isValidCode(trimmedModuleCode)) {
+            throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
+        }
+        return new ModuleCode(trimmedModuleCode);
+    }
+
+    /**
+     * Parses {@code Collection<String> moduleCodes} into a {@code Set<ModuleCode>}.
+     * Module codes must be distinct.
+     */
+    public static Set<ModuleCode> parseModuleCodes(Collection<String> moduleCodes) throws ParseException {
+        requireNonNull(moduleCodes);
+        final Set<ModuleCode> codeSet = new HashSet<>();
+        for (String code : moduleCodes) {
+            if (codeSet.contains(parseModuleCode(code))) {
+                throw new ParseException(String.format(MESSAGE_DUPLICATE_MODULE_CODE, code));
+            }
+            codeSet.add(parseModuleCode(code));
+        }
+        return codeSet;
+    }
+
+    /**
+     * Parses a {@code String moduleName} into a {@code ModuleName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code moduleName} is invalid.
+     */
+    public static ModuleName parseModuleName(String moduleName) throws ParseException {
+        requireNonNull(moduleName);
+        String trimmedModuleName = moduleName.trim();
+        if (!ModuleName.isValidName(trimmedModuleName)) {
+            throw new ParseException(ModuleName.MESSAGE_CONSTRAINTS);
+        }
+        return new ModuleName(trimmedModuleName);
+    }
+    /**
+     *
+     */
+    public static String parseString(String string) throws ParseException {
+        requireNonNull(string);
+        String trimmedString = string.trim();
+        if (trimmedString.isEmpty() || trimmedString.isBlank()) {
+            throw new ParseException(MESSAGE_EMPTY_KEYWORD);
+        }
+        return trimmedString;
     }
 }

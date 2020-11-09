@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes mclear command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([active semester module list is not empty])
+    :Clear contacts from the active semester module list;
+    :Update GUI to show empty active semester module list;
+else ([else])
+    :Show error message;
+endif
+stop
+@enduml

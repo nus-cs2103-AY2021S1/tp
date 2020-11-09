@@ -1,0 +1,12 @@
+@startuml
+start
+:User executes unassignall command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+:Unassign all contacts from all modules;
+:Update GUI to show changes;
+
+stop
+@enduml

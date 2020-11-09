@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Justin Tzuriel Krisnahadi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/justintzuriel.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/justintzuriel)]
+[[portfolio](team/justintzuriel.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Deliverables and deadlines
 
-### Johnny Doe
+### Christian Drake Martin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/drake25122000.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/drake25122000)]
+[[portfolio](team/drake25122000.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Code quality
 
-### James Doe
+### Erin May Gunawan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/erinmayg.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/erinmayg)]
+[[portfolio](team/erinmayg.md)]
 
 * Role: Developer
 * Responsibilities: UI
+
+### Florencia Martina
+
+<img src="images/florenciamartina.png" width="200px">
+
+[[github](http://github.com/florenciamartina)]
+[[portfolio](team/florenciamartina.md)]
+
+* Role: Developer
+* Responsibilities: Documentation
+
+### Woo Jian Zhe
+
+<img src="images/jzwoo.png" width="200px">
+
+[[github](http://github.com/jzwoo)]
+[[portfolio](team/jzwoo.md)]
+
+* Role: Developer
+* Responsibilities: Testing

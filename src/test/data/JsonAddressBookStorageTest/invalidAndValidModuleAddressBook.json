@@ -1,0 +1,9 @@
+{
+  "semOneModules": [ {
+    "moduleCode": "CS1010S",
+    "moduleName": "Programming Methodology"
+  }, {
+    "moduleCode": "CS1010*",
+    "moduleName": "Module with invalid moduleCode field"
+  } ]
+}
