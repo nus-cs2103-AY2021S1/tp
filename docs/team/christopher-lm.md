@@ -21,13 +21,13 @@ and their clients.
 
 * **Add Meeting Feature**: Added a command to add 3 types of meetings, paperwork, admin and viewing types with various parameters.
 * What it does: allows the user to add meetings in the meeting book based on the type of meeting he has.
-* Justification: A user might want to add meetings to the meeting book so that he can have an easy reference of all the upcoming meetings he has.
-* Highlights: It required an in-depth analysis of design alternatives. The implementation of this command was challenging as it required the storing of all 3 types of meeting and the various attributes that a meeting object has.
+* Justification: A user might want to add meetings to the meeting book so that he can track his meetings.
+* Highlights: The implementation of this command was challenging as it required the storing of all 3 types of meeting and the various attributes that a meeting object has.
 
 * **Edit Meeting Feature**: Added a command to edit one or more parameters of an existing meeting in the meeting book.
 * What it does: allows the user to edit an existing meeting in the meeting book based on one or more parameters.
 * Justification: A user will want to edit meetings in the meeting book so that he can easily change the meeting details if needed.
-* Highlights: This implementation was straight forward, but I wanted to enable more than one parameter to be edited and this was more challenging but it would improve the user's convenience significantly as the user could input all the edits into one command line instead of multiple command lines.
+* Highlights: This implementation was straight forward, but enabling more than one parameter was challenging. It would improve the user's convenience significantly as the user could input all the edits into one command line.
 
 * **Meeting Attributes**: Added the various attributes for the meeting objects.
 * What it does: Allows the user to add the various parameters to create a meeting object.
