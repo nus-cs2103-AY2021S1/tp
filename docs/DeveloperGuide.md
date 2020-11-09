@@ -1801,7 +1801,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `question delete 1 i/QUESTION_INDEX`
        Expected: Question at `QUESTION_INDEX` is removed. Details of deleted question included in status message.
 
-### F.5 Notes Feature
+### F.5 Notebook Feature
 
 1. Adding a note to the notebook.
     
