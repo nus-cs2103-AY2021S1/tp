@@ -30,7 +30,7 @@ public class AddAttendanceCommand extends Command {
             + PREFIX_WEEK + "2";
 
     public static final String MESSAGE_ADD_ATTENDANCE_SUCCESS = "%s is present on %s";
-    public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view";
+    public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view. ";
 
     private final Index index;
     private final int[] weeksToAdd;

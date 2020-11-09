@@ -14,9 +14,6 @@ public class ListModuleCommand extends Command {
 
     public static final String MESSAGE_VIEWING_MODULES_SUCCESS = "Viewing all modules.";
 
-    public static final String MESSAGE_NOT_IN_MODULE_VIEW = "You are currently not in the Module view. "
-            + "Run listMod to go back to the Module view.";
-
     public ListModuleCommand() { }
 
     @Override

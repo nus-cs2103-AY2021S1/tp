@@ -41,8 +41,7 @@ public class EditTutorialGroupCommand extends Command {
 
     public static final String MESSAGE_EDIT_TUTORIAL_SUCCESS = "Edited Tutorial Group: %1$s";
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "This Tutorial  already exists in this Module.";
-    public static final String MESSAGE_NOT_IN_TUTORIAL_VIEW =
-            "You are currently not in the Module view. Run listMod to go back to the module view.";
+    public static final String MESSAGE_NOT_IN_TUTORIAL_VIEW = "You are currently not in the Module view.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;

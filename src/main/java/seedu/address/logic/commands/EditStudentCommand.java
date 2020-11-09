@@ -51,7 +51,7 @@ public class EditStudentCommand extends Command {
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in Trackr.";
-    public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view";
+    public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view. ";
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;

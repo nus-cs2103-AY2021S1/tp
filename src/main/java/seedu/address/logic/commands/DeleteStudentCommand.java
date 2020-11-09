@@ -23,7 +23,7 @@ public class DeleteStudentCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted student: %1$s";
-    public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view";
+    public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view. ";
 
     private final Index targetIndex;
 
