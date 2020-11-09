@@ -38,10 +38,15 @@ public class AnswerCommandParser implements Parser<AnswerCommand> {
         String ans;
         if (argMultimap.getValue(PREFIX_ANSWER).isPresent()) {
             ans = argMultimap.getValue(PREFIX_ANSWER).get();
+            if (!ans.isBlank()) {
+                System.out.println(ans.isBlank());
+                return new AnswerCommand(index, ans);
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AnswerCommand.MESSAGE_USAGE));
+            }
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AnswerCommand.MESSAGE_USAGE));
         }
 
-        return new AnswerCommand(index, ans);
     }
 }

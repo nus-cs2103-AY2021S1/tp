@@ -137,6 +137,9 @@ public interface Model {
     /** Get ResponseList */
     ObservableList<Response> getResponseList();
 
+    /** Get QuizBook */
+    QuizBook getQuizBook();
+
     /** Saves Performance in performance book **/
     void savePerformance() throws IOException;
 }
