@@ -1,5 +1,8 @@
-# Christopher Leo Mervyn- Project Portfolio
-___
+---
+layout: page
+title: Christopher Leo Mervyn's Project Portfolio Page
+---
+
 ## Project: PropertyFree
 
 Given below are my contributions to the project.
