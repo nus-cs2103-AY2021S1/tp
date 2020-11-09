@@ -1,9 +1,9 @@
 ---
 layout: page
-title: Audrey Felicio Anwar's Project Portfolio Page
+title: Audrey's Project Portfolio Page
 ---
 
-## Project: Warenager
+### Project: Warenager
 
 Warenager is an **inventory management application** to help warehouse managers
 of small scale companies keep track of stocks in their warehouse.
@@ -20,11 +20,9 @@ Given below are my contributions to the project.
 * **Features and Enhancements Implemented**
   * **New Feature**: Added the ability to update existing stocks in the inventory. (Pull requests [\#101](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/101), [\#157](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/157), [\#214](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/214), [\#222](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/222), [\#258](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/258))
     * What it does: Allows the user to update the details of the desired stock.
-    
     * Justification: This feature improves the user experience as user can easily edit the details of
     existing stocks. Users now do not need to remove the item and then add them back in order to
     edit the details.
-    
     * Highlights: Multiple stocks are able to be updated in one step. User can update the name, source, low quantity
     threshold, quantity, and location details of a stock. The implementation was challenging a helper class was
     needed to generate the updated stock without tampering with the original stock in the inventory. Implementing
@@ -33,10 +31,8 @@ Given below are my contributions to the project.
 
   * **New Feature**: Added the ability to sort existing stocks in the inventory. (Pull request [\#151](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/151))
     * What it does: Allows the user to sort the stocks in the inventory by the field the user wants.
-    
     * Justification: This feature improves the user experience as the user can list the existing stocks by
     the user's order preference. Sorting in alphabetical order also helps for easier viewing of stocks.
-    
     * Highlights: User can sort by name, source, quantity, serial number, or location. For each field the user can also
     further specify whether to sort in ascending or descending order. The implementation was quite challenging since
     adaptation to the `ModelManager` was needed in order to sort the internal `FilteredList` inside `ModelManager`.
@@ -44,12 +40,10 @@ Given below are my contributions to the project.
   
   * **New Feature**: Added the ability to suggest correct commands to the user. (Pull requests [\#133](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/133), [\#187](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/187), [\#261](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/261))
     * What it does: Suggests the correct command format to the user if the command user input is in the wrong format.
-    
     * Justification: This feature improves the user experience as the user can view and type the correct command form
     easily after entering a faulty command. This makes the user more convenient as every time the user enters a wrong
     command format, the user will not need to refer to the user guide or help and instead just need to type the suggested
     message.
-    
     * Highlights: This feature uses the minimum edit distance heuristics to calculate the closest correct command word.
     The suggestion for the fields and prefixes is generated based on the user input itself. The minimum edit distance
     heuristics is implemented using dynamic programming algorithm. The implementation for this feature was the most
@@ -58,12 +52,10 @@ Given below are my contributions to the project.
     that to make sure the suggestion generated is correct and hence a lot of parameter checking is needed in generating
     the suggestion message.
 
-
 * **Git & Repository**:
   * Created the team repository by forking from `nus-cs2103-AY2021S1/tp`.
   * Set up the team repository as specified by the `CS2103T` module requirements.
   * Used GitHub Projects feature to create kanban boards to track user stories. ([Link](https://github.com/AY2021S1-CS2103T-T15-3/tp/projects/1))
-  * Manager and maintainer of project repository.
   * Provided help to team members about Git, GitHub, and forking workflow.
   * Setup codecov for the team to track coverage for tests (Pull requests [\#69](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/69), [\#301](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/301))
   * Managed the issue tracker: [Link to issues created](https://github.com/AY2021S1-CS2103T-T15-3/tp/issues?q=is%3Aissue+is%3Aclosed+author%3Aaudreyfelicio)
@@ -78,42 +70,42 @@ Given below are my contributions to the project.
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AudreyFelicio/ped/issues/1), [2](https://github.com/AudreyFelicio/ped/issues/2), [3](https://github.com/AudreyFelicio/ped/issues/3), [4](https://github.com/AudreyFelicio/ped/issues/4), [5](https://github.com/AudreyFelicio/ped/issues/5), [6](https://github.com/AudreyFelicio/ped/issues/6), [7](https://github.com/AudreyFelicio/ped/issues/7), [8](https://github.com/AudreyFelicio/ped/issues/8), [9](https://github.com/AudreyFelicio/ped/issues/9), [10](https://github.com/AudreyFelicio/ped/issues/10))
 
 * **Testing**:
-  * Created unit tests for `update` feature (update command parser, update command). (Pull requests [\#112](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/112), [\#254](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/254), [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284))
-  * Created integration tests for `update` feature (update command). (Pull request [\#112](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/112), [\#254](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/254), [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284))
-  * Created unit tests for `suggestion` feature (suggestion command parser, suggestion util, suggestion command). (Pull requests [\#190](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/190), [\#192](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/192), [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284))
-  * Created integration tests for `suggestion` feature (suggestion command). (Pull requests [\#192](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/192), [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284))
-  * Created unit tests for `sort` feature (sort command parser, sort util, sort command). (Pull requests [\#188](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/188), [\#189](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/189))
-  * Created integration tests for `sort` feature (sort command). (Pull request [\#189](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/189))
+  * Created both unit and integration tests for `update`, `suggestion`, and `sort` features. (Pull requests
+  [\#112](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/112),
+  [\#188](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/188),
+  [\#189](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/189),
+  [\#190](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/190),
+  [\#192](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/192),
+  [\#254](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/254),
+  [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284))
   * Improved coverage by creating tests for `QuantityAdder` and `ModelManager`. (Pull request [\#264](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/264))
   * Created unit tests for `UpdateStockDescriptor`. (Pull request [\#313](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/313))
-  * Reviewed other team members' tests and ensure the tests are adequate and working.
-  * Help other team members debug testing when the tests failed and they don't know what causes the tests to fail.
 
 * **Documentation**:
   * User Guide:
     * Added prefixes table. (Pull request [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274))
     * Added command information and summary table. (Pull request [\#252](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/252))
     * Added invalid prefixes warning. (Pull request [\#252](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/252))
-    * Added documentation for the feature `update`. (Pull request [\#121](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/121), [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274), [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284))
-    * Added documentation for the feature `sort`. (Pull request [\#164](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/164), [\#209](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/209), [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274), [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284))
-    * Added documentation for the feature `suggestion`. (Pull request [\#145](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/145), [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274), [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284), [\#293](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/293))
-    * Fix markdown formatting errors. (Pull request [\#121](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/121))
+    * Added documentation for `update`, `sort`, and `suggestion` features. (Pull requests
+    [\#121](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/121),
+    [\#145](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/145),
+    [\#164](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/164),
+    [\#209](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/209),
+    [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274),
+    [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284),
+    [\#293](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/293))
 
   * Developer Guide:
-    * Added implementation details of the `update` feature. (Pull requests [\#164](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/164), [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274))
-    * Added implementation details of the `sort` feature. (Pull requests [\#164](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/164), [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274))
-    * Added implementation details of the `suggestion` feature. (Pull requests [\#145](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/145), [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274), [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284), [\#344](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/344))
+    * Added implementation details, UML diagrams, use cases, and manual testing test cases of `update`, `sort`, and `suggestion` features. (Pull requests
+    [\#69](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/69),
+    [\#145](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/145),
+    [\#164](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/164),
+    [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274),
+    [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284),
+    [\#293](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/293),
+    [\#344](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/344))
     * Added sequence and class diagrams for `Logic` API. (Pull request [\#221](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/221))
-    * Added UML diagrams for `update` feature. (Pull requests [\#164](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/164), [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274))
-    * Added UML diagrams for `sort` feature (Pull requests [\#164](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/164), [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274))
-    * Added UML diagrams for `suggestion` feature Pull requests [\#145](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/145), [\#274](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/274))
     * Added user stories in the form of a table. (Pull request [\#51](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/51), [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284))
-    * Added use cases for `update` feature. (Pull requests [\#69](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/69), [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284))
-    * Added use cases for `sort` feature. (Pull request [\#164](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/164))
-    * Added use cases for `suggestion` feature. (Pull requests [\#145](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/145))
-    * Added manual testing test cases for `update` feature. (Pull requests [\#69](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/69), [\#284](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/284), [\#293](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/293))
-    * Added manual testing test cases for `sort` feature. (Pull request [\#293](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/293))
-    * Added manual testing test cases for `suggestion` feature. (Pull request [\#293](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/293))
     * Added effort appendix to justify project effort and workload. (Pull request [\#293](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/293))
 
 * **Project Management**:
