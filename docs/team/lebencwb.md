@@ -25,6 +25,6 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for the features `add category`, `top-up category-budget`, `reduce category-budget` [\#90](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/90), [\#175](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/175)
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added implementation details of the `default category` and `category-budget adding, topping-up and reducing` features. [\#70](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/70), [\#175](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/175)
 
 * **Review contributions**: [PRs reviewed](https://github.com/AY2021S1-CS2103-W14-3/tp/issues?q=reviewed-by%3Alebencwb)
