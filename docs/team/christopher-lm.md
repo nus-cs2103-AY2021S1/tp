@@ -1,4 +1,5 @@
-# Christopher Leo Mervyn- Project Portfolio
+layout: page
+title: Christopher Leo Mervyn's Project Portfolio Page
 ___
 ## Project: PropertyFree
 
