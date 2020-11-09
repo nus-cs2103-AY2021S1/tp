@@ -33,6 +33,8 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label grade;
+    @FXML
     private Label modularCredits;
     @FXML
     private Label gradePoints;
@@ -55,6 +57,8 @@ public class ModuleCard extends UiPart<Region> {
         module.getTagsForUi().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        grade.setText("Grade: " + module.getGradeTracker().getGrade().toDisplay() + "%");
+        grade.setStyle("-fx-text-fill: white");
     }
 
     @Override
