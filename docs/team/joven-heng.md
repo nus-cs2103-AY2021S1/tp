@@ -19,14 +19,14 @@ Given below are my contributions to the project.
   chunks of texts from each client. This is extremely useful when the agent would be doing cold calls and can easily sieve through a large number of
   potential clients, to only select those that are the most likely to give him leads. 
   * Highlights: <br>
-  Although the idea of the priority feature seemed simple at first glance - change color of the `personcard` for clients with different priorities, there were a few challenges that came
+  Although the idea of the priority feature seemed simple at first glance - change color of the `PersonCard` for clients with different priorities, there were a few challenges that came
   with it. 
     * Firstly, there was the user experience side where changing the entire person card would make it less professional and overbearing for the user. There were concerns that simply changing the color of the person
     card will be quite blinding since there would be multiple colors due to multiple priority cards, but at the same time, if a small indicator or text color were to be changed, it may not be obvious to the user 
     that the priority was changed. Hence, I decided on this rectangular implementation.
-    * Secondly, the actual implementation involved tweaking the fxml files in personcard. It was not as simple as just adding a single rectangle into the personcard field or a list. 
+    * Secondly, the actual implementation involved tweaking the fxml files in `PersonCard`. It was not as simple as just adding a single rectangle into the `PersonCard` field or a list. 
     This is because the rectangle is immutable and would not change size based on the size of the GUI. There were many workarounds for this which involved implementing a new rectangle
-    class. But I realised that one can just extend the personcard with a region followed by a Hbox, and coloring the Hbox. This ensures that the priority indicator rectangle would change 
+    class. But I realised that one can just extend the personcard with a region followed by a `HBox`, and coloring the `Hbox`. This ensures that the priority indicator rectangle would change 
     size based on the size of the GUI. 
     * Lastly, I wanted to tie this in with another feature that my teammate did since our UI still looked like the basic AB3 UI. 
     Hence, I decided to change the color of the priority indicator when we are in a different archived list, making it easier for one to realise that they are in a different list intuitively. 
