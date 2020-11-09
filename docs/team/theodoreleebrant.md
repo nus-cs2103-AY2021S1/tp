@@ -80,7 +80,8 @@ Given below are my contributions to the project.
   * Reported bugs and suggestions for other teams in the class (examples: 
   [1](https://github.com/AY2021S1-CS2103-W14-3/tp/issues/112), 
   [2](https://github.com/AY2021S1-CS2103-W14-3/tp/issues/113), 
-  [3](https://github.com/AY2021S1-CS2103-W14-3/tp/issues/117))
+  [3](https://github.com/AY2021S1-CS2103-W14-3/tp/issues/117),
+  [4](https://github.com/AY2021S1-CS2103-T16-3/tp/issues/203))
 
 * **Tools**:
     * Managed and configured the code coverage tools (using [codecov.io](https://www.codecov.io))
