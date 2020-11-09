@@ -24,15 +24,15 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.CaloriesOverflow;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ExerciseModel;
-import seedu.address.model.ExerciseModelManager;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyExerciseBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.storage.JsonExerciseBookStorage;
 import seedu.address.storage.JsonGoalBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.StorageManagerForExercise;
+import seedu.address.storage.StorageManager;
 import seedu.address.storage.StorageManagerForGoal;
 import seedu.address.testutil.ExerciseBuilder;
 
@@ -43,8 +43,8 @@ public class LogicManagerTest {
     @TempDir
     public Path temporaryFolder;
 
-    private ExerciseModel model = new ExerciseModelManager();
-    private LogicForExercise logic;
+    private Model model = new ModelManager();
+    private Logic logic;
 
     @BeforeEach
     public void setUp() {
@@ -53,9 +53,9 @@ public class LogicManagerTest {
         JsonGoalBookStorage goalBookStorage =
                 new JsonGoalBookStorage(temporaryFolder.resolve("goalbook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManagerForExercise storage = new StorageManagerForExercise(exerciseBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(exerciseBookStorage, userPrefsStorage);
         StorageManagerForGoal goalStorage = new StorageManagerForGoal(goalBookStorage, userPrefsStorage);
-        logic = new LogicManagerForExercise(model, storage, goalStorage);
+        logic = new LogicManager(model, storage, goalStorage);
     }
 
     @Test
@@ -84,8 +84,8 @@ public class LogicManagerTest {
                 temporaryFolder.resolve("ioExceptionExerciseBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManagerForExercise storage = new StorageManagerForExercise(exerciseBookStorage, userPrefsStorage);
-        logic = new LogicManagerForExercise(model, storage, null);
+        StorageManager storage = new StorageManager(exerciseBookStorage, userPrefsStorage);
+        logic = new LogicManager(model, storage, null);
 
         // Execute add command
         try {
@@ -94,9 +94,9 @@ public class LogicManagerTest {
                     + CALORIES_DESC_PUSH_UP;
             Exercise expectedExercise = new ExerciseBuilder(PUSH_UP)
                     .withTags().withMuscleTags().build();
-            ExerciseModelManager expectedModel = new ExerciseModelManager();
+            ModelManager expectedModel = new ModelManager();
             expectedModel.addExercise(expectedExercise);
-            String expectedMessage = LogicManagerForExercise.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+            String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
             assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
         } catch (CaloriesOverflow err) {
             throw new AssertionError("Invalid Calories");
@@ -113,10 +113,10 @@ public class LogicManagerTest {
      * - no exceptions are thrown <br>
      * - the feedback message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
-     * @see #assertCommandFailure(String, Class, String, ExerciseModel)
+     * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
-            ExerciseModel expectedModel) throws CommandException, ParseException, IOException {
+            Model expectedModel) throws CommandException, ParseException, IOException {
         CommandResult result = logic.execute(inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);
@@ -124,7 +124,7 @@ public class LogicManagerTest {
 
     /**
      * Executes the command, confirms that a ParseException is thrown and that the result message is correct.
-     * @see #assertCommandFailure(String, Class, String, ExerciseModel)
+     * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertParseException(String inputCommand, String expectedMessage) {
         assertCommandFailure(inputCommand, ParseException.class, expectedMessage);
@@ -132,7 +132,7 @@ public class LogicManagerTest {
 
     /**
      * Executes the command, confirms that a CommandException is thrown and that the result message is correct.
-     * @see #assertCommandFailure(String, Class, String, ExerciseModel)
+     * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandException(String inputCommand, String expectedMessage) {
         assertCommandFailure(inputCommand, CommandException.class, expectedMessage);
@@ -140,11 +140,11 @@ public class LogicManagerTest {
 
     /**
      * Executes the command, confirms that the exception is thrown and that the result message is correct.
-     * @see #assertCommandFailure(String, Class, String, ExerciseModel)
+     * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        ExerciseModel expectedModel = new ExerciseModelManager(model.getExerciseBook(), null, new UserPrefs());
+        Model expectedModel = new ModelManager(model.getExerciseBook(), null, new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -153,10 +153,10 @@ public class LogicManagerTest {
      * - the {@code expectedException} is thrown <br>
      * - the resulting error message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
-     * @see #assertCommandSuccess(String, String, ExerciseModel)
+     * @see #assertCommandSuccess(String, String, Model)
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
-            String expectedMessage, ExerciseModel expectedModel) {
+            String expectedMessage, Model expectedModel) {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedModel, model);
     }

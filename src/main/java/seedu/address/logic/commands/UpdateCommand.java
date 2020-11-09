@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.ExerciseModel.PREDICATE_SHOW_ALL_EXERCISE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EXERCISE;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -21,7 +21,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.CaloriesOverflow;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ExerciseModel;
+import seedu.address.model.Model;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
@@ -34,7 +34,7 @@ import seedu.address.model.exercise.Name;
 /**
  * Edits the details of an existing exercise in the exercise book.
  */
-public class UpdateCommand extends CommandForExercise {
+public class UpdateCommand extends Command {
 
     public static final String COMMAND_WORD = "update";
 
@@ -78,7 +78,7 @@ public class UpdateCommand extends CommandForExercise {
     }
 
     @Override
-    public CommandResult execute(ExerciseModel model) throws CommandException, ParseException {
+    public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
         List<Exercise> lastShownExerciseList = model.getFilteredExerciseList();
 

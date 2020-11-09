@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import seedu.address.logic.commands.CommandForExercise;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -13,9 +13,9 @@ public class CommandParserTestUtil {
      * Asserts that the parsing of {@code userInput} by {@code parser} is successful and the command created
      * equals to {@code expectedCommand}.
      */
-    public static void assertParseSuccess(ExerciseParser parser, String userInput, CommandForExercise expectedCommand) {
+    public static void assertParseSuccess(ExerciseParser parser, String userInput, Command expectedCommand) {
         try {
-            CommandForExercise command = parser.parse(userInput);
+            Command command = parser.parse(userInput);
             assertEquals(expectedCommand, command);
         } catch (ParseException pe) {
             throw new IllegalArgumentException("Invalid userInput.", pe);
@@ -27,9 +27,9 @@ public class CommandParserTestUtil {
      * equals to {@code expectedCommand}.
      */
     public static void assertParseSuccess(AddCommandParser parser, String userInput,
-                                          CommandForExercise expectedCommand) {
+                                          Command expectedCommand) {
         try {
-            CommandForExercise command = parser.parse(userInput);
+            Command command = parser.parse(userInput);
             assertEquals(expectedCommand, command);
         } catch (ParseException pe) {
             throw new IllegalArgumentException("Invalid userInput.", pe);

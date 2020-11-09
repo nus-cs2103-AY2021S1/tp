@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.exercise.Template;
@@ -30,6 +33,10 @@ public class TemplateCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label calories;
+    @FXML
+    private FlowPane muscleTags;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code ExerciseCode} with the given {@code Exercise} and index to display.
@@ -40,6 +47,12 @@ public class TemplateCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(template.getName());
         calories.setText((template.getCalories()).toString());
+        template.getMuscleTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.muscleTagName))
+                .forEach(tag -> muscleTags.getChildren().add(new Label(tag.muscleTagName)));
+        template.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

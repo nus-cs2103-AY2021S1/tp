@@ -7,10 +7,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import seedu.address.ExerciseMainApp;
+import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.LogicForExercise;
+import seedu.address.logic.Logic;
 
 /**
  * The manager of the UI component.
@@ -22,13 +22,13 @@ public class ExerciseUiManager implements Ui {
     private static final Logger logger = LogsCenter.getLogger(ExerciseUiManager.class);
     private static final String ICON_APPLICATION = "/images/Calo.png";
 
-    private LogicForExercise logic;
-    private MainWindowForExercise mainWindow;
+    private Logic logic;
+    private MainWindow mainWindow;
 
     /**
-     * Creates a {@code ExerciseUiManager} with the given {@code LogicForExercise}.
+     * Creates a {@code ExerciseUiManager} with the given {@code Logic}.
      */
-    public ExerciseUiManager(LogicForExercise logic) {
+    public ExerciseUiManager(Logic logic) {
         super();
         this.logic = logic;
     }
@@ -41,7 +41,7 @@ public class ExerciseUiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            mainWindow = new MainWindowForExercise(primaryStage, logic);
+            mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
         } catch (Throwable e) {
@@ -51,7 +51,7 @@ public class ExerciseUiManager implements Ui {
     }
 
     private Image getImage(String imagePath) {
-        return new Image(ExerciseMainApp.class.getResourceAsStream(imagePath));
+        return new Image(MainApp.class.getResourceAsStream(imagePath));
     }
 
     void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {

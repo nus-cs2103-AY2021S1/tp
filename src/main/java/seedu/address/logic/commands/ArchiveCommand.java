@@ -1,17 +1,17 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.LogicManagerForExercise.FILE_OPS_ERROR_MESSAGE;
+import static seedu.address.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATH;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ExerciseModel;
-import seedu.address.storage.StorageForExercise;
+import seedu.address.model.Model;
+import seedu.address.storage.Storage;
 
-public class ArchiveCommand extends CommandForExercise {
+public class ArchiveCommand extends Command {
 
     public static final String COMMAND_WORD = "archive";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": To archive current Progress to a separate file.\n"
@@ -24,7 +24,7 @@ public class ArchiveCommand extends CommandForExercise {
 
     private final Path specifiedLocation;
 
-    private StorageForExercise storage;
+    private Storage storage;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
@@ -38,12 +38,12 @@ public class ArchiveCommand extends CommandForExercise {
      * Set the storage which contains the content of the apps.
      * @param storage The storage.
      */
-    public void setStorage(StorageForExercise storage) {
+    public void setStorage(Storage storage) {
         this.storage = storage;
     }
 
     @Override
-    public CommandResult execute(ExerciseModel model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
         try {

@@ -13,7 +13,7 @@ import java.util.Optional;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.CaloriesOverflow;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ExerciseModel;
+import seedu.address.model.Model;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Weight;
 import seedu.address.model.goal.Goal;
@@ -21,7 +21,7 @@ import seedu.address.model.goal.Goal;
 /**
  * Adds an exercise to Calo.
  */
-public class AddCommand extends CommandForExercise {
+public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an exercise to Calo. "
@@ -60,7 +60,7 @@ public class AddCommand extends CommandForExercise {
     }
 
     @Override
-    public CommandResult execute(ExerciseModel model) throws CommandException, ParseException {
+    public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
         if (model.hasExercise(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EXERCISE);

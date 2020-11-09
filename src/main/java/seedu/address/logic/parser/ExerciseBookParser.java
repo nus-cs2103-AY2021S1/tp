@@ -10,7 +10,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddTemplateCommand;
 import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.CommandForExercise;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -38,7 +38,7 @@ public class ExerciseBookParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public CommandForExercise parseCommand(String userInput) throws ParseException {
+    public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
 
         if (!matcher.matches()) {
@@ -68,7 +68,7 @@ public class ExerciseBookParser {
             return new ExitCommand();
 
         case UpdateCommand.COMMAND_WORD:
-            return new UpdateExerciseCommandParser().parse(arguments);
+            return new UpdateCommandParser().parse(arguments);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);

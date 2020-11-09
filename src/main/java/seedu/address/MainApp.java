@@ -13,12 +13,12 @@ import seedu.address.commons.core.Version;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.LogicForExercise;
-import seedu.address.logic.LogicManagerForExercise;
+import seedu.address.logic.Logic;
+import seedu.address.logic.LogicManager;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ExerciseBook;
-import seedu.address.model.ExerciseModel;
-import seedu.address.model.ExerciseModelManager;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.GoalBook;
 import seedu.address.model.ReadOnlyExerciseBook;
 import seedu.address.model.ReadOnlyGoalBook;
@@ -31,9 +31,9 @@ import seedu.address.storage.GoalBookStorage;
 import seedu.address.storage.JsonExerciseBookStorage;
 import seedu.address.storage.JsonGoalBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.StorageForExercise;
+import seedu.address.storage.Storage;
 import seedu.address.storage.StorageForGoal;
-import seedu.address.storage.StorageManagerForExercise;
+import seedu.address.storage.StorageManager;
 import seedu.address.storage.StorageManagerForGoal;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.ExerciseUiManager;
@@ -42,17 +42,17 @@ import seedu.address.ui.Ui;
 /**
  * Runs the application.
  */
-public class ExerciseMainApp extends Application {
+public class MainApp extends Application {
 
     public static final Version VERSION = new Version(0, 6, 0, true);
 
-    private static final Logger logger = LogsCenter.getLogger(ExerciseMainApp.class);
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     protected Ui ui;
-    protected LogicForExercise logic;
-    protected StorageForExercise storage;
+    protected Logic logic;
+    protected Storage storage;
     protected StorageForGoal goalStorage;
-    protected ExerciseModel model;
+    protected Model model;
     protected Config config;
 
     @Override
@@ -66,7 +66,7 @@ public class ExerciseMainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         ExerciseBookStorage exerciseBookStorage = new JsonExerciseBookStorage(userPrefs.getExerciseBookFilePath());
-        storage = new StorageManagerForExercise(exerciseBookStorage, userPrefsStorage);
+        storage = new StorageManager(exerciseBookStorage, userPrefsStorage);
         GoalBookStorage goalBookStorage = new JsonGoalBookStorage(userPrefs.getGoalBookFilePath());
         goalStorage = new StorageManagerForGoal(goalBookStorage, userPrefsStorage);
 
@@ -74,7 +74,7 @@ public class ExerciseMainApp extends Application {
 
         model = initModelManager(storage, goalStorage, userPrefs);
 
-        logic = new LogicManagerForExercise(model, storage, goalStorage);
+        logic = new LogicManager(model, storage, goalStorage);
 
         ui = new ExerciseUiManager(logic);
 
@@ -86,8 +86,8 @@ public class ExerciseMainApp extends Application {
      * The data from the sample exercise book will be used instead if {@code storage}'s exercise book is not found,
      * or an empty exercise book will be used instead if errors occur when reading {@code storage}'s exercise book.
      */
-    private ExerciseModel initModelManager(StorageForExercise storage,
-                                           StorageForGoal goalStorage, ReadOnlyUserPrefs userPrefs) {
+    private Model initModelManager(Storage storage,
+                                   StorageForGoal goalStorage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyExerciseBook> exerciseBookOptional;
         ReadOnlyExerciseBook initialData;
         try {
@@ -125,7 +125,7 @@ public class ExerciseMainApp extends Application {
             initialGoalData = new GoalBook();
         }
 
-        return new ExerciseModelManager(initialData, initialGoalData, userPrefs);
+        return new ModelManager(initialData, initialGoalData, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -202,8 +202,8 @@ public class ExerciseMainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting ExerciseBook " + ExerciseMainApp.VERSION);
-        logger.info("Starting GoalBook " + ExerciseMainApp.VERSION);
+        logger.info("Starting ExerciseBook " + MainApp.VERSION);
+        logger.info("Starting GoalBook " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
