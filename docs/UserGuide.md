@@ -78,6 +78,8 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+![result for 'help'](images/HelpCommand.png)
+
 ### Adding a student: `add`
 
 Adds a student to the address book.
@@ -93,6 +95,8 @@ Examples:
 - `add n/John Doe p/98765432 e/johnd@example.com t/johndoe m/A0123456B`
 - `add n/Betsy Crowe tg/friend e/betsycrowe@example.com t/betsy_crowe m/A0201234C p/1234567 tg/groupmate`
 
+![result for 'add n/John Doe p/98765432 e/johnd@example.com t/johndoe m/A0123456B'](images/AddCommand.png)
+
 ### Listing all students : `list`
 
 Shows a list of all students that the TA is in-charge of.
@@ -100,6 +104,8 @@ Shows a list of all students that the TA is in-charge of.
 You may click on the Students tab to view the full list of students.
 
 Format: `list`
+
+![result for 'list'](images/ListCommand.png)
 
 ### Editing a student : `edit`
 
