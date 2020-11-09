@@ -1,15 +1,23 @@
 package seedu.address.model.util;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.model.EventList;
 import seedu.address.model.ModuleList;
 import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyEventList;
 import seedu.address.model.contact.Contact;
 // import seedu.address.model.contact.ContactName;
 // import seedu.address.model.contact.Email;
 // import seedu.address.model.contact.Telegram;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventName;
+import seedu.address.model.event.EventTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -54,6 +62,20 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
+    }
+
+    public static ReadOnlyEventList getSampleEventList() {
+        EventList sampleEv = new EventList();
+        Set<Tag> tags = new HashSet<>();
+        tags.add(new Tag("Important"));
+        LocalDateTime dateTime = LocalDateTime.parse("10-9-2020 1200", DateTimeFormatter.ofPattern("d-M-uuuu HHmm"));
+        Event sampleEventOne = new Event(new EventName("CS2100 Assignment 1"), new EventTime(dateTime), tags);
+        sampleEv.addEvent(sampleEventOne);
+        tags.add(new Tag("Urgent"));
+        dateTime = LocalDateTime.parse("13-11-2020 1600", DateTimeFormatter.ofPattern("d-M-uuuu HHmm"));
+        Event sampleEventTwo = new Event(new EventName("CS2103T PE"), new EventTime(dateTime), tags);
+        sampleEv.addEvent(sampleEventTwo);
+        return sampleEv;
     }
 
 }
