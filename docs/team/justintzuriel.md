@@ -13,14 +13,16 @@ Given below are my contributions to the project.
   * What it does: Allows the user to assign a particular contact to one or more modules in the active semester.
   * Justification: This feature improves the product by helping the user keep track of the assignments of faculty members to the modules that they instruct. This is one of the main value propositions of FaculType, 
   as it allows faculty leaders to manage the relationship between faculty members and modules instead of managing faculty members and faculty modules separately.
-  * Highlights: This enhancement required an in-depth understanding of how the `Model` component works. Development could only be done after the module management features were finished.
+  * Highlights: This enhancement required an in-depth understanding of how data is stored inside the `Model` component. Development could only be done after the module management features were finished.
   
 * **New Feature**: Added the ability to switch between semesters
   * What it does: Allows the user to switch to the other semester's module list.
   * Justification: This feature improves the product by allowing the user to switch to another module configuration quickly. This is also one of the main value propositions of FaculType, 
    because a particular semester/term tends to not change a lot from year to year, but the modules offered in Semester 1 might differ greatly from those offered in Semester 2 (and their instructors as well).
    The ability to switch to another configuration is much more convenient than having to erase and re-add module data each semester.
-  * Highlights: This enhancement required an in-depth analysis of design alternatives. A change to the `AddressBook` structure was also required. The result of all module management features now depend on which semester is the active semester.
+  * Highlights: This enhancement required an in-depth analysis of design alternatives. A change to the `AddressBook` structure was also required. This feature was developed last and the result of all module management features now depend on the active semester.
+
+<div style="page-break-after: always;"></div>
 
 * **New Feature**: Added the ability to add remarks
   * What it does: Allows the user to add additional information or personal remarks to contacts.
@@ -39,7 +41,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Designed the FaculType icon (Pull requests [\#94](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/94))
   * Modified command messages to be more descriptive (Pull requests [\#181](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/181))
-  * Wrote additional tests for model manager to increase coverage (Pull requests [\#227](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/227))
+  * Wrote additional tests for `ModelManager` to increase coverage (Pull requests [\#227](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/227))
   * Added sample modules (Pull requests [\#178](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/178))
   
 * **Documentation**:

@@ -169,7 +169,7 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 Both options are equally feasible. However, Alternative 1 was chosen to avoid confusion for prospective users.
 
-### Find module by module attributes feature
+### Find modules by attributes feature
 
 #### Implementation
 
@@ -180,6 +180,7 @@ The method updates the current module list and filters it according to the given
 The following sequence diagram shows how the find module by module attributes operation works:
 
 ![FindmodSequenceDiagram](images/FindmodSequenceDiagram.png)
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindModCommandParser` should
  end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -200,7 +201,7 @@ The following activity diagram summarizes what happens when a user executes a fi
   * Pros : Provides the ability for a very general and flexible search.
   * Cons : Unable to have a more focused search, might be more confusing for the user to narrow down his/her searches.
 
-### Deleting Module feature
+### Delete modules feature
 
 #### Implementation
 
@@ -211,13 +212,13 @@ from the module list.
 
 Given below is the example usage scenario and how the delete module mechanism behaves at each step.
 
-Step 1. The user launches the application. FaculType is initialized with the module `CS2103` in the Addressbook.
+1. The user launches the application. FaculType has the module `CS2103` in the active semester.
 
-Step 2. The user executes the command `delmod m/CS2103` to delete the module with the module code CS2103 in the Addressbook.
+2. The user executes the command `delmod m/CS2103` to delete the module with the module code `CS2103`.
 
-Step 3. The `delmod` command then calls `Model#deleteModule()` after checking for the existence of the specified module.
+3. The `DelmodCommand` then calls `Model#deleteModule()` after checking for the existence of the specified module.
 
-Step 4. The Module with the specified module code, will be deleted from the `UniqueModuleList` in the addressbook.
+4. The module with the specified module code will be deleted from the current semester's `UniqueModuleList` in `AddressBook`.
 
 The following sequence diagram shows how the deleting of the module works:
 
@@ -292,7 +293,7 @@ The following sequence diagram shows how the unassign operation works:
 </div>
 <br/>
 
-The following activity diagram summarizes what happens when a user executes a unassign command:
+The following activity diagram summarizes what happens when a user executes an unassign command:
 
 ![UnassignActivityDiagram](images/UnassignActivityDiagram.png)
 
@@ -311,7 +312,7 @@ The following sequence diagram shows how the unassignall operation works:
 </div>
 <br/>
 
-The following activity diagram summarizes what happens when a user executes a unassignall command:
+The following activity diagram summarizes what happens when a user executes an unassignall command:
 
 ![UnassignallActivityDiagram](images/UnassignallActivityDiagram.png)
 
@@ -332,7 +333,7 @@ The following activity diagram summarizes what happens when a user executes a un
 #### Implementation
 
 It implements the following operations:
-* `AddressBook#clearContacts()` — Clear all contacts from the list.
+* `AddressBook#clearContacts()` — Clear all contacts from the contact list.
 
 These operations are exposed in the `Model` interface as `Model#clearContacts()` and `UniquePersonList` class as `UniquePersonList#clearAll()`
 
@@ -344,7 +345,8 @@ The following sequence diagram shows how the cclear operation works:
  end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 <br/>
-The follow activity diagram summarizes what happens when a user executes a Cclearcommand:
+
+The following activity diagram summarizes what happens when a user executes a cclear command:
 
 ![CclearActivityDiagram](images/CclearActivityDiagram.png)
 
@@ -353,7 +355,7 @@ The follow activity diagram summarizes what happens when a user executes a Cclea
 #### Implementation
 
 It implements the following operations:
-* `AddressBook#clearMod()` — Clear all modules from the list.
+* `AddressBook#clearMod()` — Clear all modules from the active semester module list.
 
 These operations are exposed in the `Model` interface as `Model#clearMod()` and `UniqueModuleList` class as `UniqueModuleList#clearAll()`
 The following sequence diagram shows how the mclear operation works:
@@ -364,7 +366,8 @@ The following sequence diagram shows how the mclear operation works:
  end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 <br/>
-The follow activity diagram summarizes what happens when a user executes a Mclearcommand:
+
+The follow activity diagram summarizes what happens when a user executes a mclear command:
 
 ![MclearActivityDiagram](images/MclearActivityDiagram.png)
 
@@ -562,8 +565,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                    | clear all contacts                  |                                                                                     |
 | `* * *`  | faculty leader          | clear all modules                   | discard all the semester's information                                              |
 | `* * *`  | faculty leader          | be able to switch semesters easily   | manage the other semester without having to reassign instructors                   |
-
-*{More to be added}*
 
 ### Use cases
 

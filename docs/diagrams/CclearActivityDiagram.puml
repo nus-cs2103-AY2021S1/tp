@@ -1,14 +1,13 @@
 @startuml
 start
-:User executes Cclear command;
+:User executes cclear command;
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
-:Command executes cclear;
 
-if () then ([If contact list is not empty])
+if () then ([contact list is not empty])
     :Clear contacts from the contact list;
-    :Update GUI to show empty list;
+    :Update GUI to show empty contact list;
 else ([else])
     :Show error message;
 endif

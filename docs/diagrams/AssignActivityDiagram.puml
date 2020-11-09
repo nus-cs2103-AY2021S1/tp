@@ -1,12 +1,16 @@
 @startuml
 start
 :User executes assign command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
 if () then ([at least one module is specified
  and all specified modules exist])
     if () then ([contact is not assigned to
       any specified modules])
         :Assign specified contact to specified modules;
-        :Update GUI to show update;
+        :Update GUI to show changes;
 
     else([else])
         : Show error message;
