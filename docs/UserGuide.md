@@ -596,7 +596,7 @@ For those who prefer clicking:
 --------------------------------------------------------------------------------------------------------------------
 
 ## 7. Command summary
-Action                                                           | Format, Examples                                                                                                                         |
+| Action                                                           | Format, Examples                                                                                                                         |
 -----------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
 [**Add**](#52-adding-a-food-item-add)                            | `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE] [-t TAG]` <br> e.g., `add Chicken Rice -p 10 -f 5 -c 23 -d 02/09/2020 -t Lunch` |
 [**Clear**](#56-clearing-food-items-clear)                       | `clear`                                                                                                                                  |
