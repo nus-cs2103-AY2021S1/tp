@@ -5,7 +5,8 @@ title: Gan Jing Wen's Project Portfolio Page
 
 ## Project: DSAce
 
-DSAce is a desktop flashcard application used for teaching CS2040S concepts. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 4K LoC.
+DSAce is a desktop flashcard application used for teaching CS2040S concepts. The user interacts with it using a CLI
+, and it has a GUI created with JavaFX. It is written in Java, and has about 11K LoC.
 
 Given below are my contributions to the project.
 
