@@ -196,6 +196,7 @@ As per in the description above, can understand the scopes using the hierarchy a
     * `PERSON_LIST`
       * `PERSON`
       
+
 In most cases a command that is valid in a parent scope would be valid in any descendant scopes, but there may be some exceptions.
 
 The `Status` of `MainCatalogue` is open to be accessed in other `Model` components by a public getter. The `MainCatalogue` has a field `project` which is an `Optional` object of `Project`. 
@@ -544,7 +545,7 @@ The implementation of DeleteTeammate involves both the deleting of the teammate 
 The DeleteTeammate created is removed in the following places:
  - global static variable `allPeople` in the Person class 
  - within the project it added to, in the associated Participations.
- 
+
 The Delete Teammate command has to be prefixed with `deleteperson` and include the following field:
  - `mg/` prefix followed by the teammate's Github User Name
 
@@ -591,13 +592,13 @@ Within the `DeletePersonCommand` class, an instance of `DeletePersonCommand` is 
 
 LogicManager then calls the method `execute` of the DeletePersonCommand which deletes instances of itself in
  all instances of participation as well as in memory and storage.
- 
+
  ![DeletePersonActivityDiagram](images/DeletePersonActivityDiagram.png)
- 
+
  #### Design consideration:
- 
+
  ##### Aspect: Which scope deletion of a teammate should happen in.
- 
+
  * **Alternative 1 (current choice):** Deletion should happen in the listperson scope.
    * Pros: All teammates can be viewed at once, and one can be selected for deletion there.
    * Pros: Teammate can be deleted even if all associations deleted from all projects.
@@ -605,7 +606,7 @@ LogicManager then calls the method `execute` of the DeletePersonCommand which de
    
    (While it does indeed require the user to change scope to delete a teammate, deleting a teammate is not something
     the user will be doing regularly, and so we believe the pros outweigh the cons in this case.)
- 
+
  * **Alternative 2:** Deletion should happen in the project scope.
    * Pros: A teammate can be deleted quickly.
    * Cons: It would be impossible to delete a teammate if all associations are deleted.
@@ -720,8 +721,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                 | I want to …​                | So that I can …​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | project team leader | add a new teammate |                      |  
-| `* * *`  | project team leader | edit a teammate |  change details of a teammate                     |  
+| `* * *`  | project team leader | add a new teammate |                      |
+| `* * *`  | project team leader | edit a teammate |  change details of a teammate                     |
 | `* * *`  | project team leader | add a teammate to another project | have a teammate in multiple projects |
 | `* * *`  | project team leader | remove a teammate from a project | remove a teammate when he leaves a project   |
 | `* * *`  | project team leader | delete a teammate | remove a teammate who has left my team entirely |
@@ -1029,7 +1030,7 @@ testers are expected to do more *exploratory* testing.
 ### Adding a Teammate 
 
 1. Adding a teammate into a project while in a project scope
-   1. Prerequisites: Have a valid project created, and start with `startproject 1`. 
+   1. Prerequisites: Have a valid project created, and start it using `startproject`. 
 
    1. Test case: `addteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road `<br>
       Expected: A new teammmate is added to project 1.  "New Teammate added: LucasTai98" message is returned to the
@@ -1041,7 +1042,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `addteammate mn/%&`, `add teammate ...`,  where the input is incomplete
     or the command is incorrect. <br> Expected: Similar to previous.
-    
+   
 ### Deleting a Teammate from listpersons scope
 
 1. Deleting a teammate while in listpersons view
@@ -1070,16 +1071,29 @@ testers are expected to do more *exploratory* testing.
 ### Adding a Task 
 
 1. Adding a task into a project while in a project scope
-   1. Prerequisites: Have a valid project created, and start with `startproject 1`. 
-
-   1. Test case: `addtask tn/Refactor Person class tp/0 `<br>
+   1. Prerequisites: Have a valid project created, and start it using `startproject`. 
+1. Test case: `addtask tn/Refactor Person class tp/0 `<br>
       Expected: A new task is added to project 1.  "New task added: [Refactor Person Class]" message is returned to the
        user.
-
    1. Test case: `addtask`<br>
-      Expected: No task added to the project. Error details about incorrect format shown to user.
+   Expected: No task added to the project. Error details about incorrect format shown to the user.
       .
-
    1. Other incorrect delete commands to try: `addtask tn/%&`, `add teammate ...`,  where the input is incomplete
     or the command is incorrect. <br> Expected: Similar to previous.
-    
+
+
+### Deleting a task
+
+1. Deleting a task while in a project
+
+   1. Prerequisites: Have a valid project created, and start it using `startproject`
+
+   1. Test case: `deletetask 1`<br>
+      Expected: First task is deleted from the task list. Name of the deleted task shown to the user. 
+      If the user was viewing the task's details using `viewtask`, the task detail panel will close as the task is now deleted.
+
+   1. Test case: `deletetask 0`<br>
+      Expected: No project is deleted. Error details about incorrect format shown to the user.
+
+   1. Other incorrect delete commands to try: `deletetask`, `deletetask x`, `...` (where x is larger than the task list size)<br>
+      Expected: Similar to previous.
