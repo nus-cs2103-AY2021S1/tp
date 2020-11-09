@@ -31,10 +31,15 @@ I was responsible for implementing the following features of NUStorage:
 
 * I have contributed to the implementation component of the developer guide, adding detailed explanations as to how our classes interact with each other and including sequence diagrams to aid in these explanations.
 
+* I have added JavaDocs to my code to ensure greater understandability to my code
+
 ### Contributions to Team Based Task
 
 * Helped my teammates in debugging, including identifying sources of major bugs.
 
 ### Community
 
-* Reported bugs and suggestions for [Team W10-3](https://github.com/AY2021S1-CS2103T-W10-3/tp) as part of the PE dry run, and reported around 8 errors. These errors include inaccuracies in the user guide, bugs in their program as well as possible improvements to their application.
+* In the recent PE dry run, I have reviewed the application made by [Team W10-3](https://github.com/AY2021S1-CS2103T-W10-3/tp). 
+During the evaluation, I reported around eight bugs that I encountered, as well as inaccuracies in their user guide. 
+
+* In addition to the above, I also suggested some improvements to their application in terms of functionality.
