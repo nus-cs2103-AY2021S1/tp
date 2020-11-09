@@ -124,8 +124,6 @@ Expected Outcome:
 
    * `addmodule n/CS2103T t/Coremodule` creates and adds the module CS2103T with the tag _CoreModule_.
 
-<p aligin="center"><img src="images/AddEventExample.png" border="2px solid black"></p>
-
 #### Adding a new completed module: `addcmodule`
 
 Creates and add a new completed module to be stored in the system.
@@ -258,7 +256,7 @@ Format: `listmodule`
 
   Example:
 
-   * `findmodule n/cs2030` returns the module(if any) with the module name `CS2030`.
+   * `findmodule cs2030` returns the module(if any) with the module name `CS2030`.
 
    Expected Outcome: 
    
