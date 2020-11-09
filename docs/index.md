@@ -5,7 +5,7 @@
 
 ![Ui](images/Ui.png)
 
-**`Calo` is a desktop application for tracking Calories burnt through exercises..** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**`Calo` is a desktop application for tracking Calories burnt through exercises.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using `Calo`, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing `Calo`, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
