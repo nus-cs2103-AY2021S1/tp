@@ -1,0 +1,26 @@
+{
+  "expenses": [ {
+    "title": "Bubble Tea",
+    "amount": "$4.80",
+    "date": "not a date",
+    "categories": [ "Food & Beverage" ]
+  } ],
+  "incomes": [ {
+    "title": "Internship",
+    "amount": "$560.00",
+    "date": "not a date",
+    "categories": [ "Work" ]
+  } ],
+  "bookmarkExpenses": [ {
+    "title": "Phone Bill",
+    "amount": "$60.00",
+    "date": "not a date",
+    "categories": [ "Utilities" ]
+  } ],
+  "bookmarkIncomes": [ {
+    "title": "Internship",
+    "amount": "$1000",
+    "date": "not a date",
+    "categories": [ "Work" ]
+  } ]
+}
