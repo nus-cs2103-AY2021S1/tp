@@ -125,14 +125,17 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* Stores the `Person`, `SalesRecordEntry` and `Ingredient` sub-components.
+* stores the `Person`, `SalesRecordEntry` and `Ingredient` sub-components.
 * does not depend on any of the other three components.
 
 
 The `Person` sub-component,
 * stores the address book data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* an employee is modelled as a person in tCheck
+&&&&
+<div markdown="span" class="alert alert-info">:information_source: **Notes:**
+    In tCheck context, an employee is modelled as a `Person`.
+</div><br>
 
 Given below is the class diagram showing details of the `Person` model
 
