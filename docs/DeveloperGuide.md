@@ -1019,8 +1019,14 @@ testers are expected to do more *exploratory* testing.
 3. Test case: `add-b n/Kor Ming Soon p/8222222`
 
     Expected: A bidder with the name: `Kor Ming Soon`, phone: `82222222` will be created and assigned a unique `BidderId`.
-    A visual `Tag` with the role `bidder` is also assigned. 
-
+    A visual `Tag` with the role `bidder` is also assigned.
+    ```
+     New bidder added:   
+     Name: Kor Ming Soon
+     Phone number: 82222716
+     Id: B1
+     Tag: bidder
+    ```
 #### Edit a bidder while all bidders are being shown.
 
 1. Prerequisite: A bidder exists inside the bidder list with the index `3`, this will also imply that there are bidders indexed
@@ -1032,11 +1038,25 @@ at `1` and `2` as the indexes are sequentially ordered.
 
    Expected: The bidder which belongs at index 3, will have his or her name edited to the input which is `Nigel Ng Yong Sheng`.
    Other details of the bidder will remain the same (i.e phone number, tag, and Bidder Id).
+    ```
+    Edited Bidder:
+    Name: Nigel Ng Yong Sheng
+    Phone number: 82222716
+    Id: B3
+    Tag: bidder
+    ```
 
 4. Test case: `edit-b 2 p/1784695`
     
     Expected: The bidder which belongs at index 2, will have his or her phone number edited to the input which is `1784695`.
    Other details of the bidder will remain the same (i.e name, tag, and Bidder Id).
+   ```
+   Edited Bidder:
+   Name: Kor Ming Soon
+   Phone number: 1784695
+   Id: B1
+   Tag: bidder
+   ```
 
 #### Delete a bidder while all bidders are being shown.
 
@@ -1050,6 +1070,14 @@ at `1` and `2` as the indexes are sequentially ordered.
    Expected: The bidder which belongs at index `3`, will be deleted. The result display would output the information of the bidder
    who was deleted (i.e name, phone number, tag and id). In addition, all `Meeting` and `Bid` which contain the `Id` of the bidder who
    was deleted will be deleted as well. 
+   ```
+   Deleted Bidder:    
+   Name: Nigel Ng Yong Sheng
+   Phone number: 82222716
+   Id: B3
+   Tag: bidder
+   All related bids and meetings have been deleted.
+   ```
 
 #### Delete a seller while all sellers are being shown.
 
@@ -1063,7 +1091,15 @@ at `1` and `2` as the indexes are sequentially ordered.
    Expected: The seller which belongs at index `3`, will be deleted. The result display would output the information of the seller
    who was deleted (i.e name, phone number, tag and id). In addition, all `Property` which contains the `Id` of the seller who
    was deleted will be deleted as well. Property in turn will delete all `Bid` and `Meeting` relating to the Property's `Id`. 
-
+   ```
+   Deleted Seller:    
+   Name: Kor Ming Soon
+   Phone number: 1784695
+   Id: B2
+   Tag: bidder
+   All related bids and meetings have been deleted.
+   ```
+   
 #### Find a bidder while all bidders are being shown.
 
 1. Prerequisite: A bidder with a name containing `Kor` is inside the bidder list.
@@ -1072,7 +1108,9 @@ at `1` and `2` as the indexes are sequentially ordered.
 
     Expected: The list will be filtered accordingly to the user input, which in this case is `Kor`, so all bidders
     whose name contain `Kor` will be shown. 
-    
+    ```
+   1 bidder(s) listed!
+    ```
     Note that the names which are filtered contain the name `Kor` in full (i.e other names such as
     `Kore` or `exampleKor` will not be filtered.)
     
@@ -1083,6 +1121,9 @@ at `1` and `2` as the indexes are sequentially ordered.
 2. Test case: `list-b`
 
     Expected: The list will show in full all the bidders who are existing in the list.  
+    ```
+    Displaying full bidder list.
+    ```
 
 ### Testing Property Features
 
@@ -1099,7 +1140,14 @@ at `1` and `2` as the indexes are sequentially ordered.
 
     Expected: A property with the name: `Sunrise`, seller id: `S1`, asking price: `$100.00`, property type: `Landed`,
     address: `99 Sunrise Street` (note that the is_Rental will only be reflected if the `r/` input is `yes`).
-
+    ```
+    New property added: Sunrise
+    Property Id: P1
+    Address: 99 Sunrise Street
+    Property type: Landed
+    Asking price: $100.00
+    Seller Id: S1
+    ```
 
 #### Listing a property while some property are being shown.
 
@@ -1108,7 +1156,10 @@ at `1` and `2` as the indexes are sequentially ordered.
 2. Test case: `list-p`
 
     Expected: The list will show in full all the properties that are existing in the list.
-
+    ```
+    Displaying full property list.
+    ```
+   
 #### Editing a property while all property are being shown.
 
 1. Prerequisite: 
@@ -1123,7 +1174,14 @@ at `1` and `2` as the indexes are sequentially ordered.
 
     Expected: A property indexed at 1 will be edited with the new information
      name: `Cove Residences`, address: `23 Cove Street`. The other fields will remain unedited.
-
+    ```
+    Edited Property: Cove Residences
+    Property id: P4
+    Address: 23 Cove Street
+    Property type: HDB
+    Asking price: $99.00
+    Seller id: S20
+    ```
 
 #### Deleting a property while all property are being shown.
 
@@ -1135,7 +1193,18 @@ at `1` and `2` as the indexes are sequentially ordered.
     Expected: A property indexed at 3 will be deleted. The result display would output the information of the property
     that was deleted (i.e name, seller id etc). In addition, all `Bid` and `Meeting` relating to the deleted property's `Id` would be
     deleted as well.
-    
+    ```
+    Deleted Property: Sunrise Avenue
+    Property id: P23
+    Address: Block 123
+    Property type: HDB
+    Asking price: $100.00
+    Seller id: S2
+    All related bids and 
+    meetings have been 
+    deleted.
+    ```
+   
 #### Finding a property while all property are being shown.
 
 1. Prerequisite: 
@@ -1152,4 +1221,7 @@ at `1` and `2` as the indexes are sequentially ordered.
 
     Expected: Displays all properties whose names contains either Cove or Sunrise, 
     asking price is less than or equals to 100, and is not a rental property.
-    
+   ```
+   2 properties listed!
+   ```
+   
