@@ -14,9 +14,9 @@ public interface StudentRecordList extends Iterable<StudentRecord> {
     void markStudentAttendance(NusnetId nusnetId, AttendanceType attendanceType);
 
     /**
-     * Marks the attendance of students represented by the list of {@code nusnetIds} with {@code attendanceType}.
+     * Marks the attendances of all {@code StudentRecords} with the given {@code attendanceType}
      */
-    void markAllStudentAttendances(List<NusnetId> nusnetIds, AttendanceType attendanceType);
+    void markAllStudentAttendances(AttendanceType attendanceType);
 
     /**
      * Updates participation score of a student represented by their {@code nusnetId} to {@code score}.
@@ -24,9 +24,10 @@ public interface StudentRecordList extends Iterable<StudentRecord> {
     void scoreStudentParticipation(NusnetId nusnetId, double score);
 
     /**
-     * Updates participation score of all students in the list of {@code nusnetIds} with {@code attendanceType}.
+     * Updates the {@code ClassParticipation} of all {@code StudentRecords} which are {@code PRESENT} with the
+     * given score.
      */
-    void scoreAllParticipation(List<NusnetId> nusnetIds, double score);
+    void scoreAllParticipation(double score);
 
     /**
      * Returns the lowest score amongst all students in the student list.

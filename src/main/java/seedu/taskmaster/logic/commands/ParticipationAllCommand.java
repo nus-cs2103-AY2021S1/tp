@@ -3,11 +3,8 @@ package seedu.taskmaster.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_CLASS_PARTICIPATION;
 
-import java.util.List;
-
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.model.Model;
-import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.session.exceptions.SessionException;
 
 public class ParticipationAllCommand extends ParticipationCommand {
@@ -33,8 +30,7 @@ public class ParticipationAllCommand extends ParticipationCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
-            List<StudentRecord> lastShownList = model.getFilteredStudentRecordList();
-            model.scoreAllStudents(lastShownList, score);
+            model.scoreAllStudents(score);
         } catch (SessionException sessionException) {
             throw new CommandException(sessionException.getMessage());
         }
