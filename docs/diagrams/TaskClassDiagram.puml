@@ -8,20 +8,20 @@ show members
 
 package "Task, Assignment and Lesson" {
 Class "{abstract}\nTask" as Task {
-    - name : Name
-    - time : Time
-    - moduleCode : ModuleCode
+    name : Name
+    time : Time
+    moduleCode : ModuleCode
 }
 
 Class "Assignment" as Assignment {
-    - remind: Remind
-    - schedule: Schedule
-    - priority: Priority
-    - done: Done
+    remind: Remind
+    schedule: Schedule
+    priority: Priority
+    done: Done
 }
 
 Class "Lesson" as Lesson {
-    - endTime: Time
+    endTime: Time
 }
 
 Assignment -up-|> Task

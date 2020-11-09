@@ -35,15 +35,17 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap;
 
-        boolean isRemindPresent = args.matches(".*\\bremind\\b.*");
+        boolean isRemindPresentAsLastArgument = args.matches(".*\\bremind\\b$");
+        boolean isRemindPresent = false;
         boolean isRemindTypo = false;
         boolean isPriorityPresent = args.matches(".*\\bp/.*");
 
-        if (!isRemindPresent) {
-            isRemindTypo = args.matches(".*\\bre[a-z]*.*");
+        if (!isRemindPresentAsLastArgument) {
+            isRemindPresent = args.matches(".*\\bremind\\b.*");
+            isRemindTypo = args.matches(".*\\bre[a-z]*$");
         }
 
-        if (isRemindPresent || isRemindTypo) {
+        if (isRemindPresentAsLastArgument || isRemindTypo || isRemindPresent) {
             String argsWithoutRemind;
 
             if (isRemindTypo) {
@@ -64,7 +66,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_DEADLINE)
-                || !argMultimap.getPreamble().isEmpty() || isRemindTypo) {
+                || !argMultimap.getPreamble().isEmpty() || isRemindTypo || isRemindPresent) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -77,7 +79,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Done done = new Done();
         Priority priority = new Priority();
 
-        if (isRemindPresent) {
+        if (isRemindPresentAsLastArgument) {
             remind = remind.setReminder();
         }
 

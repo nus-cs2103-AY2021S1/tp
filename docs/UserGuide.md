@@ -51,7 +51,7 @@ All commands and their examples are demarcated with `markups`. `Markups` appear 
   e.g `n/NAME_OF_ASSIGNMENT [remind]` can be used as `n/Assignment 2 remind` or as `n/Assignment 2`.
 
 
-* Parameters can be in any order.<br>
+* Parameters can be in any order unless otherwise stated.<br>
   e.g. if the command specifies `n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT`, `d/DEADLINE_OF_ASSIGNMENT n/NAME_OF_ASSIGNMENT` is also acceptable.
   
 * All instances of `INDEX` **must be a positive integer**.<br>
@@ -120,7 +120,8 @@ simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. All the informatio
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
-* `DEADLINE_OF_ASSIGNMENT` must be in the format dd-MM-yyyy and time in the format HHmm (24-hour clock system).
+* `DEADLINE_OF_ASSIGNMENT` must be in the format dd-MM-yyyy and time in the format HHmm (24-hour).
+* `[remind]` has to be the last parameter. For example, `add n/Lab report d/23-04-2020 1230 mod/CS2100 remind p/HIGH` will not be accepted. Instead, you should enter `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH remind`.
 * The assignment that you are adding has to be unique and it cannot already exist in your assignment list. 
 </div>
 
@@ -487,7 +488,7 @@ you can simply enter `undone 2` into the command line based on the index labelle
    ![UserGuideUndoneCommandTickRemoval](images/UserGuideUndoneCommandTickRemoval.PNG)
    *Figure 26: Deleted green tick labelled*
 
-3) A message that includes the information of your assignment marked as undone will be displayed in the Command Box.
+3) A message that includes the information of your assignment marked as not done will be displayed in the Command Box.
 
    ![UserGuideUndoneCommandSuccess](images/UserGuideUndoneCommandSuccess.PNG)
    *Figure 27: Message shown in Command Box labelled*
