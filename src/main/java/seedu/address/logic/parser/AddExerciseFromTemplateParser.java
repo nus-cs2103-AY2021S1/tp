@@ -34,11 +34,12 @@ public class AddExerciseFromTemplateParser implements ExerciseParser<AddCommand>
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TEMP, PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_CALORIES);
+                ArgumentTokenizer.tokenize(args, PREFIX_TEMP, PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_CALORIES,
+                        PREFIX_MUSCLE, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TEMP, PREFIX_DESCRIPTION,
                 PREFIX_DATE)
-            || !argMultimap.getPreamble().isEmpty()) {
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     seedu.address.logic.commands.AddExerciseFromTemplate.MESSAGE_USAGE));
         }
@@ -57,8 +58,18 @@ public class AddExerciseFromTemplateParser implements ExerciseParser<AddCommand>
 
         Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES)
                 .orElse(template.getCalories().toString()));
+
         Set<MuscleTag> muscleTagList = ParserUtil.parseMuscleTags(argMultimap.getAllValues(PREFIX_MUSCLE));
+
+        if (muscleTagList.isEmpty()) {
+            muscleTagList = template.getMuscleTags();
+        }
+
         Set<ExerciseTag> tagList = ParserUtil.parseExerciseTags(argMultimap.getAllValues(PREFIX_TAG));
+
+        if (tagList.isEmpty()) {
+            tagList = template.getTags();
+        }
 
         Exercise exercise = new Exercise(name, description, date, calories, muscleTagList, tagList);
 

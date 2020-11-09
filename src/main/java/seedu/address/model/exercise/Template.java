@@ -32,6 +32,25 @@ public class Template {
         this.calories = calories;
     }
 
+    public Set<MuscleTag> getMuscleTags() {
+        return muscleTags;
+    }
+
+    public void setMuscleTags(Set<MuscleTag> muscleTags) {
+        this.muscleTags = muscleTags;
+    }
+
+    public void setTags(Set<ExerciseTag> tags) {
+        this.tags = tags;
+    }
+
+    public Template(String name, Integer calories, Set<MuscleTag> muscleTags, Set<ExerciseTag> tags) {
+        this.name = name;
+        this.calories = calories;
+        this.muscleTags = muscleTags;
+        this.tags = tags;
+    }
+
     public String getName() {
         return name;
     }
@@ -46,6 +65,70 @@ public class Template {
      */
     public Set<ExerciseTag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Object[] muscleTagToArray() {
+        return muscleTags.toArray();
+    }
+
+    public Object[] tagToArray() {
+        return tags.toArray();
+    }
+
+    public String muscleTagToString() {
+        Object[] array = muscleTagToArray();
+        String muscleTag = "";
+        for (int i = 0; i < array.length; i++) {
+            if (i == array.length - 1) {
+                muscleTag = muscleTag + array[i];
+            } else {
+                muscleTag = muscleTag + array[i] + ", ";
+            }
+        }
+        return muscleTag;
+    }
+
+    public String tagToString() {
+        Object[] array = tagToArray();
+        String tag = "";
+        for (int i = 0; i < array.length; i++) {
+            if (i == array.length - 1) {
+                tag = tag + array[i];
+            } else {
+                tag = tag + array[i] + ", ";
+            }
+        }
+        return tag;
+    }
+
+    public String parseMuscleTag() {
+        Object[] array = muscleTagToArray();
+        String muscleTag = "";
+        for (int i = 0; i < array.length; i++) {
+            if (i == array.length - 1) {
+                muscleTag = muscleTag + "m/" + array[i];
+            } else {
+                muscleTag = muscleTag + "m/" + array[i] + " ";
+            }
+        }
+        muscleTag = muscleTag.replaceAll("\\[", "").replaceAll("\\]", "");
+
+        return muscleTag;
+    }
+
+    public String parseTag() {
+        Object[] array = tagToArray();
+        String tag = "";
+        for (int i = 0; i < array.length; i++) {
+            if (i == array.length - 1) {
+                tag = tag + "t/" + array[i];
+            } else {
+                tag = tag + "t/" + array[i] + " ";
+            }
+        }
+        tag = tag.replaceAll("\\[", "").replaceAll("\\]","");
+
+        return tag;
     }
 
     public void setName(String name) {
@@ -63,14 +146,29 @@ public class Template {
      */
     @Override
     public String toString() {
-        return "Template{"
-                + "name:'" + name + '\''
-                + '\'' + ", calories:"
-                + calories + '}';
+        return "Template{" +
+                "name='" + name + '\'' +
+                ", calories=" + calories +
+                ", muscleTags=" + muscleTagToString() +
+                ", tags=" + tagToString() +
+                '}';
     }
 
     public String parseToArgument() {
-        return "n/" + getName() + " c/" + getCalories();
+        if (muscleTags.isEmpty()) {
+            if (tags.isEmpty()) {
+                return "n/" + getName() + " c/" + getCalories();
+            } else {
+                return "n/" + getName() + " c/" + getCalories() + " " + parseTag();
+            }
+        } else {
+            if (tags.isEmpty()) {
+                return "n/" + getName() + " c/" + getCalories() + " " + parseMuscleTag();
+            } else {
+                return "n/" + getName() + " c/" + getCalories() + " " + parseMuscleTag() + " "
+                        + parseTag();
+            }
+        }
     }
 
     /**
