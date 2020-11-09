@@ -14,23 +14,23 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to change view of Session List.
   * What it does: allows the user to filter the Session List to only those that start within the requested period.
-  * Justification: This feature improves the product significantly because a user can now re-prioritise and make changes to their schedule much more conveniently.
+  * Justification: This feature improves the product significantly because a user can now re-prioritise and update their timetable more conveniently.
   * Highlights: This enhancement affects existing session-related and schedule-related commands. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to the Logic component.
   * Credits: *Credits to teammates Tan Wei Jie for adding variable range ability and Maguire Ong for assisting with Ui-related matters of the Session List*
   
-  * **New Feature**: Add Session List to RightSideBar.
+* **New Feature**: Add Session List to RightSideBar.
     * What it does: allows the user to view sessions, sorted by time, in one glance.
     * Credits: *{Reused code from the Client List to implement Session List}*
 
 * **New Feature**: Added a weight unit utility class to facilitate conversion of units.
   * What it does: allows the user to both input and output weight in terms of kilogram or pounds.
-  * Justification: This feature improves the usability of the product significantly because it widens the scope of users to include both categories of people who use Metric and Imperial systems.
+  * Justification: This feature improves the product's usability significantly as it widens the user base to include anyone who uses Metric or Imperial systems.
   * Highlights: This enhancement affects the existing weight-related commands and graph. 
     The implementation was challenging because it was built to reduce coupling with other classes and required usage of Observer pattern to enable dynamic updates.
   
 * **New Feature**: Added a Settings window.
   * What it does: allows the user to quickly open a window to edit settings using F4 key / CLI. It also saves the changes in UserPrefs for the next time the user starts up.
-  * Justification: This feature serves as a frame for any other editable settings to be added in future.
+  * Justification: Currently used for weight unit but serves as a frame for any other editable settings to be added in future.
   * Highlights: It necessitated the implementation of an additional user preference field. 
   * Credits: *Reused code from the Help window to implement the Settings window*
 
@@ -55,10 +55,9 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Updated diagrams and description of the Logic component and `cdel` feature. [\#142](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/142)
     * Added implementation details, UML diagrams and design considerations for the `sview` feature. [\#266](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/266), [\#256](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/256)
-    * Increased readability by rephrasing sections and improved consistency in punctuation and grammar. [\#227](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/227), [\#218](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/218)
     * Added captions for all figures.
-    * Added View Session's use case and instructions for manual testing ([\#142](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/142)
-    * Added View Settings's use case ([\#249](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/249)
+    * Added View Session's use case and instructions for manual testing [\#142](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/142)
+    * Added [\#249](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/249)
     
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#233](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/233), [\#159](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/159), [\#149](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/149), [\#153](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/153)

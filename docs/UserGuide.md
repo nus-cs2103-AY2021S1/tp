@@ -634,16 +634,8 @@ Points to take note when viewing session from the Session List:
  | future | All sessions that have not started|
  | past | All sessions that have already ended|
  | week | All sessions within the next 7 days (inclusive of today)|
- | `+[x][unit]` | Sessions within next x time units|
- | `-[x][unit]` | Sessions within past x time units|
- 
- <div markdown="block" class="alert alert-info"> 
- 
- :information_source: **Note:**
-  
- For variable periods, x must be a positive integer below 1 million. Using values 1 million and above may have unintended consequences.
- 
- </div>
+ | `+[x][unit]` | Sessions within next x time units where x is a non-negative integer|
+ | `-[x][unit]` | Sessions within past x time units where x is a non-negative integer|
  
  * The recognized units are as follows:
  <center>Table 3 - List of recognized time units </center>
