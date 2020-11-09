@@ -113,8 +113,9 @@ Here are some general information you would need to know about our commands as y
 
 In Eva, using our commands, you can store and access information about staff and applicants. Information includes details like name, phone number 
 and more. As such, in order to store and access these details in a neat and tidy manner, be sure to follow these guidelines
-on storing and accessing these details as shown in the table below.<br>
-<br>
+on storing and accessing these details as shown in the table below.
+
+</div>
 
 <table>
 <tr><th>Field</th><th>Constraints</th><th>Example</th></tr>
@@ -125,8 +126,6 @@ on storing and accessing these details as shown in the table below.<br>
 <tr><td><code><strong>INDEX</strong></code></td><td>The index of the staff or applicant<br> <br> It must be a valid index number.</td><td><code>2</code> this index will represent the staff/applicant with index-2 in the displayed list.</td></tr>
 <tr><td><code><strong>DATE</strong></code></td><td>must be in the format <code>DD/MM/YYYY</code></td><td><code>06/07/2020</code> represents the 6th of July 2020<br> Note: Eva automatically corrects wrong dates like <code>30/02/2020</code> and <code>31/11/2020</code> to <code>29/02/2020</code> and <code>30/11/2020</code> respectively.</td></tr>
 </table>
-
-</div>
 
 <div markdown="block" class="alert alert-primary">
 
