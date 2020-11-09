@@ -12,6 +12,11 @@ Package contact {
     Class ContactName
     CLass Email
     Class Telegram
+    Class boolean
+}
+
+Package tag {
+    Class Tag
 }
 
 ContactList *-down-> "1" UniqueContactList
@@ -22,6 +27,7 @@ UniqueContactList o-down->"*" Contact
 Contact *-->"1" ContactName
 Contact *-->"1" Email
 Contact *-->"0..1" Telegram
+Contact *-->"1" boolean: isImportant
 Contact *-->"*" Tag
 
 @enduml

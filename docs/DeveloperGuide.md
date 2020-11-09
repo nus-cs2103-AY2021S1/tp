@@ -1448,15 +1448,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add a new module               | keep track of the module information easily            |
 | `* * *`  | user                                       | delete a module                | remove modules that are completed                      |
 | `* *`    | user                                       | find a module by name          | locate details of a module without having to go through the entire list |
-| `* *`    | user                                       | add a zoom link to a module    | keep track and retrieve it easily                      |
+| `* * *`  | user with many online zoom lessons         | add a zoom link to a module    | keep track and retrieve it easily                      |
+| `* * `   | user                                       | edit the zoom link of a module | update the zoom link whenever it changes               |
+| `* *`    | user                                       | delete the zoom link of a module | prevent the accumulation of unused zoom links        |
 | `* *`    | user                                       | calculate my CAP details   | plan my academic progress for the future      |
 | `* *`    | user                                       | archive a modules   | hide less relevant modules that might still be useful for future purposes|
 | `* *`    | user                                       | add graded assignments       | add the information of the assignments that contributed to my grade      |
 |          | contact list                               |                                | |
-| `* * *`  | user                                       | add module contacts            | keep track of all contact details   |
+| `* * *`  | user                                       | add module contacts            | keep track of all contact details for future reference  |
 | `* * *`  | user                                       | delete a contact               | prevent unnecessary contacts from accumulating |
 | `* * *`  | user                                       | edit a contact                 | update contact details whenever they are changed |
-| `* * *`  | user                                       | find a contact                 | retrieve the necessary contact easily     |
+| `* * *`  | user                                       | find a contact by keyword      | retrieve the necessary contact easily without having to look through all my contacts    |
 | `* *`    | user                                       | edit my graded assignments     | update the information of the assignments I have completed     |
 | `* *`    | user                                       | delete graded assignments      | remove the assignments that are do not contribute to my grade anymore|
 | `*`      | user who is overloading                    | sort modules by name           | locate a module easily                                 |
@@ -1464,7 +1466,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete a task                  | remove a task that has been done                       |
 | `* * *`  | user                                       | edit a task                    | make necessary changes to a task                       |
 | `* *`    | user                                       | label a task as completed      |                                                        |
-| `* *`    | user                                       | find a task                    | find a task easily without looking at the entire list  |
+| `* *`    | user                                       | find a task                    | retrieve a task easily without looking at the entire list  |
 | `* *`    | user                                       | sort tasks based on criteria   | easily manage the tasks by order                       |
 | `* *`    | user                                       | filter tasks based on criteria | easily manage the tasks by group                       |
 | `*`      | user                                       | reset the status of a task     | change a task from labeled as completed to not completed |
@@ -1743,26 +1745,6 @@ Use case ends.
     
       Use case ends.
           
-  
-
-**Use Case: View all contact details of a lecturer**
-
-  **MSS**
-   1. User requests to view all contact details of a lecturer.
-   2. User provides the name of the lecturer.
-   3. CAP5BUDDY searches for the specified lecturer from storage.
-   4. CAP5BUDDY retrieves all contact details of the lecturer from storage.
-   5. CAP5BUDDY displays the desired contact details.
-
-  **Extensions**
-
-   * 3a. The specified lecturer name does not exist.
-
-     * CAP5BUDDY displays an error message.
-
-     Use case ends.
-
-## Contact list use cases
 
 
 ## Todo list use cases
