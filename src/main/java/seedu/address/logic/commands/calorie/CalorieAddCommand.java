@@ -24,6 +24,7 @@ public class CalorieAddCommand extends Command {
             + PREFIX_CALORIE + "1000 ";
 
     public static final String MESSAGE_SUCCESS = "Calories successfully added: %1$s" + "\nToday's calories are: ";
+    public static final String MESSAGE_FAILURE = "Daily calorie intake is too large, please input an accurate figure.";
 
     private final Calorie toAdd;
 
@@ -38,6 +39,10 @@ public class CalorieAddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         int todayCalories = model.getCalories();
+
+        if (todayCalories + toAdd.getCalorie() > 15000) {
+            throw new CommandException(MESSAGE_FAILURE);
+        }
         model.addCalories(toAdd);
         todayCalories += toAdd.getCalorie();
         return new CommandResult(String.format(MESSAGE_SUCCESS + todayCalories, toAdd));
