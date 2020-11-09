@@ -665,20 +665,69 @@ Reason for choosing option 2:
 * The expense should only be duplicated on the day of the month it has been incurred for better accounting purposes
 * The `breakdownfinance` command analysis should not include duplicate expenses that have not yet been incurred.
 
-### 4.8 Finance Breakdown
+### 4.8 Schedule View
+
+Homerce allows the user to view his/her appointments in a weekly schedule view. Each appointment will take up a slot in the 
+schedule view that scales with the duration of the appointment. A slot in the schedule will give the user all relevant information
+needed for an appointment such as the name of the client, the start and end time of the appointment, and the title of the service provided.
+
+#### 4.8.1 Rationale
+
+Having a list of appointments alone makes it difficult for a home-based business owner to gauge how busy he/she will be. It would
+also be troublesome to check from a list whether an appointment made would clash with current appointments. Thus, the schedule view is 
+useful in helping the user visualise his/her appointments in a neatly ordered manner, allowing the user to quickly get an overview of the weekly
+appointments.
+
+#### 4.8.2 Current Implementation
+
+The current implementation of the schedule view makes use of the list of appointments from the `AppointmentManager`. The schedule view 
+will display appointments from Monday to Sunday using JavaFx's GridPane. Each row would consist of all appointments of a specific day,
+and the duration of an appointment would correspond to the number of columns taken up by an appointment. The date of an appointment will 
+be indicated using the first column of the grid.
+
+In this section, we will use the following UML object diagram to describe the interaction between objects in the schedule view.
+
+*Figure 24. Workflow of a `breakdownfinance` command*
+
+#### 4.8.3 Design Consideration
+
+**Aspect: Displaying of appointments in the schedule view**
+
+|              |  **Pros**  | **Cons** |
+| -------------|------------|----------|
+| **Option 1** <br> Display all days that have appointments in the schedule view. | Easier to implement and user gets to see all appointments scheduled | Results in a long list to scroll through if there are too many appointments. |
+| **Option 2 (current choice)** <br> Display appointments in a weekly view | Lowers the usage of scrolling. | More effort is required as commands have to be created to allow the user to navigate between different weeks. |
+
+Reason for choosing option 2:
+* Reduce the usage of mouse scrolling making it a more keyboard focused app where commands are used to navigate between weeks of a schedule.
+* Easier to digest a weekly view instead of the entire list of appointments.
+
+**Aspect: Number of days to display in the schedule view**
+
+|              |  **Pros**  | **Cons** |
+| -------------|------------|----------|
+| **Option 1 (current choice)** <br> Display all days of a week in the schedule view even if the day does not have any appointments. | Allows the user to have a standardised schedule view for every week and results in better scaling with the screen display | Results in a lot of whitespace when there are low number of appointments scheduled. |
+| **Option 2** <br> Display only days with appointments | Allows the user to only see what he/she needs, easier to implement as well. | Can cause confusion to the user as dates that do not have appointments will be skipped. E.g. A user will only see appointments on 20/11 and 25/11 if the other dates have no appointments. |
+
+Reason for choosing option 1:
+* Visually more pleasing for the user.
+* Allows for a more consistent view displayed every week. 
+
+
+### 4.9 Finance Breakdown
 
 Homerce allows the user to keep track of the expenses and revenue for his or her home-based business. The finance breakdown 
 will provide a breakdown of the monthly expenses and revenue based on tags for expenses and services for revenue. The finance breakdown will also 
 calculate profits based on the monthly expenses and revenue.
 
-#### 4.8.1 Rationale 
+#### 4.9.1 Rationale 
 
 Keeping track of the financials of a home-based business is important for the business owner to make better financial decisions such as reducing certain expenses or 
 increasing revenue by prioritizing certain services. This could potentially increase the profits of the home-based business. 
 Thus, the finance breakdown is useful in helping the user view the financial information of the home-based business in a 
 simpler way as monthly expenses and revenue will be categorized and profits will also be calculated automatically.
 
-#### 4.8.2 Current Implementation
+#### 4.9.2 Current Implementation
 
 The current implementation of the finance breakdown makes use of the list of revenue and expenses as tracked by `RevenueTracker` and `ExpenseTracker`.
 The list of revenue and expenses will be filtered by their `Month` and `Year` attribute as indicated by the user. The filtered list will
@@ -688,7 +737,7 @@ In this section, we will outline the `breakdownfinance` command using the follow
 
 ![Activity diagram of BreakdownFinance](images/BreakdownFinanceActivityDiagram.png)
 
-*Figure 24. Workflow of a `breakdownfinance` command*
+*Figure 25. Workflow of a `breakdownfinance` command*
 
 When the user enters the `breakdownfinance` command to view the monthly breakdown, the user input command undergoes the same command parsing as described in 
 [Section 3.3 Logic Component](#33-logic-component). During the execution of `breakdownfinance`, 
@@ -704,9 +753,9 @@ The following Sequence Diagram summarises the aforementioned steps.
 
 ![Sequence diagram breakdownfiance](images/BreakdownFinanceSequenceDiagram.png)
 
-*Figure 25. Execution of an `breakdownfinance` command*
+*Figure 26. Execution of an `breakdownfinance` command*
 
-#### 4.8.3 Design Consideration
+#### 4.9.3 Design Consideration
 
 **Aspect: Which class to store Homerce's financial information**
 
@@ -719,17 +768,17 @@ Reason for choosing option 1:
 * Using the same instance of `ExpenseTracker` and `RevenueTracker` to obtain the list of expenses and revenue ensures that expenses and revenue data are consistent without needing to update the lists in `ExpenseTracker`, `RevenueTracker` as well as `FinanceTracker`.
 * The `execute()` command of `BreakdownFinanceCommand` already takes in the `Model` which has `ExpenseTracker` and `RevenueTracker` as attributes. It is unnecessary to create a new `FinanceTracker` class as an attribute for `Model` to store and duplicate information that already exists.
 
-### 4.9 Undo Previous Command
+### 4.10 Undo Previous Command
 
 Homerce allows the user to undo previous commands to restore the state of Homerce to before the execution of the command.
 
-#### 4.8.1 Rationale 
+#### 4.10.1 Rationale 
 
 There may be situations where the user unintentionally uses a command that was not intended. In these situations, it is very useful
 to allow the user to restore the previous state of the application, making it easy for the user to recover from accidental
 command errors.
 
-#### 4.8.2 Current Implementation
+#### 4.10.2 Current Implementation
 
 The current implementation of undo makes use of a `HistoryManager`. A `HistoryManager` maintains a `History` list, where
 each `History` object holds a particular state of the `Model` and `Command` that was executed to change the state of that
@@ -747,7 +796,7 @@ causing the state initial state of the `Model` prior to the execution of `delete
 
 ![Undo State 0](images/UndoState0.png)
 
-*Figure 26. State HistoryManager after `deletesvc 5` command*
+*Figure 27. State HistoryManager after `deletesvc 5` command*
 
 Step 3: The user executes `deletecli 5` command to delete the 5th person in Homerce's client list. When the `LogicManager`
 executes the `CommandResult` from `DeleteClientCommand`, `LogicManager#execute()` will call `HistoryManager#addToHistory()`,
@@ -756,7 +805,7 @@ causing the state initial state of the `Model` prior to the execution of `delete
 
 ![Undo State 1](images/UndoState1.png)
 
-*Figure 27. State HistoryManager after `deletecli 5` command*
+*Figure 28. State HistoryManager after `deletecli 5` command*
 
 Step 4: The user now decides that deleting the client was a mistake, and decides to undo that action by executing the `undo`
 command. The `undo` command will call `HistoryManager#getPreviousHistory()`, which will return the `History` object which stores
@@ -765,9 +814,9 @@ The current state of Homerce's `Model` will be updated to the state of the `Mode
 
 ![Undo State 2](images/UndoState2.png)
 
-*Figure 28. State HistoryManager after `undo` command*
+*Figure 29. State HistoryManager after `undo` command*
 
-#### 4.8.3 Design Consideration
+#### 4.10.3 Design Consideration
 
 **Aspect: How undo executes**
 

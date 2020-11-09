@@ -47,6 +47,10 @@ Included JUnit Tests for the Client Manager, with over 90% line coverage on aver
         * Activity Diagrams for `findcli` and `deletecli` command
         * Sequence Diagram for `findcli` and `deletecli` command
         * Design considerations for `findcli` and `deletecli` commands
+    * Schedule View (Pull Request[#372](https://github.com/AY2021S1-CS2103T-W13-3/tp/pull/372))
+        * Rationale
+        * Current implementation
+        * Design considerations
 * **Contributions to team-based tasks**
     * Helped out with resolving a non-trivial merge conflict (Pull Request [#130](https://github.com/AY2021S1-CS2103T-W13-3/tp/pull/130))
     * Management of the project milestones and maintenance of the issue tracker
