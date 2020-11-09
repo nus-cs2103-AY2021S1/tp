@@ -181,7 +181,7 @@ This predicate is then used to construct a new `FindCommand` object, which chang
 
 The sequence diagram below demonstrates how the `find` command works:
 
-![findSequenceDiagram](images/FindSequenceDiagram.png)
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
 How the `find` command works:
 
