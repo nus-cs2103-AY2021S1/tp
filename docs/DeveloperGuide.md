@@ -134,6 +134,7 @@ The features mentioned are:
 - [Finding flashcards](#find-flashcards)
 - [Setting difficulty for flashcards](#difficulty)
 - [Displaying statistics of a flashcard](#display-statistics-of-a-flashcard)
+- [Clearing all flashcards](#clear-all-flashcards)
 - [Clear statistics of a flashcard](#clear-statistics-of-a-flashcard)
 - [Testing a flashcard](#test-a-flashcard)
 - [Export](#exporting-flashcards)
@@ -604,6 +605,38 @@ The following sequence diagram shows how the Displaystats mechanism works:
 * **Alternative:** Do not use the `Feedback` object. Place all the data in the `CommandResult` object directly.
   * Pros: Demeter's law is no longer violated.
   * Cons: There is less abstraction.
+  
+### Clearing all flashcards
+
+#### Implementation
+
+The following activity diagram summarizes what happens when a user executes the clear command in QuickCache.
+
+![ClearActivityDiagram](images/ClearActivityDiagram.png)
+
+The Clear mechanism will allow the user to delete all flashcards in his local QuickCache.
+
+The implementation makes use of the `Model#setQuickCache` and `QuickCache`. A new instance of `QuickCache` without any existing flashcards will replace the users current `QuickCache` in `Model`.
+
+##### Usage
+
+Given below is an example usage scenario and how the Clear mechanism behaves at each step.
+
+Step 1. The user executes `clear` command to clear all flashcards in his local QuickCache.
+
+Step 2. `ClearCommand#execute` will replace the current instance of `QuickCache` with a new empty instance of `QuickCache` through the `Model#setQuickCache` method.
+
+Step 3. After execution, `CommandResult` will contain a message indicating that it has cleared QuickCache.
+
+The following sequence diagram shows how the Clear mechanism works:
+
+![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
+
+#### Design Considerations:
+
+* **Current choice:** Replaces the existing `QuickCache` in model with a new `QuickCache` that is empty.
+  * Pros: Easy to implement - minimizes the occurence of bugs.
+  * Cons: Waste of resources as a new `QuickCache` instance needs to be created when a user wants to clear QuickCache.
 
 ### Clear statistics of a flashcard
 
