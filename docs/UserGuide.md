@@ -273,7 +273,7 @@ You will have to edit them using the [Editing Student Information](#642-editing-
    <br> e.g. in `add -t DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `add -t Mark Missions`.
 
    * Items in square brackets are optional.
-   <br> e.g `view -s [NAME]`, name is an optional parameter. It can be used as `view -s` or as `view -s [John]`.
+   <br> e.g `view -s [NAME]`, `NAME` is an optional parameter. It can be used as `view -s` or as `view -s [John]`.
 
    * Parameters can be in any order, unless specified otherwise.
    <br> e.g. if the command specifies `t/TELEGRAM e/EMAIL`, `e/EMAIL t/TELEGRAM` is also acceptable.
@@ -328,7 +328,7 @@ Adds a `Consultation` session with a `Student` at a specific `date` and `time`.
 <br>⚠️ Notes:
 * When you add a `Consultation` for a future date while displaying only past `Consultations`, make sure to enter `view -c` to view the complete list to check if the `Consultation` has been added correctly.
 * Similarly, when you add a `Consultation` for a past date while displaying only future `Consultations`, make sure to enter `view -c`.
-* NAME does not have to correspond to an existing student; this is so that the tutor may freely use any nicknames or other identifiers as they see fit. However, it may not be left empty.
+* `NAME` does not have to correspond to an existing student; this is so that the tutor may freely use any nicknames or other identifiers as they see fit. However, it may not be left empty.
 * Because date and time is considered in order, the d/ prefix must come earlier than t/.
 
 #### 6.3.2 Adding `Mastery Checks` : `-mc`
@@ -345,7 +345,7 @@ Adds a `Mastery Check` session with a `Student` at a specific `date` and `time`.
 <br>⚠️ Notes:
 * When you add a `Mastery Check` for a future date while displaying only past `Mastery Checks`, make sure to enter `view -mc` to view the complete list to check if the `Mastery Check` has been added correctly.
 * Similarly, when you add a `Mastery Check` for a past date while displaying only future `Mastery Check`, make sure to enter `view -mc`.
-* NAME does not have to correspond to an existing student; this is so that the tutor may freely use any nicknames or other identifiers as they see fit. However, it may not be left empty.
+* `NAME` does not have to correspond to an existing student; this is so that the tutor may freely use any nicknames or other identifiers as they see fit. However, it may not be left empty.
 * Because date and time is considered in order, the d/ prefix must come earlier than t/.
 * When a `Mastery Check` is first added, a `FAIL` default value will be assigned.
 

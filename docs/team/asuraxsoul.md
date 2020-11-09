@@ -3,10 +3,10 @@ layout: page
 title: Lim Jun Jie's Project Portfolio Page
 ---
 
-## Project: JARVIS
+## Project: Jarvis
 
-JARVIS is a desktop app for CS1101S Teaching Assistants (Avengers), optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
-JARVIS allows Avengers to not only manage their Tutor related tasks, but also manage their personal tasks.
+Jarvis is a desktop app for CS1101S Teaching Assistants (Avengers) to help Avengers keep track of their grading duties and consultations.
+The user interacts with it using CLI and it has a GUI created with JavaFX. It is written in Java and has more than 10kLoC.
 
 Given below are my contributions to the project.
 

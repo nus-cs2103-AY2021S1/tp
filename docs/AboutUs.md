@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `jarvis@comp.nus.edu.sg`
 
 ## Project team
 
@@ -23,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: API + Student Features
 
-### Eryn Seo
+### Seo Yeryeon
 
 <img src="images/wireseo.png" width="200px">
 
@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/wireseo.md)]
 
 * Role: Developer
-* Responsibilities: UI + Consultations Features
+* Responsibilities: GUI + Consultation and Mastery Check Features
 
 ### Wiline Tan
 
@@ -41,7 +41,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/wilinetan.md)]
 
 * Role: Developer
-* Responsibilities: Mission + Quest Features + GUI
+* Responsibilities: Mission and Quest Features + GUI
 
 ### Ng Zhen Teng
 

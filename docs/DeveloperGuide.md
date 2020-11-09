@@ -3,8 +3,8 @@ layout: page
 title: Developer Guide
 ---
 
-This is the Developer Guide for Jarvis, a desktop app for CS1101S Teaching Assistants (Avengers), optimized for use via a Command Line Interface (CLI)
-while still having the benefits of a Graphical User Interface (GUI).
+This is the Developer Guide for Jarvis, a desktop app for CS1101S Teaching Assistants (Avengers) that helps them keep track of their grading duties and consultations.
+It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 ## Table of Contents
 
@@ -31,20 +31,20 @@ while still having the benefits of a Graphical User Interface (GUI).
         * [4.2.1 What is ViewCommand](#421-what-is-viewcommand)
         * [4.2.2 Structure of ViewCommand](#422-structure-of-viewcommand)
         * [4.2.3 Structure of ViewCommandParser](#423-structure-of-viewcommandparser)
-        * [4.2.4 Path Execution of ViewMissionDeadlineCommand](#424-path-execution-of-viewmissiondeadlinecommand)
+        * [4.2.4 Path Diagram of ViewMissionDeadlineCommand](#424-path-diagram-of-viewmissiondeadlinecommand)
         * [4.2.5 Sequence Diagram of ViewMissionDeadlineCommand](#425-sequence-diagram-of-viewmissiondeadlinecommand)
     - [4.3 Add Command](#43-add-command)
         * [4.3.1 What is AddCommand](#431-what-is-addcommand)
         * [4.3.2 Structure of AddCommand](#432-structure-of-addcommand)
         * [4.3.3 Structure of AddXYZCommand](#433-structure-of-addxyzcommand)
         * [4.3.4 Structure of AddCommandParser](#434-structure-of-addcommandparser)
-        * [4.3.5 Path Execution of AddTaskCommand](#435-path-execution-of-addtaskcommand)
+        * [4.3.5 Path Diagram of AddTaskCommand](#435-path-diagram-of-addtaskcommand)
         * [4.3.6 Sequence Diagram of AddTaskCommand](#436-sequence-diagram-of-addtaskcommand)
     - [4.4 Delete Command](#44-delete-command)
         * [4.4.1 What is DeleteCommand](#441-what-is-deletecommand)
         * [4.4.2 Structure of DeleteCommand](#442-structure-of-deletecommand)
         * [4.4.3 Structure of DeleteCommandParser](#443-structure-of-deletecommandparser)
-        * [4.4.4 Path Execution of DeleteConsultationCommand](#444-path-execution-of-deleteconsultationcommand)
+        * [4.4.4 Path Diagram of DeleteConsultationCommand](#444-path-diagram-of-deleteconsultationcommand)
         * [4.4.5 Sequence Diagram of DeleteConsultationCommand](#445-sequence-diagram-of-deleteconsultationcommand)
     - [4.5 Edit Command](#45-edit-command)
         * [4.5.1 What is EditCommand](#451-what-is-editcommand)
@@ -71,6 +71,7 @@ while still having the benefits of a Graphical User Interface (GUI).
     - [7.4 Viewing a Student](#74-viewing-a-student)
     - [7.5 Edit Login Details](#75-edit-login-details)
     - [7.6 Saving data](#76-saving-data)
+8. [Appendix: Effort](#8-appendix-effort)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
@@ -181,7 +182,7 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a student).
+1. The command execution can affect the `Model` (e.g. adding a `Student`).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -189,7 +190,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `delete -c 1` Command](images/DeleteConsultationSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 <div style="page-break-after: always"></div>
@@ -237,7 +239,6 @@ The `Scraper` component,
 Classes used by multiple components are in the `seedu.jarvis.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
-
 <div style="page-break-after: always"></div>
 
 ## 4. Implementation
@@ -261,7 +262,7 @@ The following diagram shows the class relationship between the `ScraperManager` 
 ![Detailed Class Diagram of Scraper Manager](images/DetailedScraperClassDiagram.png)
 
 #### 4.1.3 Path Diagram of login process
-The following diagram shows the path diagram from the user's perspective when he or she logs in into Jarvis.
+The following diagram shows the path execution from the user's perspective when he or she logs in into Jarvis.
 The login process is kickstarted whenever Jarvis is launched or the login details are edited.
 
 ![Path Diagram of login process](images/LoginPathDiagram.png)
@@ -315,10 +316,10 @@ In the `ViewCommandParser` class, under the `parse()` method, we reference the `
 the different flags that `ViewCommand` can parse. We use the `Flag` class to check for whether an input is valid and go on to parse
 the flag and return the correct `ViewCommand` object.
 
-#### 4.2.4 Path Execution of ViewMissionDeadlineCommand
+#### 4.2.4 Path Diagram of ViewMissionDeadlineCommand
 As there are many `ViewCommand` subclasses such as `ViewAllStudentsCommand` and `ViewConsultationsCommand`,
 we will only bring in one of them. In this and the following section, we will be using the `ViewMissionDeadlineCommand`
-as an example for the `ViewCommand` path execution and sequence diagram.
+as an example for the `ViewCommand` path diagram and sequence diagram.
 The diagram below demonstrates the expected path execution of `ViewMissionDeadlineCommand`.
 The other `ViewCommand` subclasses will execute similarly.
 
@@ -393,16 +394,17 @@ the flag and return the correct `AddCommand` object.
 Due to Java `LocalDateTime` class used for our `Consultation`, `MasteryCheck`, `Event` and `Deadline` objects, `ConsultationMasteryCheckCommandParser`
 and `TaskCommandParser` are employed to parse the objects added.
 
-#### 4.3.5 Path Execution of AddTaskCommand
+#### 4.3.5 Path Diagram of AddTaskCommand
 As there are many `AddCommand` subclasses such as `AddTaskCommand` and `AddConsultationCommand`,
 we will only bring in one of them. In this and the following section, we will be using the `AddTaskCommand`
-as an example for the `AddCommand` path execution and sequence diagram.
+as an example for the `AddCommand` path diagram and sequence diagram.
 The diagram below demonstrates the expected path execution of `AddTaskCommand`.
 The other `AddCommand` subclasses will execute similarly.
 
 ![Path Diagram of ViewMisionDeadlineCommand](images/AddCommandPathDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Reminder:** There are 3 `Task` types, namely, `Todo`, `Event` and `Deadline`.
+<div markdown="span" class="alert alert-info">
+:information_source: **Reminder:** There are 3 `Task` types, namely, `Todo`, `Event` and `Deadline`.
 </div>
 
 #### 4.3.6 Sequence Diagram of AddTaskCommand
@@ -463,10 +465,10 @@ and go on to parse the index and provide the parameter necessary to instantiate 
 The `Index` only applies for `DeleteConsultationCommand` and `DeleteMasteryCheckCommand` as `DeleteTaskCommand` utilizes a `String` to store identifiers instead;
 however, they are similar in how they operate and interact with the rest of the system.
 
-#### 4.4.4 Path Execution of DeleteConsultationCommand
+#### 4.4.4 Path Diagram of DeleteConsultationCommand
 As there are many `DeleteCommand` subclasses such as `DeleteMasteryCheckCommand` and `DeleteTaskCommand`,
 we will only bring in one of them. In this and the following section, we will be using the `DeleteConsultationCommand`
-as an example for the `DeleteCommand` path execution and sequence diagram.
+as an example for the `DeleteCommand` path diagram and sequence diagram.
 The diagram below demonstrates the expected path execution of `DeleteConsultationCommand`.
 The other `DeleteCommand` subclasses will execute similarly.
 
@@ -481,7 +483,7 @@ The `LogicManager` will call the `parseCommand` method of `AddressBookParser`, w
 The `DeleteCommandParser`, after parsing the necessary arguments through static methods of the `ParserUtil` class, will return a `DeleteConsultationCommand` object.
 This object will then be returned to the `LogicManager`. Next, the `LogicManager` will call the `execute(model)` method using the `DeleteConsultationCommand` object.
 In this method, it will use the `Model` object to call the method `deleteConsultation()` with parameter `consultationToDelete` which will delete the specified
-consultation from the list of consultations stored in Jarvis. When completed, the `execute(model)` will return a `CommandResult` object with the success message
+`Consultation` from the list of `Consultations` stored in Jarvis. When completed, the `execute(model)` will return a `CommandResult` object with the success message
 to the `LogicManager`, indicating that the command execution is a success.
 
 The other `DeleteCommand` subclasses work similarly to this as well.
@@ -508,7 +510,7 @@ correct `Model` object (eg. `Student`, `UserLogin`) will be added to the corresp
 ![Path Diagram of EditLoginCommand](images/EditLoginCommandPathDiagram.png)
 
 There are 3 `EditCommand` subclasses - `EditStudentCommand`, `EditLoginCommand` and `EditMasteryCheckCommand`.
-We will only use the `EditLoginCommand` as an example for the `EditCommand` path execution and sequence diagram.
+We will only use the `EditLoginCommand` as an example for the `EditCommand` path diagram and sequence diagram.
 The diagram below demonstrates the expected path execution of `EditLoginCommand`.
 The other `EditCommand` subclasses will execute similarly, less the calls to `ScraperManager` to re-scrape Source Academy.
 
@@ -1026,7 +1028,8 @@ a `Task` that requires completion at a particular point in time; `Deadline` is a
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
@@ -1101,7 +1104,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `view -s`<br>
       Expected: Success message of viewing all `Students` is shown in the status message. All `Students` displayed in the GUI under the `Student` tab.
-   
+
 ### 7.5 Edit Login Details
 
 1. Edit `Username` and / or `Password`
@@ -1113,7 +1116,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `edit -l`, `edit -l t/password`, `...`<br>
       Expected: Error message shown in the status message. GUI welcome message remains unchanged. `login.json` file remains unchanged.
-   
+
 ### 7.6 Saving data
 
 1. Dealing with missing/corrupted data files
@@ -1131,3 +1134,20 @@ testers are expected to do more *exploratory* testing.
 
    1. Unsuccessful command inputted in GUI<br>
       Expected: `jarvis.json` does not update or save automatically. The incorrect command is ignored.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div>
+
+## 8. Appendix: Effort
+
+1. While AB3 deals with only one entity type, `Persons`, Jarvis deals with multiple entity types, including `Students`, `Consultations`, `Mastery Checks`, `Missions`, `Quests`, `Todos`, `Deadlines`, and `Tasks`.
+
+1. While AB3 does not have web-based functionalities, Jarvis has the `Scraper` component that uses the Chrome_Driver package to scrape `Source Academy` for course information.
+
+1. While AB3 does not have tab-switching functionalities, Jarvis has multiple tabs that the user can switch to by either clicking on them or entering a related command.
+
+1. While AB3 does not have a `Flag` system, Jarvis has multiple `Flags` that are used to distinguish between different types of Add, Delete, Edit, and View Commands.
+
+1. While AB3 does not have a `Login` functionality, Jarvis has a `Login` system that checks the user's LumiNUS credentials. Jarvis also has a `Greeting` class that displays the current user's name on the upper-right corner of the GUI.
+
+1. Jarvis also has a `Summary` system that displays upcoming `Deadlines`, `Tasks`, `Consultations` and `Mastery Checks`, which is not implemented in AB3.
