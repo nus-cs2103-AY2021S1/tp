@@ -1,5 +1,4 @@
-[![CI Status](https://github.com/se-edu/AY2021S1-CS2103T-W10-3/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-W10-3/tp/actions)
-
+![CI Status](https://github.com/se-edu/AY2021S1-CS2103T-W10-3/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-W10-3/tp/actions)
 ![Ui](docs/images/Ui.png)
 
 * This is **a desktop application designed for team leaders of small software projects.** While it has a Graphical
