@@ -5,7 +5,6 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
-## 1. Introduction
 
 ## **Introduction**
 
@@ -15,6 +14,12 @@ optimised for the Command Line Interface (CLI), so that users can update and ret
 
 ### Purpose of Document
 This document specifies the architecture and software design for the application, tCheck.
+
+### Audience
+
+The Developer Guide is designed for those who are interested in understanding the architecture and other aspects of software design
+of tCheck. In particular, this guide has been written with the current and future tCheck developers in mind because it details
+the knowledge necessary to modify the codebase and customize tCheck for specific operational needs or extend current functionalities.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -123,7 +128,6 @@ The `Model`,
 * stores the `Person`, `SalesRecordEntry` and `Ingredient` sub-components.
 * does not depend on any of the other three components.
 
-
 The `Person` sub-component,
 * stores the address book data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
@@ -153,6 +157,10 @@ The `SalesRecordEntry` sub-component,
 Given below is the class diagram showing the details of the `SalesRecordEntry` model:
 
 ![Structure of the SalesRecordEntry sub-component](images/SalesRecordEntryModelClassDiagram.png)
+
+The `Ingredient` sub-component,
+* stores the ingredient book data.
+* exposes an unmodifiable `ObservableList<Ingredient>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
 Given below is the class diagram showing details of the ingredient model:
 
@@ -357,7 +365,8 @@ Given below is an example usage scenario for the aforementioned three commands a
 
 Step 1. The user, a T-Sugar store manager, launches tCheck for the very first time. The `IngredientBook` will be initialized with a `UniqueIngredientList` containing the six pre-defined ingredients, namely `Milk`, `Pearl`, `Boba`, `Black Tea` , `Green Tea` and `Brown Sugar`, with an amount of 0 set for all.
 
-![IngredientBookState0](images/IngredientBookState.png)
+![IngredientBookState](images/IngredientBookState.png)
+
 shows the relationship between Model and Ingredient Book after tCheck is launched.
 
 Step 2. The user executes `i-set-default` to set the amounts of all ingredients to the default levels of the store, which are 50 L for liquids and 20 KG for solids. The `i-set-default` command calls `Model#setIngredientBook(ReadOnlyIngredientBook ingredientBook)`, causing the initial ingredient book to be replaced by the `ingredientBook` with the amounts of ingredients to be equal to the ingredients' default levels.
@@ -803,25 +812,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User enters the name of the ingredient and the amount he/she wants to set to.
 3. tCheck will set the ingredient level of this ingredient and display a success message.
 
-        Use case ends.
+  Use case ends.
 
 **Extensions**
 
 * 2a. tCheck is unable to find the entered ingredient name.
 
-  * 2a1. tCheck displays an error message informing the user that the ingredient name entered is not found in the pre-defined ingredient book.
+  * 2a1. tCheck requests the user to re-enter the command with a correct ingredient name.
+  
+  * 2a2. User enters a new ingredient name.
+  
+  Steps 2a1-2a2 are repeated until a valid ingredient name is entered.
 
   Use case ends.
 
 * 2b. tCheck detects an invalid amount value entered.
 
-  * 2b1. tCheck displays an error message informing the user that the amount entered is invalid with corresponding reasons (e.g. negative number, contains decimal part etc).
+  * 2b1. tCheck requests the user to re-enter the command with a valid parameter for amount.
+  
+  * 2b2. User enters a new amount for the ingredient.
+  
+  Steps 2b1-2b2 are repeated until a valid amount is entered.
 
   Use case ends.
 
 * 2c. tCheck detects missing field(s) in the command entered.
 
-  * 2c1. tCheck displays an error message informing the user that there are missing field(s) which caused the command to fail and shows an example of a correct command.
+  * 2c1. tCheck requests the user to re-enter the command with all necessary fields.
+  
+  * 2c2. User enters a new command with the necessary fields.
+  
+  Steps 2c1-2c2 are repeated until a valid command with all necessary fields is entered.
 
   Use case ends.
 
@@ -875,7 +896,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Store Manager**: A person who oversees the operation of a T-Sugar store, and is responsible for sales recording, inventory keeping and other management tasks of the store
+* **Employee**: A person who works at a T-Sugar store and is either a full-time worker or a part-time worker
+* **Address Book**: A list containing all the employees' details (name, phone number etc.)
+* **Employee Directory**: A section of GUI which tracks the Address Book
+* **Sales Book**: A list that stores sales data of the drinks
+* **Sales Tracker**: A section of GUI which tracks the Sales Book
+* **Ingredient Book**: A list that stores data of all available ingredients and their amounts
+* **Ingredient Tracker**: A section of GUI which tracks the Ingredient Book
 
 --------------------------------------------------------------------------------------------------------------------
 
