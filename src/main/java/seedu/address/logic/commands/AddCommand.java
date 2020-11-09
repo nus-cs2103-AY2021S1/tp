@@ -23,6 +23,7 @@ public class AddCommand extends Command {
             + PREFIX_MODULE_CODE + "MODULE "
             + "[" + PREFIX_PRIORITY + "PRIORITY" + "] "
             + "[remind]";
+
     public static final String MESSAGE_SUCCESS = "New assignment added: %1$s";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This assignment already exists in ProductiveNus";
 
