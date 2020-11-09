@@ -224,6 +224,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
       - If specified, the tag input must match one of the existing categories in the expense book. If not, the
        expense will be added to the "Default" category - the new category needs to be created first (see [addCategory](#addCat))
       - The expense to be added must not share the same identity fields (description, amount and date) as any expense in the expense book.
+      - Total sum of expenses cannot exceed 10e<sup>9</sup> (_Consistent with `Amount`_)
 
     ![add_example](images/ug_example/add_example.PNG)
     &nbsp;
