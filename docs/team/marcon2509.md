@@ -1,6 +1,7 @@
-# Marcus Duigan Xing Yu - Project Portfolio
-
-___
+---
+layout: page
+title: Marcus Duigan's Project Portfolio Page
+---
 
 ## Project: PropertyFree
 
