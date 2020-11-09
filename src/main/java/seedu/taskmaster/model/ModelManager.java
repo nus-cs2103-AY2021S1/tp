@@ -236,11 +236,6 @@ public class ModelManager implements Model {
         updateFilteredStudentRecordList(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
     }
 
-    @Override
-    public void clearAttendance() {
-        taskmaster.clearAttendance();
-    }
-
     //=========== Filtered Student List Accessors =============================================================
 
     /**

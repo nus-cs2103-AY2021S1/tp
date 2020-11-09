@@ -96,13 +96,6 @@ public class Session {
     }
 
     /**
-     * Sets the {@code AttendanceType} of all {@code StudentRecords} to NO_RECORD.
-     */
-    public void clearAttendance() {
-        studentRecords.markAllStudentAttendances(AttendanceType.NO_RECORD);
-    }
-
-    /**
      * Updates the {@code StudentRecordList} with the data in {@code studentRecords}.
      * @throws StudentNotFoundException
      */

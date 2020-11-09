@@ -148,8 +148,16 @@ public interface Model {
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
 
+    /**
+     * Updates the filter of the filtered session list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     void updateFilteredSessionList(Predicate<Session> predicate);
 
+    /**
+     * Updates the filter of the filtered student record list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     void updateFilteredStudentRecordList(Predicate<StudentRecord> predicate);
 
     /**
@@ -166,7 +174,7 @@ public interface Model {
     void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType);
 
     /**
-     * Marks the attendances of all {@code StudentRecords} with the given {@code attendanceType}
+     * Marks the attendances of all {@code StudentRecords} with the given {@code attendanceType}.
      */
     void markAllStudents(AttendanceType attendanceType);
 
@@ -190,9 +198,7 @@ public interface Model {
     void showRandomStudent(Random random);
 
     /**
-     * Clears the attendance statuses of all students in the student list.
+     * Returns the currently displayed session.
      */
-    void clearAttendance();
-
     SimpleObjectProperty<Session> getCurrentSession();
 }
