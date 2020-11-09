@@ -253,10 +253,10 @@ We thus concluded that finding by specific fields would be beneficial for users,
 The use of prefixes before keywords allows for validation of keywords in the user's input.
 
 The following prefixes are used to identify the type of keywords:
-- `/n` for Name keywords
-- `/mod` for Module code keywords
-- `/d` for Due date or time keywords
-- `/p` for Priority keywords
+- `/n` for name keywords
+- `/mod` for module code keywords
+- `/d` for due date or time keywords
+- `/p` for priority keywords
 
 ##### Predicate classes 
 
@@ -279,14 +279,14 @@ Its `parse` method takes in a string of user input. If there are no multiple pre
 
 If no invalid command format is detected, each keyword in the `List<String>` of keywords are parsed in a for loop. For name, module code and priority keywords, parsing is done via its parse method in `ParserUtil` to ensure that each keyword is valid. These parse methods are `parseName`, `parseModuleCode` and `parsePriority` respectively and they throw `ParseExceptions` in the event of invalid input. 
 
-For date or time keywords, Regular expressions are used to identify its format, with date format being identified with `^\\d{2}-\\d{2}-\\d{4}$` and time format being identified with `^\\d{4}$`. Once the date and time keywords inputted by the user are identified, date keywords are parsed into `LocalDate` and time keywords are parsed into `LocalTime`. A `ParseException` will be thrown if a `DateTimeException` is caught in the event of failed parsing of date with `DateTimeFormatter` pattern `dd_MM-uuuu` or time with the `DateTimeFormatter` pattern `HHmm`.
+For date or time keywords, Regular Expressions are used to identify its format, with date format being identified with `^\\d{2}-\\d{2}-\\d{4}$` and time format being identified with `^\\d{4}$`. Once the format of keywords inputted by the user are identified, date keywords are parsed into `LocalDate` and time keywords are parsed into `LocalTime`. A `ParseException` will be thrown if a `DateTimeException` is caught in the event of failed parsing of date with `DateTimeFormatter` pattern `dd_MM-uuuu` or time with the `DateTimeFormatter` pattern `HHmm`.
+
+Upon successful parsing, a `FindCommand` object is returned.
 
 ##### FindCommand Class
 The `FindCommand` class extends abstract class `Command` and it is responsible for finding assignments based on the user's input keywords. It contains static `String` attributes of error messages to be displayed in the event of invalid user input, and a `Predicate<Assignment>` attribute, `predicate`. The constructor of `FindCommand` takes in a `Predicate<Assignment>` depending on the prefix or keywords in the user's input and its attribute `predicate` is initialized to this value.
  
  It overrides the method `execute` to return a `CommandResult` object, which provides the result of command execution. In the `execute` method, it calls the `updatedFilteredAssignmentList` method of a `Model` object, `model`, it takes in, so that the filter of the filtered assignment list will be updated by the given predicate and a list of filtered assignments will be displayed to the user, along with an indication message on the number of assignments listed.
-
-Upon successful parsing, a `FindCommand` object is returned.
 
 #### Usage Scenario
 
@@ -295,8 +295,8 @@ The following is a usage scenario of when a user wants to find assignments with 
 1. The `execute` method of `LogicManager` is called when a user keys in an input into the application and `execute` takes in the input.
 2. The `parseCommand` method of `ProductiveNusParser` parses the user input and returns an initialized `FindCommandParser` object and further calls the `parse` method of this object to identify keywords and prefixes in the user input.
 3. If user input is valid, it returns a `FindCommand` object, which takes in `NameContainsKeywordsPredicate` with the list of keywords.
-4. There is return call to `LogicManager` which then calls the overridden `execute` method of `FindCommand`.
-5. The `execute` method of `FindCommand` will call the `updateFilteredAssignmentList` method and then the `getFilteredAssignmentListMethod` of the `Model` object.
+4. There is return call to `LogicManager` which then calls the `execute` method of `FindCommand`.
+5. The `execute` method of `FindCommand` will call the `updateFilteredAssignmentList` method of the `Model` object.
 6. The `execute` method returns a `CommandResult` object.
 
 
@@ -375,7 +375,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 ### List by days feature
 
 The user can list all his assignments with `list` without a subsequent argument index, or list assignments with 
-deadlines within a 1 to 50 days from the current date and time, with the number of days being an argument index after `list`.
+deadlines within 1 to 50 days from the current date and time, with the number of days being an argument index after `list`.
 
 It implements the following operations:
 * `list` - Lists all assignments
@@ -386,7 +386,7 @@ For example, if the current date and time is 22/10/2020 1200, assignments with d
 #### Reasons for Implementation
 - As a student user, he will want to view assignments that are due within days from the current date, so that he will know which assignments to complete first in order to meet the deadlines.
 - It is different from the `find` command as users can list all assignments with deadlines within a time period (from the current date to a number of days later),
-whereas finding assignments by date or time will only display assignments due on this particular day or time.
+whereas finding assignments by date or time will only display assignments due on the particular day or time.
 
 #### Current Implementation
 
@@ -396,9 +396,9 @@ The `ListCommandParser` class implements `Parser<ListCommand>` and it is respons
 If input argument is found, it is then checked with Regular Expressions whether the argument is in the range 1 to 50 inclusive. If it is within range, the string `args` is parsed into an `Index` which is then passed in as the argument to the parameterized constructor of `ListCommand` object that is returned.
 
 ##### ListCommand Class
-The `ListCommand` class extends abstract class `Command` and it is responsible for listing assignments based on the user's input command. It contains static `String` attributes of error messages to be displayed in the event of invalid user input, and an `Optional<Index>` attribute, `numberOfDays`. There are overloaded constructors for `ListCommand`, one being empty and the other taking in an `Index` parameter. Within the empty constructor, the `numberOfDays` attribute will be initialized with an empty Optional instance and within the parameterized constructor, `numberOfDays` attribute will be initialized with the Optional of its parameter.
+The `ListCommand` class extends abstract class `Command` and it is responsible for listing assignments based on the user's input command. It contains static `String` attributes of error messages to be displayed in the event of invalid user input, and an `Optional<Index>` attribute, `numberOfDays`. There are overloaded constructors for `ListCommand`, one being empty and the other taking in an `Index` parameter. Within the empty constructor, the `numberOfDays` attribute will be initialized with an empty `Optional` instance and within the parameterized constructor, `numberOfDays` attribute will be initialized with the `Optional` of its parameter.
 
-It overrides the method `execute` to return a `CommandResult` object, which provides the result of command execution. In the `execute` method, if `numberOfDays` is empty, a predicate `PREDICATE_SHOW_ALL_ASSIGNMENT` is passed into the `updatedFilteredAssignmentList` method of a `Model` object, `model`. If `numberOfDays` is not empty, `showLimitedAssignments` method with return type `Predicate<Assignment>` is passed into the `updatedFilteredAssignmentList` method. This method uses lambda expressions to filter assignments with deadlines that fall within the number of days window inputted by the user.
+It overrides the method `execute` to return a `CommandResult` object, which provides the result of command execution. In the `execute` method, if `numberOfDays` is empty, a predicate `PREDICATE_SHOW_ALL_ASSIGNMENT` is passed into the `updatedFilteredAssignmentList` method of a `Model` object, `model`. If `numberOfDays` is not empty, `showLimitedAssignments` method with return type `Predicate<Assignment>` is passed into the `updatedFilteredAssignmentList` method. The `showLimitedAssignments` method uses lambda expressions to filter assignments with deadlines that fall within the number of days window inputted by the user.
 
 ##### Design Considerations
 As the list command allows for users to enter an optional index, we decided that there should be overloaded constructors for this command, one being empty and the other populated with the parameter `Index`. We decided to use `Optional<Index>` as the type for `numberOfDays` attribute in `ListCommand` class because the user input might or might not have an input argument. 
@@ -407,30 +407,25 @@ The following are design considerations we had and its comparisons:
 
 **Consideration 1**: Use of a single constructor which takes in `Index` parameter and pass an `Index` with zero base value 0 into the constructor when all assignments are to be listed.
 
-Pros: 
-* Straightforward way of coding when only one type of constructor is used.
+* **Pros**: Straightforward way of coding and it has a simple implementation.
 
-Cons: 
-* It is not an intuitive way for developers to understand the code in a single glance.
+* **Cons**: It is not an intuitive way for developers to understand the code in a single glance.
 
 **Consideration 2**: Use of overloaded constructors and `Optional<Index>` for `numberOfDays` attribute in `ListCommand` class
 
-Pros: 
-* Removes ambiguity and have clearer semantics
- 
-Cons: 
-* Optional requires a different thinking. For example `null` has to get replaced with `Optional.empty()`.
+* **Pros**: Removes ambiguity and have clearer semantics.
+
+* **Cons**: Optional requires a different thinking. For example `null` has to get replaced with `Optional.empty()`.
 
 
 #### Usage scenario
-The following is a usage scenario of when the user wants to list assignments that are due within the next 3 days from now.
+The following is a usage scenario of when the user wants to list assignments that are due within the next 3 days from the current date and time.
 
 1. `execute("list 3")` of `LogicManager` calls the `parseCommand` method of `ProductiveNusParser`.
  1. `parseCommand("list 3")` parses the String `"list 3"` and returns an initialized `ListCommandParser` object. 
- 1. `parseCommand("List 3")` calls the `parse` method in `ListCommandParser` to return a `ListCommand` object.
- 1. There is return call to `LogicManager` which then calls the overridden `execute` method of `ListCommand`.
- 1. The `execute` method of `ListCommand` will call the `updateFilteredAssignmentList` method of the `Model` object, `model`, which takes in `showLimitedAssignments` method of return type `Predicate<Assignment>`.
- 1. The `getFilteredAssignmentList` method of `model` is called so that the number of assignments in the list can be retrieved by calling `size` method from Java `List` API on the list obtained from the getter method. 
+ 1. `parseCommand("list 3")` calls the `parse` method in `ListCommandParser` to return a `ListCommand` object.
+ 1. There is return call to `LogicManager` which then calls the `execute` method of `ListCommand`.
+ 1. The `execute` method of `ListCommand` will call the `updateFilteredAssignmentList` method of the `Model` object which takes in `showLimitedAssignments` method of return type `Predicate<Assignment>`.
  1. The `execute()` method returns a `CommandResult` object.
  
  Given below is the sequence diagram for the interactions within `LogicManager` for the `execute(list 3)` API call.
@@ -452,7 +447,7 @@ It will provide convenience to users who want to delete more than one assignment
 ##### DeleteCommand class 
 The `DeleteCommand` class extends abstract class `Command` and it is responsible for deleting assignments based on the user's input indexes. It contains static `String` attributes of messages to be displayed to the user, and a `List<Index>` attribute, `targetIndexes`. The constructor of `DeleteCommand` takes in a `List<Index>` argument and `targetIndexes` is initialized to this value.
 
- It overrides the method `execute` to return a `CommandResult` object, which provides the result of command execution. In the `execute` method, `targetIndexes` is sorted in descending order with `INDEX_COMPARATOR` in `CommandLogic` class and then it calls `checkForDuplicationIndexes` and `checkForInvalidIndexes` methods in `CommandLogic`. The zero base value of each `Index` in `targetIndexes` is stored in a `List<Integer>` and the number of distinct values and size of the list is found so that duplicated indexes can be found by comparing the number of distinct values and number of elements in the list. Invalid indexes includes numbers that are not in the range from 1 to the number of assignments in the list. If no `CommandException` is thrown when duplicated or invalid indexes are found, the assignments are deleted by calling `deleteAssignments` method on `model` repeatedly until all indexes in the `targetedIndexes` are accounted for.
+ It overrides the method `execute` to return a `CommandResult` object, which provides the result of command execution. In the `execute` method, `targetIndexes` is sorted in descending order with `INDEX_COMPARATOR` in `CommandLogic` class and then it calls `checkForDuplicationIndexes` and `checkForInvalidIndexes` methods in `CommandLogic`. The zero base value of each `Index` in `targetIndexes` is stored in a `List<Integer>` and the number of distinct values and size of the list is found so that duplicated indexes can be determined by comparing the number of distinct values and number of elements in the list. Invalid indexes includes numbers that are not in the range from 1 to the number of assignments in the list. If no `CommandException` is thrown when duplicated or invalid indexes are found, the assignments are deleted by calling `deleteAssignments` method on `model` repeatedly until all indexes in the `targetedIndexes` are accounted for.
 
 ##### DeleteCommandParser Class
 The `DeleteCommandParser` class implements `Parser<DeleteCommand>` and it is responsible for parsing input arguments with the `parse` method to create a new `DeleteCommand` object. It calls `parseIndexes` method from `ParserUtil` class to parse the string user input into multiple `Index` which is then stored in a `List<Index>`. A `ParseException` is caught if parsing is unsuccessful.
@@ -467,11 +462,11 @@ Since the index of assignments in the list will update after each delete in the 
 #### Usage Scenario
 The following is a usage scenario of when the user wants to delete the first and second assignment in his displayed assignment list:
 
-1. `execute("delete 1 2")` of `LogicManager` calls the `parseCommand` method of `ProductiveNusParser`.
+1. The method `execute("delete 1 2")` of `LogicManager` calls the `parseCommand` method of `ProductiveNusParser`.
  1. `parseCommand("delete 1 2")` parses the String `"delete 1 2"` and returns an initialized `DeleteCommandParser` object. 
- 1. `parseCommand("delete 1 2")` calls the `parse` method in `DeleteCommandParser` which parses the user input into `List<Index>`. This is by calling the static method `parseIndexes()` of `ParserUtil`.
- 1. If the indexes are valid, it returns a `DeleteCommand` object, which takes in `parsedIndexes`, of type `List<Index>` containing `Index` `1` and `2`.
- 1. There is return call to `LogicManager` which then calls the overridden `execute` method of `DeleteCommand`.
+ 1. `parseCommand("delete 1 2")` calls the `parse` method in `DeleteCommandParser` which further parses the user input.
+ 1. If the indexes are valid, it returns a `DeleteCommand` object, which takes in `parsedIndexes`, of type `List<Index>`, containing `Index` `1` and `2`.
+ 1. There is return call to `LogicManager` which then calls the `execute` method of `DeleteCommand`.
  1. The `execute` method of `DeleteCommand` will call the `checkForDuplicatedIndexes` method of `CommandLogic` to check for duplicated indexes. 
  1. The `execute()` method then calls `checkForInvalidIndexes` method of the `CommandLogic` to check for any indexes not found in the displayed assignment list.
  1. The `deleteAssignment` method of `Model` is repeatedly called, once for each `Index` in `List<Index>`. In this case, the loop terminates after 2 times.
