@@ -92,7 +92,7 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 4. Double-click the file to start the app. The GUI similar to the below figure (Figure 1) should appear in a few seconds. Note how the app contains some sample data.
 
 ![Ui](images/Ui.png)
-<div align="center">Figure 1: <strong>Reeve</strong> GUI</div>
+<div align="center">Figure 1: <strong>Reeve</strong> GUI<br></div>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -115,7 +115,7 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 This section serves to help you understand the layout of **Reeve**. Please refer to the figure below (Figure 2) for help.
 
 ![Reeve's Layout](images/ReeveLayout.png)
-<div align="center">Figure 2: <strong>Reeve's</strong> Layout</div>
+<div align="center">Figure 2: <strong>Reeve's</strong> Layout<br></div>
 
 1. **Menu**
 
@@ -174,6 +174,7 @@ The following figure (Figure 3) shows the help window entering the command `help
 ![help message](images/helpMessage.png)
 <div align="center">Figure 3: Help window</div>
 
+
 #### 3.2.2 Toggling between academic and administrative details: `toggle` (By: Hogan)
 
 Since each student contains some administrative and academic details, this command allows you to
@@ -187,12 +188,12 @@ Example:
     * If you have not entered the `toggle` command, you should see a screen similar to the one below (Figure 4).
 
     ![ToggleCommandExpectedOutcomeBeforeUG](images/ToggleCommandExpectedOutcomeBeforeUG.png)
-    <div align="center">Figure 4: Before entering toggle command</div>
+    <div align="center">Figure 4: Before entering toggle command<br></div>
 
     * After entering the `toggle` command, you will switch to displaying academic details of students as shown below (Figure 5).
 
     ![ToggleCommandExpectedOutcomeAfterUG](images/ToggleCommandExpectedOutcomeAfterUG.png)
-    <div align="center">Figure 5: After entering toggle command</div>
+    <div align="center">Figure 5: After entering toggle command<br></div>
     
 #### 3.2.3 Exiting the program: `exit`
 
@@ -247,7 +248,7 @@ Examples:
     * You should see a screen similar to the one shown below (Figure 6).
 
     ![AddCommandExpectedOutcomeUG](images/AddCommandExpectedOutcomeUG.png)
-    <div align="center">Figure 6: After entering add command</div>
+    <div align="center">Figure 6: After entering add command<br></div>
 
 * Also, if you want to add a student with multiple additional details.
     * You can use something like `add n/John Doe p/98765432 s/Woodlands Secondary School y/s 2 v/347 Woodlands Ave 3, Singapore 730347 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
@@ -295,11 +296,10 @@ Examples:
 *  `edit 1 n/Arthur p/98727030 s/Meridian Junior College` edits the name, phone number and school of the 1st student to be `Arthur`, `98727030` and `Meridian Junior College` respectively.
 
 Expected Outcome:
-The following figure (Figure __) shows the expected outcome after executing the above example.
+The following figure (Figure 7) shows the expected outcome after executing the above example.
 
 ![EditCommandExpectedOutcome](images/EditCommandExpectedOutcome.png)
-
-Figure __: Expected Outcome after editing student.
+<div align="center">Figure 7: After entering edit command<br></div>
 
 #### 3.3.4 Locating students: `find` (By: Choon Siong)
 
@@ -370,12 +370,10 @@ Format: `overdue`
 
 Expected Outcome:
 
-The following figure shows the expected result after entering the command `overdue`.
+The following figure (Figure 8) shows the expected result after entering the command `overdue`.
 
 ![OverdueExpectedOutcome](images/OverdueExpectedOutcome.png)
-
-Figure ___. Outcome of entering command `overdue`.
-
+<div align="center">Figure 8: After entering overdue command<br></div>
 
 #### 3.3.8 Managing details for a student: `detail` (By: Vaishak)
 
@@ -405,12 +403,10 @@ Examples:
 * `detail add 1 t/Smart` adds the "Smart" detail to the 1st student in **Reeve**.
 
 Expected Outcome:
-The following figure (Figure __) shows the expected outcome after executing the above example.
+The following figure (Figure 9) shows the expected outcome after executing the above example.
 
 ![AddDetailExpectedOutcome](images/AddDetailExpectedOutcome.png)
-
-Figure __: Expected Outcome after adding detail.
-
+<div align="center">Figure 9: After entering add detail command<br></div>
 
 #### 3.3.8.2 Editing a detail: `detail edit`
 
@@ -426,11 +422,10 @@ Examples:
 * `detail edit 1 i/2 t/Handsome` edits the 2nd detail for the 1st student in **Reeve**, to "Handsome".
 
 Expected Outcome:
-The following figure (Figure __) shows the expected outcome after executing the above example.
+The following figure (Figure 10) shows the expected outcome after executing the above example.
 
 ![EditDetailExpectedOutcome](images/EditDetailExpectedOutcome.png)
-
-Figure __: Expected Outcome after editing detail.
+<div align="center">Figure 10: After entering edit detail command<br></div>
 
 #### 3.3.8.3 Deleting a detail: `detail delete`
 
@@ -446,12 +441,10 @@ Examples:
 * `detail delete 1 i/1` deletes the 1st detail for the 1st student in **Reeve**.
 
 Expected Outcome:
-The following figure (Figure __) shows the expected outcome after executing the above example.
+The following figure (Figure 11) shows the expected outcome after executing the above example.
 
 ![DeleteDetailExpectedOutcome](images/DeleteDetailExpectedOutcome.png)
-
-Figure __: Expected Outcome after deleting detail.
-
+<div align="center">Figure 11: After entering delete detail command<br></div>
 
 #### 3.3.9 Viewing lesson schedule: `schedule` (By: Alex)
 
@@ -474,25 +467,25 @@ you can simply type `schedule m/weekly d/02/11/2020` to view them in a visual in
 
 To view schedule:
 
-1.  Type `schedule m/weekly d/02/11/2020` into the command box as shown in Figure __ . Press `Enter` to execute the command.
+1.  Type `schedule m/weekly d/02/11/2020` into the command box as shown in Figure 12 . Press `Enter` to execute the command.
 
     ![Schedule Step 1](images/ScheduleStep1.png)
-    Figure __ Shows the schedule command input keyed into the command box.
+    <div align="center">Figure 12: Shows the schedule command input keyed into the command box<br></div>
 
-2.  The schedule panel, as labelled in figure __, will appear with all your classes for the week of 2nd November 2020 populated.
+2.  The schedule panel, as labelled in Figure 13, will appear with all your classes for the week of 2nd November 2020 populated.
 
     ![Schedule Step 2](images/ScheduleStep2.png)
-    Figure __ Shows the schedule panel in the weekly format.
+    <div align="center">Figure 12: Shows the schedule panel in the weekly format<br></div>
 
 3.  You can easily view you classes for the week. The Date bar labelled in the Figure __ below shows the day of the week as well as the date for your reference.
     The Time bar in Figure __ shows the time in 24-hour clock format with 1-hour intervals. 
     The Classes labelled in the figure below are colored brown to match the color of Reeve for a better visual experience.
     Furthermore, the name of the student that you are tutoring during that slot is labelled for you to identify classes easily.
-    The red bar in Figure __ indicates your current time.
+    The red bar in Figure 13 indicates your current time.
     With the date, time and name of student shown in one view, you could plan your classes without a hassle.
 
     ![Schedule Step 3](images/ScheduleStep3.png)
-    Figure __ Shows various component of your schedule.
+    <div align="center">Figure 13: Shows various component of your schedule<br></div>
 
 <div markdown="block" class="alert alert-info">
 :information_source: You could also click on the **Schedule** tab in the **Menu** to open or close the schedule. 
@@ -551,11 +544,10 @@ Example:
 
 Expected Outcome:
 
-The following figure shows the result of recording "How do I pass CS2101?" as a new question from Bernice Yu.
+The following figure (Figure 14) shows the result of recording "How do I pass CS2101?" as a new question from Bernice Yu.
 
 ![QuestionAddExpectedOutcome](images/QuestionAddExpectedOutcome.png)
-
-Figure ___. Expected outcome of entering `question add` command.
+<div align="center">Figure 14: After entering add question command<br></div>
 
 ##### 3.4.1.2 Resolving a question: `question solve`
 
@@ -583,11 +575,10 @@ Example:
 
 Expected Outcome:
 
-The following figure shows the result of resolving Bernice's second question.
+The following figure (Figure 15) shows the result of resolving Bernice's second question.
 
 ![QuestionSolveExpectedOutcome](images/QuestionSolveExpectedOutcome.png)
-
-Figure ___. Expected outcome of entering `question solve` command.
+<div align="center">Figure 15: After entering solve question command<br></div>
 
 ##### 3.4.1.3 Deleting a question: `question delete`
 
@@ -608,11 +599,10 @@ Example:
 
 Expected Outcome:
 
-The following figure shows the result of deleting Bernice's second question.
+The following figure (Figure 16) shows the result of deleting Bernice's second question.
 
 ![QuestionDeleteExpectedOutcome](images/QuestionDeleteExpectedOutcome.png)
-
-Figure ___. Expected outcome of entering `question delete` command.
+<div align="center">Figure 16: After entering delete question command<br></div>
 
 #### 3.4.2 Recording exams of a student: `exam` (By: Hogan)
 
@@ -661,11 +651,10 @@ Example:
 * Suppose you want to add a exam record to a student to monitor his academic progress.
     * You can use `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60` to add a new exam record to the first student in the displayed student list on the main panel
     with exam name `Mid Year 2020`, exam date `08/12/2020` and score `40/60` so that you can keep track of this particular exam record.
-    * You should see a screen similar to the one below after entering the above command.
+    * You should see a screen similar to the one below (Figure 17) after entering the above command.
 
     ![AddExamCommandExpectedOutcomeUG](images/AddExamCommandExpectedOutcomeUG.png)
-    
-    Figure __. After entering command `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`.
+    <div align="center">Figure 17: After entering add exam command<br></div>
 
 ##### 3.4.2.2 Deleting an exam record for a student: `exam delete`
 
@@ -685,18 +674,16 @@ Format: `exam delete STUDENT_INDEX i/EXAM_INDEX`
 
 Example:
 * Suppose you have an outdated exam record or an exam record with wrong details such as the exam date or score and you wish to remove this exam record.
-    * For instance, if your current list looks similar to the figure below.
+    * For instance, if your current list looks similar to the figure below (Figure 18).
 
     ![DeleteExamExpectedOutcomeBefore](images/DeleteExamExpectedOutcomeBefore.png)
-    
-    Figure __. Before entering command `exam delete 1 i/1`.
+    <div align="center">Figure 18: Before entering delete exam command<br></div>
 
     * You can use `exam delete 1 i/1` to delete the first exam record on the first student in the displayed student list on the main panel. 
-    * You should see that you have successfully deleted the first exam record of the first student as shown below after entering the above command.
+    * You should see that you have successfully deleted the first exam record of the first student as shown below (Figure 19) after entering the above command.
 
     ![DeleteExamExpectedOutcomeAfter](images/DeleteExamExpectedOutcomeAfter.png)
-    
-    Figure __. After entering command `exam delete 1 i/1`.
+    <div align="center">Figure 19: After entering delete exam command<br></div>
 
 ##### 3.4.2.3 Viewing exam statistics of a student: `exam stats`
 
@@ -716,11 +703,10 @@ Format: `exam stats STUDENT_INDEX`
 Examples:
 * Suppose you are trying to view the exam statistics of a particular student to view his academic progress so far in terms of his exam scores.
     * You can use `exam stats 1` to view the exam statistics of the first student in the displayed student list on the main panel.
-    * You should see a screen similar to the one below when the above command is entered.
+    * You should see a screen similar to the one below (Figure 20) when the above command is entered.
 
     ![ExamStatsCommandExpectedOutcomeUG](images/ExamStatsCommandExpectedOutcomeUG.png)
-    
-    Figure __. After entering command `exam stats 1`.
+    <div align="center">Figure 20: Before entering exam stats command<br></div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -755,12 +741,10 @@ Examples:
 lesson on 31 Oct 2020, where he was absent, and the tutor has no feedback for him.
 
 Expected Outcome:
-The following figure (Figure __) shows the expected outcome after executing the above example.
+The following figure (Figure 21) shows the expected outcome after executing the above example.
 
 ![AddAttendanceExpectedOutcome](images/AddAttendanceExpectedOutcome.png)
-
-Figure __: Expected Outcome after adding attendance.
-
+<div align="center">Figure 21: After entering add attendance command<br></div>
 
 ##### 3.4.3.2 Deleting an attendance record for a student: `attendance delete`
 
@@ -775,18 +759,18 @@ Example:
 * `attendance delete 1 d/06/05/2010` deletes the attendance with the date 6 Apr 2020 from the 1st student in the displayed students list in **Reeve**.
 
 Expected Outcome:
-The following figure (Figure __) shows the expected outcome after executing the above example.
+The following figure (Figure 22) shows the expected outcome after executing the above example.
 
 ![DeleteAttendanceExpectedOutcome](images/DeleteAttendanceExpectedOutcome.png)
-
-Figure __: Expected Outcome after deleting attendance.
+<div align="center">Figure 22: After entering delete attendance command<br></div>
 
 ### 3.5 Notebook feature (By: Choon Siong)
 
-You can store notes containing small amounts of information inside the notebook. This is useful when you want to store information or details that is not related to any student and cannot do so anywhere else in Reeve. You should see the notes on the bottom right hand side of Reeve similar to the display shown below.
+You can store notes containing small amounts of information inside the notebook. This is useful when you want to store information or details that is not related to any student and cannot do so anywhere else in Reeve.
+You should see the notes on the bottom right hand side of Reeve similar to the display shown below (Figure 23).
 
 ![Location of notes panel](images/screenshots/Notes.png)
-
+<div align="center">Figure 23: Location of Notes panel<br></div>
 
 #### 3.5.1 Adding a note `note add`
 
@@ -802,9 +786,10 @@ Example:
   
     * You can use `note add t/things to do d/mark practice papers` to add a new note with title `things to do` and description `mark practice papers` so that you can remind yourself later.
      
-    * You should see a screen similar to the screen below when the above command is entered.
+    * You should see a screen similar to the screen below (Figure 24) when the above command is entered.
+    
     ![Adding a note](images/screenshots/Adding a note.png)
-
+    <div align="center">Figure 24: After entering add note command<br></div>
 
 #### 3.5.2 Editing a note `note edit`
 
@@ -869,7 +854,7 @@ Action | Format, Examples
 
 ## 5. Glossary
 
-The following table provides the definitions of the various terms used in this User Guide.
+The following table (Table 3) provides the definitions of the various terms used in this User Guide.
 
 Table 3: Glossary of terms
 
@@ -902,9 +887,9 @@ Hence, you could adjust the window size to your preferred one before closing Ree
 **Reeve** will automatically open according to this size.
 
 6. I forgot what are the various commands and their format, where can I find the list of commands?<br>
-Simply enter the `help` command and you will be directed the list of commands.
+Simply enter the `help` command, and you will be directed the list of commands.
 
 7. I accidentally deleted all my data, is there a way to recover my past data?<br>
 Unfortunately, **Reeve** currently does not support a backup feature and is unable to recover any deleted data. The backup feature will be coming soon. 
-In the meantime, we advice you to refrain from accidentally clearing all data, you could perhaps create a backup `json` from time to time. 
+In the meantime, we advise you to refrain from accidentally clearing all data, you could perhaps create a backup `json` from time to time. 
 
