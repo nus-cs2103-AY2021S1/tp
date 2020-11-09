@@ -2,58 +2,63 @@
 layout: page
 title: About Us
 ---
+Wanderlust was developed by [Team CS2103-T14-3](https://github.com/orgs/AY2021S1-CS2103-T14-3/people).
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Prof. Damith C. Rajapakse
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/damith.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+
+[[github](https://github.com/damithc)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Lim Hai Shan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/underthehai.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/underthehai)][[PPP](team/underthehai.html)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer (In charge of Model)
+* Responsibilities: Testing
 
-### Johnny Doe
+### Lye Yi Xian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lyeyixian.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/lyeyixian)][[PPP](team/lyeyixian.html)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Team Lead (In charge of Storage)
+* Responsibilities: Integration, Deliverables and deadlines
 
-### Jean Doe
+### Teo Jia wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jiaweiteo.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jiaweiteo)][[PPP](team/jiaweiteo.html)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Developer (In charge of Model)
+* Responsibilities: Scheduling and tracking, Documentation, Integration
 
-### James Doe
+### Timothy Ong Jing Kai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/timjkong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/timjkong)][[PPP](team/timjkong.html)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role:  Developer (In charge of Logic)
+* Responsibilities: Code quality
+
+### Toh Xuan Ning Jeanne
+
+<img src="images/jeannetoh99.png" width="200px">
+
+[[github](http://github.com/jeannetoh99)][[PPP](team/jeannetoh99.html)]
+
+* Role: Developer (In charge of Ui)
+* Responsibilities: Documentation

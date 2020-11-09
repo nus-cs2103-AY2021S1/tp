@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+
+Class MainWindow
+
+MainWindow *-down-> TravelPlanObjectListPanel
+MainWindow *-down-> TravelPlanPanel
+MainWindow *-down-> TravelPlannerPanel
+
+TravelPlannerPanel -down-> NameCard
+
+TravelPlanObjectListPanel -down-> ActivityCard
+TravelPlanObjectListPanel -down-> AccommodationCard
+TravelPlanObjectListPanel -down-> FriendCard
+
+@enduml

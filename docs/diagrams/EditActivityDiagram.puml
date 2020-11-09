@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes edit command;
+
+
+if () then ([else])
+    if() then ([else])
+    :UI show updated travelplan object or travelplan with edited fields;
+    else ([duplication occurs])
+    :UI output duplication error;
+endif
+
+else([invalid input])
+:UI output invalid input error;
+endif
+stop
+@enduml

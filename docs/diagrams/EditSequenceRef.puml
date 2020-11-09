@@ -1,0 +1,62 @@
+@startuml
+!include style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":EditActivityCommand" as EditActivityCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+activate LogicManager
+
+LogicManager -> EditActivityCommand : execute()
+activate EditActivityCommand
+
+
+
+
+    EditActivityCommand -> Model : getFilteredActivityList()
+    activate Model
+
+    Model --> EditActivityCommand: lastShownList
+    deactivate Model
+
+    EditActivityCommand -> EditActivityCommand : createEditedActivity
+    activate EditActivityCommand
+
+
+    EditActivityCommand --> EditActivityCommand : editedActivity
+    deactivate EditActivityCommand
+
+
+    alt isTravelPlan
+
+    EditActivityCommand -> Model: setTravelPlanObject(activityToEdit, editedActivity)
+    activate Model
+    Model --> EditActivityCommand
+    deactivate Model
+
+else else
+
+    EditActivityCommand -> Model: setActivity(activityToEdit, editedActivity)
+    activate Model
+    Model --> EditActivityCommand
+    deactivate Model
+
+end
+
+create CommandResult
+EditActivityCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditActivityCommand : CommandResult
+deactivate CommandResult
+EditActivityCommand --> LogicManager: CommandResult
+deactivate EditActivityCommand
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>> {
+    Interface Predicate <<Interface>>
+    Interface Nameable <<Interface>>
+    Class NameContainsKeywordsPredicate
+    Class "{abstract}\nTravelPlanObject" as TravelPlanObject
+    Class Activity
+    Class Accommodation
+    Class Friend
+}
+
+NameContainsKeywordsPredicate .up.|> Predicate
+TravelPlanObject .up.|> Nameable
+
+Activity -up-|> TravelPlanObject
+Accommodation -up-|> TravelPlanObject
+Friend -up-|> TravelPlanObject
+
+Predicate .left.> Nameable
+
+@enduml

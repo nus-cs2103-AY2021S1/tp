@@ -3,9 +3,9 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":WanderlustParser" as WanderlustParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant "d:DeleteActivityCommand" as DeleteActivityCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,56 +13,56 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("delete -activity 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
-activate AddressBookParser
+LogicManager -> WanderlustParser : parseCommand("delete -activity 1")
+activate WanderlustParser
 
 create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
+WanderlustParser -> DeleteCommandParser
 activate DeleteCommandParser
 
-DeleteCommandParser --> AddressBookParser
+DeleteCommandParser --> WanderlustParser
 deactivate DeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("1")
+WanderlustParser -> DeleteCommandParser : parse(" -activity 1")
 activate DeleteCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+create DeleteActivityCommand
+DeleteCommandParser -> DeleteActivityCommand
+activate DeleteActivityCommand
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
+DeleteActivityCommand --> DeleteCommandParser : d
+deactivate DeleteActivityCommand
 
-DeleteCommandParser --> AddressBookParser : d
+DeleteCommandParser --> WanderlustParser : d
 deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
+DeleteCommandParser -[hidden]-> WanderlustParser
 destroy DeleteCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+WanderlustParser --> LogicManager : d
+deactivate WanderlustParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+LogicManager -> DeleteActivityCommand : execute()
+activate DeleteActivityCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteActivityCommand -> Model : deleteActivity(activityToBeDeleted)
 activate Model
 
-Model --> DeleteCommand
+Model --> DeleteActivityCommand
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+DeleteActivityCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeleteActivityCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+DeleteActivityCommand --> LogicManager : result
+deactivate DeleteActivityCommand
 
 [<--LogicManager
 deactivate LogicManager

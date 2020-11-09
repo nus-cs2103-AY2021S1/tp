@@ -5,52 +5,84 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyTravelPlanner <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class TravelPlanner
+Class ReadOnlyTravelPlanner
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package TravelPlan {
+Class TravelPlan
+Class ActivityList
+Class AccommodationList
+Class FriendList
+Class UniqueTravelPlanList
 }
 
-Package Tag {
-Class Tag
+Package Wishlist {
+Class Wishlist
 }
+
+Package Activity {
+Class UniqueActivityList
 }
+
+Package Accommodation {
+Class UniqueAccommodationList
+}
+
+Package Friend {
+Class UniqueFriendList
+}
+
+Package Commons {
+Class "{abstract}\nTravelPlanObject" as TravelPlanObject
+}
+
+Class "{abstract}\nDirectory" as Directory
+Class ObservableDirectory
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
-
+TravelPlanner .up.|> ReadOnlyTravelPlanner
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
+ModelManager o--> "1" TravelPlanner
+ModelManager o-right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
+ModelManager -left-> Directory
+UserPrefs -[hidden]right-> ReadOnlyTravelPlanner
+ObservableDirectory -down-> Directory
+ModelManager -left-> ObservableDirectory
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+TravelPlanner -left-> Wishlist
+Wishlist -up-|> Directory
+Wishlist -down-> UniqueActivityList
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+TravelPlanner *--> "1" UniqueTravelPlanList
+UniqueTravelPlanList o--> "*" TravelPlan
+TravelPlan -up-|> Directory
+TravelPlan *--> ActivityList
+TravelPlan *--> AccommodationList
+TravelPlan *--> FriendList
+ActivityList -down-> UniqueActivityList
+AccommodationList -down-> UniqueAccommodationList
+FriendList -down-> UniqueFriendList
 
-ModelManager -->"1" Person : filtered list
+UniqueActivityList o-down-> "*" TravelPlanObject
+
+UniqueAccommodationList o-down-> "*" TravelPlanObject
+
+UniqueFriendList o-down-> "*" TravelPlanObject
+
+ActivityList -[hidden]right-> AccommodationList
+AccommodationList -[hidden]right-> FriendList
+
+ModelManager -->"*" TravelPlan : filtered list
+ModelManager -right->"*" TravelPlanObject : filtered list
 @enduml

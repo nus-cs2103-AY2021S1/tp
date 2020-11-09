@@ -9,13 +9,17 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.command.CommandResult;
+import seedu.address.logic.command.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Directory;
+import seedu.address.model.ObservableDirectory;
+import seedu.address.model.wishlist.Wishlist;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,7 +35,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private TravelPlannerPanel travelPlannerPanel;
+    private TravelPlanPanel travelPlanPanel;
+    private TravelPlanObjectListPanel travelPlanObjectListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +48,13 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane travelPlannerPanelPlaceholder;
+
+    @FXML
+    private StackPane travelPlanPanelPlaceholder;
+
+    @FXML
+    private StackPane travelObjectListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -61,8 +73,8 @@ public class MainWindow extends UiPart<Stage> {
         this.logic = logic;
 
         // Configure the UI
+        loadFonts();
         setWindowDefaultSize(logic.getGuiSettings());
-
         setAccelerators();
 
         helpWindow = new HelpWindow();
@@ -106,21 +118,45 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    private void loadFonts() {
+        Font.loadFont(MainWindow.class.getResource("/fonts/Notera_PersonalUseOnly.ttf").toExternalForm(), 80);
+    }
+
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        travelPlannerPanel = new TravelPlannerPanel(logic.getFilteredTravelPlanList());
+        travelPlannerPanelPlaceholder.getChildren().add(travelPlannerPanel.getRoot());
+
+        travelPlanPanel = new TravelPlanPanel(logic.getObservableDirectory());
+        travelPlanPanelPlaceholder.getChildren().add(travelPlanPanel.getRoot());
+        ObservableDirectory dir = logic.getObservableDirectory();
+        dir.get().addListener((v, oldValue, newValue) -> handleDirectoryChange(newValue));
+
+        travelPlanObjectListPanel = new TravelPlanObjectListPanel(logic.getFilteredActivityList(),
+                logic.getFilteredAccommodationList(), logic.getFilteredFriendList(), travelPlanPanel);
+        travelObjectListPanelPlaceholder.getChildren().add(travelPlanObjectListPanel.getRoot());
+        travelPlanObjectListPanel.setActivityTabVisibleOnly();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTravelPlannerFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    private void handleDirectoryChange(Directory directory) {
+        travelPlanPanel.update(directory);
+        if (directory instanceof Wishlist) {
+            travelPlanObjectListPanel.setActivityTabVisibleOnly();
+        } else {
+            travelPlanObjectListPanel.setAllTabsVisible();
+        }
     }
 
     /**
@@ -163,20 +199,20 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
-     * @see seedu.address.logic.Logic#execute(String)
+     * @see Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (commandResult.getTravelPlanObjectType() != -1) {
+                travelPlanObjectListPanel.changeTabView(commandResult.getTravelPlanObjectType());
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

@@ -65,4 +65,12 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Returns true if length of {@code s} is within the character limit {@limit}.
+     */
+    public static boolean isWithinCharacterLimit(String s, int limit) {
+        requireNonNull(s);
+        return s.length() <= limit;
+    }
 }

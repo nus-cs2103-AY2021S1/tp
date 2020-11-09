@@ -1,0 +1,20 @@
+@startuml
+start
+:User executes add command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command adds TravelPlan/TravelPlanObject specified by user
+to the TravelPlanner/TravelPlan in the current Directory])
+    if() then ([else])
+    :Add TravelPlan/TravelPlanObject to TravelPlanner/TravelPlan;
+    else ([TravelPlan/TravelPlanObject already
+    in TravelPlanner/TravelPlan])
+endif
+
+else([invalid input])
+:Ui outputs error message;
+endif
+stop
+@enduml

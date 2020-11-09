@@ -137,9 +137,9 @@ Your code should look something like [this](https://github.com/se-edu/addressboo
 
 ### Parse user input
 
-Now let’s move on to writing a parser that will extract the index and remark from the input provided by the user.
+Now let’s move on to writing a wanderlustParser that will extract the index and remark from the input provided by the user.
 
-Create a `RemarkCommandParser` class in the `seedu.address.logic.parser` package. The class must extend the `Parser` interface.
+Create a `RemarkCommandParser` class in the `seedu.address.logic.wanderlustParser` package. The class must extend the `Parser` interface.
 
 ![The relationship between Parser and RemarkCommandParser](../images/add-remark/ParserInterface.png)
 

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<StackPane fx:id="travelPlanPanel" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox>
+        <padding>
+            <Insets top="15" bottom="0" left="10" right="5"/>
+        </padding>
+        <FlowPane fx:id="startEndDate">
+            <ImageView fitWidth="40" fitHeight="40" >
+                <image>
+                    <Image url="images/airplane.png"/>
+                </image>
+            </ImageView>
+            <Label fx:id="name" styleClass="cell_big_label" text="\$first" style="-fx-padding: 0 0 0 20;
+                -fx-word-wrap: break-word; -fx-max-width: 600;" wrapText="true"/>
+        </FlowPane>
+        <FlowPane>
+            <padding>
+                <Insets left="40" bottom="20"/>
+            </padding>
+            <Label fx:id="startDateToEndDate" styleClass="cell_small_label" text="\$startDateToEndDate" wrapText="true"/>
+            <Label fx:id="totalCost" styleClass="cell_small_label" text="\$totalCost" wrapText="true"
+                   style="-fx-padding: 0 0 0 20;"/>
+        </FlowPane>
+    </VBox>
+</StackPane>

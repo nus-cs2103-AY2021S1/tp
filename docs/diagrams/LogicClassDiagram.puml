@@ -8,7 +8,7 @@ package Logic {
 
 package Parser {
 Interface Parser <<Interface>>
-Class AddressBookParser
+Class WanderlustParser
 Class XYZCommandParser
 Class CliSyntax
 Class ParserUtil
@@ -18,9 +18,9 @@ Class Prefix
 }
 
 package Command {
-Class XYZCommand
+Class XYZTpoCommand
 Class CommandResult
-Class "{abstract}\nCommand" as Command
+Class "{abstract}\nXYZCommand" as Command
 }
 
 Interface Logic <<Interface>>
@@ -35,10 +35,10 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .up.|> Logic
-LogicManager -->"1" AddressBookParser
-AddressBookParser .left.> XYZCommandParser: creates >
+LogicManager -->"1" WanderlustParser
+WanderlustParser .left.> XYZCommandParser: creates >
 
-XYZCommandParser ..> XYZCommand : creates >
+XYZCommandParser ..> XYZTpoCommand : creates >
 XYZCommandParser ..|> Parser
 XYZCommandParser ..> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
@@ -48,12 +48,12 @@ CliSyntax ..> Prefix
 XYZCommandParser ..> ParserUtil
 ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
-XYZCommand -up-|> Command
+XYZTpoCommand -up-|> Command
 LogicManager .left.> Command : executes >
 
 LogicManager --> Model
 Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+note right of XYZTpoCommand: XYZTpoCommand = AddActivityCommand, \nDeleteAccommodationCommand, etc
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult

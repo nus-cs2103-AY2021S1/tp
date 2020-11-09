@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":TravelPlanPanel" as TravelPlanPanel UI_COLOR_T3
+participant ":MainWindow" as MainWindow UI_COLOR_T3
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WanderLustParser" as WanderLustParser LOGIC_COLOR
+participant ":GoToCommandParser" as GoToCommandParser LOGIC_COLOR
+participant ":GoToCommand" as GoToCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> MainWindow : executeCommand("goto -travelplan 2")
+activate MainWindow
+MainWindow -> LogicManager : execute("goto -travelplan 2")
+activate LogicManager
+
+LogicManager -> WanderLustParser :parseCommand("goto -travelplan 2")
+activate WanderLustParser
+
+create GoToCommandParser
+WanderLustParser -> GoToCommandParser
+activate GoToCommandParser
+
+GoToCommandParser --> WanderLustParser
+deactivate GoToCommandParser
+
+WanderLustParser -> GoToCommandParser :parse(" -travelplan 2")
+activate GoToCommandParser
+
+create GoToCommand
+GoToCommandParser --> GoToCommand
+activate GoToCommand
+
+GoToCommand --> GoToCommandParser :command
+deactivate GoToCommand
+
+GoToCommandParser --> WanderLustParser :command
+deactivate GoToCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+GoToCommandParser -[hidden]-> WanderLustParser :command
+destroy GoToCommandParser
+
+WanderLustParser --> LogicManager :command
+deactivate WanderLustParser
+
+LogicManager -> GoToCommand : execute()
+activate GoToCommand
+
+GoToCommand -> Model : setDirectory(2)
+activate Model
+
+Model --> GoToCommand
+deactivate Model
+
+Model -> MainWindow : handleDirectoryChange(directory)
+MainWindow -> TravelPlanPanel :setDirectory(directory)
+activate TravelPlanPanel
+
+TravelPlanPanel --> MainWindow
+deactivate TravelPlanPanel
+
+create CommandResult
+GoToCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> GoToCommand
+deactivate CommandResult
+
+GoToCommand --> LogicManager : commandResult
+deactivate GoToCommand
+
+LogicManager --> MainWindow
+deactivate LogicManager
+@enduml

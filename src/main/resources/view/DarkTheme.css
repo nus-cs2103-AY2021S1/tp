@@ -116,11 +116,22 @@
     -fx-border-width: 1;
 }
 
-.list-cell .label {
+.list-cell .label{
+    -fx-text-fill: white;
+}
+
+#travelPlanPanel .label {
     -fx-text-fill: white;
 }
 
 .cell_big_label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 24px;
+    -fx-text-fill: #010504;
+    -fx-label-padding: 5px 0px 20px 0px;
+}
+
+.cell_medium_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
@@ -149,7 +160,7 @@
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
+    -fx-font-size: 10pt;
     -fx-text-fill: white;
 }
 
@@ -328,7 +339,7 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #travelObjectListPanel, #personWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
@@ -349,4 +360,15 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+.block_label {
+    -fx-label-padding: 5px 0px 5px 0px;
+}
+
+.middle_label {
+    -fx-text-alignment: center;
+}
+
+.centralise {
+    -fx-content-display: center;
 }

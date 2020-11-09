@@ -11,10 +11,15 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
 Class StatusBarFooter
 Class CommandBox
+Class TravelPlanPanel
+Class TravelPlanObjectListPanel
+Class TravelPlannerPanel
+Class NameCard
+Class FriendCard
+Class ActivityCard
+Class AccommodationCard
 }
 
 package Model <<Rectangle>> {
@@ -33,25 +38,46 @@ UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> PersonListPanel
 MainWindow *-down-> StatusBarFooter
+MainWindow *-down-> TravelPlannerPanel
+MainWindow *-down-> TravelPlanObjectListPanel
+MainWindow *-down-> TravelPlanPanel
 
-PersonListPanel -down-> PersonCard
+TravelPlannerPanel -down-> NameCard
+TravelPlanObjectListPanel -down-> AccommodationCard
+TravelPlanObjectListPanel -down-> ActivityCard
+TravelPlanObjectListPanel -down-> FriendCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+TravelPlannerPanel --|> UiPart
+TravelPlanPanel --|> UiPart
+TravelPlanObjectListPanel --|> UiPart
+AccommodationCard --|> UiPart
+ActivityCard --|> UiPart
+FriendCard --|> UiPart
+NameCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
-PersonCard ..> Model
+TravelPlannerPanel ..> Model
+TravelPlanPanel ..> Model
+TravelPlanObjectListPanel ..> Model
+TravelPlanObjectListPanel .[hidden].> Model
+AccommodationCard ..> Model
+ActivityCard ..> Model
+FriendCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+AccommodationCard -[hidden]left- FriendCard
+ActivityCard -[hidden]left- AccommodationCard
+NameCard -[hidden]left- ActivityCard
+TravelPlanObjectListPanel -[hidden]left- TravelPlanPanel
+TravelPlanPanel -[hidden]left- TravelPlannerPanel
+TravelPlannerPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter

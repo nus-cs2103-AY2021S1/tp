@@ -7,14 +7,19 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.command.Command;
+import seedu.address.logic.command.CommandResult;
+import seedu.address.logic.command.exceptions.CommandException;
+import seedu.address.logic.parser.WanderlustParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Directory;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ObservableDirectory;
+import seedu.address.model.ReadOnlyTravelPlanner;
+import seedu.address.model.accommodation.Accommodation;
+import seedu.address.model.activity.Activity;
+import seedu.address.model.friend.Friend;
+import seedu.address.model.travelplan.TravelPlan;
 import seedu.address.storage.Storage;
 
 /**
@@ -26,7 +31,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final WanderlustParser wanderlustParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +39,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        wanderlustParser = new WanderlustParser();
     }
 
     @Override
@@ -42,11 +47,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = wanderlustParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveTravelPlanner(model.getTravelPlanner());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +60,48 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyTravelPlanner getTravelPlanner() {
+        return model.getTravelPlanner();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<TravelPlan> getFilteredTravelPlanList() {
+        return model.getFilteredTravelPlanList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public ObservableList<Activity> getFilteredWishlist() {
+        return model.getFilteredWishlist();
+    }
+
+    @Override
+    public ObservableList<Activity> getFilteredActivityList() {
+        return model.getFilteredActivityList();
+    }
+
+    @Override
+    public ObservableList<Accommodation> getFilteredAccommodationList() {
+        return model.getFilteredAccommodationList();
+    }
+
+    @Override
+    public ObservableList<Friend> getFilteredFriendList() {
+        return model.getFilteredFriendList();
+    }
+
+    @Override
+    public Directory getDirectory() {
+        return model.getDirectory();
+    }
+
+    @Override
+    public ObservableDirectory getObservableDirectory() {
+        return model.getObservableDirectory();
+    }
+
+    @Override
+    public Path getTravelPlannerFilePath() {
+        return model.getTravelPlannerFilePath();
     }
 
     @Override
@@ -78,4 +113,5 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
 }

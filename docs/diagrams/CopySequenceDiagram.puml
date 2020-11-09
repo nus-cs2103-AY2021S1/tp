@@ -1,0 +1,88 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WanderlustParser" as WanderlustParser LOGIC_COLOR
+participant ":CopyCommandParser" as CopyCommandParser LOGIC_COLOR
+participant "d:CopyCommand" as CopyCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Activity" as Activity MODEL_COLOR
+end box
+
+[-> LogicManager : execute("copy 2 1")
+activate LogicManager
+
+LogicManager -> WanderlustParser : parseCommand("copy 2 1")
+activate WanderlustParser
+
+create CopyCommandParser
+WanderlustParser -> CopyCommandParser
+activate CopyCommandParser
+
+CopyCommandParser --> WanderlustParser
+deactivate CopyCommandParser
+
+WanderlustParser -> CopyCommandParser : parse("copy 2 1")
+activate CopyCommandParser
+
+create CopyCommand
+CopyCommandParser -> CopyCommand
+activate CopyCommand
+
+CopyCommand --> CopyCommandParser : c
+deactivate CopyCommand
+
+CopyCommandParser --> WanderlustParser : c
+deactivate CopyCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+CopyCommandParser -[hidden]-> WanderlustParser
+destroy CopyCommandParser
+
+WanderlustParser --> LogicManager : c
+deactivate WanderlustParser
+
+LogicManager -> CopyCommand : execute()
+activate CopyCommand
+
+CopyCommand -> Model : getFilteredActivityList().get(1)
+activate Model
+
+Model --> CopyCommand : activityToCopy
+deactivate Model
+
+CopyCommand -> Model : copyActivity(activityToCopy, 0)
+activate Model
+
+create Activity
+Model -> Activity : Activity(activityToCopy)
+activate Activity
+
+Activity --> Model : copiedActivity
+deactivate Activity
+
+Model -> Model : addActivity(copiedActivity,0)
+
+Model --> CopyCommand
+deactivate Model
+
+create CommandResult
+CopyCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> CopyCommand
+deactivate CommandResult
+
+CopyCommand --> LogicManager : commandResult
+deactivate CopyCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+CopyCommand -[hidden]-> LogicManager
+destroy CopyCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

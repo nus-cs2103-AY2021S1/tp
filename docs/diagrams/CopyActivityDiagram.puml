@@ -1,0 +1,18 @@
+@startuml
+start
+:User executes copy command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([current directory is wishlist
+&& activity index is valid
+&& travelplan index is valid]
+)
+  :Copy specified activity into specified travelplan;
+else([else]
+)
+  :Feedback to user;
+endif
+stop
+@enduml

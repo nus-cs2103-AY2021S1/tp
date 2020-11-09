@@ -1,0 +1,7 @@
+{
+  "persons": [ {
+    "name": "Person with invalid name field: Ha!ns Mu@ster",
+    "startDate" : "2020-11-01",
+    "endDate" : "2020-12-31"
+  } ]
+}

@@ -1,0 +1,14 @@
+@startuml
+start
+:User executes find command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([invalid input])
+    :Ui output error message;
+else ([else])
+    :Ui show updated TravelPlanObjectList with the given keywords;
+endif
+stop
+@enduml

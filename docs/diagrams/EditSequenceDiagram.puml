@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WanderlustParser" as WanderlustParser LOGIC_COLOR
+
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant ":EditDescriptor" as EditDescriptor LOGIC_COLOR
+
+participant ":EditActivityCommand" as EditActivityCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit -activity 1 i/2 n/Ice Skating")
+activate LogicManager
+
+LogicManager -> WanderlustParser : parseCommand("edit -activity 1 i/2 n/Ice Skating")
+activate WanderlustParser
+
+create EditCommandParser
+WanderlustParser -> EditCommandParser
+
+activate EditCommandParser
+EditCommandParser --> WanderlustParser
+deactivate EditCommandParser
+
+WanderlustParser -> EditCommandParser : parse("-activity 1 i/2 n/Ice Skating")
+activate EditCommandParser
+
+
+
+EditCommandParser -> EditCommandParser : parseActivity("1 i/2 n/Ice Skating")
+activate EditCommandParser
+
+create EditDescriptor
+
+EditCommandParser -> EditDescriptor : buildFromSource(i/2 n/Ice Skating)
+activate EditDescriptor
+
+EditDescriptor --> EditCommandParser : editActivityDescriptor
+deactivate EditDescriptor
+
+create EditActivityCommand
+EditCommandParser -> EditActivityCommand
+activate EditActivityCommand
+EditActivityCommand --> EditCommandParser
+deactivate EditActivityCommand
+
+
+EditCommandParser --> EditCommandParser : editCommand
+deactivate EditCommandParser
+
+
+EditCommandParser --> WanderlustParser : editCommand
+deactivate EditCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> WanderlustParser
+destroy EditCommandParser
+
+WanderlustParser --> LogicManager : editCommand
+deactivate WanderlustParser
+
+activate EditActivityCommand
+activate Model
+ref over LogicManager, EditActivityCommand, Model : execute
+[<--LogicManager
+deactivate EditActivityCommand
+deactivate Model
+deactivate LogicManager
+@enduml

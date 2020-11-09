@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WanderlustParser" as WanderlustParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "f:FindActivityCommand" as FindActivityCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find -activity sighseeing")
+activate LogicManager
+
+LogicManager -> WanderlustParser : parseCommand("find -activity sighseeing")
+activate WanderlustParser
+
+create FindCommandParser
+WanderlustParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser --> WanderlustParser
+deactivate FindCommandParser
+
+WanderlustParser -> FindCommandParser : parse(" -activity sighseeing")
+activate FindCommandParser
+
+create FindActivityCommand
+FindCommandParser -> FindActivityCommand
+activate FindActivityCommand
+
+FindActivityCommand --> FindCommandParser : f
+deactivate FindActivityCommand
+
+FindCommandParser --> WanderlustParser : f
+deactivate FindCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindCommandParser -[hidden]-> WanderlustParser
+destroy FindCommandParser
+
+WanderlustParser --> LogicManager : f
+deactivate WanderlustParser
+
+LogicManager -> FindActivityCommand : execute()
+activate FindActivityCommand
+
+FindActivityCommand -> Model : updateFilteredActivityList(predicate)
+activate Model
+
+Model --> FindActivityCommand
+deactivate Model
+
+create CommandResult
+FindActivityCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindActivityCommand
+deactivate CommandResult
+
+FindActivityCommand --> LogicManager : result
+deactivate FindActivityCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

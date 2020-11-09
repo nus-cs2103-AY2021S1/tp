@@ -1,0 +1,20 @@
+@startuml
+start
+:User executes delete command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command deletes TravelPlan/TravelPlanObject specified by user])
+    if() then ([else])
+    :Deletes TravelPlan/TravelPlanObject from TravelPlanner/TravelPlan;
+    else ([The index to delete is not valid])
+    :Ui outputs error message signalling invalid index;
+
+endif
+
+else([invalid command format])
+:Ui outputs error message signalling invalid format;
+endif
+stop
+@enduml

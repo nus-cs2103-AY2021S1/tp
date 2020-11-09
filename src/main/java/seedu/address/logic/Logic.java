@@ -4,12 +4,17 @@ import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.command.CommandResult;
+import seedu.address.logic.command.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
-
+import seedu.address.model.Directory;
+import seedu.address.model.Model;
+import seedu.address.model.ObservableDirectory;
+import seedu.address.model.ReadOnlyTravelPlanner;
+import seedu.address.model.accommodation.Accommodation;
+import seedu.address.model.activity.Activity;
+import seedu.address.model.friend.Friend;
+import seedu.address.model.travelplan.TravelPlan;
 /**
  * API of the Logic component
  */
@@ -24,19 +29,41 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the TravelPlanner.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see Model#getTravelPlanner()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyTravelPlanner getTravelPlanner();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of travelPlans. */
+    ObservableList<TravelPlan> getFilteredTravelPlanList();
+
+    /** Returns an unmodifiable view of the filtered list of wishlist activities. */
+    ObservableList<Activity> getFilteredWishlist();
+
+    /** Returns an unmodifiable view of the filtered list of activities. */
+    ObservableList<Activity> getFilteredActivityList();
+
+    /** Returns an unmodifiable view of the filtered list of accommodations. */
+    ObservableList<Accommodation> getFilteredAccommodationList();
+
+    /** Returns an unmodifiable view of the filtered list of friends. */
+    ObservableList<Friend> getFilteredFriendList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the current directory.
      */
-    Path getAddressBookFilePath();
+    Directory getDirectory();
+
+    /**
+     * Returns the ObservableDirectory that is observed by the Ui.
+     */
+    ObservableDirectory getObservableDirectory();
+
+    /**
+     * Returns the user prefs' travel planner file path.
+     */
+    Path getTravelPlannerFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -47,4 +74,5 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
 }
