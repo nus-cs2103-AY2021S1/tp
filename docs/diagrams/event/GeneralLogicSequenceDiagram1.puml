@@ -1,0 +1,41 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as logicManager LOGIC_COLOR
+participant ":ParserManager" as parserManager LOGIC_COLOR
+participant ":XYZFeatureParser" as XYZFeatureParser LOGIC_COLOR
+participant ":XYZParser" as XYZParser LOGIC_COLOR
+end box
+
+[-> logicManager : user Input
+activate logicManager LOGIC_COLOR
+
+create parserManager
+logicManager -> parserManager : "new ParserManager()"
+activate parserManager LOGIC_COLOR
+
+create XYZFeatureParser
+parserManager -> XYZFeatureParser : new XYZFeatureParser()
+activate XYZFeatureParser LOGIC_COLOR
+
+XYZFeatureParser -> parserManager
+deactivate XYZFeatureParser
+
+parserManager -> logicManager : XYZFeatureParser
+deactivate parserManager
+
+logicManager -> XYZFeatureParser : "parseCommand()"
+activate XYZFeatureParser LOGIC_COLOR
+
+create XYZParser
+XYZFeatureParser -> XYZParser : new XYZParser()
+activate XYZParser LOGIC_COLOR
+
+XYZParser -> XYZFeatureParser
+deactivate XYZParser
+
+XYZFeatureParser -> XYZParser : "parse()"
+activate XYZParser LOGIC_COLOR
+
+@enduml
