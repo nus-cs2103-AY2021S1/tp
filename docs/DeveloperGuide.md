@@ -779,6 +779,55 @@ testers are expected to do more *exploratory* testing.
 
 ### Features
 
+1. Adding a Lesson
+
+   1. Prerequisites: Lesson named "CS2103T" must not already exist in fitNUS.
+   1. Test case: `lesson_add n/CS2103T t/core`<br>
+      Expected: Creates a Lesson called "CS2103T" that is tagged with "core" tag. Success message will be shown.
+   1. Test case: `lesson_add n/CS2100`<br>
+      Expected: Creates a Lesson called "CS21000" with no tags. Success message will be shown.
+   1. Test case: `lesson_add n/CS20&0`<br>
+      Expected: Throws an error due to input not following alphanumeric format. 
+   1. Other incorrect commands to try: `lesson_add`, `lesson_add n/MA1101R n/MA1521`, `...`<br>
+      Expected: Similar to previous.
+
+1. Deleting a Lesson
+
+   1. Prerequisites: Lesson indicated must already exist in fitNUS. In this case, there exists 1 Lesson.
+   1. Test case: `lesson_delete 1`<br>
+      Expected: First Lesson is deleted from the list. Successful message will be shown.
+   1. Test case: `lesson_delete 0`<br>
+      Expected: No Lesson is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Other incorrect delete commands to try: `lesson_delete`, `lesson_delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous. 
+      
+1. Finding a Lesson using keywords
+
+    1. Prerequisites: There must be Lesson existing in fitNUS to search for. In this case, we assume there are 2 named
+    "CS2030" and "CS2040". squats, bench press
+    1. Test case: `lesson_find cs2040`<br>Expected: Lesson "CS2040" will be the only Lesson listed in fitNUS.
+    Success message will inform user how many lessons were successfully found.
+    1. Test case: `lesson_find cs`<br>Expected: Lessons "CS2030" and "CS2040" will be the Lessons listed in fitNUS.
+    Success message will inform user how many lessons were successfully found.
+    1. Test case: `lesson_find @`<br>Expected: No Lesson object will be found, because this is an invalid Name.
+    1. Other incorrect delete commands to try: `lesson_find `<br>
+       Expected: Error message thrown informing you of the correct command format. 
+
+1. Editing an existing Lesson
+
+    1. Prerequisites: There must be a Lesson existing in fitNUS to edit. There is one Lesson named "ES2660".
+    1. Test case: `lesson_edit 1 n/CS2100`<br>Expected: Lesson "ES2660" will be renamed to "CS2100"
+    and a success message will inform user of the new name.
+    1. Test case: `lesson_edit 1 n/CS2100 t/easy`<br>Expected: Lesson "ES2660" will be renamed to "CS2100"
+    with a tag saying "easy". A success message will inform user of the new name and tags.
+    1. Test case: `lesson_edit 10 n/Good Name`<br>Expected: Invalid index, no Lesson is edited and an error message
+    will be thrown, explaining the index is invalid.
+
+1. Listing all Lesson
+
+    1. Test case: `lesson_list`: fitNUS will list out all the Lesson in the Lesson column. Success message will be
+    show.
+
 1. Adding an Exercise
 
    1. Prerequisites: Exercise named "Squats" must not already exist in fitNUS.
@@ -1035,9 +1084,16 @@ coupling and abstraction.
 We knew that we wanted to center fitNUS around Exercise. Intertwining of Exercise with Routine, Timetable and the other
 classes proved to be extremely challenging. Whenever an Exercise was edited or removed, relevant Routines will have to
 changed and similarly edited. We went through several iterations of refactoring these classes due to
-design issues as we learnt more about design principles in the course and defensive programming. 
+design issues as we learnt more about design principles in the course and defensive programming.
 
-### 3. Timetable and Slot
+### 3. Lessons
+
+We knew another major aspect to fitNUS was Lesson. Intertwining of Lesson and Timetable and the other
+classes proved to be extremely challenging. Whenever a Lesson was edited or removed, relevant Lessons will have to be
+changed and similarly edited in the Timetable. We went through several iterations of refactoring these classes due to
+design issues as we learnt more about design principles in the course and defensive programming.  
+
+### 4. Timetable and Slot
 
 Implementing a Timetable in fitNUS that stores Routines and Lessons prove to be another challenging task.
 Since the Timetable has to be able to store both Routines and Lessons, we need to use a parent Activity class and
@@ -1049,7 +1105,7 @@ A lot of meticulous thoughts are required to implement this feature properly due
 Whenever a Routine or Lesson is edited or deleted, we need to ensure any corresponding Slots containing them have to be
 edited or deleted as well.
 
-### 3. User Interface
+### 5. User Interface
 
 We envisioned fitNUS to be more of a "visual" product, where users will feel that the product is intuitive to use and
 the interface is lean. We are proud and sure that we have achieved this goal, despite not knowing any JavaFX before
@@ -1058,7 +1114,7 @@ enters calories as well as the timetable tab that is able to concisely display t
 We spent a considerable amount of time on independent learning to understand how the graph and tabs can be implemented, 
 and how to best integrate these components into fitNUS.
 
-### 4. Conclusion
+### 6. Conclusion
 
 No matter how much you plan for a project, things will always hiccup. 
 We had a lot of unique ideas and features that we wish we could have implemented, but due to the unforeseen workload and the already
