@@ -25,12 +25,6 @@ Given below are my contributions to the project.
 * **New Features**: Added the ability to list task in certain sequence.
    * What it does: Easy-to-use CLI commands list the current task in PlaNus.
    * Highlights: Custom compareTo method is used for event and deadline class to provide more logical sorting sequence for the deadline and event when they are add in the task list. (passed event and done deadline will be placed in the bottom of the list, while earlier deadline will be place in the top of the list)
-    
-  * What it does: Easy-to-use CLI commands to add a particular deadline according to a set of specified attributes.
-  * Justifications: The `deadline` and `event` command are integral in managing a students tasks.
-  * Highlights: This feature requires use of inheritance and polymorphism as both deadline and event are considered a task in PlaNus.
-  Custom compareTo method is used to provide more logical sorting sequence for the deadline and event when they are add in the task list. (passed event and done deadline will be placed in the bottom of the list, while earlier deadline will be place in the top of the list)
-
 
 * **New Features**: Added the ability to mark a deadline as done.
   
