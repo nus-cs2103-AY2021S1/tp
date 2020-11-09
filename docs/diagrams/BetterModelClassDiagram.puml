@@ -12,9 +12,10 @@ UniqueTagList -[hidden]down- UniqueExpenseList
 UniqueTagList *-right-> "*" Tag
 UniqueExpenseList o-right-> Expense
 
-Expense -up-> "*" Tag
+Expense -up-> "1" Tag
 
 Expense *--> Description
 Expense *--> Amount
 Expense *--> Date
+Expense *--> Remark
 @enduml

@@ -11,6 +11,7 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
+Class BudgetDisplay
 Class ExpenseListPanel
 Class ExpenseCard
 Class StatusBarFooter
@@ -33,6 +34,7 @@ UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
+MainWindow *-down-> BudgetDisplay
 MainWindow *-down-> ExpenseListPanel
 MainWindow *-down-> StatusBarFooter
 
@@ -41,6 +43,7 @@ ExpenseListPanel -down-> ExpenseCard
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
+BudgetDisplay --|> UiPart
 CommandBox --|> UiPart
 ExpenseListPanel --|> UiPart
 ExpenseCard --|> UiPart
@@ -48,6 +51,7 @@ StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
 ExpenseCard ..> Model
+BudgetDisplay ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 

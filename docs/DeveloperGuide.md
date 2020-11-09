@@ -133,155 +133,83 @@ Classes used by multiple components are in the `seedu.expense.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedExpenseBook`. It extends `ExpenseBook` with an undo/redo history, stored internally as an `expenseBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedExpenseBook#commit()` — Saves the current expense book state in its history.
-* `VersionedExpenseBook#undo()` — Restores the previous expense book state from its history.
-* `VersionedExpenseBook#redo()` — Restores a previously undone expense book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitExpenseBook()`, `Model#undoExpenseBook()` and `Model#redoExpenseBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedExpenseBook` will be initialized with the initial expense book state, and the `currentStatePointer` pointing to that single expense book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th expense in the expense book. The `delete` command calls `Model#commitExpenseBook()`, causing the modified state of the expense book after the `delete 5` command executes to be saved in the `expenseBookStateList`, and the `currentStatePointer` is shifted to the newly inserted expense book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new expense. The `add` command also calls `Model#commitExpenseBook()`, causing another modified expense book state to be saved into the `expenseBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitExpenseBook()`, so the expense book state will not be saved into the `expenseBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the expense was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoExpenseBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous expense book state, and restores the expense book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial ExpenseBook state, then there are no previous ExpenseBook states to restore. The `undo` command uses `Model#canUndoExpenseBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoExpenseBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the expense book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `expenseBookStateList.size() - 1`, pointing to the latest expense book state, then there are no undone ExpenseBook states to restore. The `redo` command uses `Model#canRedoExpenseBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the expense book, such as `list`, will usually not call `Model#commitExpenseBook()`, `Model#undoExpenseBook()` or `Model#redoExpenseBook()`. Thus, the `expenseBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitExpenseBook()`. Since the `currentStatePointer` is not pointing at the end of the `expenseBookStateList`, all expense book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire expense book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the expense being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
 ### Category Account Switching Feature
 
 #### Implementation
 
-The proposed switching mechanism is facilitated by `ExpenseBook` and initialised by 
+The switching mechanism is facilitated by `ExpenseBook` and initialised by
 `Model#switchCategory(Tag category)`. Additionally, `ExpenseBook` implements the following operations:
 
 * `ExpenseBook#containsCategory(Tag toCheck)` — Checks if the given tag matches the tag of category budget. <a name="switchOperations"></a>
 * `ExpenseBook#updateExpenseBookCategory(Tag category)` - Updates the expense to only show expenses and budgets that matches the category.
-* `ExpenseBook#updateFilteredBudgets(Predicate<CategoryBudget> predicate)` — Filters the budget list to the given tag.
-* `ExpenseBook#updateFilteredExpenses(Predicate<Expense> predicate)` — Filters the expense list to the given tag.
+* `ExpenseBook#updateFilteredBudgets(Predicate<CategoryBudget> predicate)` — Filters the budget list to the given predicate.
+* `ExpenseBook#updateFilteredExpenses(Predicate<Expense> predicate)` — Filters the expense list to the given predicate  .
 
-These operations are exposed in the `Model` interface as 
-* `hasCategory(Tag toCheck)`
-* `updateExpenseBookCategory(Tag category)`
+These operations are exposed in the `Model` interface as
+* `Model#hasCategory(Tag toCheck)`
+* `Model#updateExpenseBookCategory(Tag category)`
 * `Model#updateFilteredExpenseList(Predicate<Expense> predicate)`
 * `Model#updateFilteredBudgetList(Predicate<CategoryBudget> predicate)`
 
-Given below is an example usage scenario and how the switching mechanism behaves at each step.
+Given below is a successful usage scenario example and how the switching mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `ExpenseBook` will be initialized with the 
+Step 1. The user launches the application for the first time. The `ExpenseBook` will be initialized with the
 initial expense book state in Model.
 
-Step 2. The user executes `switch t/Food` command to switch to `ExpenseBook` with "Food" tag in category budget 
-and expenses in the expense book. The `switch` command calls `Model#switchCategory(Tag category)`. The method then 
+Step 2. The user executes `switch t/Food` command to switch to `ExpenseBook` with "Food" tag in category budget
+and expenses in the expense book. The `switch` command calls `Model#switchCategory(Tag category)`. The method then
 calls the operations mentioned [above](#switchOperations) causing the category budgets and expenses to be filtered.
 
 The following sequence diagram shows how the switch operation works:
 
-![UndoSequenceDiagram](images/SwitchSequenceDiagram.png)
+![SwitchSequenceDiagram](images/SwitchSequenceDiagram.png)
+![SwitchSequenceDiagram2](images/SwitchSequenceDiagram2.png)
+![SwitchSequenceDiagram3](images/SwitchSequenceDiagram3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SwitchCommand` 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SwitchCommand`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 <br/>
 
-Step 3. The user then decides to execute the command `topup`. Commands that modify the expense book, 
+Step 3. The user then decides to execute the command `topup`. Commands that modify the expense book,
 such as `topup`, `delete`, `edit`, will usually call their respectively method in Model. As such the budget balance
 display of the application will change accordingly to reflect on their corresponding values.
 
-Step 4. The user then decides to execute the command `list`. Commands that do not modify the expense book, 
-such as `list`, `find`, will usually revert the displayed budget to the overall amount instead of category-specific. 
-In addition, the expenses calculated will be based on the displayed list total amount. 
+Step 4. The user then decides to execute the command `list`. Commands that do not modify the expense book but have strong
+relationship with altering the budget display such as `list`, will usually revert the displayed budget to the overall
+amount instead of category-specific. In addition, the expenses calculated will be based on the displayed list total
+amount.
+
+Step 5. The user then decides to execute the command `find`. Commands that do not modify the expense book and do not
+have a clear relationship with the budget display such as `find`, will usually omit out the budget display after
+their execution. However, exceptions are given to command such as `help`, `exit` which will not alter the visibility
+of the current budget display.
 
 #### Design consideration:
 
 ##### Aspect: How Category switching executes
 
-* **Alternative 1 (current choice):** Filters the entire expense book by tag.
+* **Alternative 1 (current choice):** Filters the entire expense book by category tag.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of execution speed. (Require repeated calculation and filtering)
 
 * **Alternative 2:** Create multiple expense books for each category.
   * Pros: Will be faster during execution. (Calculation and sorting/filtering are done during initialisation)
-  * Cons: Slower initialisation and higher overhead cost and more memory used. 
+  * Cons: Slower initialisation and higher overhead cost and more memory used.
 
-### \[Proposed\] Expense Sorting Feature
+### Expense Sorting Feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed expense sorting command is facilitated by `UniqueExpenseList` and `ExpenseBook`. In addition
+The expense sorting command is facilitated by `UniqueExpenseList` and `ExpenseBook`. In addition
 , a new `Command` subclass, `SortCommand`, is required.   Specifically, the following operations are relevant to this
  command:
 
 * `ExpenseBook#sort(Comparator<Expense> comparator)` — Sorts its `UniqueExpenseList` according to the comparator
  provided.
 * `UniqueExpenseList#sort(Comparator<Expense> comparator)` — Sorts its `ObservableList<Expense>` according to the
- comparator provided.  
+ comparator provided.
 
 These operations are exposed in the `Model` interface as `Model#sortExpenses(Comparator<Expense> comparator)`
 
@@ -289,15 +217,14 @@ These operations are exposed in the `Model` interface as `Model#sortExpenses(Com
 
 `SortCommand` will take in at least one, and up to three keywords which specify the order and the parameters to sort
  by (date, description, amount). The conversion of the `String` input to a `Comparator<Expense>` is facilitated by
-  `SortCommandParser#parse()`, and the **order** of the sorting parameters is implemented via the 
-  `Comparator#thenComparing()` method.
- 
-Example Usage: 
+  `SortCommandParser#parse()`, and the **order** of the sorting parameters is implemented via the `Comparator#thenComparing()` method.
+
+Command Example:
 * `sort by/date` — Sorted by chronological order.
 * `sort by/date by/descriptionR` — Sorted in chronological order, then based on reverse alphabetical
  order of descriptions.
 * `sort by/date by/amount by/description` — Sorted in following order of priority: Chronological order, then by
- increasing order of amounts, then by alphabetical order of descriptions. 
+ increasing order of amounts, then by alphabetical order of descriptions.
 
 ##### Example Usage
 Given below is an example usage scenario and how the sorting command behaves at each step.
@@ -305,7 +232,7 @@ Given below is an example usage scenario and how the sorting command behaves at 
 Step 1. The user launches the application. The `ExpenseBook` shows the list of expenses in the expense book.
 
 Step 2. The user executes `sort by/date by/descriptionR` command to sort the `Expenses` in `ExpenseBook` first by
- date, then in reverse alphabetical order of the descriptions. 
+ date, then in reverse alphabetical order of the descriptions.
  A comparator is created reflecting the above sorting.
  The `sort` command calls `Model#sort(Comparator<Expense> c)`, causing the `ExpenseBook` expenses to be
   sorted according to the comparator, and the `filteredExpenses` in `Model` to be modified since it is a listener.
@@ -316,16 +243,13 @@ The following sequence diagrams shows how the sort command works:
 ![SortSequenceDiagram Pt2](images/SortSequenceDiagram2.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` and
- `Comparator<Expense>` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches 
- the end of diagram.
-
+ `Comparator<Expense>` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Step 3. The user then decides to execute the command `delete`. Commands that modify the expense book, such as `delete`, 
-`edit`, will usually call their respectively method in Model, but using the new index ordering of the sorted list. 
+Step 3. The user then decides to execute the command `delete`. Commands that modify the expense book, such as `delete`, `edit`, will usually call their respectively method in Model, but using the new index ordering of the sorted list.
 
 Step 4. The user then decides to execute the command `list`. This will revert the display view to initial
- `ExpenseBook`. 
+ `ExpenseBook`.
 
 
 #### Design consideration:
@@ -368,6 +292,7 @@ The following is a sequence diagram showing how it works:
 Step 3. The user can now use the following command to trigger a FindCommand.
 
 * `get -d lunch at macs`
+
 #### Design consideration:
 
 ##### Aspect: How alias executes
@@ -378,30 +303,30 @@ Step 3. The user can now use the following command to trigger a FindCommand.
 * **Alternative 2:** Allows aliases of all command words. Does not override default command words but merely adds an alias. Reserved keywords cannot be applied unless it is for its associated subclass (i.e. removing the custom alias).
   * Pros: More flexibility than Alternative 1.
   * Cons: Restricts degree of customisation due to reserved keywords not being allowed to use as alias for other Commands.
-  
+
 * **Alternative 3:** Allows customisation of ALL command words.
   * Pros: Highest degree of flexibility, better for users who can easily get used to Command Line Apps.
   * Cons: May be messy and slower learning users may get confused.
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Default Category
+### Default Category
 
 The function of the default category is to subsume all "untagged" `expenses` under some category.
 This is especially important for possible occasions such as when the User uses the application without any categories,
 or when the User deletes a category that existing `expenses` are linked to.
 
-#### Proposed Implementation
+#### Implementation
 
 The default category generally functions the same way as any user-created category, except that it cannot be deleted or
 renamed. It is contained separately from the user-created categories (if any) for this reason. If a new ExpenseBook is
 started, the default category is automatically initialized so that the User can use the full range of the basic
 features even without creating customized categories.
 
-### \[Proposed\] Graphical Representation Feature
+### Graphical Representation Feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed graphical representation feature will allow the user to view a pie chart of his total spending, with each wedge representing the percentage of spending that corresponds to a specific tag.
+The graphical representation feature will allow the user to view a pie chart of his/her total spending, with each wedge representing the percentage of spending that corresponds to a specific tag.
 This graphical representation will be displayed on `GraphDisplayWindow` upon the execution of `GraphCommand`. This mechanism will be facilitated by `PieChartData` to retrieve the required data from `ExpenseBook`.
 `PieChartData` extends `ChartData` which allows abstracting out the implementation of different graphical representation formats for future versions.
 
@@ -434,7 +359,7 @@ The following activity diagram summarizes what happens when a user enters a grap
   * UI formatting is separated from the backend logic.
   * Allows for dynamic updating of graphs.
 
-* **Data re-retrieved upon every execution**
+* **Data retrieval occurs upon every execution**
   * Updates graph accordingly.
   * Will not show outdated graphs.
 
@@ -487,11 +412,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                                                                                 | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | user                                       | add a new expense                                                                                    |                                                                        |
+| `* * *`  | user                                       | add a new expense                                                                                    | update my new spending                                                 |
 | `* * *`  | user                                       | delete an expense                                                                                    | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | set a budget                                                                                         | track if I am sticking to my financial goals                           |
-| `* * *`  | user                                       | top up a budget                                                                                      |                                                                        |
-| `* * *`  | user                                       | edit an expense                                                                                      |                                                                        |
+| `* * *`  | user                                       | top up a budget                                                                                      | increase my spending limit                                             |
+| `* * *`  | user                                       | edit an expense                                                                                      | change details of the expense that is outdated or wrong                |
 | `* *`    | organized user                             | categorise my expenditure                                                                            | better segregate and manage various areas of my spending               |
 | `* *`    | new user                                   | use a help command                                                                                   | refer to instructions when I forget how to use the App                 |
 | `* *`    | efficient user                             | customise my command keywords                                                                        | customize my user experience and workflow according to my preferences  |
@@ -501,9 +426,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user who likes to see progress             | use a progress tracker to motivate myself                                                            | keep working at saving up                                              |
 | `*`      | cautious user                              | view my ledger data in a human-readable format and only edit the file when commands are executed     | be assured that the accounts are updated and accurate                  |
 | `*`      | long-time user                             | archive older data from my view                                                                      | manage my expenses easier                                              |
-| `stretch`| careless user                              | revert my commands                                                                                   | easily undo changes I made to my budgeting
-| `stretch`| user who likes to plan in advance          | simulate future spending                                                                             | visualize my journey towards my financial goals                        |
-| `stretch`| forgetful user                             | receive notifications of budget limits and bill payments                                             | better plan for daily expenditure and make payments on time            |
+| `*`      | careless user                              | revert my commands                                                                                   | easily undo changes I made to my budgeting
+| `*`      | user who likes to plan in advance          | simulate future spending                                                                             | visualize my journey towards my financial goals                        |
+| `*`      | forgetful user                             | receive notifications of budget limits and bill payments                                             | better plan for daily expenditure and make payments on time            |
 
 *{More to be added}*
 
@@ -525,15 +450,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given command format is invalid.
     * 1a1. Bamboo shows an error message.
+
+      Use case ends.
+
+* 1b. The given field value is invalid.
+    * 1b1. Bamboo shows an error message.
+
       Use case ends.
 
 #### Use case U2: Top-up budget
 
 **MSS**
 
-1. User requests to top up budget by an amount he provides.
-2. Bamboo tops up the user's budget by the amount given by the user.
-3. Bamboo lists all expenses and shows the budget balance.
+1. User requests to top up a specified budget by an amount and category he provides.
+2. Bamboo tops up the user's budget in the category and by the amount given by the user.
+3. Bamboo updates the budget balance.
 
     Use case ends.
 
@@ -541,6 +472,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given top-up value is invalid.
     * 1a1. Bamboo shows an error message.
+
+      Use case ends.
+
+* 1b. The given category value is invalid.
+    * 1b1. Bamboo shows an error message.
+
       Use case ends.
 
 #### Use case U3: Delete an expense
@@ -576,15 +513,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. Bamboo edits the expense.
 5. Bamboo feedbacks to user what was changed.
 6. Bamboo lists all expenses and shows the new budget balance.
+
    Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
     * 2a1. Bamboo shows an error message
+
       Use case ends
+
 * 3a. The given field value is invalid.
     * 3a1. Bamboo shows an error message.
+
       Use case ends.
 
 #### Use case U5: List all expenses
@@ -605,13 +546,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to add a remark to specified expense item.
 2. Bamboo adds remark to specified expense item.
 3. Bamboo lists all expenses and shows the budget balance.
+
    Use case ends.
 
 **Extensions**
 
 * 1a. The given expense does not exist.
     * 1a1. Bamboo shows an error message.
+
     Use case ends.
+
+* 1b. The given field value is invalid.
+    * 1b1. Bamboo shows an error message.
+
+      Use case ends.
 
 #### Use case U7: Find an expense
 
@@ -619,91 +567,126 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to find expense by certain identifiers and search terms.
 2. Bamboo shows a list of expenses which match the identifiers and search terms, and shows the overall budget balance.
+
    Use case ends.
 
 **Extensions**
 
 * 1a. The given field values are invalid.
     * 1a1. Bamboo shows an error message.
+
       Use case ends.
-      
+
 #### Use case U8: Sort expense list
 **MSS**
 
 1. User requests to sort currently displayed expenses by certain sort criterion.
-2. Bamboo sorts the currently displayed expenses according to user-specified sort criterion. 
+2. Bamboo sorts the currently displayed expenses according to user-specified sort criterion.
 3. Bamboo displays the sorted expenses to the user with the budget balance.
+
    Use case ends.
 
 **Extensions**
 
 * 1a. The given field values are invalid.
     * 1a1. Bamboo shows an error message.
+
       Use case ends.
 
-#### Use case U9: Add category 
+#### Use case U9: Add category
 **MSS**
 
 1. User requests to add a new category with a user-specified category name.
 2. Bamboo creates a new category with the user-specified name and shows a success message.
 3. Bamboo lists all expenses and shows the budget balance.
+
    Use case ends.
 
 **Extensions**
 
 * 1a. The given field values are invalid.
     * 1a1. Bamboo shows an error message.
-      Use case ends.
-* 1b. The given category name already exists.
-    * 1b1. Bamboo shows an error message.
+
       Use case ends.
 
-#### Use case U10: Delete category 
+* 1b. The given category name already exists.
+    * 1b1. Bamboo shows an error message.
+
+      Use case ends.
+
+#### Use case U10: Delete category
 Similar to U9, except it's the opposite.
 
 **Extensions**
 
 * 1a. The given field values are invalid.
     * 1a1. Bamboo shows an error message.
-      Use case ends.
-* 1b. The given category name does not exist.
-    * 1b1. Bamboo shows an error message.
-      Use case ends.
-* 1c. The given category name is restricted e.g. `Default` category.
-    * 1c1. Bamboo shows an error message.
+
       Use case ends.
 
-#### Use case U11: Switch category 
+* 1b. The given category name does not exist.
+    * 1b1. Bamboo shows an error message.
+
+      Use case ends.
+
+* 1c. The given category name is restricted e.g. `Default` category.
+    * 1c1. Bamboo shows an error message.
+
+      Use case ends.
+
+#### Use case U11: Switch category
 **MSS**
 
 1. User requests to switch to a user-specified category
-2. Bamboo shows all expenses which are tagged under the user-specified category, 
-along with the budget for that category.
+2. Bamboo shows all expenses which are tagged under the user-specified category, along with the budget for that category.
+
    Use case ends.
 
 **Extensions**
 
 * 1a. The given field values are invalid.
     * 1a1. Bamboo shows an error message.
-      Use case ends.
-* 1b. The given category does not exist.
-    * 1b1. Bamboo shows an error message.
+
       Use case ends.
 
-#### Use case U12: Change Command Keyword 
+* 1b. The given category does not exist.
+    * 1b1. Bamboo shows an error message.
+
+      Use case ends.
+
+#### Use case U12: Change Command Keyword
 **MSS**
 
 1. User requests to change command keyword to a user-defined string.
 2. Bamboo maps the command linked to the original command keyword to the user-defined string.
+
    Use case ends.
 
 **Extensions**
 
 * 1a. The given field values are invalid.
     * 1a1. Bamboo shows an error message.
+
       Use case ends.
+
 * 1b. The user-defined string is already a command keyword.
     * 1b1. Bamboo shows an error message.
+
+      Use case ends.
+
+#### Use case U13: Reset Changed Command Keyword
+**MSS**
+
+1. User requests to reset changed command keyword to default command keyword.
+2. Bamboo clears the changed commands linked to the original command keyword.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. No command keyword changed previously.
+    * 1a1. Bamboo shows an error message.
+
       Use case ends.
 
 ### Non-Functional Requirement
@@ -747,6 +730,7 @@ testers are expected to do more *exploratory* testing.
    1. Download the jar file and copy into an empty folder
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   Alternatively, enter `java -jar expensebook-v1.4.jar` in Command Prompt after switching to the directory with the jar file.
 
 1. Saving window preferences
 

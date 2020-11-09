@@ -18,7 +18,12 @@ StorageManager o--> ExpenseBookStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonExpenseBookStorage .left.|> ExpenseBookStorage
-JsonExpenseBookStorage .down.> JsonSerializableExpenseBookStorage
-JsonSerializableExpenseBookStorage .right.> JsonSerializableExpense
-JsonSerializableExpense .right.> JsonAdaptedTag
+JsonExpenseBookStorage .down.> JsonSerializableExpenseBook
+JsonSerializableExpenseBook -right-> JsonSerializableExpense
+JsonSerializableExpenseBook -down-> "*" JsonAdaptedTag
+JsonSerializableExpense -right-> "1" JsonAdaptedTag
+JsonSerializableExpenseBook -down-> JsonAdaptedBudgetList
+JsonAdaptedBudgetList -right-> "1" JsonAdaptedBudget
+JsonAdaptedBudgetList -down-> "*" JsonAdaptedBudget
+JsonAdaptedBudget -right-> "1" JsonAdaptedTag
 @enduml
