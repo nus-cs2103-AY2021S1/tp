@@ -484,7 +484,7 @@ The process is demonstrated below by the code snippet of `MakeRecipeCommand#undo
 After changes to `Model` were made, the `Storage` component saves the `UsageList`s in json format.
 Finally, the `StatsBox` is updated based on the `CommandResult` returned after the execution of each command.
 
-#### 4.5.2&ensp;Design considerations
+<h4>Design Considerations</h4>
 
 This section details the design considerations of the statistics feature.
 
@@ -533,7 +533,7 @@ This section details the design considerations of the statistics feature.
       - The user will have to execute `stats recipe recent` to obtain the default view on statistics box again.
 
 <a name="stats-related-commands"></a>
-#### 4.5.3&ensp;Related commands
+#### 4.5.2&ensp;Related commands
 
 `StatsCommandParser` parses the Statistics commands and returns the corresponding `Command object` based on user's input.
 For more information on the Parser, view [4.1 Command Parser](#41command-parser). 
@@ -569,8 +569,6 @@ Figure 8000. GUI of statistics box after `stats recipe top` command is executed<
 
 
 ### 4.6&ensp;Undo/redo feature
-
-Main developer: **seowalex**
 
 The undo/redo feature is implemented using a `HistoryManager`, which keeps track of and stores the command history, along with a list of parsed undoable `Command`s.
 Every command that can be undone/redone implements the `Undoable` interface, which requires the implementation of the `Undoable#undo()` method.
@@ -647,15 +645,15 @@ Figure 999: <i>An activity diagram for the undo/redo feature</i>
 
 <h4>Design considerations</h4>
 
-<h5>Aspect: How state is saved</h5>
+**Aspect: How state is saved**
 
-* **Alternative 1 (current choice):** Save each undoable command as it is executed. Each command implements its own undo/redo operation.
-  * Pros: Uses less memory since the entire state of the application does not have to be saved, and is also faster since only a small part of the model needs to be modified each time.
-  * Cons: All model changes need to be restricted to the command, as each command needs to be able to fully reverse any changes made to the model.
+- **Option A (current choice):** Save each undoable command as it is executed. Each command implements its own undo/redo operation.
+  - Pros: Uses less memory since the entire state of the application does not have to be saved, and is also faster since only a small part of the model needs to be modified each time.
+  - Cons: All model changes need to be restricted to the command, as each command needs to be able to fully reverse any changes made to the model.
 
-* **Alternative 2:** Saves the entire recipe/ingredient book every time a change is made to the model.
-  * Pros: Easy to implement, does not require custom undo/redo operations for each command.
-  * Cons: Will be much slower as the entire model needs to be replaced on each undo/redo, which does not scale well with more recipes/ingredients.
+- **Option B:** Saves the entire recipe/ingredient book every time a change is made to the model.
+  - Pros: Easy to implement, does not require custom undo/redo operations for each command.
+  - Cons: Will be much slower as the entire model needs to be replaced on each undo/redo, which does not scale well with more recipes/ingredients.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -690,7 +688,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------- |
 | `* * *`  | Person learning how to cook           | View my recipes                                                                   | Not get the instructions wrong.                           |
 | `* * *`  | Picky eater                           | Delete my recipes                                                                 | Remove recipes that I do not like.                        |
-| `* * *`  | Forgetful home cook                   | Record recipes that I learnt from my friends and television shows                 | Try to cook them in the future.                           |                                                                         |
+| `* * *`  | Forgetful home cook                   | Record recipes that I learnt from my friends and television shows                 | Try to cook them in the future.                           |
 | `* * *`  | Person that cannot decide             | Select recipes to cook automatically based on the ingredients that i have         | Eat a wider variety of meals.                             |
 | `* * *`  | Home cook                             | Delete the ingredients                                                            | Remove ingredients that have expired.                     |
 | `* * *`  | Home cook                             | Edit the ingredients                                                              | Edit ingredients quantities when some parts are spoilt.   |
