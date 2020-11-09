@@ -10,6 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyList;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomTaskAssociation;
 
 /**
  * API of the Logic component
@@ -41,6 +42,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of rooms. */
     ObservableList<Room> getFilteredRoomList();
 
+    /** Returns an unmodifiable view of the filtered list of room-task associations. */
+    ObservableList<RoomTaskAssociation> getFilteredRoomTaskRecords();
+
     /**
      * Returns the user prefs' Covigent file path.
      */
@@ -55,4 +59,5 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
 }

@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.patient;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -9,7 +9,7 @@ import seedu.address.model.PatientRecords;
 import seedu.address.model.ReadOnlyList;
 import seedu.address.model.patient.Patient;
 
-//@@author
+//@@author AB3
 /**
  * Represents a storage for {@link PatientRecords}.
  */

@@ -13,7 +13,10 @@ import seedu.address.testutil.EditPatientDescriptorBuilder;
 public class PatientCommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
+    public static final String VALID_NAME_ALICE = "Alice Pauline";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_NAME_GEORGE = "George Best";
+    public static final String VALID_NAME_BESON = "Benson Meier";
     public static final String VALID_NAME_JAMES = "james";
     public static final String VALID_TEMP_AMY = "36.7";
     public static final String VALID_TEMP_BOB = "37.0";

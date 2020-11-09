@@ -15,8 +15,8 @@ public class TaskCard extends UiPart<Region> {
     private static final String FXML = "TaskListCard.fxml";
 
     public final int roomNumber;
-    public final int taskNumber;
-    public final int totalNumOfTasksInRoom;
+    public final int taskIndex;
+    public final int totalNumberOfTasksInRoom;
     public final Task task;
 
     private final String roomIdText = "[Room %1$d]";
@@ -38,15 +38,13 @@ public class TaskCard extends UiPart<Region> {
      * Creates a {@code TaskCard} with the given {@code Task}.
      *
      * @param roomNumber The room number of the room in which the task is found.
-     * @param taskNumber The task number of the task, which is also its index relative to other tasks in the room.
-     * @param totalNumOfTasksInRoom The total number of tasks in the room which the task is found.
      * @param task The task.
      */
-    public TaskCard(int roomNumber, int taskNumber, int totalNumOfTasksInRoom, Task task) {
+    public TaskCard(int roomNumber, int taskIndex, int totalNumberOfTasksInRoom, Task task) {
         super(FXML);
         this.roomNumber = roomNumber;
-        this.taskNumber = taskNumber;
-        this.totalNumOfTasksInRoom = totalNumOfTasksInRoom;
+        this.taskIndex = taskIndex;
+        this.totalNumberOfTasksInRoom = totalNumberOfTasksInRoom;
         this.task = task;
         setTaskCard(task);
     }
@@ -58,7 +56,7 @@ public class TaskCard extends UiPart<Region> {
      */
     private void setTaskCard(Task task) {
         roomId.setText(String.format(roomIdText, roomNumber));
-        taskId.setText(String.format(taskIdText, taskNumber, totalNumOfTasksInRoom));
+        taskId.setText(String.format(taskIdText, taskIndex, totalNumberOfTasksInRoom));
         description.setText(task.getDescription().toString());
         dueAt.setText(String.format(dueAtText, task.getDueAt().toString()));
     }
@@ -77,7 +75,8 @@ public class TaskCard extends UiPart<Region> {
 
         // state check
         return roomNumber == ((TaskCard) other).roomNumber
-                && taskNumber == ((TaskCard) other).taskNumber
+                && taskIndex == ((TaskCard) other).taskIndex
+                && totalNumberOfTasksInRoom == ((TaskCard) other).totalNumberOfTasksInRoom
                 && task.equals(((TaskCard) other).task);
     }
 }

@@ -2,7 +2,7 @@ package seedu.address.testutil;
 
 import seedu.address.model.PatientRecords;
 import seedu.address.model.patient.Patient;
-//@@author
+//@@author AB3
 /**
  * A utility class to help with building CovigentApp objects.
  * Example usage: <br>

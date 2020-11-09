@@ -14,6 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
@@ -24,8 +25,12 @@ import seedu.address.testutil.RoomBuilder;
 import seedu.address.testutil.TypicalRooms;
 
 public class ModelManagerTest {
+    private ModelManager modelManager;
 
-    private ModelManager modelManager = new ModelManager();
+    @BeforeEach
+    public void setUp() {
+        modelManager = new ModelManager();
+    }
 
     @Test
     public void constructor() {
@@ -115,21 +120,21 @@ public class ModelManagerTest {
 
     @Test
     public void isPatientAssignedToRoom_null_throwsNullPointerException() {
-        modelManager.addRooms(1);
+        modelManager.initRooms(1);
         modelManager.getRoomListObservableList().get(0).setPatient(ALICE);
         assertThrows(NullPointerException.class, () -> modelManager.isPatientAssignedToRoom(null));
     }
 
     @Test
     public void isPatientAssignedToRoom_personInRoom_returnsTrue() {
-        modelManager.addRooms(1);
+        modelManager.initRooms(1);
         modelManager.getRoomListObservableList().get(0).setPatient(ALICE);
         assertTrue(modelManager.isPatientAssignedToRoom(ALICE.getName()));
     }
 
     @Test
     public void isPatientAssignedToRoom_personNotInRoom_returnsFalse() {
-        modelManager.addRooms(1);
+        modelManager.initRooms(1);
         modelManager.getRoomListObservableList().get(0).setPatient(ALICE);
         assertFalse(modelManager.isPatientAssignedToRoom(BENSON.getName()));
     }
@@ -153,13 +158,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasRoom_roomInCovigentApp_returnsTrue() {
-        modelManager.addRooms(1);
+        modelManager.initRooms(1);
         assertTrue(modelManager.hasRoom(new Room(1)));
     }
 
     @Test
     public void hasRoom_roomNotInCovigentApp_returnsFalse() {
-        modelManager.addRooms(1);
+        modelManager.initRooms(1);
         assertFalse(modelManager.hasRoom(new Room(2)));
     }
 
@@ -177,7 +182,9 @@ public class ModelManagerTest {
 
     @Test
     public void setSingleRoom_targetEditedRoom_success() {
-        modelManager.addRooms(8);
+        modelManager = new ModelManager();
+        modelManager.initRooms(8);
+
         Room room = modelManager.getRoomListObservableList().get(6);
         room.setPatient(ALICE);
         room.setOccupied(true);
@@ -197,7 +204,7 @@ public class ModelManagerTest {
     //@@author chiamyunqing
     @Test
     public void removePatientFromRoom_success() {
-        modelManager.addRooms(1);
+        modelManager.initRooms(1);
         Room roomWithPatient = modelManager.getRoomListObservableList().get(0);
         Room duplicateRoomWithoutAlice = new RoomBuilder(roomWithPatient).build();
         roomWithPatient.setPatient(ALICE);
@@ -240,11 +247,11 @@ public class ModelManagerTest {
     public void addRooms_success() {
         modelManager.setRoomList(TypicalRooms.getTypicalRoomList());
         //by adding 50 much rooms(increase) there should be 50 rooms in modelManager
-        modelManager.addRooms(50);
+        modelManager.initRooms(50);
         assertEquals(modelManager.getNumOfRooms(), 50);
 
         //by adding 5 much rooms(decrease) there should be 5 rooms in modelManager
-        modelManager.addRooms(5);
+        modelManager.initRooms(5);
         assertEquals(modelManager.getNumOfRooms(), 5);
     }
     //@@author itssodium

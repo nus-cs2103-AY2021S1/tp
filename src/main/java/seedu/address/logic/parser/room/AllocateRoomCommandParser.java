@@ -12,6 +12,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.patient.PatientParserUtil;
 
+//@author LeeMingDe
 /**
  * Parses input arguments and creates a new AllocateRoomCommand object.
  */
@@ -45,7 +46,6 @@ public class AllocateRoomCommandParser implements Parser<AllocateRoomCommand> {
 
         AllocateRoomCommand.AllocateRoomDescriptor
                 allocateRoomDescriptor = new AllocateRoomCommand.AllocateRoomDescriptor();
-
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String patientFieldInput = argMultimap.getValue(PREFIX_NAME).get();

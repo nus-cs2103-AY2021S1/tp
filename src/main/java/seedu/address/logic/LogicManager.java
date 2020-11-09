@@ -16,6 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyList;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomTaskAssociation;
 import seedu.address.storage.Storage;
 
 
@@ -48,7 +49,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveRoomList(model.getModifiableRoomList());
+            storage.saveRoomsInformation(model.getModifiableRoomList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE);
         }
@@ -94,5 +95,10 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Room> getFilteredRoomList() {
         return model.getFilteredRoomList();
+    }
+
+    @Override
+    public ObservableList<RoomTaskAssociation> getFilteredRoomTaskRecords() {
+        return model.getFilteredRoomTaskRecords();
     }
 }

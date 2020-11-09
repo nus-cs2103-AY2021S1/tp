@@ -11,7 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.patient.Name;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.UniqueRoomList;
-import seedu.address.storage.JsonPatientRecordsStorage;
+import seedu.address.storage.patient.JsonPatientRecordsStorage;
 
 /**
  * Contains information regarding the Room information
@@ -86,16 +86,16 @@ public class RoomList implements ReadOnlyList<Room> {
      *
      * @param numOfRooms is the number of rooms to be added
      */
-    public void addRooms(int numOfRooms) {
-        rooms.addRooms(numOfRooms);
+    public void initRooms(int numOfRooms) {
+        rooms.initRooms(numOfRooms);
     }
 
     /**
      * Adds this room to the RoomList
      * @param room is added to RoomList
      */
-    public void addRooms(Room room) {
-        rooms.addRooms(room);
+    public void initRooms(Room room) {
+        rooms.initRooms(room);
     }
 
     //@@author w-yeehong
@@ -148,7 +148,6 @@ public class RoomList implements ReadOnlyList<Room> {
         requireNonNull(patientName);
         rooms.clearRoom(patientName);
     }
-    //@@author chiamyunqing
 
     //@author LeeMingDe
     /**

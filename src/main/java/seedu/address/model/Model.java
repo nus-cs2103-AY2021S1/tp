@@ -11,6 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomTaskAssociation;
 import seedu.address.model.task.Task;
 
 /**
@@ -61,6 +62,16 @@ public interface Model {
 
     /** Returns the patient records */
     ReadOnlyList<Patient> getPatientRecords();
+
+    /**
+     * Replaces room list with the data in {@code covigentApp}.
+     */
+    void setRoomList(ReadOnlyList<Room> rooms);
+
+    /**
+     * Returns the room task records.
+     */
+    ReadOnlyList<RoomTaskAssociation> getRoomTaskRecords();
 
     /**
      * Returns true if a patient with the same identity as {@code patient} exists in the patient records.
@@ -115,11 +126,6 @@ public interface Model {
     void updateFilteredPatientList(Predicate<Patient> predicate);
 
     /**
-     * Replaces room list with the data in {@code covigentApp}.
-     */
-    void setRoomList(ReadOnlyList<Room> rooms);
-
-    /**
      * Returns total number of rooms in the application's {@code RoomList}.
      */
     int getNumOfRooms();
@@ -127,7 +133,7 @@ public interface Model {
     /**
      * @param num is the number of rooms to define in a hotel.
      */
-    void addRooms(int num);
+    void initRooms(int num);
 
     /**
      * Returns whether a decrease in number of rooms would have space for existing rooms
@@ -153,6 +159,10 @@ public interface Model {
      */
     Optional<Room> getRoomWithRoomNumber(int roomNumber);
 
+    /**
+     * sets specified room to roomList
+     */
+    void setRoom(Room room);
     /**
      * Replaces the given room {@code target} with {@code editedRoom}.
      * {@code target} must exist in the application.
@@ -247,9 +257,15 @@ public interface Model {
     void setTaskToRoom(Task target, Task editedTask, Room room);
 
     /**
-     * Update the filterTaskList with {@code datePredicate}.
+     * Update the tasks in {@code filteredRoomTaskRecords} with {@code taskPredicate}.
      *
-     * @param datePredicate The dueDate predicate.
+     * @param taskPredicate The predicate to filter the tasks.
      */
-    void updateFilteredTaskList(Predicate<Task> datePredicate);
+    void updateTasksInFilteredRoomTaskRecords(Predicate<Task> taskPredicate);
+
+    /**
+     * Returns an unmodifiable view of the list of {@code RoomTaskAssociation} backed by the
+     * internal list of {@code RoomTaskRecords}.
+     */
+    ObservableList<RoomTaskAssociation> getFilteredRoomTaskRecords();
 }

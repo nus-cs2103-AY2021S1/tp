@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.rooms;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -29,7 +29,7 @@ public class JsonRoomOccupancyStorage implements RoomRecordsStorage {
         this.roomsOccupied = roomsOccupied;
     }
 
-    public Path getRoomsOccupied() {
+    public Path getRoomsRecordsFilePath() {
         return roomsOccupied;
     }
 
@@ -58,8 +58,8 @@ public class JsonRoomOccupancyStorage implements RoomRecordsStorage {
     }
 
     @Override
-    public void saveOccupiedRooms(ReadOnlyList<Room> roomList) throws IOException {
-        saveOccupiedRooms(roomList, roomsOccupied);
+    public void saveRoomsInformation(ReadOnlyList<Room> roomList) throws IOException {
+        saveRoomsInformation(roomList, roomsOccupied);
     }
 
     /**
@@ -68,7 +68,7 @@ public class JsonRoomOccupancyStorage implements RoomRecordsStorage {
      * @param roomList contains information of which rooms are occupied
      * @param fileRoomsOccupied Path to where to write the room numbers of occupied rooms
      */
-    public void saveOccupiedRooms(ReadOnlyList<Room> roomList, Path fileRoomsOccupied) throws IOException {
+    public void saveRoomsInformation(ReadOnlyList<Room> roomList, Path fileRoomsOccupied) throws IOException {
         FileUtil.createIfMissing(fileRoomsOccupied);
         List<Room> rooms = new ArrayList<>();
         rooms.addAll(roomList.getReadOnlyList());

@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.patient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +13,12 @@ import seedu.address.model.PatientRecords;
 import seedu.address.model.ReadOnlyList;
 import seedu.address.model.patient.Patient;
 
-//@@author
+//@@author AB3
 /**
  * An Immutable Patient Records that is serializable to JSON format.
  */
 @JsonRootName(value = "covigentapp")
-class JsonSerializablePatientRecords {
+public class JsonSerializablePatientRecords {
 
     public static final String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patient(s).";
 

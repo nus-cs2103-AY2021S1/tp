@@ -7,7 +7,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static seedu.address.testutil.TypicalTasks.REMIND_PATIENT;
 import static seedu.address.testutil.TypicalTasks.RESTOCK_SUPPLY;
-import static seedu.address.testutil.command.TaskCommandTestUtil.VALID_DESCRIPTION_REMIND_PATIENT;
 
 import java.util.Collections;
 import java.util.Optional;
@@ -25,7 +24,6 @@ public class RoomTasksTest {
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), roomTasks.getReadOnlyList());
-        assertEquals(Collections.emptyList(), roomTasks.getFilteredList());
     }
 
     @Test
@@ -49,25 +47,6 @@ public class RoomTasksTest {
         roomTasks.addTask(REMIND_PATIENT);
         Optional<Task> optionalTask = roomTasks.getTaskWithTaskIndex(index);
         assertEquals(Optional.of(REMIND_PATIENT), optionalTask);
-    }
-
-    @Test
-    public void setPredicate_nullPredicate_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> roomTasks.setPredicate(null));
-    }
-
-    @Test
-    public void setPredicate_validPredicate_roomTasksFiltered() {
-        roomTasks.addTask(REMIND_PATIENT);
-        roomTasks.addTask(RESTOCK_SUPPLY);
-
-        // invalid description -> empty filtered list
-        roomTasks.setPredicate(task -> task.getDescription().value.equals("invalid description"));
-        assertEquals(Collections.emptyList(), roomTasks.getFilteredList());
-
-        // valid description for REMIND_PATIENT -> filtered list contains only REMIND_PATIENT
-        roomTasks.setPredicate(task -> task.getDescription().value.equals(VALID_DESCRIPTION_REMIND_PATIENT));
-        assertEquals(Collections.singletonList(REMIND_PATIENT), roomTasks.getFilteredList());
     }
 
     @Test

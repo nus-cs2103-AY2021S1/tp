@@ -19,7 +19,7 @@ public class ListTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.updateTasksInFilteredRoomTaskRecords(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

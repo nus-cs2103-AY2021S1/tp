@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.rooms;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +52,7 @@ public class JsonSerializableRoomList {
                 throw new IllegalValueException(WRONG_ORDER_OF_ROOM);
             }
             currRoomNum++;
-            roomList.addRooms(room);
+            roomList.initRooms(room);
         }
         return roomList;
     }

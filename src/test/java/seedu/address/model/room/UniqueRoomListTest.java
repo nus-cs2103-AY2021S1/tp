@@ -20,12 +20,12 @@ class UniqueRoomListTest {
 
     @Test
     public void addRooms_nullRoom_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueRoomList.addRooms(null));
+        assertThrows(NullPointerException.class, () -> uniqueRoomList.initRooms(null));
     }
 
     @Test
     public void addRooms_roomInList_returnsTrue() {
-        uniqueRoomList.addRooms(ROOM_PATIENT_ALICE_NO_TASK);
+        uniqueRoomList.initRooms(ROOM_PATIENT_ALICE_NO_TASK);
         assertTrue(uniqueRoomList.containsRoom(ROOM_PATIENT_ALICE_NO_TASK));
     }
 
@@ -36,57 +36,57 @@ class UniqueRoomListTest {
 
     @Test
     public void addRooms_numOfRooms_returnsTrue() {
-        uniqueRoomList.addRooms(5);
+        uniqueRoomList.initRooms(5);
         assertEquals(uniqueRoomList.getNumOfRooms(), 5);
     }
 
     @Test
     public void addRoom_returnTrue() {
-        uniqueRoomList.addRooms(5);
+        uniqueRoomList.initRooms(5);
         assertEquals(uniqueRoomList.getNumOfRooms(), 5);
-        uniqueRoomList.addRooms(3);
+        uniqueRoomList.initRooms(3);
         assertEquals(uniqueRoomList.getNumOfRooms(), 3);
-        uniqueRoomList.addRooms(10);
+        uniqueRoomList.initRooms(10);
         assertEquals(uniqueRoomList.getNumOfRooms(), 10);
     }
 
     @Test
     public void test_multipleAddRoom_returnTrue() {
-        uniqueRoomList.addRooms(ROOM_PATIENT_ALICE_NO_TASK);
-        uniqueRoomList.addRooms(5);
+        uniqueRoomList.initRooms(ROOM_PATIENT_ALICE_NO_TASK);
+        uniqueRoomList.initRooms(5);
         assertEquals(uniqueRoomList.getNumOfRooms(), 5);
-        uniqueRoomList.addRooms(3);
+        uniqueRoomList.initRooms(3);
         assertEquals(uniqueRoomList.getNumOfRooms(), 3);
-        uniqueRoomList.addRooms(10);
+        uniqueRoomList.initRooms(10);
         assertEquals(uniqueRoomList.getNumOfRooms(), 10);
     }
 
     @Test
     public void test_roomOccupied_returnTrue() {
-        uniqueRoomList.addRooms(ROOM_PATIENT_ALICE_NO_TASK);
-        uniqueRoomList.addRooms(5);
+        uniqueRoomList.initRooms(ROOM_PATIENT_ALICE_NO_TASK);
+        uniqueRoomList.initRooms(5);
         assertTrue(uniqueRoomList.containsRoom(ROOM_PATIENT_ALICE_NO_TASK));
-        uniqueRoomList.addRooms(3);
+        uniqueRoomList.initRooms(3);
         assertTrue(uniqueRoomList.containsRoom(ROOM_PATIENT_ALICE_NO_TASK));
-        uniqueRoomList.addRooms(10);
+        uniqueRoomList.initRooms(10);
         assertTrue(uniqueRoomList.containsRoom(ROOM_PATIENT_ALICE_NO_TASK));
     }
 
     @Test
     public void addRooms_occupiedRooms_returnsTrue() {
-        uniqueRoomList.addRooms(ROOM_PATIENT_ALICE_NO_TASK);
-        uniqueRoomList.addRooms(5);
+        uniqueRoomList.initRooms(ROOM_PATIENT_ALICE_NO_TASK);
+        uniqueRoomList.initRooms(5);
         assertTrue(uniqueRoomList.containsRoom(ROOM_PATIENT_ALICE_NO_TASK));
-        uniqueRoomList.addRooms(3);
+        uniqueRoomList.initRooms(3);
         assertTrue(uniqueRoomList.containsRoom(ROOM_PATIENT_ALICE_NO_TASK));
-        uniqueRoomList.addRooms(10);
+        uniqueRoomList.initRooms(10);
         assertTrue(uniqueRoomList.containsRoom(ROOM_PATIENT_ALICE_NO_TASK));
     }
 
     @Test
     public void addRooms_listOfOccupiedRooms_returnsTrue() {
         List<Room> expectedOccupiedRooms = new ArrayList<>();
-        uniqueRoomList.addRooms(10);
+        uniqueRoomList.initRooms(10);
         IntStream.iterate(1, x -> x <= 10, x -> x + 2).forEach(x -> {
             if (x >= 5) {
                 expectedOccupiedRooms.add(new Room(x, true));
@@ -102,7 +102,7 @@ class UniqueRoomListTest {
     @Test
     public void addRooms_listOfUnoccupiedRooms_returnsTrue() {
         List<Room> expectedUnoccupiedRooms = new ArrayList<>();
-        uniqueRoomList.addRooms(10);
+        uniqueRoomList.initRooms(10);
         IntStream.iterate(1, x -> x <= 10, x -> x + 2).forEach(x -> {
             if (x < 4) {
                 expectedUnoccupiedRooms.add(new Room(x + 1));
@@ -117,7 +117,7 @@ class UniqueRoomListTest {
 
     @Test
     public void addRooms_numOfOccupiedRooms_returnsTrue() {
-        uniqueRoomList.addRooms(10);
+        uniqueRoomList.initRooms(10);
         IntStream.iterate(1, x -> x <= 10, x -> x + 2).forEach(x ->
                 uniqueRoomList.getRoomObservableList().get(x - 1).setOccupied(true));
         uniqueRoomList.setPreferredNumOfRooms(5);
@@ -126,7 +126,7 @@ class UniqueRoomListTest {
 
     @Test
     public void addRooms_numOfUnoccupiedRooms_returnsTrue() {
-        uniqueRoomList.addRooms(10);
+        uniqueRoomList.initRooms(10);
         IntStream.iterate(1, x -> x <= 10, x -> x + 2).forEach(x ->
                 uniqueRoomList.getRoomObservableList().get(x - 1).setOccupied(true));
         uniqueRoomList.setPreferredNumOfRooms(5);

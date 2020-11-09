@@ -64,11 +64,11 @@ public class SearchTaskCommand extends Command {
         }
 
         if (taskListWithDesirableResult.size() < 1) {
-            model.updateFilteredTaskList(datePredicate);
+            model.updateTasksInFilteredRoomTaskRecords(datePredicate);
             throw new CommandException(MESSAGE_TASK_NOT_FOUND);
         }
         assert taskListWithDesirableResult.size() >= 1;
-        model.updateFilteredTaskList(datePredicate);
+        model.updateTasksInFilteredRoomTaskRecords(datePredicate);
         return new CommandResult(String.format(MESSAGE_SEARCH_TASK_SUCCESS));
     }
 

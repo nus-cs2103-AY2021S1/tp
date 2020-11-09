@@ -11,12 +11,15 @@ import static seedu.address.testutil.command.RoomCommandTestUtil.ROOM_NUMBER_EIG
 import static seedu.address.testutil.command.RoomCommandTestUtil.ROOM_NUMBER_SEVEN_DESC;
 import static seedu.address.testutil.command.RoomCommandTestUtil.VALID_ROOM_INDEX_ONE;
 import static seedu.address.testutil.command.RoomCommandTestUtil.VALID_ROOM_NUMBER_SEVEN;
+import static seedu.address.testutil.command.TaskCommandTestUtil.DATETIME_DUE_DESC_CLEAR_DATETIME;
 import static seedu.address.testutil.command.TaskCommandTestUtil.DATETIME_DUE_DESC_ORDER_BEDSHEETS;
 import static seedu.address.testutil.command.TaskCommandTestUtil.DATETIME_DUE_DESC_REMIND_PATIENT;
 import static seedu.address.testutil.command.TaskCommandTestUtil.DESCRIPTION_DESC_ORDER_BEDSHEETS;
 import static seedu.address.testutil.command.TaskCommandTestUtil.DESCRIPTION_DESC_REMIND_PATIENT;
 import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_DATETIME_DUE_FORMAT_DESC;
 import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_DATETIME_DUE_VALUE_DESC;
+import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_DESCRIPTION_EMPTY_STRING_DESC;
+import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_DESCRIPTION_EXCEED_LIMIT_DESC;
 import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_TASK_NUMBER;
 import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_TASK_NUMBER_DESC;
 import static seedu.address.testutil.command.TaskCommandTestUtil.TASK_NUMBER_DESC_ONE;
@@ -24,6 +27,8 @@ import static seedu.address.testutil.command.TaskCommandTestUtil.TASK_NUMBER_DES
 import static seedu.address.testutil.command.TaskCommandTestUtil.VALID_DATETIME_DUE_REMIND_PATIENT;
 import static seedu.address.testutil.command.TaskCommandTestUtil.VALID_DESCRIPTION_REMIND_PATIENT;
 import static seedu.address.testutil.command.TaskCommandTestUtil.VALID_TASK_INDEX_ONE;
+
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -69,6 +74,12 @@ public class EditTaskCommandParserTest {
         assertParseSuccess(parser, ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_ONE + DESCRIPTION_DESC_REMIND_PATIENT
                 + DATETIME_DUE_DESC_ORDER_BEDSHEETS + DATETIME_DUE_DESC_REMIND_PATIENT,
                 new EditTaskCommand(VALID_ROOM_NUMBER_SEVEN, VALID_TASK_INDEX_ONE, descriptor));
+
+        // due date is set to INPUT_REMOVE_DUE_DATE
+        descriptor.setDateTimeDue(new DateTimeDue(Optional.empty()));
+        assertParseSuccess(parser, ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_ONE
+                        + DESCRIPTION_DESC_REMIND_PATIENT + DATETIME_DUE_DESC_CLEAR_DATETIME,
+                new EditTaskCommand(VALID_ROOM_NUMBER_SEVEN, VALID_TASK_INDEX_ONE, descriptor));
     }
 
     @Test
@@ -107,6 +118,16 @@ public class EditTaskCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
+        // invalid description - empty description
+        assertParseFailure(parser, ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_ONE
+                + INVALID_DESCRIPTION_EMPTY_STRING_DESC + DATETIME_DUE_DESC_REMIND_PATIENT,
+                Description.MESSAGE_CONSTRAINTS);
+
+        // invalid description - exceed character limit
+        assertParseFailure(parser, ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_ONE
+                + INVALID_DESCRIPTION_EXCEED_LIMIT_DESC + DATETIME_DUE_DESC_REMIND_PATIENT,
+                Description.MESSAGE_CONSTRAINTS);
+
         // invalid due date value
         assertParseFailure(parser, ROOM_NUMBER_SEVEN_DESC + TASK_NUMBER_DESC_ONE + DESCRIPTION_DESC_REMIND_PATIENT
                 + INVALID_DATETIME_DUE_VALUE_DESC, DateTimeDue.MESSAGE_CONSTRAINTS);

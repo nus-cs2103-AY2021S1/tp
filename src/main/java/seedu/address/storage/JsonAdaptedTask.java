@@ -40,7 +40,7 @@ public class JsonAdaptedTask {
     }
 
     /**
-     * Converts this Jackson-friendly adapted Task object into the model's {@code Room} object.
+     * Converts this Jackson-friendly adapted Task object into the model's {@code Task} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted Task.
      */

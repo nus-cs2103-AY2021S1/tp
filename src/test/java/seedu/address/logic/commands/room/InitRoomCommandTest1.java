@@ -14,14 +14,14 @@ import seedu.address.model.PatientRecords;
 import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
 
-class AddRoomsCommandTest {
+class InitRoomCommandTest1 {
 
     @Test
     void execute_addRooms_success() {
         Model model = new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
         Model expectedModel =
                 new ModelManager(model.getPatientRecords(), new RoomList(), new UserPrefs());
-        expectedModel.addRooms(100);
+        expectedModel.initRooms(100);
         String expectedResult = String.format(MESSAGE_SUCCESS, 100);
         assertCommandSuccess(new InitRoomCommand(100), model, expectedResult, expectedModel);
     }
@@ -29,9 +29,9 @@ class AddRoomsCommandTest {
     @Test
     void execute_addRooms_throwsCommandException() {
         Model model = new ModelManager(new PatientRecords(), new RoomList(), new UserPrefs());
-        model.addRooms(0);
+        model.initRooms(0);
         assertCommandFailure(new InitRoomCommand(0), model, MESSAGE_ZERO_CANNOT_BE_AN_INPUT);
-        model.addRooms(-100);
+        model.initRooms(-100);
         assertCommandFailure(new InitRoomCommand(-100), model, MESSAGE_NEGATIVE_VALUES_CANNOT_BE_INPUT);
     }
 }

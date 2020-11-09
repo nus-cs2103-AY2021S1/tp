@@ -53,21 +53,19 @@ public class DeleteTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (roomNumber < 0) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_NUMBER);
-        }
 
         // Get the room from which the user wants to delete the task
         Optional<Room> optionalRoom = model.getRoomWithRoomNumber(roomNumber);
+        assert optionalRoom != null : "The return value from Model#getRoomWithRoomNumber(...) should never be null.";
         Room room = optionalRoom.orElseThrow(() ->
                 new CommandException(Messages.MESSAGE_INVALID_ROOM_NUMBER));
-        assert room != null : "Target room should never be null.";
 
         // Get the task which the user wants to delete
         Optional<Task> optionalTask = model.getTaskFromRoomWithTaskIndex(taskIndex, room);
+        assert optionalTask != null : "The return value from Model#getTaskFromRoomWithTaskIndex(...)"
+                + " should not be null.";
         Task taskToDelete = optionalTask.orElseThrow(() ->
                 new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX));
-        assert taskToDelete != null : "The task to delete should never be null.";
 
         model.deleteTaskFromRoom(taskToDelete, room);
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS,

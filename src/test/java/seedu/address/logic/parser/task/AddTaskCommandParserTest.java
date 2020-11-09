@@ -18,6 +18,8 @@ import static seedu.address.testutil.command.TaskCommandTestUtil.DESCRIPTION_DES
 import static seedu.address.testutil.command.TaskCommandTestUtil.DESCRIPTION_DESC_REMIND_PATIENT;
 import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_DATETIME_DUE_FORMAT_DESC;
 import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_DATETIME_DUE_VALUE_DESC;
+import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_DESCRIPTION_EMPTY_STRING_DESC;
+import static seedu.address.testutil.command.TaskCommandTestUtil.INVALID_DESCRIPTION_EXCEED_LIMIT_DESC;
 
 import java.util.Optional;
 
@@ -27,6 +29,7 @@ import seedu.address.logic.commands.task.AddTaskCommand;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.room.RoomCliSyntax;
 import seedu.address.model.task.DateTimeDue;
+import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
@@ -80,6 +83,14 @@ public class AddTaskCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
+        // invalid description - empty description
+        assertParseFailure(parser, INVALID_DESCRIPTION_EMPTY_STRING_DESC + ROOM_NUMBER_DESC_ONE
+                + DATETIME_DUE_DESC_REMIND_PATIENT, Description.MESSAGE_CONSTRAINTS);
+
+        // invalid description - exceed character limit
+        assertParseFailure(parser, INVALID_DESCRIPTION_EXCEED_LIMIT_DESC + ROOM_NUMBER_DESC_ONE
+                + DATETIME_DUE_DESC_REMIND_PATIENT, Description.MESSAGE_CONSTRAINTS);
+
         // invalid due date value
         assertParseFailure(parser, DESCRIPTION_DESC_REMIND_PATIENT + ROOM_NUMBER_DESC_ONE
                 + INVALID_DATETIME_DUE_VALUE_DESC, DateTimeDue.MESSAGE_CONSTRAINTS);

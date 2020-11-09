@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.PriorityQueue;
 import java.util.stream.IntStream;
 
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
@@ -22,7 +24,10 @@ public class UniqueRoomList implements Iterable<Room> {
 
     private int numOfRooms;
     private PriorityQueue<Room> rooms = new PriorityQueue<>(new ComparableRoom());
-    private ObservableList<Room> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Room> internalList = FXCollections.observableArrayList((Room room) -> {
+        Observable[] updatedTasks = new Observable[]{room.getReadOnlyTasks()};
+        return updatedTasks;
+    });
     private final ObservableList<Room> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
@@ -50,20 +55,29 @@ public class UniqueRoomList implements Iterable<Room> {
     public void setRoom(Room room) {
         int roomNumber = room.getRoomNumber();
         if (room.getRoomNumber() > internalList.size()) {
-            for (int i = internalList.size(); i < roomNumber - 1; i++) {
-                Index index = Index.fromOneBased(i);
-                Room roomToAdd = new Room(index.getOneBased());
-                internalList.add(roomToAdd);
-                rooms.add(room);
-            }
+            setRoomForRoomNumberLessThanNumberOfRooms(room);
         } else {
-            Index index = Index.fromOneBased(roomNumber);
-            Room currRoom = internalList.get(index.getZeroBased());
-            internalList.remove(index.getZeroBased());
-            rooms.remove(currRoom);
-            internalList.add(index.getZeroBased(), room);
+            setRoomForRoomNumberMoreThanNumberOfRooms(room);
+        }
+    }
+    private void setRoomForRoomNumberLessThanNumberOfRooms(Room room) {
+        int roomNumber = room.getRoomNumber();
+        for (int i = internalList.size(); i < roomNumber - 1; i++) {
+            Index index = Index.fromOneBased(i);
+            Room roomToAdd = new Room(index.getOneBased());
+            internalList.add(roomToAdd);
             rooms.add(room);
         }
+    }
+
+    private void setRoomForRoomNumberMoreThanNumberOfRooms(Room room) {
+        int roomNumber = room.getRoomNumber();
+        Index index = Index.fromOneBased(roomNumber);
+        Room currRoom = internalList.get(index.getZeroBased());
+        internalList.remove(index.getZeroBased());
+        rooms.remove(currRoom);
+        internalList.add(index.getZeroBased(), room);
+        rooms.add(room);
     }
     /**
      * Returns Priority Queue of rooms
@@ -88,7 +102,7 @@ public class UniqueRoomList implements Iterable<Room> {
      *
      * @param room is added to RoomList
      */
-    public void addRooms(Room room) {
+    public void initRooms(Room room) {
         rooms.add(room);
         internalList.add(room);
     }
@@ -98,12 +112,12 @@ public class UniqueRoomList implements Iterable<Room> {
      *
      * @param numOfRooms is the number of rooms to be added
      */
-    public void addRooms(int numOfRooms) {
+    public void initRooms(int numOfRooms) {
         this.numOfRooms = numOfRooms;
-        addRooms();
+        initRooms();
     }
 
-    private void addRooms() {
+    private void initRooms() {
         if (numOfRooms <= 0) {
             return;
         } else if (numOfRooms > internalList.size()) {
@@ -257,9 +271,10 @@ public class UniqueRoomList implements Iterable<Room> {
         return internalList.stream().anyMatch(toCheck::isSameRoom);
     }
 
+    //@@author chiamyunqing
     /**
      * Clears the room which contains the patient with the given name.
-     *
+     * Tasks should still remain in the room.
      * @param patientName to clear the room from.
      */
     public void clearRoom(Name patientName) {
@@ -271,11 +286,13 @@ public class UniqueRoomList implements Iterable<Room> {
             Name patientNameInRoom = internalList.get(i - 1).getPatient().get().getName();
             if (patientName.equals(patientNameInRoom)) {
                 Room roomToClear = internalList.get(i - 1);
-                setSingleRoom(roomToClear, new Room(roomToClear.getRoomNumber()));
+                setSingleRoom(roomToClear, new Room(roomToClear.getRoomNumber(),
+                        false, Optional.empty(), new RoomTasks(roomToClear.getReadOnlyTasks())));
                 break;
             }
         }
     }
+    //@@author
 
     /**
      * Replaces the room {@code target} in the list with {@code editedRoom}.
