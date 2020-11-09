@@ -1,0 +1,32 @@
+@startuml
+!include style.puml
+show members
+hide empty members
+skinparam classAttributeFontColor #FFFFFF
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Attendance <<Rectangle>>{
+
+Class AttendanceRecordList {
+recordList : List<AttendanceRecord>
+}
+
+Class AttendanceRecord {
+attendances : Map<UUID, Attendance>
+}
+
+Class Attendance {
+participationScore : int
+}
+
+Class Week {
+week : Index
+}
+
+AttendanceRecord <-down- AttendanceRecordList
+Attendance <-down- AttendanceRecord
+Week <.down. AttendanceRecordList
+}
+@enduml

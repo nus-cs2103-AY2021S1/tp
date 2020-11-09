@@ -1,0 +1,17 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+'title Student UUID Example
+
+show object fields
+object "<u>:Student" as Student {
+    uuid : 0c527a3f-8a6f-4c16-b57d-563a9c43cf6b
+    name : Alice Pauline
+    telegram : ALice_P
+    email : alice@example.com
+    tags : Average
+}
+
+@enduml

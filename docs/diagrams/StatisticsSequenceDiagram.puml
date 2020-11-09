@@ -1,0 +1,55 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":StatisticsCommand" as StatisticsCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "<<class>>\n:ModuleClassUtil" as ModuleClassUtil LOGIC_COLOR
+participant "<<class>>\n:LessonUtil" as LessonUtil LOGIC_COLOR
+end box
+
+-> StatisticsCommand : execute()
+activate StatisticsCommand
+
+StatisticsCommand -> ModuleClassUtil : getParticipationScore(moduleClass, student)
+activate ModuleClassUtil
+
+loop hasLesson
+    ModuleClassUtil -> LessonUtil : getParticipationScoreFromLesson(lesson, student)
+    activate LessonUtil
+
+    LessonUtil --> ModuleClassUtil : participationScore
+    deactivate LessonUtil
+end
+
+ModuleClassUtil --> StatisticsCommand
+deactivate ModuleClassUtil
+
+StatisticsCommand -> ModuleClassUtil : getAbsentWeek(moduleClass, student)
+activate ModuleClassUtil
+
+loop hasLesson
+    ModuleClassUtil -> LessonUtil : getAbsentWeekFromLesson(lesson, student)
+    activate LessonUtil
+
+    LessonUtil --> ModuleClassUtil : absentWeeks
+    deactivate LessonUtil
+end
+
+ModuleClassUtil --> StatisticsCommand
+deactivate ModuleClassUtil
+
+create CommandResult
+StatisticsCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> StatisticsCommand
+deactivate CommandResult
+
+[<-- StatisticsCommand : result
+deactivate StatisticsCommand
+
+[<-[hidden]- StatisticsCommand
+destroy StatisticsCommand
+
+@enduml

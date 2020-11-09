@@ -1,0 +1,63 @@
+{
+  "_comment" : "Duplicate lesson Friday 8 to 10 lesson",
+  "students" : [ ],
+  "classes" : [ {
+    "name" : "CS2100 Lab",
+    "studentUuids" : [ ],
+    "lessons" : [ {
+      "startTime" : "08:00",
+      "endTime" : "10:00",
+      "day" : "FRIDAY",
+      "numberOfOccurrences" : 3,
+      "venue" : "S17-0302",
+      "attendanceRecordList" : {
+        "recordList" : [ {
+          "week" : 1,
+          "attendances" : [ ]
+        }, {
+          "week" : 2,
+          "attendances" : [ ]
+        }, {
+          "week" : 3,
+          "attendances" : [ ]
+        } ]
+      }
+    }, {
+      "startTime" : "10:30",
+      "endTime" : "11:30",
+      "day" : "TUESDAY",
+      "numberOfOccurrences" : 3,
+      "venue" : "https://zoom/j/95317249?)pwd=Ulld2tWY3MwMkRibjQyUkdZZz09",
+      "attendanceRecordList" : {
+        "recordList" : [ {
+          "week" : 1,
+          "attendances" : [ ]
+        }, {
+          "week" : 2,
+          "attendances" : [ ]
+        }, {
+          "week" : 3,
+          "attendances" : [ ]
+        } ]
+      }
+    }, {
+      "startTime" : "08:00",
+      "endTime" : "10:00",
+      "day" : "FRIDAY",
+      "numberOfOccurrences" : 3,
+      "venue" : "S17-0302",
+      "attendanceRecordList" : {
+        "recordList" : [ {
+          "week" : 1,
+          "attendances" : [ ]
+        }, {
+          "week" : 2,
+          "attendances" : [ ]
+        }, {
+          "week" : 3,
+          "attendances" : [ ]
+        } ]
+      }
+    } ]
+  } ]
+}

@@ -1,0 +1,77 @@
+@import "Base.css";
+
+.root {
+    -style-background-color: white;
+    -style-pane-background-color: #fefefe;
+    -style-menu-bar-color: #292e34;
+    -style-status-bar-color: #3c4147;
+    -style-border-color: grey;
+
+    -style-text-color: white;
+    -style-pane-text-color: black;
+    -style-placeholder-color: #ccccce;
+
+    -style-inner-shadow: innershadow(three-pass-box, -style-border-color, 5, 0, 0, 0);
+    -style-pane-shadow: dropshadow(three-pass-box, -style-border-color, 3, 0, 0, 0);
+    -style-list-glow-shadow: dropshadow(three-pass-box, white, 19, 0, 0, 0);
+
+    -fx-background-color: -style-background-color;
+    -fx-font-family: sans-serif;
+}
+
+.list-cell:filled:even {
+    -fx-background-color: #f2f2f2; /* reddish grey */
+    -fx-effect: innershadow(three-pass-box, derive(#f2f2f2, -10%) , 4, 0, 0, 0);
+}
+
+.list-cell:filled:odd {
+    -fx-background-color: white;
+    -fx-effect: innershadow(three-pass-box, derive(#f2f2f2, -10%), 4, 0, 0, 0);
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: #be3251;
+}
+
+.list-cell:filled:selected .label {
+    -fx-text-fill: white;
+}
+
+.list-cell:filled:selected #cardPane {
+    -fx-border-color: #be3251;
+}
+
+.list-cell:filled:selected #dayAndTime, #venue, #occurrence {
+    -fx-text-fill: black;
+}
+
+.cell_big_label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
+    -fx-wrap-text: true;
+    -fx-text-fill: black;
+}
+
+.cell_small_label {
+    -fx-font-size: 13px;
+    -fx-wrap-text: true;
+    -fx-text-fill: black;
+}
+
+.cell_lesson_label_odd {
+     -fx-border-style: solid inside;
+     -fx-border-radius: 8;
+     -fx-border-width: 8;
+     -fx-border-color: #C9D3EE;
+     -fx-background-color: #C9D3EE;
+     -fx-background-radius: 8;
+}
+
+.cell_lesson_label_even {
+    -fx-border-style: solid inside;
+    -fx-border-radius: 8;
+    -fx-border-width: 8;
+    -fx-border-color: #B5C7F5;
+    -fx-background-color: #B5C7F5;
+    -fx-background-radius: 8;
+}
