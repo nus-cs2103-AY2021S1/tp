@@ -67,9 +67,7 @@ All commands with date and/or time parameters have a specific format you must fo
 
 Date parameters must be in the format `dd-MM-yyyy`, where `dd` is day of the month, `MM` is month and `yyyy` is year. The number of repeated letters indicate the number of digits required for day of the month, month and year. 
 
-For example, `dd` means that the day of the month has to be a 2-digit number. Hence, for dates you want to input from the 1st to the 9th of any month, you must key in `09-01-2020`. `9-01-2020` will be deemed as invalid.
-
-Likewise for month and year, `09-1-2020` and `09-01-20` will be deemed as invalid.
+For example, `dd` means that the day of the month has to be a 2-digit number. Hence, for dates you want to input from the 1st to the 9th of any month, you must key in `09-01-2020`. `9-01-2020` will be deemed as invalid. Likewise for month and year, `09-1-2020` and `09-01-20` will be deemed as invalid.
 
 #### Time
 
@@ -87,7 +85,7 @@ For example, 7:00 AM is `0700` while 7:00 PM is `1900`.
 
 1. Copy the file to the folder you want to use as the _home folder_ for ProductiveNUS.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. If the app does not start, please refer to our [FAQ](#faq) section for other ways to start the app.<br>
 
    ![Ui](images/Ui.png)
    *Figure 2: ProductiveNUS GUI*
@@ -116,6 +114,8 @@ simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. All the informatio
 
    ![UserGuideAddCommand](images/UserGuideAddCommand.PNG)
    *Figure 3: Information of the assignment added labelled*
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-primary">
 
@@ -272,6 +272,7 @@ This is the table of prefixes used:
 * Keywords used with prefixes `n/`,`mod/` and `p/` are **case-insensitive**.
 </div>
 
+<div style="page-break-after: always;"></div>
 
 Here is an example with steps for you to follow:
 
@@ -320,6 +321,7 @@ This is the table of prefixes used:
 | `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT | - `mod/ST2334` |
 | `d/` | d/DEADLINE_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
 
+<div style="page-break-after: always;"></div>
 
 Here is an example with steps for you to follow:
 
@@ -400,6 +402,8 @@ For example, `unremind 1` will remove the first assignment in `Your reminders` (
    ![Unemind1](images/Unremind1.png)
    *Figure 19: Before "Statistics tutorial" (highlighted in red) is removed from `Your reminders`*
       
+<div style="page-break-after: always;"></div>
+      
    ![Unremind1YourReminders](images/Unremind1YourReminders.png)
    *Figure 20: "Statistics tutorial" is removed from`Your reminders`*
 
@@ -471,6 +475,8 @@ the command line based on the indexes labelled in the figure.
    ![UserGuideDoneCommandIndex](images/UserGuideDoneCommandIndex.PNG)
    *Figure 22: `Indexes` of assignments labelled*
    
+<div style="page-break-after: always;"></div>
+
 2) The two assignments will be marked as done and each assignment will have a green tick displayed as labelled in the figure. 
 
    ![UserGuideDoneCommandTicksAdded](images/UserGuideDoneCommandTicks.PNG)
@@ -505,6 +511,8 @@ you can simply enter `undone 2` into the command line based on the index labelle
 
    ![UserGuideUndoneCommandIndex](images/UserGuideUndoneCommandIndex.PNG)
    *Figure 25: `Index` of assignment labelled*
+
+<div style="page-break-after: always;"></div>
 
 2) The green tick associated to the assignment is no longer displayed as shown in the diagram below.
 
@@ -547,6 +555,8 @@ and need to be done by a week from now (although the actual deadline is longer).
     ![UserGuideScheduleCommand](images/UserGuideScheduleCommand.PNG)
     *Figure 28: Assignment to schedule*
 
+<div style="page-break-after: always;"></div>
+
 2) You can simply enter `schedule 3 hrs/5 af/01-01-2020 0000 by/23-12-2020 2359` into the command box.
     ![UserGuideScheduleCommandInput](images/UserGuideScheduleCommandInput.PNG)
     *Figure 29: Command inputted by user*
@@ -554,6 +564,8 @@ and need to be done by a week from now (although the actual deadline is longer).
 3) The suggested time slot will be displayed in the assignment card.
     ![UserGuideScheduleCommandResult](images/UserGuideScheduleCommandResult.PNG)
     *Figure 30: Message shown in Command Box and suggested schedule displayed in the assignment card*
+
+<div style="page-break-after: always;"></div>
 
 More examples:
 * `schedule 1 hrs/2 af/23-12-2020 1800 by/23-12-2020 2359`
@@ -638,6 +650,8 @@ If you are new to ProductiveNUS or want to have a quick overview of all the avai
 
    ![UserGuideHelpCommand](images/UserGuideHelpCommand.PNG)
    *Figure 37: Help Window labelled*
+
+<div style="page-break-after: always;"></div>
 
 ### Exiting the program : `exit`
 
