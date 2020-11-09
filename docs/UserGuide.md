@@ -62,17 +62,27 @@ Let's get started! :smiley:
 
 ### Installing Nuudle
 
-Follow these steps to get started with Nuudle:
+Follow these steps to get started:
 
-1. Ensure you have **Java 11** or above installed in your Computer.
+1. Ensure you have **Java 11** or above installed on your Computer. 
+    * To find out the Java version you have installed, click [here](https://www.java.com/en/download/help/version_manual.xml).
+    * If Java is not installed on your computer, click [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) to download it.
 
-1. Download the latest version of Nuudle from [here](https://github.com/ay2021s1-cs2103t-t12-4/tp/releases).
+1. Proceed to Nuudle's download page [here](https://github.com/ay2021s1-cs2103t-t12-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for Nuddle.
+1. Click on the link displayed in the following picture to download Nuudle's application file.
+![GitHub download page](images/QuickStart.png)
 
-1. Double-click the file to start up Nuudle. An application window similar to the one below should appear in a few seconds.<br>
-   Notice how Nuudle also comes with some sample data to get you started.<br>
-   ![Ui](images/Ui.png)
+1. Save the file to a folder where you want to store the Nuddle application and it's related data.
+![GitHub download page](images/QuickStart2.png)
+
+1. Double-click the `Nuudle application` to start Nuudle up. 
+An application window similar to the one below should appear in a few seconds.<br>
+![GitHub download page](images/QuickStart3.png)
+
+    * Notice how Nuudle also comes with some sample data to get you started.<br>
+    ![Ui](images/Ui.png)
+1. Congratulations! Nuudle is now ready for your perusal :smiley:
 
 ### Using Nuudle
 
