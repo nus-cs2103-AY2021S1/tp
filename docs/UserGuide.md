@@ -421,7 +421,7 @@ You can follow these instructions:
 Outcome:
 
 1. The _Result Display_ will show a success message.
-2. The Ingredient Tracker inside the _Main View_ will show the list of ingredients.
+2. The Ingredient Tracker inside the _Main View_ will show the list of all the ingredients.
 
 ![IngredientListCommandScreenshot](images/IngredientListCommandScreenshot.png)
 
@@ -454,7 +454,7 @@ Outcome:
 the ingredient `Brown Sugar`.
 
 Before executing:<br>
-![BeforeIngredientFindCommandScreenshot](images/BeforeIngredientFindCommandCommand.png)
+![BeforeIngredientFindCommandScreenshot](images/BeforeIngredientFindCommandScreenshot.png)
 
 
 After executing:<br>
@@ -468,7 +468,7 @@ Resets the ingredient's levels of all ingredient types to zero.
 Format: `i-reset-all`
 
 Let's say you want to reset all ingredients' levels to zero when one or more ingredients have 
-non-zero ingredient's levels.
+nonzero ingredient's levels.
 You can follow these instructions:
 
 1. Type ` i-reset-all` into the _Command Box_.
@@ -484,7 +484,7 @@ the _Main View_.
 
 Figure x. A screenshot showing the outcome of an `i-reset-all` command
 
-#### 2.7 Listing all ingredients that user should restock : `i-restock`
+#### 2.7 Listing all ingredients that the user should restock : `i-restock`
 Lists the ingredient's levels of all ingredient types that fall below their pre-determined default levels and require the user to 
 restock. The list also includes the amount needed for each ingredient to reach its pre-determined default level.
 
@@ -1087,7 +1087,7 @@ Action | Format, Examples
 **List**| `i-list`
 **Find**| `i-find KEYWORD [MORE_KEYWORDS]`  <br> e.g., `i-find milk sugar`
 **Reset all ingredients' levels to zero**| `i-reset-all`
-**View all ingredients that the user should restock**| `i-restock`
+**List all ingredients that the user should restock**| `i-restock`
 
 ### Manpower Management
 
