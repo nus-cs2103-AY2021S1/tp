@@ -18,7 +18,7 @@ Given below are my contributions to the project.
     2. Design pattern consideration: [Best Practice for Undo Redo implementation](https://stackoverflow.com/questions/1915907/best-practice-for-undo-redo-implementation)
 <br/><br/>
 * **New Feature**: Added `editvisit` and `deletevisit` commands to edit and delete an existing visitation log.
-  * What it does: Allows the user to modify or remove the existing visitation log seen from the profile window that had been implemented.
+  * What it does: Allows the user to modify or remove the existing visitation logs seen from the profile window.
   * Justification: This feature allows the user to amend visitation log details when the user makes a mistake. Also allows the user to organize the visitation logs and remove redundant visitations.
   * Highlights: Also implemented the functionality of a new popup window to modify visitation details, as stated below. And integrated undo and redo functions for the visitation commands.
   * Credits: 
