@@ -23,11 +23,11 @@ I am in-charge of the **UI/UX** of the **front-end development** of TrackIt@NUS.
 ### 2.3 UI Development
  
 #### 2.3.1 Side Panel (Major Enhancement)
-I have added a [Side Panel](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/UserGuide.md#layout) feature. This feature allow users to toggle between the different tabs easily. 
-Initially, tabs elements were used in at the top of the views (.fxml) for initial v.1.2.
-However, the design of the tabs vertically does not give users a good experience. 
-After considerations and further discussion with the backend team, we decided to include this for further degree of customisations of the app.
-This component is necessary because users need a section in the app to toggle between the upcoming view, the module view, the contact view and the help view.
+* I have added a [Side Panel](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/UserGuide.md#layout) feature. This feature allow users to toggle between the different tabs easily. 
+* Initially, tabs elements were used in at the top of the views (.fxml) for initial v.1.2.
+* However, the design of the tabs vertically does not give users a good experience. 
+* After considerations and further discussion with the backend team, we decided to include this for further degree of customisations of the app.
+* This component is necessary because users need a section in the app to toggle between the upcoming view, the module view, the contact view and the help view.
 
 #### 2.3.2 Module View (Major Enhancement)
 * I have added the [Module Tab](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/UserGuide.md#moduletabs) feature. 
