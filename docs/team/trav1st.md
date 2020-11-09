@@ -29,7 +29,7 @@ Shows the 10 most recently made recipes / recently used ingredients. It is cappe
 
 ##### View recipes/ingredients that were made/used commands
 
-Shows the recipes made and ingredients used in the given time frame. If the user does not specify any time frame (i.e. `/before` and `/after` tags are missing in user's input), we assumed that the user wants to view recipes made/ ingredients used on the day itself.
+Shows the recipes made and ingredients used in the given time frame. If the user does not specify any time frame (i.e. `/before` and `/after` tags are missing in user's input), we assumed that the user wants to view recipes made / ingredients used on the day itself.
 
 ##### Clear recipes/ingredient usage records commands
 
