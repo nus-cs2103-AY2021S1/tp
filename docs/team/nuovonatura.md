@@ -31,6 +31,8 @@ Given below are my contributions to the project.
   [\188](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/188), [\206](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/206),
   [\210](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/210), [\271](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/271) (not all included)
   
+<div style="page-break-after: always;"></div>
+
 * **Project management**: 
 
   * Managed releases  `v1.2`, `v1.3` and `v1.4` (3 releases including issues and deadlines) on GitHub
