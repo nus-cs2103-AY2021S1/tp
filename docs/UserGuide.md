@@ -130,9 +130,9 @@ Symbol | Meaning
 1. Ensure you have Java 11 or above installed in your Computer.
 
 1. Download the latest _`jarvis.jar`_ and the `chrome_driver.zip` from [here](https://github.com/AY2021S1-CS2103T-W11-2/tp/releases/tag/v1.4).
-Unzip the zip file. Place all 3 unzipped files into a folder called _chrome_driver_.
+Unzip the zip file.
 It is crucial to have the Chrome Driver in order for Jarvis to start up. If the GUI does not launch,
-please check that you have installed the correct driver in the _chrome_driver_ folder:
+please check that you have installed the correct driver in the unzipped folder:
     1. Windows: chromedriver.exe
     1. MacOS: chromedriver_mac
     1. Linux: chromedriver_linux
@@ -351,11 +351,12 @@ Adds a `Consultation` session with a `Student` at a specific date and time.
 * `add -c John Doe d/2020-09-20 t/13:30`
 * `add -c Mary Jane d/2021-01-02 t/09:15`
 
-<br>⚠️ Notes:
+<div markdown="block" class="alert alert-info">
 * When you add a `Consultation` for a future date while displaying only past `Consultations`, make sure to enter `view -c` to view the complete list to check if the `Consultation` has been added correctly.
 * Similarly, when you add a `Consultation` for a past date while displaying only future `Consultations`, make sure to enter `view -c`.
 * `NAME` does not have to correspond to an existing student; this is so that the tutor may freely use any nicknames or other identifiers as they see fit. However, it may not be left empty.
 * Because date and time is considered in order, the d/ prefix must come earlier than t/.
+</div>
 
 #### 6.3.2 Adding `Mastery Checks` : `-mc`
 
@@ -368,6 +369,8 @@ Adds a `Mastery Check` session with a `Student` at a specific `date` and `time`.
 <br>✏️ Examples:
 * `add -mc John Doe d/2020-09-20 t/13:30`
 * `add -mc Mary Jane d/2021-01-02 t/09:15`
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
 * When you add a `Mastery Check` for a future date while displaying only past `Mastery Checks`, make sure to enter `view -mc` to view the complete list to check if the `Mastery Check` has been added correctly.
@@ -404,6 +407,8 @@ Adds your personal `Event` with a `description`, to attend at a specific date an
 <div markdown="block" class="alert alert-info">
 * An `Event` requires extra date and time specifications in order to create. The way to input is similar to the screenshot of adding `Mastery Check` above.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### 6.3.5 Adding `Deadlines` : `-d`
 
@@ -446,6 +451,8 @@ as we choose to give you the benefit of doubt of keying in the wrong login detai
 `Mission` and `Quest` information.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### 6.4.2 Editing `Student` Information : `-s`
 
 Edits the fields of a `Student`.
@@ -473,6 +480,8 @@ Edits the score of a `Mastery Check` session with a `Student`.
 * `edit -mc 1 s/0`
 * `edit -mc 3 s/1`
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-info">
 * Do note that the `SCORE` parameter can only be 0 or 1, according to the actual restrictions of `Mastery Check` pass/fail in CS1101S.
 * The `INDEX` parameter should be a non-zero unsigned integer that is a valid index currently displayed along with the target `Mastery Check`.
@@ -497,6 +506,8 @@ Deletes a `Task` based on the `INDEX` you specify.
 <div markdown="block" class="alert alert-info">
 * The `INDEX` parameter should be a non-zero unsigned integer that is a valid index currently displayed along with the target `Consultation`.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### 6.5.2 Deleting `Mastery Checks` : `-mc`
 
@@ -714,6 +725,8 @@ are likely to change frequently and hence, will not need to be persisted.
 | Edit `Student` information | -s | edit -s INDEX [n/NAME] [t/TELEGRAM] [e/EMAIL] |
 | Edit `Mastery Check` | -mc | edit -mc INDEX s/SCORE |
 
+<div style="page-break-after: always;"></div>
+
 ### 7.3 Delete Command Summary
 
 | Function | Tag | Format, Examples |
@@ -739,6 +752,9 @@ are likely to change frequently and hence, will not need to be persisted.
 | View past `Mastery Checks` | -mcp | view -mcp |
 | View all upcoming `Mastery Checks` | -mcu | view -mcu  |
 | View all `Tasks` | -t | view -t |
+
+<div style="page-break-after: always;"></div>
+
 | View all `Todos` | -tt | view -tt |
 | View all `Events` | -te | view -te |
 | View all `Deadlines` | -td | view -td |
