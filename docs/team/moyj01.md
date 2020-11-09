@@ -1,6 +1,6 @@
 ---
 layout: page
-title:Melvin's Project Portfolio Page
+title: Melvin's Project Portfolio Page
 ---
 
 ## Project: SWEe!
