@@ -404,7 +404,7 @@ Format: `addTG tg/TG_CODE day/DAY_OF_WEEK start/START_TIME end/END_TIME`
 > - `TG_CODE`, `DAY_OF_WEEK`, `START_TIME` and `END_TIME` should not be blank.
 > - `TG_CODE` should only contain alphanumeric characters.
 > - `DAY_OF_WEEK` should only be one of MON/TUE/WED/THU/FRI.
-> - `START_TIME` and `END_TIME` should be in the form of HH:MM.
+> - `START_TIME` and `END_TIME` should be in the form of 24HR format HH:MM.
 
 Example: 
 - Adds a tutorial group _T03_ that takes place every _MON_ from _08:00_ to _10:00_ to the tutorial group list.
@@ -464,7 +464,7 @@ Format: `findTG KEYWORD`
 > - `KEYWORD` is not case-sensitive (e.g. _t05_ will match _T05_).
 > - The search will look for matches, including partial match, in the tutorial group's code (e.g. _t_ will match _T05_,
 however, _t5_ will not match _T05_).
-> - If no tutorial group matching the keyword is found, the Tutorial Group view will be empty.
+> - If no tutorial groups matching the keyword are found, the Tutorial Group view will be empty.
 
 Example: 
 - Finds a tutorial group with `KEYWORD` _T03_.
