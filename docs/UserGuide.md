@@ -44,27 +44,8 @@ previous days much faster than the traditional GUI apps.
 
 # 3. Features
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-</div>
-
-
 <div markdown="block" class="alert alert-info"> 
-:information_source: Notes about the command format: <br>
+**:information_source: Notes about the command format: <br>**
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user. <br>
   e.g. in `add e/EXERCISE c/CALORIES`, `EXERCISE` is a parameter which can be used as `add e/Push Up c/1000`.
@@ -197,15 +178,18 @@ Examples:
 - `archive f/C:/Users/user_name/Desktop/FILE_NAME.json`
 
 
-<div markdown="block" class="alert alert-info">
-    :information_source:
-    
-    <b> Absolute Path </b>: Path that contains root element, e.g. C:\Users\user_name\Desktop\FILE_NAME.json<br>
-    
-    <b> Relative Path </b>: Path will take reference from the file that contains <b>Calo.jar</b> For example, if Calo is inside
-    the <mark>C:/Users/UserName/App</mark> and the user entered <mark>data\archived_file.json</mark> as the destination, the archived file will be
-    at <mark>C:/Users/UserName/App/data/archived_file.json</mark>
+<div markdown="block" class="alert alert-info"> 
+**:information_source: Notes about the command format: <br>**
+
+* **Absolute Path:** 
+  Path that contains root element, e.g. C:\Users\user_name\Desktop\FILE_NAME.json
+
+* **Relative Path:**
+  Path will take reference from the file that contains **Calo.jar** For example, if Calo is inside
+  the `C:/Users/UserName/App` and the user entered `data\archived_file.json` as the destination, the archived file will be
+  at `C:/Users/UserName/App/data/archived_file.json`
 </div>
+
 
 ## 3.11. Recall : `recall`
 Recalls the most recent exercise with the specified name.
