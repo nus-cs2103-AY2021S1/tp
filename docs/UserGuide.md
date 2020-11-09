@@ -67,6 +67,8 @@ Objectives of PlaNus:
 
 5. Alternatively, in command prompt (for Windows) or terminal (in MacOS), go to the directory where planus.jar is stored and enter `java -jar planus.jar`.To open command prompt (for Windows) or terminal (in MacOS), simply search for them in your computer.
 
+<div style="page-break-after: always;"></div>
+
 6. You may try out some commands listed in the [command summary](#command-summary) to explore the app.
 
 --------------------------------------------------------------------------------------------------------------------
