@@ -126,20 +126,30 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the `Person`, `SalesRecordEntry` and `Ingredient` sub-components.
 * does not depend on any of the other three components.
 
-
-Given below is the class diagram showing details of the person model:
 
 The `Person` sub-component,
 * stores the address book data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
+<div markdown="span" class="alert alert-info">:information_source: **Notes:**
+    In tCheck context, an employee is modelled as a `Person`.
+</div><br>
+
+Given below is the class diagram showing details of the `Person` model
+
 ![Structure of the Person Model Component](images/PersonModelClassDiagram.png)
 
-Figure x. Class diagram showing the structure of `Person` sub-component
+
+<div markdown="span" class="alert alert-info">:information_source: **Notes:** An alternative (arguably, a more OOP
+) model is given below. It has a `Tag` list in the `tCheck` application, which `Person` references. This allows
+ `tCheck` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+
+![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+
+</div><br>
 
 The `SalesRecordEntry` sub-component,
 * stores the sales book data
@@ -160,22 +170,10 @@ Given below is the class diagram showing details of the ingredient model:
  PlantUML, where there cannot be two textboxes at the arrow head, the role has been placed in the middle of the arrow.
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP
-) model is given below. It has a `Tag` list in the `tCheck` application, which `Person` references. This allows
- `tCheck` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-Figure x. Class diagram showing the alternative structure of `Person` sub-component
-
-</div>
-
 
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
-
-Figure x. Class diagram showing the `Storage` structure
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -521,13 +519,10 @@ In tCheck, each employee is modeled as `Person` object. The archiving employee f
 
 ![Structure of the Archive/Unarchive Component](images/ArchiveClassDiagram.png)
 
-*Figure Archive-1. Overview class diagram representation of archiving/unarchiving implementation*
-
 Given below shows how the `c-archive`, `c-unarchive`, and `c-archive-all` mechanism works in steps based on different scenarios. Two activity diagrams are provided before each detailed explanation to describe how tCheck handles an archiving/unarchiving commands. Three sequence diagrams are attached after the description
 
 ##### 1. Archive an employee
-
-*Figure Archive-2. Activity diagram representation of the general flow of archiving of a peron in tCheck*
+![ArchiveActivityDiagram](images/ArchiveActivityDiagram.png)
 
 User can archive a specific employee (modeled as a `Person` in the code) by entering the `c-archive INDEX` command. The
  following steps describe how this behavior is implemented:
@@ -541,20 +536,16 @@ Step 3: The `Person` will have a new `ArchivedStatus` value, which will be set t
 
 Step 4: The current `FilteredList` will be updated to only show active `Persons`, facilitated by the predicate `Model#PREDICATE_SHOW_ALL_ACTIVE_PERSONS`
 
-![Structure of the Storage Component](images/ArchiveSequenceDiagram.png)
+![ArchiveSequenceDiagram](images/ArchiveSequenceDiagram.png)
 
-*Figure Archive-2. Sequence diagram representation of archiving an employee*
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveCommand`
+<div markdown="span" class="alert alert-info">:information_source: **Notes:** The lifeline for `ArchiveCommand`
  should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 
 ##### 2. Unarchive an employee
 
-![Structure of the Storage Component](images/UnarchiveActivityDiagram.png)
-
-*Figure Archive-3. Activity diagram representation of the general flow of unarchiving an employee in tCheck*
+![UnarchiveActivityDiagram](images/UnarchiveActivityDiagram.png)
 
 User can unarchive an already-archived employee(modeled as `Person` in the code) by entering the `c-unarchive INDEX
 ` command. The following steps describe how this behavior is implemented:
@@ -567,11 +558,9 @@ Step 3: The `Person` will have a new `ArchivedStatus` value, which will be set t
 
 Step 4: The current `FilteredList` will be updated to only show active `Persons`, facilitated by the predicate `Model#PREDICATE_SHOW_ALL_ACTIVE_PERSONS`
 
-![Structure of the Storage Component](images/UnarchiveSequenceDiagram.png)
+![UnarchiveSequenceDiagram](images/UnarchiveSequenceDiagram.png)
 
-*Figure Archive-4. Sequence diagram representation of unarchiving an employee*
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnarchiveCommand` should
+<div markdown="span" class="alert alert-info">:information_source: **Notes:** The lifeline for `UnarchiveCommand` should
  end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -585,16 +574,15 @@ Step 2: For each `Person` in the observable 'PersonList', `ArchiveAllCommand` wi
 
 Step 3: The current `FilteredList` will be updated to only show the empty active `Persons`, facilitated by the predicate `Model#PREDICATE_SHOW_ALL_ACTIVE_PERSONS`
 
-![Structure of the Storage Component](images/ArchiveAllSequenceDiagram.png)
+![ArchiveAllSequenceDiagram](images/ArchiveAllSequenceDiagram.png)
 
-*Figure Archive-5. Sequence diagram representation of archiving all employees*
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveAllCommand` should
- end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Notes:** The lifeline for 
+`ArchiveAllCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches
+ the end of diagram.
 </div>
 
 
-#### Design consideration:
+#### Design considerations:
 
 ##### Aspect: The implementation to store archived employees
 
@@ -616,45 +604,6 @@ Alternative 1 was chosen, because for a bubble tea shop, normally the total numb
 And the software doesn't need to handle huge amount of data. On the other hand, if alternative 2 were
 used, `Logic` and `Model` have to deal another set of data. Consequently, application's overall complexity will be
 increased.
-
-
-### \[Completed\] Edit employees's contact information feature
-
-Compared with the original implementation, this feature adds emergency contact information of the employee. It can help
-the user to contact some staff when emergency situation happens. The command is:
-
-- `edit INDEX [n/NAME] [p/PHONE] [e/EMERGENCY_CONTACT] [t/TAG] …​​`
-
-#### Completed Implementation
-
-The completed edit employee's contact information is facilitated by `AddressBook`. It implements `ReadOnlyAddressBook`
-interface and offers method to edit the application's `AddressBook`. Particularly, it changes Person's constructor and
-function declarations to add emergency there.
-
-Given below is an example usage scenario and how the edit mechanism behaves at each step.
-
-Step 1: The user launches the application for the first time. Because now there isn't any information in addressbook.
-The user can't edit now.
-
-Step 2: The user executes `add n/Betsy Crowe e/81234567 p/1234567 t/morning shift t/part-time`. The `add` command calls
-`Model#addPerson()` to add Besty's information in the `AddressBook`. The updated `AddressBook` is stored in
-`addressbook.json`.
-
-Step 3: The user executes `edit 1 n/Besty Crowe e/54749110 p/1234567 t/morning shift t/part-time` to change Besty Crowe's
-phone number. This`edit` command calls `Model#setPerson()` to replace the original Besty Crowe's information in the
-`Addressbook`, causing the updated `Addressbook` to be stored in `addressbook.json`, overwriting the former one.
-
-#### Design Consideration
-
-##### Aspect: How to display the emergency contact
-
-* **Alternative 1 (current choice):** Displays the emergency contact of the similar format
-with phone number, using a prefix to identify them.
-  * Pros: Easy to implement.
-  * Cons: May seem a little redundancy.
-* **Alternative 2:** Use different icons to represent phone and emergency contact
-  * Pros: Will be easy to tell from.
-  * Cons: Need more work.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -766,30 +715,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. tCheck detects an incorrect input format.
-        
-        * 2a1. tCheck requests the user to re-enter the data in the correct format.
-        
-    	* 2a2. User enters new data.
-    	
-    	Steps 2a1-2a2 are repeated until the data entered is in the correct format.
-    	
-    	Use case resumes from step 2.
 
+    * 2a1. tCheck requests the user to re-enter the data in the correct format.
+    * 2a2. User enters new data.
+  	
+  	Steps 2a1-2a2 are repeated until the data entered is in the correct format.
+    
+    Use case resumes from step 2.
+    
 * 2b. tCheck detects that the specified employee does not exist.
-        
-        * 2b1. tCheck requests the user to re-enter a valid index that corresponds to an existing employee.
-        
-        * 2b2. User enters new index.
-        
-        Steps 2b1-2b2 are repeated until the index entered is valid.
-        
-        Use case resumes from step 2.
 
+    * 2b1. tCheck requests the user to re-enter a valid index that corresponds to an existing employee.
+    * 2b2. User enters new index.
+  	
+  	Steps 2b1-2b2 are repeated until the index entered is valid.
+    
+    Use case resumes from step 2.
+    
 * 2c. tCheck detects that the specified employee has already been archived.
-        
-        * 2c1. tCheck returns the error message to the user.
-        
-        Use case ends.
+
+    * 2c1. tCheck returns the error message to the user.
+    
+    Use case ends.
+
 
 **Use Case: UC02 - Archive all employees**
 
@@ -802,22 +750,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 **Extensions**
-
 * 2a. tCheck detects an incorrect input format.
 
-        * 2a1. tCheck requests the user to re-enter in the correct format.
-        
-    	* 2a2. User enters new data.
-    	
-    	Steps 2a1-2a2 are repeated until the data entered is in the correct format.
-    	
-    	Use case resumes from step 2.
-      	
+    * 2a1. tCheck requests the user to re-enter in the correct format.
+    * 2a2. User enters new data.
+  	
+  	Steps 2a1-2a2 are repeated until the data entered is in the correct format.
+    
+    Use case resumes from step 2.
+
 * 2b. tCheck detects an empty Employee Directory.
 
-   	    * 2b1. tCheck shows a warning message.
-
-   	    Use case ends.
+    * 2b1. tCheck shows a warning message.
+    
+    Use case ends.
 
 **UC03 - Set ingredient level for a single ingredient**
 
@@ -906,7 +852,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">:information_source: **Notes:** These instructions only provide a
+ starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
@@ -1039,7 +986,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect set commands to try: `i-set i/Milk m/1.2`, `i-set i/Milk m/1000`, `i-set i/Milk`<br>
       Expected: The amount of milk is unchanged. Corresponding error messages are shown in _Result Display_.
 
-### F.1 Archiving an employee
+### Archiving an employee
 
 1. Archiving an employee and hides his/her info from the active/unarchived employee directory.
 

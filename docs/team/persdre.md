@@ -32,23 +32,16 @@ Given below are my contributions to the project.
   * Pull Request: [#136](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/136)  
 
 * **Enhancements to existing features**:
-  * Add restrictions to phone numbers and tag's length.
-  
-    1. For example:
-    
+  * Add restrictions to phone numbers and tag's length.  
+    1. For example:   
         Previously, the phone number just needed to be longer than or equals to 3 digits. But it does not fit in Singapore.
-        So I set the limit to only 8 digits' number starting with 8 or 9.
-        
-    1. Pull Request: [#262](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/262)
-    
-  * Change original command words to be more consistent with others' commands
-  
-    1. For example:
-    
+        So I set the limit to only 8 digits' number starting with 8 or 9.        
+    1. Pull Request: [#262](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/262)    
+  * Change original command words to be more consistent with others' commands  
+    1. For example:   
         Previously, commands are all based on the contact information so they didn't have prefixes. But after we involved
         sales of drinks and ingredients part, these commands shouldn't be as it was. So I added a "c-" prefix to them,
-        and rephrased "c-search" to "c-find" to match others' commands.
-        
+        and rephrased "c-search" to "c-find" to match others' commands.       
     1. Pull Request: [#169](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/169), [#88](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/88)
 
 * **Contributions to team-based tasks**:
