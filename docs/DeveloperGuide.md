@@ -179,6 +179,7 @@ and `ActiveAccount#addRevenue`, and in `Model` as `Model#setAccount`.
 Given below is an example usage scenario and how the find entries mechanism behaves 
 at each step.
 
+<div style="page-break-after: always;"></div>
 * Step 1. The user inputs the edit command to edit the entries of a specified index and entry
 type (Expense or Revenue) from current `ActiveAccount`. `CommandParser` identifies the command word `edit`
 and calls `AddCommandParser#parse(String args)` to parse the input into a valid `AddCommand`.
