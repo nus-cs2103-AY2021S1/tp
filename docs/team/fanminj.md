@@ -8,7 +8,7 @@ title: Jian Fanmin's Project Portfolio Page
 ### Project Overview
 Trackr is an application for teaching assistants (TAs) who prefer to use a desktop application for managing their
 student records. It is uses a Command Line Interface (CLI), while still retaining the benefits of a Graphical User
-Interface (GUI). It is written in Java, and currently has over 10kLoC.
+Interface (GUI). Currently, Trackr is written in Java and has more than 15,000 LoC.
 
 ### Summary of Contributions
 
