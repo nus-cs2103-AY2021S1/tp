@@ -162,7 +162,7 @@ This section describes some noteworthy details on how certain features are imple
 This feature allows user to add entries to an account.
 
 #### Implementation
-The proposed Edit entries feature is facilitated by `AddCommand`. It extends `Command` and 
+The proposed add entries feature is facilitated by `AddCommand`. It extends `Command` and 
 is identified by `CommonCentsParser` and `AddCommandParser`. The AddCommand interacts 
 with `Account` and the interactions are managed by `ActiveAccount`. As such, it implements the following
 operations: 
@@ -205,14 +205,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 ![AddActivityDiagram](images/AddActivityDiagram.png)
 
 
-## Delete feature
+### Delete feature
 *(Written by Jordan Yoong)* <br>
 
 This feature allows the user to delete previously added entries from an account.
 
 #### Implementation
 
-The Delete entries feature is facilitated by `DeleteCommand`. It extends `Command` and 
+The delete entries feature is facilitated by `DeleteCommand`. It extends `Command` and 
 is identified by `CommonCentsParser` and `DeleteCommandParser`. The DeleteCommand interacts 
 with `Account` and the interactions are managed by `ActiveAccount`. As such, it implements the following
 operations: 
@@ -238,7 +238,7 @@ The following sequence diagram shows how a delete entry operation works:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Some of the interactions with the utility classes,
 such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
-of the find entries command.
+of the delete entries command.
 </div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
@@ -248,7 +248,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 #### Design consideration
 Explanation why a certain design is chosen.
 
-##### Aspect: How find entries command is parsed
+##### Aspect: How delete entries command is parsed
 * **Choice:** User needs to use prefixes before the keywords.
     * Pros: 
         * Easy to implement as the arguments can be tokenized in the event of inputs with multiple arguments.
@@ -262,7 +262,7 @@ Explanation why a certain design is chosen.
 This feature allows the user to edit existing entries.
   
 #### Implementation
-The proposed Edit entries feature is facilitated by `EditCommand`. It extends `Command` and 
+The proposed edit entries feature is facilitated by `EditCommand`. It extends `Command` and 
 is identified by `CommonCentsParser` and `EditCommandParser`. The EditCommand interacts 
 with `Account` and the interactions are managed by `ActiveAccount`. As such, it implements the following
 operations: 
@@ -319,7 +319,7 @@ specifying index and edited fields alone.
     * Cons: Less convenience for the user, as more typing needs to be done. 
     
 
-## Clear feature
+### Clear feature
 *(Written by Jordan Yoong)* <br>
 
 This feature allows the user to clear previously added entries.
