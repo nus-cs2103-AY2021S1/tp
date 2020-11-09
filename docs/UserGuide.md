@@ -731,6 +731,8 @@ deletestu INDEX
 * `liststu` followed by `deletestu 1` followed by `yes` deletes the 1st student (**Figure 5.3.4-2**) from the student list.
 * `findstu Bob` followed by `deletestu 1` followed by `yes` deletes the 1st student from the results of the `findstu Bob` command.
 
+</div>
+
 **Outcome:**
 
 ![DeletestuConfirmation](images/user-guide/5.3.4.1-DeletestuConfirmationPrompt.png)
