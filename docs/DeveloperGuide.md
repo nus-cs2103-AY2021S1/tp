@@ -517,8 +517,8 @@ Example of the instructor bug:
 
 ### Feature ideas:
 
-* Order filter results of contacts and modules by how much they match the specified parameters.
-* Differentiate instructor tags in module cards for instructors with the same name.
+* Order filter results of contacts and modules by how much they match the specified parameters (Coming soon).
+* Differentiate instructor tags in module cards for instructors with the same name (Coming soon).
 
 --------------------------------------------------------------------------------------------------------------------
 

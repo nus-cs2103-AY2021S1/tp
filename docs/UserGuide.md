@@ -40,7 +40,7 @@ FaculType is a **desktop app** for managing **faculty members and their modules*
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+<span markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
@@ -56,7 +56,7 @@ FaculType is a **desktop app** for managing **faculty members and their modules*
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-</div>
+</span>
 
 ### General Features
 
@@ -127,9 +127,9 @@ Adds a contact to FaculType.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL d/DEPARTMENT o/OFFICE [t/TAG]…​
 ​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<span markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags (including 0)
-</div>
+</span>
 
 Examples:
 * `add n/Janson Garrick p/98765432 e/jansongarrick@example.com d/Computer Science o/B01-A3`
@@ -158,7 +158,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [o/OFFICE] [t/TA
 * Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
 * You can remove all the contact’s tags by typing `t/` without
     specifying any tags after it.
 
@@ -185,8 +185,8 @@ Finds all contacts that match the given fields.
 
 Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [o/OFFICE] [r/REMARK] [t/TAG]`
 
-* The search is case-insensitive. e.g `chris` will match `Chris`.
-* The order of the keywords do not matter. e.g. `Chris Evans` will match `Evans Chris`.
+* The search is case-insensitive. e.g. `chris` will match `Chris`.
+* The order of the keywords does not matter. e.g. `Chris Evans` will match `Evans Chris`.
 * Partial words will be matched e.g. `Chri Evan` will match `Chris Evans`.
 * Results must contain every keyword e.g. `Chris Evans` will not match `Chris Pratt`.
 * At least one of the optional fields must be provided.
@@ -294,8 +294,8 @@ Format: `unassignall`
 
 The following features are not done yet and will be implemented in the next update.
 
-* Order filter results of contacts and modules by how much they match the specified parameters.
-* Differentiate instructor tags in module cards for instructors with the same name.
+* Order filter results of contacts and modules by how much they match the specified parameters (Coming soon).
+* Differentiate instructor tags in module cards for instructors with the same name (Coming soon).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -334,6 +334,15 @@ Example of the instructor bug:
 
 **Q**: Can I directly assign a contact to a module in the non-active semester?<br>
 **A**: No. Use `switch` to switch the active semester first and then use `assign`.
+
+**Q**: What happens if I accidentally clear all my data using `reset`?<br>
+**A**: FaculType currently does not support `undo` command so it is not possible to retrieve deleted data. Please ensure that you wish to delete all your data before doing `reset`.
+
+**Q**: When and why does FaculType use sample data?<br>
+**A**: FaculType uses sample data when the user first launches the app. The purpose of providing sample data is to give users opportunity to get familiar with FaculType. So, after you are familiar with the application, you can do `reset` before inserting your real data.
+
+**Q**: Why is my data missing?
+**A**: Ensure that your json files are in the correct folder and format. Otherwise, FaculType will use empty lists.
 
 --------------------------------------------------------------------------------------------------------------------
 
