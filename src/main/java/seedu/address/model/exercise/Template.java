@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Set;
 
 public class Template {
+    public static final String filePath = "data/template.txt";
+
     private String name;
     private Integer calories;
     private Set<MuscleTag> muscleTags = new HashSet<>();
@@ -77,7 +79,7 @@ public class Template {
      * @throws IOException
      */
     public static void writeToFile(List<Template> lists) throws IOException {
-        FileWriter fw = new FileWriter("data/template.txt");
+        FileWriter fw = new FileWriter(filePath);
         String textToAdd = "";
 
         for (int i = 0; i < lists.size(); i++) {
@@ -87,6 +89,10 @@ public class Template {
 
         fw.write(textToAdd);
         fw.close();
+    }
+
+    public static String getFilePath() {
+        return filePath;
     }
 
     @Override

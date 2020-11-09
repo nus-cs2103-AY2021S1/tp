@@ -24,7 +24,7 @@ import seedu.address.model.exercise.Exercise;
  */
 public class DeleteCommandTest {
 
-    private ExerciseModel model = new ExerciseModelManager(getTypicalExerciseBook(), new UserPrefs());
+    private ExerciseModel model = new ExerciseModelManager(getTypicalExerciseBook(), null, new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -33,7 +33,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EXERCISE_SUCCESS, exerciseToDelete);
 
-        ExerciseModelManager expectedModel = new ExerciseModelManager(model.getExerciseBook(), new UserPrefs());
+        ExerciseModelManager expectedModel = new ExerciseModelManager(model.getExerciseBook(), null, new UserPrefs());
         expectedModel.deleteExercise(exerciseToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -56,7 +56,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EXERCISE_SUCCESS, exerciseToDelete);
 
-        ExerciseModel expectedModel = new ExerciseModelManager(model.getExerciseBook(), new UserPrefs());
+        ExerciseModel expectedModel = new ExerciseModelManager(model.getExerciseBook(), null, new UserPrefs());
         expectedModel.deleteExercise(exerciseToDelete);
         showNoExercise(expectedModel);
 

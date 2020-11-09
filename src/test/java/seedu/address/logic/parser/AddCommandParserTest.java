@@ -39,6 +39,7 @@ import seedu.address.model.exercise.MuscleTag;
 import seedu.address.model.exercise.Name;
 import seedu.address.testutil.ExerciseBuilder;
 
+
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
