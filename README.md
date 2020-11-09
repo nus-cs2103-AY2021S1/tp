@@ -9,7 +9,15 @@ exhaustive of **updating, searching and sorting stocks** via Command Line Interf
 while still having the benefits of a Graphical User Interface (GUI).
 
 ## User interface
-![Ui](docs/images/GUIComponents.png)
+![DataTab](docs/images/Ui.png)
+
+<br>
+
+![StatisticsTab](docs/images/StatisticsTab.png)
+
+<br>
+
+![StockViewTab](docs/images/StockViewTab.png)
 
   Example usages:
   * as an inventory manager (as opposed to physical tracking of your stocks on paper)
