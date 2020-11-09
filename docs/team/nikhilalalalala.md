@@ -22,10 +22,14 @@ Given below are my contributions to the project.
     adds.
   - Highlights: For the applicant records, user can delay the input of Interview Date, so they can set an Interview date while adding an applicant
     or add that detail in later with the edit command. 
+    
 - Deleting an applicant record
   - What it does: Allows the user to delete a specific record of a staff based on the index provided.
-    Justification: This record allows HR managers to remove specific records so that they can keep the database relevant
+  - Justification: This record allows HR managers to remove specific records so that they can keep the database relevant
     without having outdated entries. 
+    
+ <div style="page-break-after: always;"></div>
+ 
 - Setting the application status of the applicant
   - What it does: When adding an applicant, the status of the application is first set to received but in an actual
     scenario, there are many stages to an application, so this command helps user change the status of application

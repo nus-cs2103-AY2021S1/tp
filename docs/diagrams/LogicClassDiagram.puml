@@ -36,11 +36,7 @@ HiddenOutside ..> Logic
 
 LogicManager .up.|> Logic
 LogicManager ------->"1" EvaParser
-<<<<<<< HEAD
-EvaParser ...> XYZCommandParser: creates >
-=======
 EvaParser .down..> XYZCommandParser: creates >
->>>>>>> master
 
 
 
