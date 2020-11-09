@@ -11,13 +11,16 @@ Given below are my contributions to the project.
 
 - **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=rnmy)
 
-- **Enhancements to existing features**:
+- **Enhancements implemented**:
     
     - **Edit command**: Adapted the edit command to the new Person model which includes student specific fields such as their matriculation number and telegram handles which are pivotal to student administration.
           
     - **Attendance UI**: Added a new Attendance tabular pane to show the current attendance status of students.
     
-    - **Improve error handling**: Added checks for all required fields before input validation and standardized the error message for inputs with valid command format but invalid index.
+    - **Improve error handling**: 
+    
+        - Added checks for all required fields before input validation
+        - Standardized the error message for inputs with valid command format but invalid index.
     
     - **Date validation**: Refined validation for attendance dates to detect dates such as 30/02/2020. 
 
@@ -27,11 +30,13 @@ Given below are my contributions to the project.
   
     - User Guide:
     
-        - Added documentation for the features `edit` 
+        - Added documentation for the features `edit` [\#161](https://github.com/AY2021S1-CS2103T-F11-1/tp/pull/161)
+        - Update screenshots for the features `archive` and `exportatt` [\#207](https://github.com/AY2021S1-CS2103T-F11-1/tp/pull/207)
+        - Update UG to include latest feature updates [\#197](https://github.com/AY2021S1-CS2103T-F11-1/tp/pull/197)
     
     - Developer Guide:
     
-        - Added implementation details of the `edit` feature with UML diagrams.
+        - Added implementation details of the `edit` feature with UML diagrams. [\#78](https://github.com/AY2021S1-CS2103T-F11-1/tp/pull/78)
 
 - **Community**:
 
