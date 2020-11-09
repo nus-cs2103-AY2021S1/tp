@@ -9,6 +9,10 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.tag.Tag;
 
+/**
+ * A StatiticsData class that is used to facilitate the calculation of statistics used in the
+ * time analysis feature.
+ */
 public class StatisticsData {
     private static final Logger logger = LogsCenter.getLogger(StatisticsData.class);
     private HashMap<Tag, Integer[]> stats;
