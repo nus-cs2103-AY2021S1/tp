@@ -47,7 +47,7 @@ public class ImportantContactCommandTest {
             new UserPrefs());
         Contact markedContact = model.getFilteredContactList().get(INDEX_SECOND_CONTACT.getZeroBased());
         markedContact = markedContact.markAsImportant();
-        expectedModel.setContact(contactToMark, markedContact);
+        expectedModel.setContacts(contactToMark, markedContact);
 
         String expectedMessage = String.format(ImportantContactCommand.MESSAGE_MARK_CONTACT_SUCCESS, markedContact);
 
