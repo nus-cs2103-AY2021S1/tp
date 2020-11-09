@@ -132,7 +132,7 @@ The `Model`,
 The `Person` sub-component,
 * stores the address book data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-&&&&
+
 <div markdown="span" class="alert alert-info">:information_source: **Notes:**
     In tCheck context, an employee is modelled as a `Person`.
 </div><br>
