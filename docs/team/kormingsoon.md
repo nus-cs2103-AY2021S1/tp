@@ -19,7 +19,7 @@ and their clients.
   
   * **Highlights**: 
     - Establishing a way of uniquely identifying `Bidder` and `Seller`, which we eventually decided on `Id` class.
-  * Credits: *To fellow group mate Dianne for creation of the `Id` class which was easily adapted into `Bidder` and `Seller`*
+  * Credits: *To fellow group mate Dianne for creation of the `Id`*
 
 * **New Feature**: Implemented the `Delete` function for `Bidder` and `Seller`
   * **What it does**: allows the user to delete and `Bidder`s and `Seller`s, who are the clients engaged by the user (a Property Agent).
