@@ -88,6 +88,9 @@ public class MainApp extends Application {
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty TAsker");
             initialData = new Tasker();
+        } catch (Exception e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty TAsker");
+            initialData = new Tasker();
         }
 
         return new ModelManager(initialData, userPrefs);
