@@ -5,14 +5,17 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyAttractionList;
+import seedu.address.model.ReadOnlyItineraryList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface Storage extends AttractionListStorage, ItineraryListStorage, UserPrefsStorage {
+
+    //=========== User prefs ================================================================================
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -20,13 +23,26 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     @Override
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
-    @Override
-    Path getAddressBookFilePath();
+    //=========== Attraction List ================================================================================
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Path getAttractionListFilePath();
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    Optional<ReadOnlyAttractionList> readAttractionList() throws DataConversionException, IOException;
+
+    @Override
+    void saveAttractionList(ReadOnlyAttractionList attractionList) throws IOException;
+
+    //=========== Itinerary List ================================================================================
+
+    @Override
+    Path getItineraryListFilePath();
+
+    @Override
+    Optional<ReadOnlyItineraryList> readItineraryList() throws DataConversionException, IOException;
+
+    @Override
+    void saveItineraryList(ReadOnlyItineraryList itineraryList) throws IOException;
 
 }

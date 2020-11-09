@@ -1,0 +1,34 @@
+@startuml
+start
+:User enters an edit-itinerary command;
+:EditItineraryCommandParser parses the arguments;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([valid command format])
+    if () then([valid index])
+    :Retrieve corresponding target itinerary;
+    :Create a new itinerary with the updated fields;
+        if () then([startdate <= end date])
+            if () then([no fields changed])
+                if () then([duplicate itinerary])
+                :Replace target itinerary with new itinerary;
+                else ([else])
+                :Throw CommandException on duplicate itinerary;
+                endif
+            else ([else])
+            :Throw CommandException on fields not changed;
+            endif
+        else ([else])
+        : Throw ParseException on correct data usage;
+        endif
+    else ([else])
+    : Throw CommandException on invalid index;
+    endif
+else ([else])
+    :Throw ParseException error message;
+endif
+
+stop
+@enduml

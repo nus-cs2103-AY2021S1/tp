@@ -11,9 +11,12 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
-Class StatusBarFooter
+Class AttractionListPanel
+Class AttractionCard
+Class ItineraryListPanel
+Class ItineraryCard
+Class ItineraryAttractionListPanel
+Class ItineraryAttractionCard
 Class CommandBox
 }
 
@@ -33,28 +36,37 @@ UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> PersonListPanel
-MainWindow *-down-> StatusBarFooter
+MainWindow *-down-> AttractionListPanel
+MainWindow *-down-> ItineraryListPanel
+MainWindow *-down-> ItineraryAttractionListPanel
 
-PersonListPanel -down-> PersonCard
+AttractionListPanel -down-> AttractionCard
+ItineraryListPanel -down-> ItineraryCard
+ItineraryAttractionListPanel -down-> ItineraryAttractionCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
-StatusBarFooter --|> UiPart
+AttractionListPanel --|> UiPart
+AttractionCard --|> UiPart
+ItineraryListPanel --|> UiPart
+ItineraryCard --|> UiPart
+ItineraryAttractionListPanel --|> UiPart
+ItineraryAttractionCard --|> UiPart
 HelpWindow -down-|> UiPart
 
-PersonCard ..> Model
+AttractionCard ..> Model
+ItineraryCard ..> Model
+ItineraryAttractionCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+ItineraryListPanel -[hidden]left- AttractionListPanel
+AttractionListPanel -[hidden]left- HelpWindow
+ItineraryAttractionListPanel -[hidden]left- ItineraryListPanel
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow -[hidden]-|> UiPart
 @enduml

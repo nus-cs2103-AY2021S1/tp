@@ -1,0 +1,26 @@
+@startuml
+start
+:user executes add itinerary attraction command: add-itinerary-attraction 1 day/1 st/1000 et/1200;
+:Logic executes the command;
+:AddItineraryAttractionCommandParser parses the command: 1 day/1 st/1000 et/1200;
+
+
+if () then ([index > 0 and day > 0])
+:execute AddItineraryAttractionCommand;
+
+        if () then ([isValidIndex and isValidDay and isItinerarySelected])
+        :gets the attraction with the index;
+        :adds the attraction into the selected itinerary;
+
+        else ( [else] )
+        :throw command exception;
+
+        endif
+
+else ( [else] )
+    :throw parse exception;
+
+endif
+stop
+
+@enduml

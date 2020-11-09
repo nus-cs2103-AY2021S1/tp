@@ -1,0 +1,21 @@
+@startuml
+start
+:User enters an select-itinerary command;
+:SelectItineraryCommandParser parses the arguments;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([valid command format])
+    if () then([valid index])
+    :Retrieve corresponding target itinerary;
+    :Set current itinerary with target itinerary;
+    else ([else])
+    : Throw CommandException on invalid index;
+    endif
+else ([else])
+    :Throw ParseException error message;
+endif
+
+stop
+@enduml

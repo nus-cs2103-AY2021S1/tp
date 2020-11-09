@@ -1,0 +1,26 @@
+{
+  "attractions": [ {
+    "name": "Singapore Zoo",
+    "phone": "94351253",
+    "email": "sgzoo@example.com",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "description": "Rainforest environment",
+    "location": "Singapore, Singapore",
+    "openingHours" : "1000-1800",
+    "priceRange": "MEDIUM",
+    "rating": "4.6",
+    "visited": "TRUE",
+    "tagged": [ "animals" ]
+  }, {
+    "name": "Singapore Zoo",
+    "phone": "94351253",
+    "email": "wrs@example.com",
+    "address": "4th street",
+    "description": "Rainforest environment",
+    "openingHours" : "1000-1800",
+    "priceRange": "MEDIUM",
+    "rating": "4.6",
+    "visited": "TRUE",
+    "location": "Singapore, Singapore"
+  } ]
+}

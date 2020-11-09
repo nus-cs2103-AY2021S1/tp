@@ -3,10 +3,13 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ATTRACTIONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ITINERARIES;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalAttractions.MBS;
+import static seedu.address.testutil.TypicalAttractions.SUNTEC;
+import static seedu.address.testutil.TypicalItineraries.PARIS_TRIP;
+import static seedu.address.testutil.TypicalItineraries.SG_ZOOS_TOUR;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,8 +18,10 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.model.attraction.AttractionContainsKeywordsPredicate;
+import seedu.address.model.itinerary.ItineraryContainsKeywordsPredicate;
+import seedu.address.testutil.AttractionListBuilder;
+import seedu.address.testutil.ItineraryListBuilder;
 
 public class ModelManagerTest {
 
@@ -26,7 +31,8 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new AttractionList(), new AttractionList(modelManager.getAttractionList()));
+        assertEquals(new ItineraryList(), new ItineraryList(modelManager.getItineraryList()));
     }
 
     @Test
@@ -37,14 +43,16 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setAttractionListFilePath(Paths.get("track/pad/file/attraction"));
+        userPrefs.setItineraryListFilePath(Paths.get("track/pad/file/itinerary"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setAttractionListFilePath(Paths.get("new/track/pad/file/attraction"));
+        userPrefs.setItineraryListFilePath(Paths.get("new/track/pad/file/itinerary"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -61,47 +69,83 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setAttractionListFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setAttractionListFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
-        Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+    public void setAttractionListFilePath_validPath_setsAttractionListFilePath() {
+        Path path = Paths.get("track/pad/file/path");
+        modelManager.setAttractionListFilePath(path);
+        assertEquals(path, modelManager.getAttractionListFilePath());
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+    public void hasAttraction_nullAttraction_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasAttraction(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+    public void hasAttraction_attractionNotInTrackPad_returnsFalse() {
+        assertFalse(modelManager.hasAttraction(MBS));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+    public void hasAttraction_attractionInTrackPad_returnsTrue() {
+        modelManager.addAttraction(MBS);
+        assertTrue(modelManager.hasAttraction(MBS));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void getFilteredAttractionList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredAttractionList().remove(0));
+    }
+
+    @Test
+    public void setItineraryListFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setItineraryListFilePath(null));
+    }
+
+    @Test
+    public void setItineraryListFilePath_validPath_setsItineraryListFilePath() {
+        Path path = Paths.get("track/pad/file/path");
+        modelManager.setItineraryListFilePath(path);
+        assertEquals(path, modelManager.getItineraryListFilePath());
+    }
+
+    @Test
+    public void hasItinerary_nullItinerary_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasItinerary(null));
+    }
+
+    @Test
+    public void hasItinerary_itineraryNotInTrackPad_returnsFalse() {
+        assertFalse(modelManager.hasItinerary(PARIS_TRIP));
+    }
+
+    @Test
+    public void hasItinerary_itineraryInTrackPad_returnsTrue() {
+        modelManager.addItinerary(PARIS_TRIP);
+        assertTrue(modelManager.hasItinerary(PARIS_TRIP));
+    }
+
+    @Test
+    public void getFilteredItineraryList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredItineraryList().remove(0));
     }
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        AttractionList attractionList = new AttractionListBuilder().withAttraction(MBS).withAttraction(SUNTEC).build();
+        AttractionList differentAttractionList = new AttractionList();
+        ItineraryList itineraryList = new ItineraryListBuilder().withItinerary(SG_ZOOS_TOUR).withItinerary(PARIS_TRIP)
+                .build();
+        ItineraryList differentItineraryList = new ItineraryList();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(attractionList, itineraryList, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(attractionList, itineraryList, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -113,20 +157,29 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        // different attractionList -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentAttractionList, itineraryList, userPrefs)));
 
-        // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        // different itineraryList -> returns false
+        assertFalse(modelManager.equals(new ModelManager(attractionList, differentItineraryList, userPrefs)));
+
+        // different filteredAttractionList -> returns false
+        String[] attKeywords = MBS.getName().fullName.split("\\s+");
+        modelManager.updateFilteredAttractionList(new AttractionContainsKeywordsPredicate(Arrays.asList(attKeywords)));
+        assertFalse(modelManager.equals(new ModelManager(attractionList, itineraryList, userPrefs)));
+
+        // different filteredItineraryList -> returns false
+        String[] itiKeywords = PARIS_TRIP.getName().fullName.split("\\s+");
+        modelManager.updateFilteredItineraryList(new ItineraryContainsKeywordsPredicate(Arrays.asList(itiKeywords)));
+        assertFalse(modelManager.equals(new ModelManager(attractionList, itineraryList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredAttractionList(PREDICATE_SHOW_ALL_ATTRACTIONS);
+        modelManager.updateFilteredItineraryList(PREDICATE_SHOW_ALL_ITINERARIES);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        differentUserPrefs.setAttractionListFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(attractionList, itineraryList, differentUserPrefs)));
     }
 }

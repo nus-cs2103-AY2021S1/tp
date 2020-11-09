@@ -1,0 +1,91 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackPadParser" as TrackPadParser LOGIC_COLOR
+participant ":EditItineraryCommandParser" as EditItineraryCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant ":EditItineraryDescriptor" as EditItineraryDescriptor LOGIC_COLOR
+participant "e:EditItineraryCommand" as EditItineraryCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ItineraryList" as ItineraryList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit-itinerary 1 sd/10-11-2020")
+activate LogicManager
+
+LogicManager -> TrackPadParser : parseCommand("edit-itinerary 1 sd/10-11-2020")
+activate TrackPadParser
+
+create EditItineraryCommandParser
+TrackPadParser -> EditItineraryCommandParser
+activate EditItineraryCommandParser
+
+EditItineraryCommandParser --> TrackPadParser
+deactivate EditItineraryCommandParser
+
+TrackPadParser -> EditItineraryCommandParser : parse("1 sd/10-11-2020")
+activate EditItineraryCommandParser
+
+EditItineraryCommandParser -> ParserUtil : parseItineraryDate("10-11-2020")
+activate ParserUtil
+
+ParserUtil --> EditItineraryCommandParser : date
+deactivate ParserUtil
+
+create EditItineraryDescriptor
+EditItineraryCommandParser -> EditItineraryDescriptor
+activate EditItineraryDescriptor
+
+EditItineraryDescriptor --> EditItineraryCommandParser : f
+deactivate EditItineraryDescriptor
+
+create EditItineraryCommand
+EditItineraryCommandParser -> EditItineraryCommand :
+activate EditItineraryCommand
+
+EditItineraryCommand --> EditItineraryCommandParser : e
+deactivate EditItineraryCommand
+
+EditItineraryCommandParser --> TrackPadParser : e
+deactivate EditItineraryCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditItineraryCommandParser -[hidden]-> TrackPadParser
+destroy EditItineraryCommandParser
+
+TrackPadParser --> LogicManager : e
+deactivate TrackPadParser
+
+LogicManager -> EditItineraryCommand : execute(model)
+activate EditItineraryCommand
+
+EditItineraryCommand -> Model : setItinerary(e, f)
+activate Model
+
+Model -> ItineraryList : setItinerary(e, f)
+activate ItineraryList
+
+ItineraryList --> Model
+deactivate ItineraryList
+
+Model --> EditItineraryCommand
+deactivate Model
+
+create CommandResult
+EditItineraryCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditItineraryCommand
+deactivate CommandResult
+
+EditItineraryCommand --> LogicManager : result
+deactivate EditItineraryCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

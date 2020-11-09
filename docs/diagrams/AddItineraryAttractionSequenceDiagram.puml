@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackPadParser" as TrackPadParser LOGIC_COLOR
+participant ":AddItineraryAttractionCommandParser" as AddItineraryAttractionCommandParser LOGIC_COLOR
+participant "a:AddItineraryAttractionCommand" as AddItineraryAttractionCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add... 1 day/1")
+activate LogicManager
+
+LogicManager -> TrackPadParser : parseCommand("add... 1 day/1...")
+activate TrackPadParser
+
+create AddItineraryAttractionCommandParser
+TrackPadParser -> AddItineraryAttractionCommandParser
+activate AddItineraryAttractionCommandParser
+
+AddItineraryAttractionCommandParser --> TrackPadParser
+deactivate AddItineraryAttractionCommandParser
+
+TrackPadParser -> AddItineraryAttractionCommandParser : parse("1 day/1...")
+activate AddItineraryAttractionCommandParser
+
+create AddItineraryAttractionCommand
+AddItineraryAttractionCommandParser -> AddItineraryAttractionCommand
+activate AddItineraryAttractionCommand
+
+AddItineraryAttractionCommand --> AddItineraryAttractionCommandParser : a
+deactivate AddItineraryAttractionCommand
+
+AddItineraryAttractionCommandParser --> TrackPadParser : a
+deactivate AddItineraryAttractionCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddItineraryAttractionCommandParser -[hidden]-> TrackPadParser
+destroy AddItineraryAttractionCommandParser
+
+TrackPadParser --> LogicManager : a
+deactivate TrackPadParser
+
+LogicManager -> AddItineraryAttractionCommand : execute()
+activate AddItineraryAttractionCommand
+
+AddItineraryAttractionCommand -> Model : getFilteredAttractionList()
+activate Model
+
+Model --> AddItineraryAttractionCommand
+deactivate Model
+
+AddItineraryAttractionCommand -> Model : addItineraryAttraction()
+activate Model
+
+Model --> AddItineraryAttractionCommand
+deactivate Model
+
+create CommandResult
+AddItineraryAttractionCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddItineraryAttractionCommand
+deactivate CommandResult
+
+AddItineraryAttractionCommand --> LogicManager : result
+deactivate AddItineraryAttractionCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

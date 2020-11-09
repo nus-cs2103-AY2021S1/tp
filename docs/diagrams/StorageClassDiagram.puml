@@ -6,19 +6,31 @@ skinparam classBackgroundColor STORAGE_COLOR
 
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
-Interface AddressBookStorage <<Interface>>
+Interface AttractionListStorage <<Interface>>
+Interface ItineraryListStorage <<Interface>>
 
 Class StorageManager
 Class JsonUserPrefsStorage
-Class JsonAddressBookStorage
+Class JsonAttractionListStorage
+Class JsonItineraryListStorage
 
-StorageManager .left.|> Storage
-StorageManager o-right-> UserPrefsStorage
-StorageManager o--> AddressBookStorage
+StorageManager .up.|> Storage
+StorageManager --> UserPrefsStorage
+StorageManager --> AttractionListStorage
+StorageManager --> ItineraryListStorage
 
-JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage .right.> JsonSerializablePerson
-JsonSerializablePerson .right.> JsonAdaptedTag
+JsonItineraryListStorage .up.|> ItineraryListStorage
+JsonItineraryListStorage .down.> JsonSerializableItineraryList
+JsonSerializableItineraryList .down.> JsonAdaptedItinerary
+JsonAdaptedItinerary .down.> JsonAdaptedDay
+JsonAdaptedDay .down.> JsonAdaptedItineraryAttraction
+
+JsonAttractionListStorage .up.|> AttractionListStorage
+JsonAttractionListStorage .down.> JsonSerializableAttractionList
+JsonSerializableAttractionList .down.> JsonAdaptedAttraction
+JsonAdaptedAttraction .down.> JsonAdaptedTag
+
+JsonUserPrefsStorage .up.|> UserPrefsStorage
+
+
 @enduml

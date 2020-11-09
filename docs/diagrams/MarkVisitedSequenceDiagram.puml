@@ -1,0 +1,94 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+'participant ":LogicManager" as LogicManager LOGIC_COLOR
+'participant ":TrackPadParser" as TrackPadParser LOGIC_COLOR
+'participant ":MarkVisitedCommandParser" as MarkVisitedCommandParser LOGIC_COLOR
+participant "m:MarkVisitedCommand" as MarkVisitedCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+'participant "lastShownList:List<Attraction>" as Model MODEL_COLOR
+participant "original:Attraction" as original MODEL_COLOR
+participant "updated:Attraction" as updated MODEL_COLOR
+end box
+
+'[-> LogicManager : execute("markVisited-attraction 1")
+'activate LogicManager
+'
+'LogicManager -> TrackPadParser : parseCommand("markVisited-attraction 1")
+'activate TrackPadParser
+'
+'create MarkVisitedCommandParser
+'TrackPadParser -> MarkVisitedCommandParser
+'activate MarkVisitedCommandParser
+'
+'MarkVisitedCommandParser --> TrackPadParser
+'deactivate MarkVisitedCommandParser
+'
+'TrackPadParser -> MarkVisitedCommandParser : parse("1")
+'activate MarkVisitedCommandParser
+
+[-> MarkVisitedCommand : execute("markVisited-attraction 1")
+activate MarkVisitedCommand
+
+'
+'MarkVisitedCommandParser --> TrackPadParser : m
+'deactivate MarkVisitedCommandParser
+''Hidden arrow to position the destroy marker below the end of the activation bar.
+'MarkVisitedCommandParser -[hidden]-> TrackPadParser
+'destroy MarkVisitedCommandParser
+'
+'TrackPadParser --> LogicManager : d
+'deactivate TrackPadParser
+'
+'LogicManager -> MarkVisitedCommand : execute()
+'activate MarkVisitedCommand
+
+MarkVisitedCommand -> Model : getFilteredAttractionList()
+activate Model
+
+create original
+Model -> original : get(index)
+activate original
+
+original --> Model
+deactivate original
+destroy original
+
+Model --> MarkVisitedCommand : lastShownList
+deactivate Model
+
+create updated
+MarkVisitedCommand -> updated : createMarkVisitedAttraction()
+activate updated
+
+updated --> MarkVisitedCommand
+deactivate updated
+destroy updated
+
+MarkVisitedCommand -> Model : setAttraction()
+activate Model
+
+Model --> MarkVisitedCommand
+deactivate Model
+
+MarkVisitedCommand -> Model : updateFilteredAttractionList()
+activate Model
+
+Model --> MarkVisitedCommand
+deactivate Model
+
+create CommandResult
+MarkVisitedCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> MarkVisitedCommand : result
+deactivate CommandResult
+
+[<-- MarkVisitedCommand : result
+deactivate MarkVisitedCommand
+@enduml

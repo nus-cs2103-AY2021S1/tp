@@ -5,55 +5,47 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the following emails:
+
+* Yeh Yu Chun: e0406750@u.nus.edu
+* Lim Koon Kiat: e0389069@u.nus.edu
+* Lee York Tat: e0407156@u.nus.edu
+* Robin Ho: e0014938@u.nus.edu
+* Zhu Yuxuan: e0424709@u.nus.edu
 
 ## Project team
 
-### John Doe
+### Yeh Yu Chun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/peter-yeh.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/peter-yeh)]
+[[portfolio](team/peter-yeh.md)]
 
-* Role: Project Advisor
+### Lim Koon Kiat
 
-### Jane Doe
+<img src="images/limkoonkiat.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](http://github.com/limkoonkiat)]
+[[portfolio](team/limkoonkiat.md)]
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Lee York Tat
 
-* Role: Team Lead
-* Responsibilities: UI
+<img src="images/leeyorktat.png" width="200px">
 
-### Johnny Doe
+[[github](http://github.com/leeyorktat)]
+[[portfolio](team/leeyorktat.md)]
 
-<img src="images/johndoe.png" width="200px">
+### Robin Ho
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+<img src="images/robinho98.png" width="200px">
 
-* Role: Developer
-* Responsibilities: Data
+[[github](http://github.com/robinho98)]
+[[portfolio](team/robinho98.md)]
 
-### Jean Doe
+### Zhu Yuxuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yuxuanxc.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+[[github](http://github.com/yuxuanxc)]
+[[portfolio](team/yuxuanxc.md)]

@@ -1,0 +1,22 @@
+@startuml
+skinparam classAttributeIconSize 0
+class AttractionCard {
+  -Label : id
+  -Label : name
+  -Label : locale
+  -FlowPane : tags
+  +void equals()
+}
+
+class AttractionCard5Field {
+   -Label : field1
+   -Label : field2
+   -Label : field3
+   -Label : field4
+   -Label : field5
+   {static} -String : FXML
+}
+
+
+AttractionCard <|-- AttractionCard5Field
+@enduml

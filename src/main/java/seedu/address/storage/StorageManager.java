@@ -7,25 +7,30 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyAttractionList;
+import seedu.address.model.ReadOnlyItineraryList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of TrackPad data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private AttractionListStorage attractionListStorage;
+    private ItineraryListStorage itineraryListStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code AttractionListStorage}, {@code ItineraryListStorage} and
+     * {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AttractionListStorage attractionListStorage, ItineraryListStorage itineraryListStorage,
+                          UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.attractionListStorage = attractionListStorage;
+        this.itineraryListStorage = itineraryListStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -47,33 +52,62 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ AttractionList methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getAttractionListFilePath() {
+        return attractionListStorage.getAttractionListFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyAttractionList> readAttractionList() throws DataConversionException, IOException {
+        return readAttractionList(attractionListStorage.getAttractionListFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyAttractionList> readAttractionList(Path filePath)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return attractionListStorage.readAttractionList(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveAttractionList(ReadOnlyAttractionList attractionList) throws IOException {
+        saveAttractionList(attractionList, attractionListStorage.getAttractionListFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveAttractionList(ReadOnlyAttractionList attractionList, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        attractionListStorage.saveAttractionList(attractionList, filePath);
+    }
+
+    // ================ ItineraryList methods ==============================
+
+    public Path getItineraryListFilePath() {
+        return itineraryListStorage.getItineraryListFilePath();
+    }
+
+    public Optional<ReadOnlyItineraryList> readItineraryList() throws DataConversionException, IOException {
+        return readItineraryList(itineraryListStorage.getItineraryListFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyItineraryList> readItineraryList(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return itineraryListStorage.readItineraryList(filePath);
+    }
+
+    @Override
+    public void saveItineraryList(ReadOnlyItineraryList itineraryList) throws IOException {
+        saveItineraryList(itineraryList, itineraryListStorage.getItineraryListFilePath());
+    }
+
+    @Override
+    public void saveItineraryList(ReadOnlyItineraryList itineraryList, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        itineraryListStorage.saveItineraryList(itineraryList, filePath);
     }
 
 }

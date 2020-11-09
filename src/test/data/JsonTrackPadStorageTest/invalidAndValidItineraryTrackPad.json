@@ -1,0 +1,32 @@
+{
+  "itineraries" : [ {
+    "name" : "Valid itinerary",
+    "description" : "Visit Japan",
+    "startDate" : "12-12-2020",
+    "endDate" : "14-12-2020",
+    "budget" : "2030",
+    "days" : [ {
+      "day" : "1",
+      "itineraryAttractions" : [ ]
+    }, {
+      "day" : "2",
+      "itineraryAttractions" : [ ]
+    }, {
+      "day" : "3",
+      "itineraryAttractions" : [ ]
+    } ]
+  }, {
+    "name" : "Itinerary with invalid budget field",
+    "description" : "invalid budget field",
+    "startDate" : "12-11-2020",
+    "endDate" : "13-11-2020",
+    "budget" : "2003.234",
+    "days" : [ {
+      "day" : "1",
+      "itineraryAttractions" : [ ]
+    }, {
+      "day" : "2",
+      "itineraryAttractions" : [ ]
+    } ]
+  } ]
+}

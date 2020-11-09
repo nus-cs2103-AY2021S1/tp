@@ -10,11 +10,15 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.TrackPadParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyAttractionList;
+import seedu.address.model.ReadOnlyItineraryAttractionList;
+import seedu.address.model.ReadOnlyItineraryList;
+import seedu.address.model.attraction.Attraction;
+import seedu.address.model.itinerary.Itinerary;
+import seedu.address.model.itinerary.ItineraryAttraction;
 import seedu.address.storage.Storage;
 
 /**
@@ -26,7 +30,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final TrackPadParser trackPadParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +38,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        trackPadParser = new TrackPadParser();
     }
 
     @Override
@@ -42,11 +46,12 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = trackPadParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveAttractionList(model.getAttractionList());
+            storage.saveItineraryList(model.getItineraryList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -54,20 +59,52 @@ public class LogicManager implements Logic {
         return commandResult;
     }
 
+    //=========== Attraction List ================================================================================
+
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyAttractionList getAttractionList() {
+        return model.getAttractionList();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Attraction> getFilteredAttractionList() {
+        return model.getFilteredAttractionList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getAttractionListFilePath() {
+        return model.getAttractionListFilePath();
     }
+
+    //=========== Itinerary List ================================================================================
+
+    @Override
+    public ReadOnlyItineraryList getItineraryList() {
+        return model.getItineraryList();
+    }
+
+    @Override
+    public ObservableList<Itinerary> getFilteredItineraryList() {
+        return model.getFilteredItineraryList();
+    }
+
+    @Override
+    public Path getItineraryListFilePath() {
+        return model.getItineraryListFilePath();
+    }
+
+    //=========== Itinerary Attraction List ===========================================================================
+
+    @Override
+    public ReadOnlyItineraryAttractionList getItineraryAttractionList() {
+        return model.getItineraryAttractionList();
+    }
+
+    @Override
+    public ObservableList<ItineraryAttraction> getFilteredItineraryAttractionList() {
+        return model.getFilteredItineraryAttractionList();
+    }
+    //=========== GUI Settings ==================================================================================
 
     @Override
     public GuiSettings getGuiSettings() {

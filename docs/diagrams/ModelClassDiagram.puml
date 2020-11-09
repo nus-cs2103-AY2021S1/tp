@@ -4,53 +4,60 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Package Model <<Rectangle>> {
+Interface ReadOnlyAttractionList <<Interface>>
+Interface ReadOnlyItineraryList <<Interface>>
+Interface ReadOnlyItineraryAttractionList <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class AttractionList
+Class ItineraryList
+Class ItineraryAttractionList
 Class Model
 Class ModelManager
 Class UserPrefs
-Class ReadOnlyUserPrefs
+Interface ReadOnlyUserPrefs <<Interface>>
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package Attraction {
+Class Attraction
+Class UniqueAttractionList
 }
 
-Package Tag {
-Class Tag
+Package Itinerary {
+Class Itinerary
+Class UniqueItineraryList
+}
+
+Package ItineraryAttraction {
+Class ItineraryAttraction
 }
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+AttractionList .up.|> ReadOnlyAttractionList
+ItineraryList .up.|> ReadOnlyItineraryList
+ItineraryAttractionList .up.|> ReadOnlyItineraryAttractionList
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
+ModelManager --> "1" AttractionList
+ModelManager --> "1" ItineraryList
+ModelManager --> "1" ItineraryAttractionList
+ModelManager --> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AttractionList *--> "1" UniqueAttractionList
+UniqueAttractionList --> "*" Attraction
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+ItineraryList *--> "1" UniqueItineraryList
+UniqueItineraryList --> "*" Itinerary
 
-ModelManager -->"1" Person : filtered list
+ItineraryAttractionList --> "*" ItineraryAttraction
+
+ItineraryAttraction --|> Attraction
+
+ModelManager --> "1" Attraction : filtered attraction list
+ModelManager --> "1" Itinerary : filtered itinerary list
 @enduml

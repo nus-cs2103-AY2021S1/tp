@@ -1,0 +1,9 @@
+{
+  "itineraries" : [ {
+    "name" : "Japan trip",
+    "description" : "Visit Japan",
+    "startDate" : "12-122-2020",
+    "endDate" : "14-12-2020",
+    "budget" : "3020"
+  } ]
+}

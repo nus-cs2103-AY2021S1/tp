@@ -1,11 +1,16 @@
 
 .error {
-    -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
+    -fx-text-fill: #BB0000 !important; /* The error class should always override the default text-fill style */
+}
+
+.listHeader {
+    -fx-font-size: 20pt;
+    -fx-text-fill: black;
 }
 
 .list-cell:empty {
     /* Empty cells will not have alternating colours */
-    -fx-background: #383838;
+    -fx-background: #f5dce0;
 }
 
 .tag-selector {
@@ -16,5 +21,5 @@
 }
 
 .tooltip-text {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }

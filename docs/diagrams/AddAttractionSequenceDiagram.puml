@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackPadParser" as TrackPadParser LOGIC_COLOR
+participant ":AddAttractionCommandParser" as AddAttractionCommandParser LOGIC_COLOR
+participant "a:AddAttractionCommand" as AddAttractionCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":AttractionList" as AttractionList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add-attraction n/River Safari ...")
+activate LogicManager
+
+LogicManager -> TrackPadParser : parseCommand("add-attraction n/River Safari ...")
+activate TrackPadParser
+
+create AddAttractionCommandParser
+TrackPadParser -> AddAttractionCommandParser
+activate AddAttractionCommandParser
+
+AddAttractionCommandParser --> TrackPadParser
+deactivate AddAttractionCommandParser
+
+TrackPadParser -> AddAttractionCommandParser : parse("n/River Safari ...")
+activate AddAttractionCommandParser
+
+create AddAttractionCommand
+AddAttractionCommandParser -> AddAttractionCommand
+activate AddAttractionCommand
+
+AddAttractionCommand --> AddAttractionCommandParser : a
+deactivate AddAttractionCommand
+
+AddAttractionCommandParser --> TrackPadParser : a
+deactivate AddAttractionCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddAttractionCommandParser -[hidden]-> TrackPadParser
+destroy AddAttractionCommandParser
+
+TrackPadParser --> LogicManager : a
+deactivate TrackPadParser
+
+LogicManager -> AddAttractionCommand : execute()
+activate AddAttractionCommand
+
+AddAttractionCommand -> Model : addAttraction(a)
+activate Model
+
+Model --> AttractionList : addAttraction(a)
+activate AttractionList
+
+AttractionList --> Model
+deactivate AttractionList
+
+Model --> AddAttractionCommand
+deactivate Model
+
+create CommandResult
+AddAttractionCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddAttractionCommand
+deactivate CommandResult
+
+AddAttractionCommand --> LogicManager : result
+deactivate AddAttractionCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

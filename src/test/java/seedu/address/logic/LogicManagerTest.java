@@ -1,14 +1,20 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ATTRACTION_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_EIFFEL;
+import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_EIFFEL;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_EIFFEL;
+import static seedu.address.logic.commands.CommandTestUtil.LOCATION_DESC_EIFFEL;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_EIFFEL;
+import static seedu.address.logic.commands.CommandTestUtil.OPENING_HOURS_DESC_EIFFEL;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_EIFFEL;
+import static seedu.address.logic.commands.CommandTestUtil.PRICE_RANGE_DESC_EIFFEL;
+import static seedu.address.logic.commands.CommandTestUtil.RATING_DESC_EIFFEL;
+import static seedu.address.logic.commands.CommandTestUtil.VISITED_DESC_EIFFEL;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalAttractions.EIFFEL_TOWER;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -17,20 +23,22 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.attraction.AddAttractionCommand;
+import seedu.address.logic.commands.attraction.ListAttractionCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyAttractionList;
+import seedu.address.model.ReadOnlyItineraryList;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.model.attraction.Attraction;
+import seedu.address.storage.JsonAttractionListStorage;
+import seedu.address.storage.JsonItineraryListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.AttractionBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -43,10 +51,12 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonAttractionListStorage attractionListStorage =
+                new JsonAttractionListStorage(temporaryFolder.resolve("attractionlist.json"));
+        JsonItineraryListStorage itineraryListStorage =
+                new JsonItineraryListStorage(temporaryFolder.resolve("itinerarylist.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(attractionListStorage, itineraryListStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -58,39 +68,48 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        String deleteAttractionCommand = "delete-attraction 9";
+        assertCommandException(deleteAttractionCommand, MESSAGE_INVALID_ATTRACTION_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listAttractionCommand = ListAttractionCommand.COMMAND_WORD;
+        assertCommandSuccess(listAttractionCommand, ListAttractionCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonAttractionListIoExceptionThrowingStub
+        JsonAttractionListStorage attractionListStorage =
+                new JsonAttractionListIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAttractions.json"));
+        JsonItineraryListStorage itineraryListStorage =
+                new JsonItineraryListIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionItineraries.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(attractionListStorage, itineraryListStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        String addAttractionCommand = AddAttractionCommand.COMMAND_WORD + NAME_DESC_EIFFEL
+                + PHONE_DESC_EIFFEL + EMAIL_DESC_EIFFEL + ADDRESS_DESC_EIFFEL
+                + DESCRIPTION_DESC_EIFFEL + LOCATION_DESC_EIFFEL + OPENING_HOURS_DESC_EIFFEL
+                + PRICE_RANGE_DESC_EIFFEL + RATING_DESC_EIFFEL + VISITED_DESC_EIFFEL;
+        Attraction expectedAttraction = new AttractionBuilder(EIFFEL_TOWER).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addAttraction(expectedAttraction);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        assertCommandFailure(addAttractionCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredAttractionList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredAttractionList().remove(0));
+    }
+
+    @Test
+    public void getFilteredItineraryList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredItineraryList().remove(0));
     }
 
     /**
@@ -129,7 +148,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAttractionList(), model.getItineraryList(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -149,13 +168,27 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonAttractionListIoExceptionThrowingStub extends JsonAttractionListStorage {
+        private JsonAttractionListIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveAttractionList(ReadOnlyAttractionList attractionList, Path filePath) throws IOException {
+            throw DUMMY_IO_EXCEPTION;
+        }
+    }
+
+    /**
+     * A stub class to throw an {@code IOException} when the save method is called.
+     */
+    private static class JsonItineraryListIoExceptionThrowingStub extends JsonItineraryListStorage {
+        private JsonItineraryListIoExceptionThrowingStub(Path filePath) {
+            super(filePath);
+        }
+
+        @Override
+        public void saveItineraryList(ReadOnlyItineraryList itineraryList, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

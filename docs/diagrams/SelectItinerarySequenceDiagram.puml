@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackPadParser" as TrackPadParser LOGIC_COLOR
+participant ":SelectItineraryCommandParser" as SelectItineraryCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "s:SelectItineraryCommand" as SelectItineraryCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ItineraryList" as ItineraryList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("select-itinerary 2")
+activate LogicManager
+
+LogicManager -> TrackPadParser : parseCommand("select-itinerary 2")
+activate TrackPadParser
+
+create SelectItineraryCommandParser
+TrackPadParser -> SelectItineraryCommandParser
+activate SelectItineraryCommandParser
+
+SelectItineraryCommandParser --> TrackPadParser
+deactivate SelectItineraryCommandParser
+
+TrackPadParser -> SelectItineraryCommandParser : parse("2")
+activate SelectItineraryCommandParser
+
+SelectItineraryCommandParser -> ParserUtil : parseIndex("2")
+activate ParserUtil
+
+ParserUtil --> SelectItineraryCommandParser : index
+deactivate ParserUtil
+
+create SelectItineraryCommand
+SelectItineraryCommandParser -> SelectItineraryCommand
+activate SelectItineraryCommand
+
+SelectItineraryCommand --> SelectItineraryCommandParser : s
+deactivate SelectItineraryCommand
+
+SelectItineraryCommandParser --> TrackPadParser : s
+deactivate SelectItineraryCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SelectItineraryCommandParser -[hidden]-> TrackPadParser
+destroy SelectItineraryCommandParser
+
+TrackPadParser --> LogicManager : s
+deactivate TrackPadParser
+
+LogicManager -> SelectItineraryCommand : execute(model)
+activate SelectItineraryCommand
+
+SelectItineraryCommand -> Model : setCurrentItinerary(s)
+activate Model
+
+Model -> ItineraryList : setCurrentItinerary(s)
+activate ItineraryList
+
+ItineraryList --> Model
+deactivate ItineraryList
+
+Model --> SelectItineraryCommand
+deactivate Model
+
+create CommandResult
+SelectItineraryCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SelectItineraryCommand
+deactivate CommandResult
+
+SelectItineraryCommand --> LogicManager : result
+deactivate SelectItineraryCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

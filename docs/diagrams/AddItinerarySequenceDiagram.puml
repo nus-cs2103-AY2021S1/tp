@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackPadParser" as TrackPadParser LOGIC_COLOR
+participant ":AddItineraryCommandParser" as AddItineraryCommandParser LOGIC_COLOR
+participant "a:AddItineraryCommand" as AddItineraryCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ItineraryList" as ItineraryList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add-itinerary n/Japan...")
+activate LogicManager
+
+LogicManager -> TrackPadParser : parseCommand("add-itinerary n/Japan...")
+activate TrackPadParser
+
+create AddItineraryCommandParser
+TrackPadParser -> AddItineraryCommandParser
+activate AddItineraryCommandParser
+
+AddItineraryCommandParser --> TrackPadParser
+deactivate AddItineraryCommandParser
+
+TrackPadParser -> AddItineraryCommandParser : parse("n/Japan...")
+activate AddItineraryCommandParser
+
+create AddItineraryCommand
+AddItineraryCommandParser -> AddItineraryCommand
+activate AddItineraryCommand
+
+AddItineraryCommand --> AddItineraryCommandParser : a
+deactivate AddItineraryCommand
+
+AddItineraryCommandParser --> TrackPadParser : a
+deactivate AddItineraryCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddItineraryCommandParser -[hidden]-> TrackPadParser
+destroy AddItineraryCommandParser
+
+TrackPadParser --> LogicManager : a
+deactivate TrackPadParser
+
+LogicManager -> AddItineraryCommand : execute(model)
+activate AddItineraryCommand
+
+AddItineraryCommand -> Model : addItinerary(a)
+activate Model
+
+Model -> ItineraryList : addItinerary(a)
+activate ItineraryList
+
+ItineraryList --> Model
+deactivate ItineraryList
+
+Model --> AddItineraryCommand
+deactivate Model
+
+create CommandResult
+AddItineraryCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddItineraryCommand
+deactivate CommandResult
+
+AddItineraryCommand --> LogicManager : result
+deactivate AddItineraryCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

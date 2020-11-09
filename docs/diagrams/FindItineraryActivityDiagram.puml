@@ -1,0 +1,17 @@
+@startuml
+start
+:User enters an find-itinerary command;
+
+:FindItineraryCommandParser parses the arguments;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([valid command format])
+:Filter itineraries list based on keyword;
+else ([else])
+    :Throw ParseException on correct command usage;
+endif
+:Return feedback to user;
+stop
+@enduml

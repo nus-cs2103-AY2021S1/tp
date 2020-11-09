@@ -1,0 +1,29 @@
+@startuml
+start
+:User enters an add-itinerary command;
+
+:AddItineraryCommandParser parses the arguments;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([valid command format])
+
+    if () then ([start date <= end date])
+    :Create a new itinerary with the specified fields;
+        if () then ([itinerary does not already exist])
+        :Add the new itinerary to model;
+        :Save the new state to storage;
+        :Show success message;
+        else ([else])
+        :Throw CommandException on duplicates;
+        endif
+    else ([else])
+    :Throw ParseException on correct date usage;
+    endif
+else ([else])
+    :Throw ParseException on correct command usage;
+endif
+:Return feedback to user;
+stop
+@enduml

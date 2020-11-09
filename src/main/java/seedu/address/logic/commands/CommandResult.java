@@ -17,13 +17,20 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The application should switch panels to Itinerary Attraction */
+    private final ToSwitchItineraryPanels switchToItineraryAttraction;
+
+    public enum ToSwitchItineraryPanels { YES, NO, NIL }
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         ToSwitchItineraryPanels switchToItineraryAttraction) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.switchToItineraryAttraction = switchToItineraryAttraction;
     }
 
     /**
@@ -31,7 +38,12 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false,
+                ToSwitchItineraryPanels.NIL);
+    }
+
+    public CommandResult(String feedbackToUser, ToSwitchItineraryPanels switchToItineraryAttraction) {
+        this(feedbackToUser, false, false, switchToItineraryAttraction);
     }
 
     public String getFeedbackToUser() {
@@ -46,6 +58,15 @@ public class CommandResult {
         return exit;
     }
 
+    public ToSwitchItineraryPanels isSwitchToItineraryAttraction() {
+        return switchToItineraryAttraction;
+    }
+
+    /**
+     * Overrides equal method to properly compare between 2 command results
+     * @param other command result to compare with
+     * @return true or false
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -61,11 +82,12 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit;
+        // && switchToItineraryAttraction == otherCommandResult.switchToItineraryAttraction;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, switchToItineraryAttraction);
     }
 
 }

@@ -4,7 +4,9 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -31,7 +33,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private AttractionListPanel attractionListPanel;
+    private ItineraryListPanel itineraryListPanel;
+    private ItineraryAttractionListPanel itineraryAttractionListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,13 +46,25 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private SplitPane splitPane;
+
+    @FXML
+    private StackPane attractionListPanelPlaceholder;
+
+    @FXML
+    private StackPane itineraryListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private Label listTitle;
+
+    @FXML
+    private Label attractionListTitle;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -84,7 +100,7 @@ public class MainWindow extends UiPart<Stage> {
         menuItem.setAccelerator(keyCombination);
 
         /*
-         * TODO: the code below can be removed once the bug reported here
+         * TO-DO: the code below can be removed once the bug reported here
          * https://bugs.openjdk.java.net/browse/JDK-8131666
          * is fixed in later version of SDK.
          *
@@ -110,29 +126,52 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        attractionListPanel = new AttractionListPanel(logic.getFilteredAttractionList());
+        attractionListPanelPlaceholder.getChildren().add(attractionListPanel.getRoot());
+
+        handleChangeToItineraryPanel();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        attractionListTitle.setText("Attractions");
     }
 
     /**
      * Sets the default size based on {@code guiSettings}.
      */
     private void setWindowDefaultSize(GuiSettings guiSettings) {
+        primaryStage.setMinWidth(800);
+        primaryStage.setMinHeight(600);
         primaryStage.setHeight(guiSettings.getWindowHeight());
         primaryStage.setWidth(guiSettings.getWindowWidth());
         if (guiSettings.getWindowCoordinates() != null) {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+    }
+
+    /**
+     * Switches panel to show list of itineraries.
+     */
+    private void handleChangeToItineraryPanel() {
+        listTitle.setText("Itineraries");
+        itineraryListPanel = new ItineraryListPanel(logic.getFilteredItineraryList());
+        itineraryListPanelPlaceholder.getChildren().clear();
+        itineraryListPanelPlaceholder.getChildren().add(itineraryListPanel.getRoot());
+    }
+
+    /**
+     * Switches panel to show itinerary attractions.
+     */
+    public void handleChangeToItineraryAttractionPanel() {
+        listTitle.setText("Selected Itinerary");
+        itineraryAttractionListPanel = new ItineraryAttractionListPanel(logic.getFilteredItineraryAttractionList());
+        itineraryListPanelPlaceholder.getChildren().clear();
+        itineraryListPanelPlaceholder.getChildren().add(itineraryAttractionListPanel.getRoot());
     }
 
     /**
@@ -163,8 +202,16 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public AttractionListPanel getAttractionListPanel() {
+        return attractionListPanel;
+    }
+
+    public ItineraryListPanel getItineraryListPanel() {
+        return itineraryListPanel;
+    }
+
+    public ItineraryAttractionListPanel getItineraryAttractionListPanel() {
+        return itineraryAttractionListPanel;
     }
 
     /**
@@ -184,6 +231,12 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isSwitchToItineraryAttraction() == CommandResult.ToSwitchItineraryPanels.YES) {
+                handleChangeToItineraryAttractionPanel();
+            } else if (commandResult.isSwitchToItineraryAttraction() == CommandResult.ToSwitchItineraryPanels.NO) {
+                handleChangeToItineraryPanel();
             }
 
             return commandResult;

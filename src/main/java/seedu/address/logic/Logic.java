@@ -7,8 +7,12 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyAttractionList;
+import seedu.address.model.ReadOnlyItineraryAttractionList;
+import seedu.address.model.ReadOnlyItineraryList;
+import seedu.address.model.attraction.Attraction;
+import seedu.address.model.itinerary.Itinerary;
+import seedu.address.model.itinerary.ItineraryAttraction;
 
 /**
  * API of the Logic component
@@ -23,20 +27,53 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
+    //=========== Attraction List ================================================================================
+
     /**
-     * Returns the AddressBook.
+     * Returns the AttractionList.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getAttractionList()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyAttractionList getAttractionList();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of attractions */
+    ObservableList<Attraction> getFilteredAttractionList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' AttractionList file path.
      */
-    Path getAddressBookFilePath();
+    Path getAttractionListFilePath();
+
+    //=========== Itinerary List ================================================================================
+
+    /**
+     * Returns the ItineraryList.
+     *
+     * @see seedu.address.model.Model#getItineraryList()
+     */
+    ReadOnlyItineraryList getItineraryList();
+
+    /** Returns an unmodifiable view of the filtered list of itineraries */
+    ObservableList<Itinerary> getFilteredItineraryList();
+
+    /**
+     * Returns the user prefs' ItineraryList file path.
+     */
+    Path getItineraryListFilePath();
+
+    //=========== Itinerary Attraction List ===========================================================================
+
+    /**
+     * Returns the ItineraryAttractionList.
+     *
+     * @see seedu.address.model.Model#getItineraryAttractionList()
+     */
+    ReadOnlyItineraryAttractionList getItineraryAttractionList();
+
+    /** Returns an unmodifiable view of the filtered list of itinerary attractions in the current selected itinerary */
+    ObservableList<ItineraryAttraction> getFilteredItineraryAttractionList();
+
+    //=========== GUI Settings ==================================================================================
 
     /**
      * Returns the user prefs' GUI settings.

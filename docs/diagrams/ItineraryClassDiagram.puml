@@ -1,0 +1,33 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Itinerary {
+Class Itinerary
+Class Budget
+Class ItineraryDate
+Class Day
+Class UniqueItineraryList
+Class ItineraryAttraction
+}
+
+Package ItineraryAttraction {
+Class ItineraryAttraction
+}
+
+Package Commons {
+Class Name
+Class Description
+}
+
+ItineraryList *--> "1" UniqueItineraryList
+UniqueItineraryList o--> "*" Itinerary
+Itinerary *--> "1" Name
+Itinerary *--> "1" Description
+Itinerary *--> "2" ItineraryDate
+Itinerary *--> "1" Budget
+Itinerary *--> "*" Day
+Day *--> "*" ItineraryAttraction
+@enduml

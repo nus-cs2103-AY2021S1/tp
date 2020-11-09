@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Attraction {
+Class Attraction
+Class Address
+Class Email
+Class Location
+Class OpeningHours
+Class Phone
+Class PriceRange
+Class Rating
+Class Visited
+}
+
+Package Commons {
+Class Name
+Class Description
+}
+
+Package Tag {
+Class Tag
+}
+
+AttractionList *--> "1" UniqueAttractionList
+UniqueAttractionList --> "*" Attraction
+Attraction *--> "1" Name
+Attraction *--> "1" Description
+Attraction *--> "1" Address
+Attraction *--> "1" Email
+Attraction *--> "1" Location
+Attraction *--> "1" OpeningHours
+Attraction *--> "1" Phone
+Attraction *--> "1" PriceRange
+Attraction *--> "1" Rating
+Attraction *--> "1" Visited
+Attraction *--> "*" Tag
+@enduml

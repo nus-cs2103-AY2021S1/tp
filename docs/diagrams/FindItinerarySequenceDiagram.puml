@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackPadParser" as TrackPadParser LOGIC_COLOR
+participant ":FindItineraryCommandParser" as FindItineraryCommandParser LOGIC_COLOR
+participant "f:FindItineraryCommand" as FindItineraryCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find-itinerary Korea")
+activate LogicManager
+
+LogicManager -> TrackPadParser : parseCommand("find-itinerary Korea")
+activate TrackPadParser
+
+create FindItineraryCommandParser
+TrackPadParser -> FindItineraryCommandParser
+activate FindItineraryCommandParser
+
+FindItineraryCommandParser --> TrackPadParser
+deactivate FindItineraryCommandParser
+
+TrackPadParser -> FindItineraryCommandParser : parse("Korea")
+activate FindItineraryCommandParser
+
+create FindItineraryCommand
+FindItineraryCommandParser -> FindItineraryCommand
+activate FindItineraryCommand
+
+FindItineraryCommand --> FindItineraryCommandParser : f
+deactivate FindItineraryCommand
+
+FindItineraryCommandParser --> TrackPadParser : f
+deactivate FindItineraryCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindItineraryCommandParser -[hidden]-> TrackPadParser
+destroy FindItineraryCommandParser
+
+TrackPadParser --> LogicManager : f
+deactivate TrackPadParser
+
+LogicManager -> FindItineraryCommand : execute(model)
+activate FindItineraryCommand
+
+FindItineraryCommand -> Model : updateFilteredItineraryList(f)
+activate Model
+
+Model --> FindItineraryCommand
+deactivate Model
+
+create CommandResult
+FindItineraryCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindItineraryCommand
+deactivate CommandResult
+
+FindItineraryCommand --> LogicManager : result
+deactivate FindItineraryCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

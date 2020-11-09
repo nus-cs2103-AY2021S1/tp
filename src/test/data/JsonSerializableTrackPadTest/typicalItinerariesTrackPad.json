@@ -1,0 +1,129 @@
+{
+  "_comment": "TrackPad save file which contains the same Itinerary values as in TypicalItineraries#getTypicalItineraries()",
+  "itineraries" : [ {
+    "name" : "Singapore Zoos",
+    "description" : "Rediscover our wildlife parks!",
+    "startDate" : "06-07-2019",
+    "endDate" : "07-07-2019",
+    "budget" : "500.00",
+    "days" : [ {
+      "day" : "1",
+      "itineraryAttractions" : [ {
+        "attraction" : {
+          "name" : "Singapore Zoo",
+          "phone" : "95352563",
+          "email" : "singaporezoo@example.com",
+          "address" : "80 Mandai Lake Rd",
+          "description" : "",
+          "location" : "Singapore, Singapore",
+          "openingHours" : "1000-1800",
+          "priceRange" : "",
+          "rating" : "",
+          "visited" : "",
+          "tagged" : [ ]
+        },
+        "startTime" : "1000",
+        "endTime" : "1700"
+      }, {
+        "attraction" : {
+          "name" : "Night Safari",
+          "phone" : "98765432",
+          "email" : "nightsafari@example.com",
+          "address" : "80 Mandai Lake Rd",
+          "description" : "The world's first nocturnal zoo.",
+          "location": "Singapore, Singapore",
+          "openingHours": "1800-2300",
+          "priceRange": "",
+          "rating": "",
+          "visited": "",
+          "tagged" : [ "animals", "night" ]
+        },
+        "startTime" : "1900",
+        "endTime" : "2300"
+      } ]
+    }, {
+      "day" : "2",
+      "itineraryAttractions" : [ {
+        "attraction" : {
+          "name" : "River Safari",
+          "phone" : "87652533",
+          "email" : "riversafari@example.com",
+          "address" : "80 Mandai Lake Rd",
+          "description" : "A river-themed zoo and aquarium in Singapore.",
+          "location": "Singapore, Singapore",
+          "openingHours": "1000-1800",
+          "priceRange": "",
+          "rating": "",
+          "visited": "",
+          "tagged" : [ "panda" ]
+        },
+        "startTime" : "1200",
+        "endTime" : "1800"
+      } ]
+    } ]
+  }, {
+    "name" : "Paris Trip",
+    "description" : "Visit the City of Light",
+    "startDate" : "21-12-2020",
+    "endDate" : "26-12-2020",
+    "budget" : "",
+    "days" : [ {
+      "day" : "1",
+      "itineraryAttractions" : [ {
+        "attraction" : {
+          "name" : "Eiffel Tower",
+          "phone" : "33892701239",
+          "email" : "eiffel@example.com",
+          "address" : "Champ de Mars, 5 Avenue Anatole France, 75007",
+          "description" : "Gustave Eiffel's iconic, wrought-iron 1889 tower, with steps and elevators to observation decks.",
+          "location" : "Paris, France",
+          "openingHours" : "1000-2200",
+          "priceRange" : "HIGH",
+          "rating" : "4.8",
+          "visited" : "FALSE",
+          "tagged" : [ "activity" ]
+        },
+        "startTime" : "0900",
+        "endTime" : "1500"
+      } ]
+    }, {
+      "day" : "2",
+      "itineraryAttractions" : [ {
+        "attraction" : {
+          "name" : "Louvre Museum",
+          "phone" : "330140205317",
+          "email" : "info@louvre.fr",
+          "address" : "Rue de Rivoli, 75001",
+          "description" : "The Louvre, or the Louvre Museum, is the world's largest art museum and a historic monument in Paris, France.",
+          "location": "Paris, France",
+          "openingHours": "0900-1800",
+          "priceRange": "MEDIUM",
+          "rating": "4.7",
+          "visited": "FALSE",
+          "tagged" : [ ]
+        },
+        "startTime" : "1100",
+        "endTime" : "1800"
+      } ]
+    }, {
+      "day" : "3",
+      "itineraryAttractions" : [ {
+        "attraction" : {
+          "name" : "Cathedrale Notre Dame de Paris",
+          "phone" : "",
+          "email" : "",
+          "address" : "6 Parvis Notre-Dame - Pl. Jean-Paul II, 75004",
+          "description" : "",
+          "location": "Paris, France",
+          "openingHours": "",
+          "priceRange": "",
+          "rating": "",
+          "visited": "",
+          "tagged" : [ ]
+        },
+        "startTime" : "1200",
+        "endTime" : "1500"
+      } ]
+    } ]
+  } ]
+}

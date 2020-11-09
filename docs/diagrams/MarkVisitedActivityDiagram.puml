@@ -1,0 +1,34 @@
+@startuml
+start
+:User executes 'markVisited-attraction' command;
+:MarkVisitedAttractionCommandParser
+                  parses arguments;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command is valid])
+    if () then([Index is valid])
+    :Retrieve corresponding attraction;
+        if () then([Attraction has not been visited])
+        :Create a new attraction with
+         the same fields, but visited
+                 field is set to true;
+        :Update existing attraction\n   with the new attraction;
+        :Saves state to the model;
+        :Show success message;
+        else ([else])
+        : Show attraction is already marked
+            as visited CommandException
+                         error message;
+        endif
+    else ([else])
+    :               Throw invalid index
+    CommandException error message;
+    endif
+else ([else])
+    :Show ParseException error message;
+endif
+
+stop
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Day {
+Class Day
+Class ItineraryAttraction
+}
+
+Package ItineraryAttraction {
+Class ItineraryAttraction
+Class ItineraryTime
+}
+
+Package Attraction {
+Class Attraction
+}
+
+Day *--> "*" ItineraryAttraction
+ItineraryAttraction *--> "2" ItineraryTime
+ItineraryAttraction -|> Attraction
+@enduml
