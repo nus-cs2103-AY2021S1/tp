@@ -1,11 +1,13 @@
 package seedu.address.model.exercise;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import seedu.address.logic.parser.exceptions.CaloriesOverflow;
 
 import java.math.BigInteger;
 import java.util.Objects;
 
-import seedu.address.logic.parser.exceptions.CaloriesOverflow;
+public static final String MESSAGE_CONSTRAINTS =
+            "Calories should be a non-negative integer. It should not be blank (if updating)";
 
 public class Calories {
 

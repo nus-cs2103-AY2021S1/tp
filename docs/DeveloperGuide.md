@@ -178,9 +178,44 @@ using the template and returns a new AddCommand object. The parse method in AddT
 of creating a new template and returns a new AddTemplateCommand object.
 The template list is stored in the data file folder as a txt file.
 
-### \[Proposed\] Undo/redo feature
+### Updating an exercise
 
-#### Proposed Implementation
+Author: Lee Wei Min
+
+This section details how an `Exercise` is modified using the `update` command.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The update command 
+updates an existing exercise, where all fields are optional but at least one field to update must
+be specified. For more details, please refer to the [update section](https://ay2021s1-cs2103t-w17-2.github.io/tp/UserGuide.html#33-update-exercises--update) of the user guide
+</div>
+
+#### Implementation
+
+We will use the following example command: `update 1 d/30 c/260 m/chest t/home`.
+
+The below sequence diagram details the execution flow:
+
+Here are the steps:
+- Step 1: `LogicManager` calls its  `execute` method, supplying the argument "update 1 d/30 c/260 m/chest t/home", which was entered by the user. 
+- Step 2: `LogicManager` calls the `exerciseBookParser`'s `parseCommand` method, supplying the user input.
+- Step 3: In `parseCommand`, the user input is parsed and its command word (`update`) is matched to the `UpdateCommandParser`. `UpdateCommandParser`'s `parse` method is called, passing in the parsed arguments.
+- Step 4: In `UpdateCommandParser`'s `parse` method, a `EditExerciseDescriptor` object
+is created. Each field of the parsed arguments are added to the `EditExerciseDescriptor` object. `UpdateCommandParser` then creates an `UpdateCommand` object containing the index of the `exercise` to edit and the `EditExerciseDescriptor` object. In the sequence diagram, the argument `index` refers
+to the `Index` object representing the index of the first exercise, while `editExerciseDescriptor`
+refers to the `EditExerciseDescriptor` object that contains the data (from the parsed
+arguments) to update.
+- Step 5: `LogicManager` obtains the `UpdateCommand` object, which is referenced by the `command` variable. It then executes the `execute` method of  the `UpdateCommand` object.
+- Step 6: In the `execute` method, the `UpdateCommand` object calls `getFilteredExerciseList` to 
+to obtain `lastShownExerciseList`. The `Exercise` to edit is retrieved from the `lastShownExerciseList` using the `index`, and assigned to `exerciseToEdit`. Another `Exercise` object, named `editedExercise` is created to hold the data to be updated. The `UpdateCommand` object then calls the `setExercise` method of `Model`, with `exerciseToEdit` and `editedExercise`.
+- Step 7: A new `CommandResult` is created containing the message to be displayed to the user,
+which is "Edited Exercise: Name: running Description: 30 Date: 10-12-2020 Calories: 260 Muscles worked:[chest] Tags: [home]". This `CommandResult` is returned to `LogicManager`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The activation bar
+of commandResult should be joined to the side of the box representing the commandResult instance.
+Due to a limitation of PlantUML, it is not possible to do so here.
+</div>
+
+### Proposed Implementation of Undo
 
 The proposed undo/redo mechanism is facilitated by `VersionedExerciseBook`. It extends `ExerciseBook` with an undo/redo history, stored internally as an `exerciseBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -205,8 +240,6 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 ![UndoRedoState2](images/UndoRedoState2.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitExerciseBook()`, so the exercise book state will not be saved into the `exerciseBookStateList`.
-
-</div>
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoExerciseBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous exercise book state, and restores the exercise book to that state.
 
