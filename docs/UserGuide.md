@@ -398,7 +398,11 @@ Format: `list`
 Displays the detailed results of a specific past quiz attempt. In the performance interface, a red option represents
 an incorrect answer and a green option indicates a correct answer.
 
-For example, in the image displayed below, 
+For example, in the image displayed below, the correct answer to the first question is `true`, and the first question
+ was correctly answered by the user. On the other hand, the correct answer to the second question is 25, which is
+  option `4`, but the user submitted an incorrect answer,  option `3`.
+  
+  ![attempt result](images/attemptResult.png)
   
 Format: `view INDEX`
 
