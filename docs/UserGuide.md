@@ -6,7 +6,7 @@
   * [1.2 Understanding the User Guide](#12-understanding-the-user-guide)
 - [2. Quick start](#2-quick-start)
   * [2.1 Setting up Reeve](#21-setting-up-reeve)
-  * [2.2 Making sense of Reeve's layout](#22-making-sense-of-reeves-layout-by-alex)
+  * [2.2 Making sense of Reeve's layout (By: Alex Chua)](#22-making-sense-of-reeves-layout-by-alex-chua)
 - [3. Features](#3-features)
   * [3.1 Understanding the command format](#31-understanding-the-command-format)
   * [3.2 General features](#32-general-features)
@@ -110,7 +110,7 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 
 1. Refer to the [Features](#3-features) section below for details of each command.
 
-### 2.2 Making sense of Reeve's layout (By: Alex)
+### 2.2 Making sense of Reeve's layout (By: Alex Chua)
 
 This section serves to help you understand the layout of **Reeve**. Please refer to the figure below (Figure 2) for help.
 
@@ -787,7 +787,7 @@ Example:
      
     * You should see a screen similar to the screen below (Figure 25) when the above command is entered.
     
-    ![Adding a note](images/screenshots/Adding a note.png)
+    ![Adding a note](images/screenshots/AddingNote.png)
     <div align="center">Figure 25: After entering add note command</div><br>
 
 #### 3.5.2 Editing a note `note edit`
