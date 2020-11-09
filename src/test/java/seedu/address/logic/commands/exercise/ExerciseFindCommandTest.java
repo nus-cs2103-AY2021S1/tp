@@ -53,7 +53,7 @@ public class ExerciseFindCommandTest {
     }
 
     @Test
-    public void execute_ExercisesFound() {
+    public void execute_exercisesFound() {
         String expectedMessage = String.format(MESSAGE_EXERCISES_LISTED_OVERVIEW, 1);
         ExerciseNameContainsKeywordsPredicate predicate = preparePredicate("squats");
         ExerciseFindCommand command = new ExerciseFindCommand(predicate);
