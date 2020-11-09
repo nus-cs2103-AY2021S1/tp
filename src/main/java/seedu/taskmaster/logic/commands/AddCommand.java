@@ -30,8 +30,8 @@ public class AddCommand extends Command {
             + PREFIX_TELEGRAM + "telehandle "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_NUSNETID + "e0123456 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "weak "
+            + PREFIX_TAG + "needsSpecialAttention";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the student list";
