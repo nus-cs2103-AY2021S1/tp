@@ -43,13 +43,18 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added documentation of expressions with and without `...`
-      [\#266](https://github.com/nus-cs2103-AY2021S1/forum/issues/266)
+    [\#266](https://github.com/nus-cs2103-AY2021S1/forum/issues/266)
     * Added description for the features `unlabel` and `retag` 
     [\#277](https://github.com/nus-cs2103-AY2021S1/forum/issues/277)
+    * Added more description for some commands and update some examples 
+    [\#312](https://github.com/nus-cs2103-AY2021S1/forum/issues/312)
     
   * Developer Guide:
-    * Added implementation details of `ShowCommand` and `ListCommand`.
-    [\#165](https://github.com/nus-cs2103-AY2021S1/forum/issues/165)
+    * Added implementation details of `ShowCommand`, `ListCommand`, and `UnlabelCommand`.
+    ([\#165](https://github.com/nus-cs2103-AY2021S1/forum/issues/165),
+    [\#316](https://github.com/nus-cs2103-AY2021S1/forum/issues/316))
+    * Add sequence diagrams for storage.
+    [\#318](https://github.com/nus-cs2103-AY2021S1/forum/issues/318)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 
