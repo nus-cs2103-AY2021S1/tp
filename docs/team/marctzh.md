@@ -26,12 +26,12 @@ Given below are my contributions to the project.
 * **New Features**: Added a check to see if an event or lesson overlaps.
 
   * What it does: Does not allow users to add events and lessons that overlap .
-  * Justifications: Users may accidentally schedule mulitple tasks that overlap
+  * Justifications: Users may accidentally schedule multiple tasks that overlap
   * Highlights: This feature requires meticulous planning of the many possible scenarios where an overlap may occur.
 
 * **New Features**: Added the data analysis feature.
 
-  * What it does: allow the user to know how much time is spent on each task/lesson for a specified time period.
+  * What it does: allow the user to know total time spent on each task/lesson for a specified time period.
   * Justifications: This is a key feature of PlaNus as the user is able to know how much time he has allocated to each module so that he can increase his productivity.
   * Highlights: This feature requires the use of a custom algorithm and data structure which goes through PlaNus' database and keeps track of how much time is spent on task and lessons for each module.
 
@@ -45,9 +45,9 @@ Given below are my contributions to the project.
 * **Documentation**:
 
   * User Guide:
-    * (To be updated)
+    * Add documentation for calendar view and time analysis feature. [\#287](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/287)
   * Developer Guide:
-    * (To be updated)
+    * Add details of implementation of lesson and time analysis feature [\#293](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/293)
 
 * **Community**:
 
@@ -64,7 +64,8 @@ Given below are my contributions to the project.
     [\#246](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/246), [\#248](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/248),
     [\#250](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/250), [#256](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/256),
     [\#257](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/257), [\#258](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/258), 
-    [\#267](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/267).
+    [\#267](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/267), [\#270](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/270)
+    [\#279](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/279).
 
   * Reported bugs and suggestions for other teams in the class via this [repo](https://github.com/MarcTzh/ped/issues)
 
