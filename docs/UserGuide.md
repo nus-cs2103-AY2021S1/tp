@@ -4,6 +4,8 @@ title: fitNUS - User Guide
 ---
 By: `Team T09-2` Since: `September 2020`
 
+![Logo](images/fitnus_hd.png)
+
 **Table of Contents:**
 
 * Table of Contents
@@ -21,7 +23,7 @@ information will be reflected in the user interface for ease of viewing.
 This User Guide aims to showcase the features that fitNUS provides, as well as **step-by-step instructions**
 regarding how to make use of these features.
 
-![Ui](images/Ui.png)
+![Ui](./images/Ui.png)
 
 --------------------------------------------------------------------------------------------------------------------
 ## 2. Additional Information
@@ -37,7 +39,9 @@ Order of parameters | Valid parameters can be provided in any order unless one o
 `mark-up` | Grey highlight of a word signifies the actual input that you can use | You can type `exercise_delete 1` in the command box and press *Enter* to execute the command
 Call Outs | Red boxes are drawn up around areas of interest to show a comparison before inputting a command and the result of a successful command outcome. Blue boxes are drawn up around expected input user commands to achieve those outcomes | -
 
-Check out the list below to get started on using this User Guide.
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip:**<br>Check out the list below to get started on using this User Guide.
 
 * If this is your first time using fitNUS, refer to the [Quick Start](#3-quick-start) for step-by-step instructions on how
 to download and set up fitNUS on your Computer.
@@ -46,6 +50,10 @@ to download and set up fitNUS on your Computer.
 
 * If you are familiar with fitNUS or want to do a quick lookup of all the available commands, go to the
 [Command Summary](#5-command-summary) section.
+
+</div>
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## 3. Quick Start
@@ -104,13 +112,20 @@ Example:
 **Before adding an exercise:**
 
 ![Exercise Add Before](./images/exercise_add_before.png)
+
+<br>
 Notice that there are no exercises currently listed.
+<br>
+<br>
 
 **Successful outcome of adding an exercise "Pull Ups":**
 
 ![Exercise Add After](./images/exercise_add_after.png)
-Note that there is exactly 1 exercise listed after the update.
 
+<br>
+Note that there is exactly 1 exercise listed after the update.
+<br>
+<br>
 
 #### 4.1.2 Delete exercise : `exercise_delete`
 
@@ -124,12 +139,26 @@ Example:
 **Before deleting the first exercise:**
 
 ![Exercise Delete Before](./images/exercise_delete_before.png)
+
+<br>
 Notice that there is 1 exercise currently listed.
+<br>
+<br>
 
 **Successful outcome of deleting the first exercise "Pull Ups":**
 
 ![Exercise Delete After](./images/exercise_delete_after.png)
+
+<br>
 Note that there are no exercises listed after the update.
+<br>
+<br>
+
+<div markdown="block" class="alert alert-warning">
+
+:warning: **Caution:** This Exercise will also be deleted from all Routines that used to contain it.
+
+</div>
 
 #### 4.1.3 Edit exercise : `exercise_edit`
 
@@ -144,12 +173,20 @@ Example:
 **Before editing the third exercise:**
 
 ![Exercise Edit Before](./images/exercise_edit_before.png)
+
+<br>
 Notice that there are 3 exercises currently listed.
+<br>
+<br>
 
 **Successful outcome of editing the third exercise to "Squats":**
 
 ![Exercise Edit After](./images/exercise_edit_after.png)
+
+<br>
 Note that the third exercise is now "Squats" with tag "Lower".
+<br>
+<br>
 
 #### 4.1.4 Find exercise : `exercise_find`
 
@@ -157,18 +194,34 @@ Finds all exercises in fitNUS whose names contain all of the specified keywords.
 
 Format: `exercise_find KEYWORD [MORE_KEYWORDS]...`
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+This feature is case-insensitive, as the following example will show you. Keywords will return partial matches as well
+
+</div>
+
 Example:
 * `exercise_find bench` Lists all exercises with names containing "bench" keyword.
 
 **Before finding exercises with "bench" keyword:**
 
 ![Exercise Find Before](./images/exercise_find_before.png)
+
+<br>
 Notice that there are 3 exercises currently listed.
+<br>
+<br>
 
 **Successful outcome of finding exercises with "bench" keyword:**
 
 ![Exercise Find After](./images/exercise_find_after.png)
+
+<br>
 Note that there is only 1 exercise listed which contains the keyword "bench".
+<br>
+<br>
 
 #### 4.1.5 List exercise : `exercise_list`
 
@@ -183,12 +236,20 @@ Example:
 **Before listing all exercises:**
 
 ![Exercise List Before](./images/exercise_list_before.png)
+
+<br>
 Notice that you are viewing only 1 exercise as of now if you followed from the previous `exercise_find bench` example.
+<br>
+<br>
 
 **Successful outcome of listing all exercises:**
 
 ![Exercise List After](./images/exercise_list_after.png)
+
+<br>
 Note that all the exercises are listed again.
+<br>
+<br>
 
 ### 4.2 Routine
 
@@ -208,12 +269,20 @@ Example:
 **Before adding a routine:**
 
 ![Routine Create Before](./images/routine_create_before.png)
+
+<br>
 Notice that there are no routines currently listed.
+<br>
+<br>
 
 **Successful outcome of creating a routine "Leg Workout":**
 
 ![Routine Create After](./images/routine_create_after.png)
+
+<br>
 Note that there is exactly 1 routine listed after the update.
+<br>
+<br>
 
 #### 4.2.2 Delete routine : `routine_delete`
 
@@ -227,12 +296,20 @@ Example:
 **Before deleting the first routine:**
 
 ![Routine Delete Before](./images/routine_delete_before.png)
+
+<br>
 Notice that there is 1 routine currently listed.
+<br>
+<br>
 
 **Successful outcome of deleting the first routine "Leg Workout":**
 
 ![Routine Delete After](./images/routine_delete_after.png)
+
+<br>
 Note that there are no routines listed after the update.
+<br>
+<br>
 
 #### 4.2.3 Find routine : `routine_find`
 
@@ -240,18 +317,34 @@ Finds all routines in fitNUS whose names contain all of the specified keywords.
 
 Format: `routine_find KEYWORD [MORE_KEYWORDS]...`
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+This feature is case-insensitive, as the following example will show you. Keywords will return partial matches as well
+
+</div>
+
 Example:
 * `routine_find upper body` Lists all routines with names containing "upper" and "body" keywords.
 
 **Before finding routines with "upper" and "body" keywords:**
 
 ![Routine Find Before](./images/routine_find_before.png)
+
+<br>
 Notice that there are 2 routines currently listed.
+<br>
+<br>
 
 **Successful outcome of finding routines with "upper" and "body" keywords:**
 
 ![Routine Find After](./images/routine_find_after.png)
+
+<br>
 Note that there is only 1 routine listed which contains the keywords "upper" and "body".
+<br>
+<br>
 
 #### 4.2.4 List routine : `routine_list`
 
@@ -266,12 +359,20 @@ Example:
 **Before listing all routines:**
 
 ![Routine List Before](./images/routine_list_before.png)
+
+<br>
 Notice that you are viewing only 1 routine as of now if you followed from the previous `routine_find upper body` example.
+<br>
+<br>
 
 **Successful outcome of listing all routines:**
 
 ![Routine List After](./images/routine_list_after.png)
+
+<br>
 Note that all the routines are listed again.
+<br>
+<br>
 
 #### 4.2.5 Add exercise to routine : `routine_add_exercise`
 
@@ -285,13 +386,21 @@ Example:
 **Before adding "Squats" to "Leg Workout":**
 
 ![Routine Add Exercise Before](./images/routine_add_exercise_before.png)
+
+<br>
 Notice that you are viewing 2 routines as of now if you followed from the previous `routine_list` example.
 Additionally, we have pre-added an exercise "Squats" using `exercise_add e/Squats` to be able to add an exercise to a routine.
+<br>
+<br>
 
 **Successful outcome of adding "Squats" to "Leg Workout":**
 
 ![Routine Add Exercise After](./images/routine_add_exercise_after.png)
+
+<br>
 Note that "Squats" now belongs to "Leg Workout" as a tagging.
+<br>
+<br>
 
 #### 4.2.6 Delete exercise from routine : `routine_delete_exercise`
 
@@ -305,12 +414,20 @@ Example:
 **Before removing "Squats" from "Leg Workout":**
 
 ![Routine Delete Exercise Before](./images/routine_delete_exercise_before.png)
+
+<br>
 Notice that "Squats" currently belongs to "Leg Workout" as a tagging.
+<br>
+<br>
 
 **Successful outcome of removing "Squats" from "Leg Workout":**
 
 ![Routine Delete Exercise After](./images/routine_delete_exercise_after.png)
+
+<br>
 Note how "Squats" is no longer found under "Leg Workout" as a tagging.
+<br>
+<br>
 
 #### 4.2.7 View routine details : `routine_view`
 
@@ -324,12 +441,20 @@ Example:
 **Before viewing the second routine:**
 
 ![Routine View Before](./images/routine_view_before.png)
+
+<br>
 Notice that there are 2 routines currently listed.
+<br>
+<br>
 
 **Successful outcome of viewing the second routine:**
 
 ![Routine View After](./images/routine_view_after.png)
+
+<br>
 Note that only the routine "Upper Body Session" which was at the second index is listed.
+<br>
+<br>
 
 ### 4.3 Lesson
 
@@ -349,12 +474,20 @@ and tags "priority" and "homework".
 **Before adding a lesson:**
 
 ![Lesson Add Before](./images/lesson_add_before.png)
+
+<br>
 Notice that there are no lessons currently listed.
+<br>
+<br>
 
 **Successful outcome of adding a lesson "CS2100":**
 
 ![Lesson Add After](./images/lesson_add_after.png)
+
+<br>
 Note that there is exactly 1 lesson listed after the update.
+<br>
+<br>
 
 #### 4.3.2 Delete lesson : `lesson_delete`
 
@@ -368,12 +501,20 @@ Example:
 **Before deleting the first lesson:**
 
 ![Lesson Delete Before](./images/lesson_delete_before.png)
+
+<br>
 Notice that there is 1 lesson currently listed.
+<br>
+<br>
 
 **Successful outcome of deleting the first lesson "CS2100":**
 
 ![Lesson Delete After](./images/lesson_delete_after.png)
+
+<br>
 Note that there are no lessons listed after the update.
+<br>
+<br>
 
 #### 4.3.3 Edit lesson : `lesson_edit`
 
@@ -388,12 +529,20 @@ Example:
 **Before editing the third lesson:**
 
 ![Lesson Edit Before](./images/lesson_edit_before.png)
+
+<br>
 Notice that there are 3 lessons currently listed.
+<br>
+<br>
 
 **Successful outcome of editing the third lesson to "MA1521":**
 
 ![Lesson Edit After](./images/lesson_edit_after.png)
+
+<br>
 Note that the third lesson is now "MA1521" with tag "core".
+<br>
+<br>
 
 #### 4.3.4 Find lesson : `lesson_find`
 
@@ -401,18 +550,35 @@ Finds all lessons in fitNUS whose names contain any of the specified keywords.
 
 Format: `lesson_find KEYWORD [MORE_KEYWORDS]...`
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+This feature is case-insensitive, this example just so happens to use capital letters. Keywords will return partial
+matches as well
+
+</div>
+
 Example:
 * `lesson_find CS GER` Lists all lessons with names containing "CS" or "GER" keywords.
 
 **Before finding lessons with "CS" or "GER" keywords:**
 
 ![Lesson Find Before](./images/lesson_find_before.png)
+
+<br>
 Notice that there are 3 lessons currently listed.
+<br>
+<br>
 
 **Successful outcome of finding lessons with "CS" or "GER" keywords:**
 
 ![Lesson Find After](./images/lesson_find_after.png)
+
+<br>
 Note that there are 2 lessons listed which contains the keyword "CS" or "GER".
+<br>
+<br>
 
 #### 4.3.5 List lesson : `lesson_list`
 
@@ -427,12 +593,20 @@ Example:
 **Before listing all lessons:**
 
 ![Lesson List Before](./images/lesson_list_before.png)
+
+<br>
 Notice that you are viewing 2 lessons as of now if you followed from the previous `lesson_find CS GER` example.
+<br>
+<br>
 
 **Successful outcome of listing all lessons:**
 
 ![Lesson List After](./images/lesson_list_after.png)
+
+<br>
 Note that all the lessons are listed again.
+<br>
+<br>
 
 ### 4.4 Timetable
 
@@ -453,18 +627,30 @@ Format: `timetable_add_routine r/ROUTINE D/DAY T/TIME`
 
 Example:
 * `timetable_add_routine r/Leg Workout D/Monday T/1600-1800`
+
+<br>
 Adds routine "Leg Workout" to timetable on Monday, 1600-1800.
+<br>
+<br>
 
 **Before adding routine "Leg Workout" to Timetable:**
 
 ![Timetable Add Routine Before](./images/timetable_add_routine_before.png)
+
+<br>
 Notice that there are no Monday slots initially. Additionally, we have pre-added a routine "Leg Workout" using
 `routine_create r/Leg Workout` to be able to add a routine to the timetable.
+<br>
+<br>
 
 **Successful outcome of adding routine "Leg Workout" to Timetable:**
 
 ![Timetable Add Routine After](./images/timetable_add_routine_after.png)
+
+<br>
 Note that a routine slot can be seen now on Monday.
+<br>
+<br>
 
 #### 4.4.2 Add lesson to timetable : `timetable_add_lesson`
 
@@ -474,18 +660,30 @@ Format: `timetable_add_lesson n/LESSON D/DAY T/TIME`
 
 Example:
 * `timetable_add_lesson n/CS2103T D/Wednesday T/1200-1400`
+
+<br>
 Adds lesson "CS2103T" to timetable on Wednesday, 1200-1400.
+<br>
+<br>
 
 **Before adding lesson "CS2103T" to Timetable:**
 
 ![Timetable Add Lesson Before](./images/timetable_add_lesson_before.png)
+
+<br>
 Notice that there are no Wednesday slots initially. Additionally, we have pre-added a lesson "CS2103T" using
 `lesson_add n/CS2103T` to be able to add a lesson to the timetable.
+<br>
+<br>
 
 **Successful outcome of adding lesson "CS2103T" to Timetable:**
 
 ![Timetable Add Lesson After](./images/timetable_add_lesson_after.png)
+
+<br>
 Note that a lesson slot can be seen now on Wednesday.
+<br>
+<br>
 
 #### 4.4.3 Delete routine or lesson from schedule : `timetable_delete_slot`
 
@@ -500,17 +698,31 @@ Deletes the routine or lesson scheduled on Monday, 1600-1800.
 **Before removing slot from Timetable:**
 
 ![Timetable Delete Slot Before](./images/timetable_delete_slot_before.png)
+
+<br>
 Notice that there are 2 separate slots on the Timetable. 
+<br>
 
 **Successful outcome of removing slot from Timetable:**
 
 ![Timetable Delete Slot After](./images/timetable_delete_slot_after.png)
+
+<br>
 Note that the routine slot on Monday is removed from the Timetable.
+<br>
 
 ### 4.5 BMI
 
 fitNUS allows you to record your height and weight in order to better keep track of the progression of your health
 journey. You BMI will be displayed under the BMI Metrics section once you have updated the 2 parameters in the command box.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+You are able to enter your height and weight with accuracy to 2 decimal places. BMI will automatically recalculate upon your input.
+
+</div>
 
 #### 4.5.1 Add or edit height : `height`
 
@@ -524,12 +736,18 @@ Example:
 **Before inputting "170" cm:**
 
 ![Add Height Before](./images/height_before.png)
+
+<br>
 Notice how the default height is set to 160 cm before the change. 
+<br>
 
 **Successful outcome of inputting "170" cm:**
 
 ![Add Height After](./images/height_after.png)
+
+<br>
 Note the updated height of 170 cm after the change.
+<br>
 
 #### 4.5.2 Add or edit weight : `weight`
 
@@ -543,19 +761,36 @@ Example:
 **Before inputting "72.8" kg:**
 
 ![Add Weight Before](./images/weight_before.png)
+
+<br>
 Notice how the default weight is set to 45 kg before the change.
+<br>
 
 **Successful outcome of inputting "72.8" kg:**
 
 ![Add Weight After](./images/weight_after.png)
+
+<br>
 Note the updated weight of 72.8 kg after the change. Also, since both height and weight parameters have been updated,
 the current BMI is now up-to-date at 25.19
+<br>
 
 ### 4.6 Calorie
 
 You can keep track of your daily caloric intake and expenditure by inputting the values in the command box.
 You can add or deduct a specified amount from your current calorie count. All successful modifications will be
 automatically reflected in the Calorie Graph on the Home tab.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* You are able to increase or decrease your calorie intake for the day by typing in a whole number only.
+
+* As with all great calorie trackers, we only allow you to edit the current day's calorie log so as to prevent any
+edits to previous entries.
+
+</div>
 
 #### 4.6.1 Add calories : `calorie_add`
 
@@ -569,12 +804,18 @@ Example:
 **Before adding "1500" calories:**
 
 ![Calorie Add Before](./images/calorie_add_before.png)
+
+<br>
 Notice that the Calorie Graph has no data points prior to change.
+<br>
 
 **Successful outcome of adding "1500" calories:**
 
 ![Calorie Add After](./images/calorie_add_after.png)
+
+<br>
 Note that the current calorie count now stands at 1500.
+<br>
 
 #### 4.6.2 Deduct calories : `calorie_minus`
 
@@ -588,12 +829,18 @@ Example:
 **Before deducting "600" calories:**
 
 ![Calorie Minus Before](./images/calorie_minus_before.png)
+
+<br>
 Notice that the current calorie count stands at 1500 prior to change.
+<br>
 
 **Successful outcome of deducting "600" calories:**
 
 ![Calorie Minus After](./images/calorie_minus_after.png)
+
+<br>
 Note that the current calorie count now stands at 900.
+<br>
 
 ### 4.7 Miscellaneous
 
@@ -617,6 +864,8 @@ Example:
 **Successful outcome of inputting "help":**
 
 ![Help](./images/help_after.png)
+
+<br>
 Note how a pop-up window appears containing a list of 27 commands that fitNUS supports.
 
 Alternatively, use a keyword to search for a group of commands.
@@ -634,6 +883,8 @@ Example:
 **Successful outcome of inputting "help timetable":**
 
 ![Help](./images/help_keyword_after.png)
+
+<br>
 Note how a pop-up window appears containing 3 commands that contain the word "timetable".
 
 #### 4.7.2 Clear: `clear`
