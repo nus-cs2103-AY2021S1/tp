@@ -18,6 +18,7 @@ Class StatusBarFooter
 Class CommandBox
 Class NoteBook
 Class NoteTile
+Class ExamStatsWindow
 }
 
 package Model <<Rectangle>> {
@@ -40,6 +41,7 @@ MainWindow *-down-> ResultDisplay
 MainWindow *-down-> StudentListPanel
 MainWindow *-down-> StatusBarFooter
 MainWindow *-down-> NoteBook
+MainWindow ..> ExamStatsWindow
 
 StudentListPanel --> StudentAdminCard
 StudentListPanel --> StudentAcademicCard

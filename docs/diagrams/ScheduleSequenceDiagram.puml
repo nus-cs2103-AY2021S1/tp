@@ -17,7 +17,6 @@ LogicManager -> ScheduleCommand : execute(Model)
 activate ScheduleCommand
 
 ScheduleCommand -> Model : setViewDate(LocalDate)
-activate Model
 
 Model -> SchedulePrefs : setViewDate(LocalDate)
 
@@ -32,6 +31,10 @@ activate Scheduler
 
 Scheduler -> Scheduler : resetData(List<Event>)
 
+Scheduler -[hidden]-> Scheduler
+deactivate Scheduler
+destroy Scheduler
+
 create CommandResult
 ScheduleCommand -> CommandResult
 activate CommandResult
@@ -39,5 +42,9 @@ CommandResult --> ScheduleCommand : result
 deactivate CommandResult
 
 ScheduleCommand --> LogicManager : result
+deactivate ScheduleCommand
+
+LogicManager -[hidden]-> ScheduleCommand
+destroy ScheduleCommand
 
 @enduml
