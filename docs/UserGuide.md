@@ -695,8 +695,8 @@ are likely to change frequently and hence, will not need to be persisted.
 
 | Function | Tag | Format, Examples |
 | -------- | --- | ---------------- |
-| Delete `Consultation` | -c | delete -c NAME <br>E.g. delete -c 2 |
-| Delete `Mastery Check` | -mc | delete -mc NAME <br>E.g. delete -mc 2 |
+| Delete `Consultation` | -c | delete -c INDEX <br>E.g. delete -c 2 |
+| Delete `Mastery Check` | -mc | delete -mc INDEX <br>E.g. delete -mc 2 |
 | Delete `Task` | -t | delete -t TASK_ID |
 
 ### 7.4 View Command Summary
@@ -704,7 +704,7 @@ are likely to change frequently and hence, will not need to be persisted.
 | Function | Tag | Format, Examples |
 | -------- | --- | ---------------- |
 | View all `Students` | -s | view -s |
-| View `Student` with keyword | -s | view -s INDEX |
+| View `Student` with keyword | -s | view -s NAME |
 | View deadlines for `Missions` | -m | view -m |
 | View ungraded `Missions` | -um | view -um |
 | View deadlines for `Quests` | -q | view -q |
