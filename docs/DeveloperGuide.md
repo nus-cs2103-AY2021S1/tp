@@ -5,6 +5,7 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -21,6 +22,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
+<div style="page-break-after: always;"></div>
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103-F09-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
@@ -57,6 +59,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -73,6 +76,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+<div style="page-break-after: always;"></div>
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -93,6 +97,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -103,6 +108,7 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the student list data as a `Taskmaster` object.
+<div style="page-break-after: always;"></div>
 * exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * also exposes an unmodifiable `ObservableList<Session>` that is similarly used by the UI.
 * does not depend on any of the other three components.
@@ -125,12 +131,14 @@ The `Storage` component,
 * can save the student list data in json format and read it back.
 * can save the SessionList data in json format and read it back.
 
+<div style="page-break-after: always;"></div>
 ### Common classes
 
 Classes used by multiple components are in the `seedu.taskmaster.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
 ## **Additional Features Implemented**
 
 ### SessionList
@@ -157,7 +165,7 @@ The `Session`,
 * can mark the attendance of all students in the StudentRecordList with a single Command.
 
 The current running Session, `currentSession`, is also stored as an attribute in the Taskmaster.
-
+<div style="page-break-after: always;"></div>
 Given below is the Sequence Diagram for interactions within the `Session` component when `Taskmaster#markStudentWithNusnetId(nusnetId, attendanceType)` is called.
 
 ![Interactions iside the Session class for the `markStudentAttendance'` method call](images/MarkStudentAttendanceSequenceDiagram.png)
@@ -184,7 +192,7 @@ session with a specified name already exist inside the session list.
     of the code for `Session` to store another data structure which encapsulate the student submission data. On the other hand,
     storing a `StudentRecordList` can allow `Session` store such additional data without modifying its code at all, as all student-related
     data is encapsulated in a `StudentRecord`.
-
+<div style="page-break-after: always;"></div>
 **Future Expansion**
 
 Beyond v1.4, additional features can be implemented for **Session**:
@@ -202,6 +210,7 @@ Beyond v1.4, additional features can be implemented for **Session**:
     to allow users to change the name, date and time of a session while still keeping the session's student record data on TAskmaster.
 <br>
 
+<div style="page-break-after: always;"></div>
 ### StudentRecordList
 
 Author: **Goh Siau Chiak**
@@ -210,6 +219,7 @@ Author: **Goh Siau Chiak**
 
 ![Structure of StudentRecordList Component](images/StudentRecordDiagram.png)
 
+<div style="page-break-after: always;"></div>
 The `StudentRecordList`,
 
 ![Student Record List Class](images/StudentRecordListDiagram.png)
@@ -229,6 +239,7 @@ The `StudentRecord`,
   * the `AttendanceType` of the student for the `Session`.
   * a `ClassParticipation` representing the score awarded to the student for participating in the `Session`.
 
+<div style="page-break-after: always;"></div>
 Given below is the Sequence Diagram for interactions within the `StudentRecordListManager` component when `StudentRecordListManager#markStudentAttendance(nusnetId, attendanceType)` is called.
 
 ![Interactions inside the StudentRecordListManager class for the `markStudentAttendance'` method call](images/StudentRecordListAttendanceSequenceDiagram.png)
@@ -255,6 +266,7 @@ students recorded in any session created by TAs using TAskmaster.
     objects were added or deleted. This resulted in a bug where the GUI will not show the changes made when a
     student record was updated. In the end, it was decided that `StudentRecord` should be immutable to fix this bug.
 
+<div style="page-break-after: always;"></div>
 * Make each `StudentRecordList` be dependent on and backed by the `StudentList` maintained by TAskmaster.
 
     This alternative was eventually rejected because it did not make sense from a design perspective. Each
@@ -284,7 +296,7 @@ students recorded in any session created by TAs using TAskmaster.
     Since editing of `NusnetId` is not allowed, there will be no issues with syncing of data. For example, even if the
     name of a particular student is edited after his `StudentRecord` was saved, we can find that student using their
     `NusnetId`.
-
+<div style="page-break-after: always;"></div>
 **Future Expansions**
 
 Beyond 1.4, there are several features that can be added to improve TAskmaster
@@ -304,7 +316,7 @@ Beyond 1.4, there are several features that can be added to improve TAskmaster
     graphs and pie charts.
 
 <br>
-
+<div style="page-break-after: always;"></div>
 ### Storage
 
 Author: **Jaya Rengam**
@@ -376,6 +388,7 @@ This would require that `Commands` take in `Storage` as an additional parameter.
 
 <br>
 
+<div style="page-break-after: always;"></div>
 ### Class Participation Score
 
 Author: **Theodore Leebrant**
@@ -410,6 +423,7 @@ The specifications above have undergone several revisions, with the following co
 Internally, it uses NUSNET ID to see which student needs to be scored as the NUSNET ID is unique for each student.
 Therefore, there needs to be some lookup needed to bridge between these two.
 * Input validation is needed to ensure that the score inputted is valid.
+<div style="page-break-after: always;"></div>
 * The choice of 0-10 `double` score is to support the granularity of score detail 
 (most TA would use at most 1 decimal place, therefore we added support for 2 decimal places for meticulous TAs), while
 still maintaining good display for the sake of UX. Negative scores are not supported as a negative score
@@ -436,7 +450,7 @@ at the score) and provides more detail. An alternative that may also be consider
 `float` instead of `double` as we do not necessarily need double-precision decimal representation with only two decimal
 places.
 
-
+<div style="page-break-after: always;"></div>
 **Future expansion**
 
 Beyond 1.4, there are several improvements that can be done:
@@ -455,6 +469,7 @@ as well as command handling.
 
 <br>
 
+<div style="page-break-after: always;"></div>
 ### UI
 
 Author: **Lim Jin Feng**
