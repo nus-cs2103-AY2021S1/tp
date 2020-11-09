@@ -72,6 +72,7 @@ public class ProjectDashboard extends UiPart<Region> {
         if (this.project.isFullListOfTasks()) {
             headerOfListOfTasks = "All Tasks: ";
         }
+        header2.setText("Teammates: ");
         header3.setText(headerOfListOfTasks);
     }
 
