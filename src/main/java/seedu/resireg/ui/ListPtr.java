@@ -4,13 +4,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-/**
- * A class that contains a pointer to an element in the list, for
- * easier iteration through the list.
- */
 /*
  * Code for ListPtr is adapted from addressbook-level4, which can be found at
  * https://github.com/se-edu/addressbook-level4.
+ */
+/**
+ * A class that contains a pointer to an element in the list, for
+ * easier iteration through the list.
  */
 public class ListPtr {
     private List<String> list;

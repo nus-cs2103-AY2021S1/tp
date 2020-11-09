@@ -7,9 +7,10 @@ start
 
 if () then ([command modifies
     ResiReg state])
-    :Clear redundant redo states;
-    :Save currentState to undoStatesStack
-    update currentState;
+    :Clear redundant redo states
+    in redoStatesStack;
+    :Save currentState to undoStatesStack;
+    :Update currentState;
 else ([else])
 endif
 stop
