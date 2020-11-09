@@ -28,6 +28,9 @@ deactivate DeleteSessionCommand
 DeleteSessionCommandParser --> AddressBookParser : command
 deactivate DeleteSessionCommandParser
 
+DeleteSessionCommandParser -[hidden]-> AddressBookParser : command
+destroy DeleteSessionCommandParser
+
 |||
 end
 
