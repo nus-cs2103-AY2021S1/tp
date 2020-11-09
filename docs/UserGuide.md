@@ -202,7 +202,7 @@ Example: `exit`
 
 ### 4.2 Navigation Features
 
-#### 4.2.1 List all modules in __Trackr__: `listMod`
+#### 4.2.1 List all Modules in __Trackr__: `listMod`
 
 Lists all the modules in the Module view.
 
@@ -232,7 +232,7 @@ Example:
     - `viewTG 1`
 
 Expected Outcome:
-![ViewTgCommand]()
+![ViewTgCommand](images/ViewTutorialGroupCommand.png)
 
 #### 4.2.3 List all Tutorial Groups in the current Module: `listTG`
 Lists all tutorial groups in the Tutorial Group view.
@@ -247,7 +247,7 @@ Example:
     - `listTG`
 
 Expected Outcome:
-![ListTgCommand]()
+![ListTgCommand](images/ListTutorialGroupCommand.png)
 
 #### 4.2.4 View all students in a tutorial group: `viewStudent`
 Shows the student list of a target tutorial group.

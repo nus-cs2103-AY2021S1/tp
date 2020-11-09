@@ -11,10 +11,15 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
+Class StudentListPanel
+Class StudentCard
+Class ModuleListPanel
+Class ModuleCard
+Class TutorialGroupListPanel
+Class TutorialGroupCard
 Class StatusBarFooter
 Class CommandBox
+Class ViewDisplay
 }
 
 package Model <<Rectangle>> {
@@ -33,28 +38,44 @@ UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> PersonListPanel
+MainWindow *-down-> StudentListPanel
 MainWindow *-down-> StatusBarFooter
+MainWindow *-down-> ViewDisplay
+MainWindow *-down-> ModuleListPanel
+MainWindow *-down-> TutorialGroupListPanel
 
-PersonListPanel -down-> PersonCard
+StudentListPanel -down-> StudentCard
+ModuleListPanel -down-> ModuleCard
+TutorialGroupListPanel -down-> TutorialGroupCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+StudentListPanel --|> UiPart
+StudentCard --|> UiPart
+ModuleListPanel --|> UiPart
+ModuleCard --|> UiPart
+TutorialGroupListPanel --|> UiPart
+TutorialGroupCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
+ViewDisplay --|> UiPart
 
-PersonCard ..> Model
+ModuleCard ..> Model
+TutorialGroupCard ..> Model
+StudentCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+ModuleListPanel -[hidden]left- TutorialGroupListPanel
+TutorialGroupCard -[hidden]left- StudentListPanel
+StudentListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
-CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
+CommandBox -[hidden]left- StatusBarFooter
+ResultDisplay -[hidden]left- CommandBox
+ViewDisplay -[hidden]left- ResultDisplay
+
 
 MainWindow -[hidden]-|> UiPart
 @enduml
