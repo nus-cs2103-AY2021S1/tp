@@ -45,6 +45,7 @@ Given below are my contributions to the project.
   
   * Included `DuplicatedNricException` and related code. 
 
+<div style="page-break-after: always;"></div>
 
 * **Documentation**: 
   * User Guide:
