@@ -331,6 +331,11 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 </div>
 
+<div markdown="block" class="alert alert-danger">
+:exclamation: Take note that finding flashcards based on both tags and question will only display flashcards that have both the specified tags **and** keywords. It will not display flashcards that only have either the specified tags or the specified keywords.
+
+</div>
+
 1. Use the `list` command to first list all the flashcards.
 
 	![FindQuestionAndTagsStep1](./images/FindQuestionAndTagsStep1.png)
