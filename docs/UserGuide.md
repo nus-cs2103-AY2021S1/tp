@@ -294,8 +294,8 @@ Format: `unassignall`
 
 The following features are not done yet and will be implemented in the next update.
 
-* Order filter results of contacts and modules by how much they match the specified parameters.
-* Differentiate instructor tags in module cards for instructors with the same name.
+* Order filter results of contacts and modules by how much they match the specified parameters (Coming soon).
+* Differentiate instructor tags in module cards for instructors with the same name (Coming soon).
 
 --------------------------------------------------------------------------------------------------------------------
 
