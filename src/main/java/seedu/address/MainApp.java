@@ -31,7 +31,7 @@ import seedu.address.storage.GoalBookStorage;
 import seedu.address.storage.JsonExerciseBookStorage;
 import seedu.address.storage.JsonGoalBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.StorageForExercise;
+import seedu.address.storage.Storage;
 import seedu.address.storage.StorageForGoal;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.StorageManagerForGoal;
@@ -50,7 +50,7 @@ public class MainApp extends Application {
 
     protected Ui ui;
     protected Logic logic;
-    protected StorageForExercise storage;
+    protected Storage storage;
     protected StorageForGoal goalStorage;
     protected Model model;
     protected Config config;
@@ -86,7 +86,7 @@ public class MainApp extends Application {
      * The data from the sample exercise book will be used instead if {@code storage}'s exercise book is not found,
      * or an empty exercise book will be used instead if errors occur when reading {@code storage}'s exercise book.
      */
-    private Model initModelManager(StorageForExercise storage,
+    private Model initModelManager(Storage storage,
                                    StorageForGoal goalStorage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyExerciseBook> exerciseBookOptional;
         ReadOnlyExerciseBook initialData;

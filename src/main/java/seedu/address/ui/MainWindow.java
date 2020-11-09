@@ -22,9 +22,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
-public class MainWindowForExercise extends UiPart<Stage> {
+public class MainWindow extends UiPart<Stage> {
 
-    private static final String FXML = "MainWindowForExercise.fxml";
+    private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -65,7 +65,7 @@ public class MainWindowForExercise extends UiPart<Stage> {
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public MainWindowForExercise(Stage primaryStage, Logic logic) {
+    public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
 
         // Set dependencies
