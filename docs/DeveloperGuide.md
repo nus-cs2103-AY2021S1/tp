@@ -11,7 +11,7 @@
 * [3.4. Storage Component](#35-storage-component)
 * [3.4. Common Class](#36-common-classes)
 
-4.[ Implementation](#4-implementation)  
+4.[ Implementation](#4-implementation) 
 5.[ Documentation, Logging and Testing](#5-documentation-logging-testing-configuration-dev-ops)  
 6.[ Appendix A: Requirements](#6-appendix-a-requirements)  
 7.[ Appendix B: User Stories](#7-appendix-b-user-stories)  
@@ -89,7 +89,7 @@ The sections below give more details of each component.
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ExerciseListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindowForExercise.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/resources/view/MainWindowForExercise.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -101,7 +101,7 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/logic/LogicForExercise.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `ExerciseBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -118,7 +118,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### 3.4. Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](diagrams/ModelClassDiagram.puml)
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/model/ExerciseModel.java)
 
@@ -141,7 +141,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/storage/StorageForExercise.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -155,6 +155,103 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## 4. Implementation
 
+### 4.1. Archive
+(Phyo Han)  
+
+Since Calo always stores all the exercises that the user did in the past, it is always a good idea to archive past exercises
+so that the user can start afresh without the past records slowing down the performance of the application. Therefore, Calo
+provides the user the `archive` function to stores these records. 
+
+#### 4.1.1. Implementation
+This section describes how the `archive` command is implemented. Unlike all the other command that only needs to interact
+with `Model` component, the `archive` command needs to interact with `Storage` component which is responsible for reading
+and writing `.json` file to the system, with the proper formatting for future read. 
+
+To implement this, before executing `ArchiveCommand`, the `LogicManager` will pass `Storage` to the `ArchiveCommand`.  
+
+A high level illustration of the executation is given in the following sequence diagram.
+
+
+Step 1: Users enter the command which will consists of the keyword `archive`, the parameter `f/` followed by the file location.
+This input is stored as a `String`.  
+Step 2: The `String` is then passed to `ExerciseBookParser` which will cascade the `String` into meaning parts.  
+Step 3: `ExerciseBookParser` create the `ArchiveCommand` and set the `Storage` component for `ArchiveCommand`.  
+Step 4: `ExerciseBookParser` passes the `ArchiveCommand` back to the `LogicManager` and the `LogicManager` executes the command.
+Step 5: During the executation, `ArchiveCommand` interacts with `Storage` who will write to the Local File on the user's computer.  
+Step 6: If the user has no permission to write on the specific file location, an error message will appear on user screen.
+Else, a success message will appear on the user Response Box.  
+
+![Archive Sequence Diagram](images/ArchiveSequenceDiagram.png)
+
+
+#### 4.1.2. Design Consideration
+
+**Aspect**: How to decide the file path?
+
+Alternative 1 (current choice): Have the user specify the file location and file name to store the archived file.
+* Pros: Easier to implement. The user have the freedom on where to store and what to call the archived file. 
+* Cons: Error prone. The user need to enter the file location  specifically whcih may be difficult for users who are used
+to GUI.
+* Reasons for choosing: Though this choice is more error prone, we decide that since our app is Command-Line Interface,
+our users are likely accustomed to entering file location and the freedom to decide the location and name is always nice
+to have. 
+
+
+Alternative 2: Have a dedicated file location that the file will be stored.
+* Pros: Easier for the user to archive.
+* Cons: Difficult for the system to give a meaningful name to the archived file. If we were to name the file as `file_1`,
+`file 2` etc, we need to check if there exists such file name first.
+
+
+
+### 4.2. Displaying Graph of Calories Burnt
+(Phyo Han)  
+
+Since Calo aims to encourage the user to get active and track his progress, a graph of how much calories burnt for the past
+few days can motivate the user to push further.
+
+#### 4.2.1. Implementation
+After each command, the UI will render itself through `MainWindow.fillInnerPart()` to update all the Ui Component. So
+during this rendering process, `CaloriesGraph` takes in `HashMap` that contains the `Date` as the key and total `Calories` burn
+for that day as the value. `CaloriesGraph` will then take values for the most recent 7 days (including today) and display
+them on the Calories Graph.
+
+
+Step 1: User enter a valid command.  
+Step 2: The command is passed to the `LogicManager` which parse and execute the command.  
+Step 3: After the update is done, `MainWindow` called `getCaloriesByDay()` which is a HashMap that contains the summarised information.  
+Step 4: `MainWinodw` re-render all its `Ui` component including `CaloriesGraph`.  
+
+![Flow Diagram for Calories Graph](images/CaloriesGraphFlowDiagram.png)
+
+The following is the Sequence Diagram that describes the process in slightly more detail, including the method call.  
+![Sequence Diagram for Calories Graph](images/CaloriesGraph.png)
+`
+
+#### 4.2.2. Design Consideration
+
+**Aspect**: How to generate the CaloriesGraph?
+
+Alternative 1 (current choice): Let the `LogicManager` passes a `HashMap<String,Integer>` that has `Date` as a key and
+sum of `Calories` as a Integer value to `MainWindow` after each command.
+Pros: Easy to implement.
+
+Alternative 2: Convert the `HashMap<String,Integer>` that 
+Pros: Follow the Design Pattern (Observer) and less stress on Call Stack (explained below)
+Cons: Needs of Refactoring. Calo team has implemented the CaloriesGraph before the idea of Observer Pattern is introduced
+to us. 
+
+**Reason for Not refactoring**:   
+The main reason is that it will not significant improvement in the performance of `Calo`, since the Ui needs to be re-rendered
+everything after a command anyway. The only downside to current implementation is the stress put on the call stack since
+in order to get the `HashMap` in `UniqueExerciseList` that contains the relevant information, it needs to be called through numerous
+classes, as shown below. Current version of Calo is still 'light' enough for the system to handle the stress, but given time
+`CaloriesGraph` should be refactored to fulfill the Observer Design Pattern especially when `Calo` get more complicated.
+
+![Calories Graph Call Stack](images/CaloriesGraphCallStack.png)
+
+#### 4.3. Template
+(Roy)  
 This section describes some noteworthy details on how certain features are implemented.
 I added the template class which stores information about a template. The template class has attributes name, calories,
 muscleTags, and tags. The class has the get methods for the different attributes and a toString method to convert the 
@@ -255,88 +352,83 @@ The following activity diagram summarizes what happens when a user executes an `
 
 ### Proposed Implementation of Undo
 
-The proposed undo/redo mechanism is facilitated by `VersionedExerciseBook`. It extends `ExerciseBook` with an undo/redo history, stored internally as an `exerciseBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+### 4.1. Searching for specific `exercise`
 
-* `VersionedExerciseBook#commit()` — Saves the current exercise book state in its history.
-* `VersionedExerciseBook#undo()` — Restores the previous exercise book state from its history.
-* `VersionedExerciseBook#redo()` — Restores a previously undone exercise book state from its history.
+(by Xinyi)
+=======
 
-These operations are exposed in the `Model` interface as `Model#commitExerciseBook()`, `Model#undoExerciseBook()` and `Model#redoExerciseBook()` respectively.
+This section addresses how the `find` and `recall` commands work. 
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+The `find` command allows users to search through the Exercise Book based on what users enter for the `Field`s. Users should enter at least one `Field`. The search results can then be displayed in the GUI's Exercise Book.
 
-Step 1. The user launches the application for the first time. The `VersionedExerciseBook` will be initialized with the initial exercise book state, and the `currentStatePointer` pointing to that single exercise book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the exercise book. The `delete` command calls `Model#commitExerciseBook()`, causing the modified state of the exercise book after the `delete 5` command executes to be saved in the `exerciseBookStateList`, and the `currentStatePointer` is shifted to the newly inserted exercise book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitExerciseBook()`, causing another modified exercise book state to be saved into the `exerciseBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitExerciseBook()`, so the exercise book state will not be saved into the `exerciseBookStateList`.
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoExerciseBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous exercise book state, and restores the exercise book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial ExerciseBook state, then there are no previous ExerciseBook states to restore. The `undo` command uses `Model#canUndoExerciseBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoExerciseBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the exercise book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `exerciseBookStateList.size() - 1`, pointing to the latest exercise book state, then there are no undone ExerciseBook states to restore. The `redo` command uses `Model#canRedoExerciseBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the exercise book, such as `list`, will usually not call `Model#commitExerciseBook()`, `Model#undoExerciseBook()` or `Model#redoExerciseBook()`. Thus, the `exerciseBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitExerciseBook()`. Since the `currentStatePointer` is not pointing at the end of the `exerciseBookStateList`, all exercise book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire exercise book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### Aspect: How to archive Data
-
-* **Current Choice:** Using Archive Command.
-  * Implementation: Have a separate Archive Command to let the User specify the file location.
-  * Pros: The user can specify the location where users want to save the data.
-  * Cons: Error prone. The user need to enter the file location specification which may be difficult for users who are not used to command prompt.
+Meanwhile, the `recall` command allows users to search for the most recent exercise with the specific name entered by the user.
 
 
+[NOTE]
+`Field`s here indicate which `Exercise` attributes we are interested in. Exact search finds `Exercise` objects with values that exactly match the user-specified values of the fields (`Name`, `Description`, `Date` ,`Calories`).
+Meanwhile, keyword search finds matches for the user-entered keywords in any part of the `Name` or any part of the `Description`.
+If the user uses exact search and keyword search together, it will find `Exercise` objects that match both the exact search and keyword search.
+
+The above commands rely on `FindCommand` and `RecallCommand` objects respectively. Objects of both classes use a `Predicate<Exercise>` object to filter through the `Exercise` list,
+and the exercises evaluated to be true by these predicates will be listed in GUI Exercise List.
+
+#### 4.1.1. Implementation
+
+To search via the user-specified `Exercise` attributes, We use `FindCommandParser` to create the `PropertiesMatchPredicate` with all the user inputs. This predicate returns true only when the exercise matches all the given fields.
+This predicate is then used to construct a new `FindCommand` object, which changes the GUI display when executed.
+
+The sequence diagram below demonstrates how the `find` command works:
+//diagram to add
+
+How the `find` command works:
+
+Step 1: `LogicManager` executes the user input, using `ExerciseBookParser` to realise this is a `find` command, and create a new `FindCommandParser` object.
+
+Step 2: The `FindCommandParser` object parses the user-entered arguments, and creates a `PropertiesMatchPredicate`.
+
+Step 3: This `PropertiesMatchPredicate` object is  then used to construct a new `FindCommand` object, returned to `LogicManager`.
+
+Step 4: `LogicManager` calls the `execute` method of the created `FindCommand`, which filters for `Exercise` objects that evaluate the predicate created previously to be true.
+It then returns a new CommandResult object reflecting the status of the execution. These changes are eventually reflected in the GUI.
+
+The `find` command therefore searches through the existing Exercise List and then displays the relevant search results in the GUI’s Exercise List.
+
+To search for the most recent exercise with the user-specified `Name`, we use `RecallCommandParser` to parse the user input and create a new `RecallCommand` object with the parsed input.
+The `RecallCommand` then goes through the existing Exercise List to find the most recent date, creates the `TheMostRecentDatePredicate`, and updates the GUI display when executed.
+
+The sequence diagram below demonstrates how the `recall` command works:
+//diagram to add
+
+How the `recall` command works:
+
+Step 1: `LogicManager` executes the user input, using `ExerciseBookParser` to realise this is a `recall` command, and create a new `RecallCommandParser` object.
+
+Step 2: The `RecallCommandParser` object parses the user-entered arguments, and creates a `RecallCommand` object which is returned to `LogicManager`.
+
+Step 3: `LogicManager` calls the `execute` method of the created `RecallCommand`, which creates the `TheMostRecentDatePredicate` and filters for `Exercise` objects that evaluate the predicate created previously to be true.
+It then returns a new CommandResult object reflecting the status of the execution. These changes are eventually reflected in the GUI.
+
+The `recall` command therefore searches for the most recent exercise with the specified name in the existing Exercise List and then displays the relevant search results in the GUI.
+
+#### 4.1.2. Design considerations
+
+##### Aspect: Case-sensitivity for user inputs
+* **Alternative 1 (current choice):** The inputs for `Name`, `Description`, and `Keyword` are case-insensitive.
+  * Pros: More user-friendly.
+  * Cons: Cannot get precise results if the user wants to search in a case-sensitive way.
+
+* **Alternative 2:** The inputs for `Name`, `Description`, and `Keyword` are case-sensitive.
+  * Pros: Users can get exact match for their inputs. e.g. Push Up will not match push UP.
+  * Cons: It is likely that users cannot clearly remember the case of `Name`s and `Description`s of the exercises. The `find` command will be harder for the user to use.
+
+##### Aspect: How to find and display the most recent exercise
+* **Alternative 1 (current choice):** Goes through the Exercise Book to find the most recent date and filters for the `Exercise` with specified `Name` and `Date`
+  * Pros: Easy to implement. Uses the same exercise list as other commands do.
+  * Cons: Users cannot get other information except for the most recent `Exercise`.
+
+* **Alternative 2:** Get all the `Exercise`s with the specified name and reorder them by most recent.
+  * Pros: Users can take a look at other similar `Exercise`s besides the most recent one.
+  * Cons: Needs to create another Exercise List. Other commands will not work on the newly created list.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -364,6 +456,7 @@ _{more aspects and alternatives to be added}_
 
 **Value proposition**: manage workouts faster than a typical mouse/GUI driven desktop/mobile app
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### 7. Appendix B: User stories
 
@@ -372,31 +465,133 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | user                                       | add an exercise                | keep track of calories burnt through the day                           |
-| `* * *`  | user                                       | have a system that tolerate invalid/incomplete command      |                                                                        |
-| `* * *`  | data conscious user                        | list down all the exercises for the day       | monitor the calories burned accurately                                   |
-| `* * *`  | user                                       | delete an exercise in case I key in wrongly          |  |
-| `* *`    | user                                       | update an exercise             |                 |
-| `* *`    | user                                       | save my data in a file         | import the saved data into the new computer                                                 |
-
-*{More to be added}*
+| `* * *`  | user                                       | create a template | store exercises that I do frequently for future reference. |
+| `* * *`  | user                                       | create an exercise based on template | record exercises that I do frequently faster. |
+| `* * *`  | user                                       | delete an exercise in case I key in wrongly |  |
+| `* * *`  | user                                       | have a system that tolerate invalid/incomplete command |           |
+| `* * *`  | data conscious user                        | list down all the exercises for the day | monitor the calories burned accurately |
+| `* * *`  | user                                       | see all the templates I have created | |
+| `* * *`  | user                                       | see my progress for the past week | know the progress that I have been making so far |
+| `* *`    | user                                       | add tags to an Exercise | |
+| `* *`    | user                                       | create an exercise from template with different details such as calories | account for the same exercises that I did with different intensity  |
+| `* *`    | user                                       | clear all information stored in the application | |
+| `* *`    | user                                       | find the most recent information of a particular exercise | |
+| `* *`    | user                                       | indicate which are the muscle group that an exercise work on | better track which muscles that I have worked on |
+| `* *`    | user                                       | know how much more calories I need to burn to reach the goal | |
+| `* *`    | user                                       | set a goal for a day | |
+| `* *`    | user                                       | update an exercise             |  |
+| `*`    | user                                       | save my data in a file         | import the saved data into the new computer |
 
 ### 8. Appendix C: Use cases
 
 (For all use cases below, the **System** is the `Calo` and the **Actor** is the `user`, unless specified otherwise)
 
-  #### **Use case: add an exercise**
+#### **Use case: Add an exercise**
 
-  *MSS*
-
-1.  User requests to add an exercise
-
-2.  Calo adds the exercise and displays on the Graph.
+*MSS*
+1.  User requests to add an exercise  
+2.  Calo adds the exercise and displays on the Graph.  
   Use case ends.
+
+*Extensions*
+<p>
+    The request have some missing compulsory information.<br>  
+      1a1. Calo shows an error message, information the user about the correct format and information necessary.<br>  
+    Use case ends.  
+</p>
+
+#### **Use case: Add a template**
+
+*MSS*
+1.  User requests to create a template for an exercise  
+2.  Calo adds the template and displays on the Template Panel.  
+  Use case ends.
+
+*Extensions*
+<p>
+    The request have some missing compulsory information. <br> 
+      1a1. Calo shows an error message, information the user about the correct format and information necessary. <br>  
+    Use case ends.  
+</p>
+
+<p>
+    Template with the same name exists.<br>
+      1a1. Calo shows an error message, informing the user about duplicate template.<br>  
+    Use case ends.<br>
+</p>
+
+#### **Use case: Add a goal**
+
+*MSS*
+1.  User requests to create a goal for a day.  
+2.  Calo adds the template and displays on the Template Panel.    
+  Use case ends.
+
+*Extensions*
+<p>
+    The request have some missing compulsory information. <br> 
+      1a1. Calo shows an error message, information the user about the correct format and information necessary. <br>  
+    Use case ends.  
+</p>
+
+<p>
+    The user have already set a goal for the specific day. <br> 
+      1a1. Calo shows an error message, information the user about the pre-existing goal. <br>  
+    Use case ends.  
+</p>
+
+
+
+
+#### **Use case: Archive data**
+  *MSS*
+1.  User requests to archive data to a different file location
+2.  Calo archives data to the specified location
+    Use case ends.
+
+*Extensions*
+<p>
+    1a. User does not have permission to create file at specified location <br>
+      1a1. Calo shows a message indicating that file cannot be created at specified file.<br>
+    Use case ends.
+</p>
+
+
+#### **Use case: Create Template**
+*MSS*
+1.  User requests to create a template for an exercise  
+2.  Calo adds the template and displays on the Template Panel.  
+    Use case ends.
+
+*Extensions*
+<p>
+    The request have some missing compulsory information.<br>
+      1a1. Calo shows an error message, information the user about the correct format and information necessary.<br>
+    Use case ends.<br>
+</p>
+
+<p>
+    Template with the same name exists.<br>  
+      1a1. Calo shows an error message, informing the user about duplicate template.<br>  
+    Use case ends.<br>
+</p>
+
+#### **Use case: Add Exercise based on Template**
+*MSS*
+1.  User requests to add an exercise from a template he previously created.
+2.  Calo adds the template and displays on the Exercise Panel.  
+    Use case ends.
+
+*Extensions*
+<p>
+    The template does not exist.<br>
+      1a1. Calo shows an error message, information the user about the template does not exist.<br>  
+    Use case ends.<br>
+</p>
 
 #### **Use case: Find exercises with a keyword**
 
-*MSS*
-
+*MSS*  
 1.  User requests to find exercises with a keyword
 2.  Calo shows a list of exercises which contain the keyword
     Use case ends.
@@ -405,15 +600,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <p>
     The list is empty <br>
       1a1. Calo shows a message indicating that no such exercise exists.<br>
-    Use case ends.
+    Use case ends.<br>
 </p>
+
+#### **Use case: Recall exercises with a keyword**
+
+*MSS*  
+1.  User requests to recall the most recent time he did an exercise.
+2.  Calo shows the details of the most recent exercise with the given time.
+    Use case ends.
+
+*Extensions*
+<p>
+    The user have never done the exercise.<br>
+      1a1. Empty list is shown.<br>
+    Use case ends.<br>
+</p>
+
 
 #### **Use case: Update an exercise**
 
 *MSS*
 
 1.  User requests to update a specific exercise in the list
-2.  Calo updates the exercise
+2.  Calo updates the exercise and the Calories Graph changes accordingly.
     Use case ends.<br>
 *Extensions*
 <p>
@@ -438,25 +648,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 </p>
 
-  #### **Use case: Archive data**
-  *MSS*
-  1.  User requests to archive data to a different file location
-  2.  Calo archives data to the specified location
-    Use case ends.
 
-*Extensions*
-<p>
-    1a. User does not have permission to create file at specified location <br>
-      1a1. Calo shows a message indicating that file cannot be created at specified file.<br>
-    Use case ends.
-</p>
+#### **Use case: List exercises**
 
-  #### **Use case: List exercises**
-
-  *MSS*<br>
-  1.  User requests to list exercises
-  2.  Calo shows a list of exercises
-      Use case ends.
+*MSS*
+1.  User requests to list exercises
+2.  Calo shows a list of exercises
+  Use case ends.
 
 ### 9. Appendix D: Non-Functional Requirements
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.

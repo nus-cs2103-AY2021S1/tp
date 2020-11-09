@@ -1,0 +1,19 @@
+@startuml
+start
+:User executes command;
+:LogicManager update the ExerciseBook;
+: currentDay = today;
+
+while (currentDay > today - 7) is (true)
+    : Get total caloires for currentDay from ExerciseBook;
+    if (currentDay exists in ExerciseBook? ) then ([yes])
+    : calories[currentDay] = retrieved_info;
+    else ([else])
+    : calories[currentDay] = 0;
+    endif
+    :currentDay = currentDay - 1;
+endwhile (false)
+
+:Display result on on CaloriesGraph Ui;
+stop
+@enduml
