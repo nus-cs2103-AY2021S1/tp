@@ -1,0 +1,19 @@
+@startuml
+!include ../style.puml
+
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":Storage" as Storage STORAGE_COLOR
+participant ":TaskListStorage" as TaskListStorage STORAGE_COLOR
+
+
+
+LogicManager -[LOGIC_COLOR]> Storage : saveTaskList(ReadOnlyTaskList)
+activate Storage STORAGE_COLOR
+Storage -[STORAGE_COLOR]> TaskListStorage : saveTaskList(ReadOnlyTaskList)
+activate TaskListStorage STORAGE_COLOR
+TaskListStorage --[STORAGE_COLOR]> Storage
+deactivate TaskListStorage
+Storage --[STORAGE_COLOR]> LogicManager
+deactivate Storage
+
+@enduml

@@ -6,12 +6,18 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskList;
+import seedu.address.model.TaskList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Event;
+import seedu.address.model.task.MeetingLink;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.Todo;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -38,6 +44,30 @@ public class SampleDataUtil {
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"))
         };
+    }
+    public static Task[] getSampleTasks() {
+        return new Task[] {
+            new Todo("Finish assignment", "19-11-2020 2359", getTagSet("CS2100")),
+            new Todo("Finish tutorial worksheet", "16-11-2020 2359", getTagSet("CS2100")),
+            new Todo("Complete next iteration", "22-11-2020 2359", getTagSet("CS2103T")),
+            new Event("Attend group meeting", "20-11-2020 1000", "20-11-2020 1200",
+                    new MeetingLink("Group meeting", "https://www.facebook.com", "20-11-2020 1000"),
+                    getTagSet("CS2103T")),
+            new Event("Attend lecture", "17-11-2020 1200", "17-11-2020 1300", getTagSet("CS2100")),
+            new Event("Meet friends for lunch", "17-11-2020 1300", "17-11-2020 1400", getTagSet("Friends")),
+            new Todo("Finish assignment", "19-12-2020 2359", getTagSet("CS2105")),
+            new Event("Attend group meeting", "20-12-2020 1000", "20-12-2020 1200",
+                    new MeetingLink("Friends meeting", "https://www.example.com", "20-12-2020 1000"),
+                    getTagSet("CS2103T"))
+        };
+    }
+
+    public static ReadOnlyTaskList getSampleTaskList() {
+        TaskList sampleTl = new TaskList();
+        for (Task sampleTask: getSampleTasks()) {
+            sampleTl.addTask(sampleTask);
+        }
+        return sampleTl;
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {

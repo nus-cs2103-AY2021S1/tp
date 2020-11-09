@@ -1,0 +1,72 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "d:EditEventCommand" as EditEventCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "e:Event" as Event MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit event desc/Complete homework starttime/2359")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("edit event desc/Complete homework starttime/2359")
+activate AddressBookParser
+
+create EditCommandParser
+AddressBookParser -> EditCommandParser
+activate EditCommandParser
+
+create Event
+EditCommandParser -> Event : new Event("Complete homework date", "12-12-2020 2359" )
+activate Event
+
+Event --> EditCommandParser : e
+deactivate Event
+
+create EditEventCommand
+EditCommandParser -> EditEventCommand : new EditEventCommand(e)
+activate EditEventCommand
+
+EditEventCommand --> EditCommandParser : d
+deactivate EditEventCommand
+
+EditCommandParser --> AddressBookParser : d
+deactivate EditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> AddressBookParser
+destroy EditCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> EditEventCommand : execute()
+activate EditEventCommand
+
+
+EditEventCommand -> Model : setTask(eventToEdit, editedEvent)
+activate Model
+
+Model --> EditEventCommand
+deactivate Model
+
+create CommandResult
+EditEventCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditEventCommand
+deactivate CommandResult
+
+EditEventCommand --> LogicManager : result
+deactivate EditEventCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

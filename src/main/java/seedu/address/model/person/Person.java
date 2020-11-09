@@ -108,10 +108,13 @@ public class Person {
         builder.append(getName())
                 .append(" Phone: ")
                 .append(getPhone())
+                .append("\n")
                 .append(" Email: ")
                 .append(getEmail())
+                .append("\n")
                 .append(" Address: ")
                 .append(getAddress())
+                .append("\n")
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

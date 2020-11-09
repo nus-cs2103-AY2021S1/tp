@@ -1,0 +1,29 @@
+@startuml
+!include ../style.puml
+
+group sd save file
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":Model" as Model MODEL_COLOR
+Participant ":Storage" as Storage STORAGE_COLOR
+
+LogicManager -[LOGIC_COLOR]> Model : getAddressBook()
+activate Model MODEL_COLOR
+Model --[MODEL_COLOR]> LogicManager : ReadOnlyAddressBook
+deactivate Model
+
+LogicManager -[LOGIC_COLOR]> Storage : saveAddressBook(ReadOnlyAddressBook)
+activate Storage STORAGE_COLOR
+Storage --[STORAGE_COLOR]> LogicManager
+deactivate Storage
+
+LogicManager -[LOGIC_COLOR]> Model : getTaskList()
+activate Model MODEL_COLOR
+Model --[MODEL_COLOR]> LogicManager : ReadOnlyTaskList
+deactivate Model
+
+LogicManager -[LOGIC_COLOR]> Storage : saveTaskList(ReadOnlyTaskList)
+activate Storage STORAGE_COLOR
+Storage --[STORAGE_COLOR]> LogicManager
+deactivate Storage
+end group
+@enduml

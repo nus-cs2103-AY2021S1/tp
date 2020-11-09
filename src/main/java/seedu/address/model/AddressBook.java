@@ -117,4 +117,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+    public boolean isEmpty() {
+        return persons.isEmpty();
+    }
 }

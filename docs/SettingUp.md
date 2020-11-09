@@ -50,6 +50,8 @@ If you plan to use Intellij IDEA (highly recommended):
 1. **Do the tutorials**
    These tutorials will help you get acquainted with the codebase.
 
-   * [Tracing code](tutorials/TracingCode.md)
-   * [Removing fields](tutorials/RemovingFields.md)
-   * [Adding a new command](tutorials/AddRemark.md)
+   We recommend you do these tutorials on the [parent codebase](https://github.com/nus-cs2103-AY2021S1/tp).
+
+   * [Tracing code](https://se-education.org/addressbook-level3/tutorials/TracingCode.html)
+   * [Removing fields](https://se-education.org/addressbook-level3/tutorials/RemovingFields.html)
+   * [Adding a new command](https://se-education.org/addressbook-level3/tutorials/AddRemark.html)

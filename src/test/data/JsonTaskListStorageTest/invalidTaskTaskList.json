@@ -1,0 +1,12 @@
+{
+  "tasks" : [ {
+    "@type" : "JsonAdaptedTodo",
+    "description" : "Invalid Task",
+    "isDone" : false,
+    "deadline" : "Invalid Date",
+    "linkDesc" : "",
+    "linkUrl" : "",
+    "recurrence" : null,
+    "tagged" : [ "CS2100" ]
+  }]
+}

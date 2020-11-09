@@ -1,0 +1,21 @@
+{
+  "tasks" : [ {
+    "@type" : "JsonAdaptedTodo",
+    "description" : "ValidTask",
+    "isDone" : false,
+    "deadline" : "2020-10-19T23:59:00",
+    "linkDesc" : "",
+    "linkUrl" : "",
+    "recurrence" : null,
+    "tagged" : [ "Tag" ]
+  }, {
+    "@type" : "JsonAdaptedTodo",
+    "description" : "InvalidTask",
+    "isDone" : false,
+    "deadline" : "Invalid Date",
+    "linkDesc" : "",
+    "linkUrl" : "",
+    "recurrence" : null,
+    "tagged" : [ "Tag" ]
+  } ]
+}

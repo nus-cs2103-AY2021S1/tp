@@ -5,55 +5,58 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You may reach us through the following email addresses:
+
+* Uriel Tan: urieltan@comp.nus.edu.sg
+* Chua Chen Ler: chua.chenler@u.nus.edu
+* Kevin William: kevinwilliam@u.nus.edu
+* Lucia Tirta Gunawan: luciatirtag@u.nus.edu
+* Lin Yuan Xun, Caleb: caleblyx@u.nus.edu
 
 ## Project team
 
-### John Doe
+### Tan Hong Jie Uriel
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/urieltan.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/urieltan)]
+[[portfolio](team/urieltan.md)]
 
-* Role: Project Advisor
+* Role: Developer Guide, Testing
 
-### Jane Doe
+### Chua Chen Ler
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lerxcl.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/lerxcl)]
+[[portfolio](team/lerxcl.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team Lead, Deliverables and deadlines, Scheduling and tracking
 
-### Johnny Doe
 
-<img src="images/johndoe.png" width="200px">
+### Lin Yuan Xun, Caleb
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+<img src="images/caleblyx.png" width="200px">
 
-* Role: Developer
-* Responsibilities: Data
+[[github](http://github.com/caleblyx)]
+[[portfolio](team/caleblyx.md)]
 
-### Jean Doe
+* Role: User guide, Intellij expert, Merge conflict solver
 
-<img src="images/johndoe.png" width="200px">
+### Lucia Tirta Gunawan
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/luciatirta.png" width="200px">
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+[[github](http://github.com/luciatirta)]
+[[portfolio](team/luciatirta.md)]
 
-### James Doe
+* Role: Testing, Ui Expert
 
-<img src="images/johndoe.png" width="200px">
+### Kevin William
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/kevnw.png" width="200px">
 
-* Role: Developer
-* Responsibilities: UI
+[[github](http://github.com/kevnw)]
+[[portfolio](team/kevnw.md)]
+
+* Role: Integration, Code quality, Github Expert

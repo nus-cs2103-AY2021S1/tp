@@ -1,0 +1,25 @@
+{
+  "tasks" : [ {
+    "@type" : "JsonAdaptedEvent",
+    "description" : "meeting",
+    "isDone" : false,
+    "start" : "2020-12-12T10:00:00",
+    "end" : "2020-12-12T11:30:00",
+    "linkDesc" : null,
+    "linkUrl" : null,
+    "linkTime" : null,
+    "recurrence" : null,
+    "tagged" : [ "CS2103T" ]
+  }, {
+    "@type" : "JsonAdaptedEvent",
+    "description" : "meeting",
+    "isDone" : false,
+    "start" : "2020-12-12T10:00:00",
+    "end" : "2020-12-12T11:30:00",
+    "linkDesc" : null,
+    "linkUrl" : null,
+    "linkTime" : null,
+    "recurrence" : null,
+    "tagged" : [ "CS2103T" ]
+  }]
+}

@@ -1,0 +1,13 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR
+skinparam classBackgroundColor LOGIC_COLOR
+!define ABSTRACT &#123;abstract&#125;
+
+interface Parser <<Interface>>
+class AddCommandParser
+
+Parser <|.. AddCommandParser
+
+@enduml

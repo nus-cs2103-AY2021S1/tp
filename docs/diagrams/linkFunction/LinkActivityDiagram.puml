@@ -1,0 +1,19 @@
+@startuml
+start
+:User executes `link meeting` / `link doc` command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command is valid])
+    if () then([command is link meeting])
+        : Add or edit the link to event;
+    else ([else])
+        : Add or edit the link to todo;
+    endif
+else ([else])
+    : Error message displayed;
+endif
+    : Results shown;
+stop
+@enduml

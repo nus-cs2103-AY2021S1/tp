@@ -1,0 +1,14 @@
+{
+  "tasks" : [ {
+    "@type" : "JsonAdaptedEvent",
+    "description" : "meeting",
+    "isDone" : false,
+    "start" : "2020-12-12T10:00:00",
+    "end" : "2020-12-12T11:30:00",
+    "linkDesc" : "hello",
+    "linkUrl" : "invaid",
+    "linkTime" : "2020-12-12T10:00:00",
+    "recurrence" : null,
+    "tagged" : [ "CS2103T" ]
+  }]
+}

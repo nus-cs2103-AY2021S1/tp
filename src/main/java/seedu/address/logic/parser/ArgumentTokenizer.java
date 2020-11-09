@@ -1,9 +1,16 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.EXTRA_ARGUMENT_MESSAGE;
+import static seedu.address.commons.core.Messages.EXTRA_SINGULAR_ARGUMENT_MESSAGE;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Tokenizes arguments string of the form: {@code preamble <prefix>value <prefix>value ...}<br>
@@ -23,8 +30,37 @@ public class ArgumentTokenizer {
      * @param prefixes   Prefixes to tokenize the arguments string with
      * @return           ArgumentMultimap object that maps prefixes to their arguments
      */
-    public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
+    public static ArgumentMultimap tokenize (String argsString, Prefix... prefixes) throws ParseException {
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
+        List<PrefixPosition> allPrefixPositions = findEveryPrefixPositions(argsString);
+
+        // Check that there are no extra prefixes
+        for (PrefixPosition prefixPosX : allPrefixPositions) {
+            boolean isPrefixExist = false;
+            for (PrefixPosition prefixPosY : positions) {
+                if (prefixPosX.equals(prefixPosY)) {
+                    isPrefixExist = true;
+                }
+            }
+            if (!isPrefixExist) {
+                throw new ParseException(String.format(EXTRA_ARGUMENT_MESSAGE, prefixPosX));
+            }
+        }
+        List<Prefix> singularPrefixList = positions
+                .stream()
+                .map(PrefixPosition::getPrefix)
+                .filter(CliSyntax::isPrefixSingular)
+                .collect(Collectors.toList());
+
+        List<Prefix> checkDuplicateList = new ArrayList<>();
+        for (Prefix prefix : singularPrefixList) {
+            if (checkDuplicateList.stream().anyMatch(prefix::equals)) {
+                throw new ParseException(String.format(EXTRA_SINGULAR_ARGUMENT_MESSAGE, prefix));
+            } else {
+                checkDuplicateList.add(prefix);
+            }
+        }
+
         return extractArguments(argsString, positions);
     }
 
@@ -39,6 +75,26 @@ public class ArgumentTokenizer {
         return Arrays.stream(prefixes)
                 .flatMap(prefix -> findPrefixPositions(argsString, prefix).stream())
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Finds every zero-based prefix positions in the given arguments string.
+     * Primarily used for finding out prefixes that don't fit.
+     *
+     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
+     * @return           List of zero-based prefix positions in the given arguments string
+     */
+    private static List<PrefixPosition> findEveryPrefixPositions(String argsString) {
+        String regex = " [a-zA-Z]*/";
+        Pattern p = Pattern.compile(regex);
+
+        ArrayList<PrefixPosition> everyPrefixPosition = new ArrayList<>();
+        Matcher m = p.matcher(argsString);
+        while (m.find()) {
+            everyPrefixPosition.add(new PrefixPosition(new Prefix(argsString.substring(m.start() + 1, m.end())),
+                    m.start() + 1));
+        }
+        return everyPrefixPosition;
     }
 
     /**
@@ -143,6 +199,24 @@ public class ArgumentTokenizer {
         Prefix getPrefix() {
             return prefix;
         }
-    }
 
+        @Override
+        public boolean equals(Object obj) {
+            if (!(obj instanceof PrefixPosition)) {
+                return false;
+            }
+            if (obj == this) {
+                return true;
+            }
+
+            PrefixPosition otherPrefix = (PrefixPosition) obj;
+            return otherPrefix.getPrefix().equals(getPrefix())
+                    && startPosition == otherPrefix.getStartPosition();
+        }
+
+        @Override
+        public String toString() {
+            return prefix.toString();
+        }
+    }
 }

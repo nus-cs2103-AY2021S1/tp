@@ -1,0 +1,36 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+AddressBook *-right-> "1" UniquePersonList
+AddressBook *-right-> "1" UniqueTagList
+UniqueTagList -[hidden]down- UniquePersonList
+UniqueTagList -[hidden]down- UniquePersonList
+
+
+UniqueTagList *-right-> "*" Tag
+UniquePersonList o-right-> "*" Person
+
+Person -up-> "*" Tag
+
+Person *--> "1" Name
+Person *--> "1" Phone
+Person *--> "1" Email
+Person *--> "1" Address
+
+TaskList *-right-> "1" UniqueTaskList
+TaskList *--> "1" UniqueTagList
+UniqueTaskList o-right-> "*" "{abstract} Task"
+"{abstract} Task" -down-> "*" Tag
+Todo -left-|> "{abstract} Task"
+Event -down-|> "{abstract} Task"
+"{abstract} Task" *-down-> "1" Recurrence
+"{abstract} Task" *--> "1" "{abstract} Link"
+CollaborativeLink --|> "{abstract} Link"
+MeetingLink --|> "{abstract} Link"
+Event *--> "1" MeetingLink
+Todo *--> "1" CollaborativeLink
+
+@enduml

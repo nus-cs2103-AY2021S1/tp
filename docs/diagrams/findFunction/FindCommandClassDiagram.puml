@@ -1,0 +1,18 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR
+skinparam classBackgroundColor LOGIC_COLOR
+
+abstract class "{abstract}\nCommand" as Command
+abstract class "{abstract}\nFindCommand" as FindCommand
+class FindContactCommand
+class FindEventCommand
+class FindTodoCommand
+
+Command <|-- FindCommand
+FindCommand <|-- FindContactCommand
+FindCommand <|-- FindEventCommand
+FindCommand <|-- FindTodoCommand
+
+@enduml

@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+Interface Ui <<Interface>>
+Class "{abstract}\nUiPart" as UiPart
+Class UiManager
+Class MainWindow
+Class HelpWindow
+Class ResultDisplay
+Class TaskListPanel
+Class TaskCard
+Class PersonListPanel
+Class PersonCard
+Class StatusBarFooter
+Class CommandBox
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+package Logic <<Rectangle>> {
+Class HiddenLogic #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Ui
+
+UiManager .left.|> Ui
+UiManager -down-> MainWindow
+MainWindow *-left->"taskListPanel" TaskListPanel
+MainWindow *-left->"dueSoonTaskListPanel" TaskListPanel
+MainWindow --> HelpWindow
+MainWindow *--> CommandBox
+MainWindow *--> ResultDisplay
+MainWindow *--> PersonListPanel
+MainWindow *--> StatusBarFooter
+
+PersonListPanel --> PersonCard
+TaskListPanel --> TaskCard
+
+MainWindow --|> UiPart
+
+TaskListPanel --|> UiPart
+TaskCard --|> UiPart
+ResultDisplay --|> UiPart
+CommandBox --|> UiPart
+PersonListPanel --|> UiPart
+PersonCard --|> UiPart
+StatusBarFooter --|> UiPart
+HelpWindow --|> UiPart
+
+PersonCard .left.> Model
+TaskCard .left.> Model
+UiManager -right-> Logic
+MainWindow -right-> Logic
+
+PersonListPanel -[hidden]right- ResultDisplay
+TaskListPanel -[hidden]right- PersonListPanel
+CommandBox -[hidden]right- ResultDisplay
+ResultDisplay -[hidden]right- StatusBarFooter
+StatusBarFooter -[hidden]right- HelpWindow
+
+@enduml

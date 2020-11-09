@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes an add task command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([task is in the Task List])
+    :Task will not be added;
+else ([else])
+    : Task will be added to Task List;
+endif
+    : Task List is updated;
+stop
+@enduml

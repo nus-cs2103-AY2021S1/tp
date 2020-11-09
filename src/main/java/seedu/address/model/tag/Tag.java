@@ -44,11 +44,14 @@ public class Tag {
         return tagName.hashCode();
     }
 
+    public Tag getTag() {
+        return this;
+    }
+
     /**
      * Format state as text for viewing.
      */
     public String toString() {
         return '[' + tagName + ']';
     }
-
 }

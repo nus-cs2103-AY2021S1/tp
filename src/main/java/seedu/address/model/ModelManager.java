@@ -1,17 +1,24 @@
 package seedu.address.model;
 
+import static java.time.temporal.ChronoUnit.WEEKS;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Event;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.Todo;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,12 +28,17 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final SortedList<Person> sortedPersons;
     private final FilteredList<Person> filteredPersons;
+    private final SortedList<Task> sortedTasks;
+    private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Task> dueSoonTasks;
+    private final TaskList taskList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyTaskList taskList) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -34,11 +46,30 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.taskList = new TaskList(taskList);
+        sortedPersons = new SortedList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(sortedPersons);
+        sortedTasks = new SortedList<>(this.taskList.getTaskList());
+        filteredTasks = new FilteredList<>(sortedTasks);
+        dueSoonTasks = new FilteredList<>(sortedTasks, task -> {
+            if (task.getStatus()) {
+                return false;
+            } else {
+                LocalDateTime currentDateTimePlusOneWeek = LocalDateTime.now().plus(1, WEEKS);
+                LocalDateTime deadline = null;
+                if (task instanceof Todo) {
+                    deadline = task.getDeadline();
+                } else if (task instanceof Event) {
+                    deadline = task.getEnd();
+                }
+                assert deadline != null : "Task's deadline is not defined properly!";
+                return deadline.isBefore(currentDateTimePlusOneWeek) && deadline.isAfter(LocalDateTime.now());
+            }
+        });
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new TaskList());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -112,6 +143,15 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean filteredAddressBookIsEmpty() {
+        return filteredPersons.isEmpty();
+    }
+    @Override
+    public boolean addressBookIsEmpty() {
+        return addressBook.isEmpty();
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -145,7 +185,85 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredTasks.equals(other.filteredTasks);
+    }
+
+    @Override
+    public void updateSortedPersonList(Comparator<Person> personComparator) {
+        sortedPersons.setComparator(personComparator);
+    }
+    //=========== TaskList ================================================================================
+    @Override
+    public void addTodo(Todo todo) {
+        taskList.addTask(todo);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+    @Override
+    public void addEvent(Event event) {
+        this.taskList.addTask(event);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+    @Override
+    public void addTask(Task task) {
+        this.taskList.addTask(task);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+    @Override
+    public void deleteTodo(Task task) {
+        this.taskList.removeTask(task);
+    }
+    @Override
+    public void deleteEvent(Task task) {
+        this.taskList.removeTask(task);
+    }
+    @Override
+    public ReadOnlyTaskList getTaskList() {
+        return taskList;
+    }
+
+    public boolean hasTask(Task task) {
+        return this.taskList.hasTask(task);
+    }
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+        taskList.setTask(target, editedTask);
+    }
+    @Override
+    public void markAsDone(Task target) {
+        requireAllNonNull(target);
+        taskList.markAsDone(target);
+    }
+    @Override
+    public boolean filteredTaskListIsEmpty() {
+        return filteredTasks.isEmpty();
+    }
+
+    @Override
+    public boolean taskListIsEmpty() {
+        return taskList.isEmpty();
+    }
+
+    //=========== Filtered Task List Accessors =============================================================
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
+
+    @Override
+    public ObservableList<Task> getDueSoonTaskList() {
+        return dueSoonTasks;
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<? super Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
+    }
+    @Override
+    public void updateSortedTaskList(Comparator<Task> taskComparator) {
+        sortedTasks.setComparator(taskComparator);
     }
 
 }

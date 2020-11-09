@@ -1,0 +1,60 @@
+{
+  "tasks" : [ {
+    "@type" : "JsonAdaptedTodo",
+    "description" : "homework",
+    "isDone" : false,
+    "deadline" : "2020-12-12T23:59:00",
+    "linkDesc" : "",
+    "linkUrl" : null,
+    "recurrence" : null,
+    "tagged" : [ ]
+  }, {
+    "@type" : "JsonAdaptedTodo",
+    "description" : "do chores",
+    "isDone" : false,
+    "deadline" : "2020-01-01T18:00:00",
+    "linkDesc" : "",
+    "linkUrl" : null,
+    "recurrence" : {
+      "value" : 1,
+      "chronoUnit" : "WEEKS"
+    },
+    "tagged" : [ ]
+  }, {
+    "@type" : "JsonAdaptedTodo",
+    "description" : "finish assignment",
+    "isDone" : false,
+    "deadline" : "2020-10-01T16:00:00",
+    "linkDesc" : "",
+    "linkUrl" : null,
+    "recurrence" : null,
+    "tagged" : [ "cs2100" ]
+  }, {
+    "@type" : "JsonAdaptedTodo",
+    "description" : "update user guide",
+    "isDone" : false,
+    "deadline" : "2021-10-05T20:00:00",
+    "linkDesc" : "",
+    "linkUrl" : null,
+    "recurrence" : null,
+    "tagged" : [ "CS2103T" ]
+  }, {
+    "@type" : "JsonAdaptedTodo",
+    "description" : "update developer guide",
+    "isDone" : false,
+    "deadline" : "2020-11-15T23:00:00",
+    "linkDesc" : "",
+    "linkUrl" : null,
+    "recurrence" : null,
+    "tagged" : [ "CS2103T" ]
+  }, {
+    "@type" : "JsonAdaptedTodo",
+    "description" : "homework2",
+    "isDone" : false,
+    "deadline" : "2020-12-14T21:59:00",
+    "linkDesc" : "",
+    "linkUrl" : null,
+    "recurrence" : null,
+    "tagged" : [ ]
+  } ]
+}

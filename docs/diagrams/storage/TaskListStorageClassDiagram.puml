@@ -1,0 +1,24 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor STORAGE_COLOR
+skinparam classBackgroundColor STORAGE_COLOR
+
+
+Class TaskListStorage <<Interface>>
+Class JsonTaskListStorage
+Class JsonSerializableTaskListManager
+Class "{abstract}\nJsonAdaptedTask" as JsonAdaptedTask
+
+JsonTaskListStorage .up.|> TaskListStorage
+JsonTaskListStorage ..> JsonSerializableTaskListManager
+JsonSerializableTaskListManager --> " * " JsonAdaptedTask
+JsonAdaptedTodo .up.|> JsonAdaptedTask
+JsonAdaptedEvent .up.|> JsonAdaptedTask
+
+JsonAdaptedTodo --> " * " JsonAdaptedTag
+JsonAdaptedEvent --> " * " JsonAdaptedTag
+JsonAdaptedTodo --> " 0,1     " JsonAdaptedRecurrence
+JsonAdaptedEvent --> "0,1 " JsonAdaptedRecurrence
+
+@enduml

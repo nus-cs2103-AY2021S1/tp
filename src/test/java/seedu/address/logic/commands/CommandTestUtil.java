@@ -14,11 +14,16 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.edit.EditContactCommand;
+import seedu.address.logic.commands.edit.EditEventCommand;
+import seedu.address.logic.commands.edit.EditTodoCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -36,6 +41,20 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_IMPORTANT = "important";
+    public static final String VALID_DESCRIPTION = "A description";
+    public static final String VALID_URL = "https://www.google.com";
+
+    public static final String VALID_DESCRIPTION_CLEAN = "Clean";
+    public static final String VALID_DATE_TIME_CLEAN = "01-01-2021 2000";
+
+    public static final String VALID_DESCRIPTION_TUTOR_MEETING = "Tutor meeting";
+    public static final String VALID_URL_TUTOR_MEETING =
+            "https://nus-sg.zoom.us/j/85350904475?pwd=T0JwTEIwNjRuMnNKUEt4L2R789JWZz09";
+    public static final String VALID_DATE_TIME_TUTOR_MEETING = "10-12-2017 1445";
+    public static final String VALID_DESCRIPTION_TUTORIAL_DOCUMENT = "Tutorial 1 CS2103";
+    public static final String VALID_URL_TUTORIAL_DOCUMENT =
+            "https://docs.google.com/document/d/1oAObtne790B1nDX123hrbAdEy1aTUtorialDOcument/edit";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -57,8 +76,12 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditContactCommand.EditPersonDescriptor DESC_AMY;
+    public static final EditContactCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditTodoCommand.EditTodoDescriptor DESC_TASK1;
+    public static final EditTodoCommand.EditTodoDescriptor DESC_TASK2;
+    public static final EditEventCommand.EditEventDescriptor DESC_EVENT1;
+    public static final EditEventCommand.EditEventDescriptor DESC_EVENT2;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -67,6 +90,22 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_TASK1 = new EditTodoCommand.EditTodoDescriptor();
+        DESC_TASK1.setDescription(VALID_DESCRIPTION);
+        DESC_TASK1.setDate("10-12-2017");
+        DESC_TASK1.setTime("1445");
+        DESC_TASK2 = new EditTodoCommand.EditTodoDescriptor();
+        DESC_TASK2.setDescription(VALID_DESCRIPTION);
+        DESC_TASK2.setDate("15-12-2018");
+        DESC_TASK2.setTime("1945");
+        DESC_EVENT1 = new EditEventCommand.EditEventDescriptor();
+        DESC_EVENT1.setDescription(VALID_DESCRIPTION);
+        DESC_EVENT1.setStartTime("1445");
+        DESC_EVENT1.setStartDate("10-12-2017");
+        DESC_EVENT2 = new EditEventCommand.EditEventDescriptor();
+        DESC_EVENT2.setDescription(VALID_DESCRIPTION);
+        DESC_EVENT2.setStartTime("1830");
+        DESC_EVENT1.setStartDate("12-12-2018");
     }
 
     /**
@@ -89,9 +128,9 @@ public class CommandTestUtil {
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage, String category,
             Model expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, category);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
@@ -123,6 +162,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the task at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showTaskAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
+
+        Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
+        final List<String> getDescription = Arrays.asList(task.getDescription());
+        model.updateFilteredTaskList(new DescriptionContainsKeywordsPredicate(getDescription));
+
+        assertEquals(1, model.getFilteredTaskList().size());
     }
 
 }

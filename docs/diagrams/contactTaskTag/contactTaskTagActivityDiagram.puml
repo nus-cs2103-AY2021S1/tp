@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes contactTaskTag command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([Task and Contact index are valid,
+        and >= 1 tag is given])
+    : The selected contact and task will be updated
+    with the new common tag(s);
+else ([else])
+    : Parse Exception will be thrown;
+endif
+    : Results shown;
+stop
+@enduml

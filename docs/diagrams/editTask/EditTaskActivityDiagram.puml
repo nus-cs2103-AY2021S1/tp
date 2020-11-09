@@ -1,0 +1,16 @@
+@startuml
+start
+:User executes an edit task command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([The command is valid (valid index
+and minimal one field is edited)])
+    :Task will be edited;
+else ([else])
+    : The command will not be executed;
+endif
+    : Task List is updated;
+stop
+@enduml

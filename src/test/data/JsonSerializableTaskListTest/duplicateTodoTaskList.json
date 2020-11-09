@@ -1,0 +1,21 @@
+{
+  "tasks" : [ {
+    "@type" : "JsonAdaptedTodo",
+    "description" : "Finish assignment",
+    "isDone" : false,
+    "deadline" : "2020-10-19T23:59:00",
+    "linkDesc" : "",
+    "linkUrl" : null,
+    "recurrence" : null,
+    "tagged" : [ "CS2100" ]
+  }, {
+    "@type" : "JsonAdaptedTodo",
+    "description" : "Finish assignment",
+    "isDone" : false,
+    "deadline" : "2020-10-19T23:59:00",
+    "linkDesc" : "",
+    "linkUrl" : null,
+    "recurrence" : null,
+    "tagged" : [ "CS2100" ]
+  } ]
+}

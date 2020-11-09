@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes itemsDueAt / itemsDueBefore command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([task matches predicate])
+    :Task will be displayed;
+else ([else])
+    : Task will not be displayed;
+endif
+    : Results shown;
+stop
+@enduml

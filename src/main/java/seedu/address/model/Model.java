@@ -1,11 +1,15 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Event;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.Todo;
 
 /**
  * The API of the Model component.
@@ -13,6 +17,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -84,4 +89,41 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void updateFilteredTaskList(Predicate<? super Task> predicate);
+
+    void addTodo(Todo todo);
+
+    void addEvent(Event event);
+
+    void addTask(Task task);
+
+    /**
+     * Replaces the given Task {@code target} with {@code editedTask}.
+     * {@code target} must exist in the address book.
+     * The task identity of {@code editedTask} must not be the same as another existing Task in the life book.
+     */
+    void setTask(Task target, Task editedTask);
+
+    void deleteTodo(Task task);
+
+    void deleteEvent(Task task);
+
+    boolean hasTask(Task task);
+
+    ObservableList<Task> getFilteredTaskList();
+
+    ObservableList<Task> getDueSoonTaskList();
+
+    ReadOnlyTaskList getTaskList();
+
+    void markAsDone(Task target);
+
+    void updateSortedTaskList(Comparator<Task> taskComparator);
+
+    void updateSortedPersonList(Comparator<Person> personComparator);
+    boolean filteredTaskListIsEmpty();
+    boolean filteredAddressBookIsEmpty();
+    boolean taskListIsEmpty();
+    boolean addressBookIsEmpty();
 }

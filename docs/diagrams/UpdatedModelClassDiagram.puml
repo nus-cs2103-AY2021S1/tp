@@ -1,0 +1,94 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Interface ReadOnlyAddressBook <<Interface>>
+Interface Model <<Interface>>
+Interface ObservableList <<Interface>>
+Class AddressBook
+Class ReadOnlyAddressBook
+Class TaskList
+Class ReadOnlyTaskList <<Interface>>
+Class ModelManager
+Class UserPrefs
+Class ReadOnlyUserPrefs
+
+Package Person {
+Class Person
+Class Address
+Class Email
+Class Name
+Class Phone
+Class UniquePersonList
+}
+
+Package Tag {
+Class Tag
+}
+
+Package Task {
+Class "{abstract}\nTask"
+Class Todo
+Class Event
+Class Recurrence
+Class UniqueTaskList
+Class Recurrence
+Class "{abstract}\nLink"
+Class MeetingLink
+Class CollaborativeLink
+
+}
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Model
+
+AddressBook .up.|> ReadOnlyAddressBook
+TaskList .up.|> ReadOnlyTaskList
+
+ModelManager .up.|> Model
+ModelManager -left->"1" UniquePersonList : sorted filtered list
+ModelManager -right->"1" UniqueTaskList : sorted filtered list
+Model .right.> ObservableList
+ModelManager --> "1" AddressBook
+ModelManager --> "1" TaskList
+ModelManager -left-> "1" UserPrefs
+UserPrefs .up.|> ReadOnlyUserPrefs
+
+
+AddressBook *--> "1" UniquePersonList
+UniquePersonList --> "*" Person
+Person *--> "1"Name
+Person *--> "1"Phone
+Person *--> "1"Email
+Person *--> "1"Address
+
+
+
+Tag "*"<--* "{abstract}\nTask"
+Tag "*"<--* Person
+
+TaskList *--> "1" UniqueTaskList
+Event *--> "1" MeetingLink
+Todo *--> "1" CollaborativeLink
+"{abstract}\nTask" <|-- Todo
+"{abstract}\nTask" <|-- Event
+"{abstract}\nLink" <|-- CollaborativeLink
+"{abstract}\nLink" <|-- MeetingLink
+UniqueTaskList --> "*" "{abstract}\nTask"
+"{abstract}\nTask" *--> "1" "{abstract}\nLink"
+"{abstract}\nTask" *--> "1" Recurrence
+
+
+
+Name -[hidden]right-> Phone
+Phone -[hidden]right-> Address
+Address -[hidden]right-> Email
+
+
+
+
+@enduml

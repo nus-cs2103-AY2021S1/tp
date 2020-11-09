@@ -1,0 +1,20 @@
+@startuml
+
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+!define ABSTRACT &#123;abstract&#125;
+
+abstract class "{abstract}\nCommand"
+
+abstract class "{abstract}\nDeleteCommand"
+class DeleteTodoCommand
+class DeleteEventCommand
+
+"{abstract}\nCommand" <|-- "{abstract}\nDeleteCommand"
+
+"{abstract}\nDeleteCommand" <|-- DeleteTodoCommand
+"{abstract}\nDeleteCommand" <|-- DeleteEventCommand
+
+@enduml

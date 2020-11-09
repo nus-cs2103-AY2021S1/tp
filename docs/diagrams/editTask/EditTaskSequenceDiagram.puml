@@ -1,0 +1,33 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+Participant ":UI" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Model" as model MODEL_COLOR
+
+user -[USER_COLOR]> ui : "edit event desc/Complete homework starttime/2359"
+activate ui UI_COLOR
+
+ui -[UI_COLOR]> logic : execute("edit event desc/Complete homework starttime/2359")
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]>model : new Event("Complete homework date", "12-12-2020 2359" )
+activate model MODEL_COLOR
+
+model -[MODEL_COLOR]-> logic: event
+deactivate model
+
+logic -[LOGIC_COLOR]> model : setTask(eventToEdit, editedEvent)
+activate model MODEL_COLOR
+
+model -[MODEL_COLOR]-> logic
+deactivate model
+
+logic --[LOGIC_COLOR]> ui
+deactivate logic
+
+ui--[UI_COLOR]> user
+deactivate ui
+
+@enduml

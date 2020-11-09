@@ -1,0 +1,94 @@
+@startuml
+!include ../style.puml
+
+box Ui UI_COLOR_T1
+Participant ":UI" as ui UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "s:FindContactCommand" as FindContactCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+Participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+ -[USER_COLOR]> ui : "find contact n/John t/CS2100Teammate"
+activate ui UI_COLOR
+
+ui -[UI_COLOR]> LogicManager : execute("find ...")
+activate LogicManager LOGIC_COLOR
+
+LogicManager -[LOGIC_COLOR]> AddressBookParser : parseCommand("find ...")
+activate AddressBookParser LOGIC_COLOR
+
+create FindCommandParser
+AddressBookParser -[LOGIC_COLOR]> FindCommandParser
+activate FindCommandParser LOGIC_COLOR
+
+FindCommandParser -[LOGIC_COLOR]-> AddressBookParser
+deactivate FindCommandParser
+
+
+AddressBookParser -[LOGIC_COLOR]> FindCommandParser : parse("contact...")
+activate FindCommandParser LOGIC_COLOR
+
+create FindContactCommand
+FindCommandParser -[LOGIC_COLOR]> FindContactCommand
+activate FindContactCommand LOGIC_COLOR
+
+FindContactCommand -[LOGIC_COLOR]-> FindCommandParser : s
+deactivate FindContactCommand
+
+FindCommandParser -[LOGIC_COLOR]-> AddressBookParser : s
+deactivate FindCommandParser
+
+FindCommandParser -[hidden]-> AddressBookParser
+destroy FindCommandParser
+
+
+AddressBookParser -[LOGIC_COLOR]-> LogicManager : s
+deactivate AddressBookParser
+
+LogicManager -[LOGIC_COLOR]> FindContactCommand : execute()
+activate FindContactCommand LOGIC_COLOR
+
+FindContactCommand -[LOGIC_COLOR]> Model : updateFilteredPersonList(predicate)
+activate Model MODEL_COLOR
+
+Model -[MODEL_COLOR]-> FindContactCommand
+deactivate Model
+
+group ref save file
+LogicManager -[hidden]-> Storage
+end group
+
+create CommandResult
+FindContactCommand -[LOGIC_COLOR]> CommandResult
+activate CommandResult LOGIC_COLOR
+
+CommandResult -[LOGIC_COLOR]-> FindContactCommand
+deactivate CommandResult
+CommandResult -[hidden]-> FindContactCommand
+destroy CommandResult
+
+FindContactCommand -[LOGIC_COLOR]-> LogicManager : result
+deactivate FindContactCommand
+
+FindContactCommand -[hidden]-> FindCommandParser
+destroy FindContactCommand
+
+ui <-[LOGIC_COLOR]-LogicManager : result
+deactivate LogicManager
+
+ <-[UI_COLOR]-ui : result
+deactivate ui
+@enduml

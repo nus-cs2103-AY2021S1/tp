@@ -1,0 +1,12 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR
+skinparam classBackgroundColor LOGIC_COLOR
+
+abstract class "{abstract}\nCommand" as Command
+class ContactTaskTagCommand
+
+Command <|-- ContactTaskTagCommand
+
+@enduml

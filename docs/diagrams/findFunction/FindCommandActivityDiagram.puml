@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes find contact command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([contact matches predicate])
+    :Contact will be displayed;
+else ([else])
+    : Contact will not be displayed;
+endif
+    : Results shown;
+stop
+@enduml

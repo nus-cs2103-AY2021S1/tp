@@ -9,6 +9,7 @@ AddressBook *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniquePersonList
 UniqueTagList -[hidden]down- UniquePersonList
 
+
 UniqueTagList *-right-> "*" Tag
 UniquePersonList o-right-> Person
 
@@ -18,4 +19,5 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+
 @enduml

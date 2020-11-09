@@ -1,0 +1,18 @@
+@startuml
+start
+:Lifebook reads TaskList from file;
+
+if () then ([hasFile])
+    : Parse file;
+    if () then ([hasException]);
+        : Throw exception;
+        stop
+    else ([success])
+        : Return TaskList;
+    endif
+
+else ([else])
+    : Return empty;
+endif
+stop
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR
+skinparam classBackgroundColor LOGIC_COLOR
+!define ABSTRACT &#123;abstract&#125;
+
+abstract class "{abstract}\nCommand"
+abstract class "{abstract}\nAddCommand"
+class AddTodoCommand
+class AddEventCommand
+
+
+"{abstract}\nCommand" <|-- "{abstract}\nAddCommand"
+
+
+"{abstract}\nAddCommand" <|-- AddTodoCommand
+"{abstract}\nAddCommand" <|-- AddEventCommand
+
+@enduml

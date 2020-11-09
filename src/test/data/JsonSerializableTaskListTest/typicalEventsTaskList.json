@@ -1,0 +1,72 @@
+{
+  "tasks" : [ {
+    "@type" : "JsonAdaptedEvent",
+    "description" : "meeting",
+    "isDone" : false,
+    "start" : "2020-12-12T10:00:00",
+    "end" : "2020-12-12T11:30:00",
+    "linkDesc" : null,
+    "linkUrl" : null,
+    "linkTime" : null,
+    "recurrence" : null,
+    "tagged" : [ "CS2103T" ]
+  }, {
+    "@type" : "JsonAdaptedEvent",
+    "description" : "party",
+    "isDone" : false,
+    "start" : "2020-01-01T18:00:00",
+    "end" : "2020-01-02T06:00:00",
+    "linkDesc" : null,
+    "linkUrl" : null,
+    "linkTime" : null,
+    "recurrence" : {
+      "value" : 1,
+      "chronoUnit" : "YEARS"
+    },
+    "tagged" : [ ]
+  }, {
+    "@type" : "JsonAdaptedEvent",
+    "description" : "lecture",
+    "isDone" : false,
+    "start" : "2020-10-23T16:00:00",
+    "end" : "2020-10-23T16:00:00",
+    "linkDesc" : null,
+    "linkUrl" : null,
+    "linkTime" : null,
+    "recurrence" : null,
+    "tagged" : [ "CS2103T" ]
+  }, {
+    "@type" : "JsonAdaptedEvent",
+    "description" : "attend workshop",
+    "isDone" : false,
+    "start" : "2020-11-12T12:00:00",
+    "end" : "2020-11-12T16:00:00",
+    "linkDesc" : null,
+    "linkUrl" : null,
+    "linkTime" : null,
+    "recurrence" : null,
+    "tagged" : [ "workshop" ]
+  }, {
+    "@type" : "JsonAdaptedEvent",
+    "description" : "meeting2",
+    "isDone" : false,
+    "start" : "2020-12-12T10:00:00",
+    "end" : "2020-12-12T11:30:00",
+    "linkDesc" : null,
+    "linkUrl" : null,
+    "linkTime" : null,
+    "recurrence" : null,
+    "tagged" : [ ]
+  }, {
+    "@type" : "JsonAdaptedEvent",
+    "description" : "meeting3",
+    "isDone" : false,
+    "start" : "2020-12-16T10:00:00",
+    "end" : "2020-12-18T11:30:00",
+    "linkDesc" : null,
+    "linkUrl" : null,
+    "linkTime" : null,
+    "recurrence" : null,
+    "tagged" : [ ]
+  } ]
+}
