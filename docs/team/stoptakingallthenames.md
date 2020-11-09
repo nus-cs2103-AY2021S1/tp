@@ -27,6 +27,8 @@ Given below are my contributions to the project.
   * Set up Github repo and issue tracker.
   * Maintained issue tracker.
 
+<div style="page-break-after: always;"></div>
+
 * **Enhancements to existing features**:
   * Wrote additional tests for existing and new features to increase coverage ([\#75](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/75)).
   * Enhanced code quality to ensure adherence to abstraction levels, improve defensiveness and reduce coupling ([\#103](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/103)
@@ -47,4 +49,4 @@ Given below are my contributions to the project.
     [\#68](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/68), [\#214](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/214)
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/StopTakingAllTheNames/ped/issues/1),
     [2](https://github.com/StopTakingAllTheNames/ped/issues/5), [3](https://github.com/StopTakingAllTheNames/ped/issues/2))
-  * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/390) [2](https://github.com/nus-cs2103-AY2021S1/forum/issues/393))
+  * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/390), [2](https://github.com/nus-cs2103-AY2021S1/forum/issues/393))
