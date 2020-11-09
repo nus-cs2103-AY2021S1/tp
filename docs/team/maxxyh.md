@@ -12,9 +12,9 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to sort expenses. (Pull Request [\#86](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/86))
   - What it does: allows the user to sort expenses currently displayed on the application based on Amount, Description (alphabetical), and Date of Expense. Users can use at least, and up to 3 of the sorting criterion - they will be applied with priority in order of appearance. Users also have the option to do a reverse sort for criterion.
   - Justification: This feature improves the product significantly because a user can better organise how expenses are displayed on the application. Specifically:
-    - Amount sort allows the user to find out which expenses contribute the most/least to his spending. 
+    - Amount sort allows the user to find out which expenses contribute the most/least to his spending.
     - Description sort allows the user to organise expenses with similar descriptions together.
-    - Date sort allows the user to have a chronological overview of his spending. 
+    - Date sort allows the user to have a chronological overview of his spending.
   - Highlights: Priority sort for multiple keywords was an intentional design choice which added additional layers of complexity. Sorting also works together with filtering. While sorting itself is not complicated, this feature was challenging as JavaFX does not support both sorting and filtering at the same time natively. Workarounds had to be used.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=maxxyh&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=false&until=2020-11-09)
@@ -23,7 +23,7 @@ Given below are my contributions to the project.
   * Team leader - delegation of work to members.
   * Managed all releases `v1.2` - `v1.4` (4 releases) on GitHub.
   * Opened, tagged and resolved Issues according to priority, category and person-in-charge.
-  * Managed closing of milestones and shifting unfinished tasks to later milestones. 
+  * Managed closing of milestones and shifting unfinished tasks to later milestones.
   * Reviewed and merged PRs.
   * Created v1.2, v1.3, v1.4 demos.
   * Bug reporting (Issues [\#94](https://github.com/AY2021S1-CS2103-W14-3/tp/issues/94), [\#98](https://github.com/AY2021S1-CS2103-W14-3/tp/issues/98), [\#99](https://github.com/AY2021S1-CS2103-W14-3/tp/issues/99), [\#171](https://github.com/AY2021S1-CS2103-W14-3/tp/issues/171))
@@ -45,7 +45,7 @@ Given below are my contributions to the project.
     * Updated Glossary section with input restrictions. (Pull request [\#152](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/152))
     * Added documentation for the features `sort`, `clear` and `exit`. (Pull requests [\#89](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/89))
     * Touch up existing documentation for `alias`,  `switch`, `addCat`, `deleteCat`, `find`. (Pull requests [\#100](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/100))
-    * Add app screenshots for all commands. 
+    * Add app screenshots for all commands.
   * Developer Guide:
     * Added implementation details of the `sort` feature. (Pull requests [\#72](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/72))
     * Updated use cases U7-U12, user stories. (Pull requests [\#97](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/97))
