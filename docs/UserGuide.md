@@ -488,7 +488,7 @@ the _Main View_.
 
 Figure x. A screenshot showing the outcome of an `i-reset-all` command
 
-#### 2.7 Listing all ingredients that user should restock : `i-restock`
+#### 2.7 Listing all the ingredients that user should restock : `i-restock`
 Lists the ingredient's levels of all ingredient types that fall below their pre-determined default levels and require the user to 
 restock. The list also includes the amount needed for each ingredient to reach its pre-determined default level.
 
@@ -1086,7 +1086,7 @@ Action | Format, Examples
 **List**| `i-list`
 **Find**| `i-find KEYWORD [MORE_KEYWORDS]`  <br> e.g., `i-find milk sugar`
 **Reset all ingredients' levels to zero**| `i-reset-all`
-**View all ingredients that the user should restock**| `i-restock`
+**List all ingredients that the user should restock**| `i-restock`
 
 ### Manpower Management
 
