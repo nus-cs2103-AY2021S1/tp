@@ -92,7 +92,7 @@ The **_Architecture Diagram_** given above explains the high-level design of Tra
 -   at app launch: Initializes the components in the correct sequence, and connects them up with each other.
 -   at shut down: Shuts down the components and invokes clean-up methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#section-46---common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
