@@ -1,5 +1,7 @@
 package seedu.address.model.tutorialgroup;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
@@ -19,6 +21,8 @@ public class TutorialGroup {
      * @param tutorialGroupId
      */
     public TutorialGroup(TutorialGroupId tutorialGroupId, DayOfWeek dayOfWeek, TimeOfDay startTime, TimeOfDay endTime) {
+        requireAllNonNull(tutorialGroupId, dayOfWeek, startTime, endTime);
+        assert (startTime.getTime().compareTo(endTime.getTime()) == -1);
         this.tutorialGroupId = tutorialGroupId;
         this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
@@ -67,13 +71,6 @@ public class TutorialGroup {
 
     public int getTotalStudents() {
         return this.students.count();
-    }
-
-
-    //SETTERS
-    public void setLessonTime(TimeOfDay startTime, TimeOfDay endTime) {
-        this.startTime = startTime;
-        this.endTime = endTime;
     }
 
     //ADD
