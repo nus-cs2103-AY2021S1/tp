@@ -4,7 +4,7 @@ title: fitNUS - User Guide
 ---
 By: `Team T09-2` Since: `September 2020`
 
-![fitNUS Logo](../src/main/resources/images/fitnus_hd.png)
+![Logo](images/fitnus_hd.png)
 
 **Table of Contents:**
 
