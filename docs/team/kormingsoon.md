@@ -82,38 +82,15 @@ Below are the details of my contribution:
   the original implementation. My implementation of the `Edit` function prevents any clients from having the same name or same phone number (uniqueness within a book itself i.e
   the information in `Bidder` is independent of that from `Seller`). 
   
-* **New Feature**: Implemented the `Find` function for `Bidder` and `Seller`
-  * **What it does**: allows the user to search for `Bidder` and `Seller` according to their name. 
+* **New Feature**: Implemented the `Find` and `List` function for `Bidder` and `Seller`
+  * **What it does**: allows the user to search for `Bidder` and `Seller` according to their name, and to list all clients back after filtering.
   
   * **Justification**: This feature is important as the user may want to search for certain clients for reference when 
-  adding a `Property` or `Bid`, which requires the `Id` of the clients.
-    
-* **New Feature**: Implemented the `List` function for `Bidder` and `Seller`
-  * **What it does**: allows the user to list all `Bidder` and `Seller` without any filter or conditions imposed on the list.
+  adding a `Property` or `Bid`, which requires the `Id` of the clients. List will allow the user to view the full list of either `Bidder` or `Seller`
+  such as after executing `Find`.
   
-  * **Justification**: This feature is important it will allow the user to view the full list of either `Bidder` or `Seller`
-  such as after executing `Find` which gives a filtered list of the clients.  
-    
 #### User Interface Functions
 
-The following functions implemented are all geared at improving the usability of PropertyFree for users who are more
-inclined with command line interface. All functions aims to prevent the usage of the mouse for navigation in PropertyFree.
- 
-
----
-
-The `CalendarView` (both `.java` and `.fxml`) was referenced from:
-- [Senior Team Project](https://github.com/SirGoose3432/javafx-calendar/blob/master/src/FullCalendarView.java) 
-- [External Github Repo](https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java)
-
-Credit for `CalendarView` has been given and cited accordingly in the file. Only minor modifications was done for `CalendarView` to fit PropertyFree. 
-The intention for implementing `CalendarView` into PropertyFree was to increase usability and GUI for the user, to easily reference
-date and day while setting up a meeting for example. 
-Hence, **the implementation or logic of the code should only be credited to me with a limit (if any). 
-My contributions mainly encompasses the `CalendarView.fxml`
-and elevating the user experience with the following segment on Ui navigation** 
-
----
 * **New Feature**: Implemented the `AutoTab` switching function for PropertyFree
   * **What it does**: Changes the tab from entity to entity depending on the command executed by the user.
   
@@ -121,10 +98,7 @@ and elevating the user experience with the following segment on Ui navigation**
   the TabBar actually defied the constraint of the user being more inclined with command line interface as the user had to click
   on the various tabs to navigate. Hence, the `AutoTab` feature was implemented to turn this disadvantage around.  
 * **New Feature**: Implemented the key-press function for PropertyFree
-  * **What it does**: 
-    - Pressing `CONTROL (Mac OS) / CTRL` + `RIGHT ARROW KEY`: navigates the calendar to the next month
-    - Pressing `CONTROL (Mac OS) / CTRL` + `LEFT ARROW KEY`: navigates the calendar to the previous month
-    - Pressing `ENTER` (when the command box is not in focus): automatically focuses on the TextField in 
+  * **What it does**:  navigates the calendar to the next month and to previous month. Automatically focuses on the TextField in 
     command box so that the user is able to type commands.
   
   * **Justification**: The above-mentioned key press functions in PropertyFree helps the user to easily navigate PropertyFree.
@@ -139,7 +113,7 @@ and elevating the user experience with the following segment on Ui navigation**
   to navigate the calendar, in the event it is inconvenient for users to use the key press functions (awkward positioning).
   
 * **Project management**:
-  * Managed releases v`v1.3a`, `v1.3b`, `v1.4` (3 releases) on GitHub
+  * Managed releases `v1.3a`, `v1.3b`, `v1.4` (3 releases) on GitHub
   * Managed the issue tracker on GitHub
   * Managed milestones for `v1.2` and `v1.3`
 
@@ -149,15 +123,17 @@ and elevating the user experience with the following segment on Ui navigation**
 
 * **Documentation**:
   * User Guide:
-    * Initial cosmetic formatting of UserGuide and overall structure of UserGuide.md for team usage: [\#7](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/7)
     * Added documentation for the features:
       `Keyboard Navigation`, `Bidder Commands`, `Seller Commands` and `Calendar Navigation`.
   * Developer Guide:
     * Added implementation details for `Model`, `Deletion` and `Ui`.
-    * Added manual testing.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments)
+  * PRs reviewed (with non-trivial review comments) (examples:
+  [\#201](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/201),
+  [\#208](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/208),
+  [\#150](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/150),
+  )
   * Contributed to forum discussions (examples: 
   [\#172 Guide on PR to Master](https://github.com/nus-cs2103-AY2021S1/forum/issues/172), 
   [\#153](https://github.com/nus-cs2103-AY2021S1/forum/issues/153), 

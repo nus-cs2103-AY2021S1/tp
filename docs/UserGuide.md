@@ -118,9 +118,12 @@ Note that apart from `CTRL / CONTROL` + `RIGHT / LEFT ARROW KEY` , there are `Ca
 **Command format**
 
 <div markdown="span" class="alert alert-info">
- <li>  Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add-p n/PROPERTY_NAME`, `PROPERTY_NAME` is a parameter which can be used as `add-p n/Sunrise Residences`. </li>  
- <li>  Items in square brackets are optional. e.g. `edit-p [n/PROPERTY_NAME]` implies that `PROPERTY_NAME` is an optional parameter. </li>  
- <li> Items in brackets are for integer numbers only. e.g <INDEX_NUMBER> can be <5>. </li>  
+
+- Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add-p n/PROPERTY_NAME`, `PROPERTY_NAME` is a parameter which can be used as `add-p n/Sunrise Residences`.
+
+- Items in square brackets are optional. e.g. `edit-p [n/PROPERTY_NAME]` implies that `PROPERTY_NAME` is an optional parameter.
+
+- Items in brackets are for integer numbers only. e.g <INDEX_NUMBER> can be <5>.
 </div>  
 
 
