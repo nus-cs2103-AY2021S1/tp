@@ -1478,7 +1478,7 @@ Users can fins flashcards both through keywords using the `q/` prefix and throug
    Expected: Finds all flashcards containing the tag `OEQ` (case-sensitive). Found flashcards will be listed out.
 
 1. Test Case 4: `find q/Sample t/OEQ t/General`<br>
-   Expected: Finds all flashcards containing the tags `OEQ` and `General` (case-sensitive) and keyword `Sample` (not-case sensitive) in its question. Found flashcards will be listed out.
+   Expected: Finds all flashcards containing the tags `OEQ` and `General` (case-sensitive) and keyword `Sample` (not case-sensitive) in its question. Found flashcards will be listed out.
 
 1. Other incorrect `find` commands to try: `find`, `find Something`, `find q/`, `find t/`<br>
    Expected: Error message will appear with instructions on how to use the `find` command.
