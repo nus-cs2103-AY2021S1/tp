@@ -1157,30 +1157,29 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
 
 
 ## 7 **Appendix C: Efforts**
-## Effort
+### Effort
 We believe that the effort to develop FitEgo is at least twice of that of AB3. Besides new commands, we also enhanced the core of AB3 with the ability to handle modified saved file error gracefully and the ability to upload a customized picture for each Client. Other than the features, we also spent a lot of time proofreading and refining our User Guide and Developer Guide.
 
-## Difficulty
+### Difficulty
 
 We think that the difficulty level for developing FitEgo was quite high because there are many entities involved (Client, Session, and Schedule) compared to AB3 that only has Person. Schedule is an association class, which needs integration testing and some changes needed to be made when the Schedule-related features were added. New panels and windows such as Client List, Session List, settings window, and Client detail view were also created. Such changes in the UI were very challenging.
 
 Our team wrote around 23k LoC, 30 pages of User Guide and 50 pages of Developer Guide.
 
-
-## Challenges Faced 
+### Challenges Faced 
 
 The following were challenges encountered since the project began:
 
-### General 
+#### General 
 Due to the ongoing Covid-19 outbreak, we were not able to schedule weekly meet-ups for discussions, and they were replaced by weekly Zoom meetings instead. It is also harder to help other team members without meeting because we are unable to draw the solution and guide them. 
 
-### v1.2 
+##### v1.2 
 Midterms were held in the middle of milestone v1.2, resulting in some of the features being integrated nearer to the milestone’s deadline.
 
-### v1.4 
+##### v1.4 
 Iteration v1.4 is short and there were many ongoing projects from other modules, which makes the wrap up of the project challenging. While we did not have many bug reports to fix, our team is constantly looking for bugs and upgrading ourselves so that we can present the best product. 
 
-## Achievement
+### Achievement
 Excluding the UI, we managed to achieve 81% code coverage, ensuring that our app is well-tested and bug-free. We also ensured that our User Guide and Developer Guide went above and beyond by making it more comprehensive and comprehensible to new developers.
 
 ---
