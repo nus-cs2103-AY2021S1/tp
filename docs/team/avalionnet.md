@@ -14,7 +14,7 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=avalionnet&sort=groupTitle&sortWithin=title&since=2020-08-14&until=2020-11-09&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=Avalionnet&tabRepo=AY2021S1-CS2103T-T12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
-* **New Feature**: <br>Added the ability to add remarks for patients. ([\#111](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/111))
+* **New Feature**: <br>Added the ability to add remarks for patients. ([\#96](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/96))
   
   * **What it does**: <br>This feature allows our users to add or delete remarks for patients via the remark command. The remarks added will be tagged to a patient and displayed on our GUI for ease of access.
   
@@ -37,15 +37,15 @@ Given below are my contributions to the project.
   * **Justification**: <br>It is of paramount importance for users to have the ability to delete appointments should patients call to cancel them. This frees up existing time-slots for other patients and avoids confusion.
   
 * **Enhancements to existing features**:
-    * Added support for the NRIC field when adding a new patient into our system for unique identification.
+    * Added support for the NRIC field when adding a new patient into our system for unique identification. [\#80](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/80)
     * Added indexing for appointments to simplify the command syntax for appointment related operations.
-    * Refactored AddressBook to take on a more appropriate name.
-    * Added support for editing and adding remarks in the `add` and `edit` features.
+    * Refactored AddressBook to take on a more appropriate name. [\#93](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/93)
+    * Added support for editing and adding remarks in the `add` and `edit` features. 
     
 
 * **Project management**:
     * Authored some issues based on the user stories we have identified. 
-    * Published release v1.3 on GitHub   
+    * Published release [v1.3.1](https://github.com/AY2021S1-CS2103T-T12-4/tp/releases/tag/v1.3.1) on GitHub   
 
 * **Documentation**:
   * User Guide:
