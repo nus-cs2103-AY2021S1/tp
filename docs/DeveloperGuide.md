@@ -12,7 +12,7 @@
     4.1  [Patient Feature](#41-patient-feature)<br>
           4.1.1 [Overview](#411-overview)<br>
           4.1.2 [Implementation](#412-implementation)<br>
-          4.1.3 [Design Considerations](#413-design-considerations)
+          4.1.3 [Design Considerations](#413-design-considerations)<br>
           4.1.4 [Create, Read, Update, Delete](#414-create-read-update-delete)<br>
           4.1.5 [Search](#415-search)<br>
     4.2  [Room Feature](#42-room-feature)<br>
@@ -22,8 +22,8 @@
           4.2.4 [Create, Read, Update](#424-create-read-update)<br>
     4.3  [Task Feature](#43-task-feature)<br>
           4.3.1 [Overview](#431-overview)<br>
-          4.3.2 [Implementation]#432-implementation)<br>
-          4.3.3 [Design Considerations](#433-design-considerations)
+          4.3.2 [Implementation](#432-implementation)<br>
+          4.3.3 [Design Considerations](#433-design-considerations)<br>
           4.3.4 [Create, Read, Update, Delete](#434-create-read-update-delete)<br>
           4.3.5 [Search](#435-search)<br>
     4.4  [Logging Feature](#44-logging-feature)<br>
@@ -534,6 +534,7 @@ We will illustrate the progress of one of the above commands for simplicity.
 #### 4.2.4 Create, Read, Update
 
 **Implementation of InitRoomCommand**
+
 The following is a detailed explanation of the operations that `InitRoomCommand` performs.
 
 **Step 1.** The `InitRoomCommand#execute(Model model)` method is executed and it check if the `Integer`defined when instantiating
@@ -564,6 +565,7 @@ The Sequence Diagram for `initRooms` is shown below.
   _Written By: Noorul Azlina_
   
 **Implementation of AllocateRoomCommand**
+
 The following is a detailed explanation of the operations that `AllocateRoomCommand` performs.
 
 **Step 1.** The `AllocateRoomCommand#execute(Model model)` method is executed and it checks if the `Integer` defined when instantiating
