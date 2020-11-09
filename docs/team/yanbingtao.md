@@ -93,6 +93,7 @@ Given below are my contributions to the project.
  employees' contact info, and a calendar independently. 
   * Pull Request: [#89](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/89)
 
+
 * **Enhancements to existing features**:
   * Improved the contact GUI by adding a title in front of each data.
   
@@ -101,6 +102,16 @@ Given below are my contributions to the project.
         Instead of displaying "81234567", now the contact pane shows "Contact Number: 81234567". 
         
     1. Pull Request: [#89](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/89)
+    
+  * Improved the GUI by wrapping around when the displayed content is too long.
+  
+    1. For example:
+    
+        Previously, when the window is not wide enough to display all texts (eg. address info for an employee) in one
+         line, the application will just add `...` at back, then user cannot see the full information. Now, after I implemented
+          this feature, the text will be auto wrap around, and start a new line if one line is not enough to display. 
+        
+    1. Pull Request: [#228](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/228)
 
 * **Contributions to team-based tasks**:
     * Changed the product icon (Pull Request: [#89](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/154))
@@ -131,8 +142,11 @@ Given below are my contributions to the project.
     (Pull Request: [#112](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/112))
     * Updated documentation for the features `c-archive`, `c-archive-all`, `c-archive-list`, `storage` in v1.3.
     (Pull Request: [#112](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/112))
-    * Added documentation for the features `c-today`, `c-tomorrow`, `c-tag-fin` in v1.3.
+    * Added documentation for the features `c-today`, `c-tomorrow`, `c-tag-find` in v1.3.
     (Pull Request: [#145](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/145))
+    * Added documentation for feature `calendar` and edited documentation for the features `c-today`, `c-tomorrow`,
+    `c-tag-find`, `c-archive`, `c-archive-all`, `c-archive-list`, `storage` in v1.4.
+    (Pull Request: [#252](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/252))
   * Developer Guide:
     * Added documentation for Non-functional requirements of the product under _Appendix: Requirements_ in v1.1.
     (Pull Request: [#26](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/26))
