@@ -8,7 +8,8 @@ title: Tan Eu Zin's Project Portfolio Page
 ### Project Overview
 Trackr is an application for teaching assistants (TAs) who prefer to use a desktop application for managing their
 student records. It is uses a Command Line Interface (CLI), while still retaining the benefits of a Graphical User
-Interface (GUI). 
+Interface (GUI). Trackr runs remotely on the user's computer even without internet connection. Closing Trackr would
+still ensure all changes made are still saved. Trackr is written in Java and has over 14kLoC.
 
 ### Summary of Contributions
 
