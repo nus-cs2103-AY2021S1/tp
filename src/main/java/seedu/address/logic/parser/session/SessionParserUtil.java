@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.session;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.StringUtil.isNonNegativeInteger;
 import static seedu.address.model.session.Interval.MESSAGE_END_TIME_CONSTRAINTS;
 import static seedu.address.model.session.Interval.MESSAGE_START_TIME_CONSTRAINTS;
 
@@ -68,15 +69,15 @@ public class SessionParserUtil extends ParserUtil {
         // trim white spaces from duration
         duration = duration.trim();
 
-        if (!isInteger(duration)) {
-            throw new ParseException(Interval.MESSAGE_CONSTRAINTS);
+        if (!isNonNegativeInteger(duration)) {
+            throw new ParseException(Interval.MESSAGE_DURATION_CONSTRAINTS);
         }
 
         LocalDateTime start = parseStringToDateTime(startTime);
         int dur = Integer.parseInt(duration);
 
         if (!Interval.isValidInterval(dur)) {
-            throw new ParseException(Interval.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Interval.MESSAGE_DURATION_CONSTRAINTS);
         }
         return new Interval(start, dur);
     }
@@ -105,7 +106,7 @@ public class SessionParserUtil extends ParserUtil {
         int duration = (int) Duration.between(start, end).toMinutes();
 
         if (!Interval.isValidInterval(duration)) {
-            throw new ParseException(Interval.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Interval.MESSAGE_END_AFTER_START_CONSTRAINTS);
         }
 
         return new Interval(start, duration);
@@ -148,21 +149,6 @@ public class SessionParserUtil extends ParserUtil {
             return false;
         } catch (ParseException e) {
             return true;
-        }
-    }
-
-    /**
-     * Checks whether the String input can be parsed as an integer.
-     *
-     * @param input String to check.
-     * @return true if input is integer.
-     */
-    public static boolean isInteger(String input) {
-        try {
-            Integer.parseInt(input);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
         }
     }
 }
