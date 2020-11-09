@@ -175,6 +175,10 @@ public class PerformanceWindow extends UiPart<Stage> {
         root.getScene().lookup("#attemptList").setManaged(true);
     }
 
+    /**
+     * Shows the help window (which is the same one
+     * passed down from main window also)
+     */
     @FXML
     public void handleHelp() {
         if (!helpWindow.isShowing()) {

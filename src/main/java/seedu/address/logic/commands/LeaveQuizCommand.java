@@ -11,8 +11,8 @@ public class LeaveQuizCommand extends Command {
         + "Example: " + COMMAND_WORD + " quiz (case sensitive)";
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Switching from quiz mode to flashcard mode.\n"
         + "Only Flashcard interface commands are workable.";
-    public static final String MESSAGE_ATTEMPT_ONGOING_CANNOT_LEAVE = "Cannot leave quiz mode while in the middle of an attempt. \n"
-        + "Type 'end attempt' to end your attempt first.";
+    public static final String MESSAGE_ATTEMPT_ONGOING_CANNOT_LEAVE = "Cannot leave quiz mode while in the middle "
+        + "of an attempt.\n" + "Type 'end attempt' to end your attempt first.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
