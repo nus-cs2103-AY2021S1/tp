@@ -465,7 +465,7 @@ The following activity diagram summarises what happens when a user executes the 
 Note that as shown in the activity diagram, if the ingredient's levels of all ingredient types are at zero 
 before the execution of the `i-reset-all` command, an error message will be shown to the user.
 
-![Reset all Ingredients' Levels Activity Diagram](images/IngredientResetAllSequenceDiagram.png)
+![Reset all Ingredients' Levels Activity Diagram](images/IngredientResetAllActivityDiagram.png)
 
 #### Design considerations:
 
