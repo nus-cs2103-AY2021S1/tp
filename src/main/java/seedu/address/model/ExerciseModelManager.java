@@ -158,7 +158,6 @@ public class ExerciseModelManager implements ExerciseModel {
         //updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISE);
     }
 
-
     @Override
     public void setExercise(Exercise target, Exercise editedExercise) {
         requireAllNonNull(target, editedExercise);
