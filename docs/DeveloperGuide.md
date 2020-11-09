@@ -809,7 +809,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
  1.  User requests to list Clients.
  2.  FitEgo shows a list of Clients.
  3.  User requests to view a specific Client in the list
- 4.  FitEgo opens the Client's profile in the Main Window. <br/> Use case ends.
+ 4.  FitEgo shows the Client's profile. <br/> Use case ends.
 
 **Extensions**
 * 2a. The list is empty.
