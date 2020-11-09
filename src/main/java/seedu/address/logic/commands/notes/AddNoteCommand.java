@@ -18,7 +18,8 @@ public class AddNoteCommand extends NoteCommand {
             + PREFIX_TITLE + "TITLE "
             + PREFIX_DESCRIPTION + "DESCRIPTION\n\n"
             + "Example: " + NoteCommand.COMMAND_WORD + " " + COMMAND_WORD + " "
-            + PREFIX_TITLE + "Grade assignment " + PREFIX_DESCRIPTION + "Do by tonight";
+            + PREFIX_TITLE + "things to do "
+            + PREFIX_DESCRIPTION + "get coffee";
 
 
     public static final String MESSAGE_SUCCESS = "New note added:\n%1$s";

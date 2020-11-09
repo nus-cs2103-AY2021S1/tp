@@ -34,6 +34,7 @@
             * [6.3.1.1 Add question command](#6311-add-question-command)
             * [6.3.1.2 Solve question command](#6312-solve-question-command)
             * [6.3.1.3 Delete question command](#6313-delete-question-command)
+            * [6.3.1.4 Design considerations](#6314-design-considerations)
         * [6.3.2 Exam Commands](#632-exam-commands)
             * [6.3.2.1 Add exam command](#6321-add-exam-command)
             * [6.3.2.2 Delete exam command](#6322-delete-exam-command)
@@ -54,9 +55,12 @@
 - [Appendix D: Non-Functional Requirements](#appendix-d-non-functional-requirements)
 - [Appendix E: Glossary](#appendix-e-glossary)
 - [Appendix F: Instructions for Manual Testing](#appendix-f-instructions-for-manual-testing)
-    * [F.1 Launch and Shutdown](#f1-launch-and-shutdown)
-    * [F.2 Deleting a Student](#f2-deleting-a-student)
-    * [F.3 Saving Data](#f3-saving-data)
+    * [F.1 Launch and Shutdown](#f1-launching-reeve)
+    * [F.2 General Features](#f2-general-features)
+    * [F.3 Administrative Features](#f3-student-administrative-features)
+    * [F.4 Academic Features](#f4-student-academic-features)
+    * [F.5 Notebook Features](#f5-notebook-feature)
+    * [F.6 Saving Data](#f6-saving-data)
 
 
 ## 1. Introduction
@@ -93,9 +97,9 @@ Table 1: Summary of symbols
 
 Symbol | Meaning
 :-----:|:-------
-`command` | A grey highlight indicates a command that can be executed by **Reeve**.
-:information_source: | Indicates important information.
-:bulb: | Indicates tips.
+`code` | Code snippets
+:information_source: | Important information
+:bulb: | Tips
 
 ## 4. **Getting Started**
 
@@ -111,7 +115,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-W15-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-W15-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -178,7 +182,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+:information_source: The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### 5.4 Model component
@@ -281,14 +286,13 @@ The following explains the design considerations of the `toggle` command.
     * Pros: Student list size does not slow down execution of command.
     * Cons: Double the work when executing commands such as `find` because there are now two lists to update, repeat of basic information such as student's name, phone, school and academic level, harder to implement.
     
-    
 #### 6.1.3 Exit Command
 
 The following describes the flow of how `ExitCommand` is performed.
 
 1. Upon successfully parsing the user input, the `ExitCommand#execute(Model model)` is called.
 2. A `CommandResult` with the `shouldExit` field set to true is returned and `MainWindow#handleExit()` is called.
-3. **Reeve** is then exited, and the window closes.
+3. **Reeve** shuts down.
 
 ### 6.2 Student administrative details features
 
@@ -345,7 +349,7 @@ The following activity diagram summarizes the flow of events when the `EditComma
 
 Figure \___. Activity diagram for `EditCommand` execution
 
-### 6.2.3 Delete Student Command
+#### 6.2.3 Delete Student Command
 
 The following describes the flow of how `DeleteCommand` is performed.
 
@@ -360,7 +364,7 @@ the specified `Index` is a valid index based on the `UniqueStudentList`, in the 
 
 </div>
 
-### 6.2.4 Find Student Command
+#### 6.2.4 Find Student Command
 
 This is an explanation of how `FindCommand` works.
 
@@ -616,11 +620,11 @@ The following describes the flow of how `AddExamCommand` is performed.
 3. If the student exists, `AddExamCommand#execute(Model model)` checks if the student already has a similar exam recorded.
 4. A unique exam is defined solely by its `examName`. If a duplicate exam is found, a `CommandException` is thrown and the exam will not be added.
 5. If the exam is not a duplicate, `Student#getExams()` is called get the current list of exams of the specified student.
-6. The new exam is added into this current list and a new updated `Student` is created which is exactly the same characteristics of the specified student but with the updated exam list.
+6. The new exam is added into this current list and a new updated `Student` is created which has exactly the same characteristics as the specified student but with the updated exam list.
 7. `Model#setStudent(Student selectedStudent, Student updatedStudent)` is called to replace the student with the updated copy. A new `CommandResult` is returned with a success message showing the affected student and the exam added.
 8. The updated student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
-The sequence(insert image reference here) of how add exam operates is very similar to that of add question.
+The sequence(insert image reference here) of how add exam operates is very similar to that of add attendance.
 
 ##### 6.3.2.2 Delete exam command
 
@@ -640,7 +644,7 @@ The following describes the flow of how `DeleteExamCommand` is performed.
 
 </div><br>
 
-The sequence(insert image reference here) of how add exam operates is very similar to that of delete question.
+The sequence(insert image reference here) of how add exam operates is very similar to that of delete attendance.
 
 ##### 6.3.2.3 Exam Stats command
 
@@ -756,14 +760,16 @@ The following sequence diagram illustrates to execution of the `ScheduleViewComm
 
 Figure 6.4.2 Sequence diagram for `ScheduleCommand` execution
 
+<div markdown="block" class="alert alert-info">
+
 :information_source: Figure 6.4.1 and 6.4.2 illustrates the `ScheduleCommand` execution within the `Logic` and `Model` Component.
+
+</div>
 
 For the `Ui` component, a calendar using  [jfxtras-icalendarfx](https://jfxtras.org/doc/8.0/jfxtras-icalendarfx/index.html) will be updated with the `LessonEvent` after the `CommandResult` is returned.
 The `'LessonEvent` is provided to the `Ui` by the `LogicManager` through the `Model` component.
 The `Model` in turns gets the `LessonEvent` from the `Scheduler` which keeps a list of updated events.
 The calendar with `LessonEvent` is then displayed to the user through the interface. This is assuming that no exception arises.
-
-### Design Consideration
 
 The following are the various design choices made regarding the feature and alternatives that were considered prior to implementation.
 
@@ -1054,7 +1060,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 1.
 
-**UC00: Adding an additional detail to a student**
+**UC10: Adding an additional detail to a student**
 
 **MSS**
 
@@ -1082,7 +1088,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC00: Editing an additional detail in a student**
+**UC11: Editing an additional detail in a student**
 
 **MSS**
 
@@ -1110,7 +1116,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC00: Deleting an additional detail from a student**
+**UC12: Deleting an additional detail from a student**
 
 **MSS**
 
@@ -1138,7 +1144,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC00: Adding a question to a student**
+**UC13: Adding a question to a student**
 
 **MSS**
 
@@ -1166,7 +1172,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC00: Resolving a question from a student**
+**UC14: Resolving a question from a student**
 
 **MSS**
 
@@ -1205,7 +1211,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
       Use case resumes at step 2.
 
 
-**UC00: Deleting a question from a student**
+**UC15: Deleting a question from a student**
 
 **MSS**
 
@@ -1233,7 +1239,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC00: Finding all students with overdue tuition fees**
+**UC16: Finding all students with overdue tuition fees**
 
 **MSS**
 
@@ -1254,7 +1260,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
     Use case ends.
 
-**UC00: Adding an exam record to a student**
+**UC17: Adding an exam record to a student**
 
 **MSS**
 
@@ -1282,7 +1288,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC00: Deleting an exam record from a student**
+**UC18: Deleting an exam record from a student**
 
 **MSS**
 
@@ -1310,7 +1316,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC00: Displaying exam statistics of a student**
+**UC19: Displaying exam statistics of a student**
 
 **MSS**
 
@@ -1332,48 +1338,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC00: Adding a note to the notebook**
-
-**MSS**
-
-1. User enters a command to add a note to the notebook.
-2. Reeve saves the note into the notebook and displays a success message
-
-* 1a. User provides input with missing fields.
-    * 1a1. Reeve displays an error message.
-
-      Use case resumes at step 1.
-
-* 1b. User provides invalid input.
-    * 1b1. Reeve displays an error message and input constraints.
-
-      Use case resumes at step 1.
-
-**UC00: Editing a note in the notebook**
-
-**MSS**
-
-1.  User enters command to edit a specific note in the notebook and provides needed parameters.
-2.  Reeve updates the specified note with the input parameters and displays a success message.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. User provides input with invalid index.
-    * 1a1. Reeve displays an error message and requests for input with valid index.
-
-      Use case resumes at step 1.
-* 1b. User provides input without any parameters.
-    * 1b1. Reeve requests for input with parameters.
-
-      Use case resumes at step 1.
-* 1c. User provides input with invalid format.
-	* 1c1. Reeve requests for input with valid format.
-
-	  Use case resumes at step 1.
-
-**UC00**: View class schedule.
+**UC20**: View class schedule.
 
 **MSS**
 
@@ -1395,7 +1360,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
     
     Use case ends.
 
-**UC00: Adding an attendance record to a student**
+**UC21: Adding an attendance record to a student**
 
 **MSS**
 
@@ -1423,7 +1388,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC00: Deleting an attendance record from a student**
+**UC22: Deleting an attendance record from a student**
 
 **MSS**
 
@@ -1450,6 +1415,71 @@ Use cases also assume that whenever an invalid command is entered by the user, R
     * 3b1. Reeve displays an error message.
 
       Use case resumes at step 2.
+ 
+**UC23: Adding a note to the notebook**
+
+**MSS**
+
+1. User enters a command to add a note to the notebook.
+2. Reeve saves the note into the notebook and displays a success message
+
+* 1a. User provides input with missing fields.
+    * 1a1. Reeve displays an error message.
+
+      Use case resumes at step 1.
+
+* 1b. User provides invalid input.
+    * 1b1. Reeve displays an error message and input constraints.
+
+      Use case resumes at step 1.
+
+**UC24: Editing a note in the notebook**
+
+**MSS**
+
+1.  User enters command to edit a specific note in the notebook and provides needed parameters.
+2.  Reeve updates the specified note with the input parameters and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User provides input with invalid index.
+    * 1a1. Reeve displays an error message and requests for input with valid index.
+
+      Use case resumes at step 1.
+* 1b. User provides input without any parameters.
+    * 1b1. Reeve requests for input with parameters.
+
+      Use case resumes at step 1.
+* 1c. User provides input with invalid format.
+	* 1c1. Reeve requests for input with valid format.
+
+	  Use case resumes at step 1.
+
+**UC24: Editing a note in the notebook**
+
+**MSS**
+
+1.  User enters command to edit a specific note in the notebook and provides needed parameters.
+2.  Reeve updates the specified note with the input parameters and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User provides input with invalid index.
+    * 1a1. Reeve displays an error message and requests for input with valid index.
+
+      Use case resumes at step 1.
+* 1b. User provides input without any parameters.
+    * 1b1. Reeve requests for input with parameters.
+
+      Use case resumes at step 1.
+* 1c. User provides input with invalid format.
+	* 1c1. Reeve requests for input with valid format.
+
+	  Use case resumes at step 1.
 
 ## **Appendix D: Non-Functional Requirements**
 
@@ -1465,14 +1495,15 @@ The following table provides the definitions of the various terms used in this D
 
 Term | Definition
 --------|------------------
-Mainstream OS | Refers to Windows, Linux, Unix, OS-X.
-Private contact detail | A contact detail that is not meant to be shared with others.
+Mainstream OS | Refers to Windows, Linux, Unix, OS-X
+Private contact detail | A contact detail that is not meant to be shared with others
 
 ## **Appendix F: Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">
+:information_source: These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
@@ -1540,7 +1571,40 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-3. Finding a student while all students are being shown with several matching students
+3. Finding students with overdue fees (i.e last payment date is more than one month ago) while all students are shown.
+
+   1. Prerequisite: Set at least one student's last payment date to within one month of the current date with `edit` command. Multiple students in the list.
+
+   1. Test case: `overdue`<br>
+      Expected: All students except those whose payment date is within one month from the current date are listed. The number of students found is displayed.
+
+4. Finding students with overdue fees while some students are hidden.
+
+   1. Prerequisite: Hide some students with overdue fees with `find` command.
+
+   1. Test case: `overdue`<br>
+      Expected: All students except those whose payment date is within one month from the current date are displayed again. The number of students found is displayed.
+
+5. Viewing schedule of classes
+
+    1. Prerequisites: There are students stored in Reeve currently with non-overlapping class times.
+
+    1. Test case: `schedule m/weekly d/02/11/2020`
+       Expected: Shows the schedule of classes in the whole week of 02/11/2020.
+
+    1. Test case: `schedule m/daily d/02/11/2020`
+       Expected: Shows the schedule of classes in the day of 02/11/2020.
+
+    1. Test case: `schedule m/dAiLy d/02/11/2020`
+       Expected: Shows the schedule successfully as the case letters of the view mode does not matter.
+
+    1. Test case: `schedule m/day d/02/11/2020`
+       Expected: Displays error message indicating invalid view mode.
+
+    1. Test case: `schedule m/weekly d/02-11-2020`
+       Expected: Displays error message indicating invalid date format.
+
+6. Finding a student while all students are being shown with several matching students
 
    1. Prerequisites: List all students using the `list` command. Two students in the list. One student has name _Samuel_ and has school _yishun secondary_. Another student has name _Sam_ and has school _yishun sec school_.
 
@@ -1558,7 +1622,7 @@ testers are expected to do more *exploratory* testing.
 
 ### F.4 Student Academic Features
 
-4. Adding an exam record to a student. 
+1. Adding an exam record to a student. 
 
    1. Prerequisites: At least one student in the students list.
    
@@ -1571,7 +1635,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `exam add 1 n/Mid Year 2020 d/30/30/2020 s/50/100`
    <br>Expected: No exam record is added due to invalid exam date.
    
-5. Deleting an exam record from a student.
+1. Deleting an exam record from a student.
 
    1. Prerequisites: At least one student in the students list. At least one exam record in the student's exams list.
    
@@ -1581,32 +1645,14 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `exam delete 1 i/0`
    <br>Expected: No exam is deleted due to invalid exam index. Error details shown in the result display.
    
-6. Displaying exam statistics of a student
+1. Displaying exam statistics of a student
 
    1. Prerequisites: At least one student in the students list.
 
    1. Test case: `exam stats 1`
    <br>Expected: Opens the exam statistics window of the first student in the displayed students list.
    
-### F.5 Notebook Feature
-
-1. Adding a note to the notebook.
-    
-    1. Test case: `note add t/things to do d/mark practice papers`
-    <br>Expected: Note with title things to do is added and details shown in the results display.
-
-    2. Test case: `note add t/things to finish by tomorrow d/mark practice papers`
-    <br>Expected: No note is added due to a title that is too long. Error details shown in the results display.
-
-2. Deleting a note.
-
-   1. Prerequisites: At least one note in the notebook.
-
-   1. Test case: `note delete 1`
-   <br>Expected: First note is deleted from the notebook. Details of the deleted note shown in the result display.
-
-   1. Test case: `note delete 0`
-   <br>Expected: No note is deleted. Error details shown in the result display.
+### F.5 Notes Feature
 
 ### F.6 Saving Data
 
@@ -1768,7 +1814,6 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `detail edit i/1 t/DETAIL_TEXT`
        Expected: Similar to previous.
-       
 
 1. Deleting details from a student.
 
@@ -1814,3 +1859,59 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `attendance delete d/12/02/2020`
        Expected: Similar to previous.
+
+### F.5 Notes Feature
+
+1. Adding a note to the notebook.
+    
+    1. Test case: `note add t/things to do d/mark practice papers`
+    <br>Expected: Note with title things to do is added and details shown in the results display.
+
+    2. Test case: `note add t/things to finish by tomorrow d/mark practice papers`
+    <br>Expected: No note is added due to a title that is too long. Error details shown in the results display.
+
+2. Deleting a note.
+
+   1. Prerequisites: At least one note in the notebook.
+
+   1. Test case: `note delete 1`
+   <br>Expected: First note is deleted from the notebook. Details of the deleted note shown in the result display.
+
+   1. Test case: `note delete 0`
+   <br>Expected: No note is deleted. Error details shown in the result display.
+
+### F.6 Saving Data
+
+1. Dealing with missing data files
+
+   1. Test case: `data/addressbook.json` missing or deleted<br>
+      Expected: Reeve initialises with sample student data, notebook data is intact.
+
+   1. Test case: `data/notebook.json` missing or deleted<br>
+      Expected: Reeve initialises with sample notebook data, student data is intact.
+
+1. Dealing with corrupted data files (Student data)
+
+   1. Prerequisite: Ensure `data/addressbook.json` is present. Modify the data using `edit` or `delete` to create `data/addressbook.json` if absent.
+
+   1. Test case: delete a random field from a random student in `addressbook.json`<br>
+      Expected: Reeve initialises with an empty student list.
+
+   1. Test case: duplicate a student's record again in `addressbook.json`<br>
+      Expected: Similar to previous.
+
+   1. Test case: invalid data in `addressbook.json` (e.g add special characters to the "name" field) <br>
+      Expected: Similar to previous.
+
+1. Dealing with corrupted data files (Notebook data)
+
+   1. Prerequisite: Ensure `data/notebook.json` is present. Modify the data using note commands to create `data/notebook.json` if absent.
+
+   1. Test case: "description" field has more than 80 characters<br>
+      Expected: Reeve initialises with an empty notebook.
+
+   1. Test case: "title" field has more than 15 characters<br>
+      Expected: Reeve initialises with an empty notebook.
+
+   1. Test case: duplicate note in `notebook.json`<br>
+      Expected: Similar to previous.
