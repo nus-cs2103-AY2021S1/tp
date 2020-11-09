@@ -817,15 +817,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   	Steps 3a1-3a2 are repeated until the data entered are correct.
     
     Use case resumes from step 4.
-      	
-* 5a. tCheck detects an invalid sales number. <br>
- 	* 5a1. tCheck requests for the correct data. <br>
- 	* 5a2. User enters new data. <br>
- 	
- 	Steps 5a1-5a2 are repeated until the data entered are correct. <br>
+    
+* 5a. tCheck detects an invalid sales number
+
+    * 5a1. tCheck requests for the correct data.
+    * 5a2. User enters new data.
+  	
+  	Steps 5a1-5a2 are repeated until the data entered are correct.
     
     Use case resumes from step 6.
-
+      	
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
