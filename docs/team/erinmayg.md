@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Erin May Gunawan's Project Portfolio Page
+title: Erin May's Project Portfolio Page
 ---
 
 ## Project: FaculType
