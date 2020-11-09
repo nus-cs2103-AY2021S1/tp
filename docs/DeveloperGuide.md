@@ -490,6 +490,30 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Answering a question
+
+1. Answering a question while user is in quiz mode and has an ongoing attempt.
+
+   1. Prerequisites: Switch to quiz mode using the `enter quiz` command. Multiple questions are listed. Then start an
+    attempt using `start attempt`.
+
+   1. Test case: `answer 1 a/true`
+      Expected: Answer is recorded and user answer will be highlighted on the question. Success message shown in the
+       status message.
+
+   1. Test case: `answer 1`<br>
+      Expected: No answer is recorded. Error details shown in the status message. Status bar remains the same.
+
+   1. Test case: `answer 1 a/1`<br>
+      Expected: Similar to previous.
+
+   1. Other incorrect answer commands to try: `answer 1 a/random`, `answer 2 a/`, `answer 8 a/false`, `answer x
+   `, `...` (where x is larger
+    than the question list size)<br>
+      Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
