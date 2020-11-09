@@ -118,6 +118,7 @@ The ***Architecture Diagram*** given above explains the high-level design of Jar
 
 </div>
 <div style="page-break-after: always;"></div>
+
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/jarvis/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/jarvis/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -140,7 +141,9 @@ Each of the five components,
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+
 <div style="page-break-after: always;"></div>
+
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
@@ -267,7 +270,9 @@ The following diagram shows the path execution from the user's perspective when 
 The login process is kickstarted whenever Jarvis is launched or the login details are edited.
 
 ![Path Diagram of login process](images/LoginPathDiagram.png)
+
 <div style="page-break-after: always;"></div>
+
 #### 4.1.4 Sequence Diagram of login process
 
 ![Sequence Diagram of startScraping()](images/LoginSequenceDiagram.png)
@@ -280,6 +285,7 @@ scraping for missions. This list could be of size 0 if there are no active missi
 * The greeting in the diagram refers to the name of the CS1101S Avenger which will also be fetched and displayed in Jarvis upon login.
 * `startScraping()` runs on a background thread, separate from the main thread. This ensures that the time-consuming task of fetching missions, quests and students do not delay the updating of the GUI.
 * In the event the login details are incorrect, Jarvis will resolve the problem by starting up with saved data (if it exists) or mock data (if it does not exist).
+
 <div style="page-break-after: always"></div>
 
 ### 4.2 View Command
@@ -290,6 +296,7 @@ the `ViewMissionDeadlineCommand` and other object classes.
 #### 4.2.1 What is ViewCommand
 `ViewCommand` is an abstract class encapsulating the different view commands for the following: `Student`,
 `Mission`, `Quest`, `Consultation`, `Mastery Check` and `Task`.
+
 <div style="page-break-after: always"></div>
 
 #### 4.2.2 Structure of ViewCommand
@@ -317,6 +324,7 @@ The following diagram shows the overview of the `ViewCommandParser` Class Diagra
 In the `ViewCommandParser` class, under the `parse()` method, we reference the `Flag` class which is a class that encapsulates
 the different flags that `ViewCommand` can parse. We use the `Flag` class to check for whether an input is valid and go on to parse
 the flag and return the correct `ViewCommand` object.
+
 <div style="page-break-after: always"></div>
 
 #### 4.2.4 Path Diagram of ViewMissionDeadlineCommand
@@ -327,6 +335,7 @@ The diagram below demonstrates the expected path execution of `ViewMissionDeadli
 The other `ViewCommand` subclasses will execute similarly.
 
 ![Path Diagram of ViewMisionDeadlineCommand](images/ViewMissionDeadlinePathDiagram.png)
+
 <div style="page-break-after: always"></div>
 
 #### 4.2.5 Sequence Diagram of ViewMissionDeadlineCommand
@@ -399,7 +408,9 @@ the flag and return the correct `AddCommand` object.
 
 Due to Java `LocalDateTime` class used for our `Consultation`, `MasteryCheck`, `Event` and `Deadline` objects, `ConsultationMasteryCheckCommandParser`
 and `TaskCommandParser` are employed to parse the objects added.
+
 <div style="page-break-after: always;"></div>
+
 #### 4.3.5 Path Diagram of AddTaskCommand
 As there are many `AddCommand` subclasses such as `AddTaskCommand` and `AddConsultationCommand`,
 we will only bring in one of them. In this and the following section, we will be using the `AddTaskCommand`
@@ -412,6 +423,7 @@ The other `AddCommand` subclasses will execute similarly.
 <div markdown="span" class="alert alert-info">
 :information_source: **Reminder:** There are 3 `Task` types, namely, `Todo`, `Event` and `Deadline`.
 </div>
+
 <div style="page-break-after: always"></div>
 
 #### 4.3.6 Sequence Diagram of AddTaskCommand
@@ -482,6 +494,7 @@ The diagram below demonstrates the expected path execution of `DeleteConsultatio
 The other `DeleteCommand` subclasses will execute similarly.
 
 ![Path Diagram of DeleteConsultationCommand](images/DeleteConsultationPathDiagram.png)
+
 <div style="page-break-after: always"></div>
 
 #### 4.4.5 Sequence Diagram of DeleteConsultationCommand
@@ -502,7 +515,9 @@ The other `DeleteCommand` subclasses work similarly to this as well.
 
 In this section, we will introduce the `Edit Command`. It will show the structure of the `EditCommand` class as well as the path diagram and sequence diagram of the
 `EditLoginCommand` to capture the interactions between the `EditLoginCommand` and other object classes.
+
 <div style="page-break-after: always;"></div>
+
 #### 4.5.1 What is EditCommand
 The `EditCommand` is an abstract class encapsulating the different implementations to edit `Student`, `UserLogin` and `MasteryCheck`.
 
@@ -659,6 +674,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | tutor                                       | delete tasks                           | can keep track of completed and incompleted tasks.           |
 
 <div style="page-break-after: always;"></div>
+
 ### 6.3 Use cases
 
 (For all use cases below, the **System** is `Jarvis` and the **Actor** is the `CS1101S tutor`, unless specified otherwise)
@@ -1027,6 +1043,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 <div style="page-break-after: always;"></div>
+
 ### 6.4 Non-Functional Requirements
 
 1. Should work on _mainstream Operating System_ as long as it has Java `11` or above installed.
@@ -1088,6 +1105,7 @@ testers are expected to do more *exploratory* testing.
    1. Type `exit` command in the Command Box in GUI.
       <br>
       Expected: Stops and closes the program.
+
 <div style="page-break-after: always"></div>
 
 ### 7.2 Deleting a Consultation
@@ -1117,6 +1135,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect add commands to try: `add -d example deadline d/ t/17:55`, `add -d example deadline d/2020-02-31 t/20:20`<br>
       Expected: Similar to previous due to incorrect date and time or missing input.
+
 <div style="page-break-after: always"></div>
 
 ### 7.4 Viewing a Student
@@ -1133,6 +1152,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `view -s`<br>
       Expected: Success message of viewing all `Students` is shown in the status message. All `Students` displayed in the GUI under the `Student` tab.
+
 <div style="page-break-after: always"></div>
 
 ### 7.5 Edit Login Details
