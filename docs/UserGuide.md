@@ -561,6 +561,7 @@ This helps to prevent you from accidentally agreeing to 2 sessions that overlaps
 
 Examples:
 * `sadd g/New Gym ex/Endurance at/06/11/2020 0900 t/65` adds a session at gym `New Gym` with exercise type `Endurance` at `06/11/2020 0900hrs` that lasts for `65` minutes. 
+The figure above shows the result of a successful execution of this command. You might need to set the viewing period to all (`sview p/all`) to see the new session show up in the right panel.
 
 
 ### 3.3.2 Editing a Session : `sedit`
@@ -828,7 +829,7 @@ You can find the comprehensive list of commands in the table below.
 
 | Action | Entity | Format |
 | ---------| -------- | -------- |
-| Add | Client | `cadd n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]`|
+| Add | Client | `cadd n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]`|
 | Add | Session | `sadd g/GYM_NAME ex/EXERCISE_TYPE at/START_TIME t/DURATION` |
 | Add | Schedule |`schadd c/CLIENT_INDEX s/SESSION_INDEX`|
 | Edit | Client | `cedit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`|
