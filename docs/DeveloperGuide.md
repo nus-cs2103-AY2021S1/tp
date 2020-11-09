@@ -235,8 +235,6 @@ This section explains, in detail, the implementation of some noteworthy features
 <a name="ImplCommandParser"></a>
 ### 4.1&ensp;Command Parser
 
-Main developer: **zhiayang**
-
 The command parser is part of the *Logic* component, and is responsible for taking the input command as a string and either returning a valid `Command` to be executed, or a sensible error message. It was completely rewritten due to the requirement of different parsing semantics.
 
 Shown below is the class diagram for the various Parser components:
@@ -247,7 +245,7 @@ Figure 999: <i>The class diagram for the parser</i>
 
 Notably, there are various wrapper classes to ensure type safety, namely `CommandArguments`, `ArgName`, and `ItemReference`, used instead of passing raw strings around in an error-prone manner.
 
-Furthermore, instead of pointlessly instantiating objects that do not store any state, all of the parsing work (save the main `CommandParser`) is done by static methods, in the various `_CommandParser` classes (eg. `AddCommandParser`, `ListCommandParser`).
+Furthermore, instead of pointlessly instantiating objects that do not store any state, all of the parsing work (save the main `CommandParser`) is done by static methods, in the various `XYZCommandParser` classes (eg. `AddCommandParser`, `ListCommandParser`).
 
 The `CommonParser` class holds common methods for each parser, for example quantity parsing and validation (eg. preventing negative quantities), checking for unsupported named arguments, etc.
 
@@ -342,8 +340,6 @@ After abstracting out functions that resolve an item reference, code complexity 
 <a name="ImplTabCompletion"></a>
 ### 4.2&ensp;Tab Completion
 
-Main developer: **zhiayang**
-
 This feature allows the user to quickly type in commands and complete long recipe and ingredient names, and greatly reduces the tedium of using a command-line application. Its implementation is not particularly clever and can be described mostly by a state machine.
 
 The main brains of the tab completer lies in determining which <i>kind</i> of item to complete (eg. a command name or a recipe name), and it can be (roughly) represented by the activity diagram below:
@@ -366,8 +362,6 @@ Most notably, each command (or, ideally, its parser) should 'own' the knowledge 
 
 <a name="ImplQuantities"></a>
 ### 4.3&ensp;Quantity and Unit Handling
-
-Main developer: **zhiayang**
 
 As an application dealing with ingredients, one of the core requirements of ChopChop is being able to track quantities of ingredients, and perform arithmetic on them when cooking recipes (consuming) and refilling those ingredients.
 
@@ -425,8 +419,6 @@ In the current implementation, there are a number of specific units of Volume (*
 <a name="ImplHelpCommand"></a>
 ### 4.4&ensp;Help Command
 
-Main developer: **zhiayang**
-
 To improve the user experience for first-time users, a robust help command was implemented into ChopChop. Unlike the AB3 'solution' of simply opening a dialog with a link to the User Guide, ChopChop's help is able to provide a clickable link directly to the correct section in the User Guide for that specific command.
 
 For example, here is the output of `help add recipe`:
@@ -460,21 +452,9 @@ When extending ChopChop to include new commands, it is important to follow these
 
 
 
-
-
-<div style="height: 15em">
-
-</div>
-
-
-
-
-
-
 <a name="stats-feature"></a>
 ### 4.5&ensp;Statistics feature
 
-Main developer: **trav1st**
 
 <a name="stats-curr-impl"></a>
 #### 4.5.1&ensp;Current implementation
@@ -510,53 +490,47 @@ This section details the design considerations of the statistics feature.
 
 <a name="stats-design-considerations"></a>
 
-Aspect 1: How the usages are tracked and saved.
+**1. How the usages are tracked and saved.**
 
-* Consideration 1:
-Store the history of commands executed. The statistics of recipe and ingredient usages can be computed based on the commands executed.
-For example, currently there are 10 cabbages and the `make recipe salad` command was executed 3 times yesterday. Assuming salad required 2 cabbages to make, 6 cabbages were used yesterday.
-    * Pros:
-        * Requires less memory usage.
-        * Allows more statistics to be computed as all changes to `Model` have to be done through the execution of a command.
-    * Cons:
-        * Getting statistics for ingredient usage can be tricky as recipes can be deleted and edited. In the example above, to compute the number of cabbages used, exact ingredient consumptions have to be stored in addition to the `make recipe salad` text command.
-        * Violates Single Responsibility Principle and Separation of Concerns as the history of command is being used for statistics purposes in addition to the `undo` feature which uses a non-persistent history of command.
+  - Option A: Store the history of commands executed. The statistics of recipe and ingredient usages can be computed based on the commands executed. For example, currently there are 10 cabbages and the `make recipe salad` command was executed 3 times yesterday. Assuming salad required 2 cabbages to make, 6 cabbages were used yesterday.
+    - Pros:
+      - Requires less memory usage.
+      - Allows more statistics to be computed as all changes to `Model` have to be done through the execution of a command.
+    - Cons:
+      - Getting statistics for ingredient usage can be tricky as recipes can be deleted and edited. In the example above, to compute the number of cabbages used, exact ingredient consumptions have to be stored in addition to the `make recipe salad` text command.
+      - Violates Single Responsibility Principle and Separation of Concerns as the history of command is being used for statistics purposes in addition to the `undo` feature which uses a non-persistent history of command.
 
-* **Consideration 2(chosen)**:
-Store the relevant information such as name, and the date and time of which the recipe was made or ingredient was used in `Usage` which is then stored in `UsageList`.
-    * Pros:
-        * Easier to implement
-        * Allows quick access to certain data such as latest recipe usages.
-    * Cons:
-        * Modifications to `Usage` and its associated classes may be required to support computation of more kinds of statistics.
+  - **Option B(chosen)**: Store the relevant information such as name, and the date and time of which the recipe was made or ingredient was used in `Usage` which is then stored in `UsageList`.
+    - Pros:
+      - Easier to implement
+      - Allows quick access to certain data such as latest recipe usages.
+    - Cons:
+      - Modifications to `Usage` and its associated classes may be required to support computation of more kinds of statistics.
 
-Aspect 2: Responsibility of `UsageList`.
-* **Consideration 1(chosen)**:
-Make `getRecentlyUsed` and `getUsageBetween` return a Pair of Strings.
-    * Pros:
-        * Easier to implement.
-    * Cons:
-        * Violates the Single Responsibility Principle.
-* Consideration 2:
-Make `getRecentlyUsed` and `getUsageBetween` return intermediate values.
-    * Pros:
-        * `UsageList` only needs to handle adding, removing and returning of `Usage`.
-    * Cons:
-        * Additional processing is required in `ModelManager`.
+**2. Responsibility of Usage List.**
+  - **Option A(chosen)**: Make `getRecentlyUsed` and `getUsageBetween` return a Pair of Strings.
+    - Pros:
+      - Easier to implement.
+    - Cons:
+      - Violates the Single Responsibility Principle.
+  - Option B: Make `getRecentlyUsed` and `getUsageBetween` return intermediate values.
+    - Pros:
+      - `UsageList` only needs to handle adding, removing and returning of `Usage`.
+    - Cons:
+      - Additional processing is required in `ModelManager`.
 
-Aspect 3: GUI of statistics box.
-* **Consideration 1(chosen)**:
-Update the statistics box after every execution of command.
-    * Pros:
-        * The user will be shown recently made recipes list after they executed non-statistics commands (other than `stats recipe recent`). This makes the app feel more responsive as both `StatsBox` and `CommandOutput` panels are updated.
-    * Cons:
-        * Additional computation required to refresh `StatsBox`.
-        * The user might want to have previous stats command results stay in the statistics box for future reference.
-* Consideration 2: Notify and update statistics box with `CommandResult` in `MainWindow` only after the execution of statistics commands.
-    * Pros:
-        * The statistics results remain in the statistics box even after the execution of other commands so the user does not have to execute the statistics command again to view the statistics.
-    * Cons:
-        * The user will have to execute `stats recipe recent` to obtain the default view on statistics box again.
+**3: GUI of statistics box.**
+  - **Option A(chosen)**: Update the statistics box after every execution of command.
+    - Pros:
+      - The user will be shown recently made recipes list after they executed non-statistics commands (other than `stats recipe recent`). This makes the app feel more responsive as both `StatsBox` and `CommandOutput` panels are updated.
+    - Cons:
+      - Additional computation required to refresh `StatsBox`.
+      - The user might want to have previous stats command results stay in the statistics box for future reference.
+  - Option B: Notify and update statistics box with `CommandResult` in `MainWindow` only after the execution of statistics commands.
+    - Pros:
+      - The statistics results remain in the statistics box even after the execution of other commands so the user does not have to execute the statistics command again to view the statistics.
+    - Cons:
+      - The user will have to execute `stats recipe recent` to obtain the default view on statistics box again.
 
 <a name="stats-related-commands"></a>
 #### 4.5.3&ensp;Related commands
