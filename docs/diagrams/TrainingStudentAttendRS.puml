@@ -2,6 +2,7 @@
 hide circle
 
 Class Training {
+
 }
 
 Class Student {
@@ -14,7 +15,7 @@ marks()
 unmarks()
 }
 
-Training --> "*" Student
-Student --> "*" Attendance
+Training --right> "*" Student
+Student --right> "*" Attendance
 
 @enduml

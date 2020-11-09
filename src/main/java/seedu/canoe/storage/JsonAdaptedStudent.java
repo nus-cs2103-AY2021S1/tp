@@ -42,7 +42,7 @@ class JsonAdaptedStudent {
     private final String thursdayDismissal;
     private final String fridayDismissal;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final List<JsonAdaptedAttend> trainingAttendances = new ArrayList<>();
+    private final List<JsonAdaptedAttendance> trainingAttendances = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -57,7 +57,7 @@ class JsonAdaptedStudent {
                               @JsonProperty("wednesday") String wednesdayDismissal,
                               @JsonProperty("thursday") String thursdayDismissal,
                               @JsonProperty("friday") String fridayDismissal,
-                              @JsonProperty("trainingAttendances") List<JsonAdaptedAttend>trainingAttendances,
+                              @JsonProperty("trainingAttendances") List<JsonAdaptedAttendance>trainingAttendances,
                               @JsonProperty("id") String id) {
         this.name = name;
         this.phone = phone;
@@ -97,7 +97,7 @@ class JsonAdaptedStudent {
                 .collect(Collectors.toList()));
 
         trainingAttendances.addAll(source.getTrainingAttendances().stream()
-                .map(JsonAdaptedAttend::new)
+                .map(JsonAdaptedAttendance::new)
                 .collect(Collectors.toList()));
     }
 
@@ -197,7 +197,7 @@ class JsonAdaptedStudent {
         Student student = new Student(modelName, modelPhone, modelEmail, modelAcademicYear,
             modelTags, monday, tuesday, wednesday, thursday, friday, studentId);
 
-        for (JsonAdaptedAttend attend : trainingAttendances) {
+        for (JsonAdaptedAttendance attend : trainingAttendances) {
             student.addAttendance(attend.toModelType());
         }
 

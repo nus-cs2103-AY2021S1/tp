@@ -185,13 +185,16 @@ A Training Session is initialised with no Students in the HashSet by default.
 
 The following shows the relationship between Student, Training and Attendance.
 
+Fields and methods of the training and student class are omitted here.
+
 ![Relationship of Attend, Training, Student](images/TrainingStudentAttendRS.png)
 
 ### Find-training feature
 
 #### Implementation
 
-The find-training mechanism extends `Command` with the ability to view all training history (past and present) of a single student. This command is supported by methods in the `Model` interface, namely `Model#updateFilteredStudentList()`,  and`Model#updateFilteredTrainingList()`.
+The find-training mechanism extends `Command` with the ability to view all training history (past, on-going and
+ future) of a single student. This command is supported by methods in the `Model` interface, namely `Model#updateFilteredStudentList()`,  and`Model#updateFilteredTrainingList()`.
 
 ![TrainingMatchesIdPredicateDiagram](images/TrainingMatchesIdPredicateDiagram.png)
 
@@ -215,7 +218,8 @@ From the diagram above, all four of the above-mentioned predicates implements th
 
 Given below is an example usage scenario and how the find-training mechanism behaves at each step.
 
-Step 1. The user launches the application. As the student panel only displays the most recent 3 upcoming trainings scheduled, the user executes `find-training id/5` command to view all the trainings of the uniquely identified 5th student in the CanoeCoach.
+Step 1. The user launches the application. The user executes `find-training id/5` command to view all the trainings
+ of the student with student id value 5 in the CanoeCoach.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#updateFilteredStudentList()` or `Model#updateFilteredTrainingList()`, so the GUI state will not be changed or altered.
 
@@ -256,7 +260,7 @@ specified index.
 It extends `Command` with the overwritten `AddStudentToTrainingCommand#execute()` method
 that checks a number of fields as follows before adding the Student to the Training Session:
 
-- Whether the student can attend the Training using `Student#isAvalable(LocalDateTime dateTime)`
+- Whether the student can attend the Training using `Student#isAvailableAtDateTime(LocalDateTime dateTime)`
 - Whether the student is already in the Training Session using `AddStudentToTrainingCommand#uniqueChecker(Student student)`
 
 After all the checks have passed, the Student is then added to the Training Session and the model updated using `Model#setStudent(Student targetStudent, Student editedStudent)`,
@@ -296,10 +300,10 @@ The activity diagram below shows what happens when a new `ts-add` command is exe
     * Cons : Need to create a new Class containing the key-value pair and refactor both Training and Student.
             Also makes the code base more complicated.
 
-* **Alternative 2: (current choice)** Within the AddStudentToTrainingCommand implement checks to make sure that
+* **Alternative 2: (current choice)** Implement checks within the AddStudentToTrainingCommand to make sure that
 the student to be added is not a duplicate.
     * Pros : This  is easier to implement than the key-value pair approach.
-    * Cons : Checks have to be done carefully in during Command execution to prevent duplicates or bugs.
+    * Cons : Checks have to be done carefully during Command execution to prevent duplicates or bugs.
 
 ### Add all students to training feature
 
@@ -364,11 +368,12 @@ The following shows the relationship between Student, Training and Attendance.
 #### Design considerations:
 #### Aspect: How to keep track of which trainings that a Student is attending
 
-*  **Alternative 1:** Store a list of trainings that the Student is attending in the Student.
+*  **Alternative 1:** Store a list of trainings that the Student is attending in the Student class.
 	* Pros: Easier implementation in the short run.
 	* Cons: This causes cyclic-dependency and is undesirable.
 
-* **Alternative 2 (Previous iteration):** Store a list of LocalDateTime in the Student, each representing the time of a Training that the Student is attending.
+* **Alternative 2 (Previous iteration):** Store a list of LocalDateTime in the Student class, each representing the time
+ of a Training that the Student is attending.
 	* Pros: Relatively easy to implement
 	* Cons: It is difficult to extend features related to Attendance, and it is inflexible.
 
@@ -376,7 +381,7 @@ The following shows the relationship between Student, Training and Attendance.
 	* Pros: This will lead to higher cohesion and low coupling, and increases the maintainability of the code.
 	* Cons: It is more complex to implement. Much harder to display the attendance of a Student in the StudentCard in this current iteration.
 
-* **Alternative 4 (Current iteration):**  Store a list of Attendance in the Student.
+* **Alternative 4 (Current iteration):**  Store a list of Attendance in the Student class.
 	* Pros: Difficulty of implementation is lower than Alternative 3. Able to support other functions easily compared to Alternative 2.
 	* Cons: Potentially prone to bugs.
 
@@ -386,18 +391,16 @@ The following shows the relationship between Student, Training and Attendance.
 
 The mark-attendance mechanism extends `Command` with the ability to mark a student as having attended a particular training session.
 
-This feature makes use of the `Attend` class which each student keeps track of. As stated above, by default an `Attend` object is constructed with `hasAttended = false`. This command sets `hasAttended` to equal to `true`.
+This feature makes use of the `Attendance` class which each student keeps track of. As stated above, by default an
+ `Attendance` object is constructed with `isMarked = false`. This command sets `isMarked` to equal to `true`.
 
-The mark-attendance command takes in a `Training` index and multiple `Student` ids as input. Any error in the input format will result in the whole command being discarded and the state of the canoe coach book will remain unchanged.
+The mark-attendance command takes in a training index and multiple student ids as input. Any error in the input
+ format will result in the whole command being discarded and the state of the canoe coach book will remain unchanged.
 A list of possible input errors are listed below:
 - `Training` index is out of range -> `Training` cannot be found
 - `Student` index is out of range -> `Student` cannot be found
-- Empty parameters. i.e. `Training` index and/or `Student` ids not input
-- `Student` does not have specified `Training` as part of its schedule
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#updateFilteredStudentList()`, so the GUI state will not be changed or altered.
-
-</div>
+- Empty parameters. i.e. `Training` index and/or `Student` ids not inputted
+- `Student` does not have specified `Training` as part of his/her schedule
 
 The following shows the sequence flow for the `mark-attendance` command:
 
@@ -530,9 +533,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * Manage students and canoeing training schedules faster than a typical mouse/GUI driven app
 * Manage large student numbers efficiently
-	* Automatically sound warnings if certain students do not attend consecutive trainings
+	* Being able to find out if certain students do not attend more than 3 trainings
 * Fast scheduling of canoeing trainings compared to manual modes
-* Data Visualisation
 
 ### User stories
 
@@ -549,20 +551,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user     | delete students that have quit              | keep track of only current active students                |
 | `* * *`  | user     | easily modify the details of my students          | see the most accurate updated information    |
 | `* * *`  | user     | find students by their name          | easily retrieve the details of any student without having to go through the entire list |
-| `* *`    | user     | find students by their Academic Year          | easily retrieve all students from a particular academic level |
-| `* *`    | user     | find students by their Phone Numbers          | easily retrieve the details of a particular student by their contact details |
-| `* * *`  | user     | find students by their dismissal time        | easily find students whose dismissal times are before a given dismissal time  |
+| `* *`    | user     | find students by their academic year          | easily retrieve all students from a particular academic level |
+| `* *`    | user     | find students by their phone numbers          | easily retrieve the details of a particular student by their contact details |
+| `* * *`  | user     | find students by their dismissal time        | easily find students whose dismissal times are on or before a given dismissal time  |
 | `* *`    | user     | find students by their Id             | easily retrieve the details of a particular student without having to go through the entire list  |
 | `* *`    | user     | find trainings by date-time             | easily retrieve the students scheduled for the training without going through the entire training list  |
 | `* *`    | user     | view all trainings that students are scheduled for              | easily retrieve the training schedules of respective students  |
 | `* *`    | user     | determine the earliest time to conduct training given a subgroup of students | schedule training at the earliest possible time for these students |
-| `* * *`  | user     | create new Training sessions | schedule training at a given date and time |
-| `* * *`  | user     | delete a Training session that was already created | make changes to the schedule |
+| `* * *`  | user     | create new training sessions | schedule training at a given date and time |
+| `* * *`  | user     | delete a training session that was already created | make changes to the schedule |
 | `* * *`  | user     | add students to a training session | view who are the students to expect for a training |
 | `* * *`  | user     | delete students from a training session | remove students who are unable to come for training |
-| `* * `   | user     | view the trainings that a student will be attending | determine the number of sessions he will be attending |
-| `* * `   | user     | mark the student as having attended the training | determine the number of sessions he has attended |
-| `* * `   | user     | view the students who have poor attendance | determine who are the students whom I need to monitor |
+| `* * `   | user     | view the trainings that a student is scheduled | determine the number of sessions the student should be attending |
+| `* * `   | user     | mark the student as having attended the training | determine the accurate number of sessions the student has attended |
+| `* * `   | user     | unmark the student as having attended the training | determine the accurate number of sessions the student has attended |
+| `* * `   | user     | view the students who have poor attendance | determine the students who need monitoring |
 
 ### Use cases
 
@@ -573,22 +576,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a student to the student list
-2. CanoE-COACH adds the student
-    Use case ends.
+2. CanoE-COACH adds the student<br>
+   Use case ends.
 
 **Extensions**
 
 *   1a. Name, phone number, email, or academic year is missing.
 
-    *  1a1. CanoE-COACH displays an error message.
+    *  1a1. CanoE-COACH displays an error message.<br>
         Use case resumes at step 1.
 
 *   1b. Student with the same name already exists.
-    *   1b1. CanoE-COACH displays an error message.
+    *   1b1. CanoE-COACH displays an error message.<br>
         Use case resumes at step 1.
 
 *   1c. Details have invalid format.
-    *   1c1. CanoE-COACH displays an error message.
+    *   1c1. CanoE-COACH displays an error message.<br>
         Use case resumes at step 1.
 
 **UC02: Delete a student**
@@ -599,16 +602,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  CanoE-COACH shows a list of students
 3.  User requests to delete a specific student in the list
 4.  CanoE-COACH deletes the student
-5.  CanoE-COACH removes the student from all the trainings he is scheduled in.
+5.  CanoE-COACH removes the student from all the trainings he is scheduled in.<br>
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The list is empty.<br>
   Use case ends.
 
 * 3a. The given index is invalid.
-    * 3a1. CanoE-COACH shows an error message.
+    * 3a1. CanoE-COACH shows an error message.<br>
       Use case resumes at step 2.
 
 **UC03: Edit a Student's particulars**
@@ -618,20 +621,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list students
 2.  CanoE-COACH shows a list of students
 3.  User requests to edit a specific student in the list
-4.  CanoE-COACH edits the student's details
+4.  CanoE-COACH edits the student's details<br>
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The list is empty.<br>
   Use case ends.
 
 * 3a. The given index is invalid.
-    * 3a1. CanoE-COACH shows an error message.
+    * 3a1. CanoE-COACH shows an error message.<br>
       Use case resumes at step 2.
 
 * 4a. The student's new dismissal time is later than a training that he has been scheduled for.
-    * 4a1. Student is removed from the Training.
+    * 4a1. Student is removed from the Training.<br>
     Use case ends.
 
 
@@ -640,13 +643,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to find students
-2.  CanoE-COACH shows a list of students who match the criteria
+2.  CanoE-COACH shows a list of students who match the criteria<br>
     Use case ends.
 
 **Extensions**
 
 * 1a. There are no parameters specified in the find command.
-  * 1a1. CanoE-COACH shows an error message.
+  * 1a1. CanoE-COACH shows an error message.<br>
       Use case resumes at step 1.
 
 **UC05: Clear all Students**
@@ -654,7 +657,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to clear all students
-2.  CanoE-COACH deletes all existing students in the student list
+2.  CanoE-COACH deletes all existing students in the student list<br>
     Use case ends.
 
 **UC06: Find Common Time to conduct training for students**
@@ -663,13 +666,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to find common time to conduct training for a specified sub-group of students
 2.  CanoE-COACH shows a list of students that have been specified by user.
-2.  CanoE-COACH shows shows the latest dismissal times for the list of students.
+2.  CanoE-COACH shows shows the latest dismissal times for the list of students.<br>
     Use case ends.
 
 **Extensions**
 
 * 1a. There are no parameters specified in the commonTime command.
-  * 1a1. CanoE-COACH shows an error message.
+  * 1a1. CanoE-COACH shows an error message.<br>
     Use case resumes at step 1.
 
 **UC07: Add a Training**
@@ -677,21 +680,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a Training to the training list.
-2. CanoE-COACH adds the training.
+2. CanoE-COACH adds the training.<br>
    Use case ends.
 
 **Extensions**
 
 * 1a. Date or time is missing.
-  * 1a1. CanoE-COACH displays an error message.
+  * 1a1. CanoE-COACH displays an error message.<br>
     Use case resumes at step 1.
 
 * 1b. Training with the same date and time already exists.
-   * 1b1. CanoE-COACH displays an error message.
+   * 1b1. CanoE-COACH displays an error message.<br>
      Use case resumes at step 1.
 
 * 1c. The Date and Time provided is not valid.
-   * 1c1. CanoE-Coach displays an error message.
+   * 1c1. CanoE-Coach displays an error message.<br>
      Use case resumes at step 1.
 
 **UC08: Delete a training**
@@ -700,13 +703,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to delete a specific training in the list
 2.  CanoE-COACH deletes the training
-3.  CanoE-COACH removes the training from all the students that are attending the training.
+3.  CanoE-COACH removes the training from all the students that are attending the training.<br>
     Use case ends.
 
 **Extensions**
 
 * 2a. The given index is invalid.
-    * 2a1. CanoE-COACH shows an error message.
+    * 2a1. CanoE-COACH shows an error message.<br>
       Use case resumes at step 1.
 
 **UC09: Add students to the training**
@@ -714,21 +717,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to add students to training.
-2.  CanoE-COACH adds the specified students to the training.
+2.  CanoE-COACH adds the specified students to the training.<br>
     Use case ends.
 
 **Extensions**
 
 * 2a. The student's dismissal time is later than the time the training is scheduled for.
-  * 2a1. CanoE-COACH shows an error message.
+  * 2a1. CanoE-COACH shows an error message.<br>
     Use case resumes at step 1.
 
 * 2b. The student or training does not exist.
-  * 2b1. CanoE-COACH shows an error message.
+  * 2b1. CanoE-COACH shows an error message.<br>
     Use case resumes at step 1.
 
 * 2c. There are repeated student Id values.
-  * 2c1. CanoE-COACH shows an error message.
+  * 2c1. CanoE-COACH shows an error message.<br>
     Use case resumes at step 1.
 
 **UC10: Delete student from training**
@@ -737,21 +740,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to delete student from training.
 2.  CanoE-COACH deletes the specified student from the training.
-3.  CanoE-COACH deletes the training from the student's list of trainings.
+3.  CanoE-COACH deletes the training from the student's list of trainings.<br>
     Use case ends.
 
 **Extensions**
 
 * 2a. Student was not attending the training
-  * 2a1. CanoE-COACH shows an error message.
+  * 2a1. CanoE-COACH shows an error message.<br>
     Use case resumes at step 1.
 
 * 2b. The student or training does not exist.
-  * 2b1. CanoE-COACH shows an error message.
+  * 2b1. CanoE-COACH shows an error message.<br>
     Use case resumes at step 1.
 
 * 2c. There are repeated student Id values.
-  * 2c1. CanoE-COACH shows an error message.
+  * 2c1. CanoE-COACH shows an error message.<br>
     Use case resumes at step 1.
 
 **UC11: Add all students to the training**
@@ -759,17 +762,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to add all students to training.
-2.  CanoE-COACH adds all students to the training.
+2.  CanoE-COACH adds all students to the training.<br>
     Use case ends.
 
 **Extensions**
 
 * 2a. The student list is empty.
-  * 2a1. CanoE-COACH shows an error message.
+  * 2a1. CanoE-COACH shows an error message.<br>
         Use case resumes at step 1.
 
 * 2b. No student can be added to the training.
-    * 2b1. CanoE-COACH shows an error message.
+    * 2b1. CanoE-COACH shows an error message.<br>
       Use case resumes at step 1.
 
 **UC12: Mark student as having attended training session**
@@ -777,17 +780,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to mark student as attended a training.
-2.  CanoE-COACH marks specified student as attended the specified training.
+2.  CanoE-COACH marks specified student as attended the specified training.<br>
     Use case ends.
 
 **Extensions**
 
 * 1a. Specified training cannot be found.
-  * 1a1. CanoE-COACH shows an error message.
+  * 1a1. CanoE-COACH shows an error message.<br>
     Use case ends.
 
 * 2a. The student list is empty.
-  * 2a1. CanoE-COACH shows an error message.
+  * 2a1. CanoE-COACH shows an error message.<br>
     Use case resumes at step 1.
     
 **UC13: Find a training by date-time**
@@ -795,16 +798,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to find a training by its date-time.
-2.  CanoE-COACH shows the training which matches the date-time specified and the list of students who are scheduled for the matching training.
+2.  CanoE-COACH shows the training which matches the date-time specified and the list of students who are scheduled for the matching training.<br>
     Use case ends.
 
 **Extensions**
 * 1a. There are no parameters specified in the find-training command.
-  * 1a1. CanoE-COACH shows an error message.
+  * 1a1. CanoE-COACH shows an error message.<br>
       Use case resumes at step 1.
       
 * 1b. Date-time specified in the find-training command is of the wrong format.
-  * 1b1. CanoE-COACH shows an error message.
+  * 1b1. CanoE-COACH shows an error message.<br>
       Use case resumes at step 1.
 
 ### Non-Functional Requirements
@@ -819,6 +822,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Dismissal Time**: The time when a student is dismissed from his classes. He would be able to attend trainings scheduled only on or after his dismissal time.
+* **Training**: A training session organised by the coach (the user), and attended by the students.
+* **Available Student**: A student who is available to attend the training. A student is available to attend a training if his dismissal time is equal to or before training start time, and if he is not already attending a training on the same day.
+* **Attendance**: Indicates the training session that a particular student is going to attend.
+* **"Mark" Attendance**: A marked attendance indicates that a particular student had attended the training session, and it is only possible to mark attendance for a training that has already passed. A marked attendance can be unmarked to indicate absence / yet to attend.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -869,7 +877,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `edit n/`, `edit p/`, ... (where any of the prefixes `n/`, `p/`, `e/` or `ay/` is empty) <br> Expected: No student is edited. Error details shown in the status message. 
 
-   1. Other incorrect add commands to try: `edit`, `edit p/8`<br> Expected: Similar to previous.
+   1. Other incorrect edit commands to try: `edit`, `edit p/8`<br> Expected: Similar to previous.
 
 ### Deleting a student
 
@@ -940,7 +948,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The first Training Session is deleted. The details of the deleted Training shown in the status message.
 
     1. Test case: `delete-training -1` <br>
-       Expected: No Training Session is created. Error details shown in the status message.
+       Expected: No Training Session is deleted. Error details shown in the status message.
 
     1. Test case: `delete-training a` <br>
        Expected: Similar to previous.
@@ -1031,9 +1039,8 @@ testers are expected to do more *exploratory* testing.
 ### Finding a Training by date-time
 1. Finding a training by date-time while all trainings are shown
 
-   1. Prerequisites: List all trainings using the `list` command. Multiple trainings in the list.
-   2. Create a training on the `2021-08-26 1500` using the `training 2021-08-26 1500` command. Take note of the training index as displayed on the training panel.
-   3. Add some students to the created training using the ts-add command and the training index noted above. Make sure that the students are successfully added.
+   1. Prerequisites: List all trainings using the `list` command. Training scheduled at `2021-08-26 1500` in the list
+   . Take note of the training index.
    4. Test case: `find-training dt/2021-08-26 1500`<br> Expected: Trainings with a date-time that matches the date-time inputted will be displayed in the training panel. The students that are scheduled for the matching training will be displayed in the student panel. Details of the number of matching trainings and students is shown in the status message in the display panel. 
 
    5. Test case: `find-training dt/`<br> Expected: No training will be matched. Error details shown in the status message. 

@@ -23,7 +23,6 @@ Class Name
 Class AcademicYear
 Class Phone
 Class Day
-Class LocalDateTime
 Class UniqueStudentList
 Class Attendance
 }
@@ -42,6 +41,7 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
 
+
 CanoeCoach .up.|> ReadOnlyCanoeCoach
 
 ModelManager .up.|> Model
@@ -52,11 +52,11 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 CanoeCoach *--> "1" UniqueStudentList
 UniqueStudentList o--> "*" Student
-Student *--> Id
-Student *--> Name
-Student *--> Phone
-Student *--> Email
-Student *--> AcademicYear
+Student *--> "1  " Id
+Student *--> "1 " Name
+Student *--> "1 " Phone
+Student *--> "1 " Email
+Student *--> "1 " AcademicYear
 Student *-> "*" Attendance
 Student *--> "            5" Day
 Student *--> "*" Tag

@@ -14,13 +14,13 @@ UniqueStudentList o-right-> Student
 
 Student -up-> "*" Tag
 
-Student *--> Id
-Student *--> Name
-Student *--> Phone
-Student *--> Email
-Student *--> AcademicYear
+Student *--> "1 " Id
+Student *--> "1 " Name
+Student *--> "1 " Phone
+Student *--> "1  " Email
+Student *--> "1      " AcademicYear
 Student o-> "*" Attendance
-Student *--> "5" Day
+Student *--> " 5" Day
 
 Day <|-- Monday
 Day <|-- Tuesday
