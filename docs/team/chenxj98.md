@@ -61,19 +61,19 @@ Click on the following links to view the code that I have contributed:
  * **Project management**:
    * Managed 34 issues on GitHub
    * Reviewed 59 pull requests on GitHub
-   
+
  * **Enhancements to existing features**:
    * Wrote additional tests for existing features (Pull request [\#140](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/140))
    * Wrote tests for difficulty feature (Pull request [\#127](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/127))
    * Refactored remnant code from AddressBook package into the QuickCache package (Pull request [\#231](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/231))
-   
+
  * **Documentation**:
    * User Guide:
-     * Added documentation for the features `difficulty`, `tag` (Pull requests [\#30](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/30), [\#159](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/159)) 
+     * Added documentation for the features `difficulty`, `tag` (Pull requests [\#30](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/30), [\#159](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/159))
      * Add introduction message and table of contents of the user guide (Pull requests [\#168](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/168))
    * Developer Guide:
      * Added implementation details of the `difficulty`, `storage` features (Pull requests [\#116](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/116), [\#132](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/132), [\#175](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/175))
- 
+
  * **Community**:
    * PRs reviewed (with non-trivial review comments): [\#35](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/35), [\#37](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/37), [\#38](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/38), [\#50](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/50), [\#127](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/127), [\#129](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/129), [\#130](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/130), [\#151](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/151), [\#154](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/154), [\#169](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/169), [\#171](https://github.com/AY2021S1-CS2103T-T13-2/tp/pull/171)
    * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S1-CS2103T-T09-2/tp/issues/145), [2](https://github.com/AY2021S1-CS2103T-T09-2/tp/issues/144), [3](https://github.com/AY2021S1-CS2103T-T09-2/tp/issues/143), [4](https://github.com/josiahkhoo/ped/issues/1))
