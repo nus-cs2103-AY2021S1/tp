@@ -406,7 +406,7 @@ To understand how the `Appointment` feature can be used, let us take a look at a
 
 3. Subsequently, an `AddApptCommand` object is created and returned as an output to the `LogicManager#execute(String commandText)` method.
 
-4. The `LogicManager#execute(String commandText)` method then calls upon the `AddApptCommand#execute(Model model)` method, which in turn calls the `Model#setPatient(Patient patient 1, Patient patient 2)` and `Model#updateFilteredPatientList(boolean true)` methods to add the new `Appointment` for the patient.
+4. The `LogicManager#execute(String commandText)` method then calls upon the `AddApptCommand#execute(Model model)` method, which in turn calls the `Model#setPatient(Patient patient 1, Patient patient 2)` and `Model#updateFilteredPatientList(boolean true)` methods to add the new `Appointment` to the patient.
 
 5. Finally, a new `CommandResult` object is returned with a success message when the `Appointment` is added to the patient.
 
@@ -422,8 +422,7 @@ The sequence diagram below illustrates how the operation of adding an `Appointme
 
 * For simplicity, the complete line of user input for the `addAppt` command is omitted, originally referring to `S1234567A appt/28/09/2022 20:00 d/Eye Check-up`, which is further simplified to `... appt/DATE TIME` in the sequence diagram.
 
-* Similarly, `patient 1` and `patient 2` represent the `Patient` object before and after adding the `Appointment` respectively,<br>
-and `PREDICATE_SHOW_ALL_PATIENTS` has been simplified to `true` in the sequence diagram, since it is always evaluated to `true` in its implementation.
+* Similarly, `patient 1` and `patient 2` represent the `Patient` object before and after adding the `Appointment` respectively, and `PREDICATE_SHOW_ALL_PATIENTS` has been simplified to `true` in the sequence diagram, since it is always evaluated to `true` in its implementation.
 
 * The steps above illustrate a typical successful execution of the `addAppt` command. In the usage scenario below, we will summarise all other commands related to the `Appointment` feature.
 
