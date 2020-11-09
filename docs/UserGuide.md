@@ -14,7 +14,7 @@ CanoE-COACH is a **desktop app for managing training schedules for secondary sch
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer.
 
 1. Download the latest `CanoE-COACH.jar` from [here](https://github.com/AY2021S1-CS2103-F10-1/tp/releases).
 
@@ -128,7 +128,7 @@ Deletes the specified student from the student list.
 Format: `delete STUDENT_INDEX`
 - Deletes the student at the specified `STUDENT_INDEX`.
 - The student index refers to the index number shown in the displayed student list. (This is different from the unique ID of each student.)
-- The index must be an unsigned integer 1, 2, 3, …
+- The index must be an positive integer 1, 2, 3, …
 - This will remove the student from all of his/her scheduled training sessions (both past and present).
 
 Examples:
@@ -167,7 +167,6 @@ Format: `find [n/KEYWORDS] [p/PHONE_VALUE] [ay/ACADEMIC_YEAR] [e/EMAIL] [d1/HHmm
       e.g. `d1/1500` will match `1500` and `1200`, but not `1530` on Monday
 
     - The dismissal time value query must be a valid dismissal time
-
 - Id
     - Student with the same `id` value will be matched.
     - The id value query must be a valid id. e.g. `id/abc` is invalid, `id/2` is valid
@@ -207,8 +206,6 @@ Format: `common-time [n/KEYWORDS] [ay/ACADEMIC_YEAR]`
 - **Searching by more than one field**
     - Common Time command will return student(s) that matches any of the fields provided.
 
-- If no student matches the search criteria, an error message will display.
-
 Examples:
 - `common-time n/alex ay/1` returns the latest dismissal times for all students with names containing the whole word `alex`, **OR** who are in Academic Year 1.
 - `common-time ay/1` returns the latest dismissal times for all the students in the student list who are in Academic Year 1.
@@ -235,7 +232,7 @@ Format: `delete-training TRAINING_INDEX`
 
 * Deletes the training at the specified `TRAINING_INDEX`.
 * Training index refers to the index of the training in the **displayed** training list.
-* The index must be an unsigned integer 1, 2, 3, …
+* The index must be an positive integer 1, 2, 3, …
 * All students inside of the training to be deleted will have the training removed from their training schedules.
 
 Examples:
@@ -257,7 +254,7 @@ Format: `ts-add TRAINING_INDEX id/STUDENT_ID...`
 > Note: Training schedules can also be viewed on the student list panel and they will update as you add students to trainings. Students will be displayed in lexicographic order in each Training Session.
 
 Examples:
-- `ts-add 2 id/1,2,3` adds students with id values 1,2,3 to training 1.
+- `ts-add 2 id/1,2,3` adds students with student id values 1, 2, 3 to training 1.
 
 ### Add All Available Students to Training : `ts-addall`
 Adds all available students to a training.
@@ -267,8 +264,8 @@ Format: `ts-addall TRAINING_INDEX`
 * Training index refers to the index of the training in the **displayed** training list.
 * All students displayed in the student list will be added to the training if they can be added.
 * A student can be added to the training if and only if:
-   * They are available for the training's date time based on their dismissal times
-   * They do not have an existing training at that date time
+   * They are available for the training's date-time based on their dismissal times
+   * They do not have an existing training at that date-time
    * The training does not already contain that student
 * Students that are not available will be ignored.
 
@@ -290,10 +287,10 @@ Format: `ts-delete TRAINING_INDEX id/STUDENT_ID...`
 > trainings.
 
 Examples:
-- `ts-delete 2 id/1,2,3` deletes students with id values 1,2,3 from training 2.
+- `ts-delete 2 id/1,2,3` deletes students with student id values 1, 2, 3 from training 2.
 
-### Find trainings : `find-training`
-Finds trainings based on specified fields.
+### Find training : `find-training`
+Finds training based on specified fields.
 
   ![FindTraining](images/FindTraining.png)
 
@@ -303,14 +300,15 @@ Format: `find-training [id/STUDENT_ID] [dt/DATETIME]`
 * Only ONE student id can be specified in the same command
 * Only ONE date-time can be specified in the same command
 * Date-time must be in the form `yyyy-MM-dd HHmm` (i.e. 2021-08-26 1800)
-* Date-time specified will be matched with the date-time (start time) of trainings in order to return matched trainings.
+* Date-time specified will be matched with the date-time (start time) of trainings in order to return a matched training.
 * If only the student id is specified, the command will return all of the scheduled trainings (past, ongoing and upcoming) of the matching student.
 * If only the date-time is specified, the command will return all of the students scheduled for that matching training on the student panel.
 * If both parameters are specified, the command will return only the single matching training on the training panel and the matching student on the student panel.
+* If there are no matches, an error message will appear requesting you to check your student Id and/or date-time to make sure they exist. 
 
 Examples:
-- `find-training id/1` filters the student and training panel to show only the student with id value 1 and all of his past, present and future trainings on the training panel.
-- `find-training dt/2021-08-26 1800` filters the student and training panel to show only any matching training that falls on  `2021-08-26 1800` and all of the students scheduled for the training on the student panel
+- `find-training id/1` filters the student and training panel to show only the student with student id value 1 and all of his past, ongoing and future trainings on the training panel.
+- `find-training dt/2021-08-26 1800` filters the student and training panel to show only the matching training that falls on  `2021-08-26 1800` and all of the students scheduled for the training on the student panel
 
 ### Mark/Unmark a student's attendance for a training : `mark-attendance`, `unmark-attendance`
 Marks/Unmarks a student's attendance for a training.
@@ -318,7 +316,7 @@ Marks/Unmarks a student's attendance for a training.
   ![MarkAttendance](images/MarkAttendance.png)
 
 Format: `mark-attendance TRAINING_INDEX id/STUDENT_ID...`
-* You will only be able to mark/unmark the attendance of a training that has already passed.
+* You will only be able to mark/unmark the attendance of a training that has already passed/ongoing.
 * Training index refers to the index of the training in the **displayed** training list.
 * Only ONE training index can be specified in the same command.
 * Multiple student ids can be specified in the same command.
@@ -329,8 +327,8 @@ Format: `mark-attendance TRAINING_INDEX id/STUDENT_ID...`
 Format: `mark-attendance TRAINING_INDEX id/STUDENT_ID...`, `unmark-attendance TRAINING_INDEX id/STUDENT_ID...`
 
 Examples:
-- `mark-attendance 2 id/1,4,7` will indicate that students with unique ids of 1, 4 and 7 have their attendance associated with training session 2 marked.
-- `unmark-attendance 2 id/1,4,7` will indicate that students with unique ids of 1, 4 and 7 have their attendance associated with training session 2 unmarked.
+- `mark-attendance 2 id/1,4,7` will indicate that students with student ids of 1, 4 and 7 have their attendance associated with training session 2 marked.
+- `unmark-attendance 2 id/1,4,7` will indicate that students with student ids of 1, 4 and 7 have their attendance associated with training session 2 unmarked.
 
 ### Find all students with a bad attendance record: `find-bad-students`
 Finds all students that have missed more than 3 training sessions.
@@ -355,7 +353,7 @@ Format: `exit`
 ## FAQ
 
 **Q**: When does a training get classified as "past"?<br>
-**A**: A training will be classified as "past" once the time tagged to it (start time) has passed.
+**A**: A training will be classified as "past" once the time tagged to it (start time) has passed. You will need to execute the `list` command to observe the update.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CanoE-COACH home folder.
@@ -366,21 +364,21 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL ay/ACADEMIC_YEAR [t/TAG]… [d1/MONDAY] [d2/TUESDAY] [d3/WEDNESDAY] [d4/THURSDAY] [d5/FRIDAY]​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com ay/1 t/friend`
+**Add Student** | `add n/NAME p/PHONE_NUMBER e/EMAIL ay/ACADEMIC_YEAR [t/TAG]… [d1/MONDAY] [d2/TUESDAY] [d3/WEDNESDAY] [d4/THURSDAY] [d5/FRIDAY]​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com ay/1 t/friend`
 **Clear** | `clear`
-**Delete** | `delete STUDENT_INDEX`<br> e.g., `delete 3`
-**Edit** | `edit STUDENT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]… [d1/MONDAY] [d2/TUESDAY] [d3/WEDNESDAY] [d4/THURSDAY] [d5/FRIDAY] ​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find [n/KEYWORDS] [p/PHONE_NUMBER] [ay/ACADEMIC_YEAR] [e/EMAIL] [d1/HHmm d2/HHmm d3/HHmm d4/HHmm d5/HHmm] [id/ID]`<br> e.g., `find n/James Jake ay/2`
-**common-time** | `common-time [n/KEYWORDS] [ay/ACADEMIC_YEAR]`<br> e.g., `common-time n/alex ay/1`
-**training** | `training yyyy-MM-dd HHmm`<br> e.g., `training 2021-01-20 1800`
-**delete-training** | `delete-training TRAINING_INDEX`<br> e.g., `delete-training 1`
-**ts-add** | `ts-add TRAINING_INDEX id/STUDENT_ID...`<br> e.g., `ts-add 1 id/1,2,3`
-**ts-addall** | `ts-addall TRAINING_INDEX`<br> e.g., `ts-addall 1`
-**ts-delete** | `ts-delete TRAINING_INDEX id/STUDENT_ID...`<br> e.g., `ts-delete 1 id/1,2,3`
-**find-training** | `find-training [id/STUDENT_ID] [dt/DATETIME]`<br> e.g., `find-training id/1`
-**mark-attendance** | `mark-attendance TRAINING_INDEX id/STUDENT_ID...`<br> e.g., `mark-attendance 2 id/1,4,7`
-**unmark-attendance** | `unmark-attendance TRAINING_INDEX id/STUDENT_ID...`<br> e.g., `unmark-attendance 2 id/1,4,7`
-**find-bad-students** | `find-bad-students`
+**Delete Student** | `delete STUDENT_INDEX`<br> e.g., `delete 3`
+**Edit Student** | `edit STUDENT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]… [d1/MONDAY] [d2/TUESDAY] [d3/WEDNESDAY] [d4/THURSDAY] [d5/FRIDAY] ​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find Student** | `find [n/KEYWORDS] [p/PHONE_NUMBER] [ay/ACADEMIC_YEAR] [e/EMAIL] [d1/HHmm d2/HHmm d3/HHmm d4/HHmm d5/HHmm] [id/ID]`<br> e.g., `find n/James Jake ay/2`
+**Find Common Time** | `common-time [n/KEYWORDS] [ay/ACADEMIC_YEAR]`<br> e.g., `common-time n/alex ay/1`
+**Create Training** | `training yyyy-MM-dd HHmm`<br> e.g., `training 2021-01-20 1800`
+**Delete Training** | `delete-training TRAINING_INDEX`<br> e.g., `delete-training 1`
+**Add Student To Training** | `ts-add TRAINING_INDEX id/STUDENT_ID...`<br> e.g., `ts-add 1 id/1,2,3`
+**Add All Students To Training** | `ts-addall TRAINING_INDEX`<br> e.g., `ts-addall 1`
+**Delete Student From Training** | `ts-delete TRAINING_INDEX id/STUDENT_ID...`<br> e.g., `ts-delete 1 id/1,2,3`
+**Find Training** | `find-training [id/STUDENT_ID] [dt/DATETIME]`<br> e.g., `find-training id/1`
+**Mark Attendance** | `mark-attendance TRAINING_INDEX id/STUDENT_ID...`<br> e.g., `mark-attendance 2 id/1,4,7`
+**Unmark Attendance** | `unmark-attendance TRAINING_INDEX id/STUDENT_ID...`<br> e.g., `unmark-attendance 2 id/1,4,7`
+**Find Bad Students** | `find-bad-students`
 **List** | `list`
 **Help** | `help`
 
@@ -388,7 +386,7 @@ Action | Format, Examples
 
 ## Glossary
 
-* Dismissal Time: The time when a student is dismissed from his classes. He would be able to attend training only on or after his dismissal time.
+* Dismissal Time: The time when a student is dismissed from his classes. He would be able to attend trainings scheduled only on or after his dismissal time.
 
 * Training: A training session organised by the coach (the user), and attended by the students.
 
