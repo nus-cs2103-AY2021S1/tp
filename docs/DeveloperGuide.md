@@ -1374,6 +1374,7 @@ Basic instructions to test _account-level_ commands of _Common Cents_.
    1. Test case: `deleteacc`, `delete x` (where x is larger than the account list size or smaller than 1)
       Expected: Similar behaviour with previous testcase. Note that error details may differ based on which parameters of the input that is in an incorrect format.   
 
+<div style="page-break-after: always;"></div>
 ### Saving data
 Basic instructions to test saving and loading of user data of _Common Cents_.
 
