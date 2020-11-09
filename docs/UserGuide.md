@@ -268,6 +268,7 @@ Note(s):
 * A Module can have more than 1 member but can only have one name.
 * Need at least 1 member.
 * Professors and TA's can also be added in the same format as other contacts.
+* Note that using this command after module list or contact find will show all contacts again
 
 Example(s):
 * `module add n/CS2103 p/Roy p/Jerryl p/Yeeloon p/Jay p/Ekam`
@@ -280,6 +281,7 @@ Format: `module list m/MODULE_NAME`
 
 Note(s):
 * To reset the contacts list in the gui you can do the contact list command
+* Note that any subsequent commands will show all contacts again.
 
 Example(s):
 * `module list m/CS2103`
@@ -297,6 +299,7 @@ added participants.
 * You can change either the module name, the participants or both.
 * Changes to module will affect meetings based on that module, so if the meeting does not include any of the new module
 participants, it will be deleted.
+* Note that using this command after module list or contact find will show all contacts again
 
 Example(s):
 * `module edit m/CS2103 n/CS2103T p/Roy p/Jerryl p/Yeeloon p/Jay p/Ekam`

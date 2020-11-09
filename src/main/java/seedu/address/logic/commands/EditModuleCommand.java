@@ -139,7 +139,7 @@ public class EditModuleCommand extends Command {
             }
 
             for (Name name : updatedMemberNames) {
-                List<Person> filteredList = model.getFilteredPersonList().stream()
+                List<Person> filteredList = model.getAddressBook().getPersonList().stream()
                         .filter(person -> person.isSameName(name)).collect(Collectors.toList());
                 updatedMembers.addAll(filteredList);
             }
