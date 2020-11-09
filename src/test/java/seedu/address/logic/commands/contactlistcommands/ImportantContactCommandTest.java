@@ -35,7 +35,6 @@ public class ImportantContactCommandTest {
     @Test
     public void execute_validIndexNotImportantToImportantUnfilteredList_resetSuccessful() {
         Contact contactToMark = model.getFilteredContactList().get(INDEX_SECOND_CONTACT.getZeroBased());
-        contactToMark = contactToMark.markAsNotImportant();
         ImportantContactCommand importantContactCommand = new ImportantContactCommand(INDEX_SECOND_CONTACT);
 
         ModelManager expectedModel = new ModelManager(
@@ -46,28 +45,6 @@ public class ImportantContactCommandTest {
             new EventList(),
             new UserPrefs());
         Contact markedContact = model.getFilteredContactList().get(INDEX_SECOND_CONTACT.getZeroBased());
-        markedContact = markedContact.markAsImportant();
-        expectedModel.setContact(contactToMark, markedContact);
-
-        String expectedMessage = String.format(ImportantContactCommand.MESSAGE_MARK_CONTACT_SUCCESS, markedContact);
-
-        assertCommandSuccess(importantContactCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_validIndexImportantToImportantUnfilteredList_resetSuccessful() {
-        Contact contactToMark = model.getFilteredContactList().get(INDEX_FIRST_CONTACT.getZeroBased());
-        contactToMark = contactToMark.markAsImportant();
-        ImportantContactCommand importantContactCommand = new ImportantContactCommand(INDEX_FIRST_CONTACT);
-
-        ModelManager expectedModel = new ModelManager(
-            new ModuleList(),
-            new ModuleList(),
-            getTypicalContactList(),
-            new TodoList(),
-            new EventList(),
-            new UserPrefs());
-        Contact markedContact = model.getFilteredContactList().get(INDEX_FIRST_CONTACT.getZeroBased());
         markedContact = markedContact.markAsImportant();
         expectedModel.setContact(contactToMark, markedContact);
 
@@ -89,33 +66,6 @@ public class ImportantContactCommandTest {
         showContactAtIndex(model, INDEX_SECOND_CONTACT);
 
         Contact contactToMark = model.getFilteredContactList().get(INDEX_FIRST_CONTACT.getZeroBased());
-        contactToMark = contactToMark.markAsNotImportant();
-        ImportantContactCommand importantContactCommand = new ImportantContactCommand(INDEX_FIRST_CONTACT);
-
-        ModelManager expectedModel = new ModelManager(
-            new ModuleList(),
-            new ModuleList(),
-            getTypicalContactList(),
-            new TodoList(),
-            new EventList(),
-            new UserPrefs());
-        Contact markedContact = model.getFilteredContactList().get(INDEX_FIRST_CONTACT.getZeroBased());
-        markedContact = markedContact.markAsImportant();
-        expectedModel.setContact(contactToMark, markedContact);
-
-        showContactAtIndex(expectedModel, INDEX_SECOND_CONTACT);
-
-        String expectedMessage = String.format(ImportantContactCommand.MESSAGE_MARK_CONTACT_SUCCESS, markedContact);
-
-        assertCommandSuccess(importantContactCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_validIndexImportantToImportantFilteredList_success() {
-        showContactAtIndex(model, INDEX_FIRST_CONTACT);
-
-        Contact contactToMark = model.getFilteredContactList().get(INDEX_FIRST_CONTACT.getZeroBased());
-        contactToMark = contactToMark.markAsImportant();
         ImportantContactCommand importantContactCommand = new ImportantContactCommand(INDEX_FIRST_CONTACT);
 
         ModelManager expectedModel = new ModelManager(
