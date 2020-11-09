@@ -1,3 +1,8 @@
+---
+layout: page
+title: Kor Ming Soon's Project Portfolio Page
+---
+
 ## Project: PropertyFree
 
 Given below are my contributions to the project.
@@ -26,7 +31,6 @@ University if Singapore. This was developed for the team projects assignment for
 brown-field project adapting from existing projects.  
 
 ___
-
 
 ## My Contributions to PropertyFree
 
