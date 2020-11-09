@@ -1393,8 +1393,8 @@ This section highlights the team effort to build _Common Cents_ from AB3. While 
 ### Effort
 * Total of 10k LoC written.
 * Total 245 hours of work: 7 hours spent per person per week (total 5 of us).
-* ~30 pages of UG
-* ~40 pages of DG
+* ~30 pages of User Guide written.
+* ~50 pages of Developer Guide written.
 
 ### Challenges
 
