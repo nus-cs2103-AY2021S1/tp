@@ -14,19 +14,19 @@ A summary of code contributions can be found here: [reposense](https://nus-cs210
 
 #### Filter Feature
 
-This feature allows the user to filter recipes or ingredients with various criteria.
+This feature allows the user to filter recipes or ingredients with various criteria, in order to obtain a group of recipes or ingredients sharing certain characteristics. 
 
-More than one multi-word search term in any sequence is allowed. Search terms (except for expiry date) do not have to be complete to fulfil a match. Search results must meet all criteria input by the user. 
+More than one multi-word search term in any sequence is allowed, so that greater flexibility is provided for the user. In addition, search terms (except for expiry date) do not have to be complete to fulfil a match. Unlike those of `find` commands, the search results of `filter` must meet all criteria input by the user. 
 
 PRs: [#144](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/144), [#157](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/157).
 
 ##### Filter Recipes
 
-The user can filter recipes with keywords in search fields 'ingredient', 'name' and 'tag'. 
+The user can filter recipes with keywords in search fields `ingredient`, `name` and `tag`. 
 
 ##### Filter Ingredients
 
-The user can filter ingredients with keywords in search fields 'expiry' (expiry date), 'name' and 'tag'. 
+The user can filter ingredients with keywords in search fields `expiry` (expiry date), `name` and `tag`. To avoid confusion, only the earliest expiry date input will be parsed in the filtering process.
 
 
 ### Other Contributions
