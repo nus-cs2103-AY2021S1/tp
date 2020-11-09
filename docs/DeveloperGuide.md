@@ -1067,11 +1067,11 @@ MSS:
 
 * 4b. The user cancels the test midway.
 
-  * Use case resumes from step 5.
+  Use case resumes from step 5.
 
 * 4c. The user runs out of time midway.
 
-  * Use case resumes from step 5.
+  Use case resumes from step 5.
 
 * 4d. The user closes QuickCache
 
