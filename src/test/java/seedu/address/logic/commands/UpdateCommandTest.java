@@ -63,13 +63,11 @@ class UpdateCommandTest {
 
             Exercise editedExercise = exerciseInList.withName(VALID_NAME_PUSH_UP)
                     .withDescription(VALID_DESCRIPTION_PUSH_UP)
-                    .withDate(VALID_DATE_PUSH_UP).withCalories(VALID_CALORIES_PUSH_UP)
-                    .withTags(VALID_TAG_GYM).build();
+                    .withDate(VALID_DATE_PUSH_UP).withCalories(VALID_CALORIES_PUSH_UP).build();
             UpdateCommand.EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder()
                     .withName(VALID_NAME_PUSH_UP)
                     .withDescription(VALID_DESCRIPTION_PUSH_UP)
-                    .withDate(VALID_DATE_PUSH_UP).withCalories(VALID_CALORIES_PUSH_UP)
-                    .withTags(VALID_TAG_GYM).build();
+                    .withDate(VALID_DATE_PUSH_UP).withCalories(VALID_CALORIES_PUSH_UP).build();
             UpdateCommand updateExerciseCommand = new UpdateCommand(indexLastExercise, descriptor);
             String expectedMessage = String.format(UpdateCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
             ExerciseModel expectedModel =
