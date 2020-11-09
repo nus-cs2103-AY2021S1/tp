@@ -3,8 +3,14 @@ layout: page
 title: User Guide
 ---
 
-Cap 5.0 Buddy helps NUS SoC students to keep track of their module details efficiently.
-It helps you to centralize key module details, contacts and information while following your study progress through a Command Line Interface (CLI).
+## 1. Introduction
+
+Do you even find yourself struggling to manage all the different kinds of module information 
+
+Cap 5 Buddy is a desktop application that helps NUS SoC students to keep track of their module details efficiently.
+It helps you to centralize key module details, contacts and information while following your study progress. It is optimized for use via a Command Line Interface (CLI), while still having the 
+benefits of a Graphical User Interface (GUI). If you can type fast, Cap 5 Buddy can help you manage your module 
+details and information more efficiently than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -12,7 +18,7 @@ It helps you to centralize key module details, contacts and information while fo
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 2. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -217,6 +223,7 @@ Format: `listmodule`
    * `findmodule n/cs2030` returns the module(if any) with the module name `CS2030`.
 
    * `findmodule cs2030 cs2100` returns the modules(if any) with the module names `CS2030` or `CS2100`.
+
 
 #### Adding a zoom link for a specific lesson to a module: `addzoom`
 
@@ -702,6 +709,71 @@ Format: `cleartask`
 
 ### Contact List Features
 
+The following features allow you to manage a list of contacts and perform various contact related functions. 
+
+The section below provides some useful details about the contact list features.
+
+### Contact command parameters
+
+A contact list feature can use one or more of the following parameters:
+
+1. `Name:`
+
+  * Represents the name of a contact
+  
+  * Can only contain alphanumeric characters and spaces, and should not be blank.
+  
+  * Examples: `John`, `Amy`
+  
+  * All contacts must have a name
+  
+  
+2. `Email`
+
+  * Represents the email address of a contact
+  
+  * `Email`should be of the format `local-part@domain` and adhere to the following constraints:
+       
+    1. The local-part should only contain alphanumeric characters and these special characters: `!#$%&'*+/=?{|}~^.-` 
+         
+    2. This is followed by a `@` and then a domain name. 
+         
+    3. The domain name must:
+      * Be at least 2 characters long
+      * Start and end with alphanumeric characters
+      * Consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.
+
+  * Examples: `johndoe@gmail.com`
+
+  * All contacts must have an email address
+
+
+3. `Telegram`
+
+  * Represents the telegram username of a contact
+  
+  * The `TELEGRAM` field provided must be a valid telegram username that follows the following constraints:
+  
+    1. Must start with the `@` symbol
+    2. At least 5 characters long, not including the `@` symbol
+    2. Contains only alphanumeric characters or underscore
+    
+  Examples: `@john_doe`, `@johndoe`
+  
+  * Telegram is a not a compulsory field of a contact
+
+
+4. `Tag`
+
+  * Represents a tag that can be used to describe a contact
+  
+  * Tags names should be alphanumeric and should not be blank or contain whitespaces.
+  
+  * Examples: `friend`, `TA`
+  
+  * Tag is not a compulsory field of a contact
+
+
 
 #### Adding a contact: `addcontact`
 
@@ -709,17 +781,13 @@ Adds a new contact into the contact list if it does not already exist.
 
 Format: `addcontact n/NAME e/EMAIL [te/TELEGRAM] [t/TAG]...`
 
- * The `TELEGRAM` field provided must start with the `@` symbol and must be a valid telegram username,
-   i.e. at least 5 characters long, not including the `@` symbol and contains only alphanumeric characters or underscore
-
  * A contact can have any number of tags (including 0)
 
 
-Examples:
-
- * `addcontact n/john e/john@gmail.com`
- * `addcontact n/amy e/amy@gmail.com te/@anytele`
- * `addcontact n/bob e/bob@gmail.com t/friend`
+Example: `addcontact n/Amy e/Amy@gmail.com te/@Amytele t/friend`
+ 
+Expected Outcome:
+![AddContactOutcome](images/Contact/AddContactUG.PNG)
 
 
 #### Locating contacts: `findcontact`
@@ -752,19 +820,24 @@ Examples:
       * Contacts containing tags which match at least one of the tag keywords provided will be considered to have fulfilled the contact tag search criteria.
 
       * Contact tags will be considered a match only if the tag words are an exact match (case-insensitive),
-        e.g. a tag with the word `friend` will match a tag with the word `FRIEND`, but a tag with the word `friend` will not match a tag with the word `friendly`.
+        e.g. a tag with the word `friend` will match a tag with the word `FRIEND`, but will not match a tag with the word `friendly`.
+      
+      * The tag keyword provided should conform to the tag constraint, i.e. should be alphanumeric and should not be blank or contain whitespaces.
 
-  * Only contacts matching all search parameters provided will be returned.
+  * Only contacts matching all search criteria provided will be returned.
 
-  Examples:
-
+  Example: `findcontact n/amy`
+  
+  Expected Outcome:
+  ![FindContact](images/Contact/FindContactUG.PNG)
+  
+  Other helpful examples:
+  
    * `findcontact n/john` returns all contacts with the word `john` in their name, e.g. `john` and `john doe`
 
-   * `findcontact n/Bob Abraham` returns all contacts with the word `Bob` or `Abraham` in their name, e.g. `Bob Lim`, `Tommy Abraham`
+   * `findcontact n/Bob Abraham` returns all contacts with the word `Bob` **or** `Abraham` in their name, e.g. `Bob Lim`, `Tommy Abraham`
 
-   * `findcontact t/friend` returns all contacts with the tag `friend`
-
-   * `findcontact t/friend coworker` returns all contacts that have the `friend` or `coworker` tag
+   * `findcontact t/friend coworker` returns all contacts that have the `friend` **or** `coworker` tag
 
    * `findcontact n/john t/friend` returns all contacts with the word `john` in its name **and** has `friend` as one of its tags
 
@@ -777,7 +850,7 @@ Examples:
 
  <div markdown="block" class="alert alert-info">
 
- **:information_source: Tip:**<br>
+ **:bulb: Tip:**<br>
 
  `listcontact` is a useful command that you can use to display the original contact list.
   e.g. after using the `findcontact` or `sortcontact` commands.
