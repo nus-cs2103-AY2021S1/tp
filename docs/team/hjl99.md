@@ -9,7 +9,6 @@ ChopChop is a food recipe and ingredient inventory management system, which aims
 
 A summary of code contributions can be found here: [reposense](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=hjl99).
 
-
 ### New Features
 
 #### Filter Commands (Recipe and Ingredient)
@@ -29,7 +28,7 @@ PRs: [#117](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/117).
 
 2. Increased code coverage by writing tests for recipe-related commands, filter feature and attributes involved. ([#176](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/176), [#182](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/182)).
 
-
+3. Improve sample data when the application is first run.
 
 
 #### Documentation
