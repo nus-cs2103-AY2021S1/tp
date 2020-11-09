@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashcardBook;
 
@@ -10,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-public class SortCommandTest {
+public class StartAttemptCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -20,19 +21,17 @@ public class SortCommandTest {
         model = new ModelManager(getTypicalFlashcardBook(), new UserPrefs());
     }
 
+
     @Test
-    public void execute_sortDescending_success() {
+    public void start_attempt_success() {
         Model expectedModel = new ModelManager(model.getFlashcardBook(), new UserPrefs());
-        expectedModel.sortFilteredFlashcardList("desc");
-        assertCommandSuccess(new SortCommand("desc"), model, SortCommand.MESSAGE_SUCCESS
-                        + "descending order.", expectedModel);
+        assertCommandSuccess(new StartAttemptCommand(), model,
+            StartAttemptCommand.MESSAGE_ATTEMPT_ACKNOWLEDGEMENT, expectedModel);
     }
 
     @Test
-    public void execute_sortAscending_success() {
-        Model expectedModel = new ModelManager(model.getFlashcardBook(), new UserPrefs());
-        expectedModel.sortFilteredFlashcardList("asc");
-        assertCommandSuccess(new SortCommand("asc"), model, SortCommand.MESSAGE_SUCCESS
-                        + "ascending order.", expectedModel);
+    public void double_start_failure() {
+        model.startAttempt();
+        assertCommandFailure(new StartAttemptCommand(), model, StartAttemptCommand.MESSAGE_ATTEMPT_ALREADY_ONGOING);
     }
 }

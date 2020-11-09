@@ -10,7 +10,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-public class SortCommandTest {
+
+public class LeaveQuizCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -21,18 +22,11 @@ public class SortCommandTest {
     }
 
     @Test
-    public void execute_sortDescending_success() {
+public void exitQuiz_fromQuizMode() {
         Model expectedModel = new ModelManager(model.getFlashcardBook(), new UserPrefs());
-        expectedModel.sortFilteredFlashcardList("desc");
-        assertCommandSuccess(new SortCommand("desc"), model, SortCommand.MESSAGE_SUCCESS
-                        + "descending order.", expectedModel);
-    }
-
-    @Test
-    public void execute_sortAscending_success() {
-        Model expectedModel = new ModelManager(model.getFlashcardBook(), new UserPrefs());
-        expectedModel.sortFilteredFlashcardList("asc");
-        assertCommandSuccess(new SortCommand("asc"), model, SortCommand.MESSAGE_SUCCESS
-                        + "ascending order.", expectedModel);
+        model.flipQuizMode();
+        expectedModel.flipQuizMode();
+        assertCommandSuccess(new LeaveQuizCommand(), model,
+            LeaveQuizCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT, expectedModel);
     }
 }

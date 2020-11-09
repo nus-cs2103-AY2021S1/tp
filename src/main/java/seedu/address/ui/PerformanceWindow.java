@@ -26,6 +26,7 @@ public class PerformanceWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private HelpWindow helpWindow;
     private AttemptListPanel attemptListPanel;
     private ResponseListPanel responseListPanel;
     private ResultDisplay resultDisplay;
@@ -52,10 +53,11 @@ public class PerformanceWindow extends UiPart<Stage> {
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public PerformanceWindow(Stage root, Logic logic) {
+    public PerformanceWindow(Stage root, Logic logic, HelpWindow helpWindow) {
         super(FXML, root);
         this.logic = logic;
         this.root = root;
+        this.helpWindow = helpWindow;
         setWindowDefaultSize(logic.getGuiSettings());
         fillInnerParts();
     }
@@ -63,8 +65,8 @@ public class PerformanceWindow extends UiPart<Stage> {
     /**
      * Creates a new PerformanceWindow.
      */
-    public PerformanceWindow(Logic logic) {
-        this(new Stage(), logic);
+    public PerformanceWindow(Logic logic, HelpWindow helpWindow) {
+        this(new Stage(), logic, helpWindow);
     }
 
     /**
@@ -174,6 +176,19 @@ public class PerformanceWindow extends UiPart<Stage> {
     }
 
     /**
+     * Shows the help window (which is the same one
+     * passed down from main window also)
+     */
+    @FXML
+    public void handleHelp() {
+        if (!helpWindow.isShowing()) {
+            helpWindow.show();
+        } else {
+            helpWindow.focus();
+        }
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see Logic#execute(String)
@@ -188,6 +203,9 @@ public class PerformanceWindow extends UiPart<Stage> {
             }
             if (commandResult.isSwitchToAttempts()) {
                 handleViewAttempts();
+            }
+            if (commandResult.isShowHelp()) {
+                handleHelp();
             }
 
             return commandResult;

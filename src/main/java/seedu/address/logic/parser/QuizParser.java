@@ -56,7 +56,7 @@ public class QuizParser {
             return new EndAttemptCommandParser().parse(arguments);
 
         case LeaveQuizCommand.COMMAND_WORD:
-            return new LeaveQuizParser().parse(arguments);
+            return new LeaveQuizCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommandParser().parse(arguments);

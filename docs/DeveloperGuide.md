@@ -47,7 +47,7 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+![Class Diagram of the Logic Component](images/LogicClassDiagramNew.png)
 
 **How the architecture components interact with each other**
 
@@ -68,7 +68,8 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/definition/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` and `PerformanceWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`, `StatusBarFooter` etc. 
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/definition/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -79,16 +80,21 @@ The `UI` component,
 
 ### Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+![Structure of the Logic Component](images/LogicClassDiagramNew.png)
 
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/definition/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object which is executed by the `LogicManager`.
+1. `Logic` uses the `FlashcardParser`, `QuizParser` and `PerformanceParser` classes to parse the user command
+ depending on which mode the app is in.
+1. `FlashcardParser` and `QuizParser` will result in a `Command` object while `PerformanceParser` will result in a
+ `PerformanceCommand` object.
+1. Either `Command` or `PerformanceCommand` objects are executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a flashcard).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+1. The result of the command execution is encapsulated as a `CommandResult` or `PerformanceCommandResult` object for
+ which is passed back to the `Ui`.
+1. In addition, the `CommandResult` or `PerformanceCommandResult` object can also instruct the `Ui` to perform
+ certain actions, such as displaying help to the user.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -198,15 +204,50 @@ The following sequence diagram shows how the flip feature works:
 
 ![flip0](images/Flip0.png)
 
-### \[Proposed\] Quiz feature
+### [Proposed] Quiz feature
 
-#### Proposed Implementation
+The proposed quiz feature defines a set of sample questions related to CS2040S, containing both MCQ and True-False
+ questions, for users to test their knowledge of CS2040S content.
 
-The proposed quiz feature is facilitated by `QuizPaser` and `Question`.  `Question` is an abstract class and `Mcq` and `TrueFalse` extends Question. There are a few methods within Questions:
+#### Implementation
 
-* `getPrompt() ` — Provides question description.
+The feature is facilitated by `QuizPaser`, `Performance`, `Attempt`, `Response` and `Question`.
+`Performance` is a public class that keeps track of past attempts by storing `Attempt` as an internal
+ `UniqueAttemptList`.
+`Attempt` is a public class keeping track of user responses to a question by storing `Response` as an internal
+ `UniqueResponseList`.
+  Response is a public class with reference to the `Question` class.
+  `Question` is an abstract class and `Mcq` and `TrueFalse` extends Question.
+
+The following shows a Class Diagram of the structure of Quiz components:
+![QuizComponents](images/QuizComponentsClassDiagram.png)
+
+`Performance` implements the following operations:
+
+* `addAttempt(Attempt attempt)` - Records an attempt into performance.
+* `getAttempts()` - Provides a list of past attempts.
+* `getFormattedTimestamp(LocalDateTime timestamp)` - Returns a date and time in format yyyy/MM/dd HH:mm:ss.
+
+`Attempt` implements the following operations:
+
+* `addResponse(Response newResponse)` - Records user's new response into current attempt.
+* `calculateScore()` - total score of attempt based on number of correct responses.
+* `attemptAnalysis()` - Returns a detailed attempt analysis.
+* `getResponses()` - Provides a list of responses in current attempt.
+
+`Response` implements the following operations:
+
+* `markResponse()` - Checks if answer of response is correct.
+
+`Question` implements the following operations:
+
 * `getQuestion()` — Provides both question description and options.
 * `checkResponse(String response)` — Checks if the response is the same as the correct answer.
+* `isMcq()` - Checks if question is Mcq or TrueFalse.
+* `setSelectedIndex(int index)` - Sets user answer as selected option.
+
+The general workflow of quiz feature is represented by the following Activity Diagram:
+![QuizWorkflow](images/QuizActivityDiagram.png)
 
 These operations are exposed in the `Model` interface as `Model#startQuiz()`,`Model#enterQuiz()`,`Model#exitQuiz()` `Model#endQuiz()` and `Model#attemptQuestion()` respectively.
 
@@ -231,6 +272,24 @@ Step 4. The user executes `past performance` during quiz mode to see past attemp
 Step 5. The user executes `exit quiz`, which calls `Model#exitQuiz`. The GUI interface is switch back to flashcard mode.
 
 ![UndoRedoState5](images/state4.png)
+
+### Performance Feature
+
+This activity diagram shows the possible user flow for a user who wants to check their past quiz records
+
+![Performance](images/Performance_ActivityDiagram.png)
+
+### View Attempt feature
+
+The view attempt feature allows the user to view a past quiz record given by its index.
+ This feature is implemented
+by creating an instance of `ViewAttemptCommand` and returns a  `PerformanceCommand` which will trigger the a method in
+Performance Window to display the responses accordingly
+
+The following sequence diagram shows how the view attempt feature works:
+
+![ViewAttempt0](images/ViewAttemptCommand_SequenceDiagram.png)
+
 
 
 #### Design consideration:
@@ -285,8 +344,6 @@ Concepts and definitions are organised according to different levels of priority
 Students can bookmark where they left off and resume going through the questions later.
 Students can organise (specify the sequence) the flashcards as well.
 
-
-
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -315,113 +372,175 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`  | user studying for a test                   | add in T/F questions 			 | be better prepared for more types of questions                            |
 
 
-Use Cases
-(For all use cases below, the **System** is the `DSAce` and the **Actor** is the `user`, unless specified otherwise)
+### Use Cases
+For all use cases below, `DSAce` is the **System** and the `User` is the **Actor**.
 
 **Use case: Delete a flashcard**
 
 **MSS**
 
-1.  User requests to list flashcards
-2.  DSAce shows a list of flashcards
-3.  User requests to delete a specific flashcard in the list
-4.  DSAce deletes the flashcard
-
-   Use case ends.
+1.  User requests to view the flashcard list.
+2.  DSAce displays the entire flashcard list.
+3.  User requests to delete a particular flashcard by specifying its index in the flashcard list.
+4.  DSAce deletes the specified flashcard from the flashcard list and displays the updated flashcard list. <br/>
+    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+1a. The flashcard list is empty. <br/>
+1a1. DSAce does not display any flashcards. <br/>
+Use case ends.
 
- Use case ends.
-
-* 3a. The given index is invalid.
-
-  * 3a1. DSAce shows an error message.
-
-     Use case resumes at step 2.
+3a. User specifies an invalid index. <br/>
+3a1. DSAce displays an error message. <br/>
+3a2. User specifies a new index. <br/>
+3a3. DSAce verifies the new index. <br/>
+Steps 3a2-3a3 are repeated until the specified index is valid. <br/>
+Use case resumes from step 4.
 
 **Use case: Add a flashcard**
 
 **MSS**
 
-1.  User requests to add a flashcards
-2.  DSAce adds the flashcard
-
-   Use case ends.
+1. User requests to add a new flashcard by specifying attributes of the flashcard to be added.
+2. DSAce creates the flashcard and adds it to the flashcard list. DSAce displays the updated flashcard list. <br/>
+Use case ends.
 
 **Extensions**
 
-* 1a. The given input is invalid.
-
-  * 1a1. DSAce shows an error message.
+1a. The new flashcard already exists in the flashcard list. <br/>
+1a1. DSAce displays an error message. <br/>
+1a2. User re-specifies the attributes of the flashcard to be added. <br/>
+1a3. DSAce verifies the new attributes. <br/>
+Steps 1a2-1a3 are repeated until the flashcard attributes specified does not coincide with that of an existing flashcard. <br/>
+Use case resumes from step 2.
 
 **Use case: Edit a flashcard**
 
 **MSS**
 
-1.  User requests to list flashcards to determine if the flashcard to be edited already exists
-2.  DSAce shows a list of flashcards
-3.  User requests to edit a specific flashcard in the list by providing the detail to be edited
-4.  DSAce edits the flashcard
-
-   Use case ends.
+1. User requests to view the flashcard list.
+2. DSAce displays the entire flashcard list.
+3. User requests to edit a particular flashcard by specifying its index in the flashcard list, as well as the new
+ attributes
+of the flashcard to be edited.
+4. DSAce edits the specified flashcard and displays the updated flashcard list. <br/>
+Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+1a. The flashcard list is empty. <br/>
+1a1. DSAce does not display any flashcards. <br/>
+Use case ends.
 
- Use case ends.
+3a. User specifies an invalid index. <br/>
+3a1. DSAce displays an error message. <br/>
+3a2. User specifies a new flashcard index. <br/>
+3a3. DSAce verifies the new index. <br/>
+Steps 3a2-3a3 are repeated until the specified index is valid. <br/>
+Use case resumes from step 4.
 
-* 3a. The given index is invalid.
-
-  * 3a1. DSAce shows an error message.
-
-     Use case resumes at step 2.
-
-* 3b. The given input is invalid.
-
-  * 3b1. DSAce shows an error message.
-
-     Use case resumes at step 2.
+3b. The edited flashcard already exists in the flashcard list. <br/>
+3b1. DSAce displays an error message. <br/>
+3b2. User re-specifies the attributes of the flashcard to be edited. <br/>
+3b3. DSAce verifies the new attributes. <br/>
+Steps 3b2-3b3 are repeated until the edited flashcard does not coincide with any existing flashcard. <br/>
+Use case resumes from step 4.
 
 **Use case: Take a quiz**
 
 **MSS**
 
-1.  User requests to see the list of quiz topics available for study
-2.  DSAce shows a list of quiz topics
-3.  User requests the topics to be covered in the quiz questions
-4.  DSAce displays one question
-5.  User inputs their answer for the displayed question
-Use case loops through steps 4 and 5 until the quiz runs out of questions or the user inputs a stop command
-6.  DSAce shows overall score and a list of questions with their marks
-7.  User can request to view a particular question using the index
-8.  DSAce displays the question, user’s answer and the correct answer
-Use case loops through 7 and 8 upon user request until user inputs exit command
-
-   Use case ends.
+1. User requests to take a quiz.
+2. DSAce displays the quiz interface.
+3. User requests to begin a quiz attempt.
+4. DSAce begins a new quiz attempt and indicates to the user that an attempt has started.
+5. User inputs an answer for a specified question from the displayed question list.
+6. DSAce records the result in the performance interface. <br/>
+Steps 5-6 are repeated until the user requests to end the current quiz attempt.
+7. DSAce ends the current quiz attempt and indicates to the user that the current attempt has ended. <br/>
+8. User requests to end the quiz. <br/>
+9. DSAce displays the flashcard interface. <br/>
+Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+1a. User is already in the quiz interface. <br/>
+1a1. DSAce displays an error message. <br/>
+Use case resumes from step 2.
 
- Use case ends.
+3a. There is already an ongoing quiz attempt that has not ended yet. <br/>
+3b. DSAce displays an error message. <br/>
+Use case resumes from step 5.
 
-* 3a. The user input topic index is invalid.
+5a. User specifies an invalid question index. <br/>
+5a1. DSAce displays an error message. <br/>
+5a2. User enters a new question index. <br/>
+5a3. DSAce verifies the new index. <br/>
+Steps 5a2-5a3 are repeated until the question index specified is valid. <br/>
+Use case resumes from step 6.
 
-  * 3a1. DSAce shows an error message.
+5b. User specifies an invalid answer to a specified question. <br/>
+5b1. DSAce displays an error message. <br/>
+5b2. User enters a new answer. <br/>
+5b3. DSAce verifies the new answer. <br/>
+Steps 5b2-5b3 are repeated until the answer specified is valid. <br/>
+Use case resumes from step 6.
 
-     Use case resumes at step 2.
+6a. There is no ongoing quiz attempt to be concluded. <br/>
+6a1. DSAce displays an error message. <br/>
+Use case resumes from step 8.
 
-* 5a. The user input answer is invalid.
+6b. User ends the current quiz attempt without answering any questions. </br>
+6b1. DSAce ends the current quiz attempt but does not save the results of the attempt in the performance interface. <br/>
+Use case resumes from step 8.
 
-  * 5b1. DSAce shows an error message.
+**Use case: view quiz performance**
 
-     Use case resumes at step 4.
+**MSS**
 
-*{More to be added}*
+1. User requests to view his/her quiz performance.
+2. DSAce displays all the past quiz attempts in the performance interface.
+3. User requests to view the results of a specific quiz attempt.
+4. DSAce displays the results of the specified quiz attempt.
+5. User requests to view the entire quiz attempt list.
+6. DSAce displays the entire quiz attempt list. <br/>
+Use case ends.
 
+**Use case: study flashcards**
+
+**MSS**
+
+1. User requests to view the flashcard list.
+2. DSAce displays the entire flashcard list.
+3. User requests to flip a particular flashcard by specifying its index in the flashcard list.
+4. DSAce displays the entire flashcard list, with the specified flashcard being flipped.
+5. User requests to sort the flashcard list by priority and specifies whether the order is ascending or descending.
+6. DSAce displays the flashcard list that is sorted by priority, according to the order specified by the user.
+7. User requests to find certain flashcard(s) by specifying attributes belonging to the flashcard(s) of interest.
+8. DSAce displays the flashcards that user has requested for. <br/>
+Use case ends.
+
+**Extensions**
+   
+1a. The flashcard list is empty. <br/>
+1a1. DSAce does not display any flashcards. <br/>
+Use case ends.
+	 
+3a. The user specifies an invalid index. <br/>
+3a1. DSAce displays an error message. <br/>
+3a2. User specifies a new index. <br/>
+3a3. DSAce verifies the new index. <br/>
+Steps 3a2 to 3a3 are repeated until the index specified is correct. <br/>
+Use case resumes from step 4.
+   
+5a. The user does not specify whether the flashcard is to be sorted in ascending or descending order of priority. <br/>
+5a1. DSAce displays the flashcard list that is sorted in ascending order of priority. <br/>
+Use case resumes from step 7.
+   
+7a. There are no flashcards in the flashcard list that fulfill the user's specifications. <br/>
+7a1. DSAce does not display any flashcards. <br/>
+Use case ends.
 
 ### Non-Functional Requirements
 
@@ -461,8 +580,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a flashcard
 
 1. Deleting a flashcard while all flashcards are being shown
@@ -478,12 +595,159 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Adding a flashcard
+
+1. Adding a flashcard while all flashcards are being shown
+
+   1. Test case: `add n/Testing d/Nothing p/High t/Sorting`<br>
+      Expected: New flashcard with name `Testing`, definition `Nothing`, priority `high`, and tag `Sorting` is added to
+      the bottom of the flashcard list. Details of the new flashcard are included in the status message.
+   
+   2. Test case: `add n/ d/sort slowly`
+      Expected: No flashcard is added. Error details are shown in the status message.
+
+### Editing a flashcard
+
+1. Editing a flashcard while all flashcards are being shown
+
+   1. Prerequisite: The flashcard list contains at least one flashcard. The first flashcard in the list does not have
+    the name `Testing`.
+
+   2. Test case: `edit 1 n/Testing`<br>
+      Expected: The name of the first flashcard in the list is changed to `Testing`.
+      
+   3. Test case: `edit -1 d/Wrong flashcard`<br>
+      Expected: No flashcard in the list is edited. Error details are shown in the status message.
+
+### Finding a flashcard
+
+1. Finding a flashcard while all flashcards are being shown
+
+   1. Prerequisite: The flashcard list contains at least one flashcard. One of the flashcards has the name `Quicksort`.
+   
+   2. Test case: `find n/Quicksort`
+      Expected: Only flashcards with the name `Quicksort` are displayed.
+      
+   3. Test case: `find`
+      Expected: The find command is not executed. Error details are displayed in the status message.
+
+
+### Sorting flashcards
+
+### Flipping flashcards
+
+### Starting a quiz attempt
+
+### Ending a quiz attempt
+
+### Starting an attempt
+1. Starting an attempt while user is in quiz mode and has no an ongoing attempt.
+
+   1. Prerequisites: Switch to quiz mode from flashcard mode using the `enter quiz` command. Multiple questions are
+    listed. No prior `start attempt` is called.
+   
+   1. Test case: `start attempt`<br>
+      Expected: Attempt is started. Success message shown in the status message.
+   
+   1. Test case: `start`<br>
+      Expected: No new attempt started. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect end attempt commands to try: `start attempt 123`, `StArT AtTemPt`<br>
+      Expected: Similar to previous.
+
+1. Starts an attempt while user is in quiz mode and has an ongoing attempt.
+   
+   1. Prerequisites: Similar to previous prerequisites. Enter `start attempt` to start an ongoing attempt.
+    
+   1. Test case: `start attempt`<br>
+      Expected: No new attempt started. Error details shown in the status message. Status bar remains the same.
+      
+### Ending an attempt
+1. Ending an attempt while user is in quiz mode and has an empty ongoing attempt.
+
+   1. Prerequisites: Switch to quiz mode from flashcard mode using the `enter quiz` command. Multiple questions are listed. Enter `start
+    attempt` to start an ongoing attempt.
+   
+   1. Test case: `end attempt`<br>
+      Expected: Attempt ended but not saved in performance. Success message shown in the status message.
+   
+   1. Test case: `end`<br>
+      Expected: Attempt does not end. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect end attempt commands to try: `end attempt 123`, `EnD AtTemPt`<br>
+      Expected: Similar to previous.
+      
+1. Ending an attempt while user is in quiz mode from flashcard mode and has a non-empty ongoing attempt.
+
+   1. Prerequisites: Similar to previous prerequisites, enter `answer 1 a/true` to add a new response to current
+    attempt.
+   
+   1. Test case: `end attempt`<br>
+      Expected: Attempt ended and saved in performance. Success message shown in the status message.
+
+### Answering a question
+
+1. Answering a question while user is in quiz mode and has an ongoing attempt.
+
+   1. Prerequisites: Switch to quiz mode from flashcard mode using the `enter quiz` command. Multiple questions are listed. Then start an
+    attempt using `start attempt`.
+
+   1. Test case: `answer 1 a/true`<br>
+      Expected: Answer is recorded and user answer will be highlighted on the question. Success message shown in the
+       status message.
+
+   1. Test case: `answer 1`<br>
+      Expected: No answer is recorded. Error details shown in the status message. Status bar remains the same.
+
+   1. Test case: `answer 1 a/1`<br>
+      Expected: Similar to previous.
+
+   1. Other incorrect answer commands to try: `answer 1 a/random`, `answer 2 a/`, `answer 8 a/false`, `answer x
+   `, `...` (where x is larger than the question list size)<br>
+      Expected: Similar to previous.
+
+### Sorting a flashcard
+
+1. Sorting flashcards by priority while all flashcards are being shown
+
+   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list.
+   
+   1. Test case: `sort`
+      Expected: Flashcards are sorted in order of ascending priority (when unspecified). Success message shown in status message. Timestamp in the status bar is updated.
+
+   1. Test case: `sort asc` or `sort ASC` (case insensitive)
+      Expected: Flashcards are sorted in order of ascending priority. Success message shown in status message. Timestamp in the status bar is updated.
+
+   1. Test case: `sort desc` or `sort DESC` (case insensitive) <br>
+      Expected: Flashcards are sorted in order of descending priority. Success message shown in status message. Timestamp in the status bar is updated.
+
+
+   1. Other incorrect answer commands to try: `sort 123`, `sort ascending`, `sort descending`, `sort as`
+   `, `...` <br>
+      Expected: Error details shown in status message. Status bar remains the same
+
+### Flipping a flashcard
+
+1. Flipping flashcards by index while all flashcards are being shown
+
+   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list. The second flashcard has already been flipped (visible definition).
+   
+   1. Test case: `flip 1`<br>
+      Expected: The definition of the first flashcard is now visible. Success message shown in status message. Timestamp in the status bar is updated.
+      
+   1. Test case: `flip 2`<br>
+      Expected: The definition of the second flashcard is now hidden. Success message shown in status message. Timestamp in the status bar is updated.
+
+   1. Test case: `flip 0`<br>
+      Expected: No flashcard is flipped. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect answer commands to try: `flip`, `flip one`, `flip x`, `...` (where x is larger than the list size)<br>
+        Expected: Similar to previous.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. `DSAce.json`, the JSON file used to store flashcard data, contains the data for at least one flashcard. Delete
+    `"flashcards"` from the data for the first flashcard.
+     Expected: No flashcards are displayed in the app.

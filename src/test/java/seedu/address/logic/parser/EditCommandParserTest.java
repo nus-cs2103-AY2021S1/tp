@@ -11,7 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_DIFFICULT;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FINAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEFINITION_BUBBLE_SORT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEFINITION_HEAPING;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BUBBLE_SORT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BUBBLE_SORTING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIFFICULT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FINAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -43,7 +43,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_BUBBLE_SORT, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_NAME_BUBBLE_SORTING, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -90,7 +90,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + TAG_DESC_DIFFICULT
                 + DEFINITION_DESC_BUBBLE_SORT + NAME_DESC_BUBBLE_SORT + TAG_DESC_FINAL;
 
-        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder().withName(VALID_NAME_BUBBLE_SORT)
+        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder().withName(VALID_NAME_BUBBLE_SORTING)
                 .withDefinition(VALID_DEFINITION_BUBBLE_SORT)
                 .withTags(VALID_TAG_DIFFICULT, VALID_TAG_FINAL).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -116,7 +116,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_FLASHCARD;
         String userInput = targetIndex.getOneBased() + NAME_DESC_BUBBLE_SORT;
         EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
-            .withName(VALID_NAME_BUBBLE_SORT).build();
+            .withName(VALID_NAME_BUBBLE_SORTING).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -162,7 +162,7 @@ public class EditCommandParserTest {
         userInput = targetIndex.getOneBased() + NAME_DESC_BUBBLE_SORT + INVALID_DEFINITION_DESC
             + DEFINITION_DESC_HEAPING;
         descriptor = new EditFlashcardDescriptorBuilder()
-                .withDefinition(VALID_DEFINITION_HEAPING).withName(VALID_NAME_BUBBLE_SORT).build();
+                .withDefinition(VALID_DEFINITION_HEAPING).withName(VALID_NAME_BUBBLE_SORTING).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

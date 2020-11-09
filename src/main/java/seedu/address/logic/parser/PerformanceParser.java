@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.HelpPerformanceCommand;
 import seedu.address.logic.commands.ListAttemptsCommand;
 import seedu.address.logic.commands.PerformanceCommand;
 import seedu.address.logic.commands.ViewAttemptCommand;
@@ -43,6 +44,8 @@ public class PerformanceParser {
             return new ViewAttemptCommandParser().parse(arguments);
         case ListAttemptsCommand.COMMAND_WORD:
             return new ListAttemptsCommandParser().parse(arguments);
+        case HelpPerformanceCommand.COMMAND_WORD:
+            return new HelpPerformanceCommand();
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND + "\nMaybe you have used commands from Flashcard or "
                 + "Quiz interfaces, which are not allowed in Performance interface.\n"

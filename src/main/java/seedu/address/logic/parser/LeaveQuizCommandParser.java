@@ -5,7 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import seedu.address.logic.commands.LeaveQuizCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class LeaveQuizParser implements Parser<LeaveQuizCommand> {
+public class LeaveQuizCommandParser implements Parser<LeaveQuizCommand> {
 
     @Override
     public LeaveQuizCommand parse(String userInput) throws ParseException {

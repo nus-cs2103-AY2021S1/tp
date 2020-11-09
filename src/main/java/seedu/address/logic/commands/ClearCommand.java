@@ -22,4 +22,9 @@ public class ClearCommand extends Command {
         model.setFlashcardBook(new FlashcardBook());
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this || other instanceof ClearCommand;
+    }
 }

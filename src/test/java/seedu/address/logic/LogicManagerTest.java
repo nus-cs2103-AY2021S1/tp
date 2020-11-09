@@ -6,7 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.DEFINITION_DESC_BUBBLE_SORT;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BUBBLE_SORT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalFlashcards.AMY;
+import static seedu.address.testutil.TypicalFlashcards.BUBBLE_SORTING;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -81,7 +81,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_BUBBLE_SORT
                 + DEFINITION_DESC_BUBBLE_SORT;
-        Flashcard expectedFlashcard = new FlashcardBuilder(AMY).withTags().build();
+        Flashcard expectedFlashcard = new FlashcardBuilder(BUBBLE_SORTING).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addFlashcard(expectedFlashcard);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
