@@ -19,7 +19,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/seantaysl.png" width="200px">
 
-[[github](http://github.com/seantaysl)]
+[[github](http://github.com/seantaysl)] [[portfolio](team/seantaysl.md)]
 
 -   Role: Programmer
 
@@ -35,7 +35,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/euzintan.png" width="200px">
 
-[[github](http://github.com/euzintan)]
+[[github](http://github.com/euzintan)] [[portfolio](team/euzintan.md)]
 
 -   Role: Programmer
 
