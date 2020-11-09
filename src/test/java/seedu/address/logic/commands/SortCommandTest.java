@@ -24,13 +24,15 @@ public class SortCommandTest {
     public void execute_sortDescending_success() {
         Model expectedModel = new ModelManager(model.getFlashcardBook(), new UserPrefs());
         expectedModel.sortFilteredFlashcardList("desc");
-        assertCommandSuccess(new SortCommand("desc"), model, SortCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new SortCommand("desc"), model, SortCommand.MESSAGE_SUCCESS
+                        + "descending order.", expectedModel);
     }
 
     @Test
     public void execute_sortAscending_success() {
         Model expectedModel = new ModelManager(model.getFlashcardBook(), new UserPrefs());
         expectedModel.sortFilteredFlashcardList("asc");
-        assertCommandSuccess(new SortCommand("asc"), model, SortCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new SortCommand("asc"), model, SortCommand.MESSAGE_SUCCESS
+                        + "ascending order.", expectedModel);
     }
 }

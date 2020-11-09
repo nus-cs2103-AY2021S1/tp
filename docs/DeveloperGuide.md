@@ -219,6 +219,9 @@ The following shows a Class Diagram of the structure of Quiz components:
 * `isMcq()` - Checks if question is Mcq or TrueFalse.
 * `setSelectedIndex(int index)` - Sets user answer as selected option.
 
+The general workflow of quiz feature is represented by the following Activity Diagram:
+![QuizWorkflow](images/QuizActivityDiagram.png)
+
 These operations are exposed in the `Model` interface as `Model#startQuiz()`,`Model#enterQuiz()`,`Model#exitQuiz()` `Model#endQuiz()` and `Model#attemptQuestion()` respectively.
 
 Given below is an example usage scenario and how to do quiz.
@@ -242,6 +245,24 @@ Step 4. The user executes `past performance` during quiz mode to see past attemp
 Step 5. The user executes `exit quiz`, which calls `Model#exitQuiz`. The GUI interface is switch back to flashcard mode.
 
 ![UndoRedoState5](images/state4.png)
+
+### Performance Feature
+
+This activity diagram shows the possible user flow for a user who wants to check their past quiz records
+
+![Performance](images/Performance_ActivityDiagram.png)
+
+### View Attempt feature
+
+The view attempt feature allows the user to view a past quiz record given by its index.
+ This feature is implemented
+by creating an instance of `ViewAttemptCommand` and returns a  `PerformanceCommand` which will trigger the a method in
+Performance Window to display the responses accordingly
+
+The following sequence diagram shows how the view attempt feature works:
+
+![ViewAttempt0](images/ViewAttemptCommand_SequenceDiagram.png)
+
 
 
 #### Design consideration:
@@ -532,8 +553,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a flashcard
 
 1. Deleting a flashcard while all flashcards are being shown
@@ -549,16 +568,104 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Adding a flashcard
+
+1. Adding a flashcard while all flashcards are being shown
+
+   1. Test case: `add n/Testing d/Nothing p/High t/Sorting`<br>
+      Expected: New flashcard with name `Testing`, definition `Nothing`, priority `high`, and tag `Sorting` is added to
+      the bottom of the flashcard list. Details of the new flashcard are included in the status message.
+   
+   2. Test case: `add n/ d/sort slowly`
+      Expected: No flashcard is added. Error details are shown in the status message.
+
+### Editing a flashcard
+
+1. Editing a flashcard while all flashcards are being shown
+
+   1. Prerequisite: The flashcard list contains at least one flashcard. The first flashcard in the list does not have
+    the name `Testing`.
+
+   2. Test case: `edit 1 n/Testing`<br>
+      Expected: The name of the first flashcard in the list is changed to `Testing`.
+      
+   3. Test case: `edit -1 d/Wrong flashcard`<br>
+      Expected: No flashcard in the list is edited. Error details are shown in the status message.
+
+### Finding a flashcard
+
+1. Finding a flashcard while all flashcards are being shown
+
+   1. Prerequisite: The flashcard list contains at least one flashcard. One of the flashcards has the name `Quicksort`.
+   
+   2. Test case: `find n/Quicksort`
+      Expected: Only flashcards with the name `Quicksort` are displayed.
+      
+   3. Test case: `find`
+      Expected: The find command is not executed. Error details are displayed in the status message.
+
+
+### Sorting flashcards
+
+### Flipping flashcards
+
+### Starting a quiz attempt
+
+### Ending a quiz attempt
+
+### Starting an attempt
+1. Starting an attempt while user is in quiz mode and has no an ongoing attempt.
+
+   1. Prerequisites: Switch to quiz mode from flashcard mode using the `enter quiz` command. Multiple questions are
+    listed. No prior `start attempt` is called.
+   
+   1. Test case: `start attempt`<br>
+      Expected: Attempt is started. Success message shown in the status message.
+   
+   1. Test case: `start`<br>
+      Expected: No new attempt started. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect end attempt commands to try: `start attempt 123`, `StArT AtTemPt`<br>
+      Expected: Similar to previous.
+
+1. Starts an attempt while user is in quiz mode and has an ongoing attempt.
+   
+   1. Prerequisites: Similar to previous prerequisites. Enter `start attempt` to start an ongoing attempt.
+    
+   1. Test case: `start attempt`<br>
+      Expected: No new attempt started. Error details shown in the status message. Status bar remains the same.
+      
+### Ending an attempt
+1. Ending an attempt while user is in quiz mode and has an empty ongoing attempt.
+
+   1. Prerequisites: Switch to quiz mode from flashcard mode using the `enter quiz` command. Multiple questions are listed. Enter `start
+    attempt` to start an ongoing attempt.
+   
+   1. Test case: `end attempt`<br>
+      Expected: Attempt ended but not saved in performance. Success message shown in the status message.
+   
+   1. Test case: `end`<br>
+      Expected: Attempt does not end. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect end attempt commands to try: `end attempt 123`, `EnD AtTemPt`<br>
+      Expected: Similar to previous.
+      
+1. Ending an attempt while user is in quiz mode from flashcard mode and has a non-empty ongoing attempt.
+
+   1. Prerequisites: Similar to previous prerequisites, enter `answer 1 a/true` to add a new response to current
+    attempt.
+   
+   1. Test case: `end attempt`<br>
+      Expected: Attempt ended and saved in performance. Success message shown in the status message.
 
 ### Answering a question
 
 1. Answering a question while user is in quiz mode and has an ongoing attempt.
 
-   1. Prerequisites: Switch to quiz mode using the `enter quiz` command. Multiple questions are listed. Then start an
+   1. Prerequisites: Switch to quiz mode from flashcard mode using the `enter quiz` command. Multiple questions are listed. Then start an
     attempt using `start attempt`.
 
-   1. Test case: `answer 1 a/true`
+   1. Test case: `answer 1 a/true`<br>
       Expected: Answer is recorded and user answer will be highlighted on the question. Success message shown in the
        status message.
 
@@ -569,16 +676,51 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
    1. Other incorrect answer commands to try: `answer 1 a/random`, `answer 2 a/`, `answer 8 a/false`, `answer x
-   `, `...` (where x is larger
-    than the question list size)<br>
+   `, `...` (where x is larger than the question list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Sorting a flashcard
+
+1. Sorting flashcards by priority while all flashcards are being shown
+
+   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list.
+   
+   1. Test case: `sort`
+      Expected: Flashcards are sorted in order of ascending priority (when unspecified). Success message shown in status message. Timestamp in the status bar is updated.
+
+   1. Test case: `sort asc` or `sort ASC` (case insensitive)
+      Expected: Flashcards are sorted in order of ascending priority. Success message shown in status message. Timestamp in the status bar is updated.
+
+   1. Test case: `sort desc` or `sort DESC` (case insensitive) <br>
+      Expected: Flashcards are sorted in order of descending priority. Success message shown in status message. Timestamp in the status bar is updated.
+
+
+   1. Other incorrect answer commands to try: `sort 123`, `sort ascending`, `sort descending`, `sort as`
+   `, `...` <br>
+      Expected: Error details shown in status message. Status bar remains the same
+
+### Flipping a flashcard
+
+1. Flipping flashcards by index while all flashcards are being shown
+
+   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list. The second flashcard has already been flipped (visible definition).
+   
+   1. Test case: `flip 1`<br>
+      Expected: The definition of the first flashcard is now visible. Success message shown in status message. Timestamp in the status bar is updated.
+      
+   1. Test case: `flip 2`<br>
+      Expected: The definition of the second flashcard is now hidden. Success message shown in status message. Timestamp in the status bar is updated.
+
+   1. Test case: `flip 0`<br>
+      Expected: No flashcard is flipped. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect answer commands to try: `flip`, `flip one`, `flip x`, `...` (where x is larger than the list size)<br>
+        Expected: Similar to previous.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. `DSAce.json`, the JSON file used to store flashcard data, contains the data for at least one flashcard. Delete
+    `"flashcards"` from the data for the first flashcard.
+     Expected: No flashcards are displayed in the app.
