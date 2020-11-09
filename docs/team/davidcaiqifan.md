@@ -17,17 +17,15 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   * Credits: *AB3's developer's guide described the concept of undo/redo commands implemented here*
-<div style="page-break-after: always;"></div>   
 * **New Feature**: Added features that allows the user to calculate relevant CAP details.
   * What it does: Calculates the user's CAP details based on completed modules that the user has stored in the application.
+<div style="page-break-after: always;"></div>     
   * Justification: This feature fits the purpose of the application very well because the application is academic focused. The user most likely will want to be able to calculate his/her academic details.
   * Highlights: This enhancement is much more useful when used in conjunction with other commands. For example, the `addcmodule` command was designed to enhance this feature.
-
 * **New Feature**: Added command that allows the user to archive/unarchive his/her modules.
   * What it does: CAP5Buddy keeps track of two lists for its module tracker component : A _Regular_ module list , and a _Archived_ module list. This enhancement allows users to move modules between the two lists and archive/unarchive modules on command.
   * Justification: This feature fits the purpose of the application very well because the application is academic focused. The user might want to keep track of completed modules. Therefore, the user may opt to archive such modules instead to reduce clutter in the main module list.
   * Highlights: I designed this enhancement to enhance user quality of life and enhance other commands. For example, CAP calculator features may require a long list of modules and the ability to archive modules may be helpful.
-
 * **New Feature**: Added command that allows the user to find a module and display it in the GUI
   * What it does: Allows the user to search for a module by its name.
   * Justification: This enhancement allows the user to find a module quickly and will be high useful especially when it is likely the user will be storing and accessing many modules.
