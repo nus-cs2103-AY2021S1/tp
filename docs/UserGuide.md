@@ -289,15 +289,16 @@ Examples:<br>
 | Action     | Format, Examples                                                                                                                                                      |
 | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | *Add*    | `add n/EXERCISE d/DESCRIPTION [at/DATE] [c/CALORIES] [m/MUSCLES_WORKED] [t/TAG]..` <br> e.g., `add n/running d/10 mins at/31-12-2020 c/100 m/chest,arm t/home t/gym` |
-| *Clear* | `clear`|
-| *Delete* | `delete INDEX`<br> e.g., `delete 2`     |                                                                                                                              |
-| *Update*   | `update INDEX [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES]​ [m/MUSCLES_WORKED] [t/TAG]..`<br> e.g., `update 1 n/Push up d/30 at/09-07-2020 c/260 m/chest,arm t/home t/gym`                                           |
-| *Find*  | `find [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [k/KEYWORD...]`<br> e.g., `find n/running`                                                                                                            |
-| *List*   | `list`     |                                                                                                                                                           |
-| *Archive*   | `archive f/FILE_LOCATION`    <br> e.g.,`archive data\file_name.txt`                                                                                                                                                                    |
-| *Help* | `help`|
-| *Exit* | `exit`|
-| *Recall*   | `recall EXERCISE` <br> e.g.,`recall running`  
-| *Create*   | `create n/EXERCISE c/CALORIES` <br> e.g., `create n/pushup c/100`
 | *Addt*     | `addt temp/EXERCISE at/DATE [c/CALORIES]` <br> e.g., `addt temp/pushup d/half an hour at/09-07-2020 c/260` |
+| *Archive*   | `archive f/FILE_LOCATION`    <br> e.g.,`archive data\file_name.txt`        
+| *Clear* | `clear`|
+| *Create*   | `create n/EXERCISE c/CALORIES` <br> e.g., `create n/pushup c/100`
+| *Delete* | `delete INDEX`<br> e.g., `delete 2`     |                                                                                                                              |
+| *Exit* | `exit`|
+| *Find*  | `find [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [k/KEYWORD...]`<br> e.g., `find n/running`                                                                                                            |
 | *Goal* | `goal c/CALORIES at/DATE` |
+| *Help* | `help`|
+| *List*   | `list`     |
+| *Recall*   | `recall EXERCISE` <br> e.g.,`recall running` 
+| *Update*   | `update INDEX [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES]​ [m/MUSCLES_WORKED] [t/TAG]..`<br> e.g., `update 1 n/Push up d/30 at/09-07-2020 c/260 m/chest,arm t/home t/gym`                                           |
+ 
