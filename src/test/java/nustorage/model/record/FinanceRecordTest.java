@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
@@ -103,6 +105,49 @@ public class FinanceRecordTest {
     }
 
     @Test
+    public void setAmount_financeRecordAmountIsUpdated_success() {
+        double sampleAmount = 2000;
+        FinanceRecord financeRecord = new FinanceRecord(sampleAmount);
+        financeRecord.setAmount(1000);
+        assertEquals(financeRecord.getAmount(), 1000);
+    }
+
+    @Test
+    public void setAndGetUiUsableIndex_test() {
+        double sampleAmount = 2000;
+        FinanceRecord financeRecord = new FinanceRecord(sampleAmount);
+        financeRecord.setUiUsableIndex(123456789);
+        assertEquals(financeRecord.getUiUsableIndex(), "123456789");
+    }
+
+    @Test
+    public void getDateAndTime_test() {
+        double sampleAmount = 2000;
+        LocalDateTime sampleDateTime = LocalDateTime.now();
+        boolean sampleHasInventory = true;
+        int sampleID = 987654321;
+
+        FinanceRecord firstFinanceRecord = new FinanceRecord(sampleAmount, sampleDateTime);
+        FinanceRecord secondFinanceRecord =
+                new FinanceRecord(sampleID, sampleAmount, sampleDateTime, sampleHasInventory);
+        FinanceRecord thirdFinanceRecord = new FinanceRecord(sampleAmount, sampleDateTime, sampleHasInventory);
+
+        DateTimeFormatter dtfTime = DateTimeFormatter.ofPattern("HH:mm");
+        String expectedFormattedTime = sampleDateTime.toLocalTime().format(dtfTime);
+        LocalDate expectedDate = sampleDateTime.toLocalDate();
+
+        //Tests for getTime()
+        assertEquals(firstFinanceRecord.getTime(), expectedFormattedTime);
+        assertEquals(secondFinanceRecord.getTime(), expectedFormattedTime);
+        assertEquals(thirdFinanceRecord.getTime(), expectedFormattedTime);
+
+        //Tests for getDate();
+        assertEquals(firstFinanceRecord.getDate(), expectedDate);
+        assertEquals(secondFinanceRecord.getDate(), expectedDate);
+        assertEquals(thirdFinanceRecord.getDate(), expectedDate);
+    }
+
+    @Test
     public void equals_test() {
         double sampleAmount = 1500;
         double anotherSampleAmount = 2000;
@@ -121,4 +166,5 @@ public class FinanceRecordTest {
         //Different records should not equal each other
         assertNotEquals(firstRecord, secondRecord);
     }
+
 }

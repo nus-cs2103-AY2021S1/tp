@@ -94,6 +94,10 @@ public class Inventory implements ReadOnlyInventory {
         inventoryRecords.remove(key);
     }
 
+    public InventoryRecordList getInventoryRecordsList() {
+        return this.inventoryRecords;
+    }
+
     //// util methods
 
     @Override
