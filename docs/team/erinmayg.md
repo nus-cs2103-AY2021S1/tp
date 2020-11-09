@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Project Portfolio Page
+title: Erin May Gunawan's Project Portfolio Page
 ---
 
 ## Project: FaculType
@@ -44,7 +44,7 @@ Given below are my contributions to the project.
    the functional coding aspect) and an analysis of all existing components and its CSS attributes.
   * Credits: Module TabPane color scheme [link](https://stackoverflow.com/questions/30642032/how-to-get-rid-of-the-grey-selection-border-in-javafx).
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=erinmayg&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~other~test-code&tabOpen=true&tabAuthor=erinmayg&tabRepo=AY2021S1-CS2103-T14-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&tabType=authorship)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=erinmayg)
 
 * **Enhancements to existing features**:
   * Enables listing of all contacts, modules, or both (Pull requests 

@@ -855,6 +855,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+**Use case: Clearing all contacts**
+
+**MSS**
+
+1.  User requests to clear all contacts
+2.  FaculType deletes all contacts and the module instructor list is empty.
+    
+    Use case ends.
+
+**Extensions**
+
+*   2a. The contact list is empty.
+    
+    * 2a1. FaculType shows an error message.
+      
+      Use case ends.
+
+**Use case: Clearing all modules**
+
+**MSS**
+
+1.  User requests to clear all modules
+2.  FaculType deletes all modules in the active semester.
+    
+    Use case ends.
+
+**Extensions**
+
+*   2a. The module list is empty.
+    
+    * 2a1. FaculType shows an error message.
+      
+      Use case ends.      
+
 **Use case: Resetting data**
 
 **MSS**
@@ -950,7 +984,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `add n/Alice Liddel`<br>
       Expected: No contact is added. Error details shown in the status message. 
 
-   1. Other incorrect delete commands to try: `add`, `add n/Alice * p/8765432 e/aliceliddel@example.com d/FASS o/As5
+   1. Other incorrect add commands to try: `add`, `add n/Alice * p/8765432 e/aliceliddel@example.com d/FASS o/As5
    -04-03`, `...` <br>
       Expected: Similar to previous.
 
@@ -993,19 +1027,15 @@ testers are expected to do more *exploratory* testing.
          Expected: The module is added as the last index in the contact list. Details of the added contact shown in the
           status message.
 
-   1. Test case: `add n/Alice Liddel`<br>
-      Expected: No contact is added. Error details shown in the status message. 
-
-   1. Other incorrect delete commands to try: `add`, `add n/Alice * p/8765432 e/aliceliddel@example.com d/FASS o/As5
-   -04-03`, `...` <br>
+   1. Other incorrect add module commands to try: `addmod`, `addmod m/CS** n/Programming`, `...` <br>
       Expected: Similar to previous.
 
-1. Deleting a contact while contacts are being filtered
+1. Adding a module while modules are being filtered
     
-   1. Prerequisites: Filter contacts by attributes using the `find` command.
+   1. Prerequisites: Filter modules by attributes using the `findmod` command.
 
    1. Test cases similar to previous.
-   Expected: similar to each respective test cases but the contact list is reset to show all contacts.
+   Expected: Similar to each respective test cases, but the module list is reset to show all modules.
 
    
 ### Deleting a contact
@@ -1031,18 +1061,26 @@ testers are expected to do more *exploratory* testing.
    
 ### Deleting a module
 
-1. Prerequisites:  List all modules using the `list` or `mlist` command.
-Delete a module from the module list using the `delmod` command. There are only 3 modules with module codes `CS2103`, `CS2100`, `CS1010S` in FaculType.
+1. Deleting a module while all modules are being shown
 
-1. Test case: `delmod m/CS2103`
-Expected: Module with module code `CS2103` would be deleted from the module list.
+    1. Prerequisites:  List all modules using the `list` or `mlist` command.
+    Delete a module from the module list using the `delmod` command. There are only 3 modules with module codes `CS2103`, `CS2100`, `CS1010S` in FaculType.
+    
+    1. Test case: `delmod m/CS2103`
+    Expected: Module with module code `CS2103` is deleted from the module list.
+    
+    1. Test case: `delmod m/CS1101S`
+    Expected: No module is deleted from the module list since `CS1101S` is not a module that exists in the module list. Error details shown in the status message. 
+    
+    1. Test case: `delmod m/CS2103 m/CS2100`
+    Expected: No module is deleted from the module list because `delmod` does not allow for multiple deletions. Error details shown in the status message. 
 
-1. Test case: `delmod m/CS1101S`
-Expected: No module is deleted from the module list since `CS1101S` is not a module that exists in the module list. Error details shown in the status message. 
+1. Deleting a module while modules are being filtered
+    
+   1. Prerequisites: Filter modules using the `findmod` command. Other prerequisites are similar to previous.
 
-1. Test case: `delmod m/CS2103 m/CS2100`
-Expected: No module is deleted from the module list because `delmod` does not allow for multiple deletions. Error details shown in the status message. 
-   
+   1. Test cases similar to previous.
+          
 ### Editing a contact
 
 1. Editing a contact while all contacts are being shown
@@ -1062,15 +1100,16 @@ Expected: No module is deleted from the module list because `delmod` does not al
    1. Test case: `edit 0`<br>
       Expected: No contact is edited. Error details shown in the status message. 
 
-   1. Other incorrect delete commands to try: `edit`, `edit x`, `edit p/98765abcd`, `...` (where x is larger than the
+   1. Other incorrect edit commands to try: `edit`, `edit x`, `edit p/98765abcd`, `...` (where x is larger than the
     list size)<br>
       Expected: Similar to previous.
 
-1. Deleting a contact while contacts are being filtered
+1. Editing a contact while contacts are being filtered
     
    1. Prerequisites: Filter contacts by attributes using the `find` command. Other prerequisites are similar to previous.
 
    1. Test cases similar to previous.
+   Expected: Similar to each respective test cases, but the contact list is reset to show all contacts.
 
 ### Finding a contact
 
@@ -1095,7 +1134,7 @@ Expected: No module is deleted from the module list because `delmod` does not al
 1. Test case: `findmod m/`<br>
    Expected: No modules filtered. Error details shown in the status message. 
 
-1. Other incorrect find commands to try: `findmod m/CS**`, `findmod`, `findmod Alice`, `...`
+1. Other incorrect find module commands to try: `findmod m/CS**`, `findmod`, `findmod Alice`, `...`
    Expected: Similar to previous.
 
 ### Clearing all contacts from the contact list
