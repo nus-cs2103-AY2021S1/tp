@@ -118,6 +118,14 @@ The `Model`,
 * stores the data in ProductiveNUS.
 * exposes an unmodifiable `ObservableList<Assignment>` and an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
+#### Task, Lesson and Assignment
+`Lesson` and `Assignment` are two important classes in ProductiveNus; `Lesson` stores information about the lessons imported from NUSMods while `Assignment` stores information about the assignments added by the user. 
+
+Since `Lesson` and `Assignment` have several attributes in common, namely `Name`, `Time` and `ModuleCode`, an abstract parent class, `Task`, containing these shared attributes was created.
+
+   !![Relationship between Task, Assignment and Lesson](images/TaskClassDiagram.png)
+   <br/>*Figure X: Class Diagram for Task*
+
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -986,6 +994,41 @@ These instructions only provide a starting point for testers to work on; testers
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.    
 
+### Adding assignments
+1. Adding an assignment without priority and remind.
+    1. Test case: `add n/Lab 1 mod/CS2100 d/10-10-2020 2359`<br>
+    Expected: An assignment with name "Lab 1", module code "CS2100", and deadline "10-10-2020 2359" is added to the assignment list.
+    Details of the added assignment is shown in the Message Box.
+    
+    1. Test case: `add n/Lab 1 mod/CS2100 d/1-5-2020 2359`<br>
+    Expected: No assignment added. Error details shown in the Message Box.
+    
+    1. Test case: `add n/Lab 1 mod/CS20 d/10-10-2020 2359`<br>
+    Expected: No assignment added. Error details shown in the Message Box.
+    
+2. Adding an assignment with priority
+    1. Test case: `add n/Lab 1 mod/CS2100 d/10-10-2020 2359 p/HIGH`<br>
+    Expected: A high priority assignment with name "Lab 1", module code "CS2100", and deadline "10-10-2020 2359" is added to the assignment list.
+    Details of the added assignment is shown in the Message Box.
+    
+    1. Test case: `add n/Lab 1 mod/CS2100 d/10-10-2020 2359 p/HI`<br>
+    Expected: No assignment added. Error details shown in the Message Box.
+    
+3. Adding an assignment with reminders set
+    1. Test case: `add n/Lab 1 mod/CS2100 d/10-10-2020 2359 remind`<br>
+    Expected: An assignment with name "Lab 1", module code "CS2100", and deadline "10-10-2020 2359" is added to the assignment list and is displayed in `Your reminders`.
+    Details of the added assignment is shown in the Message Box.
+
+    1. Test case: `add n/Lab 1 mod/CS2100 d/10-10-2020 2359 remin`<br>
+    Expected: No assignment added. Error details shown in the Message Box.
+    
+4. Adding an assignment with priority and reminders set
+    1. Test case: `add n/Lab 1 mod/CS2100 d/10-10-2020 2359 p/HIGH remind`<br>
+    Expected: A high priority assignment with name "Lab 1", module code "CS2100", and deadline "10-10-2020 2359" is added to the assignment list and is displayed in `Your reminders`.
+    Details of the added assignment is shown in the Message Box.
+
+    1. Test case: `add n/Lab 1 mod/CS2100 d/10-10-2022 2359 p/MEDIUM remin`<br>
+    Expected: No assignment added. Error details shown in the Message Box.
 
 ### Deleting assignments
 
@@ -1148,9 +1191,9 @@ These instructions only provide a starting point for testers to work on; testers
       Expected: First and second assignment in assignment list is now displayed in `Your reminders` as well. Details of the assignments are shown in the Message box.
       
    1. Test case: `remind 1 x` (where x is the assignment list index of an assignment that is found in `Your reminders`)<br>
-      Expected: No assignment is added into `Your reminders`. Error details shown int the Message box.
+      Expected: No assignment is added into `Your reminders`. Error details shown in the Message box.
       
-   1. Other incorrect unremind commands to try: `remind`, `remnid 0`, `remind x x`, `...` (where x is the assignment list index of an assignment that is found in `Your reminders`)<br>
+   1. Other incorrect remind commands to try: `remind`, `remnid 0`, `remind x x`, `...` (where x is the assignment list index of an assignment that is found in `Your reminders`)<br>
       Expected: Similar to previous.
       
 1. Setting reminders for multiple assignments while some assignments are being shown
@@ -1162,7 +1205,7 @@ These instructions only provide a starting point for testers to work on; testers
    1. Test case: `remind 1 x` (where x is the assignment list index of an assignment that is found in `Your reminders`)<br>
       Expected: Similar to `remind 1 x` test case when some assignments are shown.
       
-   1. Other incorrect unremind commands to try: `remind`, `remnid 0`, `remind x x`, `...` (where x is the assignment list index of an assignment that is found in `Your reminders`)<br>
+   1. Other incorrect remind commands to try: `remind`, `remnid 0`, `remind x x`, `...` (where x is the assignment list index of an assignment that is found in `Your reminders`)<br>
       Expected: Similar to previous.
 
 ### Removing reminded assignments
@@ -1174,7 +1217,7 @@ These instructions only provide a starting point for testers to work on; testers
       Expected: First assignment in `Your reminders` is removed from `Your reminders`. Details of the assignment shown in the Message box.
       
    1. Test case: `unremind x` (where x is larger than reminded list size but less then the assignment list size) <br>
-      Expected: No assignment is removed from `Your reminders`. Error details shown int the Message box.
+      Expected: No assignment is removed from `Your reminders`. Error details shown in the Message box.
       
    1. Other incorrect unremind commands to try: `unremind`, `unremnid 1`, `...`
       Expected: Similar to previous.
@@ -1183,9 +1226,85 @@ These instructions only provide a starting point for testers to work on; testers
    1. Prerequisites: `Your reminders` must not contain any assignments.
    
    1. Test case: `unremind 1` <br>
-      Expected: No assignment is removed from `Your reminders`. Error details shown int the Message box.
+      Expected: No assignment is removed from `Your reminders`. Error details shown in the Message box.
       
    1. Other incorrect unremind commands to try: `unremind`, `unremnid 1`, `...`
+      Expected: Similar to previous.
+      
+### Marking assignments as done
+
+1. Marking one assignment as done while all assignments are being shown
+   1. Prerequisites: List all assignments using the `list` command. Multiple assignments in the list. No assignments marked as done.
+   
+   1. Test case: `done 1` <br>
+      Expected: First assignment in assignment list is marked as done. Details of the assignment shown in the Message Box.
+      
+   1. Test case: `done 0` <br>
+      Expected: No assignment marked as done. Error details shown int the Message box.
+      
+   1. Other incorrect done commands to try: `done`, `don 1`, `done x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+1. Marking one assignment as done while some assignments are being shown
+   1. Prerequisites: List some assignments using the `list x` command (where x is number of days from current date and time such that only some assignments are shown). Multiple assignments in the list. No assignments mark as done.
+   
+   1. Test case: `done 1` <br>
+      Expected: Similar to `done 1` test case when all assignments are shown. Assignment list will be refreshed to show all assignments.
+      
+   1. Test case: `done 0` <br>
+      Expected: Similar to `done 0` test case when all assignments are shown.
+      
+   1. Other incorrect done commands to try: `done`, `don 1`, `done x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+      
+1. Marking multiple assignments as done while all assignments are being shown
+   1. Prerequisites: List all assignments using the `list` command. Multiple assignments in the list. No assignments marked as done.
+   
+   1. Test case: `done 1 2` <br>
+      Expected: First and second assignment in assignment list are marked as done. Details of the assignments are shown in the Message Box.
+      
+   1. Test case: `done 1 1` <br>
+      Expected: No assignment is marked as done. Error details shown in the Message box.
+      
+   1. Other incorrect done commands to try: `done`, `done 0 1`, `done x x`, `...` (where x is the assignment list index of an assignment that has been marked as done)<br>
+      Expected: Similar to previous.
+      
+1. Marking multiple assignments as done while some assignments are being shown
+   1. Prerequisites: List some assignments using the `list x` command (where x is number of days from current date such that only some assignments are shown).. Multiple assignments in the list. No assignments marked as done.
+   
+   1. Test case: `done 1 2` <br>
+      Expected: Similar to `done 1 2` test case when all assignments are shown. Assignment list will be refreshed to show all assignments.
+      
+   1. Test case: `done 1 1` <br>
+      Expected: Similar to `done 1 1` test case when all assignments are shown.
+      
+   1. Other incorrect done commands to try: `done`, `done 0 1`, `done x x`, `...` (where x is the assignment list index of an assignment that has been marked as done)<br>
+      Expected: Similar to previous.
+      
+### Marking assignments as not done
+
+1. Marking assignments as not done while all assignment are being shown
+   1. Prerequisites: List all assignments using the `list` command. Multiple assignments in the list. First 3 assignments in the assignment list marked as done.
+   
+   1. Test case: `undone 1` <br>
+      Expected: First assignment in assignment list is marked as not done. Details of the assignment shown in the Message Box.
+      
+   1. Test case: `undone 0` <br>
+      Expected: No assignment marked as not done. Error details shown in the Message box.
+      
+   1. Other incorrect done commands to try: `undone`, `undon 1`, `undone x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+1. Marking one assignment as not done while some assignments are being shown
+   1. Prerequisites: List some assignments using the `list x` command (where x is number of days from current date and time such that only some assignments are shown). Multiple assignments in the list. First 3 assignments in the assignment list marked as done.
+   
+   1. Test case: `undone 1` <br>
+      Expected: Similar to `done 1` test case when all assignments are shown. Assignment list will be refreshed to show all assignments.
+      
+   1. Test case: `undone 0` <br>
+      Expected: Similar to `done 0` test case when all assignments are shown.
+      
+   1. Other incorrect done commands to try: `undone`, `undon 1`, `undone x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
       
       
