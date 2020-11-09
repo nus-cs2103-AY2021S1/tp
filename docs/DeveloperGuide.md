@@ -130,15 +130,16 @@ The features mentioned are:
 - [Tagging system](#tags)
 - [Editing a flashcard](#edit-flashcard)
 - [Deleting a flashcard by index](#delete-by-index)
-- [Delete by Tags](#delete-by-tag)
+- [Deleting by Tags](#delete-by-tag)
 - [Finding flashcards](#find-flashcards)
 - [Setting difficulty for flashcards](#difficulty)
 - [Displaying statistics of a flashcard](#display-statistics-of-a-flashcard)
+- [Displaying statistics of flashcards by tag](#display-statistics-of-flahcards-by-tag)
 - [Clearing all flashcards](#clear-all-flashcards)
-- [Clear statistics of a flashcard](#clear-statistics-of-a-flashcard)
+- [Clearing statistics of a flashcard](#clear-statistics-of-a-flashcard)
 - [Testing a flashcard](#test-a-flashcard)
-- [Export](#exporting-flashcards)
-- [Import](#importing-flashcards)
+- [Exporting flashcards](#export-flashcards)
+- [Importing flashcards](#import-flashcards)
 
 ### Add flashcard with open-ended question
 
@@ -392,7 +393,7 @@ The following sequence diagram shows how the Delete By Index mechanism works:
 #### Implementation
 
 The Delete By Tag mechanism will delete flashcards specified by a given set of tags. Any flashcard containing
-at least one of the specified tags will be deleted.
+all of the specified tags will be deleted.
 
 It works by filtering for the flashcards in the `model` and deleting them one by one.
 
@@ -611,7 +612,56 @@ The following sequence diagram shows how the Displaystats mechanism works:
   * Pros: Demeter's law is no longer violated.
   * Cons: There is less abstraction.
   
-### Clearing all flashcards
+### Display statistics of flashcards by tag
+
+#### Implementation
+
+The Display stats by tag mechanism will allow the user to view a Pie Chart of the aggregated statistics of flashcards specified by a given set of tags. Any flashcard that contains all the specified tags will have their statistics aggregated.
+
+It works by filtering for the flashcards in the `model` and aggregating their statistics using `StatsCommand:getAggregatedStatistics`.
+
+##### Usage
+
+The following activity diagram summarizes what happens when a user executes stats command with a set of specified tags:
+
+![StatsByTagActivityDiagram](images/StatsByTagActivityDiagram.png)
+
+Given below is an example usage scenario and how the Displaystats mechanism behaves at each step.
+
+Step 1. The user launches the application after a few times of using the `TestCommand` feature. The `QuickCache` will be initialized with the existing QuickCache state.
+
+Step 2. The user executes `stats t/MCQ` command to display the aggregated `Statistics` of all flashcards with the tag `MCQ`.
+
+Step 3. This will call `StatsCommandParser#parse` which will then parse the arguments provided. Within `StatsCommandParser#parse`, `ParserUtil#parseTags` will be called to create a `FlashcardPredicate` using the tags.
+
+Step 4. The `FlashcardPredicate` is then passed to the `StatsCommand`.
+The following sequence diagram shows how the parser operation works:
+
+![StatsByTagParserSequenceDiagram](images/StatsByTagParserSequenceDiagram.png)
+
+Step 5. `StatsCommand#execute` will filter the `QuickCache` model with the provided predicate and get back the filtered list.
+
+Step 6. The filtered list will have their statistics aggregated through the `StatsCommand:getAggregatedStatistics`.
+
+Step 7. The aggregated `Statistics` will be passed to the GUI as part of the `Feedback` attribute within the `CommandResult`.
+
+Step 8. The GUI will then proceed to get the `Statistics` from `Feedback` and display its data in the form of a Pie Chart to the user.
+
+The following sequence diagram shows how the Display stats by tag mechanism works:
+
+![StatsByTagSequenceDiagram](images/StatsByTagSequenceDiagram.png)
+
+#### Design Considerations:
+
+* **Current choice:** Passes the `Statistics` object to the GUI in `Feedback` which is an attribute of `CommandResult`.
+  * Pros: Provides more abstraction as all of the data the GUI needs to display are in the `Feedback` object.
+  * Cons: There is a violation of Demeter's law as GUI interacts with an attribute of `CommandResult`.
+
+* **Alternative:** Do not use the `Feedback` object. Place all the data in the `CommandResult` object directly.
+  * Pros: Demeter's law is no longer violated.
+  * Cons: There is less abstraction.
+  
+### Clear all flashcards
 
 #### Implementation
 
@@ -694,7 +744,7 @@ The following sequence diagram shows how the Clearstats mechanism works:
   * Pros: No "unnecessary" creation of a new `Flashcard` and `Statistics` object when a user requests to clear its statistics.
   * Cons: `Flashcard` and `Statisitcs` become difficult to debug.
 
-### Exporting Flashcards
+### Export flashcards
 
 #### Implementation
 
@@ -731,7 +781,7 @@ The following activity diagram summarizes what happens when a user executes an `
   * Cons: Difficult to implement.
   * Cons: Command becomes more complicated as the entire path needs to be typed out.
 
-### Importing Flashcards
+### Import flashcards
 
 #### Implementation
 
