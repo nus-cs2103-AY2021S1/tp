@@ -10,14 +10,14 @@ Welcome to ProductiveNUS User Guide! :blue_book:
 
 As a **student from the SoC in NUS**, you tend to have a **heavy workload**. ProductiveNUS helps **improve your productivity** by **enhancing your organisational skills**. Apart from simply **keeping track of your tasks**, ProductiveNUS is capable of **scheduling** them for you so you will never **miss any deadlines**. ProductiveNUS is also compatible with NUSMods, meaning all your **timetable information can be imported easily** into the application so all your academic tasks can be found in just one application.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Table of Contents
 
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## About
 This user guide provides you with the necessary information on how to become an expert user of ProductiveNUS. 
@@ -77,7 +77,7 @@ Time parameters must be in the format `HHmm`, where `HH` is the hour of the day 
 
 For example, 7:00 AM is `0700` while 7:00 PM is `1900`.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Getting started
 
@@ -94,7 +94,7 @@ For example, 7:00 AM is `0700` while 7:00 PM is `1900`.
 
 1. Refer to the [Features](#features) below for details of each command.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -134,6 +134,9 @@ More examples:
 * `add n/Lab report d/23-04-2020 1230 mod/CS2100 remind`
 * `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH remind`
 
+
+<div style="page-break-after: always;"></div>
+
 ### Deleting assignments : `delete`
 
 Format: `delete INDEX [MORE_INDEXES]`
@@ -168,6 +171,8 @@ More examples:
 * The indexes **must not be duplicated**. For example, `delete 3 3` is invalid.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Importing your timetable : `import`
 
 Format: `import url/YOUR_NUSMODS_URL`
@@ -197,6 +202,8 @@ Follow these steps and try importing your timetable:
 
 Another example:
 * `import url/https://nusmods.com/timetable/sem-1/share?CS2100=TUT:01,LAB:11,LEC:1&CS2101=&CS2103T=LEC:G16&CS2105=TUT:14,LEC:1&EC1301=TUT:S28,LEC:1&IS1103=` 
+
+<div style="page-break-after: always;"></div>
 
 ### Listing assignments : `list`
 
@@ -234,6 +241,8 @@ More examples:
  **:clipboard: Pointers to note:**<br>
 * **Only one** number can be keyed in. For example, `list 1 2` is invalid. 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Finding assignments : `find`
 
@@ -289,6 +298,8 @@ More examples:
 * You can only **find assignments with keywords of the same prefix**. For example, `find n/Assignment d/23-10-2020` is invalid.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Editing your assignment : `edit`
 
 Format: `edit INDEX PREFIX/EDITED_FIELD [MORE_PREFIX/EDITED_FIELD]`
@@ -334,6 +345,8 @@ More examples:
 * **One** `INDEX` and **at least one** `PREFIX/EDITED_FIELD` must be present. For example, `edit` is invalid.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Setting reminders for assignments : `remind`
 
 Format: `remind INDEX [MORE_INDEXES]`
@@ -353,9 +366,9 @@ For example, `remind 1` will set reminders for the first assignment in your assi
    ![Remind1InYourReminders](images/Remind1InYourReminders.png)
    *Figure 16: "Statistics tutorial" (highlighted in red) is added into `Your reminders`*
 
-You can set reminders for **more than one** assignments at a time as well. Here is an example with steps for you to follow:
+You can set reminders for **more than one** assignment at a time as well. Here is an example with steps for you to follow:
 
-1) To set reminders assignments "Essay" and "Assignment 3" (the second and fourth assignment respectively in your assignment list as shown in Figure X), you can simply enter `remind 2 4` into the Command Box.
+1) To set reminders for assignments "Essay" and "Assignment 3" (the second and fourth assignment respectively in your assignment list as shown in Figure X), you can simply enter `remind 2 4` into the Command Box.
 
    ![Remind24](images/Remind24.png)
    *Figure 17: Before "Essay" and "Assignment 3" are added into `Your reminders`*
@@ -373,6 +386,8 @@ You can set reminders for **more than one** assignments at a time as well. Here 
 * The `INDEX` must be found in your assignment list.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Removing reminders for assignments : `unremind`
 
@@ -396,6 +411,8 @@ For example, `unremind 1` will remove the first assignment in `Your reminders` (
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Setting priority for assignments : `prioritize`
 
 Format: `prioritize INDEX p/PRIORITY_OF_ASSIGNMENT`
@@ -418,6 +435,8 @@ For example, `prioritize 1 p/LOW` will set a low priority tag for the first assi
 * If the assignment already has a priority tag, this command will replace the previous priority tag with the new one.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Removing priority for assignments : `unprioritize`
 
 Format: `unprioritize INDEX`
@@ -433,6 +452,8 @@ For example, `unprioritize 1` will remove the priority tag, if present, of the f
 * At least one `INDEX` must be present. For example, `unprioritize` is invalid.
 * The `INDEX` must be found in your assignment list.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Marking assignments as done : `done`
 
@@ -468,6 +489,8 @@ the command line based on the indexes labelled in the figure.
 </div>
 
 
+<div style="page-break-after: always;"></div>
+
 ### Marking assignments as not done : `undone`
 
 Format: `undone INDEX`
@@ -499,6 +522,8 @@ you can simply enter `undone 2` into the command line based on the index labelle
 * The index must be present. For example, `undone` without any index is invalid.
 * The index **must be found in your assignment list**.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Scheduling assignments: `schedule`
 
@@ -543,6 +568,8 @@ More examples:
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Removing suggested time for assignments: `unschedule`
 
 Format: `unschedule INDEX`
@@ -567,6 +594,8 @@ More examples:
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Undoing commands: `undo`
 
 Format: `undo`
@@ -587,6 +616,8 @@ Here is an example with steps to follow:
     ![UserGuideUndoCommandResult](images/UserGuideUndoCommandResult.PNG)
     *Figure 36: Result after undoing the delete command*
     
+
+<div style="page-break-after: always;"></div>
 
 ### Clearing all assignments: `clear`
 
@@ -614,6 +645,8 @@ Format: `exit`
 
 You can use this command to exit the program.
 
+
+<div style="page-break-after: always;"></div>
 
 ### Automated features and enhancements
 #### Upcoming tasks
@@ -645,7 +678,9 @@ Unlike your `Upcoming tasks`, the remarks are currently **not updated in real ti
 
 ProductiveNUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
---------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 
 ## Command summary
 
@@ -670,7 +705,9 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 | **help** | `help` | `help` |
 | **exit** | `exit` | `exit` |
 
---------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 
 ## FAQ
 
@@ -701,6 +738,8 @@ You can paste the command into the command box after step 2 and repeat step 1-2 
    ![UserGuideRescheduleSuccess](images/UserGuideRescheduleSuccess.PNG)
    *Figure 39: New suggested time for assignment labelled*
 <br>
+
+<div style="page-break-after: always;"></div>
 
 **Q: I double-clicked the productivenus.jar file but the app is not starting. What should I do?**<br>
 **A**: This is most likely caused by the *Security and Privacy Settings* of your operating system. You can either
