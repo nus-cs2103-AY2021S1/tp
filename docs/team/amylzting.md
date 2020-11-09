@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Amy's Project Portfolio Page
----
 ### Project: Warenager
 
 Warenager is an **inventory management application** to help warehouse managers
@@ -54,10 +53,8 @@ Given below are my contributions to the project.
   * Managed the issue tracker: [Issues created](https://github.com/AY2021S1-CS2103T-T15-3/tp/issues?q=is%3Aissue+is%3Aclosed+author%3Aamylzting)
 
 * **Reviews & Merging**:
-  * Frequently reviewed and tested teammates' pull requests.
-  * Merged approved pull requests after thorough review and GitHub action checks.
+  * Frequently reviewed, tested (to detect functional flaws), and merged teammates' PRs after thorough review and Github action checks.
   * Helped team members with any bugs and suggested any possible improvements.
-  * Tests code to be merged before reviewing to detect functional flaws.
   * Here are some pull requests: [#89](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/89), [#100](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/100),
    [#133](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/133), [#136](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/136), [#137](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/137),
    [#143](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/143), [#150](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/150), [#156](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/156)
