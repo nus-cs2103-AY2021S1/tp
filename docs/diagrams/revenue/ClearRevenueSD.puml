@@ -33,14 +33,20 @@ deactivate NonUniqueList
 ModelManager <-- RevenueTracker: """"
 deactivate RevenueTracker
 
-create CommandResult
-ModelManager --> CommandResult: """"
+ClearRevenueCommand <-- ModelManager: """"
 deactivate ModelManager
+
+create CommandResult
+ClearRevenueCommand -> CommandResult
 activate CommandResult
-ClearRevenueCommand <-- CommandResult: ""r""
+
+CommandResult --> ClearRevenueCommand: ""r""
 deactivate CommandResult
 
+
+
 [<-- ClearRevenueCommand: ""r""
+deactivate ClearRevenueCommand
 
 @enduml
 

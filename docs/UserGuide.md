@@ -80,7 +80,7 @@ Figure 2 shows the GUI of **Homerce**, annotated with a description of each GUI 
 ![AnnotatedUI](images/AnnotatedUI.png) <br>
 _Figure 2 -  Annotated GUI of Homerce_
 
-#### 3.2.2. General Symbols and Syntax 
+#### 3.2.2. General Symbols and Syntax
 
 The table below explains the general syntax used throughout the user guide.
 
@@ -90,9 +90,6 @@ The table below explains the general syntax used throughout the user guide.
 | _italics_ | Italicised text indicates that the text has a definition specific to Homerce, or it is a caption for a Figure in the guide. |
 |<div markdown="block" class="alert alert-info"> :information_source: </div>  | An exclamation mark indicates that the following text is a tip. |
 |<div markdown="block" class="alert alert-danger"> :warning: </div> | A warning sign indicates that the following text is important. |
-
-
-Important cautions that needs to be known before using the feature.
 
 #### 3.2.3. Command Syntax and Usage
 
@@ -105,12 +102,12 @@ The table below explains some important technical terms to help you understand a
 | Parameter | The word following each prefix. They are values given to a command to perform the specified action.|
 
 **Example:** <br>
-`addexp d/DESCRIPTION f/ISFIXED v/VALUE dt/DATE [t/TAG]`
+`addexp d/DESCRIPTION f/IS_FIXED v/VALUE dt/DATE [t/TAG]`
 
 **Breakdown:** 
 * Command Word - `addexp` <br>
 * Prefixes - `d/`, `f/`, `v/`, `dt/`, `t/`  <br>
-* Parameters - `DESCRIPTION`, `ISFIXED`, `VALUE`, `DATE`, `TAG`
+* Parameters - `DESCRIPTION`, `IS_FIXED`, `VALUE`, `DATE`, `TAG`
 
 The following points explain the format of a command. 
 More examples will be provided for each command in [Section 4 - Features](#4-features).
@@ -162,7 +159,7 @@ The table below shows a list of command parameters that will be used.
 <table>
 <tr><th>Parameter Name</th><th>Description</th><th>Example</th></tr>
 <tr><td><pre>NAME</pre></td><td>The name of the client. <br><br> It must be an alphanumeric word.</td><td>E.g. Typing <code>John Doe</code> would represent the name of the client saved in the client manager.</td></tr>
-<tr><td><pre>EMAIL</pre></td><td>The email of the client. <br> Emails should be in <code>local-part@domain format</code> <br> <br> The <code>local-part</code> can only contain alphanumeric characters, and the special characters <br> +!#$%&'*+/=?\`{}~^.-&#124; <br> <br> The <code>domain</code> can only contain:  Alphanumeric characters The following special characters in between: +  dash (-) period (.) <br> The domain name must also have at least 2 characters and start and end with alphanumeric characters</td><td>johnDoe97@example123.com</td></tr>
+<tr><td><pre>EMAIL</pre></td><td>The email of the client. <br> Emails should be in <code>local-part@domain</code> format <br> <br> The <code>local-part</code> can only contain alphanumeric and special characters <br> <br> The <code>domain</code> can only contain Alphanumeric characters. <br> A period(.) or a hyphen(-) for the characters in between, if any. <br> The domain name must also have at least 2 characters and start and end with alphanumeric characters</td><td>johnDoe97@example123.com</td></tr>
 <tr><td><pre>PHONE</pre></td><td>Phone is the contact number of the client and is the indicator used to uniquely identify a client. <br> <br> It must consist only of numeric characters, and be at least 3 digits long.</td><td>E.g. <code>91234567</code> would represent the client's phone number.<br><br> Another client with the same number <code>91234567</code> will not be allowed to get added into the client list. </td></tr>
 <tr><td><pre>TAG</pre></td><td>The tag you want to attach to the client. <br> <br> It must be a single alphanumeric word. </td><td>E.g. Typing <code>friend</code> would mean that friend is the additional information associated with the client.</td></tr>
 <tr><td><pre>INDEX</pre></td><td>The index of the client in the displayed list. <br> <br> It must be a valid index number.</td><td>E.g. Typing <code>2</code> would mean the client with index-2 in the displayed list.</td></tr>
@@ -199,7 +196,7 @@ _Figure 3 - GUI for `addcli`_
 
 #### 4.1.3. Edit a client's details `editcli`
 
-You can use this command to edit an expense in the Client Manager.
+You can use this command to edit a client in the Client Manager.
 
 Format : `editcli INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
 
@@ -321,7 +318,7 @@ Steps :
 
 Outcome :
 1. The *Result Display* will show a success message.
-2. Homerce will list out all your expenses.
+2. Homerce will list out all your clients.
 
 ![listcli](images/listcli.png) <br>
 _Figure 7 - GUI for `listcli`_
@@ -368,10 +365,10 @@ The table below shows a list of command parameters that will be used in this fea
 | Parameter Name | Description | Example
 |---------|---------|---------
 |`TITLE`| The title of the service you are providing. It must be alphanumeric words not more than 50 characters long. You can not have two services with the same title. |E.g `Lash Lift`
-|`DURATION`| The duration of the service must be in half hour intervals.| E.g `1.5`
+|`DURATION`| The duration of the service must be in half hour intervals between 0.5 and 23.5.| E.g `1.5`
 |`PRICE`| The revenue received from the service. <br> <br> It must be a positive number above 0.00 and below 1,000,000.00 and must have two decimal places. | E.g `5.50`
 |`SERVICE_CODE`| The service code is the code that identifies a particular type of service provided. <br> <br> It must be an alphanumeric word of 5 characters long.| E.g. If you have added an eyelash extension service into Homerce and its service code is `SC001`. <br> <br> Typing `SC001` would refers to the eyelash extension service.
-|`INDEX`| The index number of the service in the displayed service list.<br> <br> The first entry of the list has an index number of `1` and all entries are listed in increasing index numbers. | E.g `5`
+|`INDEX`| The index number of the service in the displayed service list.<br> <br> The first entry of the list has an index number of `1` and all entries are listed in increasing index numbers. | E.g Typing in `5` would refer to the fifth service in the displayed service list.
 
 #### 4.2.2. Add a service: `addsvc`
 
@@ -383,7 +380,7 @@ Format: `addsvc t/TITLE du/DURATION p/PRICE`
 
 **:information_source: Note:**<br>
  
-* Refer to [Service Manager Command Parameters](#421-service-management-command-parameters) for more details about each parameter.
+* Refer to [Service Manager Command Parameters](#421-service-manager-command-parameters) for more details about each parameter.
 
 </div>
 
@@ -392,16 +389,15 @@ Let's say you have a service with the following information you want to add into
 
 Adding the above service:
 1. Type `addsvc t/Microdermabrasion du/2.0 p/68.00` into the *Command Box*.
-2. Press `Enter` to execute.
+1. Press `Enter` to execute.
 
 Outcome:
 1. The *Result Display* will show success message.
-2. Homerce will switch to the *Services Tab*.
+1. Homerce will switch to the *Services Tab*.
+1. You can now see all your services including the newly added service.
 
 ![addsvc](images/addsvc.png) <br>
 *Figure 9 - GUI outcome for `addsvc`*
-
-3. You can now see all your services including the newly added service.
 
 #### 4.2.3. Edit a service: `editsvc`
 
@@ -414,7 +410,7 @@ Format: `editsvc INDEX [t/TITLE] [du/DURATION] [p/PRICE]`
 **:information_source: Note:**<br>
  
 * You are unable to edit an existing service's service code. Service codes are automatically generated by the Service Manager when adding a new service.
-* Refer to [Service Manager Command Parameters](#421-service-management-command-parameters) for more details about each parameter.
+* Refer to [Service Manager Command Parameters](#421-service-manager-command-parameters) for more details about each parameter.
 * Editing a service in the service manager will not change the details of any appointments associated with that service as they are
  kept as separate records and might result in unwanted side effects to the revenues and clients. Please edit the appointment after editing the service if you want the service's edited details to be reflected.
 
@@ -422,21 +418,20 @@ Format: `editsvc INDEX [t/TITLE] [du/DURATION] [p/PRICE]`
 </div>
 
 Example:
-Let's say you have entered the wrong duration for an added service and want to change it to 0.5 hours instead
-of 1 hour. You can follow these instructions.
+Let's say you have entered the wrong title for an added service and want to change it to "Microderm Abarasion" instead
+its current service title. You can follow these instructions.
 
 Editing an existing service:
 1. Type `editsvc 1 t/Microderm Abrasion` into the *Command Box*.
-2. Press `Enter` to execute.
+1. Press `Enter` to execute.
 
 Outcome:
 1. The *Result Display* will show a success message.
-2. Homerce will switch to the *Services Tab*.
+1. Homerce will switch to the *Services Tab*.
+1. You can now see all your services including the edited service.
 
 ![editsvc](images/editsvc.png) <br>
 *Figure 10 - GUI outcome for `editsvc`*
-
-3. You can now see all your services including the edited service.
 
 #### 4.2.4. Delete a service: `deletesvc`
 
@@ -456,7 +451,7 @@ Format: `deletesvc INDEX`
 
 **:information_source: Note:**<br>
  
-* Refer to [Service Manager Command Parameters](#421-service-management-command-parameters) for more details about each parameter.
+* Refer to [Service Manager Command Parameters](#421-service-manager-command-parameters) for more details about each parameter.
 
 </div>
 
@@ -466,16 +461,15 @@ instructions.
 
 Deleting an existing service:
 1. Type `deletesvc 3` into the *Command Box*.
-2. Press `Enter` to execute.
+1. Press `Enter` to execute.
 
 Outcome:
 1. The *Result Display* will show a success message.
-2. Homerce will switch to the *Services Tab*.
+1. Homerce will switch to the *Services Tab*.
+1. You can now see that the service that was previously on the third index in the service list has been deleted from Homerce.
 
 ![deletesvc](images/deletesvc.png) <br>
 *Figure 11 - GUI outcome for `deletesvc`*
-
-3. You can now see that the service that was previously on the third index in the service list has been deleted from Homerce.
 
 #### 4.2.5. Find a service by keyword: `findsvc`
 
@@ -490,7 +484,7 @@ Format: `findsvc [t/TITLE]* [s/SERVICE_CODE]*`
 * The order of the keywords does not matter. e.g. Nail Hair will match Hair.
 * Only full words will be matched e.g. Nail will not match Nails.
 * Services matching at least one keyword will be returned (i.e. OR search). e.g. Hair Lash will return Lash Extension, Hair Coloring.
-* Refer to [Service Manager Command Parameters](#421-service-management-command-parameters) for more details about each parameter.
+* Refer to [Service Manager Command Parameters](#421-service-manager-command-parameters) for more details about each parameter.
 
 </div>
 
@@ -500,16 +494,15 @@ follow these instructions.
 
 Finding a service:
 1. Type `findsvc t/nail` into the *Command Box*.
-2. Press `Enter` to execute.
+1. Press `Enter` to execute.
 
 Outcome:
 1. The *Result Display* will show a success message.
-2. Homerce will switch to the *Services Tab*.
+1. Homerce will switch to the *Services Tab*.
+1. You can now see the services in your list of services that contain nail in its title.
 
 ![findsvc](images/findsvc.png) <br>
 *Figure 12 - GUI outcome for `findsvc`*
-
-3. You can now see the services in your list of services that contain nail in its title.
 
 #### 4.2.6. List all services: `listsvc`
 
@@ -522,16 +515,15 @@ Let's say you are in another tab and want to look at the list of all services. Y
 
 Listing all services:
 1. Type `listsvc` into the *Command Box*.
-2. Press `Enter` to execute.
+1. Press `Enter` to execute.
 
 Outcome:
 1. The *Result Display* will show a success message.
-2. Homerce will switch to the *Services Tab*.
+1. Homerce will switch to the *Services Tab*.
+1. You can now see all your services.
 
 ![listsvc](images/listsvc.png) <br>
 *Figure 13 - GUI outcome for `listsvc`*
-
-3. You can now see all your services.
 
 #### 4.2.7. Clear all services: `clearsvc`
 
@@ -554,16 +546,15 @@ follow these instructions.
 
 Clearing all services:
 1. Type `clearsvc` into the *Command Box*.
-2. Press `Enter` to execute.
+1. Press `Enter` to execute.
 
 Outcome:
 1. The *Result Display* will show a success message if you have no services scheduled in your upcoming appointments.
-2. Homerce will switch to the *Services Tab*.
+1. Homerce will switch to the *Services Tab*.
+1. You can see that the list of services is now empty.
 
 ![clearsvc](images/clearsvc.png) <br>
 *Figure 14 - GUI outcome for `clearsvc`*
-
-3. You can see that the list of services is now empty.
 
 ### 4.3. Appointment Manager
 
@@ -597,7 +588,7 @@ Format : `addapt dt/DATE t/TIME s/SERVICE_CODE p/PHONE_NUMBER`
 
 **:information_source: Note:**<br>
  
-* Refer to [Appointment Manager Command Parameters](#431-appointment-tracker-command-parameters) for more details about each parameter.
+* Refer to [Appointment Manager Command Parameters](#431-appointment-manager-command-parameters) for more details about each parameter.
 
 </div> 
 
@@ -658,7 +649,7 @@ Format : `findapt [p/PHONE_NUMBER]* [n/NAME]* [dt/DATE]* [s/SERVICE_CODE]*`
 * Only full words will be matched e.g. Han will not match Hans.
 * Clients matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang.
 * The search using phone will match if the number sequence entered (at least 3 digits long) is part of a client's phone number. e.g. 123 will return clients with phone number 91234567 and 98765123.
-* Refer to [Appointment Manager Command Parameters](#431-appointment-tracker-command-parameters) for more details about each parameter.
+* Refer to [Appointment Manager Command Parameters](#431-appointment-manager-command-parameters) for more details about each parameter.
 
 </div> 
 
@@ -679,7 +670,6 @@ Outcome:
 ![findapt](images/findapt.png) <br>
 *Figure 17 - GUI outcome for `findapt`*
 
-
 #### 4.3.5. Edit an appointment: `editapt`
 
 When a new or existing client calls to edit a booking he or she had made, use this
@@ -691,7 +681,7 @@ Format : `editapt INDEX [dt/DATE] [t/TIME] [p/PHONE_NUMBER] [s/SERVICE_CODE]`
 
 **:information_source: Note:**<br>
  
-* Refer to [Appointment Manager Command Parameters](#431-appointment-tracker-command-parameters) for more details about each parameter.
+* Refer to [Appointment Manager Command Parameters](#431-appointment-manager-command-parameters) for more details about each parameter.
 
 </div> 
 
@@ -708,7 +698,7 @@ Steps:
 Outcome:
 1. The *Result Display* will show a success message.
 1. Homerce will switch to the *Appointment Tab*.
-1. You will see your edited appointment displayed alongside other appointments in your tracker.
+1. You will see your edited appointment displayed alongside other appointments in your list of appointments.
 
 ![editapt](images/editapt.png) <br>
 *Figure 18 - GUI outcome for `editapt`*
@@ -724,7 +714,7 @@ Format : `done INDEX`
 
 **:information_source: Note:**<br>
  
-* Refer to [Appointment Manager Command Parameters](#431-appointment-tracker-command-parameters) for more details about each parameter.
+* Refer to [Appointment Manager Command Parameters](#431-appointment-manager-command-parameters) for more details about each parameter.
 
 </div> 
 
@@ -741,11 +731,10 @@ Steps:
 Outcome:
 1. The *Result Display* will show a success message.
 1. Homerce will switch to the *Appointment Tab*.
-1. You will see your appointment marked as done, displayed alongside other appointments in your tracker.
+1. You will see your appointment marked as done, displayed alongside other appointments in your list of appointments.
 
 ![done](images/doneapt.png) <br>
 *Figure 19 - GUI outcome for `done`*
-
 
 #### 4.3.7. Mark an appointment as not done: `undone`
 
@@ -759,7 +748,7 @@ Format : `undone INDEX`
 
 **:information_source: Note:**<br>
  
-* Refer to [Appointment Manager Command Parameters](#431-appointment-tracker-command-parameters) for more details about each parameter.
+* Refer to [Appointment Manager Command Parameters](#431-appointment-manager-command-parameters) for more details about each parameter.
 
 </div> 
 
@@ -785,7 +774,7 @@ Steps:
 Outcome:
 1. The *Result Display* will show a success message.
 1. Homerce will switch to the *Appointment Tab*.
-1. You will see your appointment marked as not done, alongside other appointments in your tracker.
+1. You will see your appointment marked as not done, alongside other appointments in your list of appointments.
 
 ![undone](images/undoneapt.png) <br>
 *Figure 20 - GUI outcome for `undoneapt`*
@@ -801,13 +790,13 @@ Format : `deleteapt INDEX`
 
 **:information_source: Note:**<br>
  
-* Refer to [Appointment Manager Command Parameters](#431-appointment-tracker-command-parameters) for more details about each parameter.
+* Refer to [Appointment Manager Command Parameters](#431-appointment-manager-command-parameters) for more details about each parameter.
 
 </div> 
 
 Example:
 
-Let's say you a client called to cancel his/her appointment. After finding the appointment in Homerce
+Let's say your client called to cancel his/her appointment. After finding the appointment in Homerce
 with `listapt` or `findapt`, you see that the appointment to delete has index 2. You can follow these instructions 
 to delete that appointment.
 
@@ -818,7 +807,7 @@ Steps:
 Outcome:
 1. The *Result Display* will show a success message.
 1. Homerce will switch to the *Appointment Tab*.
-1. You will see the rest of your appointments in your tracker, with the one with index 2 removed.
+1. You will see the rest of your appointments in your list of appointments, with the one with index 2 removed.
 
 ![deleteapt](images/deleteapt.png) <br>
 *Figure 21 - GUI outcome for `deleteapt`*
@@ -843,7 +832,7 @@ Steps:
 Outcome:
 1. The *Result Display* will show a success message.
 1. Homerce will switch to the *Appointment Tab*.
-1. You will no appointments listed in the tracker.
+1. You will no appointments listed in the list of appointments.
 
 ![clearapt](images/clearapt.png) <br>
 *Figure 22 - GUI outcome for `clearapt`*
@@ -861,10 +850,10 @@ The table below shows a list of command parameters that will be used in this fea
 
 | Parameter Name | Description | Example
 |---------|---------|---------
-|`DATE`  | The revenue earned date. <br> <br> It must be in the format of `dd-MM-yyyy`. | E.g. Typing `22-10-2020` would mean 22 October 2020.
+|`DATE`  | The date that the revenue was credited. <br> <br> It must be in the format of `dd-MM-yyyy`. | E.g. Typing `22-10-2020` would mean 22 October 2020.
 |`SERVICE_CODE`| The service code is the code that identifies a particular type of service provided. <br> <br> It must be alphanumeric words of 5 characters long. | E.g. If you have added an eyelash extension service into Homerce and its service code is `SC001`. <br> <br> Typing `SC001` would refers to the eyelash extension service.
 |`ORDER` | The order refers to ascending or descending. <br> <br> It must be in the format of `asc` or `desc` | E.g. Typing `asc` would mean ascending.  <br> <br> E.g. Typing `desc` would mean descending.
-|`INDEX`| The index number of the revenue in the displayed revenue list.<br> <br> The first entry of the list has an index number of `1` and all entries are listed in increasing index numbers. | E.g `5`
+|`INDEX`| The index number of the revenue in the displayed revenue list.<br> <br> The first entry of the list has an index number of `1` and all entries are listed in increasing index numbers. | E.g Typing in `5` would refer to the fifth revenue in the displayed revenue list.
 
 #### 4.4.2. Find a revenue : `findrev`
 
@@ -921,7 +910,7 @@ Steps :
 Outcome : 
 1. The *Result Display* will show a success message.
 1. Homerce will list out all the revenue entries sorted from highest to lowest cost in the _Revenue Tab_.
-1. You can now see your revenues sort by descending order.
+1. You can now see your revenues sorted by descending order.
 
 ![sortrev](images/revenue/SortRevenue(Desc).png) <br>
 *Figure 24 - GUI outcome for `sortrev`*
@@ -935,7 +924,7 @@ Format : `listrev`
 Example :
 
 Let's say you wish to list your revenues to view all the earnings that you currently have.<br>
-You can follow the steps below to list your all your revenue entries.
+You can follow the steps below to list all your revenue entries.
 
 Steps :
 1. Type `listrev` in the _Command Box_.
@@ -975,7 +964,7 @@ Steps :
 Outcome : 
 1. The *Result Display* will show a success message.
 1. Homerce will clear all the revenue data.
-1. You will have no revenues listed in the tracker.
+1. You will have no more revenues listed in the tracker.
 
 ![clearrev](images/revenue/ClearRevenue.png) <br>
 *Figure 26 - GUI outcome for `clearrev`*
@@ -986,7 +975,7 @@ Homerce understands that expense tracking is essential in managing your business
 Thus, this feature allows you to track your expenses seamlessly and with ease. <br><br>
 Our expense tracker supports both fixed expenses that recur monthly, and one-time expenses that are incurred only once.
 A fixed expense only has to be added to the tracker once, as Homerce will automatically record the same fixed expense for you every month.
-<br><br> You can record the following information about your expenses: `DESCRIPTION`, `ISFIXED`, `VALUE`, `DATE` and `TAG`.
+<br><br> You can record the following information about your expenses: `DESCRIPTION`, `IS_FIXED`, `VALUE`, `DATE` and `TAG`.
 
 #### 4.5.1. Expense Tracker Command Parameters
 
@@ -995,7 +984,7 @@ The table below shows a list of command parameters that will be used.
 
 | Parameter Name | Description | Example
 |---------|---------|---------
-|`DESCRIPTION`  | The description of the expense. <br><br> It must be one or more alphanumeric words, not more than 50 characters long in total. | E.g. Typing `Conditioner` as the description indicates that the expense was made on a bottle of Conditioner.
+|`DESCRIPTION`  | The description of the expense. <br><br> It must be one or more alphanumeric words or special characters not more than 50 characters long in total. | E.g. Typing `Conditioner` as the description indicates that the expense was made on a bottle of Conditioner.
 |`IS_FIXED`| The indication of whether an expense is fixed. <br> <br> It must be in the format of `y` or `n`. <br><br> *Note: A fixed expense is an expense that recurs monthly. For example, the monthly air-conditioning bill is a fixed expense as it recurs every month, while a box of tissues is a one-time expense and should not be indicated as fixed.* | E.g. Typing `y` would mean the expense is fixed. <br>You only have to add a fixed expense to the tracker once, as Homerce will automatically record the same expense for you every month. <br> <br> E.g. Typing `n` would mean the expense is not fixed.
 |`VALUE` | The value refers to the monetary value of the expense. <br> <br> It must be a positive number above 0.00 and below 1,000,000.00 and must have two decimal places. | E.g. Typing `10.00` would mean the expense costs $10.00.
 |`DATE` | The date of the expense. <br> <br> It must be a valid date in the format of `dd-MM-yyyy`. A valid year is any year from 0001 to 9999. | E.g. Typing `28-09-2020` would mean the expense was made on 28 September 2020.
@@ -1393,7 +1382,7 @@ Steps:
 
 Outcome: 
 
-1. Homerce will open up the *Financial Breakdown* window.
+1. Homerce will open up the *Help* window.
 
 ![help message](images/helpMessage.png)
 
@@ -1456,7 +1445,7 @@ a 'light mode', or even customize your own colours for the schedule and individu
 **A**: Unfortunately, Homerce does not allow you to directly create a revenue. A Revenue will only be created when an appointment
 is marked as done.
 
-**Q**: What is the `isFixed` parameter in the Expense Tracker for? <br>
+**Q**: What is the `IS_FIXED` parameter in the Expense Tracker for? <br>
 **A**: Marking an expense as 'Fixed' indicates to Homerce that the particular expense is fixed and recurs every month. Homerce
 will automatically add the same expense to your list of expenses every month. 
 
@@ -1467,9 +1456,16 @@ You can copy and transfer the data folder into the same directory as Homerce on 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Command summary
+## 6. Glossary
 
-### 6.1. Client Manager Commands
+* **Alphanumeric**: Alphanumeric does not include special characters, it only includes letters a to z (uppercase and lowercase) and digits 0 to 9.
+* **Special Characters**: Refers to any of the characters within these set of characters: +!#$%&'*+/=?\`{}~^.-&#124;
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 7. Command summary
+
+### 7.1. Client Manager Commands
 
 |Action | Format | Examples
 |---------------|------------------------------------------------------------------|------------------------------------------------------------------
@@ -1480,18 +1476,18 @@ You can copy and transfer the data folder into the same directory as Homerce on 
 |**List**       | `listcli` |
 |**Clear**      | `clearcli`| 
 
-### 6.2. Service Manager Commands
+### 7.2. Service Manager Commands
 
 |Action | Format | Examples
 |---------|---------|---------
-|**Add** | `addsvc t/TITLE d/DURATION p/PRICE` | `addsvc t/Lash Lift d/0.5 p/38.00`
-|**Edit** | `editsvc INDEX s/SERVICE_CODE [t/TITLE]* [d/DURATION]* [p/PRICE]*` | `editsvc 1 d/0.5`
-|**Delete** | `deletesvc INDEX s/SERVICE_CODE` | `deletesvc 1`
-|**Find** | `findsvc KEYWORD` | `findsvc t/lash`
+|**Add** | `addsvc t/TITLE d/DURATION p/PRICE` | `addsvc t/Microdermabrasion du/2.0 p/68.00`
+|**Edit** | `editsvc INDEX [t/TITLE] [d/DURATION] [p/PRICE]` | `editsvc 1 d/1.5`
+|**Delete** | `deletesvc INDEX` | `deletesvc 1`
+|**Find** | `findsvc [t/TITLE]* [s/SERVICE_CODE]*` | `findsvc t/lash`
 |**List** | `listsvc` | 
 |**Clear** | `clearsvc` | 
 
-### 6.3. Appointment Manager Commands
+### 7.3. Appointment Manager Commands
 
 |Action | Format | Examples
 |---------|---------|---------
@@ -1504,16 +1500,16 @@ You can copy and transfer the data folder into the same directory as Homerce on 
 |**Done** | `done INDEX` | `done 1`
 |**Undone** | `undone INDEX` | `undone 3` 
 
-### 6.4. Revenue Tracker Commands
+### 7.4. Revenue Tracker Commands
 
 |Action | Format | Examples
 |---------|---------|---------
-|**Find** | `findrev [dt/DATE]* [sc/SERVICE_CODE]*` | `findrev dt\22-10-2020`
+|**Find** | `findrev [dt/DATE]* [sc/SERVICE_CODE]*` | `findrev dt/22-10-2020`
 |**Sort**       | `sortrev ORDER`                                                  | `sortexp desc`
 |**List**       | `listrev`                                                        | 
 |**Clear**      | `clearrev`                                                       | 
 
-### 6.5. Expense Tracker Commands
+### 7.5. Expense Tracker Commands
 
 |Action | Format | Examples
 |---------------|------------------------------------------------------------------|------------------------------------------------------------------
@@ -1525,7 +1521,7 @@ You can copy and transfer the data folder into the same directory as Homerce on 
 |**List**       | `listexp`                                                        | 
 |**Clear**      | `clearexp`                                                       | 
 
-### 6.6. Schedule Viewer Commands
+### 7.6. Schedule Viewer Commands
 
 |Action | Format | Examples
 |---------------|------------------------------------------------------------------|------------------------------------------------------------------
@@ -1533,13 +1529,13 @@ You can copy and transfer the data folder into the same directory as Homerce on 
 |**Next Week** | `nextweek` |
 |**Previous Week** | `previousweek` |
 
-### 6.7. Finance Tracker Commands
+### 7.7. Finance Tracker Commands
 
 |Action | Format | Examples
 |---------------|------------------------------------------------------------------|------------------------------------------------------------------
 |**Breakdown Finances** | `breakdownfinance m/MONTH y/YEAR` | `breakdownfinance m/10 y/2020`
 
-### 6.8. Other Commands
+### 7.8. Other Commands
 
 Action | Format | Examples
 --------|--------|----------

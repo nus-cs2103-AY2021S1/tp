@@ -31,12 +31,12 @@ in which this feature gives useful insights to the user.
 All features built will include the implementation of the components from _Logic_, _Storage_ and _Model_.
 
 <u>2. Testing</u>  
-1. Included JUnit Test for Revenue Tracker, with over 90% line of code coverage on average.  (Issue [#208](https://github.com/AY2021S1-CS2103T-W13-3/tp/issues/208), Pull Request [#209](https://github.com/AY2021S1-CS2103T-W13-3/tp/pull/209))
+1. Included JUnit Test for Revenue Tracker, with over 90% line of code coverage on average.  (Issue [#208](https://github.com/AY2021S1-CS2103T-W13-3/tp/issues/208), [#366](https://github.com/AY2021S1-CS2103T-W13-3/tp/issues/366), Pull Request [#209](https://github.com/AY2021S1-CS2103T-W13-3/tp/pull/209), [#365](https://github.com/AY2021S1-CS2103T-W13-3/tp/pull/365))
     1. Included Integration Tests across logic, model and storage components for the Revenue Tracker.
 1. Create test cases to be tested from the GUI.
 1. Conduct session to test from GUI.
 
-**Contributions to documentation**
+**Contributions to documentation**  
 Section of which contributions were made in the documentation.
 
 <u>User Guide</u>  
@@ -135,7 +135,7 @@ _Extract 2. One of the use case for Appointment._
 <u>Diagram</u>
 ![addexp](../images/revenue/FindRevenue.png)
 
-_Figure 1. One of the outcome screenshot that was added to the guide_
+_Figure 3. One of the outcome screenshot that was added to the guide_
 
 <u>Content</u>
 <pre>
@@ -151,12 +151,12 @@ You can follow the steps below to list your all your revenue entries.
 
 Steps :
 1. Type `listrev` in the <i>Command Box</i>.
-1. Press `Enter` to execute. 
+2. Press `Enter` to execute. 
 
 Outcome : 
 1. The <i>Result Display</i> will show a success message.
-1. Homerce will list out all your revenue entries in the <i>Revenue</i> tab.
-1. You can now see all your revenues sort by descending chronological order.
+2. Homerce will list out all your revenue entries in the <i>Revenue</i> tab.
+3. You can now see all your revenues sort by descending chronological order.
 </pre>
 
-_Extract 1. One of the feature command content._
+_Extract 3. One of the feature command content._

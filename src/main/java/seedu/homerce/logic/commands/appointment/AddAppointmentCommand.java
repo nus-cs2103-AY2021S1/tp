@@ -35,7 +35,7 @@ public class AddAppointmentCommand extends Command {
         + PREFIX_DATE + "15-2-2021 "
         + PREFIX_TIME_OF_DAY + "1430 "
         + PREFIX_SERVICE_SERVICE_CODE + "SC001 "
-        + PREFIX_PHONE + "94759600";
+        + PREFIX_PHONE + "91031282";
     public static final String MESSAGE_CLASHING_APPOINTMENT = "This appointment clashes with an existing appointment.";
     public static final String MESSAGE_INVALID_TIME_AND_DURATION =
         "The appointment cannot be conducted until or past midnight.";
