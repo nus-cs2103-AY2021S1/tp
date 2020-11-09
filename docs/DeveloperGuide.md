@@ -1742,9 +1742,9 @@ Our app can be thought of as a superset of AB3. AB3 was concerned primarily with
 Hence, we decided to implement module, lesson, and task managers on top of the existing AB3 contacts manager. Now, students will be able to keep track of all their academic and social commitments with a single app, where they previously had to use 4. 
 
 We put in a lot of effort to add these 3 extra features, working late most nights before our v1.2 demo. Furthermore, we decided after that we should integrate all 4 core features seamlessly, to improve upon the existing user experience. As such, for v1.3 users were able to:
-* view all tasks, lessons, and contacts related to a module
-* view all upcoming tasks, and lessons
-* view all future tasks
+* View all tasks, lessons, and contacts related to a module
+* View all upcoming tasks, and lessons
+* View all future tasks
 Again, this was no easy feat, and our team worked tirelessly to finish our features before v1.3.
  
 We also enhanced the UI by introducing colour coding, making the fonts more aesthetic, and changing the default heights and widths to make the app more user-friendly. All these changes were extremely important to the overall user experience, and we knew that we had to get them just right, because the users will appreciate the little things that we do just to improve their user experience.
@@ -1768,6 +1768,8 @@ At the final stage of the project, the code has also gone through 3 different st
 * [PMD](https://pmd.github.io)
 
 All warnings received by the three app have been looked into and necessary fixes have been done to ensure a high-quality codebase.
+
+We are proud of this product!
 
 --------------------------------------------------------------------------------------------------------------------
 ![Logo](images/UG/trackit-footer.png)
