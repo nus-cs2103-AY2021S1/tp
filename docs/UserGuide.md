@@ -427,20 +427,25 @@ The particulars of the edited patient is displayed in the result display box.<br
 
 #### Deleting a patient : `delete`
 
-Deletes the specified patient from the patient book.
+Deletes a patient from the patient book.
 
 Format: `delete PATIENT_INDEX`
 
 * Deletes the patient at the specified `PATIENT_INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* Deleting a patient will also delete all the appointments of the person.
+* Please click [here](#command-format) for important formatting information regarding the `PATIENT_INDEX` field.
+* Do note that deleting a patient will also delete all corresponding appointments belonging to that patient.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd patient in the displayed patient list.
-* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+* `delete 2` <br>Deletes the 2nd patient displayed in the patient book.
+* Calling `find Betsy` followed by `delete 1` deletes the 1st patient displayed in the resulting patient book of the `find` command.
 
+Step by step illustration:
+1. Suppose you want to delete Alex, which is currently at the top of the patient book, from your database.<br>Simply enter `delete 1` in the command box and press <kbd>Enter</kbd>.<br>
 ![DeleteCommand](images/DeleteCommand.png)
+
+1. Alex is now deleted from the database and the patient book is updated accordingly. 
+![DeleteCommand](images/DeleteCommand2.png)
+
 
 #### Adding a remark to a patient: `remark`
 
@@ -488,11 +493,16 @@ Step by step illustration for deleting a remark:
 
 #### Listing all patients : `list`
 
-Shows a list of all patients in the patient book.
+If you like to reset the displayed patient or appointment book to it's original state after using a command like `find` or `view`, use this command to display the full list of all patients and appointments in NUUDLE.
 
 Format: `list`
 
+Step by step illustration:
+1. Suppose you used the `find` command previously to locate appointments that belonged to a patient, Alex, and now wish to reset the displayed lists to their original states, simply type `list` in the command box and press <kbd>Enter</kbd>.<br>
 ![ListCommand](images/ListCommand.png)
+
+2. Both the appointment and patient books are updated to display all patient and appointment data.
+![ListCommand](images/ListCommand2.png)
 
 #### Locating patients by name : `find`
 
