@@ -365,7 +365,7 @@ append 200 m/Flu
 Expected Outcome:
 ```
 Appended Animal Details
-Name: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Sunstroke][Flu] Feed times: [1230][1400]
+Name: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Flu][Sunstroke] Feed times: [1230][1400]
 ```
 
 <p align="center"><img src="images/user-guide/appendedmedical.png"/></p>
@@ -422,7 +422,7 @@ replace 200 i/2910 n/Jirachi
 Expected Outcome:
 ```
 Replaced Animal Details
-Name: Jirachi ID: 2910 Species: Giant Panda Medical conditions: [Sunstroke][Flu] Feed times: [1230][1400]
+Name: Jirachi ID: 2910 Species: Giant Panda Medical conditions: [Flu][Sunstroke] Feed times: [1230][1400]
 ```
 
 <p align="center"><img src="images/user-guide/replacedfields.png"/></p>
