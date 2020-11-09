@@ -1562,6 +1562,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |          | contact list                               |                                | |
 | `* *`    | user                                       | edit my graded assignments     | update the information of the assignments I have completed     |
 | `* *`    | user                                       | delete graded assignments      | remove the assignments that are do not contribute to my grade anymore|
+| `*`      | user                                       | add an overall grade to a module| change my grade without adding assignments to control it|
 | `*`      | user who is overloading                    | sort modules by name           | locate a module easily                                 |
 | `* * *`  | user                                       | add a task                     | keep track of the tasks that I must complete           |
 | `* * *`  | user                                       | delete a task                  | remove a task that has been done                       |
@@ -2023,18 +2024,20 @@ Use case ends.
 
       Use case ends.
 
- * 3a. The given grade is invalid.
+ * 3a. One or more of the assignment details are invalid.
 
     * CAP5BUDDY displays an error message.
 
       Use case ends.
 
-**Use Case: View grades for a module**
+**Use Case: Add grade to a module**
 
   **MSS**
-  1. User requests to view grades for a module.
-  2. CAP5BUDDY retrieves current grades.
-  3. CAP5BUDDY displays current grades.
+  1. User requests to add a grade to a module.
+  2. CAP5BUDDY retrieves the module from the module list.
+  3. CAP5BUDDY creates a new grade to replace the current one in the module.
+  4. CAP5BUDDY updates module in module list.
+  5. CAP5BUDDY displays success message
 
   **Extensions**
 
@@ -2049,11 +2052,11 @@ Use case ends.
 
   **MSS**
   1. User requests to edit an assignment in a module in CAP5BUDDY.
-  2. CAP5BUDDY retrieves the module.
+  2. CAP5BUDDY retrieves the module from the module list.
   3. CAP5BUDDY retrieves the assignment requested from the grade tracker in the module.
-  4. User requests to edit the assignment retrieved.
-  5. CAP5BUDDY edits the assignment.
-  6. CAP5BUDDY saves the edited assignment in the module.
+  4. CAP5BUDDY creates a new assignment to replace the assignment retrieved.
+  5. CAP5BUDDY updates the grade tracker in the module.
+  6. CAP5BUDDY updates the module in the module list.
   7. CAP5BUDDY displays success message.
 
   **Extensions**
@@ -2064,12 +2067,18 @@ Use case ends.
 
       Use case ends.
 
-  * 3a. The given assignment is invalid.
+  * 3a. The assignment to retrieve is invalid.
 
     * CAP5BUDDY displays an error message.
 
       Use case ends.
 
+  * 4a. The information to create a new assignment is invalid.
+
+    * CAP5BUDDY displays an error message.
+    
+      Use case ends.
+     
   *{More to be added}*
 
 **Use case: Delete an assignment**
@@ -2080,9 +2089,13 @@ Use case ends.
    3. CAP5BUDDY retrieves the assignment requested from the grade tracker in the module.
    4. CAP5BUDDY deletes the assignment.
    5. CAP5BUDDY updates the grade tracker in the module.
-   4. CAP5BUDDY displays success message.
+   6. CAP5BUDDY updates the module list with the module.
+   7. CAP5BUDDY displays success message.
 
    **Extensions**
+   * 2a. The provided module is invalid.
+   
+      * CAP5BUDDY displays an error message.
 
    * 3a. The provided assignment is invalid.
 

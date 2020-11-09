@@ -5,6 +5,7 @@ skinparam classFontSize 12
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ParserManager" as ParserManager LOGIC_COLOR
+participant ":GradeTrackerParser" as GradeTrackerParser LOGIC_COLOR
 participant ":DeleteAssignmentParser" as DeleteAssignmentParser LOGIC_COLOR
 participant ":DeleteAssignmentCommand" as DeleteAssignmentCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -20,6 +21,9 @@ activate LogicManager
 
 LogicManager -> ParserManager : parseCommand("deleteassignment 1 n/CS2100")
 activate ParserManager
+
+
+ParserManager -> GradeTrackerParser : parseCommand("deleteassignment 1 n/CS2100")
 
 create DeleteAssignmentParser
 ParserManager -> DeleteAssignmentParser

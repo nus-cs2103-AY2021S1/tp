@@ -4,8 +4,31 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
+Package Module <<Rectangle>>{
+class Module
+
+Package GradeTracker <<Rectangle>> {
+class GradeTracker
+Interface ReadOnlyGradeTracker <<Interface>>
+class UniqueAssignmentsList
+class AssignmentNameComparator
+class Assignment
+class AssignmentName
+class AssignmentPercentage
+class AssignmentResult
+class Grade
+}
+
+}
+
 Module *-->"1" GradeTracker
-GradeTracker *-->"1" Grade
-GradeTracker *-->"*" Assignment
+GradeTracker ..left..|> ReadOnlyGradeTracker
+GradeTracker "1"*-->"1" Grade
+GradeTracker "1"*-->"1" UniqueAssignmentsList
+GradeTracker "1"*-->"1" AssignmentNameComparator
+UniqueAssignmentsList "1"*-->"*" Assignment
+Assignment "1"*-->"1" AssignmentName
+Assignment "1"*-->"1" AssignmentPercentage
+Assignment "!"*-->"1" AssignmentResult
 
 @enduml
