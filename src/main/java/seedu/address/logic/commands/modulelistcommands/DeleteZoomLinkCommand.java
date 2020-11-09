@@ -72,10 +72,13 @@ public class DeleteZoomLinkCommand extends ZoomLinkCommand {
         if (!moduleToUpdate.containsLesson(lesson)) {
             throw new CommandException(MESSAGE_INVALID_ZOOM_LINK);
         }
-
         Module updatedModule = moduleToUpdate.deleteZoomLink(lesson);
-        model.setModule(moduleToUpdate, updatedModule);
-        model.commitContactList();
+        if (model.getModuleListDisplay()) {
+            model.setArchivedModule(moduleToUpdate, updatedModule);
+        } else {
+            model.setModule(moduleToUpdate, updatedModule);
+        }
+        model.commitModuleList();
         logger.info("Zoom Link has been deleted from the module");
         return new CommandResult(String.format(MESSAGE_DELETE_ZOOM_SUCCESS,
                 lesson, moduleToUpdate.getName()));

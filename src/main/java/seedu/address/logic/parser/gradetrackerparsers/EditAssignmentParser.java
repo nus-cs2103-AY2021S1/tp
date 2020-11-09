@@ -16,6 +16,9 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleName;
+import seedu.address.model.module.grade.AssignmentName;
+import seedu.address.model.module.grade.AssignmentPercentage;
+import seedu.address.model.module.grade.AssignmentResult;
 
 public class EditAssignmentParser implements Parser<EditAssignmentCommand> {
 
@@ -44,22 +47,38 @@ public class EditAssignmentParser implements Parser<EditAssignmentCommand> {
 
         EditAssignmentDescriptor editAssignmentDescriptor = new EditAssignmentDescriptor();
         if (argMultimap.getValue(PREFIX_ASSIGNMENT_NAME).isPresent()) {
-            editAssignmentDescriptor.setAssignmentName(ParserUtil.parseAssignmentName(
-                    argMultimap.getValue(PREFIX_ASSIGNMENT_NAME).get()));
+            try {
+                editAssignmentDescriptor.setAssignmentName(ParserUtil.parseAssignmentName(
+                        argMultimap.getValue(PREFIX_ASSIGNMENT_NAME).get()));
+            } catch (ParseException pe) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AssignmentName.MESSAGE_CONSTRAINTS), pe);
+            }
         }
 
         if (argMultimap.getValue(PREFIX_ASSIGNMENT_PERCENTAGE).isPresent()) {
-            editAssignmentDescriptor.setAssignmentPercentage(ParserUtil.parseAssignmentPercentage(
-                    argMultimap.getValue(PREFIX_ASSIGNMENT_PERCENTAGE).get()));
+            try {
+                editAssignmentDescriptor.setAssignmentPercentage(ParserUtil.parseAssignmentPercentage(
+                        argMultimap.getValue(PREFIX_ASSIGNMENT_PERCENTAGE).get()));
+            } catch (ParseException pe) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AssignmentPercentage.MESSAGE_CONSTRAINTS), pe);
+            }
         }
 
         if (argMultimap.getValue(PREFIX_ASSIGNMENT_RESULT).isPresent()) {
-            editAssignmentDescriptor.setAssignmentResult(ParserUtil.parseAssignmentResult(
-                    argMultimap.getValue(PREFIX_ASSIGNMENT_RESULT).get()));
+            try {
+                editAssignmentDescriptor.setAssignmentResult(ParserUtil.parseAssignmentResult(
+                        argMultimap.getValue(PREFIX_ASSIGNMENT_RESULT).get()));
+            } catch (ParseException pe) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AssignmentResult.MESSAGE_CONSTRAINTS), pe);
+            }
         }
 
         if (!editAssignmentDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditAssignmentCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditAssignmentCommand.MESSAGE_NOT_EDITED));
         }
 
         return new EditAssignmentCommand(index, moduleName, editAssignmentDescriptor);
