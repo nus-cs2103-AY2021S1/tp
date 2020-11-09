@@ -2686,6 +2686,16 @@ testers are expected to do more *exploratory* testing.
 
 ### Todo List
 
+1. Labeling task as completed while all tasks are being shown
+
+   1. Test case: `completetask 1`<br>
+      Expected: First task is labelled as completed. Details of the completed module will be shown.
+
+   1. Test case: `completetask 0`<br>
+      Expected: No task is labelled as completed. Error details will be shown.
+
+   1. Other incorrect `completetask` command to try: `completetask`, `completetask y`, `...` (where xy is larger than the todo list size)<br>
+      Expected: Similar to previous.
 
 ### Event List
 
