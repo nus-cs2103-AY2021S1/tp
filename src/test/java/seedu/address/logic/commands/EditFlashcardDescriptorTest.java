@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BUBBLE_SORT;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_HEAPING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEFINITION_HEAPING;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_HEAPING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_HEAPSORT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIFFICULT;
 
 import org.junit.jupiter.api.Test;
@@ -35,7 +35,7 @@ public class EditFlashcardDescriptorTest {
 
         // different name -> returns false
         EditFlashcardDescriptor editedAmy = new EditFlashcardDescriptorBuilder(DESC_BUBBLE_SORT)
-            .withName(VALID_NAME_HEAPING).build();
+            .withName(VALID_NAME_HEAPSORT).build();
         assertFalse(DESC_BUBBLE_SORT.equals(editedAmy));
 
         // different address -> returns false

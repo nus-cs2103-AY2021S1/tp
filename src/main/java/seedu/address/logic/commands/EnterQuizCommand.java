@@ -17,4 +17,9 @@ public class EnterQuizCommand extends Command {
         return new CommandResult(MESSAGE_ENTER_ACKNOWLEDGEMENT, true, false, false, false, false);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this || other instanceof EnterQuizCommand;
+    }
+
 }

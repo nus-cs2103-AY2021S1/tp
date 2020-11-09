@@ -13,12 +13,12 @@ public class EndAttemptCommand extends Command {
     public static final String MESSAGE_ATTEMPT_ACKNOWLEDGEMENT = "Attempt ended! \n"
                                                                 + "You can view your results at Performance";
     public static final String MESSAGE_EMPTY_ATTEMPT = "Attempt will not be saved to Performance because it is empty.";
-
+    public static final String NO_ATTEMPT_IN_PROGRESS = "There is no attempt in progress";
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.hasCurrentAttempt()) {
-            throw new CommandException("There is no attempt in progress");
+            throw new CommandException(NO_ATTEMPT_IN_PROGRESS);
         } else {
             boolean isCurrentAttemptEmpty = model.endAttempt();
             if (isCurrentAttemptEmpty) {

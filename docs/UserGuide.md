@@ -67,6 +67,8 @@ DSAce is a **desktop app for creating flashcards and practising quiz questions f
    * **`clear`** : Deletes all flashcards.
 
    * **`enter quiz`** : Enters Quiz mode.
+   You should see a change in interface to quiz mode.
+   ![Ui](images/Ui2.png)
 
       * **`start attempt`** : Starts a new quiz attempt. (command is only valid in the quiz interface)
 
@@ -346,6 +348,7 @@ Format: `exit`
 
 <div markdown="block" class="alert alert-info">
 * Command line below are only workable under perfomance interface.
+* New table of performance will pop out. Can be closed by clicking 'close' button of the window.
 </div>
 
 ### Listing historical attempts results: `list`

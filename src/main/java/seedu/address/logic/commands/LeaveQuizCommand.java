@@ -17,4 +17,8 @@ public class LeaveQuizCommand extends Command {
         model.flipQuizMode();
         return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false, false, false);
     }
+    @Override
+    public boolean equals(Object other) {
+        return other == this || other instanceof LeaveQuizCommand;
+    }
 }
