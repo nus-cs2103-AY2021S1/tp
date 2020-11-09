@@ -92,7 +92,7 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 4. Double-click the file to start the app. The GUI similar to the below figure (Figure 1) should appear in a few seconds. Note how the app contains some sample data.
 
 ![Ui](images/Ui.png)
-<div align="center">Figure 1: **Reeve** GUI</div>
+<div align="center">Figure 1: <strong>Reeve</strong> GUI</div>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -111,7 +111,11 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 1. Refer to the [Features](#3-features) section below for details of each command.
 
 ### 2.2 Making sense of Reeve's layout (By: Alex)
-![Reeve's Layou](images/ReeveLayout.png)
+
+This section serves to help you understand the layout of **Reeve**. Please refer to the figure below (Figure 2) for help.
+
+![Reeve's Layout](images/ReeveLayout.png)
+<div align="center">Figure 2: <strong>Reeve's</strong> Layout</div>
 
 1. **Menu**
 
@@ -165,11 +169,10 @@ Format: `help`
 
 Expected Outcome:
 
-The following figures shows the help window entering the command `help`.
+The following figure (Figure 3) shows the help window entering the command `help`.
 
 ![help message](images/helpMessage.png)
-
-Figure __. Help window.
+<div align="center">Figure 3: Help window</div>
 
 #### 3.2.2 Toggling between academic and administrative details: `toggle` (By: Hogan)
 
@@ -181,15 +184,15 @@ Format: `toggle`
 
 Example:
 * By default, you should see the administrative details of your students.
-    * If you have not entered the `toggle` command, you should see a screen similar to the one below.
+    * If you have not entered the `toggle` command, you should see a screen similar to the one below (Figure 4).
 
     ![ToggleCommandExpectedOutcomeBeforeUG](images/ToggleCommandExpectedOutcomeBeforeUG.png)
-    
-    Figure __. Before entering command `toggle`.
+    <div align="center">Figure 4: Before entering toggle command</div>
 
-    * After entering the `toggle` command, you will switch to displaying academic details of students as shown below.
+    * After entering the `toggle` command, you will switch to displaying academic details of students as shown below (Figure 5).
 
     ![ToggleCommandExpectedOutcomeAfterUG](images/ToggleCommandExpectedOutcomeAfterUG.png)
+    <div align="center">Figure 5: After entering toggle command</div>
     
 #### 3.2.3 Exiting the program: `exit`
 
@@ -241,11 +244,10 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [
 Examples:
 * Suppose you want to add a student without any additional details.
     * You can use something like `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020`.
-    * You should see a screen similar to the one shown below.
+    * You should see a screen similar to the one shown below (Figure 6).
 
     ![AddCommandExpectedOutcomeUG](images/AddCommandExpectedOutcomeUG.png)
-    
-    Figure __. After entering command `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214 t/5 1430-1630 f/25 d/10/10/2020`.
+    <div align="center">Figure 6: After entering add command</div>
 
 * Also, if you want to add a student with multiple additional details.
     * You can use something like `add n/John Doe p/98765432 s/Woodlands Secondary School y/s 2 v/347 Woodlands Ave 3, Singapore 730347 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
