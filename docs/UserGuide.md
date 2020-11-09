@@ -410,7 +410,7 @@ description (**Figure 5.2-5**)
 
 <br>![findCommand](images/commands/findCommand.PNG)
 <p align="center"> <sub> <b>Figure 5.2-5</b>: Find command successfully executed </sub> </p>
-
+<div style="page-break-after: always;"></div>
 <div markdown="block" class="alert alert-info"> 
 
 :information_source: **Note:**
