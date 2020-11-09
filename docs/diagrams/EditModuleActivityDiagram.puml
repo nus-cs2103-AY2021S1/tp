@@ -1,0 +1,39 @@
+@startuml
+start
+:User inputs edit meeting command;
+:EditModuleCommandParser checks input;
+if() then ([Not all inputs are valid])
+    :Throw ParseException;
+    end
+else ([else])
+    :Parse all Inputs;
+    :Model contains module to edit;
+    if() then ([No])
+        :Throw CommandException;
+        end
+    else ([Yes])
+        : Does module contain new name;
+        if() then ([Yes])
+            :Throw CommandException;
+            end
+        else ([No])
+            : Does module contain new participants;
+            if() then ([No])
+                :Throw CommandException;
+                end
+            else ([Yes])
+                :Is module same as module to edit;
+                if() then ([Yes])
+                    :Throw CommandException;
+                    end
+                else ([No])
+                    : Edit module in model;
+                    : Check if modules meetings have no participants;
+                    if() then ([Yes])
+                        : Delete Meetings with no participants;
+                        stop
+                    else ([No])
+                        stop
+
+
+@enduml

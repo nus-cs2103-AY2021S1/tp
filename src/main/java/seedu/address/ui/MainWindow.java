@@ -217,6 +217,7 @@ public class MainWindow extends UiPart<Stage> {
                 Optional<String> historyText = commandHistory.up();
                 if (historyText.isPresent()) {
                     commandBox.setCommandTextField(historyText.get());
+                    event.consume();
                 }
             }
         });

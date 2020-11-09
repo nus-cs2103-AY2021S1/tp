@@ -704,6 +704,144 @@ Given below are the sequence diagrams of how the mechanism behaves when called u
 
 ![ExecuteDeleteTagCommandSequenceDiagram](images/ExecuteDeleteTagCommandSequenceDiagram.png)
 
+### Adding a Module
+
+#### Implementation
+
+The add module mechanism is primarily facilitated by `AddModuleCommand`. It extends `Command` and implements the `execute` operation:
+
+* `execute(Model model)` — Executes the `AddModuleCommand` on the model,
+creating and adding a new meeting in the `Model Manager` before creating a `CommandResult`,
+triggering a UI update in `ModuleListPanel`
+
+This operation is exposed in the Command class as `Command#execute`
+
+#### Parsing the user input
+The parsing of the user input for `AddModuleCommand` is facilitated by `AddModuleCommandParser`.
+`AddModuleCommandParser` extends Parser and implements the following methods:
+* AddModuleCommandParser#parse — Parses the user input and returns the appropriate `AddModuleCommand`
+
+`AddModuleCommandParser` checks that all compulsory fields are provided in the user input and throws a `ParseException` if the user does not conform to the expected format.
+The user input is the parsed in the context of the `AddModuleCommand`.
+
+#### Executing the user input
+
+##### Check if model contains given module
+`AddModuleCommand` checks if the model contains the given module. If so, a `CommandException` is thrown, indicating that the module already exists within the model.
+
+##### Check if model contains all participants
+`AddModuleCommand` checks if the model also contains all the given participants. If not, a `Command exception` is thrown,
+indicating that the one or more of the participants given do not exist within the model.
+
+#### Activity Diagram
+Given below is the activity diagram of how the logic component behaves when called using the `module add` command.
+![AddModuleActivityDiagram](images/AddModuleActivityDiagram.png)
+
+### Editing a Module
+
+#### Implementation
+
+The edit module mechanism is primarily facilitated by `EditModuleCommand`. It extends `Command` and implements the `execute` operation:
+
+* `execute(Model model)` — Executes the `EditModuleCommand` on the model,
+creating and adding a new meeting in the `Model Manager` before creating a `CommandResult`,
+triggering a UI update in `ModuleListPanel`
+
+This operation is exposed in the Command class as `Command#execute`
+
+#### Parsing the user input
+The parsing of the user input for `EditModuleCommand` is facilitated by `EditModuleCommandParser`.
+`EditModuleCommandParser` extends Parser and implements the following methods:
+* EditModuleCommandParser#parse — Parses the user input and returns the appropriate `EditModuleCommand`
+
+`EditModuleCommandParser` checks that all compulsory fields are provided in the user input and throws a `ParseException` if the user does not conform to the expected format.
+The user input is the parsed in the context of the `EditModuleCommand`.
+
+#### Executing the user input
+
+##### Check if model contains given module
+`EditModuleCommand` checks if the model contains the given module. If not, a `CommandException` is thrown, indicating that the module does not exist in the model.
+
+##### If the name of the module is changed, check if the new name already exists within the model
+The `EditModuleCommand` checks if the new name of the module already exists within the model to prevent duplicating modules.
+If it does, a `CommandException` is thrown indicating a duplicate module already exists within the model.
+
+##### If the participants of the module are changed, Check if the new participants exist in the model
+The `EditModuleCommand` checks if the new participants exist within the model. If not, a `CommandException` is thrown,
+indicating that one or more of the participants do not exist within the model.
+
+##### Check if edited module is the same as original module
+The `EditModuleCommand` checks if the edited module is the same as the original module. If so, a `CommandException` is thrown,
+indicating that the module is the same as the orignal module.
+
+##### Check if the modules relevant meetings have no participants
+The `EditModuleCommand` checks if the edited modules relevant meetings have no participants. For meetings with at least one of the new participants,
+the participants are updated. For meetings with no participants, they are deleted.
+
+#### Activity Diagram
+Given below is the activity diagram of how the logic component behaves when called using the `module edit` command.
+![EditModuleActivityDiagram](images/EditModuleActivityDiagram.png)
+
+###Deleting a Module
+
+#### Implementation
+
+The delete module mechanism is primarily facilitated by `DeleteModuleCommand`. It extends `Command` and implements the `execute` operation:
+
+* `execute(Model model)` — Executes the `DeleteModuleCommand` on the model,
+creating and adding a new meeting in the `Model Manager` before creating a `CommandResult`,
+triggering a UI update in `ModuleListPanel`. It also deletes the meetings of the provided module and triggers a UI update in the
+`MeetingListPanel`
+
+This operation is exposed in the Command class as `Command#execute`
+
+#### Parsing the user input
+The parsing of the user input for `DeleteModuleCommand` is facilitated by `DeleteModuleCommandParser`.
+`DeleteModuleCommandParser` extends Parser and implements the following methods:
+* DeleteModuleCommandParser#parse — Parses the user input and returns the appropriate `DeleteModuleCommand`
+
+`DeleteModuleCommandParser` checks that all compulsory fields are provided in the user input and throws a `ParseException` if the user does not conform to the expected format.
+The user input is the parsed in the context of the `DeleteModuleCommand`.
+
+#### Executing the user input
+
+##### Check if model contains given module
+`DeleteModuleCommand` checks if the model contains the given module. If not, a `CommandException` is thrown, indicating that the module does not exist in the model.
+
+##### Deleting all meetings of the module
+`DeleteModuleCommand` iterates through all the meetings of the module and deletes them along with the module.
+
+#### Activity Diagram
+Given below is the activity diagram of how the logic component behaves when called using the `module delete` command.
+![DeleteModuleActivityDiagram](images/DeleteModuleActivityDiagram.png)
+
+### Listing Contacts in a Module
+
+The module list mechanism is primarily facilitated by the `ListModuleCommand`. It extends `Command` and implements the execute operation:
+
+* `execute(Model model)` — Executes the `ListModuleCommand` on the model,
+creating and adding a new meeting in the `Model Manager` before creating a `CommandResult`,
+triggering a UI update in `ContactListPanel`
+
+This operation is exposed in the Command class as `Command#execute`
+
+####Parsing the user input
+The parsing of the user input for `ListModuleCommand` is facilitated by `ListModuleCommandParser`.
+`ListModuleCommandParser` extends Parser and implements the following methods:
+* ListModuleCommandParser#parse — Parses the user input and returns the appropriate `ListModuleCommand`
+
+`ListModuleCommandParser` checks that all compulsory fields are provided in the user input and throws a `ParseException` if the user does not conform to the expected format.
+The user input is the parsed in the context of the `ListModuleCommand`.
+
+#### Executing the user input
+
+##### Check if model contains given module
+`ListModuleCommand` checks if the model contains the given module. If not, a `CommandException` is thrown.
+
+#### Activity Diagram
+Given below is the activity diagram of how the logic component behaves when called using the `module list` command.
+![ListModuleActivityDiagram](images/ListModuleActivityDiagram.png)
+
 ### Adding a Meeting
 
 #### Implementation
@@ -1028,8 +1166,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | NUS Student                                | View my entire list of contacts                                                                                          | Select who I want to contact                                                                                       |
 | `* * *`  | NUS Student                                | Clear all contacts                                                                                                       | Reset my contacts                                                                                                  |
 | `* * *`  | NUS Student                                | Tag my contacts based on the individual's relationship with me (e.g. TA, Professor, Classmate)                           | Easily identify the contacts relevant to my query                                                                  |
-| `* * *`  | NUS Student                                | Create meetings for events such as projects or consultations                                                             | I can keep track of commitments and upcoming work                                                                  |
-| `* * *`  | NUS Student                                | Add relevant contacts to a meeting                                                                                       | Keep track of who is participating in the meeting and their contact information                                    |
+| `* * *`  | NUS Student                                | Create meetings for events in my modules such as projects or consultations                                               | I can keep track of commitments and upcoming work                                                                  |
+| `* * *`  | NUS Student                                | Add relevant contacts in a module to a meeting                                                                           | Keep track of who is participating in the meeting and their contact information                                    |
 | `* * *`  | Forgetful NUS Student                      | Assign a meeting a timeslot and date                                                                                     | Track exactly when I am supposed to meet                                                                           |
 | `* * *`  | NUS Student with many meetings             | View all scheduled meetings                                                                                              | Have an overview of all my meetings                                                                                |
 | `* * *`  | NUS Student with many meetings             | View agendas for meetings                                                                                                | Easily review agendas for my meetings                                                                              |
@@ -1038,8 +1176,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | NUS Student with a changing schedule       | Delete meetings                                                                                                          | Remove cancelled meetings                                                                                          |
 | `* * *`  | NUS Student                                | Create meetings with professors                                                                                          | Track when I have set up meetings with professors and TA’s                                                         |
 | `* * *`  | NUS Student taking many modules            | Create modules                                                                                                           | Add new modules whenever needed                                                                                    |
+| `* * *`  | NUS Student taking many modules            | Add contacts to a module                                                                                                 | Add my classmates contacts to my modules                                                                           |
 | `* * *`  | NUS Student taking many modules            | View relevant groups of contacts by modules                                                                              | I can easily keep track of contact details of individuals in different modules                                     |
+| `* * *`  | NUS Student taking many modules            | Edit module details                                                                                                      | Edit the details of my modules and add new classmates details in when i meet them                                  |
+| `* * *`  | NUS Student taking many modules            | View contacts based on module                                                                                            | Quickly view the contacts of all my classmates within the module                                                   |
+| `* * *`  | NUS Student taking many modules            | Delete a module                                                                                                          | Delete the module and all meetings related to the module at the end of the semester                                |
 | `* * `   | Lazy Typist                                | Be able to autocomplete my commands                                                                                      | Reduce time spent writing commands                                                                                 |
+| `* * `   | Lazy Typist                                | Be able go back to previous commands if I need to repeat them                                                            | Reduce time spent writing commands                                                                                 |
 | `* * `   | User with easily strained eyes             | Switch between light and dark mode                                                                                       | Reduce eye strain when using the application during different times of the day                                     |
 | `*   `   | NUS Student                                | Hide private contact details                                                                                             | Minimize chances of someone else seeing them by accident                                                           |
 | `*   `   | Student who likes to personalise stuff     | Customise the layout of the App                                                                                          | I can organise relevant information in personalised way that I find easy to access                                 |
@@ -1139,12 +1282,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.
 
     Use case ends.
-
-**UC0X: Find Contacts**
+ 
+**UC05: Find Contacts**
 
 Same as View Contacts Use Case except only contacts that match the given parameters are listed.
 
-**UC05: Tag a Contact**
+**UC06: Tag a Contact**
 
 **MSS**
 
@@ -1153,7 +1296,7 @@ Same as View Contacts Use Case except only contacts that match the given paramet
 3.  User requests to tag a specific contact in the list
 4.  Modduke tags the contact
 
- Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1172,8 +1315,8 @@ Same as View Contacts Use Case except only contacts that match the given paramet
   * 3b1. Modduke shows an error message.
 
     Use case resumes at step 2.
-
-**UC0X: Delete Tags of a Contact**
+    
+**UC07: Delete Tags of a Contact**
 
 **MSS**
 
@@ -1203,7 +1346,7 @@ Same as View Contacts Use Case except only contacts that match the given paramet
     Use case resumes at step 2.
 
 
-**UC06: Clear all Contacts**
+**UC08: Clear all Contacts**
 
 **MSS**
 
@@ -1212,8 +1355,131 @@ Same as View Contacts Use Case except only contacts that match the given paramet
 
  Use case ends.
 
+**UC09: Add Module**
 
-**UC08: Add Meeting**
+**MSS**
+
+1.  User makes request to add a module
+2.  Modduke accepts request and creates module
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Module Name or Participants are missing.
+
+  * 1a1. Modduke shows an error message.
+
+    Use case ends
+    
+* 1b. Given module already exists within Modduke
+
+  * 1b1. Modduke shows an error message.
+
+    Use case ends    
+
+* 1c. One or more of the given Participants do not exist in Modduke
+  
+    * 1c1. Modduke shows an error message.
+  
+      Use case ends
+      
+* 1d. Given module name is invalid
+  
+    * 1d1. Modduke shows an error message.
+  
+      Use case ends
+      
+**UC10: Edit Module**
+
+**MSS**
+
+1.  User makes request to edit a module
+2.  Modduke accepts request and edits module
+3.  Modduke updates Meetings of the module
+
+    Use case ends.
+
+**Extensions**    
+
+* 1a. Module Name is missing.
+
+  * 1a1. Modduke shows an error message.
+
+    Use case ends
+    
+* 1b. Optional Fields (New name/ Participants) are missing.
+
+  * 1b1. Modduke shows an error message.
+
+    Use case ends
+    
+* 1c. Edited module already exists within Modduke
+  
+  * 1c1. Modduke shows an error message.
+
+    Use case ends
+    
+* 1d. One or more of new Participants do not exist in Modduke
+  
+  * 1d1. Modduke shows an error message.
+
+    Use case ends
+
+* 1e. Edited module name is invalid
+  
+  * 1e1. Modduke shows an error message.
+
+    Use case ends
+    
+**UC11: Delete Module**
+
+**MSS**
+
+1.  User makes request to delete a module
+2.  Modduke accepts request and deletes module
+3.  Modduke deletes all the meetings of the given module.
+
+    Use case ends.
+
+**Extensions**    
+
+* 1a. Module Name is missing.
+
+  * 1a1. Modduke shows an error message.
+
+    Use case ends
+  
+* 1b. Provided module name does not exist in Modduke.
+  
+  * 1b1. Modduke shows an error message.
+  
+      Use case ends
+      
+**UC12: Module List**
+
+**MSS**
+
+1.  User makes request to list contacts of a module
+2.  Modduke accepts request and lists contacts
+
+    Use case ends.
+
+**Extensions**    
+
+* 1a. Module Name is missing.
+
+  * 1a1. Modduke shows an error message.
+
+    Use case ends
+  
+* 1b. Provided module name does not exist in Modduke.
+  
+  * 1b1. Modduke shows an error message.
+  
+      Use case ends
+    
+**UC13: Add Meeting**
 
 **MSS**
 
@@ -1254,7 +1520,7 @@ Same as View Contacts Use Case except only contacts that match the given paramet
 
     Use case ends.
 
-**UC09: Delete Meeting**
+**UC14: Delete Meeting**
 
 **MSS**
 
@@ -1270,13 +1536,13 @@ Same as View Contacts Use Case except only contacts that match the given paramet
   * 1a1. Modduke shows an error message.
 
     Use case ends
-
-**UC08: Edit Meeting**
+    
+**UC15: Edit Meeting**
 
 **MSS**
 
 1.  User makes request to edit a meeting
-2.  Modduke accepts request and creates meeting
+2.  Modduke accepts request and edits meeting
 
     Use case ends.
 
@@ -1318,7 +1584,7 @@ Same as View Contacts Use Case except only contacts that match the given paramet
 
     Use case ends.
 
-**UC09: View Selected Meeting Details**
+**UC16: View Selected Meeting Details**
 
 **MSS**
 
@@ -1342,7 +1608,7 @@ Same as View Contacts Use Case except only contacts that match the given paramet
     Use case ends
 
 
-**UC10: List Meetings**
+**UC17: List Meetings**
 
 **MSS**
 
@@ -1350,12 +1616,12 @@ Same as View Contacts Use Case except only contacts that match the given paramet
 2.  Modduke accepts request and displays all meetings
 
     Use case ends.
+    
+**UC18: View Meeting**
 
-**UC08: View Meeting**
+Use case same as UC14: Delete Meeting
 
-Use case same as UC09: Delete Meeting
-
-**UC10: View Timeline**
+**UC19: View Timeline**
 
 **MSS**
 
@@ -1378,7 +1644,7 @@ Use case same as UC09: Delete Meeting
 
     Use case ends.
 
-**UC11: Copy Contact Information**
+**UC20: Copy Contact Information**
 
 **MSS**
 
@@ -1401,7 +1667,7 @@ Use case same as UC09: Delete Meeting
 
     Use case ends.
 
-**UC12: Autocomplete Entity Name (Contact, Module, Meeting)**
+**UC21: Autocomplete Entity Name (Contact, Module, Meeting)**
 
 **MSS**
 
@@ -1413,8 +1679,23 @@ Use case same as UC09: Delete Meeting
 6.  Modduke replaces user's text with autocomplete result.
 
     Use case ends.
-
-**UC13: Switch to light theme**
+    
+**Extensions**
+    
+* 4a. No suggestions available for text entered
+    
+  * 4a1. Modduke shows an empty suggestions list
+  
+    Use case resumes from step 3.
+    
+    * *a. At any time, User chooses to exit autocomplete mode.
+    
+      * *a1. User makes a request to Modduke to exit autocomplete mode.
+      * *a2. Modduke accepts request and exits autocomplete mode.
+    
+        Use case ends.
+    
+**UC22: Switch to light theme**
 
 **Guarantees**
 
@@ -1427,7 +1708,7 @@ Use case same as UC09: Delete Meeting
 
     Use case ends.
 
-**UC14: Switch to dark theme**
+**UC23: Switch to dark theme**
 
 **Guarantees**
 
@@ -1439,20 +1720,22 @@ Use case same as UC09: Delete Meeting
 2.  Modduke switches to dark theme
 
     Use case ends.
+    
+**UC24: Command History**
+
+**MSS**
+
+1.  User makes request to view last inputted command
+2.  Modduke updates text field with last inputted command
+
+    Use case ends.
 
 **Extensions**
 
-* 4a. No suggestions available for text entered
+* 2a. No inputted command in current session
 
-  * 4a1. Modduke shows an empty suggestions list
-
-    Use case resumes from step 3.
-
-* *a. At any time, User chooses to exit autocomplete mode.
-
-  * *a1. User makes a request to Modduke to exit autocomplete mode.
-  * *a2. Modduke accepts request and exits autocomplete mode.
-
+  * 2a1. Modduke does nothing
+  
     Use case ends.
 
 ### Non-Functional Requirements
