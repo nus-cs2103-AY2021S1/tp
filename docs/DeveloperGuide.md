@@ -1,15 +1,18 @@
-# Covigent - Developer Guide
+---
+layout: page
+title: Covigent - Developer Guide
+---
 
 1. [Preface](#1-preface)
-2. [Setting Up](#2-setting-up)
-3. [Design](#3-design)<br>
+1. [Setting Up](#2-setting-up)
+1. [Design](#3-design)<br>
     3.1  [Architecture: High Level View](#31-architecture-high-level-view)<br>
     3.2  [UI Component](#32-ui-component)<br>
     3.3  [Logic Component](#33-logic-component)<br>
     3.4  [Model Component](#34-model-component)<br>
     3.5  [Storage Component](#35-storage-component)<br>
     3.6  [Commons Component](#36-commons-component)<br>
- 4. [Implementation](#4-implementation)<br>
+ 1. [Implementation](#4-implementation)<br>
     4.1  [Patient Feature](#41-patient-feature)<br>
           4.1.1 [Overview](#411-overview)<br>
           4.1.2 [Implementation](#412-implementation)<br>
@@ -29,9 +32,9 @@
           4.3.5 [Search](#435-search)<br>
     4.4  [Logging Feature](#44-logging-feature)<br>
     4.5  [Configuration Feature](#45-configuration-feature)<br>
- 5. [Planned Features](#5-planned-features)<br>
- 6. [Documentation](#6-documentation)<br>
- 7. [Appendix](#7-appendix)<br>
+ 1. [Planned Features](#5-planned-features)<br>
+ 1. [Documentation](#6-documentation)<br>
+ 1. [Appendix](#7-appendix)<br>
     A1. [Product Scope](#a1-product-scope)<br>
     A2. [User Stories](#a2-user-stories)<br>
     A3. [Use Cases](#a3-use-cases)<br>
