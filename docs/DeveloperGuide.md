@@ -146,9 +146,9 @@ The `Model`,
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `McGymmy`, which `Food` references. This allows `McGymmy` to only require one `Tag` object per unique `Tag`, instead of each `Food` needing their own `Tag` object.
-
-<br>
+<div markdown="span" class="alert alert-info">
+   
+:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `McGymmy`, which `Food` references. This allows `McGymmy` to only require one `Tag` object per unique `Tag`, instead of each `Food` needing their own `Tag` object.<br>
 
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
@@ -197,7 +197,10 @@ The following sequence diagram shows how the clear operation works:
 
 ![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The method Parser::parse is a simplification of the overall parsing sequence which was already covered in showcasing the execution of the delete method. As such, redundant parsing details are not covered here.
+<div markdown="span" class="alert alert-info">
+   
+:information_source: **Note:** The method Parser::parse is a simplification of the overall parsing sequence which was already covered in showcasing the execution of the delete method. As such, redundant parsing details are not covered here.
+
 </div>
 
 #### 7.1.2 Design Considerations
@@ -291,7 +294,10 @@ The following sequence diagram shows how the import operation works:
 
 ![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The method Parser::parse is a simplification of the overall parsing sequence which was already covered in showcasing the execution of the delete method. As such, redundant parsing details are not covered here.
+<div markdown="span" class="alert alert-info">
+   
+:information_source: **Note:** The method Parser::parse is a simplification of the overall parsing sequence which was already covered in showcasing the execution of the delete method. As such, redundant parsing details are not covered here.
+
 </div>
 
 #### 7.3.2 Design Considerations
@@ -330,7 +336,9 @@ The first 2 operations are exposed in the `Model` interface as `Model#canUndo()`
 Given below is an example usage scenario and how the undo mechanism behaves at each step.
 
 <div markdown="span" class="alert alert-info">
+   
 :information_source: **Note:** The type <code>ModelManager**</code> of the objects stored in <code>History</code>  in the following diagrams is used as a simplified presentation for <code>Pair&lt;McGymmy&lt;Pair&lt;Predicate&lt;Food&gt;, MacroList&gt;&gt;</code>, so that the diagrams look less complicated.
+
 </div>
 
 Step 1. The user launches the application for the first time. The `ModelManager` will be initialized with the empty `mcGymmyStack`.
@@ -353,7 +361,9 @@ storing a copied version of the McGymmy into the stack before changing the McGym
 
 ![UndoState2a](images/UndoState2b.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `ModelManager#addCurrentStateToHistory()`, so the McGymmy state will not be saved into the `mcGymmyStack`.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** If a command fails its execution, it will not call `ModelManager#addCurrentStateToHistory()`, so the McGymmy state will not be saved into the `mcGymmyStack`.
 
 </div>
 
@@ -362,7 +372,9 @@ which will pop the top most state from `mcGymmyStack`, and restores the McGymmy 
 
 ![UndoState3](images/UndoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial McGymmy state, then there are no previous McGymmy states to restore. The `undo` command uses `Model#canUndoMcGymmy()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">
+   
+:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial McGymmy state, then there are no previous McGymmy states to restore. The `undo` command uses `Model#canUndoMcGymmy()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -371,13 +383,22 @@ The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+   
+:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The method Parser::parse is a simplification of the overall parsing sequence which was already covered in showcasing the execution of the delete method. As such, redundant parsing details are not covered here.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The method Parser::parse is a simplification of the overall parsing sequence which was already covered in showcasing the execution of the delete method. As such, redundant parsing details are not covered here.
+   
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The method ModelManager::updateModelManager is a simplification of updating the McGymmy, updating the filterPredicate and updating the filteredFoodList separately.
+<div markdown="span" class="alert alert-info">
+   
+:information_source: **Note:** The method ModelManager::updateModelManager is a simplification of updating the McGymmy, updating the filterPredicate and updating the filteredFoodList separately.
+
 </div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
