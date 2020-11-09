@@ -221,7 +221,7 @@ Example: `viewTG 1`
 - Views all TutorialGroups of Module at _index 1_ on Module List.
 
 Expected Outcome:
-![ViewTgCommand]()
+![ViewTgCommand](images/ViewTutorialGroupCommand.png)
 
 #### 4.2.3 List all Tutorial Groups in the current Module: `listTG`
 Lists all Tutorial Groups in the current Module.
@@ -234,7 +234,7 @@ Example: `listTG`
 - Can be used to show all Tutorial Groups after [findTG]() command.
 
 Expected Outcome:
-![ListTgCommand]()
+![ListTgCommand](images/ListTutorialGroupCommand.png)
 
 #### 4.2.4 View all students in a tutorial group: `viewStudent`
 Change view to Students of target Tutorial Group.
