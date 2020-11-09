@@ -117,6 +117,7 @@ The `Model`,
     * `ObservableList<Exercise>`
     * `ObservableList<Routine>`
     * `ObservableList<Lesson>`
+    * `ObservableList<Slot>`
     * `ObservableList<Body>`
     * `ObservableList<DailyCalorie>`
 

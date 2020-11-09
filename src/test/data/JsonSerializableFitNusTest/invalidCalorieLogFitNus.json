@@ -1,0 +1,41 @@
+{
+  "exercises" : [ ],
+  "lessons" : [ ],
+  "routines" : [ ],
+  "slots" : [ ],
+  "dailyCalories" : [ {
+    "date" : "2020-11-01",
+    "calories" : "1000"
+  }, {
+    "date" : "2020-11-02",
+    "calories" : "1000"
+  }, {
+    "date" : "2020-11-03",
+    "calories" : "1000"
+  }, {
+    "date" : "2020-11-04",
+    "calories" : "1000"
+  }, {
+    "date" : "2020-11-05",
+    "calories" : "1000"
+  }, {
+    "date" : "2020-11-06",
+    "calories" : "1000"
+  }, {
+    "date" : "2020-11-07",
+    "calories" : "1000"
+  }, {
+    "date" : "2020-11-08",
+    "calories" : "1000"
+  }, {
+    "date" : "2020-11-09",
+    "calories" : "1000"
+  }, {
+    "date" : "2020-11-10",
+    "calories" : "1000"
+  }],
+  "body" : {
+    "height" : 160.0,
+    "weight" : 45.0
+  }
+}

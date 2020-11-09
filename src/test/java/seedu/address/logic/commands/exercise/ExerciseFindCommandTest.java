@@ -1,7 +1,11 @@
 package seedu.address.logic.commands.exercise;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_EXERCISES_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalExercises.SQUATS;
 import static seedu.address.testutil.TypicalExercises.getTypicalFitNus;
 
 import java.util.Arrays;
@@ -46,6 +50,16 @@ public class ExerciseFindCommandTest {
 
         // different exercise -> returns false
         assertFalse(exerciseFindFirstCommand.equals(exerciseFindSecondCommand));
+    }
+
+    @Test
+    public void execute_exercisesFound() {
+        String expectedMessage = String.format(MESSAGE_EXERCISES_LISTED_OVERVIEW, 1);
+        ExerciseNameContainsKeywordsPredicate predicate = preparePredicate("squats");
+        ExerciseFindCommand command = new ExerciseFindCommand(predicate);
+        expectedModel.updateFilteredExerciseList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(SQUATS), model.getFilteredExerciseList());
     }
 
     /**

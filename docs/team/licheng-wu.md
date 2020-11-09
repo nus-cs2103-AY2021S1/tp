@@ -75,7 +75,7 @@ wholesome user experience.
 
 ## Contributions to the Developer Guide:
 
-* Added implementation details of the command `find_exercises`, through the use of a sequence diagram
+* Added implementation details of the command `exercise_find`, through the use of a sequence diagram
 to illustrate the flow of method calls in fitNUS. [#86](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/86)
 
 * Updated the UI component from AB3 to better reflect how fitNUS works. [#208](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/208)

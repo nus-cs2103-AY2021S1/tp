@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -34,6 +35,10 @@ class JsonSerializableFitNus {
     public static final String MESSAGE_DUPLICATE_SLOT = "Slot list contains duplicate slot(s).";
     public static final String MESSAGE_OVERLAP_SLOT = "Slot list contains overlapping slot(s).";
     public static final String MESSAGE_DUPLICATE_DAILYCALORIE = "Calorie log contains duplicate calorie log(s).";
+    public static final String MESSAGE_INVALID_CALORIE_LOG_FILE = "Calorie log save file has too many dates.";
+    public static final String MESSAGE_MISSING_EXERCISE = "Routine list contains a missing exercise.";
+
+
 
 
     private final List<JsonAdaptedExercise> exercises = new ArrayList<>();
@@ -102,6 +107,13 @@ class JsonSerializableFitNus {
             if (fitNus.hasRoutine(routine)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ROUTINE);
             }
+
+            Set<Exercise> exercises = routine.getExercises();
+            for (Exercise exercise : exercises) {
+                if (!fitNus.hasExercise(exercise)) {
+                    throw new IllegalValueException(MESSAGE_MISSING_EXERCISE);
+                }
+            }
             fitNus.addRoutine(routine);
         }
         for (JsonAdaptedSlot jsonAdaptedSlot : slots) {
@@ -126,6 +138,11 @@ class JsonSerializableFitNus {
             calorieLog.add(dailyCalorie);
         }
         Collections.sort(calorieLog);
+
+        if (calorieLog.size() > 7) {
+            throw new IllegalValueException(MESSAGE_INVALID_CALORIE_LOG_FILE);
+        }
+
         fitNus.addCalorieEntries(calorieLog);
 
         if (body != null) {
