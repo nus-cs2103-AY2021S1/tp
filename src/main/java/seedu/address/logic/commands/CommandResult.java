@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.journal.Entry;
+import seedu.address.model.person.Person;
+
 /**
  * Represents the result of a command execution.
  */
@@ -17,18 +20,32 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    private boolean isAddressBookTab = true;
+    private boolean isSameTab = false;
+    private boolean isSwitchingTab = false;
+    private boolean isViewingJournal = false;
+    private boolean isCleaningJournalView = false;
+    private boolean isChangingTheme = false;
+    private boolean isViewingContact = false;
+    private Person contactToView = null;
+    private Entry entryToView = null;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(
+            String feedbackToUser,
+            boolean showHelp,
+            boolean exit
+    ) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
+     * Constructs a {@code CommandResult} with the specified
+     * {@code feedbackToUser}, and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false);
@@ -68,4 +85,83 @@ public class CommandResult {
         return Objects.hash(feedbackToUser, showHelp, exit);
     }
 
+    public boolean isAddressBookTab() {
+        return isAddressBookTab;
+    }
+
+    public CommandResult setAddressBookTab() {
+        this.isAddressBookTab = true;
+        return this;
+    }
+
+    public CommandResult setJournalTab() {
+        this.isAddressBookTab = false;
+        return this;
+    }
+
+    public CommandResult setSwitch() {
+        this.isSwitchingTab = true;
+        return this;
+    }
+
+    public CommandResult setSameTab() {
+        this.isSameTab = true;
+        return this;
+    }
+
+    public CommandResult setViewingJournal(Entry entryToView) {
+        this.isViewingJournal = true;
+        this.entryToView = entryToView;
+        return this;
+    }
+
+    public CommandResult setViewingContact(Person contactToView) {
+        this.isViewingContact = true;
+        this.contactToView = contactToView;
+        return this;
+    }
+
+    public CommandResult setCleaningJournalView(boolean isCleaningJournalView) {
+        this.isCleaningJournalView = isCleaningJournalView;
+        return this;
+    }
+
+    public CommandResult setChangingTheme() {
+        this.isChangingTheme = true;
+        return this;
+    }
+
+    public boolean isSwitch() {
+        return isSwitchingTab;
+    }
+
+    public boolean isSameTab() {
+        return isSameTab;
+    }
+
+    public boolean isViewingJournal() {
+        return isViewingJournal;
+    }
+
+    public boolean isViewingContact() {
+        return isViewingContact;
+    }
+
+    public Person getContactToView() {
+        assert (isViewingContact);
+        return contactToView;
+    }
+
+    public Entry getEntryToView() {
+        assert (isViewingJournal);
+        return entryToView;
+    }
+
+    public boolean isCleaningJournalView() {
+        return isCleaningJournalView;
+    }
+
+    public boolean isChangingTheme() {
+        return isChangingTheme;
+    }
 }

@@ -20,9 +20,23 @@ checkstyle {
     toolVersion = '8.29'
 }
 
+run {
+    enableAssertions = true
+}
+
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
+
+    testLogging {
+        events "passed", "skipped", "failed"
+
+        showExceptions true
+        exceptionFormat "full"
+        showCauses true
+        showStackTraces true
+        showStandardStreams = false
+    }
 }
 
 task coverage(type: JacocoReport) {
@@ -41,8 +55,13 @@ task coverage(type: JacocoReport) {
 }
 
 dependencies {
-    String jUnitVersion = '5.4.0'
+    String jUnitVersion = '5.4.2'
     String javaFxVersion = '11'
+
+    compile 'com.jfoenix:jfoenix:9.0.10'
+
+    compile 'org.kordamp.ikonli:ikonli-javafx:11.5.0'
+    compile 'org.kordamp.ikonli:ikonli-fontawesome5-pack:11.5.0'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
@@ -66,7 +85,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'IntelliJournal.jar'
 }
 
 defaultTasks 'clean', 'test'

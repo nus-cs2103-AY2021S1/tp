@@ -11,8 +11,10 @@ public class Phone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Phone number must be a valid Singaporean phone number";
+    public static final String VALIDATION_REGEX = "^(\\+65)?(6|8|9)\\d{7}$";
+    public static final Phone EMPTY_PHONE = new Phone(Phone.EMPTY_MESSAGE);
+    private static final String EMPTY_MESSAGE = "No phone number found!";
     public final String value;
 
     /**
@@ -30,7 +32,7 @@ public class Phone {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) || test.equals(EMPTY_MESSAGE);
     }
 
     @Override

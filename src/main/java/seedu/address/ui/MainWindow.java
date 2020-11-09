@@ -2,9 +2,14 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SingleSelectionModel;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -16,6 +21,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.journal.Entry;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -24,6 +31,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String THEME_DARK = "view/DarkTheme.css";
+    private static final String THEME_BRIGHT = "view/ColorScheme_1.css";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -32,8 +41,17 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private ContactContent contactContent;
+    private EntryListPanel entryListPanel;
+    private EntryContent entryContent;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    private DashboardTab dashboardTab;
+
+
+    @FXML
+    private Scene primaryScene;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,7 +60,28 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private TabPane tabPane;
+
+    @FXML
+    private Tab addressBookTab;
+
+    @FXML
+    private Tab journalTab;
+
+    @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane contactContentPlaceholder;
+
+    @FXML
+    private StackPane entryListPanelPlaceholder;
+
+    @FXML
+    private StackPane dashboardTabPlaceHolder;
+
+    @FXML
+    private StackPane entryContentPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -78,6 +117,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -111,7 +151,19 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        entryListPanel = new EntryListPanel(logic.getFilteredEntryList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        entryListPanelPlaceholder.getChildren().add(entryListPanel.getRoot());
+
+        contactContent = new ContactContent();
+        contactContent.setContactContentToUser(personListPanel.getFirstPerson());
+        contactContentPlaceholder.getChildren().add(contactContent.getRoot());
+        entryContent = new EntryContent();
+        entryContent.setEntryContentToUser(entryListPanel.getFirstEntry());
+        entryContentPlaceholder.getChildren().add(entryContent.getRoot());
+
+        dashboardTab = new DashboardTab(logic.getRecentPersonList(), logic.getFrequentPersonList());
+        dashboardTabPlaceHolder.getChildren().add(dashboardTab.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -122,6 +174,16 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
+
+    //@@author {Nauw1010}
+    /**
+     * Configures all the listeners.
+     */
+    void configureListener() {
+        entryListPanel.setListenerToSelectedChangesAndPassToEntryContent(entryContent);
+        personListPanel.setListenerToSelectedChangesAndPassToContactContent(contactContent);
+    }
+    //@@author
 
     /**
      * Sets the default size based on {@code guiSettings}.
@@ -148,6 +210,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     void show() {
+        primaryScene.getStylesheets().add(THEME_BRIGHT);
         primaryStage.show();
     }
 
@@ -157,15 +220,27 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+            (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    //@@author {Nauw1010}
+    /**
+     * Changes the color theme.
+     */
+    @FXML
+    private void handleChangeTheme() {
+        ObservableList<String> styleSheetList = primaryScene.getStylesheets();
+
+        if (styleSheetList.get(styleSheetList.size() - 1).equals(THEME_DARK)) {
+            styleSheetList.set(styleSheetList.size() - 1, THEME_BRIGHT);
+        } else {
+            styleSheetList.set(styleSheetList.size() - 1, THEME_DARK);
+        }
     }
+    //@@author
 
     /**
      * Executes the command and returns the result.
@@ -175,7 +250,9 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
+            personListPanel.select();
+            entryListPanel.select();
+            logger.info("Execute result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
@@ -186,11 +263,59 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (!commandResult.isSameTab()) {
+                if (commandResult.isSwitch()) {
+                    handleSwapTabs();
+                } else if (commandResult.isAddressBookTab()) {
+                    handleSwitchToAddressBookTab();
+                } else {
+                    handleSwitchToJournalTab();
+                }
+            }
+
+            if (commandResult.isViewingContact()) {
+                Person personToView = commandResult.getContactToView();
+                personListPanel.select(logic.getFilteredPersonList().indexOf(personToView));
+            }
+
+            if (commandResult.isViewingJournal()) {
+                Entry entryToView = commandResult.getEntryToView();
+                entryListPanel.select(logic.getFilteredEntryList().indexOf(entryToView));
+            }
+
+            if (commandResult.isCleaningJournalView()) {
+                handleCleaningJournalView();
+            }
+
+            if (commandResult.isChangingTheme()) {
+                handleChangeTheme();
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
-            logger.info("Invalid command: " + commandText);
+            logger.warning("Invalid command: " + commandText + ". " + e.getMessage());
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    private void handleSwitchToAddressBookTab() {
+        SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
+        selectionModel.select(addressBookTab);
+    }
+
+    private void handleSwitchToJournalTab() {
+        SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
+        selectionModel.select(journalTab);
+    }
+
+    private void handleSwapTabs() {
+        SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
+        int selectedIndex = selectionModel.getSelectedIndex();
+        selectionModel.select((selectedIndex + 1) % 3);
+    }
+
+    private void handleCleaningJournalView() {
+        entryContent.setEntryContentToUser(null);
     }
 }

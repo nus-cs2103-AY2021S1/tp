@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -19,7 +20,8 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_ADDRESS =
+            "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Phone phone;
@@ -58,9 +60,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
+     * {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -89,8 +92,22 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, tags);
+    /**
+     * Sets all of the optional fields to null.
+     */
+    public PersonBuilder setBlankFields() {
+        this.phone = Phone.EMPTY_PHONE;
+        this.email = Email.EMPTY_EMAIL;
+        this.address = Address.EMPTY_ADDRESS;
+        this.tags = new HashSet<>();
+        return this;
     }
 
+    public Person build() {
+        return new Person(name, phone, email, address, tags, UUID.randomUUID());
+    }
+
+    public Person build(UUID uuid) {
+        return new Person(name, phone, email, address, tags, uuid);
+    }
 }

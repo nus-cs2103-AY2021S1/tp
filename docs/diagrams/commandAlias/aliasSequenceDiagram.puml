@@ -1,0 +1,40 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":IntelliJournalParser" as IntelliJournalParser LOGIC_COLOR
+participant ":ValidCommand" as ValidCommand LOGIC_COLOR
+participant "c:Command" as Command LOGIC_COLOR
+end box
+
+[-> LogicManager : execute(someInput)
+activate LogicManager
+
+LogicManager -> IntelliJournalParser : parseCommand(someInput)
+activate IntelliJournalParser
+
+IntelliJournalParser -> ValidCommand: commandTypeOf(commandWord)
+activate ValidCommand
+ValidCommand --> IntelliJournalParser: commandType
+deactivate ValidCommand
+
+create Command
+IntelliJournalParser -> Command
+activate Command
+
+Command --> IntelliJournalParser:c
+deactivate Command
+
+IntelliJournalParser --> LogicManager : c
+deactivate IntelliJournalParser
+
+LogicManager -> Command : execute()
+activate Command
+
+Command --> LogicManager : result
+deactivate Command
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

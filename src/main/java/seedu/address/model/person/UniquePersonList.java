@@ -24,7 +24,8 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  */
 public class UniquePersonList implements Iterable<Person> {
 
-    private final ObservableList<Person> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Person> internalList =
+            FXCollections.observableArrayList();
     private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
@@ -37,12 +38,22 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Returns true if the list contains a person with the same name as the
+     * given argument.
+     */
+    public boolean containsName(Person toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::hasSameName);
+    }
+
+    /**
      * Adds a person to the list.
      * The person must not already exist in the list.
+     * The name must also not already exist in the list.
      */
     public void add(Person toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
+        if (contains(toAdd) || containsName(toAdd)) {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
@@ -113,7 +124,8 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                        && ((UniquePersonList) other).internalList.equals(
+                                internalList));
     }
 
     @Override
