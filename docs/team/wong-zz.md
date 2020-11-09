@@ -61,4 +61,4 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#39](https://github.com/AY2021S1-CS2103T-F13-3/tp/pull/39), [\#58](https://github.com/AY2021S1-CS2103T-F13-3/tp/pull/58), [\#13](https://github.com/AY2021S1-CS2103T-F13-3/tp/pull/13), [\#77](https://github.com/AY2021S1-CS2103T-F13-3/tp/pull/77)
-  * Reported multiple high/medium severity issues for other teams in the class (examples: [1](https://github.com/AY2021S1-CS2103T-W16-3/tp/issues/242), [2](https://github.com/AY2021S1-CS2103T-W16-3/tp/issues/245), [3](https://github.com/AY2021S1-CS2103T-W16-3/tp/issues/246))
+  * Reported multiple high/medium severity issues for other teams in the class (examples: [1](https://github.com/AY2021S1-CS2103T-W16-3/tp/issues/242), [2](https://github.com/AY2021S1-CS2103T-W16-3/tp/issues/244), [3](https://github.com/AY2021S1-CS2103T-W16-3/tp/issues/245), [4](https://github.com/AY2021S1-CS2103T-W16-3/tp/issues/246))
