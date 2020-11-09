@@ -1,14 +1,6 @@
----
-layout: page
-title: Testing guide
----
+#Calo Testing Guide
 
-* Table of Contents
-{:toc}
-
---------------------------------------------------------------------------------------------------------------------
-
-## Running tests
+### Running tests
 
 There are two ways to run tests.
 
@@ -19,14 +11,16 @@ There are two ways to run tests.
 * **Method 2: Using Gradle**
   * Open a console and run the command `gradlew clean test` (Mac/Linux: `./gradlew clean test`)
 
-<div markdown="span" class="alert alert-secondary">:link: **Link**: Read [this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html) to learn more about using Gradle.
-</div>
+| Notes: | To learn more about Gradle, click [here](https://se-education.org/guides/tutorials/gradle.html)
+|--------|----|
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Types of tests
+### Types of tests
 
-This project has three types of tests:
+There are 3 types of testing that is used in `Calo`.  
+We mainly use Hybrid Testing for `Calo` because the classes that we implement is relative small and does not require
+excessive testing.
 
 1. *Unit tests* targeting the lowest level methods/classes.<br>
    e.g. `seedu.address.commons.StringUtilTest`

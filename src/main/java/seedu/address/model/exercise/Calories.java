@@ -1,17 +1,17 @@
 package seedu.address.model.exercise;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import seedu.address.logic.parser.exceptions.CaloriesOverflow;
+
+import java.math.BigInteger;
+import java.util.Objects;
+
+public static final String MESSAGE_CONSTRAINTS =
+            "Calories should be a non-negative integer. It should not be blank (if updating)";
 
 public class Calories {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Calories should be a non-negative integer. It should not be blank (if updating)";
-
-    /*
-     * The first character must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "\\d+";
+    public static final String MESSAGE_CONSTRAINTS = "Calories should be a integer.";
 
     public final String value;
 
@@ -20,7 +20,7 @@ public class Calories {
      *
      * @param calories A valid input.
      */
-    public Calories(String calories) {
+    public Calories(String calories) throws CaloriesOverflow {
         if (calories == null) {
             value = "0";
         } else {
@@ -32,8 +32,25 @@ public class Calories {
     /**
      * Returns true if a given string is a valid input.
      */
-    public static boolean isValidCalories(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidCalories(String test) throws CaloriesOverflow {
+        if (Objects.isNull(test)) {
+            throw new NullPointerException();
+        }
+
+        int x;
+        try {
+            x = Integer.parseInt(test);
+        } catch (Exception err) {
+            try {
+                new BigInteger(test);
+            } catch (Exception e1) {
+                //Test is invalid because it can't be casted into Integer or BigInteger.
+                return false;
+            }
+            throw new CaloriesOverflow();
+        }
+
+        return x >= 0;
     }
 
 
@@ -52,6 +69,21 @@ public class Calories {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    /**
+     * Subtracts a {@code Calories}.
+     *
+     * @param calories A valid input.
+     */
+    public Calories subtract(Calories calories) throws CaloriesOverflow {
+        Integer currentCalories = Integer.parseInt(value);
+        Integer removedCalories = Integer.parseInt(calories.value);
+        Integer newCalorie = currentCalories - removedCalories;
+        if (newCalorie < 0) {
+            newCalorie = 0;
+        }
+        return new Calories(String.valueOf(newCalorie));
     }
 
 }

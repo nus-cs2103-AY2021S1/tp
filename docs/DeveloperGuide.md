@@ -1,21 +1,44 @@
----
-layout: page
-title: Developer Guide
----
-* Table of Contents
-{:toc}
+# Calo Developer Guide
+
+## Table of Contents
+1.[ About This Guide](#1-about-this-guide)  
+2.[ Setting Up](#2-setting-up)  
+3.[ Design](#3-design)  
+* [3.1. Architecture](#31-architecture)  
+* [3.2. Ui Component](#32-ui-component)
+* [3.3. Logic Component](#33-logic-component)
+* [3.4. Model Component](#34-model-component)
+* [3.4. Storage Component](#35-storage-component)
+* [3.4. Common Class](#36-common-classes)
+
+4.[ Implementation](#4-implementation)  
+5.[ Documentation, Logging and Testing](#5-documentation-logging-testing-configuration-dev-ops)  
+6.[ Appendix A: Requirements](#6-appendix-a-requirements)  
+7.[ Appendix B: User Stories](#7-appendix-b-user-stories)  
+8.[ Appendix C: Use Cases](#8-appendix-c-use-cases)  
+9.[ Appendix D: Non-Functional Requirements](#9-appendix-d-non-functional-requirements)  
+10.[ Appendix E: Instructions For Manual Testing](#10-appendix-e-instructions-for-manual-testing)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## 1. About This Guide
+
+This document serves as a developer guide for Calo App with sufficient and comprehensive overview of the software
+so that new developers, like you, will have a working knowledge of the application by the end of the guide.  
+
+Note that this guide only provide reasonable depth. By no means this guide serves as a replacement for the actual code. 
+
+--------------------------------------------------------------------------------------------------------------------
+## 2. Setting Up
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## 3. Design
 
-### Architecture
+### 3.1. Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -23,22 +46,22 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-W17-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/ExerciseMainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#36-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#32-ui-component): The UI of the App.
+* [**`Logic`**](#33-logic-component): The command executor.
+* [**`Model`**](#34-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#35-storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
@@ -57,28 +80,28 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### UI component
+### 3.2. UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ExerciseListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindowForExercise.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/resources/view/MainWindowForExercise.fxml)
 
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### 3.3. Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/logic/LogicForExercise.java)
 
 1. `Logic` uses the `ExerciseBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -93,46 +116,67 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### 3.4. Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/model/ExerciseModel.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the Exercise book data.
 * exposes an unmodifiable `ObservableList<Exercise>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Exercise` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Exercise` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ExerciseBook`, which `Exercise` references. This allows `ExerciseBook` to only require one `Tag` object per unique `Tag`, instead of each `Exercise` needing their own `Tag` object.<br>
 
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
 
 
-### Storage component
+### 3.5. Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/storage/StorageForExercise.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the exercise book data in json format and read it back.
 
-### Common classes
+### 3.6. Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 4. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
+I added the template class which stores information about a template. The template class has attributes name, calories,
+muscleTags, and tags. The class has the get methods for the different attributes and a toString method to convert the 
+template to a string in a more readable format. The class also has one parseToArgument() method which converts the 
+template to the command argument. The class has one static method writeToFile which takes in template lists as parameter
+and write the content of the list into the file. The class also has an equals method which takes in a template object 
+and check whether the template object is equal to the template itself.
+I also added a templateList class which stores the information about the template list in the app. The class has the 
+following static methods:
+-	getTemp: returns the template that has a specific name
+-	addTemplate: add the template into the template list
+-	load: load the template list from the file
+-	readTask: read the template list from the file
+-	checkEqual: Check whether the given template is equal to any of the template in the list
+-	reset: empty the content of templatelist
+The methods in the templateList classes are all static because it will be easier to just call the method in the 
+templateList instead of having to create a new templateList object.
+Two new parsers are also created for the command of creating a new template and the command of adding exercise from the 
+template respectively. The parse method in AddExerciseFromTemplateParser parses the command of adding the exercise 
+using the template and returns a new AddCommand object. The parse method in AddTemplateCommand parses the command 
+of creating a new template and returns a new AddTemplateCommand object.
+The template list is stored in the data file folder as a txt file.
 
 ### Updating an exercise
 
@@ -171,9 +215,94 @@ of commandResult should be joined to the side of the box representing the comman
 Due to a limitation of PlantUML, it is not possible to do so here.
 </div>
 
+### Proposed Implementation of Undo
+
+The proposed undo/redo mechanism is facilitated by `VersionedExerciseBook`. It extends `ExerciseBook` with an undo/redo history, stored internally as an `exerciseBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+
+* `VersionedExerciseBook#commit()` — Saves the current exercise book state in its history.
+* `VersionedExerciseBook#undo()` — Restores the previous exercise book state from its history.
+* `VersionedExerciseBook#redo()` — Restores a previously undone exercise book state from its history.
+
+These operations are exposed in the `Model` interface as `Model#commitExerciseBook()`, `Model#undoExerciseBook()` and `Model#redoExerciseBook()` respectively.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedExerciseBook` will be initialized with the initial exercise book state, and the `currentStatePointer` pointing to that single exercise book state.
+
+![UndoRedoState0](images/UndoRedoState0.png)
+
+Step 2. The user executes `delete 5` command to delete the 5th person in the exercise book. The `delete` command calls `Model#commitExerciseBook()`, causing the modified state of the exercise book after the `delete 5` command executes to be saved in the `exerciseBookStateList`, and the `currentStatePointer` is shifted to the newly inserted exercise book state.
+
+![UndoRedoState1](images/UndoRedoState1.png)
+
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitExerciseBook()`, causing another modified exercise book state to be saved into the `exerciseBookStateList`.
+
+![UndoRedoState2](images/UndoRedoState2.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitExerciseBook()`, so the exercise book state will not be saved into the `exerciseBookStateList`.
+
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoExerciseBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous exercise book state, and restores the exercise book to that state.
+
+![UndoRedoState3](images/UndoRedoState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial ExerciseBook state, then there are no previous ExerciseBook states to restore. The `undo` command uses `Model#canUndoExerciseBook()` to check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the undo.
+
+</div>
+
+The following sequence diagram shows how the undo operation works:
+
+![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The `redo` command does the opposite — it calls `Model#redoExerciseBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the exercise book to that state.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `exerciseBookStateList.size() - 1`, pointing to the latest exercise book state, then there are no undone ExerciseBook states to restore. The `redo` command uses `Model#canRedoExerciseBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+
+</div>
+
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the exercise book, such as `list`, will usually not call `Model#commitExerciseBook()`, `Model#undoExerciseBook()` or `Model#redoExerciseBook()`. Thus, the `exerciseBookStateList` remains unchanged.
+
+![UndoRedoState4](images/UndoRedoState4.png)
+
+Step 6. The user executes `clear`, which calls `Model#commitExerciseBook()`. Since the `currentStatePointer` is not pointing at the end of the `exerciseBookStateList`, all exercise book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+
+![UndoRedoState5](images/UndoRedoState5.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![CommitActivityDiagram](images/CommitActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How undo & redo executes
+
+* **Alternative 1 (current choice):** Saves the entire exercise book.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
+
+_{more aspects and alternatives to be added}_
+
+### Aspect: How to archive Data
+
+* **Current Choice:** Using Archive Command.
+  * Implementation: Have a separate Archive Command to let the User specify the file location.
+  * Pros: The user can specify the location where users want to save the data.
+  * Cons: Error prone. The user need to enter the file location specification which may be difficult for users who are not used to command prompt.
+
+
+
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 5. Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -183,7 +312,7 @@ Due to a limitation of PlantUML, it is not possible to do so here.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## 6. Appendix A: Requirements
 
 ### Product scope
 
@@ -198,7 +327,7 @@ Due to a limitation of PlantUML, it is not possible to do so here.
 **Value proposition**: manage workouts faster than a typical mouse/GUI driven desktop/mobile app
 
 
-### User stories
+### 7. Appendix B: User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -213,7 +342,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+### 8. Appendix C: Use cases
 
 (For all use cases below, the **System** is the `Calo` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -223,7 +352,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to add an exercise
 
-2.  Calo adds the exercise
+2.  Calo adds the exercise and displays on the Graph.
   Use case ends.
 
 #### **Use case: Find exercises with a keyword**
@@ -291,18 +420,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   2.  Calo shows a list of exercises
       Use case ends.
 
-### Non-Functional Requirements
+### 9. Appendix D: Non-Functional Requirements
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 exercise items without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Calories Graph**: the graph that displays the trends of the user's calories burnt in the past 6 days (including today)
 * **Exercise**: an exercise record entered by the user, consisting of exercise name, description, and date (optionally calories)
+* **Exercise Tag**: Additional Tag that you want to assign to the Exercise you just did.
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Muscle Tag**: the muscles that the exercise works out.
+* **Template**: a skeleton of the template without date, muscleTag and exerciseTag. It exists to ensure that the user key in exercises, that he does frequently, more quickly.
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## 10. Appendix E: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 

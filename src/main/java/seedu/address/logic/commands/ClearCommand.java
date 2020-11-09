@@ -2,7 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.ExerciseBook;
+import java.io.IOException;
+
 import seedu.address.model.ExerciseModel;
 
 /**
@@ -15,10 +16,9 @@ public class ClearCommand extends CommandForExercise {
 
 
     @Override
-    public CommandResult execute(ExerciseModel model) {
+    public CommandResult execute(ExerciseModel model) throws IOException {
         requireNonNull(model);
-        model.setExerciseBook(new ExerciseBook());
-        model.resetTemplate();
+        model.resetAll();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
