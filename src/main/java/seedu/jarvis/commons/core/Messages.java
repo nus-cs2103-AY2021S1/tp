@@ -14,7 +14,7 @@ public class Messages {
             "The mastery check index provided is invalid.";
     public static final String MESSAGE_INVALID_CONSULTATION_DISPLAYED_INDEX =
             "The consultation index provided is invalid.";
-    public static final String MESSAGE_INVALID_TASK_DISPLAYED_ID = "The task ID provided is invalid.\nUse 'View -t' "
+    public static final String MESSAGE_INVALID_TASK_DISPLAYED_ID = "The task ID provided is invalid.\nUse 'view -t' "
             + "command to check the task ID for the Task you are going to delete.";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_STUDENT_NAME_NOT_FOUND = "The student name does not match anybody in Jarvis.";

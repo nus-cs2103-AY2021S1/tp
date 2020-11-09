@@ -16,7 +16,9 @@ import seedu.jarvis.model.student.Telegram;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "The provided index is not valid as it is out of the accepted "
+            + "range. To obtain the valid index, use the view command and take note of the "
+            + "leftmost identifier of each item in the list.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
