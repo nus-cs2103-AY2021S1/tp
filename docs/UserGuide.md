@@ -171,7 +171,7 @@ Expected outcome:
 
 The following figure (Figure 3) shows the help window entering the command `help`.
 
-![help message](images/helpMessage.png)
+<p align="center"><img src="images/helpMessage.png" align="center"/></p>
 <div align="center">Figure 3: Help window</div>
 
 #### 3.2.2 Toggling between academic and administrative details: `toggle` (By: Hogan)
