@@ -127,7 +127,7 @@ The `ActiveAccount`,
 * stores an `ObservableList<Revenue>` that can be `observed` e.g. the _UI_ can be bounde to this list so that the _UI_ automatically updates when the data in the list change.
 * stores an `Optional<ActiveAccount>` that represents the previous state of the `ActiveAccount`.
 * does not depend on any of the other four components.
-
+<div style="page-break-after: always;"></div>
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `CommonCents`, which `Entry` references. This allows `CommonCents` to only require one `Tag` object per unique `Tag`, instead of each `Entry` needing their own `Tag` object.<br>
