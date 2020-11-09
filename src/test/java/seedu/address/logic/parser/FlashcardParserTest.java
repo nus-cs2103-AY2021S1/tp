@@ -12,7 +12,9 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.testutil.EditFlashcardDescriptorBuilder;
 
-public class FlashcardPaserTest {
+//author zeying99
+
+public class FlashcardParserTest {
     private FlashcardParser parser = new FlashcardParser();
 
     @Test
@@ -31,9 +33,9 @@ public class FlashcardPaserTest {
 
     @Test
     public void valid_editCommand() {
-        EditCommand expectedClearCommand = new EditCommand(INDEX_FIRST_FLASHCARD, new EditFlashcardDescriptorBuilder()
+        EditCommand expectedEditCommand = new EditCommand(INDEX_FIRST_FLASHCARD, new EditFlashcardDescriptorBuilder()
             .withName(VALID_NAME_HEAPSORT).build());
-        assertFlashcardParseSuccess(parser, "edit 1 n/" + VALID_NAME_HEAPSORT, expectedClearCommand);
+        assertFlashcardParseSuccess(parser, "edit 1 n/" + VALID_NAME_HEAPSORT, expectedEditCommand);
     }
 
     @Test
@@ -43,6 +45,23 @@ public class FlashcardPaserTest {
             + "Performance interfaces, which are not allowed in Flashcard interface.\n"
             + "Type 'help' to see the list of supported command lines from user guide.");
     }
+
+    @Test
+    public void invalidCommandFromQuizInterface() {
+        assertFlashcardParseFailure(parser, "leave quiz", MESSAGE_UNKNOWN_COMMAND
+            + "\nMaybe you have used commands from Quiz or "
+            + "Performance interfaces, which are not allowed in Flashcard interface.\n"
+            + "Type 'help' to see the list of supported command lines from user guide.");
+    }
+
+    @Test
+    public void invalidCommandFromPerformanceInterface() {
+        assertFlashcardParseFailure(parser, "view 1", MESSAGE_UNKNOWN_COMMAND
+            + "\nMaybe you have used commands from Quiz or "
+            + "Performance interfaces, which are not allowed in Flashcard interface.\n"
+            + "Type 'help' to see the list of supported command lines from user guide.");
+    }
+
 
 
 

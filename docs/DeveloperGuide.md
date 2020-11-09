@@ -27,12 +27,6 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/definition/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/definition/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
-
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
-
 The rest of the App consists of four components.
 
 * [**`UI`**](#ui-component): The UI of the App.
@@ -55,6 +49,10 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `start attempt`.
+
+<img src="images/ArchitectureSequenceDiagramQuiz.png" width="574" />
+
 The sections below give more details of each component.
 
 ### UI component
@@ -64,7 +62,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/definition/ui/Ui.java)
 
-The UI consists of a `MainWindow` and `PerformanceWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`, `StatusBarFooter` etc. 
+The UI consists of a `MainWindow` and `PerformanceWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`, `StatusBarFooter` etc.
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/definition/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
@@ -98,6 +96,12 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("start attempt")` API call.
+The execution for the `end attempt` command is similar.
+
+![Interactions Inside the Logic Component for the `start attempt` Command](images/StartAttemptSequenceDiagram.png)
+
 
 ### Model component
 
@@ -177,6 +181,23 @@ The following activity diagram shows how user input is processed:
 
 ![sort1](images/Sort1.png)
 
+### Flip feature
+
+The flip feature flips a flashcard to either show or hide its definition. This feature is implemented by creating an instance of a `FlipCommand` which
+is then executed on the model of the flashcard list. This implementation was chosen because it preserves the original fields in a Flashcard such as the
+definition. The command execution also works in a similar way to the other commands that were initially implemented.
+
+The following class diagram describes the implementation of the flip feature:
+
+![flip1](images/Flip1.png)
+
+The visible definition of a flashcard is toggled back and forth through a method in the `Flashcard` class through this command. The visible definition is
+reflected in the user interface.
+
+The following sequence diagram shows how the flip feature works:
+
+![flip0](images/Flip0.png)
+
 ### [Proposed] Quiz feature
 
 The proposed quiz feature defines a set of sample questions related to CS2040S, containing both MCQ and True-False
@@ -222,29 +243,13 @@ The following shows a Class Diagram of the structure of Quiz components:
 The general workflow of quiz feature is represented by the following Activity Diagram:
 ![QuizWorkflow](images/QuizActivityDiagram.png)
 
-These operations are exposed in the `Model` interface as `Model#startQuiz()`,`Model#enterQuiz()`,`Model#exitQuiz()` `Model#endQuiz()` and `Model#attemptQuestion()` respectively.
+### Enter Quiz Feature
+The `enter quiz` command switches interface from Flashcard mode to Quiz mode. This feature is implemented by creating an
+instance of `EnterQuizCommand` that can be executed on the model. The `EnterQuizCommand` will return an instance of
+`CommandResult` which will inform the `MainWindow` whether it is time to call `handleQuiz()` method to change to current UI.
 
-Given below is an example usage scenario and how to do quiz.
-
-Step 1. The user launches the application and DSAce shows the default page with list of flashcards.
-
-![UndoRedoState0](images/state0.png)
-
-Step 2. The user executes `enter quiz` command to switch GUI interface. The `enter quiz` command calls `Model#enterQuiz()`, causing the change in interface and list of questions are displayed. The user can now answer questions with `attempt` command.
-
-![UndoRedoState1](images/state2.png)
-
-Step 3. The user finishes questions and executes `end quiz` command to end the current attempt, which will be stored. The result will be displayed.
-
-![UndoRedoState2](images/state3.png)
-
-Step 4. The user executes `past performance` during quiz mode to see past attempt performance. The list of past attempt is shown in sequence of time and number of correct answers.
-
-![UndoRedoState4](images/state1.png)
-
-Step 5. The user executes `exit quiz`, which calls `Model#exitQuiz`. The GUI interface is switch back to flashcard mode.
-
-![UndoRedoState5](images/state4.png)
+The following shows a sequence diagram of enter quiz command.
+![EnterQuizSequenceDiagram](images/enterQuizSequenceDiagram.png)
 
 ### Performance Feature
 
@@ -263,8 +268,6 @@ The following sequence diagram shows how the view attempt feature works:
 
 ![ViewAttempt0](images/ViewAttemptCommand_SequenceDiagram.png)
 
-
-
 #### Design consideration:
 
 ##### Aspect: How undo & redo executes
@@ -277,8 +280,6 @@ The following sequence diagram shows how the view attempt feature works:
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the flashcard being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
@@ -495,22 +496,22 @@ Use case ends.
 Use case ends.
 
 **Extensions**
-   
+
 1a. The flashcard list is empty. <br/>
 1a1. DSAce does not display any flashcards. <br/>
 Use case ends.
-	 
+
 3a. The user specifies an invalid index. <br/>
 3a1. DSAce displays an error message. <br/>
 3a2. User specifies a new index. <br/>
 3a3. DSAce verifies the new index. <br/>
 Steps 3a2 to 3a3 are repeated until the index specified is correct. <br/>
 Use case resumes from step 4.
-   
+
 5a. The user does not specify whether the flashcard is to be sorted in ascending or descending order of priority. <br/>
 5a1. DSAce displays the flashcard list that is sorted in ascending order of priority. <br/>
 Use case resumes from step 7.
-   
+
 7a. There are no flashcards in the flashcard list that fulfill the user's specifications. <br/>
 7a1. DSAce does not display any flashcards. <br/>
 Use case ends.
@@ -575,7 +576,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `add n/Testing d/Nothing p/High t/Sorting`<br>
       Expected: New flashcard with name `Testing`, definition `Nothing`, priority `high`, and tag `Sorting` is added to
       the bottom of the flashcard list. Details of the new flashcard are included in the status message.
-   
+
    2. Test case: `add n/ d/sort slowly`
       Expected: No flashcard is added. Error details are shown in the status message.
 
@@ -588,7 +589,7 @@ testers are expected to do more *exploratory* testing.
 
    2. Test case: `edit 1 n/Testing`<br>
       Expected: The name of the first flashcard in the list is changed to `Testing`.
-      
+
    3. Test case: `edit -1 d/Wrong flashcard`<br>
       Expected: No flashcard in the list is edited. Error details are shown in the status message.
 
@@ -597,31 +598,22 @@ testers are expected to do more *exploratory* testing.
 1. Finding a flashcard while all flashcards are being shown
 
    1. Prerequisite: The flashcard list contains at least one flashcard. One of the flashcards has the name `Quicksort`.
-   
+
    2. Test case: `find n/Quicksort`
       Expected: Only flashcards with the name `Quicksort` are displayed.
-      
+
    3. Test case: `find`
       Expected: The find command is not executed. Error details are displayed in the status message.
 
-
-### Sorting flashcards
-
-### Flipping flashcards
-
 ### Starting a quiz attempt
-
-### Ending a quiz attempt
-
-### Starting an attempt
 1. Starting an attempt while user is in quiz mode and has no an ongoing attempt.
 
    1. Prerequisites: Switch to quiz mode from flashcard mode using the `enter quiz` command. Multiple questions are
     listed. No prior `start attempt` is called.
-   
+
    1. Test case: `start attempt`<br>
       Expected: Attempt is started. Success message shown in the status message.
-   
+
    1. Test case: `start`<br>
       Expected: No new attempt started. Error details shown in the status message. Status bar remains the same.
 
@@ -629,32 +621,32 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1. Starts an attempt while user is in quiz mode and has an ongoing attempt.
-   
+
    1. Prerequisites: Similar to previous prerequisites. Enter `start attempt` to start an ongoing attempt.
-    
+
    1. Test case: `start attempt`<br>
       Expected: No new attempt started. Error details shown in the status message. Status bar remains the same.
-      
-### Ending an attempt
+
+### Ending a quiz attempt
 1. Ending an attempt while user is in quiz mode and has an empty ongoing attempt.
 
    1. Prerequisites: Switch to quiz mode from flashcard mode using the `enter quiz` command. Multiple questions are listed. Enter `start
     attempt` to start an ongoing attempt.
-   
+
    1. Test case: `end attempt`<br>
       Expected: Attempt ended but not saved in performance. Success message shown in the status message.
-   
+
    1. Test case: `end`<br>
       Expected: Attempt does not end. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect end attempt commands to try: `end attempt 123`, `EnD AtTemPt`<br>
       Expected: Similar to previous.
-      
+
 1. Ending an attempt while user is in quiz mode from flashcard mode and has a non-empty ongoing attempt.
 
    1. Prerequisites: Similar to previous prerequisites, enter `answer 1 a/true` to add a new response to current
     attempt.
-   
+
    1. Test case: `end attempt`<br>
       Expected: Attempt ended and saved in performance. Success message shown in the status message.
 
@@ -684,7 +676,7 @@ testers are expected to do more *exploratory* testing.
 1. Sorting flashcards by priority while all flashcards are being shown
 
    1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list.
-   
+
    1. Test case: `sort`
       Expected: Flashcards are sorted in order of ascending priority (when unspecified). Success message shown in status message. Timestamp in the status bar is updated.
 
@@ -704,10 +696,10 @@ testers are expected to do more *exploratory* testing.
 1. Flipping flashcards by index while all flashcards are being shown
 
    1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list. The second flashcard has already been flipped (visible definition).
-   
+
    1. Test case: `flip 1`<br>
       Expected: The definition of the first flashcard is now visible. Success message shown in status message. Timestamp in the status bar is updated.
-      
+
    1. Test case: `flip 2`<br>
       Expected: The definition of the second flashcard is now hidden. Success message shown in status message. Timestamp in the status bar is updated.
 

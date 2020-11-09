@@ -23,11 +23,11 @@ Given below are my contributions to the project.
   i.e only flashcards that fulfills all keywords will be returned
   * Justification: This feature improves the user experience because the user can revise flashcards by topic (e.g Sorting) and/or by priority (e.g priority: high)
   * Highlights: The implementation required changes to existing commands, as well as the creation of three new predicate classes.
-  
+
 * **New Feature**: Added the ability to toggle through past commands using up and down arrows.
     * What it does: allows the user to enter commands faster, especially for minor modifications to long commands
     * Justification: This feature improves the user experience because the user do not need to retype long commands
-    
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jialin7878&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Enhancements to existing features**:

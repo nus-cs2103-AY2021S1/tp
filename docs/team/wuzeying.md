@@ -19,20 +19,27 @@ Given below are my contributions to the project.
 * **New Feature**: Added enter quiz and leave quiz command
   * What it does: Allows users to enter quiz and leave quiz interface
   * Justification: This feature allows users to enter a separate interface where flashcards are removed, quiz questions are shown and interface color scheme changes.
-  * Highlights: NA
   * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
+* **Bug fix**: Disabled invalid user input for all single word such as `Clear`. `Clear xx` is not supported now. (Pull requests [\#160]())
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jialin7878&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Enhancements to existing features**:
   * Updated the GUI of priority (Pull requests [\#66]())
   * Connect quiz interface with logic and model
+  * Enhance readability of exception alerts so that the users are more aware of the error.
 
 * **Documentation**:
   * Developer Guide:
-    * Added implementation details of the `enter quiz and leave quiz` feature.
+    * Added the `enter quiz` command sequence diagram.
+  * User Guide:
+    * Create an overall structure of User Guide.
+    
+* **Test cases**:
+    * Added test cases for command and parser classes, such as `Clear` Command test and its parser.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#145]()
+  * Reported bugs and suggestions for other teams in the class(https://github.com/zeying99/ped/issues/1#issue-732883559)
+  
 
