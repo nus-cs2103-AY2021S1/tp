@@ -8,7 +8,7 @@ command in the command box;
 
 :TrackrParser parses the argument;
 
-:ListModCommand is excuted;
+:ListModCommand is executed;
 
     if () then ([Trackr is in Module View])
         :Trackr removes all existing

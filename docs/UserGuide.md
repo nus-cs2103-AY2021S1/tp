@@ -432,7 +432,7 @@ Format: `addTG tg/TG_CODE day/DAY_OF_WEEK start/START_TIME end/END_TIME`
 > - `TG_CODE`, `DAY_OF_WEEK`, `START_TIME` and `END_TIME` should not be blank.
 > - `TG_CODE` should only contain alphanumeric characters.
 > - `DAY_OF_WEEK` should only be one of MON/TUE/WED/THU/FRI.
-> - `START_TIME` and `END_TIME` should be in the form of HH:MM.
+> - `START_TIME` and `END_TIME` should be in the form of 24HR format HH:MM.
 
 Example: 
 - Adds a tutorial group _T03_ that takes place every _MON_ from _08:00_ to _10:00_ to the tutorial group list.
@@ -440,7 +440,7 @@ Example:
 
 Expected Outcome:
 
-![AddTutorialGroupCommand](images/addTG.png)
+![AddTutorialGroupCommand](images/addTG.PNG)
 
 Figure 4.4.1a Expected outcome of performing the `addTG` command
 
@@ -461,7 +461,7 @@ Example:
 
 Expected Outcome:
 
-![DeleteTutorialGroupCommand](images/deleteTG.png)
+![DeleteTutorialGroupCommand](images/deleteTG.PNG)
 
 Figure 4.4.2a Expected outcome of performing the `deleteTG` command
 
@@ -484,7 +484,7 @@ Example:
 
 Expected Outcome:
 
-![EditTutorialGroupCommand](images/editTG.png)
+![EditTutorialGroupCommand](images/editTG.PNG)
 
 Figure 4.4.3a Expected outcome of performing the `editTG` command
 
@@ -498,7 +498,7 @@ Format: `findTG KEYWORD`
 > - `KEYWORD` is not case-sensitive (e.g. _t05_ will match _T05_).
 > - The search will look for matches, including partial match, in the tutorial group's code (e.g. _t_ will match _T05_,
 however, _t5_ will not match _T05_).
-> - If no tutorial group matching the keyword is found, the Tutorial Group view will be empty.
+> - If no tutorial groups matching the keyword are found, the Tutorial Group view will be empty.
 
 Example: 
 - Finds a tutorial group with `KEYWORD` _T03_.
@@ -507,7 +507,7 @@ Example:
 
 Expected Outcome:
 
-![FindTutorialGroupCommand](images/findTG.png)
+![FindTutorialGroupCommand](images/findTG.PNG)
 
 Figure 4.4.4a Expected outcome of performing the `findTG` command
 
@@ -808,9 +808,11 @@ Command | Description | Compatible View
 
 Command | Description | Compatible View
 --------|--------|--------
-`addTG tg/TG_CODE` | Adds a Tutorial Group to a Module | TUTORIAL GROUP
-`findTG TARGET_TG_CODE` | Finds a Tutorial Group | TUTORIAL GROUP
-`deleteTG TG_INDEX` | Deletes a Tutorial Group from a Module | TUTORIAL GROUP
+`addTG tg/TG_CODE day/DAY_OF_WEEK start/START_TIME end/END_TIME` | Adds a Tutorial Group to a Module | TUTORIAL GROUP
+`deleteTG INDEX` | Deletes a Tutorial Group from a Module | TUTORIAL GROUP
+`editTG INDEX [tg/TG_CODE] [day/DAY_OF_WEEK] [start/START_TIME] [end/END_TIME] ` | Edits a Tutorial Group from a Module | TUTORIAL GROUP
+`findTG KEYWORD` | Finds all Tutorial Groups containing the keyword | TUTORIAL GROUP
+
 
 ### 6.5 Student Commands
 
