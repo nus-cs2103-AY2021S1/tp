@@ -2,10 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_PHONE;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -32,8 +32,8 @@ public class EditTeammateCommandParser implements Parser<EditTeammateCommand> {
     public EditTeammateCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_TEAMMATE_NAME, PREFIX_TEAMMATE_PHONE, PREFIX_TEAMMATE_EMAIL,
-                PREFIX_TEAMMATE_ADDRESS);
+            ArgumentTokenizer.tokenize(args, PREFIX_PERSON_NAME, PREFIX_PERSON_PHONE, PREFIX_PERSON_EMAIL,
+                PREFIX_PERSON_ADDRESS);
 
         GitUserIndex gitUserIndex;
 
@@ -46,21 +46,21 @@ public class EditTeammateCommandParser implements Parser<EditTeammateCommand> {
 
         EditTeammateCommand.EditTeammateDescriptor editTeammateDescriptor =
             new EditTeammateCommand.EditTeammateDescriptor();
-        if (argMultimap.getValue(PREFIX_TEAMMATE_NAME).isPresent()) {
+        if (argMultimap.getValue(PREFIX_PERSON_NAME).isPresent()) {
             editTeammateDescriptor.setTeammateName(ParsePersonUtil.parsePersonName(
-                argMultimap.getValue(PREFIX_TEAMMATE_NAME).get()));
+                argMultimap.getValue(PREFIX_PERSON_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_TEAMMATE_PHONE).isPresent()) {
-            editTeammateDescriptor.setPhone(ParsePersonUtil.parsePhone(argMultimap.getValue(PREFIX_TEAMMATE_PHONE)
+        if (argMultimap.getValue(PREFIX_PERSON_PHONE).isPresent()) {
+            editTeammateDescriptor.setPhone(ParsePersonUtil.parsePhone(argMultimap.getValue(PREFIX_PERSON_PHONE)
                 .get()));
         }
-        if (argMultimap.getValue(PREFIX_TEAMMATE_EMAIL).isPresent()) {
+        if (argMultimap.getValue(PREFIX_PERSON_EMAIL).isPresent()) {
             editTeammateDescriptor.setEmail(ParsePersonUtil.parseEmail(argMultimap
-                .getValue(PREFIX_TEAMMATE_EMAIL).get()));
+                .getValue(PREFIX_PERSON_EMAIL).get()));
         }
-        if (argMultimap.getValue(PREFIX_TEAMMATE_ADDRESS).isPresent()) {
+        if (argMultimap.getValue(PREFIX_PERSON_ADDRESS).isPresent()) {
             editTeammateDescriptor.setAddress(ParsePersonUtil.parseAddress(argMultimap
-                .getValue(PREFIX_TEAMMATE_ADDRESS).get()));
+                .getValue(PREFIX_PERSON_ADDRESS).get()));
         }
         if (!editTeammateDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
