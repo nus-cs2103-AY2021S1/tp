@@ -29,6 +29,8 @@ ProductiveNUS is a desktop application targeted at Computing students of Nationa
   * **Note:** This enhancement retrieves data from the NUSMods API by sending a HTTP GET request. A new model class Lesson is also implemented to support the import command.
   * **Credits:** Code implemented is adapted from examples on [Baldeung](https://www.baeldung.com/java-http-request) and the [NUSMods API](https://api.nusmods.com/v2/).
 
+<div style="page-break-after: always;"></div>
+
 * **Created the Priority class**
   [\#124](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/124/files)
     * **What:** An assignment field that is optional. Users can set priorities to their assignments.
