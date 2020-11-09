@@ -246,6 +246,24 @@ Step 5. The user executes `exit quiz`, which calls `Model#exitQuiz`. The GUI int
 
 ![UndoRedoState5](images/state4.png)
 
+### Performance Feature
+
+This activity diagram shows the possible user flow for a user who wants to check their past quiz records
+
+![Performance](images/Performance_ActivityDiagram.png)
+
+### View Attempt feature
+
+The view attempt feature allows the user to view a past quiz record given by its index.
+ This feature is implemented
+by creating an instance of `ViewAttemptCommand` and returns a  `PerformanceCommand` which will trigger the a method in
+Performance Window to display the responses accordingly
+
+The following sequence diagram shows how the view attempt feature works:
+
+![ViewAttempt0](images/ViewAttemptCommand_SequenceDiagram.png)
+
+
 
 #### Design consideration:
 
@@ -618,6 +636,44 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect answer commands to try: `answer 1 a/random`, `answer 2 a/`, `answer 8 a/false`, `answer x
    `, `...` (where x is larger than the question list size)<br>
       Expected: Similar to previous.
+
+### Sorting a flashcard
+
+1. Sorting flashcards by priority while all flashcards are being shown
+
+   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list.
+   
+   1. Test case: `sort`
+      Expected: Flashcards are sorted in order of ascending priority (when unspecified). Success message shown in status message. Timestamp in the status bar is updated.
+
+   1. Test case: `sort asc` or `sort ASC` (case insensitive)
+      Expected: Flashcards are sorted in order of ascending priority. Success message shown in status message. Timestamp in the status bar is updated.
+
+   1. Test case: `sort desc` or `sort DESC` (case insensitive) <br>
+      Expected: Flashcards are sorted in order of descending priority. Success message shown in status message. Timestamp in the status bar is updated.
+
+
+   1. Other incorrect answer commands to try: `sort 123`, `sort ascending`, `sort descending`, `sort as`
+   `, `...` <br>
+      Expected: Error details shown in status message. Status bar remains the same
+
+### Flipping a flashcard
+
+1. Flipping flashcards by index while all flashcards are being shown
+
+   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list. The second flashcard has already been flipped (visible definition).
+   
+   1. Test case: `flip 1`<br>
+      Expected: The definition of the first flashcard is now visible. Success message shown in status message. Timestamp in the status bar is updated.
+      
+   1. Test case: `flip 2`<br>
+      Expected: The definition of the second flashcard is now hidden. Success message shown in status message. Timestamp in the status bar is updated.
+
+   1. Test case: `flip 0`<br>
+      Expected: No flashcard is flipped. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect answer commands to try: `flip`, `flip one`, `flip x`, `...` (where x is larger than the list size)<br>
+        Expected: Similar to previous.
 
 ### Saving data
 
