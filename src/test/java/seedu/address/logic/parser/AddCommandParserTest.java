@@ -114,7 +114,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, INVALID_NAME_DESC + DEADLINE_DESC_LAB + INVALID_MODULE_CODE_DESC,
                 Name.MESSAGE_CONSTRAINTS);
 
-        // TODO JERRY: Double check with team on error message for invalid remind case
         // invalid remind
         assertParseFailure(parser, NAME_DESC_LAB + DEADLINE_DESC_LAB
                 + MODULE_CODE_DESC_LAB + INVALID_REMIND_DESC, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
