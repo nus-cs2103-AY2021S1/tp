@@ -109,7 +109,7 @@ FitEgo can help you with that. Here's how:
 
 FitEgo lets you record crucial information that you want to keep track of using three types of entities:
 
-<center> Table 1 - Types of entities </center>
+<center> Table 1 - Summary of entities </center>
 
 Item | Prefix | What it represents
 -----|-------| -------------------
