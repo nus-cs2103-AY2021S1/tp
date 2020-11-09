@@ -128,7 +128,7 @@ For the `ITEM_COST` parameter:
 
 * If given, then a finance record will be created automatically with a total amount of `ITEM_COST * QUANTITY`.
 * If left empty, then an **empty** finance record will be created with an amount of `0`.
-* If given more than 2 decimal places, it will be rounded **up** to 2 decimal places.
+* If given more than 2 decimal places, it will be **rounded** to the nearest 2 decimal places.
 
 __Example:__ `create_inventory i/iphone q/10 c/20`
 
@@ -361,7 +361,7 @@ This creates a new finance record of amount `AMOUNT`. If `DATE` and `TIME` are s
 
 **NOTE:** 
 - If the Date and Time fields are not specified, they will default to the current location's Date and Time.
-- The Amount field will be rounded to the nearest 2 decimal place. 
+- The Amount field will be **rounded** to the nearest 2 decimal place. 
 
 __Example:__ `add_finance amt/30000 at/2020-03-03`
 
@@ -431,7 +431,7 @@ __Format:__ `edit_finance INDEX amt/AMOUNT [at/DATE]`
 This allows us to change the amount and date details of the finance record with the `INDEX` ID.
 Note that `INDEX` must be the **first** parameter for this command.
 
-**NOTE:** The Amount field will be rounded to the nearest 2 decimal place. 
+**NOTE:** The Amount field will be **rounded** to the nearest 2 decimal place. 
 
 __Example:__ `edit_finance 1 amt/120`
 
