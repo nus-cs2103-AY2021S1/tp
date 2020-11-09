@@ -213,6 +213,25 @@ Examples:<br>
 
 - `addt temp/pushup d/half an hour at/09-06-2020` Creates the exercise using the template called pushup with the date 09-06-2020, description half an hour and default calories 100.
 
+## 3.14. Creates a goal: `goal`
+
+Creates a goal of calories to be burnt on a particular date.
+- The format for the DATE should be in the form of DD-MM-YYYY.
+
+- The format for the CALORIES should be an integer.
+
+- Aside from an Exercise Book the application contains a goalBook. A goalBook 
+will help you create a goal of the number of calories to be burnt on a particular date.
+
+- Adding exercises on a particular date with goal will update your goal for that day accordingly.
+
+Examples:<br>
+
+-  `goal c/69 at/09-11-2020`  Creates a goal of 69 calories to be burnt on 09-11-2020.
+-  `goal c/420 at/23-12-2023` Creates a goal of 420 calories to burnt on 23-12-2023
+
+
+Format:goal `c/CALORIES at/DATE`
 
 
 ---
