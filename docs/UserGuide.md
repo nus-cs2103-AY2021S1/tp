@@ -728,7 +728,7 @@ deletestu INDEX
 
 :green_book: **Examples:**
 
-* `liststu` followed by `deletestu 1` followed by `yes` deletes the 1st student (**Figure 5.3.4-2**) from the student list.
+* `liststu` followed by `deletestu 1` followed by `yes` deletes the 1st student from the student list. **(Figure 5.3.4.2)**
 * `findstu Bob` followed by `deletestu 1` followed by `yes` deletes the 1st student from the results of the `findstu Bob` command.
 
 </div>
@@ -779,7 +779,7 @@ editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRES
 
 :green_book: **Examples:**
 
-* `editstu 1 n/Alvina Lee` followed by `yes` edits the 2nd student (**Figure 5.3.5**) in the student list with an updated name `Alvina Lee`.
+* `editstu 1 n/Alvina Lee` followed by `yes` edits the 2nd student in the student list with an updated name `Alvina Lee`. **(Figure 5.3.5)**
 * `editstu 3 t/active` followed by `yes` edits the 3rd student in the student list with an updated tag `active`.
 </div>
 
@@ -814,7 +814,7 @@ clearstu
 
 :green_book: **Example:**
 
-* `clearstu` followed by `yes` clears the students from the student list (**Figure 5.3.6**).
+* `clearstu` followed by `yes` clears the students from the student list **(Figure 5.3.6)**.
 </div>
 
 **Outcome:**
@@ -870,7 +870,7 @@ need to add a '0' in front, for e.g., 09/01/2020 and 9/1/2020 are both accepted.
 <div markdown="block" class="alert alert-success">
 
 **:green_book: Examples**:
-* `addses s/Tutorial 6 d/12/7/2020` (**Figure 5.4.1**)
+* `addses s/Tutorial 6 d/12/7/2020` **(Figure 5.4.1)**
 * `addses s/Lab 3 d/2/11/2020`
 
 </div>
@@ -911,7 +911,7 @@ deleteses INDEX
 
 **:green_book: Examples**:
 * `deleteses 1` followed by `no` results in nothing changed.
-* `deleteses 5` followed by `yes` deletes the 5th session in the session list. (**Figure 5.4.2**)
+* `deleteses 5` followed by `yes` deletes the 5th session in the session list. **(Figure 5.4.2)**
 
 </div>
 
@@ -951,7 +951,7 @@ editses INDEX (s/UPDATED_NAME) (d/UPDATED_DATE)
 <div markdown="block" class="alert alert-success">
 
 **:green_book: Example**:
-* `editses 1 s/Tutorial 6 d/10/10/2020` followed by `yes` edits the 1st session in the session list with a new session name `Tutorial 6` and a new session date `10/10/2020`. (**Figure 5.4.3**)
+* `editses 1 s/Tutorial 6 d/10/10/2020` followed by `yes` edits the 1st session in the session list with a new session name `Tutorial 6` and a new session date `10/10/2020`. **(Figure 5.4.3)**
 
 </div>
 
@@ -988,7 +988,7 @@ clearses
 <div markdown="block" class="alert alert-success">
    
 **:green_book: Examples**:
-* `clearses` followed by `yes` deletes all the sessions in the session list. (**Figure 5.4.4**)
+* `clearses` followed by `yes` deletes all the sessions in the session list. **(Figure 5.4.4)**
 
 </div>
 
@@ -1024,7 +1024,7 @@ enterses INDEX
 <div markdown="block" class="alert alert-success">
 
 **:green_book: Example**:
-* `enterses 1` enters the first session and allows you to use `participate` and `presence` commands. (**Figure 5.4.5**)
+* `enterses 1` enters the first session and allows you to use `participate` and `presence` commands. **(Figure 5.4.5)**
 
 </div>
 
