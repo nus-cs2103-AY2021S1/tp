@@ -21,6 +21,7 @@ Calo is a desktop app that is **designed for keeping track of calories burnt thr
   - [3.11. Recall : `recall`](#311-recall--recall)
   - [3.12. Add templates : `create`](#312-add-templates--create)
   - [3.13. Add an exercise using template : `addt`](#313-add-an-exercise-using-template--addt)
+  - [3.14 Add an goal : `goal`](#314-creates-a-goal-goal)
   - [4. FAQ](#4-faq)
   - [5. Command summary](#5-command-summary)
 
