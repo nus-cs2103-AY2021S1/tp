@@ -38,11 +38,11 @@ I contributed to the inventory commands for the user guide related to the operat
 
 ### Contributions to Developer Guide
 
-I contributed to the Model section of the developer guide, which documents how `Model` class works with `Inventory` and `FinanceAccount` during the execution of our programme. I also created the class diagram for `Model` class.
+I contributed to the Model section of the developer guide, which documents how `Model` class works with `Inventory` and `FinanceAccount` during the execution of our programme and created the class diagram for `Model` class. I also ensure that all the diagrams in the developer guide are up to date and update them if necessary.
 
 ### Contributions to Team Based Task
 
-I helped my teammates with debugging of code and gives them constructive feedback on how to improve our code and functionalities.
+I helped my teammates with debugging of code and generate ideas on how to improve our code and functionalities.
 
 ### Contributions to Other Projects
 
