@@ -43,22 +43,6 @@ public class SampleDataUtil {
         };
     }
 
-    public static Routine[] getSampleRoutines() {
-        return new Routine[] {
-                new Routine(new Name("Leg Day")),
-                new Routine(new Name("Upper Body Workout")),
-                new Routine(new Name("Arm Routine"))
-        };
-    }
-
-    public static Exercise[] getSampleExercise() {
-        return new Exercise[] {
-                new Exercise(new Name("Bench Press"), new HashSet<>()),
-                new Exercise(new Name("Shoulder Press"), new HashSet<>()),
-                new Exercise(new Name("Squats"), new HashSet<>())
-        };
-    }
-
     public static ReadOnlyFitNus getSampleFitNus() {
         FitNus sampleFitNus = new FitNus();
         for (Lesson sampleLesson : getSampleLessons()) {
