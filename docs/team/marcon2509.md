@@ -14,8 +14,6 @@ and there clients.
 
 #### My Contributions to PropertyFree
 
-### New Features
-
 * **Add Bid Feature**: Added the ability to add a bid to a list of bids.
   * What it does: allows the user to add a bid for a property with a link to a property Id and a bidder Id.
   * Justification: This feature is a necessary feature to allow the user to manage bids for a property.
