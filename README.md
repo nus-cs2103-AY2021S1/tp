@@ -7,6 +7,10 @@ With PropertyFree, property management and client meetings become simplified.
 ## About
 PropertyFree is a Command Line Interface (CLI) app for property management. It has a user-friendly Graphical User Interface (GUI) so that property agents can easily navigate our features. PropertyFree helps agents manage admin paperwork for each property and utilises a calendar to track meetings.
 
+## User Guide
+The User Guide is available at
+https://ay2021s1-cs2103-w14-1.github.io/tp/UserGuide.html 
+
 ## User Interface
 ![Ui](docs/images/Ui.png)
 
