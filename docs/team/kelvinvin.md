@@ -39,7 +39,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=kelvinvin&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=kelvinvin&tabRepo=AY2021S1-CS2103T-T13-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
 * **Project management or Team-based tasks**:
-  * Managed timely updates of demo animations for each iteration [v1.2](https://imgur.com/a/loBT8Cb)), [v1.3](https://hackmd.io/Eo7Gsii8RTWRlDLykD35LQ)
+  * Managed timely updates of demo animations for each iteration [v1.2](https://imgur.com/a/loBT8Cb), [v1.3](https://hackmd.io/Eo7Gsii8RTWRlDLykD35LQ)
   * Maintained [issue tracker](https://github.com/AY2021S1-CS2103T-T13-3/tp/issues)
   
 * **Enhancements to existing features**:
@@ -55,13 +55,12 @@ Given below are my contributions to the project.
     * Created an annotated diagram of Ui components. [\#159](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/159)
 
   * Developer Guide:
-    * Updated UML diagrams and description of the `cdel` feature. ([\#142](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/142))
-    * Added implementation details, UML diagrams and design considerations for the `sview` feature. ([\#266](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/266)), ([\#256](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/256))
+    * Updated diagrams and description of the Logic component and `cdel` feature. [\#142](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/142)
+    * Added implementation details, UML diagrams and design considerations for the `sview` feature. [\#266](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/266), [\#256](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/256)
     * Increased readability by rephrasing sections and improved consistency in punctuation and grammar. [\#227](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/227), [\#218](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/218)
-    * Updated UML diagrams and description of the Logic component. ([\#142](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/142))
     * Added captions for all figures. 
-    * Added View Session's use case and instructions for manual testing ([\#142](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/142))
-    * Added View Settings's use case ([\#249](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/249))
+    * Added View Session's use case and instructions for manual testing ([\#142](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/142)
+    * Added View Settings's use case ([\#249](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/249)
     
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#233](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/233), [\#159](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/159), [\#149](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/149), [\#153](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/153)
