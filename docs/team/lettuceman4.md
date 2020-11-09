@@ -60,6 +60,7 @@ Given below are my contributions to the project.
 * **Managed the punctuality of deliverables:** Reminded teammates of tasks and their deadlines. Helped with unfinished tasks.
 
 * **Community**: 
+
   * PR(s) reviewed (with non-trivial review comments): [\#279](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/279)
   * Reported bugs and suggestions for other teams in the class (examples: 
   [\#240](https://github.com/AY2021S1-CS2103T-W12-3/tp/issues/240), 
