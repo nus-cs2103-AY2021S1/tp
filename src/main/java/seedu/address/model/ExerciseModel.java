@@ -144,6 +144,7 @@ public interface ExerciseModel {
     void addGoal(Goal goal);
 
 
+
     /**
      * Replaces the given Exercise {@code target} with {@code editedExercise}.
      * {@code target} must exist in the exercise book.
