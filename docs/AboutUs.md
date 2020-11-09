@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ng Zhia Yang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhiayang.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/zhiayang)]
+[[portfolio](team/zhiayang.md)]
 
-* Role: Project Advisor
+* Role: Technical Lead
+* Responsibilities: Command Parser and Code Integration
 
-### Jane Doe
+### Seow Alex
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/seowalex.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/seowalex)]
+[[portfolio](team/seowalex.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Code Quality / Integration
+* Responsibilities: Undo and Redo Feature
 
-### Johnny Doe
+### Travis Toh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/trav1st.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/trav1st)]
+[[portfolio](team/trav1st.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Testing / Deliverables and Deadlines
+* Responsibilities: Statistics and Storage
 
-### Jean Doe
+### Teh Xue Yong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/fall9x.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/fall9x)]
+[[portfolio](team/fall9x.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Testing / Documentation
+* Responsibilities: GUI
 
-### James Doe
+### He Jialei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hjl99.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/hjl99)]
+[[portfolio](team/hjl99.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Deliverables and Deadlines / Scheduling and Tracking
+* Responsibilities: Filter Feature and Recipe Model

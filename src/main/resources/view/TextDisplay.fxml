@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox styleClass="welcome-pane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+      alignment="CENTER"><children>
+    <ImageView fitHeight="220.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../images/chopchop.png"/>
+    </ImageView>
+    <Label fx:id="textDisplay" styleClass="welcome-message" wrapText="true" textAlignment="CENTER"/>
+</children></VBox>
