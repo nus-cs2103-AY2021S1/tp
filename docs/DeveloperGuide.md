@@ -812,29 +812,36 @@ softwares such as Excel.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                           | So that I can…​                                                         |
-| -------- | ----------------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Priority | As a …​                     | I want to …​                                                                        | So that I can…​                                                        |
+| -------- | --------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `* * *`  | Real estate agent           | add a new property listing                                                          | add a new property entry when a seller wants to sell a new property    |
 | `* * *`  | Real estate agent           | add bidder or seller                                                                | keep track of bidders or sellers involved                              |
 | `* * *`  | Real estate agent           | view the list of interested sellers                                                 | keep track of property owners                                          |
-| `* *`    | Real estate agent           | edit the property listing                                                           | ensure that the property information is accurate                       |
-| `* * *`  | Real estate agent           | delete a property listing                                                           | remove listings that are closed or that sellers no longer want to sell |
-| `* *`    | Real estate agent           | view the listings I have by area                                                    | be better equipped to give more options to the buyers on the spot      |
-| `* *`    | Real estate agent           | input details about the rental                                                      | inform the client about the renter’s property                          |
-| `* *`    | Real estate agent           | edit the details of the property rental                                             | update with new information from the client                            |
+| `* * *`  | Real estate agent           | delete a property listing                                                           | remove listings that are closed or the sellers do not wish to sell     |
 | `* * *`  | Real estate agent           | search the properties by id, name or area etc                                       | filter properties according to my criteria                             |
 | `* * *`  | Real estate agent           | sort the listing according to my criteria                                           | obtain a filtered list to easily observe properties of the same type   |
-| `*`      | Real estate agent           | mark a property as sold                                                             | keep track on which houses are already sold                            |
-| `*`      | Real estate agent           | see the historical transactions                                                     | track my performance                                                   |
 | `* * *`  | Real estate agent           | add bids to my properties                                                           | keep track of my customers’ bids                                       |
-| `* * *`  | Real estate agent           | delete bids                                                                         | so that I can remove bids that are withdrawn by the bidders            |
+| `* * *`  | Real estate agent           | delete bids                                                                         | remove bids that are withdrawn by the bidders                          |
 | `* * *`  | Real estate agent           | view the current bids organised by property, sellers and buyers                     | keep track of the bids                                                 |
-| `* *`    | Real estate agent           | edit bids                                                                           | so that I can remove bids that are withdrawn by the bidders            |
-| `* * *`  | Busy real estate agent      | create meetings                                                                     | so that I can remove bids that are withdrawn by the bidders            |
-| `* * *`  | Busy real estate agent      | view the list of meetings                                                           | so that I can remove bids that are withdrawn by the bidders            |
-| `* * *`  | Busy real estate agent      | delete meetings                                                                     | so that I can remove bids that are withdrawn by the bidders            |
-| `* *`    | Busy real estate agent      | schedule meetings such that it can warn me if there is any clashes in meetings      | so that I can remove bids that are withdrawn by the bidders            |
-| `* *`    | Busy real estate agent      | edit meeting details                                                                | ensure that meeting details are accurate in case of changes            |
+| `* * *`  | Real estate agent           | create meetings                                                                     | set-up meetings easily with bidders and sellers for property           |
+| `* * *`  | Real estate agent           | view the list of meetings                                                           | keep track of all my meetings                                          |
+| `* * *`  | Real estate agent           | delete meetings                                                                     | remove meetings that are no longer happening                           |
+| `* *`    | Real estate agent           | view the listings I have by address                                                 | be better equipped to give more options to the buyers for certain areas|
+| `* *`    | Real estate agent           | edit the property listing                                                           | ensure that the property information is accurate                       |
+| `* *`    | Real estate agent           | label a property as a rental or not                                                 | to give options for buyers who may wish to rent only                   |
+| `* *`    | Real estate agent           | label the type of property the property is                                          | filter out specific properties based on the type buyers wish to buy    |
+| `* *`    | Real estate agent           | edit the details of the property rental                                             | update with new information from the client                            |
+| `* *`    | Real estate agent           | edit bids                                                                           | edit bids to ensure the information is accurate                        |
+| `* *`    | Real estate agent           | edit meeting details                                                                | ensure that meeting details are accurate in case of changes            |
+| `*`      | Real estate agent           | mark a property as sold                                                             | keep track on which houses are already sold without having to delete it|
+| `*`      | Real estate agent           | see the historical transactions                                                     | track my performance                                                   |
+| `* * *`  | Busy real estate agent      | delete bids or meetings related to properties/bidders that i delete                 | ensure that any invalid bids/meetings are conveniently removed         |
+| `* * *`  | Busy real estate agent      | delete properties related to a seller that I delete                                 | ensure that any invalid properties are conveniently removed            |
+| `* * *`  | Busy real estate agent      | delete properties related to a seller that I delete                                 | ensure that any invalid properties are conveniently removed            |
+| `* * *`  | Busy real estate agent      | sort meetings by date                                                               | can quickly reference upcoming meetings without having to search       |
+| `* *`    | Busy real estate agent      | see what is the highest bid amount for a property                                   | quickly check if the highest bid amount is satisfactory for the seller |
+| `* *`    | Busy real estate agent      | schedule meetings such that it can warn me if there is any clashes in meetings      | ensure my schedule will not be problematic due to unintended clashes   |
+
 
 
 ## Appendix C: Use cases
@@ -948,8 +955,11 @@ Use case ends.
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 500 Entities(Property, Bidder, Seller, Bid, Meeting) without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The product should be able to work without an internet connection.
+5.  The product should be able to save all changes to storage locally.
+6.  The product should not take above 10 seconds to execute any commands.
 
 
 ### Glossary
