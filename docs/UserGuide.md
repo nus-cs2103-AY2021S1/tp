@@ -8,11 +8,11 @@ Welcome to FitEgo! This document will serve as a user guide to the all-in-one sc
 Made with **fitness instructors** in mind, **FitEgo** is a **desktop program** that helps them **manage their clients and schedules**, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **FitEgo** can get your client management tasks done faster than traditional GUI apps.
 
 <h2>Table of Contents</h2>
-
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-before: always"></div>
 
 # 1 Quick start
 
@@ -25,12 +25,12 @@ If this is your first time, here are some quick tips to get started.
 1. Copy the file to the folder you want to use as the _home folder_ for your **FitEgo** program.
 
 1. Double-click the file to start the app. The GUI similar to the figure below should appear in a few seconds. Note how the app contains some sample data.<br>
- <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+     <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid;">
      <p>
          <img src="images/Ui.png" style="width: 100%%; height: auto;"/>
      </p>
      <figcaption> Figure 1 - Sample screenshot of our Ui</figcaption>
- </figure>
+     </figure>
 
 1. Type the command in the command box and press "Enter" key to execute it. e.g. typing **`help`** and pressing "Enter" key will open the help window.<br>
   Some example commands you can try:
@@ -43,10 +43,11 @@ If this is your first time, here are some quick tips to get started.
 
    * **[`exit`](#315-exiting-the-program--exit)** : Exits the app.
 
-1. Read [Overview](#12-overview) for a quick understanding of commands in FitEgo.
+1. Read the [Overview](#12-overview) section for a quick understanding of commands in FitEgo.
 
-1. Refer to the [Keyword](#31-main-keywords) below for more details of each command.
+1. Refer to the [Keyword](#31-main-keywords) section below for more details of each command.
 
+<div style="page-break-before: always"></div>
 
 ### 1.1 How to interpret notations
 
@@ -94,20 +95,19 @@ An example to follow.
 May have irreversible effect when used. Backup and caution is recommended.
 </div>
 
+<div style="page-break-before: always"></div>
 
 ### 1.2 Overview
 
-You're a fitness instructor.
+You are a fitness instructor.
 
 You record your clients' details, training progress, payment status and your own timetable across 3 or 4 different applications.
 
-You struggle to keep all of them updated.
-
-You struggle even more to get insights out of them.
+You struggle to keep all of them updated. You struggle even more to get insights out of them.
 
 FitEgo can help you with that. Here's how:
 
-FitEgo lets you record crucial information that you want to keep track of using three types of entities:
+FitEgo lets you record crucial information that you want to keep track of using three types of entities as shown in the table below.
 
 <center> Table 1 - Summary of entities </center>
 
@@ -117,71 +117,70 @@ Client | c | Someone who is interested in or has engaged with your services
 Session | s | Timeslot for a fitness session
 Schedule | sch | A client's booking of a session
 
-And here's what you can do:
-1. When you find a client that is interested in your fitness training services, you can add him/her to your list of clients with the: <br />
-[`cadd` command](#322-adding-a-client--cadd)
-2. Next, create a fitness session on any free timeslot that you have with the: <br />
-[`sadd` command](#331-adding-a-session--sadd)
-3. And, schedule your client to the fitness session with the: <br />
-[`schadd` command](#341-adding-a-schedule--schadd)
+Here's what you can do:
+1. When you find a client that is interested in your fitness training services, you can add him/her to your list of clients with the 
+[`cadd` command](#322-adding-a-client--cadd).
+2. Next, create a fitness session on any free timeslot that you have with the 
+[`sadd` command](#331-adding-a-session--sadd).
+3. And, schedule your client to the fitness session with the 
+[`schadd` command](#341-adding-a-schedule--schadd).
 
 Simple? That's the point of FitEgo.
 
 Now, you will probably need to edit, delete and look through your clients and sessions along the way - 
-FitEgo supports all those features and more.
+FitEgo supports all those features and more. Ready to begin? Let's start exploring!
 
-Ready to begin? Let's start exploring!
-    
 ### 1.3 General Note
 
 The program will automatically save after every command execution to guarantee that your data will never be lost.
 
-
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-before: always"></div>
 
 # 2 UI-orientation
 
-You can refer to the table and the figure below to familiarize yourself with the user interface of FitEgo.
+You can refer to the figure below to familiarize yourself with the user interface of FitEgo.
 
 [comment]: <> (Why cant you figure out yourself?)
 
- <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+ <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid;">
      <p>
          <img src="images/AnnotatedUi.png" style="width: 100%%; height: auto;"/>
      </p>
      <figcaption> Figure 2 - Callouts of the various UI components</figcaption>
  </figure>
  
+ <div markdown="block" class="alert alert-primary">
+ 
+ :bulb: **Tip:**
+ 
+ You can type into the Command Box and it will display the commands that start with your current input. <br/>
+  <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid;">
+      <p>
+          <img src="images/autocomplete_sample.png" style="width: 100%%; height: auto;"/>
+      </p>
+      <figcaption> Figure 3 - Sample of autocomplete command</figcaption>
+  </figure>
+ For example, in the above figure, if you enter `c` and commands that starts with "c" is displayed. <br>
+ For advanced users, you can use the "TAB" key and FitEgo will auto-complete the first suggestion into the command box, thus increasing your typing speed!   
+ </div>
+ 
+ The table below describes the function of each UI component.
+
 <center> Table 2 - Functions of UI Components </center>
-From the figure above, the GUI is made up of several components. 
 
 | Component | Description |
 | --------------- | ---------------------------------------- | 
 | Toolbar         | Displays the toolbar for this program. You can access the `exit` and `help` command from here.  | 
 | Command Box     | Displays a text box for your input. You can type your command here.          | 
 | Result Display  | Displays the result of your command. If the execution is successful, it will display a success message. Otherwise, it will prompt an error message | 
-| Client List     | Displays the list of clients in a list view. You can modify this list using [client-related commands](#32-client-related-keywords) |
+| Client List     | Displays the list of clients. You can modify this list using [client-related commands](#32-client-related-keywords) |
 | Main Window     | Displays the main window of this program. It consists of the statistics of this program, today's schedule and quote of the day | 
-| Session List    | Displays the list of your sessions in a list view. You can modify this list using [session-related commands](#33-session-related-keywords) | 
+| Session List    | Displays the list of your sessions. You can modify this list using [session-related commands](#33-session-related-keywords) | 
 | Status Bar Footer | Displays the current date and time of the program. If you notice this is incorrect, your PC might be using a different timezone| 
 
-
-<div markdown="block" class="alert alert-primary">
-
-:bulb: **Tip:**
-
-You can type into the Command Box and it will display the commands that start with your current input. <br/>
- <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
-     <p>
-         <img src="images/autocomplete_sample.png" style="width: 100%%; height: auto;"/>
-     </p>
-     <figcaption> Figure 3 - Sample of autocomplete command</figcaption>
- </figure>
-For example, in the above figure, if you enter `c` and commands that starts with "c" is displayed. <br>
-For advanced users, you can use the "TAB" key and FitEgo will auto-complete the first suggestion into the command box, thus increasing your typing speed!   
-</div>
-
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-before: always"></div>
 
 # 3 Keyword
 
@@ -217,6 +216,8 @@ In this section, you can find all the keywords that will help you fully utilize 
 This program has separated the keywords into 4 different categories - [Main](#31-main-keywords),
 [Client](#32-client-related-keywords), [Session](#33-session-related-keywords) and [Schedule](#34-schedule-related-keywords).
 
+<div style="page-break-before: always"></div>
+
 ## 3.1 Main Keywords
 All main keywords are described in this section.
 
@@ -224,7 +225,7 @@ All main keywords are described in this section.
 
 You can return to the home page by using this command. 
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid;">
      <p>
          <img src="images/homepage.png" style="width: 100%%; height: auto;"/>
      </p>
@@ -242,11 +243,13 @@ If your session spreads over more than 1 day, the schedule will still be display
 
 </div>
 
+<div style="page-break-before: always"></div>
+
 ### 3.1.2 Viewing help : `help`
 
 You can ask FitEgo to open a window with a link to the help page as shown in the figure below.
 
- <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+ <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid;">
      <p>
          <img src="images/helpMessage.png" style="width: 100%%; height: auto;"/>
      </p>
@@ -258,7 +261,7 @@ Format: `help`
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:**
-By default, you can press "ENTER" key and a browser will open the User Guide. This pop-up window will close after you clicked on the link. 
+By default, you can press the spacebar key and a browser will open the User Guide. This pop-up window will close after you clicked on the link. 
 Alternatively, you may press the "ESC" key to close this window. 
 </div>
 
@@ -266,7 +269,7 @@ Alternatively, you may press the "ESC" key to close this window.
 
 You can ask FitEgo to open a window to change user settings.
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid;">
      <p>
          <img src="images/settingsWindow.png" style="width: 100%%; height: auto;"/>
      </p>
@@ -286,6 +289,8 @@ The current settings available are:
  * preferred weight unit for graphs <br/>
  *more to come!
 </div>
+
+<div style="page-break-before: always"></div>
 
 ### 3.1.4 Clearing all data in the program : `clear` 
 
@@ -311,6 +316,7 @@ Format: `exit`
 Your data in FitEgo are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ---
+<div style="page-break-before: always"></div>
 
 ## 3.2 Client-related Keywords
 
@@ -328,9 +334,9 @@ Each client must have a unique email.
 
 Client-related commands will interact with the Client List which is located on the [left of the UI](#2-ui-orientation). 
 
- <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+ <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid;">
      <p>
-         <img src="images/ClientPanel.png" style="width: 100%%; height: auto;"/>
+         <img src="images/ClientPanel.png" style="width: 30%; height: auto;"/>
      </p>
      <figcaption> Figure 7 - Sample of Client List</figcaption>
  </figure>
@@ -342,6 +348,8 @@ Client-related commands will interact with the Client List which is located on t
 The Next Session field below each Client shows you the earliest upcoming session. It is not updated in real-time but after FitEgo executes a command.
 
 </div>
+
+<div style="page-break-before: always"></div>
 
 ### 3.2.1 Listing all Clients : `clist`
 
@@ -377,6 +385,7 @@ store his photo as `data/images/profile-alex-yeoh.jpg`
 
 Examples:
 * `cadd n/Jane Doe p/91234567 e/jane@gmail.com a/311, Clementi Ave 2, #02-25` adds a client with the specified name, phone number, email and address.
+
 * `cadd n/John Doe p/91231367 e/jojo@gmail.com a/311, Clementi Ave 2, #02-25 t/injured-thigh` adds a client with the specified name, phone number, email, address and tag.
 
 ### 3.2.3 Editing a Client : `cedit`
@@ -399,13 +408,14 @@ Examples:
 *  `cedit 1 t/` removes all of the tags of the first client in the Client List
 *  `cedit 2 p/12345678 t/injured-thigh` edits the phone number and tag of the second client in the Client List. As you can see in the figure below, both fields are updated after executing the command.
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid;">
     <p>
         <img src="images/cedit_sample.png" style="width: 100%; height: auto;"/>
     </p>
     <figcaption> Figure 8 - Result of executing <code>cedit 2 p/12345678 t/injured-thigh</code></figcaption>
 </figure>
 
+<div style="page-break-before: always"></div>
 
 ### 3.2.4 Locating Clients by Name : `cfind`
 
@@ -425,12 +435,14 @@ Examples:
 * `cfind John` returns `john` and `John Doe`
 * `cfind alex david` returns `Alex Yeoh`, `David Li` as shown in the figure below <br>
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid;">
      <p>
-         <img src="images/findAlexDavidResult.png" style="width: 100%%; height: auto;"/>
+         <img src="images/findAlexDavidResult.png" style="width: 40%; height: auto;"/>
      </p>
      <figcaption> Figure 9 - Result of finding clients by name </figcaption>
 </figure>
+
+<div style="page-break-before: always"></div>
 
 ### 3.2.5 Deleting a Client : `cdel`
 
@@ -485,17 +497,16 @@ Examples:
 * `cview 2` opens the second client in FitEgo
 * `cfind Bernice` followed by `cview 1` opens the first client (Bernice) in the resulting Client List
 
-<br>
-
 The result of these commands is shown in the figure below
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid;">
      <p>
          <img src="images/cview_sample.png" style="width: 100%%; height: auto;"/>
      </p>
      <figcaption> Figure 10 - Client View with Schedules </figcaption>
 </figure>
 ---
+<div style="page-break-before: always"></div>
 
 ## 3.3 Session-related Keywords 
 
@@ -513,7 +524,7 @@ Each session can be scheduled with multiple clients, to model a trainer instruct
 
 Session-related commands will interact with the Session List which is located on the [right of the UI](#2-ui-orientation). The figure below shows how it looks like.
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid;">
      <p>
          <img src="images/SessionPanel.png" style="width: 100%%; height: auto;"/>
      </p>
@@ -529,6 +540,8 @@ The default period of session view is 'WEEK'. You can change the period
 of session view using [<code>sview</code>](#334-viewing-sessions-within-period--sview) command.
  
 </div>
+
+<div style="page-break-before: always"></div>
 
 ### 3.3.1 Adding a Session : `sadd`
 
@@ -564,6 +577,7 @@ Examples:
 * `sadd g/New Gym ex/Endurance at/06/11/2020 0900 t/65` adds a session at gym `New Gym` with exercise type `Endurance` at `06/11/2020 0900hrs` that lasts for `65` minutes. 
 The figure above shows the result of a successful execution of this command. You might need to set the viewing period to all (`sview p/all`) to see the new session show up in the right panel.
 
+<div style="page-break-before: always"></div>
 
 ### 3.3.2 Editing a Session : `sedit`
 
@@ -582,12 +596,14 @@ Examples:
 *  `sedit 1 g/Machoman at/29/09/2020 1600 t/120` edits the gym of the first session to be `Machoman` and the start time and duration to be `29/09/2020 1600 with a duration of 120  minutes` while keeping all other fields the same
 *  `sedit 2 at/29/09/2020 1600 t/120` edits the start time and duration of the second session to be `29/09/2020 1600 with a duration of 120 minutes` while keeping all other fields the same
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid;">
      <p>
          <img src="images/sedit_sample.png" style="width: 100%%; height: auto;"/>
      </p>
      <figcaption> Figure 13 - Result of executing <code>sedit 1 g/Machoman at/29/09/2020 1600 t/120</code></figcaption>
 </figure>
+
+<div style="page-break-before: always"></div>
 
 ### 3.3.3 Deleting a Session : `sdel`
 
@@ -616,7 +632,8 @@ To force deletion of session (and all associated schedules), pass in the optiona
 * If there are one or more schedules associated with the second session, 
   `list` followed by `sdel 2 f/` will delete all schedules associated with the second session, then delete the session itself
   
-  
+<div style="page-break-before: always"></div>
+
 ### 3.3.4 Viewing Sessions within Period : `sview`
 You can filter the Session List to view sessions within requested period. This helps you to prioritise your sessions as needed.
 
@@ -648,13 +665,12 @@ Points to take note when viewing session from the Session List:
  | m / M | month |
  | y / Y| year |
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid;">
      <p>
          <img src="images/sview_sample.png" style="width: 100%%; height: auto;"/>
      </p>
      <figcaption> Figure 14 - Result of running <code>sview p/+2w</code></figcaption>
 </figure>
-
 Examples:
  
 * `sview p/all` displays all sessions stored in FitEgo
@@ -674,6 +690,7 @@ the Session List will still be showing Friday's sessions at that point of time. 
 </div>
 
 ---
+<div style="page-break-before: always"></div>
 
 ## 3.4 Schedule-related Keywords 
 
@@ -706,7 +723,7 @@ The table below shows an example of schedules. The session at Machoman Gym is at
 
 To check if you have scheduled a session with a client, you can check if the session in the Session List contains the client's name. 
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid;">
      <p>
          <img src="images/SchedulePanel.png" style="width: 100%%; height: auto;"/>
      </p>
@@ -731,7 +748,7 @@ Example:
 
 * `schadd c/1 s/1` schedules the first client in the Client List with the first session in the Session List. As you can see in the figure below, Alex Yeoh (the first client, marked by the red square) is added to the first session in the list (marked by the blue square).
 
- <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+ <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid;">
      <p>
          <img src="images/schadd_sample.png" style="width: 100%%; height: auto;"/>
      </p>
@@ -760,9 +777,9 @@ Examples:
 *  `schedit c/1 s/1 pd/paid` indicates that the first client in the Client List has paid for the first session in the Session List while keeping all other fields the same
 *  `schedit c/1 s/1 r/did 5 pushups` edits the schedule containing client index 1 and session index 1 to have remark of doing 5 pushups while keeping all other fields the same
 *  `schedit c/1 s/1 w/70` edits the schedule containing client index 1 and session index 1 to a weight of 70kg while keeping all other fields the same
-* `schedit c/1 s/1 r/` clears the schedule containing client index 1 and session index 1 remarks while keeping all other fields the same
+*  `schedit c/1 s/1 r/` clears the schedule containing client index 1 and session index 1 remarks while keeping all other fields the same
 
-<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
+<figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller; page-break-inside: avoid;">
      <p>
          <img src="images/schedit_sample.png" style="width: 100%%; height: auto;"/>
      </p>
@@ -786,6 +803,7 @@ Examples:
 * `schdel c/1 s/1` deletes the schedule associated with the first client in the Client List and first session in the Session List
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-before: always"></div>
 
 # 4 FAQ
 
@@ -803,7 +821,6 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-
 # 5 Command Summary
 
 You can find the comprehensive list of commands in the table below. 
@@ -817,6 +834,8 @@ You can find the comprehensive list of commands in the table below.
 | Open Settings Window | `settings` |
 | Clear all data | `clear` |
 | Exit this program | `exit` |
+
+<div style="page-break-before: always"></div>
 
 <center>Table 7 - Keyword based Commands Summary (grouped by action) </center>
 
