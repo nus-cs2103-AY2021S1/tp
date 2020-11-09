@@ -486,17 +486,18 @@ This design is to prevent Users from opening multiple windows of the same patien
 The Help window shows all the commands that are available to **Hospify**.
 
 ###### Implementation:
-The process in which the `HelpWindow` is shown is similar to the ![showApptCommand](#46-show-appointment-feature-by-peh-jun-siang)
+The process in which the `HelpWindow` is shown is similar to the [showApptCommand](#46-show-appointment-feature-by-peh-jun-siang)
  using the **CLI**.
 
-The only main differences are,
-* The HelpWindow does not have a parser.
+The only **main differences** are,
+* The `HelpWindow` does not have a parser.
 * Instead of retrieving appointments, it retrieves the `COMMAND_USAGE` from each of the commands and render them
 into a `CommandDescription` similar to `AppointmentDescription` which is responsible from making the Strings look good
 in the `HelpWindow`.
-* MainWindow checks for `isHelpWindow` and calls `HelpWindow.show()` instead of `AppointmentWindow.show()`.
+* `MainWindow#execute()` checks for `isHelpWindow()` and calls `HelpWindow#show()` instead of `AppointmentWindow#show()`.
 
-The process in which the `CommandDescription` are rendered into a tableView is identical.
+The process in which the `CommandDescription` are rendered into a tableView is identical 
+to [showApptCommand](#46-show-appointment-feature-by-peh-jun-siang).
 
 --------------------------------------------------------------------------------------------------------------------
 
