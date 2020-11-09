@@ -12,12 +12,22 @@
 * [3.4. Common Class](#36-common-classes)
 
 4.[ Implementation](#4-implementation)  
+* [4.1. Archive Command](#41-archive-command)
+* [4.2. Calories Graph](#42-displaying-graph-of-calories-burnt)
+* [4.3. Template](#43-template)
+* [4.4. GoalBook](#44-goalbook)
+* [4.5. Update Command](#45-updating-an-exercise)
+* [4.6. Search for specific Exercise](#46-searching-for-specific-exercise)
+
+
 5.[ Documentation, Logging and Testing](#5-documentation-logging-testing-configuration-dev-ops)  
 6.[ Appendix A: Requirements](#6-appendix-a-requirements)  
 7.[ Appendix B: User Stories](#7-appendix-b-user-stories)  
 8.[ Appendix C: Use Cases](#8-appendix-c-use-cases)  
 9.[ Appendix D: Non-Functional Requirements](#9-appendix-d-non-functional-requirements)  
-10.[ Appendix E: Instructions For Manual Testing](#10-appendix-e-instructions-for-manual-testing)
+10.[ Appendix E: Glossary](#10-appendix-e-glossary)
+11.[ Appendix F: Instructions For Manumal Testing](#11-appendix-f-instructions-for-manual-testing)
+
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -156,7 +166,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## 4. Implementation
 
-### 4.1. Archive
+### 4.1. Archive Command
 (Phyo Han)  
 
 Since Calo always stores all the exercises that the user did in the past, it is always a good idea to archive past exercises
@@ -175,10 +185,15 @@ A high level illustration of the executation is given in the following sequence 
 
 Step 1: Users enter the command which will consists of the keyword `archive`, the parameter `f/` followed by the file location.
 This input is stored as a `String`.  
+
 Step 2: The `String` is then passed to `ExerciseBookParser` which will cascade the `String` into meaning parts.  
+
 Step 3: `ExerciseBookParser` create the `ArchiveCommand` and set the `Storage` component for `ArchiveCommand`.  
-Step 4: `ExerciseBookParser` passes the `ArchiveCommand` back to the `LogicManager` and the `LogicManager` executes the command.
+
+Step 4: `ExerciseBookParser` passes the `ArchiveCommand` back to the `LogicManager` and the `LogicManager` executes the command.  
+
 Step 5: During the executation, `ArchiveCommand` interacts with `Storage` who will write to the Local File on the user's computer.  
+
 Step 6: If the user has no permission to write on the specific file location, an error message will appear on user screen.
 Else, a success message will appear on the user Response Box.  
 
@@ -217,8 +232,11 @@ for that day as the value. `CaloriesGraph` will then take values for the most re
 them on the Calories Graph.
 
 Step 1: User enter a valid command.  
+
 Step 2: The command is passed to the `LogicManager` which parse and execute the command.  
+
 Step 3: After the update is done, `MainWindow` called `getCaloriesByDay()` which is a HashMap that contains the summarised information.  
+
 Step 4: `MainWinodw` re-render all its `Ui` component including `CaloriesGraph`.  
 
 ![Flow Diagram for Calories Graph](images/CaloriesGraphFlowDiagram.png)
@@ -324,16 +342,22 @@ Note: If you find the text above too small, you might want to check out the diag
 
 Here are the steps:
 Step 1: `LogicManager` calls its  `execute` method, supplying the argument "update 1 d/30 c/260 m/chest t/home", which was entered by the user.  
+
 Step 2: `LogicManager` calls the `exerciseBookParser`'s `parseCommand` method, supplying the user input.  
+
 Step 3: In `parseCommand`, the user input is parsed and its command word (`update`) is matched to the `UpdateCommandParser`. `UpdateCommandParser`'s `parse` method is called, passing in the parsed arguments.
+
 Step 4: In `UpdateCommandParser`'s `parse` method, a `EditExerciseDescriptor` object
 is created. Each field of the parsed arguments are added to the `EditExerciseDescriptor` object. `UpdateCommandParser` then creates an `UpdateCommand` object containing the index of the `exercise` to edit and the `EditExerciseDescriptor` object. In the sequence diagram, the argument `index` refers
 to the `Index` object representing the index of the first exercise, while `editExerciseDescriptor`
 refers to the `EditExerciseDescriptor` object that contains the data (from the parsed
 arguments) to update.  
+
 Step 5: `LogicManager` obtains the `UpdateCommand` object, which is referenced by the `command` variable. It then executes the `execute` method of  the `UpdateCommand` object.  
+
 Step 6: In the `execute` method, the `UpdateCommand` object calls `getFilteredExerciseList` to 
 to obtain `lastShownExerciseList`. The `Exercise` to edit is retrieved from the `lastShownExerciseList` using the `index`, and assigned to `exerciseToEdit`. Another `Exercise` object, named `editedExercise` is created to hold the data to be updated. The `UpdateCommand` object then calls the `setExercise` method of `Model`, with `exerciseToEdit` and `editedExercise`.  
+
 Step 7: A new `CommandResult` is created containing the message to be displayed to the user,
 which is "Edited Exercise: Name: running Description: 30 Date: 10-12-2020 Calories: 260 Muscles worked:[chest] Tags: [home]". This `CommandResult` is returned to `LogicManager`.  
 
@@ -344,7 +368,9 @@ Due to a limitation of PlantUML, it is not possible to do so here.
 
 #### 4.5.2. Design Considerations
 
+
 **Aspect**: Process of updating the new data in `model`
+
 
 * **Alternative 1 (Current choice)**: Replace `Exercise` to be updated in `UniqueExerciseList` of `ExerciseBook` with another `Exercise` object containing the updated data.
   * Pros: Atomic updates.
@@ -357,7 +383,9 @@ Due to a limitation of PlantUML, it is not possible to do so here.
   * Pros: Will use less memory (no new `Exercise` object will be created)
   * Cons:If an error occurs in the middle of the process, the fields which were updated would not recover the original values.
 
-#### 4.4.3 Summary
+
+#### 4.5.3. Summary
+
 
 The following activity diagram summarizes what happens when a user executes an `update` command:
 
@@ -392,12 +420,16 @@ The sequence diagram below demonstrates how the `find` command works:
 How the `find` command works:
 
 Step 1: `LogicManager` executes the user input, using `ExerciseBookParser` to realise this is a `find` command, and create a new `FindCommandParser` object.  
+
 Step 2: The `FindCommandParser` object parses the user-entered arguments, and creates a `PropertiesMatchPredicate`.  
+
 Step 3: This `PropertiesMatchPredicate` object is  then used to construct a new `FindCommand` object, returned to `LogicManager`.  
+
 Step 4: `LogicManager` calls the `execute` method of the created `FindCommand`, which filters for `Exercise` objects that evaluate the predicate created previously to be true.  
 It then returns a new CommandResult object reflecting the status of the execution. These changes are eventually reflected in the GUI.
 The `find` command therefore searches through the existing Exercise List and then displays the relevant search results in the GUI’s Exercise List.  
 
+  
 To search for the most recent exercise with the user-specified `Name`, we use `RecallCommandParser` to parse the user input and create a new `RecallCommand` object with the parsed input.
 The `RecallCommand` then goes through the existing Exercise List to find the most recent date, creates the `TheMostRecentDatePredicate`, and updates the GUI display when executed.
 
@@ -407,7 +439,9 @@ The sequence diagram below demonstrates how the `recall` command works:
 How the `recall` command works:
 
 Step 1: `LogicManager` executes the user input, using `ExerciseBookParser` to realise this is a `recall` command, and create a new `RecallCommandParser` object.  
+
 Step 2: The `RecallCommandParser` object parses the user-entered arguments, and creates a `RecallCommand` object which is returned to `LogicManager`.  
+
 Step 3: `LogicManager` calls the `execute` method of the created `RecallCommand`, which creates the `TheMostRecentDatePredicate` and filters for `Exercise` objects that evaluate the predicate created previously to be true.
 It then returns a new CommandResult object reflecting the status of the execution. These changes are eventually reflected in the GUI.  
 
@@ -512,6 +546,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 </p>
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### **Use case: Add a template**
 
 *MSS*
@@ -531,6 +567,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       1b1. Calo shows an error message, informing the user about duplicate template.<br>  
     Use case ends.<br>
 </p>
+
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### **Use case: Add an exercise based on an existing template**
 
@@ -553,7 +592,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 </p>
 
+
+--------------------------------------------------------------------------------------------------------------------
+
+
 #### **Use case: Add a goal**
+
 
 *MSS*
 1.  User requests to create a goal for the day.  
@@ -573,11 +617,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.  
 </p>
 
+
 #### **Use case: Archive data**
 
   *MSS*
 1.  User requests to archive data to a different file location.
 2.  Calo archives data to the specified location.  
+
     Use case ends.
 
 *Extensions*
@@ -586,6 +632,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       1a1. Calo shows an error message, displaying that the file cannot be created at the specified location.<br>
     Use case ends.
 </p>
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### **Use case: Find exercises with a keyword**
 
@@ -601,6 +649,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 </p>
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### **Use case: Recall exercises with a keyword**
 
 *MSS*  
@@ -615,6 +665,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 </p>
 
+--------------------------------------------------------------------------------------------------------------------
 
 #### **Use case: Update an exercise**
 
@@ -632,6 +683,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 </p>
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### **Use case: Delete an exercise**
 
 *MSS*
@@ -647,6 +700,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 </p>
 
+--------------------------------------------------------------------------------------------------------------------
 
 #### **Use case: List exercises**
 
@@ -662,13 +716,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 </p>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### 9. Appendix D: Non-Functional Requirements
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 exercise items without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Application does not access the internet.
 
-### Glossary
+### 10. Appendix E: Glossary
 
 * **CLI**: Command Line Interface. It is a a text-based user interface.
 * **GUI**: Graphical User Interface. It is a user interface that includes graphical elements.
@@ -681,7 +737,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 10. Appendix E: Instructions for manual testing
+## 11. Appendix F: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
