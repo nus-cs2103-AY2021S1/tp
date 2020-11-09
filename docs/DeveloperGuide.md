@@ -104,12 +104,13 @@ Symbol | Meaning
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## 5. **Design**
-
+ 
 ### 5.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
+<div align="center">Figure 1: Architecture Diagram</div><br>
 
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+The ***Architecture Diagram*** given above (Figure 1) explains the high-level design of the App. Given below is a quick overview of each component.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -135,21 +136,24 @@ Each of the four components,
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
+For example, the `Logic` component (Figure 2) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+<div align="center">Figure 2: Logic Component Class Diagram</div><br>
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below (Figure 3) shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<div align="center">Figure 3: Architecture Sequence Diagram</div><br>
 
 The sections below give more details of each component.
 
 ### 5.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
+<div align="center">Figure 3: Ui Component Class Diagram</div><br>
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/ui)
@@ -166,6 +170,7 @@ The `UI` component,
 ### 5.3 Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
+<div align="center">Figure 4: Logic Component Class Diagram</div><br>
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-W15-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
@@ -179,6 +184,7 @@ The `UI` component,
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<div align="center">Figure 5: Delete Sequence Diagram</div><br>
 
 <div markdown="span" class="alert alert-info">
 :information_source: The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -187,9 +193,13 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 ### 5.4 Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
+<div align="center">Figure 6: Model Component Class Diagram</div><br>
+
+![Structure of the Admin Class](images/AdminClassDiagram.png)
+<div align="center">Figure 7: Admin Class Diagram</div><br>
 
 ![Structure of the Academic Class](images/AcademicClassDiagram.png)
-![Structure of the Academic Class](images/AdminClassDiagram.png)
+<div align="center">Figure 8: Academic Class Diagram</div><br>
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W15-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -203,8 +213,7 @@ The `Model`,
 ### 5.5 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
-
-Figure 4.5.1. Class diagram for `Storage` component
+<div align="center">Figure 9: Storage Class Diagram</div><br>
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W15-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -217,14 +226,12 @@ The `JsonSerializableReeve` component stores `JsonAdaptedStudent` objects conver
 Each `JsonAdaptedStudent` object also contains json-friendly versions of `Student` data as shown in the class diagram below.
 
 ![Structure of JsonSerializableReeve](images/JsonSerializableReeveClassDiagram.png)
-
-Figure 4.5.2. Class diagram for `JsonSerializableReeve` component
+<div align="center">Figure 10: JsonSerializableReeve Class Diagram</div><br>
 
 The `JsonSerializableNotebook` component stores `JsonAdaptedNote` objects converted from `Note` objects in the `Model` component, as shown in the class diagram below.
 
 ![Structure of JsonSerializableNotebook](images/JsonSerializableNotebookClassDiagram.png)
-
-Figure 4.5.3. Class diagram for `JsonSerializableNotebook` component
+<div align="center">Figure 11: JsonSerializableNotebook Class Diagram</div><br>
 
 ### 5.6 Common classes
 
