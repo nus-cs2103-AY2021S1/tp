@@ -40,6 +40,7 @@ public class AddGradeCommand extends Command {
      * Creates an AddAssignmentCommand to add the specified {@code Grade}
      */
     public AddGradeCommand(ModuleName moduleToAdd, Grade grade) {
+        requireNonNull(moduleToAdd);
         requireNonNull(grade);
         logger.info("Adding a grade: " + grade.toString());
         this.moduleToAdd = moduleToAdd;
@@ -66,4 +67,21 @@ public class AddGradeCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, gradeToAdd));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddGradeCommand)) {
+            return false;
+        }
+
+        // state check
+        AddGradeCommand command = (AddGradeCommand) other;
+        return moduleToAdd.equals(command.moduleToAdd)
+                && gradeToAdd.equals(command.gradeToAdd);
+    }
 }

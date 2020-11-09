@@ -206,7 +206,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 * Stores a UniqueTodoList
 * Duplicate Task objects are now allowed
 
-TodoList will be explained more comprehensively in the [TodoList feature](#todolist-feature) Section
+TodoList will be explained more comprehensively in the [TodoList feature](#33-todolist-feature) Section
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -221,7 +221,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Add Module feature
 
-This feature creates and adds a new `Module` into the `ModuleList` if the contact does not already exist. 
+This feature creates and adds a new `Module` into the `ModuleList` if the `Module` does not already exist. 
 
 This feature is facilitated by the following classes:
 
@@ -273,11 +273,11 @@ Given below is the sequence diagram of how the operation to delete a `Module` wo
 * **Alternative 1 (current choice):** Delete a `Module` based on its index in the displayed `ModuleList`
   * Pros: Using the `Module` index allows us to uniquely identify the target `Module` to delete, reducing the room for possible error
   * Cons: The target `Module` to be deleted might not be displayed on the `ModuleList` and hence the `Module` index might not be
-          readily available. This can inconvenience users who have to search for the `Module` to retrieve the `Module` index.
+          readily available. This can inconvenience users who have to search for the `Module` to retrieve the `Module` index
 
 * **Alternative 2:** Delete a `Module` based on the `Module` name
-  * Pros: It can make the deletion process simpler for **users** who can provide the name of the `Module` without having to execute more commands.
-  * Cons: This is more difficult to implement.
+  * Pros: It can make the deletion process simpler for **users** who can provide the name of the `Module` without having to execute more commands
+  * Cons: This is more difficult to implement
 
 Alternative 1 was chosen since it is easier to implement and it makes the command simpler for users to input.
 
@@ -294,7 +294,7 @@ This feature is facilitated by the following classes:
     * It stores the `Module` details which will be used to edit the target `Module`
 
   * `EditModuleCommand`:
-    * It implements `EditModuleCommand#execute()` to edit the contact in `Model`
+    * It implements `EditModuleCommand#execute()` to edit the `Module` in `Model`
 
 
 Given below is an example usage scenario and how the mechanism for editing a `Module` behaves at each step:
@@ -318,11 +318,11 @@ Given below is the sequence diagram of how the operation to edit a `Module` work
           or a need to consider how it might affect the other command classes
   * Cons: Additional methods have to be implemented to replace the target module with the edited module
 
-* **Alternative 2:** Reuse `DeleteModuleCommand` to delete the target `Module` and `AddModuleCommand` to add the edited contact
+* **Alternative 2:** Reuse `DeleteModuleCommand` to delete the target `Module` and `AddModuleCommand` to add the edited `Module`
   * Pros: Reusing other commands would make the implementation of `EditModuleCommand` simpler and easier
   * Cons: It increases coupling between the 3 commands and this can cause issues in `EditModuleCommand` if either 
           `DeleteModuleCommand` or `AddModuleCommand` developed bugs or errors. Also, it might affect performance since 
-          executing `EditModuleCommand` will execute 2 other commands.
+          executing `EditModuleCommand` will execute 2 other commands
 
 Alternative 1 was chosen since it gave more freedom with regard to the implementation of `EditModuleCommand` since
 we were not restricted to reusing other commands. Less coupling between the classes meant that changes in one class would 
@@ -343,12 +343,12 @@ This feature is facilitated by the following classes:
     * It implements `FindModuleParser#parse()` to parse and validate the user input
     * It creates `NameContainsKeywordsPredicate` objects using the command arguments
    
-  * `FindContactCommand`:
+  * `FindModuleCommand`:
     * It implements `FindModuleCommand#execute()` to find all matching modules by updating the 
       filtered displayed module list in `Model` using the `NameContainsKeywordsPredicate` from `FindModuleParser`
 
 Given below is an example usage scenario and how the mechanism for finding `Module` behaves at each step:
-Step 1. `LogicManager` receives the user input `findcontact n/CS2100` from `Ui`
+Step 1. `LogicManager` receives the user input `findmodule CS2100` from `Ui`
 Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create a `FindModuleParser`
 Step 3. Additionally, `ModuleListParser` will call the `FindModuleParser#parse()` method to parse the command arguments
 Step 4. This creates a `NameContainsKeywordsPredicate` that will be used to obtain the filtered displayed `ModuleList`
@@ -383,33 +383,126 @@ The `unarchivemodule` command does the opposite — it calls `Model#unarchiv
 
 
 ### Module Assignment 
+In order for CAP 5 Buddy to properly support the students study, information of the students grades assignments and results should be kept.
+This would allow the student to adequately assess the current grades that he or she currently has. With knowledge of the grades already achieved for the module
+CAP 5 Buddy can calculate the current percentage and results for the student so that the student can understand how close he or she
+is to their next grade.
 
-#### \[Proposed\] GradeTracker feature
+The section below provides details on the implementation of each assignment related function and design considerations of these features.
 
-#### Proposed Implementation
+### Details of implementation
 
-The proposed grade tracker feature is an association class used to store additional information for the module. 
-The `Assignments` each store their own `assignment name`, `percentage of final grade` and `result`. 
+The model below shows the implementation of the `GradeTracker` that is stored under the `Module` class.
+Each `Module` can only have one `GradeTracker` which manages the assignments under that module.
+The `GradeTracker` stores a `UniqueAssignmentList` that ensures assignments within the list are not duplicates of each other.
+Each `Assignment` contains the following three fields: an `AssignmentName`, `AssignmentPercentage` and `AssignmentResult`.
 
+![Structure of the Grade Tracker Component](images/GradeTrackerDiagram.png)
 
-![Structure of the Module List Component](images/GradeTrackerDiagram.png)
+The list of all `GradeTracker` related features are:
+1. Add an Assignment: Adds a new assignment to the `GradeTracker`.
+2. Edit an Assignment: Edits a pre-existing assignment in the `GradeTracker`.
+3. Delete an Assignment: Deletes a pre-existing assignment in the `GradeTracker`.
+4. Add a Grade: Adds a grade for the overall module.
 
+#### Add Assignment Feature
+
+This feature creates and adds a new `Assignment` to the `GradeTracker` of a `Module`. This action
+is only allowed if the `Assignment` does not already exist in the `GradeTracker`.
+
+This feature is facilitated by the following classes:
+
+* `AddAssignmentParser`:
+  * It implements `AddAssignmentParser#parse()` to validate and parse the module name and assignment details.
+* `AddAssignmentCommand`:
+  * It implements `AddAssignmentCommand#execute()` which executes the creation of the `Assignment` and adds the
+  assignment to the module identified by the `ModuleName` that was parsed.
 
 When an `assignment` is added, it follows the sequence diagram as shown below. The sequence flows similarly 
 to the rest of the project as the command is parsed and then executed.
 
 ![Sequence Diagram of the Add Assignment Command](images/AddAssignmentSequenceDiagram.png)
 
+Given below is an example usage scenario and how the mechanism for adding an `Assignment` behaves at each step:
+
+Step 1. `LogicManager` receives the user input `addassignment n/CS2100 a/Quiz 1 %/20 r/85` from `Ui`
+
+Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create a `AddAssignmentParser`
+
+Step 3. Additionally, `AddAssignmentParser` will call the `AddAssignmentParser#parse()` method to parse the command arguments
+
+Step 4. An `AddAssignmentCommand` is created and the command arguments are passed to it.
+
+Step 5.  `AddAssignmentCommand#execute()` will be evoked by `LogicManager` to creates an `Assignment` using the parsed inputs, `Quiz 1` for `AssignmentName`, `20` for `AssignmentPercentage`
+and `85` for `AssignmentResult`. A `ModuleName` is also created using the input `CS2100`.
+
+Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
+`Module#addAssignment()` is executed with the `Assignment`, adding the assignment to the module's `GradeTracker`.
+
+Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+
 #### Design consideration:
 
-##### Aspect: Format to store the grade for a module
-* Alternative 1 : Grade stores CAP.
-    * Pros : Easier to integrate with Cap Calculator
-    * Cons : User has to manually input CAP and does not know the average from the assignments accumulated
+##### Aspect: Whether to directly store the assignments under module
+* Alternative 1 : Module stores assignments directly without any association class.
+    * Pros : Less work to be done.
+    * Cons : Less OOP.
     
-* Alternative 2 (current choice): Grade stores the raw score calculated from assignment
-    * Pros : Grade can be automatically calculated from the assignment overall percentage for user to view
-    * Cons : Requires separate CAP to be stored for Cap Calculator to access
+* Alternative 2 (current choice): Module stores a separate class that then stores the assignments
+    * Pros : More OOP and the assignments are less coupled to the Module.
+    * Cons : Takes more effort and complexity to recreate the unique object list within another layer(`Module`).
+    
+We implemented the second option despite its difficulty and complexity, taking more time to carry out as we felt
+that this feature was major enough to warrant the time and depth to implement.
+
+####Edit Assignment Feature
+
+This feature allows `assignments` within a `GradeTracker` to be edited. The fields that can be edited are the
+`AssignmentName`, `AssignmentPercentage` and its `AssignmentResult`. The grade tracker of the module to act on must
+currently have a valid assignment to target.
+
+This feature requires the following classes:
+
+* `EditAssignmentDescriptor`:
+  * It represents and encapsulates the edited assignment and stores the fields to replace the current ones.
+* `EditAssignmentParser`:
+  * It implements `EditAssignmentParser#parse()` to validate and parse the assignment `Index`, module name and assignment
+  edited details, creating an `EditAssignmentDescriptor` object with the edited details.
+* `EditAssignmentCommand`:
+  * It implements `EditAssignmentCommand#execute()` which will execute the editing of the assignment at the corresponding
+  assignment `Index` in the corresponding `Module` identified by the parsed module name.
+
+Given below is an example usage scenario and how the mechanism for editing an `Assignment` behaves at each step:
+
+Step 1. `LogicManager` receives the user input `editassignment 1 n/CS2100 a/Quiz 1` from `Ui`
+
+Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create a `EditAssignmentParser`
+
+Step 3. Additionally, `EditAssignmentParser` will call the `EditAssignmentParser#parse()` method to parse the command arguments
+
+Step 4. An `EditAssignmentCommand` is created and the command arguments are passed to it.
+
+Step 5. `EditAssignmentCommand#execute()` will be evoked by `LogicManager` to creates an `EditAssignmentDescriptor`
+using the parsed inputs, `Quiz 1` for `AssignmentName`. A `ModuleName` is also created using the input `CS2100`.
+
+Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
+`Module#setAssignment()` is executed with the `Assignment`, adding the assignment to the module's `GradeTracker`.
+
+Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+
+#### Design consideration:
+
+##### Aspect: Whether to directly store the assignments under module
+* Alternative 1 : Module stores assignments directly without any association class.
+    * Pros : Less work to be done.
+    * Cons : Less OOP.
+    
+* Alternative 2 (current choice): Module stores a separate class that then stores the assignments
+    * Pros : More OOP and the assignments are less coupled to the Module.
+    * Cons : Takes more effort and complexity to recreate the unique object list within another layer(`Module`).
+    
+We implemented the second option despite its difficulty and complexity, taking more time to carry out as we felt
+that this feature was major enough to warrant the time and depth to implement.
 
 ### Cap Calculator
 
@@ -1075,9 +1168,7 @@ ambiguity by ensuring all constraints related to the command are made known to t
     
 ### 3.4 Event list management feature
 
-
-
-### \[Proposed\] Add Event feature
+### Scheduler feature
 ![Structure of the Add Event command](images/AddEventSequenceDiagram.png)
 #### Proposed Implementation
 The idea of this feature is to be able to allow the user to keep track of his/her current events that
@@ -1111,9 +1202,139 @@ Pros:
 - Faster to implement.
 - Less effort needed, simply add on to the existing Parser.
 Cons:
-- Mess and less readible, hard to distinguish between differnt commands.
+- Mess and less readable, hard to distinguish between different commands.
 - Higher chance of errors, as we are mixing all the different parsers for every feature into a single Parser.
 - LONG methods.
+
+### Add Event Feature
+
+#### Implementation
+The way this feature is currently implemented is similar to that of AB3. In the `Logic` component, we are using a specialised parser called
+`SchedulerParser` that is currently set to handle all event related commands called by the user. This parser will activate the *_AddEventParser_*
+that works similarly to AB3, returning the `AddEventCommand` that is executed in the `LogicManager`. Similar to AB3 and Module Tracker, the addevent
+command will create the event based on the given user input and add that to the `EventList` to be stored.
+
+This command is being facilitated by two supporting classes, `EventName` and `EventTime`. `EventName` is a logic container that contains the name of the
+event to be created, and `EventTime` is the logic container for holding the date and time set by the user, as a LocalDateTime object. These two
+classes are used in the creation of an `Event`, as the `Event` Object will take in a `EventName` and `EventTime`.
+
+This is how Add Event works:<br>
+Step 1. `LogicManager` takes the user input from the `UiManager` and checks the command word to decide which parser to pass onto.<br>
+Step 2. `ParserManager` then selects `SchedulerParser` based on the command word.<br>
+Step 3. `SchedulerParser` takes the user input and separate the command word from the arguments.<br>
+Step 4. Based on the command word, the switch case selects the `AddEventParser` and passes the arguments into the parser.<br>
+Step 5. `AddEventParser` then uses the `ArgumentTokenizer` to break down the arguments by the Prefixes and returns them in a `ArgumentMultiMap`.<br>
+Step 6. Information under the name, date and tag prefixes are pulled out and checked for any invalid and null values,
+if any are present, an `ParseException` is thrown.<br>
+Step 7. Once all the relevant information is parsed, the respective supporting objects are created such as `EventName`, `EventTime` and `Tag`.<br>
+Step 8. The supporting objects are used to create the new `Event` that passes to the `AddEventCommand` constructor.<br>
+Step 9. `LogicManager` receives the newly created `AddEventCommand` and executes it.<br>
+Step 10. The execute method of `AddEventCommand` takes in the current model and adds the `Event` to the eventlist of the model.<br>
+
+### Delete Event Feature
+
+#### Implementation
+The implementation is similar to that of AB3 and of Add Event as mentioned previously. The main difference is the arguments that
+delete event takes in. Delete event will take in just one parameter, which is the index of the event based on the eventlist shown in the
+GUI.
+
+This is how Delete Event works:<br>
+Step 1. `LogicManager` takes the user input from the `UiManager` and checks the command word to decide which parser to pass onto.<br>
+Step 2. `ParserManager` then selects `SchedulerParser` based on the command word.<br>
+Step 3. `SchedulerParser` takes the user input and separate the command word from the arguments.<br>
+Step 4. Based on the command word, the switch case selects the `DeleteEventParser` and passes the arguments into the parser.<br>
+Step 5. `DeleteEventParser` then uses the `ArgumentTokenizer` to break down the arguments by the Prefixes and returns them in a `ArgumentMultiMap`.<br>
+Step 6. The value of the index is pulled out and checked for any invalid (non-positive integers) and null values,
+if any are present, an `ParseException` is thrown.<br>
+Step 7. The value parsed is used to create an `Index` that represents the value.<br>
+Step 8. The `Index` passes to the `DeleteEventCommand` constructor.<br>
+Step 9. `LogicManager` receives the newly created `DeleteEventCommand` and executes it.<br>
+Step 10. The execute method of `DeleteEventCommand` takes in the current model and removes the `Event` from the eventlist of the model.<br>
+
+### Edit Event Feature
+
+#### Implementation
+Just like in AB3, this feature is supported by a static inner class `EditEventDescriptor` which serves as a logic container to
+hold all the information fields that needs to be changed in the target event.
+
+`EditEventDescriptor` is used to inform the later command of what needs to be changed and what will remain tha same. It is designed
+using `Optional` where if the user did not input a new value for a parameter, then it will be an empty optinal object. Later on
+in the execution of the command, when the value in the descriptor is empty, then it will take the original value in the target event.
+
+The `EditEventCommand` also has a method called `createEditedEvent` which will help to make the newly update `Event`. It takes in the target
+event object and the descriptor that holds the changes to be made. How this works is that it will check for each field in event, if there exist
+a new value for that field. If there is, then the new field will be used to create the `Event`. For instance, if there is a new name for the event,
+then a new `EventName` will be created based on the new name and the new `Event` will be created with thi new `EventName`.
+
+This is how Edit Event works:<br>
+Step 1. `LogicManager` takes the user input from the `UiManager` and checks the command word to decide which parser to pass onto.<br>
+Step 2. `ParserManager` then selects `SchedulerParser` based on the command word.<br>
+Step 3. `SchedulerParser` takes the user input and separate the command word from the arguments.<br>
+Step 4. Based on the command word, the switch case selects the `EditEventParser` and passes the arguments into the parser.<br>
+Step 5. `EditEventParser` then uses the `ArgumentTokenizer` to break down the arguments by the Prefixes and returns them in a `ArgumentMultiMap`.<br>
+Step 6. The values under the preamble, name, date and tag prefixes are extracted out and checked for any invalid (non-positive integers) and null values,
+if any are present, an `ParseException` is thrown.<br>
+Step 7. The values parsed are used to create the supporting classes, `Index`, `EventName`, `EventTime` and `Tag`.<br>
+Step 8. These supporting classes will be passed into the descriptor object using the respective `set` methods.<br>
+Step 9. The descriptor and index passes along to the `EditEventCommand` constructor.<br>
+Step 10. `LogicManager` receives the newly created `EditEventCommand` and executes it.<br>
+Step 11. The execute method of `EditEventCommand` takes in the current model and calls the `createEditedEvent` methods as mentioned above, and
+replaces the target event with the new `Event` that is created.<br>
+
+### Find Event Feature
+
+#### Implementation
+Same as the previously mentioned features, the Find Event feature is similar as well. The key difference is that all of the
+parameters are optional but at least one must be present. The Find Event feature will search through the EventList and return a
+new filtered list that contains all the events that matches the given keywords.
+
+This feature is supported by four classes:
+ * `FindEventCritera` is used as a logic container to hold all the predicates that are going to be entered into the find command.
+ * `EventNameContainsKeyWordsPredicate` is used to create the predicate that returns true for all events that contains any of the keywords in their `EventName` field.
+ * `EventContainsDatePredicate` is used to create the predicate that returns true for all events that have the exact same date and time as entered by the user.
+ * `EventContainsTagPredicate` is used to create the predicate that returns true for all events that have the same `Tag` under them.
+
+This is how Find Event works:<br>
+Step 1. Similar to the other features mentioned previously.<br>
+Step 2. Similar to the other features mentioned previously.<br>
+Step 3. Similar to the other features mentioned previously.<br>
+Step 4. Similar to the other features mentioned previously.<br>
+Step 5. Similar to the other features mentioned previously.<br>
+Step 6. The values parsed by the `ArgumentTokenizer` are extracted out and used to create the supporting classes, `EventNameContainsKeyWordsPredicate`,
+`EventNameContainsKeyWordsPredicate`, `EventContainsDatePredicate` and `EventContainsTagPredicate`.<br>
+Step 7. `FindEventCriteria` is created and all the predicates will be added to it using the add method.<br>
+Step 8. The `FindEventCriteria` is then passed to the `FindEventCommand` constructor.<br>
+Step 9. The `LogicManager` receives the `FindEventCommand` and executes it.<br>
+Step 10. The execute method of `FindEventCommand` will pass all the predicates to the filtered list.<br>
+Step 11. The filtered list will take in the predicates and filters out the events that passes the predicates and update the
+`FilteredList<Event>`, which will be displayed in the GUI.<br>
+
+
+### Calendar GUI Feature
+![Calendar](images/CalendarView.png)
+#### Implementation  
+The Calendar is added to help reflect the Eventlist in the model. It generates an accurate monthly Calendar based on the current date
+and time of the user. This Calendar feature has 2 main parts, the FXML design and the GUI-component class, `Calendar`.
+
+The design of the Calender mainly consists of 2 Gridpanes, one for the header and the other is used to form the days in each month. The header Gridpane
+is a 1 x 1 grid, that contains a Label for the month and year, and two buttons for the users to cycle between the months in the Calender.
+The second Gridpane is a 7 x 7 grid. The first row is reserved for headers for the different days of the week, while the rest are used
+for filling up the days based on the month and year.
+
+The logic of the Calender is located in the `Calendar` under the Ui component. It contains methods to load the month based on the date of the header, a method to scan
+through the eventlist in model to identify the days of the events in the eventlist, and the methods for the buttons to switch between the next month and previous month.
+The constructor of the Calendar takes in the `ReadOnlyEventList` from model, so that it can check for the dates that need to be marked out. The constructor also
+loads in the values for `headerMonth`, `headerYear` and `now`. The `headerMonth` and `headerYear` is used to track which month and year to display in the Calendar, while the `now` tracks the
+current month and year to start the Calendar in each time it loads up.
+
+Each time the user presses any of the two buttons, depending on which, the method for handling the buttons will either add or minus a month from the `headerMonth`. This updates the
+Calendar on which month to display. Also, the method will check if the current is either the start or end on the year, so that it knows when to change the values of the year.
+
+Next, the method that loads the Calendar will pull the values of `headerMonth` and `headerYear`. It will check if the month is Feburary, and if so, it will check if the
+year is a leap year. Then, it will return the appropriate number of days for the `headerMonth`. Then, it checks what is the day of the week that the first day of
+this month is on, then it starts to fill up the grid starting from the first day of the week. A VBox is created for each grid cell, and a Label is created and added
+to that VBox with the correct value of the dates. If there is an event that falls on the date, it the colour of the VBox will be set to a different color
+to indicate an existing event.
   
 ##General Features
 

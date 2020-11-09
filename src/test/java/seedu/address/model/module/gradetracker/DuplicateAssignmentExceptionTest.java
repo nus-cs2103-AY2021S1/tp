@@ -1,7 +1,7 @@
 package seedu.address.model.module.gradetracker;
 
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAssignments.QUIZ_2;
+import static seedu.address.testutil.gradetracker.TypicalAssignments.QUIZ_2;
 
 import org.junit.jupiter.api.Test;
 

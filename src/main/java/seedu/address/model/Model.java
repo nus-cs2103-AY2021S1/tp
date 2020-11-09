@@ -16,7 +16,8 @@ import seedu.address.model.task.Task;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+
+    /** {@code Predicate} for {@code Contact} that always evaluate to true. */
     Predicate<Contact> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
 
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
@@ -172,15 +173,29 @@ public interface Model {
      * Sets module list to display the non-archived module list
      */
     void displayNonArchivedModules();
+    /**
+     * Returns true if archived module list is being displayed
+     */
+    boolean getModuleListDisplay();
 
     // ============================ ContactList ==================================================
 
     /**
-     * Replaces contact list data with the data in {@code contactlist}.
+     * Returns the user pref's contact list file path.
+     */
+    Path getContactListFilePath();
+
+    /**
+     * Sets the user prefs' contact list file path.
+     */
+    void setContactListFilePath(Path contactListFilePath);
+
+    /**
+     * Replaces contact list data with the data in {@code contactList}.
      */
     void setContactList(ReadOnlyContactList contactList);
 
-    /** Returns the ContactList */
+    /** Returns the ContactList. */
     ReadOnlyContactList getContactList();
 
     /**
@@ -208,7 +223,7 @@ public interface Model {
      */
     void setContact(Contact target, Contact editedContact);
 
-    /** Returns an unmodifiable view of the filtered contact list */
+    /** Returns an unmodifiable view of the filtered contact list. */
     ObservableList<Contact> getFilteredContactList();
 
     /**
@@ -225,12 +240,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateSortedContactList(Comparator<Contact> comparator);
-
-    /**
-     * Returns the file path of the contact list.
-     * @return Path contact list file path.
-     */
-    public Path getContactListFilePath();
 
     /**
      * Saves the current contact list state in history.
@@ -298,7 +307,20 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateSortedTodoList(Comparator<Task> comparator);
+    /**
+     * Saves the current todo list state in history.
+     */
+    void commitTodoList();
 
+    /**
+     * Restores the previous todo list state from history.
+     */
+    void undoTodoList() throws VersionedListException;
+
+    /**
+     * Restores the previously undone todo list state from history.
+     */
+    void redoTodoList() throws VersionedListException;
     // ========================== Scheduler Methods ============================================ //
 
     /**
@@ -355,24 +377,11 @@ public interface Model {
      * Restores the previously undone event list state from history.
      */
     void redoEventList() throws VersionedListException;
-    /**
-     * Saves the current todo list state in history.
-     */
-    void commitTodoList();
-
-    /**
-     * Restores the previous todo list state from history.
-     */
-    void undoTodoList() throws VersionedListException;
-
-    /**
-     * Restores the previously undone todo list state from history.
-     */
-    void redoTodoList() throws VersionedListException;
 
     /**
      * Saves the current CAP5Buddy list state in history.
      */
+    // ========================== General Methods ============================================ //
     void commit(int type);
 
     /**
@@ -385,8 +394,4 @@ public interface Model {
      */
     void redo() throws VersionedListException;
 
-    /**
-     * Returns true if archived module list is being displayed
-     */
-    boolean getModuleListDisplay();
 }
