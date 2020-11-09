@@ -33,6 +33,7 @@ Given below are my contributions to the project.
       * Created AddTaskCommand and its relevant parser
       * Added relevant test cases
     
+<div style="page-break-after: always;"></div>
 * **New Feature**: Created new command to edit an existing task (Pull request: [\#100](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/100))
     * What it does: allows the user to edit the properties of an existing task.
     * What changes made:

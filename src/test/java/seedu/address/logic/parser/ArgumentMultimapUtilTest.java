@@ -2,10 +2,10 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.ArgumentMultimapUtil.areOnlyTheseTwoPrefixesPresent;
-import static seedu.address.logic.parser.ArgumentMultimapUtil.arePrefixesPresent;
-import static seedu.address.logic.parser.ArgumentMultimapUtil.isOnlyOneGivenPrefixPresent;
-import static seedu.address.logic.parser.ArgumentMultimapUtil.isOnlyOnePrefixPresent;
+import static seedu.address.logic.parser.ArgumentMultimapUtil.hasAllPrefixes;
+import static seedu.address.logic.parser.ArgumentMultimapUtil.hasOnlyOneGivenPrefix;
+import static seedu.address.logic.parser.ArgumentMultimapUtil.hasOnlyOnePrefix;
+import static seedu.address.logic.parser.ArgumentMultimapUtil.hasOnlyTwoPrefixes;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,16 +23,17 @@ class ArgumentMultimapUtilTest {
         args.put(prefix1, "");
         args.put(prefix2, "");
         args.put(emptyPrefix, "");
-        assertTrue(arePrefixesPresent(args, prefix1));
-        assertTrue(arePrefixesPresent(args, prefix1, prefix2));
+        assertTrue(hasAllPrefixes(args, prefix1));
+        assertTrue(hasAllPrefixes(args, prefix1, prefix2));
     }
+
     @Test
     void arePrefixesPresent_notAllPrefixesPresent_false() {
         args = new ArgumentMultimap();
         args.put(prefix1, "");
         args.put(emptyPrefix, "");
-        assertFalse(arePrefixesPresent(args, prefix2));
-        assertFalse(arePrefixesPresent(args, prefix1, prefix2));
+        assertFalse(hasAllPrefixes(args, prefix2));
+        assertFalse(hasAllPrefixes(args, prefix1, prefix2));
     }
 
     @Test
@@ -40,18 +41,19 @@ class ArgumentMultimapUtilTest {
         args = new ArgumentMultimap();
         args.put(prefix1, "");
         args.put(prefix3, "");
-        assertTrue(isOnlyOneGivenPrefixPresent(args, prefix1));
+        assertTrue(hasOnlyOneGivenPrefix(args, prefix1));
         args.put(emptyPrefix, "");
-        assertTrue(isOnlyOneGivenPrefixPresent(args, prefix1));
-        assertTrue(isOnlyOneGivenPrefixPresent(args, prefix1, prefix2));
+        assertTrue(hasOnlyOneGivenPrefix(args, prefix1));
+        assertTrue(hasOnlyOneGivenPrefix(args, prefix1, prefix2));
     }
+
     @Test
     void isOnlyOneGivenPrefixPresent_twoGivenPrefixPresent_false() {
         args = new ArgumentMultimap();
         args.put(prefix1, "");
         args.put(prefix2, "");
         args.put(prefix3, "");
-        assertFalse(isOnlyOneGivenPrefixPresent(args, prefix1, prefix2));
+        assertFalse(hasOnlyOneGivenPrefix(args, prefix1, prefix2));
     }
 
     @Test
@@ -59,16 +61,17 @@ class ArgumentMultimapUtilTest {
         args = new ArgumentMultimap();
         args.put(prefix1, "");
         args.put(prefix3, "");
-        assertFalse(isOnlyOnePrefixPresent(args, prefix1, prefix2));
+        assertFalse(hasOnlyOnePrefix(args, prefix1, prefix2));
     }
+
     @Test
     void isOnlyOnePrefixPresent_onlyOneValidPrefixInMap_true() {
         args = new ArgumentMultimap();
         args.put(prefix1, "");
-        assertTrue(isOnlyOnePrefixPresent(args, prefix1));
-        assertTrue(isOnlyOnePrefixPresent(args, prefix1, prefix2));
+        assertTrue(hasOnlyOnePrefix(args, prefix1));
+        assertTrue(hasOnlyOnePrefix(args, prefix1, prefix2));
         args.put(emptyPrefix, "");
-        assertTrue(isOnlyOnePrefixPresent(args, prefix1, prefix2));
+        assertTrue(hasOnlyOnePrefix(args, prefix1, prefix2));
     }
 
     @Test
@@ -77,15 +80,16 @@ class ArgumentMultimapUtilTest {
         args.put(prefix1, "");
         args.put(prefix2, "");
         args.put(prefix3, "");
-        assertFalse(areOnlyTheseTwoPrefixesPresent(args, prefix1, prefix2));
+        assertFalse(hasOnlyTwoPrefixes(args, prefix1, prefix2));
     }
+
     @Test
     void areOnlyTheseTwoPrefixesPresent_onlyTheseTwoPrefixesInMap_true() {
         args = new ArgumentMultimap();
         args.put(prefix1, "");
         args.put(prefix2, "");
-        assertTrue(areOnlyTheseTwoPrefixesPresent(args, prefix1, prefix2));
+        assertTrue(hasOnlyTwoPrefixes(args, prefix1, prefix2));
         args.put(emptyPrefix, "");
-        assertTrue(areOnlyTheseTwoPrefixesPresent(args, prefix1, prefix2));
+        assertTrue(hasOnlyTwoPrefixes(args, prefix1, prefix2));
     }
 }

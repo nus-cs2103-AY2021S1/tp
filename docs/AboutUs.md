@@ -41,10 +41,10 @@ You can reach us at the repoUrl `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/T-Fang)]
 
-[[portfolio](team/T-Fang.md)]
+[[portfolio](team/t-fang.md)]
 
-* Role: Project Member
-* Responsibilities: Developer
+* Role: Developer
+* Responsibilities: Task manipulation
 
 ### Tan Chia Qian
 

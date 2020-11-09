@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.ArgumentMultimapUtil.isOnlyOneGivenPrefixPresent;
+import static seedu.address.logic.parser.ArgumentMultimapUtil.hasOnlyOneGivenPrefix;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASCENDING_SORT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCENDING_SORT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
@@ -66,8 +66,8 @@ public class TaskSorterCommandParser implements Parser<TaskSorterCommand> {
         if (argumentMultimap.numOfPrefixesWithNoValues() != 2) {
             return false;
         }
-        return isOnlyOneGivenPrefixPresent(argumentMultimap, PREFIX_ASCENDING_SORT, PREFIX_DESCENDING_SORT)
-                && isOnlyOneGivenPrefixPresent(argumentMultimap, PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME,
+        return hasOnlyOneGivenPrefix(argumentMultimap, PREFIX_ASCENDING_SORT, PREFIX_DESCENDING_SORT)
+                && hasOnlyOneGivenPrefix(argumentMultimap, PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME,
                         PREFIX_TASK_PROGRESS, PREFIX_TASK_IS_DONE);
     }
 }
