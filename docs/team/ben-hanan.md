@@ -8,7 +8,12 @@ title: Ben-Hanan's Project Portfolio Page
 
 ## Project: Eva
 
-Eva is a desktop HR management application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10000 Lines of Code.
+Eva is a desktop **HR management application** built in the java language. 
+The user interacts with it using a CLI, and it has a GUI created with JavaFX.
+
+Eva was developed in semester 1 of AY20/21 as a team project in the NUS SOC module **CS2103T Software Engineering**.
+Together with [my team](https://ay2021s1-cs2103t-w13-1.github.io/tp/AboutUs.html), we morphed the exiting java application
+[Address Book (Level 3)](https://se-education.org/addressbook-level3/) over a period of 7 weeks to what Eva is today.
 
 Given below are my contributions to the project.
 
