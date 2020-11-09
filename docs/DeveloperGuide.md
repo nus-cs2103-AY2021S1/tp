@@ -45,8 +45,8 @@ AddressBook-Level3 project created by the [SE-EDU initiative](https://se-educati
 
 Refer to the guide [_Setting Up and Getting Started_](SettingUp.md).
 
+<div style="page-break-after: always;"></div>
 ## <a name="design"></a>**Design**
-
 ### <a name="architecture"></a>Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
@@ -136,7 +136,6 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 <div style="page-break-after: always;"></div>
 
-
 ### <a name="model_component"></a>Model Component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -151,7 +150,6 @@ The `Model`,
 * does not depend on any of the other three components.
 
 <div style="page-break-after: always;"></div>
-
 
 ### <a name="storage_component"></a>Storage Component
 
