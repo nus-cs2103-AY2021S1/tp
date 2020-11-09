@@ -1,9 +1,9 @@
 @startuml
 start
-:User executes unassignall command;
+:User executes Unassignall command;
 
 :Unassign all contacts from all modules;
-:Update GUI to show update;
+:Update GUI to show changes;
 
 stop
 @enduml

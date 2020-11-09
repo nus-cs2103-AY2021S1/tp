@@ -519,8 +519,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | faculty leader          | clear all modules                   | discard all the semester's information                                              |
 | `* * *`  | faculty leader          | be able to switch semesters easily   | manage the other semester without having to reassign instructors                   |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `FaculType` and the **Actor** is the `user`, unless specified otherwise)

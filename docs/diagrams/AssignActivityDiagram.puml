@@ -1,12 +1,12 @@
 @startuml
 start
-:User executes assign command;
+:User executes Assign command;
 if () then ([at least one module is specified
  and all specified modules exist])
     if () then ([contact is not assigned to
       any specified modules])
         :Assign specified contact to specified modules;
-        :Update GUI to show update;
+        :Update GUI to show changes;
 
     else([else])
         : Show error message;

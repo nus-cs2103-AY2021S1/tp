@@ -1,22 +1,22 @@
 @startuml
 start
-:User executes unassign command;
-if() then ([no module specified])
+:User executes Unassign command;
+if() then ([no modules specified])
     :Unassign specified contact from all modules it is assigned to;
 else([else])
     if () then ([all modules exist])
-        if () then ([contact exists and
-assigned to all modules specified])
+        if () then ([contact is assigned to
+   all modules specified])
             :Unassign specified contact from specified modules;
-            :Update GUI to show update;
+            :Update GUI to show changes;
 
         else([else])
-            : show error message;
+            : Show error message;
         endif
 
 
     else ([else])
-        : show error message;
+        : Show error message;
     endif
 endif
 stop

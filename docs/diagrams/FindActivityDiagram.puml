@@ -6,13 +6,13 @@ start
 'diamond we place it as the true branch instead.
 
 if () then ([any of the keywords violate
-the given restrictions]
+           the given restrictions]
 )
-    :GUI shows error message;
+:Show error message;
 else ([else]
 )
-    :Filters list according to keywords;
-    :Update GUI to show filtered list;
+    :Filters contact list according to keywords;
+    :Update GUI to show filtered contact list;
 endif
 stop
 @enduml

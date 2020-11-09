@@ -7,8 +7,8 @@ start
 
 if () then ([module exists])
     :Delete specified module;
-    :Update GUI to show new module list and success message;
-else ([module does not exists])
+    :Update GUI to show changes;
+else ([else])
     :Show error message;
 endif
 stop
