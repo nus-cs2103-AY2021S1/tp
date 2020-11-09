@@ -16,8 +16,8 @@ the knowledge necessary to know to be able to modify the codebase and customize 
 ## **Introduction**
 
 tCheck is a desktop application that offers an integrated system to efficiently manage a bubble tea shop, of 
-the (imaginary) brand T-sugar, by providing sales tracking, ingredient tracking and manpower management. It is 
-optimized for CLI users to update and retrieve the information more efficiently.
+the (imaginary) brand T-sugar, by providing sales tracking, ingredients tracking and manpower management. It is 
+optimised for the Command Line Interface (CLI), so that users can update and retrieve the information more efficiently.
 
 ### Purpose of Document
 This document specifies the architecture and software design for the application, tCheck.
@@ -141,20 +141,21 @@ The `Person` sub-component,
 
 Figure x. Class diagram showing the structure of `Person` sub-component
 
+The `SalesRecordEntry` sub-component,
+* stores the sales book data
+* exposes an unmodifiable `ObservableList<SalesRecordEntry>` that can be 'observed'. e.g. the UI can be bound to this
+ list so that the UI automatically updates when the data in the list change.
+
 Given below is the class diagram showing the details of the `SalesRecordEntry` model:
 
 ![Structure of the SalesRecordEntry sub-component](images/SalesRecordEntryModelClassDiagram.png)
-
-The `SalesRecordEntry` sub-component,
-* stores the sales book data
-* exposes an unmodifiable `ObservableList<SalesRecordEntry>` that can be 'observed'. e.The UI can be bound to this
- list so that the UI automatically updates when the data in the list change.
 
 Given below is the class diagram showing details of the ingredient model:
 
 ![Structure of the Ingredient Model Component](images/IngredientModelClassDiagram.png)
 
-<div markdown="block" class="alert alert-info">:information_source: **Note:** The text in the middle of the
+<div markdown="block" class="alert alert-info">
+:information_source: **Notes on the class diagrams for the above 3 sub-components:** The text in the middle of the
  association arrows represents the role of the class at the arrow head. However, due to a limitation of
  PlantUML, where there cannot be two textboxes at the arrow head, the role has been placed in the middle of the arrow.
 </div>
@@ -195,14 +196,15 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 
-### \[Completed\] Recording/ Updating Sales Data
+### \[Completed\] Recording / Updating Sales Data
 
-tCheck allows users to record and update the sales information on the drink sold. The command to use this feature is:
+tCheck allows users to record and update the sales information on the drink sold. Such information is shown in the
+ Sales Tracker in tCheck's user interface. The command to use this feature is:
 `s-update DRINK [MORE_DRINKS]` where:
 * `DRINK` is formatted as `A/NUM`.
     * `A` refers to the drink's abbreviation.
     * `NUM` refers to the number of drinks sold. It should be a **non-negative unsigned integer** that is 
-less than or equal to 99999999.
+less than or equal to 9,999,999.
 
 The user may use this command for a single `Drink`, or multiple `Drink`s.
 
@@ -219,47 +221,49 @@ Currently, tCheck supports the tracking of 6 types of `Drink`s.
 The completed mechanism to record the sales data is facilitated by the `SalesBook`. It implements the
 `ReadOnlySalesBook` interface, which will allow the sales data to be displayed graphically in the user interface.
 The sales data is stored in a `UniqueSalesRecordList`, which is a list of `SalesRecordEntry`. A `SalesRecordEntry`
-contains the `numberSold` for a type of `Drink`. The `SalesBook` implements the following operations:
+contains the `numberSold` for a type of `Drink`. The `SalesBook` implements the following operation:
 
  * `SalesBook#overwriteSales(Map<Drink, Integer> sales)`  —  Overwrites the sales record with the given sales data
- * `SalesBook#isEmptySalesRecord()`  —  Returns true if the sales record is empty
 
-If the `SalesBook` has not been initialised with the user's sales input, which means that the `SalesBook` is empty, then
-the first sales record will set the sales record with the user input. Drink items that were not provided in the user
-input will be set to a default value of 0.
+If the `SalesBook` is empty (i.e. no `SalesRecordEntry` is stored in the `UniqueSalesRecordList`), then
+the using the `s-update` command will set the sales record with the user input. Drink items that were not provided in
+ the user input will be set to a default value of 0.
 
-Subsequent sales update will overwrite existing sales record for the particular `Drink`.
+Subsequent sales update will overwrite the existing sales record for the particular `Drink`.
 
-These operations are exposed in the `Model` interface as `Model#overwrite(Map<Drink, Integer> salesInput)` and
-`Model#isEmptySalesBook()`.
+This operation is exposed in the `Model` interface as `Model#overwrite(Map<Drink, Integer> salesInput)`.
 
 Given below is an example usage scenario and how the recording sales data mechanism behaves at each step.
 
-Step 1: The user launches the application for the first time. The `SalesBook` will be initialized with an empty
-`SalesBook` as no sales information has been recorded yet. The `UniqueSalesRecordList` is currently empty.
+Step 1: The user launches the application for the first time. The `SalesBook` will be initialised with
+ `SalesRecordEntries` for all `Drink`s with `numberSold` set to 0. The `SalesBook` is not empty.
 
 Step 2: The user executes the `s-update BSBM/100 BSBGT/120` command to record that 100 Brown Sugar Boba Milk (BSBM) and
-120 Brown Sugar Boba Green Tea (BSBGT) were sold. The `s-update` command will initialise the sales record in `SalesBook`
-when it is executed. This is because the current `SalesBook` is empty. It calls
-`Model#overwrite(Map<Drink, Integer> salesInput)`, which will save the sales data into the `UniqueSalesRecordList` in
-the `SalesBook`. The other `Drink` types whose sales numbers were not given will be initialised to 0.
-
+120 Brown Sugar Boba Green Tea (BSBGT) were sold. The `s-update` command calls 
+`Model#overwrite(Map<Drink, Integer> salesInput)`, which will only overwrite the `numberSold` in the `SalesRecordEntry`
+ for the `Drink` items that were given in the user input.
+ 
 Step 3: The user realises that he left out some sales data. He executes the `s-update BSBBT/180 BSPM/64` command to
-record that 180 Brown Sugar Boba Black Tea (BSBBT) and 64 Brown Sugar Pearl Milk (BSPM) were sold. Since the
-`SalesBook` has  already been initialised, when the `s-update` command executes, it calls 
+record that 180 Brown Sugar Boba Black Tea (BSBBT) and 64 Brown Sugar Pearl Milk (BSPM) were sold. A similar process
+ as in Step 2 occurs when executing the `s-update` command.
 
-`Model#overwrite(Map<Drink, Integer> salesInput)` which will only overwrite the sales data for the `Drink` items that
-were given in the user input will be overwritten.
+A second usage scenario is given below, which shows how the mechanism behaves when the user has corrupted the data file
+ for `SalesBook`: 
 
-Step 4: The user then realises that he had made an error in recording the number of Brown Sugar Boba Milk (BSBM) sold.
-He then executes the `s-update BSBM/110` to correct this error. The `s-update` command will call
-`Model#overwrite(Map<Drink, Integer> salesInput)` to overwrite the sales data for Brown Sugar Boba Milk (BSBM) only.
+Step 1: The user corrupted the data file for `SalesBook` and caused previous records to be deleted. Now, the
+ `SalesBook` is empty. 
+
+Step 2: The user proceeds to execute the `s-update BSPM/30` command to record that 30 Brown Sugar Pearl Milk 
+(BSPM) was sold. The `s-update` command will initialise the sales record in `SalesBook` when it is executed. 
+This is because the current `SalesBook` is empty. It calls `Model#overwrite(Map<Drink, Integer> salesInput)`,
+which will create new `SalesRecordEntries` and save the given sales data into the `UniqueSalesRecordList` in the
+ `SalesBook`. The other `Drink` types which were not given in the input will be initialised to 0.
 
 The following sequence diagram shows how the sales update operation works:
 
 ![SalesUpdateSequenceDiagram](images/SalesUpdateSequenceDiagram.png)
 
-<div markdown="block" class="alert alert-info">:information_source: **Note:** The lifeline for `SalesUpdateCommand`
+<div markdown="block" class="alert alert-info">:information_source: **Notes:** The lifeline for `SalesUpdateCommand`
  and the `SalesUpdateCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the
   lifeline reaches the end of diagram.
 </div>
@@ -268,7 +272,7 @@ The following activity diagram summarises what happens when a user executes the 
 
 ![SalesUpdateActivityDiagram](images/SalesUpdateActivityDiagram.png)
 
-#### Design consideration:
+#### Design considerations:
 
 ##### Aspect: How the sales record updates
 * **Alternative 1 (current choice)**: Overwrite the sales data only for the drink items specified by the
@@ -312,7 +316,7 @@ It exposes to `#Model updateFilteredSalesList(Predicate<SalesRecordEntry> predic
 Given below is an example usage scenario and how the find drinks' sales data mechanism behaves at each step.
 
 Step 1. The user launches the application. If the storage file for the sales book is empty, `SalesBook` will
-be initialized with the six pre-defined drinks, namely `BSBM`, `BSBBT`, `BSBGT`, `BSPM`, `BSPBT` and `BSPGT`
+be initialised with the six pre-defined drinks, namely `BSBM`, `BSBBT`, `BSBGT`, `BSPM`, `BSPBT` and `BSPGT`
 with the sales data of 0 for all. If the storage file for the sales book is not empty, `SalesBook` will read the
 data from the storage file.
 
@@ -685,7 +689,8 @@ with phone number, using a prefix to identify them.
 * is reasonably comfortable using CLI apps
 
 **Value proposition**:
-The product provides an integrated system for the purpose of sales tracking, ingredient track and manpower management.
+The product provides an integrated system for the purpose of sales tracking, ingredients tracking and manpower
+ management.
 
 * To digitalise sales tracking and provide simple sales data analytics
     * Current Implementation at v1.4:
@@ -867,12 +872,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes from step 4.
       	
-* 5a. tCheck detects an invalid sales number.
-
- 	* 5a1. tCheck requests for the correct data.
- 	* 5a2. User enters new data.
+* 5a. tCheck detects an invalid sales number. <br>
+ 	* 5a1. tCheck requests for the correct data. <br>
+ 	* 5a2. User enters new data. <br>
  	
- 	Steps 5a1-5a2 are repeated until the data entered are correct.
+ 	Steps 5a1-5a2 are repeated until the data entered are correct. <br>
     
     Use case resumes from step 6.
 
@@ -913,7 +917,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample employee data in the Employee Directory.
+   The values in the Sales Tracker and Ingredient Tracker are initialised to 0. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -956,7 +961,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Updating sales of drinks
 
-1. Update the sales of one and several drink item while all sales are being shown.
+1. Updating the sales of one and several drink items while all sales are being shown.
 
     1. Prerequisites: List all sales using the `s-list` command. The full list of drinks sales will be shown.
     
@@ -976,7 +981,7 @@ testers are expected to do more *exploratory* testing.
        
 ### Listing sales of drinks in descending order
 
-1. List the sales of a drink item after an update is performed.
+1. Listing the sales of a drink item after a sales update is performed.
 
     1. Prerequisite: Perform a sales update using the `s-update` command. The updated list of drink sales is not
      ordered.
@@ -1055,8 +1060,35 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: The `addressbook.json`, `ingredientbook.json` and `salesbook.json` files exist in the data
+    folder inside the home folder of tCheck. tCheck is able to launch with no error. Close the application before
+     testing.
+   
+   1. Test case: Delete the `addressbook.json` file in the data folder. <br>
+      Expected: The application launches normally. The employees in the Employee Directory are created using data from a
+       sample AddressBook.
+       
+   1. Test case: Delete `ingredientbook.json` file in the data folder. <br>
+      Expected: The application launches normally. All ingredients' levels in the Ingredients Tracker will be
+       initialised to 0.
+       
+   1. Test case: Delete `salesbook.json` file in the data folder. <br>
+      Expected: The application starts normally. All sales records' sales level in the Sales Tracker will be
+      initialised to 0.
 
-1. _{ more test cases …​ }_
+1. Dealing with corrupted data files
+
+    1. Prerequisites: The `addressbook.json`, `ingredientbook.json` and `salesbook.json` files exist in the data
+           folder inside the home folder of tCheck. tCheck is able to launch with no error. Close the application before
+           testing.
+           
+    1. Test case: Add invalid syntax in the `addressbook.json` file in the data folder. Eg. Add "xxx" to the end of a
+       phone number <br>
+       Expected: The application launches normally with no data present in all three sections - Sales Tracker
+       , Ingredients Tracker and Employee Directory.
+       
+    1. Other test cases to try: corrupt the `ingredientsbook.json` or `salesbook.json` in a similar way using the
+     previous test case.
+     Expected: Similar to previous.

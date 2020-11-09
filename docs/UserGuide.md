@@ -15,6 +15,7 @@ title: User Guide
         * [FAQ](#FAQ)
     * [Command summary](#command-summary)
 
+<div style="page-break-after: always;"></div>
 
 ## Introduction <a name="introduction"></a>
 <img src="images/tCheckLogo.png" width="200" height="200" />
@@ -25,7 +26,7 @@ Are you a bubble tea store manager (from T-Sugar) looking to reduce your time sp
 management? Look no further, as tCheck can assist you with these tasks.
 
 tCheck is a desktop application that offers an integrated system to efficiently manage a bubble tea shop, of 
-the (imaginary) brand T-sugar, by providing sales tracking, ingredient tracking and manpower management. It is an
+the (imaginary) brand T-sugar, by providing sales tracking, ingredients tracking and manpower management. It is an
 application optimized for the Command Line Interface (CLI); this means that you use this application by typing
 commands into a _Command Box_. If you are a fast typist, then you will be able to update and retrieve the
 information in tCheck more efficiently, as opposed to using other applications that requires a mouse.
@@ -34,7 +35,8 @@ This User Guide will help you get started with tCheck and learn how to use the f
 You can start from the [Quick Start](#quick-start) section to learn how to obtain tCheck to begin managing
  your store more efficiently.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Quick start <a name="quick-start"></a>
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -163,23 +165,7 @@ Thus, tCheck will ignore all words come after the command word `help` and the co
 --------------------------------------------------------------------------------------------------------------------
 ## Features <a name="features"></a>
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `i-set i/INGREDIENT_NAME m/AMOUNT`, both `INGREDIENT_NAME` and `AMOUNT` are parameters which can be used as `i-set i/Milk m/90`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `...`​ after them can be used once or multiple times.<br>
-  e.g. `sales A/NUM B/NUM C/NUM ...` can be used as `sales BSBM/100` or `sales BSBM/100 BSBBT/120`.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-</div>
+This section provides the details and commands for all tCheck's features.
 
 ### 1. Commands - Sales Tracking <a name="commands-sales-tracking"></a>
 The Sales Tracking features allows you to keep a record of the sales of the bubble tea drinks inside the
@@ -190,19 +176,14 @@ Sales Tracker. You are able to view data related to sales tracking in the Sales 
 **:information_source: Notes about available drinks:**<br>
 
 Currently, there are 6 types of drinks that can be tracked by tCheck's Sales Tracker. The drinks and their respective
- abbreviations are shown as below:<br>
+ abbreviations are shown as below: <br>
 
-* `BSBM`  : Brown Sugar Boba Milk<br>
-
-* `BSBBT` : Brown Sugar Boba Black Tea<br>
-
-* `BSBGT` : Brown Sugar Boba Green Tea<br>
-
-* `BSPM`  : Brown Sugar Pearl Milk<br>
-
-* `BSPBT` : Brown Sugar Pearl Black Tea<br>
-
-* `BSPGT` : Brown Sugar Pearl Green Tea<br>
+* `BSBM`  : Brown Sugar Boba Milk
+* `BSBBT` : Brown Sugar Boba Black Tea
+* `BSBGT` : Brown Sugar Boba Green Tea
+* `BSPM`  : Brown Sugar Pearl Milk
+* `BSPBT` : Brown Sugar Pearl Black Tea
+* `BSPGT` : Brown Sugar Pearl Green Tea
 
 </div>
 
@@ -215,7 +196,7 @@ Format: `s-update DRINK [MORE_DRINKS]`
 * where `DRINK` is formatted as `A/NUM`
     * `A` refers to the drink's abbreviation.
     * `NUM` refers to the number of drinks sold. It should be a **non-negative unsigned integer** that is 
-less than or equal to 99999999.
+less than or equal to 9,999,999.
 * The sales of at least one drink item should be recorded when using this command.
 
 Example: 
@@ -289,12 +270,6 @@ Before executing:<br>
 
 After executing:<br>
 ![SalesFindCommandScreenshot](images/SalesFindResult.png)
-
-#### 1.4 Ranking the list of drinks sold : `s-rank`
-Shows a ranked list of all types of drinks sold in the Sales Tracker. The list of drinks
-is ranked from the most popular to least popular.
-
-Format: `s-rank`
 
 ### 2. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
 
@@ -1000,6 +975,9 @@ After executing:<br>
 Figure x. Screenshot showing the outcome of an `c-unarchive 1` command
 
 ### 4. Commands - General <a name="commands-general"></a>
+
+This section provides an overview of the general commands used in tCheck.
+
 #### 4.1 Viewing help : `help`
 
 Show a message explaining how to access the help page, which is the tCheck User Guide.
@@ -1030,6 +1008,9 @@ Exits the program.
 Format: `exit`
 
 ### 5. Other Features <a name="other-features"></a>
+
+This section provides an overview of the other features of tCheck which do not use a command.
+
 #### 5.1 Saving the data :
 All tCheck data (i.e. ingredient data, sales data, employees' data) are saved in the hard disk automatically after each
  command. There is no need to save manually.
@@ -1075,7 +1056,6 @@ Action | Format, Examples
 **List**| `s-list`
 **Find**| `s-find KEYWORD [MORE_KEYWORDS]` <br> e.g., `s-find BSBM BSBBT`
 
-
 ### Ingredients Tracking
 
 Action | Format, Examples
@@ -1103,7 +1083,6 @@ Action | Format, Examples
 **Archive an employee** |  `c-archive INDEX`<br> e.g., `c-archive 1`  
 **Archive all employees** |  `c-archive-all` <br>
 **Unarchive** | `c-unarchive INDEX`<br> e.g., `c-unarchive 1` 
-
 
 ### General
 
