@@ -1,4 +1,6 @@
 @startuml
+scale max 300 height
+
 start
 
 :User executes delete by index command;
