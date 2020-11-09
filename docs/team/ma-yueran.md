@@ -67,7 +67,7 @@ Given below are my contributions to the project.
   [2](https://github.com/Ma-Yueran/ped/issues/5), 
   [3](https://github.com/Ma-Yueran/ped/issues/6))
 
-## \[Optional\] Contributions to the User Guide (Extract)
+## Contributions to the User Guide (Extract)
 
 ### Changing current directory : `cd`
 
@@ -93,7 +93,7 @@ Examples:
 
 *The image was not added by me, and the command format was also updated by my teammate to fit the new format.*
 
-## \[Optional\] Contributions to the Developer Guide (Extract)
+## Contributions to the Developer Guide (Extract)
 
 ### Changing of Directory: CdCommand
 
