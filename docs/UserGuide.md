@@ -585,11 +585,11 @@ You can follow these instructions:
 1. Press "Enter" to execute.
 
 Outcome:
-1. The _Result Display_ will show that you edit the employee.=
+1. The _Result Display_ will show that you edit the employee.
 2. All active employees will be listed in the _Main View_.
 
 Before executing:<br>
-![BeforeEditCommandScreenshot](images/BeforeClearCommand.png)
+![BeforeEditCommandScreenshot](images/BeforeEditCommand.png)
 
 
 After executing:<br>
