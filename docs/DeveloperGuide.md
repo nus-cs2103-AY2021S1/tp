@@ -2299,7 +2299,7 @@ Use case ends.
 
 Use case ends.
 
-**Use case: U08 - Add zoom link to module**
+**Use case: UC08 - Add zoom link to module**
 
 **MSS**
 
@@ -2330,7 +2330,7 @@ Use case ends.
     
      Use case ends.
   
-**Use case: Delete zoom link from module**
+**Use case: UC09 - Delete zoom link from module**
 
 **MSS**
 
@@ -2358,7 +2358,7 @@ Use case ends.
 
 ## Contact list use cases
 
-**Use case: Add contact to contact list**
+**Use case: UC01 - Add contact to contact list**
 
 **MSS**
 
@@ -2384,7 +2384,7 @@ Use case ends.
     Use case ends.
 
 
-**Use Case: Delete contact from contact list**
+**Use Case: UC02 - Delete contact from contact list**
 
 **MSS**
 
@@ -2404,7 +2404,7 @@ Use case ends.
       Use case ends.
 
 
-**Use Case: Edit contact in contact list**
+**Use Case: UC03 - Edit contact in contact list**
 
 **MSS**
 
@@ -2423,13 +2423,15 @@ Use case ends.
     
       Use case ends.
   
-  * 2b. CAP5BUDDY detects that the contact details provided are invalid. (same as use case add contact)
+  * 2b. CAP5BUDDY detects that the contact details provided are invalid.
   
-  * 2c. same as use case add contact duplicate contact
+    * 2b1. * 2a1. CAP5BUDDY displays an error message and informs the use of the invalud command arguments.
+    
+      Use case ends.
   
   
   
-**Use Case: Find contacts**
+**Use Case: UC04 - Find contacts**
 
 **MSS**
 
