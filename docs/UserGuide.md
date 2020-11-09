@@ -128,11 +128,11 @@ available! This will better your experience with _Common Cents_ and your usage o
 ## 4.1 Accounts
 *(Written by Nicholas Canete)* <br>
 
-Accounts in Common Cents are key features that help you better manage, categorise, and organise your finances better. 
-In Common Cents, each account has a unique name, and a unique list of expenses and revenues. 
+Accounts in _Common Cents_ are key features that help you better manage, categorise, and organise your finances better. 
+In _Common Cents_, each account has a unique name, and a unique list of expenses and revenues. 
 You can make as many accounts as you'd like in order to help you better categorise and organise your finances better!<br>
  
-When you first launch Common Cents, a **General Account** is made for you by default, which you may use on top of other
+When you first launch _Common Cents_, a **General Account** is made for you by default, which you may use on top of other
 accounts. You may also make new accounts and switch between them and give them their very own set of expenses and revenues.
 
 ### 4.1.1 Name
@@ -142,13 +142,13 @@ accounts better.
 
 ### 4.1.2 Expense List
 Each account will have an Expense list - that is, a list of transactions that involve expenditure on your end (i.e.
-net outflow of money). In general, expenses keyed into Common Cents have a compulsory Description and Amount, as well as 
+net outflow of money). In general, expenses keyed into _Common Cents_ have a compulsory Description and Amount, as well as 
 optional Tags. In the app user interface, each expense amount will be displayed as a negative value and all the expenses
 will be displayed as a scrollable list.
 
 ### 4.1.3 Revenue List
 Each account will also have a Revenue list - that is, a list of transactions that involve profit from your end (i.e.
-net inflow. of money). Like expenses, revenues keyed into Common Cents have a compulsory Description and Amount, as well as 
+net inflow. of money). Like expenses, revenues keyed into _Common Cents_ have a compulsory Description and Amount, as well as 
 optional Tags. In the app user interface, each revenue amount will be displayed as a positive value and all the revenues
 will be displayed as a scrollable list, right beside the expenses list.
 
@@ -159,17 +159,17 @@ will be displayed as a scrollable list, right beside the expenses list.
 have compulsory fields - Description, Amount - and optional Tags. 
 
 ### 4.2.1 Category
-Category is the field that specifies the type of Entry input that Common Cents receives from you. It is used in commands
+Category is the field that specifies the type of Entry input that _Common Cents_ receives from you. It is used in commands
 to differentiate entries between Expense and Revenue. You can either specify the category as an `expense` or a `revenue`,
 or `e` or `r` for short and these are not case-sensitive. This documentation uses `expense` or `revenue` as examples in 
 the [Features](#5-features) below.
 
 ### 4.2.2 Description
-Description refers to the textual information that is associated with the Entry that Common Cents receives from you, in
+Description refers to the textual information that is associated with the Entry that _Common Cents_ receives from you, in
 order to provide more information about the Entry.  
 
 ### 4.2.3 Amount 
-Amount is the numeric value associated with the Entry that Common Cents receives from you. All amounts, for both expenses
+Amount is the numeric value associated with the Entry that _Common Cents_ receives from you. All amounts, for both expenses
 and revenues must be given as a positive value.
 
 <div style="page-break-after: always;"></div>
@@ -626,7 +626,6 @@ irreversible action and cannot be undone. Do delete your account with caution!
 
 </div>
 
-<div style="page-break-after: always;"></div>
 ### 5.3.3 Editing the name of the current account: `editacc`
 *(Written by Lim Zi Yang)* <br>
 
