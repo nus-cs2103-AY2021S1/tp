@@ -17,6 +17,9 @@ import javafx.scene.layout.VBox;
 import seedu.address.model.task.Task;
 import seedu.address.ui.UiPart;
 
+/*
+Code adapted from AY2021S1-CS2103T-F12-2/tp (https://github.com/AY2021S1-CS2103T-F12-2/tp)
+ */
 public class TaskCell extends UiPart<Region> {
     private static final String FXML = "schedule/TaskCell.fxml";
 
@@ -72,7 +75,7 @@ public class TaskCell extends UiPart<Region> {
      * Calculate the margin top by the task for the TimeScale.
      */
     public double marginTop() {
-        return getMarginFromDateTime(task.getStartTime());
+        return getMarginFromDateTime(task.getDateTime());
     }
 
     /**
@@ -84,7 +87,7 @@ public class TaskCell extends UiPart<Region> {
     }
 
     private String getTimeFromTask(Task task) {
-        LocalDateTime dateTime = task.getStartTime();
+        LocalDateTime dateTime = task.getDateTime();
         DateTimeFormatter formmater = DateTimeFormatter.ofPattern("HH:mm");
         return toAmPmTime(formmater.format(dateTime));
     }

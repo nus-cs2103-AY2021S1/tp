@@ -14,6 +14,9 @@ import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 
+/**
+ * Represents a Calendar object used in the PlaNus calendar.
+ */
 public class Calendar implements Iterable<Task> {
 
     private final ObservableList<Task> calendarList = FXCollections.observableArrayList();

@@ -68,7 +68,7 @@ public class TaskContainsKeywordsPredicate extends ModelContainsKeywordsPredicat
         }
 
         if (prefix.equals("date:")) {
-            String dateTime = task.getDate().format(DateTimeUtil.DATE_FORMATTER);
+            String dateTime = task.getDateTime().toLocalDate().format(DateTimeUtil.DATE_FORMATTER);
             return words.stream()
                     .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(dateTime, keyword));
         }

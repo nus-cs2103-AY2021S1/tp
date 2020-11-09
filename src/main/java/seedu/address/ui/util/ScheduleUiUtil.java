@@ -7,6 +7,9 @@ import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import seedu.address.model.task.Task;
 
+/*
+Code adapted from AY2021S1-CS2103T-F12-2/tp (https://github.com/AY2021S1-CS2103T-F12-2/tp)
+ */
 public class ScheduleUiUtil {
 
     // This part needs to synchronize with TimeScaleCell
@@ -16,13 +19,13 @@ public class ScheduleUiUtil {
     public static final double CURRENT_TIME_POINTER_PADDING = 5.0;
 
     public static final BiPredicate<Task, LocalDateTime> IN_THE_DAY = (task, startDate) -> (
-            task.getStartTime().isEqual(startDate)
-            || task.getStartTime().isAfter(startDate))
-            && task.getStartTime().isBefore(startDate.plusDays(1));
+            task.getDateTime().isEqual(startDate)
+            || task.getDateTime().isAfter(startDate))
+            && task.getDateTime().isBefore(startDate.plusDays(1));
     public static final BiPredicate<Task, LocalDateTime> IN_THE_CALENDAR = (task, startDate) -> (
-            task.getStartTime().isEqual(startDate)
-                    || task.getStartTime().isAfter(startDate))
-                    && task.getStartTime().isBefore(startDate.plusDays(35));
+            task.getDateTime().isEqual(startDate)
+                    || task.getDateTime().isAfter(startDate))
+                    && task.getDateTime().isBefore(startDate.plusDays(35));
 
 
     /**

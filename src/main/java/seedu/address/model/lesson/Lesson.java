@@ -22,7 +22,7 @@ import seedu.address.model.task.event.StartDateTime;
 
 
 /**
- * Lesson class to store information about a module's lessons.
+ * Lesson class that stores information about a module's lessons.
  */
 public class Lesson implements TimeSlot {
     private final Title title;

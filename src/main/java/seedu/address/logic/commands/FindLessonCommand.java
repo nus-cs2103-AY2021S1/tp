@@ -5,7 +5,10 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.Model;
 import seedu.address.model.lesson.LessonContainsKeywordsPredicate;
 
-
+/**
+ * Finds and lists all lessons in PlaNus whose name contains any of the argument keywords.
+ * Keyword matching is case insensitive.
+ */
 public class FindLessonCommand extends Command {
 
     public static final String COMMAND_WORD = "find-lesson";

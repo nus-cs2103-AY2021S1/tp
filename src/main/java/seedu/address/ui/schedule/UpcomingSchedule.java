@@ -21,6 +21,9 @@ import javafx.scene.layout.VBox;
 import seedu.address.model.task.Task;
 import seedu.address.ui.UiPart;
 
+/*
+Code adapted from AY2021S1-CS2103T-F12-2/tp (https://github.com/AY2021S1-CS2103T-F12-2/tp)
+ */
 public class UpcomingSchedule extends UiPart<Region> implements EventHandler<MouseEvent> {
     private static final String FXML = "schedule/UpcomingSchedule.fxml";
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");

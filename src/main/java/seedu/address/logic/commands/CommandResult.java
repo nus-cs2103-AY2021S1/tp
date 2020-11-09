@@ -15,10 +15,14 @@ public class CommandResult {
 
     private final boolean showCalendar;
 
-    /** Help information should be shown to the user. */
+    /**
+     * Shows help information to user.
+     */
     private final boolean showHelp;
 
-    /** The application should exit. */
+    /**
+     * Exits the application.
+     */
     private final boolean exit;
 
     /**
@@ -75,12 +79,14 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && showLists == otherCommandResult.showLists
+                && showCalendar == otherCommandResult.showCalendar;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, showLists, showCalendar);
     }
 
 }

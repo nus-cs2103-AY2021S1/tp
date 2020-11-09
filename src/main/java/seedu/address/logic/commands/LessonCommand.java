@@ -17,6 +17,10 @@ import seedu.address.model.Model;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.util.Overlap;
 
+
+/**
+ * Adds a lesson to the PlaNus lesson list.
+ */
 public class LessonCommand extends Command {
     public static final String COMMAND_WORD = "lesson";
 

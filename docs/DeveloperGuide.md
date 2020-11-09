@@ -847,24 +847,234 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-1. _{ more test cases … }_
+### Opening help window
+
+1. Opening help window
+
+    1. Test case: `help`<br>
+        Expected: a help window will pop up displaying a list of command and their respective format, also a link to the user guide.
+
+### Listing all tasks
+
+1. Listing all tasks
+
+    1. Prerequisites:  There are some tasks exist in PlaNus.
+    
+    1. Test case: `list-task`<br>
+        Expected: If you are in the "Tasks & Lessons" view, all the tasks (events and deadlines) will be display in the task list panel. <br>
+        If you are in the "Calendar" view, you will be switch to "Tasks & Lessons" view, and all the tasks (events and deadlines) will be display in the task list panel.
+        
+
+### Adding a deadline
+
+1. Adding a deadline while all tasks are being shown
+
+   1. Prerequisites:  List all tasks using the `list-task` command. Multiple deadline in the task list.
+
+   1. Test case: `deadline title:Return book datetime:02-01-2020 18:00`<br>
+      Expected: a new deadline with title 'Return book' is added to the task list, a deadline card will be displayed with the detailed info about the deadline.
+
+   1. Test case: `deadline title:Return book datetime:02-01-2020 18:00`<br>
+      Expected: No deadline is added because a deadline with the same details already exists in the task list. Status message informs user that deadline already exists.
+
+   1. Test case: `deadline title:Buy breakfast `<br>
+      Expected: No deadline is added because not all compulsory field is filled. Status message shows invalid command format, and hint user for the correct command format.
+
+   1. Other incorrect adding deadline commands to try: `deadline`, `deadline buy good`, `...` (where command is not in correct format)<br>
+      Expected: Similar to previous.
+      
+### Marking a deadline as done
+
+1. Marking a deadline as done while all tasks are being shown
+
+   1. Prerequisites: 
+       1. clear all records inside the exiting PlaNus using `clear` command<br>
+       1. input `deadline title:Return book 1 datetime:02-01-2020 18:00` command to add a new deadline <br>
+       1. input `deadline title:Return book 2 datetime:02-01-2020 18:00` command to add a new deadline <br>
+       1. input `deadline title:Return book 3 datetime:02-01-2020 18:00` command to add a new deadline <br>
+       1. input `event title:Project meeting date:15-11-2020 from:09:00 to:12:30 tag:CS2103T` command to add a new event <br>
+
+   1. Test case: `done 1:20`<br>
+      Expected: the first task with title "Return book 1" is marked as completed. The task list is sorted again, placing this task to the end of the task which is the 4th task.
+
+   1. Test case: `done 1:20 2:20`<br>
+      Expected: the first and second task with title "Return book 2" and "Return book 3" respectively are marked as completed. The task list is sorted again, placing them to the second and third position in the list when the event project meeting is not ended. (provided the today is before 15th of November 2020)
+
+   1. Test case: `done 1:20`<br>
+      Expected: because the first task in the list is an event, an event cannot be marked as done, an status message informs user One or more targeted deadline is already completed.
+   
+   1. Test case: `done 2:20`<br>
+      Expected: because the second task in the list is already completed, an status message informs user one or more targeted deadline is already completed will be shown.
+
+   1. Other incorrect marking deadline as done commands to try: `done`, `done 1`, `done x:20` (where x is larger than the list size or negative number or index of event/completed deadline task)<br>
+      Expected: error status message will be shown.
+
+### Adding a event
+
+1. Adding a event while all tasks are being shown
+
+   1. Prerequisites:  List all tasks using the `list-task` command. Multiple events exists in the task list.
+
+   1. Test case: `event title:Project meeting date:10-11-2020 from:09:00 to:12:30 tag:CS2103T`<br>
+      Expected: a new event with title 'Project meeting' is added to the task list, a event card will be displayed with the detailed info about the event.
+
+   1. Test case: `event title:Project meeting date:10-11-2020 from:09:00 to:12:30 tag:CS2103T`<br>
+      Expected: No event is added because a event with the same details already exists in the task list. Status message informs user that event already exists.
+
+   1. Test case: `event title:Another Project meeting date:10-11-2020 from:09:00 to:12:30 tag:CS2103T`<br>
+      Expected: No event is added because the event time is overlapping with another event that exists in the task list.
+      
+   1. Test case: `event title:carer talk `<br>
+      Expected: No event is added because not all compulsory field is filled. Status message shows invalid command format, and hint user for the correct command format.
+
+   1. Other incorrect adding event commands to try: `event`, `carer talk`, `...` (where command is not in correct format)<br>
+      Expected: Similar to previous.
+
+### Editing a task
+
+1. Editing a task while all tasks are being shown
+
+   1. Prerequisites:  List all task using the `list-task` command. There is at least one task exist in the PlaNus.
+
+   1. Test case: `edit-task 1 title: new title`<br>
+      Expected: The title of the first task displayed in the task list will be updated to "new title".
+
+   1. Prerequisites: The first task in the list is a deadline task.
+      1. Test case: `edit-task 1 datetime: 29-11-2020 23:59`<br>
+        Expected: The deadline date time of the first task displayed in the task list will be updated to "29-11-2020 23:59".
+      1. Test case: `edit-task 1 date: 29-11-2020`<br>
+            Expected: No task will be edited as you cannot edit deadline with date attribute.
+
+   1. Prerequisites: The first task in the list is a event task.
+      1. Test case: `edit-task 1 date: 29-11-2020`<br>
+        Expected: The event date of the first task displayed in the task list will be updated to "29-11-2020".
+      1. Test case: `edit-task 1 datetime: 29-11-2020 23:59`<br>
+            Expected: No task will be edited as you cannot edit event with datetime attribute.
+
+   1. Test case: `edit-task 1 title: new title title: new title`<br>
+      Expected: No task will be edited because same attribute (in this case "title") is not allow to be input more than 1 times.
+
+   1. Test case: `edit-task title: new title`<br>
+      Expected: No task will be edited because the command is not valid as the index of the task is missing.
+      
+   1. Other incorrect edit task commands to try: `edit-task`, `edit-task x`, `...` (where x is larger than the task list size or negative number)<br>
+      Expected: Similar to previous.
+      
+### Finding task
+
+1. Find task while all tasks are being shown
+
+   1. Prerequisites: List all tasks using the `list-task` command. Multiple tasks are in the list.
+
+   1. Test case: `find-task title:tutorial`<br>
+      Expected: tasks with title including "tutorial" will be displayed
+      
+   1. Test case: `find-task title:tutorial title:lab`<br>
+      Expected: tasks with title including either "tutorial" or "lab" will be displayed
+      
+   1. Test case: `find-task title:tutorial title:lab`<br>
+      Expected: tasks with title including either "tutorial" or "lab" will be displayed
+      
+   1. Test case: `find-task date:15-11-2020`<br>
+      Expected: deadline with deadline date on "15-11-2020" and event with event date on "15-11-2020" will be displayed
 
 ### Deleting a task
 
-1. Deleting a task while all tasks are being shown
+1. Deleting a task while all tasks(more than 3 tasks) are being shown
 
-   1. Prerequisites: List all tasks using the `list` command. Multiple tasks in the list.
+   1. Prerequisites: List all tasks using the `list-task` command. Multiple(more than 3) tasks in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete-task 1 3`<br>
+      Expected: First task and third task is deleted from the list. Title of the deleted tasks are shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `delete-task 1`<br>
+      Expected: First task is deleted from the list. Title of the deleted task shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Test case: `delete-task 0`<br>
+      Expected: No task is deleted. Error details shown in the status message. index is not a non-zero integer.
+
+   1. Other incorrect delete commands to try: `delete-task`, `delete-task x`, `...` (where x is larger than the list size or negative number)<br>
       Expected: Similar to previous.
+      
+### Adding a lesson
 
-1. _{ more test cases … }_
+1. Adding a lesson while all lessons are being shown
+
+   1. Prerequisites:  List all lessons using the `list-lesson` command.
+
+   1. Test case: `lesson title:Tutorial tag:CS2101 desc:Most exciting lecture in NUS! day:Monday from:12:00 to:14:00 start:10-08-2020 end:10-11-2020`<br>
+      Expected: a new lesson with title 'Tutorial' is added to the lesson list, a lesson card will be displayed with the detailed info about the lesson at the lesson list panel.
+
+   1. Test case: `lesson title:Tutorial tag:CS2101 desc:Most exciting lecture in NUS! day:Monday from:12:00 to:14:00 start:10-08-2020 end:10-11-2020`<br>
+      Expected: No lesson is added because a lesson with the same details already exists in the lesson list. Status message informs user that lesson already exists.
+
+   1. Test case: `lesson title:Another Tutorial tag:CS2101 desc:Most exciting lecture in NUS! day:Monday from:12:00 to:14:00 start:10-08-2020 end:10-11-2020`<br>
+      Expected: No event is added because the lesson time is overlapping with another existing event or lesson in PlaNus.
+      
+   1. Test case: `lesson title:lab `<br>
+      Expected: No lesson is added because not all compulsory field is filled. Status message shows invalid command format, and hint user for the correct command format.
+
+   1. Other incorrect adding lesson commands to try: `lesson`, `tutorial`, `...` (where command is not in correct format)<br>
+      Expected: Similar to previous.
+      
+### Editing a lesson
+
+1. Editing a lesson while all lessons are being shown
+
+   1. Prerequisites:  List all lessons using the `list-lesson` command. There is at least one lesson exist in the PlaNus.
+
+   1. Test case: `edit-lesson 1 title: new title`<br>
+      Expected: The title of the first lesson displayed in the lesson list will be updated to "new title".
+
+   1. Test case: `edit-lesson 1 title: new title title: new title`<br>
+      Expected: No lesson will be edited because same attribute (in this case "title") is not allow to be input more than 1 times.
+
+   1. Test case: `edit-lesson title: new title`<br>
+      Expected: No lesson will be edited because the command is not valid as the index of the lesson is missing.
+      
+   1. Other incorrect edit lesson commands to try: `edit-lesson`, `edit-lesson x`, `...` (where x is larger than the lesson list size or negative number)<br>
+      Expected: Similar to previous.
+      
+### Finding lesson
+
+1. Find lesson while all lesson are being shown
+
+   1. Prerequisites: List all lesson using the `list-lesson` command. Multiple lessons are in the list.
+
+   1. Test case: `find-lesson title:tutorial`<br>
+      Expected: lessons with title including "tutorial" will be displayed
+      
+   1. Test case: `find-lesson title:tutorial title:lab`<br>
+      Expected: lessons with title including either "tutorial" or "lab" will be displayed
+      
+   1. Test case: `find-lesson datetime:10-11-2020 12:00`<br>
+      Expected: lesson happening on 10-1102020 at 12:00 will be displayed.
+            
+### Deleting a lesson
+
+1. Deleting a lesson while all lesson(more than 3 lesson) are being shown
+
+   1. Prerequisites: List all lesson using the `list-lesson` command. Multiple(more than 3 ) lesson in the list.
+
+   1. Test case: `delete-lesson 1 3`<br>
+      Expected: First lesson and third lesson is deleted from the list. Title of the deleted lesson are shown in the status message.
+
+   1. Test case: `delete-lesson 1`<br>
+      Expected: First lesson is deleted from the list. Title of the lesson task shown in the status message.
+
+   1. Test case: `delete-lesson 0`<br>
+      Expected: No lesson is deleted. Error details shown in the status message. index is not a non-zero integer.
+
+   1. Other incorrect delete commands to try: `delete-lesson`, `delete-lesson x`, `...` (where x is larger than the list size or negative number)<br>
+      Expected: Similar to previous.
+      
+      
+### Exiting the program
+
+1. Exiting the program
+
+ 1. Test case: `exit`<br>
+    Expected: The window of the program will close.
 
 ### Saving data
 

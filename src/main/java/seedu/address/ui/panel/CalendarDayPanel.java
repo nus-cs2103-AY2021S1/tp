@@ -12,13 +12,14 @@ import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.Task;
 import seedu.address.ui.UiPart;
-import seedu.address.ui.card.CalendarDayEventCard;
 import seedu.address.ui.schedule.UpcomingSchedule;
 
-
+/**
+ * A CalendarDayPanel Class that represents a panel which holds Lesson and Events information of a certain day.
+ */
 public class CalendarDayPanel extends UiPart<Region> {
     private static final String FXML = "panel/CalendarDayPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(CalendarDayEventCard.class);
+    private final Logger logger = LogsCenter.getLogger(CalendarDayPanel.class);
 
     private ObservableList<Task> schedule;
     private LocalDateTime dateTime;

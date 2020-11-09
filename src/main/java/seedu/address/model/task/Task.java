@@ -53,9 +53,9 @@ public abstract class Task implements Comparable<Task> {
      */
     public abstract LocalDate getDate();
     /**
-     * Returns the time in which the task occurs.
+     * Returns the date and time in which the task occurs.
      */
-    public abstract LocalDateTime getStartTime();
+    public abstract LocalDateTime getDateTime();
     /**
      * Returns true if both tasks of the same title, date and time.
      * This defines a strong notion of equality between two tasks to allow recurring tasks yet preventing duplicates.

@@ -8,6 +8,9 @@ import seedu.address.model.StatisticsData;
 import seedu.address.model.tag.Tag;
 import seedu.address.ui.UiPart;
 
+/**
+ * A StatsSummaryCard class that represents a card that holds summary of statistics of a certain module tag.
+ */
 public class StatsSummaryCard extends UiPart<Region> {
     private static final String FXML = "card/StatsSummaryCard.fxml";
 
@@ -32,12 +35,17 @@ public class StatsSummaryCard extends UiPart<Region> {
     public StatsSummaryCard(Tag tag, StatisticsData dataSet, String tagColor) {
         super(FXML);
         this.tag = tag;
-        statsSummaryCardPlaceholder.setStyle(
-                "-fx-background-color: linear-gradient("
-                        + "to bottom right, " + tagColor + ", derive(" + tagColor + ", 60%), "
-                        + tagColor + ");"
-        );
-        moduleCode.setText(tag.tagName.equals("") ? "Untagged" : tag.tagName);
+        if (tag.tagName.equals("")) {
+            moduleCode.setText("Untagged");
+        } else {
+            statsSummaryCardPlaceholder.setStyle(
+                    "-fx-background-color: linear-gradient("
+                            + "to bottom right, " + tagColor + ", derive(" + tagColor + ", 60%), "
+                            + tagColor + ");"
+            );
+            moduleCode.setText(tag.tagName);
+
+        }
         lessonTime.setText("" + dataSet.getTotalLessonTime(tag) + " mins");
         taskTime.setText("" + dataSet.getTotalTaskTime(tag) + " mins");
         totalTime.setText("" + dataSet.getTotalTime(tag) + " mins");
