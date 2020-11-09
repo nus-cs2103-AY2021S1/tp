@@ -11,28 +11,115 @@ title: Developer Guide
 
 ### Architecture
 
-Coming soon.
+<img src="images/ArchitectureDiagram.png" width="450" />
+
+The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103-T16-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+
+</div>
+
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103-T16-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103-T16-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+
+The rest of the App consists of four components.
+
+* [**`UI`**](#ui-component): The UI of the App.
+* [**`Logic`**](#logic-component): The command executor.
+* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+
+Each of the four components,
+
+* defines its *API* in an `interface` with the same name as the Component.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+
+For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
+
+![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+
+**How the architecture components interact with each other**
+
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+
+<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+
+The sections below give more details of each component.
 
 ### UI component
 
-Coming soon.
+![Structure of the UI Component](images/UiClassDiagram.png)
+
+**API** :
+[`Ui.java`](https://github.com/AY2021S1-CS2103-T16-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `ArchiveModeBox`, `HelpWindow`, `PersonCard`
+ etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+
+The `UI` component uses JavaFx UI framework.
+The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
+For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103-T16-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) 
+is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103-T16-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+
+Several UI parts makes use of a [`DarkTheme.css`](https://github.com/AY2021S1-CS2103-T16-2/tp/blob/master/src/main/resources/view/DarkTheme.css) file to set the design theme. This file is found in the `src/main/resources/view` folder. 
+
+The `UI` component,
+
+* Executes user commands using the `Logic` component.
+* Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
 ### Logic component
 
-Coming soon.
+![Structure of the Logic Component](images/LogicClassDiagram.png)
+
+**API** :
+[`Logic.java`](https://github.com/AY2021S1-CS2103-T16-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+
+1. `Logic` uses the `ClientListParser` class to parse the user command.
+1. This results in a `Command` object which is executed by the `LogicManager`.
+1. The command execution can affect the `Model` (e.g. adding a person).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` and `DeleteCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 
 ### Model component
 
-Coming soon.
+![Structure of the Model Component](images/ModelClassDiagram.png)
 
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103-T16-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+
+The `Model`,
+
+* stores a `UserPref` object that represents the user’s preferences.
+* stores the address book data.
+* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* does not depend on any of the other three components.
 
 ### Storage component
 
-Coming soon.
+![Structure of the Storage Component](images/StorageClassDiagram.png)
+
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103-T16-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+
+The `Storage` component,
+* can save `UserPref` objects in json format and read it back.
+* can save the address book data in json format and read it back.
 
 ### Common classes
 
-Coming soon.
+Classes used by multiple components are in the seedu.address.commons package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -54,19 +141,19 @@ Firstly, the field would be added to the Person class. This would be similar to 
 
 Given below is an example usage scenario and how the priority mechanism behaves when a user is added. Note that this addition of users via addcommand is the same command used when the user launches the application for the first time. 
 
-Step 1. The user adds a command using addcommand and specifies the user. The addcommandparser will check if there was an empty string input for the priority field, if there is, we will set it as Undefined. If the user puts any other input other than the predefined inputs(H for high, M for medium, L for low), the user will get an error message. 
+Step 1. The user will add a client using the GUI and specifies the user to be added. The `AddCommandParser` will check if there was an empty string input for the priority field, if there is, we will set it as Undefined. If the user puts any other input other than the predefined inputs(H for high, M for medium, L for low), the user will get an error message. 
 
-Step 2: The addcommand parser will pass the command to the addcommand in the logic package to check if the user is a duplicated user or not.  If the person is a valid person, the person would be passed on to the UI.
+Step 2: The `AddCommandParser` object will parse the command into an `AddCommand` object in the logic package to check if the user is a duplicated user or not.  If the person is a valid person, the person would be wrapped into a `Model` and passed to the `UI`.
 
-Step 3: In the UI, as it is an addCommand, the MainWindow will update the PersonListPanel, which will call the updateItem based on the Person and H. This will go to the PersonListViewCell, and would attempt to create a person class. 
+Step 3: In the UI, as it is an `AddCommand` object, the `MainWindow` will update the `PersonListPanel`, which will call the `updateItem` method based on the Person and the priority. This will go to the `PersonListViewCell`, and would attempt to create a person class. 
 
-Step 4: To identify between the different levels of priority, I propose to use a PriorityParser class which would parse the PersonCard to identify the type of person it is and would adjust the GUI based on it. The results would then be used to create a new PersonCard class and with a custom GUI based on the priority of the individual.
+Step 4: To identify between the different levels of priority, I propose to use a to have a `PriortyIndicatorComponent` class to identify the type of person it is based on the archive status and the priority. The `PriorityIndicatorComponent` class will construct the indicator border and background using `Paint` elements from the `ColorPicker` class. The `PersonList` object will set the background and border based on the returned border and background. 
 
-Step 5: This card would be returned back to the PersonListViewCell, updated on the PersonListPanel and finally shown in the Mainwindow. 
+Step 5: This `PersonList` Object would be returned to the `PersonListViewCell`, updated on the `PersonListPanel` and finally shown in the `Mainwindow`. 
 
 The following sequence diagram shows how the Priority operation works:
 
-![Proposed Sequence Diagram](images/ImplementationSuggestionSequence.png)
+![Proposed Sequence Diagram](images/ImplementationPrioritySequence.png)
 
 #### Design consideration:
 

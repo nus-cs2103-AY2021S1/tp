@@ -24,12 +24,16 @@ Class Email
 Class Name
 Class Phone
 Class UniquePersonList
-Class Note
+
 Class Priority
 }
 
 Package ClientSource {
 Class ClientSource
+}
+
+Package Note {
+Class Note
 }
 
 Package Policy {
@@ -54,14 +58,14 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 ClientList *--> "1" UniquePersonList
 UniquePersonList o--> "*" Person
-Person *--> Name
+Person *--> "1" Name
 Person *--> "0..1" Phone
 Person *--> "0..1" Email
 Person *--> "0..1" Address
 Person *--> "*" ClientSource
 Person *--> "0..1" Policy
 Person *--> "0..1" Note
-Person *--> Priority
+Person *--> "1" Priority
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
@@ -71,7 +75,7 @@ ModelManager -->"1" Person : filtered list
 
 ModelManager o--> "1" PolicyList
 PolicyList o--> "*" Policy
-Policy *--> PolicyName
-Policy *--> PolicyDescription
+Policy *--> "1" PolicyName
+Policy *--> "1" PolicyDescription
 
 @enduml
