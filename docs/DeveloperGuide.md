@@ -89,6 +89,8 @@ and exposes its functionality using the `LogicManager.java` class which implemen
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other
@@ -137,6 +139,8 @@ The Logic component of Inventoryinator applies a [command](https://refactoring.g
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `UI`.
 1. In addition, the `CommandResult` object can also instruct the `UI` to perform certain actions, such as displaying help to the user.
 
+<div style="page-break-after: always;"></div>
+
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deli -n bob's toenail")` API call.
 
 ![Interactions Inside the Logic Component for the `deli -n bob's toenail` Command](images/commandseqdiagrams/DeleteItemSequenceDiagram.png)
@@ -146,11 +150,12 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
+
+<div style="page-break-after: always;"></div>
+
 ![Structure of the Model Sub-components](images/ModelSubClassDiagram.png)
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-F13-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
-
-<div style="page-break-after: always;"></div>
 
 The `Model`,
 
@@ -304,8 +309,6 @@ Initial user input is shown in full, but as the system transforms the input,
 
 ![DeleteItemSequenceDiagram](images/commandseqdiagrams/DeleteItemSequenceDiagram.png)
 
-<div style="page-break-after: always;"></div>
-
 #### Alternative Implementation and Reasoning against its implementation
 
 One problem with the current implementation is that there is a deep coupling between
@@ -345,6 +348,8 @@ will be retrieved and displayed. If the user was previously on detailed item vie
 
 The following sequence diagram shows how the list items operation works:
 ![ListItemSequenceDiagram](images/commandseqdiagrams/ListItemSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram shows how the list recipes operation works:
 ![ListRecipeSequenceDiagram](images/commandseqdiagrams/ListRecipeSequenceDiagram.png)
@@ -408,6 +413,8 @@ Additionally, it implements the following operations:
 These operations are exposed in the `Model` interface as `Model#commitInventory()`, `Model#undoInventory()` and
 `Model#redoInventory()` respectively.
 
+<div style="page-break-after: always;"></div>
+
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `VersionedInventory` will be initialized with
@@ -415,12 +422,16 @@ the initial inventory state, and the `currentStatePointer` pointing to that sing
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
+<div style="page-break-after: always;"></div>
+
 Step 2. The user executes `deli -n Bob’s 28th finger` (a `DeleteItemCommand`) command to delete the matching item in
 the inventory. The `deli` command calls `Model#commitInventory()`, causing the modified state of the inventory
 after the `deli -n Bob’s 28th finger` command executes to be saved in the `inventoryStateList`, and the
 `currentStatePointer` is shifted to the newly inserted inventory state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
+
+<div style="page-break-after: always;"></div>
 
 Step 3. The user executes `addi -n Bob’s 6th regret -q 8` (a `AddItemCommand`) to add a new item.
 The `addi` command also calls `Model#commitInventory()`, causing another modified inventory state to be
@@ -431,6 +442,8 @@ saved into the `inventoryStateList`.
 **Note:** If a command fails its execution, it will not call `Model#commitInventory()`, so the inventory
 state will not be saved into the `inventoryStateList`.
 
+<div style="page-break-after: always;"></div>
+
 Step 4. The user now decides that adding the item was a mistake, and decides to undo that action by executing the
 `undo` command. The `undo` command will call `Model#undoInventory()`, which will shift the `currentStatePointer`
 once to the left, pointing it to the previous inventory state, and restores the inventory to that state.
@@ -440,6 +453,8 @@ once to the left, pointing it to the previous inventory state, and restores the 
 **Note:** If the `currentStatePointer` is at index 0, pointing to the initial `Inventory` state, then there are 
 no previous `Inventory` states to restore. The `undo` command checks if this is the case. If so, it will return 
 an error to the user rather than attempting to perform the undo.
+
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram shows how the undo operation works:
 
@@ -455,11 +470,15 @@ latest inventory state, then there are no undone `Inventory` states to restore. 
 is the case. If so, it will return an error to the user
 rather than attempting to perform the redo.
 
+<div style="page-break-after: always;"></div>
+
 Step 5. The user then decides to execute the command `listi`. Commands that do not modify the inventory, such as 
 `listi`, will usually not call `Model#commitInventory()`, `Model#undoInventory()` or `Model#redoInventory()`.
 Thus, the `inventoryStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
+
+<div style="page-break-after: always;"></div>
 
 Step 6. The user executes `clear`, which calls `Model#commitInventory()`. Since the `currentStatePointer`
 is not pointing at the end of the `inventoryStateList`, all inventory states after the `currentStatePointer`
@@ -467,6 +486,8 @@ will be purged. Reason: It no longer makes sense to redo the `addi -n Bob’s 6t
 behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
+
+<div style="page-break-after: always;"></div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -508,6 +529,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 * is very comfortable using CLI apps
 
 **Value proposition**: manage inventory faster than a typical mouse/GUI driven app
+
+<div style="page-break-after: always;"></div>
 
 ### User stories for V1.4
 
