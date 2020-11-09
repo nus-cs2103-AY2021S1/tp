@@ -1,3 +1,8 @@
+---
+layout: page
+title: Dianne's Project Portfolio Page
+---
+
 ## Project: PropertyFree
 
 Given below are my contributions to the project.
