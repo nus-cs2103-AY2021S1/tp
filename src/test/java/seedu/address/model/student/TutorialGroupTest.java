@@ -19,11 +19,20 @@ public class TutorialGroupTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
+    public void constructor_invalidId_throwsIllegalArgumentException() {
         String invalidTutorialGroupId = "";
         assertThrows(IllegalArgumentException.class, () -> new TutorialGroup(
             new TutorialGroupId(invalidTutorialGroupId), new DayOfWeek("MON"), new TimeOfDay("16:00"),
             new TimeOfDay("18:00")));
+    }
+
+    @Test
+    public void constructor_invalidTutorialTimes_throwsIllegalArgumentException() {
+        TimeOfDay startTime = new TimeOfDay("19:00");
+        TimeOfDay endTime = new TimeOfDay("17:00"); //endTime earler than startTime
+        assertThrows(AssertionError.class, () -> new TutorialGroup(
+            new TutorialGroupId("T04"), new DayOfWeek("MON"), startTime,
+            endTime));
     }
 
     @Test

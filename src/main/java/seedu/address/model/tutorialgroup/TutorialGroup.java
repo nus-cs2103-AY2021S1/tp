@@ -22,6 +22,7 @@ public class TutorialGroup {
      */
     public TutorialGroup(TutorialGroupId tutorialGroupId, DayOfWeek dayOfWeek, TimeOfDay startTime, TimeOfDay endTime) {
         requireAllNonNull(tutorialGroupId, dayOfWeek, startTime, endTime);
+        assert (startTime.getTime().compareTo(endTime.getTime()) == -1);
         this.tutorialGroupId = tutorialGroupId;
         this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;

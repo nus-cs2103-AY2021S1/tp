@@ -52,6 +52,9 @@ public class TimeOfDay {
         return endTimeInteger - startTimeInteger > 0;
     }
 
+    public LocalTime getTime() {
+        return this.time;
+    }
 
     @Override
     public String toString() {
