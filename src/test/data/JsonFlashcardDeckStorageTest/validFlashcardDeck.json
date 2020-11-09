@@ -1,0 +1,46 @@
+{
+  "flashcards": [
+    {
+      "question": "What does SDLC stand for?",
+      "answer": "Software development life cycle",
+      "category": "SDLC",
+      "note": "",
+      "rating": "2",
+      "tagged": [ "revise" ],
+      "diagramFilePath": "",
+      "statistics": {
+        "reviewFrequency": 5,
+        "successFrequency": 1
+      },
+      "isFavourite": "false"
+    },
+    {
+      "question": "What is a revision control software?",
+      "answer": "It is the software tool that automate the process of Revision Control",
+      "category": "Revision History",
+      "note": "",
+      "rating": "",
+      "tagged": [ ],
+      "diagramFilePath": "",
+      "statistics": {
+        "reviewFrequency": 5,
+        "successFrequency": 2
+      },
+      "isFavourite": "true"
+    },
+    {
+      "question": "It is recommended that assertions to be used liberally in the code. True or False?",
+      "answer": "True",
+      "category": "General",
+      "note": "",
+      "rating": "",
+      "tagged": [ ],
+      "diagramFilePath": "",
+      "statistics": {
+        "reviewFrequency": 4,
+        "successFrequency": 3
+      },
+      "isFavourite": "false"
+    }
+  ]
+}

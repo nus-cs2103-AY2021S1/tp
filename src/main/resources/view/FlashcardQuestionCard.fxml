@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.control.ScrollPane?>
+    <VBox alignment="CENTER_LEFT" styleClass="pane-with-round-border"  xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+        <padding>
+            <Insets bottom="15" left="15" right="15" top="15" />
+        </padding>
+
+        <ScrollPane fx:id="questionScrollPane" styleClass="pane-with-no-border" fitToWidth="true" >
+        <VBox alignment="TOP_CENTER" spacing="5" maxHeight="Infinity">
+            <padding>
+                <Insets bottom="5" left="15" right="15" top="5" />
+            </padding>
+            <VBox minHeight="200" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT" spacing="5" >
+                <Label fx:id="question" styleClass="cell_question_label" text="\$question" wrapText="true"/>
+            </HBox>
+
+            <HBox spacing="15">
+                <padding>
+                    <Insets bottom="15" top="15" />
+                </padding>
+                <Label fx:id="category" styleClass="cell_small_label" text="\$category" />
+                <TextFlow fx:id="ratingPane">
+                    <Text fx:id="rating" text="\$rating"></Text>
+                    <Text fx:id="ratingIcon"></Text>
+                </TextFlow>
+                <Text fx:id="favouriteIcon" text="\$favouriteIcon"/>
+            </HBox>
+            </VBox>
+            <Label fx:id="diagramErrorMessage" styleClass="generic-error-label" visible="false" wrapText="true" text="\$error"/>
+            <ImageView fx:id="diagram" fitHeight="400.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" />
+            <FlowPane fx:id="tags" />
+        </VBox>
+        </ScrollPane>
+
+
+</VBox>
+

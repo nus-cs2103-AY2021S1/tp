@@ -1,0 +1,34 @@
+{
+  "flashcards": [
+    {
+      "question": "What does SDLC stand for?",
+      "answer": "Software development life cycle",
+      "category": "SDLC",
+      "note": "",
+      "rating": "2",
+      "tagged": [ ],
+      "diagramFilePath": "",
+      "isFavourite": "false"
+    },
+    {
+      "question": "What is a revision control software?",
+      "answer": "",
+      "category": "Revision History",
+      "note": "",
+      "rating": "",
+      "tagged": [ ],
+      "diagramFilePath": "",
+      "isFavourite": "true"
+    },
+    {
+      "question": "It is recommended that assertions to be used liberally in the code. True or False?",
+      "answer": "True",
+      "category": "General",
+      "note": "",
+      "rating": "",
+      "tagged": [ ],
+      "diagramFilePath": "",
+      "isFavourite": "false"
+    }
+  ]
+}

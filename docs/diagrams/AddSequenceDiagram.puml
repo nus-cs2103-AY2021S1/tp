@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FlashcardDeckParser" as FlashcardDeckParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+end box
+
+box Flashcard MODEL_COLOR_T2
+participant "f:Flashcard" as Flashcard MODEL_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager :  execute("add q/OOP \l is good. T/F ? \l a/T ")
+activate LogicManager
+
+LogicManager -> FlashcardDeckParser : parseCommand("add q/OOP is good. T/F ? a/T ")
+activate FlashcardDeckParser
+
+create AddCommandParser
+FlashcardDeckParser --> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> FlashcardDeckParser
+deactivate AddCommandParser
+
+FlashcardDeckParser --> AddCommandParser : parse("q/OOP is good. T/F ? a/T ")
+activate AddCommandParser
+
+create Flashcard
+AddCommandParser --> Flashcard
+activate Flashcard
+
+Flashcard --> AddCommandParser
+deactivate Flashcard
+
+create AddCommand
+AddCommandParser --> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser
+deactivate AddCommand
+
+AddCommandParser --> FlashcardDeckParser
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> FlashcardDeckParser
+destroy AddCommandParser
+
+FlashcardDeckParser --> LogicManager
+deactivate FlashcardDeckParser
+
+LogicManager --> AddCommand : execute()
+activate AddCommand
+
+AddCommand --> Model: addFlashCard(f)
+activate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand -->LogicManager
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

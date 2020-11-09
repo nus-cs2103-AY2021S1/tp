@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<VBox alignment="CENTER_LEFT" styleClass="pane-with-round-border" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets top="20" right="15" bottom="15" left="15" />
+    </padding>
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+        <VBox minHeight="50" alignment="CENTER_LEFT">
+            <padding>
+                <Insets left="15" right="15" />
+            </padding>
+            <Label fx:id="answer" wrapText="true"  styleClass="answer-display"/>
+            <HBox>
+                <padding>
+                    <Insets top="15"/>
+                </padding>
+            <Label fx:id="note" wrapText="true" styleClass="cell_small_label" text="\$note"/>
+            </HBox>
+        </VBox>
+    </ScrollPane>
+</VBox>
+

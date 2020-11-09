@@ -1,0 +1,47 @@
+@startuml
+!include style.puml
+scale 0.5
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":ReviewPanel" as ReviewPanel UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":StudyManager" as StudyManager LOGIC_COLOR
+end box
+
+[-> MainWindow : executeCommand(commandText)
+activate MainWindow
+
+MainWindow -> LogicManager : execute(commandText)
+activate LogicManager
+
+LogicManager -> MainWindow : commandResult
+deactivate LogicManager
+
+MainWindow -> CommandResult : isReviewMode()
+activate CommandResult
+CommandResult -> MainWindow : true
+deactivate CommandResult
+CommandResult -[hidden]-> MainWindow
+destroy CommandResult
+
+create ReviewPanel
+MainWindow -> ReviewPanel
+
+MainWindow -> MainWindow : enterStudyMode(reviewPanel)
+
+create StudyManager
+ReviewPanel -> StudyManager
+loop in review mode
+    alt right arrow key
+        ReviewPanel -> StudyManager : hasNextFlashcard()
+    else left arrow key
+        ReviewPanel -> StudyManager : hasPreviousFlashcard()
+    end
+end
+
+@enduml

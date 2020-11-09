@@ -1,0 +1,88 @@
+{
+  "flashcards": [
+    {
+      "question": "What does SDLC stand for?",
+      "answer": "Software development life cycle",
+      "category": "SDLC",
+      "note": "",
+      "rating": "2",
+      "tagged" : [ "revise" ],
+      "diagramFilePath": "",
+      "statistics": {
+        "reviewFrequency": 0,
+        "successFrequency": 0
+      },
+      "isFavourite": "false"
+    },
+    {
+      "question": "What is a revision control software?",
+      "answer": "It is the software tool that automate the process of Revision Control",
+      "category": "Revision History",
+      "note": "",
+      "rating": "",
+      "tagged" : [ ],
+      "diagramFilePath": "",
+      "statistics": {
+        "reviewFrequency": 0,
+        "successFrequency": 0
+      },
+      "isFavourite": "true"
+    },
+    {
+      "question": "It is recommended that assertions to be used liberally in the code. True or False?",
+      "answer": "True",
+      "category": "General",
+      "note": "",
+      "rating": "",
+      "tagged" : [ ],
+      "diagramFilePath": "",
+      "statistics": {
+        "reviewFrequency": 0,
+        "successFrequency": 0
+      },
+      "isFavourite": "false"
+    },
+    {
+      "question": "Can the singleton pattern can reduce testability?",
+      "answer": "Yes",
+      "category": "Singleton",
+      "note": "",
+      "rating": "",
+      "tagged" : [ ],
+      "diagramFilePath": "",
+      "statistics": {
+        "reviewFrequency": 3,
+        "successFrequency": 2
+      },
+      "isFavourite": "false"
+    },
+    {
+      "question": "The Command pattern uses polymorphism. True or False?",
+      "answer": "True",
+      "category": "Command Pattern",
+      "note": "",
+      "rating": "",
+      "tagged" : [ ],
+      "diagramFilePath": "",
+      "statistics": {
+        "reviewFrequency": 1,
+        "successFrequency": 0
+      },
+      "isFavourite": "false"
+    },
+    {
+      "question": "More test cases is always better. True or False?",
+      "answer": "True",
+      "category": "General",
+      "note": "",
+      "rating": "",
+      "tagged" : [ ],
+      "diagramFilePath": "",
+      "statistics": {
+        "reviewFrequency": 5,
+        "successFrequency": 2
+      },
+      "isFavourite": "false"
+    }
+  ]
+}

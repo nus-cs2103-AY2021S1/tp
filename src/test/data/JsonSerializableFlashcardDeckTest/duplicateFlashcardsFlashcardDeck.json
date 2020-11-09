@@ -1,0 +1,42 @@
+{
+  "flashcards": [
+    {
+      "question": "What does SDLC stand for?",
+      "answer": "Software development life cycle",
+      "category": "SDLC",
+      "note": "",
+      "rating": "2",
+      "tagged" : [ ],
+      "diagramFilePath": "",
+      "statistics": {
+        "reviewFrequency": 0,
+        "successFrequency": 0
+      },
+      "isFavourite": "false"
+    },
+    {
+      "question": "What does SDLC stand for?",
+      "answer": "Software development life cycle",
+      "category": "SDLC",
+      "note": "",
+      "rating": "2",
+      "tagged" : [ ],
+      "diagramFilePath": "",
+      "statistics": {
+        "reviewFrequency": 4,
+        "successFrequency": 3
+      },
+      "isFavourite": "false"
+    },
+    {
+      "question": "It is recommended that assertions to be used liberally in the code. True or False?",
+      "answer": "True",
+      "category": "General",
+      "note": "",
+      "rating": "",
+      "tagged" : [ ],
+      "diagramFilePath": "",
+      "isFavourite": "false"
+    }
+  ]
+}

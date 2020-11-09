@@ -6,15 +6,17 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="SWEe!" minWidth="1200" minHeight="800" onCloseRequest="#handleExit">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/lightning.png" />
   </icons>
   <scene>
     <Scene>
@@ -23,7 +25,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox>
+      <VBox styleClass="main-window">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -46,14 +48,33 @@
           </padding>
         </StackPane>
 
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+        <StackPane fx:id="studyPanePlaceholder"  VBox.vgrow="ALWAYS" HBox.hgrow = "ALWAYS"></StackPane>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+        <GridPane fx:id="commandModePane" styleClass="grid-with-border" VBox.vgrow="ALWAYS">
+          <padding>
+            <Insets bottom="10" left="10" right="10" top="10" />
+          </padding>
+          <columnConstraints>
+            <ColumnConstraints percentWidth="50.0" />
+            <ColumnConstraints percentWidth="50.0" />
+          </columnConstraints>
+
+            <VBox GridPane.columnIndex="0" fx:id="flashcardList" minWidth="500" styleClass="pane-with-no-border" VBox.vgrow="ALWAYS" HBox.hgrow = "ALWAYS" GridPane.hgrow="ALWAYS" GridPane.vgrow = "ALWAYS">
+              <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+              </padding>
+              <StackPane fx:id="flashcardListPanelPlaceholder"  VBox.vgrow="ALWAYS"/>
+            </VBox>
+
+
+              <VBox GridPane.columnIndex="1" GridPane.vgrow = "ALWAYS" styleClass="pane-with-no-border" GridPane.hgrow="ALWAYS" minWidth="500">
+                <StackPane fx:id="flashcardViewCardPlaceholder"  VBox.vgrow="ALWAYS" HBox.hgrow = "ALWAYS"/>
+              </VBox>
+
+
+        </GridPane>
+
+        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" maxHeight="30" minHeight="30" />
       </VBox>
     </Scene>
   </scene>

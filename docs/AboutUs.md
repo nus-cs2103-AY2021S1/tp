@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Kimberly Ong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kimberlyohq.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/kimberlyohq)]
+[[portfolio](team/kimberlyohq.md)]
 
-* Role: Project Advisor
+* Role: Code Quality + Integration
 
-### Jane Doe
+### Ng Song Guan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sgn00.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/sgn00)]
+[[portfolio](team/sgn00.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Melvin Ong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/moyj01.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/moyj01)]
+[[portfolio](team/moyj01.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Ong Si Min
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/minzzelo.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/minzzelo)]
+[[portfolio](team/minzzelo.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Tan Zhuo Yao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tanzhuoyao-nus.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/tanzhuoyao-nus)]
+[[portfolio](team/tanzhuoyao-nus.md)]
 
 * Role: Developer
 * Responsibilities: UI
