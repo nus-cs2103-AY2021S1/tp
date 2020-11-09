@@ -1,4 +1,4 @@
-## Reeve - Developer Guide
+## **Reeve** - Developer Guide
 
 **Table of Contents**
 - [1. Introduction](#1-introduction)
@@ -69,7 +69,7 @@ Welcome to **Reeve**!
 **Command Line Interface (CLI)** for receiving inputs while still having the benefits of a **Graphical User Interface (GUI)** for displaying information.
 In addition, **Reeve** comes with a customisable personal scheduler to assist users to keep track of their classes. **Reeve** also allows users to set timely reminders for themselves.
 
-Reeve is optimized for users that are very comfortable with typing as it works on a Command Line Interface (CLI).
+**Reeve** is optimized for users that are very comfortable with typing as it works on a Command Line Interface (CLI).
 
 Students' details are displayed in a neat and organized manner through the use of a Graphical User Interface (GUI).
 
@@ -207,7 +207,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the reeve data.
+* holds the data of **Reeve** in memory.
 * exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -391,7 +391,7 @@ The overdue payment filter feature allows the tutor to find all students who hav
 
 The following describes the flow of how `OverdueCommand` is executed.
 
-1. Upon successfully parsing the user input, `OverdueCommand#execute(Model model)` is called to filter all students in Reeve whose last date of payment was more than a month ago.
+1. Upon successfully parsing the user input, `OverdueCommand#execute(Model model)` is called to filter all students in **Reeve** whose last date of payment was more than a month ago.
 2. `Model#updateFilteredStudentsList(Predicate<Student> predicate)` is called to find only students that match the above condition. A new `CommandResult` is returned with a successful message indicating the number of matching students.
 3. The filtered student list replaces the displayed list on the GUI and a success message is shown in the result display.
 
@@ -792,7 +792,7 @@ This section describes how `AddNoteCommand` is performed.
 This section describes how `EditNoteCommand` is performed.
 
 1. Upon successful parsing of the user input, `EditNoteCommand#execute(Model model)` is called.
-2. During the execution, `Model#getNotebook()` is called to retrieve the notebook in Reeve and `ReadOnlyNotebook#getNotesList()` is called from the notebook to retrieve the list of notes.
+2. During the execution, `Model#getNotebook()` is called to retrieve the notebook in **Reeve** and `ReadOnlyNotebook#getNotesList()` is called from the notebook to retrieve the list of notes.
 3. The `Index` is checked to ensure that it is valid; if it is not, a `CommandException` is thrown, and no note will be edited.
 4. The note at `index` is retrieved, and a new note, `editedNote` is created based on this note and the `EditNoteDescriptor` stored within the `EditNoteCommand`.
 5. `editedNote` is checked to ensure that it is not the same as the original note retrieved. A `CommandException` is thrown if it is the same note.
@@ -804,7 +804,7 @@ This section describes how `EditNoteCommand` is performed.
 This section describes how `DeleteNoteCommand` is performed.
 
 1. Upon successful parsing of the user input, `DeleteNoteCommand#execute(Model model)` is called.
-2. During the execution, `Model#getNotebook()` is called to retrieve the `ReadOnlyNotebook` in Reeve and `ReadOnlyNotebook#getNotesList()` is called to retrieve the `List<Note>`.
+2. During the execution, `Model#getNotebook()` is called to retrieve the `ReadOnlyNotebook` in **Reeve** and `ReadOnlyNotebook#getNotesList()` is called to retrieve the `List<Note>`.
 3. The `Index` is checked to ensure that it is valid; if it is not, a `CommandException` is thrown, and no note will be deleted.
 4. The `Note` at `Index` is removed from the notebook using `Model#deleteNote(Note noteToDelete)`.
 5. A `CommandResult` will be returned with the success message.
@@ -845,8 +845,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
                                      
 | Priority | As a …​                            | I want to …​                                       | So that I can…​                                                                     |
 | -------- | ----------------------------------------------------------| ------------------------------------------------------- | ----------------------------------------------------------------------              |
-| `* * *`  | private tutor ready to use Reeve                          | view a list of commands and how to use them             | learn how the application works or in case I forgot how some of the commands work   |
-| `* * *`  | private tutor ready to use Reeve                          | add my students' details                                | store them and retrieve them whenever I need                                        |
+| `* * *`  | private tutor ready to use **Reeve**                      | view a list of commands and how to use them             | learn how the application works or in case I forgot how some of the commands work   |
+| `* * *`  | private tutor ready to use **Reeve**                      | add my students' details                                | store them and retrieve them whenever I need                                        |
 | `* * *`  | private tutor                                             | view my students' preferred tutoring location           | figure out how to get that location                                                 |
 | `* * *`  | private tutor                                             | edit my students' personal details                      | update outdated data                                                                |
 | `* * *`  | private tutor                                             | view my student's details                               | refer to them when needed                                                           |
@@ -867,21 +867,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |  `* *`   | private tutor                                             | be able to group my students by their year of study     | look at questions and queries together for one cohort together                      |
 |  `* *`   | private tutor                                             | view my tutoring schedule for a week                    | plan for the week ahead                                                             |
 |   `*`    | private tutor                                             | view my students' academic progress                     | know which students need more help                                                  |
-|   `*`    | private tutor ready to use Reeve                          | view the type of student details that are displayed     | focus on the details that I am currently concerned with                             |
+|   `*`    | private tutor ready to use **Reeve**                      | view the type of student details that are displayed     | focus on the details that I am currently concerned with                             |
 |   `*`    | private tutor that is impatient                           | be able to get the command results in a reasonable time | save time                                                                           |
-|   `*`    | private tutor that is using Reeve for the first time      | view Reeve with sample data                             | visualize how Reeve looks like when I use it                                        |
+|   `*`    | private tutor that is using **Reeve** for the first time  | view **Reeve** with sample data                         | visualize how **Reeve** looks like when I use it                                        |
 
 ## **Appendix C: Use Cases**
 
 For all use cases below, the **System** is `Reeve` and the **Actor** is the `Tutor (User)`, unless specified otherwise.
-Use cases also assume that whenever an invalid command is entered by the user, Reeve displays an error message.
+Use cases also assume that whenever an invalid command is entered by the user, **Reeve** displays an error message.
 
 **UC01: Displaying help menu**
 
 **MSS**
 
 1. User enters a command to open help menu.
-2. Reeve displays a success message and the help menu.
+2. **Reeve** displays a success message and the help menu.
 
    Use case ends.
 
@@ -890,7 +890,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1. User enters a command to toggle display students details.
-2. Reeve displays a success message and the toggled display of students details.
+2. **Reeve** displays a success message and the toggled display of students details.
 
    Use case ends.
 
@@ -899,7 +899,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1. User enters a command to exit the application.
-2. All processes of Reeve ends.
+2. All processes of **Reeve** ends.
 
    Use case ends.
 
@@ -909,19 +909,19 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1.  User enters a command to add a student with student details.
-2.  Reeve saves student data into the students list and displays a success message.
+2.  **Reeve** saves student data into the students list and displays a success message.
 
     Use case ends.
 
 **Extensions**
 
 * 1a. User provides input with missing compulsory fields.
-    * 1a1. Reeve displays an error message.
+    * 1a1. **Reeve** displays an error message.
 
       Use case resumes from step 1.
 
 * 1b. User provides input with invalid format.
-    * 1b1. Reeve displays an error message.
+    * 1b1. **Reeve** displays an error message.
 
       Use case resumes from step 1.
 
@@ -930,7 +930,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1. User enters a command to list students.
-2. Reeve displays the students list with student details.
+2. **Reeve** displays the students list with student details.
 
    Use case ends.
 
@@ -939,9 +939,9 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1.  User enters a command to list students.
-2.  Reeve shows the list of students.
+2.  **Reeve** shows the list of students.
 3.  User enters command to edit a specific student in the list and provides needed parameters.
-4.  Reeve updates the specified student with the input parameters and displays a success message.
+4.  **Reeve** updates the specified student with the input parameters and displays a success message.
 
     Use case ends.
 
@@ -951,15 +951,15 @@ Use cases also assume that whenever an invalid command is entered by the user, R
   Use case ends.
 
 * 3a. User provides input with invalid index.
-    * 3a1. Reeve requests for input with valid index.
+    * 3a1. **Reeve** requests for input with valid index.
 
       Use case resumes at step 2.
 * 3b. User provides input without any parameters.
-    * 3b1. Reeve requests for input with parameters.
+    * 3b1. **Reeve** requests for input with parameters.
 
       Use case resumes at step 2.
 * 3c. User provides input with invalid format.
-	* 3c1. Reeve requests for input with valid format.
+	* 3c1. **Reeve** requests for input with valid format.
 
 	  Use case resumes at step 2.
 
@@ -968,9 +968,9 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1.  User enters a command to list students.
-2.  Reeve displays a list of students.
+2.  **Reeve** displays a list of students.
 3.  User enters a command to delete a specific student in the list.
-4.  Reeve deletes the student and displays a success message.
+4.  **Reeve** deletes the student and displays a success message.
 
     Use case ends.
 
@@ -981,7 +981,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
   Use case ends.
 
 * 3a. User provides input with invalid index.
-    * 3a1. Reeve displays an error message.
+    * 3a1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
@@ -990,22 +990,22 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1.  User enters a command to find all students that match the given search parameter (name, school, year).
-2.  Reeve displays all students matching the criteria.
+2.  **Reeve** displays all students matching the criteria.
 
     Use case ends.
 
 **Extensions**
 
 * 1a. User provides input with invalid data into the search parameter.
-    * 1a1. Reeve displays erroneous field and expected format.
+    * 1a1. **Reeve** displays erroneous field and expected format.
 
       Use case resumes at step 1.
 * 1b. User provides input without a search parameter.
-    * 1a1. Reeve displays a message indicating a search parameter was not provided.
+    * 1a1. **Reeve** displays a message indicating a search parameter was not provided.
 
       Use case resumes at step 1.
 * 1c. No students match the given criteria.
-    * 1c1. Reeve displays a message indicating no match found.
+    * 1c1. **Reeve** displays a message indicating no match found.
 
       Use case ends.
 
@@ -1014,7 +1014,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1. User enters a command to clear the students list.
-2. Reeve displays a success message.
+2. **Reeve** displays a success message.
 
    Use case ends.
   
@@ -1023,23 +1023,23 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1.  User enters a command to sort students by a given method (name, class time, year).
-2.  Reeve sorts the list of students by the method.
-3.  Reeve displays the student list in the new order
+2.  **Reeve** sorts the list of students by the method.
+3.  **Reeve** displays the student list in the new order
 
     Use case ends.
 
 **Extensions**
 
 * 1a. User provides input with invalid format.
-    * 1a1. Reeve displays expected format.
+    * 1a1. **Reeve** displays expected format.
 
       Use case resumes at step 1.
 * 1b. User provides input without a search parameter.
-    * 1a1. Reeve displays a message indicating a search parameter was not provided.
+    * 1a1. **Reeve** displays a message indicating a search parameter was not provided.
 
       Use case resumes at step 1.
 * 1c. User provides invalid means to sort students.
-    * 1c1. Reeve displays a message indicating that sorting means in valid and valid sorting means.
+    * 1c1. **Reeve** displays a message indicating that sorting means in valid and valid sorting means.
 
       Use case resumes at step 1.
 
@@ -1048,10 +1048,10 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1. User enters a command to list students.
-2. Reeve displays a list of students.
+2. **Reeve** displays a list of students.
 3. User enters a command to add a detail to a specific student in the list.
-4. Reeve updates the specified student in the list with the newly added detail.
-5. Reeve displays a success message.
+4. **Reeve** updates the specified student in the list with the newly added detail.
+5. **Reeve** displays a success message.
 
    Use case ends.
 
@@ -1062,12 +1062,12 @@ Use cases also assume that whenever an invalid command is entered by the user, R
   Use case ends.
 
 * 3a. User provides input with an invalid student index.
-    * 3a1. Reeve displays an error message.
+    * 3a1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
 * 3b. User inputs a detail in an invalid format.
-    * 3b1. Reeve displays an error message.
+    * 3b1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
@@ -1076,10 +1076,10 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1. User enters a command to list students.
-2. Reeve displays a list of students.
+2. **Reeve** displays a list of students.
 3. User enters a command to edit a detail from a specific student in the list.
-4. Reeve updates the specified student in the list with the edited detail.
-5. Reeve displays a success message.
+4. **Reeve** updates the specified student in the list with the edited detail.
+5. **Reeve** displays a success message.
 
    Use case ends.
 
@@ -1090,12 +1090,12 @@ Use cases also assume that whenever an invalid command is entered by the user, R
   Use case ends.
 
 * 3a. User provides input with an invalid student.
-    * 3a1. Reeve displays an error message.
+    * 3a1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
 * 3b. User provides input with an invalid detail.
-    * 3b1. Reeve displays an error message.
+    * 3b1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
@@ -1104,10 +1104,10 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1. User enters a command to list students.
-2. Reeve displays a list of students.
+2. **Reeve** displays a list of students.
 3. User enters a command to delete a detail from a specific student in the list.
-4. Reeve updates the specified student in the list with the removed detail.
-5. Reeve displays a success message.
+4. **Reeve** updates the specified student in the list with the removed detail.
+5. **Reeve** displays a success message.
 
    Use case ends.
 
@@ -1118,12 +1118,12 @@ Use cases also assume that whenever an invalid command is entered by the user, R
   Use case ends.
 
 * 3a. User provides input with an invalid student.
-    * 3a1. Reeve displays an error message.
+    * 3a1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
 * 3b. User provides input with an invalid detail.
-    * 3b1. Reeve displays an error message.
+    * 3b1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
@@ -1132,10 +1132,10 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1. User enters a command to list students.
-2. Reeve displays a list of students.
+2. **Reeve** displays a list of students.
 3. User enters a command to add an unresolved question to a specific student in the list.
-4. Reeve updates the specified student in the list with the newly added question.
-5. Reeve displays a success message.
+4. **Reeve** updates the specified student in the list with the newly added question.
+5. **Reeve** displays a success message.
 
    Use case ends.
 
@@ -1146,12 +1146,12 @@ Use cases also assume that whenever an invalid command is entered by the user, R
   Use case ends.
 
 * 3a. User provides input with an invalid student index.
-    * 3a1. Reeve displays an error message.
+    * 3a1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
 * 3b. User inputs a question in an invalid format.
-    * 3b1. Reeve displays an error message.
+    * 3b1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
@@ -1160,10 +1160,10 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1. User enters a command to list students.
-2. Reeve displays a list of students.
+2. **Reeve** displays a list of students.
 3. User enters a command to resolve a question from a specific student in the list with a solution.
-4. Reeve updates the specified student in the list with the updated question.
-5. Reeve displays a success message.
+4. **Reeve** updates the specified student in the list with the updated question.
+5. **Reeve** displays a success message.
 
    Use case ends.
 
@@ -1174,22 +1174,22 @@ Use cases also assume that whenever an invalid command is entered by the user, R
   Use case ends.
 
 * 3a. User provides input with an invalid student.
-    * 3a1. Reeve displays an error message.
+    * 3a1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
 * 3b. User provides input with an invalid question.
-    * 3b1. Reeve displays an error message.
+    * 3b1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
 * 3c. User inputs the solution in an invalid format.
-    * 3c1. Reeve displays an error message.
+    * 3c1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
 * 3d. User specifies a question that has already been solved.
-    * 3d1. Reeve displays an error message.
+    * 3d1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
@@ -1199,10 +1199,10 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1. User enters a command to list students.
-2. Reeve displays a list of students.
+2. **Reeve** displays a list of students.
 3. User enters a command to delete a question from a specific student in the list.
-4. Reeve updates the specified student in the list with the removed question.
-5. Reeve displays a success message.
+4. **Reeve** updates the specified student in the list with the removed question.
+5. **Reeve** displays a success message.
 
    Use case ends.
 
@@ -1213,12 +1213,12 @@ Use cases also assume that whenever an invalid command is entered by the user, R
   Use case ends.
 
 * 3a. User provides input with an invalid student.
-    * 3a1. Reeve displays an error message.
+    * 3a1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
 * 3b. User provides input with an invalid question.
-    * 3b1. Reeve displays an error message.
+    * 3b1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
@@ -1227,7 +1227,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1. User enter command to filter all students by those who have not paid their fees in the past month.
-2. Reeve displays all students that match the above criteria.
+2. **Reeve** displays all students that match the above criteria.
 
    Use case ends.
 
@@ -1239,7 +1239,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
 * 1b. All students have paid their fees in the past month.
 
-  * 1b1. Reeve displays an empty list.
+  * 1b1. **Reeve** displays an empty list.
 
     Use case ends.
 
@@ -1248,10 +1248,10 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1. User enters a command to list students.
-2. Reeve displays a list of students.
+2. **Reeve** displays a list of students.
 3. User enters a command to add an exam record to a specific student in the list.
-4. Reeve updates the specified student in the list with the newly added exam record.
-5. Reeve displays a success message.
+4. **Reeve** updates the specified student in the list with the newly added exam record.
+5. **Reeve** displays a success message.
 
    Use case ends.
 
@@ -1262,12 +1262,12 @@ Use cases also assume that whenever an invalid command is entered by the user, R
   Use case ends.
 
 * 3a. User provides input with an invalid student index.
-    * 3a1. Reeve displays an error message.
+    * 3a1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
 * 3b. User inputs an exam record in an invalid format.
-    * 3b1. Reeve displays an error message.
+    * 3b1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
@@ -1276,10 +1276,10 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1. User enters a command to list students.
-2. Reeve displays a list of students.
+2. **Reeve** displays a list of students.
 3. User enters a command to delete a specific exam record from a specific student in the list.
-4. Reeve updates the specified student in the list with the removed question.
-5. Reeve displays a success message.
+4. **Reeve** updates the specified student in the list with the removed question.
+5. **Reeve** displays a success message.
 
    Use case ends.
 
@@ -1290,12 +1290,12 @@ Use cases also assume that whenever an invalid command is entered by the user, R
   Use case ends.
 
 * 3a. User provides input with an invalid student.
-    * 3a1. Reeve displays an error message.
+    * 3a1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
 * 3b. User provides input with an invalid exam record.
-    * 3b1. Reeve displays an error message.
+    * 3b1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
@@ -1304,9 +1304,9 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1. User enters a command to list students.
-2. Reeve displays a list of students.
+2. **Reeve** displays a list of students.
 3. User enters a command to view the exam statistics on a specific student.
-4. Reeve displays a success message and the exam statistics.
+4. **Reeve** displays a success message and the exam statistics.
 
    Use case ends.
 
@@ -1317,7 +1317,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
   Use case ends.
 
 * 3a. User provides input with an invalid student.
-    * 3a1. Reeve displays an error message.
+    * 3a1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
@@ -1326,19 +1326,19 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1. User enters command to view schedule.
-2. Reeve shows the schedule of the user's classes.
+2. **Reeve** shows the schedule of the user's classes.
 
     Use case ends.
     
 **Extensions**
 
 * 1a. User enters command in an incorrect format.
-    1a1. Reeve displays error message.
+    1a1. **Reeve** displays error message.
     1a2. User corrects command input.
     
     Use case resumes at step 2.
     
-* 1b. There are no student in Reeve.
+* 1b. There are no student in **Reeve**.
     1b1. Schedule is shown with no classes.
     
     Use case ends.
@@ -1348,10 +1348,10 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1. User enters a command to list students.
-2. Reeve displays a list of students.
+2. **Reeve** displays a list of students.
 3. User enters a command to add an attendance record to a specific student in the list.
-4. Reeve updates the specified student in the list with the newly added attendance record.
-5. Reeve displays a success message.
+4. **Reeve** updates the specified student in the list with the newly added attendance record.
+5. **Reeve** displays a success message.
 
    Use case ends.
 
@@ -1362,12 +1362,12 @@ Use cases also assume that whenever an invalid command is entered by the user, R
   Use case ends.
 
 * 3a. User provides input with an invalid student index.
-    * 3a1. Reeve displays an error message.
+    * 3a1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
 * 3b. User inputs attendance with an invalid format.
-    * 3b1. Reeve displays an error message.
+    * 3b1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
@@ -1376,10 +1376,10 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1. User enters a command to list students.
-2. Reeve displays a list of students.
+2. **Reeve** displays a list of students.
 3. User enters a command to delete an attendance record from a specific student in the list.
-4. Reeve updates the specified student in the list with the removed attendance record.
-5. Reeve displays a success message.
+4. **Reeve** updates the specified student in the list with the removed attendance record.
+5. **Reeve** displays a success message.
 
    Use case ends.
 
@@ -1390,12 +1390,12 @@ Use cases also assume that whenever an invalid command is entered by the user, R
   Use case ends.
 
 * 3a. User provides input with an invalid student.
-    * 3a1. Reeve displays an error message.
+    * 3a1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
 
 * 3b. User provides input with an invalid attendance record.
-    * 3b1. Reeve displays an error message.
+    * 3b1. **Reeve** displays an error message.
 
       Use case resumes at step 2.
  
@@ -1404,15 +1404,15 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1. User enters a command to add a note to the notebook.
-2. Reeve saves the note into the notebook and displays a success message
+2. **Reeve** saves the note into the notebook and displays a success message
 
 * 1a. User provides input with missing fields.
-    * 1a1. Reeve displays an error message.
+    * 1a1. **Reeve** displays an error message.
 
       Use case resumes at step 1.
 
 * 1b. User provides invalid input.
-    * 1b1. Reeve displays an error message and input constraints.
+    * 1b1. **Reeve** displays an error message and input constraints.
 
       Use case resumes at step 1.
 
@@ -1421,22 +1421,22 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1.  User enters command to edit a specific note in the notebook and provides needed parameters.
-2.  Reeve updates the specified note with the input parameters and displays a success message.
+2.  **Reeve** updates the specified note with the input parameters and displays a success message.
 
     Use case ends.
 
 **Extensions**
 
 * 1a. User provides input with invalid index.
-    * 1a1. Reeve displays an error message and requests for input with valid index.
+    * 1a1. **Reeve** displays an error message and requests for input with valid index.
 
       Use case resumes at step 1.
 * 1b. User provides input without any parameters.
-    * 1b1. Reeve requests for input with parameters.
+    * 1b1. **Reeve** requests for input with parameters.
 
       Use case resumes at step 1.
 * 1c. User provides input with invalid format.
-	* 1c1. Reeve requests for input with valid format.
+	* 1c1. **Reeve** requests for input with valid format.
 
 	  Use case resumes at step 1.
 
@@ -1445,22 +1445,22 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 **MSS**
 
 1.  User enters command to edit a specific note in the notebook and provides needed parameters.
-2.  Reeve updates the specified note with the input parameters and displays a success message.
+2.  **Reeve** updates the specified note with the input parameters and displays a success message.
 
     Use case ends.
 
 **Extensions**
 
 * 1a. User provides input with invalid index.
-    * 1a1. Reeve displays an error message and requests for input with valid index.
+    * 1a1. **Reeve** displays an error message and requests for input with valid index.
 
       Use case resumes at step 1.
 * 1b. User provides input without any parameters.
-    * 1b1. Reeve requests for input with parameters.
+    * 1b1. **Reeve** requests for input with parameters.
 
       Use case resumes at step 1.
 * 1c. User provides input with invalid format.
-	* 1c1. Reeve requests for input with valid format.
+	* 1c1. **Reeve** requests for input with valid format.
 
 	  Use case resumes at step 1.
 
@@ -1491,7 +1491,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### F.1 Launching Reeve
+### F.1 Launching **Reeve**
 
 1. Initial launch
 
@@ -1524,9 +1524,9 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `toggle` when students display academic details.
     <br>Expected: Expected: Students switch to display administrative details.    
    
-3. Exiting Reeve.
+3. Exiting **Reeve**.
     1. Test case: `exit`.
-    <br>Expected: Reeve shuts down. 
+    <br>Expected: **Reeve** shuts down. 
     
 ### F.3 Student Administrative Features
 
@@ -1570,7 +1570,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Viewing schedule of classes
 
-    1. Prerequisites: There are students stored in Reeve currently with non-overlapping class times.
+    1. Prerequisites: There are students stored in **Reeve** currently with non-overlapping class times.
 
     1. Test case: `schedule m/weekly d/02/11/2020`
        Expected: Shows the schedule of classes in the whole week of 02/11/2020.
@@ -1789,17 +1789,17 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing data files
 
    1. Test case: `data/addressbook.json` missing or deleted<br>
-      Expected: Reeve initialises with sample student data, notebook data is intact.
+      Expected: **Reeve** initialises with sample student data, notebook data is intact.
 
    1. Test case: `data/notebook.json` missing or deleted<br>
-      Expected: Reeve initialises with sample notebook data, student data is intact.
+      Expected: **Reeve** initialises with sample notebook data, student data is intact.
 
 1. Dealing with corrupted data files (Student data)
 
    1. Prerequisite: Ensure `data/addressbook.json` is present. Modify the data using `edit` or `delete` to create `data/addressbook.json` if absent.
 
    1. Test case: delete a random field from a random student in `addressbook.json`<br>
-      Expected: Reeve initialises with an empty student list.
+      Expected: **Reeve** initialises with an empty student list.
 
    1. Test case: duplicate a student's record again in `addressbook.json`<br>
       Expected: Similar to previous.
@@ -1812,10 +1812,10 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisite: Ensure `data/notebook.json` is present. Modify the data using note commands to create `data/notebook.json` if absent.
 
    1. Test case: "description" field has more than 80 characters<br>
-      Expected: Reeve initialises with an empty notebook.
+      Expected: **Reeve** initialises with an empty notebook.
 
    1. Test case: "title" field has more than 15 characters<br>
-      Expected: Reeve initialises with an empty notebook.
+      Expected: **Reeve** initialises with an empty notebook.
 
    1. Test case: duplicate note in `notebook.json`<br>
       Expected: Similar to previous.
