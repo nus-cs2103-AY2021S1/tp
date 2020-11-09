@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import java.util.Arrays;
 
 import seedu.address.logic.commands.appointmentcommand.ShowApptCommand;
+import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.NricPredicate;
@@ -12,7 +13,7 @@ import seedu.address.model.patient.NricPredicate;
 /**
  * Parses input arguments and creates a new ShowAppt object
  */
-public class ShowApptCommandParser {
+public class ShowApptCommandParser implements Parser<ShowApptCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the ShowAppt Command
