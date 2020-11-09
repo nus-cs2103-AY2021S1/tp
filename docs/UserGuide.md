@@ -250,14 +250,14 @@ This is the table of prefixes used:
 | Prefix | Syntax | Example |
 |-|-|-|
 | `n/` | n/NAME_OF_ASSIGNMENT | - `n/Tutorial` |
-| `mod/` | mod/MODULE_CODE | - `mod/ST2334` |
-| `d/` | d/DATE_OR_TIME_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
-| `p/` | p/PRIORITY | - `p/HIGH` |
+| `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT | - `mod/ST2334` |
+| `d/` | d/DUE_DATE_OR_TIME_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
+| `p/` | p/PRIORITY_OF_ASSIGNMENT | - `p/HIGH` |
 
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note for prefixes and keywords:**<br>
-* For prefix `d/`, date keywords are **irrespective of time** and time keywords are **irrespective of date**. For example, `find d/1300 25-11-2020` finds all assignments due on 25-11-2020, at any time of the day and all assignments due at 1300, on any date.
+* For prefix `d/`, date and time from the deadline of an assignment are separate. Date keywords are **irrespective of time** and time keywords are **irrespective of date**. For example, `find d/1300 25-11-2020` finds all assignments due on 25-11-2020, at any time of the day and all assignments due at 1300, on any date.
 * Keywords used with prefixes `n/`,`mod/` and `p/` are **case-insensitive**.
 </div>
 
@@ -304,8 +304,8 @@ This is the table of prefixes used:
 | Prefix | Syntax | Example |
 |-|-|
 | `n/` | n/NAME_OF_ASSIGNMENT | - `n/Tutorial` |
-| `mod/` | mod/MODULE_CODE | - `mod/ST2334` |
-| `d/` | d/DATE_OR_TIME_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
+| `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT | - `mod/ST2334` |
+| `d/` | d/DEADLINE_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
 
 
 Here is an example with steps for you to follow:
