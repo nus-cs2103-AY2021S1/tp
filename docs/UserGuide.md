@@ -264,7 +264,7 @@ Format: `list`
 
 You can edit an existing student in **Reeve** if you need to update his particulars.
 
-Format: `edit STUDENT_INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/LAST_PAYMENT_DATE] `
+Format: `edit STUDENT_INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/LAST_PAYMENT_DATE]`
 
 * Edits the student at the specified `STUDENT_INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -292,7 +292,7 @@ Examples:
 Expected Outcome:
 The following figure (Figure __) shows the expected outcome after executing the above example.
 
-[!EditCommandExpectedOutcome](images/EditCommandExpectedOutcome.png)
+![EditCommandExpectedOutcome](images/EditCommandExpectedOutcome.png)
 
 Figure __: Expected Outcome after editing student.
 
@@ -402,7 +402,7 @@ Examples:
 Expected Outcome:
 The following figure (Figure __) shows the expected outcome after executing the above example.
 
-[!AddDetailExpectedOutcome](images/AddDetailExpectedOutcome.png)
+![AddDetailExpectedOutcome](images/AddDetailExpectedOutcome.png)
 
 Figure __: Expected Outcome after adding detail.
 
@@ -423,7 +423,7 @@ Examples:
 Expected Outcome:
 The following figure (Figure __) shows the expected outcome after executing the above example.
 
-[!EditDetailExpectedOutcome](images/EditDetailExpectedOutcome.png)
+![EditDetailExpectedOutcome](images/EditDetailExpectedOutcome.png)
 
 Figure __: Expected Outcome after editing detail.
 
@@ -443,7 +443,7 @@ Examples:
 Expected Outcome:
 The following figure (Figure __) shows the expected outcome after executing the above example.
 
-[!DeleteDetailExpectedOutcome](images/DeleteDetailExpectedOutcome.png)
+![DeleteDetailExpectedOutcome](images/DeleteDetailExpectedOutcome.png)
 
 Figure __: Expected Outcome after deleting detail.
 
@@ -752,7 +752,7 @@ lesson on 31 Oct 2020, where he was absent, and the tutor has no feedback for hi
 Expected Outcome:
 The following figure (Figure __) shows the expected outcome after executing the above example.
 
-[!AddAttendanceExpectedOutcome](images/AddAttendanceExpectedOutcome.png)
+![AddAttendanceExpectedOutcome](images/AddAttendanceExpectedOutcome.png)
 
 Figure __: Expected Outcome after adding attendance.
 
@@ -772,7 +772,7 @@ Example:
 Expected Outcome:
 The following figure (Figure __) shows the expected outcome after executing the above example.
 
-[!DeleteAttendanceExpectedOutcome](images/DeleteAttendanceExpectedOutcome.png)
+![DeleteAttendanceExpectedOutcome](images/DeleteAttendanceExpectedOutcome.png)
 
 Figure __: Expected Outcome after deleting attendance.
 
@@ -836,7 +836,7 @@ Table 2: Summary of commands in **Reeve**
 Action | Format, Examples
 --------|------------------
 **Add Student** | `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]...​` <br> e.g. `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
-**Edit Student** | `edit STUDENT_INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/LAST_PAYMENT_DATE] ` <br> e.g. `edit 1 n/Arthur p/98727030 s/Meridian Junior College`
+**Edit Student** | `edit STUDENT_INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/LAST_PAYMENT_DATE]` <br> e.g. `edit 1 n/Arthur p/98727030 s/Meridian Junior College`
 **Find Student** | `find [n/NAME] [s/SCHOOL] [y/YEAR]`<br> e.g. `find n/alex s/yishun`
 **List Students** | `list`
 **Delete Student** | `delete STUDENT_INDEX`<br> e.g. `delete 3`
@@ -852,7 +852,7 @@ Action | Format, Examples
 **Add Exam** | `exam add STUDENT_INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`<br> e.g. `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`
 **Delete Exam** | `exam delete STUDENT_INDEX i/EXAM_INDEX`<br> e.g. `exam delete 2 i/5`
 **Exam Stats** | `exam stats STUDENT_INDEX`<br> e.g. `exam stats 1`
-**Add Attendance** | `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBACK`<br> e.g. `attendance add 2 d/08/12/2020 a/present f/attentive`
+**Add Attendance** | `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS [f/FEEDBACK]`<br> e.g. `attendance add 2 d/08/12/2020 a/present f/attentive`
 **Delete Attendance** | `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`<br> e.g. `attendance delete 1 d/19/04/2020`
 **Schedule View** | `schedule m/VIEW_MODE d/DATE_TO_VIEW` <br> e.g. `schedule m/weekly d/02/11/2020`
 **Toggle View** | `toggle`
