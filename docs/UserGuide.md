@@ -109,6 +109,8 @@ FitEgo can help you with that. Here's how:
 
 FitEgo lets you record crucial information that you want to keep track of using three types of entities:
 
+<center> Table 1 - Types of entities </center>
+
 Item | Prefix | What it represents
 -----|-------| -------------------
 Client | c | Someone who is interested in or has engaged with your services
@@ -150,7 +152,7 @@ You can refer to the table and the figure below to familiarize yourself with the
      <figcaption> Figure 2 - Callouts of the various UI components</figcaption>
  </figure>
  
-<center> Table 1 - Functions of UI Components </center>
+<center> Table 2 - Functions of UI Components </center>
 From the figure above, the GUI is made up of several components. 
 
 | Component | Description |
@@ -626,7 +628,7 @@ Points to take note when viewing session from the Session List:
  * On top of the Session List, you can find the type of the period you are viewing.
  * The recognized periods are as follows:
  
- <center>Table 2 - List of recognized periods </center>
+ <center>Table 3 - List of recognized periods </center>
  
  | Period | Sessions displayed |
  | -------- | -------- |
@@ -638,7 +640,7 @@ Points to take note when viewing session from the Session List:
  | `-[x][unit]` | Sessions within past x time units where x is a non-negative integer|
  
  * The recognized units are as follows:
- <center>Table 3 - List of recognized time units </center>
+ <center>Table 4 - List of recognized time units </center>
  
  | Unit | Time unit parsed |
  | -------- | -------- |
@@ -695,7 +697,7 @@ Listed below are three other types of information that you can add into a schedu
 
 The table below shows an example of schedules. The session at Machoman Gym is attended by 2 clients. For each client, we can take note of their weight, activities, and payment status. 
 
-<center> Table 4 - Example of Schedule Tracking </center>
+<center> Table 5 - Example of Schedule Tracking </center>
 
 | Client   | Session                                                      | Weight | Remark                                                       | Payment Status |
 | -------- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ | -------------- |
@@ -807,7 +809,7 @@ Examples:
 
 You can find the comprehensive list of commands in the table below. 
 
-<center>Table 5 - General Commands Summary</center>
+<center>Table 6 - General Commands Summary</center>
 
 | Action | Format |
 | ---------| -------- |
@@ -817,7 +819,7 @@ You can find the comprehensive list of commands in the table below.
 | Clear all data | `clear` |
 | Exit this program | `exit` |
 
-<center>Table 6 - Keyword based Commands Summary (grouped by action) </center>
+<center>Table 7 - Keyword based Commands Summary (grouped by action) </center>
 
 | Action | Entity | Format |
 | ---------| -------- | -------- |
