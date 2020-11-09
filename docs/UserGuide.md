@@ -347,9 +347,11 @@ Format: `addpicture INDEX f/FILE_PATH`
 * All patient profiles are preloaded with a stock profile picture.
 * `addpicture` cannot be undone using `undo`. You can repeat the `addpicture` command to update the patient's profile with your desired profile picture.
 
-Examples:
-*  `addpicture 3 f/data/profile_3.jpg` Replaces existing profile picture with 'profile_3.jpg' found in
-                                                  'data' folder for the 3rd patient on the list
+Example: You want to add a profile picture to the 3rd patient on the list.
+
+Step 1: Input `addpicture 3 f/data/profile_3.jpg` into the command box and press <kbd>Enter</kbd>.
+
+Step 2: On the Patient tab, you can find your newly added profile picture displayed on the patient's profile.
 
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
