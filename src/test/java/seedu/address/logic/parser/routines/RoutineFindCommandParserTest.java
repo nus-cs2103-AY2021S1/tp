@@ -22,7 +22,13 @@ public class RoutineFindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsLessonFindCommand() {
+    public void parse_symbolsInArgs_throwsParseException() {
+        assertParseFailure(parser, "@@@@@@", String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, RoutineFindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_validArgs_returnsRoutineFindCommand() {
 
         RoutineNameContainsKeywordsPredicate predicate = new RoutineNameContainsKeywordsPredicate(
                 Arrays.asList("Leg", "Day"));
@@ -30,9 +36,6 @@ public class RoutineFindCommandParserTest {
         RoutineFindCommand expectedRoutineFindCommand =
                 new RoutineFindCommand(predicate);
         assertParseSuccess(parser, "Leg Day", expectedRoutineFindCommand);
-
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Leg\n \t Day  \t", expectedRoutineFindCommand);
     }
 
 }

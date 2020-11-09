@@ -17,7 +17,8 @@ public class ExerciseFindCommand extends Command {
     public static final String COMMAND_WORD = "exercise_find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all exercises whose names contain ALL of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\nAvoid using "
+            + "special characters!\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " bench press morning";
 

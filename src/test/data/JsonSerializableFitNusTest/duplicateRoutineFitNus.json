@@ -1,0 +1,17 @@
+{
+  "exercises" : [ ],
+  "lessons" : [ ],
+  "routines" : [ {
+    "routineName" : "Leg Day",
+    "exercisesIncluded" : [ ]
+  }, {
+    "routineName" : "Leg Day",
+    "exercisesIncluded" : [ ]
+  } ],
+  "slots" : [ ],
+  "dailyCalories" : [ ],
+  "body" : {
+    "height" : 160.0,
+    "weight" : 45.0
+  }
+}
