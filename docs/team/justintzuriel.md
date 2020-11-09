@@ -47,7 +47,8 @@ Given below are my contributions to the project.
     * Added documentation for the features `edit`, `remark` and `switch` 
     [\#32](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/32),
     [\#33](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/33),
-    [\#161](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/161),
+    [\#161](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/161)
+    * Add current bugs and upcoming features [\#263](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/263)
     * Maintained correctness and consistency from time to time:
     [\#25](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/25),
     [\#38](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/38),
@@ -58,10 +59,11 @@ Given below are my contributions to the project.
     [\#184](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/184),
     [\#186](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/186),
     [\#189](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/189),
-    [\#225](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/225),
+    [\#225](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/225)
   * Developer Guide:
     * Added implementation details of the `assign` and `switch` features [\#261](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/261), [\#128](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/128)
     * Added manual testing instructions for the `assign` and `switch` features [\#261](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/261)
+    * Add current bugs and upcoming features [\#263](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/263)
     * Maintained correctness and consistency from time to time:
     [\#41](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/41),
     [\#47](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/47),
