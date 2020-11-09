@@ -1,3 +1,8 @@
+---
+layout: page
+title: User Guide
+---
+
 1. [Introduction](#1-introduction)<br>
 2. [About This Document](#2-about-this-document)<br>
     2.1 [Glossary](#21-glossary)<br>
