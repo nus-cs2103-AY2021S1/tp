@@ -2,6 +2,7 @@
 layout: page
 title: Kor Ming Soon's Project Portfolio Page
 ---
+
 #### Description of Project:
 
 PropertyFree is a real estate management application meant for property agents to organize their properties and meetings more efficiently.
@@ -10,8 +11,6 @@ and associate them with meetings with clients.
 
 For our project we hope to make it more streamlined for agents to keep track of their property and have clear information about those properties
 and their clients.  
-
-___
 
 #### My Contributions to PropertyFree
 
