@@ -82,6 +82,8 @@ This section details the notations used to specify the command formats in the [c
     * E.g. `create_item i/iPad q/100` and `create_item q/100 i/iPad` are both accepted.
   * Exception: commands that require the `INDEX` must have the `INDEX` directly after the command.
     * E.g. `edit_inventory 1 i/newname` is accepted but NOT `edit_inventory i/newname 1`
+* Commands with only optional fields (excluding the `INDEX` field) require at least one field to be filled up
+  * E.g. the `edit_finance` command, excluding the `INDEX` field, has only two optional fields: `amt` and `at`. Either the `amt` or `at` fields need to be filled up.
 * Range of valid inputs:
   * Commands that are expecting an `INDEX` parameter must ensure that the `INDEX` specified is a positive, non-zero integer that is not more than the number of items on the list.
   * Parameters that expect an integer must be between `0` and `2147483647`, with the exception of the `update_inventory` command.
@@ -426,10 +428,9 @@ Currently, with `edit_finance`, we are able to edit a finance record's amount an
 
 **:information_source: Using the command:** Below are instructions on how to use the `edit_finance` command.
 
-__Format:__ `edit_finance INDEX amt/AMOUNT [at/DATE]`
+__Format:__ `edit_finance INDEX [amt/AMOUNT] [at/DATE]`
 
 This allows us to change the amount and date details of the finance record with the `INDEX` ID.
-Note that `INDEX` must be the **first** parameter for this command.
 
 **NOTE:** The Amount field will be **rounded** to the nearest 2 decimal place. 
 
@@ -640,7 +641,7 @@ The following table gives a summary of the [__finance commands__](#52-finance-co
 |---|---|
 | __Add finance__ | `add_finance amt/AMOUNT [at/DATE] [TIME]` <br> e.g. `add_finance amt/420.69 at/2020-04-23` |
 | __Delete finance__ | `delete_finance INDEX` <br> e.g. `delete_finance 2` |
-| __Edit finance__ | `edit_finance INDEX amt/AMOUNT [at/DATE] [TIME]` <br> e.g. `edit_finance 1 amt/120 at/2020-10-01` |
+| __Edit finance__ | `edit_finance INDEX [amt/AMOUNT] [at/DATE] [TIME]` <br> e.g. `edit_finance 1 amt/120 at/2020-10-01` |
 | __Find finance__ | `find_finance [id/ID] [aft/DATE] [bef/DATE] [item/YESNO]` <br> e.g. `find_finance id/10 aft/2019-10-30 bef/2020-03-23 item/yes` |
 | __List finance__ | `list_finance` |
 
