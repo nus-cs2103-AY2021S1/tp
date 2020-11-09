@@ -14,12 +14,10 @@ Given below are my contributions to the project.
   * What it does: Allows users to assign priority of the flashcards. Users can sort the flashcards by priority.
   * Justification: This feature allows users to see which concept should be of their priority. Hence, easing their process of revision.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands such add and edit.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
 * **New Feature**: Added enter quiz and leave quiz command
   * What it does: Allows users to enter quiz and leave quiz interface
   * Justification: This feature allows users to enter a separate interface where flashcards are removed, quiz questions are shown and interface color scheme changes.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
 * **Bug fix**: Disabled invalid user input for all single word such as `Clear`. `Clear xx` is not supported now. (Pull requests [\#160]())
 
