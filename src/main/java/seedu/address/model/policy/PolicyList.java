@@ -2,42 +2,42 @@ package seedu.address.model.policy;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 
 import seedu.address.model.policy.exception.DuplicatePolicyException;
 
 public class PolicyList {
-    private final Hashtable<String, Policy> policies;
+    private final HashMap<String, Policy> policies;
 
     /**
-     * Constructs a {@code PolicyList} from a HashTable.
+     * Constructs a {@code PolicyList} from a HashMap.
      */
-    public PolicyList(Hashtable<String, Policy> policies) {
+    public PolicyList(HashMap<String, Policy> policies) {
         requireNonNull(policies);
         this.policies = policies;
     }
 
     public PolicyList() {
-        policies = new Hashtable<>();
+        policies = new HashMap<>();
     }
 
     /**
-     * Returns true if the hashtable contains an equivalent policy as the given argument.
+     * Returns true if the HashMap contains an equivalent policy as the given argument.
      */
     public boolean contains(Policy toCheck) {
         requireNonNull(toCheck);
-        return policies.contains(toCheck);
+        return policies.containsValue(toCheck);
     }
 
     /**
-     * Returns true if the hashtable contains the key as the given argument using PolicyName.
+     * Returns true if the HashMap contains the key as the given argument using PolicyName.
      */
     public boolean contains(PolicyName policyName) {
         return policies.containsKey(policyName.value);
     }
 
     /**
-     * Returns true if the hashtable contains the key as the given argument using String.
+     * Returns true if the HashMap contains the key as the given argument using String.
      */
     public boolean contains(String policyName) {
         return policies.containsKey(policyName);
@@ -66,21 +66,21 @@ public class PolicyList {
      * Returns an empty {@code PolicyList}
      */
     public static PolicyList createNewPolicyList() {
-        Hashtable<String, Policy> policies = new Hashtable<>();
+        HashMap<String, Policy> policies = new HashMap<>();
         return new PolicyList(policies);
     }
 
     /**
-     * Returns a copy of the internal HashTable
+     * Returns a copy of the internal HashMap
      */
-    public Hashtable<String, Policy> getHashtableCopy() {
-        Hashtable<String, Policy> copy = new Hashtable<>();
+    public HashMap<String, Policy> getHashMapCopy() {
+        HashMap<String, Policy> copy = new HashMap<>();
         copy.putAll(policies);
         return copy;
     }
 
     /**
-     * Returns the Policy in the hashtable if present using a {@code PolicyName}
+     * Returns the Policy in the HashMap if present using a {@code PolicyName}
      * else returns null.
      */
     public Policy getPolicy(PolicyName name) {
@@ -88,7 +88,7 @@ public class PolicyList {
     }
 
     /**
-     * Returns the Policy in the hashtable if present using String name,
+     * Returns the Policy in the HashMap if present using String name,
      * else returns null.
      */
     public Policy getPolicy(String name) {
@@ -96,13 +96,13 @@ public class PolicyList {
     }
 
     /**
-     * Returns true if both Policys have the same values in the hashtable.
+     * Returns true if both Policys have the same values in the HashMap.
      */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PolicyList // instanceof handles nulls
-                && policies.equals(((PolicyList) other).getHashtableCopy()));
+                && policies.equals(((PolicyList) other).getHashMapCopy()));
     }
 
     @Override

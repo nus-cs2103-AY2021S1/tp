@@ -66,52 +66,59 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        assert name != null : "Value stored in name should not be null";
-
-        if (source.getPhone() != null) {
-            phone = source.getPhone().value;
-            assert phone != null : "Value stored in phone should not be null";
-        } else {
-            phone = null;
-        }
-
-        if (source.getEmail() != null) {
-            email = source.getEmail().value;
-            assert email != null : "Value stored in email should not be null";
-        } else {
-            email = null;
-        }
-
-        if (source.getAddress() != null) {
-            address = source.getAddress().value;
-            assert address != null : "Value stored in address should not be null";
-        } else {
-            address = null;
-        }
+        phone = adaptPhoneToJson(source.getPhone());
+        email = adaptEmailToJson(source.getEmail());
+        address = adaptAddressToJson(source.getAddress());
 
         clientSource.addAll(source.getClientSources()
                 .stream()
                 .map(JsonAdaptedClientSource::new)
                 .collect(Collectors.toList()));
 
-        if (source.getNote() != null) {
-            note = source.getNote().noteName;
-            assert note != null : "Value stored in note should not be null";
-        } else {
-            note = null;
-        }
-
+        note = adaptNoteToJson(source.getNote());
         isArchive = source.getIsArchive();
-
         priority = source.getPriority().value;
-        assert priority != null : "Value stored in priority should not be null";
+        policy = adaptPolicyToJson(source.getPolicy());
+    }
 
-        if (source.getPolicy() != null) {
-            policy = new JsonAdaptedPolicy(source.getPolicy());
-            assert policy != null : "Value stored in address should not be null";
-        } else {
-            policy = null;
+    private String adaptPhoneToJson (Phone phone) {
+        if (phone == null) {
+            return null;
         }
+        String jsonAdaptedPhone = phone.value;
+        return jsonAdaptedPhone;
+    }
+
+    private String adaptEmailToJson (Email email) {
+        if (email == null) {
+            return null;
+        }
+        String jsonAdaptedEmail = email.value;
+        return jsonAdaptedEmail;
+    }
+
+    private String adaptAddressToJson (Address address) {
+        if (address == null) {
+            return null;
+        }
+        String jsonAdaptedAddress = address.value;
+        return jsonAdaptedAddress;
+    }
+
+    private String adaptNoteToJson (Note note) {
+        if (note == null) {
+            return null;
+        }
+        String jsonAdaptedNote = note.noteName;
+        return jsonAdaptedNote;
+    }
+
+    private JsonAdaptedPolicy adaptPolicyToJson (Policy policy) {
+        if (policy == null) {
+            return null;
+        }
+        JsonAdaptedPolicy jsonAdaptedPolicy = new JsonAdaptedPolicy(policy);
+        return jsonAdaptedPolicy;
     }
 
     /**
@@ -125,78 +132,93 @@ class JsonAdaptedPerson {
             personClientSources.add(clientSource.toModelType());
         }
 
+        final Name modelName = nameToModelType(name);
+        final Phone modelPhone = phoneToModelType(phone);
+        final Email modelEmail = emailToModelType(email);
+        final Address modelAddress = addressToModelType(address);
+        final Set<ClientSource> modelClientSources = new HashSet<>(personClientSources);
+        final Note modelNote = noteToModelType(note);
+        final boolean modelIsArchive = isArchive;
+        final Priority modelPriority = priorityToModelType(priority);
+        final Policy modelPolicy = policyToModelType(policy);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClientSources, modelNote,
+                modelIsArchive, modelPriority, modelPolicy);
+    }
+
+    private Name nameToModelType(String name) throws IllegalValueException {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        Name modelName = new Name(name);
+        return modelName;
+    }
 
-        final Phone modelPhone;
+    private Phone phoneToModelType(String phone) throws IllegalValueException {
         if (phone == null) {
-            modelPhone = null;
-        } else {
-            if (!Phone.isValidPhone(phone)) {
-                throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-            }
-            modelPhone = new Phone(phone);
+            return null;
         }
+        if (!Phone.isValidPhone(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        Phone modelPhone = new Phone(phone);
+        return modelPhone;
+    }
 
-        final Email modelEmail;
+    private Email emailToModelType(String email) throws IllegalValueException {
         if (email == null) {
-            modelEmail = null;
-        } else {
-            if (!Email.isValidEmail(email)) {
-                throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-            }
-            modelEmail = new Email(email);
+            return null;
         }
+        if (!Email.isValidEmail(email)) {
+            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        }
+        Email modelEmail = new Email(email);
+        return modelEmail;
+    }
 
-        final Address modelAddress;
+    private Address addressToModelType(String address) throws IllegalValueException {
         if (address == null) {
-            modelAddress = null;
-        } else {
-            if (!Address.isValidAddress(address)) {
-                throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-            }
-            modelAddress = new Address(address);
+            return null;
         }
+        if (!Address.isValidAddress(address)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
+        Address modelAddress = new Address(address);
+        return modelAddress;
+    }
 
-        final Set<ClientSource> modelClientSources = new HashSet<>(personClientSources);
-
-        final Note modelNote;
+    private Note noteToModelType(String note) throws IllegalValueException {
         if (note == null) {
-            modelNote = null;
-        } else {
-            if (!Note.isValidNoteName(note)) {
-                throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
-            }
-            modelNote = new Note(note);
+            return null;
         }
+        if (!Note.isValidNoteName(note)) {
+            throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
+        }
+        Note modelNote = new Note(note);
+        return modelNote;
+    }
 
-        final boolean modelIsArchive = isArchive;
-
-        final Priority modelPriority;
+    private Priority priorityToModelType(String priority) throws IllegalValueException {
         if (priority == null) {
-            modelPriority = new Priority(null);
-        } else {
-            if (!Priority.isValidPriority(priority)) {
-                throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
-            }
-
-            modelPriority = new Priority(priority);
+            Priority modelPriority = new Priority(null);
+            return modelPriority;
         }
-
-        final Policy modelPolicy;
-        if (policy != null) {
-            modelPolicy = policy.toModelType();
-        } else {
-            modelPolicy = null;
+        if (!Priority.isValidPriority(priority)) {
+            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
         }
+        Priority modelPriority = new Priority(priority);
+        return modelPriority;
+    }
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClientSources, modelNote,
-                modelIsArchive, modelPriority, modelPolicy);
+    private Policy policyToModelType(JsonAdaptedPolicy policy) throws IllegalValueException {
+        if (policy == null) {
+            return null;
+        }
+        Policy modelPolicy = policy.toModelType();
+        return modelPolicy;
     }
 
 }
