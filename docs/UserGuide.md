@@ -188,6 +188,8 @@ this box.
         1. Information Panel - A detailed list on the information stored within Jarvis.
         1. Tab Switcher - A tab switcher for browsing through the different types of information stored in Jarvis.
 
+<div style="page-break-after: always;"></div>
+
 #### 4.1.1 Top Bar
     
    ![Jarvis](images/userguide/topBar.png)
@@ -212,6 +214,8 @@ this box.
 
    * A text input box for all user commands to be keyed in. You may refer to a detailed guide on the various commands
     available in Jarvis. Hit the enter key to execute the inputted command.
+
+<div style="page-break-after: always;"></div>
 
 #### 4.1.3 Feedback Box
 
@@ -270,6 +274,8 @@ Within the red rectangle box, Jarvis will notify you if the login was successful
 The username, password and student names are covered with a red rectangle for this diagram only to protect the Avenger's account security.
 You will be able to see the login details you entered.
 
+<div style="page-break-after: always;"></div>
+
 ### 5.3 Updated Student Information
 Upon success, all information from Source Academy will be visible to you. The student information tab will display you student information.
 The `Telegram` and `E-mail` fields are test values as these information are not available on Source Academy.
@@ -280,6 +286,7 @@ You will have to edit them using the [Editing Student Information](#642-editing-
 ## 6. Features
 
 ### 6.1 General Notes
+This section includes some general notes on Jarvis.
 
 #### 6.1.1 Notes about Command Format
 
@@ -298,6 +305,8 @@ You will have to edit them using the [Editing Student Information](#642-editing-
 #### 6.1.2 Notes about Jarvis' relationship with Source Academy
    * Students’ names that are under the Avenger will be fetched automatically from [https://sourceacademy.nus.edu.sg](https://sourceacademy.nus.edu.sg) upon startup.
    * LumiNUS username and passwords will be stored in plaintext.
+
+<div style="page-break-after: always;"></div>
 
 #### 6.1.3 Notes about Tasks
    * Each `Task` you create, be it `Todo`, `Event` or `Deadline`, there will be an unique Task ID assigned to each of them, so
@@ -326,6 +335,8 @@ Shows a message explaining how to access the help page.
 
 <br>**Format: `help`**
 
+<div style="page-break-after: always;"></div>
+
 ### 6.3 Adding Information : `add`
 
 #### 6.3.1 Adding `Consultations` : `-c`
@@ -340,11 +351,14 @@ Adds a `Consultation` session with a `Student` at a specific date and time.
 * `add -c John Doe d/2020-09-20 t/13:30`
 * `add -c Mary Jane d/2021-01-02 t/09:15`
 
-<br>⚠️ Notes:
+<div style="page-break-after: always;"></div>
+
+<div markdown="block" class="alert alert-info">
 * When you add a `Consultation` for a future date while displaying only past `Consultations`, make sure to enter `view -c` to view the complete list to check if the `Consultation` has been added correctly.
 * Similarly, when you add a `Consultation` for a past date while displaying only future `Consultations`, make sure to enter `view -c`.
 * `NAME` does not have to correspond to an existing student; this is so that the tutor may freely use any nicknames or other identifiers as they see fit. However, it may not be left empty.
 * Because date and time is considered in order, the d/ prefix must come earlier than t/.
+</div>
 
 #### 6.3.2 Adding `Mastery Checks` : `-mc`
 
@@ -357,6 +371,8 @@ Adds a `Mastery Check` session with a `Student` at a specific `date` and `time`.
 <br>✏️ Examples:
 * `add -mc John Doe d/2020-09-20 t/13:30`
 * `add -mc Mary Jane d/2021-01-02 t/09:15`
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
 * When you add a `Mastery Check` for a future date while displaying only past `Mastery Checks`, make sure to enter `view -mc` to view the complete list to check if the `Mastery Check` has been added correctly.
@@ -379,6 +395,8 @@ Adds your personal `Todo` with a `description`.
 <div markdown="block" class="alert alert-info">
 * The way to input is similar to the screenshot of adding `Mastery Check` above, only without the date and time.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### 6.3.4 Adding `Events` : `-e`
 
@@ -408,7 +426,7 @@ Adds your personal `Deadline` with a `description`, to complete by a specific da
 * Similar to `Event`, a `Deadline` requires extra date and time specifications in order to create. You can refer to the screenshot of adding `Mastery Check` above for a real-life example of how the command would look like.
 </div>
 
-
+<div style="page-break-after: always;"></div>
 
 ### 6.4 Editing Information : `edit`
 
@@ -434,6 +452,8 @@ as we choose to give you the benefit of doubt of keying in the wrong login detai
 * Whenever a TA account is used to log in, the information will always be updated to reflect the logged in TA's `Student`,
 `Mission` and `Quest` information.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### 6.4.2 Editing `Student` Information : `-s`
 
@@ -462,11 +482,15 @@ Edits the score of a `Mastery Check` session with a `Student`.
 * `edit -mc 1 s/0`
 * `edit -mc 3 s/1`
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-info">
 * Do note that the `SCORE` parameter can only be 0 or 1, according to the actual restrictions of `Mastery Check` pass/fail in CS1101S.
 * The `INDEX` parameter should be a non-zero unsigned integer that is a valid index currently displayed along with the target `Mastery Check`.
 * Jarvis allows editing to the same value; even if no values are actually updated by the command, it will display a success message.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### 6.5 Deleting Information : `delete`
 
@@ -484,6 +508,8 @@ Deletes a `Task` based on the `INDEX` you specify.
 <div markdown="block" class="alert alert-info">
 * The `INDEX` parameter should be a non-zero unsigned integer that is a valid index currently displayed along with the target `Consultation`.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### 6.5.2 Deleting `Mastery Checks` : `-mc`
 
@@ -701,6 +727,8 @@ are likely to change frequently and hence, will not need to be persisted.
 | Edit `Student` information | -s | edit -s INDEX [n/NAME] [t/TELEGRAM] [e/EMAIL] |
 | Edit `Mastery Check` | -mc | edit -mc INDEX s/SCORE |
 
+<div style="page-break-after: always;"></div>
+
 ### 7.3 Delete Command Summary
 
 | Function | Tag | Format, Examples |
@@ -726,6 +754,9 @@ are likely to change frequently and hence, will not need to be persisted.
 | View past `Mastery Checks` | -mcp | view -mcp |
 | View all upcoming `Mastery Checks` | -mcu | view -mcu  |
 | View all `Tasks` | -t | view -t |
+
+<div style="page-break-after: always;"></div>
+
 | View all `Todos` | -tt | view -tt |
 | View all `Events` | -te | view -te |
 | View all `Deadlines` | -td | view -td |
