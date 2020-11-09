@@ -113,9 +113,18 @@ Creates and add a new module to be stored in the system.
 
   * The module code you input must be **capitalised**, eg. `cs2103t` will be rejected while `CS2103T` is correct.
 
-   Examples :
+   Example :
    * `addmodule n/CS2103T` creates and adds the module CS2103T.
+   
+Expected Outcome: 
+  
+<p aligin="center"><img src="images/addmodule.png" border="2px solid black"></p>
+  
+  Other helpful example(s):
+
    * `addmodule n/CS2103T t/Coremodule` creates and adds the module CS2103T with the tag _CoreModule_.
+
+<p aligin="center"><img src="images/AddEventExample.png" border="2px solid black"></p>
 
 #### Adding a new completed module: `addcmodule`
 
@@ -151,6 +160,10 @@ Displays a snapshot of a module stored in the system.
 
   Example:
    * `viewmodule 1` views the first module in the displayed list.
+   
+Expected Outcome: 
+
+<p aligin="center"><img src="images/viewmodule.png" border="2px solid black"></p>
 
 #### Archiving a module: `archivemodule`
 
@@ -166,9 +179,16 @@ Format: `archivemodule` `INDEX`
 
  * The index **must be a positive integer** 1, 2, 3...
 
- Examples:
+ Example:
  * `archivemodule 1` Archives the first module in the displayed list.
- * `archivemodule 2` Archives the second module in the displayed list.
+ 
+Expected Outcome: 
+ 
+<p aligin="center"><img src="images/archivemodule.png" border="2px solid black"></p>
+  
+  Other helpful example(s):
+
+    * `archivemodule 2` Archives the second module in the displayed list.
 
 #### Un-archiving a module: `unarchivemodule`
 
@@ -236,12 +256,18 @@ Format: `listmodule`
       * Module name must match your search criteria exactly for module to be displayed, e.g. `cs2030` will match `CS2030` but not `CS20301`.
       
 
-  Examples:
+  Example:
 
    * `findmodule n/cs2030` returns the module(if any) with the module name `CS2030`.
 
+   Expected Outcome: 
+   
+<p aligin="center"><img src="images/findmodule.png" border="2px solid black"></p>
+       
+   Other helpful example(s):
+   
    * `findmodule cs2030 cs2100` returns the modules(if any) with the module names `CS2030` or `CS2100`.
-
+   
 
 ### Zoom link management feature
 
@@ -574,9 +600,13 @@ Calculates helpful CAP details based on the target CAP you input
 
   * The target cap refers to the desired CAP input by you
 
-  Examples:
+  Example:
   * `targetcap tc/4.5` Calculates CAP achievement required for planned modules in order to achieve target CAP
-  
+
+Expected Outcome: 
+ 
+![FindContact](images/contact/FindContactUG.PNG)
+
 ### Todo List Features
 
 Todo List can store all of your tasks that you need to complete. Before you start learning how to use the commands
@@ -1156,8 +1186,9 @@ Expected Outcome: <br>
 Creates and add a new Event with the specified information from the user input
 
   Format: `addevent n/EVENT_NAME d/DATE_TIME [t/TAG]`
-
+<p aligin="center"><img src="images/AddEventExample.png" border="2px solid black"></p>
    Examples:
+    * `addevent n/CS2100 Assignment 1 d/10-9-2020 1200 t/Important` adds an Event called C2100 Assignment 1 with the deadline of 10-9-2020 1200 and the tagging of Important.(Expected result shown in above image.)
     * `addevent n/CS2103T exams d/12-12-2020 1200` adds an Event called CS2103T into the Scheduler with the date 12-12-2020.
     * `addevent n/CS2103T exams d/12-12-2020 1200 t/Important` adds an Event called CS2103T into the Scheduler with the date 12-12-2020 and the tag of Important.
     * `addevent n/CS2103T exams d/12-12-2020 1200 t/Important t/Urgent` adds an Event called CS2103T into the Scheduler with the date 12-12-2020 and the tag of Important and Urgent.
@@ -1178,21 +1209,12 @@ as event name and the event date.
 
   Format: `editevent index [n/new name] [d/new date]`<br>
   **Note:** All fields are optional but at least 1 of them must be present.
-
+<p aligin="center"><img src="images/EditEventExample.png" border="2px solid black"></p>
    Examples:
-    * `editevent 1 n/CS2103T assignment d/2-4-2020 1200 t/Important` edits the event of index 1 with the new name of CS2103T, new date and time of 2-4-2020 1200 and the new tag of Important.
+    * `editevent 1 n/CS2103T assignment d/2-4-2020 1200 t/NotImportant` edits the event of index 1 with the new name of CS2103T, new date and time of 2-4-2020 1200 and the new tag of NotImportant. (Expected result shown in above image.)
     * `editevent 1 n/CS2100` edits the event of index 1 with the new name of CS2103T.
     * `editevent 1 d/3-3-2020 1300` edits the event of index 1 with the new date time of 3-3-2020 1300.
-    * `editevent 1 t/Not Important` edits the event of index 1 with the new tag of Not Important.
-
-#### Viewing an Event from the Scheduler: `viewevent`
-
-You can choose to view a particular event from the list by entering the index.
-
-  Format: `viewevent index`
-
-   Example:
-    * `viewevent 1` views the event details of index 1 from the EventList.
+    * `editevent 1 t/NotImportant` edits the event of index 1 with the new tag of Not Important.
 
 #### Finding an Event from the Scheduler: `findevent`
 
@@ -1200,7 +1222,7 @@ You can search for a particular event based on the name and date. This will retu
 
   Format: `findevent [n/EVENT_NAME] [d/DATE_TIME]`
   **Note:** All fields are optional but at least 1 of them must be present.
-   
+
    Examples:
     * `findevent n/CS2103T` finds all events that have **CS2103T** in their event name.
     * `findevent d/1-1-2020 1200` finds all event that have the date and time of **1 Jan 2020 12:00**.
@@ -1291,7 +1313,7 @@ Action | Format, Examples
 **Calculate CAP** | `calculatecap` <br> e.g. `calculatecap`
 **Calculate Target CAP details** | `targetcap tc/TARGET_CAP` <br> e.g. `targetcap 4.5`
 
-## Command Summary for ContactList
+## Command Summary for Contact List
 
 Action | Format, Examples
 -------|-------------------------
@@ -1320,7 +1342,6 @@ Action | Format, Examples
 **Delete Event** | `deleteevent index` <br> e.g. `deleteevent 1`
 **Edit Event** | `editevent index [n/EVENT_NAME] [d/DATE_TIME] [t/TAG]` <br> e.g. `editevent 1 n/CS2100 d/2-1-2020 t/Done`
 **Find Event** | `findevent [n/EVENT_NAME] [d/DATE_TIME]` <br> e.g. `findevent n/CS2103T`
-**View Event** | `viewevent index` <br> e.g. `viewevent 1`
 
 ## Command summary for general features
 
