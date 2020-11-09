@@ -472,7 +472,7 @@ Resets the ingredient's levels of all ingredient types to zero.
 Format: `i-reset-all`
 
 Let's say you want to reset all ingredients' levels to zero when one or more ingredients have 
-non-zero ingredient's levels.
+nonzero ingredient's levels.
 You can follow these instructions:
 
 1. Type ` i-reset-all` into the _Command Box_.
