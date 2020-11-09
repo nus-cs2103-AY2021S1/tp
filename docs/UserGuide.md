@@ -116,7 +116,7 @@ Allocates a room to a student i.e denotes that the student currently occupies th
 Format: `allocate ri/<room_index> si/<student_index>`
 
 - Allocates a room to the student person at the specified `room_index` and `student_index`. The `room_index` refers to the index number shown in the displayed rooms list,
-  and the `student_index` refers to the index number shown in the displayed students list. Both indices **must be positive integers** 1, 2, 3, …​
+  and the `student_index` refers to the index number shown in the displayed student list. Both indices **must be positive integers** 1, 2, 3, …​
 - Both the student and the room must be unallocated when this command is run. Otherwise, an error message is displayed accordingly.
 
 Examples:
@@ -136,7 +136,7 @@ Examples:
 Deallocates a room for a student i.e denotes that the student no longer occupies the room.
 
 Format: `deallocate si/<student_index>`
-* Deallocates a room to the student at the specified `student_index`. The `student_index` refers to the index number shown in the displayed students list. The `student_index` **must be positive a integer** 1, 2, 3, …​
+* Deallocates a room to the student at the specified `student_index`. The `student_index` refers to the index number shown in the displayed student list. The `student_index` **must be a positive integer** 1, 2, 3, …​
 * The student at `student_index` must have been allocated a room. Otherwise, an error message is displayed.
 
 Examples:
@@ -157,7 +157,7 @@ Format: `reallocate si/<student_index> ri/<room_index>`
 
 * Reallocates the room at `room_index` to the student at the specified `student_index`. The `room_index` refers to the
  index number shown in the displayed rooms list, and the `student_index` refers to the index number shown in the 
- displayed students list. Both indices **must be positive integers** 1, 2, 3, …​
+ displayed student list. Both indices **must be positive integers** 1, 2, 3, …​
 * The student at `student_index` must currently have a room allocation (which is not the specified room). Otherwise, an error message is displayed accordingly. 
 * The room at `room_index` must currently be vacant. Otherwise, an error message is displayed accordingly. 
 
