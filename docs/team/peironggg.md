@@ -26,6 +26,7 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=peironggg)
 
+<div style="page-break-after: always;"></div>
 * **Project management**:
   * Managed milestones `v1.2 - v1.3` on GitHub
   * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
