@@ -1,3 +1,5 @@
+# TrackIt@NUS - Developer Guide
+
 ![Logo](images/UG/trackit-logo.png)
 
 By: `Team W13-4` Since: `Aug 2020` License: `MIT`
