@@ -112,7 +112,7 @@ Commands in this section are best executed when you are in the inventory tab. If
 
 #### 5.1.1. Add items to inventory: `create_inventory`
 
-NUStorage allows you to add and save a new inventory record.
+NUStorage allows you to add and save a new inventory record. Each inventory record has a finance record tied to it.
 
 **:information_source: What this command does:**
 
@@ -122,16 +122,17 @@ NUStorage allows you to add and save a new inventory record.
 
 __Format:__ `create_inventory i/ITEM_NAME q/QUANTITY [c/ITEM_COST]`
 
-This creates a new inventory record for the item `[ITEM_NAME]` of quantity `[QUANTITY]`. Note that `QUANTITY` is currently limited to a maximum value of `2147483647`.
+This creates a new inventory record for the item `ITEM_NAME` of quantity `QUANTITY`. 
+**Note** that `QUANTITY` and `ITEM_COST` are limited to a maximum value of `2000,000,000`. `QUANTITY` must be an integer and `ITEM_COST` can have up to 2 decimal places.
 
-For the `[ITEM_COST]` parameter:
+For the `ITEM_COST` parameter:
 
-* If given, then a finance record is created automatically with a total amount of `ITEM_COST * QUANTITY`.
-* If left empty, then an **empty** finance record is created with an amount of `0`.
+* If given, then a finance record will be created automatically with a total amount of `ITEM_COST * QUANTITY`.
+* If left empty, then an **empty** finance record will be created with an amount of `0`.
 
 __Example:__ `create_inventory i/iphone q/10 c/20`
 
-This creates a new inventory record of item `iphone` and quantity `10`. A finance record with the total amount of `200` will also be created.
+This creates a new inventory record of item `iphone` and quantity `10`. A finance record with the total amount of `200` will be created and tied to the inventory record through the finance ID column.
 
 Enter the example command into the command box as shown below:
 ![Add inventory command example](images/commands/create_inventory_command.png)
@@ -146,7 +147,7 @@ A corresponding finance record of total cost `200` is added to the finance accou
 
 #### 5.1.2. Remove items from inventory: `delete_inventory`
 
-Previously in the [Add Inventory Records](#511-add-items-to-inventory-create_inventory) section, we have created a new inventory record, and its accompanying finance record. Now, let's try to delete from NUStorage using `delete_inventory`.
+Previously in the [Add Inventory Records](#511-add-items-to-inventory-create_inventory) section, we have created a new inventory record, and its accompanying finance record. Now, let's try to delete the records from NUStorage using `delete_inventory`.
 
 If you are reading this section without having read the previous section, please ensure that your NUStorage application has at least one inventory record stored. If you are unclear on how to do so, refer to the [Add Inventory Records](#511-add-items-to-inventory-create_inventory) section.
 
