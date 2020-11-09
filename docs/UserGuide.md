@@ -207,12 +207,12 @@ This section introduces the ...
 * `DATE`
     * Please use the prefix `d/` when indicating a `DATE` value in your user input.
     * Please note that the `DATE` used for scheduling an appointment must be set in the future.
-    * Please refer to the following [link](#FAQ) for the different `DATE` formats we support in our NUUDLE application.
+    * Please refer to the following [link](#command-format) for the different `DATE` formats we support in our Nuudle application.
 
 * `TIME`
     * Please use the prefix `t/` when indicating a `TIME` value in your user input.
     * Please note that the `TIME` used for scheduling an appointment must be set in the future.
-    * Please refer to the following [link](#FAQ) for the different `TIME` formats we support in our NUUDLE application.
+    * Please refer to the following [link](#command-format) for the different `TIME` formats we support in our Nuudle application.
 
 
 * `APPT_INDEX` & `PATIENT_INDEX`
