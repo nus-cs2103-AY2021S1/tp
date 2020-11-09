@@ -270,7 +270,7 @@ You can edit an existing student in **Reeve** if you need to update his/her part
 
 Format: `edit STUDENT_INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/LAST_PAYMENT_DATE]`
 
-* Edits the student at the specified `STUDENT_INDEX`. The `STUDENT_INDEX` refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified `STUDENT_INDEX`. The `STUDENT_INDEX` refers to the index number shown in the displayed student list. The `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * The format of `CLASS_TIME`, `YEAR` and `LAST_PAYMENT_DATE` follows that as stated in the [add command section](#331-adding-a-student-add-by-hogan).
@@ -287,7 +287,7 @@ You can use `list` or `find` (e.g `find n/Amy`) to display her information again
 
 <div markdown="block" class="alert alert-danger">
 
-:warning: You cannot add additional details with this command.
+:warning: You cannot add / edit additional details with this command.
 
 </div>
 
@@ -483,7 +483,7 @@ To view schedule:
     ![Schedule Step 2](images/ScheduleStep2.png)
     <div align="center">Figure 13: Shows the schedule panel in the weekly format</div><br>
 
-3.  You can easily view you classes for the week. The Date bar labelled in the Figure 14 below shows the day of the week as well as the date for your reference.
+3.  You can easily view your classes for the week. The Date bar labelled in Figure 14 below shows the day of the week as well as the date for your reference.
     The Time bar in Figure 14 shows the time in 24-hour clock format with 1-hour intervals. 
     The Classes labelled in Figure 14 are colored brown to match the color of **Reeve** for a better visual experience.
     Furthermore, the name of the student that you are tutoring during that slot will be labelled for you to identify classes easily.
@@ -647,14 +647,14 @@ Format: `exam add STUDENT_INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
 
 </div>
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-danger">
 
-:information_source: You **cannot** add duplicates of an exam record to a student. Each exam record is uniquely identified by its `EXAM_NAME`.
+:warning: You **cannot** add duplicates of an exam record to a student. Each exam record is uniquely identified by its `EXAM_NAME`.
 
 </div>
 
 Example:
-* Suppose you want to add a exam record to a student to monitor his academic progress.
+* Suppose you want to add an exam record to a student to monitor his academic progress.
     * You can use `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60` to add a new exam record to the first student in the displayed student list on the main panel
     with exam name `Mid Year 2020`, exam date `08/12/2020` and score `40/60` so that you can keep track of this particular exam record.
     * You should see a screen similar to the one below (Figure 18) after entering the above command.
