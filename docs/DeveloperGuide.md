@@ -25,24 +25,44 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 **How the architecture components interact with each other**
 ![Structure of the Overall Product](images/ArchitectureDiagram.png)
 
-### Overall components
-
 This is the overall design of our product. As we are using **GUI to help to display the information** and mainly focuses on
 using **CLI to take in the required commands**, thus the product consists of **6 main major components**. The product starts
 from the Launcher classes, that initiates based on our pre-set settings and then activates the MainApp class
-the will run the GUI with these settings. MainApp will also start the _brain_ and -muscles_ of the program, which are the Logic, Storage,
+the will run the GUI with these settings. MainApp will also start the _brain_ and _muscles_ of the program, which are the Logic, Storage,
 Model and Ui components.
 
-The role of the **Logic** component is to act as the _brain_ of the program, where all the parsing of information will be done, and the
-execution of the commands will be carried out.
+### Overall components
 
-The role of the **Storage** component is to represent the _memory_ of the program, where the storing and tracking of the different items happens.
+**`Main`** has two classes called [`Main`](https://github.com/nus-cs2103-AY2021S1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/nus-cs2103-AY2021S1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+
+The rest of the App consists of four components.
+
+* [**`UI`**](#ui-component): The role of the **Ui** component is to handle all the User interface related instructions, which includes the loading of GUI components, the updating
+of these components and displaying the changes.
+* [**`Logic`**](#logic-component): The role of the **Logic** component is to act as the _brain_ of the program, where all the parsing of information will be done, and the
+execution of the commands will be carried out.
+* [**`Model`**](#model-component): The role of the **Model** component is to represent all the items and their behaviours. Contains all the item classes and their support classes.
+* [**`Storage`**](#storage-component): The role of the **Storage** component is to represent the _memory_ of the program, where the storing and tracking of the different items happens.
 These items are saving locally in a json file, which can be imported and exported easily.
 
-The role of the **Model** component is to represent all the items and their behaviours. Contains all the item classes and their support classes.
+Each of the four components,
 
-The role of the **Ui** component is to handle all the User interface related instructions, which includes the loading of GUI components, the updating
-of these components and displaying the changes.
+* defines its *API* in an `interface` with the same name as the Component.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+
+For example, the `Logic` component defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
+
+**How the architecture components interact with each other**
+
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+
+<p aligin="center"><img src="images/ArchitectureSequenceDiagram.png" width="574" /></p>
+
+The sections below give more details of each component.
 
 
 ### UI component
@@ -103,6 +123,45 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<T>` for all types of list as mentioned above which can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components
 
+#### Module Tracker
+
+#### Contact List
+
+#### Todo List
+
+#### Scheduler
+<p aligin="center"><img src ="images/EventListClassDiagram.png" border="1px solid black"></p>p>
+
+##### EventList class
+**EventList class** : [`EventList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/EventList.java)
+
+* Holds and stores all the events.
+* Saves to `Storage` after each execution of a command.
+* Stores a `UniqueEventList` that ensures no duplicates of events.
+* Duplicate events are not allowed.
+##### Event class
+**Event class** : [`Event.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/event/Event.java)
+
+* Holds the `EventName` and `EventTime` of the created Event.
+* EventName and EventTime cannot be null.
+* Events are considered to be the same if the EventName is equal.
+* `Tags` are optional for each event.
+
+##### EventName class
+**EventName class** : [`EventName.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/event/EventName.java)
+
+* Holds the date for the name of the String.
+* Acts like a logic container for the name of the event.
+
+##### EventTime class
+**EventTime class** : [`EventTime.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/event/EventTime.java)
+
+* Holds the date and time of the event.
+* Stores the date and time as a LocalDateTime object.
+* Follows a strict input format of : day-month-year 24h time, e.g. `5-12-2020 1200`
+* Throws an error if the wrong format or invalid date is enterred.
+
+
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -125,7 +184,7 @@ Each of the higher level Json Adapted objects shown in the storage diagram above
 Adapted objects related to their feature type.
 
 * `JsonAdaptedModule` is dependent on `JsonAdaptedTag`, `JsonAdaptedGradeTracker` and `JsonAdaptedZoomLink`.
-    * `JsonAdaptedGradeTracker` is dependent on `JsonAdaptedAssignment`
+* `JsonAdaptedGradeTracker` is dependent on `JsonAdaptedAssignment`
 * `JsonAdaptedContact` is dependent on `JsonAdaptedTag`, `JsonAdaptedGradeTracker` and `JsonAdaptedZoomLink`.
 * `JsonAdaptedTask` is dependent on `JsonAdaptedTag`.
 * `JsonAdaptedEvent` is dependent on `JsonAdaptedTag`.
@@ -159,7 +218,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 * Stores a UniqueModuleList
 * Duplicate Modules are not allowed
 
-## Scheduler
 
 ## Contact List
 
@@ -206,7 +264,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 * Stores a UniqueTodoList
 * Duplicate Task objects are now allowed
 
-TodoList will be explained more comprehensively in the [TodoList feature](#todolist-feature) Section
+TodoList will be explained more comprehensively in the [TodoList feature](#33-todolist-feature) Section
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -214,6 +272,48 @@ TodoList will be explained more comprehensively in the [TodoList feature](#todol
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### 3.1 Logic
+![Structure of the XYZ command](images/GeneralLogicSequenceDiagram1.png)
+![Structure of the XYZ command](images/GeneralLogicSequenceDiagram2.png)
+
+#### Implementation
+The idea of this implementation is to abstract the overall process into a more OOP focused design, where each class only handles the functions
+that is relevant to its responsibility. As we have many features that each have their own commands, we decided to
+create a new Facade class `ParserManager` to handle which Feature parser to call. Feature parser are those in charge of
+handling all commands related to that feature. For instance, `ModuleListParser` will be selected by the ParserManager when
+a module related command is called.
+
+After the appropriate feature parser is selected, the user input is passed into it to be broken down. It splits the user input into
+command word and arguments, where the command word is checked and the respective sub-parser is called. For instance, if the
+command word is `addmodule`, then the sub-parser that will be called is `AddModuleParser`. The argument is then passed into the
+sub-parser and tokenized by `ArgumentTokenizer` and a `ArgumentMultiMap` is returned, which is a HashMap of the strings for each
+prefix enterred. The relevant supporting classes are then created based on the strings under each prefix, and the appropriate
+command is created.
+
+The returned command is then executed by the `LogicManager`, which will execute the function of the command. The respecitve changes are
+changed in the model provided in the command. At the end, a `CommandResult` is returned where the results are stored in.
+
+#### Design consideration:
+
+##### Aspect: Whether to create a Facade class `ParserManager` to handle all the individual parsers.
+
+
+##### Aspect: Whether to create a custom parser for each of the feature to handle their respective commands.
+Option 1 **(Current implementation)**: A custom Parser in charge of all **Scheduler** related commands **only**.
+Pros: 
+- More OOP orientated.
+- More defensive programming.
+Cons:
+- More Parsers to handle by the ParserManager
+
+Option 2: Place the Scheduler related parser together with the rest of the other parsers for other features, like module list, etc.
+Pros:
+- Faster to implement.
+- Less effort needed, simply add on to the existing Parser.
+Cons:
+- Mess and less readable, hard to distinguish between different commands.
+- Higher chance of errors, as we are mixing all the different parsers for every feature into a single Parser.
+- LONG methods.
 
 ## 3.1 Module list management features
 
@@ -221,7 +321,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Add Module feature
 
-This feature creates and adds a new `Module` into the `ModuleList` if the contact does not already exist. 
+This feature creates and adds a new `Module` into the `ModuleList` if the `Module` does not already exist. 
 
 This feature is facilitated by the following classes:
 
@@ -273,11 +373,11 @@ Given below is the sequence diagram of how the operation to delete a `Module` wo
 * **Alternative 1 (current choice):** Delete a `Module` based on its index in the displayed `ModuleList`
   * Pros: Using the `Module` index allows us to uniquely identify the target `Module` to delete, reducing the room for possible error
   * Cons: The target `Module` to be deleted might not be displayed on the `ModuleList` and hence the `Module` index might not be
-          readily available. This can inconvenience users who have to search for the `Module` to retrieve the `Module` index.
+          readily available. This can inconvenience users who have to search for the `Module` to retrieve the `Module` index
 
 * **Alternative 2:** Delete a `Module` based on the `Module` name
-  * Pros: It can make the deletion process simpler for **users** who can provide the name of the `Module` without having to execute more commands.
-  * Cons: This is more difficult to implement.
+  * Pros: It can make the deletion process simpler for **users** who can provide the name of the `Module` without having to execute more commands
+  * Cons: This is more difficult to implement
 
 Alternative 1 was chosen since it is easier to implement and it makes the command simpler for users to input.
 
@@ -294,7 +394,7 @@ This feature is facilitated by the following classes:
     * It stores the `Module` details which will be used to edit the target `Module`
 
   * `EditModuleCommand`:
-    * It implements `EditModuleCommand#execute()` to edit the contact in `Model`
+    * It implements `EditModuleCommand#execute()` to edit the `Module` in `Model`
 
 
 Given below is an example usage scenario and how the mechanism for editing a `Module` behaves at each step:
@@ -318,11 +418,11 @@ Given below is the sequence diagram of how the operation to edit a `Module` work
           or a need to consider how it might affect the other command classes
   * Cons: Additional methods have to be implemented to replace the target module with the edited module
 
-* **Alternative 2:** Reuse `DeleteModuleCommand` to delete the target `Module` and `AddModuleCommand` to add the edited contact
+* **Alternative 2:** Reuse `DeleteModuleCommand` to delete the target `Module` and `AddModuleCommand` to add the edited `Module`
   * Pros: Reusing other commands would make the implementation of `EditModuleCommand` simpler and easier
   * Cons: It increases coupling between the 3 commands and this can cause issues in `EditModuleCommand` if either 
           `DeleteModuleCommand` or `AddModuleCommand` developed bugs or errors. Also, it might affect performance since 
-          executing `EditModuleCommand` will execute 2 other commands.
+          executing `EditModuleCommand` will execute 2 other commands
 
 Alternative 1 was chosen since it gave more freedom with regard to the implementation of `EditModuleCommand` since
 we were not restricted to reusing other commands. Less coupling between the classes meant that changes in one class would 
@@ -343,12 +443,12 @@ This feature is facilitated by the following classes:
     * It implements `FindModuleParser#parse()` to parse and validate the user input
     * It creates `NameContainsKeywordsPredicate` objects using the command arguments
    
-  * `FindContactCommand`:
+  * `FindModuleCommand`:
     * It implements `FindModuleCommand#execute()` to find all matching modules by updating the 
       filtered displayed module list in `Model` using the `NameContainsKeywordsPredicate` from `FindModuleParser`
 
 Given below is an example usage scenario and how the mechanism for finding `Module` behaves at each step:
-Step 1. `LogicManager` receives the user input `findcontact n/CS2100` from `Ui`
+Step 1. `LogicManager` receives the user input `findmodule CS2100` from `Ui`
 Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create a `FindModuleParser`
 Step 3. Additionally, `ModuleListParser` will call the `FindModuleParser#parse()` method to parse the command arguments
 Step 4. This creates a `NameContainsKeywordsPredicate` that will be used to obtain the filtered displayed `ModuleList`
@@ -383,33 +483,126 @@ The `unarchivemodule` command does the opposite — it calls `Model#unarchiv
 
 
 ### Module Assignment 
+In order for CAP 5 Buddy to properly support the students study, information of the students grades assignments and results should be kept.
+This would allow the student to adequately assess the current grades that he or she currently has. With knowledge of the grades already achieved for the module
+CAP 5 Buddy can calculate the current percentage and results for the student so that the student can understand how close he or she
+is to their next grade.
 
-#### \[Proposed\] GradeTracker feature
+The section below provides details on the implementation of each assignment related function and design considerations of these features.
 
-#### Proposed Implementation
+### Details of implementation
 
-The proposed grade tracker feature is an association class used to store additional information for the module. 
-The `Assignments` each store their own `assignment name`, `percentage of final grade` and `result`. 
+The model below shows the implementation of the `GradeTracker` that is stored under the `Module` class.
+Each `Module` can only have one `GradeTracker` which manages the assignments under that module.
+The `GradeTracker` stores a `UniqueAssignmentList` that ensures assignments within the list are not duplicates of each other.
+Each `Assignment` contains the following three fields: an `AssignmentName`, `AssignmentPercentage` and `AssignmentResult`.
 
+![Structure of the Grade Tracker Component](images/GradeTrackerDiagram.png)
 
-![Structure of the Module List Component](images/GradeTrackerDiagram.png)
+The list of all `GradeTracker` related features are:
+1. Add an Assignment: Adds a new assignment to the `GradeTracker`.
+2. Edit an Assignment: Edits a pre-existing assignment in the `GradeTracker`.
+3. Delete an Assignment: Deletes a pre-existing assignment in the `GradeTracker`.
+4. Add a Grade: Adds a grade for the overall module.
 
+#### Add Assignment Feature
+
+This feature creates and adds a new `Assignment` to the `GradeTracker` of a `Module`. This action
+is only allowed if the `Assignment` does not already exist in the `GradeTracker`.
+
+This feature is facilitated by the following classes:
+
+* `AddAssignmentParser`:
+  * It implements `AddAssignmentParser#parse()` to validate and parse the module name and assignment details.
+* `AddAssignmentCommand`:
+  * It implements `AddAssignmentCommand#execute()` which executes the creation of the `Assignment` and adds the
+  assignment to the module identified by the `ModuleName` that was parsed.
 
 When an `assignment` is added, it follows the sequence diagram as shown below. The sequence flows similarly 
 to the rest of the project as the command is parsed and then executed.
 
 ![Sequence Diagram of the Add Assignment Command](images/AddAssignmentSequenceDiagram.png)
 
+Given below is an example usage scenario and how the mechanism for adding an `Assignment` behaves at each step:
+
+Step 1. `LogicManager` receives the user input `addassignment n/CS2100 a/Quiz 1 %/20 r/85` from `Ui`
+
+Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create a `AddAssignmentParser`
+
+Step 3. Additionally, `AddAssignmentParser` will call the `AddAssignmentParser#parse()` method to parse the command arguments
+
+Step 4. An `AddAssignmentCommand` is created and the command arguments are passed to it.
+
+Step 5.  `AddAssignmentCommand#execute()` will be evoked by `LogicManager` to creates an `Assignment` using the parsed inputs, `Quiz 1` for `AssignmentName`, `20` for `AssignmentPercentage`
+and `85` for `AssignmentResult`. A `ModuleName` is also created using the input `CS2100`.
+
+Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
+`Module#addAssignment()` is executed with the `Assignment`, adding the assignment to the module's `GradeTracker`.
+
+Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+
 #### Design consideration:
 
-##### Aspect: Format to store the grade for a module
-* Alternative 1 : Grade stores CAP.
-    * Pros : Easier to integrate with Cap Calculator
-    * Cons : User has to manually input CAP and does not know the average from the assignments accumulated
+##### Aspect: Whether to directly store the assignments under module
+* Alternative 1 : Module stores assignments directly without any association class.
+    * Pros : Less work to be done.
+    * Cons : Less OOP.
     
-* Alternative 2 (current choice): Grade stores the raw score calculated from assignment
-    * Pros : Grade can be automatically calculated from the assignment overall percentage for user to view
-    * Cons : Requires separate CAP to be stored for Cap Calculator to access
+* Alternative 2 (current choice): Module stores a separate class that then stores the assignments
+    * Pros : More OOP and the assignments are less coupled to the Module.
+    * Cons : Takes more effort and complexity to recreate the unique object list within another layer(`Module`).
+    
+We implemented the second option despite its difficulty and complexity, taking more time to carry out as we felt
+that this feature was major enough to warrant the time and depth to implement.
+
+####Edit Assignment Feature
+
+This feature allows `assignments` within a `GradeTracker` to be edited. The fields that can be edited are the
+`AssignmentName`, `AssignmentPercentage` and its `AssignmentResult`. The grade tracker of the module to act on must
+currently have a valid assignment to target.
+
+This feature requires the following classes:
+
+* `EditAssignmentDescriptor`:
+  * It represents and encapsulates the edited assignment and stores the fields to replace the current ones.
+* `EditAssignmentParser`:
+  * It implements `EditAssignmentParser#parse()` to validate and parse the assignment `Index`, module name and assignment
+  edited details, creating an `EditAssignmentDescriptor` object with the edited details.
+* `EditAssignmentCommand`:
+  * It implements `EditAssignmentCommand#execute()` which will execute the editing of the assignment at the corresponding
+  assignment `Index` in the corresponding `Module` identified by the parsed module name.
+
+Given below is an example usage scenario and how the mechanism for editing an `Assignment` behaves at each step:
+
+Step 1. `LogicManager` receives the user input `editassignment 1 n/CS2100 a/Quiz 1` from `Ui`
+
+Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create a `EditAssignmentParser`
+
+Step 3. Additionally, `EditAssignmentParser` will call the `EditAssignmentParser#parse()` method to parse the command arguments
+
+Step 4. An `EditAssignmentCommand` is created and the command arguments are passed to it.
+
+Step 5. `EditAssignmentCommand#execute()` will be evoked by `LogicManager` to creates an `EditAssignmentDescriptor`
+using the parsed inputs, `Quiz 1` for `AssignmentName`. A `ModuleName` is also created using the input `CS2100`.
+
+Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
+`Module#setAssignment()` is executed with the `Assignment`, adding the assignment to the module's `GradeTracker`.
+
+Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+
+#### Design consideration:
+
+##### Aspect: Whether to directly store the assignments under module
+* Alternative 1 : Module stores assignments directly without any association class.
+    * Pros : Less work to be done.
+    * Cons : Less OOP.
+    
+* Alternative 2 (current choice): Module stores a separate class that then stores the assignments
+    * Pros : More OOP and the assignments are less coupled to the Module.
+    * Cons : Takes more effort and complexity to recreate the unique object list within another layer(`Module`).
+    
+We implemented the second option despite its difficulty and complexity, taking more time to carry out as we felt
+that this feature was major enough to warrant the time and depth to implement.
 
 ### Cap Calculator
 
@@ -1156,49 +1349,11 @@ Alternative 2 was chosen as it conformed with the standard practice of handling 
 ambiguity by ensuring all constraints related to the command are made known to the users.
 
 
-
     
 ### 3.4 Event list management feature
 
-### Scheduler feature
-![Structure of the Add Event command](images/AddEventSequenceDiagram.png)
-#### Proposed Implementation
-The idea of this feature is to be able to allow the user to keep track of his/her current events that
-will be happening. Events can be either a one time event like an exam for a particular module, or a recurring
-event like a weekly tutorial class.
-
-How we are currently implementing this feature is by following the same implementation as the AB3. We have an event
-object under the Model package. Two classes called EventName and EventTime act as information containers to store
-the respective data and help support the Event class.
-
-We also make sure in the Logic package, there are personal sub-parsers for each of the existing Event
-related commands, and an overall Parser known as SchedulerParser that is in charge of managing all of the
-sub-parsers of the Scheduler. 
-
-Each of the commands of the Scheduler will always return a CommandResult class, that is basically an information
-container that stores all the relevant data of the results. This CommandResult object is then passes back up to the
-UiManager, where it is then passed to the GUI components for it to be displayed.
-
-#### Design consideration:
-
-##### Aspect: Whether to create a new Parser for Scheduler.
-Option 1 **(Current implementation)**: A custom Parser in charge of all **Scheduler** related commands **only**.
-Pros: 
-- More OOP orientated.
-- More defensive programming.
-Cons:
-- More Parsers to handle by the ParserManager
-
-Option 2: Place the Scheduler related parser together with the rest of the other parsers for other features, like module list, etc.
-Pros:
-- Faster to implement.
-- Less effort needed, simply add on to the existing Parser.
-Cons:
-- Mess and less readible, hard to distinguish between differnt commands.
-- Higher chance of errors, as we are mixing all the different parsers for every feature into a single Parser.
-- LONG methods.
-
 ### Add Event Feature
+![Add Event Sequence Diagram](images/AddEventSequenceDiagram.png)
 
 #### Implementation
 The way this feature is currently implemented is similar to that of AB3. In the `Logic` component, we are using a specialised parser called

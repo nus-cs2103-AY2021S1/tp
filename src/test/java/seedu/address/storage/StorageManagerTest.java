@@ -3,6 +3,8 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
+import static seedu.address.testutil.contact.TypicalContacts.getTypicalContactList;
+import static seedu.address.testutil.todolist.TypicalTasks.getTypicalTodoList;
 
 import java.nio.file.Path;
 
@@ -11,8 +13,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.ContactList;
 import seedu.address.model.ModuleList;
+import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.ReadOnlyTodoList;
+import seedu.address.model.TodoList;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -67,5 +73,39 @@ public class StorageManagerTest {
     @Test
     public void getModuleListFilePath() {
         assertNotNull(storageManager.getModuleListFilePath());
+    }
+
+    @Test
+    public void contactListReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonContactListStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonContactListStorageTest} class.
+         */
+        ContactList original = getTypicalContactList();
+        storageManager.saveContactList(original);
+        ReadOnlyContactList retrieved = storageManager.readContactList().get();
+        assertEquals(original, new ContactList(retrieved));
+    }
+    @Test
+    public void getContactListFilePath() {
+        assertNotNull(storageManager.getContactListFilePath());
+    }
+
+    @Test
+    public void todoListReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonTodoListStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonTodoListStorageTest} class.
+         */
+        TodoList original = getTypicalTodoList();
+        storageManager.saveTodoList(original);
+        ReadOnlyTodoList retrieved = storageManager.readTodoList().get();
+        assertEquals(original, new TodoList(retrieved));
+    }
+    @Test
+    public void getTodoListFilePath() {
+        assertNotNull(storageManager.getTodoListFilePath());
     }
 }

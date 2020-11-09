@@ -17,7 +17,8 @@ public class EditModuleDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditModuleDescriptor descriptorWithSameValues = new EditModuleDescriptor(DESC_CS2030);
+        EditModuleCommand.EditModuleDescriptor descriptorWithSameValues = new EditModuleCommand
+                .EditModuleDescriptor(DESC_CS2030);
         assertTrue(DESC_CS2030.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -33,7 +34,7 @@ public class EditModuleDescriptorTest {
         assertFalse(DESC_CS2030.equals(DESC_CS2103T));
 
         // different name -> returns false
-        EditModuleDescriptor editedCS2030 = new EditModuleDescriptorBuilder(DESC_CS2030)
+        EditModuleCommand.EditModuleDescriptor editedCS2030 = new EditModuleDescriptorBuilder(DESC_CS2030)
                     .withName(VALID_MODULENAME_CS2103T).build();
         assertFalse(DESC_CS2030.equals(editedCS2030));
 
