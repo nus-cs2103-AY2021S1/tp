@@ -14,7 +14,7 @@ Given below are my contributions to the project:
 This is the link to the code contributed by me: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=printinghelloworld)
 
 **Enhancements and Features Implemented**
- 
+
 * **Added the Ability to Mark Assignments as Done and Undone** [\#135](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/135), [\#234](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/234)
     * **What it does**: Allows the user to mark (multiple) completed assignments as done and uncompleted assignments as undone. Allows the user to differentiate between completed assignments and uncompleted assignments simply by looking at the Graphical User Interface (GUI). 
     * **Justification**: This feature improves the product because a user can now keep track of the assignments that he/she has completed and focus on those that are not yet completed. In the event that the user marked an uncompleted assignment as done, he/she can simply remove the done status of the assignment using the undone feature.
@@ -22,26 +22,33 @@ This is the link to the code contributed by me: [RepoSense link](https://nus-cs2
     This enhancement also affects several other classes and some of the existing features. The implementation required changes to the existing GUI, ProductiveNusParser and AssignmentBuilder.
     * **Credits**: Some references were made to Remind feature.
 
+<div style="page-break-after: always;"></div>
+
 * **Updated Add Assignment Feature** [\#74](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/74), [\#154](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/154)
     * **What**: I helped to update the add assignment feature to ensure that users are able to add assignments with reminders set and/or with a priority level. 
     * **Justification**: This feature improves the product as it adds convenience for the users. For example, instead of first adding the assignment and then set the priority level, users can now do both steps in just a single add command.
     * **Highlights**: This enhancement is not as easy as it seems as the two additional parameters added were optional (priority has a prefix while remind does not) thus I had to think of how to check their presence, display meaningful error messages, and at the same time ensure that the parsing of the existing parameters are not affected.
   This was achieved using strict Regex commands, which was something unfamiliar to me and involved numerous testings and experimenting.     
   
+
 * **Updated Remind Feature** [\#280](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/280)
     * **What**: While my teammate Jia Xin was the one who implemented this feature, I helped to ensure that the error messages are still accurate after we decided to allow users to remind multiple assignments at the same time.
     * **Justification**: This improves the product as users will now be able to see where the error actually occurs when they are setting reminders to multiple assignments. Instead of being alerted that there is an error, users are now informed exactly which assignments are causing the error.
     * **Credits**: This enhancement was first implemented by myself in Done feature and I modified it to work for Remind feature.  
-
+    
+    
 * **Updated Help** [\#146](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/146), [\#233](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/233)
     * **What**: Updated the Help feature to make it informative by providing a comprehensive summary of all the features in our application.
     * **Justification**: This improves the product as new users will now be able to see all the commands that they can use in our application without having to access our User Guide. 
     * **Highlights**: I had to ensure that the Help feature remains updated throughout the entire duration of our project as there were several changes to the commands implemented by my group mates.
 
+
 **Team-based tasks contributions**:
   * Removed multiple classes and attributes from the existing classes to facilitate the morphing process of our project from Addressbook to ProductiveNus [\#66](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/66), [\#67](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/67)
   * Renamed Deadline class to Time class as Time is a more suitable name for the parent Task class. [\#230](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/230)
   * Helped to create team meeting notes and facilitate our discussions during our weekly team meeting. 
+
+<div style="page-break-after: always;"></div>
 
 **Documentation**:
   * User Guide:
