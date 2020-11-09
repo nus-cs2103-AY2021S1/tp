@@ -43,7 +43,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_MODULE_CODE).isPresent()) {
             editAssignmentDescriptor.setModuleCode(ParserUtil.parseModuleCode(
-                    argMultimap.getValue(PREFIX_MODULE_CODE).get()));
+                    argMultimap.getValue(PREFIX_MODULE_CODE).get().toUpperCase()));
         }
 
         if (!editAssignmentDescriptor.isAnyFieldEdited()) {
