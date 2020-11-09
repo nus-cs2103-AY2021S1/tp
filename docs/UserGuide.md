@@ -15,11 +15,11 @@
    --- 4.1.2 [Clear Trackr: 'clear'](#412-clear-trackr-clear)<br>
    --- 4.1.3 [Exit Trackr: 'exit'](#413-exit-trackr-exit)<br>
    4.2 [Navigation Features](#42-navigation-features)<br>
-   --- 4.2.1 [List all Modules in Trackr: `listMod`](#421-list-all-modules-in-__trackr__-listmod)<br>
-   --- 4.2.2 [View all Tutorial Groups in a Module: `viewtTG`](#422-view-all-tutorial-groups-in-a-module-viewtg)<br>
-   --- 4.2.3 [List all Tutorial Groups in the current Module: `listTG`](#423-list-all-tutorial-groups-in-the-current-module-listtg)<br>
-   --- 4.2.4 [View all Students in a Tutorial Group: `viewStudent`](#424-view-all-students-in-a-tutorial-group-viewstudent)<br>
-   --- 4.2.5 [List all Students in a Tutorial Group: `listStudent`](#425-list-all-students-in-a-tutorial-group-liststudent)<br>
+   --- 4.2.1 [List all modules in Trackr: `listMod`](#421-list-all-modules-in-trackr-listmod)<br>
+   --- 4.2.2 [View all tutorial groups in a module: `viewtTG`](#422-view-all-tutorial-groups-in-a-module-viewtg)<br>
+   --- 4.2.3 [List all tutorial groups in the current module: `listTG`](#423-list-all-tutorial-groups-in-the-current-module-listtg)<br>
+   --- 4.2.4 [View all students in a tutorial group: `viewStudent`](#424-view-all-students-in-a-tutorial-group-viewstudent)<br>
+   --- 4.2.5 [List all students in a tutorial group: `listStudent`](#425-list-all-students-in-a-tutorial-group-liststudent)<br>
    --- 4.2.6 [Return to previous view: `prevView`](#426-return-to-previous-view-prevview)<br>
    4.3 [Module Features](#43-module-features)<br>
    --- 4.3.1 [Add a module: `addMod`](#431-add-a-module-addmod)<br>
@@ -208,7 +208,7 @@ Example: `exit`
 
 ### 4.2 Navigation Features
 
-#### 4.2.1 List all Modules in __Trackr__: `listMod`
+#### 4.2.1 List all modules in Trackr: `listMod`
 
 Lists all the modules in the Module view.
 
@@ -246,7 +246,7 @@ Expected Outcome:
 
 Figure 4.2.2a Expected outcome of performing the `viewTG` command
 
-#### 4.2.3 List all Tutorial Groups in the current Module: `listTG`
+#### 4.2.3 List all tutorial groups in the current module: `listTG`
 Lists all tutorial groups in the Tutorial Group view.
 
 Format: `listTG`
