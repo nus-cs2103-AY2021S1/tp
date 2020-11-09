@@ -625,7 +625,7 @@ LogicManager then calls the method `execute` of the DeletePersonCommand which de
  * **Alternative 2:** Deletion should happen in the project scope.
    * Pros: A teammate can be deleted quickly.
    * Cons: It would be impossible to delete a teammate if all associations are deleted.
-   * Cons: User would have to know which project the temmate is associated and navigate there to delete it. 
+   * Cons: User would have to know which project the teammate is associated and navigate there to delete it. 
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -635,10 +635,10 @@ LogicManager then calls the method `execute` of the DeletePersonCommand which de
 ### Person management
 
 **Current implementation in the project:**
-Call `listpersons` and `startperson` command can start the view of `Person` dashboard, which summarizes the information of this person, including the projects, tasks that this person involved in.
+Call `listpersons` and `startperson` command to start the view of `Person` dashboard, which summarizes the information of this person, including the projects, tasks that this person involved in.
 
 **Extension features:**
-Allow more manipulations on persons after entered the view of `Person` dashboard, including filtering tasks, viewing task dashboards, etc.
+Allow for more manipulations on persons after entering the view of `Person` dashboard, including filtering tasks, viewing task dashboards, etc.
 
 **Extension guidelines:**
 The behaviors of managing persons would be similar to the behaviors of managing projects. Thus, it is possible to reuse the commands that are set for `PROJECT` or lower scope. There are two suggested approaches:
