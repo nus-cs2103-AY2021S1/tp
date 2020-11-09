@@ -16,7 +16,7 @@ import seedu.address.model.event.Event;
 @JsonRootName(value = "eventlist")
 public class JsonSerializableEventList {
 
-    public static final String MESSAGE_DUPLICATE_MODULE = "Module list contains duplicate moduke(s).";
+    public static final String MESSAGE_DUPLICATE_EVENT = "Module list contains duplicate moduke(s).";
 
     private final List<JsonAdaptedEvent> events = new ArrayList<>();
 
@@ -47,7 +47,7 @@ public class JsonSerializableEventList {
         for (JsonAdaptedEvent jsonAdaptedEvent : events) {
             Event event = jsonAdaptedEvent.toModelType();
             if (eventList.hasEvent(event)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
             }
             eventList.addEvent(event);
         }

@@ -27,6 +27,7 @@ import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TodoList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.ContactListStorage;
 import seedu.address.storage.EventListStorage;
 import seedu.address.storage.JsonContactListStorage;
@@ -68,11 +69,13 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         ModuleListStorage moduleListStorage = new JsonModuleListStorage(userPrefs.getModuleListFilePath());
+        ModuleListStorage archivedModuleListStorage = new JsonModuleListStorage(
+                userPrefs.getArchivedModuleListFilePath());
         ContactListStorage contactListStorage = new JsonContactListStorage(userPrefs.getContactListFilePath());
         TodoListStorage todoListStorage = new JsonTodoListStorage(userPrefs.getTodoListFilePath());
         EventListStorage eventListStorage = new JsonEventListStorage(userPrefs.getEventListFilePath());
-        storage = new StorageManager(moduleListStorage, contactListStorage, todoListStorage,
-                eventListStorage, userPrefsStorage);
+        storage = new StorageManager(moduleListStorage, archivedModuleListStorage,
+                contactListStorage, todoListStorage, eventListStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -90,31 +93,73 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyModuleList> moduleListOptional;
-        ReadOnlyModuleList initialData;
+        ReadOnlyModuleList initialModuleList = initializeModuleList(storage);
+        ReadOnlyModuleList initialArchivedModuleList = initializeArchivedModuleList(storage);
+        if (hasDuplicateModules(initialModuleList, initialArchivedModuleList)) {
+            initialArchivedModuleList = SampleDataUtil.getSampleArchivedModuleList();
+        }
         ReadOnlyContactList initialContactList = initializeContactList(storage);
         ReadOnlyTodoList initialTodoList = initializeTodoList(storage);
         ReadOnlyEventList initialEventList = initializeEventList(storage);
+        return new ModelManager(initialModuleList, initialArchivedModuleList, initialContactList,
+                initialTodoList, initialEventList, userPrefs);
+    }
+
+    /**
+     * Returns a {@code ReadOnlyContactList} with the data from {@code storage}'s Module list.
+     *
+     * @param storage Storage object containing module list data.
+     * @return ReadOnlyContactList containing the modules from the Storage argument.
+     */
+    private ReadOnlyModuleList initializeModuleList(Storage storage) {
+        Optional<ReadOnlyModuleList> moduleListOptional;
+        ReadOnlyModuleList initialModuleList;
         try {
             moduleListOptional = storage.readModuleList();
             if (!moduleListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ModuleList");
-                initialData = new ModuleList();
+                initialModuleList = moduleListOptional.orElseGet(SampleDataUtil::getSampleModuleList);
             } else {
-                initialData = moduleListOptional.get();
+                initialModuleList = moduleListOptional.get();
             }
             //to be used when sample modulelist is created
             //initialData = moduleListOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ModuleList");
-            initialData = new ModuleList();
+            initialModuleList = new ModuleList();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty ModuleList");
-            initialData = new ModuleList();
+            initialModuleList = new ModuleList();
         }
-        return new ModelManager(initialData, initialContactList, initialTodoList, initialEventList, userPrefs);
+        return initialModuleList;
     }
 
+    /**
+     * Returns a {@code ReadOnlyModuleList} with the data from {@code storage}'s Archived Module list.
+     *
+     * @param storage Storage object containing archived module list data.
+     * @return ReadOnlyContactList containing the archived modules from the Storage argument.
+     */
+    private ReadOnlyModuleList initializeArchivedModuleList(Storage storage) {
+        Optional<ReadOnlyModuleList> moduleListOptional;
+        ReadOnlyModuleList initialArchivedModuleList;
+        try {
+            moduleListOptional = storage.readArchivedModuleList();
+            if (!moduleListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample ArchivedModuleList");
+                initialArchivedModuleList = moduleListOptional.orElseGet(SampleDataUtil::getSampleArchivedModuleList);
+            } else {
+                initialArchivedModuleList = moduleListOptional.get();
+            }
+        } catch (DataConversionException ex) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty ArchivedModuleList");
+            initialArchivedModuleList = new ModuleList();
+        } catch (IOException ex) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty ArchivedModuleList");
+            initialArchivedModuleList = new ModuleList();
+        }
+        return initialArchivedModuleList;
+    }
     /**
      * Returns a {@code ReadOnlyContactList} with the data from {@code storage}'s contact list.
      *
@@ -150,7 +195,7 @@ public class MainApp extends Application {
             contactListOptional = storage.readEventList();
             if (!contactListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample EventList");
-                initialEventList = new EventList();
+                initialEventList = SampleDataUtil.getSampleEventList();
             } else {
                 initialEventList = contactListOptional.get();
             }
@@ -249,7 +294,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with default user prefs");
             initializedPrefs = new UserPrefs();
         }
 
@@ -261,6 +306,20 @@ public class MainApp extends Application {
         }
 
         return initializedPrefs;
+    }
+
+    /**
+     * Returns true if two module lists do not have duplicate modules
+     */
+    private boolean hasDuplicateModules(ReadOnlyModuleList moduleList, ReadOnlyModuleList archivedModuleList) {
+        for (int i = 0; i < moduleList.getModuleList().size(); i++) {
+            for (int j = 0; j < archivedModuleList.getModuleList().size(); j++) {
+                if (moduleList.getModuleList().get(i).equals(archivedModuleList.getModuleList().get(j))) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override

@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ModuleListParser" as ModuleListParser LOGIC_COLOR
+participant ":AddZoomLinkParser" as AddZoomLinkParser LOGIC_COLOR
+participant "c:AddZoomLinkCommand" as AddZoomLinkCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(addzoom)
+activate LogicManager
+
+LogicManager -> ModuleListParser : parseCommand(addzoom)
+activate ModuleListParser
+
+create AddZoomLinkParser
+ModuleListParser -> AddZoomLinkParser
+activate AddZoomLinkParser
+
+AddZoomLinkParser --> ModuleListParser
+deactivate AddZoomLinkParser
+
+ModuleListParser -> AddZoomLinkParser :parse(commandArgument)
+activate AddZoomLinkParser
+
+ref over AddZoomLinkParser: Create ZoomDescriptor which stores ZoomLink and ModuleLesson
+
+create AddZoomLinkCommand
+AddZoomLinkParser -> AddZoomLinkCommand
+activate AddZoomLinkCommand
+
+AddZoomLinkCommand --> AddZoomLinkParser: c
+deactivate AddZoomLinkCommand
+
+AddZoomLinkParser --> ModuleListParser: c
+deactivate AddZoomLinkParser
+
+AddZoomLinkParser -[hidden]-> AddZoomLinkCommand
+destroy AddZoomLinkParser
+
+ModuleListParser --> LogicManager: c
+deactivate ModuleListParser
+
+LogicManager -> AddZoomLinkCommand : execute(model)
+activate AddZoomLinkCommand
+
+ref over AddZoomLinkCommand: Create edited module containing the added zoom link
+
+AddZoomLinkCommand -> Model : setModule(target, edited)
+activate Model
+
+Model --> AddZoomLinkCommand
+deactivate Model
+
+create CommandResult
+AddZoomLinkCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddZoomLinkCommand: r
+deactivate CommandResult
+
+AddZoomLinkCommand --> LogicManager: r
+deactivate AddZoomLinkCommand
+
+AddZoomLinkCommand -[hidden]-> LogicManager
+destroy AddZoomLinkCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

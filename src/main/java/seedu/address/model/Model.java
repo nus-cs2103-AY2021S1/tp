@@ -16,7 +16,8 @@ import seedu.address.model.task.Task;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+
+    /** {@code Predicate} for {@code Contact} that always evaluate to true. */
     Predicate<Contact> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
 
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
@@ -67,6 +68,9 @@ public interface Model {
     /** Returns the ModuleList */
     ReadOnlyModuleList getModuleList();
 
+    /** Returns the ModuleList Displayed */
+    ReadOnlyModuleList getModuleListDisplayed();
+
     /**
      * Returns true if a module with the same identity as {@code module} exists in the module list.
      */
@@ -114,14 +118,84 @@ public interface Model {
      * Restores the previously undone module list state from history.
      */
     void redoModuleList() throws VersionedListException;
+
+    /**
+     * Replaces archived module list data with the data in {@code modulelist}.
+     */
+    void setArchivedModuleList(ReadOnlyModuleList moduleList);
+
+    /** Returns the archived ModuleList */
+    ReadOnlyModuleList getArchivedModuleList();
+
+    /**
+     * Returns true if a module with the same identity as {@code module} exists in the archived module list.
+     */
+    boolean hasArchivedModule(Module module);
+
+    /**
+     * Deletes the given module.
+     * The module must exist in the archived module list.
+     */
+    void deleteArchivedModule(Module target);
+    /**
+     * Adds the given module to the archived module list.
+     * {@code module} must not already exist in the archived module list.
+     */
+    void addArchivedModule(Module module);
+
+    /**
+     * Replaces the given module {@code target} with {@code editedModule}.
+     * {@code target} must exist in the archived module list.
+     * The module identity of {@code editedModule} must not be the same as another existing module in the module.
+     */
+    void setArchivedModule(Module target, Module editedModule);
+
+    /**
+     * Moves the given module in the module list into the archived module list
+     * {@code target} must exist in the module list.
+     * {@code module} must not already exist in the archived module list.
+     */
+    void archiveModule(Module target);
+
+    /**
+     * Moves the given module in the archived module list into the module list
+     * {@code target} must exist in the module list.
+     * {@code module} must not already exist in the archived module list.
+     */
+    void unarchiveModule(Module target);
+
+    /**
+     * Sets module list to display the archived module list
+     */
+    void displayArchivedModules();
+
+    /**
+     * Sets module list to display the non-archived module list
+     */
+    void displayNonArchivedModules();
+    /**
+     * Returns true if archived module list is being displayed
+     */
+    boolean getModuleListDisplay();
+
     // ============================ ContactList ==================================================
 
     /**
-     * Replaces contact list data with the data in {@code contactlist}.
+     * Returns the user pref's contact list file path.
+     */
+    Path getContactListFilePath();
+
+    /**
+     * Sets the user prefs' contact list file path.
+     */
+    void setContactListFilePath(Path contactListFilePath);
+
+    /**
+     * Replaces contact list data with the data in {@code contactList}.
      */
     void setContactList(ReadOnlyContactList contactList);
 
-    /** Returns the ContactList */
+    /** Returns the ContactList. */
     ReadOnlyContactList getContactList();
 
     /**
@@ -149,7 +223,7 @@ public interface Model {
      */
     void setContact(Contact target, Contact editedContact);
 
-    /** Returns an unmodifiable view of the filtered contact list */
+    /** Returns an unmodifiable view of the filtered contact list. */
     ObservableList<Contact> getFilteredContactList();
 
     /**
@@ -166,12 +240,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateSortedContactList(Comparator<Contact> comparator);
-
-    /**
-     * Returns the file path of the contact list.
-     * @return Path contact list file path.
-     */
-    public Path getContactListFilePath();
 
     /**
      * Saves the current contact list state in history.
@@ -239,7 +307,20 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateSortedTodoList(Comparator<Task> comparator);
+    /**
+     * Saves the current todo list state in history.
+     */
+    void commitTodoList();
 
+    /**
+     * Restores the previous todo list state from history.
+     */
+    void undoTodoList() throws VersionedListException;
+
+    /**
+     * Restores the previously undone todo list state from history.
+     */
+    void redoTodoList() throws VersionedListException;
     // ========================== Scheduler Methods ============================================ //
 
     /**
@@ -276,35 +357,31 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered Event list */
     ObservableList<Event> getFilteredEventList();
-
     /**
      * Updates the filter of the filtered Event list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
 
-    ///**
-    // * Saves the current Event list state in history.
-    // */
-    //void commitEventList();
     /**
-     * Saves the current todo list state in history.
+     * Saves the current event list state in history.
      */
-    void commitTodoList();
+    void commitEventList();
 
     /**
-     * Restores the previous todo list state from history.
+     * Restores the previous event list state from history.
      */
-    void undoTodoList() throws VersionedListException;
+    void undoEventList() throws VersionedListException;
 
     /**
-     * Restores the previously undone todo list state from history.
+     * Restores the previously undone event list state from history.
      */
-    void redoTodoList() throws VersionedListException;
+    void redoEventList() throws VersionedListException;
 
     /**
      * Saves the current CAP5Buddy list state in history.
      */
+    // ========================== General Methods ============================================ //
     void commit(int type);
 
     /**
@@ -316,4 +393,5 @@ public interface Model {
      * Restores the previously undone CAP5Buddy state from history.
      */
     void redo() throws VersionedListException;
+
 }

@@ -10,13 +10,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class ModuleName {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Module names should only contain alphanumeric characters, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[A-Z]{2,3}[\\d]{4,4}\\D?";
+    public static final String VALIDATION_REGEX = "[A-Z]{2,3}[\\d]{4,4}[A-Z]?";
 
     public final String fullName;
 

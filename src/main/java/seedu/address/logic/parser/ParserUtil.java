@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_SEARCH_KEYWORD
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -20,6 +21,7 @@ import seedu.address.model.contact.Telegram;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventTime;
 import seedu.address.model.module.ModularCredits;
+import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.Assignment;
@@ -32,6 +34,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Criterion;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.TaskName;
 
 /**
@@ -70,7 +73,7 @@ public class ParserUtil {
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException If the given {@code tag} is invalid.
      */
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
@@ -84,16 +87,13 @@ public class ParserUtil {
     /**
      * Parses a {@code String keywords} into a {@code List<String>}.
      *
-     * @param keywords String containing search keywords provided by the user.
-     * @return List of search keywords.
      * @throws ParseException If the given {@code keywords} is invalid.
      */
     public static List<String> parseSearchKeywords(String keywords) throws ParseException {
         requireNonNull(keywords);
         String trimmedKeywords = keywords.trim();
         if (trimmedKeywords.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_SEARCH_KEYWORD));
+            throw new ParseException(MESSAGE_INVALID_SEARCH_KEYWORD);
         } else {
             String[] keywordArray = keywords.split("\\s+");
             assert keywordArray.length > 0 : "There must be at least one search keyword provided";
@@ -106,7 +106,7 @@ public class ParserUtil {
      * Parses a {@code String name} into a {@code ContactName}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException If the given {@code name} is invalid.
      */
     public static ContactName parseName(String name) throws ParseException {
         requireNonNull(name);
@@ -121,7 +121,7 @@ public class ParserUtil {
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException If the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
@@ -133,14 +133,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String telegramUsername} into an {@code Telegram}.
+     * Parses a {@code String telegram} into a {@code Telegram}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code telegramUsername} is invalid.
+     * @throws ParseException If the given {@code telegram} is invalid.
      */
-    public static Telegram parseTelegram(String telegramUsername) throws ParseException {
-        requireNonNull(telegramUsername);
-        String trimmedTelegram = telegramUsername.trim();
+    public static Telegram parseTelegram(String telegram) throws ParseException {
+        requireNonNull(telegram);
+        String trimmedTelegram = telegram.trim();
         if (!Telegram.isValidTelegram(trimmedTelegram)) {
             throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
@@ -168,7 +168,7 @@ public class ParserUtil {
      * Parses a {@code String zoomLink} into a {@code ZoomLink}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code zoomLink} is invalid.
+     * @throws ParseException If the given {@code zoomLink} is invalid.
      */
     public static ZoomLink parseZoomLink(String zoomLink) throws ParseException {
         requireNonNull(zoomLink);
@@ -177,6 +177,21 @@ public class ParserUtil {
             throw new ParseException(ZoomLink.MESSAGE_CONSTRAINTS);
         }
         return new ZoomLink(trimmedZoomLink);
+    }
+
+    /**
+     * Parses a {@code String lesson} into a {@code ModuleLesson}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException If the given {@code lesson} is invalid.
+     */
+    public static ModuleLesson parseModuleLesson(String lesson) throws ParseException {
+        requireNonNull(lesson);
+        String trimmedLesson = lesson.trim();
+        if (!ModuleLesson.isValidLesson(trimmedLesson)) {
+            throw new ParseException(ModuleLesson.MESSAGE_CONSTRAINTS);
+        }
+        return new ModuleLesson(trimmedLesson);
     }
 
     /**
@@ -279,18 +294,32 @@ public class ParserUtil {
     public static Priority parseTaskPriority(String priority) throws ParseException {
         assert priority != null;
         String priorityAllUpperCase = priority.toUpperCase();
-        switch(priorityAllUpperCase) {
-        case("HIGHEST"):
-            return Priority.HIGHEST;
-        case("HIGH"):
-            return Priority.HIGH;
-        case("NORMAL"):
-            return Priority.NORMAL;
-        case("LOW"):
-            return Priority.LOW;
-        default:
+        if (!Priority.isValidPriority(priorityAllUpperCase)) {
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
+        return Priority.valueOf(priorityAllUpperCase);
+    }
+
+    /**
+     * Parses a {@code String status} into a {@code Status}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException If the given {@code status} is invalid.
+     */
+    public static Status parseTaskStatus(String status) throws ParseException {
+        assert status != null;
+        String statusAllUpperCase = status.toUpperCase();
+        String convertedStatus = status;
+
+        if (statusAllUpperCase.equals("INCOMPLETE")) {
+            convertedStatus = "NOT_COMPLETED";
+        }
+
+        if (!Status.isValidStatus(convertedStatus)) {
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+        }
+
+        return Status.valueOf(convertedStatus);
     }
 
     /**
@@ -316,23 +345,45 @@ public class ParserUtil {
     public static Criterion parseTaskCriterion(String criterion) throws ParseException {
         assert criterion != null;
         String criterionAllUpperCase = criterion.toUpperCase();
+        String convertedCriterion = criterionAllUpperCase;
+
         switch(criterionAllUpperCase) {
-        case("NAME"):
-            return Criterion.NAME;
-        case("DATE"):
-        case("DEADLINE"):
-            return Criterion.DATE;
-        case("PRIORITY"):
+        case("N"):
+            convertedCriterion = "NAME";
+            break;
+        case("P"):
         case("PRIO"):
-            return Criterion.PRIORITY;
+            convertedCriterion = "PRIORITY";
+            break;
+        case("D"):
+        case("DEADLINE"):
+            convertedCriterion = "DATE";
+            break;
         default:
+            break;
+        }
+
+        if (!Criterion.isValidCriterion(convertedCriterion)) {
             throw new ParseException(Criterion.MESSAGE_CONSTRAINTS);
         }
+
+        return Criterion.valueOf(convertedCriterion);
     }
+
     ///////////////////// Scheduler /////////////////////////////
 
-    public static EventName parseEventName(String name) {
-        return new EventName(name);
+    /**
+     * Checks and parses the given input into an EventName.
+     * @param name name of event.
+     * @return EventName the container for the name.
+     * @throws ParseException invalid name.
+     */
+    public static EventName parseEventName(String name) throws ParseException {
+        if (EventName.isValidName(name)) {
+            return new EventName(name);
+        } else {
+            throw new ParseException(EventName.MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**
@@ -340,9 +391,31 @@ public class ParserUtil {
      * @param date string to be parsed.
      * @return EventTime.
      */
-    public static EventTime parseEventTime(String date) {
+    public static EventTime parseEventTime(String date) throws ParseException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-uuuu HHmm");
-        LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
-        return new EventTime(localDateTime);
+        try {
+            LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
+            return new EventTime(localDateTime);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(EventTime.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Returns a LocalDateTime based on the given input.
+     *
+     * @param date date in string.
+     * @return LocalDateTime datetime object.
+     * @throws ParseException when the given string is in the wrong format.
+     */
+    public static LocalDateTime parseDate(String date) throws ParseException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-uuuu HHmm");
+        try {
+            LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
+            return localDateTime;
+        } catch (DateTimeParseException e) {
+            throw new ParseException("Invalid date and time entered. Please follow this format: "
+                    + System.lineSeparator() + "day-month-year 24h time (d-M-uuuu HHmm)");
+        }
     }
 }

@@ -8,6 +8,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -15,6 +16,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ViewCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -39,6 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     private EventListPanel eventListPanel;
     private TodoListPanel todoListPanel;
     private DetailDisplay detailDisplay;
+    private Calender calender;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -65,8 +68,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private StackPane viewItemDisplayPanel;
+    private VBox viewItemDisplayPanel;
 
+    @FXML
+    private AnchorPane calenderPlaceHolder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -149,6 +154,9 @@ public class MainWindow extends UiPart<Stage> {
         // StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         // statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
+        calender = new Calender(logic.getEventList());
+        calenderPlaceHolder.getChildren().add(calender.getRoot());
+
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
@@ -211,8 +219,9 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            if (commandText.contains("view")) {
-                detailDisplay.setDisplay(commandResult);
+            if (commandText.contains("view") && !commandText.contains("archive")) {
+                detailDisplay.setDisplay((ViewCommandResult) commandResult);
+                resultDisplay.setFeedbackToUser("ViewModule has been successfully executed!");
             } else {
                 resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             }
@@ -223,6 +232,12 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            // Update charts for TodoList
+            todoListPanel.updateCompletionChart(logic.getFilteredTodoList());
+            todoListPanel.updateFutureBar(logic.getFilteredTodoList());
+            // update the calendar
+            calender.loadNow();
 
             return commandResult;
         } catch (CommandException | ParseException e) {

@@ -5,23 +5,28 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.modulelistcommands.AddZoomDescriptor;
 import seedu.address.logic.commands.modulelistcommands.AddZoomLinkCommand;
+import seedu.address.logic.commands.modulelistcommands.ZoomLinkCommand.ZoomDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ZoomLink;
 
 /**
  * Parses the input arguments and creates a new AddZoomLinkCommand object.
  */
 public class AddZoomLinkParser implements Parser<AddZoomLinkCommand> {
+
+    private final Logger logger = LogsCenter.getLogger(AddZoomLinkParser.class);
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddZoomLinkCommand
@@ -31,34 +36,36 @@ public class AddZoomLinkParser implements Parser<AddZoomLinkCommand> {
      */
     public AddZoomLinkCommand parse(String args) throws ParseException {
         requireNonNull(args);
+        logger.info("Parsing command arguments: " + args);
+
         ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME, PREFIX_ZOOM_LINK);
         ArgumentMultimap argMultimap = tokenizer.tokenize();
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ZOOM_LINK)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddZoomLinkCommand.MESSAGE_USAGE));
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ZOOM_LINK)
+                || argMultimap.getPreamble().isBlank()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddZoomLinkCommand.MESSAGE_USAGE));
         }
 
         Index moduleIndex;
-        ZoomLink zoomLink;
-        String moduleLessonType = argMultimap.getValue(PREFIX_NAME).get();
-
         try {
             moduleIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-            zoomLink = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM_LINK).get());
         } catch (ParseException ex) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddZoomLinkCommand.MESSAGE_USAGE), ex);
         }
+        ZoomDescriptor descriptor = new ZoomDescriptor();
+        ZoomLink zoomLink = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM_LINK).get());;
+        ModuleLesson lesson = ParserUtil.parseModuleLesson(argMultimap.getValue(PREFIX_NAME).get());;
 
-        AddZoomDescriptor descriptor = new AddZoomDescriptor();
-        descriptor.setLink(zoomLink);
-        descriptor.setModuleLessonType(moduleLessonType);
+        descriptor.setZoomLink(zoomLink);
+        descriptor.setModuleLesson(lesson);
 
         return new AddZoomLinkCommand(moduleIndex, descriptor);
     }
 
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given.
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

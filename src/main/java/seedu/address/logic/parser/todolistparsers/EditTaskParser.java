@@ -49,18 +49,33 @@ public class EditTaskParser implements Parser<EditTaskCommand> {
         }
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
+
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editTaskDescriptor.setName(ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_NAME).get()));
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
 
-        if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
-            editTaskDescriptor.setPriority(ParserUtil.parseTaskPriority(argMultimap.getValue(PREFIX_PRIORITY).get()));
+        Optional<String> optionalEditedPriority = argMultimap.getValue(PREFIX_PRIORITY);
+        if (optionalEditedPriority.isPresent()) {
+            String editedPriority = optionalEditedPriority.get();
+            if (editedPriority.equals("")) {
+                editTaskDescriptor.setIsPriorityDeleted(true);
+            } else {
+                editTaskDescriptor.setIsPriorityDeleted(false);
+                editTaskDescriptor.setPriority(ParserUtil.parseTaskPriority(editedPriority));
+            }
         }
 
-        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            editTaskDescriptor.setDate(ParserUtil.parseTaskDate(argMultimap.getValue(PREFIX_DATE).get()));
+        Optional<String> optionalEditedDate = argMultimap.getValue(PREFIX_DATE);
+        if (optionalEditedDate.isPresent()) {
+            String editedDate = optionalEditedDate.get();
+            if (editedDate.equals("")) {
+                editTaskDescriptor.setIsDateDeleted(true);
+            } else {
+                editTaskDescriptor.setIsDateDeleted(false);
+                editTaskDescriptor.setDate(ParserUtil.parseTaskDate(editedDate));
+            }
         }
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {

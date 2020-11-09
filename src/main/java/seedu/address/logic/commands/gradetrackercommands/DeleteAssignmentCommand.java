@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -43,7 +44,9 @@ public class DeleteAssignmentCommand extends Command {
      * @param targetModule the module to remove the assignment from.
      */
     public DeleteAssignmentCommand(Index targetIndex, ModuleName targetModule) {
-        logger.info("Deleting assignment " + targetIndex.toString() + " from:" + targetModule.toString() + "");
+        requireNonNull(targetIndex);
+        requireNonNull(targetModule);
+        logger.info("Deleting assignment " + targetIndex.getOneBased() + " from:" + targetModule.toString() + "");
         this.targetIndex = targetIndex;
         this.targetModule = targetModule;
     }
@@ -63,10 +66,15 @@ public class DeleteAssignmentCommand extends Command {
             throw new CommandException(MESSAGE_ASSIGNMENT_NOT_DELETED);
         }
         GradeTracker gradeTracker = module.getGradeTracker();
-        Assignment assignmentToDelete = gradeTracker.getSortedAssignments().get(targetIndex.getZeroBased());
+        if (targetIndex.getOneBased() > gradeTracker.getSortedAssignments().size() || targetIndex.getOneBased() < 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+        }
+        Assignment assignmentToDelete = gradeTracker.getSortedAssignments().get(targetIndex.getOneBased());
         gradeTracker.removeAssignment(assignmentToDelete);
-        module.setGradeTracker(gradeTracker);
+        gradeTracker.calculateNewGrade();
+        Module updatedModule = module.setGradeTracker(gradeTracker);
         logger.info("Assignment has been deleted: " + assignmentToDelete.toString());
+        model.setModule(module, updatedModule);
         model.commitModuleList();
         return new CommandResult(String.format(MESSAGE_DELETE_ASSIGNMENT_SUCCESS, assignmentToDelete, module));
     }
@@ -74,12 +82,11 @@ public class DeleteAssignmentCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof DeleteAssignmentCommand // instanceof handles nulls
-            && targetIndex.equals(((DeleteAssignmentCommand) other).targetIndex)); // state check
+
+                || (other instanceof DeleteAssignmentCommand // instanceof handles nulls
+
+                && targetIndex.equals(((DeleteAssignmentCommand) other).targetIndex)
+                && targetModule.equals(((DeleteAssignmentCommand) other).targetModule)); // state check
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

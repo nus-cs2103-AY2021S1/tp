@@ -1,6 +1,7 @@
 package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Task's name in the todo list.
@@ -19,6 +20,7 @@ public class TaskName {
      */
     public TaskName(String taskName) {
         requireNonNull(taskName);
+        checkArgument(isValidTaskName(taskName), MESSAGE_CONSTRAINTS);
         this.value = taskName;
     }
 
@@ -29,7 +31,8 @@ public class TaskName {
      * @return true if task name is valid
      */
     public static boolean isValidTaskName(String test) {
-        return test.length() <= MAXIMUM_LENGTH && !test.equals("");
+        String trimmedTest = test.trim();
+        return trimmedTest.length() <= MAXIMUM_LENGTH && !trimmedTest.equals("");
     }
 
     public String getValue() {

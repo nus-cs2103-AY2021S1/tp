@@ -8,40 +8,39 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.contactlistcommands.AddContactCommand;
-import seedu.address.logic.commands.contactlistcommands.DeleteContactCommand;
-import seedu.address.logic.commands.contactlistcommands.EditContactCommand;
-import seedu.address.logic.commands.contactlistcommands.FindContactCommand;
 import seedu.address.logic.commands.gradetrackercommands.AddGradeCommand;
 import seedu.address.logic.commands.modulelistcommands.AddCompletedModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.AddZoomLinkCommand;
+import seedu.address.logic.commands.modulelistcommands.ArchiveModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.CalculateCapCommand;
 import seedu.address.logic.commands.modulelistcommands.ClearModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.DeleteModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.DeleteZoomLinkCommand;
 import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.EditZoomLinkCommand;
+import seedu.address.logic.commands.modulelistcommands.FindModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.ListModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.RedoCommand;
 import seedu.address.logic.commands.modulelistcommands.TargetCapCalculatorCommand;
+import seedu.address.logic.commands.modulelistcommands.UnarchiveModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.UndoCommand;
+import seedu.address.logic.commands.modulelistcommands.ViewArchivedModulesCommand;
 import seedu.address.logic.commands.modulelistcommands.ViewModuleCommand;
-import seedu.address.logic.parser.contactlistparsers.AddContactParser;
-import seedu.address.logic.parser.contactlistparsers.DeleteContactParser;
-import seedu.address.logic.parser.contactlistparsers.EditContactParser;
-import seedu.address.logic.parser.contactlistparsers.FindContactParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.gradetrackerparsers.AddGradeParser;
 import seedu.address.logic.parser.modulelistparsers.AddCompletedModuleParser;
 import seedu.address.logic.parser.modulelistparsers.AddModuleParser;
 import seedu.address.logic.parser.modulelistparsers.AddZoomLinkParser;
-import seedu.address.logic.parser.modulelistparsers.CalculateCapParser;
+import seedu.address.logic.parser.modulelistparsers.ArchiveModuleParser;
 import seedu.address.logic.parser.modulelistparsers.DeleteModuleParser;
+import seedu.address.logic.parser.modulelistparsers.DeleteZoomLinkParser;
 import seedu.address.logic.parser.modulelistparsers.EditModuleParser;
-import seedu.address.logic.parser.modulelistparsers.RedoParser;
+import seedu.address.logic.parser.modulelistparsers.EditZoomLinkParser;
+import seedu.address.logic.parser.modulelistparsers.FindModuleParser;
 import seedu.address.logic.parser.modulelistparsers.TargetCapCalculatorParser;
-import seedu.address.logic.parser.modulelistparsers.UndoParser;
+import seedu.address.logic.parser.modulelistparsers.UnarchiveModuleParser;
 import seedu.address.logic.parser.modulelistparsers.ViewModuleParser;
 
 /**
@@ -80,38 +79,20 @@ public class ModuleListParser implements FeatureParser {
         case DeleteModuleCommand.COMMAND_WORD:
             return new DeleteModuleParser().parse(arguments);
 
-        case ClearModuleCommand.COMMAND_WORD:
-            return new ClearModuleCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+        case FindModuleCommand.COMMAND_WORD:
+            return new FindModuleParser().parse(arguments);
 
         case AddZoomLinkCommand.COMMAND_WORD:
             return new AddZoomLinkParser().parse(arguments);
 
+        case EditZoomLinkCommand.COMMAND_WORD:
+            return new EditZoomLinkParser().parse(arguments);
+
+        case DeleteZoomLinkCommand.COMMAND_WORD:
+            return new DeleteZoomLinkParser().parse(arguments);
+
         case ViewModuleCommand.COMMAND_WORD:
             return new ViewModuleParser().parse(arguments);
-
-        case FindContactCommand.COMMAND_WORD:
-            return new FindContactParser().parse(arguments);
-
-        case DeleteContactCommand.COMMAND_WORD:
-            return new DeleteContactParser().parse(arguments);
-
-        case EditContactCommand.COMMAND_WORD:
-            return new EditContactParser().parse(arguments);
-
-        case AddContactCommand.COMMAND_WORD:
-            return new AddContactParser().parse(arguments);
 
         case AddGradeCommand.COMMAND_WORD:
             return new AddGradeParser().parse(arguments);
@@ -119,24 +100,81 @@ public class ModuleListParser implements FeatureParser {
         case AddCompletedModuleCommand.COMMAND_WORD:
             return new AddCompletedModuleParser().parse(arguments);
 
-        case CalculateCapCommand.COMMAND_WORD:
-            return new CalculateCapParser().parse(arguments);
-
         case TargetCapCalculatorCommand.COMMAND_WORD:
             return new TargetCapCalculatorParser().parse(arguments);
-        //case EditGradeCommand.COMMAND_WORD:
-        //            return new EditGradeParser().parse(arguments);
+        case ArchiveModuleCommand.COMMAND_WORD:
+            return new ArchiveModuleParser().parse(arguments);
+
+        case UnarchiveModuleCommand.COMMAND_WORD:
+            return new UnarchiveModuleParser().parse(arguments);
+
+        case ClearModuleCommand.COMMAND_WORD:
+            return singleWordCommandsChecker(ClearModuleCommand.COMMAND_WORD, arguments);
+
+        case ExitCommand.COMMAND_WORD:
+            return singleWordCommandsChecker(ExitCommand.COMMAND_WORD, arguments);
+
+        case HelpCommand.COMMAND_WORD:
+            return singleWordCommandsChecker(HelpCommand.COMMAND_WORD, arguments);
+
         case UndoCommand.COMMAND_WORD:
-            return new UndoParser().parse(arguments);
+            return singleWordCommandsChecker(UndoCommand.COMMAND_WORD, arguments);
 
         case RedoCommand.COMMAND_WORD:
-            return new RedoParser().parse(arguments);
+            return singleWordCommandsChecker(RedoCommand.COMMAND_WORD, arguments);
 
-        //case EditGradeCommand.COMMAND_WORD:
-        //            return new EditGradeParser().parse(arguments);
+        case CalculateCapCommand.COMMAND_WORD:
+            return singleWordCommandsChecker(CalculateCapCommand.COMMAND_WORD, arguments);
+
+        case ListModuleCommand.COMMAND_WORD:
+            return singleWordCommandsChecker(ListModuleCommand.COMMAND_WORD, arguments);
+
+        case ViewArchivedModulesCommand.COMMAND_WORD:
+            return singleWordCommandsChecker(ViewArchivedModulesCommand.COMMAND_WORD, arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
+    /**
+     * Returns the respective Command for the singleWord Commands after checking the arguments.
+     * @param commandWord the command word for respective commands.
+     * @param argument the argument after the command word.
+     * @return the repective command.
+     * @throws ParseException if there is an argument after the command word.
+     */
+    public Command singleWordCommandsChecker(String commandWord, String argument) throws ParseException {
+        if (!argument.equals("")) {
+            throw new ParseException("Invalid input format, extra string after the command word.");
+        }
+        switch (commandWord) {
+        case ClearModuleCommand.COMMAND_WORD:
+            return new ClearModuleCommand();
+
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
+
+        case CalculateCapCommand.COMMAND_WORD:
+            return new CalculateCapCommand();
+
+        case ListModuleCommand.COMMAND_WORD:
+            return new ListModuleCommand();
+
+        case ViewArchivedModulesCommand.COMMAND_WORD:
+            return new ViewArchivedModulesCommand();
+
+        default:
+            throw new ParseException("Invalid command");
+        }
+    }
 }

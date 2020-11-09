@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -32,12 +33,24 @@ public class ViewEventCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Event> lastShownList = model.getFilteredEventList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+        }
+
         Event toView = lastShownList.get(this.index.getZeroBased());
         return new CommandResult(String.format(MESSAGE_SUCCESS, toView));
     }
 
+
     @Override
-    public boolean isExit() {
-        return false;
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        } else if (other instanceof ViewEventCommand) {
+            return this.index.equals(((ViewEventCommand) other).index);
+        } else {
+            return false;
+        }
     }
 }

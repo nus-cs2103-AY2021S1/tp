@@ -15,6 +15,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 // import seedu.address.model.contact.Contact;
 import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.GradeTracker;
@@ -23,7 +24,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Module}.
  */
-class JsonAdaptedModule {
+public class JsonAdaptedModule {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Module's %s field is missing!";
 
@@ -62,7 +63,8 @@ class JsonAdaptedModule {
      */
     public JsonAdaptedModule(Module source) {
         name = source.getName().fullName;
-        source.getAllLinks().forEach((lesson, link) -> zoomLinks.add(new JsonAdaptedZoomLink(lesson, link.getLink())));
+        source.getAllLinks().forEach((lesson, link) -> zoomLinks.add(new JsonAdaptedZoomLink(lesson.toString(),
+                link.toString())));
         gradeTracker = new JsonAdaptedGradeTracker(source.getGradeTracker());
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -98,9 +100,11 @@ class JsonAdaptedModule {
 
         // =========================== ZoomLink =============================== //
 
-        final Map<String, ZoomLink> modelZoomLinks = new HashMap<>();
+        final Map<ModuleLesson, ZoomLink> modelZoomLinks = new HashMap<>();
         for (JsonAdaptedZoomLink link : zoomLinks) {
-            modelZoomLinks.put(link.getKey(), link.toModelType());
+            ModuleLesson lesson = new ModuleLesson(link.getLesson());
+            ZoomLink zoomLink = link.toModelType();
+            modelZoomLinks.put(lesson, zoomLink);
         }
 
         // ========================= GradeTracker ============================= //
@@ -109,6 +113,7 @@ class JsonAdaptedModule {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     GradeTracker.class.getSimpleName()));
         }
+        gradeTracker.toModelType();
         if (!GradeTracker.isValidGradeTracker(gradeTracker.toModelType())) {
             throw new IllegalValueException(GradeTracker.MESSAGE_INVALID_GRADE);
         }

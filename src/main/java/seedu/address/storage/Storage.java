@@ -15,15 +15,17 @@ import seedu.address.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends ModuleListStorage, ContactListStorage, TodoListStorage,
+public interface Storage extends ModuleListStorage, ArchivedModuleListStorage, ContactListStorage, TodoListStorage,
         UserPrefsStorage, EventListStorage {
 
+    //=== User Pref Storage ======================================================================
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
 
     @Override
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
+    //=== Module List Storage ====================================================================
     @Override
     Path getModuleListFilePath();
 
@@ -32,7 +34,10 @@ public interface Storage extends ModuleListStorage, ContactListStorage, TodoList
 
     @Override
     void saveModuleList(ReadOnlyModuleList moduleList) throws IOException;
+    Optional<ReadOnlyModuleList> readArchivedModuleList() throws DataConversionException, IOException;
+    void saveArchivedModuleList(ReadOnlyModuleList moduleList) throws IOException;
 
+    //=== Contact List Storage ====================================================================
     @Override
     Path getContactListFilePath();
 
@@ -42,6 +47,7 @@ public interface Storage extends ModuleListStorage, ContactListStorage, TodoList
     @Override
     void saveContactList(ReadOnlyContactList contactList) throws IOException;
 
+    //=== TodoList Storage ====================================================================
     @Override
     Path getTodoListFilePath();
 
@@ -51,6 +57,7 @@ public interface Storage extends ModuleListStorage, ContactListStorage, TodoList
     @Override
     void saveTodoList(ReadOnlyTodoList todoList) throws IOException;
 
+    //=== Event List Storage ====================================================================
     @Override
     Path getEventListFilePath();
 

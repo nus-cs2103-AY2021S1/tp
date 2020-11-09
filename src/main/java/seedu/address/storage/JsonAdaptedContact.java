@@ -51,11 +51,11 @@ public class JsonAdaptedContact {
      * Converts a given {@code Contact} into this class for Jackson use.
      */
     public JsonAdaptedContact(Contact source) {
-        name = source.getName().fullName;
-        email = source.getEmail().value;
+        name = source.getName().toString();
+        email = source.getEmail().toString();
 
         if (source.getTelegram().isPresent()) {
-            telegram = source.getTelegram().get().telegramUsername;
+            telegram = source.getTelegram().get().toString();
         } else {
             telegram = null;
         }
@@ -101,7 +101,6 @@ public class JsonAdaptedContact {
         if (!Telegram.isValidTelegram(telegram)) {
             throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
         }
-
         final Telegram modelTelegram = new Telegram(telegram);
 
         return new Contact(modelName, modelEmail, modelTelegram, modelTags, isImportant);
