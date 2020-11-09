@@ -3,44 +3,85 @@ layout: page
 title: Hwang Yong Kang's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: ProductiveNUS
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+### Project Overview
 
-Given below are my contributions to the project.
+ProductiveNUS is a desktop application targeted at Computing students of National University of Singapore (NUS) to help them manage and schedule their academic tasks efficiently. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+### My Contributions to the Code
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=hyngkng)
 
-* **Code contributed**: [RepoSense link]()
+* **Created the Lesson class**
+  [\#68](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/68/files)
+  * **What:** A separate class that stores the user's lesson information which will be imported using an import feature.
+  * **Why:** Lessons are meant to be viewed only and cannot be modified by the user, unlike the Assignment class.
+  * **Credits:** Code implemented is adapted from existing Person class in AddressBook3.
 
-* **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+* **Import Command**
+  [\#73](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/73/files),
+  [\#80](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/80/files),
+  [\#241](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/241/files),
+  [\#276](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/276/files)
+  * **What:** Allows the user to import their NUSMods lesson information into ProductiveNUS.
+  * **Why:** This feature improves the product significantly because a user can conveniently refer to their timetable on ProductiveNUS instead of having to go to NUSMods. Other commands such as Schedule also works best if the user can import their weekly timetable.
+  * **Note:** This enhancement retrieves data from the NUSMods API by sending a HTTP GET request. A new model class Lesson is also implemented to support the import command.
+  * **Credits:** Code implemented is adapted from examples on [Baldeung](https://www.baeldung.com/java-http-request) and the [NUSMods API](https://api.nusmods.com/v2/).
 
-* **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+* **Created the Priority class**
+  [\#124](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/124/files)
+    * **What:** An assignment field that is optional. Users can set priorities to their assignments.
+    * **Why:** It is likely that users have assignments of different importance and hence, having a priority tagged to the assignment would help them better manage their work.
+    * **Credits:** Code implemented is adapted from existing fields in AddressBook3.
 
-* **Documentation**:
-  * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
-  * Developer Guide:
-    * Added implementation details of the `delete` feature.
+* **Prioritize/Unprioritize Command**
+  [\#124](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/124/files),
+  [\#167](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/167/files),
+  [\#276](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/276/files)
+    * **What:** Allows the user to set the priority level of their assignments in ProductiveNUS, which is displayed as a coloured tag in the assignment card.
+    * **Why:** This feature improves the user's experience as it is easier for them to spot assignments that are of greater importance so as to better plan their schedule.
+    * **Note:** This enhancement is compatible with the Find feature, where users are able to list assignments of a specific priority tag.
 
-* **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+### My Contributions to the User Guide
+  [\#36](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/36/files),
+  [\#95](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/95/files),
+  [\#132](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/132/files),
+  [\#163](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/163/files),
+  [\#170](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/170/files),
+  [\#248](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/248/files)
+  * I added the Import and Prioritize/Unprioritize segments of the User Guide.
+  * I also made format changes to ensure that the document is standardised.
 
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
+### My Contributions to the Developer Guide
+  [\#59](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/59/files),
+  [\#61](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/61/files),
+  [\#134](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/134/files),
+  [\#272](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/272/files)
+  * I added the Import and Prioritize/Unprioritize segments of the Developer Guide.
+  * I also made format changes to ensure the document is standardised.
 
-* _{you can add/remove categories in the list above}_
+### My Contributions to team-based tasks
+  [\#180](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/180/files),
+  [\#254](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/254/files)
+  * I helped to refactor and rename all "AddressBook" to "ProductiveNUS".
+  * I also helped with formatting issues with the User Guide.
+
+### My Review Contributions
+  * **PRs reviewed:**
+    [\#58](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/58),
+    [\#60](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/60),
+    [\#65](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/65),
+    [\#120](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/120),
+    [\#126](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/126),
+    [\#131](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/131),
+    [\#145](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/145),
+    [\#148](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/148),
+    [\#150](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/150),
+    [\#154](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/154),
+    [\#173](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/173)
+  * **Bugs found for PED:**
+    [1](https://github.com/hyngkng/ped/issues/1),
+    [2](https://github.com/hyngkng/ped/issues/2),
+    [3](https://github.com/hyngkng/ped/issues/3),
+    [4](https://github.com/hyngkng/ped/issues/4)
