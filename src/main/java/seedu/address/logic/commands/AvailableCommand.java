@@ -16,9 +16,9 @@ public class AvailableCommand extends Command {
 
     public static final String COMMAND_WORD = "avail";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all available time slots [on a date]\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all available time slots on the given date\n"
         + "Parameters: "
-        + "[" + PREFIX_DATE + "DATE]\n"
+        + PREFIX_DATE + "DATE\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_DATE + "12-Apr-2021 ";
 

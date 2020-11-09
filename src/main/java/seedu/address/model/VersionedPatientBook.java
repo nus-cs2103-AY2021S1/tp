@@ -6,6 +6,8 @@ import java.util.List;
 import seedu.address.model.exceptions.NoRedoableStateException;
 import seedu.address.model.exceptions.NoUndoableStateException;
 
+//@@author YangYue128-helen-reused
+//Reused from https://github.com/se-edu/addressbook-level4 with minor modifications
 /**
  * Stores the states of the patient book after executing undoable and redoable commands.
  */
@@ -97,3 +99,4 @@ public class VersionedPatientBook extends PatientBook {
     }
 
 }
+//@@author

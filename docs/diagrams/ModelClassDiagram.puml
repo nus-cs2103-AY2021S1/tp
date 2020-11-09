@@ -63,16 +63,16 @@ Patient *--> Address
 Patient *--> "*" Tag
 
 AppointmentBook *--> "1" UniqueAppointmentList
-UniqueAppointmentList o--> "*" Appointment
+UniqueAppointmentList o--> " * " Appointment
 UniqueAppointmentList -[hidden]down-> Appointment
 Appointment *--> Date
-Appointment *--> "2" Time
-Appointment *--> Patient
+Appointment *--> "2 " Time
+Appointment *--> "1" Patient
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 
 
-ModelManager -->"1" Patient : filtered list
-ModelManager -->"1" Appointment : filtered list
+ModelManager -->"*" Patient : filtered list
+ModelManager -->"*" Appointment : filtered list
 @enduml

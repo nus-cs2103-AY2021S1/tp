@@ -18,7 +18,6 @@ public enum NaturalDay {
     // Other date language
     TODAY("TDY", "TODAY"),
     TOMORROW("TMR", "TOMORROW"),
-    YESTERDAY("YESTERDAY"),
 
     // Time grammar
     MIDNIGHT("MIDNIGHT"),

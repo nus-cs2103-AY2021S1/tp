@@ -22,7 +22,6 @@ public class NaturalDayTest {
 
         assertTrue(NaturalDay.TODAY.contains("tdy"));
         assertTrue(NaturalDay.TOMORROW.contains("tmr"));
-        assertTrue(NaturalDay.YESTERDAY.contains("yesterday"));
 
         assertTrue(NaturalDay.MIDNIGHT.contains("midnight"));
         assertTrue(NaturalDay.NOON.contains("Noon"));
@@ -53,7 +52,6 @@ public class NaturalDayTest {
 
         assertEquals(NaturalDay.TODAY, NaturalDay.parse("tdy"));
         assertEquals(NaturalDay.TOMORROW, NaturalDay.parse("tmr"));
-        assertEquals(NaturalDay.YESTERDAY, NaturalDay.parse("yesterday"));
 
         assertEquals(NaturalDay.MIDNIGHT, NaturalDay.parse("midnight"));
         assertEquals(NaturalDay.NOON, NaturalDay.parse("Noon"));

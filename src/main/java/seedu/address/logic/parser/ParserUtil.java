@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.time.temporal.ChronoUnit.MINUTES;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.appointment.Time.CLOSING_TIME;
+import static seedu.address.model.appointment.Time.MESSAGE_OPERATING_HOURS;
 import static seedu.address.model.appointment.Time.OPENING_TIME;
 
 import java.time.Duration;
@@ -31,11 +32,12 @@ public class ParserUtil {
     public static final int MIN_DURATION = 10; // Appointments cannot have a duration that is lesser than 10 mins.
     public static final String MESSAGE_INVALID_INDEX = "Index must be a positive integer that is more than 0.";
     public static final String MESSAGE_INVALID_DURATION = "Duration must be a positive integer that is more than or "
-            + "equals to 10 mins.\nDuration provided must also result in an appointment end time that falls within the"
-            + " operational hours of the clinic on the same day.";
-    public static final String MESSAGE_EMPTY_DURATION = "Duration must not be empty if you have entered the prefix";
-    public static final String MESSAGE_MAX_DURATION = "Duration must be smaller than the number of minutes\n"
-            + "in the working hours for one day";
+            + "equals to 10 minutes.";
+    public static final String MESSAGE_EMPTY_DURATION = "The Duration input should not be empty.\n"
+            + "You can try entering duration as 60 to represent an appointment duration of 60 minutes";
+    public static final String MESSAGE_DURATION_EXCEEDED = "Duration provided must be such that the appointment "
+            + "lies within the clinic's operating hours on the same day.\n"
+            + "The clinic operating hours is " + MESSAGE_OPERATING_HOURS;
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -204,9 +206,11 @@ public class ParserUtil {
         }
 
         try {
-            duration = Duration.of(Integer.parseInt(trimmedDuration), MINUTES);
+            duration = Duration.ofMinutes(Long.parseLong(trimmedDuration));
         } catch (NumberFormatException e) {
             throw new ParseException(MESSAGE_INVALID_DURATION);
+        } catch (ArithmeticException e) {
+            throw new ParseException(MESSAGE_DURATION_EXCEEDED);
         }
 
         if (duration.isNegative() || duration.isZero()) {
@@ -218,7 +222,7 @@ public class ParserUtil {
         }
 
         if (duration.compareTo(maxDuration) > 0) {
-            throw new ParseException(MESSAGE_MAX_DURATION);
+            throw new ParseException(MESSAGE_DURATION_EXCEEDED);
         }
         return duration;
     }

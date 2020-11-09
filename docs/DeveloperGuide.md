@@ -43,6 +43,8 @@ and [`MainApp`](https://github.com/AY2021S1-CS2103T-T12-4/tp/blob/master/src/mai
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
+<div style="page-break-after: always;"></div>
+
 The rest of the App consists of four components.
 
 * [**`UI`**](#ui-component): The UI of the App.
@@ -59,6 +61,8 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
@@ -70,6 +74,8 @@ The sections below give more details of each component.
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
@@ -92,9 +98,16 @@ The `UI` component,
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `LogicManager` implements the `Logic` interface and uses the `NuudleParser` class to parse the user command with the `execute` method.
+
 1. This results in a `Command` object which is then executed by the `LogicManager`.
+
+  <div style="page-break-after: always;"></div>
+
+{:start="3"}
 1. The command execution can affect the `Model` (e.g. adding or deleting a patient).
+
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -103,6 +116,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 
@@ -118,6 +133,7 @@ The `Model`,
 e.g. the UI can be bound to these lists so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
+<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 An alternative (arguably, a more OOP) Patient model is given below. It has a `Tag` list in the `PatientBook`, which `Patient` references. This allows `PatientBook` to only require one `Tag` object per unique `Tag`, instead of each `Patient` needing their own `Tag` object.<br>
@@ -126,7 +142,6 @@ An alternative (arguably, a more OOP) Patient model is given below. It has a `Ta
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
-
 
 ### Storage component
 
@@ -183,6 +198,9 @@ The following is an example usage scenario on how the mark as done mechanism wor
 
 7. `DoneCommand` obtains a copy of the `FilteredAppointmentList` by calling the `Model#getFilteredAppointmentList()` method.
 
+  <div style="page-break-after: always;"></div>
+
+{:start="8"}
 8. `DoneCommand` returns the appointment `toMark` in the `FilteredAppointmentList`, if an appointment can be found by the given index. Otherwise, throw an
 `APPOINTMENT_DOES_NOT_EXISTS` exception.
 
@@ -253,6 +271,9 @@ Given below is an example startup scenario, which focuses on how the archive mec
 
 6. The `CSVAdaptedAppointment` will subsequently create a CSV-adapted version of the patient, `CSVAdaptedPatient` to be stored together with the appointment.
 
+  <div style="page-break-after: always;"></div>
+
+{:start="7"}
 7. For each `CsvAdaptedAppointment` in the same month, the `AppointmentArchive` calls the `saveAppointments(..)` method to save them in a single CSV file.
 
 8. `saveAppointments(..)` will then call the `CsvUtil#serializeObjectToCsvFile(..)` method to serialise the appointments to CSV format and save them in a file with the following naming format: `<YYYY>_<MMM>` (For eg. `2019_MAY`)
@@ -270,6 +291,7 @@ The retrieval of the status message is shown in the following sequence diagram:
 ![ArchiveStatusSequenceDiagram](images/ArchiveStatusDiagram.png)
 <br>**Diagram 2.1.2: Sequence diagram showcasing the archive message retrieval process**
 
+<div style="page-break-after: always;"></div>
 
 The following activity diagram summarises how the Nuudle selects and archive past appointments:
 
@@ -306,9 +328,10 @@ The following class diagram showcases the relationship between the main classes 
 
 
 ![AssignLogicClassDiagram](images/AssignLogicClassDiagram.png)
+<br>**Diagram 3.1.1: Class diagram for classes involved in the assign feature of the Logic component**
 
 ![AssignModelClassDiagram](images/AssignModelClassDiagram.png)
-
+<br>**Diagram 3.1.1: Class diagram for classes involved in the assign feature of the Model component**
 
 Here below is an example usage scenario and how the `assign` feature works at each step:
 1. User enters respective input into the app.
@@ -334,6 +357,11 @@ Here below is an example usage scenario and how the `assign` feature works at ea
 11.  Lastly, the `AssignCommand` creates a `CommandResult` with `MESSAGE_SUCCESS`, and returns it into `LogicManager`.
 
 ![AssignSequenceDiagram](images/AssignSequenceDiagram.png)
+<br>**Diagram 5.2.1: Sequence diagram showcasing the Assign Command process**
+
+The following activity diagram summarises the general workflow for the Assign Command:
+![AssignActivityDiagram](images/AssignActivityDiagram.png)
+<br>**Diagram3.1.3: Activity diagram showcasing the Assign Command execution flow**
 
 #### 3.2 Design Considerations
 

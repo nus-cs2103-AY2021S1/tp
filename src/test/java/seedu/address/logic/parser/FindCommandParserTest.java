@@ -18,7 +18,28 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_noTag_throwsParseException() {
+        assertParseFailure(parser, "no tag", FindCommand.MESSAGE_NO_FIND);
+    }
+
+    @Test
+    public void parse_onlyNamePrefixNoArg_throwsParseException() {
+        assertParseFailure(parser, " " + PREFIX_NAME, FindCommand.MESSAGE_NO_NAME);
+    }
+
+    @Test
+    public void parse_onlyPhonePrefixNoArg_throwsParseException() {
+        assertParseFailure(parser, " " + PREFIX_PHONE, FindCommand.MESSAGE_NO_PHONE);
+    }
+
+    @Test
+    public void parse_onlyNricPrefixnoArg_throwsParseException() {
+        assertParseFailure(parser, " " + PREFIX_NRIC, FindCommand.MESSAGE_NO_NRIC);
     }
 
     @Test
