@@ -3,9 +3,9 @@ layout: page
 title: Jonas Ng's Project Portfolio Page
 ---
 
-#### Project: CAP 5 Buddy
+#### Project: CAP5Buddy
 #### Overview
-CAP 5 Buddy is a desktop module tracker application used to centralise key module details. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 30 kLoC.
+CAP5Buddy is a desktop module tracker application used to centralise key module details. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 30 kLoC.
 #### Summary of Contributions
 Given below are my contributions to the project.
 * **Enhancement:** Implemented the feature to find items using multiple search parameters. 
@@ -62,7 +62,7 @@ Given below are my contributions to the project.
   * Managed and closed milestones `V1.1`, `V1.2`, `V1.3`. 
 * **Enhancements to existing features**:
   * Updated the GUI color scheme for contact card (Pull request [\#582](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/582))
-  * Refactored `Model` package to suit the implementation of CAP 5 Buddy (Pull request [\#197](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/197))
+  * Refactored `Model` package to suit the implementation of CAP5Buddy (Pull request [\#197](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/197))
   * Wrote additional tests for existing features to increase coverage 
     (Pull requests [\#292](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/292), 
                    [\#295](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/295),
