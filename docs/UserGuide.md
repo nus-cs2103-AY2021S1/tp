@@ -468,8 +468,7 @@ Examples to add remark:
 Step by step illustration for adding a remark:
 1. Suppose you want to add additional information for your regular patient, Bernice, by indicating her preferred dentist.
 <br>Simply enter `remark 2 r/Has been visiting Dr John` in the command box and press <kbd>Enter</kbd>.<br>
-![Command for 'Add remark'](images/AddRemark.png)
-<br>
+![Command for 'Add remark'](images/addRemark.png)
 1. Bernice’s remark is now updated and the particulars of the added remark is displayed in the result display box.
 ![Result for 'Add remark'](images/AddRemark2.png)
 
@@ -482,8 +481,8 @@ Examples to delete the remark for a patient at index 1:
 Step by step illustration for deleting a remark:
 1. Suppose you want to delete the remark data for Bernice, simply enter `remark 2` in the command box and press <kbd>Enter</kbd>.<br>
 ![Command for 'Delete remark'](images/DeleteRemark.png)
-<br>
 1. Bernice’s remark is now deleted and the particulars of the deleted remark is displayed in the result display box.
+
 ![Result for 'Delete remark'](images/DeleteRemark2.png)
 <br>
 
