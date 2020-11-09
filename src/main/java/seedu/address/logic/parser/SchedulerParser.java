@@ -8,9 +8,12 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.contactlistcommands.ClearContactCommand;
-import seedu.address.logic.commands.contactlistcommands.ListContactCommand;
-import seedu.address.logic.commands.schedulercommands.*;
+import seedu.address.logic.commands.schedulercommands.AddEventCommand;
+import seedu.address.logic.commands.schedulercommands.DeleteEventCommand;
+import seedu.address.logic.commands.schedulercommands.EditEventCommand;
+import seedu.address.logic.commands.schedulercommands.FindEventCommand;
+import seedu.address.logic.commands.schedulercommands.ListEventCommand;
+import seedu.address.logic.commands.schedulercommands.ViewEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.schedulerparsers.AddEventParser;
 import seedu.address.logic.parser.schedulerparsers.DeleteEventParser;
