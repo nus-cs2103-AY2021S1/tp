@@ -40,6 +40,8 @@ deactivate DelmodCommand
 DelmodCommandParser --> AddressBookParser : d
 deactivate DelmodCommandParser
 DelmodCommandParser -[hidden]-> AddressBookParser
+destroy DelmodCommandParser
+
 
 AddressBookParser --> LogicManager : d
 deactivate AddressBookParser

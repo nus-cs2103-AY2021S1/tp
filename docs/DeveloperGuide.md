@@ -179,8 +179,11 @@ The method updates the current module list and filters it according to the given
 
 The following sequence diagram shows how the find module by module attributes operation works:
 
-![FindmodActivityDiagram](images/FindmodSequenceDiagram.png)
-
+![FindmodSequenceDiagram](images/FindmodSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindModCommandParser` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+<br/>
 The following activity diagram summarizes what happens when a user executes a findmod command:
 
 ![FindmodActivityDiagram](images/FindmodActivityDiagram.png)
@@ -206,11 +209,11 @@ It uses an operation `AddressBook#removeModule()` which is exposed in the `Model
 Then, the `removeModuleWithCode()` operation is called in `UniqueModuleList`. `UniqueModuleList#removeModuleWithCode()` will remove the module with the specified code
 from the module list.
 
-Given below is the example usage scenario and how the delete module mecahnism behaves at each step.
+Given below is the example usage scenario and how the delete module mechanism behaves at each step.
 
-Step 1. The user launches the application. Facultype is initialized with the module `CS2103` in the addressbook.
+Step 1. The user launches the application. FaculType is initialized with the module `CS2103` in the Addressbook.
 
-Step 2. The user executes the command `delmod m/CS2103` to delete the module with the module code CS2103 in the addressbook.
+Step 2. The user executes the command `delmod m/CS2103` to delete the module with the module code CS2103 in the Addressbook.
 
 Step 3. The `delmod` command then calls `Model#deleteModule()` after checking for the existence of the specified module.
 
@@ -218,7 +221,12 @@ Step 4. The Module with the specified module code, will be deleted from the `Uni
 
 The following sequence diagram shows how the deleting of the module works:
 
-![DelmodActivityDiagram](images/DelmodSequenceDiagram.png)
+![DelmodSequenceDiagram](images/DelmodSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DelmodCommandParser` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+<br/>
 
 The following activity diagram summarizes what happens when a user executes a delmod command:
 
@@ -247,6 +255,11 @@ The following sequence diagram shows how the assign operation works:
 
 ![AssignSequenceDiagram](images/AssignSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AssignCommandParser` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+<br/>
+
 The following activity diagram summarizes what happens when a user executes an assign command:
 
 ![AssignActivityDiagram](images/AssignActivityDiagram.png)
@@ -274,6 +287,11 @@ The following sequence diagram shows how the unassign operation works:
 
 ![UnassignSequenceDiagram](images/UnassignSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnassignCommandParser` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+<br/>
+
 The following activity diagram summarizes what happens when a user executes a unassign command:
 
 ![UnassignActivityDiagram](images/UnassignActivityDiagram.png)
@@ -287,6 +305,11 @@ Then, the `unassignAllInstructors()` operation is called in both `UniqueModuleLi
 The following sequence diagram shows how the unassignall operation works:
 
 ![UnassignallSequenceDiagram](images/UnassignallSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnassignallCommandParser` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+<br/>
 
 The following activity diagram summarizes what happens when a user executes a unassignall command:
 
@@ -317,6 +340,11 @@ The following sequence diagram shows how the cclear operation works:
 
 ![CclearSequenceDiagram](images/CclearSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `OneWordCommandParser` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+<br/>
+
 ### Clear all modules feature
 
 #### Implementation
@@ -328,6 +356,11 @@ These operations are exposed in the `Model` interface as `Model#clearMod()` and 
 The following sequence diagram shows how the mclear operation works:
 
 ![MclearSequenceDiagram](images/MclearSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `OneWordCommandParser` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+<br/>
 
 ### Switch active semester feature
 
@@ -342,6 +375,11 @@ All `AddressBook` operations on `UniqueModuleList` are done on `activeModules`.
 The following sequence diagram shows how the switch operation works:
 
 ![SwitchSequenceDiagram](images/SwitchSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `OneWordCommandParser` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+<br/>
 
 The following activity diagram summarizes what happens when a user executes a switch command:
 

@@ -38,6 +38,7 @@ deactivate FindModCommand
 FindModCommandParser --> AddressBookParser : f
 deactivate FindModCommandParser
 FindModCommandParser -[hidden]-> AddressBookParser
+destroy FindModCommandParser
 
 AddressBookParser --> LogicManager : f
 deactivate AddressBookParser
