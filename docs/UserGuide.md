@@ -670,21 +670,32 @@ Patient Appointment commands help you manage your upcoming patient appointments.
 
 Add a new appointment for the specified patient to the appointment list.
 
+Format: `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION`
+
+* `INDEX` refers to the patient's index number as shown in the displayed patient list in the **Patients** tab.
+    * It **must be a positive number**, eg. 1, 2, 3, …
+* `APPOINTMENT_START_TIME` refers to the date and starting time of the appointment.
+    * It follows the format of `dd/MM/yyyy HH:mm`, for example `31/12/2020 23:59`.
+    * Note that you will need to input the hour (`HH`) in  the 24-hour format.
+* `DURATION` refers to the duration of the appointment, in minutes.
+
 <p align="center">
     <img src="images/addApptExample.png"/>
     <br>
     <em style="color:#CC5500">Figure 23. Example of Add Appointment Command</em>
 </p>
 
-Format: `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION`
 
-* `INDEX` refers to the patient's index number as shown in the displayed patient list in the **Patients** tab.
-    * It **must be a positive number**, eg. 1, 2, 3, …​
-* `APPOINTMENT_START_TIME` refers to the date and starting time of the appointment.
-    * It follows the format of `dd/MM/yyyy HH:mm`, for example `31/12/2020 23:59`.
-    * Note that you will need to input the hour (`HH`) in  the 24-hour format.
+<div markdown="block" class="alert alert-warning">
+:book: <span style="font-weight:bold">Example: </span> 
+You want to add an appointment with the first patient on the list.
 
-* `DURATION` refers to the duration of the appointment, in minutes.
+**Step 1**: Input `addappt 6 st/11/12/2020 15:00 d/120` into the command box and press Enter.
+
+**Step 2**: On the **Overview** tab, you can find your newly added appointment saved inside the appointment list.
+
+**Step 3**: If your newly added appointment is happening within a week from today, you can see the appointment being reflected in the calendar on the right of the appointment list.
+</div>
 
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
@@ -693,14 +704,6 @@ Format: `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION`
 * If you are having trouble converting your time to 24 hour format, check out a time format converter at <a href="https://www.timecalculator.net/12-hour-to-24-hour-converter">this link</a>.
 * You can retrieve your desired patient `INDEX` from the **Patients** tab.
 </div>
-
-Example: You want to add an appointment with the first patient on the list.
-
-**Step 1**: Input `addappt 6 st/11/12/2020 15:00 d/120` into the command box and press Enter.
-
-**Step 2**: On the **Overview** tab, you can find your newly added appointment saved inside the appointment list.
-
-**Step 3**: If your newly added appointment is happening within a week from today, you can see the appointment being reflected in the calendar on the right of the appointment list.
 
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
