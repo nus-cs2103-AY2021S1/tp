@@ -1,0 +1,25 @@
+@startuml
+start
+:User executes LoadPresetCommand;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([Vendor has been selected])
+:Current presets are read from storage;
+if () then([preset name exists])
+:Preset with the same name is
+loaded into the current order;
+else ([else])
+:Supper Strikers throws a CommandException
+informing user that the preset does not exist;
+:Error message is displayed to user;
+endif
+
+else ([else])
+:Supper Strikers throws a CommandException
+informing user that no vendor has been selected;
+:Error message is displayed to user;
+endif
+stop
+@enduml

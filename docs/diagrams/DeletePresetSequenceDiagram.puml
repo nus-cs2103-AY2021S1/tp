@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SupperStrikersParser" as SupperStrikersParser LOGIC_COLOR
+participant ":PresetCommandParser" as PresetCommandParser LOGIC_COLOR
+participant "d:DeletePresetCommand" as DeletePresetCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+[-> LogicManager : execute("preset delete sample")
+activate LogicManager
+
+LogicManager -> SupperStrikersParser : parseCommand("preset delete sample")
+activate SupperStrikersParser
+
+create PresetCommandParser
+SupperStrikersParser -> PresetCommandParser
+activate PresetCommandParser
+
+PresetCommandParser --> SupperStrikersParser
+deactivate PresetCommandParser
+
+SupperStrikersParser -> PresetCommandParser : parse("delete sample")
+activate PresetCommandParser
+
+create DeletePresetCommand
+PresetCommandParser -> DeletePresetCommand
+activate DeletePresetCommand
+
+DeletePresetCommand --> PresetCommandParser : d
+deactivate DeletePresetCommand
+
+PresetCommandParser --> SupperStrikersParser : d
+deactivate PresetCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+PresetCommandParser -[hidden]-> SupperStrikersParser
+destroy PresetCommandParser
+
+SupperStrikersParser --> LogicManager : d
+deactivate SupperStrikersParser
+
+LogicManager -> DeletePresetCommand : execute()
+activate DeletePresetCommand
+
+DeletePresetCommand -> Storage : readPresetManager()
+activate Storage
+Storage --> DeletePresetCommand: allLists
+deactivate Storage
+
+
+DeletePresetCommand -> Storage : savePresetManager(allLists)
+activate Storage
+Storage --> DeletePresetCommand
+deactivate Storage
+|||
+create CommandResult
+DeletePresetCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeletePresetCommand : r
+deactivate CommandResult
+
+DeletePresetCommand --> LogicManager : r
+deactivate DeletePresetCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

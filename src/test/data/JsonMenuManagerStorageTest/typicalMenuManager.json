@@ -1,0 +1,20 @@
+{
+  "foods" : [ {
+    "name" : "Prata",
+    "price": 1,
+    "tagged" : [],
+    "filePath" : ""
+  },
+    {
+      "name" : "Milo",
+      "price": 1.5,
+      "tagged" : [],
+      "filePath" : ""
+    },
+    {
+      "name": "Nasi Goreng",
+      "price": 4.5,
+      "tagged": [],
+      "filePath" : ""
+    }]
+}

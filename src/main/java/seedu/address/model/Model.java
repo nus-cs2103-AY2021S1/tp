@@ -1,18 +1,26 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.food.MenuItem;
+import seedu.address.model.menu.ReadOnlyMenuManager;
+import seedu.address.model.order.OrderItem;
+import seedu.address.model.order.ReadOnlyOrderManager;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.vendor.ReadOnlyVendorManager;
+import seedu.address.model.vendor.Vendor;
+
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -37,51 +45,135 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getVendorManagerFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' menu manager file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setVendorManagerFilePath(Path vendorManagerFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces menu manager data with the data in {@code menuManager}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    void setVendorManager(ReadOnlyVendorManager vendorManager);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns the VendorManager
      */
-    boolean hasPerson(Person person);
+    ReadOnlyVendorManager getVendorManager();
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Returns true if a vendor with the same identity as {@code vendor} exists in the address book.
      */
-    void deletePerson(Person target);
+    boolean hasVendor(Vendor vendor);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Selects the vendor with index {@code vendorIndex} .
+     * {@code vendorIndex} must be a valid index in the model.
      */
-    void addPerson(Person person);
+    void selectVendor(int vendorIndex);
+
+    ObservableList<Vendor> getObservableVendorList();
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces address book data with the data in {@code menuManager}.
      */
-    void setPerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    void setMenuManager(ReadOnlyMenuManager menuManager, int index);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Returns the MenuManager at the ith index
+     */
+    ReadOnlyMenuManager getMenuManager(int index);
+
+    void sortMenuItemBy(String sortedBy, boolean ascending, boolean toggle);
+
+    void showDefaultMenu();
+    /**
+     * Replaces OrderManager data with the data in {@code orderItems}.
+     */
+    void setOrder(List<OrderItem> orderItems);
+
+    /**
+     * Replaces OrderManager data with the data in {@code orderManager}.
+     */
+    void setOrderManager(ReadOnlyOrderManager orderManager);
+
+    /**
+     * Returns the MenuManager at the ith index
+     */
+    ReadOnlyOrderManager getOrderManager();
+
+    /**
+     * Returns true if an orderItem with the same identity as {@code orderItem} exists in the address book.
+     */
+    boolean hasOrderItem(OrderItem orderItem);
+
+    /**
+     * Deletes the given orderItem.
+     * The orderItem must exist in the order manager.
+     */
+    void removeOrderItem(OrderItem target);
+
+    /**
+     * Adds the given orderItem.
+     * {@code orderItem} if orderItem exists in order manageradd to the current quantity.
+     * @throws CommandException if after adding, there is more than 100 of the same order item
+     */
+    void addOrderItem(OrderItem orderItem) throws CommandException;
+
+    /**
+     * Returns an unmodifiable view of the filtered menu item list at the corresponding index
+     */
+    ObservableList<MenuItem> getFilteredMenuItemList();
+
+    int getFilteredMenuItemListSize();
+
+    /**
+     * Clears the order.
+     */
+    void clearOrder();
+
+    /**
+     * Clears the orderHistory.
+     */
+    void resetOrder();
+
+    /**
+     * Updates the filter of the filtered menu item list at the corresponding index to filter by the given
+     * {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredMenuItemList(Predicate<MenuItem> predicate);
+
+    /**
+     * Updates the filter of the filtered menu item list at the corresponding index to filter by the given
+     * {@code comparator}.
+     * Only used for test cases.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateFilteredMenuItemList(Comparator<MenuItem> comparator, boolean isSortedAsc);
+
+
+    /**
+     * Returns an unmodifiable view of the filtered orderItem list at the corresponding index
+     */
+    ObservableList<OrderItem> getObservableOrderItemList();
+
+    int getOrderSize();
+
+    int getVendorIndex();
+
+    int getOrderHistorySize();
+
+    int getOrderItemQuantity(int index);
+
+    void undoOrder();
+
+    boolean isSelected();
+
+    void tagOrderItem(OrderItem orderItem, Tag tag);
+
+    void untagOrderItem(OrderItem orderItem);
 }

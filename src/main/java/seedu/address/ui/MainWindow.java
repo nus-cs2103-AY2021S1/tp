@@ -9,6 +9,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -31,7 +32,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private VendorListPanel vendorListPanel;
+    private FoodListPanel foodListPanel;
+    private OrderItemListPanel orderItemListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,13 +45,22 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane vendorListPanelPlaceholder;
+
+    @FXML
+    private StackPane foodListPanelPlaceholder;
+
+    @FXML
+    private StackPane orderItemListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private VBox vendorBox;
+
+    @FXML
+    private VBox menuBox;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -78,6 +90,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -110,17 +123,58 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        foodListPanel = new FoodListPanel(logic.getFilteredMenuItemList());
+        foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
+        setFoodListDisplay(false);
+
+        vendorListPanel = new VendorListPanel(logic.getObservableVendorList());
+        vendorListPanelPlaceholder.getChildren().add(vendorListPanel.getRoot());
+
+        orderItemListPanel = new OrderItemListPanel(logic.getFilteredOrderItemList());
+        orderItemListPanelPlaceholder.getChildren().add(orderItemListPanel.getRoot());
+
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    /**
+     * Sets visibility of vendor list display based on the boolean provided.
+     */
+    void setVendorListDisplay(boolean bool) {
+        vendorBox.visibleProperty().setValue(bool);
+        vendorBox.managedProperty().setValue(bool);
+    }
+
+    /**
+     * Sets visibility of food list display based on the boolean provided.
+     */
+    void setFoodListDisplay(boolean bool) {
+        menuBox.visibleProperty().setValue(bool);
+        menuBox.managedProperty().setValue(bool);
+
+    }
+
+    void setOrderItemListDisplay(boolean bool) {
+        orderItemListPanel.getRoot().setVisible(bool);
+        orderItemListPanel.getRoot().setManaged(bool);
+    }
+
+    /**
+     * Displays menu if vendor has been selected, otherwise display vendor list.
+     */
+    void updateMode() {
+        boolean bool = logic.isSelected();
+
+        foodListPanel = new FoodListPanel(logic.getFilteredMenuItemList());
+        foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
+
+        setVendorListDisplay(!bool);
+        setFoodListDisplay(bool);
+        setOrderItemListDisplay(true);
     }
 
     /**
@@ -163,8 +217,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public VendorListPanel getVendorListPanel() {
+        return vendorListPanel;
     }
 
     /**
@@ -186,6 +240,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isVendor()) {
+                updateMode();
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
@@ -193,4 +251,6 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
+
 }

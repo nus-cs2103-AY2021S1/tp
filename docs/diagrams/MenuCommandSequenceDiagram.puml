@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SupperStrikersParser" as SupperStrikersParser LOGIC_COLOR
+participant "m:MenuCommand" as MenuCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("menu")
+activate LogicManager
+
+LogicManager -> SupperStrikersParser : parseCommand("menu")
+activate SupperStrikersParser
+
+create MenuCommand
+SupperStrikersParser -> MenuCommand
+activate MenuCommand
+
+MenuCommand --> SupperStrikersParser : m
+deactivate MenuCommand
+
+SupperStrikersParser --> LogicManager : m
+deactivate SupperStrikersParser
+
+LogicManager -> MenuCommand : execute()
+activate MenuCommand
+
+MenuCommand -> Model : showDefaultMenu()
+activate Model
+Model --> MenuCommand
+deactivate Model
+
+create CommandResult
+MenuCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> MenuCommand
+deactivate CommandResult
+
+MenuCommand --> LogicManager: result
+deactivate MenuCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

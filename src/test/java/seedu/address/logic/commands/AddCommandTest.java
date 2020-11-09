@@ -1,194 +1,121 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalVendors.getTypicalVendorManager;
 
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
-
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.food.MenuItem;
+import seedu.address.model.order.OrderItem;
+import seedu.address.model.order.OrderManager;
+import seedu.address.testutil.TypicalModel;
+import seedu.address.testutil.TypicalVendors;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullVendor_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_validIndex_success() {
+        Model model = TypicalModel.getModelManagerWithMenu();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        Index index = Index.fromOneBased(1);
+        AddCommand addCommand = new AddCommand(index);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+
+        ObservableList<MenuItem> menu = model.getFilteredMenuItemList();
+        MenuItem firstItem = menu.get(0);
+        OrderItem addedItem = new OrderItem(firstItem, 1);
+
+        Model expectedModel = TypicalModel.getModelManagerWithMenu();
+        try {
+            expectedModel.addOrderItem(addedItem);
+        } catch (CommandException e) {
+            Assertions.assertTrue(false);
+        }
+        String expectedMessage = String.format(AddCommand.MESSAGE_ADD_SUCCESS, addedItem.getName(), 1);
+
+        assertCommandSuccess(addCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_validQuantity_success() {
+        Model model = TypicalModel.getModelManagerWithMenu();
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        Index first = Index.fromOneBased(2);
+        int quantity = 3;
+        AddCommand addCommand = new AddCommand(first, quantity);
+
+        ObservableList<MenuItem> menu = model.getFilteredMenuItemList();
+        MenuItem secondItem = menu.get(1);
+        OrderItem addedItem = new OrderItem(secondItem, 3);
+
+        Model expectedModel = TypicalModel.getModelManagerWithMenu();
+        try {
+            expectedModel.addOrderItem(addedItem);
+        } catch (CommandException e) {
+            Assertions.assertTrue(false);
+        }
+        String expectedMessage = String.format(AddCommand.MESSAGE_ADD_SUCCESS, addedItem.getName(), quantity);
+
+        assertCommandSuccess(addCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidIndex_throwsCommandException() {
+        Model model = TypicalModel.getModelManagerWithMenu();
+
+        ObservableList<MenuItem> menu = model.getFilteredMenuItemList();
+        Index outOfBoundIndex = Index.fromOneBased(menu.size() + 1);
+        AddCommand addCommand = new AddCommand(outOfBoundIndex);
+
+        assertCommandFailure(addCommand, model, Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
+
+    }
+
+    @Test
+    public void execute_vendorNotSelected_throwsException() {
+        Model model = new ModelManager(getTypicalVendorManager(), new UserPrefs(), TypicalVendors.getManagers(),
+                new OrderManager());
+        assertCommandFailure(new AddCommand(Index.fromOneBased(1)),
+                model, Messages.MESSAGE_VENDOR_NOT_SELECTED);
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddCommand addCommand1 = new AddCommand(Index.fromOneBased(1));
+        AddCommand addCommand2 = new AddCommand(Index.fromOneBased(3));
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addCommand1.equals(addCommand1));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCommand addCommandCopy = new AddCommand(Index.fromOneBased(1));
+        assertTrue(addCommandCopy.equals(addCommand1));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addCommand1.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addCommand1.equals(null));
 
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
-    }
-
-    /**
-     * A default model stub that have all of the methods failing.
-     */
-    private class ModelStub implements Model {
-        @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public GuiSettings getGuiSettings() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setGuiSettings(GuiSettings guiSettings) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Path getAddressBookFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deletePerson(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setPerson(Person target, Person editedPerson) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-    }
-
-    /**
-     * A Model stub that contains a single person.
-     */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
-
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
-        }
-    }
-
-    /**
-     * A Model stub that always accept the person being added.
-     */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
-        }
+        // different vendor -> returns false
+        assertFalse(addCommand1.equals(addCommand2));
     }
 
 }
