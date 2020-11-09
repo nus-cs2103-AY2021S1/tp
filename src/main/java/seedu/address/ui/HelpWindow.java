@@ -1,12 +1,17 @@
+//@@author royleochan
 package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.application.HostServices;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
@@ -15,17 +20,23 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://ay2021s1-cs2103-f10-2.github.io/tp/UserGuide.html";
+    public static final String HELP_MESSAGE = "Refer to the user guide: ";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
+
+    @FXML
+    private HBox helpContainer;
 
     @FXML
     private Button copyButton;
 
     @FXML
     private Label helpMessage;
+
+    @FXML
+    private Hyperlink hyperlink;
 
     /**
      * Creates a new HelpWindow.
@@ -35,6 +46,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        hyperlink.setText(USERGUIDE_URL);
     }
 
     /**
@@ -62,8 +74,23 @@ public class HelpWindow extends UiPart<Stage> {
      *     </li>
      * </ul>
      */
-    public void show() {
+    public void show(HostServices hostServices, String theme) {
         logger.fine("Showing help page about the application.");
+        hyperlink.setOnAction(event -> hostServices.showDocument(hyperlink.getText()));
+        ObservableList<String> helpContainerStylesheets = helpContainer.getStylesheets();
+        if (helpContainerStylesheets.size() != 0) {
+            helpContainerStylesheets.remove(0);
+        }
+        switch (theme) {
+        case Themes.DARK_THEME_FILE:
+            helpContainerStylesheets.add(getClass().getResource(Themes.DARK_THEME_PATH).toExternalForm());
+            break;
+        case Themes.LIGHT_THEME_FILE:
+            helpContainerStylesheets.add(getClass().getResource(Themes.LIGHT_THEME_PATH).toExternalForm());
+            break;
+        default:
+            assert false : theme;
+        }
         getRoot().show();
         getRoot().centerOnScreen();
     }

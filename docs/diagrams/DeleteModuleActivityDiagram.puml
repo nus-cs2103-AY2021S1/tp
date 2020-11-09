@@ -1,0 +1,18 @@
+@startuml
+start
+:User inputs delete module command;
+:DeleteModuleCommandParser checks input;
+if () then ([not all required fields present])
+    :Throw ParseException;
+    end
+else ([else])
+    :Parse all inputs;
+    :Model contains module;
+    if () then ([no])
+        :Throw CommandException;
+        end
+    else ([yes])
+        : Delete meetings of the module;
+        : Delete module from the model;
+        stop
+@enduml

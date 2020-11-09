@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -17,6 +18,22 @@ public class NameTest {
     public void constructor_invalidName_throwsIllegalArgumentException() {
         String invalidName = "";
         assertThrows(IllegalArgumentException.class, () -> new Name(invalidName));
+    }
+
+    @Test
+    public void getFirstName() {
+        String noSpaceName = "Roy";
+        String singleSpaceName = "Roy Chan";
+        String multipleSpaceName = "Roy Chan Chuan Zhi";
+
+        // EP: Single space
+        assertEquals(new Name(singleSpaceName).getFirstName(), "Roy");
+
+        // EP: No space
+        assertEquals(new Name(noSpaceName).getFirstName(), "Roy");
+
+        // EP: Multiple spaces
+        assertEquals(new Name(multipleSpaceName).getFirstName(), "Roy");
     }
 
     @Test

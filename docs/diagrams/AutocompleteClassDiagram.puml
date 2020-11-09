@@ -1,0 +1,36 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+skinparam classAttributeIconSize 0
+skinparam classAttributeFontColor WHITE
+
+show members
+hide empty members
+
+Class UiManager
+Class MainWindow
+Class CommandBox
+Class TextField
+Class AutocompleteModule {
+-boolean isAutocompleteMode
+-boolean hasSetPrefix
++void addSuggestions(commandPrefix, suggestionSupplier)
+}
+Class Suggestions {
+-String prefix
+
++void setPrefix(prefix)
++String nextSuggestion(prefix)
++String prevSuggestion(prefix)
+}
+
+
+UiManager --> MainWindow
+MainWindow *--> CommandBox
+CommandBox -> "1"TextField
+AutocompleteModule --> "1"TextField : attaches to >
+AutocompleteModule -> "*"Suggestions
+
+@enduml

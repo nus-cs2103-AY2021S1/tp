@@ -1,53 +1,88 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonPredicate;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
 public class DeleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "contact delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the persons who have the specified names, modules or tags.\n"
+            + "Parameters: "
+            + "[" + PREFIX_NAME + "FULL_NAME] "
+            + "[" + PREFIX_MODULE + "MODULE] "
+            + "[" + PREFIX_TAG + "TAG]\n"
+            + "Example: " + COMMAND_WORD + " n/Roy Chan t/friend";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted People: %1$s";
 
-    private final Index targetIndex;
+    private final PersonPredicate predicate;
+    private final List<ModuleName> moduleNames;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    /**
+     * @param predicate the predicate based on the names, modules and tags given
+     */
+    public DeleteCommand(PersonPredicate predicate, List<ModuleName> moduleNames) {
+        this.predicate = predicate;
+        this.moduleNames = moduleNames;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
-
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        List<Person> people;
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        if (moduleNames.isEmpty()) {
+            // finds Persons that match the predicate only
+            people = new ArrayList<>(model.getUpdatedFilteredPersonList(predicate));
+        } else {
+            // finds Persons that match the predicate and Persons that have the given Modules
+            people = new ArrayList<>(model.getUpdatedFilteredPersonList(predicate, moduleNames));
+        }
+        if (people.isEmpty()) {
+            throw new CommandException("No contact has the given arguments.");
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        List<Person> peopleCopy = new ArrayList<>(people);
+
+        // Update address book
+
+        people.stream().forEach(p -> {
+            model.deletePerson(p); // delete in AddressBook
+            model.updatePersonInMeetingBook(p); // delete in MeetingBook
+            model.updatePersonInModuleBook(p); // delete in ModuleBook
+        });
+
+        String deletedNames = peopleCopy.stream()
+                .map(p -> p.getName().toString())
+                .reduce("", (x, y) -> x + y + ", ");
+        deletedNames = deletedNames.substring(0, deletedNames.length() - 2);
+
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedNames),
+                false, false, true, false, true);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                && predicate.equals(((DeleteCommand) other).predicate)
+                && moduleNames.equals(((DeleteCommand) other).moduleNames)); // state check
     }
 }

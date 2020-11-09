@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+Participant ":UI" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+
+user -[USER_COLOR]> ui : "light"
+activate ui UI_COLOR
+ui -[UI_COLOR]> logic : execute(light)
+activate logic LOGIC_COLOR
+logic -[LOGIC_COLOR]> ui : return CommandResult
+deactivate logic
+
+alt isShowHelp
+    ui -> ui : handleHelp()
+    activate ui UI_COLOR
+    deactivate ui UI_COLOR
+else isExit
+    ui-> ui : handleExit()
+    activate ui UI_COLOR
+    deactivate ui UI_COLOR
+else isTriggerUpdate
+    ui-> ui : update()
+    activate ui UI_COLOR
+    deactivate ui UI_COLOR
+else isShowTimeline
+    ui-> ui : handleShowTimeline()
+    activate ui UI_COLOR
+    deactivate ui UI_COLOR
+else isTriggerUpdateTimeline
+    ui-> ui : updateTimeline()
+    activate ui UI_COLOR
+    deactivate ui UI_COLOR
+else triggerLightTheme
+    ui-> ui : setStyleSheet(Themes.LIGHT_THEME)
+    activate ui UI_COLOR
+    deactivate ui UI_COLOR
+else triggerDarkTheme
+    ui-> ui : setStyleSheet(Themes.DARK_THEME)
+    activate ui UI_COLOR
+    deactivate ui UI_COLOR
+else else
+end
+
+ui -[UI_COLOR]> user : Light theme set successfully
+deactivate
+
+@enduml

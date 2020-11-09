@@ -1,0 +1,36 @@
+@startuml
+!include style.puml
+mainframe sd get resultant command
+
+box Logic LOGIC_COLOR_T1
+participant ":ClearTagCommandParser" as ClearTagCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "c:ClearTagCommand" as ClearTagCommand LOGIC_COLOR
+end box
+
+create ClearTagCommandParser
+[-> ClearTagCommandParser : ClearTagCommandParser()
+activate ClearTagCommandParser
+
+ClearTagCommandParser -->[
+deactivate ClearTagCommandParser
+
+[-> ClearTagCommandParser : parse("Alex Yeoh")
+activate ClearTagCommandParser
+
+ClearTagCommandParser -> ParserUtil : parseName("Alex Yeoh")
+activate ParserUtil
+
+ParserUtil --> ClearTagCommandParser : name
+deactivate ParserUtil
+
+create ClearTagCommand
+ClearTagCommandParser -> ClearTagCommand : ClearTagCommand(name);
+activate ClearTagCommand
+
+ClearTagCommand --> ClearTagCommandParser : c
+deactivate ClearTagCommand
+
+ClearTagCommandParser -->[ : c
+destroy ClearTagCommandParser
+@enduml

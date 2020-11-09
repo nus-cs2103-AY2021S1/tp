@@ -4,30 +4,37 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddTagCommand;
+import seedu.address.logic.commands.AddTagCommand.TagPersonDescriptor;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ClearTagCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteTagCommand;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.FullNameMatchesKeywordPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonHasTagsAndKeywordInNamePredicate;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.TagPersonDescriptorBuilder;
+import seedu.address.testutil.TypicalPersons;
 
 public class AddressBookParserTest {
 
@@ -49,8 +56,10 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " n/" + TypicalPersons.ALICE.getName().toString());
+        ArrayList<String> nameOne = new ArrayList<>();
+        nameOne.add(TypicalPersons.ALICE.getName().toString());
+        assertEquals(new DeleteCommand(new FullNameMatchesKeywordPredicate(nameOne), new ArrayList<>()), command);
     }
 
     @Test
@@ -58,8 +67,36 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + TypicalPersons.ALICE.getName().toString() + " "
+                + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(TypicalPersons.ALICE.getName(), descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_tagAdd() throws Exception {
+        Person person = new PersonBuilder().build();
+        TagPersonDescriptor descriptor = new TagPersonDescriptorBuilder(person).build();
+        AddTagCommand command = (AddTagCommand) parser.parseCommand(AddTagCommand.COMMAND_WORD + " "
+            + person.getName() + " " + PersonUtil.getTagPersonDescriptorDetails(descriptor));
+        assertEquals(new AddTagCommand(person.getName(), descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_tagDelete() throws Exception {
+        Person person = new PersonBuilder().build();
+        Set<Tag> tags = new HashSet<>();
+        tags.add(new Tag("Tag"));
+        DeleteTagCommand command = (DeleteTagCommand) parser.parseCommand(DeleteTagCommand.COMMAND_WORD + " "
+                + person.getName() + " " + "t/Tag");
+        assertEquals(new DeleteTagCommand(person.getName(), tags), command);
+    }
+
+    @Test
+    public void parseCommand_tagClear() throws Exception {
+        Person person = new PersonBuilder().build();
+        ClearTagCommand command = (ClearTagCommand) parser.parseCommand(ClearTagCommand.COMMAND_WORD + " "
+                + person.getName());
+        assertEquals(new ClearTagCommand(person.getName()), command);
     }
 
     @Test
@@ -70,10 +107,19 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        Set<String> nameSet = new HashSet<>();
+        nameSet.add("Alice");
+        nameSet.add("Bob");
+        nameSet.add("Candy");
+        ArrayList<String> nameList = new ArrayList<>(nameSet);
+        Set<Tag> tagSet = new HashSet<>();
+        tagSet.add(new Tag("tag"));
+        tagSet.add(new Tag("person"));
+        ArrayList<Tag> tagList = new ArrayList<>(tagSet);
+
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " n/Alice n/Bob n/Candy t/tag t/person");
+        assertEquals(new FindCommand(new PersonHasTagsAndKeywordInNamePredicate(nameList, tagList)), command);
     }
 
     @Test

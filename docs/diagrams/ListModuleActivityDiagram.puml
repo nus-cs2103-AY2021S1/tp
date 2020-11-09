@@ -1,0 +1,17 @@
+@startuml
+start
+:User inputs module list command;
+:ListModuleCommandParser checks input;
+if() then ([Not all inputs are valid])
+    :Throw ParseException;
+    end
+else ([All inputs are valid])
+    : Checks if module exists within model;
+    if() then ([No])
+    : Throws CommandException;
+    end
+    else ([Yes])
+        : Filters all the contacts who exist within the module;
+        : Updates ContactListPanel in the UI;
+        stop
+@enduml

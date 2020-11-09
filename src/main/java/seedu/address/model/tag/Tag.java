@@ -12,6 +12,13 @@ public class Tag {
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
+    /**
+     * Special tags that will determine the PersonType to be PROFESSOR, TA, or CONTACT. A person can only have either
+     * the prof tag or ta tag but not both.
+     */
+    public static final String PROF_TAG_NAME = "prof";
+    public static final String TA_TAG_NAME = "ta";
+
     public final String tagName;
 
     /**

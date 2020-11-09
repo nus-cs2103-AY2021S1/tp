@@ -1,0 +1,15 @@
+@startuml
+!include style.puml
+mainframe sd get resultant command
+
+box Logic LOGIC_COLOR_T1
+participant "c:ClearCommand" as ClearCommand LOGIC_COLOR
+end box
+
+create ClearCommand
+[-> ClearCommand : ClearCommand()
+activate ClearCommand
+
+ClearCommand -->[ : c
+deactivate ClearCommand
+@enduml

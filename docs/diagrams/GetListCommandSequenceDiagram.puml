@@ -1,0 +1,15 @@
+@startuml
+!include style.puml
+mainframe sd get resultant command
+
+box Logic LOGIC_COLOR_T1
+participant "c:ListCommand" as ListCommand LOGIC_COLOR
+end box
+
+create ListCommand
+[-> ListCommand : ListCommand()
+activate ListCommand
+
+ListCommand -->[ : c
+deactivate ListCommand
+@enduml

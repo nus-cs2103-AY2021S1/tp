@@ -3,6 +3,8 @@ package seedu.address.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -29,6 +31,12 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        setKeyboardShortcut("CTRL", KeyCode.U, () -> commandTextField.clear());
+        setKeyboardShortcut("CTRL", KeyCode.W, () -> {
+            commandTextField.selectPreviousWord();
+            commandTextField.deleteNextChar();
+
+        });
     }
 
     /**
@@ -42,6 +50,28 @@ public class CommandBox extends UiPart<Region> {
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
+    }
+
+    /**
+     * Adds keyboard shortcut to execute functions
+     */
+    private void setKeyboardShortcut(String modifier, KeyCode keyCode, Runnable runnable) {
+        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, (event -> {
+            boolean isModifierDown;
+            switch (modifier) {
+            case "CTRL":
+                isModifierDown = event.isControlDown();
+                break;
+            case "ALT":
+                isModifierDown = event.isAltDown();
+                break;
+            default:
+                isModifierDown = false;
+            }
+            if (event.getCode() == keyCode && isModifierDown) {
+                runnable.run();
+            }
+        }));
     }
 
     /**
@@ -64,6 +94,16 @@ public class CommandBox extends UiPart<Region> {
         styleClass.add(ERROR_STYLE_CLASS);
     }
 
+    public TextField getCommandTextField() {
+        return commandTextField;
+    }
+
+
+    public void setCommandTextField(String text) {
+        this.commandTextField.clear();
+        this.commandTextField.replaceSelection(text);
+    }
+
     /**
      * Represents a function that can execute commands.
      */
@@ -76,5 +116,6 @@ public class CommandBox extends UiPart<Region> {
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
+
 
 }

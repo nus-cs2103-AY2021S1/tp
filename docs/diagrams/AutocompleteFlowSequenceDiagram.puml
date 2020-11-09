@@ -1,0 +1,57 @@
+@startuml
+!include style.puml
+
+Actor User
+
+box UI UI_COLOR_T1
+participant ":TextField" as TextField UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant "acMod:AutocompleteModule" as AutocompleteModule LOGIC_COLOR
+participant "cname:Suggestion" as Suggestion LOGIC_COLOR
+end box
+
+User -> TextField : types "cname/" into commandBox's TextField
+    activate TextField
+
+alt !isAutocompleteMode
+    TextField -> AutocompleteModule : toggleAutocompleteModeOn()
+    activate AutocompleteModule
+    AutocompleteModule --> TextField
+    deactivate AutocompleteModule
+end
+    deactivate TextField
+
+loop isAutocompleteMode
+    User -> TextField : Presses any key
+    activate TextField
+    alt keyPressed == TAB
+
+        alt !hasSetPrefix
+            TextField -> AutocompleteModule : setPrefix(cname, prefix)
+            AutocompleteModule -> Suggestion : setPrefix(prefix)
+            ||||
+        end
+
+        alt isShiftDown()
+            TextField -> Suggestion : prevSuggestion()
+            activate Suggestion
+            Suggestion --> TextField
+            deactivate Suggestion
+            ||||
+        else else
+            TextField -> Suggestion : nextSuggestion()
+            activate Suggestion
+            Suggestion --> TextField
+            deactivate Suggestion
+            ||||
+        end
+    else
+
+    end
+    TextField-[hidden]->User
+    deactivate TextField
+end
+
+@enduml

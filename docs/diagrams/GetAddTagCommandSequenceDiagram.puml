@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+mainframe sd get resultant command
+
+box Logic LOGIC_COLOR_T1
+participant ":AddTagCommandParser" as AddTagCommandParser LOGIC_COLOR
+participant ":ArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
+participant "argMultimap:ArgumentMultimap" as ArgumentMultimap LOGIC_COLOR
+participant "tagPersonDescriptor: TagPersonDescriptor" as TagPersonDescriptor LOGIC_COLOR
+participant "c:AddTagCommand" as AddTagCommand LOGIC_COLOR
+end box
+
+create AddTagCommandParser
+[-> AddTagCommandParser : AddTagCommandParser()
+activate AddTagCommandParser
+
+AddTagCommandParser -->[
+deactivate AddTagCommandParser
+
+[-> AddTagCommandParser : parse("Alex Yeoh t/friends")
+activate AddTagCommandParser
+
+AddTagCommandParser -> ArgumentTokenizer : tokenize(args, PREFIX_TAG)
+activate ArgumentTokenizer
+
+create ArgumentMultimap
+ArgumentTokenizer -> ArgumentMultimap : ArgumentMultimap()
+activate ArgumentMultimap
+
+ArgumentMultimap --> ArgumentTokenizer : argMultimap
+deactivate ArgumentMultimap
+
+ArgumentTokenizer --> AddTagCommandParser : argMultimap
+deactivate ArgumentTokenizer
+
+create TagPersonDescriptor
+AddTagCommandParser -> TagPersonDescriptor : TagPersonDescriptor()
+activate TagPersonDescriptor
+
+TagPersonDescriptor --> AddTagCommandParser : tagPersonDescriptor
+deactivate TagPersonDescriptor
+
+AddTagCommandParser -> ArgumentMultimap : getAllValues(PREFIX_TAG)
+activate ArgumentMultimap
+
+ArgumentMultimap --> AddTagCommandParser : tagList
+deactivate ArgumentMultimap
+
+alt parseTagsForEdit(tagList).isPresent()
+AddTagCommandParser -> TagPersonDescriptor : setTags(value)
+activate TagPersonDescriptor
+
+TagPersonDescriptor --> AddTagCommandParser
+deactivate TagPersonDescriptor
+end
+
+create AddTagCommand
+AddTagCommandParser -> AddTagCommand : AddTagCommand(name, tagPersonDescriptor);
+activate AddTagCommand
+
+AddTagCommand --> AddTagCommandParser : c
+deactivate AddTagCommand
+
+AddTagCommandParser -->[ : c
+destroy AddTagCommandParser
+@enduml

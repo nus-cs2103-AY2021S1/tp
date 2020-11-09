@@ -1,0 +1,59 @@
+@startuml
+!include style.puml
+mainframe sd get resultant command
+
+box Logic LOGIC_COLOR_T1
+participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
+participant ":ArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
+participant "argMultimap:ArgumentMultimap" as ArgumentMultimap LOGIC_COLOR
+participant ":NameContainsKeywordsPredicate" as NameContainsKeywordsPredicate LOGIC_COLOR
+participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+end box
+
+create DeleteCommandParser
+[-> DeleteCommandParser : DeleteCommandParser()
+activate DeleteCommandParser
+
+DeleteCommandParser -->[
+deactivate DeleteCommandParser
+
+[-> DeleteCommandParser : parse(" n/Alex Yeoh")
+activate DeleteCommandParser
+
+DeleteCommandParser -> ArgumentTokenizer : tokenize(args, PREFIX_TAG)
+activate ArgumentTokenizer
+
+create ArgumentMultimap
+ArgumentTokenizer -> ArgumentMultimap : ArgumentMultimap()
+activate ArgumentMultimap
+
+ArgumentMultimap --> ArgumentTokenizer : argMultimap
+deactivate ArgumentMultimap
+
+ArgumentTokenizer --> DeleteCommandParser : argMultimap
+deactivate ArgumentTokenizer
+
+DeleteCommandParser -> ArgumentMultimap : getAllValues(PREFIX_NAME)
+activate ArgumentMultimap
+
+ArgumentMultimap -> DeleteCommandParser : names
+deactivate ArgumentMultimap
+
+create NameContainsKeywordsPredicate
+DeleteCommandParser -> NameContainsKeywordsPredicate
+activate NameContainsKeywordsPredicate
+
+NameContainsKeywordsPredicate --> DeleteCommandParser : predicate
+deactivate NameContainsKeywordsPredicate
+
+create DeleteCommand
+DeleteCommandParser -> DeleteCommand
+activate DeleteCommand
+
+DeleteCommand --> DeleteCommandParser : d
+deactivate DeleteCommand
+
+DeleteCommandParser -->[: d
+destroy DeleteCommandParser
+
+@enduml
