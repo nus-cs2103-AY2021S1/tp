@@ -812,6 +812,9 @@ CliniCal data is saved in your hard disk automatically after any command that ch
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install CliniCal in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CliniCal home folder.
 
+**Q**: I want to revert back to the sample data that was present when I first opened the application. How can I do this?<br>
+**A**: Remove the `data` folder that is in the same directory as `CliniCal.jar`. The sample data should be reloaded on the next start of the application.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 7. Command summary
