@@ -21,6 +21,7 @@ public interface ModuleListStorage {
     /**
      * Returns ModuleList data as a {@link ReadOnlyModuleList}.
      *   Returns {@code Optional.empty()} if storage file is not found.
+     *
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
@@ -33,6 +34,7 @@ public interface ModuleListStorage {
 
     /**
      * Saves the given {@link ReadOnlyModuleList} to the storage.
+     *
      * @param moduleList cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */

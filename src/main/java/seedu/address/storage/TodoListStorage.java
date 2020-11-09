@@ -21,6 +21,7 @@ public interface TodoListStorage {
     /**
      * Returns TodoList data as a {@link ReadOnlyTodoList}.
      * Returns {@code Optional.empty()} if storage file is not found.
+     *
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
@@ -33,6 +34,7 @@ public interface TodoListStorage {
 
     /**
      * Saves the given {@link ReadOnlyTodoList} to the storage.
+     *
      * @param todoList cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
