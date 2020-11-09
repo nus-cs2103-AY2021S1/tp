@@ -59,14 +59,14 @@ wholesome user experience.
 * **Project management**:
   * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
 
+<div style="page-break-after: always;"></div>
+
 * **Enhancements to existing features**:
   * Wrote test cases for Timetable, Slot, and the relevant classes that they encapsulate for the model, logic and storage components.
   Added more tests to the general classes and utility classes such as FitNusParser, FitNus, and ParserUtil.
   [#201](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/201) [#204](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/204)
   * Fixed the case-sensitive issues of allowing duplicate Routine, Exercise or Lesson to be added into fitNUS.
   Fixed the issue of having too long names by restricting it to maximum of 50 characters. [#187](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/187)
-
-<div style="page-break-after: always;"></div>
 
 ## Contributions to the team-based tasks:
 
@@ -84,6 +84,8 @@ wholesome user experience.
 
 * Contributed to the language and style of the User Guide by making it more reader-centric through the use of
 active voice and you-language. [#93](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/93)
+
+<div style="page-break-after: always;"></div>
 
 ## Contributions to the Developer Guide:
 
