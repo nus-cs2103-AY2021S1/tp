@@ -24,8 +24,7 @@
     4.5  [Configuration Feature](#45-configuration-feature)<br>
  5. [Planned Features](#5-planned-features)<br>
  6. [Documentation](#6-documentation)<br>
- 7. [Testing(KIV)]<br>
- 8. [Appendix](#8-appendix)<br>
+ 7. [Appendix](#7-appendix)<br>
     A1. [Product Scope](#a1-product-scope)<br>
     A2. [User Stories](#a2-user-stories)<br>
     A3. [Use Cases](#a3-use-cases)<br>
@@ -56,6 +55,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## 3. Design
 
+This section describes some noteworthy details on how Covigent is designed.
 
 ### 3.1 Architecture: High Level View
 
@@ -723,6 +723,8 @@ The sequence diagram for `EditTaskCommand` can be found below.
       <br />
       <i>Figure 24. Sequence Diagram for EditTaskCommand</i>
   </p>
+  
+_Written by Yee Hong_
 
 #### 4.3.5 Search Task
 **Implementation**
@@ -737,6 +739,8 @@ The following is a detailed explanation of the operations that `SearchTaskComman
 **Step 4.** If there is at least one task found, the `model`'s `filteredRoomTaskRecords` is updated with a `dueDatePredicate` using `updateTasksInFilteredRoomTaskRecords`.
 
 **Step 5.** a new `CommandResult` will be returned with the message.
+
+_Written by Wai Lok_
 
 ### 4.4 Logging Feature
 
@@ -763,7 +767,34 @@ Certain properties of the application can be controlled (e.g user prefs file loc
 
 ## 5. Planned Features
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes the features planned for the next iteration of Covigent.
+
+### 5.1 Single Command to Create and Allocate Patient to Room
+
+When the user wants to assign a patient to a room, she must run 2 commands: `addpatient` and `allocateroom`. The former creates a new `Patient` object in Covigent and the latter assigns that `Patient` to an empty room.
+To improve the user's productivity, we can allow the user to specify a room number when executing `addpatient`. If the room and patient are valid, the patient is added to Covigent and assigned to the room in a single command.
+
+Since these changes will add another layer of complexity, we plan to complete this feature in Covigent v1.5.
+
+### 5.2 Search for Task by Description
+
+The `searchtask` command allows searching for tasks only by due dates. A user with many tasks would most likely want to search for tasks by description.
+
+In addition to modifying `SearchTaskCommand` and `SearchTaskCommandParser`, a new class `DescriptionPredicate` might have to be introduced to filter the tasks by description.
+Considering these additional changes, we plan to complete this feature in Covigent v1.5.
+
+### 5.3 Scroll to Modified Task in User Interface
+
+Whenever a user adds or edits a `Patient` or `Room`, the Patients and Rooms tabs in the user interface scrolls to the entry corresponding to the most recent change.
+This is useful as the user can immediately review the latest modification on the user interface. To accomplish this, `PatientListPanel` and `RoomListPanel` attach a listener to `ListView<Patient>` and `ListView<Room>` respectively to update the user interface when changes are detected.
+
+Currently, when the user modifies a `Task`, the user interface does not scroll to the latest change. The reason is that the current implementation of the Tasks tab retrieves the room and task details from a `ListView<RoomTaskAssociation>`, as seen in `RoomTaskListPanel`.
+The underlying list for `ListView<RoomTaskAssociation>`, found in `RoomTaskRecords` is altered each time there are changes to a room, including not only the tasks but also the room itself and the patient in it.
+Hence, the list is unable to distinguish between modifications to tasks, to rooms, or to patients in rooms. Since we do not want the user interface for `Task` to scroll when there are changes to `Room` or `Patient`, we have disabled the listener for `ListView<RoomTaskAssociation>`.
+
+Fixing this issue likely requires a significant overhaul of the implementation of the Tasks tab. We plan to complete this feature in Covigent v2.0.
+
+_Written by Yee Hong_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -778,13 +809,7 @@ This section describes some noteworthy details on how certain features are imple
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 7. Testing
-
-
-
---------------------------------------------------------------------------------------------------------------------
-
-## 8. Appendix
+## 7. Appendix
 
 ### A1. Product scope
 
