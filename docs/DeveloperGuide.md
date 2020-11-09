@@ -553,6 +553,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                             |
+| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | user                                       | list all my items              | visually see what items are currently stored in my inventory           |
 | `* * *`  | user                                       | list all my recipes            | visually see what recipes are currently stored in my inventory         |
 | `* * *`  | user                                       | see a detailed view of an item | see recipes associated with this item                                  |
