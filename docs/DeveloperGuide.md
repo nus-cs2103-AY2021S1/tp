@@ -1055,7 +1055,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
    Use case ends.
   
-**UC00: Sorting the list of students**
+**UC10: Sorting the list of students**
 
 **MSS**
 
@@ -1080,7 +1080,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 1.
 
-**UC10: Adding an additional detail to a student**
+**UC11: Adding an additional detail to a student**
 
 **MSS**
 
@@ -1108,7 +1108,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC11: Editing an additional detail in a student**
+**UC12: Editing an additional detail in a student**
 
 **MSS**
 
@@ -1136,7 +1136,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC12: Deleting an additional detail from a student**
+**UC13: Deleting an additional detail from a student**
 
 **MSS**
 
@@ -1164,7 +1164,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC13: Adding a question to a student**
+**UC14: Adding a question to a student**
 
 **MSS**
 
@@ -1192,7 +1192,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC14: Resolving a question from a student**
+**UC15: Resolving a question from a student**
 
 **MSS**
 
@@ -1231,7 +1231,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
       Use case resumes at step 2.
 
 
-**UC15: Deleting a question from a student**
+**UC16: Deleting a question from a student**
 
 **MSS**
 
@@ -1259,7 +1259,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC16: Finding all students with overdue tuition fees**
+**UC17: Finding all students with overdue tuition fees**
 
 **MSS**
 
@@ -1280,7 +1280,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
     Use case ends.
 
-**UC17: Adding an exam record to a student**
+**UC18: Adding an exam record to a student**
 
 **MSS**
 
@@ -1308,7 +1308,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC18: Deleting an exam record from a student**
+**UC19: Deleting an exam record from a student**
 
 **MSS**
 
@@ -1336,7 +1336,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC19: Displaying exam statistics of a student**
+**UC20: Displaying exam statistics of a student**
 
 **MSS**
 
@@ -1358,7 +1358,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC20**: View class schedule.
+**UC21**: View class schedule.
 
 **MSS**
 
@@ -1380,7 +1380,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
     
     Use case ends.
 
-**UC21: Adding an attendance record to a student**
+**UC22: Adding an attendance record to a student**
 
 **MSS**
 
@@ -1408,7 +1408,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
 
-**UC22: Deleting an attendance record from a student**
+**UC23: Deleting an attendance record from a student**
 
 **MSS**
 
@@ -1436,7 +1436,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 2.
  
-**UC23: Adding a note to the notebook**
+**UC24: Adding a note to the notebook**
 
 **MSS**
 
@@ -1453,7 +1453,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
       Use case resumes at step 1.
 
-**UC24: Editing a note in the notebook**
+**UC25: Editing a note in the notebook**
 
 **MSS**
 
@@ -1477,7 +1477,7 @@ Use cases also assume that whenever an invalid command is entered by the user, R
 
 	  Use case resumes at step 1.
 
-**UC24: Editing a note in the notebook**
+**UC26: Editing a note in the notebook**
 
 **MSS**
 
