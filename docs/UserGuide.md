@@ -116,7 +116,7 @@ Expressions without `...` at the end takes the last parameter as the argument wh
 
 <div style="page-break-after: always;"></div>
 
-### 4.1 Adding a tag with filepath : `tag`
+### 4.1 Adding a tag: `tag`
 
 Tags a file with a unique tag name and optionally, some labels.
 
@@ -128,19 +128,19 @@ Additionally, you can add short descriptors, or "labels" as well.
 Labels serve to categorise tags. If you have multiple tags with the same label, you can open them all at once using the
 `open` command.
 
-Please take note of the following:
+**Please take note of the following:**
 * You can add any number of labels to the tag (including 0).
 * The `FILE_PATH` field can accept both absolute and relative file path from your current directory.
 The internal File Explorer of HelloFile indicates the current folder for the relative path.
 * Please make sure you have read permission for the file that you want to tag.
 You can tag a file without access permission. However, you will not be able to open them.
 
-Format: `tag t>TAG_NAME f>FILE_PATH [l>LABEL]...`
+**Format:** `tag t>TAG_NAME f>FILE_PATH [l>LABEL]...`
 
-Adding a new tag named `duke`:
+**Adding a new tag named `duke`:**
 ![tag](images/screenshots/tag_command.png)
 
-Examples:
+**Examples:**
 * `tag t>Tag1 f>C:\Users` (Adds a tag `Tag1` using absolute path. The tag has no label and points to `C:\Users`)
 * `tag t>Tag2 f>C:\Users l>Important` (Adds a tag `Tag2` using absolute path. The tag has a label `important` and points to`C:\Users`)
 * `tag t>Tag3 f>Users` (Adds a tag `Tag3` using relative path. The tag has no label and points to a folder `Users` in the current directory)
@@ -157,25 +157,25 @@ The command result panel will show you the tag's file path and label information
 
 Alternatively, you can click on a specific tag in the tag panel to show its details.
 
-Format: `show t>TAG_NAME`
+**Format:** `show t>TAG_NAME`
 
-Showing information of the tag `duke`:
+**Showing information of the tag `duke`:**
 ![show](images/screenshots/show_command.png)
 
-Examples:
+**Examples:**
 * `show t>my_research` (Shows the details of the tag with nickname `my_research`)
 * `show t>file2020` (Show the details of the tag with nickname `file2020`)
 
 <div style="page-break-after: always;"></div>
 
-### 4.3 Accessing a tagged file : `open`
+### 4.3 Accessing a tagged file: `open`
 
 Opens the file specified by the unique tag's nickname or label.
 
 You can open a file using its tag, with the default application in your operating system.
 Alternatively, you can open all files tagged with the same label by specifying a label instead.
 
-Please take note of the following:
+**Please take note of the following:**
 * This command only accepts one tag or one label but not both.
 * Please ensure that you have read permission for the files that you want to open.
 
@@ -185,36 +185,36 @@ Please take note of the following:
 
 </div>
 
-Format: `open t>TAG_NAME` or `open l>LABEL`
+**Format:** `open t>TAG_NAME` or `open l>LABEL`
 
-Opening the tag `duke`:
+**Opening the tag `duke`:**
 ![open](images/screenshots/open_command.png)
 
-Examples:
+**Examples:**
 * `open t>my_research` (Opens the file with tag name `my_research`)
 * `open l>notes` (Opens all the files tagged with label `notes`)
 
 <div style="page-break-after: always;"></div>
 
-### 4.4 Removing a tag : `untag`
+### 4.4 Removing a tag: `untag`
 
 Removes the specified tag from the list of tags.
 
 By using that command, you can delete an unwanted tag in order to clean up the tag list. 
 Information about the tag will be completely deleted.
 
-Format: `untag t>TAG_NAME`
+**Format:** `untag t>TAG_NAME`
 
-Removing the tag `duke`:
+**Removing the tag `duke`:**
 ![untag](images/screenshots/untag_command.png)
 
-Examples:
+**Examples:**
 * `untag t>notes` (Deletes tag with tag name `notes`)
 * `untag t>secret_file` (Deletes tag with tag name `secret_file`)
 
 <div style="page-break-after: always;"></div>
 
-### 4.5 Renaming a tag : `retag`
+### 4.5 Renaming a tag: `retag`
 
 Renames a tag.
 
@@ -222,18 +222,18 @@ Use this command if you want to make changes to a tag name.
 Note that this command can only change nickname. It does not change any other information such as label and file path.
 Existing data will be carried over.
 
-Format: `retag o>OLD_TAG_NAME t>NEW_TAG_NAME`
+**Format:** `retag o>OLD_TAG_NAME t>NEW_TAG_NAME`
 
-Examples:
+**Changing tag name from `duke` to `my ip`:**
+![retag](images/screenshots/retag_command.png)
+
+**Examples:**
 * `retag o>notes t>secret` (Renames an old tag name `notes` to new tag name `secret`)
 * `retag o>examfiles t>oldexamfiles` (Renames an old tag name `examfiles` to new tag name `oldexamfiles`)
 
-Changing tag name from `duke` to `my ip`:
-![retag](images/screenshots/retag_command.png)
-
 <div style="page-break-after: always;"></div>
 
-### 4.6 Adding a label to a tag : `label`
+### 4.6 Adding a label to a tag: `label`
 
 Adds one or more labels to an existing tag.
 
@@ -246,18 +246,18 @@ Additionally, all tags with the same label can be opened simultaneously.
 
 </div>
 
-Format: `label t>TAG_NAME l>LABEL1 [l>LABEL2]...`
+**Format:** `label t>TAG_NAME l>LABEL1 [l>LABEL2]...`
 
-Adding the label `cs2103`:
+**Adding the label `cs2103`:**
 ![label](images/screenshots/label_command.png)
 
-Examples:
+**Examples:**
 * `label t>file1 l>important` (Adds a label `important` to an existing tag named `file1`)
 * `label t>file2 l>important l>exam` (Adds labels of `important` and `exam` to an existing tag named `file2`)
 
 <div style="page-break-after: always;"></div>
 
-### 4.7 Deleting multiple labels from a tag : `unlabel`
+### 4.7 Deleting multiple labels from a tag: `unlabel`
 
 Deletes one or more labels from a tag.
 
@@ -265,39 +265,39 @@ This command lets you to remove label from a certain tag.
 If you specified some valid and some invalid labels, the valid labels will be deleted from the tag, 
 while the invalid ones will be shown to you for further action.
 
-Format: `unlabel t>TAG_NAME l>LABEL1 [l>LABEL2]...`
+**Format:** `unlabel t>TAG_NAME l>LABEL1 [l>LABEL2]...`
 
-Removing the labels `ip` and `cs2103`:
+**Removing the labels `ip` and `cs2103`:**
 ![unlabel](images/screenshots/unlabel_command.png)
 
-Examples:
+**Examples:**
 * `unlabel t>notes l>secret` (Deletes a label of label name `secret` from tag named `notes`)
 * `unlabel t>file1 l>important l>exams` (Deletes labels `important` and `exams` from tag named `file1`)
 
 <div style="page-break-after: always;"></div>
 
-### 4.8 Finding a tag : `find`
+### 4.8 Finding a tag: `find`
 
 Finds a tag using one or more keywords.
 
 This command lets you find a specific tag easily by providing one or more keywords.
 If any of the keyword matches the tag name and/or label partially, it will be listed in the *Tag Panel*.
 
-Format: `find KEYWORD...`
+**Format:** `find KEYWORD...`
 
-Before executing command:
+**Before executing command:**
 ![before](images/screenshots/pre_find_command.png)
 
-After executing command:
+**After executing command:**
 ![after](images/screenshots/find_command.png)
         
-Examples:
+**Examples:**
 * `find he` (Finds tags which contains `he` in their label/tag name, e.g. `hello`, `hero`, etc.)
 * `find tagname label` (Finds tags which contains `tagname` or `label` in their label/tag name, e.g. `tagname123`, `label345`, etc.)
 
 <div style="page-break-after: always;"></div>
 
-### 4.9 Changing current directory : `cd`
+### 4.9 Changing current directory: `cd`
 
 Changes the current directory of the HelloFile internal File Explorer.
 
@@ -311,40 +311,40 @@ You can change the current directory in 3 ways:
 
 Alternatively, you can click on the folder in the *File Explorer Panel* to navigate.
 
-Format 1: `cd f>ABSOLUTE_FILE_PATH`
+**Format 1:** `cd f>ABSOLUTE_FILE_PATH`
 
-Format 2: `cd ./RELATIVE_FILE_PATH`
+**Format 2:** `cd ./RELATIVE_FILE_PATH`
 
-Format 3: `cd ../`
+**Format 3:** `cd ../`
 
-Setting current path using the relative file path:
+**Setting current path using the relative file path:**
 ![cd](images/screenshots/cd_command.png)
 
-Examples:
+**Examples:**
 * `cd f>C:\Users` (Changes the current directory to `C:\Users`)
 * `cd ./tp` (Changes the current directory to the child directory `tp`)
 * `cd ../` (Changes the current directory to the parent directory)
 
 <div style="page-break-after: always;"></div>
 
-### 4.10 Listing all tags : `ls`
+### 4.10 Listing all tags: `ls`
 
 Lists all added tags.
 
 Shows all the tags saved in HelloFile in the *Tag Panel*. This command is useful after you used
 `find` command to restore the entire list of tags. 
 
-Format: `ls`
+**Format:** `ls`
 
-Before executing command:
+**Before executing command:**
 ![before](images/screenshots/find_command.png)
 
-After executing command:
+**After executing command:**
 ![after](images/screenshots/list_command.png)
 
 <div style="page-break-after: always;"></div>
 
-### 4.11 Undoing command : `undo`
+### 4.11 Undoing command: `undo`
 
 Undo a recently executed command.
 
@@ -357,17 +357,17 @@ You can undo these commands: `tag`, `retag`, `untag`, `label`, `unlabel`, `clear
 
 </div>
 
-Format: `undo`
+**Format:** `undo`
 
-Before executing command:
+**Before executing command:**
 ![before](images/screenshots/clear_command.png)
 
-After executing command:
+**After executing command:**
 ![after](images/screenshots/undo_command.png)
 
 <div style="page-break-after: always;"></div>
 
-### 4.12 Redoing command : `redo`
+### 4.12 Redoing command: `redo`
 
 Redo a recently executed command.
 
@@ -379,17 +379,17 @@ Redo is only available when undo has been executed.
 
 </div>
 
-Format: `redo`
+**Format:** `redo`
 
-Before executing command:
+**Before executing command:**
 ![before](images/screenshots/undo_command.png)
 
-After executing command:
+**After executing command:**
 ![after](images/screenshots/redo_command.png)
 
 <div style="page-break-after: always;"></div>
 
-### 4.13 Clearing all tags : `clear`
+### 4.13 Clearing all tags: `clear`
 
 Clears the list of all tags.
 
@@ -399,34 +399,34 @@ Clears the list of all tags.
 
 </div>
 
-Format: `clear`
+**Format:** `clear`
 
-Clears all tags:
+**Clears all tags:**
 ![clear](images/screenshots/clear_command.png)
 
 <div style="page-break-after: always;"></div>
 
-### 4.14 Exiting the application : `exit`
+### 4.14 Exiting the application: `exit`
 
 Exits the application.
 
-Format: `exit`
+**Format:** `exit`
 
-### 4.15 Viewing help : `help`
+### 4.15 Viewing help: `help`
 
 Displays help message for all or a certain command.
 
-Format 1: `help`
+**Format 1:** `help`
 
-Format 2: `help COMMAND`
+**Format 2:** `help COMMAND`
 
-Showing all commands:
+**Showing all commands:**
 ![help](images/screenshots/help.png)
 
-Showing a specific command:
+**Showing a specific command:**
 ![help](images/screenshots/help2.png)
 
-Examples : 
+**Examples:**
 * `help` (Shows all command and its format)
 * `help cd` (Shows `cd` command description, format and examples usage)
 
