@@ -22,7 +22,7 @@ public class ViewTeammateCommand extends Command {
             + "by the index number used in the displayed teammate list.\n"
             + "example: " + COMMAND_WORD + " LucasTai98 ";
 
-    public static final String MESSAGE_VIEW_TEAMMATE_SUCCESS = "Started TEAMMATE: %1$s";
+    public static final String MESSAGE_VIEW_TEAMMATE_SUCCESS = "Started TEAMMATE ";
 
     private final GitUserIndex gitUserIndex;
 

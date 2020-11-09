@@ -1,10 +1,10 @@
 package seedu.address.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_PHONE;
 
 import java.util.HashMap;
 import java.util.Optional;
@@ -38,15 +38,15 @@ public class EditTeammateCommand extends Command {
         + "by the name used in the displayed project list. Git User Name cannot be changed. "
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: GITUSERNAME (must be of an existing teammate) "
-        + "[" + PREFIX_TEAMMATE_NAME + "NAME] "
-        + "[" + PREFIX_TEAMMATE_PHONE + "PHONE] "
-        + "[" + PREFIX_TEAMMATE_EMAIL + "EMAIL]\n"
-        + "[" + PREFIX_TEAMMATE_ADDRESS + "ADDRESS] "
+        + "[" + PREFIX_PERSON_NAME + "NAME] "
+        + "[" + PREFIX_PERSON_PHONE + "PHONE] "
+        + "[" + PREFIX_PERSON_EMAIL + "EMAIL]\n"
+        + "[" + PREFIX_PERSON_ADDRESS + "ADDRESS] "
         + "Example: " + COMMAND_WORD + " "
-        + PREFIX_TEAMMATE_NAME + "Lucas "
-        + PREFIX_TEAMMATE_PHONE + "92912645 "
-        + PREFIX_TEAMMATE_EMAIL + "lucaskia@gmail.com "
-        + PREFIX_TEAMMATE_ADDRESS + "13 lay road";
+        + PREFIX_PERSON_NAME + "Lucas "
+        + PREFIX_PERSON_PHONE + "92912645 "
+        + PREFIX_PERSON_EMAIL + "lucaskia@gmail.com "
+        + PREFIX_PERSON_ADDRESS + "13 lay road";
 
     public static final String MESSAGE_EDIT_TEAMMATE_SUCCESS = "Teammate has been edited: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

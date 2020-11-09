@@ -1003,7 +1003,7 @@ should be able to accomplish most of the tasks faster using commands than using 
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+Given below are some instructions to test Taskmania manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
