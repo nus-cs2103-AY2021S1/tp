@@ -41,7 +41,7 @@ MacroRunner ..> CommandExecutable : creates >
 
 MacroList -down-> Macro
 
-McGymmyParser ..> MacroList : has a >
+McGymmyParser --> MacroList : has a >
 McGymmyParser ..> MacroRunner : uses >
 
 @enduml
