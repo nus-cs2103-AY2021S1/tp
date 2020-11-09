@@ -190,10 +190,10 @@ The following activity diagram summarizes what happens when a user executes a fi
 ##### Aspect: How findmod executes
 
 * **Alternative 1 (current choice):** AND searching from multiple attributes and AND searching between keywords for module name and instructor attributes. Module code attribute only allows single keywords.
-  * Pros : Provides the ability to narrow down the search results by adding more attributes. Single keyword for module code attribute allows for more focused module code searches.
+  * Pros : Provides the ability to narrow down the search results by adding more attributes and keywords. Single keyword for module code attribute allows for more focused module code searches.
   * Cons : Unable to have a more general search and unable to search for multiple modules with different module codes.
 
-* **Alternative 2:** And searching across attributes and OR searching between keywords for name and instructor attributes. 
+* **Alternative 2:** And searching across attributes and OR searching between keywords for module name and instructor attributes. 
   * Pros : Provides the ability for a very general and flexible search.
   * Cons : Unable to have a more focused search, might be more confusing for the user to narrow down his/her searches.
 
