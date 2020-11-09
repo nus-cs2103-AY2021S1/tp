@@ -27,7 +27,7 @@ public class AssignCommand extends Command {
             + "Parameters: INDEX (must be a positive integer), NAME (must be present in the project)\n"
             + "Example: " + COMMAND_WORD + " 1 Lucas";
 
-    public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Assigns task: %1$s to %s";
+    public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Assigns task: %s to %s";
 
     private final Index targetIndex;
     private final String assignee;
@@ -66,7 +66,7 @@ public class AssignCommand extends Command {
         assignee.addTask(taskToAssociate);
         taskToAssociate.addAssignee(assignee.getAssigneeName().toString());
 
-        return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS, taskToAssociate, assignee));
+        return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS, taskToAssociate, assignee.getAssigneeName()));
     }
 
     @Override
