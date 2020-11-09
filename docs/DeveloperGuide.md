@@ -25,7 +25,9 @@
 7.[ Appendix B: User Stories](#7-appendix-b-user-stories)  
 8.[ Appendix C: Use Cases](#8-appendix-c-use-cases)  
 9.[ Appendix D: Non-Functional Requirements](#9-appendix-d-non-functional-requirements)  
-10.[ Appendix E: Instructions For Manual Testing](#10-appendix-e-instructions-for-manual-testing)
+10.[ Appendix E: Glossary](#10-appendix-e-glossary)
+11.[ Appendix F: Instructions For Manumal Testing](#11-appendix-f-instructions-for-manual-testing)
+
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -706,7 +708,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 exercise items without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-### Glossary
+### 10. Appendix E: Glossary
 
 * **Calories Graph**: the graph that displays the trends of the user's calories burnt in the past 6 days (including today)
 * **Exercise**: an exercise record entered by the user, consisting of exercise name, description, and date (optionally calories)
@@ -716,7 +718,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Template**: a skeleton of the template without date, muscleTag and exerciseTag. It exists to ensure that the user key in exercises, that he does frequently, more quickly.
 --------------------------------------------------------------------------------------------------------------------
 
-## 10. Appendix E: Instructions for manual testing
+## 11. Appendix F: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
