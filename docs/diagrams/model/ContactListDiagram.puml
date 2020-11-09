@@ -4,29 +4,30 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>> {
-class ContactList
+Interface ReadOnlyContactList <<Interface>>
 
-Package Contact <<Rectangle>> {
-class UniqueContactList
-class Name
-class Email
-class Telegram
-class Contact
+Package contact {
+    Class UniqueContactList
+    Class Contact
+    Class ContactName
+    CLass Email
+    Class Telegram
+    Class boolean
 }
 
-Package Tag {
-Class Tag
-}
+Package tag {
+    Class Tag
 }
 
 ContactList *-down-> "1" UniqueContactList
+ContactList .up.|> ReadOnlyContactList
 
 UniqueContactList o-down->"*" Contact
 
-Contact *-->"1" Name
+Contact *-->"1" ContactName
 Contact *-->"1" Email
 Contact *-->"0..1" Telegram
-Contact *-->"0..*" Tag
+Contact *-->"1" boolean: isImportant
+Contact *-->"*" Tag
 
 @enduml

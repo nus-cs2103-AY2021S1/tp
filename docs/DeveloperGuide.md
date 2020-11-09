@@ -97,15 +97,15 @@ of the **XYZListPanel**.
 
 ![LogicClassDiagram](images/LogicClassDiagram.png)
 
-**API** : `Logic.java`
+**API** : [`Logic.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `ParserManager` class to create the respective classes: `ModuleListParser`, `ContactListParser`, `TodoListParser`,
-   `GradeTrackerParser` and `SchedulerParser` which will parse the user command.
-2. This results in a `Command` object which is executed by `LogicManager`.
-3. The command execution can affect the Model (e.g. adding a module).
-4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+   `GradeTrackerParser` and `SchedulerParser` which will parse the user command. <br>
+2. This results in a `Command` object which is executed by `LogicManager`. <br>
+3. The command execution can affect the `Model` (e.g. adding a module). <br>
+4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`. <br>
 5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
-help to the user.
+help to the user. <br>
 
 ![Structure of the Storage Component](images/ModelClassDiagram.png)
 
@@ -150,6 +150,29 @@ The `Model`,
   * Assignments for a module
   
 #### Contact List
+
+
+<p aligin="center"><img src ="images/ContactListDiagram.png" border="1px solid black"></p>
+
+**Contact package** : [`seedu.address.model.contact`](https://github.com/AY2021S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/model/contact)
+
+**Contact** class: [`Contact.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/contact/Contact.java)
+
+It encapsulates the following classes:
+
+ * `ContactName`
+ * `Email`
+ * `Telegram`
+ * `Set<Tag>`
+ * boolean `isImportant`
+
+
+**ContactList class** : [`ContactList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/ContactList.java)
+
+* Wraps all data i.e. `Contact` at the contact list level
+* Stores all the `Contact` in memory
+* Stores a `UniqueContactList`
+* Duplicate `Contact` are not allowed in `UniqueContactList`
 
 #### Todo List
 
@@ -215,26 +238,6 @@ Adapted objects related to their feature type.
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
-
-## Contact List
-
-![Structure of the Contact List Component](images/ContactListDiagram.png)
-
-#### Contact class
-
-**Contact package** : [`seedu.address.model.contact`](https://github.com/AY2021S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/model/contact)
-
-* Contact is a container class that stores :
-  * Name of a contact
-  * Email of a contact
-  * Telegram of a contact
-#### ContactList class
-**ContactList class** : [`ContactList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/ContactList.java)
-
-* Wraps all data i.e. Contacts at the contact list level
-* Stores Contacts in memory
-* Stores a UniqueContactList
-* Duplicate Contacts are not allowed
 
 ## Todo List
 
@@ -764,22 +767,23 @@ The following sequence diagram shows how the target cap operation works:
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Zoom Link Management
 
-As Cap 5 Buddy is designed to suit the needs of SoC students during the transition to online learning,
-it is crucial to design features which allows efficient management of zoom links which are widely used during
+## 3.1.4  Module zoom link management feature
+
+As Cap 5 Buddy is designed to be a module tracking application for SoC students,
+it is crucial to design features which allows efficient management of zoom links which are widely used by modules during
 online learning. However, it is worth noting that these features can be easily modified to manage any website links,
-showcasing the usefulness of these features beyond online learning.
+showcasing the usefulness of these features for tracking module related details beyond online learning.
 
 The section below provides details of the implementation of each zoom link related function and design considerations
 of these features.
 
-#### Details of implementation
+### Details of implementation
 
-##### Add zoom link feature
+#### 3.1.4.1  Add zoom link feature
 
 This feature creates and adds a new `ZoomLink` for a `ModuleLesson` into a specific `Module`, if the 
-zoom link does not already exist in the module. Each `ModuleLesson` in a `Module` is only allowed to have one `ZoomLink`.
+`ZoomLink` does not already exist in the module. Each `ModuleLesson` in a `Module` is only allowed to have one `ZoomLink`.
 
 This feature is facilitated by the following classes:
   * `AddZoomLinkParser`:
@@ -792,26 +796,36 @@ This feature is facilitated by the following classes:
       `ModuleLesson` into the `Module` encapsulated in `Model`
       
 Given below is an example usage scenario and how the mechanism for adding zoom links behaves at each step:
+
 Step 1. `LogicManager` receives the user input `addzoom 1 n/Lecture z/https://nus-sg.zoom.us/link` from `Ui`
+
 Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `AddZoomLinkParser`
+
 Step 3. Additionally, `ModuleListParser` will call the `AddZoomLinkParser#parse()` method to parse the command arguments
+
 Step 4. This creates an `AddZoomLinkCommand` using a `ZoomDescriptor` object that encapsulates the `ZoomLink` and `ModuleLesson` to be added
+
 Step 5. `AddZoomLinkCommand#execute()` will be invoked by `LogicManager` to create
         the updated `Module` with the added `ZoomLink` and `ModuleLesson` by calling the `Module#addZoomLink()` method
+
 Step 5. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target module with the updated module containing the newly added zoom link
+
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to add a zoom link works:
 ![AddZoomLinkSequenceDiagram](images/AddZoomLinkCommandSequenceDiagram.png)
+Fig 3.1.4 Sequence diagram for the execution of `AddZoomLinkCommand`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddZoomLinkCommand` and `AddZoomLinkParser` should end 
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<br>
+
 The following activity diagram summarizes what happens when a user executes the `AddZoomLinkCommand`:
 ![AddZoomLinkActivityDiagram](images/AddZoomLinkCommandActivityDiagram.png)
 
-##### Design consideration:
+#### Design consideration:
 
 ##### Aspect: How to encapsulate zoom links and module lesson fields
 
@@ -832,50 +846,58 @@ The following activity diagram summarizes what happens when a user executes the 
 Alternative 1 was chosen since it followed OOP principles which is a good practice in a SE project. Also, it provides
 greater flexibility for expansion of the project.
 
-##### Delete zoom link feature
 
-This feature deletes an existing zoom link from a module using the module lesson that is mapped to the
-target zoom link.
+#### 3.1.4.2  Delete zoom link feature
+
+This feature deletes an existing `ZoomLink` from a `Module` using the `ModuleLesson` that is mapped to the
+target `ZoomLink`.
 
 This feature is facilitated by the following classes:
   
   * `DeleteZoomLinkParser`:
     * It implements `DeleteZoomLinkParser#parse()` to validate and parse the module index and module lesson provided by the user.
   * `DeleteZoomLinkCommand`:
-    * It implements `DeleteZoomLinkCommand#execute()` to delete the zoom link from the module 
-      using the unique module lesson that is mapped to the target zoom link.  
+    * It implements `DeleteZoomLinkCommand#execute()` to delete the `ZoomLink` from the `Module` 
+      using the unique `ModuleLesson` that is mapped to the target zoom link.  
       
 Given below is an example usage scenario and how the mechanism for deleting zoom links behaves at each step:
+
 Step 1. `LogicManager` receives the user input `deletezoom 1 n/Lecture` from `Ui`
-Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `DeleteZoomLinkParser`
+
+Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create a `DeleteZoomLinkParser`
+
 Step 3. Additionally, `ModuleListParser` will call the `DeleteZoomLinkParser#parse()` method to parse the command arguments
+
 Step 4. This creates a `DeleteZoomLinkCommand` and `DeleteZoomLinkCommand#execute()` will be invoked by `LogicManager` 
-Step 5. This deletes the target zoom link identified by its unique module lesson using the `Module#deleteZoomLink()` method.
+
+Step 5. This deletes the target zoom link identified by its unique module lesson using the `Module#deleteZoomLink()` method
+
 Step 6. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target module with the updated module
+
 Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
 
 
-##### Design consideration:
+#### Design consideration:
 
 ##### Aspect: Limit on the number of zoom links that can be mapped to each module lesson
 
-* **Alternative 1 (current choice):** Each module lesson can only be mapped to a single zoom link
+* **Alternative 1 (current choice):** Each `ModuleLesson` can only be mapped to a single `ZoomLink`
   * Pros: The execution of a zoom link command is less complicated as each zoom link is uniquely identified by its module lesson. 
           The implementation of the command is easier as we only need to identify the correct module lesson and
           remove the key value pair from the hashmap.
   * Cons: Creates a restriction for users as they are only allowed to add one zoom link for each module lesson.
 
-* **Alternative 2:** Each module lesson can be mapped to multiple zoom links
+* **Alternative 2:** Each `ModuleLesson` can be mapped to multiple `ZoomLinks`
   * Pros: This creates more freedom and flexibility for users to add multiple zoom links for the same lesson.
   * Cons: Locating the specific zoom link to remove is tedious as we have to iterate through the list of zoom links that are mapped to the module lesson. 
-          Additionally, we need to implement a mechanism to allow users to specify the exact zoom link to be deleted since using the module
-          name is not sufficient.
+          Additionally, we need to implement a mechanism to allow users to specify the exact zoom link to be deleted since using the module lesson
+          is not sufficient.
 
 Alternative 1 was chosen as it was significantly simpler to implement and did not violate any key design principles.
 We also took into consideration the fact that it is unlikely for a single lesson to have multiple zoom links.
 
 
-##### Edit zoom link feature
+#### 3.1.4.3  Edit zoom link feature
 
 This feature edits an existing zoom link in a module using the module lesson that is mapped to the
 target zoom link.
@@ -884,7 +906,7 @@ This feature is facilitated by the following classes:
 
   * `EditZoomLinkParser`:
     * It implements `EditZoomLinkParser#parse()` to validate and parse the module index, module lesson and edited zoom link provided by the user.
-      This creates a `ZoomDescriptor` object that stores the zoom link details needed for the edit zoom link command.
+      This creates a `ZoomDescriptor` object that encapsulates the zoom link details needed for the edit zoom link command.
     
   * `ZoomDescriptor`  
     * It stores and encapsulates the `ZoomLink` and `ModuleLesson` objects which will be used to execute the command to edit the zoom link 
@@ -894,19 +916,27 @@ This feature is facilitated by the following classes:
    
 
 Given below is an example usage scenario and how the mechanism for editing zoom links behaves at each step:
+
 Step 1. `LogicManager` receives the user input `editzoom 1 n/Lecture z/https://nus-sg.zoom.us/newLink` from `Ui`
+
 Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `EditZoomLinkParser`
+
 Step 3. Additionally, `ModuleListParser` will call the `EditZoomLinkParser#parse()` method to parse the command arguments
+
 Step 4. This creates an `EditZoomLinkCommand` using a `ZoomDescriptor` object that encapsulates the edited zoom link
+
 Step 5. `EditZoomLinkCommand#execute()` will be invoked by `LogicManager` to create
         the updated `Module` with the edited `ZoomLink` by calling the `Module#editZoomLink()` method
+
 Step 5. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target module with the updated module containing the edited zoom link
+
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`   
 
-The sequence diagram of how the operation to edit a zoom link works is similar to the one in figure ?.?, 
+The sequence diagram of how the operation to edit a zoom link works is similar to the one in figure [3.3](#module-list-features), 
 except that the respective parser and command classes are `EditZoomLinkParser` and `EditZoomLinkCommand`
 
-##### Design consideration:
+
+#### Design consideration:
 
 ##### Aspect: How to implement the command to edit zoom link
 
@@ -914,16 +944,16 @@ except that the respective parser and command classes are `EditZoomLinkParser` a
                      since the two commands have very similar implementations.
 
   * Pros: Reduces the amount of code that has to be written, as well as the number of classes that have to be implemented. 
-  * Cons: Violates the **Single Responsibility Principle** since the same parser and command classes have 2 separate responsibilities and have to perform 2 different operations.
+  * Cons: Violates the **Single Responsibility Principle** since the same parser and command class have 2 separate responsibilities and have to perform 2 different operations.
 
 * **Alternative 2 (current choice):** Implement the `EditZoomLink` command separately.
 
   * Pros: Adheres to the Single Responsibility Principle and it is easier to implement the function since we do not need to handle 
-          2 separate commands at the same time.
+          2 separate commands in the same parser and command classes.
   * Cons: Repetition of code may occur.
   
 Alternative 2 was chosen since it was a good practice to follow key designing principles. Using alternative 1 would complicate
-the implementation of the command since we had to handle 2 different cases and this can increase the occurrences of bugs.
+the implementation of the command since we had to handle 2 different commands within the same class and this can increase the difficulty of testing and debugging.
 
 
 ##### Aspect: Data structure to support zoom link commands
@@ -944,21 +974,21 @@ the implementation of the command since we had to handle 2 different cases and t
   * Cons: The process of checking for duplicate module lessons and zoom links in the module is more tedious.
 
 Alternative 1 was chosen since checking for duplicate zoom links occurs frequently during the execution of 
-zoom link related commands.
+zoom link related commands. 
 
 
 
 
-### 3.2 Contact List Management
+## 3.2 Contact list management feature
 
 As a module tracking system, Cap 5 Buddy allows users to manage a list of module-related contacts with ease.
-This is especially important since being enrolled in numerous modules results in the need to keep track of
+This is especially important since being enrolled in numerous modules can result in the need to keep track of
 numerous contacts, each with different contact details.
 
 The section below provides details of the implementation of each Contact List function and design considerations
 of these features.
 
-#### Contact List Commands
+### Contact list features
 
 Below is a list of all `Contact` related features:
 
@@ -966,6 +996,11 @@ Below is a list of all `Contact` related features:
 2. Delete a contact: Deletes a pre-existing contact from the contact list
 3. Edit a contact: Edits a pre-existing contact in the contact list
 4. Find a contact: Search for contacts using different search parameters
+5. Mark a contact as important: 
+6. Sort the contact list:
+7. List out all contacts in the contact list
+8. Clear the contact list
+
 
 Given below is the class diagram of the `Contact` class:
 
@@ -973,9 +1008,9 @@ Given below is the class diagram of the `Contact` class:
 
 Figure ?.? Class Diagram for Contact class
 
-#### Details of implementation
+###  Details of implementation
 
-##### Add contact feature
+#### 3.2.1  Add contact feature
 
 This feature creates and adds a new `Contact` into the contact list if the contact does not already exist. 
 
@@ -988,11 +1023,17 @@ This feature is facilitated by the following classes:
    * It implements `AddContactCommand#execute()` which executes the addition of the new contact into `Model`.
 
 Given below is an example usage scenario and how the mechanism for adding contact behaves at each step:
+
 Step 1. `LogicManager` receives the user input `addcontact n/John e/john@gmail.com te/@johndoe` from `Ui`
+
 Step 2. `LogicManager` calls `ContactListParser#parseCommand()` to create an `AddContactParser`
+
 Step 3. Additionally, `ContactListParser` will call the `AddContactParser#parse()` method to parse the command arguments
+
 Step 4. This creates an `AddContactCommand` and `AddContactCommand#execute()` will be invoked by `LogicManager` to excecute the command to add the contact
+
 Step 5. The `Model#addContact()` operation exposed in the `Model` interface is invoked to add the new contact
+
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to add a contact works:
@@ -1003,19 +1044,21 @@ Figure ?.? Sequence diagram for the execution of `AddContactCommand`
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<br>
 
-The following activity diagram summarizes what happens when a user executes the `AddContactCommand`:
-![AddContactCommandActivityDiagram](images/contact/AddContactCommandActivityDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes `AddContactCommand`:
+![AddContactCommandActivityDiagram](images/Contact/AddContactCommandActivityDiagram.png)
 Figure ?.? Activity diagram representing the execution of `AddContactCommand`
 
-##### Design consideration:
+#### Design consideration:
 
 ##### Aspect: Require users to provide all contact fields when adding a new contact
 
 * **Alternative 1 (current choice):** Require `ContactName` and `Email` to be mandatory fields that must be provided, while leaving `Telegram` as an optional field
   * Pros: This caters to certain contacts who do not have a `Telegram` field, providing more flexibility for users when creating contacts.
-  * Cons: This can complicate the process of checking if 2 contacts are the same since we need to consider if the `Telegram` field of a contact 
-          is present before the comparison is performed. 
+  * Cons: This implementation of contact related methods can become complicated since we need to consider if the `Telegram` field of a contact 
+          is present before any operation is performed. 
 
 * **Alternative 2:** Require `ContactName`, `Email` and `Telegram` to be mandatory fields
   * Pros: The process of checking if 2 contacts are the same by comparing all 3 contact fields will be simpler.
@@ -1025,43 +1068,55 @@ Alternative 1 was chosen since it provides users with greater freedom when creat
 mandatory can restrict users when adding contacts, hindering user experience.
 
 
-#### Delete Contact Feature
+#### 3.2.2  Delete Contact Feature
 
 The delete contact feature deletes a pre-existing `Contact` using the index of the contact on the displayed contact list.
 This feature is facilitated by the following classes: 
 
   * `DeleteContactParser`:
-    * It implements `DeleteContactParser#parse()` to parse and validate the contact ID
+    * It implements `DeleteContactParser#parse()` to parse and validate the contact index 
 
   * `DeleteContactCommand`:
     * It implements `DeleteContactCommand#execute()` to delete the `Contact` from `Model`
 
-After the user input has been parsed by `DeleteContactParser`, `LogicManager` will execute the delete operation by invoking
-`DeleteContactCommand#execute()`. This deletes the target contact by invoking the `Model#deleteContact()` method exposed in the `Model` interface.
+Given below is an example usage scenario and how the mechanism for deleting contact behaves at each step:
+
+Step 1. `LogicManager` receives the user input `deletecontact 1` from `Ui`
+
+Step 2. `LogicManager` calls `ContactListParser#parseCommand()` to create a `DeleteContactParser`
+
+Step 3. Additionally, `ContactListParser` will call the `DeleteContactParser#parse()` method to parse the command arguments
+
+Step 4. This creates a `DeleteContactCommand` and `DeleteContactCommand#execute()` will be invoked by `LogicManager` to delete the target contact
+
+Step 5. The `Model#deleteContact()` operation exposed in the `Model` interface is invoked to delete the target contact from `Model`
+
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to delete a contact works:
-![DeleteContactSequenceDiagram](images/contact/DeleteContactCommandSequenceDiagram.png)
+
+![DeleteContactSequenceDiagram](images/Contact/DeleteContactCommandSequenceDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: Method to delete contact
+##### Aspect: Mechanism to delete contacts
 
 * **Alternative 1 (current choice):** Delete a contact based on its index in the displayed contact list
   * Pros: Using the contact index allows us to uniquely identify the target contact to delete, reducing the room for possible error
-  * Cons: The target contact to be deleted might not be displayed on the contact list and hence the contact index might not be
+  * Cons: The target contact which the user wants to delete might not be displayed on the contact list and hence the contact index might not be
           readily available. This can inconvenience users who have to search for the contact to retrieve the contact index.
 
-* **Alternative 2:** Delete a contact based on the contact name
+* **Alternative 2:** Delete a contact using the contact name
   * Pros: It can make the deletion process simpler for **users** who can provide the name of the contact without having to execute more commands.
   * Cons: This can complicate the deletion process since contacts with the same name is a possibility. If there are multiple
           contacts with the same provided name, more information of the target contact has to be provided by the user,
           creating more inconvenience for the user as well.
 
-Alternative 1 was chosen since it guarantees a unique contact would be provided in every case. This ensures the
-contact deletion process is safe and the correct contact is deleted, minimising the room for potential errors.  
+Alternative 1 was chosen since it guarantees a unique contact would be provided in every case. This ensures that the
+target contact can be accurately identified and deleted, minimising the room for potential errors or bugs.  
 
 
-#### Edit Contact Feature
+#### 3.2.3  Edit Contact Feature
 
 The edit contact feature edits a pre-existing contact in the contact list using contact details provided by the users.
 This feature is facilitated by the following classes:
@@ -1070,22 +1125,42 @@ This feature is facilitated by the following classes:
     * It implements `EditContactParser#parse()` to parse and validate the provided contact details and contact index
 
   * `EditContactDescriptor`:
-    * It stores the contact details which will be used to edit the target contact
+    * It encapsulates the contact details which will be used to edit the target contact
 
   * `EditContactCommand`:
     * It implements `EditContactCommand#execute()` to edit the contact in `Model`
+    
+    
+![EditContactDescriptorClassDiagram](images/Contact/EditContactDescriptorClassDiagram.png) 
+Fig ?.? Class diagram describing the `EditContactDescriptor` class
 
 
 Given below is an example usage scenario and how the mechanism for editing contact behaves at each step:
+
 Step 1. `LogicManager` receives the user input `editcontact 1 n/John te/@johndoe` from `Ui`
+
 Step 2. `LogicManager` calls `ContactListParser#parseCommand()` to create an `EditContactParser`
+
 Step 3. Additionally, `ContactListParser` will call the `EditContactParser#parse()` method to parse the command arguments
+
 Step 4. This creates an `EditContactCommand` and `EditContactCommand#execute()` will be invoked by `LogicManager` to edit the target contact
+
 Step 5. The `Model#setContact()` operation exposed in the `Model` interface is invoked to replace the target contact with the edited contact
+
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to edit a contact works:
 ![EditContactSequenceDiagram](images/contact/EditContactCommandSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddContactCommand` and `AddContactParser` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+<br>
+
+The following activity diagram summarizes what happens when a user executes `EditContactCommand`:
+![EditContactCommandActivityDiagram](images/Contact/EditContactCommandActivityDiagram.png)
+Fig ?.? Activity diagram for the execution of `EditContactCommand`
 
 
 #### Design consideration:
@@ -1105,25 +1180,26 @@ Given below is the sequence diagram of how the operation to edit a contact works
 Alternative 1 was chosen as it would make future changes to any class easier and less error-prone, 
 hence increasing the ease of maintenance, since there was less coupling between the 2 classes.
 
-##### Aspect: Implementation of `EditContactCommand`
 
-* **Alternative 1 (current choice):** 
+##### Aspect: How to implement `EditContactCommand`
+
+* **Alternative 1 (current choice):** Implement a separate `EditContactCommand` without reusing other command classes
   * Pros: Reduces coupling between the command classes and `EditContactCommand` can be implemented without restrictions,
           or a need to consider how it might affect the other command classes
   * Cons: Additional methods have to be implemented to replace the target contact with the edited contact
 
 * **Alternative 2:** Reuse `DeleteContactCommand` to delete the target contact and `AddContactCommand` to add the edited contact
-  * Pros: Reusing other commands would make the implementation of `EditContactCommand` simpler and easier
-  * Cons: It increases coupling between the 3 commands and this can cause issues in `EditContactCommand` if either 
+  * Pros: Reusing other commands would make the implementation of `EditContactCommand` simpler and more straightforward
+  * Cons: It increases coupling between the 3 commands and this can cause issues to `EditContactCommand` if either 
           `DeleteContactCommand` or `AddContactCommand` developed bugs or errors. Also, it might affect performance since 
           executing `EditContactCommand` will execute 2 other commands.
 
-Alternative 1 was chosen since it gave more freedom with regard to the implementation of `EditContactCommand` since
+Alternative 1 was chosen since it gave more freedom in regard to the implementation of `EditContactCommand` since
 we were not restricted to reusing other commands. Less coupling between the classes meant that changes in one class would 
 less likely require changes to other classes.
 
 
-#### Find Contact Feature
+#### 3.2.4  Find Contact Feature
 
 The find contact feature is important since sieving through all contacts to search for a specific contact can be 
 tedious and not user-friendly. Finding contacts using one search parameter is not meaningful 
@@ -1144,9 +1220,9 @@ This feature is facilitated by the following classes:
   * `FindContactCriteria`:
     * It encapsulates all the predicates which will be used to test for matching contacts
     * It implements the following operations:
-      * `FindContactCriteria#addPredicate():` Adds a new predicate into the list of predicates 
+      * `FindContactCriteria#addPredicate()` to add a new predicate into the list of predicates 
          to test for matching contacts
-      * `FindContactCriteria#getFindContactPredicate():` To compose all the predicates into a single predicate
+      * `FindContactCriteria#getFindContactPredicate()` to compose all the predicates into a single predicate
 
     * Predicate objects that can be stored in `FindContactCriteria`:
       * `ContactNameContainsKeywordsPredicate`:
@@ -1159,21 +1235,36 @@ This feature is facilitated by the following classes:
       filtered contact list in `Model` using the predicate from `FindContactCriteria`
 
 Given below is an example usage scenario and how the mechanism for finding contact behaves at each step:
+
 Step 1. `LogicManager` receives the user input `findcontact n/John t/friend` from `Ui`
+
 Step 2. `LogicManager` calls `ContactListParser#parseCommand()` to create a `FindContactParser`
+
 Step 3. Additionally, `ContactListParser` will call the `FindContactParser#parse()` method to parse the command arguments
+
 Step 4. This creates a `FindContactCriteria` that encapsulates the created `Predicate` objects to test for matching contacts
+
 Step 4. Additionally, a `FindContactCommand` is created and `FindContactCommand#execute()` will be invoked by `LogicManager` to find matching contacts
+
 Step 5. The `Model#updateFilteredContactList()` operation exposed in the `Model` interface is invoked to update the displayed contact list 
         using the predicate from `FindContactCriteria`
+
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to find contact works:
-![FindContactCommandSequenceDiagram](images/contact/FindContactCommandSequenceDiagram.png)
-Fig ??
+
+![FindContactCommandSequenceDiagram](images/Contact/FindContactCommandSequenceDiagram.png)
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddContactCommand` and `AddContactParser` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+<br>
 
 Given below is the sequence diagram showing the interaction between `FindContactParser` and `FindContactCriteria`:
-![FindContactCriteriaSequenceDiagram](images/contact/FindContactCriteriaSequenceDiagram.png)
+![FindContactCriteriaSequenceDiagram](images/Contact/FindContactCriteriaSequenceDiagram.png)
+
 
 #### Design consideration:
 
@@ -1191,7 +1282,7 @@ Given below is the sequence diagram showing the interaction between `FindContact
   * Cons: It is tedious to compose the predicates into a single predicate as we have to check each individual field and 
           determine if it is null of if the predicate exists. 
 
-##### Aspect: Implementation of `FindContactCommand` 
+##### Aspect: How to implement `FindContactCommand` 
 
 * **Alternative 1 :** Implement separate find contact commands for each possible search parameter. In this case, to find contacts, 
                       we can create a command to find contacts by name, and another to find by tags.
@@ -1246,7 +1337,6 @@ Step 6. A `CommandResult` from the command execution is returned to `LogicManage
 
 In addition, if the user wants to reverse order, the `ContactComparatorByName` will be updated in the `SortContactParser#parse()`
 using the built-in java method `Comparator#reversed()`.
-
 
 
 ### 3.3 TodoList feature
@@ -1637,21 +1727,21 @@ This feature is facilitated by the following classes:
   * `FindTaskCriteria`:
     * It encapsulates all the predicates which will be used to test for matching tasks
     * It implements the following operations:
-      * `FindTaskCriteria#addPredicate():` Adds a new predicate into the list of predicates 
-        to test for matching contacts
-      * `FindTaskCriteria#getFindTaskPredicate():` To compose all the predicates into a single predicate
+      * `FindTaskCriteria#addPredicate()` to add a new predicate into the list of predicates 
+        to test for matching tasks
+      * `FindTaskCriteria#getFindTaskPredicate()` to compose all the predicates into a single predicate
         
   * Predicate objects that can be stored in `FindTaskCriteria`:
     * `TaskNameContainsKeywordsPredicate`:
       * Tests if the name of a given task matches at least one of the name keywords provided (case-insensitive)
-    * `ContactContainsTagsPredicate`:
+    * `TaskContainsTagsPredicate`:
       * Tests if a given task contains at least one of the search tags provided (case-insensitive)
     * `TaskMatchesDatePredicate`:
       * Tests if the date of a given task matches the search date exactly.
     * `TaskMatchesPriorityPredicate`:
-      * Tests if the priority of a given task matches the search priority exactly.
+      * Tests if the priority of a given task matches the search priority exactly (case-insensitive)
     * `TaskMatchesStatusPredicate`:
-      * Tests if the status of a given task matches the search status exactly.
+      * Tests if the status of a given task matches the search status exactly (case-insensitive)
   
 Given below is the class diagram describing the `FindTaskCriteria` class:
 ![FindTaskCriteriaClassDiagram](images/FindTaskCriteriaClassDiagram.png)
@@ -1677,6 +1767,7 @@ Step 5. The `Model#updateFilteredTodoList()` operation exposed in the `Model` in
 
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
+The following activity diagram summarizes what happens when a user executes `FindTaskCommand`
 ![FindTaskCommandActivityDiagram](images/FindTaskCommandActivityDiagram.png)
 
 #### Design consideration:
@@ -1685,17 +1776,18 @@ Step 6. A `CommandResult` from the command execution is returned to `LogicManage
 
 * **Alternative 1 :** Allow users to provide 0 search parameters, in which case the find task command does not perform any operation.
   
-  * Pros: Implementation of the command is simpler as we do not need to check if at least one search parameter was provided.
+  * Pros: Implementation of the command is simpler and straightforward as we do not need to check if at least one search parameter was provided.
   * Cons: The command does not perform any meaningful operation.
   
 * **Alternative 2 (current choice):** Handle instances when no search parameter was provided using exceptions and inform users that at least one parameter is required.
 
-  * Pros: Ensures that users are aware of any constraints related to the command.
-  * Cons: The implementation of the command is slighly more complex since exception handling is required and 
+  * Pros: Ensures that users are aware of all the constraints related to the command.
+  * Cons: The implementation of the command is more complex since exception handling is required and 
           we need to check if at least one search parameter was provided.
 
 Alternative 2 was chosen as it conformed with the standard practice of handling errors using exception. Moreover, it removes any room for 
 ambiguity by ensuring all constraints related to the command are made known to the users.
+
 
 #### Complete Task Feature
 
@@ -1771,6 +1863,7 @@ Step 2. `LogicManager` calls `TodoListParser#parseCommand()` to create a `ClearT
 Step 3. This creates an `ClearTaskCommand` and `ClearTaskCommand#execute()` will be invoked by `LogicManager` to empty the list
 
 Step 4. A `CommandResult` from the command execution is returned to `LogicManager`
+
     
 The sequence diagram for this feature should be similar with figure
 
@@ -2034,11 +2127,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add a new module               | keep track of the module information easily            |
 | `* * *`  | user                                       | delete a module                | remove modules that are completed                      |
 | `* *`    | user                                       | find a module by name          | locate details of a module without having to go through the entire list |
-| `* *`    | user                                       | add a zoom link to a module    | keep track and retrieve it easily                      |
+| `* * *`  | user with many online zoom lessons         | add a zoom link to a module    | keep track and retrieve it easily                      |
+| `* * `   | user                                       | edit the zoom link of a module | update the zoom link whenever it changes               |
+| `* *`    | user                                       | delete the zoom link of a module | prevent the accumulation of unused zoom links        |
 | `* *`    | user                                       | calculate my CAP details   | plan my academic progress for the future      |
 | `* *`    | user                                       | archive a modules   | hide less relevant modules that might still be useful for future purposes|
 | `* *`    | user                                       | add graded assignments       | add the information of the assignments that contributed to my grade      |
 |          | contact list                               |                                | |
+| `* * *`  | user                                       | add module contacts            | keep track of all contact details for future reference  |
+| `* * *`  | user                                       | delete a contact               | prevent unnecessary contacts from accumulating |
+| `* * *`  | user                                       | edit a contact                 | update contact details whenever they are changed |
+| `* * *`  | user                                       | find a contact by keyword      | retrieve the necessary contact easily without having to look through all my contacts    |
 | `* *`    | user                                       | edit my graded assignments     | update the information of the assignments I have completed     |
 | `* *`    | user                                       | delete graded assignments      | remove the assignments that are do not contribute to my grade anymore|
 | `*`      | user                                       | add an overall grade to a module| change my grade without adding assignments to control it|
@@ -2047,7 +2146,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete a task                  | remove a task that has been done                       |
 | `* * *`  | user                                       | edit a task                    | make necessary changes to a task                       |
 | `* *`    | user                                       | label a task as completed      |                                                        |
-| `* *`    | user                                       | find a task                    | find a task easily without looking at the entire list  |
+| `* *`    | user                                       | find a task                    | retrieve a task easily without looking at the entire list  |
 | `* *`    | user                                       | sort tasks based on criteria   | easily manage the tasks by order                       |
 | `* *`    | user                                       | filter tasks based on criteria | easily manage the tasks by group                       |
 | `*`      | user                                       | reset the status of a task     | change a task from labeled as completed to not completed |
@@ -2064,7 +2163,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-=======
+
 ## Module list use cases
 
 **Use case: UC04 - View a module**
@@ -2203,7 +2302,129 @@ Use case ends.
 
 Use case ends.
 
+**Use case: Add zoom link to module**
+
+**MSS**
+
+1. User requests to add a new zoom link to a specific module in the module list.
+2. User provides the module index, zoom link and module lesson name.
+3. CAP5BUDDY creates and zoom link and adds it into the specified module.
+4. CAP5BUDDY indicates that the zoom link has been successfully added and displays the newly created zoom link.
+
+  Use case ends.
+  
+**Extensions**
+
+  * 2a. CAP5BUDDY detects that the module index is invalid.
+  
+  * 2b.CAP5BUDDY detects that the provided zoom link details are invalid.
+  
+  *
+  
+**Use case: Delete zoom link from module**
+
+**MSS**
+
+1. User requests to delete a zoom link from a specific module.
+2. User provides the module index and module lesson which the target zoom link belongs to.
+3. CAP5BUDDY deletes the zoom link from the module.
+4. CAP5BUDDY indicates that the zoom has been successfully deleted.
+
+**Extensions**
+
+  * 2a. CAP5BUDDY detects that the module index is invalid.
+
+
 ## Contact list use cases
+
+**Use case: Add contact to contact list**
+
+**MSS**
+
+1. User requests to add a new contact to the contact list.
+2. User provides the name and email of the contact, and optionally a telegram field and/or tags.
+3. CAP5BUDDY creates the new contact and adds it into the contact list
+4. CAP5BUDDY indicates that the contact has been successfully added and displays the newly created contact.
+ 
+ Use case ends.
+
+**Extensions:**
+
+  * 2a. CAP5BUDDY detects that the contact details provided are invalid.
+    
+    * 2a1. CAP5BUDDY displays an error message and informs the user of the contact detail constraints.
+   
+      Use case ends.
+      
+  * 3a. CAP5BUDDY detects that a duplicate contact exists in the contact list.
+  
+    * 3a1. CAP5BUDDY displays an error message and informs the user that the contact could not be added as a duplciate contact exists.
+
+    Use case ends.
+
+
+**Use Case: Delete contact from contact list**
+
+**MSS**
+
+1. User requests to delete a contact from the contact list.
+2. User provides the index of the contact in the displayed contact list to be deleted.
+3. CAP5BUDDY deletes the contact from the contact list.
+4. CAP5BUDDY indicates that the contact was successfully deleted and displays the details of the deleted contact.
+
+  Use case ends.
+  
+**Extensions:**
+
+  * 2a. CAP5BUDDY detects that the contact index provided is invalid.
+  
+    * 2a1. CAP5BUDDY displays an error message and informs the user that the index provided is invalid.
+    
+      Use case ends.
+
+
+**Use Case: Edit contact in contact list**
+
+**MSS**
+
+1. User requests to edit a contact in the contact list.
+2. User provides the index of the target contact and the edited contact details.
+3. CAP5BUDDY edits the target contact with the provided contact details.
+4. CAP5BUDDY indicates that the contact was edited successfully and displays the details of the edited contact.
+
+  Use case ends.
+  
+**Extensions**
+
+  * 2a. CAP5BUDDY detects that the contact index provided is invalid.
+  
+    * 2a1. CAP5BUDDY displays an error message and informs the user that the index provided is invalid.
+    
+      Use case ends.
+  
+  * 2b. CAP5BUDDY detects that the contact details provided are invalid. (same as use case add contact)
+  
+  * 2c. same as use case add contact duplicate contact
+  
+  
+  
+**Use Case: Find contacts**
+
+**MSS**
+
+1. User requests to find contacts in the contact list.
+2. User provides the search keywords and parameter.
+3. CAP5BUDDY finds all the contacts that match the search parameters provided.
+4. CAP5BUDDY displays all the contacts.
+
+**Extensions**
+
+  * 2a. CAP5BUDDY detects that no search keywords or parameters were provided.
+  
+    * 2a1. CAP5BUDDY displays an error message and informs the user that at least one search parameter must be provided.
+    
+      Use case ends.
+          
 
 
 ## Todo List Use Cases
@@ -2499,88 +2720,110 @@ Use case ends.
 
   *{More to be added}*
 
-**Use Case: View all contact details of a lecturer**
 
-  **MSS**
-   1. User requests to view all contact details of a lecturer.
-   2. User provides the name of the lecturer.
-   3. CAP5BUDDY searches for the specified lecturer from storage.
-   4. CAP5BUDDY retrieves all contact details of the lecturer from storage.
-   5. CAP5BUDDY displays the desired contact details.
 
-  **Extensions**
+**Use case: Add a task to todo list**
 
-   * 3a. The specified lecturer name does not exist.
+**MSS**
 
-     * CAP5BUDDY displays an error message.
+1. User wants to add a task to the todo list.
+2. User chooses the type of task to be added.
+3. User enters the information regarding the task.
+4. CAP5BUDDY saves the given task in the todo list.
 
-     Use case ends.
+Use case ends.
 
-  **Use Case: View the email of a Lecturer**
+**Extensions**
 
-  **MSS**
-  1. User requests to view the email of a lecturer.
-  2. User provides the name of the lecturer.
-  3. CAP5BUDDY searches for the specified lecturer from storage.
-  4. CAP5BUDDY retrieves the email of the lecturer from storage.
-  4. CAP5BUDDY displays the desired email address.
+* 3a. Format for information about the task is invalid.
 
-  **Extensions**
+  * 3a1. CAP5BUDDY displays an error message and ask the user to use the correct format.
+  * 3a2. User enters the information with the correct format.
 
-  * 3a. The specified lecturer name does not exist.
+  Use case resumes at step 4
 
-    * CAP5BUDDY displays an error message.
+  *{More to be added}*
 
-    Use case ends.
+**Use case: Delete a task in the todo list**
 
-  **Use Case: View the hand phone contact of a peer**
+**MSS**
 
-  **MSS**
-  1. User requests to view the hand phone number of a peer.
-  2. User provides the name of the peer.
-  3. CAP5BUDDY searches for the specified peer from storage.
-  4. CAP5BUDDY retrieves the hand phone contact of the peer from storage.
-  4. CAP5BUDDY displays the desired hand phone contact.
+1. User wants to delete a task in the todo list.
+2. User chooses the task to be deleted.
+3. CAP5BUDDY shows a prompt message asking if the user really wants to delete the task.
+4. User clicks the "YES" button.
+5. CAP5BUDDY deletes the task from the todo list.
 
-  **Extensions**
+Use case ends.
 
-* 3a. The specified peer name does not exist.
+**Extensions**
 
-  * CAP5BUDDY displays an error message.
+* 4a. User accidentally clicked the "NO" button.
+
+  * 4a1. The prompt message disappears and CAP5BUDDY does not delete the task.
 
   Use case ends.
 
-* 4a. The specified peer does not have a hand phone contact saved.
+  *{More to be added}*
 
-  * CAP5BUDDY displays an error message.
+**Use case: Sort task in the todo list**
+
+**MSS**
+
+1. User wants to sort the tasks in the todo list.
+2. User chooses the basis for sorting the tasks.
+3. CAP5BUDDY displays the sorted tasks based on the chosen basis.
+
+Use case ends.
+
+  *{More to be added}*
+
+**Use case: Find a task in the todo list**
+
+**MSS**
+
+1. User wants to find a task in the todo list.
+2. User chooses whether to find task based on date or keyword.
+3. User enters the date or keyword.
+4. CAP5BUDDY displays all task based on the user input from step 3.
+
+Use case ends.
+
+**Extensions**
+
+* 3a. User inputs the date with an incorrect format.
+
+  * 3a1. CAP5BUDDY displays an error message and ask the user to use the correct format.
+  * 3a2. User enters the date with the correct format.
+
+  Use case resumes at step 4
+
+  *{More to be added}*
+
+**Use case: Archive a task in the todo list**
+
+**MSS**
+
+1. User wants to archive a task in the todo list.
+2. CAP5BUDDY shows a prompt message asking if the user is sure to archive the task.
+3. User clicks the "YES" button.
+4. CAP5BUDDY archives the task.
+
+Use case ends.
+
+**Extensions**
+
+* 3a. User accidentally clicked the "NO" button.
+
+  * 3a1. The prompt message disappears and CAP5BUDDY does not archive the task.
 
   Use case ends.
 
-**Use Case: Edit the email of a TA**
+  *{More to be added}*
 
-  **MSS**
-  1. User requests to edit the email of a TA.
-  2. User provides the name of the TA.
-  3. CAP5BUDDY searches for the specified TA from storage.
-  4. User provides the new email to replace the existing email.
-  5. CAP5BUDDY replaces the email of the TA with the user provided email.
-  6. CAP5BUDDY displays the success message.
 
-  **Extensions**
+  
 
-  * 3a. The specified TA name does not exist.
-
-    * CAP5BUDDY displays an error message.
-
-    Use case ends.
-
-  * 4a. The provided email address is empty or null.
-
-    * CAP5BUDDY displays an error message.
-
-    Use case ends.
-
-    *{More to be added}*
 
 **Use Case: Add assignment to CAP5BUDDY**
 
@@ -2905,7 +3148,288 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `targetcap 5`<br>
       Expected: Target CAP details are calculated. Target CAP details shown in the status message.    
    
+<<<<<<< HEAD
+ 
+      
+
+
+
+
+
+
+
+
+
+#### Adding a zoom link
+
+1. Prerequisites: List out all modules using the `listmodule` command. Multiple modules in the list.
+
+   1. Test case: `addzoom 1 n/lecture z/https://nus-sg.zoom.us/zoomlink` <br>
+      Expected: A zoom link `https://nus-sg.zoom.us/zoomlink` for the module lesson `lecture` is added to the first module in the displayed module list.
+                Details of the newly created zoom link are shown in the status message.
+
+   1. Test case: `addzoom 0 n/lecture z/https://nus-sg.zoom.us/zoomlink` <br>
+      Expected: No zoom link is added. Error message for invalid command format is shown in the status message.
+      
+   1. Test case: `addzoom x n/lecture z/https://nus-sg.zoom.us/zoomlink` where `x` is larger than the module list size <br>
+      Expected: No zoom link is added. Error message for invalid module index is shown in the status message.
+
+   1. Test case: `addzoom` <br>
+      Expected: No zoom link is added. Error message for invalid command format is shown in the status message.
+   
+   1. Test case: `addzoom 1 n/*** z/https://nus-sg.zoom.us/zoomlink` <br>
+      Expected: No zoom link is added. Error message for invalid module lesson is shown in the status message.
+   
+   1. Test case: `addzoom 1 n/lecture z/https://invalidzoomlink` <br>
+      Expected: No zoom link is added. Error message for invalid zoom link is shown in the status message.
+   
+   1. Test case: `addzoom 1 n/lecture` <br>
+      Expected: No zoom link is added. Error message for invalid command format is shown in the status message.
+
+   1. Test case: `addzoom 1 z/https://nus-sg.zoom.us/zoomlink` <br>
+      Expected: No zoom link is added. Error message for invalid command format is shown in the status message.
+
+
+#### Deleting a zoom link
+
+
+1. Prerequisites: List out all modules using the `listmodule` command. Multiple modules in the list.
+
+   1. Test case: `deletezoom 1 n/lecture` <br>
+      Expected: Deletes the zoom link from the first module in the displayed module list for the module lesson `lecture`.
+                Details of the module lesson and module which the zoom link was deleted from are shown in the status message.
+   
+   1. Test case: `deletezoom 0 n/lecture` <br>
+      Expected: No zoom link is deleted. Error message for invalid command format is shown in the status message.
+         
+   1. Test case: `deletezoom x n/lecture` where `x` is larger than the module list size <br>
+      Expected: No zoom link is deleted. Error message for invalid module index is shown in the status message.
+   
+   1. Test case: `deletezoom` <br>
+      Expected: No zoom link is deleted. Error message for invalid command format is shown in the status message.
+      
+   1. Test case: `deletezoom 1 n/***` <br>
+      Expected: No zoom link is delete. Error message for invalid module lesson is shown in the status message.
+   
+   
+#### Editing a zoom link
+   
+1. Prerequisites: List out all modules using the `listmodule` command. Multiple modules in the list.   
+
+   1. Test case: `editzoom 1 n/lecture z/https://nus-sg.zoom.us/newZoomLink` <br>
+      Expected: The zoom link for the module lesson `lecture` in the first module in the displayed module list is edited to `https://nus-sg.zoom.us/newZoomLink`.
+                Details of the newly created zoom link are shown in the status message.
+   
+   1. Test case: `editzoom 0 n/lecture z/https://nus-sg.zoom.us/newZoomLink` <br>
+      Expected: No zoom link is edited. Error message for invalid command format is shown in the status message.
+         
+   1. Test case: `editzoom x n/lecture z/https://nus-sg.zoom.us/newZoomLink` where `x` is larger than the module list size <br>
+      Expected: No zoom link is edited. Error message for invalid module index is shown in the status message.
+   
+   1. Test case: `editzoom` <br>
+      Expected: No zoom link is edited. Error message for invalid command format is shown in the status message.
+      
+   1. Test case: `editzoom 1 n/*** z/https://nus-sg.zoom.us/newZoomLink` <br>
+      Expected: No zoom link is edited. Error message for invalid module lesson is shown in the status message.
+      
+   1. Test case: `editzoom 1 n/lecture z/https://invalidzoomlink` <br>
+      Expected: No zoom link is edited. Error message for invalid zoom link is shown in the status message.
+      
+   1. Test case: `editzoom 1 n/lecture` <br>
+      Expected: No zoom link is edited. Error message for invalid command format is shown in the status message.
+   
+   1. Test case: `editzoom 1 z/https://nus-sg.zoom.us/newZoomLink` <br>
+      Expected: No zoom link is added. Error message for invalid command format is shown in the status message.
+
+
+
+
+
+
 ### Contact List
+
+#### Adding a contact
+
+1. Adding a contact while all contacts are being shown.
+
+   1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
+  
+   1. Test case: `addcontact n/john e/john@gmail.com` <br>
+      Expected: A contact with the name `john` and email `john@gmail.com` will be created. Details of the newly created contact are shown in the status message.
+   
+   1. Test case: `addcontact n/john e/john@gmail.com te/@johndoe` <br>
+      Expected: A contact with the name `john`, email `john@gmail.com` and telegram `@johndoe` will be created. Details of the newly created contact are shown in the status message.
+
+   1. Test case: `addcontact n/john e/john@gmail.com t/tag1 t/tag2` <br>
+      Expected: A contact with the name `john`, email `john@gmail.com` and tags `tag1` and `tag2` will be created. Details of the newly created contact are shown in the status message.
+
+   1. Test case: `addcontact n/*** e/john@gmail.com` <br>
+      Expected: The contact will not be created. Error message for invalid contact name is shown in the status message.
+      
+   1. Test case: `addcontact n/john e/incorrectemail.com` <br>
+      Expected: The contact will not be created. Error message for invalid contact email is shown in the status message.
+      
+   1. Test case: `addcontact n/john e/john@gmail.com te/john` <br>
+      Expected: The contact will not be created. Error message for invalid contact telegram is shown in the status message.
+
+   1. Test case: `addcontact n/john e/john@gmail.com t/&^*` <br>
+      Expected: The contact will not be created. Error message for invalid contact tag is shown in the status message.
+
+   1. Test case: `addcontact` <br>
+      Expected: No contact will be created. Error message for invalid command format is shown in the status message.
+   
+   1. Test case: `addcontact n/john` <br>
+      Expected: No contact will be created. Error message for invalid command format is shown in the status message.
+
+   1. Test case: `addcontact e/john@gmail.com` <br>
+      Expected: No contact will be created. Error message for invalid command format is shown in the status message.
+
+
+
+#### Deleting a contact
+
+1. Deleting a contact while all contacts are being shown.
+
+   1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
+
+   1. Test case: `deletecontact 1` <br>
+      Expected: The first contact is deleted from the list. Details of the deleted contact shown in the status message.
+      
+   1. Test case: `deletecontact 0` <br>
+      Expected: No contact is deleted. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
+
+   1. Test case: `deletecontact x` where x is larger that the displayed contact list size <br>
+      Expected:  No contact is deleted. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
+
+   1. Test case: `deletecontact` <br>
+      Expected: No contact is deleted. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
+
+2. Deleting a contact while some contacts are being shown
+
+   1. Prerequisites: List out some contacts using the `findcontact` command. A few contacts in the list.
+
+   1. Test case: `deletecontact 1` (assuming there is at least one contact in the displayed contact list) <br>
+      Expected: The first contact is deleted from the filtered contact list. Details of the deleted contact shown in the status message.
+
+   1. Test case: `deletecontact 0` <br>
+      Expected: No contact is deleted. Error message for invalid command format shown in the status message. The contact list remains unchanged.  
+   
+   1. Test case: `deletecontact x` where `x` is larger that the displayed contact list size <br>
+      Expected:  No contact is deleted. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
+
+
+#### Editing a contact
+
+1. Editing a contact while all contacts are being shown.
+
+   1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
+
+   1. Test case: `editcontact 1 n/john e/john@gmail.com` <br>
+      Expected: The first contact in the displayed contact list will be edited with the name `john` and email `john@gmail.com`. 
+                Details of the newly edited contact are shown in the status message.
+   
+   1. Test case: `editcontact 1 te/@johndoe` <br>
+      Expected: The first contact in the displayed contact list will be edited with the telegram `@johndoe`. 
+                Details of the newly edited contact are shown in the status message.             
+   
+   1. Test case: `editcontact 1 te/tag1` <br>
+      Expected: The first contact in the displayed contact list will be edited with the tag `tag1`. 
+                Details of the newly edited contact are shown in the status message.
+
+   1. Test case: `editcontact 1 t/` <br>
+      Expected: The first contact in the displayed contact list will be edited with all tags removed. 
+               Details of the newly edited contact are shown in the status message.
+
+   1. Test case: `editcontact 1 n/***` <br>
+      Expected: The first contact will not be edited. Error message for invalid contact name is shown in the status message.
+     
+   1. Test case: `editcontact e/incorrectemail.com` <br>
+      Expected: The first contact will not be edited. Error message for invalid contact email is shown in the status message.
+        
+   1. Test case: `editcontact 1 te/john` <br>
+      Expected: The first contact will not be edited. Error message for invalid contact telegram is shown in the status message.
+  
+  1. Test case: `editcontact 1 t/&^*` <br>
+     Expected: The first contact will not be edited. Error message for invalid contact tag is shown in the status message.
+
+  1. Test case: `editcontact 0 n/john` <br>
+     Expected: No contact is edited. Error message for invalid command format shown in the status message. The contact list remains unchanged.  
+     
+  1. Test case: `editcontact x n/john` where `x` is larger that the displayed contact list size <br>
+     Expected: No contact is edited. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
+
+   1. Test case: `editcontact` <br>
+      Expected: No contact is edited. Error message for invalid command format shown in the status message. The contact list remains unchanged.  
+
+
+#### Finding a contact
+
+1. Finding a contact while all contacts are being shown.
+
+   1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
+
+   1. Test case: `findcontact n/john` <br>
+      Expected: All contacts with their name containing the word `john` will be displayed in the contact list panel.
+
+   1. Test case: `findcontact t/friend` <br>
+      Expected: All contacts containing the tag `friend` will be displayed in the contact list panel.
+
+  1. Test case: `findcontact n/john t/friend` <br>
+     Expected: All contacts which fulfil **all** the following criteria will be displayed in the contact list panel.
+        
+        * Contact name contains the word `john`
+        
+        * Contains the tag `friend`
+
+   1. Test case: `findcontact 1 t/john` <br>
+      Expected: No contact will be found. Error message for invalid command format shown in the status message. The displayed contact list remains unchanged.
+   
+   1. Test case: `findcontact n/***` <br>
+      Expected: No contact will be found. Error message for invalid contact name shown in the status message. The displayed contact list remains unchanged.
+
+   1. Test case: `findcontact t/$$` <br>
+      Expected: No contact will be found. Error message for invalid contact tag shown in the status message. The displayed contact list remains unchanged.
+
+   1. Test case: `findcontact` <br>
+      Expected: No contact will be found. Error message for invalid command format shown in the status message. The displayed contact list remains unchanged.
+
+
+#### Clearing all contacts
+
+1. Clearing contact list while all contacts are being shown.
+
+   1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
+
+   1. Test case: `clearcontact` <br>
+      Expected: All contacts cleared, displayed contact list should be empty.
+
+
+2. Clearing contact list while some contacts are being shown.
+
+   1. Prerequisites: List out some contacts using the `findcontact` command. A few contacts in the list.
+   
+   1. Test case: `clearcontact` <br>
+      Expected: All contacts cleared, displayed contact list should be empty.
+
+
+#### Listing all contact
+
+1. Listing all contacts while all contacts are being shown.
+
+   1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
+
+   1. Test case: `listcontact` <br>
+      Expected: Displayed contact list remains unchanged.
+
+
+2. Listing all contacts while some contacts are being shown.
+
+   1. Prerequisites: List out some contacts using the `findcontact` command. A few contacts in the list.
+   
+   1. Test case: `listcontact` <br>
+      Expected: All contacts in the contact list are displayed.
+
+
 
 
 ### Todo List
@@ -2959,8 +3483,71 @@ testers are expected to do more *exploratory* testing.
 #### Find Event
 1. Finding an Event using a valid event name
 
+<<<<<<< HEAD
+
+
+
+
+
+#### Finding a task
+
+1. Prerequisites: List out all tasks using the `listtask` command. Multiple tasks in the list.
+
+   1. Test case: `findtask n/lab` <br>
+      Expected: All tasks with their name containing the word `lab` will be displayed in the todolist panel.
+
+   1. Test case: `findtask t/easy` <br>
+      Expected: All tasks containing the tag `easy` will be displayed in the todolist panel.
+      
+   1. Test case: `findtask d/2020-01-01` <br>
+      Expected: All tasks with the date `2020-01-01` will be displayed in the todolist panel.
+      
+   1. Test case: `findtask p/high` <br>
+      Expected: All tasks with the priority `high` will be displayed in the todolist panel.
+   
+   1. Test case: `findtask s/completed` <br>
+      Expected: All tasks with the status `completed` will be displayed in the todolist panel.       
+
+   1. Test case: `findtask n/lab d/2020-01-01 p/high` <br>
+      Expected: All tasks which fulfil **all** the following criteria will be displayed in the todolist panel.
+        
+        * Task name contains the word `lab`
+        
+        * Has the date `2020-01-01`
+        
+        * Has the priority `high`
+
+   1. Test case: `findtask 1 t/easy` <br>
+      Expected: No task will be found. Error message for invalid command format shown in the status message. The displayed todolist remains unchanged.
+   
+   1. Test case: `findtask n/***` <br>
+      Expected: No task will be found. Error message for invalid task name shown in the status message. The displayed todolist remains unchanged.
+
+   1. Test case: `findtask t/$$` <br>
+      Expected: No task will be found. Error message for invalid task tag shown in the status message. The displayed todolist remains unchanged.
+
+   1. Test case: `findtask p/invalidPriority` <br>
+      Expected: No task will be found. Error message for invalid task priority shown in the status message. The displayed todolist remains unchanged.
+
+   1. Test case: `findtask d/invalidDate` <br>
+      Expected: No task will be found. Error message for invalid task date shown in the status message. The displayed todolist remains unchanged.
+   
+   1. Test case: `findtask s/invalidStatus` <br>
+      Expected: No task will be found. Error message for invalid task status shown in the status message. The displayed todolist remains unchanged.
+   
+   1. Test case: `findtask` <br>
+      Expected: No task will be found. Error message for invalid command format shown in the status message. The displayed todolist remains unchanged.
+
+
+
+
+
+### Event List
+
    1. Test case: `findevent n/CS2100`
       Expected: All Events with `CS2100` in its name will be displayed.
+
+
 
 ### Common Features
 
@@ -2995,6 +3582,7 @@ testers are expected to do more *exploratory* testing.
      
     1. Test case: `redo`<br>
        Expected: No command is redone. Error details shown in the status message.
+
 
 ### Saving data
 

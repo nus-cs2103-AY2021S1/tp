@@ -29,6 +29,8 @@ deactivate AddContactParser
 ContactListParser -> AddContactParser :parse(commandArgument)
 activate AddContactParser
 
+ref over AddContactParser: Parse command arguments and create Contact object
+
 create AddContactCommand
 AddContactParser -> AddContactCommand
 activate AddContactCommand
