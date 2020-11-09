@@ -120,7 +120,7 @@ simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. All the informatio
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
-* `DEADLINE_OF_ASSIGNMENT` must be in the format dd-MM-yyyy and time in the format HHmm (24-hour).
+* `DEADLINE_OF_ASSIGNMENT` must be in the format dd-MM-yyyy and time in the format HHmm (24-hour clock system).
 </div>
 
 <div markdown="span" class="alert alert-success">
@@ -130,7 +130,7 @@ If the lab report assignment is of **high priority**, you can enter `add n/Lab r
 
 More examples:
 * `add n/Lab report d/23-04-2020 1230 mod/CS2100 remind`
-* `add n/Lab report d/30-04-2020 1230 mod/CS2100`
+* `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH remind`
 
 ### Deleting assignments : `delete`
 
@@ -450,18 +450,18 @@ the command line based on the indexes labelled in the figure.
    
 2) The two assignments will be marked as done and each assignment will have a green tick displayed as labelled in the figure. 
 
-   ![UserGuideDoneCommandTicksAdded](images/UserGuideDoneCommandTicksAdded.PNG)
+   ![UserGuideDoneCommandTicksAdded](images/UserGuideDoneCommandSuccess.PNG)
    *Figure 23: Added ticks labelled*
 
 3) A message that includes the information of the assignments marked as done will be displayed in the Command Box.
 
-   ![UserGuideDoneCommandSuccess](images/UserGuideDoneCommandSuccess.PNG)
+   ![UserGuideDoneCommandSuccess](images/UserGuideDoneCommandTicks.PNG)
    *Figure 24: Message shown in Command Box labelled*
    
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
 * At least one index must be present. For example, `done` without any index is invalid.
-* The indexes **must be found in your assignment list**
+* The indexes **must be found in your assignment list**.
 * The indexes **must not be duplicated**. For example, `done 4 4` is invalid.
 </div>
 
@@ -473,7 +473,7 @@ Format: `undone INDEX`
 You can unmark assignments that you have previously marked as done by specifying the assignment `INDEX` as shown in your
  list.
 
-You can unmark `one` done assignment at a time. Here is an example with steps to follow:
+You can unmark `one` done assignment at a time. Here is an example with steps for you to follow:
 
 1) If you have **accidentally** marked the assignment with the name "Essay" as done,
 you can simply enter `undone 2` into the command line based on the index labelled in the figure.
@@ -493,9 +493,9 @@ you can simply enter `undone 2` into the command line based on the index labelle
    
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
-* Assignments are marked as not done **by default**
+* Assignments are marked as **not done by default**.
 * The index must be present. For example, `undone` without any index is invalid.
-* The index **must be found in your assignment list**
+* The index **must be found in your assignment list**.
 </div>
 
 ### Scheduling assignments: `schedule`
@@ -676,16 +676,16 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: 
+**Q: How do I transfer my data to another Computer?**<br>
+**A:** 
 1. Install the app in your other computer and start the app.
 2. Notice that a data file named `addressbook.json` is created under the `/data` folder.
 3. Close the app in your other computer.
 4. Overwrite the newly created data file with the data file from your previous computer.
 5. All your existing data has been successfully transferred!
 
-**Q**: I am not free during the time that my assignment has been scheduled. How do I reschedule?<br>
-**A**:
+**Q: I am not free during the time that my assignment has been scheduled. How do I reschedule?**<br>
+**A:**
 You can reschedule by using the schedule command on that assignment again.<br>
 
 1. Type the schedule command into the Command Box with the index of the assignment that you want to reschedule. You can refer to the diagram below.<br>
@@ -704,7 +704,7 @@ You can paste the command into the command box after step 2 and repeat step 1-2 
    *Figure 39: New suggested time for assignment labelled*
 <br>
 
-**Q**: I double-clicked the productivenus.jar file but the app is not starting. What should I do?<br>
+**Q: I double-clicked the productivenus.jar file but the app is not starting. What should I do?**<br>
 **A**: This is most likely caused by the *Security and Privacy Settings* of your operating system. You can either
 modify your *Security and Privacy Settings* (depends on your operating system) to accept
 anonymous files or run ProductiveNUS with the `Command Prompt`.
