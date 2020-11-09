@@ -1,6 +1,5 @@
 package seedu.jarvis.logic.parser;
 
-import static seedu.jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.jarvis.logic.commands.CommandTestUtil.EDIT_STUDENT;
 import static seedu.jarvis.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.jarvis.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
@@ -32,7 +31,9 @@ import seedu.jarvis.testutil.EditStudentDescriptorBuilder;
 
 public class EditStudentCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStudentCommand.MESSAGE_USAGE);
+            "The provided index is not valid as it is out of the accepted "
+                    + "range. To obtain the valid index, use the view command and take note of the "
+                    + "leftmost identifier of each item in the list.";
 
     private EditCommandParser parser = new EditCommandParser();
 
