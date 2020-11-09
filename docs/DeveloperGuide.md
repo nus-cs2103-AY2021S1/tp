@@ -344,7 +344,7 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
 </div>
 
-Step 1. The user launches the application for the first time. The `ModelManager` will be initialized with the empty `mcGymmyStack`.
+Step 1. The user launches the application for the first time. The `ModelManager` will be initialized with the empty `History`.
 
 ![UndoState0](images/UndoState0.png)
 
@@ -400,7 +400,7 @@ The following sequence diagram shows how the undo operation works:
 
 <div markdown="span" class="alert alert-info">
    
-:information_source: **Note:** The method ModelManager::updateModelManager is a simplification of updating the McGymmy, updating the filterPredicate and updating the filteredFoodList separately.
+:information_source: **Note:** The method <code>ModelManager::updateModelManager</code> is a simplification of updating the McGymmy, updating the filterPredicate and updating the filteredFoodList separately.
 
 </div>
 
@@ -410,7 +410,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### 7.4.2 Design consideration:
 
-#### 7.4.2.1 Aspect: How undo executes
+##### 7.4.2.1 Aspect: How undo executes
 
 * **Alternative 1 (current choice):** Saves the entire ModelManger database.
     * Pros: Easy to implement.
