@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.FitNus;
+import seedu.address.model.calorie.Calorie;
 import seedu.address.model.calorie.DailyCalorie;
 import seedu.address.testutil.TypicalExercises;
 import seedu.address.testutil.TypicalLessons;
@@ -157,7 +158,8 @@ public class JsonSerializableFitNusTest {
         FitNus actualFitNus = dataFromFile.toModelType();
         FitNus expectedFitNus = TypicalRoutines.getTypicalFitNus();
         DailyCalorie dailyCalorie = new DailyCalorie(LocalDate.of(2020, 11, 8));
-        dailyCalorie.addCalories(1500);
+        Calorie modelCalorie = new Calorie(1500);
+        dailyCalorie.addCalories(modelCalorie);
         List<DailyCalorie> calorieLog = new ArrayList<>();
         calorieLog.add(dailyCalorie);
         expectedFitNus.addCalorieEntries(calorieLog);

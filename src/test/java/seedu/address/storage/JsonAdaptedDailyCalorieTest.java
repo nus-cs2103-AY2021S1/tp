@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.calorie.Calorie;
 import seedu.address.model.calorie.DailyCalorie;
 
 public class JsonAdaptedDailyCalorieTest {
@@ -19,7 +20,7 @@ public class JsonAdaptedDailyCalorieTest {
 
     @BeforeAll
     static void init() {
-        VALID_DAILY_CALORIE.addCalories(1500);
+        VALID_DAILY_CALORIE.addCalories(new Calorie(1500));
     }
     @Test
     public void toModelType_allValidInputs_success() {
