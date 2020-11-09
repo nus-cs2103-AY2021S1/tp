@@ -71,7 +71,6 @@ This section details the notations used to specify the command formats in the [c
     * `amt/200 at/2020-04-10 18:00`
     * `amt/200 at/2020-04-10`
     * `amt/200 at/18:00`
-    * `amt/200 at/2020-04-10`
     * `amt/200`
   * Notice that the `AMOUNT` field is compulsory.
 * Inputs that require date and time have specific formats.
@@ -223,7 +222,7 @@ Now, we are going to learn how to navigate through your inventory records using 
 
 For this section, ensure that you have least three inventory records in NUStorage.
 This is not necessary for the functionality of this command but rather to make the outcome of the command clear.
-If you are having trouble adding additional inventory records, please refer to the [Create Inventory Records](#511-add-items-to-inventory-create_inventory) section.
+If you are having trouble adding additional inventory records, please refer to the [Add Inventory Records](#511-add-items-to-inventory-create_inventory) section.
 
 After adding enough inventory records, your list would look something like this:
 ![Inventory with three records](images/anotherInventory_withThreeRecords.jpg)
@@ -246,7 +245,7 @@ __Example:__ `find_inventory ip` finds all inventory records containing the word
 Enter the sample command as shown below:
 ![Edit inventory command example](images/commands/find_inventory_command.jpg)
 
-__Result:__ lists all inventory records with item names that contain `ip`.
+__Result:__ All inventory records with item names that contain `ip` are listed.
 
 ![Edit inventory result example](images/commands/find_inventory_result.jpg)
 
@@ -263,7 +262,7 @@ For this section, we will be resuming where we left off in the [Find Inventory R
 Our NUStorage currently looks like this:
 ![Inventory after find command](images/inventory_after_find_command.jpg)
 
-Even though we have three inventory records stored, we only have two displayed as we entered a [find command](#514-find-record-in-inventory-find_inventory).
+Even though we have three inventory records stored, we only have two displayed as we entered a [`find_inventory` command](#514-find-record-in-inventory-find_inventory).
 
 **:information_source: What this command does:**
 
@@ -280,7 +279,7 @@ __Example:__ `list_inventory`
 Enter the sample command as shown below:
 ![List inventory command example](images/commands/list_inventory_command.jpg)
 
-__Result:__ lists all inventory records.
+__Result:__ All inventory records are listed.
 
 ![List inventory result example](images/commands/list_inventory_result.jpg)
 
@@ -305,7 +304,7 @@ Currently, our NUStorage looks like this:
 
 `update_inventory` allows us to update the quantity of a specified inventory record with the specified change in quantity.
 
-**NOTE** `update_quantity` allows for both the increase and decrease in quantity of a specified inventory record.
+**NOTE:** `update_inventory` allows for both the increase and decrease in quantity of a specified inventory record.
 However, the updated quantity must not only be more than zero, it must also not exceed 2 billion.
 
 **:information_source: Using the command:** Below are instructions on how to use the `update_inventory` command.
@@ -315,12 +314,12 @@ __Format:__ `update_inventory INDEX q/CHANGE_IN_QUANTITY`
 This allows us to update the quantity of the inventory record with the ID of `INDEX` by the `CHANGE_IN_QUANTITY` specified.
 
 __Example:__ `update_inventory 1 q/5` increases the quantity of the inventory with the ID of 1 by `5` and updates the linked finance record.
-`CHANGE_IN_QUANTITY` can be of negative values to0, in which case it would be specifying a decrease in quantity.
+`CHANGE_IN_QUANTITY` can be of negative values too, in which case it would be specifying a decrease in quantity.
 
 Enter the sample command as shown below:
 ![List inventory command example](images/commands/update_inventory_command.jpg)
 
-__Result:__ Updated inventory record at `1` from `30` to `35`.
+__Result:__ Inventory record at `1` is updated from `30` to `35`.
 
 ![List inventory result example](images/commands/update_inventory_result.jpg)
 
@@ -338,7 +337,7 @@ The following sections detail the commands related to finance storage in alphabe
 Commands in this section are best executed when you are in the finance tab.
 If you do not know how to switch to the finance tab, please refer to the [switch between tabs](#534-switch-tabs-switch) section for more information.
 
-**NOTE:** Some of these commands only work for [stand-alone finance records](#8-glossary-and-terms) (i.e. finance records that are not attached to any inventory records).
+**NOTE:** Some commands only work for [stand-alone finance records](#8-glossary-and-terms) (i.e. finance records that are not attached to any inventory records).
 
 #### 5.2.1. Add finance records: `add_finance`
 
@@ -352,7 +351,7 @@ This is where `add_finance` comes in handy.
 
 `add_finance` allows us to add a stand-alone finance record into NUStorage's.
 
-Note that this command **can only add a stand-alone finance record**.
+**NOTE:** This command can only add a stand-alone finance record.
 
 **:information_source: Using the command:** Below are instructions on how to use the `add_finance` command.
 
@@ -360,16 +359,18 @@ __Format:__ `add_finance amt/AMOUNT [at/DATE] [TIME]`
 
 This creates a new finance record of amount `AMOUNT`. If `DATE` and `TIME` are specified, the finance record would reflect that `DATE` and `TIME` in the record.
 
-**NOTE:** If the Date and Time fields are not specified, they will default to the current location's Date and Time.
+**NOTE:** 
+- If the Date and Time fields are not specified, they will default to the current location's Date and Time.
+- The Amount field will be rounded to the nearest 2 decimal place. 
 
 __Example:__ `add_finance amt/30000 at/2020-03-03`
 
-This creates a new finance record of amount `$30000` on `3rd March 2020`
+This creates a new finance record of amount `30000` on `3rd March 2020`
 
 Enter the example command into the command box as shown below:
 ![Add finance command example](images/commands/add_finance_command.jpg)
 
-__Result:__ Finance record of amount `$30000` on `3rd March 2020` is added to the finance account:
+__Result:__ Finance record of amount `30000` on `3rd March 2020` is added to the finance account:
 ![Add finance result example](images/commands/add_finance_result.jpg)
 
 ---
@@ -386,7 +387,7 @@ If you are unclear on how to do so, refer to the [Add Finance Records](#521-add-
 
 `delete_finance` allows us to delete a stand-alone finance record currently stored within NUStorage.
 
-Note that this command **can only delete a stand-alone finance record**.
+**NOTE:** This command can only delete a stand-alone finance record.
 
 **:information_source: Using the command:** Below are instructions on how to use the `delete_finance` command.
 
@@ -421,7 +422,7 @@ Your NUStorage application should currently look something like this:
 `edit_finance` allows us to edit details of the stand-alone finance records currently stored within NUStorage.
 Currently, with `edit_finance`, we are able to edit a finance record's amount and date.
 
-Note that this command **can only edit a stand-alone finance record**.
+**NOTE:** This command can only edit a stand-alone finance record.
 
 **:information_source: Using the command:** Below are instructions on how to use the `edit_finance` command.
 
@@ -430,22 +431,22 @@ __Format:__ `edit_finance INDEX amt/AMOUNT [at/DATE]`
 This allows us to change the amount and date details of the finance record with the `INDEX` ID.
 Note that `INDEX` must be the **first** parameter for this command.
 
+**NOTE:** The Amount field will be rounded to the nearest 2 decimal place. 
+
 __Example:__ `edit_finance 1 amt/120`
 
-This changes the amount of the finance record with the ID of `1` to `120`.
+This changes the amount of the finance record at index `1` to `120`.
 
 Enter the example command into the command box as shown below:
 ![Edit finance command example](images/commands/edit_finance_command.jpg)
 
-__Result:__ Finance amount changed from `$100` to `$120` while the date remains unchanged.
+__Result:__ Finance amount changed from `100` to `120` while the date remains unchanged.
 
 ![Edit finance result example](images/commands/edit_finance_result.jpg)
 
 ---
 
 #### 5.2.4. Find a finance record with a specified keyword: `find_finance`
-
-**:information_source: Notes about the command:**
 
 Previously, in the [Edit Finance Records](#523-edit-a-finance-record-edit_finance) section, we have learnt how to edit a stand-alone finance record.
 For this section, let us first add some more finance records to populate our finance account.
@@ -456,15 +457,17 @@ If you are having trouble adding finance records refer to the sections on [Add F
 Currently, your NUStorage application should look something like this:
 ![Finance with three records](images/finance_withThreeRecords.jpg)
 
-In the event that we have multiple records, it can get a little tedious to locate a certain finance record.
-We can use the `find_finance` command to find finance records that contain the specified keyword and display them on the record panel.
+**:information_source: What this command does:**
+
+`find_finance` allows us to find finance records that contain the specified keyword and display them on the record panel.
+This command will help in the event that we have multiple records, and locating a certain finance record can get tedious.
 
 **:information_source: Using the command:** Below are instructions on how to use the `find_finance` command.
 
 __Format:__ `find_finance [id/ID] [aft/AFTDATE] [bef/BEFDATE] [item/YESNO]`
 
 This allows us to find all finance records with a finance ID that contains `ID` that were created after the date `AFTDATE` but before the date `BEFDATE`.
-The parameter `[item/YESNO]` to choose between finance recrods tied to inventory records, or finance records that are stand-alone (`yes` to find only the finance records tied to inventory records, `no` to find stand-alone records only).
+The parameter `[item/YESNO]` to choose between finance records tied to inventory records, or finance records that are stand-alone (`yes` to find only the finance records tied to inventory records, `no` to find stand-alone records only).
 
 __Example:__ `find_finance id/8 aft/2019-10-20 bef/2020-12-30 item/no`
 
@@ -483,8 +486,6 @@ __Result:__ Finance records that fit the parameters are listed. Below shows the 
 
 #### 5.2.5. List finance records: `list_finance`
 
-**:information_source: Notes about the command:**
-
 Previously, in the [Find Finance Records](#524-find-a-finance-record-with-a-specified-keyword-find_finance) section, we have learnt how to find certain finance records that contains our provided parameters.
 For this section, we will be reusing the examples from the [Find Finance Records](#524-find-a-finance-record-with-a-specified-keyword-find_finance) section.
 
@@ -493,11 +494,15 @@ Currently, our NUStorage should look like this:
 
 After finding certain records, chances are we would like to display all the records again. This can be achieved using the `list_finance` command.
 
-The `list_finance` command will result in NUStorage displaying all the finance records stored within it.
+**:information_source: What this command does:**
+
+`list_finance` displays all stored finance records in NUStorage.
 
 **:information_source: Using the command:** Below are instructions on how to use the `list_finance` command.
 
 __Format:__ `list_finance`
+
+This command retrieves all stored finance records in NUStorage and display them.
 
 __Example:__ `list_finance`
 
@@ -589,7 +594,7 @@ __Example:__ `switch`
   1. Make sure you are on the finance tab first.
   2. Then, type in the command as shown below and press enter to execute the command.
   ![Switch from finance to inventory 1](images/commands/switch_command_finance_start.jpg)
-  3. You should see the window changing to the finance tab, as shown below.
+  3. You should see the window changing to the inventory tab, as shown below.
   ![Switch from finance to inventory 1](images/commands/switch_command_finance_toinventory.jpg)
 
 __Result:__ Tabs switched.
