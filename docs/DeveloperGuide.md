@@ -219,6 +219,9 @@ The following shows a Class Diagram of the structure of Quiz components:
 * `isMcq()` - Checks if question is Mcq or TrueFalse.
 * `setSelectedIndex(int index)` - Sets user answer as selected option.
 
+The general workflow of quiz feature is represented by the following Activity Diagram:
+![QuizWorkflow](images/QuizActivityDiagram.png)
+
 These operations are exposed in the `Model` interface as `Model#startQuiz()`,`Model#enterQuiz()`,`Model#exitQuiz()` `Model#endQuiz()` and `Model#attemptQuestion()` respectively.
 
 Given below is an example usage scenario and how to do quiz.
