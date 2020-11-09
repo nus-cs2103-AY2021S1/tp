@@ -14,7 +14,7 @@ marks()
 unmarks()
 }
 
-Training o-- "*" Student
-Student o-- "*" Attendance
+Training --> "*" Student
+Student --> "*" Attendance
 
 @enduml
