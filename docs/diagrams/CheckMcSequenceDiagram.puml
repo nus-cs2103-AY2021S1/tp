@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":GradPadParser" as GradPadParser LOGIC_COLOR
+participant "C:CheckMcCommand" as CheckMcCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "gradpad:GradPad" as GradPad MODEL_COLOR
+end box
+
+[-> LogicManager : execute("checkmc")
+activate LogicManager
+
+LogicManager -> GradPadParser : parseCommand("checkmc")
+activate GradPadParser
+
+create CheckMcCommand
+GradPadParser -> CheckMcCommand
+activate CheckMcCommand
+
+CheckMcCommand -> GradPadParser : C
+deactivate CheckMcCommand
+
+GradPadParser --> LogicManager : C
+deactivate GradPadParser
+
+LogicManager -> CheckMcCommand : execute()
+activate CheckMcCommand
+
+CheckMcCommand -> Model : getGradPad()
+activate Model
+
+Model --> CheckMcCommand : gradpad
+deactivate Model
+
+CheckMcCommand -> GradPad : getModuleList()
+activate GradPad
+
+GradPad -> CheckMcCommand : modules
+deactivate GradPad
+
+CheckMcCommand -> CheckMcCommand
+activate CheckMcCommand
+note left: sum up MCs of all modules
+
+CheckMcCommand -> CheckMcCommand
+deactivate CheckMcCommand
+
+create CommandResult
+CheckMcCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> CheckMcCommand
+deactivate CommandResult
+
+CheckMcCommand --> LogicManager
+deactivate CheckMcCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+start
+:User enters command;
+if () then ([GradPad awaiting confirmation])
+    if () then ([isConfirmation])
+        :Execute stalled command;
+    else ([isCancel])
+        :Abort stalled command;
+endif
+else ([else])
+    if () then ([requiresStall])
+        :Handle stall;
+    else ([else])
+        :Execute Command;
+endif
+endif
+stop
+@enduml

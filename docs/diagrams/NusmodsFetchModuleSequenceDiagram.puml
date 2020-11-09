@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+
+box Nusmods NUSMODS_COLOR_T1
+participant ":NusmodsDataManager" as NusmodsDataManager NUSMODS_COLOR
+participant ":DataFetcherManager" as DataFetcherManager NUSMODS_COLOR
+end box
+
+box Commons LOGIC_COLOR_T1
+participant ":HttpUtil" as HttpUtil LOGIC_COLOR_T3
+end box
+
+[-> NusmodsDataManager : getModuleInfo(code)
+activate NusmodsDataManager
+
+NusmodsDataManager -> DataFetcherManager : fetchModuleInfo(code)
+activate DataFetcherManager
+
+DataFetcherManager -> HttpUtil : makeGETRequest(API_URL)
+activate HttpUtil
+
+HttpUtil --> DataFetcherManager : moduleJsonResponse
+deactivate HttpUtil
+
+DataFetcherManager --> NusmodsDataManager : moduleInfo
+deactivate DataFetcherManager
+
+[<--NusmodsDataManager : moduleInfo
+deactivate NusmodsDataManager
+@enduml

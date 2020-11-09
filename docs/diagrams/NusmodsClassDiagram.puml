@@ -1,0 +1,21 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor NUSMODS_COLOR
+skinparam classBackgroundColor NUSMODS_COLOR
+
+Interface NusmodsData <<Interface>>
+Class "{abstract}\nDataFetcher" as DataFetcher
+
+Class DataFetcherManager
+Class NusmodsDataManager
+Class ModuleSummary
+Class ModuleInfo
+
+NusmodsDataManager -up-|> NusmodsData
+NusmodsDataManager .down.> ModuleInfo
+NusmodsDataManager .right.> DataFetcher : may get module data from >
+DataFetcherManager .left.|> DataFetcher
+DataFetcherManager ..> ModuleSummary
+DataFetcherManager ..> ModuleInfo : creates >
+@enduml

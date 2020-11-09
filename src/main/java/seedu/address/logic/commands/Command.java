@@ -17,4 +17,12 @@ public abstract class Command {
      */
     public abstract CommandResult execute(Model model) throws CommandException;
 
+    /**
+     * Checks if the command requires confirmation from the user and needs to be stalled.
+     *
+     * @return generally returns false as most commands do not require confirmation from the user.
+     */
+    public boolean requiresStall() {
+        return false;
+    }
 }

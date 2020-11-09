@@ -1,0 +1,18 @@
+{
+  "modules" : [ {
+    "tagged" : [ "MathAndSciences" ],
+    "code" : "MA1521",
+    "title" : "Calculus for Computing",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "MathAndSciences" ],
+    "code" : "MA1101R",
+    "title" : "Linear Algebra I",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "MathAndSciences" ],
+    "code" : "ST2334",
+    "title" : "Probability and Statistics",
+    "credits" : "4"
+  } ]
+}

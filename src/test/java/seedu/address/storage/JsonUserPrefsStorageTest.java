@@ -73,7 +73,7 @@ public class JsonUserPrefsStorageTest {
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
-        userPrefs.setAddressBookFilePath(Paths.get("addressbook.json"));
+        userPrefs.setGradPadFilePath(Paths.get("gradpad.json"));
         return userPrefs;
     }
 
@@ -119,5 +119,4 @@ public class JsonUserPrefsStorageTest {
         readBack = jsonUserPrefsStorage.readUserPrefs().get();
         assertEquals(original, readBack);
     }
-
 }

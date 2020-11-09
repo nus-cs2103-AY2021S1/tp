@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":GradPadParser" as GradPadParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "f:FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "c:CompoundFindPredicate" as CompoundFindPredicate MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find cs foundation")
+activate LogicManager
+
+LogicManager -> GradPadParser : parseCommand("find cs foundation")
+activate GradPadParser
+
+create FindCommandParser
+GradPadParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser --> GradPadParser
+deactivate FindCommandParser
+
+GradPadParser -> FindCommandParser : parse("cs foundation")
+activate FindCommandParser
+
+create CompoundFindPredicate
+FindCommandParser -> CompoundFindPredicate
+activate CompoundFindPredicate
+
+CompoundFindPredicate --> FindCommandParser : c
+deactivate CompoundFindPredicate
+
+create FindCommand
+FindCommandParser -> FindCommand : new FindCommand(c)
+activate FindCommand
+
+FindCommand --> FindCommandParser : f
+deactivate FindCommand
+
+FindCommandParser --> GradPadParser : f
+deactivate FindCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindCommandParser -[hidden]-> GradPadParser
+destroy FindCommandParser
+
+GradPadParser --> LogicManager : f
+deactivate GradPadParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> Model : updateFilteredModuleList(c)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

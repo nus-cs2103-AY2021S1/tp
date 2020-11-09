@@ -1,0 +1,68 @@
+{
+  "modules" : [ {
+    "tagged" : [ "GES" ],
+    "code" : "GES1002",
+    "title" : "Global Economic Dimensions of Singapore",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GES" ],
+    "code" : "GES1003",
+    "title" : "Changing Landscapes of Singapore",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GES" ],
+    "code" : "GES1005",
+    "title" : "Everyday Life of Chinese Singaporean: Past & Present",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GES" ],
+    "code" : "GES1007",
+    "title" : "South Asia In Singapore",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GES" ],
+    "code" : "GES1008",
+    "title" : "Ethnicity and Nation-Building",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GES" ],
+    "code" : "GES1011",
+    "title" : "The Evolution of a Global City-State",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GES" ],
+    "code" : "GES1012",
+    "title" : "Popular Culture in Singapore",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GES" ],
+    "code" : "GES1021",
+    "title" : "Natural Heritage Of Singapore",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GES" ],
+    "code" : "GES1024",
+    "title" : "Real Estate Development & Investment Law",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GES" ],
+    "code" : "GES1026",
+    "title" : "Urban Planning In Singapore",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GES" ],
+    "code" : "GES1031",
+    "title" : "Culture & Communication In Singapore",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GES" ],
+    "code" : "GES1033",
+    "title" : "Who Moved My OB Markers?",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GES" ],
+    "code" : "GES1035",
+    "title" : "Singapore: Imagining the Next 50 years",
+    "credits" : "4"
+  }]
+}

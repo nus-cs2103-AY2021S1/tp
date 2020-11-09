@@ -10,6 +10,9 @@ public class CommandException extends Exception {
 
     /**
      * Constructs a new {@code CommandException} with the specified detail {@code message} and {@code cause}.
+     *
+     * @param message the specified message.
+     * @param cause the specified cause.
      */
     public CommandException(String message, Throwable cause) {
         super(message, cause);

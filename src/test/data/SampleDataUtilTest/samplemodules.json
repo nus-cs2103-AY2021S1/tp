@@ -1,0 +1,33 @@
+{
+  "modules" : [ {
+    "tagged" : [ "Foundation" ],
+    "code" : "CS2103T",
+    "title" : "Software Engineering",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Foundation" ],
+    "code" : "CS1010",
+    "title" : "Programming Methodology",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Foundation" ],
+    "code" : "CS2101",
+    "title" : "Effective Communication for Computing Professionals",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Foundation" ],
+    "code" : "CS2105",
+    "title" : "Introduction to Computer Networks",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "MathSci" ],
+    "code" : "MA1521",
+    "title" : "Calculus for Computing",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "BreadthDepth" ],
+    "code" : "CS2107",
+    "title" : "Introduction to Information Security",
+    "credits" : "4"
+  }]
+}

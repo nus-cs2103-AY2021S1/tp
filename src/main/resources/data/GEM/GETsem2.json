@@ -1,0 +1,13 @@
+{
+  "modules" : [ {
+    "tagged" : [ "GET" ],
+    "code" : "GET1046",
+    "title" : "I do not think therefore I am",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GET" ],
+    "code" : "GET1048",
+    "title" : "Science: From Thinking to Narratives",
+    "credits" : "4"
+  }]
+}

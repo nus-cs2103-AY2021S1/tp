@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":GradPadParser" as GradPadParser LOGIC_COLOR
+participant "S:ScienceCommand" as ScienceCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant "Rs:RequiredCommandStorage" as RequiredCommandStorage STORAGE_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("science")
+activate LogicManager
+
+LogicManager -> GradPadParser : parseCommand("science")
+activate GradPadParser
+
+create ScienceCommand
+GradPadParser -> ScienceCommand
+activate ScienceCommand
+
+ScienceCommand --> GradPadParser : S
+deactivate ScienceCommand
+
+GradPadParser --> LogicManager : S
+deactivate GradPadParser
+
+LogicManager -> ScienceCommand : execute()
+activate ScienceCommand
+
+ScienceCommand -> ScienceCommand : setScienceModules(SCIENCE_PATH)
+activate ScienceCommand
+
+create RequiredCommandStorage
+ScienceCommand -> RequiredCommandStorage : RequiredCommandStorage()
+activate RequiredCommandStorage
+
+RequiredCommandStorage --> ScienceCommand : Rs
+deactivate RequiredCommandStorage
+
+ScienceCommand -> RequiredCommandStorage : setRequiredScience(SCIENCE_PATH)
+activate RequiredCommandStorage
+
+RequiredCommandStorage --> ScienceCommand : scienceModules
+deactivate RequiredCommandStorage
+
+deactivate ScienceCommand
+
+ScienceCommand -> Model : hasModule(scienceModules)
+activate Model
+
+Model --> ScienceCommand : filteredScienceModules
+deactivate Model
+
+create CommandResult
+ScienceCommand -> CommandResult : filteredScienceModules
+activate CommandResult
+
+CommandResult --> ScienceCommand
+deactivate CommandResult
+
+ScienceCommand --> LogicManager
+deactivate ScienceCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

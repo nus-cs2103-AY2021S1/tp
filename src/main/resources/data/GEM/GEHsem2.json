@@ -1,0 +1,23 @@
+{
+  "modules" : [ {
+    "tagged" : [ "GEH" ],
+    "code" : "GEH1005",
+    "title" : "Crime Fiction in English and Chinese",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GEH" ],
+    "code" : "GEH1006",
+    "title" : "Chinese Music, Language And Literature (In English)",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GEH" ],
+    "code" : "GEH1049",
+    "title" : "Public Health In Action",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GEH" ],
+    "code" : "GEH1074",
+    "title" : "Luck",
+    "credits" : "4"
+  }]
+}

@@ -1,0 +1,132 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":GradPadParser" as GradPadParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant ":ModuleInfoSearcher" as ModuleInfoSearcher LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Nusmods NUSMODS_COLOR_T1
+participant ":NusmodsDataManager" as NusmodsDataManager NUSMODS_COLOR
+participant ":ModuleInfo" as ModuleInfo NUSMODS_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Module" as Module MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add cs1231")
+activate LogicManager
+
+LogicManager -> GradPadParser : parseCommand("add cs1231")
+activate GradPadParser
+
+create AddCommandParser
+GradPadParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> GradPadParser
+deactivate AddCommandParser
+
+GradPadParser -> AddCommandParser : parse("cs1231")
+activate AddCommandParser
+
+AddCommandParser -> ParserUtil : parseModuleCode("cs1231")
+activate ParserUtil
+
+ParserUtil --> AddCommandParser : code
+deactivate ParserUtil
+
+AddCommandParser -> ModuleInfoSearcher : searchModule(code)
+activate ModuleInfoSearcher
+
+ModuleInfoSearcher -> NusmodsDataManager : getModuleInfo(code)
+activate NusmodsDataManager
+
+NusmodsDataManager --> ModuleInfoSearcher : moduleInfo
+deactivate NusmodsDataManager
+
+ModuleInfoSearcher --> AddCommandParser : moduleInfo
+deactivate ModuleInfoSearcher
+
+AddCommandParser -> ParserUtil : parseModuleTitle()
+activate ParserUtil
+
+ParserUtil -> ModuleInfo : getTitle()
+activate ModuleInfo
+
+ModuleInfo --> ParserUtil : title
+deactivate ModuleInfo
+
+ParserUtil --> AddCommandParser : title
+deactivate ParserUtil
+
+AddCommandParser -> ParserUtil : parseModularCredits()
+activate ParserUtil
+
+ParserUtil -> ModuleInfo : getModuleCredit()
+activate ModuleInfo
+
+ModuleInfo --> ParserUtil : credits
+deactivate ModuleInfo
+
+ParserUtil --> AddCommandParser : credits
+deactivate ParserUtil
+
+AddCommandParser -> ParserUtil : parseTags("")
+activate ParserUtil
+
+ParserUtil --> AddCommandParser : tagList
+deactivate ParserUtil
+
+create Module
+AddCommandParser -> Module : Module(code, title, credits, tagList)
+activate Module
+
+Module --> AddCommandParser
+deactivate Module
+
+create AddCommand
+AddCommandParser -> AddCommand : AddCommand(Module)
+activate AddCommand
+
+AddCommand --> AddCommandParser : a
+deactivate AddCommand
+
+AddCommandParser --> GradPadParser : a
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> GradPadParser
+destroy AddCommandParser
+
+GradPadParser --> LogicManager : a
+deactivate GradPadParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> Model : addModule(Module)
+activate Model
+
+Model --> AddCommand
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : result
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

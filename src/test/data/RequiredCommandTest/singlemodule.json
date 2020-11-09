@@ -1,0 +1,9 @@
+{
+  "modules": [
+    { "tagged": [ "Foundation" ],
+      "code": "CS1101S",
+      "credits": "4",
+      "title" : "Programming Methodology"
+    }
+  ]
+}

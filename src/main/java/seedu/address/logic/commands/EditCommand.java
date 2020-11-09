@@ -1,12 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.commons.core.Messages.MESSAGE_ALL_EDIT_FIELDS_SAME;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_MODULE;
+import static seedu.address.commons.core.Messages.MESSAGE_EDIT_SUCCESS;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MODULE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,92 +13,81 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.module.ModularCredits;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing module in the GradPad.
  */
 public class EditCommand extends Command {
-
-    public static final String COMMAND_WORD = "edit";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
-
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
-
-    private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final ModuleCode code;
+    private final EditModuleDescriptor editModuleDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * Creates an EditCommand to edit the module with the specified {@code EditModuleDescriptor}.
+     *
+     * @param code the module code of the module in GradPad to edit.
+     * @param editModuleDescriptor the descriptor which contains details to edit the module with.
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+    public EditCommand(ModuleCode code, EditModuleDescriptor editModuleDescriptor) {
+        requireNonNull(code);
+        requireNonNull(editModuleDescriptor);
 
-        this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.code = code;
+        this.editModuleDescriptor = new EditModuleDescriptor(editModuleDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Module> modules = model.getGradPad().getModuleList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        Optional<Module> moduleToEdit = modules.stream()
+            .filter(x -> x.getModuleCode().equals(code)).findFirst();
+        if (moduleToEdit.isEmpty()) {
+            throw new CommandException(String.format(MESSAGE_INVALID_MODULE, code.toString()));
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Module editedModule = createEditedModule(moduleToEdit.get(), editModuleDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (moduleToEdit.get().equals(editedModule)) {
+            throw new CommandException(MESSAGE_ALL_EDIT_FIELDS_SAME);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        if (!moduleToEdit.get().isSameModule(editedModule) && model.hasModule(editedModule)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_MODULE, editedModule.getModuleCode()));
+        }
+
+        model.setModule(moduleToEdit.get(), editedModule);
+        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        return new CommandResult(String.format(MESSAGE_EDIT_SUCCESS, moduleToEdit.get(), editedModule));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Module} with the details of {@code moduleToEdit}
+     * edited with {@code editModuleDescriptor}.
+     *
+     * @param moduleToEdit the module to edit.
+     * @param editModuleDescriptor
+     * @return
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Module createEditedModule(Module moduleToEdit, EditModuleDescriptor editModuleDescriptor) {
+        assert moduleToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        ModuleCode updatedCode = editModuleDescriptor.getModuleCode().orElse(moduleToEdit.getModuleCode());
+        ModuleTitle updatedTitle = editModuleDescriptor.getModuleTitle()
+            .orElse(moduleToEdit.getModuleTitle());
+        ModularCredits updatedCredits = editModuleDescriptor.getModularCredits()
+            .orElse(moduleToEdit.getModularCredits());
+        Set<Tag> updatedTags = editModuleDescriptor.getTags().orElse(moduleToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Module(updatedCode, updatedTitle, updatedCredits, updatedTags);
     }
 
     @Override
@@ -116,32 +104,30 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+        return code.equals(e.code)
+            && editModuleDescriptor.equals(e.editModuleDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the module with. Each non-empty field value will replace the
+     * corresponding field value of the module.
      */
-    public static class EditPersonDescriptor {
-        private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
+    public static class EditModuleDescriptor {
+        private ModuleCode code;
+        private ModuleTitle title;
+        private ModularCredits credits;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditModuleDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
-            setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
+        public EditModuleDescriptor(EditModuleDescriptor toCopy) {
+            setModuleCode(toCopy.code);
+            setModuleTitle(toCopy.title);
+            setModularCredits(toCopy.credits);
             setTags(toCopy.tags);
         }
 
@@ -149,39 +135,31 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(code, title, credits, tags);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setModuleCode(ModuleCode code) {
+            this.code = code;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<ModuleCode> getModuleCode() {
+            return Optional.ofNullable(code);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setModuleTitle(ModuleTitle title) {
+            this.title = title;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<ModuleTitle> getModuleTitle() {
+            return Optional.ofNullable(title);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setModularCredits(ModularCredits credits) {
+            this.credits = credits;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<ModularCredits> getModularCredits() {
+            return Optional.ofNullable(credits);
         }
 
         /**
@@ -209,18 +187,17 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditModuleDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditModuleDescriptor e = (EditModuleDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+            return getModuleCode().equals(e.getModuleCode())
+                && getModuleTitle().equals(e.getModuleTitle())
+                && getModularCredits().equals(e.getModularCredits())
+                && getTags().equals(e.getTags());
         }
     }
 }

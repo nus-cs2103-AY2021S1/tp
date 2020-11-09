@@ -1,6 +1,9 @@
 package seedu.address;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Paths;
 import java.util.Collections;
@@ -35,6 +38,43 @@ public class AppParametersTest {
         parametersStub.namedParameters.put("config", "a\0");
         expected.setConfigPath(null);
         assertEquals(expected, AppParameters.parse(parametersStub));
+    }
+
+    @Test
+    public void equalsTest() {
+        expected.setConfigPath(Paths.get("config.json"));
+        AppParameters appParameters = new AppParameters();
+
+        // valid same AppParameters -> returns true
+        assertTrue(expected.equals(expected));
+
+        // valid same paths different AppParameters -> returns true
+        appParameters.setConfigPath(Paths.get("config.json"));
+        assertTrue(expected.equals(appParameters));
+
+        // different path -> returns false
+        appParameters.setConfigPath(Paths.get("config2.json"));
+        assertFalse(expected.equals(appParameters));
+
+        // different class -> returns false
+        assertFalse(expected.equals(1));
+    }
+
+    @Test
+    public void hashCodeTest() {
+        expected.setConfigPath(Paths.get("config.json"));
+        AppParameters appParameters = new AppParameters();
+
+        // valid same AppParameters -> returns true
+        assertEquals(expected.hashCode(), expected.hashCode());
+
+        // valid same paths different AppParameters -> returns true
+        appParameters.setConfigPath(Paths.get("config.json"));
+        assertEquals(expected.hashCode(), appParameters.hashCode());
+
+        // different path -> returns false
+        appParameters.setConfigPath(Paths.get("config2.json"));
+        assertNotEquals(expected.hashCode(), appParameters.hashCode());
     }
 
     private static class ParametersStub extends Application.Parameters {

@@ -1,0 +1,38 @@
+@startuml
+!include style.puml
+
+box Model MODEL_COLOR_T1
+participant ":GradPad" as GradPad MODEL_COLOR
+participant ":UniqueTagMap" as UniqueTagMap MODEL_COLOR
+participant ":UniqueModuleList" as UniqueModuleList MODEL_COLOR
+participant ":Tag" as Tag MODEL_COLOR
+end box
+
+[-> GradPad : removeModule(m)
+activate GradPad
+
+GradPad -> UniqueTagMap : remove(m.tags)
+activate UniqueTagMap
+
+loop for tag in m.tags
+
+UniqueTagMap -> Tag : decrementModuleCount()
+activate Tag
+
+Tag --> UniqueTagMap
+deactivate Tag
+
+end
+
+UniqueTagMap --> GradPad
+deactivate UniqueTagMap
+
+GradPad -> UniqueModuleList : remove(m)
+activate UniqueModuleList
+
+UniqueModuleList --> GradPad
+deactivate UniqueModuleList
+
+[<--GradPad
+deactivate GradPad
+@enduml

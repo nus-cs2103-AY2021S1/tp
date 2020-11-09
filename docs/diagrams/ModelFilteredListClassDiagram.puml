@@ -1,0 +1,22 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Ui {
+    Class ModuleListPanel UI_COLOR
+}
+
+Package Model {
+    Class Model
+    Class FilteredModules
+}
+Package Logic {
+    Class XYZCommand LOGIC_COLOR
+}
+
+ModuleListPanel .down[UI_COLOR].> FilteredModules : displays modules from >
+Model .left.> FilteredModules : filters >
+XYZCommand .up[LOGIC_COLOR].> Model : applies list filters via >
+@enduml

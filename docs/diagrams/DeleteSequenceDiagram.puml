@@ -3,8 +3,9 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":GradPadParser" as GradPadParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -13,21 +14,27 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("delete CS2103T")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
-activate AddressBookParser
+LogicManager -> GradPadParser : parseCommand("delete CS2103T")
+activate GradPadParser
 
 create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
+GradPadParser -> DeleteCommandParser
 activate DeleteCommandParser
 
-DeleteCommandParser --> AddressBookParser
+DeleteCommandParser --> GradPadParser
 deactivate DeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("1")
+GradPadParser -> DeleteCommandParser : parse("CS2103T")
 activate DeleteCommandParser
+
+DeleteCommandParser -> ParserUtil : parseModuleCode("CS2103T")
+activate ParserUtil
+
+ParserUtil --> DeleteCommandParser : code
+deactivate ParserUtil
 
 create DeleteCommand
 DeleteCommandParser -> DeleteCommand
@@ -36,19 +43,31 @@ activate DeleteCommand
 DeleteCommand --> DeleteCommandParser : d
 deactivate DeleteCommand
 
-DeleteCommandParser --> AddressBookParser : d
+DeleteCommandParser --> GradPadParser : d
 deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
+DeleteCommandParser -[hidden]-> GradPadParser
 destroy DeleteCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+GradPadParser --> LogicManager : d
+deactivate GradPadParser
+
+LogicManager -> LogicManager : handleStall()
+activate LogicManager
+
+LogicManager --> LogicManager : confirmationPrompt
+deactivate LogicManager
+
+[<-- LogicManager : confirmationPrompt
+deactivate LogicManager
+
+[-> LogicManager : execute("yes")
+activate LogicManager
 
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteCommand -> Model : deleteModule("CS2103T")
 activate Model
 
 Model --> DeleteCommand
@@ -64,6 +83,6 @@ deactivate CommandResult
 DeleteCommand --> LogicManager : result
 deactivate DeleteCommand
 
-[<--LogicManager
+[<--LogicManager : result
 deactivate LogicManager
 @enduml

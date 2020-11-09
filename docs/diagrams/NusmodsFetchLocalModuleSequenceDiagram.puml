@@ -1,0 +1,26 @@
+@startuml
+!include style.puml
+
+box Nusmods NUSMODS_COLOR_T1
+participant ":NusmodsDataManager" as NusmodsDataManager NUSMODS_COLOR
+participant ":DataFetcherManager" as DataFetcherManager NUSMODS_COLOR
+end box
+
+[-> NusmodsDataManager : getModuleInfo(code)
+activate NusmodsDataManager
+
+NusmodsDataManager -> DataFetcherManager : fetchModuleInfo(code)
+activate DataFetcherManager
+
+DataFetcherManager --> NusmodsDataManager : NusmodsException
+deactivate DataFetcherManager
+
+NusmodsDataManager -> NusmodsDataManager : getModuleInfoFromFile(code)
+activate NusmodsDataManager
+
+NusmodsDataManager --> NusmodsDataManager : moduleInfo
+deactivate NusmodsDataManager
+
+[<--NusmodsDataManager : moduleInfo
+deactivate NusmodsDataManager
+@enduml

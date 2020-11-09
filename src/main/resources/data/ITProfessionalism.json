@@ -1,0 +1,18 @@
+{
+  "modules" : [ {
+    "tagged" : [ "ITProfessionalism" ],
+    "code" : "IS1103",
+    "title" : "Ethics in Computing",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "ITProfessionalism" ],
+    "code" : "CS2101",
+    "title" : "Effective Communication for Computing Professionals",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "ITProfessionalism" ],
+    "code" : "ES2660",
+    "title" : "Communicating in the Information Age",
+    "credits" : "4"
+  }]
+}

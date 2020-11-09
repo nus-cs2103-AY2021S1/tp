@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static seedu.address.commons.core.Messages.MESSAGE_CONSTRAINTS_TAG;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
@@ -40,7 +42,7 @@ class JsonAdaptedTag {
      */
     public Tag toModelType() throws IllegalValueException {
         if (!Tag.isValidTagName(tagName)) {
-            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(MESSAGE_CONSTRAINTS_TAG);
         }
         return new Tag(tagName);
     }

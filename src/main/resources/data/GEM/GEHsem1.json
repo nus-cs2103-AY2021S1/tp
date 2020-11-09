@@ -1,0 +1,83 @@
+{
+  "modules" : [ {
+    "tagged" : [ "GEH" ],
+    "code" : "GEH1002",
+    "title" : "Economic Issues in the Developing World",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GEH" ],
+    "code" : "GEH1004",
+    "title" : "Chinese Heritage: Chinese History and Literature",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GEH" ],
+    "code" : "GEH1009",
+    "title" : "Framing Bollywood: Unpacking The Magic",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GEH" ],
+    "code" : "GEH1013",
+    "title" : "Pirates, Oceans and the Maritime World",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GEH" ],
+    "code" : "GEH1014",
+    "title" : "Samurai, Geisha, Yakuza as Self or Other",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GEH" ],
+    "code" : "GEH1025",
+    "title" : "Global Environmental Issues",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GEH" ],
+    "code" : "GEH1032",
+    "title" : "Modern Technology in Medicine and Healthcare",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GEH"],
+    "code" : "GEH1036",
+    "title" : "Living with Mathematics",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GEH" ],
+    "code" : "GEH1043",
+    "title" : "Microbes Which Changed Human History",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GEH" ],
+    "code" : "GEH1049",
+    "title" : "Public Health In Action",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GEH" ],
+    "code" : "GEH1061",
+    "title" : "Representation and Media",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GEH" ],
+    "code" : "GEH1062",
+    "title" : "Ghosts and Spirits in Society and Culture",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GEH" ],
+    "code" : "GEH1069",
+    "title" : "Art in Asia: Through Media, Style, Space and Time",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GEH" ],
+    "code" : "GEH1070",
+    "title" : "Traditional Chinese Knowledge of Health and Well-being",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GEH" ],
+    "code" : "GEH1073",
+    "title" : "THE ART OF CHINESE POETRY: PAST AND PRESENT",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GEH" ],
+    "code" : "GEH1079",
+    "title" : "Life, Disrupted: The Sharing Revolution",
+    "credits" : "4"
+  }]
+}

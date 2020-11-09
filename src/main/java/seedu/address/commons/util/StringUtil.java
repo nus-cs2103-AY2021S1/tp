@@ -5,7 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Arrays;
 
 /**
  * Helper functions for handling strings.
@@ -13,29 +12,41 @@ import java.util.Arrays;
 public class StringUtil {
 
     /**
-     * Returns true if the {@code sentence} contains the {@code word}.
-     *   Ignores case, but a full word match is required.
+     * Returns true if the {@code moduleCode} contains the {@code charSequence}.
+     *   Ignores case, a partial match is required.
      *   <br>examples:<pre>
-     *       containsWordIgnoreCase("ABc def", "abc") == true
-     *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       containsCharSequenceIgnoreCase("ABc", "abc") == true
+     *       containsCharSequenceIgnoreCase("def", "DEF") == true
+     *       containsCharSequenceIgnoreCase("ABc", "AB") == true // partial match
      *       </pre>
-     * @param sentence cannot be null
-     * @param word cannot be null, cannot be empty, must be a single word
+     * @param moduleCode cannot be null
+     * @param charSequence cannot be null, cannot be empty, must be a single word
      */
-    public static boolean containsWordIgnoreCase(String sentence, String word) {
-        requireNonNull(sentence);
-        requireNonNull(word);
+    public static boolean containsCharSequenceIgnoreCase(String moduleCode, String charSequence) {
+        requireNonNull(moduleCode);
+        requireNonNull(charSequence);
 
-        String preppedWord = word.trim();
-        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+        String preppedModuleCode = moduleCode.trim().toUpperCase();
+        String preppedCharSequence = charSequence.trim().toUpperCase();
+        checkArgument(!preppedCharSequence.isEmpty(), "CharSequence parameter cannot be empty");
+        checkArgument(preppedCharSequence.split("\\s+").length == 1, "CharSequence parameter should be a "
+                + "single word");
 
-        String preppedSentence = sentence;
-        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+        return preppedModuleCode.contains(preppedCharSequence);
+    }
 
-        return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(preppedWord::equalsIgnoreCase);
+    /**
+     * Ensures that the charSequence is in the correct String format as the module code.
+     *
+     * @param charSequence cannot be null, cannot be empty, must be a single word.
+     * @return the upper case of the module code.
+     */
+    public static String ignoreCase(String charSequence) {
+        String preppedCharSequence = charSequence.trim().toUpperCase();
+        checkArgument(!preppedCharSequence.isEmpty(), "CharSequence parameter cannot be empty");
+        checkArgument(preppedCharSequence.split("\\s+").length == 1, "CharSequence parameter should be a "
+                + "single word");
+        return preppedCharSequence;
     }
 
     /**

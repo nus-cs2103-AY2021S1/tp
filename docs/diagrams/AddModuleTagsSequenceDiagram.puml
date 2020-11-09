@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+
+box Model MODEL_COLOR_T1
+participant ":GradPad" as GradPad MODEL_COLOR
+participant ":UniqueTagMap" as UniqueTagMap MODEL_COLOR
+participant ":UniqueModuleList" as UniqueModuleList MODEL_COLOR
+end box
+
+[-> GradPad : addModule(m)
+activate GradPad
+
+GradPad -> UniqueTagMap : checkAndReplaceTags(m.tags)
+activate UniqueTagMap
+
+UniqueTagMap --> GradPad : replacedTagSet
+deactivate UniqueTagMap
+
+GradPad -> UniqueModuleList : addModule(mWithReplacedTags)
+activate UniqueModuleList
+
+UniqueModuleList --> GradPad
+deactivate UniqueModuleList
+
+[<--GradPad
+deactivate GradPad
+@enduml

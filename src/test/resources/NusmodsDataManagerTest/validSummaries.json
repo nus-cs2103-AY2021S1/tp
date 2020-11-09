@@ -1,0 +1,17 @@
+[
+  {
+    "moduleCode": "IS1103",
+    "title": "Ethics in Computing",
+    "semesters": [
+      1,
+      2
+    ]
+  },
+  {
+    "moduleCode": "CS1010X",
+    "title": "Programming Methodology",
+    "semesters": [
+      2
+    ]
+  }
+]

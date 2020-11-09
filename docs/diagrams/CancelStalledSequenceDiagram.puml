@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("no")
+activate LogicManager
+
+LogicManager -> LogicManager
+activate LogicManager
+
+note left: Set stalledCommand to null
+
+LogicManager --> LogicManager
+deactivate LogicManager
+
+create CommandResult
+LogicManager -> CommandResult
+activate CommandResult
+
+CommandResult --> LogicManager : abortMessage
+deactivate CommandResult
+
+[<--LogicManager : abortMessage
+deactivate LogicManager
+
+@enduml

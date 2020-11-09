@@ -1,0 +1,13 @@
+{
+  "modules" : [{
+    "tagged" : [ "GEQ" ],
+    "code" : "GEQ1000",
+    "title" : "Asking Questions",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GEQ" ],
+    "code" : "GEQ1917",
+    "title" : "Understanding and Critiquing Sustainability\n(offered exclusively for Year One RVRC residents)",
+    "credits" : "4"
+  }]
+}

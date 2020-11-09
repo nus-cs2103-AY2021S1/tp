@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "stalledCommand:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("delete cs2103t")
+activate LogicManager
+
+LogicManager -> LogicManager : handleStall(command, commandText)
+activate LogicManager
+
+create CommandResult
+LogicManager -> CommandResult
+activate CommandResult
+
+CommandResult --> LogicManager: confirmationPrompt
+deactivate CommandResult
+
+LogicManager --> LogicManager : confirmationPrompt
+deactivate LogicManager
+
+[<-- LogicManager : confirmationPrompt
+deactivate LogicManager
+
+
+@enduml

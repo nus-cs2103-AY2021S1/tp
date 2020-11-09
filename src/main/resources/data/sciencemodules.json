@@ -1,0 +1,78 @@
+{
+  "modules" : [ {
+    "tagged" : [ "Chemistry" ],
+    "code" : "CM1121",
+    "title" : "Organic Chemistry 1",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Chemistry" ],
+    "code" : "CM1131",
+    "title" : "Physical Chemistry 1",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Chemistry" ],
+    "code" : "CM1417",
+    "title" : "Fundamentals of Chemistry",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Biology" ],
+    "code" : "LSM1102",
+    "title" : "Molecular Genetics",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Biology" ],
+    "code" : "LSM1105",
+    "title" : "Evolutionary Biology",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Biology" ],
+    "code" : "LSM1106",
+    "title" : "Molecular Cell Biology",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Biology" ],
+    "code" : "LSM1301",
+    "title" : "General Biology",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Biology" ],
+    "code" : "LSM1306",
+    "title" : "Forensic Science",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Physics" ],
+    "code" : "PC1141",
+    "title" : "Physics I",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Physics" ],
+    "code" : "PC1142",
+    "title" : "Physics II",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Physics" ],
+    "code" : "PC1143",
+    "title" : "Physics III",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Physics" ],
+    "code" : "PC1144",
+    "title" : "Physics IV",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Physics" ],
+    "code" : "PC1221",
+    "title" : "Fundamentals of Physics I",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Physics" ],
+    "code" : "PC1222",
+    "title" : "Fundamentals of Physics II",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Physics" ],
+    "code" : "PC1432",
+    "title" : "Physics IIE",
+    "credits" : "4"
+  }]
+}

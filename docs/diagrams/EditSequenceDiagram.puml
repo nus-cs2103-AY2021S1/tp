@@ -1,0 +1,138 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":GradPadParser" as GradPadParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant ":EditModuleDescriptor" as EditModuleDescriptor LOGIC_COLOR
+participant ":ModuleInfoSearcher" as ModuleInfoSearcher LOGIC_COLOR
+participant "e:EditCommand" as EditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Nusmods NUSMODS_COLOR_T1
+participant ":NusmodsDataManager" as NusmodsDataManager NUSMODS_COLOR
+participant ":ModuleInfo" as ModuleInfo NUSMODS_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit cs2103t c/cs2101")
+activate LogicManager
+
+LogicManager -> GradPadParser : parseCommand("edit cs2103t c/cs2101")
+activate GradPadParser
+
+create EditCommandParser
+GradPadParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> GradPadParser
+deactivate EditCommandParser
+
+GradPadParser -> EditCommandParser : parse("cs2103t c/cs2101")
+activate EditCommandParser
+
+EditCommandParser -> ParserUtil : parseModuleCode("cs2103t")
+activate ParserUtil
+
+ParserUtil --> EditCommandParser : code
+deactivate ParserUtil
+
+create EditModuleDescriptor
+EditCommandParser -> EditModuleDescriptor
+activate EditModuleDescriptor
+
+EditModuleDescriptor --> EditCommandParser : desc
+deactivate EditModuleDescriptor
+
+EditCommandParser -> ParserUtil : parseModuleCode("cs2101")
+activate ParserUtil
+
+ParserUtil --> EditCommandParser : newCode
+deactivate ParserUtil
+
+EditCommandParser -> ModuleInfoSearcher : searchModule(newCode)
+activate ModuleInfoSearcher
+
+ModuleInfoSearcher -> NusmodsDataManager : getModuleInfo(code)
+activate NusmodsDataManager
+
+NusmodsDataManager --> ModuleInfoSearcher : moduleInfo
+deactivate NusmodsDataManager
+
+ModuleInfoSearcher --> EditCommandParser : moduleInfo
+deactivate ModuleInfoSearcher
+
+EditCommandParser -> EditModuleDescriptor : setModuleCode(newCode)
+activate EditModuleDescriptor
+
+EditModuleDescriptor --> EditCommandParser :
+deactivate EditModuleDescriptor
+
+EditCommandParser -> EditModuleDescriptor : setModuleTitle()
+activate EditModuleDescriptor
+
+EditModuleDescriptor -> ModuleInfo : getTitle()
+activate ModuleInfo
+
+ModuleInfo --> EditModuleDescriptor : title
+deactivate ModuleInfo
+
+EditModuleDescriptor --> EditCommandParser :
+deactivate EditModuleDescriptor
+
+EditCommandParser -> EditModuleDescriptor : setModularCredits()
+activate EditModuleDescriptor
+
+EditModuleDescriptor -> ModuleInfo : getModuleCredit()
+activate ModuleInfo
+
+ModuleInfo --> EditModuleDescriptor : credits
+deactivate ModuleInfo
+
+EditModuleDescriptor --> EditCommandParser :
+deactivate EditModuleDescriptor
+
+create EditCommand
+EditCommandParser -> EditCommand : EditCommand(code, desc)
+activate EditCommand
+
+EditCommand --> EditCommandParser : e
+deactivate EditCommand
+
+EditCommandParser --> GradPadParser : e
+deactivate EditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> GradPadParser
+destroy EditCommandParser
+
+GradPadParser --> LogicManager : e
+deactivate GradPadParser
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> Model : setModule(moduleToEdit, editedModule)
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -1,0 +1,94 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":GradPadParser" as GradPadParser LOGIC_COLOR
+participant "R:RequiredCommand" as RequiredCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant "Rs:RequiredCommandStorage" as RequiredCommandStorage STORAGE_COLOR
+end box
+
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("required")
+activate LogicManager
+
+LogicManager -> GradPadParser : parseCommand("required")
+activate GradPadParser
+
+create RequiredCommand
+GradPadParser -> RequiredCommand
+activate RequiredCommand
+
+RequiredCommand --> GradPadParser : R
+deactivate RequiredCommand
+
+GradPadParser --> LogicManager : R
+deactivate GradPadParser
+
+LogicManager -> RequiredCommand : execute()
+activate RequiredCommand
+
+RequiredCommand -> Model : getGradPad()
+activate Model
+
+Model --> RequiredCommand : GradPad
+
+RequiredCommand -> Model : getModuleList()
+
+Model --> RequiredCommand : currentModules
+deactivate Model
+
+RequiredCommand -> RequiredCommand : setStorage()
+activate RequiredCommand
+
+create RequiredCommandStorage
+RequiredCommand -> RequiredCommandStorage : RequiredCommandStorage()
+activate RequiredCommandStorage
+
+RequiredCommandStorage --> RequiredCommand :Rs
+deactivate RequiredCommandStorage
+
+RequiredCommand -> RequiredCommandStorage : setRequiredXXX(XXX_PATH)
+activate RequiredCommandStorage
+
+RequiredCommandStorage --> RequiredCommand : requiredXXX
+deactivate RequiredCommandStorage
+
+deactivate RequiredCommand
+
+RequiredCommand -> RequiredCommand : compareAllGEs()
+activate RequiredCommand
+
+alt allGEsCleared
+RequiredCommand -> RequiredCommand : MESSAGE_SUCCESS_GE
+
+else
+RequiredCommand -> RequiredCommand : MESSAGE_FAILURE_GE
+end
+deactivate RequiredCommand
+
+RequiredCommand -> RequiredCommand : compareModules(XXX_PATH)
+RequiredCommand -> RequiredCommand : compareScience(SCIENCE_PATH)
+RequiredCommand -> RequiredCommand : compareInternship(INTERNSHIP_PATH)
+
+create CommandResult
+RequiredCommand -> CommandResult : CommandResult(leftOverModules)
+activate CommandResult
+
+CommandResult --> RequiredCommand
+deactivate CommandResult
+
+RequiredCommand --> LogicManager
+deactivate RequiredCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

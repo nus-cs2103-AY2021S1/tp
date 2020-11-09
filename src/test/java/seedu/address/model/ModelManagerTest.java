@@ -3,20 +3,20 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
+import static seedu.address.testutil.TypicalModules.CS2103T;
+import static seedu.address.testutil.TypicalModules.CS3216;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
+import seedu.address.testutil.GradPadBuilder;
 
 public class ModelManagerTest {
 
@@ -26,31 +26,31 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new GradPad(), new GradPad(modelManager.getGradPad()));
     }
 
     @Test
     public void setUserPrefs_nullUserPrefs_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setUserPrefs(null));
+        Assertions.assertThrows(NullPointerException.class, () -> modelManager.setUserPrefs(null));
     }
 
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setGradPadFilePath(Paths.get("gradpad/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setGradPadFilePath(Paths.get("new/gradpad/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
     @Test
     public void setGuiSettings_nullGuiSettings_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setGuiSettings(null));
+        Assertions.assertThrows(NullPointerException.class, () -> modelManager.setGuiSettings(null));
     }
 
     @Test
@@ -61,47 +61,48 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setGradPadFilePath_nullPath_throwsNullPointerException() {
+        Assertions.assertThrows(NullPointerException.class, () -> modelManager.setGradPadFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
-        Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+    public void setGradPadFilePath_validPath_setsGradPadFilePath() {
+        Path path = Paths.get("gradpad/file/path");
+        modelManager.setGradPadFilePath(path);
+        assertEquals(path, modelManager.getGradPadFilePath());
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+    public void hasModule_nullModule_throwsNullPointerException() {
+        Assertions.assertThrows(NullPointerException.class, () -> modelManager.hasModule(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+    public void hasModule_moduleNotInGradPad_returnsFalse() {
+        assertFalse(modelManager.hasModule(CS2103T));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+    public void hasModule_moduleInGradPad_returnsTrue() {
+        modelManager.addModule(CS2103T);
+        assertTrue(modelManager.hasModule(CS2103T));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void getFilteredModuleList_modifyList_throwsUnsupportedOperationException() {
+        Assertions.assertThrows(UnsupportedOperationException.class, () ->
+                modelManager.getFilteredModuleList().remove(0));
     }
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        GradPad gradPad = new GradPadBuilder().withModule(CS2103T).withModule(CS3216).build();
+        GradPad differentGradPad = new GradPad();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(gradPad, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(gradPad, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -113,20 +114,20 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        // different gradPad -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentGradPad, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        String[] keywords = { CS2103T.getModuleCode().moduleCode };
+        modelManager.updateFilteredModuleList(new ModuleCodeContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertFalse(modelManager.equals(new ModelManager(gradPad, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        differentUserPrefs.setGradPadFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(gradPad, differentUserPrefs)));
     }
 }

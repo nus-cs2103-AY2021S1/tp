@@ -1,0 +1,12 @@
+{
+  "modules": [ {
+    "code": "CS1231",
+    "credits": "4",
+    "title" : "Discrete Structures",
+    "tagged": [ "core" ]
+  }, {
+    "code": "CS1231",
+    "credits": "4",
+    "title" : "Discrete Structures"
+  } ]
+}

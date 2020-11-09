@@ -5,55 +5,46 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Lau Siaw Sam
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/silvernitro.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/silvernitro)]
+[[portfolio](team/silvernitro.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Testing
 
-### Johnny Doe
+### Lim Shao Kiat
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shaokiat.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/shaokiat)]
+[[portfolio](team/shaokiat.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Documentation
 
-### James Doe
+### Muhammad Syafiq Bin Abas
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mhdsyfq.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/mhdsyfq)]
+[[portfolio](team/mhdsyfq.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code Quality
+
+### Soon Xiang, Yan
+
+<img src="images/yan-soon.png" width="200px">
+
+[[github](http://github.com/yan-soon)]
+[[portfolio](team/yan-soon.md)]
+
+* Role: Developer
+* Responsibilities: Deliverables and deadlines
+
+

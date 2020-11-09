@@ -1,0 +1,93 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":GradPadParser" as GradPadParser LOGIC_COLOR
+participant "G:GemCommand" as GemCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant "sem1Storage:GemCommandStorage" as GemCommandStorage STORAGE_COLOR
+participant "sem2Storage:GemCommandStorage" as GemCommandStorage2 STORAGE_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("gem")
+activate LogicManager
+
+LogicManager -> GradPadParser : parseCommand("gem")
+activate GradPadParser
+
+create GemCommand
+GradPadParser -> GemCommand
+activate GemCommand
+
+GemCommand --> GradPadParser : G
+deactivate GemCommand
+
+GradPadParser --> LogicManager : G
+deactivate GradPadParser
+
+LogicManager -> GemCommand : execute()
+activate GemCommand
+
+GemCommand -> GemCommand : setSem1Storage()
+activate GemCommand
+
+create GemCommandStorage
+GemCommand -> GemCommandStorage : sem1Storage
+activate GemCommandStorage
+
+GemCommandStorage --> GemCommand : sem1Storage
+deactivate GemCommandStorage
+
+GemCommand -> GemCommandStorage : setGeModules(SEM_1_PATH)
+activate GemCommandStorage
+
+GemCommandStorage --> GemCommand : sem1GeModules
+deactivate GemCommandStorage
+
+deactivate GemCommand
+
+GemCommand -> GemCommand : setSem2Storage()
+activate GemCommand
+
+create GemCommandStorage2
+GemCommand -> GemCommandStorage2 : sem2Storage
+activate GemCommandStorage2
+
+GemCommandStorage2 --> GemCommand : sem2Storage
+deactivate GemCommandStorage2
+
+GemCommand -> GemCommandStorage2 : setGeModules(SEM_2_PATH)
+activate GemCommandStorage2
+
+GemCommandStorage2 --> GemCommand : sem2GeModules
+deactivate GemCommandStorage2
+
+deactivate GemCommand
+
+GemCommand -> Model : hasModule(semXXXGeModules)
+activate Model
+
+Model --> GemCommand : filteredSemXXXGeModules
+deactivate Model
+
+create CommandResult
+GemCommand -> CommandResult : filteredSemXXXGeModules
+activate CommandResult
+
+CommandResult --> GemCommand
+deactivate CommandResult
+
+GemCommand --> LogicManager
+deactivate GemCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

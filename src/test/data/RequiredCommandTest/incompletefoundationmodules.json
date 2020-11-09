@@ -1,0 +1,38 @@
+{
+  "modules" : [ {
+    "tagged" : [ "Foundation" ],
+    "code" : "CS1231",
+    "title" : "Discrete Structures",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Foundation" ],
+    "code" : "CS2030S",
+    "title" : "Programming Methodology II",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Foundation" ],
+    "code" : "CS2040S",
+    "title" : "Data Structures and Algorithms",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Foundation" ],
+    "code" : "CS2100",
+    "title" : "Computer Organisation",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Foundation" ],
+    "code" : "CS2103T",
+    "title" : "Software Engineering",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Foundation" ],
+    "code" : "CS2106",
+    "title" : "Introduction to Operating Systems",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Foundation" ],
+    "code" : "CS3230",
+    "title" : "Design and Analysis of Algorithms",
+    "credits" : "4"
+  }]
+}

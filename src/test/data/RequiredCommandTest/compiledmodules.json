@@ -1,0 +1,213 @@
+{
+  "modules" : [ {
+    "tagged" : [ "GEH" ],
+    "code" : "GEH1002",
+    "title" : "Economic Issues in the Developing World",
+    "credits" : "4"
+  },{
+    "tagged" : [ "GEQ" ],
+    "code" : "GEQ1000",
+    "title" : "Asking Questions",
+    "credits" : "4"
+  },{
+    "tagged" : [ "GER" ],
+    "code" : "GER1000",
+    "title" : "Quantitative Reasoning",
+    "credits" : "4"
+  },{
+    "tagged" : [ "GES" ],
+    "code" : "GES1002",
+    "title" : "Global Economic Dimensions of Singapore",
+    "credits" : "4"
+  },{
+    "tagged" : [ "GET" ],
+    "code" : "GET1002",
+    "title" : "Bridging East And West: Exploring Chinese Communication",
+    "credits" : "4"
+  },{
+    "tagged" : [ "Foundation" ],
+    "code" : "CS1101S",
+    "title" : "Programming Methodology",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Foundation" ],
+    "code" : "CS1231S",
+    "title" : "Discrete Structures",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Foundation" ],
+    "code" : "CS2030S",
+    "title" : "Programming Methodology II",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Foundation" ],
+    "code" : "CS2040S",
+    "title" : "Data Structures and Algorithms",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Foundation" ],
+    "code" : "CS2100",
+    "title" : "Computer Organisation",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Foundation" ],
+    "code" : "CS2103T",
+    "title" : "Software Engineering",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Foundation" ],
+    "code" : "CS2106",
+    "title" : "Introduction to Operating Systems",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Foundation" ],
+    "code" : "CS3230",
+    "title" : "Design and Analysis of Algorithms",
+    "credits" : "4"
+  },{
+    "tagged" : [ "ITProfessionalism" ],
+    "code" : "IS1103",
+    "title" : "Ethics in Computing",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "ITProfessionalism" ],
+    "code" : "CS2101",
+    "title" : "Effective Communication for Computing Professionals",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "ITProfessionalism" ],
+    "code" : "ES2660",
+    "title" : "Communicating in the Information Age",
+    "credits" : "4"
+  },{
+    "tagged" : [ "MathAndSciences" ],
+    "code" : "MA1521",
+    "title" : "Calculus for Computing",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "MathAndSciences" ],
+    "code" : "MA1101R",
+    "title" : "Linear Algebra I",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "MathAndSciences" ],
+    "code" : "ST2334",
+    "title" : "Probability and Statistics",
+    "credits" : "4"
+  },{
+    "tagged" : [ "Chemistry" ],
+    "code" : "CM1121",
+    "title" : "Organic Chemistry 1",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Chemistry" ],
+    "code" : "CM1131",
+    "title" : "Physical Chemistry 1",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Chemistry" ],
+    "code" : "CM1417",
+    "title" : "Fundamentals of Chemistry",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Biology" ],
+    "code" : "LSM1102",
+    "title" : "Molecular Genetics",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Biology" ],
+    "code" : "LSM1105",
+    "title" : "Evolutionary Biology",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Biology" ],
+    "code" : "LSM1106",
+    "title" : "Molecular Cell Biology",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Biology" ],
+    "code" : "LSM1301",
+    "title" : "General Biology",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Biology" ],
+    "code" : "LSM1306",
+    "title" : "Forensic Science",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Physics" ],
+    "code" : "PC1141",
+    "title" : "Physics I",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Physics" ],
+    "code" : "PC1142",
+    "title" : "Physics II",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Physics" ],
+    "code" : "PC1143",
+    "title" : "Physics III",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Physics" ],
+    "code" : "PC1144",
+    "title" : "Physics IV",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Physics" ],
+    "code" : "PC1221",
+    "title" : "Fundamentals of Physics I",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Physics" ],
+    "code" : "PC1222",
+    "title" : "Fundamentals of Physics II",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "Physics" ],
+    "code" : "PC1432",
+    "title" : "Physics IIE",
+    "credits" : "4"
+  },{
+    "tagged" : [ "Internship" ],
+    "code" : "CP3880",
+    "title" : "Advanced Technology Attachment Programme",
+    "credits" : "12"
+  }, {
+    "tagged" : [ "Internship" ],
+    "code" : "CP3200",
+    "title" : "Internship",
+    "credits" : "6"
+  }, {
+    "tagged" : [ "Internship" ],
+    "code" : "CP3202",
+    "title" : "Internship II",
+    "credits" : "6"
+  }, {
+    "tagged" : [ "Internship" ],
+    "code" : "CP3107",
+    "title" : "Computing for Voluntary Welfare Organisations",
+    "credits" : "6"
+  }, {
+    "tagged" : [ "Internship" ],
+    "code" : "CP3110",
+    "title" : "Computing for Voluntary Welfare Organisations II",
+    "credits" : "6"
+  }, {
+    "tagged" : [ "Internship" ],
+    "code" : "IS4010",
+    "title" : "Industry Internship Programme",
+    "credits" : "12"
+  }, {
+    "tagged" : [ "Internship" ],
+    "code" : "TR3202",
+    "title" : "Startup Internship Programme",
+    "credits" : "12"
+  }, {
+    "tagged" : [ "Internship" ],
+    "code" : "CP4101",
+    "title" : "BComp Dissertation",
+    "credits" : "12"
+  }]
+}

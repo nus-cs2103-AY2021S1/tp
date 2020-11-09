@@ -1,0 +1,48 @@
+{
+  "modules" : [ {
+    "tagged" : [ "GET" ],
+    "code" : "GET1002",
+    "title" : "Bridging East And West: Exploring Chinese Communication",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GET" ],
+    "code" : "GET1020",
+    "title" : "Darwin and evolution",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GET" ],
+    "code" : "GET1023",
+    "title" : "Thinking Like An Economist",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GET" ],
+    "code" : "GET1031",
+    "title" : "Computational Thinking",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GET" ],
+    "code" : "GET1034",
+    "title" : "Communication and Critical Thinking for Community Leadership",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GET" ],
+    "code" : "GET1035",
+    "title" : "Critical Perspectives In Advertising",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GET" ],
+    "code" : "GET1037",
+    "title" : "Big Picture History",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GET" ],
+    "code" : "GET1043",
+    "title" : "Universe, Big Bang, and Unsolved Mysteries",
+    "credits" : "4"
+  }, {
+    "tagged" : [ "GET" ],
+    "code" : "GET1048",
+    "title" : "Science: From Thinking to Narratives",
+    "credits" : "4"
+  }]
+}

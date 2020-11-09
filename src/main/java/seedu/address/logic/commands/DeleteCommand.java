@@ -1,53 +1,68 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DELETE_SUCCESS;
 
 import java.util.List;
+import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a Module identified using a Module's ModuleCode.
+ * This delete operation requires a confirmation to be given.
  */
 public class DeleteCommand extends Command {
+    private final ModuleCode code;
 
-    public static final String COMMAND_WORD = "delete";
+    /**
+     * Creates a DeleteCommand to delete the module with the specified {@code ModuleCode}
+     *
+     * @param code
+     */
+    public DeleteCommand(ModuleCode code) {
+        this.code = code;
+    }
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    /**
+     * Retrieves the module to be deleted.
+     *
+     * @param model the Model which the command operates on.
+     * @return the module to be deleted.
+     * @throws CommandException if the module cannot be found in Completed Modules.
+     */
+    public Module getModuleToDelete(Model model) throws CommandException {
+        List<Module> modules = model.getGradPad().getModuleList();
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
-
-    private final Index targetIndex;
-
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+        Optional<Module> moduleToDelete = modules.stream()
+                .filter(module -> module.getModuleCode().equals(code)).findFirst();
+        if (moduleToDelete.isEmpty()) {
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_MODULE, code.toString()));
+        }
+        return moduleToDelete.get();
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
-
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        Module moduleToDelete = getModuleToDelete(model);
+        model.deleteModule(moduleToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, moduleToDelete));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                && code.equals(((DeleteCommand) other).code)); // state check
+    }
+
+    @Override
+    public boolean requiresStall() {
+        return true;
     }
 }

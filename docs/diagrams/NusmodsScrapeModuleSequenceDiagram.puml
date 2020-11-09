@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+
+box Nusmods NUSMODS_COLOR_T1
+participant ":DataFetcherManager" as DataFetcherManager NUSMODS_COLOR
+end box
+
+box Commons LOGIC_COLOR_T1
+participant ":HttpUtil" as HttpUtil LOGIC_COLOR_T3
+end box
+
+[-> DataFetcherManager : fetchAndSaveModules()
+activate DataFetcherManager
+
+DataFetcherManager -> DataFetcherManager : fetchModuleSummaryList()
+activate DataFetcherManager
+
+DataFetcherManager --> DataFetcherManager : summaries
+deactivate DataFetcherManager
+
+DataFetcherManager -> DataFetcherManager : filterModuleSummaries(summaries)
+activate DataFetcherManager
+
+DataFetcherManager --> DataFetcherManager : filteredSummaries
+deactivate DataFetcherManager
+
+DataFetcherManager -> DataFetcherManager : generateModuleInfoMap(summaries)
+activate DataFetcherManager
+
+loop for summary in summaries
+DataFetcherManager -> DataFetcherManager : fetchModuleInfo(module)
+activate DataFetcherManager
+
+DataFetcherManager -> HttpUtil : makeGETRequest(API_URL)
+activate HttpUtil
+
+HttpUtil --> DataFetcherManager : moduleJsonResponse
+deactivate HttpUtil
+
+DataFetcherManager -> DataFetcherManager : moduleInfo
+deactivate DataFetcherManager
+end
+
+DataFetcherManager -> DataFetcherManager : moduleInfoMap
+deactivate DataFetcherManager
+
+[<--DataFetcherManager :
+deactivate DataFetcherManager
+@enduml

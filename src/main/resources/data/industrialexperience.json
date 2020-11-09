@@ -1,0 +1,43 @@
+{
+  "modules" : [{
+    "tagged" : [ "Internship" ],
+    "code" : "CP3880",
+    "title" : "Advanced Technology Attachment Programme",
+    "credits" : "12"
+  }, {
+    "tagged" : [ "Internship" ],
+    "code" : "CP3200",
+    "title" : "Internship",
+    "credits" : "6"
+  }, {
+    "tagged" : [ "Internship" ],
+    "code" : "CP3202",
+    "title" : "Internship II",
+    "credits" : "6"
+  }, {
+    "tagged" : [ "Internship" ],
+    "code" : "CP3107",
+    "title" : "Computing for Voluntary Welfare Organisations",
+    "credits" : "6"
+  }, {
+    "tagged" : [ "Internship" ],
+    "code" : "CP3110",
+    "title" : "Computing for Voluntary Welfare Organisations II",
+    "credits" : "6"
+  }, {
+    "tagged" : [ "Internship" ],
+    "code" : "IS4010",
+    "title" : "Industry Internship Programme",
+    "credits" : "12"
+  }, {
+    "tagged" : [ "Internship" ],
+    "code" : "TR3202",
+    "title" : "Startup Internship Programme",
+    "credits" : "12"
+  }, {
+    "tagged" : [ "Internship" ],
+    "code" : "CP4101",
+    "title" : "BComp Dissertation",
+    "credits" : "12"
+  }]
+}

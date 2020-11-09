@@ -5,52 +5,52 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyGradPad <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class GradPad
+Class ReadOnlyGradPad
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package Module {
+Class Module
+Class ModuleName
+Class ModuleCode
+Class ModularCredits
+Class UniqueModuleList
 }
 
 Package Tag {
 Class Tag
+Class UniqueTagMap
 }
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+GradPad .up.|> ReadOnlyGradPad
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" GradPad
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+GradPad *--> "1" UniqueModuleList
+GradPad *--> "1" UniqueTagMap
+UniqueTagMap o--> "*" Tag
+UniqueModuleList o--> "*" Module
+Module *--> ModuleCode
+Module *--> ModularCredits
+Module *--> ModuleName
+Module --> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+ModuleCode -[hidden]right-> ModularCredits
+ModularCredits -[hidden]right-> ModuleName
 
-ModelManager -->"1" Person : filtered list
+ModelManager -->"1" Module : filtered list
 @enduml
