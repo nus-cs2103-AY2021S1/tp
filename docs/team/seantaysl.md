@@ -9,7 +9,7 @@ title: Sean Tay's Project Portfolio Page
 __Trackr__ is an application for teaching assistants (TAs) who prefer to use a desktop application for managing their 
 student records. It is uses a Command Line Interface (CLI), while still retaining the benefits of a Graphical 
 User Interface (GUI). The user interacts with it using a CLI, and it has a GUI created with JavaFX. 
-It is written in Java.
+It is written in Java with over 14kLoC.
 
 Given below are my contributions to the project.
 
@@ -20,7 +20,7 @@ Given below are my contributions to the project.
     * Justification: This feature improves the User Experience of the Trackr significantly.
     * Highlights: This feature required analysis and understanding of UI components and CSS features. Creation of new 
     CSS file for Trackr was also necessary.
-    * Credits: The new Trackr CSS file was based off the original DarkTheme.
+    * Credits: The new Trackr CSS file is based off the original DarkTheme.
     
 * **New Feature:** Added ability to display current View.
     * What it does: Allows user to see which display they are currently at on the top of Trackr.
@@ -39,14 +39,22 @@ Given below are my contributions to the project.
     
 * **Documentation**:
     * User Guide:
-        * Added documentation for General and Navigation features
-        * Did cosmetic tweaks to overall structure and numbering
+        * Added documentation and screenshots for General (Section 4.1) and Navigation features (Section 4.2).
+        * Did cosmetic tweaks to overall structure and numbering.
+        * Updated screenshots for Getting Started (Section 3).
+        
     * Developer Guide:
-        *
+        * Made the Ui Class Diagram.
+        * Added on to the User Stories and Product Scope.
+        * Preface and Using this document section.
+        * Proofread documentations in section 6 for errors.
+        * Updated structure and numbering
+        
 
 * **Team-Based Tasks**:
     * Fixed Checkstyle for Main Code to pass filing CI ([Pull Request #107](https://github.com/AY2021S1-CS2103T-W12-2/tp/pull/107))
     * Bug detection and debugging
     * Removed Address Class ([Pull Request #27](https://github.com/AY2021S1-CS2103T-W12-2/tp/pull/27))
+    
 * **Community**:
     * Reported bugs for another team ([Issues](https://github.com/seantaysl/ped/issues))

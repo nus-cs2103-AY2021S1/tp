@@ -39,7 +39,7 @@ by Team W12-2
 
 ## **Section 1 - Preface**
 **Trackr** is a desktop module management application made for Teaching Assistants of all faculties. It is designed 
-with a focus on the Command Line Interface (CLI) accompanied by a simple yet intuitive Graphical User Interface (GUI). 
+with a focus on the Command Line Interface (CLI), while still retaining the benfits of a simple yet intuitive Graphical User Interface (GUI). 
 **Trackr** allows Teaching Assistants to keep track of Modules, Tutorial Groups, and Students they teach all in one location.
 
 ---
