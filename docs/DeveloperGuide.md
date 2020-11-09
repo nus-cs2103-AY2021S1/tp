@@ -393,7 +393,7 @@ The following sequence diagram shows how the Delete By Index mechanism works:
 #### Implementation
 
 The Delete By Tag mechanism will delete flashcards specified by a given set of tags. Any flashcard containing
-at least one of the specified tags will be deleted.
+all of the specified tags will be deleted.
 
 It works by filtering for the flashcards in the `model` and deleting them one by one.
 
