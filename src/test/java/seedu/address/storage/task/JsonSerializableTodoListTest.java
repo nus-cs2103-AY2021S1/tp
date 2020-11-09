@@ -27,7 +27,7 @@ public class JsonSerializableTodoListTest {
         JsonSerializableTodoList dataFromFile = JsonUtil.readJsonFile(TYPICAL_TASKS_FILE,
                 JsonSerializableTodoList.class).get();
         TodoList todoListFromFile = dataFromFile.toModelType();
-        TodoList typicalTaskTodoList = TypicalTasks.getTypicalTodoList();
+        TodoList typicalTaskTodoList = TypicalTasks.getStaticTypicalTodoList();
         assertEquals(todoListFromFile, typicalTaskTodoList);
     }
 

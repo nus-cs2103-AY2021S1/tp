@@ -95,7 +95,6 @@ public class ModuleList implements ReadOnlyModuleList {
     @Override
     public String toString() {
         return modules.asUnmodifiableObservableList().size() + " modules";
-        // TODO: refine later
     }
 
     @Override

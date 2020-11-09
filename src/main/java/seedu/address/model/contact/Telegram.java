@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Contact's telegram in the contact list.
- * Guarantees: immutable; is valid as declared in {@link #isValidTelegram(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidTelegram(String)}.
  */
 public class Telegram {
 
@@ -16,19 +16,17 @@ public class Telegram {
                     + "3. Contain only alphanumeric characters and underscore \n"
                     + "4. Should not be blank";
 
-    /**
-     * Constraints for a telegram username as specified by the Telegram application.
-     */
+    /** Constraints for a telegram username. */
     public static final String USERNAME_REGEX = "[a-zA-Z0-9_]{5,}";
     public static final String VALIDATION_REGEX = "@" + USERNAME_REGEX;
 
-    /** String containing the telegram of a contact. */
+    /** String describing the telegram of a contact. */
     private final String telegram;
 
     /**
      * Creates and initialises a new Telegram object.
      *
-     * @param telegram Telegram username.
+     * @param telegram String describing a telegram.
      */
     public Telegram(String telegram) {
         requireNonNull(telegram);
@@ -37,7 +35,10 @@ public class Telegram {
     }
 
     /**
-     * Returns true if a given string is a valid telegram username.
+     * Determines if a given string is a valid telegram.
+     *
+     * @param test A given String to test.
+     * @return True if the given string is a valid telegram.
      */
     public static boolean isValidTelegram(String test) {
         return test.matches(VALIDATION_REGEX);
