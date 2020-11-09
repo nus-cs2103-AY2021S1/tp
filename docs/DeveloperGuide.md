@@ -1887,7 +1887,7 @@ With 10 being the baseline of AB3, we estimate the effort required to deliver th
 These are the components which have involved significant effort on our part to (re)implement, including significant new features as well as improvements and extensions to existing AB3 features.
 
 #### C.1.1&ensp;GUI
-The GUI of ChopChop was designed to provide a seamless User Experience(UX) for our users; besides adding data to ChopChop, our users are likely to be operating ChopChop while cooking. As such, our User Interface(UI) is designed to handle both mouse and cli inputs to enable users to navigate the application with ease regardless the setting. This design diverges vastly from AB3's non-switchable pane, un-resizable, cli only dark-themed design.
+The GUI of ChopChop was designed to provide a seamless User Experience(UX) for our users; besides adding data to ChopChop, our users are likely to be operating ChopChop while cooking. As such, our User Interface(UI) is designed to handle both mouse and cli inputs to enable users to navigate the application with ease regardless the setting. This design diverges vastly from AB3's non-switchable pane, non-resizable, cli only dark-themed design.
 
 In addition, ChopChop's "tab" switching and resizable display ensures that our users have no issues viewing the information they need. This implementation of the GUI, as well as making the colors, fonts and shapes to mesh well together into a welcoming cooking application required significant hours of trial-and-error.
 
