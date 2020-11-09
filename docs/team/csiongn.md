@@ -1,4 +1,7 @@
-# Ng Choon Siong - Project Portfolio
+---
+layout: page
+title: Ng Choon Siong's Project Portfolio Page
+---
 
 ## PROJECT: Reeve
 
