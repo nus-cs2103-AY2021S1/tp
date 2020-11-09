@@ -871,10 +871,10 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites:  List all tasks using the `list-task` command. Multiple deadline in the task list.
 
-   1. Test case: `deadline title:Return book datetime:02-01-2020 18:00`<br>
+   1. Test case: `deadline title:Tutorial homework datetime:10-11-2020 18:00 tag:CS2100`<br>
       Expected: a new deadline with title 'Return book' is added to the task list, a deadline card will be displayed with the detailed info about the deadline.
 
-   1. Test case: `deadline title:Return book datetime:02-01-2020 18:00`<br>
+   1. Test case: `deadline title:Tutorial homework datetime:10-11-2020 18:00 tag:CS2100`<br>
       Expected: No deadline is added because a deadline with the same details already exists in the task list. Status message informs user that deadline already exists.
 
    1. Test case: `deadline title:Buy breakfast `<br>
@@ -889,9 +889,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: 
        1. clear all records inside the exiting PlaNus using `clear` command<br>
-       1. input `deadline title:Return book 1 datetime:02-01-2020 18:00` command to add a new deadline <br>
-       1. input `deadline title:Return book 2 datetime:02-01-2020 18:00` command to add a new deadline <br>
-       1. input `deadline title:Return book 3 datetime:02-01-2020 18:00` command to add a new deadline <br>
+       1. input `deadline title:Tutorial homework 1 datetime:10-11-2020 18:00 tag:CS2100` command to add a new deadline <br>
+       1. input `deadline title:Tutorial homework 2 datetime:10-11-2020 18:00 tag:CS2100` command to add a new deadline <br>
+       1. input `deadline title:Tutorial homework 3 datetime:10-11-2020 18:00 tag:CS2100` command to add a new deadline <br>
        1. input `event title:Project meeting date:15-11-2020 from:09:00 to:12:30 tag:CS2103T` command to add a new event <br>
 
    1. Test case: `done 1:20`<br>
