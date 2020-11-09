@@ -717,6 +717,7 @@ Extensions
     * 1b1. System shows an error message.
         Use case resumes at step 1.
 
+<br>
 
 **Use Case: View all students with the lowest participation score**
 
@@ -724,9 +725,40 @@ Extensions
 1. User requests to view all students with the lowest participation score.
 2. System shows all students with the lowest participation score.
 
+Extensions
+* 1a. System is not within the context of a session.
+    * 1a1. System shows an error message.
+    Use case ends.
+    
+* 1b. The given input is invalid.
+    * 1b1. System shows an error message.
+        Use case resumes at step 1.
+
+* 1c. There are no students present.
+    * 1b1. System shows an error message.
+       
+<br>
+
 **Use case: Get a random student which is present**
+
 **MSS**
-1. 
+1. User requests to view a random student.
+2. System shows a student picked at random who is present
+
+Extensions
+* 1a. System is not within the context of a session.
+    * 1a1. System shows an error message.
+    Use case ends.
+    
+* 1b. The given input is invalid.
+    * 1b1. System shows an error message.
+        Use case resumes at step 1.
+        
+* 1c. There are no students present.
+    * 1b1. System shows an error message.
+    Use case ends.
+    
+<br>
 
 ### Non-Functional Requirements
 
@@ -961,12 +993,25 @@ The below testcases assume that you are in a session and have 7 students inside 
     1. Test case: Enter `mark all a/present`, `score all cp/5.0`, `mark 1 a/absent`, then enter `lowest-score` <br>
     Expected: Only the students marked as present appear in the list
    
-    1. Test case: Enter `mark all a/present`, `score all cp/5.0`, `mark 1 a/absent`, `mark 1 cp/0`, then enter `lowest-score` <br>
+    1. Test case: Enter `mark all a/present`, `score all cp/5.0`, `mark 1 a/absent`, `score 1 cp/0`, then enter `lowest-score` <br>
     Expected: Only the students marked as present (with score 5.0) appear in the list.
     
     1. Test case: Enter `lowest-score` (all student attendance should be `NO RECORD`) <br>
     Expected: No students in the student record list are shown, an error shows that there are no present students in the session.
 
+### Showing a random student who is present
+
+1. Getting a random student who is present
+    1. Prerequisite: A newly-created session with at least 3 students.
+    
+    1. Test case: Enter `mark all a/present`, then enter `random-student` a few times. <br>
+    Expected: Different students, one at a time, should appear in no particular order. 
+   
+    1. Test case: Enter `mark 1 a/present`, then enter `random-student` a few times. <br>
+    Expected: Only the first student should appear each time.
+    
+    1. Test case: Enter `random-student` (all student attendance should be `NO RECORD`) <br>
+    Expected: No students in the student record list are shown, an error shows that there are no present students in the session.
 
 ### Clearing contents of student and session list
 
