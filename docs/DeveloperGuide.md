@@ -524,20 +524,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *MSS*
 1.  User requests to add an exercise. 
-2.  Calo adds the exercise to the current list of exercises and displays it (in the left panel).
-3.  Calo updates the calories burnt (for the date of the exercise) on the graph.
+2.  `Calo` adds the exercise to the current list of exercises and displays it (in the left panel).
+3.  `Calo` updates the calories burnt (for the date of the exercise) on the graph.
    Use case ends.
 
 *Extensions*
 <p>
     1a. The request contains some missing compulsory information.<br> 
-      1a1. Calo shows an error message, displaying the correct command format.<br>  
+      1a1. `Calo` shows an error message, displaying the correct command format.<br>  
     Use case ends. 
 </p>
 
 <p>
     1b. An exercise with the same name, description, date and exercise tags exists.<br>
-      1b1. Calo shows an error message, informing the user about duplicate template.<br>  
+      1b1. `Calo` shows an error message, informing the user about duplicate template.<br>  
     Use case ends.
 </p>
 
@@ -547,20 +547,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *MSS*
 1.  User requests to create a template for an exercise.
-2.  Calo adds the template to the current list of templates and displays it (right panel).  
+2.  `Calo` adds the template to the current list of templates and displays it (right panel).  
   Use case ends.
 
 *Extensions*
 <p>
 
     1a. The request contains some missing compulsory information.<br> 
-      1a1. Calo shows an error message, displaying the correct command format. <br>  
+      1a1. `Calo` shows an error message, displaying the correct command format. <br>  
     Use case ends.  
 </p>
 
 <p>
     1b. A template with the same name exists.<br>
-      1b1. Calo shows an error message, informing the user about duplicate template.<br>  
+      1b1. `Calo` shows an error message, informing the user about duplicate template.<br>  
     Use case ends.<br>
 </p>
 
@@ -570,20 +570,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *MSS*
 1.  User requests to add an exercise from an existing template.
-2.  Calo adds the exercise (based off the template) to the current list of exercises and displays it (in the left panel).
-3.  Calo updates the calories burnt (for the date of the exercise) on the graph.  
+2.  `Calo` adds the exercise (based off the template) to the current list of exercises and displays it (in the left panel).
+3.  `Calo` updates the calories burnt (for the date of the exercise) on the graph.  
    Use case ends.
 
 *Extensions*
 <p>
     1a. The template does not exist.<br>
-      1a1. Calo shows an error message, informing the user about the missing template.<br>  
+      1a1. `Calo` shows an error message, informing the user about the missing template.<br>  
     Use case ends.
 </p>
 
 <p>
     1b. An exercise with the same name, description, date and exercise tags exists.<br>
-      1b1. Calo shows an error message, informing the user about duplicate exercise.<br>  
+      1b1. `Calo` shows an error message, informing the user about duplicate exercise.<br>  
     Use case ends.
 </p>
 
@@ -633,7 +633,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *Extensions*
 <p>
     1a. No exercises contain the keyword. <br>
-      1a1. Calo shows an error message, displaying that no such exercise exists.<br>
+      1a1. `Calo` shows an error message, displaying that no such exercise exists.<br>
     Use case ends.
 </p>
 
@@ -650,7 +650,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *Extensions*
 <p>
     1a. The user has not added that exercise before.<br>
-      1a1. Calo displays an empty list.<br>
+      1a1. `Calo` displays an empty list.<br>
     Use case ends.
 </p>
 
@@ -661,14 +661,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *MSS*
 
 1.  User requests to update a specific exercise.
-2.  Calo updates the exercise and displays the message informing the user about the updated exercise.
-3.  Calo updates the calories burnt (for the date of the exercise) on the graph.
+2.  `Calo` updates the exercise and displays the message informing the user about the updated exercise.
+3.  `Calo` updates the calories burnt (for the date of the exercise) on the graph.
     Use case ends.
 
 *Extensions*
 <p>
     1a. The index is invalid.<br>
-      1a1. Calo displays an error message, indicating that the index is invalid.<br>
+      1a1. `Calo` displays an error message, indicating that the index is invalid.<br>
     Use case ends.
 </p>
 
@@ -685,7 +685,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *Extensions*
 <p>
     1a. The index is invalid.<br>
-      1a1. Calo displays an error message, indicating that the index is invalid.<br>
+      1a1. `Calo` displays an error message, indicating that the index is invalid.<br>
     Use case ends.
 </p>
 
@@ -697,13 +697,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list exercises
 2.  `Calo` shows a list of exercises
 1.  User requests to list all the exercises.
-2.  Calo displays a list of exercises (in the left panel)
+2.  `Calo` displays a list of exercises (in the left panel)
   Use case ends.
 
 *Extensions*
 <p>
     1a. The list of exercises is empty.<br>
-      1a1. Calo displays an empty list.<br>
+      1a1. `Calo` displays an empty list.<br>
     Use case ends.
 </p>
 
@@ -758,6 +758,6 @@ testers are expected to do more *exploratory* testing.
 
 ### Listing all exercise entries
 1. List all `Exercise` entries
-   1. Prerequisites: Calo starts up successfully
+   1. Prerequisites: `Calo` starts up successfully
    2. Test case: `list`<br>
       Expected: All `Exercise` entries belonging to the `ExerciseBook` will be displayed in the left panel.
