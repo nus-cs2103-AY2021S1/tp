@@ -21,6 +21,7 @@ Given below are my contributions to the project.
   * Justification: This feature is essential for practical use of the application as it is expected that a user will not have it open all the time, but would still want to save their records when closing and reopening the app. 
   * Highlights: This enhancement required an good understanding of existing `Storage` code to convert `SessionList` classes to their Json representations. Significant modification to existing test code was also done (especially in `TypicalStudents.java`)
   * Credits: The design of this feature were adapted from existing Storage code.
+  * Additional details of the implementation are [here](https://ay2021s1-cs2103-f09-1.github.io/tp/DeveloperGuide.html#storage)
 
 * **New Feature**: `LowestScoreCommand`
   * What it does: in a `Session`, displays all the students with the lowest class participation score
@@ -31,13 +32,12 @@ Given below are my contributions to the project.
 
 * **Bug Fix**: [Block duplicate `Session` names](https://github.com/AY2021S1-CS2103-F09-1/tp/pull/164)
 
-* **Bug Fix**: [Update functionality of `MarkAllCommand` and `ParticipationAllCommand`](https://github.com/AY2021S1-CS2103-F09-1/tp/pull/242)
+* **Bug Fix**: [Remove error message on empty input in MainWindow](https://github.com/AY2021S1-CS2103-F09-1/tp/pull/160)
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=jayarengam&tabRepo=AY2021S1-CS2103-F09-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * [Update functionality of `MarkAllCommand` and `ParticipationAllCommand`](https://github.com/AY2021S1-CS2103-F09-1/tp/pull/242)
 
 * **Documentation**:
   * User Guide:

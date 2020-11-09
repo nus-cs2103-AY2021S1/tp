@@ -362,15 +362,16 @@ A new method `JsonTaskmasterStorage#saveSessionList` will store the `SessionList
 **Future Expansion**
 
 Refactoring Storage: <br>
-An improvement that could be done to the code would be to abstract out the `Storage` instruction to a new abstract class or interface, following the Command pattern.
-Subclasses of this abstract class can then be used to save/load different `Model` classes. <br>
-These storage instructions can then be created and run within `Commands`, instead of within `LogicManager`. However, this would require that `Commands` take in `Storage` as an additional parameter.
+An improvement that could be done to the code would be to abstract out the `Storage` methods to a new abstract class or interface, following the Command pattern.
+Subclasses of this abstract class (`StorageInstruction`) can then be used to save/load different `Model` classes. <br>
+These storage instructions can then be created and run within `Command#execute`, instead of within `LogicManager#execute`.
+This would require that `Commands` take in `Storage` as an additional parameter.
  
 * This would then allow for the addition of storage-related features, such as:
     * saving all attendance records of a particular student to a file for viewing
         * This would allow for TAs to print the attendance in an easy-to-read format that they can then use to mark student's attendance on the official platform for their module.
     * saving student records from one particular Session to a file for viewing
-    * saving the current state of the Taskmaster to a new file for backup purposes (that file can then be loaded with a new Command)
+    * saving the current state of the Taskmaster to a new file for backup purposes (that file can then be loaded with a new `CreateBackupCommand`)
         * This could even be done in the background, to prevent accidental deletion of data from the `clear` command or otherwise.
 
 <br>
