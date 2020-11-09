@@ -195,9 +195,9 @@ Example: `exit`
 
 ### 4.2 Navigation Features
 
-#### 4.2.1 List all modules in __Trackr__: `listMod`
+#### 4.2.1 List all Modules in __Trackr__: `listMod`
 
-Shows all the modules you have added in the Module view.
+Shows all the Modules you have added in the Module view.
 
 Format: `listMod`
 
@@ -212,12 +212,13 @@ Expected Outcome:
 #### 4.2.2 View all Tutorial Groups in a Module: `viewTG`
 Change view to Tutorial Groups of target Module.
 
-Format: `viewTG MODULE_INDEX`
-- MODULE_INDEX is the target Module's index in the currently displayed Module List.
+Format: `viewTG INDEX`
+- INDEX is the target Module's index on the currently displayed Module List.
 
 > Note: You should perform this command in the MODULE view.
 
 Example: `viewTG 1`
+- Views all TutorialGroups of Module at _index 1_ on Module List.
 
 Expected Outcome:
 ![ViewTgCommand]()
@@ -238,14 +239,14 @@ Expected Outcome:
 #### 4.2.4 View all students in a tutorial group: `viewStudent`
 Change view to Students of target Tutorial Group.
 
-Format: `viewStudent TG_INDEX`
-- `TG_INDEX` refers to the index number shown in the Tutorial Group view.
-- `TG_INDEX` must be a positive integer starting from 1.
+Format: `viewStudent INDEX`
+- `INDEX` refers to the index number shown in the Tutorial Group view.
+- `INDEX` must be a positive integer starting from 1.
 
 > Note: You should perform this command in the TUTORIAL GROUP view.
 
 Example: `viewStudent 1`
-- Views all students of tutorial group at _index 1_ of Tutorial Group List.
+- Views all Students of Tutorial Group at _index 1_ on Tutorial Group List.
 
 Expected Outcome:
 ![ViewStudentCommand](images/ViewStudentCommand.png)
@@ -702,11 +703,11 @@ Command | Description | Compatible View
 Command | Description | Compatible View
 --------|-------------|------------
 `listMod` | Views all modules in __Trackr__ | ANY
-`viewTG MODULE_INDEX` | Changes view to Tutorial Groups of target Module | MODULE
+`viewTG INDEX` | Changes view to Tutorial Groups of target Module | MODULE
 `listTG` | Lists all Tutorial Groups in current Module | TUTORIAL GROUP
-`viewStudent TG_INDEX` | Change view to Students of target Tutorial Group | TUTORIAL GROUP
+`viewStudent INDEX` | Change view to Students of target Tutorial Group | TUTORIAL GROUP
 `listStudent` | Lists all Students in current Tutorial Group | STUDENT
-`viewAttendance STUDENT_INDEX` | Shows the attendance for Target student | STUDENT
+`viewAttendance INDEX` | Shows the attendance for target Student | STUDENT
 `prevView` | Returns to the previous view | ANY
 
 
