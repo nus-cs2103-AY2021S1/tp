@@ -55,14 +55,30 @@ public class TaskDashboard extends UiPart<Region> {
     public TaskDashboard(Optional<Task> task) {
         super(FXML);
         this.task = task.get();
+        setHeaders();
+        setLabels();
+        setText();
+        setListOfAssignees();
+    }
+
+    private void setLabels() {
         taskName.setText(this.task.getTaskName());
-        taskDescription.setWrappingWidth(500);
-        header1.setText("Task description: ");
-        taskDescription.setText(this.task.getDescription());
         publishDate.setText("Task published date: " + this.task.getPublishDate());
         deadline.setText("Task deadline: " + this.task.getDeadline().map(Deadline::toString).orElse("null"));
         progress.setText("Task progress: " + this.task.getProgress());
+    }
+
+    private void setHeaders() {
+        header1.setText("Task description: ");
         header2.setText("Task assignees: ");
+    }
+
+    private void setText() {
+        taskDescription.setWrappingWidth(500);
+        taskDescription.setText(this.task.getDescription());
+    }
+
+    private void setListOfAssignees() {
         String listOfAssignees = "";
         int ctr1 = 1;
         for (String t : this.task.getAssignees()) {
