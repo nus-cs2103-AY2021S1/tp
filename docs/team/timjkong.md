@@ -18,26 +18,19 @@ It is written in Java, and has about 16 kLOC.
     - Implemented **copy and move features**
         - What it does: The copy feature allows users to copy an `activity` from the wish list to a travel plan. The move feature essentially does the same thing but removes the `activity` from the
         wish list after copying it to the travel plan.
-        - Justifications: As our target users are travel goers, they would likely want to make a wish list of activities to do in various countries. Then, once they have finalised the details, such as the date, time and cost,
-        of the activities they have planned, they can copy or move the activities over to a travel plan.
-        This enhancement improved the product significantly as users will be able to easily copy or move activities that they have planned for their trips
+        - Justifications: This enhancement improved the product significantly as users will be able to easily copy or move activities that they have planned for their trips
         from the wish list to a travel plan instead of adding the activity to the travel plan, which would be much more cumbersome.
         - Highlights:
-            - This feature modifies all 4 components of Wanderlust: `Ui`, `Logic`, `Model` and `Storage`.
             - The copy and move commands differ from other commands in that they are the only commands that modify the list of activities of a travel plan not in the current directory.
         - Relevant pull requests: [\#135](https://github.com/AY2021S1-CS2103-T14-3/tp/pull/135)
 
     - Modified **add feature** from AB3 to fit Wanderlust
         - What it does: Allows user to add a `travelplan` or a `travelplanobject` in the application.
-        - Justifications: Since Wanderlust is a travel planner, it is necessary to allow users to add new travel plans to the travel planner and new activities, accommodations and friends to their travel plans.
         - Highlights:
-            - This feature modifies all 4 components of Wanderlust: `Ui`, `Logic`, `Model` and `Storage`.
             - This feature relies on abstraction. The `AddTravelPlanCommand`, `AddActivityCommand`, `AddAccommodationCommand` and `AddFriendCommand` classes extend the `AddCommand` class which extends the `Command` class.
         - Relevant pull requests: [\#89](https://github.com/AY2021S1-CS2103-T14-3/tp/pull/89)
 
-    - Implemented the `Accommodation` feature
-        - What it does: An `Accommodation` is a `travelplanobject` that users can add to their travel plans to organise and keep track of their accommodations during their trips.
-        - Justification: As our target users are travel goers, they will likely want to keep track of their accommodation details during their trips. This feature allows them to do so in an organised and efficient manner.
+    - Implemented the `Accommodation` class
         - Relevant pull requests: [\#58](https://github.com/AY2021S1-CS2103-T14-3/tp/pull/58)
 
 - **Minor Enhancements**:
@@ -58,9 +51,7 @@ It is written in Java, and has about 16 kLOC.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the `delete` feature ([\#17](https://github.com/AY2021S1-CS2103-T14-3/tp/pull/17))
-    * Added documentation for the features `add` and `edit` ([\#107](https://github.com/AY2021S1-CS2103-T14-3/tp/pull/107))
-    * Added documentation for the features `copy` and `move` ([\#188](https://github.com/AY2021S1-CS2103-T14-3/tp/pull/188/files))
+    * Added documentation for the `add`,`delete`,`edit`,`copy` and `move` features ([\#17](https://github.com/AY2021S1-CS2103-T14-3/tp/pull/17), [\#107](https://github.com/AY2021S1-CS2103-T14-3/tp/pull/107), [\#188](https://github.com/AY2021S1-CS2103-T14-3/tp/pull/188/files))
   * Developer Guide:
     * Added non-functional requirements. ([#46](https://github.com/AY2021S1-CS2103-T14-3/tp/pull/46))
     * Added implementation details of the `add` feature. ([#142](https://github.com/AY2021S1-CS2103-T14-3/tp/pull/142))
