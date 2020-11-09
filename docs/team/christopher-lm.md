@@ -1,42 +1,32 @@
 ---
 layout: page
-title: Christopher Leo Mervyn's Project Portfolio Page
+title: Christopher Mervyn's Project Portfolio Page
 ---
 
-___
-
-## Description of Project:
+#### Description of Project:
 
 PropertyFree is a real estate management application meant for property agents to organize their properties and meetings more efficiently.
 Other application can keep track of meetings and schedules but there are relatively few applications that help track properties 
-and associate them with meetings with clients.
+and associate them with meetings with clients.  
 
 For our project we hope to make it more streamlined for agents to keep track of their property and have clear information about those properties
-and there clients.
-___
+and their clients.  
 
-##Developers of PropertyFree:
-
-PropertyFree is developed by a group of second year Computer Science Students from the School of Computing, National
-University if Singapore. This was developed for the team projects assignment for the module CS2103 and is a
-brown-field project adapting from existing projects.
-___
-
-## My Contributions to PropertyFree
+#### My Contributions to PropertyFree
 
 * **Sort Meeting Feature**: Added a command to sort meetings either ascendingly or descendingly based on the meeting date.
 * What it does: allows the user to sort the meetings in the meeting book according to the date of the meeting.
-  * Justification: This feature improves the product significantly because a user might want to sort the list of meetings that he has so that it is easier for him to identify his next meeting easily.
-  * Highlights: This enhancement affects the existing meeting book as the meetings will have to be stored after being sorted. It required an in-depth analysis of design alternatives. The implementation of this command was challenging as it required the sorting of all 3 types of meeting according to the date object attribute it has.
+  * Justification: A user might want to sort the list of meetings that he has so that it is easier for him to identify his next meeting easily.
+  * Highlights: The implementation of this command was challenging as it required the sorting of all 3 types of meeting according to the date object attribute it has.
 
-* **Add Meeting Feature**: Added a command to add 3 types of meetings, paperwork, admin and viewing types with various parameters such as Bidder Id, Property Id, Venue, Date, Start Time, and End Time to the meeting book.
+* **Add Meeting Feature**: Added a command to add 3 types of meetings, paperwork, admin and viewing types with various parameters.
 * What it does: allows the user to add meetings in the meeting book based on the type of meeting he has.
-* Justification: This feature improves the product significantly because a user will want to add meetings to the meeting book so that he can have an easy reference of all the upcoming meetings with clients that he has.
-* Highlights: This enhancement affects the existing meeting book as the meetings will have to be stored after being added. It required an in-depth analysis of design alternatives. The implementation of this command was challenging as it required the storing of all 3 types of meeting and the various attributes that a meeting object has.
+* Justification: A user might want to add meetings to the meeting book so that he can have an easy reference of all the upcoming meetings he has.
+* Highlights: It required an in-depth analysis of design alternatives. The implementation of this command was challenging as it required the storing of all 3 types of meeting and the various attributes that a meeting object has.
 
 * **Edit Meeting Feature**: Added a command to edit one or more parameters of an existing meeting in the meeting book.
 * What it does: allows the user to edit an existing meeting in the meeting book based on one or more parameters.
-* Justification: This feature improves the product significantly because a user will want to edit meetings in the meeting book so that he can easily change the meeting details if needed.
+* Justification: A user will want to edit meetings in the meeting book so that he can easily change the meeting details if needed.
 * Highlights: This implementation was straight forward, but I wanted to enable more than one parameter to be edited and this was more challenging but it would improve the user's convenience significantly as the user could input all the edits into one command line instead of multiple command lines.
 
 * **Meeting Attributes**: Added the various attributes for the meeting objects.

@@ -1,19 +1,9 @@
-# Munnamgi Harsha Vardhan Reddy - Project Portfolio
+---
+layout: page
+title: Munnamgi Harsha Vardhan Reddy's Project Portfolio Page
+---
 
-___
-
-## Project: PropertyFree
-
-Given below are my contributions to the project.
-
-Overview:
-
-This document is a project portfolio that documents all contributions made to PropertyFree's development by Harsha.
-
-___
-
-
-## Description of Project:
+#### Description of Project:
 
 PropertyFree is a real estate management application meant for property agents to organize their properties and meetings more efficiently.
 Other application can keep track of meetings and schedules but there are relatively few applications that help track properties 
@@ -22,17 +12,7 @@ and associate them with meetings with clients.
 For our project we hope to make it more streamlined for agents to keep track of their property and have clear information about those properties
 and there clients.
 
-___
-
-## Developers of PropertyFree:
-
-PropertyFree is developed by a group of second year Computer Science Students from the School of Computing, National
-University if Singapore. This was developed for the team projects assignment for the module CS2103 and is a
-brown-field project adapting from existing projects.
-
-___
-
-## My Contributions to PropertyFree
+#### My Contributions to PropertyFree
 
 * **Find Meeting Feature**: Added the ability to find meetings based on certain attributes.
   * What it does: Allows the user to find meetings based on various parameters and also allows the user to find based on multiple features also.

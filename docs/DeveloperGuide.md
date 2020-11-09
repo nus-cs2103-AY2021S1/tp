@@ -797,6 +797,7 @@ and calls the `handleToNext()` or `handleToPrev()` method in `CalendarView` depe
 **Target user profile**:
 
 * Has a need to manage a significant number of property details, seller details, buyer details as well as the various bid amounts
+* is a Real Estate Agent with a clientele mostly based in Singapore
 * Prefer desktop apps over other types
 * Can type fast
 * Prefers typing to mouse interactions
@@ -807,8 +808,9 @@ and calls the `handleToNext()` or `handleToPrev()` method in `CalendarView` depe
 * Able to store the various bids which makes it easier for agents to access details of the bids.
 * Generate a list of meetings which allows the agent to keep track of all the different meetings.
 * Able to search through the different lists based on the different attributes for ease of access of information. 
-* Will be much more automated compared to softwares such as excel and also has an accompanying GUI that would make it easier to filter through the different list.
-
+* Will be well suited for agents who have to track property listings, and associating it with 
+the sellers of that specific property. Also, to track bidders who place a bid on any of the properties listed under
+the agent.
 
 ## Appendix B: User stories
 
@@ -821,18 +823,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Real estate agent           | view the list of interested sellers                                                 | keep track of property owners                                          |
 | `* * *`  | Real estate agent           | delete a property listing                                                           | remove listings that are closed or the sellers do not wish to sell     |
 | `* * *`  | Real estate agent           | search the properties by id, name or area etc                                       | filter properties according to my criteria                             |
-| `* * *`  | Real estate agent           | sort the listing according to my criteria                                           | obtain a filtered list to easily observe properties of the same type   |
 | `* * *`  | Real estate agent           | add bids to my properties                                                           | keep track of my customers’ bids                                       |
 | `* * *`  | Real estate agent           | delete bids                                                                         | remove bids that are withdrawn by the bidders                          |
 | `* * *`  | Real estate agent           | view the current bids organised by property, sellers and buyers                     | keep track of the bids                                                 |
 | `* * *`  | Real estate agent           | create meetings                                                                     | set-up meetings easily with bidders and sellers for property           |
 | `* * *`  | Real estate agent           | view the list of meetings                                                           | keep track of all my meetings                                          |
 | `* * *`  | Real estate agent           | delete meetings                                                                     | remove meetings that are no longer happening                           |
-| `* *`    | Real estate agent           | view the listings I have by address                                                 | be better equipped to give more options to the buyers for certain areas|
 | `* *`    | Real estate agent           | edit the property listing                                                           | ensure that the property information is accurate                       |
 | `* *`    | Real estate agent           | label a property as a rental or not                                                 | to give options for buyers who may wish to rent only                   |
 | `* *`    | Real estate agent           | label the type of property the property is                                          | filter out specific properties based on the type buyers wish to buy    |
-| `* *`    | Real estate agent           | edit the details of the property rental                                             | update with new information from the client                            |
 | `* *`    | Real estate agent           | edit bids                                                                           | edit bids to ensure the information is accurate                        |
 | `* *`    | Real estate agent           | edit meeting details                                                                | ensure that meeting details are accurate in case of changes            |
 | `*`      | Real estate agent           | mark a property as sold                                                             | keep track on which houses are already sold without having to delete it|
@@ -840,40 +839,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Busy real estate agent      | delete bids or meetings related to properties/bidders that i delete                 | ensure that any invalid bids/meetings are conveniently removed         |
 | `* * *`  | Busy real estate agent      | delete properties related to a seller that I delete                                 | ensure that any invalid properties are conveniently removed            |
 | `* * *`  | Busy real estate agent      | delete properties related to a seller that I delete                                 | ensure that any invalid properties are conveniently removed            |
-| `* * *`  | Busy real estate agent      | sort meetings by date                                                               | can quickly reference upcoming meetings without having to search       |
 | `* *`    | Busy real estate agent      | see what is the highest bid amount for a property                                   | quickly check if the highest bid amount is satisfactory for the seller |
 | `* *`    | Busy real estate agent      | schedule meetings such that it can warn me if there is any clashes in meetings      | ensure my schedule will not be problematic due to unintended clashes   |
-
 
 
 ## Appendix C: Use cases
 
 (For all use cases below, the **System** is the `PropertyFree` and the **Actor** is the `Real Estate Agent`, unless specified otherwise)
 For our product, we have different entities such as `Meeting` `Bid` `Bidder` `Seller` `Property`. However across the different entities,
-the implementations are rather similar. Therefore, below we will use `ENTITY` to generalise the the different entities and then provide use
+the implementations are rather similar. 
+Therefore, below we will use `ENTITY` to generalise the different entities and then provide use
 cases for the general entity. If any of the features have a different implementation, we will provide the alternative use case below. 
 
 **1. Use case: Delete an `ENTITY` from the list**
 
 **MSS**
 
-1. User requests to list of an `ENTITY`
+1. User requests to list an `ENTITY`
 2. PropertyFree shows a list of the `ENTITY`
 3. User requests to delete a specific `ENTITY` in the `ENTITY` list
 4. PropertyFree deletes the `ENTITY` 
+
     Use case ends.
     
 **Extensions**
 
 * 2a. The list is empty.
+
     Use case ends.
 * 3a. The given index is invalid.
     * 3a1. PropertyFree shows an error message.  
+     
      Use case ends.
         
 **Special cases**
 * In the case when the `ENTITY` is `Bidder`, a deletion of the `Bidder` will result in the deletion of the associated `bids` and
 `meetings`
+* In the case when the `ENTITY` is `Seller`, a deletion of the `Seller` will result in the deletion of the associated `Property`
+
 * In the case when the `ENTITY` is `Property`, a deletion of the `Property` will result in the deletion of the associated `bids` and
 `meetings`
         
@@ -911,7 +914,7 @@ Use case ends.
     
 **Extensions**
 
-* 2a. The list of meetings is empty.  
+* 2a. The list of `ENTITY` is empty.  
     Use case ends.
     
 
@@ -967,7 +970,7 @@ Use case ends.
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 500 Entities(Property, Bidder, Seller, Bid, Meeting) without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 500 Entities (Property, Bidder, Seller, Bid, Meeting) without crashing.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  The product should be able to work without an internet connection.
 5.  The product should be able to save all changes to storage locally.
@@ -977,10 +980,19 @@ Use case ends.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private Seller and Bidder details**: Contact details that are not meant to be publicly shared with others
-* **Public Property Details**: Description of the property that is meant to be shared with others
-* **Bid Details**: Description of the bid which is meant to be shared with others 
+***Seller** - A seller is the owner of a property that wants to list their house for sale. It is assigned a unique Seller Id.
 
+* **Bidder** - A bidder is a person who wishes to bid for the purchase of a certain property. It is assigned a unique Bidder Id.
+
+* **Property** - A property is a listed estate that is up for bidder to place bids on. A property can only be added if the given Seller Id exists in the seller list. It is assigned a unique Property Id.
+
+* **Bid** - A Bid is an offer attempt by a bidder for a specific property. A bid can only be placed if the given Property Id and Bidder Id exists in the property list and bidder list.
+
+* **Meeting** - A meeting can be of 3 types.
+
+* **View** - For viewing of properties.
+* **Admin** - For general admin meetings.
+* **Paperwork** - For signing of paperwork related to the selling and buying of the property.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -1006,7 +1018,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2. Re-launch the app by double-clicking the jar file.<br>  
+   2. Re-launch the app by `java -jar PropertyFree.jar`.  
    
       Expected: The most recent window size and location is retained.  
 
@@ -1019,9 +1031,9 @@ testers are expected to do more *exploratory* testing.
 ### Testing Bidder and Seller Features
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** as the implementation of Bidder and Seller are similar, do note that the the manual testing section for `Bidder` and `Seller` can be tested similarly.
-
-- For example: in the following segment, `Adding a bidder while all bidders are being shown.`, the command which is given for bidder
+:information_source: **Note:** as the implementation of 
+Bidder and Seller are similar, do note that the the manual testing section for `Bidder` and `Seller` can be tested similarly.
+For example: in the following segment, `Adding a bidder while all bidders are being shown.`, the command which is given for bidder
 `add-b` can be changed to `add-s`. The output will be similar to that as mentioned but in the context of `Seller` instead.
 
 </div>
@@ -1043,7 +1055,9 @@ testers are expected to do more *exploratory* testing.
      Id: B1
      Tag: bidder
     ```
+   
 #### Edit a bidder while all bidders are being shown.
+
 
 1. Prerequisite: A bidder exists inside the bidder list with the index `3`, this will also imply that there are bidders indexed
 at `1` and `2` as the indexes are sequentially ordered.
@@ -1150,7 +1164,7 @@ at `1` and `2` as the indexes are sequentially ordered.
 2. Restrictions:
     -  Price must be greater than 0 and less or equals to 1 trillion.
     -  Price will be truncated to 2 decimal places.
-    -  PropertyName, Address and PropertyType have a maximum of 100 characters
+    -  PropertyName, Address and PropertyType have a maximum of 100 characters.
 
 3. Test case: `add-p n/Sunrise s/S1 ap/100 t/Landed a/99 Sunrise Street r/No`
 
@@ -1223,17 +1237,14 @@ at `1` and `2` as the indexes are sequentially ordered.
    
 #### Finding a property while all property are being shown.
 
-1. Prerequisite: 
-    - A property exists inside the property list with the index `3`, this will also imply that there are property indexed
-   at `1` and `2` as the indexes are sequentially ordered.
-
-2. Restrictions: 
+1. Restrictions: 
     - The search is case insensitive, all attributes e.g cove will match Cove
     - Only full words will be match e.g sun will not match sunrise
     - Properties matching at least one keyword will be considered a match e.g sunrise view will match sunrise avenue when
     `sun` is input
+    - At least one optional field is required.
 
-3. Test case: `find-p n/Cove Sunrise ap/<= 100 r/no`
+2. Test case: `find-p n/Cove Sunrise ap/<= 100 r/no`
 
     Expected: Displays all properties whose names contains either Cove or Sunrise, 
     asking price is less than or equals to 100, and is not a rental property.
@@ -1252,7 +1263,8 @@ For all test cases for bid features, the GUI will automatically switch to the bi
 
 2. Restrictions:  
     - Price must be more than 0 and less or equals to 1 trillion.  
-    - Price will be truncated to 2 dp.  
+    - Price will be truncated to 2 dp. 
+    - Cannot add a bid that already exists in the list. Bids are considered the same if both their property id and bidder id are the same.
 
 3. Test case: `add-bid b/P1 c/B2 m/150000.20`.  
 
@@ -1336,6 +1348,7 @@ For all test cases for meeting features, the GUI will automatically switch to th
     - Meeting type is either `v` for `viewing`, `a`, for `admin` or `p` for `paperwork`.  
     - Date is of the format `DD-MM-YYYY` and cannot be a past date.  
     - Time is of the format `HH-MM`. The timings can clash each other and the hours and minutes will overflow (eg `24:30` is same as `00:30`).  
+    - Cannot add meeting that already exists in the list. Meetings are considered the same if both their venue, date , start time and time are the same.
 
 3. Test case: add-m q/v b/B1 p/P1 v/2 ALBERT PARK d/11-12-2021 s/12:30 e/13:00  
 
@@ -1393,11 +1406,14 @@ For all test cases for meeting features, the GUI will automatically switch to th
 3. Test case: `edit-m 2 v/eunos`.  
 
    Expected: The meeting will be updated to the provided values, with the following message displayed:  
-   ```Edited Meeting: Admin
-      Bidder Id: B12
-      Property Id: P12
-      Venue: eunos
-      Date: 12-05-2016
+   ```
+    Edited Meeting: Admin
+    Bidder Id: B12
+    Property Id: P12
+    Venue: eunos
+    Date: 12-05-2016
+    Start Time: 12:30
+    End Time: 13:00
    ```  
    
 #### Sorting the existing Meeting List  
