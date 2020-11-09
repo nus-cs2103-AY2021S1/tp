@@ -83,23 +83,20 @@ Symbol | Meaning
 This section serves to explain how to set up **Reeve** on your computer and how to make sense of the visual layout of the application.
 
 ### 2.1 Setting up Reeve
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java 11 or above installed in your Computer.
 
-2. Download the latest `jar` file from [here](https://github.com/AY2021S1-CS2103T-W15-2/tp/releases).
+1. Download the latest .jar file from [here](https://github.com/AY2021S1-CS2103T-W15-2/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for **Reeve**.
+1. Copy the file to the folder you want to use as the _home folder_ for **Reeve**.
 
-4. Double-click the file to start the app. The GUI similar to the below figure (Figure 1) should appear in a few seconds. Note how the app contains some sample data.
+1. Double-click the file to start the app. The GUI similar to the below figure (Figure 1) should appear in a few seconds. Note how the app contains some sample data.
 
-![Ui](images/Ui.png)
-<div align="center">Figure 1: <strong>Reeve</strong> GUI</div><br>
-
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all students.
 
-   * **`add`**`add n/Alex p/93211234 s/Commonwealth Secondary School y/Primary 6 v/Blk 33 West Coast Rd #21-214
+   * **`add`**`n/Alex p/93211234 s/Commonwealth Secondary School y/Primary 6 v/Blk 33 West Coast Rd #21-214
    t/1 1430-1630 f/25 d/12/12/2020` : Adds a student named `Alex` to **Reeve**.
 
    * **`delete`**`3` : Deletes the 3rd student shown in the current list.
@@ -109,6 +106,9 @@ This section serves to explain how to set up **Reeve** on your computer and how 
    * **`exit`** : Exits **Reeve**.
 
 1. Refer to the [Features](#3-features) section below for details of each command.
+
+![Ui](images/Ui.png)
+<div align="center">Figure 1: <strong>Reeve</strong> GUI</div><br>
 
 ### 2.2 Making sense of Reeve's layout (By: Alex Chua)
 
@@ -366,6 +366,13 @@ Format: `overdue`
 
 * Students tutored for free (i.e. `FEE` = $0.00) will not be displayed.
 * If all students have paid their fees within the past month, no students will be displayed.
+
+<div markdown="block" class="alert alert-danger">
+
+:warning: If you use `edit` to update a student's last payment date to within a month from now, the student will be hidden from the list as his payment is no longer outstanding.
+You can always view his particulars again using `list` or `find`. The same also applies if you edit his fee to $0.00.
+
+</div>
 
 Expected outcome:
 
