@@ -5,13 +5,13 @@
     "telegram" : "alicepauline",
     "email" : "alice@example.com",
     "nusnetId" : "e0123456",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "wek" ]
   }, {
     "name" : "Benson Meier",
     "telegram" : "benson_m",
     "email" : "johnd@example.com",
     "nusnetId" : "e0456789",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "strong", "smart" ]
   }, {
     "name" : "Carl Kurz",
     "telegram" : "kurzzz",
@@ -23,7 +23,7 @@
     "telegram" : "dms_only",
     "email" : "cornelia@example.com",
     "nusnetId" : "e0987465",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "slacker" ]
   }, {
     "name" : "Elle Meyer",
     "telegram" : "mellie",
