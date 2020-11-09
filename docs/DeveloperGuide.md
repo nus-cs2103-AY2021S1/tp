@@ -548,6 +548,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete a recipe                | remove recipes that I no longer need to use                            |
 | `* * *`  | user                                       | find an item by name           | locate details of items without having to go through the entire list   |
 | `* * *`  | user                                       | find an item by tags           | locate details of items without having to go through the entire list   |
+
+<div style="page-break-after: always;"></div>
+
+
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                             |
+| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | user                                       | list all my items              | visually see what items are currently stored in my inventory           |
 | `* * *`  | user                                       | list all my recipes            | visually see what recipes are currently stored in my inventory         |
 | `* * *`  | user                                       | see a detailed view of an item | see recipes associated with this item                                  |
