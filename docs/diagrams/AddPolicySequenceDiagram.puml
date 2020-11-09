@@ -76,7 +76,6 @@ activate CommandResult
 
 CommandResult --> AddPolicyCommand
 deactivate CommandResult
-destroy CommandResult
 
 AddPolicyCommand --> LogicManager : result
 deactivate AddPolicyCommand

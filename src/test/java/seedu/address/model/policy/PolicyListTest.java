@@ -62,7 +62,7 @@ public class PolicyListTest {
     }
 
     @Test
-    public void getHashTableCopy() {
+    public void getHashMapCopy() {
         //check if its a copy
         PolicyList policyList = getTypicalPolicyList();
         policyList.getHashMapCopy().clear();
