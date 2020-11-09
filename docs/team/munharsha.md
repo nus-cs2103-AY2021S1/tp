@@ -74,17 +74,20 @@ ___
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `add-m`, `find-m`, `sort-m` and `list-m` 
-    * Did cosmetic tweaks to the UG by adding in more tables to make it more readable.
+    * Added documentation for the features `add-m`, `find-m`, `sort-m` and `list-m` [\#325](https://github.com/AY2021S1-CS2103-W14-1/tp/issues/325) [\#289](https://github.com/AY2021S1-CS2103-W14-1/tp/issues/289) 
   * Developer Guide:
     * Added implementation details of the `sort` feature.
-    * Helped with the formatting and the standardisation of the overall document.
+    * Helped with the formatting and the standardisation of the overall document. [\#302](https://github.com/AY2021S1-CS2103-W14-1/tp/issues/302) [\#22](https://github.com/AY2021S1-CS2103-W14-1/tp/issues/22)
     * Added implementation details of the `storage` feature.
     * Added user stories.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments)
-  * Reported bugs and suggestions for other teams in the class
-
+  * PRs reviewed (with non-trivial review comments) [\#322](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/322#pullrequestreview-525948576) [\#184](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/184#pullrequestreview-525951712)
+  [\#117](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/117#pullrequestreview-525953212) [\#176](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/176#pullrequestreview-525954548)
+  * Reported bugs and suggestions for other teams in the class. [1](https://github.com/munharsha/ped/issues/1) [2](https://github.com/munharsha/ped/issues/2) 
+[3](https://github.com/munharsha/ped/issues/3) [4](https://github.com/munharsha/ped/issues/4) [5](https://github.com/munharsha/ped/issues/5) [6](https://github.com/munharsha/ped/issues/6) 
+[7](https://github.com/munharsha/ped/issues/7) [8](https://github.com/munharsha/ped/issues/8) [9](https://github.com/munharsha/ped/issues/9) [10](https://github.com/munharsha/ped/issues/10) 
+[11](https://github.com/munharsha/ped/issues/11) [12](https://github.com/munharsha/ped/issues/12) 
+  * Contributed to forum discussions. [\#143](https://github.com/nus-cs2103-AY2021S1/forum/issues/143) [\#113](https://github.com/nus-cs2103-AY2021S1/forum/issues/113) [\#108](https://github.com/nus-cs2103-AY2021S1/forum/issues/108#issuecomment-683606987)
 
 
