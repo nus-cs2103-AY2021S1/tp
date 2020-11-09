@@ -68,7 +68,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/definition/ui/Ui.java)
 
-The UI consists of a `MainWindow` and `PerformanceWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`, `StatusBarFooter` etc. 
+The UI consists of a `MainWindow` and `PerformanceWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`, `StatusBarFooter` etc.
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/definition/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
@@ -190,7 +190,7 @@ The following activity diagram shows how user input is processed:
 ### Flip feature
 
 The flip feature flips a flashcard to either show or hide its definition. This feature is implemented by creating an instance of a `FlipCommand` which
-is then executed on the model of the flashcard list. This implementation was chosen because it preserves the original fields in a Flashcard such as the 
+is then executed on the model of the flashcard list. This implementation was chosen because it preserves the original fields in a Flashcard such as the
 definition. The command execution also works in a similar way to the other commands that were initially implemented.
 
 The following class diagram describes the implementation of the flip feature:
@@ -522,22 +522,22 @@ Use case ends.
 Use case ends.
 
 **Extensions**
-   
+
 1a. The flashcard list is empty. <br/>
 1a1. DSAce does not display any flashcards. <br/>
 Use case ends.
-	 
+
 3a. The user specifies an invalid index. <br/>
 3a1. DSAce displays an error message. <br/>
 3a2. User specifies a new index. <br/>
 3a3. DSAce verifies the new index. <br/>
 Steps 3a2 to 3a3 are repeated until the index specified is correct. <br/>
 Use case resumes from step 4.
-   
+
 5a. The user does not specify whether the flashcard is to be sorted in ascending or descending order of priority. <br/>
 5a1. DSAce displays the flashcard list that is sorted in ascending order of priority. <br/>
 Use case resumes from step 7.
-   
+
 7a. There are no flashcards in the flashcard list that fulfill the user's specifications. <br/>
 7a1. DSAce does not display any flashcards. <br/>
 Use case ends.
@@ -602,7 +602,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `add n/Testing d/Nothing p/High t/Sorting`<br>
       Expected: New flashcard with name `Testing`, definition `Nothing`, priority `high`, and tag `Sorting` is added to
       the bottom of the flashcard list. Details of the new flashcard are included in the status message.
-   
+
    2. Test case: `add n/ d/sort slowly`
       Expected: No flashcard is added. Error details are shown in the status message.
 
@@ -615,7 +615,7 @@ testers are expected to do more *exploratory* testing.
 
    2. Test case: `edit 1 n/Testing`<br>
       Expected: The name of the first flashcard in the list is changed to `Testing`.
-      
+
    3. Test case: `edit -1 d/Wrong flashcard`<br>
       Expected: No flashcard in the list is edited. Error details are shown in the status message.
 
@@ -624,10 +624,10 @@ testers are expected to do more *exploratory* testing.
 1. Finding a flashcard while all flashcards are being shown
 
    1. Prerequisite: The flashcard list contains at least one flashcard. One of the flashcards has the name `Quicksort`.
-   
+
    2. Test case: `find n/Quicksort`
       Expected: Only flashcards with the name `Quicksort` are displayed.
-      
+
    3. Test case: `find`
       Expected: The find command is not executed. Error details are displayed in the status message.
 
@@ -644,11 +644,11 @@ testers are expected to do more *exploratory* testing.
 1. Starting an attempt while user is in quiz mode and has no an ongoing attempt.
 
    1. Prerequisites: Switch to quiz mode from flashcard mode using the `enter quiz` command. Multiple questions are
-    listed. No prior `start attempt` is called.
-   
+      listed. No prior `start attempt` is called.
+
    1. Test case: `start attempt`<br>
       Expected: Attempt is started. Success message shown in the status message.
-   
+
    1. Test case: `start`<br>
       Expected: No new attempt started. Error details shown in the status message. Status bar remains the same.
 
@@ -656,32 +656,32 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1. Starts an attempt while user is in quiz mode and has an ongoing attempt.
-   
+
    1. Prerequisites: Similar to previous prerequisites. Enter `start attempt` to start an ongoing attempt.
-    
+
    1. Test case: `start attempt`<br>
       Expected: No new attempt started. Error details shown in the status message. Status bar remains the same.
-      
+
 ### Ending an attempt
 1. Ending an attempt while user is in quiz mode and has an empty ongoing attempt.
 
    1. Prerequisites: Switch to quiz mode from flashcard mode using the `enter quiz` command. Multiple questions are listed. Enter `start
     attempt` to start an ongoing attempt.
-   
+
    1. Test case: `end attempt`<br>
       Expected: Attempt ended but not saved in performance. Success message shown in the status message.
-   
+
    1. Test case: `end`<br>
       Expected: Attempt does not end. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect end attempt commands to try: `end attempt 123`, `EnD AtTemPt`<br>
       Expected: Similar to previous.
-      
+
 1. Ending an attempt while user is in quiz mode from flashcard mode and has a non-empty ongoing attempt.
 
    1. Prerequisites: Similar to previous prerequisites, enter `answer 1 a/true` to add a new response to current
     attempt.
-   
+
    1. Test case: `end attempt`<br>
       Expected: Attempt ended and saved in performance. Success message shown in the status message.
 
@@ -711,7 +711,7 @@ testers are expected to do more *exploratory* testing.
 1. Sorting flashcards by priority while all flashcards are being shown
 
    1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list.
-   
+
    1. Test case: `sort`
       Expected: Flashcards are sorted in order of ascending priority (when unspecified). Success message shown in status message. Timestamp in the status bar is updated.
 
@@ -731,10 +731,10 @@ testers are expected to do more *exploratory* testing.
 1. Flipping flashcards by index while all flashcards are being shown
 
    1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list. The second flashcard has already been flipped (visible definition).
-   
+
    1. Test case: `flip 1`<br>
       Expected: The definition of the first flashcard is now visible. Success message shown in status message. Timestamp in the status bar is updated.
-      
+
    1. Test case: `flip 2`<br>
       Expected: The definition of the second flashcard is now hidden. Success message shown in status message. Timestamp in the status bar is updated.
 
