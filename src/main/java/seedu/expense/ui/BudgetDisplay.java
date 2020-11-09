@@ -21,7 +21,8 @@ public class BudgetDisplay extends UiPart<Region> {
 
     private static final String FXML = "BudgetDisplay.fxml";
     private static final String BUDGET_BALANCE = "$%s / $%s";
-    private static final String HEADER_MESSAGE = "Budget balance:";
+    private static final String DEFAULT_HEADER_MESSAGE = "Total Budget Balance:";
+    private static final String HEADER_MESSAGE_SUFFIX = " Budget Balance:";
     private static final String GREEN_BAR_STYLE_CLASS = "green-bar";
     private static final String ORANGE_BAR_STYLE_CLASS = "orange-bar";
     private static final String RED_BAR_STYLE_CLASS = "red-bar";
@@ -53,7 +54,7 @@ public class BudgetDisplay extends UiPart<Region> {
         requireNonNull(statistics);
         this.statistics = statistics;
 
-        budgetHeader.setText(HEADER_MESSAGE);
+        budgetHeader.setText(DEFAULT_HEADER_MESSAGE);
 
         progressBar.setProgress(getProgress());
         setBarStyle();
@@ -127,6 +128,8 @@ public class BudgetDisplay extends UiPart<Region> {
         double finalProgress = getProgress();
 
         if (initialProgress != finalProgress) {
+            budgetHeader.setText(statistics.getBudgetBarLabel()
+                    + HEADER_MESSAGE_SUFFIX);
             budgetDisplay.setText(budgetBalance());
             progressBar.setProgress(getProgress());
             setBarStyle();

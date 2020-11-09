@@ -27,4 +27,11 @@ public interface Statistics {
      * @return tallied balance of the expense book
      */
     Amount tallyBalance();
+
+    /**
+     * Returns the appropriate budget bar label to be displayed based on user commands.
+     *
+     * @return Label for budget bar as String.
+     */
+    String getBudgetBarLabel();
 }

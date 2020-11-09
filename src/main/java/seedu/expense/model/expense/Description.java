@@ -37,6 +37,13 @@ public class Description {
     }
 
     /**
+     * Returns new generic Description instance for some internal functions.
+     */
+    public static Description getGenericDescription() {
+        return new Description(CLASS_NAME);
+    }
+
+    /**
      * Returns true if a given string is a valid description.
      */
     public static boolean isValidDescription(String test) {

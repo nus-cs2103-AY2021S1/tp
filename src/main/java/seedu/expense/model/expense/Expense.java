@@ -5,6 +5,7 @@ import static seedu.expense.model.ExpenseBook.DEFAULT_TAG;
 
 import java.util.Objects;
 
+import seedu.expense.model.ExpenseBook;
 import seedu.expense.model.tag.Tag;
 
 /**
@@ -32,6 +33,17 @@ public class Expense {
         this.date = date;
         this.remark = remark;
         this.tag = tag;
+    }
+
+    /**
+     * Returns a generic {@code Expense} with specific {@code Tag} used for some internal functions.
+     *
+     * @param tag Specific Tag to initialise new Expense.
+     * @see ExpenseBook#getBudgetBarLabel()
+     */
+    public static Expense getGenericExpenseWithTag(Tag tag) {
+        return new Expense(Description.getGenericDescription(), Amount.zeroAmount(),
+                Date.getDateNow(), null, tag);
     }
 
     public Description getDescription() {
