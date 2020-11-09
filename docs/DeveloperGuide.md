@@ -709,9 +709,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
- 1.  User requests to add a specific Client in the list
- 2.  FitEgo adds the Client.  
-     Use case ends.
+ 1.  User requests to add a specific Client in the list.
+ 2.  FitEgo adds the Client. <br/> Use case ends.
     
 **Extensions**
 
@@ -733,11 +732,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
- 1.  User requests to list Clients
- 2.  FitEgo shows a list of Clients
- 3.  User requests to edit a specific Client in the list
- 4.  FitEgo edits the Client according to the specified details  
-     Use case ends.
+ 1.  User requests to list Clients.
+ 2.  FitEgo shows a list of Clients.
+ 3.  User requests to edit a specific Client in the list.
+ 4.  FitEgo edits the Client according to the specified details. <br/> Use case ends.  
 
 **Extensions**
 
@@ -756,11 +754,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
- 1.  User requests to list Clients
- 2.  FitEgo shows a list of Clients
- 3.  User requests to delete a specific Client in the list
- 4.  FitEgo deletes the Client  
-     Use case ends.
+ 1.  User requests to list Clients.
+ 2.  FitEgo shows a list of Clients.
+ 3.  User requests to delete a specific Client in the list.
+ 4.  FitEgo deletes the Client. <br/> Use case ends.
 
 **Extensions**
 
@@ -796,8 +793,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
  1.  User requests to find some Client based on keyword or text.
- 2.  FitEgo displays the Client's whose name matches the keyword or text.
-     Use case ends.
+ 2.  FitEgo displays the Client's whose name matches the keyword or text. <br/> Use case ends.
 
 **Extensions**
 
@@ -816,8 +812,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
  1.  User requests to list Clients.
  2.  FitEgo shows a list of Clients.
  3.  User requests to view a specific Client in the list
- 4.  FitEgo opens the Client's profile in a new window.  
-Use case ends.
+ 4.  FitEgo opens the Client's profile in a new window. <br/> Use case ends.
 
 **Extensions**
 * 2a. The list is empty.
@@ -864,8 +859,7 @@ Similar to [UC03 (Delete a Client)](#uc03), but replace Client with Session.
 
  1.  FitEgo shows a list of Sessions.
  2.  User requests to filter the Session List by a period.
- 3.  FitEgo filters the Session List according to the specified period and updates the title displayed.
-     Use case ends.
+ 3.  FitEgo filters the Session List according to the specified period and updates the title displayed.  <br/> Use case ends.
 
 **Extensions**
 
@@ -886,8 +880,7 @@ Similar to [UC03 (Delete a Client)](#uc03), but replace Client with Session.
 
  1. FitEgo shows a list of Clients and list of Sessions.
  2. User requests to add a specific Schedule between a specified Client from Client List and Session from Session List.
- 3. FitEgo adds the Schedule.
-    Use case ends.
+ 3. FitEgo adds the Schedule. <br/> Use case ends.
 
 **Extensions**
 
@@ -910,8 +903,7 @@ Similar to [UC03 (Delete a Client)](#uc03), but replace Client with Session.
 
  1.  FitEgo shows a list of Clients and list of Sessions.
  2.  User requests to edit a specific Schedule in the list. (i.e. updated Session index, update payment, update weight)
- 3.  FitEgo edits the Schedule according to the specified details.
-     Use case ends.
+ 3.  FitEgo edits the Schedule according to the specified details. <br/> Use case ends.
 
 **Extensions**
 
@@ -933,8 +925,7 @@ Similar to [UC03 (Delete a Client)](#uc03), but replace Client with Session.
 
  1. FitEgo shows a list of Clients and list of Sessions.
  2. User requests to delete a Schedule associated with a specified Client from the Client List and Session from the Session List.
- 3. FitEgo deletes the Schedule.
-    Use case ends.
+ 3. FitEgo deletes the Schedule.  <br/> Use case ends.
 
 **Extensions**
 
@@ -957,8 +948,7 @@ Similar to [UC03 (Delete a Client)](#uc03), but replace Client with Session.
  1.  User requests to view Help Window. 
  2.  FitEgo displays Help Window with the User Guide link.
  3.  User selects the link to access the User Guide. 
- 4.  FitEgo opens the User Guide in user's default browser.
-     Use case ends.
+ 4.  FitEgo opens the User Guide in user's default browser. <br/> Use case ends.
 
 **Extensions**
  - 3a. User closes the Help Window. 
