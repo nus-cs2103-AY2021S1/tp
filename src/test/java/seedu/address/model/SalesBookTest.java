@@ -11,6 +11,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.testutil.TypicalSalesRecordEntries;
+
 public class SalesBookTest {
 
     private final SalesBook salesBook = new SalesBook();
@@ -28,11 +30,7 @@ public class SalesBookTest {
 
     @Test
     public void resetData_withValidReadOnlySalesBook_replacesData() {
-        SalesBook newData = new SalesBook();
-        SalesRecordEntry newEntry = new SalesRecordEntry(Drink.BSBGT, 10);
-        List<SalesRecordEntry> salesRecordEntryList = Collections.singletonList(newEntry);
-        newData.setRecord(salesRecordEntryList);
-
+        SalesBook newData = TypicalSalesRecordEntries.getTypicalSalesBook();
         salesBook.resetData(newData);
         assertEquals(newData, salesBook);
     }
@@ -44,12 +42,12 @@ public class SalesBookTest {
 
     @Test
     public void setRecord_list_replacesOwnUniqueListWithProvidedList() {
-        SalesBook newData = new SalesBook();
         SalesRecordEntry newEntry = new SalesRecordEntry(Drink.BSBGT, 10);
         List<SalesRecordEntry> salesRecordEntryList = Collections.singletonList(newEntry);
-        newData.setRecord(salesRecordEntryList);
 
-        assertEquals(salesRecordEntryList, newData.getSalesRecord());
+        salesBook.setRecord(salesRecordEntryList);
+
+        assertEquals(salesRecordEntryList, salesBook.getSalesRecord());
     }
 
     @Test
@@ -96,20 +94,20 @@ public class SalesBookTest {
 
     @Test
     public void hasSalesRecordEntry_entryNotInSalesBook_returnsFalse() {
-        SalesRecordEntry entry = new SalesRecordEntry(Drink.BSBGT, 49);
+        SalesRecordEntry entry = TypicalSalesRecordEntries.BSBGT;
         assertFalse(salesBook.hasSalesRecordEntry(entry));
     }
 
     @Test
     public void hasSalesRecordEntry_entryInSalesBook_returnsTrue() {
-        SalesRecordEntry entry = new SalesRecordEntry(Drink.BSBGT, 49);
+        SalesRecordEntry entry = TypicalSalesRecordEntries.BSBGT;
         salesBook.addSalesRecordEntry(entry);
         assertTrue(salesBook.hasSalesRecordEntry(entry));
     }
 
     @Test
     public void hasSalesRecordEntry_entryWithSameDrinkFieldInSalesBook_returnsTrue() {
-        SalesRecordEntry entry = new SalesRecordEntry(Drink.BSBGT, 49);
+        SalesRecordEntry entry = TypicalSalesRecordEntries.BSBGT;
         salesBook.addSalesRecordEntry(entry);
         SalesRecordEntry sameDrinkEntry = new SalesRecordEntry(entry.getDrink(), entry.getNumberSold() - 1);
         assertTrue(salesBook.hasSalesRecordEntry(sameDrinkEntry));
@@ -123,15 +121,13 @@ public class SalesBookTest {
     @Test
     public void equals() {
         SalesBook sameBook = new SalesBook();
-        SalesRecordEntry newEntry = new SalesRecordEntry(Drink.BSBGT, 10);
+        SalesRecordEntry newEntry = TypicalSalesRecordEntries.BSBGT;
         List<SalesRecordEntry> salesRecordEntryList = Collections.singletonList(newEntry);
-        sameBook.setRecord(salesRecordEntryList);
 
+        sameBook.setRecord(salesRecordEntryList);
         salesBook.setRecord(salesRecordEntryList);
 
-        SalesBook differentBook = new SalesBook();
-        sales.put(Drink.BSPGT, 20);
-        differentBook.overwriteSales(sales);
+        SalesBook differentBook = TypicalSalesRecordEntries.getTypicalSalesBook();
 
         // same values -> returns true
         assertTrue(salesBook.equals(sameBook));

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.ingredientcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INGREDIENTS;
 
 import java.util.List;
 
@@ -19,12 +20,16 @@ public class IngredientResetAllCommand extends Command {
     public static final String COMMAND_WORD = "i-reset-all";
     public static final String RESET_AMOUNT = "0";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Resets all the ingredient levels to zero in tCheck.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Resets the ingredients' levels of all ingredient "
+            + "types to zero.\nIf the input contains extra words, those extra words will be ignored. For example, "
+            + "if the input is 'i-reset-all 121', \n"
+            + "then tCheck will ignore the extra input '121' and resets all ingredients' levels to zero.\n"
             + "Parameters: There are no parameters.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "All ingredient levels are reset to 0.";
-    public static final String MESSAGE_NO_CHANGE = "All Ingredient levels are already at 0.";
+    public static final String MESSAGE_SUCCESS = "All ingredients' levels are reset to 0.";
+    public static final String MESSAGE_NO_CHANGE = "All Ingredients' levels have been already at 0 before the "
+            + "resetting all ingredient's levels command (i-reset-all) is entered.";
 
     /**
      * Executes the command and returns the result message.
@@ -36,11 +41,12 @@ public class IngredientResetAllCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Ingredient> lastShownList = model.getFilteredIngredientList();
+        model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
+        List<Ingredient> listOfIngredients = model.getFilteredIngredientList();
 
         boolean isNotAlreadyReset = false;
         Amount resetAmount = new Amount(RESET_AMOUNT);
-        for (Ingredient i : lastShownList) {
+        for (Ingredient i : listOfIngredients) {
             if (!i.getAmount().equals(resetAmount)) {
                 isNotAlreadyReset = true;
                 break;
@@ -51,7 +57,7 @@ public class IngredientResetAllCommand extends Command {
             throw new CommandException(MESSAGE_NO_CHANGE);
         }
 
-        for (Ingredient i : lastShownList) {
+        for (Ingredient i : listOfIngredients) {
             if (!i.getAmount().equals(resetAmount)) {
                 Ingredient updatedIngredient = createResetIngredient(i);
                 model.setIngredient(i, updatedIngredient);

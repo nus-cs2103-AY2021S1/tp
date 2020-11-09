@@ -23,16 +23,15 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SalesFindCommand;
 import seedu.address.logic.commands.SalesListCommand;
-import seedu.address.logic.commands.SalesRankCommand;
 import seedu.address.logic.commands.SalesUpdateCommand;
 import seedu.address.logic.commands.UnarchiveCommand;
+import seedu.address.logic.commands.ingredientcommands.IngredientFindCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientListCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientResetAllCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientRestockCommand;
-import seedu.address.logic.commands.ingredientcommands.IngredientViewSingleCommand;
-import seedu.address.logic.commands.ingredientcommands.SetAllCommand;
-import seedu.address.logic.commands.ingredientcommands.SetCommand;
-import seedu.address.logic.commands.ingredientcommands.SetDefaultCommand;
+import seedu.address.logic.commands.ingredientcommands.IngredientSetAllCommand;
+import seedu.address.logic.commands.ingredientcommands.IngredientSetCommand;
+import seedu.address.logic.commands.ingredientcommands.IngredientSetDefaultCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -72,6 +71,7 @@ public class AddressBookParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
+        //@@author yanbingtao
         case ArchiveCommand.COMMAND_WORD:
             return new ArchiveCommandParser().parse(arguments);
 
@@ -92,6 +92,7 @@ public class AddressBookParser {
 
         case FindByTagCommand.COMMAND_WORD:
             return new TagFindCommandParser().parse(arguments);
+        //@@author
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -102,20 +103,22 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
-        case SetCommand.COMMAND_WORD:
-            return new SetCommandParser().parse(arguments);
+        case IngredientSetCommand.COMMAND_WORD:
+            return new IngredientSetCommandParser().parse(arguments);
 
-        case IngredientViewSingleCommand.COMMAND_WORD:
-            return new IngredientViewSingleCommandParser().parse(arguments);
+        //@@author WM71811
+        case IngredientFindCommand.COMMAND_WORD:
+            return new IngredientFindCommandParser().parse(arguments);
 
         case IngredientListCommand.COMMAND_WORD:
             return new IngredientListCommand();
 
-        case SetAllCommand.COMMAND_WORD:
-            return new SetAllCommandParser().parse(arguments);
+        //@@author
+        case IngredientSetAllCommand.COMMAND_WORD:
+            return new IngredientSetAllCommandParser().parse(arguments);
 
-        case SetDefaultCommand.COMMAND_WORD:
-            return new SetDefaultCommand();
+        case IngredientSetDefaultCommand.COMMAND_WORD:
+            return new IngredientSetDefaultCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -123,21 +126,21 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        //@@author WM71811
         case IngredientResetAllCommand.COMMAND_WORD:
             return new IngredientResetAllCommand();
 
         case IngredientRestockCommand.COMMAND_WORD:
             return new IngredientRestockCommand();
 
+        // @@author ureshiiYing
         case SalesUpdateCommand.COMMAND_WORD:
             return new SalesUpdateCommandParser().parse(arguments);
-
-        case SalesRankCommand.COMMAND_WORD:
-            return new SalesRankCommand();
 
         case SalesListCommand.COMMAND_WORD:
             return new SalesListCommand();
 
+        // @@author
         case SalesFindCommand.COMMAND_WORD:
             return new SalesFindCommandParser().parse(arguments);
 

@@ -5,9 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.testutil.TypicalSalesRecordEntries;
+
 public class SalesRecordEntryTest {
 
-    private final SalesRecordEntry salesRecordEntry = new SalesRecordEntry(Drink.BSBBT, 42);
+    private final SalesRecordEntry salesRecordEntry = TypicalSalesRecordEntries.BSBBT;
 
     @Test
     public void isSameRecord_sameDrinkDifferentNumberSold_returnsTrue() {
@@ -18,16 +20,14 @@ public class SalesRecordEntryTest {
 
     @Test
     public void isSameRecord_differentDrink_returnsFalse() {
-        SalesRecordEntry newEntry = new SalesRecordEntry(Drink.BSBGT, 40);
+        SalesRecordEntry newEntry = TypicalSalesRecordEntries.BSBGT;
         assertFalse(salesRecordEntry.isSameRecord(newEntry));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        SalesRecordEntry sameEntry = new SalesRecordEntry(salesRecordEntry.getDrink(),
-                salesRecordEntry.getNumberSold());
-        assertTrue(salesRecordEntry.equals(sameEntry));
+        assertTrue(salesRecordEntry.equals(TypicalSalesRecordEntries.BSBBT));
 
         // same object -> returns true
         assertTrue(salesRecordEntry.equals(salesRecordEntry));
@@ -39,8 +39,7 @@ public class SalesRecordEntryTest {
         assertFalse(salesRecordEntry.equals(5));
 
         // different entry -> returns false
-        SalesRecordEntry differentEntry = new SalesRecordEntry(Drink.BSBGT, 32);
-        assertFalse(salesRecordEntry.equals(differentEntry));
+        assertFalse(salesRecordEntry.equals(TypicalSalesRecordEntries.BSBGT));
 
         // different Drink -> returns false
         assertFalse(salesRecordEntry.equals(new SalesRecordEntry(Drink.BSBGT, salesRecordEntry.getNumberSold())));

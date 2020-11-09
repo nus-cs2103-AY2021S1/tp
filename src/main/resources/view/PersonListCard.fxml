@@ -27,17 +27,18 @@
           </minWidth>
         </Label>
           <Label fx:id="isArchived" styleClass="cell_big_label-archived" text="\$isArchived" />
-          <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+          <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true" />
       </HBox>
       <FlowPane fx:id="tags" />
+
          <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
-               <Label fx:id="contactNumber" styleClass="cell_small_label_italic" text="Contact Number: " >
+               <Label fx:id="contactNumber" styleClass="cell_small_label_italic" text="Contact Number: ">
                   <minWidth>
                      <Region fx:constant="USE_PREF_SIZE" />
                   </minWidth>
                </Label>
-            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" />
             </children>
          </HBox>
          <HBox alignment="CENTER_LEFT" spacing="5">
@@ -47,17 +48,23 @@
                      <Region fx:constant="USE_PREF_SIZE" />
                   </minWidth>
                </Label>
-            <Label fx:id="emergency" styleClass="cell_small_label" text="\$emergency" />
+            <Label fx:id="emergency" styleClass="cell_small_label" text="\$emergency" wrapText="true" />
             </children>
          </HBox>
          <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
-               <Label fx:id="addressHeader" styleClass="cell_small_label_italic" text="Address: ">
+               <Label fx:id="addressHeader" alignment="TOP_LEFT" styleClass="cell_small_label_italic" text="Address: ">
                   <minWidth>
                      <Region fx:constant="USE_PREF_SIZE" />
                   </minWidth>
+                  <padding>
+                     <Insets top="1.0" />
+                  </padding>
+                  <HBox.margin>
+                     <Insets top="1.0" />
+                  </HBox.margin>
                </Label>
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+            <Label fx:id="address" alignment="TOP_LEFT" styleClass="cell_small_label" text="\$address" wrapText="true" />
             </children>
          </HBox>
     </VBox>

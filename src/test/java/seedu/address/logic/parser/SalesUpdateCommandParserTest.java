@@ -41,13 +41,23 @@ public class SalesUpdateCommandParserTest {
     public void parse_missingSalesItem_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SalesUpdateCommand.MESSAGE_USAGE);
         // no parameters
-        assertParseFailure(parser, SalesUpdateCommand.COMMAND_WORD, expectedMessage);
+        assertParseFailure(parser, "", expectedMessage);
     }
 
     @Test
     public void parse_negativeSalesNumber_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SalesUpdateCommand.MESSAGE_USAGE);
         // no parameters
-        assertParseFailure(parser, SalesUpdateCommand.COMMAND_WORD + "BSBM/-100", expectedMessage);
+        assertParseFailure(parser, "BSBM/-100", expectedMessage);
+    }
+
+    @Test
+    public void parse_exceedRecordLimit_failure() {
+        String expectedMessage = SalesUpdateCommand.MESSAGE_MAX_NUM_ALLOWED_EXCEEDED;
+        Integer maxExceeded = SalesUpdateCommand.MAX_NUM_ALLOWED + 1;
+        // input does not exceed max value of Integer, but exceeds allowed limit
+        assertParseFailure(parser, String.format(" BSBM/%d", maxExceeded), expectedMessage);
+        // input exceeds max value of Integer
+        assertParseFailure(parser, " BSBM/99999999999999", expectedMessage);
     }
 }

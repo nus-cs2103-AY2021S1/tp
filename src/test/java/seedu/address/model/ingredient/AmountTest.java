@@ -38,17 +38,43 @@ class AmountTest {
     }
 
     @Test
-    public void isAmountBelowRestockLevel() {
+    public void testLiquidAmountToReachRestockLevel() {
+        Amount testAmount1 = new Amount("1");
+        assertEquals(testAmount1.liquidAmountToReachRestockLevel(), "49");
+    }
+
+    @Test
+    public void testSolidAmountToReachRestockLevel() {
+        Amount testAmount1 = new Amount("1");
+        assertEquals(testAmount1.solidAmountToReachRestockLevel(), "19");
+    }
+
+    @Test
+    public void isLiquidAmountBelowRestockLevel() {
         Amount testAmount1 = new Amount("1");
         Amount testAmount2 = new Amount("2");
-        Amount testAmount4 = new Amount("4");
+        Amount testAmount4 = new Amount("49");
         Amount testAmount5 = new Amount("0");
-        Amount testAmount6 = new Amount("5");
-        assertTrue(testAmount1.isBelowRestockLevel());
-        assertTrue(testAmount2.isBelowRestockLevel());
-        assertTrue(testAmount4.isBelowRestockLevel());
-        assertTrue(testAmount5.isBelowRestockLevel());
-        assertFalse(testAmount6.isBelowRestockLevel());
+        Amount testAmount6 = new Amount("50");
+        assertTrue(testAmount1.isLiquidBelowRestockLevel());
+        assertTrue(testAmount2.isLiquidBelowRestockLevel());
+        assertTrue(testAmount4.isLiquidBelowRestockLevel());
+        assertTrue(testAmount5.isLiquidBelowRestockLevel());
+        assertFalse(testAmount6.isLiquidBelowRestockLevel());
+    }
+
+    @Test
+    public void isSolidAmountBelowRestockLevel() {
+        Amount testAmount1 = new Amount("1");
+        Amount testAmount2 = new Amount("2");
+        Amount testAmount4 = new Amount("19");
+        Amount testAmount5 = new Amount("0");
+        Amount testAmount6 = new Amount("20");
+        assertTrue(testAmount1.isSolidBelowRestockLevel());
+        assertTrue(testAmount2.isSolidBelowRestockLevel());
+        assertTrue(testAmount4.isSolidBelowRestockLevel());
+        assertTrue(testAmount5.isSolidBelowRestockLevel());
+        assertFalse(testAmount6.isSolidBelowRestockLevel());
     }
 
     @Test

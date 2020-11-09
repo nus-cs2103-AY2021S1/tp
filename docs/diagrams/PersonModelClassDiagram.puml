@@ -1,0 +1,42 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Interface ReadOnlyAddressBook <<Interface>>
+Class ModelManager
+Class AddressBook
+
+Package Person {
+Class Person
+Class Name
+Class Phone
+Class Address
+Class ArchiveStatus
+Class UniquePersonList
+}
+
+Package Tag {
+Class Tag
+}
+}
+
+AddressBook .left.|> ReadOnlyAddressBook
+AddressBook *--> "1" UniquePersonList
+UniquePersonList o--> "*" Person
+ModelManager o-left-> "1" AddressBook
+Person *-left-> "1" Name
+Person *-left-> "1" Phone : Phone Number
+Person *-left-> "1" Phone : Emergency Contact
+Person *--> "1" Address
+Person *--> "1" ArchiveStatus
+Person *--> "*" Tag
+
+Name -[hidden]right-> Phone
+Phone -[hidden]right-> Address
+
+
+ModelManager -down->"*" Person : filteredPersons
+@enduml

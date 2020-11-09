@@ -8,7 +8,6 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.ingredient.Ingredient;
-import seedu.address.model.ingredient.IngredientName;
 import seedu.address.model.person.Person;
 
 /**
@@ -94,7 +93,6 @@ public interface Model {
      */
     void setSalesBookFilePath(Path salesBookFilePath);
 
-
     /**
      * Sets the user prefs' ingredient book file path.
      */
@@ -125,8 +123,6 @@ public interface Model {
      */
     boolean hasPerson(Person person);
 
-    boolean hasIngredient(Ingredient ingredient);
-
     /**
      * Deletes the given person.
      * The person must exist in the address book.
@@ -153,8 +149,6 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     void setIngredient(Ingredient target, Ingredient newAmount);
-
-    Ingredient findIngredientByName(IngredientName ingredientName);
 
     /**
      * Returns an ArrayList of ingredients that are in shortage. If
@@ -217,11 +211,11 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Updates the filter of the filtered sales list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered sales record list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredSalesList(Predicate<SalesRecordEntry> predicate);
+    void updateFilteredSalesRecordList(Predicate<SalesRecordEntry> predicate);
 
     /**
      * Updates the filter of the filtered ingredient list to filter by the given {@code predicate}.

@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.logic.parser.ParserUtil.parseNumberSold;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -26,7 +27,7 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PHONE = "87642615";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -171,6 +172,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseNumberSold_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> parseNumberSold("99999999999999999"));
         assertThrows(ParseException.class, () -> ParserUtil.parseNumberSold("-1"));
         assertThrows(ParseException.class, () -> ParserUtil.parseNumberSold("+100"));
     }

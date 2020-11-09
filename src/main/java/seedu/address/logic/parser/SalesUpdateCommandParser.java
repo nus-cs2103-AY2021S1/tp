@@ -25,8 +25,6 @@ public class SalesUpdateCommandParser implements Parser<SalesUpdateCommand> {
      * Parses the given {@code String} of arguments in the context of the SalesUpdateCommand
      * and returns a SalesUpdateCommand object for execution.
      *
-     * The default value is 0 for drink items which the user did not provide the input.
-     *
      * @param args user input to parse
      * @return a SalesUpdateCommand object for execution
      * @throws ParseException if {@code userInput} does not conform the expected format
@@ -48,6 +46,11 @@ public class SalesUpdateCommandParser implements Parser<SalesUpdateCommand> {
             Drink drink = Drink.valueOf(drinkPrefixes[i].toString().replace("/", ""));
             if (argMultimap.getValue(drinkPrefixes[i]).isPresent()) {
                 int val = ParserUtil.parseNumberSold(argMultimap.getValue(drinkPrefixes[i]).get());
+
+                if (val > SalesUpdateCommand.MAX_NUM_ALLOWED) {
+                    throw new ParseException(SalesUpdateCommand.MESSAGE_MAX_NUM_ALLOWED_EXCEEDED);
+                }
+
                 sales.put(drink, val);
             }
         }

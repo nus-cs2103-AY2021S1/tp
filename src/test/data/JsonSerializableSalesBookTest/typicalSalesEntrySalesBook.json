@@ -1,0 +1,21 @@
+{
+  "salesRecordEntries" : [ {
+    "drink" : "BSBGT",
+    "numberSold" : "0"
+  }, {
+    "drink" : "BSPGT",
+    "numberSold" : "0"
+  }, {
+    "drink" : "BSPBT",
+    "numberSold" : "0"
+  }, {
+    "drink" : "BSBBT",
+    "numberSold" : "0"
+  }, {
+    "drink" : "BSPM",
+    "numberSold" : "0"
+  }, {
+    "drink" : "BSBM",
+    "numberSold" : "0"
+  } ]
+}
