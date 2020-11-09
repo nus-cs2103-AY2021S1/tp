@@ -194,32 +194,45 @@ Figure 4.2 Listing all patients
 
 ### 3.4 Editing a patient: `edit` (by Cao Qin)
 
-This command allows you to edit an existing patient in **Hospify**.
+This command allows you to edit an existing patient in **Hospify**, it is especially useful when the patients' information changes and you want to update it in the system. 
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/ALLERGIES]…​`
+To use this command, simply type in `edit` and the fields of the patient you want to edit, as specified by the format below.
+
+Format: `edit INDEX [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [mr/MEDICAL_RECORD_URL] [t/ALLERGIES]…​`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+* The meaning of each field in the above format is the same as in the `add` command, you can refer to the [**`add` command**](#32-adding-a-patient-add-by-cedric-lim-jun-wei).
+For your convenience, specifications for each field are also provided below.
+
+</div>
+
+* The `INDEX` refers to the index number of the patient as shown in the displayed patient list, and it **must be a positive integer**, such as 1, 2, 3, …​
+* The `NRIC` field should start with an alphabet, followed by 7 digits, before ending with another alphabet.
+* The `NAME` and `ALLERGIES` fields should only contain alphanumeric characters, and they have an upper limit of 100 characters. 
+* The `PHONE_NUMBER` field should contain a number that is between 3 and 15 digits (inclusive) long.
+* The `EMAIL` field should contain a valid email address (to find more information on email validation, please check the [Command Summary](#5-command-summary)).
+* The `ADDRESS` field should only contain alphanumeric characters, and its total length should not exceed 200 characters.
+* The `MEDICAL_RECORD_URL` field should contain a valid URL (to find more information on URL validation, please check the [Command Summary](#5-command-summary)).
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Important notes:**<br>
 
-* The meaning of each filed is the same as in `add` command, please refer to [add command](#32-adding-a-patient-add-by-cedric-lim-jun-wei).
-* `INDEX` refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
-* Except `INDEX`, all other fields are optional.
+* Except for the `INDEX` field, all other fields are optional.
 * At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
+* After editing a field, the old value of that field will be deleted from the system and replaced by the new input value.
 * When editing allergies, the existing allergies of the patient will be removed i.e adding of allergies is not cumulative.
-* You are **not allowed** to edit the `NRIC` or `MEDICAL_RECORD_URL` field of a patient to the same as another existing patient's in **Hospify**. However, it is possible to do so for the other fields.
+* You are **not allowed** to edit the `NRIC` or `MEDICAL_RECORD_URL` field of a patient to the same as another existing patient's in **Hospify**. However, it is possible to do so for other fields.
 
 </div>
 
+To help you better understand how to use the `edit` command, here are some examples below.
+
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing allergies.
-
-When a patient is successfully edited in **Hospify**, a success message will appear in the message box, and the edited patient is updated in the list as shown in figure 5.1 below. <br>
-![Edit patient](images/editPatient.png)
-Figure 5.1 Editing a patient(success scenario)
-
+*  `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` edits the name of the 2nd patient to be `Betsy Crower` and clears all existing allergies.
 <div markdown="block" class="alert alert-info">
 
 **:bulb: Tip:**<br>
@@ -228,6 +241,11 @@ Figure 5.1 Editing a patient(success scenario)
     specifying any allergies after it.
     
 </div>
+
+When a patient is successfully edited in **Hospify**, a success message will appear in the message box, and the edited patient will be updated in the list as shown in figure 5.1 below. <br>
+![Edit patient](images/editPatient.png)
+Figure 5.1 Editing a patient(success scenario)
+
 
 ### 3.5 Locating patients by name or Nric: `find` (by Gabriel Teo Yu Xiang)
 
@@ -263,26 +281,31 @@ Examples:
 
 ### 3.6 Deleting a patient: `delete` (by Cao Qin)
 
-Deletes the specified patient from **Hospify**.
+This command allows you to delete a specific patient from **Hospify**. As a converse of `add` command, `delete` command might 
+be useful when you find a patient's information will no longer be used in the system and want to remove it. 
+
+To use this command, simply type in `delete` and the `INDEX` or `NRIC` of the patient you want to delete, as specified in the format below. 
 
 Format: `delete INDEX` or `delete NRIC`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: About the format of `delete` command:**<br>
-* Deletes the patient at the specified `INDEX` or `NRIC`
-* The `INDEX` refers to the index number shown in the displayed patient list.
-* The `INDEX` **must be a positive integer** 1, 2, 3, …​
-* The `NRIC` refers to the `NRIC` of the patient to be deleted.
+**:information_source: Notes about `delete` command:**<br>
+* `delete` command deletes the patient at the specified `INDEX` or `NRIC`.
+* The `INDEX` refers to the index number of the patient as shown in the displayed patient list, and it must be a **positive integer**, such as 1, 2, 3, …​
+* The `NRIC` refers to the `NRIC` field of the patient to be deleted. It should start with an alphabet, followed by 7 digits, before ending with another alphabet.
 * The `NRIC` entered is **case-insensitive**. e.g. `s1234567a` will match `S1234567A`
 * Only full `NRIC`s will be matched e.g. `S12345` will **not** match `S1234567A`
+* When a patient is successfully deleted from **Hospify**, a success message will appear in the message box, and the deleted patient will disappear from the displayed patient list.
 </div>
+
+To help you get more familiar with the `delete` command, here are some examples of using this command, as shown below.
 
 Examples:
 
 scenario 1 (delete by index):
 
-* `list`(shown in Figure 2.4 below) followed by `delete 2`(shown in Figure 2.5 below) deletes the 2nd patient in **Hospify**.
+* `list`(shown in Figure 7.1 below) followed by `delete 2`(shown in Figure 7.2 below) deletes the 2nd patient in **Hospify**'s patient list.
 
   `list` command shows all the patients and their corresponding index.
   ![result for 'list'](images/listResult.png)
@@ -335,7 +358,7 @@ Examples:
 
     1. Initially, list of patients is not sorted by name as seen below:
         
-        ![Sort Nric example](images/SortNric.PNG)
+        ![Sort Nric example](images/SortNric0.png)
         Figure 9.1 List of patients not sorted by name
         
     2. After user inputs `sort name` list is sorted as seen below:
@@ -347,7 +370,7 @@ Examples:
     
     1. Initially, list of patients is not sorted by NRIC as seen below:
         
-        ![Sort Nric example](images/SortName.PNG)
+        ![Sort Nric example](images/SortName0.png)
         Figure 9.3 List of patients not sorted by NRIC
     
     2. After user inputs `sort NRIC` list is sorted as seen below:
@@ -495,7 +518,7 @@ Format: `deleteAppt NRIC appt/DATE TIME`
 * `DATE` and `TIME` represent the date and time of the `Appointment` to be deleted.
 * `DATE` and `TIME` formats follow the same format as specified in the [`addAppt`](#310-adding-an-appointment-addappt-by-gabriel-teo-yu-xiang) command section.
 
-Examples:
+Example:
 * `deleteAppt S0000001A appt/28/09/2022 20:00`
 
 When an `Appointment` is successfully deleted, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in figure 13.1 below.<br>
@@ -576,12 +599,18 @@ at **hospify_enquiry@gmail.com** to notify the tech team if it does not open on 
 
 ### 3.15 Clearing all entries: `clear` (by Cao Qin)
 
-This command helps clear all patients' information from **Hospify**.
+This command allows you to clear all patients' information from **Hospify**. It is very useful when you want to clear all the sample data in the system and start using **Hospify** in your own clinic!
+
+To use this command, simply type in `clear`, and all the patients' information will be removed from the system.
 
 Format: `clear`
 
+To help you understand this command, here is an example of using it, as shown below.
+
 Example: 
-execute `clear`(shown in Figure 14.5 below) command will empty the patients' list (shown in Figure 14.5 below).
+
+execute `clear`(shown in Figure 16.1 below) command will empty the patient list (shown in Figure 16.2 below).
+
 ![clear command](images/clear%20command.png)
 Figure 16.1 clear command
 

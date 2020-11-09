@@ -29,7 +29,7 @@ You may also wish to refer to the source code [here](https://github.com/AY2021S1
 
 ## **3. Design**
 
-In this section, we will be discussing the general design of the software. We will begin with its overall architecture to understand the high-level design of **Hospify**, followed by a closer look into each of the four major components, namely [`UI`](#ui-component), [`Logic`](#logic-component), [`Model`](#model-component) and [`Storage`](#storage-component).
+In this section, we will be discussing the general design of the software. We will begin with its overall architecture to understand the high-level design of **Hospify**, followed by a closer look into each of the four major components, namely [`UI`](#32-ui-component), [`Logic`](#33-logic-component), [`Model`](#34-model-component) and [`Storage`](#35-storage-component).
 
 ### 3.1 Architecture
 
@@ -41,14 +41,14 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#36-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#32-ui-component): The UI of the App.
+* [**`Logic`**](#33-logic-component): The command executor.
+* [**`Model`**](#34-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#35-storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
@@ -145,31 +145,31 @@ In this section, we will be highlighting some key features and how they are bein
 
 ### 4.1 Find by name or NRIC feature (by Cao Qin)
 
-The find feature enables users to find patients by specifying their names (anyone from their first name, middle name or last name) or Nric numbers.
+The find feature enables users to find patients by specifying their names (anyone from their first names, middle names, or last names) or Nric numbers.
 
 #### 4.1.1 Implementation
 
 The following are the changes made to achieve this feature:
 
 * A `KeywordPredicate` class is added under the `model/patient` package. 
-* `FindCommand` class is modified to keep a KeywordPredicate object as a filed.
-* `FindCommandParser` class is modified to parser both patients' name and nric number.
+* `FindCommand` class is modified to keep a KeywordPredicate object as a field.
+* `FindCommandParser` class is modified to parser both patients' names and nric numbers.
 
-Given below is an example usage scenario of this feature using both name and Nric as inputs.
+Given below is a usage scenario of this feature using both name and Nric as inputs.
 
 Step 1. The user executes `add n/Alex Yeoh ic/S0000001A p/87438807 e/alexyeoh@example.com a/Blk 30 Geylang Street 29, #06-40 mr/www.sample.com/01` to add a patient named Alex Yeho and with a Nric number “S0000001A”.
 
 Step 2. The user executes `add n/Bernice Yu ic/S0000002A p/99272758 e/berniceyu@example.com a/Blk 30 Lorong 3 Serangoon Gardens, #07-18 mr/www.sample.com/02` to add a patient named Bernice Yu and with a Nric number “S0000002A”.
 
-Step 3. The user executes `find Yeoh` command to find a patient with name "Yeoh".
+Step 3. The user executes `find Yeoh` command to find a patient with the name "Yeoh".
 
-Step 4. The user executes `find S0000001A` command to find a patient with Nric number "S0000001A".
+Step 4. The user executes `find S0000001A` command to find a patient with the Nric number "S0000001A".
 
-Step 5. The user executes `find Alex S0000002A` command to find 2 patients: one with name “Alex” and one with Nric number “A0000002S”.
+Step 5. The user executes `find Alex S0000002A` command to find 2 patients: one with the name “Alex” and one with the Nric number “A0000002S”.
 
 Step 6. The user executes `list` command to view the full list of patients.
 
-The sequence diagram below illustrates Logic and Model Components when the user executes `find Alex S0000002A` command as in Step 5. 
+The sequence diagram below illustrates the interaction between Logic and Model components when the user executes `find Alex S0000002A` command as in Step 5. 
 
 ![FindSequenceDiagram](images/UML_Diagrams/FindSequenceDiagram.png)
 
@@ -177,18 +177,18 @@ The sequence diagram below illustrates Logic and Model Components when the user 
  
 **:information_source: Note on sequence diagram:**<br>
  
-* The lifeline for `findCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+* The lifeline for `findCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 </div>
 
-In the **Logic** Component, after user inputs `find Alex S0000002A`, these are the key methods:
-* `LogicManager#execute("find Alex S0000002A")` : The `LogicManager` takes in the command text string ("find Alex S0000002").
-* `HospifyParser#parseCommand("find")` : The `HospifyParser` parses the users' input and recognizes the command word, "find", and a `FindCommand` is created.
-* `FindCommand#execute(model)` : The `FindCommand` uses the `updateFilteredPatientList` method of `Model` to update the displayed patients list and returns a `CommandResult` object which represents the result of a
+In the **Logic** Component, when user inputs `find Alex S0000002A`, these are the key methods invoked:
+* `LogicManager#execute("find Alex S0000002A")`: The `LogicManager` takes in the command text string ("find Alex S0000002").
+* `HospifyParser#parseCommand("find")`: The `HospifyParser` parses the users' input and recognizes the command word, "find", and a `FindCommand` is created.
+* `FindCommand#execute(model)`: The `FindCommand` uses the `updateFilteredPatientList` method of `Model` to update the displayed patient list and returns a `CommandResult` object which represents the result of a
 command execution.
 
-In the **Model** Component, the following key method is used:
-* `Model#updateFilteredPatientLis(predicate)` : `Model` uses this method to update the displayed patients list.
+In the **Model** Component, This is the key method invoked:
+* `Model#updateFilteredPatientLis(predicate)`: `Model` uses this method to update the displayed patients list.
 
 The following activity diagram summarizes what happens when the user inputs a find command.
 ![FindActivityDiagram](images/UML_Diagrams/findActivityDiagram.png)
@@ -385,31 +385,65 @@ The following activity diagram summarizes what happens when the user inputs a co
 
 ### 4.5 Appointment feature (by Gabriel Teo Yu Xiang)
 
-The appointment feature will enable clinics to manage patient's appointments within Hospify, thus avoiding the need for spreadsheets.
-Users have the ability to show, add, delete, edit appointments within the app. 
-
 #### 4.5.1 Implementation
-##### Overview:
+
+The appointment feature will enable clinics to manage patient's appointments within Hospify, thus avoiding the need for spreadsheets.
+Users have the ability to show, add, edit and delete appointments within Hospify.
+The following are the additions required for this feature:
 
 * An `Appointment` class is created in the `patient` package.
 * A new prefix `appt/` to be used with the new `Appointment` field.
 * 4 new commands specifically for managing patients' appointments, `showAppt`, `addAppt`, `editAppt` and `deleteAppt`.
+* 3 new additional prefixes `oldappt/`, `newappt/` and `d/` to represent old appointments, new appointments, and appointment description respectively, which are to be used in the `editAppt` command.
+
+##### Overview:
+
+To understand how the `Appointment` feature can be used, let us take a look at an overview of how the `addAppt` command is implemented first.
+
+1. After the input is entered by the user, the `LogicManager#execute(String commandText)` method calls the `HospifyParser#parseCommand(String userInput)` method for Hospify to parse and interpret the user input.
+
+2. Based on `addAppt` command word, an `AddApptCommandParser` object is created and the `AddApptCommandParser#parse(String args)` method is called for the `AddApptCommandParser` to parse and interpret the arguments in the user input.
+
+3. Subsequently, an `AddApptCommand` object is created and returned as an output to the `LogicManager#execute(String commandText)` method.
+
+4. The `LogicManager#execute(String commandText)` method then calls upon the `AddApptCommand#execute(Model model)` method, which in turn calls the `Model#setPatient(Patient patient 1, Patient patient 2)` and `Model#updateFilteredPatientList(boolean true)` methods to add the new `Appointment` to the patient.
+
+5. Finally, a new `CommandResult` object is returned with a success message when the `Appointment` is added to the patient.
+
+The sequence diagram below illustrates how the operation of adding an `Appointment` works.
+
+![AddAppointmentSequenceDiagram](images/UML_Diagrams/AddAppointmentSequenceDiagram.png)<br>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note on sequence diagram:**<br>
+
+* The lifeline for `AddApptCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+* For simplicity, the complete line of user input for the `addAppt` command is omitted, originally referring to `S1234567A appt/28/09/2022 20:00 d/Eye Check-up`, which is further simplified to `... appt/DATE TIME` in the sequence diagram.
+
+* Similarly, `patient 1` and `patient 2` represent the `Patient` object before and after adding the `Appointment` respectively, and `PREDICATE_SHOW_ALL_PATIENTS` has been simplified to `true` in the sequence diagram, since it is always evaluated to `true` in its implementation.
+
+* The steps above illustrate a typical successful execution of the `addAppt` command. In the usage scenario below, we will summarise all other commands related to the `Appointment` feature.
+
+</div>
 
 Given below is an example usage scenario using a Patient with `NRIC` **S1234567A**.
 
-Step 1. The user executes `addAppt S1234567A /appt 28/09/2020 20:00` command to add an appointment with the
- specified time to the patient with `NRIC`of S1234567A.
+Step 1. The user executes `addAppt S1234567A appt/28/09/2022 20:00 d/Eye Check-up` command to add an appointment with the specified time and description to a patient of `NRIC` S1234567A.
 
-Step 2. The user shows the appointment of the patient by **clicking** on the patient using the `GUI` or 
-using the command `showAppt S1234567A`.
+Step 2. The user shows the appointment of the patient by either **double clicking** on the patient card display via the `GUI` or using the command `showAppt S1234567A`.
 
-Step 3. The user now decides to edit the appointment of patient of `NRIC` S1234567A and executes `editAppt S1234567A /appt 05/10/2020 20:00` to change the appointment timing accordingly.
+Step 3. The user now decides to edit the appointment of the patient of `NRIC` S1234567A and executes `editAppt S1234567A oldappt/28/09/2022 20:00 newappt/14/10/2022 14:00` to change the appointment date and time accordingly.
 
-Step 4. The user then decides to delete the appointment of patient of `NRIC` S1234567A and executes `deleteAppt S1234567A /appt 05/10/2020 20:00` to delete the specified appointment.
+Alternatively, the user can also choose to edit the appointment description along with the timing as well, by specifying the new description in the command as such:<br>
+`editAppt S1234567A oldappt/28/09/2022 20:00 newappt/14/10/2022 14:00 d/Revisit`.
 
-The following activity diagram summarizes what happens when a user adds a new appointment:
+Step 4. The user then decides to delete the appointment of the patient of `NRIC` S1234567A and executes `deleteAppt S1234567A appt/14/10/2022 14:00` to delete the specified appointment.
 
-![AddAppointmentActivityDiagram]()
+The following activity diagram summarizes what happens when a user executes the above usage scenario:
+
+![AppointmentActivityDiagram](images/UML_Diagrams/AppointmentActivityDiagram.png)
 
 #### 4.5.2 Design consideration:
 
@@ -426,8 +460,6 @@ The following activity diagram summarizes what happens when a user adds a new ap
 * **Alternative 3:** Each patient only stores one Appointment.
   * Pros: Easy to implement and manage.
   * Cons: Very limited functionality as each patient can only have one appointment booked at a time.
-
-_{more aspects and alternatives to be added}_
 
 ### 4.6 Show Appointment feature (by Peh Jun Siang)
 

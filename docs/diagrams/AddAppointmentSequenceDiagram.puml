@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HospifyParser" as HospifyParser LOGIC_COLOR
+participant ":AddApptCommandParser" as AddApptCommandParser LOGIC_COLOR
+participant "a:AddApptCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addAppt ... appt/DATE TIME")
+activate LogicManager
+
+LogicManager -> HospifyParser : parseCommand("addAppt ... appt/DATE TIME")
+activate HospifyParser
+
+create AddApptCommandParser
+HospifyParser -> AddApptCommandParser
+activate AddApptCommandParser
+
+AddApptCommandParser --> HospifyParser
+deactivate AddApptCommandParser
+
+HospifyParser -> AddApptCommandParser : parse("... appt/DATE TIME")
+activate AddApptCommandParser
+
+create AddCommand
+AddApptCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddApptCommandParser : a
+deactivate AddCommand
+
+AddApptCommandParser --> HospifyParser : a
+deactivate AddApptCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddApptCommandParser -[hidden]-> HospifyParser
+destroy AddApptCommandParser
+
+HospifyParser --> LogicManager : a
+deactivate HospifyParser
+
+LogicManager -> AddCommand : execute(model)
+activate AddCommand
+
+AddCommand -> Model : setPatient(patient 1, patient 2)
+activate Model
+
+Model --> AddCommand
+deactivate Model
+
+AddCommand -> Model : updateFilteredPatientList(true)
+activate Model
+
+Model --> AddCommand
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : result
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
