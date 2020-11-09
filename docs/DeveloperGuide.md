@@ -564,9 +564,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.<br>
 </p>
 
-
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 #### **Use case: Add an exercise based on an existing template**
@@ -585,11 +582,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </p>
 
 <p>
-    1b. An template with the same name, description, date and exercise tags exists.<br>
-      1b1. Calo shows an error message, informing the user about duplicate template.<br>  
+    1b. An exercise with the same name, description, date and exercise tags exists.<br>
+      1b1. Calo shows an error message, informing the user about duplicate exercise.<br>  
     Use case ends.
 </p>
 
+--------------------------------------------------------------------------------------------------------------------
 
 #### **Use case: Archive data**
   *MSS*
@@ -603,6 +601,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       1a1. `Calo` shows a message indicating that file cannot be created at specified file.<br>
     Use case ends.
 </p>
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### **Use case: Add a goal**
 1.  User requests to create a goal for a day.  
@@ -620,80 +620,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     The user have already set a goal for the specific day. <br> 
       1a1. `Calo` shows an error message, information the user about the pre-existing goal. <br>  
     Use case ends.  
-
-
-*MSS*
-1.  User requests to create a template for an exercise  
-2.  `Calo` adds the template and displays on the Template Panel.  
-    Use case ends.
-
-*Extensions*
-<p>
-    The request have some missing compulsory information.<br>
-      1a1. `Calo` shows an error message, information the user about the correct format and information necessary.<br>
-    Use case ends.<br>
-</p>
-
-<p>
-    Template with the same name exists.<br>  
-      1a1. `Calo` shows an error message, informing the user about duplicate template.<br>  
-    Use case ends.<br>
-1.  User requests to create a goal for the day.  
-2.  Calo adds the goal and displays a message informing the user about the new goal.    
-  Use case ends.
-
-*Extensions*
-<p>
-    1a. The request contains some missing compulsory information.<br> 
-      1a1. Calo shows an error message, displaying the correct command format. <br>  
-    Use case ends.  
-</p>
-
-<p>
-    1b. The user has already set a goal for the same day. <br> 
-      1b1. Calo shows an error message, displaying that a goal is already present on the date specified.<br>  
-    Use case ends.  
-</p>
-
-
-#### **Use case: Add Exercise based on Template**
-*MSS*
-1.  User requests to add an exercise from a template he previously created.
-2.  `Calo` adds the template and displays on the Exercise Panel.  
-
-*Extensions*
-<p>
-    The request have some missing compulsory information.<br>
-      1a1. `Calo` shows an error message, information the user about the correct format and information necessary.<br>
-    Use case ends.<br>
-</p>
-
-<p>
-    Template with the same name exists.<br>  
-      1a1. `Calo` shows an error message, informing the user about duplicate template.<br>  
-    Use case ends.<br>
-1.  User requests to create a goal for the day.  
-2.  Calo adds the goal and displays a message informing the user about the new goal.    
-  Use case ends.
-
-#### **Use case: Archive data**
-
-  *MSS*
-1.  User requests to archive data to a different file location.
-2.  Calo archives data to the specified location.  
-    Use case ends.
-
-*Extensions*
-<p>
-<<<<<<< HEAD
-    The template does not exist.<br>
-      1a1. `Calo` shows an error message, information the user about the template does not exist.<br>  
-    Use case ends.<br>
-=======
-    1a. User does not have the permission to create the file at the specified location. <br>
-      1a1. Calo shows an error message, displaying that the file cannot be created at the specified location.<br>
-    Use case ends.
-</p>
 
 --------------------------------------------------------------------------------------------------------------------
 
