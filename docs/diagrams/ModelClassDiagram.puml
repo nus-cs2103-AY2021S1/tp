@@ -74,7 +74,6 @@ Budget ^.. CategoryBudget
 ExpenseBook *--> "1" AliasMap
 
 ExpenseBook *--> "1" UniqueTagList
-UniqueTagList -->"1" Tag : filtered list
 UniqueTagList o--> "*" Tag
 
 Class HiddenOutside2 #FFFFFF
