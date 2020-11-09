@@ -386,17 +386,17 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s
     <em style="color:#CC5500">Figure 13. Example of Edit Patient Command</em>
 </p>
 
-<p align="center">
-    <img src="images/editExample2.png"/>
-    <br>
-    <em style="color:#CC5500">Figure 14. Example of Removing Allergy and Color Tag with Edit Patient Command</em>
-</p>
-
 Example: You want to edit the details of the first patient.
 
 Step 1: Input `edit 1 p/35154520 g/aspirin ct/green g/recombinant interferons` into the command box and press <kbd>Enter</kbd>.
 
 Step 2: On the Patient tab, you can find your newly edited patient inside the patient list.
+
+<p align="center">
+    <img src="images/editExample2.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 14. Example of Removing Allergy and Color Tag with Edit Patient Command</em>
+</p>
 
 <div markdown="block" class="alert alert-info">
 
