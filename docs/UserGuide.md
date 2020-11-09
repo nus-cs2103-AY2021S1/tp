@@ -369,10 +369,10 @@ Outcome:
 1. The _Result Display_ will show a success message.
 2. You can now see that tCheck has updated all ingredients' levels to the specified amounts in the Ingredient Tracker inside the _Main View_.
 
-<img src="images/IngredientSetAllCommand.png" width="850" height="595" />
+![IngredientSetAllCommand](images/IngredientSetAllCommand.png)
 Figure above shows tCheck's GUI during the command is being entered.
 
-<img src="images/IngredientSetAllCommandResultDisplay.png" width="850" height="595" />
+![IngredientSetAllCommandResultDisplay](images/IngredientSetAllCommandResultDisplay.png)
 Figure above showing tCheck's GUI after pressing "Enter". Note that all amounts for the ingredients are updated in Ingredient Tracker inside the _Main View_.
 
 #### 2.3 Setting all ingredients to different levels : `i-set-default`
