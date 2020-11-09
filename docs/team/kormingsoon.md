@@ -1,10 +1,15 @@
+---
+layout: page
+title: Kor Ming Soon's Project Portfolio Page
+---
+
 ## Project: PropertyFree
 
 Given below are my contributions to the project.
 
 Overview:
 
-This document is a project portfolio that documents all contributions made to PropertyFree's development by Dianne.  
+This document is a project portfolio that documents all contributions made to PropertyFree's development by Kor Ming Soon.  
 
 ___  
 
@@ -26,7 +31,6 @@ University if Singapore. This was developed for the team projects assignment for
 brown-field project adapting from existing projects.  
 
 ___
-
 
 ## My Contributions to PropertyFree
 
