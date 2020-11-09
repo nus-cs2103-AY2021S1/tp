@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Christopher Mervyn's Project Portfolio Page
+title: Christopher Leo's Project Portfolio Page
 ---
 
 #### Description of Project:
@@ -58,8 +58,7 @@ and their clients.
   * Developer Guide:
     * Added implementation details of the `LOGIC` component for the system.
     * Added implementation details of the `edit` feature.
-    * Helped with the formatting and the standardisation of the overall document.
-    * Helped add use cases.
+    * Helped with the formatting and the standardisation of the overall document, and added use cases.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 
