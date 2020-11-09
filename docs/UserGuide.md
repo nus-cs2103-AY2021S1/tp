@@ -189,13 +189,13 @@ Figure 4.2 Listing all patients
 
 This command allows you to edit an existing patient in **Hospify**.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/ALLERGIES]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [mr/MEDICAL_RECORD_URL] [t/ALLERGIES]…​`
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Important notes:**<br>
 
-* The meaning of each filed is the same as in `add` command, please refer to [add command](#adding-a-patient-add-by-cedric-lim-jun-wei).
+* The meaning of each filed is the same as in `add` command, please refer to [add command](#32-adding-a-patient-add-by-cedric-lim-jun-wei).
 * `INDEX` refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * Except `INDEX`, all other fields are optional.
 * At least one of the optional fields must be provided.
