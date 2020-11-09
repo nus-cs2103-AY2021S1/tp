@@ -38,12 +38,12 @@ I contributed to the inventory commands for the user guide related to the operat
 
 ### Contributions to Developer Guide
 
-I contributed to the Model section of the developer guide, which documents how `Model` class works with `Inventory` and `FinanceAccount` during the execution of our programme. I also created the class diagram for `Model` class.
+I contributed to the Model section of the developer guide, which documents how `Model` class works with `Inventory` and `FinanceAccount` during the execution of our programme and created the class diagram for `Model` class. I also ensure that all the diagrams in the developer guide are up to date and update them if necessary.
 
 ### Contributions to Team Based Task
 
-I helped my teammates with debugging of code and gives them constructive feedback on how to improve our code and functionalities.
+I helped my teammates with debugging of code and generate ideas on how to improve our code and functionalities.
 
 ### Contributions to Other Projects
 
-I helped review bugs for [Team W11-1](https://github.com/AY2021S1-CS2103T-W11-1/tp) as part of the PE dry run, during which I reported about 15 errors ranging from simple UI suggestions to potential programme-breaking bugs.
+I helped review bugs for [Team W11-1](https://github.com/AY2021S1-CS2103T-W11-1/tp) as part of the PE dry run. I have reported a total of 15 bugs including some major bugs which will crash the program, and gave some feedback on possible improvements to their UI and functionalities.

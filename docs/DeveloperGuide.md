@@ -80,10 +80,10 @@ Figure 1: Class Diagram of Logic Component.
 
 ### 2.2. Interactions between Architectural Components
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_inventory 1`.
 
 ![Architecture sequence diagram](images/ArchitectureSequenceDiagram.png)
-Figure 2: Sequence diagram for executing the command `delete 1`.
+Figure 2: Sequence diagram for executing the command `delete_inventory 1`.
 
 Section 2.3 elaborates on each of the components in detail.
 
@@ -346,7 +346,7 @@ This command requires a compulsory field "Keyword" to specify the records that q
 This is done within `FindInventoryRecordCommandParser#parse()`, which checks and extracts the keyword field from the command string.
 
 If there was a keyword provided, then `FindInventoryRecordCommandParser` creates a `FindInventoryRecordCommand` object.
-The sequence diagram below (figure 18) shows how the `DeleteInventoryRecordCommand` object is created.
+The sequence diagram below (figure 18) shows how the `FindInventoryRecordCommand` object is created.
 
 ![Find Inventory Record Diagram](images/FindInventoryRecordSequenceDiagram.png)
 Figure 18. Sequence Diagram for the Find Inventory record command.
@@ -554,7 +554,7 @@ For all use cases (unless specified otherwise):
 
   __Use case ends.__
 
-#### 5.3.6. Use case: Save finance / inventory records
+#### 5.3.6. Use case: Save finance/inventory records
 
 **MSS**
 
