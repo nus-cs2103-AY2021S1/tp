@@ -32,7 +32,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Added a flags parser to parse users' commands with flags
-  * Wrote additional tests for existing features to increase coverage (Pull requests [\#170](), [\#181]())
+  * Wrote additional tests for existing features to increase coverage (Pull requests [\#170](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/170), [\#181](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/181))
 
 * **Documentation**:
   * User Guide:
@@ -42,8 +42,8 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Updated existing UML diagrams to fit new architecture.
     * Updated the color scheme for the DG.
-    * Added implementation details of the `Scraper Manager` class and its accompanying class diagrams [\*123](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/123)
-    * Added details of `getMissions()` function and accompanying sequence and path diagrams [\#156](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/156)
+    * Added implementation details of the `Scraper Manager` class and its accompanying class diagrams [\#123](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/123)
+    * Added details of the login process and accompanying sequence and path diagrams [\#156](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/156)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#272](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/272), [\#231](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/231), [\#208](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/208)
