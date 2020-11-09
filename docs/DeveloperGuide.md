@@ -103,6 +103,45 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<T>` for all types of list as mentioned above which can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components
 
+#### Module Tracker
+
+#### Contact List
+
+#### Todo List
+
+#### Scheduler
+<p aligin="center"><img src ="images/EventListClassDiagram.png" border="1px solid black"></p>p>
+
+##### EventList class
+**EventList class** : [`EventList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/EventList.java)
+
+* Holds and stores all the events.
+* Saves to `Storage` after each execution of a command.
+* Stores a `UniqueEventList` that ensures no duplicates of events.
+* Duplicate events are not allowed.
+##### Event class
+**Event class** : [`Event.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/event/Event.java)
+
+* Holds the `EventName` and `EventTime` of the created Event.
+* EventName and EventTime cannot be null.
+* Events are considered to be the same if the EventName is equal.
+* `Tags` are optional for each event.
+
+##### EventName class
+**EventName class** : [`EventName.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/event/EventName.java)
+
+* Holds the date for the name of the String.
+* Acts like a logic container for the name of the event.
+
+##### EventTime class
+**EventTime class** : [`EventTime.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/event/EventTime.java)
+
+* Holds the date and time of the event.
+* Stores the date and time as a LocalDateTime object.
+* Follows a strict input format of : day-month-year 24h time, e.g. `5-12-2020 1200`
+* Throws an error if the wrong format or invalid date is enterred.
+
+
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -125,7 +164,7 @@ Each of the higher level Json Adapted objects shown in the storage diagram above
 Adapted objects related to their feature type.
 
 * `JsonAdaptedModule` is dependent on `JsonAdaptedTag`, `JsonAdaptedGradeTracker` and `JsonAdaptedZoomLink`.
-    * `JsonAdaptedGradeTracker` is dependent on `JsonAdaptedAssignment`
+* `JsonAdaptedGradeTracker` is dependent on `JsonAdaptedAssignment`
 * `JsonAdaptedContact` is dependent on `JsonAdaptedTag`, `JsonAdaptedGradeTracker` and `JsonAdaptedZoomLink`.
 * `JsonAdaptedTask` is dependent on `JsonAdaptedTag`.
 * `JsonAdaptedEvent` is dependent on `JsonAdaptedTag`.
@@ -159,37 +198,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 * Stores a UniqueModuleList
 * Duplicate Modules are not allowed
 
-## Scheduler List
-<p aligin="center"><img src ="images/EventListClassDiagram.png" border="1px solid black"></p>p>
-
-#### EventList class
-**EventList class** : [`EventList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/EventList.java)
-
-* Holds and stores all the events.
-* Saves to `Storage` after each execution of a command.
-* Stores a `UniqueEventList` that ensures no duplicates of events.
-* Duplicate events are not allowed.
-#### Event class
-**Event class** : [`Event.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/event/Event.java)
-
-* Holds the `EventName` and `EventTime` of the created Event.
-* EventName and EventTime cannot be null.
-* Events are considered to be the same if the EventName is equal.
-* `Tags` are optional for each event.
-
-#### EventName class
-**EventName class** : [`EventName.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/event/EventName.java)
-
-* Holds the date for the name of the String.
-* Acts like a logic container for the name of the event.
-
-#### EventTime class
-**EventTime class** : [`EventTime.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/event/EventTime.java)
-
-* Holds the date and time of the event.
-* Stores the date and time as a LocalDateTime object.
-* Follows a strict input format of : day-month-year 24h time, e.g. `5-12-2020 1200`
-* Throws an error if the wrong format or invalid date is enterred.
 
 ## Contact List
 
