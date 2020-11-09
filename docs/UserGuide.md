@@ -7,11 +7,11 @@ DSAce is a **desktop app for creating flashcards and practising quiz questions f
 
 ## Table of Contents
 * [Quick start](#quick-start)
-* [Features](#features)
+* [Introduction](#introduction)
    * [General Commands](#general-commands)
       * [**`help`** : Viewing help.](#viewing-help--help)
       * [**`exit`** : Exiting the program.](#exiting-the-program--exit)
-   * [Flashcard Commands](#flashcard-management)
+   * [Flashcard Commands](#flashcard-commands)
       * [**`add`** : Adding a flashcard.](#adding-a-flashcard--add)
       * [**`list`** : Listing all flashcards.](#listing-all-flashcards--list)
       * [**`sort`** : Sorting all flashcards.](#sorting-all-flashcards--sort)
@@ -22,14 +22,14 @@ DSAce is a **desktop app for creating flashcards and practising quiz questions f
       * [**`clear`** : Clearing all flashcards.](#clearing-all-entries--clear)
    * [Quiz Commands](#quiz-commands)
       * [**`enter quiz`** : Entering Quiz mode.](#entering-quiz-mode--enter-quiz)
-      * [**`start attempt`** : Starts a quiz attempt.](#entering-quiz-mode--start-attempt)
-      * [**`answer`**: Answers a question in the quiz.](#entering-quiz-mode--answer)
-      * [**`end attempt`** : Ends a quiz attempt.](#entering-quiz-mode--end-attempt)
+      * [**`start attempt`** : Starts a quiz attempt.](#starting-an-attempt--start-attempt)
+      * [**`answer`**: Answers a question in the quiz.](#answering-a-quiz-question--answer)
+      * [**`end attempt`** : Ends a quiz attempt.](#ending-an-attempt--end-attempt)
       * [**`leave quiz`** : Leaving Quiz mode.](#leaving-quiz-mode--leave-quiz)
    * [Performance Commands](#performance-commands)
       * [**`performance`** : Opening performance interface.](#checking-performance--performance)
-      * [**`view`** : Viewing previous an attempt result.](#viewing-a-specific-historical-attempt--view)
-      * [**`list`** : List past quiz attempts.](#listing-historical-attempts-results--list)
+      * [**`view`** : Viewing previous an attempt result.](#viewing-the-results-of-a-specific-quiz-attempt--view)
+      * [**`list`** : List past quiz attempts.](#listing-past-attempt-results--list)
    * [Saving the data.](#saving-the-data)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
@@ -109,7 +109,7 @@ DSAce is a **desktop app for creating flashcards and practising quiz questions f
 
 
 --------------------------------------------------------------------------------------------------------------------
-
+## Introduction
 
 <div markdown="block" class="alert alert-info">
 
@@ -172,6 +172,8 @@ Exits the program.
 
 Format: `exit`
 
+Note: `exit` only works in the main window, which is the interface for Flashcard and Quiz modes. Hence,
+it does not work in the popup window of Performance.
 
 ## Flashcard Commands
 <div markdown="block" class="alert alert-info">
@@ -316,11 +318,16 @@ Format: `clear`
 <div markdown="block" class="alert alert-info">
 </div>
 
+Note: Our current implementation does not include adding custom quiz questions.
+
 ### Entering Quiz mode : `enter quiz`
 
 Enters the quiz interface and disables commands from the flashcard interface.
 
 Format: `enter quiz`
+
+Note: `enter quiz` and `start attempt` have been designed to be separate commands as this leaves the app
+open for extension (i.e easier to implement more commands specific to quiz mode)
 
 ### Starting an attempt : `start attempt`
 
@@ -410,7 +417,7 @@ Example: `view 1`
 
 ![view message](images/view_attempt.png)
 
-### Listing past attempt results: `list`
+### Listing past attempt results : `list`
 
 Shows a list of all past quiz attempts and the result statistic for each attempt. The result statistic consists of
  the number of correct responses out of the total number of responses submitted for each attempt.
