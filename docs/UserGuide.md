@@ -75,8 +75,6 @@ The figures below show the annotated version of the graphic user interface. This
 
 ![filedirectory](images/ug/label2.png)
 
---------------------------------------------------------------------------------------------------------------------
-
 <div style="page-break-after: always;"></div>
 
 ## Notes about the command format
