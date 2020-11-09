@@ -37,7 +37,7 @@ public class Expense {
 
     /**
      * Returns a generic {@code Expense} with specific {@code Tag} used for some internal functions.
-     * 
+     *
      * @param tag Specific Tag to initialise new Expense.
      * @see ExpenseBook#getBudgetBarLabel()
      */
