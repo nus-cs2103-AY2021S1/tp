@@ -24,7 +24,8 @@ The _Common Cents_ interface and commands consist of a few levels: `App` level, 
 # 1. Quick Start
 
 *(Written by Jordan Yoong)* <br>
-Below are steps to help you set up and start your Common Cents experience!
+
+Below are steps to help you set up and start your _Common Cents_ experience!
 
 1\. Ensure you have Java `11` or above installed in your Computer.
 
@@ -155,7 +156,7 @@ will be displayed as a scrollable list, right beside the expenses list.
 ## 4.2 Entries
 *(Written by Nicholas Canete)* <br>
 
-'Entry' (or 'Entries') is the term used to describe either Expense or Revenue. Each entry input into Common Cents would 
+'Entry' (or 'Entries') is the term used to describe either Expense or Revenue. Each entry input into _Common Cents_ would 
 have compulsory fields - Description, Amount - and optional Tags. 
 
 ### 4.2.1 Category
@@ -173,9 +174,10 @@ Amount is the numeric value associated with the Entry that _Common Cents_ receiv
 and revenues must be given as a positive value.
 
 <div style="page-break-after: always;"></div>
+
 ### 4.2.4 Tags
 Tags refer to short textual prompts attached to an Entry, with the purpose of giving extra information and identity for
-your Entries in Common Cents.
+your Entries in _Common Cents_.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -210,6 +212,7 @@ Here are some general notes about the commands in _Common Cents_.
 The commands are separated into three categories: App-Level commands, Entry-Level commands and Account-Level Commands.
 
 <div style="page-break-after: always;"></div>
+
 Each level interacts with _Common Cents_ differently to maximise your experience. More details about each level are 
 found in its own section below.  
 
