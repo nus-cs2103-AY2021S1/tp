@@ -44,8 +44,8 @@ Given below are my contributions to the project.
 ### Documentation
 
 #### User Guide:
-* General formatting and numbering of sections
-* Fixed UG bugs from PE-D
+* General formatting and numbering of sections 
+* Fixed UG bugs from PE-D (Pull request [#265](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/265))
 * Added documentation for the `profit` command: [#5.2.7](https://ay2021s1-cs2103t-t13-4.github.io/tp/UserGuide.html#527-calculating-net-profits-based-on-expenses-and-revenues-profit)
 
 #### Developer Guide:
