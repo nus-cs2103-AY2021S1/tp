@@ -249,29 +249,13 @@ The following shows a Class Diagram of the structure of Quiz components:
 The general workflow of quiz feature is represented by the following Activity Diagram:
 ![QuizWorkflow](images/QuizActivityDiagram.png)
 
-These operations are exposed in the `Model` interface as `Model#startQuiz()`,`Model#enterQuiz()`,`Model#exitQuiz()` `Model#endQuiz()` and `Model#attemptQuestion()` respectively.
+### Enter Quiz Feature
+The `enter quiz` command switches interface from Flashcard mode to Quiz mode. This feature is implemented by creating an
+instance of `EnterQuizCommand` that can be executed on the model. The `EnterQuizCommand` will return an instance of
+`CommandResult` which will inform the `MainWindow` whether it is time to call `handleQuiz()` method to change to current UI.
 
-Given below is an example usage scenario and how to do quiz.
-
-Step 1. The user launches the application and DSAce shows the default page with list of flashcards.
-
-![UndoRedoState0](images/state0.png)
-
-Step 2. The user executes `enter quiz` command to switch GUI interface. The `enter quiz` command calls `Model#enterQuiz()`, causing the change in interface and list of questions are displayed. The user can now answer questions with `attempt` command.
-
-![UndoRedoState1](images/state2.png)
-
-Step 3. The user finishes questions and executes `end quiz` command to end the current attempt, which will be stored. The result will be displayed.
-
-![UndoRedoState2](images/state3.png)
-
-Step 4. The user executes `past performance` during quiz mode to see past attempt performance. The list of past attempt is shown in sequence of time and number of correct answers.
-
-![UndoRedoState4](images/state1.png)
-
-Step 5. The user executes `exit quiz`, which calls `Model#exitQuiz`. The GUI interface is switch back to flashcard mode.
-
-![UndoRedoState5](images/state4.png)
+The following shows a sequence diagram of enter quiz command.
+![EnterQuizSequenceDiagram](images/enterQuizSequenceDiagram.png)
 
 ### Performance Feature
 
@@ -290,8 +274,6 @@ The following sequence diagram shows how the view attempt feature works:
 
 ![ViewAttempt0](images/ViewAttemptCommand_SequenceDiagram.png)
 
-
-
 #### Design consideration:
 
 ##### Aspect: How undo & redo executes
@@ -304,8 +286,6 @@ The following sequence diagram shows how the view attempt feature works:
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the flashcard being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
@@ -631,20 +611,11 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `find`
       Expected: The find command is not executed. Error details are displayed in the status message.
 
-
-### Sorting flashcards
-
-### Flipping flashcards
-
 ### Starting a quiz attempt
-
-### Ending a quiz attempt
-
-### Starting an attempt
 1. Starting an attempt while user is in quiz mode and has no an ongoing attempt.
 
    1. Prerequisites: Switch to quiz mode from flashcard mode using the `enter quiz` command. Multiple questions are
-      listed. No prior `start attempt` is called.
+    listed. No prior `start attempt` is called.
 
    1. Test case: `start attempt`<br>
       Expected: Attempt is started. Success message shown in the status message.
@@ -662,7 +633,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `start attempt`<br>
       Expected: No new attempt started. Error details shown in the status message. Status bar remains the same.
 
-### Ending an attempt
+### Ending a quiz attempt
 1. Ending an attempt while user is in quiz mode and has an empty ongoing attempt.
 
    1. Prerequisites: Switch to quiz mode from flashcard mode using the `enter quiz` command. Multiple questions are listed. Enter `start
