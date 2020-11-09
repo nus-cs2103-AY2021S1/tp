@@ -338,9 +338,9 @@ For example, if we want to change the first task start time to be an hour earlie
 
 Other examples:
 * `edit-task 1 title:play games` 
-    * Edits the first task in the results of the `list` command, changing its title to `play games`.
-* `find-task type:deadline` followed by `edit-task 3 desc:This is very urgent!` 
-    * Edits the first deadline of the third deadline in the results of the `find` command, changing its description to "This is very urgent!".
+    * Edits the first task in the results of the `list-task` command, changing its title to `play games`.
+* `edit-task 3 desc:This is very urgent!` 
+    * Edits the third task in the results of the `list-task` command, changing its description to "This is very urgent!".
 * `find-task title:homework` followed by`edit-task 2 desc:Homework is difficult date:01-01-2020` 
     * Edits the second task in the results of the `find-task` command if the task is an event, changing its date to 01-01-2020 and its description to "Homework is difficult", otherwise, PlaNus will notify the user of the incompatible error.
 * `edit-task 1 tag:CS2103T` 
