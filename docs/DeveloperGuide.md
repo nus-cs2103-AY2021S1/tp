@@ -134,6 +134,7 @@ The features mentioned are:
 - [Finding flashcards](#find-flashcards)
 - [Setting difficulty for flashcards](#difficulty)
 - [Displaying statistics of a flashcard](#display-statistics-of-a-flashcard)
+- [Clearing all flashcards](#clear-all-flashcards)
 - [Clear statistics of a flashcard](#clear-statistics-of-a-flashcard)
 - [Testing a flashcard](#test-a-flashcard)
 - [Export](#exporting-flashcards)
@@ -227,6 +228,11 @@ The GUI will change the content of some of its placeholders to display the quest
 The GUI will change the contents of its placeholders accordingly if other commands aside from another `OpenCommand` is called afterwards.
 
 ##### Usage
+
+The following activity diagram summarizes what happens when a user executes open command on a specified flashcard:
+
+![OpenFlashcardActivityDiagram](images/OpenFlashcardActivityDiagram.png)
+
 Given below is an example usage scenario and how the Open mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. `QuickCache` will be initialized with the initial state.
@@ -288,6 +294,10 @@ Step 4. The `Flashcard` will then be constructed containing the `tagList`.
 ### Edit flashcard
 
 #### Implementation
+
+The following activity diagram summarizes what happens when a user executes an edit flashcard command on a specified flashcard:
+
+![EditActivityDiagram](images/EditActivityDiagram.png)
 
 The Edit flashcard mechanism operates by editing the flashcard at a specified index of the last displayed list.
 The new information is encapsulated inside a `EditFlashcardDescriptor` and is passed together with the `Index` object
@@ -429,6 +439,10 @@ The following sequence diagram shows how the Delete By Tag mechanism works:
 ### Find flashcards
 
 #### Implementation
+
+The following activity diagram summarizes what happens when a user executes a find flashcard command with both a keyword and tag query:
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
 
 The Find mechanism searches for flashcards based on the specified tag or question keyword or both.
 Each filter will result in the creation of a `Predicate<Flashcard>`.
@@ -596,6 +610,38 @@ The following sequence diagram shows how the Displaystats mechanism works:
 * **Alternative:** Do not use the `Feedback` object. Place all the data in the `CommandResult` object directly.
   * Pros: Demeter's law is no longer violated.
   * Cons: There is less abstraction.
+  
+### Clearing all flashcards
+
+#### Implementation
+
+The following activity diagram summarizes what happens when a user executes the clear command in QuickCache.
+
+![ClearActivityDiagram](images/ClearActivityDiagram.png)
+
+The Clear mechanism will allow the user to delete all flashcards in his local QuickCache.
+
+The implementation makes use of the `Model#setQuickCache` and `QuickCache`. A new instance of `QuickCache` without any existing flashcards will replace the users current `QuickCache` in `Model`.
+
+##### Usage
+
+Given below is an example usage scenario and how the Clear mechanism behaves at each step.
+
+Step 1. The user executes `clear` command to clear all flashcards in his local QuickCache.
+
+Step 2. `ClearCommand#execute` will replace the current instance of `QuickCache` with a new empty instance of `QuickCache` through the `Model#setQuickCache` method.
+
+Step 3. After execution, `CommandResult` will contain a message indicating that it has cleared QuickCache.
+
+The following sequence diagram shows how the Clear mechanism works:
+
+![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
+
+#### Design Considerations:
+
+* **Current choice:** Replaces the existing `QuickCache` in model with a new `QuickCache` that is empty.
+  * Pros: Easy to implement - minimizes the occurence of bugs.
+  * Cons: Waste of resources as a new `QuickCache` instance needs to be created when a user wants to clear QuickCache.
 
 ### Clear statistics of a flashcard
 
@@ -633,10 +679,6 @@ Step 6. `ClearStatsCommand#execute` will get the `Flashcard` at the specified `I
 Step 7. After execution, `CommandResult` will contain a message indicating that it has cleared the `Statistics` of the `Flashcard` on the specified index.
 
 Step 7. The user executes `stats 1` command to display the `Statistics` of the first flashcard in the list on the GUI. The user sees that the `Statistics` is reset.
-
-The following sequence diagram shows how the parser operation works:
-
-![ClearStatsSequenceDiagram](images/ClearStatsParserSequenceDiagram.png)
 
 The following sequence diagram shows how the Clearstats mechanism works:
 
@@ -1112,6 +1154,14 @@ MSS:
 
     Use case ends.
 
+**Extensions**
+
+* 1a. The tags are invalid.
+
+  * 1a1. QuickCache shows an error message.
+
+    Use case ends.
+
 **Use case: UC12 - Edit an existing flashcard**
 
 **Actor: User**
@@ -1225,6 +1275,25 @@ MSS:
 
     Use case ends.
 
+**Use case: UC17 - Add difficulty during creation of a flashcard**
+
+**Actor: User**
+
+MSS:
+
+1. User creates a flashcard and specifies the difficulty level associated with it
+2. QuickCache creates the flashcards and adds the difficulty level to it
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The difficulty level is invalid.
+
+  * 1a1. QuickCache shows an error message.
+
+    Use case ends.
+
 ****
 ### Non-Functional Requirements
 
@@ -1284,11 +1353,11 @@ User can create two types of flashcards - containing open end question or multip
       Expected: QuickCache responds with an error message indicating that the flashcard already exists (added in Test Case 1). Flashcard is not added.
    
    1. Test Case 4: `add q/Test OEQ 1 ans/Test ans 1 t/Invalid Tag`<br>
-      Expected: QuickCache responds with an error message indicating that tag field is invalid. Flashcard is not added.
+      Expected: QuickCache responds with an error message indicating that tag field is invalid. Flashcard is not added.<br>
       :information_source: Note that flashcards containing similar questions and answers but different tags are treated as different flashcards.
 
    1. Test Case 5: `add q/Test OEQ 1 ans/Test ans 1 d/Invalid Difficulty`<br>
-      Expected: QuickCache responds with an error message indicating that difficulty field is invalid. Flashcard is not added.
+      Expected: QuickCache responds with an error message indicating that difficulty field is invalid. Flashcard is not added.<br>
       :information_source: Note that flashcards containing similar questions and answers but different difficulty are treated as different flashcards.
 
    1. Some incorrect `add` commands with missing fields to try: `add`, `add q/ ans/Test ans 1`, `add q/Test OEQ 1 ans/`, `add q/Test OEQ 1 ans/Test ans 1 t/`<br>
@@ -1312,11 +1381,11 @@ User can create two types of flashcards - containing open end question or multip
       Expected: QuickCache responds with an error message indicating that the flashcard already exists (added in Test Case 1). Flashcard is not added.
    
    1. Test Case 4: `addmcq q/Test MCQ 1 ans/1 c/Choice1 c/Choice2 t/Invalid Tag`<br>
-      Expected: QuickCache responds with an error message indicating that tag field is invalid. Flashcard is not added.
+      Expected: QuickCache responds with an error message indicating that tag field is invalid. Flashcard is not added.<br>
       :information_source: Note that flashcards containing similar questions and answers but different tags are treated as different flashcards.
 
    1. Test Case 5: `addmcq q/Test MCQ 1 ans/1 c/Choice1 c/Choice2 d/Invalid Difficulty`<br>
-      Expected: QuickCache responds with an error message indicating that difficulty field is invalid. Flashcard is not added.
+      Expected: QuickCache responds with an error message indicating that difficulty field is invalid. Flashcard is not added.<br>
       :information_source: Note that flashcards containing similar questions and answers but different difficulty are treated as different flashcards.
    
    1. Test Case 6: `addmcq q/Test MCQ 1 ans/3 c/Choice1 c/Choice2`<br>
@@ -1340,7 +1409,7 @@ User can create two types of flashcards - containing open end question or multip
 1. Test Case 1: `open 1`<br>
    Expected: First flashcard is opened. Details of the question and options (for multiple choice questions) will be displayed.
 
-1. Test Case 1: `open 0`<br>
+1. Test Case 2: `open 0`<br>
    Expected: No flashcard is opened. Error details shown in display.
 
 1. Other incorrect `open` commands to try: `open`, `open x` (where x is more than the last index in flashcard list), `open Invalid`<br>
@@ -1505,7 +1574,7 @@ There are 2 ways to display statistics of flashcards – by index or by tags.
 1. Test Case 1: `clearstats 1`<br>
    Expected: Statistics for the first flashcard is cleared.
 
-1. Test Case 1: `clearstats 0`<br>
+1. Test Case 2: `clearstats 0`<br>
    Expected: No flashcard statistics is cleared. Error details shown in display.
 
 1. Other incorrect `clearstats` commands to try: `clearstats`, `clearstats x` (where x is more than the last index in flashcard list), `clearstats Invalid`<br>

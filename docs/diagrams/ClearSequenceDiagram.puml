@@ -1,0 +1,39 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "c:ClearCommand" as ClearCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "emptyQC:QuickCache" as QuickCache MODEL_COLOR
+end box
+
+[-> LogicManager : execute("clear")
+activate LogicManager
+
+LogicManager -> ClearCommand : execute()
+activate ClearCommand
+
+create QuickCache
+ClearCommand -> QuickCache
+activate QuickCache
+
+QuickCache -> ClearCommand : emptyQC
+deactivate QuickCache
+
+ClearCommand -> Model : setQuickCache(emptyQC)
+activate Model
+
+Model -> ClearCommand
+deactivate Model
+
+ClearCommand --> LogicManager : result
+deactivate ClearCommand
+
+[<--LogicManager : result
+deactivate LogicManager
+destroy ClearCommand
+@enduml

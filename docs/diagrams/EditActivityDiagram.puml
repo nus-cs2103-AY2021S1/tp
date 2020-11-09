@@ -1,6 +1,8 @@
 @startuml
+scale max 500 height
+
 start
-:User executes stats command;
+:User executes edit command;
 :Model returns the previously filtered list;
 :Search for flashcard matching the index given;
 
@@ -8,11 +10,14 @@ start
 'diamond we place it as the true branch instead.
 
 if () then ([given flashcard index is valid])
-    :Get statistics of specified flashcard;
-    :Pass the result to the UI;
+    :Create a new flashcard from
+    combining User-specified flashcard
+    and User-given descriptor;
+    :Replace User-specified flashcard with new flashcard;
+    :Pass edited flashcard to UI through feedback;
 else ([else])
     :Throw CommandException;
-    :Pass the CommandException to the UI;
+    :UI catches CommandException;
 endif
     :UI displays results to User;
 stop

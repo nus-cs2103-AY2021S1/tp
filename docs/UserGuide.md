@@ -273,6 +273,11 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 :information_source: You must provide at least one search parameter.
 
+<div markdown="block" class="alert alert-danger">
+:exclamation: Take note that only flashcards which fulfill **all** the specified search parameters will be displayed. Flashcards that fulfill only some search parameters will not be diplayed.
+
+</div>
+
 </div>
 
 <a name="finding-by-question"></a>
@@ -328,6 +333,11 @@ To find flashcards, you can find them by specifying keywords within their questi
 - Words in spaced keywords will be treated as individual keywords. Example, the keyword `what is` will be treated as two keywords: `what` and `is`.<br>
 - Keywords do not need to match exact word. Example, the keyword `Wha` will pick up questions containing `What` as a word.<br>
 - Tags are case-sensitive.
+
+</div>
+
+<div markdown="block" class="alert alert-danger">
+:exclamation: Take note that finding flashcards based on both tags and question will only display flashcards that have both the specified tags **and** keywords. It will not display flashcards that only have either the specified tags or the specified keywords.
 
 </div>
 
@@ -387,7 +397,7 @@ You can delete a group of flashcards based on a specified tag. All flashcards th
 
 <div markdown="block" class="alert alert-info">
 
-:bulb: You can specify more than one tag to be used when deleting flashcards. Any flashcard with **at least one** of these specified tags will be deleted.
+:bulb: You can specify more than one tag to be used when deleting flashcards. But only flashcards with **all** of these specified tags will be deleted.
 
 </div>
 
@@ -509,7 +519,9 @@ You can also display the statistics of multiple flashcards in a Pie Chart by spe
 1. In the user input box, enter the stats command together with the tags that you want to use as the criteria. For example, if you want to display statistics for all flashcards with the tag `MCQ`, type `stats t/MCQ`.
 
     <div markdown="block" class="alert alert-info">
-    :bulb: You can specify more than one tag to be used when displaying statistics of multiple flashcards. Any flashcard with **at least one** of these specified tags will be included in the aggregation.
+    
+    :bulb: You can specify more than one tag to be used when displaying statistics of multiple flashcards. But only flashcards with **all** of these specified tags will be included in the aggregation.
+    
     </div>
 
     ![StatsTagsStep1](./images/StatsTagsStep1.png)
