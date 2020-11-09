@@ -661,8 +661,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Teaching Assistant         | edit a module                                   | keep the module information accurate if there are changes      |
 | `* * *`  | Teaching Assistant         | find a module                                   | quickly get to the module I am looking for                     |
 | `* * *`  | Teaching Assistant         | list all the modules I teach                    | have an overall view of all the modules                        |
-| `* * *`  | Teaching Assistant         | add/delete a tutorial group                     | manage the list of tutorial groups I teach                     | 
-| `* * *`  | Teaching Assistant         | edit a tutorial group                           | keep the tutorial group information accurate if there are changes| 
+| `* * *`  | Teaching Assistant         | add/delete a tutorial group                     | manage the list of tutorial groups I teach                     |
+| `* * *`  | Teaching Assistant         | edit a tutorial group                           | keep the tutorial group information accurate if there are changes|
 | `* * *`  | Teaching Assistant         | find a tutorial group                           | quickly get to the tutorial group I am looking for             |
 | `* * *`  | Teaching Assistant         | list all the tutorial groups I teach            | have an overall view of all the tutorial groups                |
 | `* * *`  | Teaching Assistant         | add/delete students to my list                  | manage the list of students I teach                            |
