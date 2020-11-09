@@ -921,6 +921,7 @@ For all use cases below, the **System** is the `CommonCents` and the **Actor** i
 3.  Common Cents returns to the state prior to the clear expenses command and displays success message.
 </div>
 
+<div style="page-break-after: always;"></div>
 <div markdown="block" class="alert alert-success">
 
 **Use Case: UC13 - Undoing a clear all revenues command**
