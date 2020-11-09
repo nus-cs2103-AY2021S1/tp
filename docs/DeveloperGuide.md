@@ -883,7 +883,7 @@ Below is a list of all `Contact` related features:
 
 Given below is the class diagram of the `Contact` class:
 
-![ContactClassDiagram](images/Contact/ContactClassDiagram.png)
+![ContactClassDiagram](images/contact/ContactClassDiagram.png)
 
 Figure ?.? Class Diagram for Contact class
 
@@ -916,7 +916,7 @@ Step 5. The `Model#addContact()` operation exposed in the `Model` interface is i
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to add a contact works:
-![AddContactSequenceDiagram](images/Contact/AddContactSequenceDiagram.png)
+![AddContactSequenceDiagram](images/contact/AddContactSequenceDiagram.png)
 Figure ?.? Sequence diagram for the execution of `AddContactCommand`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddContactCommand` and `AddContactParser` should end 
@@ -924,6 +924,7 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 </div>
 
 <br>
+
 
 The following activity diagram summarizes what happens when a user executes `AddContactCommand`:
 ![AddContactCommandActivityDiagram](images/Contact/AddContactCommandActivityDiagram.png)
@@ -972,8 +973,8 @@ Step 5. The `Model#deleteContact()` operation exposed in the `Model` interface i
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to delete a contact works:
+
 ![DeleteContactSequenceDiagram](images/Contact/DeleteContactCommandSequenceDiagram.png)
-Fig 
 
 #### Design consideration:
 
@@ -1028,7 +1029,7 @@ Step 5. The `Model#setContact()` operation exposed in the `Model` interface is i
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to edit a contact works:
-![EditContactSequenceDiagram](images/Contact/EditContactCommandSequenceDiagram.png)
+![EditContactSequenceDiagram](images/contact/EditContactCommandSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddContactCommand` and `AddContactParser` should end 
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -1130,8 +1131,9 @@ Step 5. The `Model#updateFilteredContactList()` operation exposed in the `Model`
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to find contact works:
+
 ![FindContactCommandSequenceDiagram](images/Contact/FindContactCommandSequenceDiagram.png)
-Fig ?? Sequence diagram for the execution of `FindContactCommand`
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddContactCommand` and `AddContactParser` should end 
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -1141,7 +1143,7 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 
 Given below is the sequence diagram showing the interaction between `FindContactParser` and `FindContactCriteria`:
 ![FindContactCriteriaSequenceDiagram](images/Contact/FindContactCriteriaSequenceDiagram.png)
-Fig ?.? Sequence diagram describing the interaction between `FindContactParser` and `FindContactCriteria`
+
 
 
 #### Design consideration:
