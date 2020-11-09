@@ -227,6 +227,11 @@ The GUI will change the content of some of its placeholders to display the quest
 The GUI will change the contents of its placeholders accordingly if other commands aside from another `OpenCommand` is called afterwards.
 
 ##### Usage
+
+The following activity diagram summarizes what happens when a user executes open command on a specified flashcard:
+
+![OpenFlashcardActivityDiagram](images/OpenFlashcardActivityDiagram.png)
+
 Given below is an example usage scenario and how the Open mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. `QuickCache` will be initialized with the initial state.
