@@ -289,6 +289,10 @@ Step 4. The `Flashcard` will then be constructed containing the `tagList`.
 
 #### Implementation
 
+The following activity diagram summarizes what happens when a user executes an edit flashcard command on a specified flashcard:
+
+![EditActivityDiagram](images/EditActivityDiagram.png)
+
 The Edit flashcard mechanism operates by editing the flashcard at a specified index of the last displayed list.
 The new information is encapsulated inside a `EditFlashcardDescriptor` and is passed together with the `Index` object
 to the `EditCommand`.
@@ -429,6 +433,10 @@ The following sequence diagram shows how the Delete By Tag mechanism works:
 ### Find flashcards
 
 #### Implementation
+
+The following activity diagram summarizes what happens when a user executes a find flashcard command with both a keyword and tag query:
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
 
 The Find mechanism searches for flashcards based on the specified tag or question keyword or both.
 Each filter will result in the creation of a `Predicate<Flashcard>`.
