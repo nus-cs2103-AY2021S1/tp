@@ -33,7 +33,7 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "c-edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the employee identified "
             + "by the index number used in the displayed Employee Directory. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -46,9 +46,9 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 ";
     // for edit phone's issues, add e/emergency_contact just behind p/phone_number
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Employee: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the Employee Directory.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This employee already exists in the Employee Directory.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
