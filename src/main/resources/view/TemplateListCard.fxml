@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.FlowPane?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
@@ -36,6 +37,14 @@
                     </Label>
                 </children>
             </HBox>
+            <FlowPane fx:id="tags">
+                <VBox.margin>
+                    <Insets bottom="3.0" top="3.0" />
+                </VBox.margin></FlowPane>
+            <FlowPane fx:id="muscleTags">
+                <VBox.margin>
+                    <Insets top="3.0" />
+                </VBox.margin></FlowPane>
         </VBox>
         <rowConstraints>
             <RowConstraints />
