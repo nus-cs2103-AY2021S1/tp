@@ -189,6 +189,10 @@ In this section, you can find all the keywords that will help you fully utilize 
 
 **:information_source: Notes about the command format:**<br>
 
+* Command keywords are case-sensitive.
+
+* If a command format specifies an integer as its constraint, it has an upper bound of 2,147,483,647 by default, unless otherwise specified.
+
 * Items are pairs of prefix and parameter.
   e.g. `n/NAME` is an item comprising prefix `n/` and parameter `NAME`.
 
@@ -535,7 +539,7 @@ Format: `sadd g/GYM_NAME ex/EXERCISE_TYPE at/START_TIME t/DURATION`
 Points to take note when adding a session to the Session List:
 * Start time should be of format "dd/MM/yyyy HHmm" (date/month/year Hour minutes in 24 hr format).
 * Duration is in minutes.
-* Duration should be a positive integer (larger than 0).
+* Duration should be a positive integer.
 * If you want to schedule a session with a client, you need to make sure the session exists in FitEgo, then [create a schedule (`schadd`)](#341-adding-a-schedule--schadd) that references the client and the session.
 
 <div markdown="block" class="alert alert-info"> 
