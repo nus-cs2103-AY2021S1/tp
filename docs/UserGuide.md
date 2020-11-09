@@ -20,8 +20,7 @@
    --- 4.2.3 [List all Tutorial Groups in the current Module: `listTG`](#423-list-all-tutorial-groups-in-the-current-module-listtg)<br>
    --- 4.2.4 [View all Students in a Tutorial Group: `viewStudent`](#424-view-all-students-in-a-tutorial-group-viewstudent)<br>
    --- 4.2.5 [List all Students in a Tutorial Group: `listStudent`](#425-list-all-students-in-a-tutorial-group-liststudent)<br>
-   --- 4.2.6 [Show the Attendance of target Student: `viewAttendance`](#426-show-the-attendance-of-target-student-viewattendance)<br>
-   --- 4.2.7 [Return to previous view: `prevView`](#427-return-to-previous-view-prevview)<br>
+   --- 4.2.6 [Return to previous view: `prevView`](#426-return-to-previous-view-prevview)<br>
    4.3 [Module Features](#43-module-features)<br>
    --- 4.3.1 [Add a module: `addMod`](#431-add-a-module-addmod)<br>
    --- 4.3.2 [Delete a module: `deleteMod`](#432-delete-a-module-deletemod)<br>
@@ -37,6 +36,13 @@
    --- 4.5.2 [Delete a student: `deleteStudent`](#452-delete-a-student-deletestudent)<br>
    --- 4.5.3 [Edit a student: `editStudent`](#453-edit-a-student-editstudent)<br>
    --- 4.5.4 [Find a student: `findStudent`](#454-find-a-student-findstudent)<br>
+   4.6 [Attendance Features](#46-attendance-features)<br>
+   --- 4.6.1 [Add attendance: `addAttendance`](#461-add-attendance-addattendance)<br>
+   --- 4.6.2 [Delete attendance: `deleteAttendance`](#462-delete-attendance-deleteattendance)<br>
+   --- 4.6.3 [View all attendance of a Student: `viewAttendance`](#463-view-all-attendance-of-a-student-viewattendance)<br>
+   --- 4.6.4 [Show Students who fall below an attendance score: `attendanceBelow`](#464-show-students-who-fall-below-an-attendance-score-attendancebelow)<br>
+   --- 4.6.5 [Edit a Student's participation: `editParticipation`](#465-edit-a-students-participation-editparticipation)<br>
+   --- 4.6.6 [Show Students who fall below a participation score: `participationBelow`](#466-show-students-who-fall-below-a-participation-score-participationbelow)<br>
 5. [FAQ](#5-faq)<br>
 6. [Command Summary](#6-command-summary)<br>
    6.1 [General Commands](#61-general-commands) <br>
@@ -257,20 +263,8 @@ Example: `listStudent`
 Expected Outcome:
 ![ListStudentCommand](images/ListStudentCommand.png)
 
-#### 4.2.6 Show the attendance of Target Student: 'viewAttendance'
-Shows the attendance of Target student: `viewAttendance`
-
-Format: `viewAttendance STUDENT_INDEX`
-
-> Note: You should perform this command in STUDENT view.
-
-Example: `viewAttendance 1`
-
-Expected Outcome:
-![ViewAttendanceCommand](images/ViewAttendanceCommand.png)
-
-#### 4.2.7 Return to previous view: `prevView`
-Returns to the previous view: `prevView`
+#### 4.2.6 Return to previous view: `prevView`
+Returns to the previous view.
 
 Format: `prevView`
 
@@ -371,7 +365,8 @@ Expected Outcome:
 
 ### 4.4 Tutorial Group Features
 
-> You should perform the following features while in the Tutorial Group view.
+> - You should perform the following features while in the Tutorial Group view.
+> - Refer to Section 4.2 - Navigation for help getting to the correct view
 
 #### 4.4.1 Add a tutorial group: `addTG`
 Adds a tutorial group to the tutorial group list.
@@ -388,9 +383,11 @@ Format: `addTG tg/TG_CODE day/DAY_OF_WEEK start/START_TIME end/END_TIME`
 
 Example: 
 - Adds a tutorial group _T03_ that takes place every _MON_ from _08:00_ to _10:00_ to the tutorial group list.
-    - `addTG tg/T03 day/MON start/08:00 end/10:00`
+    - `addTG tg/T03 day/MON start/11:00 end/13:00`
 
 Expected Outcome:
+
+![AddTutorialGroupCommand](images/addTG.png)
 
 #### 4.4.2 Delete a tutorial group: `deleteTG`
 Deletes a tutorial group based on the given `INDEX`
@@ -409,6 +406,8 @@ Example:
 
 Expected Outcome:
 
+![DeleteTutorialGroupCommand](images/deleteTG.png)
+
 #### 4.4.3 Edit a Tutorial Group: `editTG`
 Edits a module with the provided details.
 
@@ -424,9 +423,11 @@ Example:
 
 - Edits the third tutorial group to be _T04_, takes place every _TUE_ from _08:00_ to _10:00_.
 
-    - `editTG 3 tg/T04 day/TUE start/08:00 end/10:00`
+    - `editTG 1 tg/T03 day/MON start/11:00 end/13:00`
 
 Expected Outcome:
+
+![EditTutorialGroupCommand](images/editTG.png)
 
 #### 4.4.4 Find a tutorial group: `findTG`
 Finds and lists all tutorial groups in the current Tutorial Group view whose tutorial group code contains any of the given keywords.
@@ -441,9 +442,13 @@ however, _t5_ will not match _T05_).
 > - If no tutorial group matching the keyword is found, the Tutorial Group view will be empty.
 
 Example: 
-- Finds a tutorial group with `KEYWORD` _b14_.
+- Finds a tutorial group with `KEYWORD` _T03_.
 
-    - `findTG b14`
+    - `findTG T03`
+    
+Expected Outcome:
+
+![FindTutorialGroupCommand](images/findTG.png)
 
 ### 4.5 Student Features
 
@@ -510,7 +515,7 @@ Format: `editStudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [id/STUDENT_ID] [t/TAG].
 
 Example:
 
-- Editing the phone number and email address of the first student to be _97654321_ and _jtan@u.nus.edu_.
+- Edits the phone number and email address of the first student to be _97654321_ and _jtan@u.nus.edu_.
 
     - `editStudent 1 p/97654321 e/jtan@u.nus.edu`
 
@@ -540,6 +545,133 @@ Example:
 Expected Outcome:
 
 ![FindStudentCommand](images/FindStudentCommand.png)
+
+### 4.6 Attendance Features
+
+> You should perform the following features while in the Student view.
+
+#### 4.6.1 Add Attendance: `addAttendance`
+
+Adds the attendance of a student for specific week(s). Can also be seen as marking a student as 'present' for specific week(s).
+
+Format: `addAttendance INDEX week/WEEK_NUMBER [week/WEEK_NUMBER]...`
+> Note:
+> - `INDEX` refers to the index number shown in the Student view.
+> - `INDEX` must be a positive integer starting from 1.
+> - You can provide more than one WEEK_NUMBER to mark attendance for multiple weeks.
+> - Marking attendance for weeks that have already been marked as 'present' will not make any changes for those weeks.
+Example:
+
+- Adds the attendance of the first student on the student list for `WEEK_NUMBER` _2_ and `WEEK_NUMBER` _3_.
+
+    - `addAttendance 1 week/2 week/3`
+
+Expected Outcome:
+
+![AddAttendanceCommand](images/AddAttendanceCommand.png)
+
+#### 4.6.2 Delete attendance: `deleteAttendance`
+
+Deletes the attendance of a student for specific week(s). Can also be seen as marking a student as 'absent' for specific week(s).
+
+Format: `deleteAttendance INDEX week/WEEK_NUMBER [week/WEEK_NUMBER]...`
+
+> Note:
+> - `INDEX` refers to the index number shown in the Student view.
+> - `INDEX` must be a positive integer starting from 1.
+> - You can provide more than one WEEK_NUMBER to mark attendance for multiple weeks.
+> - Marking attendance for weeks that have already been marked as 'absent' will not make any changes for those weeks.
+
+Example:
+
+- Deletes the attendance of the first student on the student list for `WEEK_NUMBER` _6_.
+
+  - `deleteAttendance 1 week/6`
+
+Expected Outcome:
+
+![DeleteAttendanceCommand](images/DeleteAttendanceCommand.png)
+
+#### 4.6.3 View all attendance of a Student: `viewAttendance`
+
+Shows the attendance of target student by specifying the week(s) that the student has attended.
+
+Format: `viewAttendance INDEX`
+
+> Note:
+>
+> - `INDEX` refers to the index number shown in the Student view.
+> - `INDEX` must be a positive integer starting from 1.
+
+Example:
+
+- Views the attendance of the first student on the student list.
+  - `viewAttendance 1`
+
+Expected Outcome:
+![ViewAttendanceCommand](images/ViewAttendanceCommand.png)
+
+#### 4.6.4 Show Students who fall below an attendance score: `attendanceBelow`
+
+Finds and lists all students in the current Student view whose attendance score falls below the provided score.
+
+Format: `attendanceBelow UPPER_BOUND`
+
+> Note:
+>
+> - This command finds students who has an attendance score below `UPPER_BOUND`.
+> - `UPPER_BOUND` must be a positive integer starting from 1.
+> - The students found will not include those whose attendance score is equal to `UPPER_BOUND`, only below, i.e. `UPPER_BOUND` is not inclusive.
+
+Example:
+
+- Shows all students who has an attendance score below 5.
+  - `attendanceBelow 5`
+
+Expected Outcome:
+![AttendanceBelowCommand](images/AttendanceBelowCommand.png)
+
+#### 4.6.5 Edit a Student's participation: `editParticipation`
+
+Edits the participation score of a student by adding to or deducting from their existing score by the provided score.
+
+Format: `editParticipation INDEX score/PARTICIPATION_SCORE`
+
+> Note:
+>
+> - `INDEX` refers to the index number shown in the Student view.
+> - `INDEX` must be a positive integer starting from 1.
+> - You can deduct score from a student by putting a negative number for `PARTICIPATION_SCORE` (e.g. Put -10 as `PARTICIPATION_SCORE` to deduct 10 score from a student)
+> - `PARTICIPATION_SCORE` must be a whole number ranging from -100 to 100, using 0 will have no effect on the existing score.
+> - Students can have a participation score from 0 to 100, adding or deducting score to one outside this range will cause the score to clip to the limits (e.g. Deducting 40 score from a student with a score of 30 will lead to the student having the score of 0 instead of -10)
+
+Example:
+
+- Adds 10 score to the first student on the student list.
+  - `editParticipation 1 10`
+
+Expected Outcome:
+![EditParticipationCommand](images/EditParticipationCommand.png)
+
+#### 4.6.6 Show Students who fall below a participation score: `participationBelow`
+
+Finds and lists all students in the current Student view whose participation score falls below the provided score.
+
+Format: `participationBelow UPPER_BOUND`
+
+> Note:
+>
+> - This command finds students who has an participation score below `UPPER_BOUND`.
+> - `UPPER_BOUND` must be a positive integer starting from 1.
+> - The students found will not include those whose participation score is equal to `UPPER_BOUND`, only below, i.e. `UPPER_BOUND` is not inclusive.
+
+Example:
+
+- Shows all students who has a participation score below 35.
+  - `participationBelow 35`
+
+Expected Outcome:
+![AttendanceBelowCommand](images/AttendanceBelowCommand.png)
 
 
 ## 5. FAQ
