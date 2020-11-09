@@ -19,19 +19,16 @@ Given below are my contributions to the project.
 * **Features and Enhancements implemented**
   * **New Feature**: Added the ability to find existing items in the storage. (PR [\#93](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/93))
     * What it does: Allows the user to search for desired stock.
-    * Justification: This feature improves user experience as it allows users to easily
-    search for stocks through the stock's details (name, serial number, location stored, source of stock). 
-    * Highlights: This enhancement comes with the ability to find stocks from not just the name of the stock
-    but also other related fields such as serial number, location stored and source of stock. The search is
-    flexible and case-insensitive and any stock that contains the search term will be shown.
+    * Justification: Users can easily find stocks using the stock's fields (name, serial number, location, source). 
+    * Highlights: This enhancement brings ability to find stocks from not just the name of the stock but also other related fields
+    of the stock. Search is also case-insensitive and any stock that matches any field searched will be shown.
 
   * **New Feature**: Added the ability for advanced find for existing items in the storage. (PR [\#115](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/115))
     * What it does: Allows the user to apply additional filters to search for desired stock.
-    * Justification: This feature improves the user experience as user can now accurately search
-    for stocks using more filters, to narrow down the results.
+    * Justification: Users can accurately find stocks using more filters, to narrow down the results.
     * Highlights: This enhancement comes with the ability to apply filters such as name of the stock,
     serial number, location stored and source of stock.
-    Search is also case-insensitive and any stock that contains the search term will be shown.
+    Search is also case-insensitive and any stock that matches all fields searched will be shown.
 
   * **New Feature**: Added the ability to add optional notes to existing items in the storage. (PR [\#147](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/147))
     * What it does: Allows the user to add notes to stock.
@@ -39,7 +36,7 @@ Given below are my contributions to the project.
     * Highlights: This enhancement comes with the ability to add multiple notes to the stock.
     Users will be able to add notes to the stock at any time, without erasing their previous notes.
 
-  * **New Feature**: Added the ability to delete one note or all notes from existing a stock in the storage. (PR [\#147](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/147))
+  * **New Feature**: Added the ability to delete one or all notes from an existing stock. (PR [\#147](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/147))
     * What it does: Allows the user to delete notes from stock.
     * Justification: Users can now delete notes that they no longer need from the stock.
     * Highlights: This enhancement comes with the ability to delete any one note from the stock by providing
@@ -47,10 +44,9 @@ Given below are my contributions to the project.
 
   * **New Feature**: Added the ability to view the details of a stock in a Stock View tab. (PR [\#265](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/265), code from [NoteView PR#177](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/177) changed to StockView)
     * What it does: Allows the user to view details of a single stock.
-    * Justification: Users can now view the details of a stock on another tab away from the entire stock book.
+    * Justification: Users can view a stock on a tab away from the entire stockbook.
     * Highlights: The Stock View tab live updates whenever the details of the stock being viewed is changed.
-    The details of the stock remain in the tab even when the user clicks away to another tab. This allows the
-    user to compare the details of a single stock with other stocks in the Data stockbook tab.
+    The details of the stock remain in the tab even when the user clicks away to another tab. Users can compare the details of a single stock with other stocks in the Data stockbook tab.
   
 * **Git & Repository**:
   * Used GitHub Projects feature to create kanban boards to track [user stories](https://github.com/AY2021S1-CS2103T-T15-3/tp/projects/1).
