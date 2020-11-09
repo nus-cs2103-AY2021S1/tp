@@ -43,10 +43,10 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): Represents the UI of the App.
-* [**`Logic`**](#logic-component): Executes the command given by the user.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#3.2-UI-component): Represents the UI of the App.
+* [**`Logic`**](#3.3-Logic-component): Executes the command given by the user.
+* [**`Model`**](#3.4-Model-component): Holds the data of the App in memory.
+* [**`Storage`**](#3.5-Storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
@@ -191,6 +191,8 @@ the Routine object and returns it as an argument in the `RoutineCreateCommand`.
 Given below is the sequence diagram showing how the routine creation command is executed:
 
 ![Routine Create](./images/RoutineAddSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 Given below is the activity diagram a user will go through when creating a routine in fitNUS. It shows clearly the input checks at every step and the different errors that will be thrown. 
 
@@ -459,8 +461,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | seasoned gym-goer                       | save my routines somewhere              | change my weekly routines with ease if programmes get boring
 | `* * *`  | varsity NUS athlete                        | search for keywords in my exercises              | quickly get inspiration for new routines
 | `* * *`  | varsity NUS athlete                        | search for keywords in my routines             | get similar inspirations from existing routines that I know of.
-| `* * *`  | varsity NUS athlete                        | search for keywords in my exercises              | quickly get inspiration for new routines
-| `* * `  | health-conscious NUS student                        | know how many calories I burned from my workout               | better keep track of my health
+| `* * `  | health-conscious NUS student                        | log my daily calorie burn               | better keep track of my health
 | `* * `  | student just getting into fitness                        | be recommended workouts that are beginner-friendly               | better manage my expectations
 | `* * `  | professional NUS bodybuilder                       | keep notes on my workout such as my personal records               | track my progression and plan for future sessions
 | `*`  | time conscious student                      | have a timer when I work out             | better plan my time
@@ -546,6 +547,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. fitNUS shows an error message.
 
       Use case resumes at step 1.
+      
+
 
 **Use Case 5 (UC05): View details of a certain routine**
 
@@ -586,6 +589,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 * 3b. The given routine does not exist.
+
+    * 3a1. fitNUS shows an error message.
+
+      Use case resumes at step 2.
+
+**Use Case 6 (UC07): Find routines**
+
+***MSS***
+
+1.  User requests to <u>list all routines in fitNUS (UC01)</u>.
+2.  User requests to find routines with certain keywords.
+3.  fitNUS displays the routines with the matching keywords.
+
+    Use case ends.
+
+***Extensions***
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+
+* 2a. The user input is invalid.
 
     * 3a1. fitNUS shows an error message.
 
@@ -725,7 +751,6 @@ confuse anyone.
 8. Calorie graph must be easy to read and understand for all users.
 9. fitNUS GUI must be able to fit any screen size or proportions meaningfully.
 
-*{More to be added}*
 
 ### Glossary
 
@@ -785,7 +810,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `lesson_add n/CS2103T t/core`<br>
       Expected: Creates a Lesson called "CS2103T" that is tagged with "core" tag. Success message will be shown.
    1. Test case: `lesson_add n/CS2100`<br>
-      Expected: Creates a Lesson called "CS21000" with no tags. Success message will be shown.
+      Expected: Creates a Lesson called "CS2100" with no tags. Success message will be shown.
    1. Test case: `lesson_add n/CS20&0`<br>
       Expected: Throws an error due to input not following alphanumeric format. 
    1. Other incorrect commands to try: `lesson_add`, `lesson_add n/MA1101R n/MA1521`, `...`<br>
@@ -861,7 +886,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `exercise_find benc`<br>Expected: Exercise "Bench Press" will be the only Exercise listed in fitNUS.
     Success message will inform user how many exercises were successfully found.
     1. Test case: `exercise_find @`<br>Expected: No Exercise object will be found, because this is an invalid Name.
-    1. Other incorrect delete commands to try: `exercise_find `<br>
+    1. Other incorrect find commands to try: `exercise_find `<br>
        Expected: Error message thrown informing you of the correct command format. 
 <br>
 
@@ -874,8 +899,7 @@ testers are expected to do more *exploratory* testing.
     Squats" with a tag saying "Heavy". A success message will inform user of the new name and tags.
     1. Test case: `exercise_edit 10 e/Good Name`<br>Expected: Invalid index, no Exercise is edited and an error message
     will be thrown, explaining the index is invalid.
-    1. Other incorrect delete commands to try: `exercise_edit 1 e/Bicep e/Tricep`, `exercise_edit 1 e/Bicep t/Tough
-    t/Hard`<br>
+    1. Other incorrect edit commands to try: `exercise_edit 1 e/Bicep e/Tricep`, `exercise_edit 1 e/@@@ `,`...`<br>
        Expected: Error message thrown informing you of the correct command format.
 <br>
 
@@ -888,7 +912,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `routine_create r/Leg Workout`<br>
       Expected: Creates a Routine called "Leg Workout"
-   1. Other incorrect delete commands to try: `routine_create`, `routine_create r/EXISTING_ROUTINE`, `...`<br>
+   1. Other incorrect add commands to try: `routine_create`, `routine_create r/EXISTING_ROUTINE`, `...`<br>
       Expected: Similar to previous.
 <br>
 
@@ -912,7 +936,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Throws an error message stating that the exercise does not exist in fitNUS.
    1. Test case: `routine_add_exercise r/random e/Squats`<br>
       Expected: Throws an error message stating that the routine does not exist in fitNUS.
-   1. Other incorrect delete commands to try: `routine_add_exercise`, `routine_add_exercise r/EXISTING_ROUTINE`, `...`<br>
+   1. Other incorrect add commands to try: `routine_add_exercise`, `routine_add_exercise r/EXISTING_ROUTINE`, `...`<br>
       Expected: Throws an error message stating that the format is incorrect.
 <br>
 
@@ -943,7 +967,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Listing all Routines
 
-    1. Test case: `exercise_list`: fitNUS will list out all the Routines in the Routine column. Success message will be
+    1. Test case: `routine_list`: fitNUS will list out all the Routines in the Routine column. Success message will be
         show.
 <br>
 
@@ -954,7 +978,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Routine column is cleared, except for the third routine. Successful message will be shown.
    1. Test case: `routine_view 0`<br>
       Expected: No routine is viewed. Error details shown in the status message. Status bar remains the same.
-   1. Other incorrect delete commands to try: `routine_view`, `routine_delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect view commands to try: `routine_view`, `routine_view x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 <br>
 
@@ -973,7 +997,7 @@ testers are expected to do more *exploratory* testing.
    1. Suppose the timetable already exists a slot on Monday, 1600-1800.
       Test case: `timetable_add_routine r/Leg Workout D/monday T/1600-1800`<br>
       Expected: Throws an error message stating that the slot already exists in the timetable.
-   1. Other incorrect delete commands to try: `timetable_add_routine`, `timetable_add_routine r/EXISTING_ROUTINE`, `...`<br>
+   1. Other incorrect add commands to try: `timetable_add_routine`, `timetable_add_routine r/EXISTING_ROUTINE`, `...`<br>
       Expected: Throws an error message stating that the format is incorrect.
 <br>
 
@@ -992,7 +1016,7 @@ testers are expected to do more *exploratory* testing.
    1. Suppose the timetable already exists a slot on Monday, 1600-1800.
       Test case: `timetable_add_lesson n/CS2103T D/monday T/1600-1800`<br>
       Expected: Throws an error message stating that the slot already exists in the timetable.
-   1. Other incorrect delete commands to try: `timetable_add_lesson`, `timetable_add_lesson n/EXISTING_LESSON`, `...`<br>
+   1. Other incorrect add commands to try: `timetable_add_lesson`, `timetable_add_lesson n/EXISTING_LESSON`, `...`<br>
       Expected: Throws an error message stating that the format is incorrect.
 <br>
 
@@ -1019,7 +1043,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Updates user's weight to 70kg. GUI will reflect this change as well. BMI on GUI will recalculate.
    1. Test case: `weight w/300`<br>
       Expected: Weight does not update or change on GUI. Error will be shown for an unrealistic weight for a user.
-   1. Other incorrect delete commands to try: `weight w/0`, `weight w/-1`, `...`<br>
+   1. Other incorrect set commands to try: `weight w/0`, `weight w/-1`, `...`<br>
       Expected: Similar to previous.
 <br>
 
@@ -1029,7 +1053,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Updates user's height to 170cm. GUI will reflect this change as well. BMI on GUI will recalculate.
    1. Test case: `height w/370`<br>
       Expected: Height does not update or change on GUI. Error will be shown for an unrealistic height for a user.
-   1. Other incorrect delete commands to try: `height w/10`, `height w/-1`, `...`<br>
+   1. Other incorrect set commands to try: `height w/10`, `height w/-1`, `...`<br>
       Expected: Similar to previous.
 <br>
 
@@ -1039,7 +1063,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Increases calorie count for today by 1500. GUI will reflect this change as well in Calorie Graph.
    1. Test case: `calorie_add c/999999`<br>
       Expected: Error will be thrown because this value not a realistic input. Calorie Graph and today's calorie count will not update.
-   1. Other incorrect delete commands to try: `calorie_add c/-1`, `calorie_add c/0`, `...`<br>
+   1. Other incorrect add commands to try: `calorie_add c/-1`, `calorie_add c/0`, `...`<br>
       Expected: Similar to previous.
 <br>
 
@@ -1049,11 +1073,9 @@ testers are expected to do more *exploratory* testing.
       Expected: Decreases calorie count for today by 1500. GUI will reflect this change as well in Calorie Graph.
    1. Test case: `calorie_minus c/999999`<br>
       Expected: Error will be thrown because this value is not a realistic input. Calorie Graph and today's calorie count will not update.
-   1. Other incorrect delete commands to try: `calorie_add c/-1`, `calorie_add c/0`, `...`<br>
+   1. Other incorrect deduct commands to try: `calorie_add c/-1`, `calorie_add c/0`, `...`<br>
       Expected: Similar to previous.
 <br>
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
