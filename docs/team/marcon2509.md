@@ -24,20 +24,11 @@ ___
 ##Developers of PropertyFree:
 
 PropertyFree is developed by a group of second year Computer Science Students from the School of Computing, National
-University if Singapore. This was developed for the team projects assignment fro the module CS2103 and is a
+University if Singapore. This was developed for the team projects assignment for the module CS2103 and is a
 brown-field project adapting from existing projects.
 ___
 
 ## My Contributions to PropertyFree
-
-#### Documenting the AboutUs page for all members
-
-The AboutUs page provides and overall view on what each team member has done for the project and
-is update and maintained by Marcus.
- 
-
-
-
 
 * **Add Bid Feature**: Added the ability to add a bid to a list of bids.
   * What it does: allows the user to add a bid for a property with a link to a property Id and a bidder Id.
@@ -74,8 +65,6 @@ is update and maintained by Marcus.
   * Justification: This feature is a necessary feature to allow the user navigate to the list of bids or clear the filtered bids list.
   * Highlights: the list bid command will change the tab to the bid list.
   * Credits: NIL
-  
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=marcon&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=Marcon2509&tabRepo=AY2021S1-CS2103-W14-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
@@ -90,13 +79,14 @@ is update and maintained by Marcus.
   * User Guide:
     * Added documentation for the bid features
     * Did cosmetic tweaks to existing documentation of all bid features
+    * Reviewed and standardized entire user guide
   * Developer Guide:
-    * Added implementation details of the `delete` and 'list' feature.
+    * Added implementation details for the general `add` and `list` feature.
+    * Added implementation details for the specific bid auto sort feature and bids/meetings validity check feature.
+    * Updated Overall Architecture model and description
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments):
+  * PRs reviewed (with non-trivial review comments)
   * Reported bugs and suggestions for other teams in the class
+  * Reported bugs and suggestions for team mates
 
-* **Tools**:
-
-* _{you can add/remove categories in the list above}_
