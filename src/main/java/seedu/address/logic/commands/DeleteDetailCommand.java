@@ -19,10 +19,9 @@ public class DeleteDetailCommand extends DetailCommand {
 
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_USAGE = DetailCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": deletes a Detail in the student identified"
-            + " by the index number used in the displayed student list. \n"
+            + ": deletes a Detail in the specified student\n\n"
             + "Parameters: STUDENT_INDEX (must be a positive integer) "
-            + PREFIX_INDEX + "DETAIL_INDEX (must be a positive integer)\n"
+            + PREFIX_INDEX + "DETAIL_INDEX (must be a positive integer)\n\n"
             + "Example: " + DetailCommand.COMMAND_WORD + " " + COMMAND_WORD + " 2 "
             + PREFIX_INDEX + "1";
 
