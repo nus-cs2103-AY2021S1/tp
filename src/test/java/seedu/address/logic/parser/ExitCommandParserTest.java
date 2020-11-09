@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ExitCommand;
 
+//author zeying99
+
 public class ExitCommandParserTest {
 
     private ExitCommandParser parser = new ExitCommandParser();
