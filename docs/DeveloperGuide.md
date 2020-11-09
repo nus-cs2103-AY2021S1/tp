@@ -25,24 +25,44 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 **How the architecture components interact with each other**
 ![Structure of the Overall Product](images/ArchitectureDiagram.png)
 
-### Overall components
-
 This is the overall design of our product. As we are using **GUI to help to display the information** and mainly focuses on
 using **CLI to take in the required commands**, thus the product consists of **6 main major components**. The product starts
 from the Launcher classes, that initiates based on our pre-set settings and then activates the MainApp class
-the will run the GUI with these settings. MainApp will also start the _brain_ and -muscles_ of the program, which are the Logic, Storage,
+the will run the GUI with these settings. MainApp will also start the _brain_ and _muscles_ of the program, which are the Logic, Storage,
 Model and Ui components.
 
-The role of the **Logic** component is to act as the _brain_ of the program, where all the parsing of information will be done, and the
-execution of the commands will be carried out.
+### Overall components
 
-The role of the **Storage** component is to represent the _memory_ of the program, where the storing and tracking of the different items happens.
+**`Main`** has two classes called [`Main`](https://github.com/nus-cs2103-AY2021S1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/nus-cs2103-AY2021S1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+
+The rest of the App consists of four components.
+
+* [**`UI`**](#ui-component): The role of the **Ui** component is to handle all the User interface related instructions, which includes the loading of GUI components, the updating
+of these components and displaying the changes.
+* [**`Logic`**](#logic-component): The role of the **Logic** component is to act as the _brain_ of the program, where all the parsing of information will be done, and the
+execution of the commands will be carried out.
+* [**`Model`**](#model-component): The role of the **Model** component is to represent all the items and their behaviours. Contains all the item classes and their support classes.
+* [**`Storage`**](#storage-component): The role of the **Storage** component is to represent the _memory_ of the program, where the storing and tracking of the different items happens.
 These items are saving locally in a json file, which can be imported and exported easily.
 
-The role of the **Model** component is to represent all the items and their behaviours. Contains all the item classes and their support classes.
+Each of the four components,
 
-The role of the **Ui** component is to handle all the User interface related instructions, which includes the loading of GUI components, the updating
-of these components and displaying the changes.
+* defines its *API* in an `interface` with the same name as the Component.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+
+For example, the `Logic` component defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
+
+**How the architecture components interact with each other**
+
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+
+<p aligin="center"><img src="images/ArchitectureSequenceDiagram.png" width="574" /></p>
+
+The sections below give more details of each component.
 
 
 ### UI component
