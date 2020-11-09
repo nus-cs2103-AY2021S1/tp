@@ -11,8 +11,6 @@ import javafx.collections.ObservableList;
 import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.budget.UniqueCategoryBudgetList;
 import seedu.expense.model.expense.Amount;
-import seedu.expense.model.expense.Date;
-import seedu.expense.model.expense.Description;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.UniqueExpenseList;
 import seedu.expense.model.expense.exceptions.CategoryNotFoundException;
