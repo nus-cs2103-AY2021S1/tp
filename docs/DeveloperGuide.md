@@ -2921,7 +2921,46 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect `completetask` command to try: `completetask`, `completetask y`, `...` (where xy is larger than the todo list size)<br>
       Expected: Similar to previous.
 
-### Event List
+### Scheduler
+
+#### Add Event
+1. Adding an Event while all Events are shown.
+
+   1. Test case: `addevent n/CS2100 Test d/2-1-2020 1200`<br>
+      Expected: Event added into the list. Added Event can be found at the bottom of the list.
+
+2. Adding an Event that is already present.
+
+   1. Test case: `addevent n/CS2100 Test d/2-1-2020 1200`<br>
+      Expected: Duplicate Event Error message thrown, the Event will not be added to the list.
+
+#### Delete Event
+1. Deleting an Event from the list shown in the GUI.
+
+   1. Test case: `deleteevent 1`<br>
+      Expected: Event of index 1 will be deleted and removed from the list of Events.
+
+2. Deleting an Event with an invalid index
+
+   1. Test case: `deleteevent -1`<br>
+      Expected: Invalid event index Error message thrown, no Events will be deleted.
+      
+#### Edit Event
+1. Editing an Event name
+
+   1. Test case: `editevent 1 n/Testing file`
+      Expected: The Event in index 1 will have its name changed to `Testing file`.
+
+2. Editing an Event name using invalid event index
+
+   1. Test case: `editevent -1 n/Testing`
+      Expected: Invalid event index Error message thrown, no Events will be edited.
+
+#### Find Event
+1. Finding an Event using a valid event name
+
+   1. Test case: `findevent n/CS2100`
+      Expected: All Events with `CS2100` in its name will be displayed.
 
 ### Common Features
 
