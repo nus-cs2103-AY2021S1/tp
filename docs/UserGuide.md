@@ -31,7 +31,7 @@ details and information more efficiently than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Navigating the GUI
+## 3.  Navigating the GUI
 
 ![GUI](images/OverallGUISnapShotWithLabels.png)
 
@@ -61,7 +61,17 @@ Here is where all of the items that are added into the application can be found.
 From here, you can choose between the different windows to view.
 
 
-## Features
+## 4.  Features
+
+Some common symbols that can be found in the user guide and their meanings:
+
+* :information_source: Represents useful information that should be noted.
+
+* :bulb: Represents a useful tip.
+
+* :warning: Represents a warning that users should be aware of.
+
+
 
 <div markdown="block" class="alert alert-info">
 
@@ -225,17 +235,55 @@ Format: `listmodule`
    * `findmodule cs2030 cs2100` returns the modules(if any) with the module names `CS2030` or `CS2100`.
 
 
+### Zoom link management feature
+
+The following features allow you to manage the zoom links for your respective modules and perform various zoom link related functions. 
+
+The section below provides some useful details about the zoom list management features.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br> 
+As zoom links are only displayed on the **additional information display panel**, and not the main item display panel,
+to view all your zoom links or changes made to them, you can use the `viewmodule INDEX` command, where `INDEX` refers to 
+the index of the module with the zoom links.
+                         
+**:information_source: Note:** <br>
+Each lesson in a module will only be allowed to have one zoom link,
+i.e. you will not be allowed to add multiple zoom links to the same lesson.                         
+
+</div>
+
+#### Zoom link command parameters
+
+* **`ZOOM_LINK`**:
+
+  * Represents the zoom link of a module
+  
+  * All zoom links should adhere to the following constraints:
+  
+    * Belong to the NUS domain and have the following format: `https://nus-sg.zoom.us/[path]`
+    
+    * The zoom link path should only contain alphanumeric characters and these special characters: `?=/`, and should not be blank
+    
+    * Example: `https://nus-sg.zoom.us/j/babcyg?pwd=`
+
+* **`LESSON_NAME`**:
+
+  * Represents the name of a module lesson which contains the zoom link
+  
+  * Lesson name should only contain alphanumeric characters, spaces and the hyphen character, and it should not be blank.
+
+  * Example: `Lecture-weds`
+
+
 #### Adding a zoom link for a specific lesson to a module: `addzoom`
 
 Adds a zoom link for a specific lesson to an existing module.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:** <br>
-Each lesson in a module will only be allowed to have one zoom link,
-i.e. you will not be allowed to add multiple zoom links to the same lesson.
-
-_**Tips :**_ If you have 2 or more types of lectures in the same module, e.g. lecture on Monday and
+**:bulb:** If you have 2 or more types of lectures in the same module, e.g. lecture on Monday and
 Wednesday, and they have **different zoom links**, you can add 2 zoom links with different lesson names
 e.g. `Mon-Lecture` and `Wed-Lecture`.
 
@@ -248,13 +296,15 @@ e.g. `Mon-Lecture` and `Wed-Lecture`.
    * The index refers to the index number of the module shown on the displayed module list.
 
    * The index **must be a positive integer** 1, 2, 3...
-
-   * The zoom link provided must be a link that uses the NUS domain. A typical zoom link that is under the NUS domain
-     would start with: `https://nus-sg.zoom.us/`. Zoom links that do not belong to the NUS domain would not be accepted.
+   
+   * `LESSON_NAME` refers to the name of the module lesson which the added zoom link belongs to.
 
   Example:
-  * `addzoom 1 n/lecture-weds z/https://nus-sg.zoom.us/j/auya7164hg` adds a zoom link `https://nus-sg.zoom.us/j/auya7164hg` to the first module
-   in the displayed module list for the lesson `lecture`.
+  
+  `addzoom 1 n/lecture-weds z/https://nus-sg.zoom.us/j/auya7164hg` adds a zoom link `https://nus-sg.zoom.us/j/auya7164hg` to the first module
+  in the displayed module list for the lesson `lecture-weds`.
+  
+  Expected Outcome:
 
 
 #### Editing a zoom link of a specific lesson in a module: `editzoom`
@@ -263,31 +313,35 @@ Edits a zoom link of a specific lesson in a module.
 
   Format: `editzoom INDEX n/LESSON_NAME z/EDITED_ZOOM_LINK`
 
-   * Edits the zoom link of the specified `LESSON_NAME` in the module at the specified `INDEX`.
+   * Edits the zoom link of the module at the specified `INDEX`.
 
    * The index refers to the index number of the module shown on the displayed module list.
 
    * The index **must be a positive integer** 1, 2, 3...
 
-   * The edited zoom link provided must be a link that uses the NUS domain. A typical zoom link that is under the NUS domain
-     would start with: `https://nus-sg.zoom.us/`. Zoom links that do not belong to the NUS domain would not be accepted.
+   * `LESSON_NAME` refers to the name of the module lesson which contains the zoom link to be edited.
    
-      <div markdown="block" class="alert alert-info">
+   
+   <div markdown="block" class="alert alert-info">
 
-      **:information_source: Note:**<br>
-      This command only allows you to edit the zoom link of an existing lesson in a module, i.e.
-      it does not allow you to edit the name of that lesson.
+   **:information_source:** 
+   This command only allows you to edit the zoom link of an existing lesson in a module, i.e.
+   it does not allow you to edit the name of that lesson.
 
-      If you wish you to edit the lesson name while keeping the same zoom link, you can try the following: <br>
-        1. Delete the zoom link that belongs to the lesson which you wish to edit. <br>
-        2. Add the same zoom link with the edited lesson name.
+   If you wish you to edit the lesson name while keeping the same zoom link, you can try the following: <br>
+     1. Delete the zoom link that belongs to the lesson which you wish to edit. <br>
+     2. Add the same zoom link with the edited lesson name.
 
-      </div>
+   </div>
 
-     Example:
-     * `editzoom 1 n/tutorial z/https://nus-sg.zoom.us/j/aad83sc63gdy` edits the zoom link of the lesson `tutorial`
-        in the first module to be `https://nus-sg.zoom.us/j/aad83sc63gdy`
+   Example:
+   
+   `editzoom 1 n/tutorial z/https://nus-sg.zoom.us/j/aad83sc63gdy` edits the zoom link of the lesson `tutorial`
+    in the first module to be `https://nus-sg.zoom.us/j/aad83sc63gdy`
 
+   Expected Outcome:
+   
+   
 
 #### Deleting a zoom link for a specific lesson from a module: `deletezoom`
 
@@ -301,11 +355,15 @@ Deletes a zoom link for a specific lesson from an existing module.
 
    * The index **must be a positive integer** 1, 2, 3...
 
-   * `LESSON_NAME` refers to the name of the lesson in the module which contains the zoom link to be deleted.
+   * `LESSON_NAME` refers to the name of the module lesson which contains the zoom link to be deleted.
 
-  Example:
-   * `deletezoom 2 n/lecture` deletes the zoom link of the lesson `lecture` from the 2nd module in the displayed module list.
+  Example
+  
+  `deletezoom 2 n/lecture` deletes the zoom link of the lesson `lecture` from the 2nd module in the displayed module list.
 
+  Expected Outcome:
+  
+  
 
 #### Deleting a module: `deletemodule`
 
@@ -558,7 +616,7 @@ Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [s/STATUS] [t/TAG_KEYW
 
  * Search Parameters:
 
-   * Task Name
+   * **`Name`**
 
      * You are allowed to provide multiple name keywords.
 
@@ -568,7 +626,7 @@ Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [s/STATUS] [t/TAG_KEYW
 
      * Only full words will be matched, e.g. `lab` will match `lab assignment` but not `labs`.
 
-   * Date
+   * **`Date`**
 
      * Your search date should be of the format: `YYYY-MM-DD`.
 
@@ -576,7 +634,7 @@ Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [s/STATUS] [t/TAG_KEYW
 
      * Tasks with their date matching the search date exactly are considered to have fulfilled the task date search criteria.
 
-   * Priority
+   * **`Priority`**
 
      * Your search priority should be one of the following: `highest`, `high`, `normal`, `low` (case-insensitive).
        No other search priority will be allowed.
@@ -585,7 +643,7 @@ Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [s/STATUS] [t/TAG_KEYW
 
      * Tasks with their priority matching the search priority exactly are considered to have fulfilled the task priority search criteria.
    
-   * Status
+   * **`Status`**
    
      * Your search status should be one of the following: `completed`, `incomplete` (case-insensitive).
      
@@ -593,27 +651,36 @@ Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [s/STATUS] [t/TAG_KEYW
      
      * Tasks with their status matching the search status exactly are considered to have fulfilled the task status search criteria.
 
-   * Tag
+   * **`Tag`**
 
      * You are allowed to provide multiple tag keywords.
+     
+     * The tag keyword provided should conform to the tag constraint, i.e. should be alphanumeric and should not be blank or contain whitespaces.
 
      * Task tags will be considered a match only if the tag words are an exact match (case-insensitive),
-       e.g. a tag with the word `hard` will match a tag with the word `HARD`, but a tag with the word `hard` will not match a tag with the word `harder`.
+       e.g. a tag with the word `hard` will match a tag with the word `HARD`, but will not match a tag with the word `harder`.
 
      * Tasks containing tags which match at least one of the tag keywords provided will be considered to have fulfilled the task tag search criteria.
 
- * Only tasks matching all search parameters provided will be returned.
+ * Only tasks matching all search criteria provided will be returned.
 
- Examples:
+ Example:
+ 
+ `findtask `
+ 
+ Expected Outcome:
+ 
+ 
 
-  * `findtask n/lab` returns all tasks with the word `lab` in their name
+ Other helpful examples:
 
-  * `findtask d/2020-10-10 p/HIGHEST` returns all tasks with the date `2020-10-10` **and** `highest` priority
+  * `findtask d/2020-10-10 p/high` returns all tasks with the date `2020-10-10` **and** `high` priority
 
-  * `findtask t/difficult online` returns all tasks that have the `difficult` or `online` tag
+  * `findtask t/difficult online` returns all tasks that have the `difficult` **or** `online` tag
 
   * `findtask n/lab quiz t/difficult` returns all tasks with their name containing **either**
      the word `lab` or  `quiz` **and** has `difficult` as one of its tags
+
 
 
 #### Marking a task as completed: `completetask`
@@ -713,42 +780,42 @@ The following features allow you to manage a list of contacts and perform variou
 
 The section below provides some useful details about the contact list features.
 
-### Contact command parameters
+#### Contact command parameters
 
 A contact list feature can use one or more of the following parameters:
 
-1. `Name:`
+* **`NAME`**:
 
-  * Represents the name of a contact
+   * Represents the name of a contact
   
-  * Can only contain alphanumeric characters and spaces, and should not be blank.
+   * Can only contain alphanumeric characters and spaces, and should not be blank.
   
-  * Examples: `John`, `Amy`
+   * Examples: `John`, `Amy`
   
-  * All contacts must have a name
+   * All contacts must have a name
   
-  
-2. `Email`
 
-  * Represents the email address of a contact
+* **`EMAIL`**:
+
+   * Represents the email address of a contact
   
-  * `Email`should be of the format `local-part@domain` and adhere to the following constraints:
+   * `Email`should be of the format `local-part@domain` and adhere to the following constraints:
        
-    1. The local-part should only contain alphanumeric characters and these special characters: `!#$%&'*+/=?{|}~^.-` 
+     1. The local-part should only contain alphanumeric characters and these special characters: `!#$%&'*+/=?{|}~^.-` 
          
-    2. This is followed by a `@` and then a domain name. 
+     2. This is followed by a `@` and then a domain name. 
          
-    3. The domain name must:
-      * Be at least 2 characters long
-      * Start and end with alphanumeric characters
-      * Consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.
+     3. The domain name must:
+        * Be at least 2 characters long
+        * Start and end with alphanumeric characters
+        * Consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.
 
-  * Examples: `johndoe@gmail.com`
+   * Example: `johndoe@gmail.com`
 
-  * All contacts must have an email address
+   * All contacts must have an email address
 
 
-3. `Telegram`
+* **`Telegram`**:
 
   * Represents the telegram username of a contact
   
@@ -756,14 +823,14 @@ A contact list feature can use one or more of the following parameters:
   
     1. Must start with the `@` symbol
     2. At least 5 characters long, not including the `@` symbol
-    2. Contains only alphanumeric characters or underscore
+    3. Contains only alphanumeric characters or underscore
     
-  Examples: `@john_doe`, `@johndoe`
+  * Examples: `@john_doe`, `@johndoe`
   
   * Telegram is a not a compulsory field of a contact
 
 
-4. `Tag`
+* **`Tag`**:
 
   * Represents a tag that can be used to describe a contact
   
@@ -784,7 +851,9 @@ Format: `addcontact n/NAME e/EMAIL [te/TELEGRAM] [t/TAG]...`
  * A contact can have any number of tags (including 0)
 
 
-Example: `addcontact n/Amy e/Amy@gmail.com te/@Amytele t/friend`
+Example: 
+
+`addcontact n/Amy e/Amy@gmail.com te/@Amytele t/friend` adds a new contact with the name `Amy`, email `Amy@gmail.com`, telegram `@Amytele` and a tag `friend`
  
 Expected Outcome:
 ![AddContactOutcome](images/Contact/AddContactUG.PNG)
@@ -811,7 +880,7 @@ Expected Outcome:
 
     * Name
 
-      * Contact with a name matching at least one of the name keywords provided will be considered to have fulfilled the contact name search criteria.
+      * Contacts with their name matching at least one of the name keywords provided will be considered to have fulfilled the contact name search criteria.
 
       * Only full words will be matched, e.g. `Bob` will match `Bob Abraham` but not `Bobs`.
 
@@ -826,14 +895,14 @@ Expected Outcome:
 
   * Only contacts matching all search criteria provided will be returned.
 
-  Example: `findcontact n/amy`
+  Example: 
+  
+  `findcontact n/amy` finds all contacts with the word `amy` in their name
   
   Expected Outcome:
   ![FindContact](images/Contact/FindContactUG.PNG)
   
   Other helpful examples:
-  
-   * `findcontact n/john` returns all contacts with the word `john` in their name, e.g. `john` and `john doe`
 
    * `findcontact n/Bob Abraham` returns all contacts with the word `Bob` **or** `Abraham` in their name, e.g. `Bob Lim`, `Tommy Abraham`
 
@@ -856,6 +925,11 @@ Expected Outcome:
   e.g. after using the `findcontact` or `sortcontact` commands.
 
  </div>
+ 
+ Example: `listcontact`
+ 
+ Expected Outcome:
+ ![ListContact](images/Contact/ListContactUG.PNG)
 
 
 #### Editing a contact: `editcontact`
@@ -871,20 +945,19 @@ Expected Outcome:
 
  * Existing values will be updated to the input values.
  
- * If the contact has an existing telegram field, you can remove it by typing `te/` without specifying any telegram field after it.
+ * If the contact has an existing telegram field, you can remove it by typing `te/` without specifying any telegram field after it, i.e. `editcontact 1 te/`
 
  * When editing tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative.
 
- * You can remove all the contact’s tags by typing `t/` without specifying any tags after it.
+ * You can remove all the contact’s tags by typing `t/` without specifying any tags after it, i.e. `editcontact 1 t/`
 
- Examples:
+ Example: 
+ 
+ `editcontact 2 n/amy lee e/amy-lee@gmail.com t/classmate` edits the second contact in the displayed contact list with the name `amy lee`, email `amy-lee@gmail.com` and tag `classmate`
+ 
+ Expected Outcome:
+ ![EditContact](images/Contact/EditContactUG.PNG)
 
-  * `editcontact 1 n/john e/john@gmail.com` Edits the name and email address of the first contact to be
-    `john` and `john@gmail.com` respectively.
-
-  * `editcontact 2 n/Bob Abraham t/` Edits the name of the second contact to be `Bob Abraham` and clears all existing tags of the contact.
-  
-  * `editcontact 1 te/` Deletes the telegram field of the first contact.
 
 
 #### Deleting a contact: `deletecontact`
@@ -899,11 +972,12 @@ Format: `deletecontact INDEX`
 
  * The index **must be a positive integer** 1, 2, 3...
 
-Examples:
+Example: 
 
- * `listcontact` followed by `deletecontact 1` deletes the first contact in the contact list
+`deletecontact 2` deletes the second contact in the displayed contact list
 
- * `findcontact n/bob` followed by `deletecontact 2` deletes the second contact in the results of the `findcontact` command
+Expected Outcome:
+![DeleteContact](images/Contact/DeleteContactUG.PNG)
 
 
 #### Sorting contacts: `sortcontact`
@@ -964,8 +1038,20 @@ Clears all contacts in the contact list.
 
 Format: `clearcontact`
 
-* _**Tips :**_ If you accidentally cleared the whole contact list, you can always use the `undo` command
-  to restore the list.
+<div markdown="block" class="alert alert-info">
+
+ **:bulb:**<br>
+
+ If you accidentally cleared the whole contact list, you can always use the `undo` command
+ to restore the list.
+
+ </div>
+
+Example: `clearcontact`
+
+Expected Outcome:
+![ClearContact](images/Contact/ClearContactUG.PNG)
+
 
 ### Scheduler Features
 
@@ -1060,6 +1146,9 @@ Redoes the previously undone user command
 **Q**: How do you edit a module's information?
 **A**: When the program is running, you can enter the edit command and enter whichever field you want to modify but at least
 1 field must be present.
+
+**Q**: How do I save all the module related information I have entered?
+**A**: All information and details entered will be automatically stored and can be accessed the next time you start the application.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary for Module Tracker
@@ -1085,9 +1174,13 @@ Action | Format, Examples
 Action | Format, Examples
 -------|-------------------------
 **Add Contact** | `addcontact n/NAME e/EMAIL [te/TELEGRAM] [t/TAG]...` <br> e.g. `addcontact n/john e/john@gmail.com te/@johndoe t/friend`
-**EditContact** | `editcontact INDEX [n/NAME] [e/EMAIL] [te/TELEGRAM] [t/TAG]...` <br> e.g. `editcontact 1 n/amy te/@amytele`
-**FindContact** | `findcontact [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]` <br> e.g. `findcontact n/john`
-**DeleteContact** | `deletcontact INDEX` <br> e.g. `deletecontact`
+**Edit Contact** | `editcontact INDEX [n/NAME] [e/EMAIL] [te/TELEGRAM] [t/TAG]...` <br> e.g. `editcontact 1 n/amy te/@amytele`
+**Find Contact** | `findcontact [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]` <br> e.g. `findcontact n/john`
+**Delete Contact** | `deletcontact INDEX` <br> e.g. `deletecontact`
+**List Contacts** | `listcontact`
+**Sort Contacts** |
+**Mark Contact as Important** |
+
 
 ## Command summary for Todo List
 

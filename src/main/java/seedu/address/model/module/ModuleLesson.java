@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class ModuleLesson {
 
     public static final String MESSAGE_CONSTRAINTS = "Lesson name should only contain alphanumeric "
-            + "characters, spaces or the hyphen character, and it should not be blank.";
+            + "characters, spaces and the hyphen character, and it should not be blank.";
 
     /*
      * The first character of the address must not be a whitespace,
