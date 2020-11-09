@@ -1,0 +1,15 @@
+@startuml
+start
+
+:User executes delete by tag command;
+:QuickCache parses the user input;
+if () then ([input is valid])
+    :Create predicates based on specified tags;
+    :Filter the model to get flashcards with the specified tags;
+    :Delete the flashcards;
+else ([input is invalid])
+    :Throw ParseException;
+endif
+
+stop
+@enduml
