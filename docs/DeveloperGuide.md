@@ -920,14 +920,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User types in `find a- Alex`
-2. Eva shows all applicant records whose name contains "Alex" with indexes beside.
+2. Eva shows all applicant records whose name contains "Alex" with indexes beside.<br>
     Use case ends.
 
 **Extensions**
 
 * 1a. Eva does not find any applicant records with the given name.
 
-    * 1a1. Eva informs the user that no records exist.
+    * 1a1. Eva informs the user that no records exist.<br>
     Use case ends.
 
 ***Use case: UC22 - viewing staff profile***
