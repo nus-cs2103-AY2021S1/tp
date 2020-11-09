@@ -321,8 +321,9 @@ The first 2 operations are exposed in the `Model` interface as `Model#canUndo()`
 Given below is an example usage scenario and how the undo mechanism behaves at each step.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The `ModelManager**` in the following diagrams is actually stored as `Pair&ltMcGymmy&ltPair&ltPredicate&ltFood&gt, MacroList&gt&gt`
+:information_source: **Note:** The type <code>ModelManager**</code> of the objects stored in <code>History</code>  in the following diagrams is used as a simplified presentation for <code>Pair&lt;McGymmy&lt;Pair&lt;Predicate&lt;Food&gt;, MacroList&gt;&gt;</code>, so that the diagram will look less complicated.
 </div>
+
 Step 1. The user launches the application for the first time. The `ModelManager` will be initialized with the empty `mcGymmyStack`.
 
 ![UndoState0](images/UndoState0.png)
