@@ -136,14 +136,14 @@ please check that you have installed the correct driver in the _`chrome_driver`_
     1. Windows: chromedriver.exe
     1. MacOS: chromedriver_mac
     1. Linux: chromedriver_linux
-
+<br>
 1. Copy both file and folder to the directory you want to use as the _home directory_ for your Jarvis.
 
 1. There are two options for launching Jarvis.
     1. Double-click the `jarvis.jar` file to start the app.
     1. Launch Jarvis from the Windows Command Prompt or MacOS command line by navigating to the directory containing `jarvis.jar`,
     then typing the command `java -jar jarvis.jar`
-
+<br>
     A GUI similar to the screenshot below should appear in a few seconds.
     
     <div style="page-break-after: always;"></div>
@@ -167,7 +167,7 @@ please check that you have installed the correct driver in the _`chrome_driver`_
    * `exit: Exits the app.`
 <br/>
 1. Refer to the [Features](#6-features) below for details of each command.
-
+<br/>
 1. Do note that the sample data displayed on initial startup of Jarvis will not be saved. This means that subsequent launches of Jarvis will only contain user-inputted data.
 
 <div style="page-break-after: always;"></div>
