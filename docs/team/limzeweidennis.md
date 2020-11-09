@@ -52,25 +52,15 @@ Given below are my contributions to the project.
       window also allows the user to view the user guide for more detailed help.
       * Highlights: This feature enables the user to seek help when using Warenager.  <br>
 
-* **Testing**:
-  * Created unit tests for `bookmark` feature (bookmarkCommandParser, bookmarkCommand). (Pull Request 
-  [#155](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/155),
-  [#291](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/291))
-  * Created integration tests for `bookmark` feature (bookmarkCommand). (Pull Request 
-  [#155](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/155))
-  * Created unit tests for `unbookmark` feature (unbookmark command parser, unbookmark command). (Pull Request 
-  [#155](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/155),
-  [#291](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/291))
-  * Created integration tests for `unbookmark` feature (unbookmark command). (Pull Request 
-  [#155](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/155))
-  * Created unit tests for `help` feature (helpCommandParser). (Pull Request 
-  [#271](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/271))
-  * Created integration tests for `help` feature (helpCommand).
-  * Improved coverage by creating tests for `LogicManager` and `ArgumentTokenizer`. (Pull Request 
-  [#291](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/291)
-  [#309](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/309))
-  * Reviewed other team members' tests and ensure the tests are adequate and working.
-  * Help other team members debug testing when the tests failed and they don't know what causes the tests to fail. <br>
+* **Testing**: (Pull Request
+[#155](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/155)
+[#271](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/271)
+[#291](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/291)
+[#309](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/309))
+  * Created tests for `bookmark` feature (bookmarkCommandParser, bookmarkCommand). 
+  * Created tests for `unbookmark` feature (unbookmark command parser, unbookmark command).
+  * Created tests for `help` feature (helpCommandParser, helpCommand).
+  * Improved coverage by creating tests for `LogicManager` and `ArgumentTokenizer`. <br>
 
 * **Documentation**:
   * User Guide: (Pull Request 
@@ -93,16 +83,14 @@ Given below are my contributions to the project.
     * Added class diagrams for `UI`.
     * Added UML diagrams for `bookmark`, `unbookmark` feature. <br>
 
-* **UI**:
-  * Came up with the design of the UI (stockTable, resultDisplay, commandBox and enterButton). (Pull Request 
-  [#114](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/114)
-  [#150](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/150))
-  * Edited the colour scheme using recommendations from groupmates. (Pull Request 
-  [#114](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/114))
-  * Created the table in help window. (Pull Request 
-  [#207](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/207))
-  * Updated the help window to include a clickable link. (Pull Request
-  [#114](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/114)) <br>
+* **UI**: (Pull Request 
+[#114](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/114)
+[#150](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/150)
+[#207](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/207))
+  * Came up with the design of the UI (stockTable, resultDisplay, commandBox and enterButton).
+  * Edited the colour scheme using recommendations from groupmates.
+  * Created the table in help window.
+  * Updated the help window to include a clickable link. <br>
   
 * **Git & Repository**:
     * Used GitHub Projects feature to create kanban boards to track user stories.
