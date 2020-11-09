@@ -173,9 +173,9 @@ Both options are equally feasible. However, Alternative 1 was chosen to avoid co
 
 #### Implementation
 
-The find module mechanism is facilitated by `FindModCommand` and `FindModCommandParser`. It allows users to search for modules based on their respective attributes which are the module code, module name and instructors teaching the module.
+The find module mechanism is facilitated by `FindModCommand` and `FindModCommandParser`. It allows users to search for modules based on their respective attributes which are the module code, module name and instructors of the module.
 It uses `ModelManager#updateFilteredModuleList(Predicate p)` which is exposed in the Model interface as `Model#updateFilteredModuleList(Predicate p)`.
-The method updates the current module list and filters it according to the given predicate which will then be reflected accordingly in the GUI.
+The method updates the active semester module list and filters it according to the given predicate which will then be reflected accordingly in the GUI.
 
 The following sequence diagram shows how the find module by module attributes operation works:
 
@@ -207,7 +207,7 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 The delete module mechanism is facilitated by the `DelmodCommand` and the `DelmodCommandParser`.
 It uses an operation `AddressBook#removeModule()` which is exposed in the `Model` interface as `Model#deleteModule()`.
-Then, the `removeModuleWithCode()` operation is called in `UniqueModuleList`. `UniqueModuleList#removeModuleWithCode()` will remove the module with the specified code
+Then, the `removeModuleWithCode()` operation is called in the active semester `UniqueModuleList`. `UniqueModuleList#removeModuleWithCode()` will remove the module with the specified code
 from the module list.
 
 Given below is the example usage scenario and how the delete module mechanism behaves at each step.
@@ -218,7 +218,7 @@ Given below is the example usage scenario and how the delete module mechanism be
 
 3. The `DelmodCommand` then calls `Model#deleteModule()` after checking for the existence of the specified module.
 
-4. The module with the specified module code will be deleted from the current semester's `UniqueModuleList` in `AddressBook`.
+4. The module with the specified module code will be deleted from the active semester `UniqueModuleList` in `AddressBook`.
 
 The following sequence diagram shows how the deleting of the module works:
 
@@ -280,7 +280,7 @@ Both are equally viable options but Alternative 1 was chosen so `Person` would n
 
 ### Unassign feature
 
-The assign feature is facilitated by `UnassignCommand` and `UnassignCommandParser`.
+The unassign feature is facilitated by `UnassignCommand` and `UnassignCommandParser`.
 It uses an operation `AddressBook#unassignInstructor()` which is exposed in the `Model` interface as `Model#unassignInstructor()`.
 Then, the `unassignInstructor()` operation is called in both `UniqueModuleList` and `Module`. `Module#unassignInstructor()` will remove the instructor from the module's set of instructors.
 
@@ -299,7 +299,7 @@ The following activity diagram summarizes what happens when a user executes an u
 
 ### Unassignall feature
 
-The assign feature is facilitated by `UnassignallCommand` and `UnassignallCommandParser`.
+The unassignall feature is facilitated by `UnassignallCommand` and `UnassignallCommandParser`.
 It uses an operation `AddressBook#unassignAllInstructors()` which is exposed in the `Model` interface as `Model#unassignAllInstructors()`.
 Then, the `unassignAllInstructors()` operation is called in both `UniqueModuleList` and `Module`. `Module#unassignAllInstructors()` will remove all instructors from all modules' set of instructors.
 
@@ -322,10 +322,10 @@ The following activity diagram summarizes what happens when a user executes an u
 
 * **Alternative 1 (current choice):** Unassigns all instructors from all modules.
  * Pros : More efficient to unassign all instructors from all modules.
- * Cons : Less efficient to unassign a certain instructor from all modules he/she teaches.
+ * Cons : Less efficient to unassign a certain instructor from all modules he/she instructs.
 
-* **Alternative 2:** Unassign a certain instructor from all modules he/she teaches.
- * Pros : More efficient to unassign a certain instructor from all modules he/she teaches.
+* **Alternative 2:** Unassign a certain instructor from all modules he/she instructs.
+ * Pros : More efficient to unassign a certain instructor from all modules he/she instructs.
  * Cons : Less efficient to unassign all instructors from all modules.
 
 ### Clear all contacts feature
