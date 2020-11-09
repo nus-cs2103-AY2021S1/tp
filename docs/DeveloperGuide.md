@@ -1682,6 +1682,8 @@ User can choose to import or export their data
 
 The difficulty level for developing QuickCache was high because we chose to morph AB3 into a flashcard manager instead of evolving it into a more powerful contact management app. We also wanted QuickCache to support both Open Ended Questions and Multiple Choice Questions. Other than managing questions, we felt that it was also important for the user to be able to test him/herself within QuickCache, view his/her performance, as well as share flashcards with his/her friends.
 
+Our team wrote a total of ~15k LoC, ~30 pages of User Guide and ~45 pages of Developer Guide.
+
 ### Challenges
 
 We faced a number of challenges in developing QuickCache:
