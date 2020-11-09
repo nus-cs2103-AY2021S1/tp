@@ -11,12 +11,11 @@ CAP5Buddy is a desktop module tracker application used to centralise key module 
 ### Summary of contributions
 
 Given below are my contributions to the project.
-
 * **New Feature**: Added the ability to undo/redo previous commands.
   * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
   * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *AB3's developer's guide described the concept of undo/redo commands implemented here*
+  * Credits: *AB3's developer's guide described the concept of undo/redo commands implemented*
   
 * **New Feature**: Added features that allows the user to calculate relevant CAP details.
   * What it does: Calculates the user's CAP details based on completed modules that the user has stored in the application.
