@@ -61,8 +61,13 @@ Given below are my contributions to the project.
     * Added documentation to the `lesson`, `edit-lesson`, `find-lesson` and `delete-lesson` commands [\#186](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/186)
   * Developer Guide:
     * Updated NFRs and Glossaries [\#94](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/94)
-    * Updated documentation for the section `Appendix:Requirements` [\#246](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/246)
-    * Added `AddLessonSequenceDiagram`, `StatsClassDiagram`, `StatsDataSequenceDiagram` and `TimeAnalysisAcvitityDiagram` [\#275](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/275) 
+    * Updated documentation for the `Appendix:Requirements` section [\#246](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/246)
+    * Added several UML diagrams to better illustrate the new features implemented, including:
+      * `AddLessonSequenceDiagram`
+      * `StatsClassDiagram`
+      * `StatsDataSequenceDiagram`
+      * `TimeAnalysisAcvitityDiagram`
+      * Refer to [\#275](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/275) for more details 
     * Refactored existing UML diagrams in the `Implementation` section from ab3 to fit the design of PlaNus [\#275](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/275)
 
 * **Community**:
