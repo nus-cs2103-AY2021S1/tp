@@ -90,6 +90,9 @@ Important cautions that needs to be known before using the feature.
 
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 # 3. User Interface Overview
 *(Written by Le Hue Man)* <br>
 
