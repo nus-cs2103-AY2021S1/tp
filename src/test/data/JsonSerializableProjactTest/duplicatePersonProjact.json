@@ -1,0 +1,20 @@
+{
+  "persons": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "telegramAddress": "alicepauline",
+    "tagNames": [ "friends" ]
+  }, {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "pauline@example.com",
+    "telegramAddress": "alice_pauline",
+    "tagNames" : [ ]
+  } ],
+  "tags": [ {
+    "tagName": "friends",
+    "tagTasks": [],
+    "meetingLinks": ""
+  }]
+}

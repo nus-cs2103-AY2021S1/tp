@@ -17,13 +17,31 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The application should reflect the sorted tag list. */
+    private final boolean sortTag;
+
+    /** The application should reflect the sorted person list. */
+    private final boolean sortPerson;
+
+    /** The application should reflect the tag list. */
+    private final boolean tagList;
+
+    /** The application should reflect the person list. */
+    private final boolean personList;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean sortTag,
+                         boolean sortPerson, boolean tagList, boolean personlist) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.sortTag = sortTag;
+        this.sortPerson = sortPerson;
+        this.tagList = tagList;
+        this.personList = personlist;
     }
 
     /**
@@ -31,7 +49,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -44,6 +62,22 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isSortTag() {
+        return sortTag;
+    }
+
+    public boolean isSortPerson() {
+        return sortPerson;
+    }
+
+    public boolean isTagList() {
+        return tagList;
+    }
+
+    public boolean isPersonList() {
+        return personList;
     }
 
     @Override
@@ -60,12 +94,16 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && sortTag == otherCommandResult.sortTag
+                && sortPerson == otherCommandResult.sortPerson
+                && tagList == otherCommandResult.tagList
+                && personList == otherCommandResult.personList;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, sortTag, sortPerson, tagList, personList);
     }
 
 }

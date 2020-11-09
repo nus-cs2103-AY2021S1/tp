@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ProjactParser" as ProjactParser LOGIC_COLOR
+participant ":TagDeleteCommandParser" as TagDeleteCommandParser LOGIC_COLOR
+participant "index:Index" as Index LOGIC_COLOR
+participant "command:TagDeleteCommand" as TagDeleteCommand LOGIC_COLOR
+participant "list:FilteredList" as FilteredList LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("tagdelete 2")
+activate LogicManager
+
+LogicManager -> ProjactParser : parseCommand("tagdelete 2")
+activate ProjactParser
+
+create TagDeleteCommandParser
+ProjactParser -> TagDeleteCommandParser
+activate TagDeleteCommandParser
+
+TagDeleteCommandParser --> ProjactParser
+deactivate TagDeleteCommandParser
+
+ProjactParser -> TagDeleteCommandParser : parse("2")
+activate TagDeleteCommandParser
+
+create Index
+TagDeleteCommandParser -> Index
+activate Index
+
+create TagDeleteCommand
+TagDeleteCommandParser -> TagDeleteCommand : TagDeleteCommand(index)
+activate TagDeleteCommand
+
+TagDeleteCommand --> TagDeleteCommandParser : command
+deactivate TagDeleteCommand
+
+TagDeleteCommandParser --> ProjactParser : command
+deactivate TagDeleteCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TagDeleteCommandParser -[hidden]-> ProjactParser
+destroy TagDeleteCommandParser
+
+ProjactParser --> LogicManager : command
+deactivate ProjactParser
+
+LogicManager -> TagDeleteCommand : execute()
+activate TagDeleteCommand
+
+TagDeleteCommand -> Model : getFilteredTagList()
+activate Model
+
+Model --> TagDeleteCommand : list
+deactivate Model
+
+create FilteredList
+TagDeleteCommand -> FilteredList : get(index)
+activate FilteredList
+
+FilteredList --> TagDeleteCommand : tagToDelete
+deactivate FilteredList
+
+TagDeleteCommand -> Model : deleteTag(tagToDelete)
+activate Model
+
+Model --> TagDeleteCommand
+deactivate Model
+
+create CommandResult
+TagDeleteCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TagDeleteCommand : result
+deactivate CommandResult
+
+TagDeleteCommand --> LogicManager : result
+deactivate TagDeleteCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ProjactParser" as ProjactParser LOGIC_COLOR
+participant ":LinkAddCommandParser" as LinkAddCommandParser LOGIC_COLOR
+participant "command:LinkAddCommand" as LinkAddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("linkadd 1 l/http://www.zoom.com/")
+activate LogicManager
+
+LogicManager -> ProjactParser : parseCommand("linkadd 1 l/http://www.zoom.com/")
+activate ProjactParser
+
+create LinkAddCommandParser
+ProjactParser -> LinkAddCommandParser
+activate LinkAddCommandParser
+LinkAddCommandParser --> ProjactParser
+
+deactivate LinkAddCommandParser
+ProjactParser -> LinkAddCommandParser : parse("1 l/http://www.zoom.com/")
+activate LinkAddCommandParser
+
+create LinkAddCommand
+LinkAddCommandParser -> LinkAddCommand : LinkAddCommand(tagIndex, link)
+activate LinkAddCommand
+
+LinkAddCommand --> LinkAddCommandParser : command
+deactivate LinkAddCommand
+
+LinkAddCommandParser --> ProjactParser : command
+deactivate LinkAddCommandParser
+LinkAddCommandParser -[hidden]-> ProjactParser
+destroy LinkAddCommandParser
+
+ProjactParser --> LogicManager : command
+deactivate ProjactParser
+
+LogicManager -> LinkAddCommand : execute()
+activate LinkAddCommand
+
+LinkAddCommand -> Model : setTag(tagToEdit, editedTag)
+activate Model
+Model ---> LinkAddCommand
+deactivate Model
+
+LinkAddCommand -> Model : updateFilteredTagList()
+activate Model
+Model ---> LinkAddCommand
+deactivate Model
+
+create CommandResult
+LinkAddCommand -> CommandResult
+activate CommandResult
+CommandResult ---> LinkAddCommand : result
+deactivate CommandResult
+
+LinkAddCommand --> LogicManager : result
+deactivate LinkAddCommand
+
+LogicManager -->[
+deactivate LogicManager
+
+@enduml

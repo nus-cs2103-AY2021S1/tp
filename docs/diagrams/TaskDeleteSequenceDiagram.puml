@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ProjactParser" as ProjactParser LOGIC_COLOR
+participant ":TaskDeleteCommandParser" as TaskDeleteCommandParser LOGIC_COLOR
+participant "command:TaskDeleteCommand" as TaskDeleteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("taskdelete 2 b")
+activate LogicManager
+
+LogicManager -> ProjactParser : parseCommand("taskdone 2 b")
+activate ProjactParser
+
+create TaskDeleteCommandParser
+ProjactParser -> TaskDeleteCommandParser
+activate TaskDeleteCommandParser
+TaskDeleteCommandParser --> ProjactParser
+
+deactivate TaskDeleteCommandParser
+ProjactParser -> TaskDeleteCommandParser : parse("2 b")
+activate TaskDeleteCommandParser
+
+create TaskDeleteCommand
+TaskDeleteCommandParser -> TaskDeleteCommand : TaskDeleteCommand(tagIndex, taskIndex)
+activate TaskDeleteCommand
+
+TaskDeleteCommand --> TaskDeleteCommandParser : command
+deactivate TaskDeleteCommand
+
+TaskDeleteCommandParser --> ProjactParser : command
+deactivate TaskDeleteCommandParser
+TaskDeleteCommandParser -[hidden]-> ProjactParser
+destroy TaskDeleteCommandParser
+
+ProjactParser --> LogicManager : command
+deactivate ProjactParser
+
+LogicManager -> TaskDeleteCommand : execute()
+activate TaskDeleteCommand
+
+TaskDeleteCommand -> Model : setTag(tagToEdit, editedTag)
+activate Model
+Model ---> TaskDeleteCommand
+deactivate Model
+
+TaskDeleteCommand -> Model : updateFilteredTagList()
+activate Model
+Model ---> TaskDeleteCommand
+deactivate Model
+
+create CommandResult
+TaskDeleteCommand -> CommandResult
+activate CommandResult
+CommandResult ---> TaskDeleteCommand : result
+deactivate CommandResult
+
+TaskDeleteCommand --> LogicManager : result
+deactivate TaskDeleteCommand
+
+LogicManager -->[
+deactivate LogicManager
+
+@enduml

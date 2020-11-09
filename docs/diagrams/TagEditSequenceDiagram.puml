@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ProjactParser" as ProjactParser LOGIC_COLOR
+participant ":TagEditCommandParser" as TagEditCommandParser LOGIC_COLOR
+participant "command:TagEditCommand" as TagEditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("tagedit 1 t/CS2103T")
+activate LogicManager
+
+LogicManager -> ProjactParser : parseCommand("tagedit 1 CS2103T")
+activate ProjactParser
+
+create TagEditCommandParser
+ProjactParser -> TagEditCommandParser
+activate TagEditCommandParser
+TagEditCommandParser --> ProjactParser
+
+deactivate TagEditCommandParser
+ProjactParser -> TagEditCommandParser : parse("1 t/CS2103T")
+activate TagEditCommandParser
+
+create TagEditCommand
+TagEditCommandParser -> TagEditCommand : TagEditCommand(index, editTagDescriptor)
+activate TagEditCommand
+
+TagEditCommand --> TagEditCommandParser : command
+deactivate TagEditCommand
+
+TagEditCommandParser --> ProjactParser : command
+deactivate TagEditCommandParser
+TagEditCommandParser -[hidden]-> ProjactParser
+destroy TagEditCommandParser
+
+ProjactParser --> LogicManager : command
+deactivate ProjactParser
+
+LogicManager -> TagEditCommand : execute()
+activate TagEditCommand
+
+TagEditCommand -> TagEditCommand : createEditedTag(tagToEdit, editTagDescriptor)
+activate TagEditCommand
+TagEditCommand ---> TagEditCommand : editedTag
+deactivate TagEditCommand
+
+TagEditCommand -> Model : setTag(tagToEdit, editedTag)
+activate Model
+Model ---> TagEditCommand
+deactivate Model
+
+TagEditCommand -> Model : updateFilteredTagList()
+activate Model
+Model ---> TagEditCommand
+deactivate Model
+
+create CommandResult
+TagEditCommand -> CommandResult
+activate CommandResult
+CommandResult ---> TagEditCommand : result
+deactivate CommandResult
+
+TagEditCommand --> LogicManager
+deactivate TagEditCommand
+
+LogicManager -->[
+deactivate LogicManager
+
+@enduml

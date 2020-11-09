@@ -20,6 +20,11 @@ checkstyle {
     toolVersion = '8.29'
 }
 
+run {
+    standardInput = System.in
+    enableAssertions = true
+}
+
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
@@ -63,10 +68,14 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+
+    compile 'org.kordamp.ikonli:ikonli-javafx:11.5.0'
+    compile 'org.kordamp.ikonli:ikonli-fontawesome5-pack:11.5.0'
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'projact.jar'
+    mergeServiceFiles()
 }
 
 defaultTasks 'clean', 'test'

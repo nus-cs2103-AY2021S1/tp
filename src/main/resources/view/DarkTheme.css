@@ -116,20 +116,16 @@
     -fx-border-width: 1;
 }
 
-.list-cell .label {
-    -fx-text-fill: white;
-}
-
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: white;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: white;
 }
 
 .stack-pane {
@@ -307,7 +303,7 @@
     -fx-padding: 8 1 8 1;
 }
 
-#cardPane {
+#personCardPane, #tagCardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
 }
@@ -337,16 +333,43 @@
     -fx-background-radius: 0;
 }
 
-#tags {
+#tags, #persons {
     -fx-hgap: 7;
     -fx-vgap: 3;
 }
 
-#tags .label {
+#tags .label, #persons .label {
     -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#tags .label {
+    -fx-background-color: #3e7b91;
+}
+
+#persons .label {
+    -fx-background-color: #913e3e;
+}
+
+#meetingLink {
+    -fx-text-fill: white;
+}
+
+.big-icon {
+    -fx-icon-size: 14;
+    -fx-icon-color: #f0f0f0;
+}
+
+.small-icon {
+    -fx-icon-size: 12;
+    -fx-icon-color: #f0f0f0;
+}
+
+.extra_label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13.5px;
+    -fx-text-fill: #fff670;
 }

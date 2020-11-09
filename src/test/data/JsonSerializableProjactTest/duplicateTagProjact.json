@@ -1,0 +1,18 @@
+{
+  "persons": [],
+  "tags": [{
+    "tagName": "groupmate",
+    "tagTasks": [],
+    "meetingLink": ""
+  },
+    {
+      "tagName": "groupmate",
+      "tagTasks": [],
+      "meetingLink": ""
+    },
+    {
+      "tagName": "CS2103T",
+      "tagTasks": [],
+      "meetingLink": ""
+    }]
+}

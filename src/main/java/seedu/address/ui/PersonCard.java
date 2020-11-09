@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -27,34 +29,66 @@ public class PersonCard extends UiPart<Region> {
     public final Person person;
 
     @FXML
-    private HBox cardPane;
+    private HBox personCardPane;
     @FXML
     private Label name;
     @FXML
     private Label id;
     @FXML
+    private Label actualId;
+    @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private Label telegramAddress;
     @FXML
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private HBox tagsBox;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, boolean isPersonList, int displayedIndex, int actualIndex) {
         super(FXML);
+        requireNonNull(person);
+        assert displayedIndex > 0 : "Displayed index should be greater than 0";
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
+        telegramAddress.setText("@" + person.getTelegramAddress().value);
         email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        initializeActualIndex(isPersonList, actualIndex);
+        initializeTags();
+    }
+
+    /**
+     * Initializa the actual Index for each {@Code PersonCard}
+     */
+    private void initializeActualIndex(boolean isPersonList, int actualIndex) {
+        if (isPersonList) {
+            actualId.setVisible(false);
+        } else {
+            actualId.setText("(Actual Index: " + actualIndex + ")");
+        }
+    }
+
+
+    /**
+     * Initialize all the tags for each {@Code PersonCard}
+     */
+    public void initializeTags() {
+        if (!person.getTagNames().isEmpty()) {
+            person.getTagNames().stream()
+                    .sorted(Comparator.comparing(tagName -> tagName.tagName))
+                    .forEach(tagName -> tags.getChildren().add(new Label(tagName.tagName)));
+        } else {
+            tagsBox.setVisible(false);
+            tagsBox.setManaged(false);
+        }
     }
 
     @Override

@@ -1,0 +1,73 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ProjactParser" as ProjactParser LOGIC_COLOR
+participant ":LinkDeleteCommandParser" as LinkDeleteCommandParser LOGIC_COLOR
+participant "d:LinkDeleteCommand" as LinkDeleteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("linkdelete 1")
+activate LogicManager
+
+LogicManager -> ProjactParser : parseCommand("linkdelete 1")
+activate ProjactParser
+
+create LinkDeleteCommandParser
+ProjactParser -> LinkDeleteCommandParser
+activate LinkDeleteCommandParser
+
+LinkDeleteCommandParser --> ProjactParser
+deactivate LinkDeleteCommandParser
+
+ProjactParser -> LinkDeleteCommandParser : parse("1")
+activate LinkDeleteCommandParser
+
+create LinkDeleteCommand
+LinkDeleteCommandParser -> LinkDeleteCommand
+activate LinkDeleteCommand
+
+LinkDeleteCommand --> LinkDeleteCommandParser : d
+deactivate LinkDeleteCommand
+
+LinkDeleteCommandParser --> ProjactParser : d
+deactivate LinkDeleteCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+LinkDeleteCommandParser -[hidden]-> ProjactParser
+destroy LinkDeleteCommandParser
+
+ProjactParser --> LogicManager : d
+deactivate ProjactParser
+
+LogicManager -> LinkDeleteCommand : execute()
+activate LinkDeleteCommand
+
+LinkDeleteCommand -> Model : setTag(tagToDeleteLinkFrom, editedTag)
+activate Model
+Model ---> LinkDeleteCommand
+deactivate Model
+
+LinkDeleteCommand -> Model : updateFilteredTagList()
+activate Model
+Model ---> LinkDeleteCommand
+deactivate Model
+
+create CommandResult
+LinkDeleteCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> LinkDeleteCommand
+deactivate CommandResult
+
+LinkDeleteCommand --> LogicManager : result
+deactivate LinkDeleteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

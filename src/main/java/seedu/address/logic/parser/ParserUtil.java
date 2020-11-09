@@ -2,18 +2,22 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.net.MalformedURLException;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.TelegramAddress;
+import seedu.address.model.tag.MeetingLink;
+import seedu.address.model.tag.TagName;
+import seedu.address.model.tag.TagTask;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -21,6 +25,9 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_ALPHAINDEX = "Alphabetical index must be a single letter.";
+    public static final String MESSAGE_INVALID_LOWERCASEINDEX = "Alphabetical index must be in lowercase!";
+    public static final String MESSAGE_MISSING_ARGS = "Need one more argument!";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -36,18 +43,49 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code alphaIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified alphaIndex is not valid or is not in lower case.
+     */
+    public static Index parseAlphaIndex(String alphaIndex) throws ParseException {
+        String trimmedIndex = alphaIndex.trim();
+        if (trimmedIndex.length() > 1) {
+            throw new ParseException(MESSAGE_INVALID_ALPHAINDEX);
+        }
+        int asciiRepresentation = trimmedIndex.charAt(0);
+        if (asciiRepresentation < 97 || asciiRepresentation > 122) {
+            throw new ParseException(MESSAGE_INVALID_LOWERCASEINDEX);
+        }
+        int convertedIndex = asciiRepresentation - 97;
+        return Index.fromZeroBased(convertedIndex);
+    }
+
+    /**
+     * Parses an {@code args} containing two Index into an array of two Strings and returns them.
+     */
+    public static String[] parseTwoIndex(String args) throws ParseException {
+        String trimmedArgs = args.trim();
+        String[] arrOfIndex = trimmedArgs.split(" ", 2);
+
+        if (arrOfIndex.length != 2) {
+            throw new ParseException(MESSAGE_MISSING_ARGS);
+        }
+        return arrOfIndex;
+    }
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static PersonName parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!PersonName.isValidName(trimmedName)) {
+            throw new ParseException(PersonName.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new PersonName(trimmedName);
     }
 
     /**
@@ -66,21 +104,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
-
-    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -96,29 +119,78 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String telegramAddress} into a {@code TelegramAddress}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static TelegramAddress parseTelegramAddress(String telegramAddress) throws ParseException {
+        requireNonNull(telegramAddress);
+        String trimmedTelegramAddress = telegramAddress.trim();
+        if (!TelegramAddress.isValidTelegramAddress(trimmedTelegramAddress)) {
+            throw new ParseException(TelegramAddress.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new TelegramAddress(trimmedTelegramAddress);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> tagNames} into a {@code Set<TagName>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Set<TagName> parseTagNames(Collection<String> tagNames) throws ParseException {
+        requireNonNull(tagNames);
+        final Set<TagName> tagNameSet = new HashSet<>();
+        for (String tagName : tagNames) {
+            tagNameSet.add(parseTagName(tagName));
         }
-        return tagSet;
+        return tagNameSet;
     }
+
+    /**
+     * Parses a {@code String tagName} into a {@code TagName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tagName} is invalid.
+     */
+    public static TagName parseTagName(String tagName) throws ParseException {
+        requireNonNull(tagName);
+        String trimmedTag = tagName.trim();
+        if (!TagName.isValidTagName(trimmedTag)) {
+            throw new ParseException(TagName.MESSAGE_CONSTRAINTS);
+        }
+        return new TagName(trimmedTag);
+    }
+
+    /**
+     * Parses a {@code String taskDescription} and a {@code boolean isDone} into a {@code TagTask}.
+     * Leading and trailing whitespaces in {@code String taskDescription} will be trimmed.
+     *
+     * @throws ParseException if the given {@code taskDescription} is invalid
+     */
+    public static TagTask parseTagTask(String taskDescription, boolean isDone) throws ParseException {
+        requireNonNull(taskDescription);
+        String trimmedTaskDescription = taskDescription.trim();
+        if (!TagTask.isValidTaskDescription(trimmedTaskDescription)) {
+            throw new ParseException(TagTask.MESSAGE_CONSTRAINTS);
+        }
+        return new TagTask(taskDescription, isDone);
+    }
+
+    /**
+     * Parses a {@code String link} into a {@code MeetingLink}.
+     * Leading and trailing whitespaces in {@code String link} will be trimmed.
+     *
+     * @throws ParseException if the given {@code link} is invalid
+     */
+    public static Optional<MeetingLink> parseMeetingLink(String link) throws ParseException {
+        requireNonNull(link);
+        if (!MeetingLink.isValidMeetingLink(link)) {
+            throw new ParseException(MeetingLink.MESSAGE_CONSTRAINTS);
+        }
+        try {
+            return Optional.of(new MeetingLink(link));
+        } catch (MalformedURLException e) {
+            return Optional.empty();
+        }
+    }
+
 }

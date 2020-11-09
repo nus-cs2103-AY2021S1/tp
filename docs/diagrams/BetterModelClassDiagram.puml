@@ -7,15 +7,21 @@ skinparam classBackgroundColor MODEL_COLOR
 AddressBook *-right-> "1" UniquePersonList
 AddressBook *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
 
 UniqueTagList *-right-> "*" Tag
 UniquePersonList o-right-> Person
 
-Person -up-> "*" Tag
+Person -up-> "           *" TagName
 
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Address
+Person *--> TelegramAddress
+
+Tag *-right-> TagName
+Tag *-right-> "*" TagTask
+Tag *-right-> MeetingLink
+TagName -[hidden]right-> TagTask
+TagTask -[hidden]right-> MeetingLink
+
 @enduml

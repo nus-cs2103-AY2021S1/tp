@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.control.Hyperlink?>
+
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<HBox id="tagCardPane" fx:id="tagCardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+    </columnConstraints>
+    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+      <padding>
+        <Insets top="5" right="5" bottom="5" left="15" />
+      </padding>
+      <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label fx:id="id" styleClass="cell_big_label" wrapText="true">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+        <Label fx:id="tagName" text="\$first" styleClass="cell_big_label" wrapText="true" />
+        <Label fx:id="actualId" styleClass="extra_label" wrapText="true" />
+      </HBox>
+      <HBox fx:id ="personsBox" spacing="5" alignment="CENTER_LEFT">
+        <FontIcon iconLiteral="fas-user-circle" styleClass="big-icon" />
+        <FlowPane fx:id="persons" />
+      </HBox>
+      <HBox fx:id="linkBox" spacing="2" alignment="CENTER_LEFT">
+        <FontIcon iconLiteral="fas-link" styleClass="small-icon" />
+        <Hyperlink fx:id="meetingLink" styleClass="cell_small_label" wrapText="true" />
+      </HBox>
+      <VBox fx:id="tasksBox">
+          <HBox spacing="6" alignment="CENTER_LEFT">
+            <FontIcon iconLiteral="fas-tasks" styleClass="small-icon" />
+            <Label fx:id="tasksHeader" styleClass="cell_small_label" wrapText="true" />
+           </HBox>
+          <Label fx:id="tasks" styleClass="cell_small_label" wrapText="true" />
+      </VBox>
+    </VBox>
+  </GridPane>
+</HBox>

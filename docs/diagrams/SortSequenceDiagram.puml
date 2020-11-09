@@ -1,0 +1,62 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ProjactParser" as ProjactParser LOGIC_COLOR
+participant "command:SortContactCommand" as SortContactCommand LOGIC_COLOR
+participant "comparator:PersonNameComparator" as PersonNameComparator LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("sortcontact")
+activate LogicManager
+
+LogicManager -> ProjactParser : parseCommand("sortcontact")
+activate ProjactParser
+
+create SortContactCommand
+ProjactParser -> SortContactCommand
+activate SortContactCommand
+
+create PersonNameComparator
+SortContactCommand -> PersonNameComparator
+activate PersonNameComparator
+
+PersonNameComparator --> SortContactCommand : comparator
+deactivate PersonNameComparator
+
+SortContactCommand --> ProjactParser : command
+deactivate SortContactCommand
+
+ProjactParser --> LogicManager : command
+deactivate ProjactParser
+
+LogicManager -> SortContactCommand : execute()
+activate SortContactCommand
+
+SortContactCommand -> Model : updateSortedPersonList(predicate)
+activate Model
+
+Model --> SortContactCommand
+deactivate Model
+
+create CommandResult
+SortContactCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortContactCommand : result
+deactivate CommandResult
+
+SortContactCommand --> LogicManager : result
+deactivate SortContactCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+
+@enduml

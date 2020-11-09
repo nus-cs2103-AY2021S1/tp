@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ProjactParser" as ProjactParser LOGIC_COLOR
+participant ":TagAddCommandParser" as TagAddCommandParser LOGIC_COLOR
+participant "cs2103t:Tag" as Tag LOGIC_COLOR
+participant "command:TagAddCommand" as TagAddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("tagadd t/CS2103T")
+activate LogicManager
+
+LogicManager -> ProjactParser : parseCommand("tagadd t/CS2103T")
+activate ProjactParser
+
+create TagAddCommandParser
+ProjactParser -> TagAddCommandParser
+activate TagAddCommandParser
+
+TagAddCommandParser --> ProjactParser
+deactivate TagAddCommandParser
+
+ProjactParser -> TagAddCommandParser : parse("t/CS2103T")
+activate TagAddCommandParser
+
+create Tag
+TagAddCommandParser -> Tag
+activate Tag
+
+Tag --> TagAddCommandParser : cs2103t
+deactivate Tag
+
+create TagAddCommand
+TagAddCommandParser -> TagAddCommand
+activate TagAddCommand
+
+TagAddCommand --> TagAddCommandParser : command
+deactivate TagAddCommand
+
+TagAddCommandParser --> ProjactParser : command
+deactivate TagAddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TagAddCommandParser -[hidden]-> ProjactParser
+destroy TagAddCommandParser
+
+ProjactParser --> LogicManager : command
+deactivate ProjactParser
+
+LogicManager -> TagAddCommand : execute()
+activate TagAddCommand
+
+TagAddCommand -> Model : addTag(cs2103t)
+activate Model
+
+Model --> TagAddCommand
+deactivate Model
+
+create CommandResult
+TagAddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TagAddCommand : result
+deactivate CommandResult
+
+TagAddCommand --> LogicManager : result
+deactivate TagAddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

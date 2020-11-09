@@ -1,0 +1,43 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ProjactParser" as ProjactParser LOGIC_COLOR
+participant "command:TagListCommand" as TagListCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("taglist")
+activate LogicManager
+
+LogicManager -> ProjactParser : parseCommand("taglist")
+activate ProjactParser
+
+create TagListCommand
+ProjactParser -> TagListCommand
+activate TagListCommand
+
+TagListCommand --> ProjactParser : command
+deactivate TagListCommand
+
+ProjactParser --> LogicManager : command
+deactivate ProjactParser
+
+LogicManager --> TagListCommand : execute()
+activate TagListCommand
+
+create CommandResult
+TagListCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TagListCommand : result
+deactivate CommandResult
+
+TagListCommand --> LogicManager : result
+deactivate TagListCommand
+
+LogicManager -->[
+deactivate LogicManager
+
+@enduml

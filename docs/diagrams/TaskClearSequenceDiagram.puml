@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ProjactParser" as ProjactParser LOGIC_COLOR
+participant ":TaskClearCommandParser" as TaskClearCommandParser LOGIC_COLOR
+participant "command:TaskClearCommand" as TaskClearCommand LOGIC_COLOR
+participant "tag:Tag" as Tag LOGIC_COLOR
+participant "editedTag:Tag" as EditedTag LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("taskclear 1")
+activate LogicManager
+
+LogicManager -> ProjactParser : parseCommand("taskclear 1")
+activate ProjactParser
+
+create TaskClearCommandParser
+ProjactParser -> TaskClearCommandParser
+activate TaskClearCommandParser
+TaskClearCommandParser --> ProjactParser
+deactivate TaskClearCommandParser
+
+ProjactParser -> TaskClearCommandParser : parse("1")
+activate TaskClearCommandParser
+
+create TaskClearCommand
+TaskClearCommandParser -> TaskClearCommand : TaskClearCommand(index)
+activate TaskClearCommand
+
+TaskClearCommand --> TaskClearCommandParser : command
+deactivate TaskClearCommand
+
+TaskClearCommandParser --> ProjactParser : command
+deactivate TaskClearCommandParser
+TaskClearCommandParser -[hidden]-> ProjactParser
+destroy TaskClearCommandParser
+
+ProjactParser --> LogicManager : command
+deactivate ProjactParser
+
+LogicManager -> TaskClearCommand : execute()
+activate TaskClearCommand
+
+TaskClearCommand -> Tag: getAllUncompletedTasks()
+activate Tag
+Tag --> TaskClearCommand : newTasks
+deactivate Tag
+
+create EditedTag
+TaskClearCommand -> EditedTag : Tag(tagName, newTasks, meetingLink)
+activate EditedTag
+EditedTag --> TaskClearCommand
+deactivate EditedTag
+
+TaskClearCommand -> Model : setTag(tag, editedTag)
+activate Model
+Model ---> TaskClearCommand
+deactivate Model
+
+TaskClearCommand -> Model : updateFilteredTagList()
+activate Model
+Model ---> TaskClearCommand
+deactivate Model
+
+create CommandResult
+TaskClearCommand -> CommandResult
+activate CommandResult
+CommandResult ---> TaskClearCommand
+deactivate CommandResult
+
+TaskClearCommand --> LogicManager
+deactivate TaskClearCommand
+
+LogicManager -->[
+deactivate LogicManager
+
+@enduml
