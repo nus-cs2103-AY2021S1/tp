@@ -425,7 +425,7 @@ You can follow these instructions:
 Outcome:
 
 1. The _Result Display_ will show a success message.
-2. The Ingredient Tracker inside the _Main View_ will show the list of ingredients.
+2. The Ingredient Tracker inside the _Main View_ will show the list of all the ingredients.
 
 ![IngredientListCommandScreenshot](images/IngredientListCommandScreenshot.png)
 
