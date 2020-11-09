@@ -302,7 +302,7 @@ You can edit more than one field of an assignment at a time so that you can conv
 This is the table of prefixes used:
 
 | Prefix | Syntax | Example |
-|-|-|
+|-|-|-|
 | `n/` | n/NAME_OF_ASSIGNMENT | - `n/Tutorial` |
 | `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT | - `mod/ST2334` |
 | `d/` | d/DEADLINE_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
@@ -659,6 +659,7 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 | **import** | `import url/NUSMODS_URL` | `import url/https://nusmods.com/timetable/sem-2/share?CS2108=LEC:1` |
 | **list** | `list [NUMBER_OF_DAYS]` | `list 2`<br>`list` |
 | **find** | `find PREFIX/ KEYWORD [MORE_KEYWORD]` | `find mod/CS2103T CS2100`<br>`find p/HIGH` |
+| **edit** | `edit INDEX PREFIX/EDITED_FIELD [MORE_PREFIX/EDITED_FIELD]` | `edit 3 mod/CS2100`<br>`edit 1 d/10-10-2020 1200` |
 | **remind** | `remind INDEX [MORE_INDEXES]` | `remind 5`<br>`remind 2 4 5` |
 | **unremind** | `unremind INDEX` | `unremind 2` |
 | **prioritize** | `prioritize INDEX p/PRIORITY` | `prioritize 3 p/HIGH`<br>`prioritize 1 p/LOW` |
