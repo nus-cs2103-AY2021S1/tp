@@ -80,7 +80,7 @@ Figure 2 shows the GUI of **Homerce**, annotated with a description of each GUI 
 ![AnnotatedUI](images/AnnotatedUI.png) <br>
 _Figure 2 -  Annotated GUI of Homerce_
 
-#### 3.2.2. General Symbols and Syntax 
+#### 3.2.2. General Symbols and Syntax
 
 The table below explains the general syntax used throughout the user guide.
 
@@ -90,9 +90,6 @@ The table below explains the general syntax used throughout the user guide.
 | _italics_ | Italicised text indicates that the text has a definition specific to Homerce, or it is a caption for a Figure in the guide. |
 |<div markdown="block" class="alert alert-info"> :information_source: </div>  | An exclamation mark indicates that the following text is a tip. |
 |<div markdown="block" class="alert alert-danger"> :warning: </div> | A warning sign indicates that the following text is important. |
-
-
-Important cautions that needs to be known before using the feature.
 
 #### 3.2.3. Command Syntax and Usage
 
@@ -105,12 +102,12 @@ The table below explains some important technical terms to help you understand a
 | Parameter | The word following each prefix. They are values given to a command to perform the specified action.|
 
 **Example:** <br>
-`addexp d/DESCRIPTION f/ISFIXED v/VALUE dt/DATE [t/TAG]`
+`addexp d/DESCRIPTION f/IS_FIXED v/VALUE dt/DATE [t/TAG]`
 
 **Breakdown:** 
 * Command Word - `addexp` <br>
 * Prefixes - `d/`, `f/`, `v/`, `dt/`, `t/`  <br>
-* Parameters - `DESCRIPTION`, `ISFIXED`, `VALUE`, `DATE`, `TAG`
+* Parameters - `DESCRIPTION`, `IS_FIXED`, `VALUE`, `DATE`, `TAG`
 
 The following points explain the format of a command. 
 More examples will be provided for each command in [Section 4 - Features](#4-features).
@@ -162,7 +159,7 @@ The table below shows a list of command parameters that will be used.
 <table>
 <tr><th>Parameter Name</th><th>Description</th><th>Example</th></tr>
 <tr><td><pre>NAME</pre></td><td>The name of the client. <br><br> It must be an alphanumeric word.</td><td>E.g. Typing <code>John Doe</code> would represent the name of the client saved in the client manager.</td></tr>
-<tr><td><pre>EMAIL</pre></td><td>The email of the client. <br> Emails should be in <code>local-part@domain format</code> <br> <br> The <code>local-part</code> can only contain alphanumeric characters, and the special characters <br> +!#$%&'*+/=?\`{}~^.-&#124; <br> <br> The <code>domain</code> can only contain:  Alphanumeric characters The following special characters in between: +  dash (-) period (.) <br> The domain name must also have at least 2 characters and start and end with alphanumeric characters</td><td>johnDoe97@example123.com</td></tr>
+<tr><td><pre>EMAIL</pre></td><td>The email of the client. <br> Emails should be in <code>local-part@domain</code> format <br> <br> The <code>local-part</code> can only contain alphanumeric characters, and the special characters <br> +!#$%&'*+/=?\`{}~^.-&#124; <br> <br> The <code>domain</code> can only contain Alphanumeric characters. <br> A period(.) or a hyphen(-) for the characters in between, if any. <br> The domain name must also have at least 2 characters and start and end with alphanumeric characters</td><td>johnDoe97@example123.com</td></tr>
 <tr><td><pre>PHONE</pre></td><td>Phone is the contact number of the client and is the indicator used to uniquely identify a client. <br> <br> It must consist only of numeric characters, and be at least 3 digits long.</td><td>E.g. <code>91234567</code> would represent the client's phone number.<br><br> Another client with the same number <code>91234567</code> will not be allowed to get added into the client list. </td></tr>
 <tr><td><pre>TAG</pre></td><td>The tag you want to attach to the client. <br> <br> It must be a single alphanumeric word. </td><td>E.g. Typing <code>friend</code> would mean that friend is the additional information associated with the client.</td></tr>
 <tr><td><pre>INDEX</pre></td><td>The index of the client in the displayed list. <br> <br> It must be a valid index number.</td><td>E.g. Typing <code>2</code> would mean the client with index-2 in the displayed list.</td></tr>
@@ -986,7 +983,7 @@ Homerce understands that expense tracking is essential in managing your business
 Thus, this feature allows you to track your expenses seamlessly and with ease. <br><br>
 Our expense tracker supports both fixed expenses that recur monthly, and one-time expenses that are incurred only once.
 A fixed expense only has to be added to the tracker once, as Homerce will automatically record the same fixed expense for you every month.
-<br><br> You can record the following information about your expenses: `DESCRIPTION`, `ISFIXED`, `VALUE`, `DATE` and `TAG`.
+<br><br> You can record the following information about your expenses: `DESCRIPTION`, `IS_FIXED`, `VALUE`, `DATE` and `TAG`.
 
 #### 4.5.1. Expense Tracker Command Parameters
 
@@ -1456,7 +1453,7 @@ a 'light mode', or even customize your own colours for the schedule and individu
 **A**: Unfortunately, Homerce does not allow you to directly create a revenue. A Revenue will only be created when an appointment
 is marked as done.
 
-**Q**: What is the `isFixed` parameter in the Expense Tracker for? <br>
+**Q**: What is the `IS_FIXED` parameter in the Expense Tracker for? <br>
 **A**: Marking an expense as 'Fixed' indicates to Homerce that the particular expense is fixed and recurs every month. Homerce
 will automatically add the same expense to your list of expenses every month. 
 
@@ -1467,9 +1464,15 @@ You can copy and transfer the data folder into the same directory as Homerce on 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Command summary
+## 6. Glossary
 
-### 6.1. Client Manager Commands
+* **Alphanumeric**: Alphanumeric does not include special characters, it only includes letters a to z (uppercase and lowercase) and digits 0 to 9.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 7. Command summary
+
+### 7.1. Client Manager Commands
 
 |Action | Format | Examples
 |---------------|------------------------------------------------------------------|------------------------------------------------------------------
@@ -1480,7 +1483,7 @@ You can copy and transfer the data folder into the same directory as Homerce on 
 |**List**       | `listcli` |
 |**Clear**      | `clearcli`| 
 
-### 6.2. Service Manager Commands
+### 7.2. Service Manager Commands
 
 |Action | Format | Examples
 |---------|---------|---------
@@ -1491,7 +1494,7 @@ You can copy and transfer the data folder into the same directory as Homerce on 
 |**List** | `listsvc` | 
 |**Clear** | `clearsvc` | 
 
-### 6.3. Appointment Manager Commands
+### 7.3. Appointment Manager Commands
 
 |Action | Format | Examples
 |---------|---------|---------
@@ -1504,7 +1507,7 @@ You can copy and transfer the data folder into the same directory as Homerce on 
 |**Done** | `done INDEX` | `done 1`
 |**Undone** | `undone INDEX` | `undone 3` 
 
-### 6.4. Revenue Tracker Commands
+### 7.4. Revenue Tracker Commands
 
 |Action | Format | Examples
 |---------|---------|---------
@@ -1513,7 +1516,7 @@ You can copy and transfer the data folder into the same directory as Homerce on 
 |**List**       | `listrev`                                                        | 
 |**Clear**      | `clearrev`                                                       | 
 
-### 6.5. Expense Tracker Commands
+### 7.5. Expense Tracker Commands
 
 |Action | Format | Examples
 |---------------|------------------------------------------------------------------|------------------------------------------------------------------
@@ -1525,7 +1528,7 @@ You can copy and transfer the data folder into the same directory as Homerce on 
 |**List**       | `listexp`                                                        | 
 |**Clear**      | `clearexp`                                                       | 
 
-### 6.6. Schedule Viewer Commands
+### 7.6. Schedule Viewer Commands
 
 |Action | Format | Examples
 |---------------|------------------------------------------------------------------|------------------------------------------------------------------
@@ -1533,13 +1536,13 @@ You can copy and transfer the data folder into the same directory as Homerce on 
 |**Next Week** | `nextweek` |
 |**Previous Week** | `previousweek` |
 
-### 6.7. Finance Tracker Commands
+### 7.7. Finance Tracker Commands
 
 |Action | Format | Examples
 |---------------|------------------------------------------------------------------|------------------------------------------------------------------
 |**Breakdown Finances** | `breakdownfinance m/MONTH y/YEAR` | `breakdownfinance m/10 y/2020`
 
-### 6.8. Other Commands
+### 7.8. Other Commands
 
 Action | Format | Examples
 --------|--------|----------
