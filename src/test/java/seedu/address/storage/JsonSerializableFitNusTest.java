@@ -46,6 +46,8 @@ public class JsonSerializableFitNusTest {
     private static final Path INVALID_DAILY_CALORIE_FILE = TEST_DATA_FOLDER.resolve("invalidDailyCalorieFitNus.json");
     private static final Path DUPLICATE_DAILY_CALORIE_FILE = TEST_DATA_FOLDER.resolve(
             "duplicateDailyCalorieFitNus.json");
+    private static final Path INVALID_CALORIE_LOG_FILE = TEST_DATA_FOLDER.resolve("invalidCalorieLogFitNus.json");
+
 
     @Test
     public void toModelType_typicalExercisesFile_success() throws Exception {
@@ -179,6 +181,14 @@ public class JsonSerializableFitNusTest {
         JsonSerializableFitNus dataFromFile = JsonUtil.readJsonFile(INVALID_DAILY_CALORIE_FILE,
                 JsonSerializableFitNus.class).get();
         assertThrows(IllegalValueException.class, JsonAdaptedDailyCalorie.INVALID_CALORIE_MESSAGE_FORMAT,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidCalorieLog_throwsIllegalValueException() throws Exception {
+        JsonSerializableFitNus dataFromFile = JsonUtil.readJsonFile(INVALID_CALORIE_LOG_FILE,
+                JsonSerializableFitNus.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableFitNus.MESSAGE_INVALID_CALORIE_LOG_FILE,
                 dataFromFile::toModelType);
     }
 

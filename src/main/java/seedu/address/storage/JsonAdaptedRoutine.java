@@ -60,16 +60,19 @@ class JsonAdaptedRoutine {
         if (routineName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
+
         if (!Name.isValidName(routineName)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS_FORMAT);
         }
         final Name modelName = new Name(routineName);
 
-        final Set<Exercise> modelExercise = new HashSet<>(routineExercises);
+        final Set<Exercise> modelExercises = new HashSet<>(routineExercises);
 
         Routine modelRoutine = new Routine(modelName);
-        for (Exercise exercise : modelExercise) {
-            modelRoutine.addExercise(exercise);
+        for (Exercise exercise : modelExercises) {
+            if (!modelRoutine.hasExercise(exercise)) {
+                modelRoutine.addExercise(exercise);
+            }
         }
         return modelRoutine;
     }
