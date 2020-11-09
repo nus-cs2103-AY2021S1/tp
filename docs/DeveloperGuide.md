@@ -199,7 +199,7 @@ The following sequence diagram shows how the clear operation works:
 
 <div markdown="span" class="alert alert-info">
    
-:information_source: **Note:** The method Parser::parse is a simplification of the overall parsing sequence which was already covered in showcasing the execution of the delete method. As such, redundant parsing details are not covered here.
+:information_source: **Note:** The method <code>Parser::parse</code> is a simplification of the overall parsing sequence which was already covered in showcasing the execution of the delete method. As such, redundant parsing details are not covered here.
 
 </div>
 
@@ -241,7 +241,10 @@ The following sequence diagram shows how the find operation works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The method Parser::parse is a simplification of the overall parsing sequence which was already covered in showcasing the execution of the delete method. As such, redundant parsing details are not covered here.
+<div markdown="span" class="alert alert-info">
+   
+:information_source: **Note:** The method <code>Parser::parse</code> is a simplification of the overall parsing sequence which was already covered in showcasing the execution of the delete method. As such, redundant parsing details are not covered here.
+
 </div>
 
 #### 7.2.2 Design consideration:
@@ -249,26 +252,26 @@ The following sequence diagram shows how the find operation works:
 ##### 7.2.2.1 Aspect: Arguments for FindCommand
 
 * **Alternative 1 (current choice):** Completely optional parameters, and ability to `find item` without a `flag`.
-  * Pros: More flexibility for user, not restricted by parameter requirements.
-  * Cons: Harder to implement, breaks general patten of `flag`-less arguments being compulsory parameters.
+    * Pros: More flexibility for user, not restricted by parameter requirements.
+    * Cons: Harder to implement, breaks general patten of `flag`-less arguments being compulsory parameters.
 
 * **Alternative 2:** Compulsory `flag`-less name parameter
-  * Pros: Easier to implement.
-  * Cons: Less user-friendly, user restricted in use of method
+    * Pros: Easier to implement.
+    * Cons: Less user-friendly, user restricted in use of method
 
 ##### 7.2.2.2 Aspect: How find works
 
 * **Alternative 1 (current choice):** Filters Food with matching instance of at least one (assuming multiple arguments) argument for a given parameter
-  * Pros: Easier to implement and easier to locate more things quickly.
-  * Cons: Harder to locate specific food items.
+    * Pros: Easier to implement and easier to locate more things quickly.
+    * Cons: Harder to locate specific food items.
 
 * **Alternative 2:** Filters Food with matching instance of all arguments for a given parameter
-  * Pros: Can locate specific food items easily; more narrowed-down search.
-  * Cons: More difficult to find something over broad terms.
+    * Pros: Can locate specific food items easily; more narrowed-down search.
+    * Cons: More difficult to find something over broad terms.
 
 * **Alternative 3 (proposed best choice):** Allow variation in type of filtering through another optional parameter.
-  * Pros: Combined Pros of Alternative 1 and 2, gives user greater autonomy.
-  * Cons: Harder to implement, harder to use effectively.
+    * Pros: Combined Pros of Alternative 1 and 2, gives user greater autonomy.
+    * Cons: Harder to implement, harder to use effectively.
 
 ### 7.3 Import feature
 
@@ -296,7 +299,7 @@ The following sequence diagram shows how the import operation works:
 
 <div markdown="span" class="alert alert-info">
    
-:information_source: **Note:** The method Parser::parse is a simplification of the overall parsing sequence which was already covered in showcasing the execution of the delete method. As such, redundant parsing details are not covered here.
+:information_source: **Note:** The method <code>Parser::parse</code> is a simplification of the overall parsing sequence which was already covered in showcasing the execution of the delete method. As such, redundant parsing details are not covered here.
 
 </div>
 
@@ -391,7 +394,7 @@ The following sequence diagram shows how the undo operation works:
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:** The method Parser::parse is a simplification of the overall parsing sequence which was already covered in showcasing the execution of the delete method. As such, redundant parsing details are not covered here.
+:information_source: **Note:** The method <code>Parser::parse</code> is a simplification of the overall parsing sequence which was already covered in showcasing the execution of the delete method. As such, redundant parsing details are not covered here.
    
 </div>
 
@@ -410,13 +413,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 #### 7.4.2.1 Aspect: How undo executes
 
 * **Alternative 1 (current choice):** Saves the entire ModelManger database.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Individual command knows how to undo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the food item being deleted).
-  * Cons: We must ensure that the implementation of each individual command is correct.
+* **Alternative 2:** Individual command knows how to undo by itself.
+
+    * Pros: Will use less memory (e.g. for `delete`, just save the food item being deleted).
+    * Cons: We must ensure that the implementation of each individual command is correct.
 
 ### 7.5 Macro Command
 
@@ -473,12 +476,12 @@ Below is a sequence diagram summarizing the main interactions.
 ##### 7.5.4 Aspect: Design alternatives
 
 * **Alternative 1:** 'Compile' a macro into a `Command` using the existing `ParameterSet` classes.
- * Pros: Allows us to check for more potential errors in the macro's format.
- * Cons: Harder to implement and more complicated.
+    * Pros: Allows us to check for more potential errors in the macro's format.
+    * Cons: Harder to implement and more complicated.
 
 * **Alternative 2: (Current Choice)** Use string substitution along with another parser instance to run commands.
- * Pros: Much simpler implementation and less prone to bugs.
- * Cons: Some errors in the user's macro will only be detected when the macro is being run.
+    * Pros: Much simpler implementation and less prone to bugs.
+    * Cons: Some errors in the user's macro will only be detected when the macro is being run.
  
 --------------------------------------------------------------------------------------------------------------------
 
@@ -813,7 +816,9 @@ Use case ends.
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">
+   
+:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
