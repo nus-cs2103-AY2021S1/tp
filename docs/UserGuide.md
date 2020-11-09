@@ -114,7 +114,7 @@ Here are some general information you would need to know about our commands as y
 In Eva, you can store information about staff and applicants. Information includes details like name, phone number 
 and more. As such, in order to store these details in a neat and tidy manner, be sure to follow these guidelines
 on storing these details as shown in the table below.
-
+<br>
 
 | Field       | Constraints                                                                                                                                                                                                                                                                                                                                             | Example                                                                                                                                                                 |
 |-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
