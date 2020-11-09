@@ -2,6 +2,7 @@ package nustorage.model;
 
 import static nustorage.testutil.Assert.assertThrows;
 import static nustorage.testutil.TypicalFinanceRecords.RECORD_A;
+import static nustorage.testutil.TypicalInventoryRecords.INVENTORY_RECORD_A;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -59,5 +60,30 @@ public class ModelManagerTest {
     public void hasFinanceRecord_financeRecordPresent_returnsTrue() {
         modelManager.addFinanceRecord(RECORD_A);
         assertTrue(modelManager.hasFinanceRecord(RECORD_A));
+    }
+
+    //=========== Inventory ================================================================================
+
+    @Test
+    public void hasInventoryRecord_nullInventoryRecord_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasInventoryRecord(null));
+    }
+
+    @Test
+    public void hasInventoryRecord_inventoryRecordNotPresent_returnsFalse() {
+        assertFalse(modelManager.hasInventoryRecord(INVENTORY_RECORD_A));
+    }
+
+    @Test
+    public void hasInventoryRecord_inventoryRecordPresent_returnsTrue() {
+        modelManager.addInventoryRecord(INVENTORY_RECORD_A);
+        assertTrue(modelManager.hasInventoryRecord(INVENTORY_RECORD_A));
+    }
+
+    @Test
+    public void deleteInventoryRecordSuccessful_returnsTrue() {
+        modelManager.addInventoryRecord(INVENTORY_RECORD_A);
+        modelManager.deleteInventoryRecord(INVENTORY_RECORD_A);
+        assertTrue(modelManager.getInventory().getInventoryRecordList().isEmpty());
     }
 }
