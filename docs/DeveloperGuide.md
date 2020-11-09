@@ -11,15 +11,21 @@
  4. [Implementation](#4-implementation)<br>
     4.1  [Patient Feature](#41-patient-feature)<br>
           4.1.1 [Overview](#411-overview)<br>
-          4.1.2 [Create, Read, Update, Delete](#412-create-read-update-delete)<br>
-          4.1.3 [Search Patient](#413-search-patient)<br>
+          4.1.2 [Implementation](#412-implementation)<br>
+          4.1.3 [Design Considerations](#413-design-considerations)
+          4.1.4 [Create, Read, Update, Delete](#414-create-read-update-delete)<br>
+          4.1.5 [Search](#415-search)<br>
     4.2  [Room Feature](#42-room-feature)<br>
           4.2.1 [Overview](#421-overview)<br>
-          4.2.2 [Room Feature](#422-room-feature)<br>
-          4.2.3 [Initialize Room](#423-implementation-of-initroomcommand)<br>
-          4.2.4 [Allocate Room](#424-implementation-of-allocateroomcommand)<br>
-          4.2.5 [GUI](#425-implementation-of-gui)<br>
+          4.2.2 [Implementation](#422-implementation)<br>
+          4.2.3 [Design Considerations](#423-design-considerations)<br>
+          4.2.4 [Create, Read, Update](#424-create-read-update)<br>
     4.3  [Task Feature](#43-task-feature)<br>
+          4.3.1 [Overview](#431-overview)<br>
+          4.3.2 [Implementation]#432-implementation)<br>
+          4.3.3 [Design Considerations](#433-design-considerations)
+          4.3.4 [Create, Read, Update, Delete](#434-create-read-update-delete)<br>
+          4.3.5 [Search](#435-search)<br>
     4.4  [Logging Feature](#44-logging-feature)<br>
     4.5  [Configuration Feature](#45-configuration-feature)<br>
  5. [Planned Features](#5-planned-features)<br>
@@ -308,15 +314,15 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## 4. Implementation
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how [Patient](#41-patient-feature), [Room](#42-room-feature) and [Task](#43-task-feature) features are implemented.
 
 ### 4.1 Patient Feature
 
 #### 4.1.1 Overview
 
+The patient feature in Covigent allows hotel staff to store important information about the individuals that are quarantined in the hotels. Some of these important dynamic information include temperature and comment regarding the patient. To fully understand the patient feature, it is important to learn about the [implementation](#412-implementation) and [design considerations](#413-design-considerations) of the patient object before looking at the possible [commands](#414-create-read-update-delete) that can operate on the patient object. 
 
-
-#### 4.1.2 Implementation of Patient
+#### 4.1.2 Implementation
 A `Patient` object in Covigent contains the following attributes, which is also reflected in Figure 15:
 1. Name
 1. Temperature
@@ -325,13 +331,15 @@ A `Patient` object in Covigent contains the following attributes, which is also 
 1. Phone
 1. Comment  
 
+Each of the attribute is a stand-alone class on its own.
+
   <p align="center">
       <img src="images/dg/PatientClassDiagram.png">
       <br />
       <i>Figure 15. Class Diagram for Patient</i>
   </p>
 
-#### 4.1.2 Design Considerations for Patient 
+#### 4.1.3 Design Considerations 
 **Aspect: Encapsulation of fields for `Patient` object**
 
 * Option 1: Using primitive data types for `Temperature`, `Age` and `Comment` classes
@@ -352,7 +360,7 @@ Originally, we intended to define two `Patient` to be equals if they have the sa
 
 Keeping in mind the ease of usage of Covigent for users, we chose to identify `Patient` uniquely by `Name` only. As such, when users need to manipulate the data of a `Patient`, all they need to input is the `Name`. Furthermore, we believes that since Covigent is used by small hotels, there is a very low chance of two patients having the same names.
 
-#### Features related to Patient
+##### Features related to Patient
 Having looked at the design of `Patient`, we can now explore the possible features related to `Patient`. In particular, our commands support [create, read, update, delete](#412-create-read-update-delete) and [search](#413-search-patient). 
 
 The features comprise of five commands namely,
@@ -364,7 +372,7 @@ The features comprise of five commands namely,
 
 _Written by Yun Qing_
 
-#### 4.1.2 Create, Read, Update, Delete
+#### 4.1.4 Create, Read, Update, Delete
 In this section, we will cover the implementation of the manipulation of the `Patient` data. The commands that allow creating, reading, updating and deleting of `Patient` include `AddPatientCommand`, `ListPatientCommand`, `EditPatientCommand` and `DeletePatientCommand`. 
 
 As the `Patient` data are stored in `UniquePatientList`, which ensures the uniqueness of `Patient`, the actual manipulation of the `Patient` data is made in `UniquePatientList` class.
@@ -392,7 +400,7 @@ The following is a detailed explanation of the operations that `AddPatientComman
 
 **Step 4.** A success message with the new patient details will be appended with the `AddPatientCommand#MESSAGE_SUCCESS` constant. A new `CommandResult` will be returned with the message.
 
-The sequence diagram for `AddPatientCommand` can be found below.
+The sequence diagram for a successful execution of `AddPatientCommand` can be found below.
 
   <p align="center">
       <img src="images/dg/AddPatientSequenceDiagram.png">
@@ -426,7 +434,7 @@ new `CommandResult` will be returned with the message.
 _Written by Ming De_
 
 
-#### 4.1.3 Search Patient
+#### 4.1.5 Search
 **Implementation**
 The following is a detailed explanation of the operations that `SearchPatientCommand` performs.
 
@@ -450,17 +458,48 @@ _Written by Wai Lok_
 
 #### 4.2.1 Overview
 The application is able to track the room details. It keep tracks of the whether a room is occupied and the patient inside the room if it is occupied. 
-It also keeps track of the tasks assigned to a specific room. 
-Hence, there is a need to represent the Room List as a list of Rooms on which the application can perform read and update operations.
+It also keeps track of the tasks assigned to a specific room. Hence, there is a need to represent the Room List as a list of Rooms on which the application can perform read and update operations.
 
-#### Design of RoomList and Room
-The class diagram or UniqueRoomList is shown below:
+#### 4.2.2 Implementation
 
-As seen in the diagram above, the UniqueRoomList contains a single RoomList object. This is a wrapper class around an ObservableList and PriorityQueue of Room objects. The UniqueRoomList contains no rooms at the start, however, after that you would require at least one room to be defined here.
+The class diagram for RoomList is shown below.
+  <p align="center">
+      <img src="images/dg/UML_RoomFeature.png">
+      <br />
+      <i>Figure 17. Class diagram for RoomList</i>
+  </p>
+  
+From the diagram above, the `RoomList` contains of one `UniqueRoomList`. This `UniqueRoomList` is a wrapper class around the `RoomList`
+which contains an ObservableList of `Patient` and PriorityQueue of `Patient`. The `RoomList` can contain from about 1 to 500 rooms.
 
 Each Room contains the following member attributes, all of which are non-nullable attributes:
+1. **roomNumber**
+This gives the room number of the Room object
+2. **isOccupied**
+This gives the information of whether the Room is occupied or not. If there is a `Patient` inside the `Room`, then the isOccupied is true, else false
+3. **patient**
+This gives the patient details and it is stored as an Optional object. If there is no `Patient`, then the Optional.empty() is assigned.
+4. **tasks**
+This gives all the tasks that are assigned to a specific room. The number of tasks assigned can be zero.
 
-#### Design Considerations for RoomList and Room
+The proposed room feature is facilitated by `RoomList`. It extends `ReadOnlyRoomList` which reads the Room information Json file, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+* `RoomList#addRooms(int num)` — adds the number of which are said to add together and retains infromation previously stored in each room
+* `RoomList#containsRoom(Room toCehck)` - checks whether the given room exists
+* `RoomList#clearRoom(Name patientName)` - removes patient from the room
+* `RoomList#setSingleRoom(Room target, Room editedRoom)` - sets the editedRoom to the target room
+
+These operations are exposed in the `Model` interface as `Model#addRooms(int num)`, `Model#hasroom(Room room)`, `Model#clearRoom(Name patientName)` and `Model#setSingleRoom(Room target, Room editedRoom)` respectivley. 
+
+_Written by Noorul Azlina_
+
+The GUI for room feature is based on a `ListView` that updates whenever the `RoomList` is updated and a `scroll pane` that
+displays the details of the room. To ensure that the information displayed in the `scroll pane` is updated dynamically, 
+we employ the use of `Listeners` that listens for changes and notify the `scroll pane` to update.
+
+_Written by: Ming De_
+
+
+#### 4.2.3 Design Considerations 
 **Aspect: Decision on allowing `editRoomCommand` that allows changing of room number to remain**
 
 * Option 1: Do not change the `editRoomCommand`
@@ -480,17 +519,7 @@ small function like this would be a better choice.
 
 _Written by Ming De_
 
-#### Proposed Implementation
-
-The proposed room feature is facilitated by `RoomList`. It extends `ReadOnlyRoomList` which reads the Room information Json file, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-* `RoomList#addRooms(int num)` — adds the number of which are said to add together and retains infromation previously stored in each room
-* `RoomList#containsRoom(Room toCehck)` - checks whether the given room exists
-* `RoomList#clearRoom(Name patientName)` - removes patient from the room
-* `RoomList#setSingleRoom(Room target, Room editedRoom)` - sets the editedRoom to the target room
-
-These operations are exposed in the `Model` interface as `Model#addRooms(int num)`, `Model#hasroom(Room room)`, `Model#clearRoom(Name patientName)` and `Model#setSingleRoom(Room target, Room editedRoom)` respectivley. 
-
-### Feature related to Room
+##### Feature related to Room
 
 The features comprise of five commands namely,
 * `InitRoomCommand` - Initializes the number of rooms in Covigent app.
@@ -501,28 +530,10 @@ The features comprise of five commands namely,
 
 We will illustrate the progress of one of the above commands for simplicity.
 
-#### 4.2.2 Room Feature
-The class diagram for RoomList is shown below.
-  <p align="center">
-      <img src="images/dg/UML_RoomFeature.png">
-      <br />
-      <i>Figure 17. Class diagram for RoomList</i>
-  </p>
 
-From the diagram above, the `RoomList` contains of one `UniqueRoomList`. This `UniqueRoomList` is a wrapper class around the `RoomList`
-which contains an ObservableList of `Patient` and PriorityQueue of `Patient`. The `RoomList` can contain from about 1 to 500 rooms.
+#### 4.2.4 Create, Read, Update
 
-In turn, the `Room` class contains non-nullable attributes which are roomNumber, isOccupied, patient and tasks:
-1. **roomNumber**
-This gives the room number of the Room object
-2. **isOccupied**
-This gives the information of whether the Room is occupied or not. If there is a `Patient` inside the `Room`, then the isOccupied is true, else false
-3. **patient**
-This gives the patient details and it is stored as an Optional object. If there is no `Patient`, then the Optional.empty() is assigned.
-4. **tasks**
-This gives all the tasks that are assigned to a specific room. The number of tasks assigned can be zero.
-
-#### 4.2.3 Implementation of InitRoomCommand
+**Implementation of InitRoomCommand**
 The following is a detailed explanation of the operations that `InitRoomCommand` performs.
 
 **Step 1.** The `InitRoomCommand#execute(Model model)` method is executed and it check if the `Integer`defined when instantiating
@@ -552,7 +563,7 @@ The Sequence Diagram for `initRooms` is shown below.
  
   _Written By: Noorul Azlina_
   
-#### 4.2.4 Implementation of AllocateRoomCommand
+**Implementation of AllocateRoomCommand**
 The following is a detailed explanation of the operations that `AllocateRoomCommand` performs.
 
 **Step 1.** The `AllocateRoomCommand#execute(Model model)` method is executed and it checks if the `Integer` defined when instantiating
@@ -586,14 +597,10 @@ The sequence diagram for `AllocateRoomCommand` is shown below.
  
 _Written by Mingde_
 
-#### 4.2.5 Implementation of GUI
-The GUI for room feature is based on a `ListView` that updates whenever the `RoomList` is updated and a `scroll pane` that
-displays the details of the room. To ensure that the information displayed in the `scroll pane` is updated dynamically, 
-we employ the use of `Listeners` that listens for changes and notify the `scroll pane` to update.
-
-_Written by: Ming De_
 
 ### 4.3 Task Feature
+
+#### 4.3.1 Overview
 The task feature in Covigent allows hotel staff to manage and organize time-critical work related to a room in a quarantine facility.
 Every room can be allocated any number of tasks, with each task keeping track of the description of the work and a due date by which
 it should be completed.
@@ -609,7 +616,7 @@ The task feature in Covigent includes the following:
 * Removing a task from a room
 * Filtering tasks based on a criterion and displays the filtered tasks in the user interface (currently on supports filtering by due date)
 
-#### 4.3.1 Implementation of Task Feature
+#### 4.3.2 Implementation
 At a higher level, tasks share a composition type relationship with rooms. That is, if a room is deleted, all tasks in that room are similarly deleted.
 We have implemented the task feature based on the class diagram in Figure 22.
   <p align="center">
@@ -627,7 +634,7 @@ The API calls for these operations first proceed to `Room`, which redirects them
 `TaskList` emulates the other `List` classes in Covigent such as `UniquePatientList` and `UniqueRoomList`, exposing only an unmodifiable `ObservableList<Task>`.
 This `ObservableList<Task>` is subsequently returned by `RoomTasks` in the `getReadOnlyList()` method to fulfill its contract with the `ReadOnlyList<Task>` interface.
 
-##### 4.3.2 Design Considerations
+##### 4.3.3 Design Considerations
 **Aspect: Retrieving list of tasks from `Room`**
 
 * Option 1: Supplying a getter for `RoomTasks` in `Room`
@@ -685,7 +692,7 @@ As such, we did not choose this alternative.
 
 The disadvantage of using another class is the added complexity as API calls for task-related operations need to be routed from the new class to `TaskList`.
 
-#### 4.3.3 Create, Read, Update, Delete
+#### 4.3.4 Create, Read, Update, Delete
 In this section, we will cover the implementation of the manipulation of `Task` data. The commands that allow the task-related operations of creating, reading, updating, and deleting of `Task` are `AddTaskCommand`, `ListTaskCommand`, `EditTaskCommand`, and `DeleteTaskCommand` respectively.
 
 The actual manipulation of `Task` data is performed in the `TaskList` class. Some significant methods within `TaskList` that allows the manipulation of `Task` data are shown below:
@@ -726,7 +733,7 @@ The sequence diagram for `EditTaskCommand` can be found below.
   
 _Written by Yee Hong_
 
-#### 4.3.5 Search Task
+#### 4.3.5 Search 
 **Implementation**
 The following is a detailed explanation of the operations that `SearchTaskCommand` performs.
 
