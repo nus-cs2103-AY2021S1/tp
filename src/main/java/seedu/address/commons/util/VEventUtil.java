@@ -6,6 +6,7 @@ import java.util.List;
 import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.model.appointment.Appointment;
 
+//Referenced from https://github.com/AY1920S1-CS2103T-W13-2/main/blob/master/src/main/java/seedu/address/commons/util/EventUtil.java
 
 /**
  * Maps Appointment objects to VEvent objects

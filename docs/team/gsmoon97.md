@@ -15,7 +15,8 @@ Given below are my contributions to the project.
   * Highlights: This implementation is fundamental for managing patient appointments, which is one of the main features of the application. It required an extensive understanding of the jfxtras library and its components. The implementation too was challenging as Appointment had to be converted to VEvent objects for integration with the calendar feature.
   * Credits:
     1. For understanding of iCalendar and its components : [iCalendar.org](https://icalendar.org)
-    
+    2. For implementation of VEventUtil : [Njoy Teaching Assistant's EventUtil](https://github.com/AY1920S1-CS2103T-W13-2/main/blob/master/src/main/java/seedu/address/commons/util/EventUtil.java)
+
 **New Implementation**: Implemented JSON Serialization for Appointment.
   * What it does: Appointment objects are serialized into json file format and clinical.json is deserialized into Appointment objects.
   * Justification: This implementation allows the user to automatically save the appointments in json file format and also to load the previously saved appointments when the application is restarted.
