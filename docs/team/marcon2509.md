@@ -81,6 +81,8 @@ is update and maintained by Marcus.
 
 * **Project management**:
   * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
+  * Integration of `CodeCov` 
+  * Managed overall UserGuide.md to ensure standardization and proper formatting
 
 * **Enhancements to existing features**:
   * Wrote additional tests for existing bid features to increase coverage
@@ -89,6 +91,7 @@ is update and maintained by Marcus.
 * **Documentation**:
   * User Guide:
     * Added documentation for the bid features
+    * Added table of command summary for easier reference
     * Did cosmetic tweaks to existing documentation of all bid features
   * Developer Guide:
     * Added implementation details of the `delete` and 'list' feature.

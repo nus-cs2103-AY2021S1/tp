@@ -85,8 +85,10 @@ and ```seller``` are created automatically and ***cannot be modified***.
 
 1. The length of the name of any clients 
 that PropertyFree accepts is of **26 characters or lesser** (including spaces).
+
 2. Names are `CASE SENSITITVE` (i.e Dianne and dianne are recognised as two different names).
 2. The length of the phone number of any clients
+
 that PropertyFree accepts is of **10 numbers or lesser** and `+` should not be added.
 
 # Keyboard Navigation
@@ -96,19 +98,20 @@ that PropertyFree accepts is of **10 numbers or lesser** and `+` should not be a
 
 2. Next Month in `Calender`:
 
-        PRESS CTRL - Windows OS
+        PRESS CTRL + RIGHT ARROW KEY - Windows OS
         or
-        PRESS CONTROL - Mac OS
+        PRESS CONTROL + RIGHT ARROW KEY - Mac OS
         
 3. Previous Month in `Calendar`:
 
-        PRESS ALT - Windows OS
+        PRESS CTRL + LEFT ARROW KEY - Windows OS
         or
-        PRESS OPTION - Mac OS
+        PRESS CONTROL + LEFT ARROW KEY - Mac OS
 
-Note that apart from `ALT / OPTION` and `CTRL / CONTROL`, there are `Calendar` navigation commands `next` and `prev` 
-(elaborated below) in the event that your computer or laptop keyboard layout does not allow you to access
-`ALT / OPTION` or `CTRL / CONTROL` easily. (or if you just prefer to type more)
+Note that apart from `CTRL / CONTROL` + `RIGHT / LEFT ARROW KEY` , there are `Calendar` navigation commands `next` and `prev` 
+(elaborated below) in the event:
+- that your computer or laptop keyboard layout does not allow you to access `CTRL / CONTROL` + `ARROW KEY` easily. 
+- that you like to type more.
 
 # Features
 
