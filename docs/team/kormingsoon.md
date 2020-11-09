@@ -157,7 +157,11 @@ and elevating the user experience with the following segment on Ui navigation**
     * Added manual testing.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments)
+  * PRs reviewed (with non-trivial review comments) (examples:
+  [\#201](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/201),
+  [\#208](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/208),
+  [\#150](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/150),
+  )
   * Contributed to forum discussions (examples: 
   [\#172 Guide on PR to Master](https://github.com/nus-cs2103-AY2021S1/forum/issues/172), 
   [\#153](https://github.com/nus-cs2103-AY2021S1/forum/issues/153), 
