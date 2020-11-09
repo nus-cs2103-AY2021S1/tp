@@ -89,8 +89,10 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 
 3. Copy the file to the folder you want to use as the _home folder_ for **Reeve**.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Double-click the file to start the app. The GUI similar to the below figure (Figure 1) should appear in a few seconds. Note how the app contains some sample data.
+
+![Ui](images/Ui.png)
+Figure 1: **Reeve** GUI
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -262,14 +264,13 @@ Format: `list`
 
 #### 3.3.3 Editing a student: `edit` (By: Vaishak)
 
-You can edit an existing student in **Reeve** if you need to update his particulars.
+You can edit an existing student in **Reeve** if you need to update his/her particulars.
 
 Format: `edit STUDENT_INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/LAST_PAYMENT_DATE]`
 
-* Edits the student at the specified `STUDENT_INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified `STUDENT_INDEX`. The `STUDENT_INDEX` refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* Start time has to be before end time for `CLASS_TIME`.
 * The format of `CLASS_TIME`, `YEAR` and `LAST_PAYMENT_DATE` follows that as stated in the [add command section](#331-adding-a-student-add-by-hogan).
 
 <div markdown="block" class="alert alert-info">
