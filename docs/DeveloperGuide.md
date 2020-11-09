@@ -250,7 +250,7 @@ students recorded in any session created by TAs using TAskmaster.
 * Make `StudentRecord` mutable.
 
     This was the original design of `StudentRecord` which made sense at the time because a student's record
-    would be frequently updated for marking of attendnace and awarding of class participation scores. However,
+    would be frequently updated for marking of attendance and awarding of class participation scores. However,
     the JavaFX `ObservableList` interface is **not notified when contained objects are modified**, only when 
     objects were added or deleted. This resulted in a bug where the GUI will not show the changes made when a
     student record was updated. In the end, it was decided that `StudentRecord` should be immutable to fix this bug.
@@ -261,7 +261,7 @@ students recorded in any session created by TAs using TAskmaster.
     student record list represents the record of students **for that particular session only**. If we 
     implemented this alternative, edits to the student list will result in changes to all the student record
     lists, which does not follow the design of the student record list. For example:
-    * Suppose a TA is currently teaching three students, `A, B, C` which are all present for the first session.
+    * Suppose a TA is currently teaching three students, `A, B, C` who are all present for the first session.
     * When the TA creates a new session `S1` , it will contain three corresponding student records.
     * Subsequently after the session is over, student `A` informs the TA that he is going to drop the module
     * When the TA deletes student `A` from the student list, the student record list of `S1` will update and
@@ -300,7 +300,7 @@ Beyond 1.4, there are several features that can be added to improve TAskmaster
 
     This would allow the user to, at a glance, analyse how often a student is attending lessons and how much they are
     participating in each session. This could be done by finding their record in each of the student record lists of
-    all the sessions and displaying the aggregated data in another view for data visualisaion, for e.g. with line 
+    all the sessions and displaying the aggregated data in another view for data visualisation, for e.g. with line 
     graphs and pie charts.
 
 <br>
