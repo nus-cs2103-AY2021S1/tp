@@ -28,12 +28,19 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added UI components: Recipe Side Drawer.
   * What it does: displays a single recipe in full view to users.
+  * Justification: Side panel contain the mini version of recipes and may not display all information.
+  * Highlights: This component is attached to several event listener to make it responsive to size changes.
+  
+* **New Feature**: Added UI components: TextArea CommandBox.
+  * What it does: allows users to see more of their commands.
+  * Justification: Commands tend to be long and the previously implemented TextField only showed one line which takes a lot of time to scroll.
+  * Highlights: This enhancement requires the implementation of a custom component called CustomTextArea which disregard all key press events except for enter key which will submit the command.
 
   
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=daongochieu2810)
 
 * **Project management**:
-  * Managed releases `v1.1` - `v1.3` (3 releases) on GitHub
+  * Managed release `v1.3` on GitHub
 
 * **Enhancements to existing features**:
   * Updated image file path handling for recipes
@@ -52,4 +59,5 @@ Given below are my contributions to the project.
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/daongochieu2810/ped/issues/11), [2](https://github.com/daongochieu2810/ped/issues/9), [3](https://github.com/daongochieu2810/ped/issues/6))
 
 * **Tools**:
+  * Created the team organization and repo on Github
   * Integrated JFoenix to the project ([\#90](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/90))
