@@ -796,16 +796,18 @@ and calls the `handleToNext()` or `handleToPrev()` method in `CalendarView` depe
 
 **Target user profile**:
 
-* Has a need to manage a significant number of property details, seller details and buyer details
+* Has a need to manage a significant number of property details, seller details, buyer details as well as the various bid amounts
 * Prefer desktop apps over other types
 * Can type fast
 * Prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Able to manage property listings, client 
-contact details as well as creating a meeting schedule easily 
-while being faster and more convenient than traditional bookkeeping 
-softwares such as Excel. 
+**Value proposition**: 
+* Able to store all the property listings, bidders as well as seller details for easy access.
+* Able to store the various bids which makes it easier for agents to access details of the bids.
+* Generate a list of meetings which allows the agent to keep track of all the different meetings.
+* Able to search through the different lists based on the different attributes for ease of access of information. 
+* Will be much more automated compared to softwares such as excel and also has an accompanying GUI that would make it easier to filter through the different list.
 
 
 ## Appendix B: User stories
@@ -840,15 +842,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ## Appendix C: Use cases
 
 (For all use cases below, the **System** is the `PropertyFree` and the **Actor** is the `Real Estate Agent`, unless specified otherwise)
+For our product, we have different entities such as `Meeting` `Bid` `Bidder` `Seller` `Property`. However across the different entities,
+the implementations are rather similar. Therefore, below we will use `ENTITY` to generalise the the different entities and then provide use
+cases for the general entity. If any of the features have a different implementation, we will provide the alternative use case below. 
 
-**1. Use case: Delete a property form the list of properties**
+**1. Use case: Delete an `ENTITY` from the list**
 
 **MSS**
 
-1. User requests to list of properties
-2. PropertyFree shows a list of properties
-3. User requests to delete a specific property in the list
-4. PropertyFree deletes the property  
+1. User requests to list of an `ENTITY`
+2. PropertyFree shows a list of the `ENTITY`
+3. User requests to delete a specific `ENTITY` in the `ENTITY` list
+4. PropertyFree deletes the `ENTITY` 
     Use case ends.
     
 **Extensions**
@@ -857,28 +862,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 * 3a. The given index is invalid.
     * 3a1. PropertyFree shows an error message.  
-        Use case resumes at step 2.
+     Use case resumes at step 2.
         
-**2. Use case: Add a property**
+**Special cases**
+* In the case when the `ENTITY` is `Bidder`, a deletion of the `Bidder` will result in the deletion of the associated `bids` and
+`meetings`
+* In the case when the `ENTITY` is `Property`, a deletion of the `Property` will result in the deletion of the associated `bids` and
+`meetings`
+        
+**2. Use case: Add an `ENTITY`**
 
 **MSS**
 
-1. User requests to add a property
-2. PropertyFree adds the property to the list  
+1. User requests to add a `ENTITY`
+2. PropertyFree adds the `ENTITY` to the list  
     Use case ends.
     
 **Extensions**
 
-* 2a. The given property is of the wrong format.
-    * 3a1. PropertyFree shows an error message.  
+* 2a. The given `ENTITY` is of the wrong format.
+    * 2a1. PropertyFree shows an error message.  
         Use case ends.
         
-**3. Use case: View a calendar of meetings**
+* 2b. The given `ENTITY` already exists in the list.
+    * 2b1. PropertyFree shows an error message.  
+        Use case ends.
+        
+* 2c. The given `ENTITY` is given invalid inputs.
+    * 2c1. PropertyFree shows an error message.  
+         Use case ends.
+        
+        
+**3. Use case: View a list of `ENTITY`**
 
 **MSS**
 
-1. User requests for a list of meetings scheduled
-2. PropertyFree shows a list of meetings scheduled.  
+1. User requests for a list of `ENTITY` scheduled
+2. PropertyFree shows a list of `ENTITY` scheduled.  
 Use case ends.
 
     
@@ -886,64 +906,56 @@ Use case ends.
 
 * 2a. The list of meetings is empty.  
     Use case ends.
+    
 
-**4. Use case: Edit an Existing Meeting on the Calendar**
+**4. Use case: Edit an Existing `ENTITY` from the respective list**
 
 **MSS**
 
-1. User requests to edit a meeting on the calendar.
-2. PropertyFree shows the old meeting details and the new meeting details.  
+1. User requests to edit a `ENTITY`.
+2. PropertyFree shows the new `ENTITY` details.  
    Use case ends
 
 **Extensions**
 
-* 2a. There is no corresponding meeting existing to be edited.  
-  Use case ends.
+* 1a. User enters an invalid input.
+    * 1a1. PropertyFree shows an error message.  
+         Use case ends.  
 
-**5. Use case: Add Bid to a Property**
+* 1b. User enters attributes that result in a duplicate attribute.
+    * 1b1. PropertyFree shows an error message.  
+         Use case ends.  
 
-**MSS**
-
-1. User requests to view the list of existing properties inside the property list.
-2. PropertyFree shows the current list of properties that are on the list.
-3. User requests to add bid to a specific property
-4. PropertyFree shows the property updated with the addition of the new bid.
-
-
-**Extensions**
-
-* 2a. There are no properties in the list.  
-  Use case ends.
-* 3a. There are no properties corresponding to what the user input is.  
-  Use case ends.
-  
-**6. Use case: Edit Bid to a Property**
+**5. Use case: Find an Existing `ENTITY` from the respective list**
 
 **MSS**
 
-1. User requests to list of bids
-2. PropertyFree shows a list of bids
-3. User requests to edit a specific bid in the list
-4. PropertyFree edits the bid  
-Use case ends.
-
+1. User requests to find a `ENTITY`.
+2. PropertyFree shows the `ENTITY` details that match the attributes that the user has keyed in.  
+   Use case ends
 
 **Extensions**
 
-* 2a. The list is empty.  
-Use case ends.
-* 3a. The given index is invalid.
-    * 3a1. PropertyFree shows an error message.  
-        Use case resumes at step 2.
-* 3b. The given format of message is wrong.
-    * 3b1. PropertyFree shows an error message.  
-        Use case ends.
-        
-**7. Use case: Edit Current Meeting(to be implemented)**
+* 1a. User enters an invalid input.
+    * 1a1. PropertyFree shows an error message.  
+         Use case ends.  
 
-**8. Use case: Edit Details of a property(to be implemented)**
 
-**9. Use case: Edit type of meeting(to be implemented)**
+**6. Use case: Sort an Existing `ENTITY` from the respective list**
+
+**MSS**
+
+1. User requests to sort an `ENTITY` list.
+2. PropertyFree shows the sorted `ENTITY` list.  
+   Use case ends
+
+**Extensions**
+
+* 1a. User enters an invalid input.
+    * 1a1. PropertyFree shows an error message.  
+         Use case ends.  
+
+
 
 ### Non-Functional Requirements
 
@@ -965,9 +977,9 @@ Use case ends.
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
@@ -986,6 +998,10 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
+
+
+## Bidder Commands
+
 
 ### Deleting a person
 

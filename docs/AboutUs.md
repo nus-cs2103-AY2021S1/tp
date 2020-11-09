@@ -1,3 +1,5 @@
+# **About Us**
+
 PropertyFree was developed by the AY2021S1-CS2103-W14-1 team.
 
 PropertyFree is a bookeeping system that allows Property Real Estate Agents to keep track of properties, clients and meetings related to their work.
