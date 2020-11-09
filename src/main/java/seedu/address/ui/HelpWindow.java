@@ -41,16 +41,17 @@ public class HelpWindow extends UiPart<Stage> {
 
         //Create event that on click / ENTER, it will open the browser to the UG.
         helpMessage.setOnAction(event -> {
-            try {
-                Desktop.getDesktop().browse(new URL(USERGUIDE_URL).toURI());
-                event.consume();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-            } finally {
-                root.close();
-            }
+            new Thread(() -> {
+                try {
+                    if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                        Desktop.getDesktop().browse(new URL(USERGUIDE_URL).toURI());
+                    }
+                } catch (IOException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+            event.consume();
+            root.close();
         });
 
         //Create an event on ESC click, it will close this window
