@@ -50,7 +50,12 @@ Facilitates the progress of Front-end team and request the necessary methods and
 Manages the PRs for the front-end team before merging to master, in which PR will be further reviewed by back-end team.
 
 ## 3. Contributions to the User Guide
-Oversees the formatting of the user guide. Included 
-
+* Oversees the formatting of the user guide and the numbering of TOC, logo and logo footer
+* Included : `4. Application Layout`, `4.1 Upcoming Tab`,  `4.2 Module Tabs`,  `4.3 Contacts Tab`, `4.4 Help Tab`, `6. FAQ`
+* Help Formatted (significantly) : `1. Introduction`, `2. Quick Start`, `7. Glossary`, `8. Command Summary`
+* Help Formatted : the `features` section from `5.1` to `5.6`
 
 ## 4. Contributions to the Developer Guide
+* Formatted the numbering of TOC, logo and logo footer
+* Included the UI section as part of my contribution to code base `3.2 UI component` and `3.2.2 Module Tab`
+* Included Appendix sections for use cases and user stories.
