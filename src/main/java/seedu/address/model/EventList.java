@@ -8,6 +8,10 @@ import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
 
+/**
+ *  * Wraps all data at the event-list level
+ *  * Duplicates are not allowed (by .isSameEvent comparison)
+ */
 public class EventList implements ReadOnlyEventList {
     private final UniqueEventList events = new UniqueEventList();
 

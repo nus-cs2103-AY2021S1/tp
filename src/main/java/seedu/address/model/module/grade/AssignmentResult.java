@@ -2,6 +2,9 @@ package seedu.address.model.module.grade;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents the results achieved for this assignment.
+ */
 public class AssignmentResult {
 
     public static final String MESSAGE_CONSTRAINTS =

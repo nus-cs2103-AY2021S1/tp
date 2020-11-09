@@ -16,7 +16,7 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyModuleList;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access ModuleList data stored as a json file on the hard disk.
  */
 public class JsonModuleListStorage implements ModuleListStorage {
 

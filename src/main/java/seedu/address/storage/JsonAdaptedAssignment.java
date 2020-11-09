@@ -9,6 +9,9 @@ import seedu.address.model.module.grade.AssignmentName;
 import seedu.address.model.module.grade.AssignmentPercentage;
 import seedu.address.model.module.grade.AssignmentResult;
 
+/**
+ * Jackson-friendly version of {@link Assignment}.
+ */
 public class JsonAdaptedAssignment {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Assignment's %s field is missing!";
 

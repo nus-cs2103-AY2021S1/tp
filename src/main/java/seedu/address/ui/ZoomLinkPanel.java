@@ -9,6 +9,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 
+/**
+ * Panel containing the list of zoom links.
+ */
 public class ZoomLinkPanel extends UiPart<Region> {
     private static final String FXML = "ZoomLinkPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ZoomLinkPanel.class);
