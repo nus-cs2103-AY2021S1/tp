@@ -482,8 +482,6 @@ Edits the score of a `Mastery Check` session with a `Student`.
 * `edit -mc 1 s/0`
 * `edit -mc 3 s/1`
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="block" class="alert alert-info">
 * Do note that the `SCORE` parameter can only be 0 or 1, according to the actual restrictions of `Mastery Check` pass/fail in CS1101S.
 * The `INDEX` parameter should be a non-zero unsigned integer that is a valid index currently displayed along with the target `Mastery Check`.
@@ -563,6 +561,8 @@ Doe will be displayed.
 
 <br>**Format: `view -s NAME`**
 
+<div style="page-break-after: always;"></div>
+
 ![ViewOneStudentCommand](images/userguide/viewOneStudent.png)
 
 <br>✏️ Examples:
@@ -575,6 +575,8 @@ Shows the deadline for the current `Missions`.
 <br>**Format: `view -m`**
 
 ![ViewMissionDeadline](images/userguide/viewMissionDeadline.png)
+
+<div style="page-break-after: always;"></div>
 
 #### 6.6.4 Viewing ungraded `Missions` : `-um`
 
@@ -752,11 +754,11 @@ are likely to change frequently and hence, will not need to be persisted.
 | View upcoming `Consultations` | -cu | view -cu |
 | View all `Mastery Checks` | -mc | view -mc |
 | View past `Mastery Checks` | -mcp | view -mcp |
-| View all upcoming `Mastery Checks` | -mcu | view -mcu  |
-| View all `Tasks` | -t | view -t |
 
 <div style="page-break-after: always;"></div>
 
+| View all upcoming `Mastery Checks` | -mcu | view -mcu  |
+| View all `Tasks` | -t | view -t |
 | View all `Todos` | -tt | view -tt |
 | View all `Events` | -te | view -te |
 | View all `Deadlines` | -td | view -td |
