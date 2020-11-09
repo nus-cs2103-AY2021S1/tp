@@ -5,32 +5,32 @@ title: Eugene's Project Portfolio Page
 
 ## Project: CliniCal
 
-CliniCal is a desktop app that allows doctors to manage patient records and schedule upcoming appointments.
+CliniCal is a desktop app that allows doctors to manage patient records and schedule upcoming appointments. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20 kLoC.
 
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to `undo`/`redo` previous commands.
   * What it does: Allows the user to undo all previous commands that modify the patient database, one at a time. Preceding undo commands can be reversed by using the redo command.
   * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: The implementation was demanding as it required changes to existing commands and continuous updates for new commands added at each iteration. This included new commands such as adding, editing, deleting of visits and appointments added in `v1.3`
+  * Highlights: The implementation was demanding as it required changes to existing commands and continuous updates for new commands added at each iteration. This included new commands such as adding, editing, deleting of visits and appointments added in `v1.3`.
   * Credits:
     1. Existing AB3 codebase: [AddressBook Level-3](https://github.com/se-edu/addressbook-level3)
     2. Design pattern consideration: [Best Practice for Undo Redo implementation](https://stackoverflow.com/questions/1915907/best-practice-for-undo-redo-implementation)
 <br/><br/>
 * **New Feature**: Added `editvisit` and `deletevisit` commands to edit and delete an existing visitation log.
   * What it does: Allows the user to modify or remove the existing visitation log seen from the profile window that had been implemented.
-  * Justification: This feature allows the user to amend visit details when the user makes a mistake or wants to make amendments to an existing visitation log. Also allows the user to organize the visitation logs and remove visits that are not required anymore.
+  * Justification: This feature allows the user to amend visitation log details when the user makes a mistake. Also allows the user to organize the visitation logs and remove redundant visitations.
   * Highlights: Also implemented the functionality of a new popup window to modify visitation details, as stated below. And integrated undo and redo functions for the visitation commands.
   * Credits: 
     1. Implementation of `editvisit` and `deletevisit`: [AddressBook Level-3](https://github.com/se-edu/addressbook-level3)
 <br/><br/>
 * **New Feature**: Implemented a pop-up window to add and edit a visitation log.
   * What it does: Allows the user to add or modify visit details such as diagnosis, prescription and comments in a user-friendly interface.
-  * Justification: This feature improves the product significantly as there is a new interface for the user to modify visitation details other than the main GUI.
+  * Justification: This feature improves the product significantly as there is a new interface for the user to modify visitation details other than the main GUI, improving user experience.
   * Highlights: Created UI mockups for the team and adapted this pop-up window for use in `addvisit` and `editvisit` commands.
   * Credits: 
-    1. Creating a new pop-up window: [How to create a popup window in javafx](https://stackoverflow.com/questions/22166610/how-to-create-a-popup-windows-in-javafx), [Adding a button in a new scene](http://tutorials.jenkov.com/javafx/button.html), [Visit](https://github.com/AY1920S1-CS2103T-F12-2/main)
-    1. Using textfields in pop-up window: [Building pop-up window with textfields](https://docs.oracle.com/javafx/2/ui_controls/text-field.htm), [Creating a Form](https://docs.oracle.com/javafx/2/get_started/form.htm), [Handle text input on form submit](https://www.callicoder.com/javafx-registration-form-gui-tutorial/), [Visit](https://github.com/AY1920S1-CS2103T-F12-2/main)
+    1. Creating a new pop-up window: [How to create a popup window in javafx](https://stackoverflow.com/questions/22166610/how-to-create-a-popup-windows-in-javafx), [Adding a button in a new scene](http://tutorials.jenkov.com/javafx/button.html), [Generating a new window](https://www.tutorialspoint.com/javafx/javafx_application.htm), [VISIT](https://github.com/AY1920S1-CS2103T-F12-2/main)
+    1. Using text fields in a pop-up window: [Building pop-up window with text fields](https://docs.oracle.com/javafx/2/ui_controls/text-field.htm), [Creating a Form](https://docs.oracle.com/javafx/2/get_started/form.htm), [Handle text input on form submit](https://www.callicoder.com/javafx-registration-form-gui-tutorial/), [VISIT](https://github.com/AY1920S1-CS2103T-F12-2/main)
     1. Setting keyboard shortcuts for shifting focus to next text box: [Keyboard Navigation](https://wiki.openjdk.java.net/display/OpenJFX/Keyboard+Navigation) 
 <br/><br/>
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=eugene3231)
@@ -62,7 +62,7 @@ Given below are my contributions to the project.
     * Added use cases, manual testing instructions for `editvisit` and `deletevisit` features. ([\#277](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/277))
 <br/><br/>
 * **Contributions to team-based tasks** :
-  * Helped to track issues discussed in team meetings and transcribed them onto GitHub for ease of reference. ([\#93](https://github.com/AY2021S1-CS2103T-W11-4/tp/issues/93), [\#123](https://github.com/AY2021S1-CS2103T-W11-4/tp/issues/123), [\#257](https://github.com/AY2021S1-CS2103T-W11-4/tp/issues/257))
+  * Helped to track issues discussed in team meetings and transcribe them onto GitHub for ease of reference. ([\#93](https://github.com/AY2021S1-CS2103T-W11-4/tp/issues/93), [\#123](https://github.com/AY2021S1-CS2103T-W11-4/tp/issues/123), [\#257](https://github.com/AY2021S1-CS2103T-W11-4/tp/issues/257))
 <br/><br/>
 * **Community**:
   * Contributed to forum discussions: ([\#159](https://github.com/nus-cs2103-AY2021S1/forum/issues/159))
