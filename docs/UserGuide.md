@@ -85,7 +85,7 @@ The layout of Nuudle can be divided into 2 main areas:
 1. The command execution area
 2. The main viewing area
 
-#### Executing command
+#### Executing commands
 
 The command execution area consists of the *Command Box* and the *Result Display Box*.
 
@@ -115,7 +115,7 @@ To learn more about the various commands used in Nuudle, head down to our [Comma
 
 Alternatively, you can visit our [Command Summary](#command-summary) section to get a quick overview of Nuudle's commands.
 
-#### Viewing the data
+#### Viewing data
 
 The main viewing area consists of the *Patient Book*, the *Appointment Book* and the *Appointment Overview*.
 
@@ -649,21 +649,21 @@ Action | Format
 Action | Format | Examples
 --------|--------|----------
 **Add** | `add n/NAME i/NRIC p/PHONE_NUMBER a/ADDRESS [t/TAG]…​` | `add n/James Ho i/S9712345G p/22224444 a/123, Clementi Rd, 1234665 t/asthma t/`
+**Edit** | `edit PATIENT_INDEX [n/NAME] [i/NRIC] [p/PHONE_NUMBER] [a/ADDRESS] [r/REMARK] [t/TAG]…`|`edit 2 n/James Lee a/College Avenue 8`
 **Delete** | `delete PATIENT_INDEX`| `delete 3`
-**Edit** | `edit PATIENT_INDEX [n/NAME] [p/PHONE_NUMBER] [i/NRIC] [a/ADDRESS] [t/TAG]…`|`edit 2 n/James Lee a/College Avenue 8`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`| `find James Jake`
-**List** | `list` | `list`
 **Remark** | `remark PATIENT_INDEX [r/REMARK]`| `remark 2 r/Has been visiting Dr John`, `remark 2`
+**List** | `list` | `list`
+**Find** | `find [n/NAME [MORE_NAMES]] [i/NRIC [MORE_NRICS]] [p/PHONE_NUMBER [MORE_PHONE_NUMBERS]]`| `find n/James Jake i/S9124632H S9812567H`
 
 #### Appointment Management
 
 Action | Format | Examples
 --------|---------|---------
-**Assign** | `assign PATIENT_INDEX d/DATE t/TIME`| `assign 3 d/tomorrow t/3pm`
+**Assign** | `assign PATIENT_INDEX d/DATE t/TIME [dur/DURATION]`| `assign 3 d/tomorrow t/3pm`
+**Change** | `change APPT_INDEX [d/DATE] [t/TIME] [dur/DURATION]` | `change 3 d/02-03-2021 t/1130 dur/30`
 **Cancel** | `cancel APPT_INDEX`| `cancel 1`
-**Change** | `change APPT_INDEX d/DATE t/TIME dur/DURATION` | `change 3 d/02-03-2021 t/1130 dur/30`
-**View** | `view [d/DATE]`| `view d/today`
 **Done** | `done APPT_INDEX`| `done 2`
+**View** | `view [d/DATE]`| `view d/today`
 **Available** | `avail d/DATE`| `avail d/12-Apr-2021`
 
 
@@ -691,11 +691,7 @@ Date Formats | Time Formats | Natural Date | Natural Time
 **Q**: My data was accidentally deleted and I can't undo it. How do I restore my data?<br>
 **A**: You can restore the data from your previous session by following the steps below:
 1. Look for a backup file in the data folder of your Nuudle's home folder. 
-
 2. Open the backup file and copy the 2 data files inside.
-
 3. Navigate back to the main data folder in your Nuudle's home folder.
-
 4. Override the current data files in the main data folder by pasting the previously copied files.
-
 5. The previous session's data is now restored and you can access it by starting up the Nuudle application.
