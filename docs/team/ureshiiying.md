@@ -16,6 +16,8 @@ Given below are my contributions to the project.
   * What it does: Allows the app to record the sales data, as given by the user.
   * Justification: This is a necessary step for the app to work as stated. We can only add the commands after
    building these models.  
+  * Highlights: This implementation was challenging, compared to adding new commands, as I
+   had to incorporate a new entity into the original AB3.
  
 * **New Feature**: Added ability to add and update sales of drinks.
   * What it does: Allows the user to add and update the sales of drink items, in the Sales Tracker, with a single
@@ -28,6 +30,9 @@ Given below are my contributions to the project.
    Tracker GUI.
   * Justification: This feature allows the user to view the full list of sales recorded. It also informs the user
    which is the drink with the most sales by giving the user a sorted view of the list.
+   * Highlights: Intially, this was two separate features, one for listing in no order and one for listing in a
+    sorted order. However, since tCheck already has a GUI to display the lists, users may not see the meaning behind having two features
+    that perform similar listing functions. Thus, the two had been merged into one.
   
 * **New Feature**: Implemented the Sales Tracker GUI
   * What it does: Allows the user to see a list of all drink items and their respective sales recorded, in a
@@ -53,23 +58,26 @@ Given below are my contributions to the project.
     * Added documentation for the features: `s-update` and `s-list`
     * Updated the organisation under the Command Summary Table, and added `s-update` and `s-list` into the table.
   * Developer Guide:
+    * Added Introduction and purpose of document.
     * Added documentation and class diagram for the `SalesRecordEntry` sub-component under `Model` component.
     * Added implementation details of the `s-update` feature; also added the sequence diagram and activity diagrams
      within this explanation.
     * Added documentation for value proposition of the product under Appendix: Requirements.
-    * Added manual test instructions for `s-update` and `s-list` features under Appendix: Instructions for manual
-     testing.
+    * Added manual test instructions for `s-update`, `s-list` features and saving data under Appendix: Instructions for
+     manual testing.
   * Landing page of the product website (index.md):
     * Added and updated the documentation to match the current product details.
-     
     
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 
     * [\#62](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/62)
-    * [\#141](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/141)
-    * [\#74](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/74)
     * [\#71](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/71)
-    *
-    *
+    * [\#74](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/74)
+    * [\#141](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/141)
+    * [\#252](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/252)
+    * [\#253](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/253)
+    * [\#254](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/254)
+    * [\#257](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/257)
+    * [\#259](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/259)
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/ureshiiYing/ped/issues/2), [2](https://github.com/ureshiiYing/ped/issues/5), [3](https://github.com/ureshiiYing/ped/issues/6))
    
