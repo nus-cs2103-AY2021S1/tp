@@ -331,16 +331,13 @@ The following class diagram showcases the relationship between the main classes 
 <br>**Diagram 3.1.1: Class diagram for classes involved in the assign feature of the Logic component**
 
 ![AssignModelClassDiagram](images/AssignModelClassDiagram.png)
-<br>**Diagram 3.1.1: Class diagram for classes involved in the assign feature of the Model component**
+<br>**Diagram 3.1.2: Class diagram for classes involved in the assign feature of the Model component**
 
 Here below is an example usage scenario and how the `assign` feature works at each step:
 1. User enters respective input into the app.
 
 2. The input is handled by the `LogicManager#execute(String)`, which then calls and passes the input to the `NuudleParser#parseCommand(String)` method.
 
-<div style="page-break-after: always;"></div>
-
-{:start="3"}
 3. `NuudleParser` finds out the command word `assign` in the user input and creates an `AssignCommandParser`to parse the input according to the format specified for `AssignCommand`.
 
 4. `AssignCommandParser` parses the user input and checks the input validation for correct types (eg. `Integer` for `Index` and alphanumeric characters for `Name`) via the `AssignCommandParser#parser(String)` method.
@@ -360,11 +357,11 @@ Here below is an example usage scenario and how the `assign` feature works at ea
 11.  Lastly, the `AssignCommand` creates a `CommandResult` with `MESSAGE_SUCCESS`, and returns it into `LogicManager`.
 
 ![AssignSequenceDiagram](images/AssignSequenceDiagram.png)
-<br>**Diagram 5.2.1: Sequence diagram showcasing the Assign Command process**
+<br>**Diagram 3.1.3: Sequence diagram showcasing the Assign Command process**
 
 The following activity diagram summarises the general workflow for the Assign Command:
 ![AssignActivityDiagram](images/AssignActivityDiagram.png)
-<br>**Diagram3.1.3: Activity diagram showcasing the Assign Command execution flow**
+<br>**Diagram 3.1.4: Activity diagram showcasing the Assign Command execution flow**
 
 #### 3.2 Design Considerations
 
