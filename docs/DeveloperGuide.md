@@ -791,6 +791,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect commands to try: `exercise_add`, `exercise_add e/Bicep e/Curls`, `...`<br>
       Expected: Similar to previous.
 <br>
+
 1. Deleting an Exercise
 
    1. Prerequisites: Exercise indicated must already exist in fitNUS. In this case, there exist 1 Exercise.
@@ -801,7 +802,9 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `exercise_delete`, `exercise_delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous. 
 <br>
+
 1. Finding an Exercise using keywords
+
     1. Prerequisites: There must be Exercise existing in fitNUS to search for. In this case, we assume there are 2 named
     "Squats" and "Bench Press".
     1. Test case: `exercise_find bench`<br>Expected: Exercise "Bench Press" will be the only Exercise listed in fitNUS.
@@ -812,7 +815,9 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `exercise_find `<br>
        Expected: Error message thrown informing you of the correct command format. 
 <br>
+
 1. Editing an existing Exercise
+
     1. Prerequisites: There must be an Exercise existing in fitNUS to edit. There is one Exercise named "Squats".
     1. Test case: `exercise_edit 1 e/Barbell Squats`<br>Expected: Exercise "Bench Press" will be renamed to "Barbell
     Squats" and a success message will inform user of the new name.
@@ -824,10 +829,12 @@ testers are expected to do more *exploratory* testing.
     t/Hard`<br>
        Expected: Error message thrown informing you of the correct command format.
 <br>
+
 1. Listing all Exercise
     1. Test case: `exercise_list`: fitNUS will list out all the Exercise in the Exercise column. Success message will be
     show.
 <br>
+
 1. Adding a Routine
 
    1. Test case: `routine_create r/Leg Workout`<br>
@@ -835,6 +842,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `routine_create`, `routine_create r/EXISTING_ROUTINE`, `...`<br>
       Expected: Similar to previous.
 <br>
+
 1. Deleting a Routine
 
    1. Prerequisites: Routine must already exist in fitNUS. In this case, the first Routine is the one to be deleted.
@@ -845,6 +853,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `routine_delete`, `routine_delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 <br>
+
 1. Adding an Exercise to a Routine
 
    1. Prerequisites: Both the exercise and routine must already exist in fitNUS. In this case, only the Routine "Leg Workout" and Exercise "Squats" exist.
@@ -857,6 +866,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `routine_add_exercise`, `routine_add_exercise r/EXISTING_ROUTINE`, `...`<br>
       Expected: Throws an error message stating that the format is incorrect.
 <br>
+
 1. Deleting an Exercise from a Routine
 
    1. Prerequisites: Both the exercise and routine must already exist in fitNUS, and the routine must contain the exercise.
@@ -870,6 +880,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `routine_delete_exercise`, `routine_delete_exercise r/EXISTING_ROUTINE`, `...`<br>
       Expected: Throws an error message stating that the format is incorrect.
 <br>
+
 1. Finding a Routine
 
     1. Prerequisites: In this case, there exists 2 Routines named "Leg Day" and "Upper Body".
@@ -880,11 +891,13 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `routine_find b@d routine`<br>Expected: Error message is thrown due to inclusion of a special character.
     1. Other incorrect find commands to try: `routine_find`, `...`<br>Expected: Throws an error similar to above.
 <br>
+
 1. Listing all Routines
 
     1. Test case: `exercise_list`: fitNUS will list out all the Routines in the Routine column. Success message will be
         show.
 <br>
+
 1. Viewing a Routine
 
    1. Prerequisites: Routines must already exist in fitNUS. In this case, the third Routine is the one to be viewed.
@@ -895,6 +908,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `routine_view`, `routine_delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 <br>
+
 1. Adding a Routine to the Timetable
 
    1. Prerequisites: The routine must already exist in fitNUS. In this case, only the Routine "Leg Workout" exists.
@@ -913,6 +927,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `timetable_add_routine`, `timetable_add_routine r/EXISTING_ROUTINE`, `...`<br>
       Expected: Throws an error message stating that the format is incorrect.
 <br>
+
 1. Adding a Lesson to the Timetable
 
    1. Prerequisites: The lesson must already exist in fitNUS. In this case, only the Lesson "CS2103T" exists.
@@ -931,6 +946,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `timetable_add_lesson`, `timetable_add_lesson n/EXISTING_LESSON`, `...`<br>
       Expected: Throws an error message stating that the format is incorrect.
 <br>
+
 1. Deleting a Slot from the Timetable
 
    1. Prerequisites: The Slot must already exist in the Timetable. In this case, only the Slot on Monday, 1600-1800 exists.
@@ -947,6 +963,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `timetable_delete_slot`, `timetable_delete_slot D/monday`, `...`<br>
       Expected: Throws an error message stating that the format is incorrect.
 <br>
+
 1. Setting user weight
 
    1. Test case: `weight w/70`<br>
@@ -956,6 +973,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `weight w/0`, `weight w/-1`, `...`<br>
       Expected: Similar to previous.
 <br>
+
 1. Setting user height
 
    1. Test case: `height h/170`<br>
@@ -965,6 +983,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `height w/10`, `height w/-1`, `...`<br>
       Expected: Similar to previous.
 <br>
+
 1. Adding calorie count
 
    1. Test case: `calorie_add c/1500`<br>
@@ -974,6 +993,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `calorie_add c/-1`, `calorie_add c/0`, `...`<br>
       Expected: Similar to previous.
 <br>
+
 1. Deducting calorie count
 
    1. Test case: `calorie_minus c/1500`<br>
@@ -983,6 +1003,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `calorie_add c/-1`, `calorie_add c/0`, `...`<br>
       Expected: Similar to previous.
 <br>
+
 1. _{ more test cases …​ }_
 
 ### Saving data
