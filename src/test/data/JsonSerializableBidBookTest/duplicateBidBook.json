@@ -1,0 +1,11 @@
+{
+  "bids" : [ {
+    "propertyId" : "P1",
+    "bidderId" : "B2",
+    "bidAmount" : 999999.0
+  }, {
+    "propertyId" : "P1",
+    "bidderId" : "B2",
+    "bidAmount" : 999999.0
+  } ]
+}

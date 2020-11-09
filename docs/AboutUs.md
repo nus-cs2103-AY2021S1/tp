@@ -3,57 +3,73 @@ layout: page
 title: About Us
 ---
 
+PropertyFree was developed by the AY2021S1-CS2103-W14-1 team.
+
+PropertyFree is a bookeeping system that allows Property Real Estate Agents to keep track of properties, clients and meetings related to their work.
+
+PropertyFree is a brownfield project which references the [AddressBook level-3](https://github.com/se-edu/addressbook-level3).
+
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+***
 
-<img src="images/johndoe.png" width="200px">
+### Dianne Loh Wen Hui
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/dianneloh9.png" width="200px">
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/dianneloh9)]
+[[portfolio](team/dianneloh9.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Property Management
 
-### Johnny Doe
+***
 
-<img src="images/johndoe.png" width="200px">
+### Kor Ming Soon
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+<img src="images/kormingsoon.png" width="200px">
 
-* Role: Developer
-* Responsibilities: Data
+[[github](https://github.com/kormingsoon)]
+[[portfolio](team/kormingsoon.md)]
 
-### Jean Doe
+* Role: Deliverables and deadlines, Intellij expert
+* Responsibilities: Bidder/Seller Management, UI
 
-<img src="images/johndoe.png" width="200px">
+***
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Marcus Duigan Xing Yu
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+<img src="images/marcon2509.png" width="200px">
 
-### James Doe
+[[github](https://github.com/Marcon2509)]
+[[portfolio](team/marcon2509.md)]
 
-<img src="images/johndoe.png" width="200px">
+* Role: Documentation, Code Quality
+* Responsibilities: Bid Management
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+***
 
-* Role: Developer
-* Responsibilities: UI
+### Munnamgi Harsha Vardhan Reddy
+
+<img src="images/munharsha.png" width="200px">
+
+[[github](https://github.com/munharsha)]
+[[portfolio](team/munharsha.md)]
+
+* Role: Testing, Integration
+* Responsibilities: Meetings Management
+
+***
+
+### Christopher Leo Mervyn
+
+<img src="images/christopher-lm.png" width="200px">
+
+[[github](https://github.com/Christopher-LM)]
+[[portfolio](team/christopher-lm.md)]
+
+* Role: Scheduling and tracking, Integration
+* Responsibilities: Meetings Management
