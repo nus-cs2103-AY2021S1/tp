@@ -14,9 +14,9 @@ You can reach us at the email `jordany@comp.nus.edu.sg` or our supervisor at `da
 
 <img src="images/ziyang-98.png" width="200px">
 
-[[homepage](https://limziyang.com/)]
 [[github](http://github.com/Ziyang-98)]
 [[portfolio](team/ziyang-98.md)]
+[[homepage](https://limziyang.com/)]
 
 * Role: Team Lead
 * Responsibilities: Responsible for overall project coordination
@@ -37,7 +37,7 @@ ensure project deliverables are done on time and in the right format
 <img src="images/cheoksuanne.png" width="200px">
 
 [[github](https://github.com/cheoksuanne)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/cheoksuanne.md)]
 
 * Role: Testing
 * Responsibilities: Ensures the testing of the project is done properly and on time
@@ -57,7 +57,8 @@ ensure project deliverables are done on time and in the right format
 <img src="images/jordanyoong.png" width="200px">
 
 [[github](http://github.com/jordanyoong)]
-[[portfolio](https://jordanyoong.github.io/cv/experience.html)]
+[[portfolio](team/jordanyoong.md)]
+[[homepage](https://jordanyoong.github.io/cv/mywebsite.html)]
 
 
 * Role: Documentation
