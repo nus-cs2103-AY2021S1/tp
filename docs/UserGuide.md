@@ -120,7 +120,7 @@ on storing these details:
 | **Phone**   | can only contain numbers, and must be between 8 and 20 digits long.                                                                                                                                                                                                                                                                                     | `6590018978`                                                                                                                                                            |
 | **Email**   | should be of the format local-part@domain where the local-part should contain alphanumeric characters or special characters which includes ( !#$%&'*+/=?`{&#124;}~^.-_ ) excluding the parentheses.The domain name should have at least 2 characters and contain only alphanumeric with a period or a hyphen for   the characters in between if needed. | `john_doe@email.com`                                                                                                                                                    |
 | **Tag**     | can only contain alphanumeric characters.                                                                                                                                                                                                                                                                                                               | `hardworking`                                                                                                                                                           |
-| **Date**    | must be in the format `DD/MM/YYYY`
+| **Date**    | must be in the format `DD/MM/YYYY`                                                                                                                                                                                                                                                                                                                      | 6th of July 2020 represented as `06/07/2020`<br> Note: Eva automatically corrects wrong dates like 30/02/2020 and 31/11/2020 to 29/02/2020 and 30/11/2020 respectively. |
 
 </div>
 
@@ -215,7 +215,7 @@ Staff commands give you the ability to keep track of your staffs which help you 
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **Tip:**<br>
+**:information_source: Note:** <br>
 
 * All commands under staff can only be done on either staff list or staff profile panel except `adds`, which can be done on any panel<br>
  
@@ -310,7 +310,8 @@ Deletes a staff from Eva.
 
 <div markdown="block" class="alert alert-danger">
 
-:exclamation: **Important!: Please take note that this action is irreversible.**
+:exclamation: **Important! <br>
+Please take note that this action is irreversible.**
 
 </div>
 <br>
@@ -382,7 +383,8 @@ This command removes the record of leave taken by staff, specified by the date g
 
 <div markdown="block" class="alert alert-danger">
 
-:exclamation: **Important: Please take note that this action is irreversible.**
+:exclamation: **Important! <br>
+Please take note that this action is irreversible.**
 
 </div>
 <br>
@@ -411,7 +413,8 @@ This command clears all staff entries from the Eva database.
 
 <div markdown="block" class="alert alert-danger">
 
-:exclamation: **Important: Please take note that this action is irreversible.**
+:exclamation: **Important! <br> 
+Please take note that this action is irreversible.**
 
 </div>
 <br>
@@ -438,7 +441,11 @@ Staff List.
 
 #### 3.4.1. List all applicants : `list a-`
 
-Shows a list of all applicants in Eva.
+This is an essential command for you to use when you wish to see the records of all applicants or even make changes to them.
+
+Format: `list a-`
+
+The image below shows what you would see when you execute this command.
 
 ![listApplicant](images/ugimages/ListApplicant.png)
 
@@ -468,7 +475,6 @@ Format: `adda n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG
  - Each applicant is uniquely identified by their name. In the event you wish to add 2 applicant records with the same name,
       please ensure that both their phone numbers and email addresses are different.
  - The interview date has to be in DD/MM/YYYY format.
- - If you provide 2 interview dates, although optional, the later date will be recorded.
  - Once you add an applicant the status would be automatically set as received, if you wish to change it, refer to the feature 
  [setting of application status](#349-set-application-status-setas) below.
  
@@ -522,7 +528,8 @@ applicant you see on Applicant List, you can remove that applicant's record.
 
 <div markdown="block" class="alert alert-danger">
 
-:exclamation: **Important: Please take note that this action is irreversible.**
+:exclamation: **Important! <br>
+Please take note that this action is irreversible.**
 
 </div>
 <br>
@@ -589,7 +596,8 @@ Deletes an application from an applicant with the specified index under Eva.
 
 <div markdown="block" class="alert alert-danger">
 
-:exclamation: **Important: Please take note that this action is irreversible.**
+:exclamation: **Important! <br>
+Please take note that this action is irreversible.**
 
 </div>
 <br>
@@ -633,7 +641,8 @@ This command clears all applicant entries from the Eva database.
 
 <div markdown="block" class="alert alert-danger">
 
-:exclamation: **Important: Please take note that this action is irreversible.**
+:exclamation: **Important! <br> 
+Please take note that this action is irreversible.**
 
 </div>
 <br>
@@ -682,6 +691,15 @@ Example:
 #### 3.5.2 Delete comment from a staff/applicant: `delc`
 
 Deletes a comment from a staff/applicant under eva depending on which panel you are in
+
+<div markdown="block" class="alert alert-danger">
+
+:exclamation: **Important! <br> 
+Please take note that this action is irreversible.**
+
+</div>
+<br>
+
 
 Format: `delc INDEX c/ ti/TITLE_OF_COMMENT_TO_DELETE`
 
