@@ -3,34 +3,31 @@ layout: page
 title: Jonas Ng's Project Portfolio Page
 ---
 
-## Project: Cap 5.0 Buddy
+## Project: CAP 5 Buddy
 
 ## Overview
 
-Cap 5 Buddy is a desktop module tracker application used to centralise key module details. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20 kLoC.
-
-![Ui](../images/Ui.png)
-Figure 1. UI of Cap 5 Buddy
+CAP 5 Buddy is a desktop module tracker application used to centralise key module details. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 30 kLoC.
 
 ## Summary of Contributions
 
 Given below are my contributions to the project.
 
-* **Enhancement:** Implemented the feature to find items using multiple search parameters
+* **Enhancement:** Implemented the feature to find items using multiple search parameters. 
+                   This includes the following functionalities: `find contact`, `find task`.
 
   * **What it does:** This feature allows the user to filter contacts, tasks and events using multiple search parameters. 
-                  This includes the following functionalities: `find contact`, `find task`.
   
   * **Justification:** This feature enhances the product significantly as users might store large numbers of different contacts, tasks and events, and locating a specific 
                    information may be tedious. A feature to find items using multiple search parameters allows searches to be more accurate and refined, 
-                   and can narrow down the search results. This increases the probability of users being able to retrieve their intended search result easily.
+                   and can narrow down the search results. This increases the probability of users being able to retrieve their intended search result.
   
   * **Highlights:** 
   
-    * This feature required in-depth analysis of the underlying implementation of `Contact` and `Task` so that the appropriate 
-      search parameters to find matching contacts and tasks with could be identified.
+    * This feature required in-depth analysis of the underlying implementation of `Contact` and `Task` so that appropriate 
+      search parameters to find contacts and tasks with could be identified.
     
-    * The implementation and design of the find feature is open to future extensions to accommodate new additional search parameters.
+    * The implementation and design of the find feature is open to future extensions to accommodate new search parameters.
       This ensures that the feature will be consistent with the implementation of `Contact` and `Task`.
       
     * As users are allowed to provide a variable number of search parameters, defensive programming was employed extensively
@@ -42,13 +39,12 @@ Given below are my contributions to the project.
                             [\#419](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/419)
                             [\#600](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/600)
 
-* **Enhancement:** Implemented zoom link management feature
+* **Enhancement:** Implemented zoom link management feature. This includes the following functionalities: `add zoom link`, `edit zoom link`, `delete zoom link`
 
-  * **What is does:** This feature allows users to manage a list of zoom links for various module lessons in each distinct module.
-                  This includes the following functionalities: `add zoom link`, `edit zoom link`, `delete zoom link`
+  * **What is does:** This feature allows users to manage a list of zoom links for various module lessons in each distinct module.           
   
   * **Justification:** This feature enhances the product significantly since users are enrolled in numerous modules 
-                   and might have a substantial number of zoom links to manage and keep track of. These features can allow users to manage zoom links more efficiently.
+                   and might have a substantial number of zoom links to keep track of. These features can allow users to manage zoom links more efficiently.
   
   * **Highlights:** In-depth analysis of `Module` and its behaviour is required since `ZoomLink` and `ModuleLesson` is coupled with module.
                 This is important as it can prevent unexpected regressions when zoom link related commands are modified.
@@ -60,13 +56,13 @@ Given below are my contributions to the project.
                             [\#553](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/553)
                             [\#555](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/555)
   
-* **Enhancement:** Implemented contact list management feature
+* **Enhancement:** Implemented contact list management feature. 
+                   This feature includes the following functionalities: `add contact`, `delete contact`, `edit contact`, `clear contact`, `list contact`
 
-  * **What it does:** This feature allows users to keep track of all module related contacts while managing all their contact details.
-                  This feature includes the following functionalities: `add contact`, `delete contact`, `edit contact`, `clear contact`, `list contact`
-
+  * **What it does:** This feature allows users to keep track of module related contacts while managing all their contact details.
+                  
   * **Justification:** This feature can enhance the product significantly as module related contacts are one of the most vital module information
-                   that users need to access on a regular basis. As users are enrolled in numorous lessons, the number of contacts to track can be overwhelming. 
+                   that users need to access on a regular basis. As users are enrolled in numerous lessons, the number of contacts to track can be overwhelming. 
                    
   * **Highlights:**
     
@@ -74,7 +70,7 @@ Given below are my contributions to the project.
       in-depth analysis of how the components interacted with each other was required.
       
     * This feature considers that it would be impractical to specify all contact fields as compulsory when creating contacts. As such, several contact fields were made optional.
-      Since certain contact details of a contact might be absent, defensive programming was employed extensively to ensure such cases were handled appropriately 
+      Since certain contact details of a contact might be absent, defensive programming was used extensively to ensure such cases were handled appropriately 
       to prevent potential bugs from surfacing.
       
   * Relevant Pull requests: [\#228](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/228)
@@ -93,14 +89,14 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Set up the GitHub team organization and repository
-  * Performed GitHub team repo setup (enable issue tracker, enable GitHub actions, set up product website etc) 
+  * Performed GitHub team repo setup (enable issue tracker, set up product website etc) 
   * Managed the issue tracker on GitHub
   * Managed releases `v1.2`, `v1.3` (2 releases) on GitHub
-  * Managed milestones `V1.1`, `V1.2`, `V1.3`. Closed the milestone when all issues have been completed before the stipulated deadline.
+  * Managed and closed milestones `V1.1`, `V1.2`, `V1.3`. 
 
 * **Enhancements to existing features**:
   * Updated the GUI color scheme for contact card (Pull request [\#582](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/582))
-  * Refactored the `Model` package in `Addressbook-level3` to follow the implementation of Cap 5 Buddy (Pull request [\#197](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/197))
+  * Refactored the `Model` package to follow the implementation of CAP 5 Buddy (Pull request [\#197](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/197))
   * Wrote additional tests for existing features to increase coverage 
     (Pull requests [\#292](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/292), 
                    [\#295](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/295),
@@ -111,14 +107,11 @@ Given below are my contributions to the project.
 * **Documentation**:
 
   * User Guide:
-    * Added documentation for the following:
-      * Contact list management features
-      * Zoom link management features 
-      * Find task feature
-    
+    * Added documentation for contact list management features, zoom link management features and find task feature
+
   * Developer Guide:
-    * Update documentation for the `Logic` component
-    * Added implementation details of the contact list management feature, zoom link management features and find task feature.
+    * Update documentation for the `Logic` component under design 
+    * Added implementation details of the contact list management feature, zoom link management feature and find task feature.
     * Added user stories, user cases
 
 * **Community**:
@@ -130,4 +123,4 @@ Given below are my contributions to the project.
                                                      [\#413](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/413),
                                                      [\#440](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/440),
                                                      [\#574](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/574))
-  * Reported bugs and suggestions for other teams in the class: [Reported 7 bugs during the PE dry run](https://github.com/jonasngs/ped/issues)
+  * Reported bugs and suggestions for other teams in the class: [Reported 7 bugs during PE dry run](https://github.com/jonasngs/ped/issues)
