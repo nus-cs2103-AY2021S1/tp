@@ -2,18 +2,24 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import seedu.address.model.attribute.Address;
+import seedu.address.model.attribute.Email;
+import seedu.address.model.attribute.Id;
+import seedu.address.model.attribute.InfectionStatus;
+import seedu.address.model.attribute.Name;
+import seedu.address.model.attribute.Phone;
+import seedu.address.model.attribute.QuarantineStatus;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in the VirusTracker.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements Comparable<Person> {
+
+    // Unique Identifier
+    private final Id id;
 
     // Identity fields
     private final Name name;
@@ -22,18 +28,23 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final QuarantineStatus quarantineStatus;
+    private final InfectionStatus infectionStatus;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null. Id must be unique.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Id id, Name name, Phone phone, Email email, Address address, QuarantineStatus quarantineStatus,
+                  InfectionStatus infectionStatus) {
+        requireAllNonNull(id, name, phone, email, address, quarantineStatus, infectionStatus);
+
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.quarantineStatus = quarantineStatus;
+        this.infectionStatus = infectionStatus;
+        this.id = id;
     }
 
     public Name getName() {
@@ -52,12 +63,72 @@ public class Person {
         return address;
     }
 
+    public QuarantineStatus getQuarantineStatus() {
+        return quarantineStatus;
+    }
+
+    public InfectionStatus getInfectionStatus() {
+        return infectionStatus;
+    }
+
+    public Id getId() {
+        return id;
+    }
+
+    //===================== For String conversions ============================
+
+    public String getIdAsString() {
+        return id.toString();
+    }
+
+    public String getNameAsString() {
+        return name.toString();
+    }
+
+    public String getPhoneAsString() {
+        return phone.toString();
+    }
+
+    public String getEmailAsString() {
+        return email.toString();
+    }
+
+    public String getAddressAsString() {
+        return address.toString();
+    }
+
+    public String getQuarantineStatusAsString() {
+        return quarantineStatus.toString();
+    }
+
+    public String getInfectionStatusAsString() {
+        return infectionStatus.toString();
+    }
+
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns true if person is infected.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public boolean isInfected() {
+        return infectionStatus.getStatusAsBoolean();
+    }
+
+    /**
+     * Returns true if person is quarantined.
+     */
+    public boolean isQuarantined() {
+        return quarantineStatus.getStatusAsBoolean();
+    }
+
+    /**
+     * Returns true if both person have the same Id.
+     */
+    public boolean isSameId(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+        return otherPerson != null
+                && otherPerson.getId().equals(getId());
+
     }
 
     /**
@@ -75,7 +146,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
+     * Returns true if both persons have the same Id, identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
     @Override
@@ -93,28 +164,41 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getQuarantineStatus().equals(getQuarantineStatus())
+                && otherPerson.getInfectionStatus().equals(getInfectionStatus())
+                && otherPerson.getId().equals(getId());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(id, name, phone, email, address, quarantineStatus, infectionStatus);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append(" ID: ")
+                .append(getId())
                 .append(" Phone: ")
                 .append(getPhone())
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Address: ")
                 .append(getAddress())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(" Quarantined: ")
+                .append(getQuarantineStatus())
+                .append(" Infected: ")
+                .append(getInfectionStatus());
         return builder.toString();
     }
 
+    @Override
+    public int compareTo(Person person) {
+        if (getName().compareTo(person.getName()) == 0) {
+            return getId().compareTo(person.getId());
+        }
+        return getName().compareTo(person.getName());
+    }
 }

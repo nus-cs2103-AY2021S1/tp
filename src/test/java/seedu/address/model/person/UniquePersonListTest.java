@@ -4,9 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INFECTION_STATUS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUARANTINE_STATUS_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.util.Arrays;
@@ -17,6 +23,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.exceptions.PersonNotIdentifiableException;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
@@ -42,9 +49,52 @@ public class UniquePersonListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
                 .build();
         assertTrue(uniquePersonList.contains(editedAlice));
+    }
+
+    @Test
+    public void containsSameIdPerson_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.containsPersonId(null));
+    }
+
+    @Test
+    public void containsSameIdPerson_personNotInList_returnsFalse() {
+        assertFalse(uniquePersonList.containsPersonId(ALICE.getId()));
+    }
+
+    @Test
+    public void containsSameIdPerson_sameIdInList_returnsTrue() {
+        uniquePersonList.add(ALICE);
+        Person editedPerson = new PersonBuilder(ALICE).build();
+        assertTrue(uniquePersonList.containsPersonId(editedPerson.getId()));
+    }
+
+    @Test
+    public void containsSameIdPerson_differentId_returnsFalse() {
+        uniquePersonList.add(ALICE);
+        Person editedPerson = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
+        assertFalse(uniquePersonList.containsPersonId(editedPerson.getId()));
+    }
+
+    @Test
+    public void containsSameIdPerson_sameIdDifferentIdentity_returnsTrue() {
+        uniquePersonList.add(ALICE);
+        Person editedPerson = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+                .build();
+        assertTrue(uniquePersonList.containsPersonId(editedPerson.getId()));
+    }
+
+    @Test
+    public void getPersonById_validId_success() {
+        uniquePersonList.add(ALICE);
+        assertEquals(ALICE, uniquePersonList.getPersonById(ALICE.getId()));
+    }
+
+    @Test
+    public void getPersonById_personNotFound_throwsPersonNotFoundException() {
+        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.getPersonById(ALICE.getId()));
     }
 
     @Test
@@ -56,6 +106,16 @@ public class UniquePersonListTest {
     public void add_duplicatePerson_throwsDuplicatePersonException() {
         uniquePersonList.add(ALICE);
         assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(ALICE));
+    }
+
+    @Test
+    public void add_unidentifiablePerson_throwsPersonNotIdentifiableException() {
+        uniquePersonList.add(ALICE);
+        Person unidentifiablePerson = new PersonBuilder(ALICE).withName(VALID_NAME_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withEmail(VALID_EMAIL_BOB)
+                .withInfectionStatus(VALID_INFECTION_STATUS_BOB)
+                .withQuarantineStatus(VALID_QUARANTINE_STATUS_BOB).build();
+        assertThrows(PersonNotIdentifiableException.class, () -> uniquePersonList.add(unidentifiablePerson));
     }
 
     @Test
@@ -85,7 +145,7 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
                 .build();
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
@@ -107,6 +167,14 @@ public class UniquePersonListTest {
         uniquePersonList.add(ALICE);
         uniquePersonList.add(BOB);
         assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
+    }
+
+    @Test
+    public void setPerson_editedPersonIsNotIdentifiable_throwsPersonNotIdentifiableException() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        Person editedPerson = new PersonBuilder(AMY).withId("S1234").build();
+        assertThrows(PersonNotIdentifiableException.class, () -> uniquePersonList.setPerson(BOB, editedPerson));
     }
 
     @Test
@@ -160,6 +228,16 @@ public class UniquePersonListTest {
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Person> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
         assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicatePersons));
+    }
+
+    @Test
+    public void setPersons_listWithUnidentifiablePersons_throwsPersonNotIdentifiableException() {
+        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withEmail(VALID_EMAIL_BOB)
+                .withPhone(VALID_PHONE_BOB).build();
+        List<Person> listWithUnidentifiablePersons = Arrays.asList(ALICE, editedAlice);
+        assertThrows(PersonNotIdentifiableException.class, () ->
+                uniquePersonList.setPersons(listWithUnidentifiablePersons));
     }
 
     @Test

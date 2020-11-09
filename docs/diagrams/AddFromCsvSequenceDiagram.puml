@@ -1,0 +1,73 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":VirusTrackerParser" as VirusTrackerParser LOGIC_COLOR
+participant ":AddFromCsvCommandParser" as AddFromCsvCommandParser LOGIC_COLOR
+participant ":DataGenerator" as DataGenerator LOGIC_COLOR
+participant "a:AddXYZFromCsvCommand" as AddXYZFromCsvCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(args)
+activate LogicManager
+
+LogicManager -> VirusTrackerParser : parseCommand(args)
+activate VirusTrackerParser
+
+create AddFromCsvCommandParser
+VirusTrackerParser -> AddFromCsvCommandParser
+activate AddFromCsvCommandParser
+
+AddFromCsvCommandParser -> VirusTrackerParser
+deactivate AddFromCsvCommandParser
+
+VirusTrackerParser -> AddFromCsvCommandParser : parse("filepath listType")
+activate AddFromCsvCommandParser
+
+AddFromCsvCommandParser -> DataGenerator : generateXYZList(filepath)
+activate DataGenerator
+
+DataGenerator --> AddFromCsvCommandParser : list
+deactivate DataGenerator
+
+DataGenerator -[hidden]-> AddFromCsvCommandParser : list
+destroy DataGenerator
+
+create AddXYZFromCsvCommand
+AddFromCsvCommandParser -> AddXYZFromCsvCommand : AddXYZFromCsvCommand(list)
+activate AddXYZFromCsvCommand
+
+AddXYZFromCsvCommand --> AddFromCsvCommandParser
+deactivate AddXYZFromCsvCommand
+
+AddFromCsvCommandParser --> VirusTrackerParser
+deactivate AddFromCsvCommandParser
+
+VirusTrackerParser --> LogicManager : a
+deactivate VirusTrackerParser
+
+LogicManager -> AddXYZFromCsvCommand : execute()
+activate AddXYZFromCsvCommand
+
+loop through entire list
+    AddXYZFromCsvCommand -> Model : addXYZ(xyz)
+    activate Model
+
+    Model --> AddXYZFromCsvCommand
+    deactivate Model
+end
+
+AddXYZFromCsvCommand --> LogicManager : result
+deactivate AddXYZFromCsvCommand
+
+AddXYZFromCsvCommand -[hidden]-> LogicManager : result
+destroy AddXYZFromCsvCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

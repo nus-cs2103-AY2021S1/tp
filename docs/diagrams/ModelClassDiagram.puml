@@ -5,52 +5,45 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
-Interface Model <<Interface>>
-Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
-Class Model
-Class ModelManager
-Class UserPrefs
-Class ReadOnlyUserPrefs
+    Interface ReadOnlyXYZBook <<Interface>>
+    Interface Model <<Interface>>
+    Interface ObservableList <<Interface>>
+    Class XYZBook
+    Class ReadOnlyXYZBook
+    Class Model
+    Class ModelManager
+    Class UserPrefs
+    Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
-}
-
-Package Tag {
-Class Tag
+Package XYZ {
+    Class XYZ
+    Class UniqueXYZList
 }
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+XYZBook .up.|> ReadOnlyXYZBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" XYZBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+XYZBook *--> "1" UniqueXYZList
+UniqueXYZList o--> "*" XYZ
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+ModelManager -->"1" XYZ : filtered list
 
-ModelManager -->"1" Person : filtered list
+note as N1
+    XYZ = Person,
+   Location or Visit
+end note
+
+N1 .. ReadOnlyXYZBook
+N1 .. XYZBook
+N1 .. UniqueXYZList
+N1 .. XYZ
 @enduml

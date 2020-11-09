@@ -16,6 +16,9 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.list.LocationListPanel;
+import seedu.address.ui.list.PersonListPanel;
+import seedu.address.ui.list.VisitListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,6 +35,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private LocationListPanel locationListPanel;
+    private VisitListPanel visitListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -45,10 +50,13 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private StackPane locationListPanelPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane visitListPanelPlaceholder;
+
+    @FXML
+    private StackPane resultDisplayPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -58,6 +66,8 @@ public class MainWindow extends UiPart<Stage> {
 
         // Set dependencies
         this.primaryStage = primaryStage;
+        this.primaryStage.setMinWidth(GuiSettings.MIN_WIDTH);
+        this.primaryStage.setMinHeight(GuiSettings.MIN_HEIGHT);
         this.logic = logic;
 
         // Configure the UI
@@ -110,14 +120,17 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getSortedPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        locationListPanel = new LocationListPanel(logic.getSortedLocationList());
+        locationListPanelPlaceholder.getChildren().add(locationListPanel.getRoot());
+
+        visitListPanel = new VisitListPanel(logic.getSortedVisitList());
+        visitListPanelPlaceholder.getChildren().add(visitListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());

@@ -2,7 +2,9 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.address.testutil.TypicalLocations.getTypicalLocationBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalVisits.getTypicalVisitBook;
 
 import java.nio.file.Path;
 
@@ -11,9 +13,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.location.LocationBook;
+import seedu.address.model.location.ReadOnlyLocationBook;
+import seedu.address.model.person.PersonBook;
+import seedu.address.model.person.ReadOnlyPersonBook;
+import seedu.address.model.visit.ReadOnlyVisitBook;
+import seedu.address.model.visit.VisitBook;
 
 public class StorageManagerTest {
 
@@ -24,13 +30,21 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonPersonBookStorage personBookStorage = new JsonPersonBookStorage(getTempFilePath("ab"));
+        JsonLocationBookStorage locationBookStorage = new JsonLocationBookStorage(getTempFilePath("lb"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonVisitBookStorage visitBookStorage = new JsonVisitBookStorage(getTempFilePath("vb"));
+        storageManager = new StorageManager(personBookStorage, locationBookStorage, userPrefsStorage,
+                visitBookStorage);
     }
 
     private Path getTempFilePath(String fileName) {
         return testFolder.resolve(fileName);
+    }
+
+    @Test
+    public void getUserPrefsFilePath() {
+        assertNotNull(storageManager.getUserPrefsFilePath());
     }
 
     @Test
@@ -48,21 +62,57 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void personBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonPersonBookStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonPersonBookStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        PersonBook original = getTypicalAddressBook();
+        storageManager.savePersonBook(original);
+        ReadOnlyPersonBook retrieved = storageManager.readAddressBook().get();
+        assertEquals(original, new PersonBook(retrieved));
     }
 
     @Test
     public void getAddressBookFilePath() {
         assertNotNull(storageManager.getAddressBookFilePath());
+    }
+
+    @Test
+    public void locationBookReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonLocationBookStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonLocationBookStorageTest} class.
+         */
+        LocationBook original = getTypicalLocationBook();
+        storageManager.saveLocationBook(original);
+        ReadOnlyLocationBook retrieved = storageManager.readLocationBook().get();
+        assertEquals(original, new LocationBook(retrieved));
+    }
+
+    @Test
+    public void getLocationBookFilePath() {
+        assertNotNull(storageManager.getLocationBookFilePath());
+    }
+
+    @Test
+    public void visitBookReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonVisitBookStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonVisitBookStorageTest} class.
+         */
+        VisitBook original = getTypicalVisitBook();
+        storageManager.saveVisitBook(original);
+        ReadOnlyVisitBook retrieved = storageManager.readVisitBook().get();
+        assertEquals(original, new VisitBook(retrieved));
+    }
+
+    @Test
+    public void getVisitBookFilePath() {
+        assertNotNull(storageManager.getVisitBookFilePath());
     }
 
 }

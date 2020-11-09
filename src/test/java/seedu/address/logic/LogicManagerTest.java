@@ -1,12 +1,15 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.ID_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.INFECTION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.QUARANTINE_STATUS_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
 
@@ -17,18 +20,23 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.person.AddPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.location.ReadOnlyLocationBook;
 import seedu.address.model.person.Person;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.model.person.ReadOnlyPersonBook;
+import seedu.address.model.visit.ReadOnlyVisitBook;
+import seedu.address.storage.JsonLocationBookStorage;
+import seedu.address.storage.JsonPersonBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.JsonVisitBookStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
 
@@ -43,10 +51,15 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonPersonBookStorage addressBookStorage =
+                new JsonPersonBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonLocationBookStorage locationBookStorage =
+                new JsonLocationBookStorage(temporaryFolder.resolve("locationBook.json"));
+        JsonVisitBookStorage visitBookStorage =
+                new JsonVisitBookStorage(temporaryFolder.resolve("visitBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(addressBookStorage, locationBookStorage,
+                userPrefsStorage, visitBookStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -58,30 +71,35 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        String deleteCommand = "deletePerson 9";
+        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_INDEX);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String clearCommand = ClearCommand.COMMAND_WORD;
+        assertCommandSuccess(clearCommand, ClearCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonPersonBookStorage addressBookStorage =
+                new JsonPersonBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonLocationBookStorage locationBookStorage =
+                new JsonLocationBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionLocationBook.json"));
+        JsonVisitBookStorage visitBookStorage =
+                new JsonVisitBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionVisitBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(addressBookStorage, locationBookStorage,
+                userPrefsStorage, visitBookStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        String addCommand = AddPersonCommand.COMMAND_WORD + ID_DESC_AMY + NAME_DESC_AMY + PHONE_DESC_AMY
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + QUARANTINE_STATUS_DESC_AMY + INFECTION_DESC_AMY;
+        Person expectedPerson = new PersonBuilder(AMY).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
@@ -90,7 +108,85 @@ public class LogicManagerTest {
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getSortedPersonList().remove(0));
+    }
+
+    @Test
+    public void getFilteredLocationList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getSortedLocationList().remove(0));
+    }
+
+    @Test
+    public void getFilteredVisitList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getSortedVisitList().remove(0));
+    }
+
+    // ========== Getters ===========================================================================================
+    @Test
+    public void getPersonBook() {
+        assertEquals(model.getPersonBook(), logic.getPersonBook());
+    }
+
+    @Test
+    public void getSortedPersonList() {
+        assertEquals(model.getSortedPersonList(), logic.getSortedPersonList());
+    }
+
+    @Test
+    public void getPersonBookFilePath() {
+        assertEquals(model.getPersonBookFilePath(), logic.getPersonBookFilePath());
+    }
+
+    //=========== Location Book =====================================================================================
+
+    @Test
+    public void getLocationBook() {
+        assertEquals(model.getLocationBook(), logic.getLocationBook());
+    }
+
+    @Test
+    public void getSortedLocationList() {
+        assertEquals(model.getSortedLocationList(), logic.getSortedLocationList());
+    }
+
+    @Test
+    public void getLocationBookFilePath() {
+        assertEquals(model.getLocationBookFilePath(), logic.getLocationBookFilePath());
+    }
+
+    //=========== Visit Book ========================================================================================
+
+    @Test
+    public void getVisitBook() {
+        assertEquals(model.getVisitBook(), logic.getVisitBook());
+    }
+
+    @Test
+    public void getSortedVisitList() {
+        assertEquals(model.getSortedVisitList(), logic.getSortedVisitList());
+    }
+
+    @Test
+    public void getVisitBookFilePath() {
+        assertEquals(model.getVisitBookFilePath(), logic.getVisitBookFilePath());
+    }
+
+    //=========== GUI Settings ======================================================================================
+
+    @Test
+    public void getGuiSettings() {
+        assertEquals(model.getGuiSettings(), logic.getGuiSettings());
+    }
+
+    @Test
+    public void setGuiSettings() {
+        GuiSettings guiSettings = new GuiSettings(100, 200, 1, 0);
+
+        Model expectedModel = new ModelManager();
+        expectedModel.setGuiSettings(guiSettings);
+        logic.setGuiSettings(guiSettings);
+
+        assertEquals(expectedModel, model);
     }
 
     /**
@@ -129,7 +225,8 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPersonBook(), model.getLocationBook(),
+                model.getVisitBook(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -149,13 +246,41 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonPersonBookIoExceptionThrowingStub extends JsonPersonBookStorage {
+        private JsonPersonBookIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void savePersonBook(ReadOnlyPersonBook personBook, Path filePath) throws IOException {
+            throw DUMMY_IO_EXCEPTION;
+        }
+    }
+
+    /**
+     * A stub class to throw an {@code IOException} when the save method is called.
+     */
+    private static class JsonLocationBookIoExceptionThrowingStub extends JsonLocationBookStorage {
+        private JsonLocationBookIoExceptionThrowingStub(Path filePath) {
+            super(filePath);
+        }
+
+        @Override
+        public void saveLocationBook(ReadOnlyLocationBook locationBook, Path filePath) throws IOException {
+            throw DUMMY_IO_EXCEPTION;
+        }
+    }
+
+    /**
+     * A stub class to throw an {@code IOException} when the save method is called.
+     */
+    private static class JsonVisitBookIoExceptionThrowingStub extends JsonVisitBookStorage {
+        private JsonVisitBookIoExceptionThrowingStub(Path filePath) {
+            super(filePath);
+        }
+
+        @Override
+        public void saveVisitBook(ReadOnlyVisitBook visitBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

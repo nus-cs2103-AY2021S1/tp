@@ -5,14 +5,18 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.attribute.Id;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.exceptions.PersonNotIdentifiableException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
+ * This list also enforces that all elements have unique Ids.
  * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
  * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
  * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
@@ -37,13 +41,39 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Returns true if the list contains a person with the given Id.
+     */
+    public boolean containsPersonId(Id id) {
+        requireNonNull(id);
+        return internalList.stream().anyMatch(p -> p.getId().equals(id));
+    }
+
+    /**
+     * Returns a person within the list that has the given Id.
+     * The Id must belong to a person within the list.
+     */
+    public Person getPersonById(Id id) {
+        requireNonNull(id);
+        Optional<Person> person = internalList.stream().filter(p -> p.getId().equals(id)).findAny();
+        if (person.isEmpty()) {
+            throw new PersonNotFoundException();
+        } else {
+            return person.get();
+        }
+    }
+
+    /**
      * Adds a person to the list.
      * The person must not already exist in the list.
+     * The person must not have same Id as another person in the list.
      */
     public void add(Person toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
+        }
+        if (containsPersonId(toAdd.getId())) {
+            throw new PersonNotIdentifiableException();
         }
         internalList.add(toAdd);
     }
@@ -63,6 +93,10 @@ public class UniquePersonList implements Iterable<Person> {
 
         if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
             throw new DuplicatePersonException();
+        }
+
+        if (!target.isSameId(editedPerson) && containsPersonId(editedPerson.getId())) {
+            throw new PersonNotIdentifiableException();
         }
 
         internalList.set(index, editedPerson);
@@ -86,15 +120,31 @@ public class UniquePersonList implements Iterable<Person> {
 
     /**
      * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * {@code persons} must not contain duplicate persons nor duplicate Ids.
      */
     public void setPersons(List<Person> persons) {
         requireAllNonNull(persons);
-        if (!personsAreUnique(persons)) {
-            throw new DuplicatePersonException();
-        }
+        checkPersons(persons);
 
         internalList.setAll(persons);
+    }
+
+    /**
+     * Checks if {@code persons} contains only persons with unique identities and Ids.
+     * @throws DuplicatePersonException if there are persons with duplicate identities.
+     * @throws PersonNotIdentifiableException if there are persons with duplicate Ids.
+     */
+    private void checkPersons(List<Person> persons) {
+        for (int i = 0; i < persons.size() - 1; i++) {
+            for (int j = i + 1; j < persons.size(); j++) {
+                if (persons.get(i).isSamePerson(persons.get(j))) {
+                    throw new DuplicatePersonException();
+                }
+                if (persons.get(i).isSameId(persons.get(j))) {
+                    throw new PersonNotIdentifiableException();
+                }
+            }
+        }
     }
 
     /**
@@ -113,25 +163,11 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                && internalList.equals(((UniquePersonList) other).internalList));
     }
 
     @Override
     public int hashCode() {
         return internalList.hashCode();
-    }
-
-    /**
-     * Returns true if {@code persons} contains only unique persons.
-     */
-    private boolean personsAreUnique(List<Person> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSamePerson(persons.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }

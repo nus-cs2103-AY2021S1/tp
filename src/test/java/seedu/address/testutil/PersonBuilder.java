@@ -1,15 +1,13 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
+import seedu.address.model.attribute.Address;
+import seedu.address.model.attribute.Email;
+import seedu.address.model.attribute.Id;
+import seedu.address.model.attribute.InfectionStatus;
+import seedu.address.model.attribute.Name;
+import seedu.address.model.attribute.Phone;
+import seedu.address.model.attribute.QuarantineStatus;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -20,12 +18,17 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_QUARANTINE_STATUS = "false";
+    public static final String DEFAULT_INFECTION_STATUS = "false";
+    public static final String DEFAULT_ID = "S1234";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
+    private QuarantineStatus quarantineStatus;
+    private InfectionStatus infectionStatus;
+    private Id id;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -35,7 +38,9 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        quarantineStatus = new QuarantineStatus(DEFAULT_QUARANTINE_STATUS);
+        infectionStatus = new InfectionStatus(DEFAULT_INFECTION_STATUS);
+        id = new Id(DEFAULT_ID);
     }
 
     /**
@@ -46,7 +51,9 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        quarantineStatus = personToCopy.getQuarantineStatus();
+        infectionStatus = personToCopy.getInfectionStatus();
+        id = personToCopy.getId();
     }
 
     /**
@@ -54,14 +61,6 @@ public class PersonBuilder {
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -89,8 +88,34 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, tags);
+    /**
+     * Sets the {@code QuarantineStatus} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withQuarantineStatus(String quarantineStatus) {
+        this.quarantineStatus = new QuarantineStatus(quarantineStatus);
+        return this;
     }
 
+    /**
+     * Sets the {@code InfectionStatus} of the {@code Person} that we are building.
+     *
+     * @param infectionStatus The new infection status.
+     * @return The updated PersonBuilder.
+     */
+    public PersonBuilder withInfectionStatus(String infectionStatus) {
+        this.infectionStatus = new InfectionStatus(infectionStatus);
+        return this;
+    }
+
+    /**
+     * Sets the {@code id} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withId(String id) {
+        this.id = new Id(id);
+        return this;
+    }
+
+    public Person build() {
+        return new Person(id, name, phone, email, address, quarantineStatus, infectionStatus);
+    }
 }

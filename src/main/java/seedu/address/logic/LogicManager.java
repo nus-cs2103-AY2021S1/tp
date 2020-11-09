@@ -10,11 +10,15 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.VirusTrackerParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.location.Location;
+import seedu.address.model.location.ReadOnlyLocationBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.ReadOnlyPersonBook;
+import seedu.address.model.visit.ReadOnlyVisitBook;
+import seedu.address.model.visit.Visit;
 import seedu.address.storage.Storage;
 
 /**
@@ -26,7 +30,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final VirusTrackerParser virusTrackerParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +38,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        virusTrackerParser = new VirusTrackerParser();
     }
 
     @Override
@@ -42,11 +46,13 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = virusTrackerParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.savePersonBook(model.getPersonBook());
+            storage.saveLocationBook(model.getLocationBook());
+            storage.saveVisitBook(model.getVisitBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -54,20 +60,58 @@ public class LogicManager implements Logic {
         return commandResult;
     }
 
+    //=========== Person Book =======================================================================================
+
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyPersonBook getPersonBook() {
+        return model.getPersonBook();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Person> getSortedPersonList() {
+        return model.getSortedPersonList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getPersonBookFilePath() {
+        return model.getPersonBookFilePath();
     }
+
+    //=========== Location Book =====================================================================================
+
+    @Override
+    public ReadOnlyLocationBook getLocationBook() {
+        return model.getLocationBook();
+    }
+
+    @Override
+    public ObservableList<Location> getSortedLocationList() {
+        return model.getSortedLocationList();
+    }
+
+    @Override
+    public Path getLocationBookFilePath() {
+        return model.getLocationBookFilePath();
+    }
+
+    //=========== Visit Book ========================================================================================
+
+    @Override
+    public ReadOnlyVisitBook getVisitBook() {
+        return model.getVisitBook();
+    }
+
+    @Override
+    public ObservableList<Visit> getSortedVisitList() {
+        return model.getSortedVisitList();
+    }
+
+    @Override
+    public Path getVisitBookFilePath() {
+        return model.getVisitBookFilePath();
+    }
+
+    //=========== GUI Settings ======================================================================================
 
     @Override
     public GuiSettings getGuiSettings() {

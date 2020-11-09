@@ -5,55 +5,55 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Shulong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dreamerdragon.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/DreamerDragon)]
+[[portfolio](team/dreamerdragon.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Visit class
 
-### Jane Doe
+### Qirui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hhdqirui.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/hhdqirui)]
+[[portfolio](team/hhdqirui.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Siang Ern
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/siangernlow.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/siangernlow)]
+[[portfolio](team/siangernlow.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Data
 
-### James Doe
+### Pin Xian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hopinxian.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/hopinxian)]
+[[portfolio](team/hopinxian.md)]
+
+* Role: Team Lead, Developer
+* Responsibilities: Person, Location classes
+
+### Han Ming
+
+<img src="images/kohhanming.png" width="200px">
+
+[[github](https://github.com/KohHanMing)]
+[[portfolio](team/kohhanming.md)]
 
 * Role: Developer
 * Responsibilities: UI
+
