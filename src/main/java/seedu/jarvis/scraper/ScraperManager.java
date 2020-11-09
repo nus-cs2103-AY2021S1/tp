@@ -61,12 +61,12 @@ public class ScraperManager implements Scraper, PropertyChangeListener {
         final String operatingSystem = System.getProperty("os.name").toUpperCase();
         // Set chrome driver path according to os
         if (operatingSystem.contains("WIN")) {
-            System.setProperty("webdriver.chrome.driver", "src/main/resources/chrome_driver/chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", "chrome_driver/chromedriver.exe");
         } else if (operatingSystem.contains("MAC")) {
-            System.setProperty("webdriver.chrome.driver", "src/main/resources/chrome_driver/chromedriver_mac");
+            System.setProperty("webdriver.chrome.driver", "chrome_driver/chromedriver_mac");
         } else if (operatingSystem.contains("NUX")) {
             //what about ubuntu??
-            System.setProperty("webdriver.chrome.driver", "src/main/resources/chrome_driver/chromedriver_linux");
+            System.setProperty("webdriver.chrome.driver", "chrome_driver/chromedriver_linux");
         } else {
             throw new OsNotSupportedException(operatingSystem);
         }
