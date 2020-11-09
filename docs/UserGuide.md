@@ -517,7 +517,7 @@ assignments will contain the following fields:
 
   Expected Outcome: 
   
- <p aligin="center"><img src="docs/images/GradeTracker/AddAssignment.PNG" border="2px solid black"></p>
+<p aligin="center"><img src="docs/images/GradeTracker/AddAssignment.PNG" border="2px solid black"></p>
 
 
 #### Editing an assignment in a module: `editassignment`
@@ -563,7 +563,7 @@ To be implemented:
 
 
   Example of usage:
-   * `deleteassignment 2 n/CS2100` deletes the assignment at position `2` of the module `CS2100`.
+   * `deleteassignment 1 n/CS2100` deletes the assignment at position `1` of the module `CS2100`.
    
 #### Adding a grade to a module: `addgrade`
 
@@ -588,7 +588,7 @@ To be implemented:
 
 #### Calculating Cumulative Average Point(CAP): `calculatecap`
 
-Calculates the user's CAP based on completed modules
+Calculates your CAP based on completed modules
 
  Format: `calculatecap`
 
@@ -605,10 +605,6 @@ Calculates helpful CAP details based on the target CAP you input
 
   Example:
   * `targetcap tc/4.5` Calculates CAP achievement required for planned modules in order to achieve target CAP
-
-Expected Outcome: 
- 
-![FindContact](images/contact/FindContactUG.PNG)
 
 ### Todo List Features
 
@@ -871,22 +867,6 @@ Format: `listtask`
 
 * _**Tips :**_ You can use `listtask` to go back to the original list after
   performing a `findtask` or `sorttask` command.
-
-#### Archiving a task: `archivetask` **(To be implemented)**
-
-Archives a task from the list.
-
-Format: `archivetask` `INDEX`
-
-* You can get the `INDEX` from the current displayed list under the `Tasks` tab.
-
-* `INDEX` must be a **positive integer**.
-
-Examples:
-
-* `archivetask 1` archive the first task.
-
-* `archivetask 2` archive the second task.
 
 #### Clearing the list: `cleartask`
 
@@ -1275,7 +1255,7 @@ Format: `help`
 
 * _**Tips :**_ If you accidentally cleared the whole list, you can always use the `undo` command
   to restore the list.
---------------------------------------------------------------------------------------------------------------------
+  
 
 ## FAQ
 
@@ -1328,7 +1308,7 @@ Action | Format, Examples
 **List Contacts** | `listcontact`
 **Sort Contacts** | `sortcontact`
 **Mark Contact as Important** | `importantcontact INDEX` <br> e.g. `importantcontact 1`
-**Mark Contact as unimportant | `resetcontact INDEX` <br> `resetcontact 1`
+**Mark Contact as unimportant** | `resetcontact INDEX` <br> `resetcontact 1`
 **Clear Contact**  | `clearcontact`
 
 
