@@ -412,7 +412,7 @@ Example:
 
 Expected Outcome:
 
-![AddTutorialGroupCommand](images/addTG.png)
+![AddTutorialGroupCommand](images/addTG.PNG)
 
 #### 4.4.2 Delete a tutorial group: `deleteTG`
 Deletes a tutorial group based on the given `INDEX`
@@ -431,7 +431,7 @@ Example:
 
 Expected Outcome:
 
-![DeleteTutorialGroupCommand](images/deleteTG.png)
+![DeleteTutorialGroupCommand](images/deleteTG.PNG)
 
 #### 4.4.3 Edit a Tutorial Group: `editTG`
 Edits a module with the provided details.
@@ -452,7 +452,7 @@ Example:
 
 Expected Outcome:
 
-![EditTutorialGroupCommand](images/editTG.png)
+![EditTutorialGroupCommand](images/editTG.PNG)
 
 #### 4.4.4 Find a tutorial group: `findTG`
 Finds and lists all tutorial groups in the current Tutorial Group view whose tutorial group code contains any of the given keywords.
@@ -474,7 +474,7 @@ Example:
 
 Expected Outcome:
 
-![FindTutorialGroupCommand](images/findTG.png)
+![FindTutorialGroupCommand](images/findTG.PNG)
 
 ### 4.5 Student Features
 
@@ -750,9 +750,11 @@ Command | Description | Compatible View
 
 Command | Description | Compatible View
 --------|--------|--------
-`addTG tg/TG_CODE` | Adds a Tutorial Group to a Module | TUTORIAL GROUP
-`findTG TARGET_TG_CODE` | Finds a Tutorial Group | TUTORIAL GROUP
-`deleteTG TG_INDEX` | Deletes a Tutorial Group from a Module | TUTORIAL GROUP
+`addTG tg/TG_CODE day/DAY_OF_WEEK start/START_TIME end/END_TIME` | Adds a Tutorial Group to a Module | TUTORIAL GROUP
+`deleteTG INDEX` | Deletes a Tutorial Group from a Module | TUTORIAL GROUP
+`editTG INDEX [tg/TG_CODE] [day/DAY_OF_WEEK] [start/START_TIME] [end/END_TIME] ` | Edits a Tutorial Group from a Module | TUTORIAL GROUP
+`findTG KEYWORD` | Finds all Tutorial Groups containing the keyword | TUTORIAL GROUP
+
 
 ### 6.5 Student Commands
 
