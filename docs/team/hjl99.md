@@ -22,11 +22,11 @@ PRs: [#144](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/144), [#157](https
 
 ##### Filter Recipes
 
-The user can filter recipes with keywords in search fields 'Ingredients', 'Name' and 'Tag'. 
+The user can filter recipes with keywords in search fields 'ingredient', 'name' and 'tag'. 
 
 ##### Filter Ingredients
 
-The user can filter ingredients with keywords in search fields 'Expiry Date', 'Name' and 'Tag'. 
+The user can filter ingredients with keywords in search fields 'expiry' (expiry date), 'name' and 'tag'. 
 
 
 ### Other Contributions
@@ -37,7 +37,7 @@ Assisted in keeping track of deadlines and deliverables.
 
 #### Enhancements to Existing Features
 
-1. Built model for Recipe, added additional 'tag' attribute and modified parser accordingly. ([#115](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/115), [#116](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/116)).
+1. Built model for Recipe, added additional 'tag' attribute and modified parser accordingly. ([#40](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/40), [#115](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/115), [#116](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/116)).
 
 2. Increased code coverage by writing tests for Recipe and its related commands, filter feature and attributes involved. ([#176](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/176), [#182](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/182)).
 
