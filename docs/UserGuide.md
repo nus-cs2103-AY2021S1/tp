@@ -15,7 +15,7 @@ faster than most traditional GUI expense-trackers out there!
 
 This User Guide will show you how to navigate the User Interface (UI), give you step-by-step instructions on using commands, tips and tricks on how to maximise your experience with _Common Cents_ and clarify most doubts that you may have.
 
-The _Common Cents_ interface and commands consist of a few levels: `Application` level, `Account` level and `Entry` level.<br>
+The _Common Cents_ interface and commands consist of a few levels: `App` level, `Account` level and `Entry` level.<br>
 * `App` level commands deal with interactions with the app itself.<br>
 * `Account` level commands deal with managing the different accounts in the app.<br>
 * `Entry` level commands deal with managing the entries which are either expenses or revenues in an account.
