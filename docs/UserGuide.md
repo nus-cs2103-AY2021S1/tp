@@ -42,30 +42,50 @@ This section explains the format of commands in this User Guide.
 ## Features <a name="Features"></a>
 
 ### Basic 
-1. **Add**
+1. **Add an Expense**
     - Adds new expense record.
     - Command: `add`
     - [Usage](#add)
 
-1. **List**
+1. **List All Expenses**
     - Displays a list of all the user's expenses.
     - Command: `list`
     - [Usage](#list)
 
-1. **Update**
+1. **Update an Expense**
     - Edits existing expense record.
     - Command: `edit`
     - [Usage](#edit)
 
-1. **Delete**
+1. **Delete an Expense**
     - Deletes a specified existing expense record.
     - Command: `delete`
     - [Usage](#delete)
-    
-1. **Adding Remark**
-    - Adds a remark to an existing expense.
-    - Command: `remark`
-    - [Usage](#remark)
+
+1. **Top up Budget**
+    - Increases a budget for a specific category by user-defined amount.
+    - Command: `topup`
+    - [Usage](#topup)
+
+1. **Show Help**
+    - Renders a help link to the commands in User Guide
+    - Command: `help`
+    - [Usage](#help)
+
+1. **Clear Expense Book**
+    - Clears and resets the expense book.
+    - Command: `clear`
+    - [Usage](#clear)
+
+1. **Exit Application**
+    - Exits Bamboo.
+    - Command: `exit`
+    - [Usage](#exit)
+
+1. **Save Load Function**
+    - Automatically saves the state of the expense book after each operation.
+    - Automatically loads previously saved data on app start-up.
+
 
 ### Extension
 
@@ -73,6 +93,11 @@ This section explains the format of commands in this User Guide.
     - Tags expenses by their categories.
     - Prefix: `t/`
     - [Usage](#tag)
+
+1. **Adding Remark**
+    - Adds a remark to an existing expense.
+    - Command: `remark`
+    - [Usage](#remark)
 
 1. **Add Category**
     - Adds a new category (for budgeting and expenses).
@@ -89,17 +114,12 @@ This section explains the format of commands in this User Guide.
     - Command: `switch`
     - [Usage](#switch)
 
-1. **Top up budget**
-    - Increases a budget for a specific category by user-defined amount.
-    - Command: `topup`
-    - [Usage](#topup)
-
-1. **Find**
+1. **Find an Expense**
     - Finds expenses by keywords, date, tags.
     - Command: `find`
     - [Usage](#find)
     
-1. **Sorting**  
+1. **Sort Expenses**  
     - Sort by **date, description (alphabetical), amount**, with option of reverse sort.
     - Command: `sort` 
     - [Usage](#sort)
@@ -114,32 +134,10 @@ This section explains the format of commands in this User Guide.
     - Command: `resetAlias`
     - [API](#resetAlias)
 
-1. **Graph Command**
+1. **Display Graph**
     - Opens a window that displays a pie chart representing categorical expenses.
     - Command: `graph`
     - [API](#graph)
-
-1. **Help Command**
-    - Renders a help link to the commands in User Guide
-    - Command: `help`
-    - [Usage](#help)
-
-1. **Clear command**
-    - Clears and resets the expense book.
-    - Command: `clear`
-    - [Usage](#clear)
-
-1. **Save Load Function**
-    - Automatically saves the state of the expense book after each operation.
-    - Automatically loads previously saved data on app start-up.
-
-1. **Notifications for budget limits &lt;pending&gt;**
-1. **Track progress for long-term purchases &lt;pending&gt;**
-1. **Achievement system &lt;pending&gt;**
-1. **Graphs and data views &lt;pending&gt;**
-1. **Customisation of workflow - shortcuts etc. &lt;pending&gt;**
-1. **Simulation of future spending &lt;pending&gt;**
-1. **Multiple Accounts &lt;pending&gt;**
 
 ## Usage <a name="Usage"></a>
 For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
@@ -239,7 +237,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     ![list_example](images/ug_example/list_example.PNG)
     &nbsp;
     
-1. **Edit an expense `edit`** <a name="edit"></a>
+1. **Edit an Expense `edit`** <a name="edit"></a>
     - Edits the fields of existing expenses.
     - Identified by index starting from 1, based on expenses currently displayed.
     - Order of arguments is flexible except index.
@@ -367,7 +365,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     _Budget balance displayed here is the budget for the "Food" category_
     &nbsp;
 
-1. **Map Command Shortcut `alias`** <a name="alias"></a>
+1. **Add Command Shortcut `alias`** <a name="alias"></a>
     - Maps user-specified shortcut to existing command.
     - Original command keyword will still function as before.
     - Input Restrictions:
@@ -404,7 +402,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Format: `graph`
     - Example: `graph`
     - Note: The pie chart does not update dynamically. 
-      If a command that edits the ExpenseBook is entered while the graph window is open, the pie chart will not be updated.
+      If a command that edits the Expense Book is entered while the graph window is open, the pie chart will not be updated.
       User must re-enter the graph command to update the pie chart accordingly.
     
     ![graph_example](./images/ug_example/graph_example.PNG)
@@ -417,12 +415,16 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     ![help_example](./images/ug_example/help_example.PNG)
     &nbsp;
       
-1. **Clear all expenses `clear`** <a name="clear"></a>
+1. **Clear All Expenses `clear`** <a name="clear"></a>
     - Clears all expenses from Bamboo, resulting in an empty expense book.
     - Format: `clear`
     - Example: `clear`
     
     ![clear_example](images/ug_example/clear_example.PNG)
+
+1. **Exit Application `exit`** <a name="exit"></a>
+    - Exits the application.
+    - Format: `exit`
 
 ## Command Summary <a name="CommandSummary"></a>
 
@@ -440,7 +442,8 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 | **AddCat**    | `addCat t/<category>`<br> e.g., `addCat t/Food`                                                                                                                  |
 | **DeleteCat** | `deleteCat t/<category>` <br> e.g., `deleteCat t/Food`                                                                                                           |
 | **Alias**     | `alias <original_command> <new_command>` <br> e.g., `alias add spent`                                                                                            |
-| **resetAlias**| `resetAlias`                                                                                                                                                     |
+| **ResetAlias**| `resetAlias`                                                                                                                                                     |
 | **Graph**     | `graph`                                                                                                                                                          |
 | **Help**      | `help`                                                                                                                                                           |
 | **Clear**     | `clear`                                                                                                                                                          |
+| **Exit**      | `exit`                                                                                                                                                           |
