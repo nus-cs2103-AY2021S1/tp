@@ -1,22 +1,20 @@
 @startuml
+!include style.puml
+skinparam arrowThickness 1.1
 
-class ExpenseBook
-class UniqueExpenseList
-class ObservableList
-class Expense
-class PieChartData
-interface ChartData
-class ChartDisplay
-class GraphicalDisplayWindow
-
-hide empty members
+Class ExpenseBook MODEL_COLOR
+Class UniqueExpenseList MODEL_COLOR
+Class ObservableList MODEL_COLOR
+Class Expense MODEL_COLOR
+Class PieChartData MODEL_COLOR
+Interface ChartDataCollector<<Interface>> MODEL_COLOR
+Class GraphicalDisplayWindow UI_COLOR
 
 ExpenseBook --> UniqueExpenseList
 UniqueExpenseList *--> ObservableList
 ObservableList --> Expense
-ChartData <|-- PieChartData
-ChartData ..> ObservableList
-ChartDisplay --> ChartData
-GraphicalDisplayWindow --> ChartDisplay
+ChartDataCollector <|.. PieChartData
+PieChartData --> ExpenseBook
+GraphicalDisplayWindow --> ChartDataCollector UI_COLOR
 
 @enduml

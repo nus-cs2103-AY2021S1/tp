@@ -1,0 +1,16 @@
+@startuml
+(*)  --> "user requests to add expense with a specified category"
+If "" then
+--> [category exists] "add expense and update budget balance"
+else
+--> [else] "re-tag expense with default tag"
+--> "add expense and update budget balance"
+Endif
+If "" then
+--> [user accepts] (*)
+else
+--> [else] "user creates specified category"
+--> "user edits expense to desired category"
+Endif
+-->(*)
+@enduml

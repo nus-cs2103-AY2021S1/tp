@@ -322,6 +322,27 @@ renamed. It is contained separately from the user-created categories (if any) fo
 started, the default category is automatically initialized so that the User can use the full range of the basic
 features even without creating customized categories.
 
+### Expense and Budget Categorization Feature
+
+The budgets and expenses in the expense book are grouped according to the user's specifications, as they can freely create
+the categories that they need, top-up the desired amount for each category, and tag their expenses (both new and old) to
+the respective categories to keep track of their spending.
+
+#### Implementation
+
+Each expense is tagged to exactly one category, and the category must exist in the expense book before any expenses can
+be tagged to it. When a category is created in the expense book, the corresponding budget is automatically initialized
+with zero amount. Thereafter, the user can top-up (or reduce) each budget accordingly, and the balance after deducting
+all expenses within that category is shown to the user.
+
+![AddingCategorizedExpenseActivityDiagram](images/CategoryBudgetActivityDiagram.png)
+
+The activity diagram above shows a possible flow of the user attempting to add an expense tagged to a specific category.
+
+![ToppingUpCategoryBudgetActivityDiagram](images/CategoryBudgetActivityDiagram2.png)
+
+This second activity diagram shows a possible flow of the user trying to top-up the budget of a specific category.
+
 ### Graphical Representation Feature
 
 #### Implementation
@@ -688,6 +709,35 @@ Similar to U9, except it's the opposite.
     * 1a1. Bamboo shows an error message.
 
       Use case ends.
+
+#### Use case U14: Reduce Category Budget
+**MSS**
+
+1. User requests to reduce a given amount of budget from a specific category.
+2. Bamboo reduces the matching category-budget by the specified amount.
+3. Bamboo shows the new budget amount for that category.
+4. Bamboo updates the budget balance bar.
+
+   Use case ends.
+   
+**Extensions**
+
+* 1a. The category does not exist in the expense book.
+    * 1a1. Bamboo shows an error message.
+    
+      Use case ends.
+      
+* 1b. The specified amount is invalid.
+    * 1b1. Bamboo shows an error message.
+    
+      Use case ends.
+      
+* 1c. The specified amount exceeds the amount present in the specified budget.
+    * 1c1. Bamboo reduces the amount in the specified budget to zero.
+    * 1c2. Bamboo alerts the user that the amount reduced from the budget exceeded the amount present.
+    * 1c3. Bamboo updates the budget balance bar.
+
+      Use case resumes from 4.
 
 ### Non-Functional Requirement
 
