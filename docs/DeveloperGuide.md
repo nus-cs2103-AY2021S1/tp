@@ -1207,8 +1207,49 @@ The team has put in a tremendous amount of effort to this project, with a single
  that our targeted users will prefer over existing commercial apps, and do so while maintain a production-grade
   codebase. In the following section, the effort will be further elaborated.
   
-### App's functionality 
+### App's functionality & User Experience
 
-When we first start the project, we were quite surprised that the app must be optimized for CLI, which is not a
- common thing for most of the commercial apps nowadays
+When we first start the project, we were quite surprised that the app must be optimized for CLI, which is not a common thing for most of the commercial apps nowadays. 
+Hence, tremendous effort has been put into optimizing the app for the most natural & intuitive User Experience (more details in the Feature Design Consideration). 
+
+To achieve that, the team has had countless debates on how new features should be implemented, and there were even a topic about task's remark that took the team 3 days of debate to settle. 
+
+
+4 days before the deadline, the app didn't have the edit module features, since we knew for sure that an user will almost never need to edit a module's name or code while using the app (since if they entered it wrongly in the first place they could have fixed it right away).
+Yet, because of the strive for perfection, we didn't want to leave a possible situation where "bad" UX happens (Since in the extremely rare case some users will still need to edit that). So we decided to write an additional few hundreds LOC, and did a lot more testing for that new feature (Since EditModule is a very complicated feature to implement)
+
+We don't aim to create an app with a load of features, but aim to create one with just enough features to get all tasks done, and to make our users feel comfortable & happy in the process.
+Our app may look "simple", but **simple is the ultimate sophistication**. 
+
+### Compared to AB3
+Our app can be thought of as a superset of AB3. AB3 was concerned primarily with the management of contacts. We recognised that contacts and friends were a crucial part of any student’s life. Hence, we decided to build upon AB3 by altering the app to be suited for students, and so that the app could help students conveniently manage their student lives.
+
+Hence, we decided to implement module, lesson, and task managers on top of the existing AB3 contacts manager. Now, students will be able to keep track of all their academic and social commitments with a single app, where they previously had to use 4. 
+
+We put in a lot of effort to add these 3 extra features, working late most nights before our v1.2 demo. Furthermore, we decided after that we should integrate all 4 core features seamlessly, to improve upon the existing user experience. As such, for v1.3 users were able to:
+* view all tasks, lessons, and contacts related to a module
+* view all upcoming tasks, and lessons
+* view all future tasks
+Again, this was no easy feat, and our team worked tirelessly to finish our features before v1.3.
  
+We also enhanced the UI by introducing colour coding, making the fonts more aesthetic, and changing the default heights and widths to make the app more user-friendly. All these changes were extremely important to the overall user experience, and we knew that we had to get them just right, because the users will appreciate the little things that we do just to improve their user experience.
+ 
+### Maintaining a high-quality codebase
+
+The code quality of the repo has been maintained at a high standard throughout the project. Following are the steps we took to maintain that:
+* All codes to be merged in requires an additional proof-read & approval from another team member
+
+* All codes to be merged in must follow the logic design principle & coding rules mentioned in "Code Design Principle" section.
+
+* IntelliJ's code formatter were used throughout the entire development
+
+* The repo were cleaned up & refactored once or twice a week by a designated team member who will read all the codes
+
+* In additional to the above, during the code read up, any part of functioning codes that can be improved to be less bug-prone or cleaner will also be discussed and improve.
+
+At the final stage of the project, the code has also gone through 3 different static analysis tool: 
+* IntelliJ's inspection tool (with many additional warnings turned on)
+* SpotBugs (https://spotbugs.readthedocs.io/en/stable/) 
+* PMD (https://pmd.github.io)
+
+All warnings received by the three app have been looked into and necessary fixes have been done to ensure a high-quality codebase.
