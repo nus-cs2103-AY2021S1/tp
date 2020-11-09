@@ -26,7 +26,7 @@ Given below are my contributions to the project.
   * Highlights: This command displays the patient's profile on a separate popup window, which allows the user to focus on one individual patient. This helps
                 to declutter the main window.
   * Credits: 
-    1. Implement popup windows: [How to create a popup pane in JavaFX](https://quollwriter.wordpress.com/2019/04/08/how-to-create-a-popup-pane-in-javafx/), [VISIT Github](https://github.com/AY1920S1-CS2103T-F12-2/main), [JavaFX Popup example on Github](https://gist.github.com/jewelsea/1926196)
+    1. Popup windows: [Quollwriter](https://quollwriter.wordpress.com/2019/04/08/how-to-create-a-popup-pane-in-javafx/), [VISIT Github](https://github.com/AY1920S1-CS2103T-F12-2/main), [Jewelsea Github](https://gist.github.com/jewelsea/1926196)
     2. Populate separate panel with custom list: [Oracle](https://docs.oracle.com/javafx/2/ui_controls/list-view.htm)
     3. Custom list cell: [StackOverflow](https://stackoverflow.com/questions/25246496/javafx-custom-list-cell-updateitem-being-called-a-lot)
     2. Existing AB3 codebase: [AB3 Github](https://github.com/se-edu/addressbook-level3)
