@@ -52,5 +52,5 @@ Name -[hidden]right-> Telegram
 Telegram -[hidden]right-> NusnetId
 NusnetId -[hidden]right-> Email
 
-ModelManager -->"1" Student : filtered list
+ModelManager -->"*" Student : filtered list
 @enduml
