@@ -50,9 +50,11 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added the documentation for the feature `cd`. [\#176](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/176)
-    * Update images to fit new UI. [\#211](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/211)
+    * Update images to fit new UI. [\#211](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/211), [\#290](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/290)
+    * Improved the format of Command Summary to make it more readable. [\#292](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/292)
   * Developer Guide:
     * Added implementation details of the `cd` and *Internal File Explorer* feature. [\#168](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/168)
+    * Modified past use cases to fit the current app, and added use cases for the new features. [\#311](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/311)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 
