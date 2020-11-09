@@ -1071,7 +1071,7 @@ The below testcases assume that you are in a session and have 7 students inside 
 
 ## **Appendix: Effort**
 
-The process of morphing AddressBook into TAskmaster was rather challenging, and we have successfully to deal with the following difficulties:
+As compared to AB3, this project was tougher and requires more effort to build. First, we consider the behaviour of TAskmaster within each session. The difficulty of implementing this is on par with AB3, since we are having similar functionality to AB3 - just with regards to marking attendance and scoring participation score as compared to AB3's operations on the list of people. This is coupled with a lot of design considerations and iterative changes made to accommodate UI integration and unexpected UI behaviours as will be discussed below. Second, we shall look into the session command itself - this requires a significant update with regards to the UI, adding the sidebar and adjusting sizes to make the user experience better. Additionally, this also entails more commands, which is the creation and deletion of the sessions. On top of that, there needs to be integration with the changed AB3 feature, in which the students from the student list (the morphed AB3) needs to be taken to build the session. Third, we should see the refactoring of AB3 into TAskmaster, changing the input validation and fields as necessary. Overall, we can see that this project has a higher difficulty than AB3, and we are happy to have delivered v1.4 of this product. The following is an elaboration on the challenges we found along the way:
 
 1. Integration Issues
     
@@ -1086,13 +1086,17 @@ The process of morphing AddressBook into TAskmaster was rather challenging, and 
     incremental additions to GUI had to always be completed last in the milestone.
     
     As a result, the design choices agreed upon at the start of every milestone had to be absolutely sound, as changing design patterns in the middle 
-    of a milestone could potentially have cascading repercussions down the chain of workflow.
+    of a milestone could potentially have cascading repercussions down the chain of workflow. Between milestones, we have had changes in the design patterns,
+    and this has caused us to change, rewrite, or otherwise refactor our code. We believe that it is a group achievement to have maintained cohesiveness 
+    and be steadfast in our development, not letting these issues come to interfere with our releases.
 
 2. Integrating model with UI
 
    Another major challenge we faced was in integrating the model with the UI.
    
-   1. Updating StudentRecords with Immutability
+   1. Updating StudentRecords with Immutability.  
+   It was found out that without sticking to immutability, the UI would not update properly, causing a number of refactoring to be needed for this project. 
+   As of v1.4, this issue has been successfully fixed - as a vital part of our product, we have ensured that this part will work as expected.
    
    2. Ensuring that the list of student records is updated properly in session view <br>
    When implementing the `random-student` and `lowest-score` commands, we ran into various difficulties as a result of how the existing application was coded.
@@ -1100,7 +1104,8 @@ The process of morphing AddressBook into TAskmaster was rather challenging, and 
    In the absence of UI tests, we also had to debug the running of the program extensively to identify how and when the student record list was being updated in the UI, and 
    adjust our code accordingly. In this process, we found ourselves having to refactor the code several times until we settled on a solution that was working properly.
 
-2. Difficulty of writing automated tests
+3. Difficulty of writing automated tests
 
     Some features, especially the GUI, had difficulties implementing unit tests. As a result, testing for the GUI had to be done manually and through the
-    debugger. A lot of effort had to be made on Jin Feng's part to ensure that the testing was comprehensive.
+    debugger. A lot of effort had to be made on Jin Feng's part to ensure that the testing was comprehensive. This is an achievement in and of itself, as manual testing
+    is something that is not easy to do and a lot of elaborate efforts have been done to warrant the correctness of the GUI behaviour.
