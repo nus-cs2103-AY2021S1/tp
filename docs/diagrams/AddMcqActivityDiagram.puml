@@ -5,12 +5,16 @@ start
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
-
-if () then ([flashcard already exists])
-    :throw CommandException;
+if() then ([Successfully parsed])
+    if () then ([flashcard already exists])
+        :throw CommandException;
+    else ([else])
+        : Model add flashcard to the list;
+    endif
 else ([else])
-    : Model add flashcard to the list;
+    :Throw ParseException;
 endif
-:return CommandResult to UI;
+
+:UI displays results to User;
 stop
 @enduml

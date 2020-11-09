@@ -146,6 +146,11 @@ The Add Open Ended Question mechanism is facilitated by `QuickCache`.
 The flashcard created is stored internally inside a `UniqueFlashcardList` within the `QuickCache` object.
 
 ##### Usage
+
+The following activity diagram summarizes what happens when a user executes add open ended question  command on a specified flashcard:
+
+![AddOpenEndedActivityDiagram](images/AddOpenEndedActivityDiagram.png)
+
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. `QuickCache` will be initialized with the initial state.
@@ -160,10 +165,6 @@ Step 3. This will result in the creation of a flashcard with an open-ended quest
 The following sequence diagram shows how the flashcard is added:
 
 ![AddOpenEndedSequenceDiagram](images/AddOpenEndedSequenceDiagram.png)
-
-The following activity diagram summarizes what happens when a user executes add open ended question  command on a specified flashcard:
-
-![AddOpenEndedActivityDiagram](images/AddOpenEndedActivityDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, QuickCache will not create the flashcard.
 </div>
@@ -183,6 +184,10 @@ The flashcard created is stored internally inside a `UniqueFlashcardList` within
 
 ##### Usage
 
+The following activity diagram summarizes what happens when a user executes add multiple choice question  command on a specified flashcard:
+
+![AddMcqActivityDiagram](images/AddMcqActivityDiagram.png)
+
 Given below is an example usage scenario and how the Add Multiple Choice Question mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. `QuickCache` will be initialized with the initial state.
@@ -197,10 +202,6 @@ Step 3. This will result in the creation of a flashcard with an multiple choice 
 The following sequence diagram shows how flashcard is added:
 
 ![AddMcqSequenceDiagram](images/AddMcqSequenceDiagram.png)
-
-The following activity diagram summarizes what happens when a user executes add multiple choice question  command on a specified flashcard:
-
-![AddMcqActivityDiagram](images/AddMcqActivityDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, QuickCache will not create the flashcard.
 </div>
