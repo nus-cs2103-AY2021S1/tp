@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Amy's Project Portfolio Page
+---
 ### Project: Warenager
 
 Warenager is an **inventory management application** to help warehouse managers
@@ -18,22 +19,22 @@ Given below are my contributions to the project.
 * **Features and Enhancements implemented**
   * **New Feature**: Added the ability to find existing items in the storage. (PR [\#93](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/93))
     * What it does: Allows the user to search for desired stock.
-    * Justification: Users can easily find stocks using the stock's fields (name, serial number, location, source). 
+    * Justification: Users can easily find stocks using the stock's fields (name, serial number, location stored, source). 
     * Highlights: This enhancement brings ability to find stocks from not just the name of the stock but also other related fields
-    of the stock. Search is also case-insensitive and any stock that matches any field searched will be shown.
+    of the stock. Any stock that matches any field searched will be shown. Search is also case-insensitive. 
 
   * **New Feature**: Added the ability for advanced find for existing items in the storage. (PR [\#115](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/115))
     * What it does: Allows the user to apply additional filters to search for desired stock.
     * Justification: Users can accurately find stocks using more filters, to narrow down the results.
     * Highlights: This enhancement comes with the ability to apply filters such as name of the stock,
-    serial number, location stored and source of stock.
-    Search is also case-insensitive and any stock that matches all fields searched will be shown.
+    serial number, location stored and source of stock. Any stock that matches all fields searched will be shown.
+    Search is also case-insensitive.
 
   * **New Feature**: Added the ability to add optional notes to existing items in the storage. (PR [\#147](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/147))
     * What it does: Allows the user to add notes to stock.
     * Justification: User can now add notes to their stocks, to remind them of important details.
     * Highlights: This enhancement comes with the ability to add multiple notes to the stock.
-    Users will be able to add notes to the stock at any time, without erasing their previous notes.
+    Users are able to add notes to the stock at any time, without erasing their previous notes.
 
   * **New Feature**: Added the ability to delete one or all notes from an existing stock. (PR [\#147](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/147))
     * What it does: Allows the user to delete notes from stock.
