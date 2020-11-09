@@ -447,7 +447,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user who likes to see progress             | use a progress tracker to motivate myself                                                            | keep working at saving up                                              |
 | `*`      | cautious user                              | view my ledger data in a human-readable format and only edit the file when commands are executed     | be assured that the accounts are updated and accurate                  |
 | `*`      | long-time user                             | archive older data from my view                                                                      | manage my expenses easier                                              |
-| `*`      | careless user                              | revert my commands                                                                                   | easily undo changes I made to my budgeting
+| `*`      | careless user                              | revert my commands                                                                                   | easily undo changes I made to my budgeting                             |
 | `*`      | user who likes to plan in advance          | simulate future spending                                                                             | visualize my journey towards my financial goals                        |
 | `*`      | forgetful user                             | receive notifications of budget limits and bill payments                                             | better plan for daily expenditure and make payments on time            |
 
@@ -719,7 +719,7 @@ Similar to U9, except it's the opposite.
 4. Bamboo updates the budget balance bar.
 
    Use case ends.
-   
+
 **Extensions**
 
 * 1a. The category does not exist in the expense book.
@@ -729,7 +729,7 @@ Similar to U9, except it's the opposite.
       
 * 1b. The specified amount is invalid.
     * 1b1. Bamboo shows an error message.
-    
+
       Use case ends.
 
 * 1c. The specified amount exceeds the amount present in the specified budget.
