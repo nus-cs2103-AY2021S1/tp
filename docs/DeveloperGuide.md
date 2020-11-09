@@ -742,12 +742,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                 | I want to …​                | So that I can …​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | project team leader | add a new teammate |                      |  
-| `* * *`  | project team leader | edit a teammate |  change details of a teammate                     |  
+| `* * *`  | project team leader   | add a project                  |                      |
+| `* * *`  | project team leader | add a new person |                      |  
+| `* * *`  | project team leader | edit a person |  change details of a person                     |  
 | `* * *`  | project team leader | add a teammate to another project | have a teammate in multiple projects |
 | `* * *`  | project team leader | remove a teammate from a project | remove a teammate when he leaves a project   |
-| `* * *`  | project team leader | delete a teammate | remove a teammate who has left my team entirely |
-| `* * *`  | project team leader   | add a project                  |                      |
+| `* * *`  | project team leader | delete a person | remove a person that will never collaborates again |
 | `* *`  | project team leader  | view projects of a teammate      | assess a specific teammate's workload |
 | `* *` | project team leader   | view a dashboard of tasks my project   | see at a glance what needs to be done for a project  |
 | `* * *`| forgetful user | add in teammate's information           | keep track of my teammate's contact information                                                 |
@@ -797,16 +797,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### System: Teammates Tracking System (TMTS)
 
-**Use Case: UC3 - Add A Teammate**
+**Use Case: UC3 - Add A Person**
 
 **Actor:** User
 
 **MSS:**
 
-1. User creates a new teammate's profile.
-2. TMTS asks for the details of the teammates such as `personName`, `phone`, `email`, and `gitUserName`.
+1. User creates a new person's profile.
+2. TMTS asks for the details of the person such as `personName`, `phone`, `email`, and `gitUserName`.
 3. User keys in the details.
-4. TMTS stores the teammate's profile into the data file.
+4. TMTS stores the person's profile into the data file.
 
    Use case ends.
 
@@ -817,15 +817,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    
    Use case resumes at 3.
 
-**Use Case: UC4 - Edit An Existing Teammates**
+**Use Case: UC4 - Edit An Existing Person**
 
 **Actor:** User
 
 **MSS:**
 
-1. User chooses to edit a teammate's profile.
-2. PTS asks for the `gitUserName` of the teammate whose profile is to be edited.
-3. User keys in the `gitUserName` of the teammate.
+1. User chooses to edit a person's profile.
+2. PTS asks for the `gitUserName` of the person whose profile is to be edited.
+3. User keys in the `gitUserName` of the person.
 4. Same as <u>UC3</u> 2-4.
 
    Use case ends.
