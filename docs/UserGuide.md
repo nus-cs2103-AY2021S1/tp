@@ -143,8 +143,7 @@ Figure 1.2: <i>The Recipe List Panel of ChopChop.</i>
 ChopChop does your bidding by listening to your commands — the *Command Box* is where you type your textual commands.
 After typing your commands, press <kbd>enter</kbd> to input the command. You can also use the <kbd>up</kbd> and <kbd>down</kbd> arrow keys to navigate through the history of commands you've typed previously.
 
-To learn about the commands you can use, check out our [command summary](#CommandSummary) for a quick overview or our [commands](#Commands) for a detailed list.
-If you have yet to check out ChopChop's [tab completion](#TabCompletion) section, do drop by to learn this handy feature!
+To learn about the commands you can use, check out our [command summary](#CommandSummary) for a quick overview or our [commands](#Commands) for a detailed list. You can also use [tab completion](#TabCompletion) to speed up typing commmands!
 
 
 
@@ -928,9 +927,9 @@ Figure 12.2: <i>Only one recipe matched all the provided criteria</i>
 </div>
 
 Note the following:
-- `ginger` found the ingredient <b>ginger root</b>
-- `baked` found the tag <b>home baked</b>
-- `men` and `bread` found the name <b>Gingerbread Men</b>
+- `ginger` found the ingredient *Ginger Root*
+- `baked` found the tag *home baked*
+- `men` and `bread` found the name *Gingerbread Men*
 
 To reset the search filter or go back to the full recipe view, you can click the Recipes button or run the `list recipes` command.
 
@@ -1201,7 +1200,7 @@ Examples:
   This matches *bitter melon* and *dark chocolate*, assuming they are the only ingredients tagged with *bitter taste*.
 
 - `filter ingredient /tag frequently used /tag sweet` <br />
-  This matches *sugar*, if it is the only ingredient tagged <i>both</i> *frequently used* and *sweet*.
+  This matches *sugar*, if it is the only ingredient tagged **both** *frequently used* and *sweet*.
 
 - `filter ingredient /expiry 2020-12-01 /expiry 2020-10-31 /expiry 2023-01-01` <br />
   This matches *apple*, if it is the only ingredient expiring before *2020-10-31*. Note that only the earliest date is considered here (in this case, 31st October 2020), and the rest are ignored.
