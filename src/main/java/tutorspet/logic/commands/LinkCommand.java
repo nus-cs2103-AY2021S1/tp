@@ -37,7 +37,7 @@ public class LinkCommand extends Command {
             + PREFIX_STUDENT_INDEX + "STUDENT_INDEX (must be a positive integer) "
             + PREFIX_CLASS_INDEX + "CLASS_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_STUDENT_INDEX + "1"
+            + PREFIX_STUDENT_INDEX + "1 "
             + PREFIX_CLASS_INDEX + "1";
 
     public static final String MESSAGE_SUCCESS = "Added %1$s to %2$s.";
