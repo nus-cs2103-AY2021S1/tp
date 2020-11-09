@@ -20,3 +20,4 @@ Interface (GUI). It is written in Java, and currently has over 10kLoC.
     to keep their Students organised.
     - Highlights: This feature is fundamental to the functionality of Trackr. It was a challenge because its stored in
     the Module class and stores the Student class.
+    
