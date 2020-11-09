@@ -603,7 +603,17 @@ The following describes the flow of how `AddExamCommand` is performed.
 7. `Model#setStudent(Student selectedStudent, Student updatedStudent)` is called to replace the student with the updated copy. A new `CommandResult` is returned with a success message showing the affected student and the exam added.
 8. The updated student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
-The sequence(insert image reference here) of how add exam operates is very similar to that of add attendance.
+The following sequence diagram shows how the exam adding operation works.
+
+![AddExamSequence](images/AddExamSequenceDiagram.png)
+
+Figure 5.2.3.1. Sequence diagram for `AddExamCommand` execution
+
+The following activity diagram summarises the flow of events when `AddExamCommand` is executed.
+
+![AddExamActivity](images/AddExamActivityDiagram.png)
+
+Figure 5.2.3.2. Activity diagram for `AddExamCommand` execution
 
 ##### 6.3.2.2 Delete exam command
 
@@ -623,7 +633,17 @@ The following describes the flow of how `DeleteExamCommand` is performed.
 
 </div><br>
 
-The sequence(insert image reference here) of how add exam operates is very similar to that of delete attendance.
+The following sequence diagram shows how the exam deleting operation works.
+
+![DeleteExamSequence](images/DeleteExamSequenceDiagram.png)
+
+Figure 5.2.3.1. Sequence diagram for `DeleteExamCommand` execution
+
+The following activity diagram summarises the flow of events when `DeleteExamCommand` is executed.
+
+![DeleteExamActivity](images/DeleteExamActivityDiagram.png)
+
+Figure 5.2.3.2. Activity diagram for `DeleteExamCommand` execution
 
 ##### 6.3.2.3 Exam Stats command
 
