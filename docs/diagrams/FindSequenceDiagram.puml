@@ -37,23 +37,32 @@ deactivate CommonCentsParser
 LogicManager -> FindCommand: execute(model, activeAccount)
 activate FindCommand
 
-alt expenseList not null
+alt expensePredicate not null and revenuePredicate null
 FindCommand -> ActiveAccount: updateFilteredExpenseList()
 activate ActiveAccount
 
 ActiveAccount --> FindCommand
 deactivate ActiveAccount
-else
-end
 
-alt revenueList not null
+else revenuePredicate not null and expensePredicate null
 FindCommand -> ActiveAccount: updateFilteredRevenueList()
 activate ActiveAccount
-
 ActiveAccount --> FindCommand
 deactivate ActiveAccount
-else
+
+else revenuePredicate and expensePredicate not null
+FindCommand -> ActiveAccount: updateFilteredRevenueList()
+activate ActiveAccount
+ActiveAccount --> FindCommand
+
+FindCommand -> ActiveAccount: updateFilteredExpenseList()
+ActiveAccount --> FindCommand
+
+deactivate ActiveAccount
 end
+
+
+
 FindCommand --> LogicManager
 deactivate FindCommand
 FindCommand -[hidden]-> LogicManager : result
