@@ -1060,6 +1060,7 @@ testers are expected to do more *exploratory* testing.
    1. Click the cross button at top right side of window for WindowsOS, and top left side of window for MacOS.
 
    1. Type `exit` command in the Command Box in GUI.
+      <br>
       Expected: Stops and closes the program.
 
 ### 7.2 Deleting a Consultation
@@ -1074,7 +1075,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete -c 0`<br>
       Expected: No `Consultation` is deleted. Error details shown in the status message. GUI's `Consultation` list under `Consultation` tab remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete -c x` (where x is larger than the list size or smaller than 1), `...`<br>
+   1. Other incorrect delete commands to try: `delete`, `delete -c x` (where x is larger than the list size or smaller than 1)<br>
       Expected: Similar to previous.
 
 ### 7.3 Adding a Deadline
@@ -1087,7 +1088,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `add -d d/2020-12-12 t/17:55`<br>
       Expected: No `Deadline` is added due to missing description. Error details shown in the status message. GUI's `Task` list remains the same.
 
-   1. Other incorrect add commands to try: `add -d example deadline d/ t/17:55`, `add -d example deadline d/2020-02-31 t/20:20`, `...`<br>
+   1. Other incorrect add commands to try: `add -d example deadline d/ t/17:55`, `add -d example deadline d/2020-02-31 t/20:20`<br>
       Expected: Similar to previous due to incorrect date and time or missing input.
 
 ### 7.4 Viewing a Student
@@ -1114,7 +1115,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `edit -l u/username p/password`, `edit -l u/username` or `edit -l p/password`<br>
       Expected: Success message of editing username and password is shown in the status message. `username` and `password` saved to `login.json` file. Welcome message reflected on GUI.
 
-   1. Test case: `edit -l`, `edit -l t/password`, `...`<br>
+   1. Test case: `edit -l`, `edit -l t/password`<br>
       Expected: Error message shown in the status message. GUI welcome message remains unchanged. `login.json` file remains unchanged.
 
 ### 7.6 Saving data
