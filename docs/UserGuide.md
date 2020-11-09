@@ -770,7 +770,7 @@ You can store notes containing small amounts of information inside the notebook.
 You should see the notes on the bottom right hand side of Reeve similar to the display shown below (Figure 23).
 
 ![Location of notes panel](images/screenshots/Notes.png)
-<div align="center">Figure 23: Location of Notes panel</div><br>
+<div align="center">Figure 23: Location of notes panel</div><br>
 
 #### 3.5.1 Adding a note `note add`
 
@@ -864,6 +864,7 @@ Administrative Details | Details such as class venue, class time, tuition fee, l
 Academic Details | Details such as questions, exam records and attendance records
 Detail | Any miscellaneous information regarding a student
 Exam Record | A record of an exam which includes its name, date and the student's score
+Index | Position of an item in a list (1, 2 3 etc)
 
 ## 6. FAQ
 This section provides the answers to Frequently Asked Questions (FAQ) by users.
