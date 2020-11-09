@@ -26,7 +26,7 @@ Given below are my contributions to the project.
 * **Improved code quality of the command result.**
   * Justification: The Addressbook-level3 used a lot of booleans in its command result's constructor. A factory method was
   created to improve the code quality. 
-  * Related Pull Requests: [\#152](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/152).
+  * Related Pull Requests: [\#152](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/152)
   
 <div style="page-break-after: always;"></div>
 
@@ -57,9 +57,11 @@ Given below are my contributions to the project.
 
 ### Project Management
 
-* **Managed the punctual delivery of deliverables:** Reminded teammates of tasks and their deadlines. Helped with unfinished tasks.
+* **Managed the punctuality of deliverables:** Reminded teammates of tasks and their deadlines. Helped with unfinished tasks.
 
 * **Community**: 
+
+  * PR(s) reviewed (with non-trivial review comments): [\#279](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/279)
   * Reported bugs and suggestions for other teams in the class (examples: 
   [\#240](https://github.com/AY2021S1-CS2103T-W12-3/tp/issues/240), 
   [\#241](https://github.com/AY2021S1-CS2103T-W12-3/tp/issues/241), 
@@ -73,7 +75,7 @@ Given below are my contributions to the project.
   [\#249](https://github.com/AY2021S1-CS2103T-W12-3/tp/issues/249), 
   [\#250](https://github.com/AY2021S1-CS2103T-W12-3/tp/issues/250), 
   [\#251](https://github.com/AY2021S1-CS2103T-W12-3/tp/issues/251), 
-  [\#252](https://github.com/AY2021S1-CS2103T-W12-3/tp/issues/252),  
+  [\#252](https://github.com/AY2021S1-CS2103T-W12-3/tp/issues/252)  
 
 ### Documentation
 
