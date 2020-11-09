@@ -1,6 +1,6 @@
 # User Guide
 
-Bamboo (v1.3) is a **simple desktop app for managing personal finance, optimized for use via a Command Line Interface (CLI),** and targeted at college students. If you can type fast, Bamboo v1.2 can get your financial management tasks done faster than traditional GUI apps.
+Bamboo (v1.4) is a **simple desktop app for managing personal finance, optimized for use via a Command Line Interface (CLI),** and targeted at college students. If you can type fast, Bamboo v1.4 can get your financial management tasks done faster than traditional GUI apps.
 
 
 This User Guide explains how you can use Bamboo to manage your personal finances. Let's grow our wealth! :bamboo:
@@ -21,19 +21,19 @@ Refer to [Quick Start](#QuickStart) for a short tutorial on how to set up Bamboo
 1. Ensure that Java Version 11 or above is installed in your computer
 2. Download the latest Bamboo Release `ExpenseBook.jar` [here](https://github.com/AY2021S1-CS2103-W14-3/tp/releases/tag/v1.3).
 3. Copy the file to the folder you want to use as the home directory for Bamboo.
-4. Double-click the file to start the app. It should open in a new window.  
+4. Double-click the file to start the app. It should open in a new window.
     OR Navigate to the directory on terminal and run `java -jar ExpenseBook.jar`.
 5. Type in commands with arguments in the command input box above, and press `Enter` to execute them.
-6. Use the `help` command to find out the list of commands available, or we'd recommend checking out the 
+6. Use the `help` command to find out the list of commands available, or we'd recommend checking out the
 [Features](#Features) section for a comprehensive guide!
 7. Let's grow our wealth together!
 
 ## Command Format Guide
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 This section explains the format of commands in this User Guide.
 
-- Items in <angular_brackets> are types of parameters to be supplied by the user e.g. in `add -d <description>`, `<description>` refers to a description of an expense such as "Lunch @ Thai Place".
-- Items in square brackets are optional e.g `-d <description> [-@<date>]` means that date input is optional. Both `-d lunch` and `-d lunch -@03-09-2020` are valid.
+* Items in <angular_brackets> are types of parameters to be supplied by the user e.g. in `add -d <description>`, `<description>` refers to a description of an expense such as "Lunch @ Thai Place".
+* Items in square brackets are optional e.g `-d <description> [-@<date>]` means that date input is optional. Both `-d lunch` and `-d lunch -@03-09-2020` are valid.
 
 :bulb: **Note:** Command input is limited to 450 characters total (including command and parameters).
 
@@ -41,7 +41,7 @@ This section explains the format of commands in this User Guide.
 
 ## Features <a name="Features"></a>
 
-### Basic 
+### Basic
 1. **Add an Expense**
     - Adds new expense record.
     - Command: `add`
@@ -62,8 +62,8 @@ This section explains the format of commands in this User Guide.
     - Command: `delete`
     - [Usage](#delete)
 
-1. **Top up Budget**
-    - Increases a budget for a specific category by user-defined amount.
+1. **Top-up Budget**
+    - Increases the amount of budget (in the "Default" category) by a user-defined amount.
     - Command: `topup`
     - [Usage](#topup)
 
@@ -107,7 +107,17 @@ This section explains the format of commands in this User Guide.
 1. **Delete Category**
     - Deletes an existing category in the expense book.
     - Command: `deleteCat`
-    - [Usage](#deleteCat) 
+    - [Usage](#deleteCat)
+
+1. **Top-up Budget by Category**
+    - Increases the amount of budget in a specific category by a user-defined amount.
+    - Command: `topup`
+    - [Usage](#topup)
+
+1. **Reduce Budget (by Category)**
+    - Reduces the amount of budget in a specific category by a user-defined amount.
+    - Command: `reduce`
+    - [Usage](#reduce)
 
 1. **Switch Category**
     - Switches an expense book into another existing category.
@@ -118,10 +128,10 @@ This section explains the format of commands in this User Guide.
     - Finds expenses by keywords, date, tags.
     - Command: `find`
     - [Usage](#find)
-    
-1. **Sort Expenses**  
+
+1. **Sort Expenses**
     - Sort by **date, description (alphabetical), amount**, with option of reverse sort.
-    - Command: `sort` 
+    - Command: `sort`
     - [Usage](#sort)
 
 1. **Add Command Shortcut**
@@ -145,7 +155,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 1. **expense**
     - An expense is a cost incurred in or required for something. Every entry in **Bamboo** is an expense.
     - Bamboo treats 2 expenses as identical if they have the same **Description**, **Amount**, and **Date**.
-    - Restrictions: Bamboo cannot store duplicate expenses i.e. 2 expenses are identical according to the criterion above.  
+    - Restrictions: Bamboo cannot store duplicate expenses i.e. 2 expenses are identical according to the criterion above.
     - Refer to [Commands](#commands) to see how to manage expenses using Bamboo.
 
 1. **description**
@@ -156,9 +166,9 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Restrictions: Descriptions can be up to 200 characters long.
     - Example: `-d lunch`, `-d dinner`
 
-1. **amount**
+1. **amount**<a name="amount"></a>
     - Amount of money spent in expense.
-    - **NOTE**: Amounts provided must be between 0 and 10e<sup>9</sup>    
+    - **NOTE**: Amounts provided must be between 0 and 10e<sup>9</sup>
     - Works only in complement with [add](#add), [edit](#edit), [find](#find), [sort](#sort), [topup](#topup)
     - Prefix: `-$`
     - Format: `-$<dollars>[.<cents>]`
@@ -228,7 +238,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
     ![add_example](images/ug_example/add_example.PNG)
     &nbsp;
-    
+
 1. **List all Expenses `list`** <a name="list"></a>
     - Displays all the items in the list.
     - Displays the budget balance based on **total expenditure** against the **total sum of all budgets**.
@@ -237,7 +247,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
     ![list_example](images/ug_example/list_example.PNG)
     &nbsp;
-    
+
 1. **Edit an Expense `edit`** <a name="edit"></a>
     - Edits the fields of existing expenses.
     - Identified by index starting from 1, based on expenses currently displayed.
@@ -266,7 +276,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
     ![delete_example](images/ug_example/delete_example.PNG)
     &nbsp;
-    
+
 1. **Add a Category `addCat`** <a name="addCat"></a>
     - Adds a new category to the expense book.
     - The category must not already exist in the expense book.
@@ -279,9 +289,9 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     ![addCat_example](images/ug_example/addCat_example_2.PNG)
     _Use "Shopping" category_
     &nbsp;
-    
+
 1. **Delete a Category `deleteCat`** <a name="deleteCat"></a>
-    - Deletes an existing category in expense book.
+    - Deletes an existing category in expense book, if it exists. (Note: the "Default" category <u> cannot </u> be deleted.)
     - Category budget of the deleted category will be deleted.
     - All expenses tagged with deleted category will be reverted to "Default" category.
     - Format: `deleteCat t/<category>`
@@ -290,14 +300,18 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     ![deleteCat_example](./images/ug_example/deleteCat_example.PNG)
     _Expense 9 is reverted from "Shopping" category to "Default" category_
     &nbsp;
-    
+
 1. **Top up Category Budget `topup`** <a name="topup"></a>
     - Increases the budget of a **particular category** by the amount specified by the user.
     - Expenses in the same category reduce the balance of the budget.
-    - Tag (or category) input is optional, defaults to the Default category.
+    - Tag (or category) input is optional, defaults to the "Default" category.
     - Format: `topup -$<amount> [t/<category>]`
-    - Example: `topup -$10` Increases the `Default` category's budget by 10 dollars.
-    - Example: `topup -$20 t/Food` Adds an extra budget of 20 dollars to the Food category-budget.
+    - Example: `topup -$10` Increases the "Default" category's budget by 10 dollars.
+    - Example: `topup -$20 t/Food` Adds an extra budget of 20 dollars to the "Food" category-budget.
+    - Input constraints:
+      - The category specified must exist in the Expense Book. Otherwise, it must be [created](#addCat) before it can be topped up.
+      - The input amount must be non-negative (see [Amount](#amount)) and cannot exceed 10e<sup>9</sup>.
+      - The total amount of all the budgets cannot exceed 10e<sup>9</sup>.
     <div markdown="span" class="alert alert-primary">
 
     :bulb: **Note**: Each budget is associated with 1 category, and vice versa.
@@ -306,7 +320,21 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
     ![topup_example](images/ug_example/topup_example.PNG)
     &nbsp;
-    
+
+1. **Reduce Category Budget `reduce`** <a name="reduce"></a>
+    - Reduces the budget of a **particular category** by the amount specified by the user.
+    - The amount in any budget cannot fall below zero (any reduction in budget beyond the amount present would cause a _reduction to zero_).
+    - Tag (or category) input is optional, defaults to the "Default" category.
+    - Format: `reduce -$ [t/<category>]`
+    - Example: `reduce -$10` Reduces the "Default" category's budget by 10 dollars.
+    - Example: `reduce -$5 t/Food` Reduces the amount in the "Food" category-budget by $5 (or to $0 if the original amount was insufficient).
+    - Input constraints:
+      - The category specified must exist in the Expense Book. Otherwise, it must be [created](#addCat) before it can be reduced.
+      - The input amount must be non-negative (see [Amount](#amount)) and cannot exceed 10e<sup>9</sup>.
+
+    ![reduce_example](images/ug_example/reduce_example)
+    &nbsp;
+
 1. **Find Expenses `find`** <a name="find"></a>
     - Finds expenses with given keywords and/or date by user.
     - Expenses that fits the criteria will be presented as another list.
@@ -331,7 +359,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
     ![remark_example](./images/ug_example/remark_example.PNG)
     &nbsp;
-    
+
 1. **Sort Expenses `sort`** <a name="sort"></a>
     - Sorts expenses which are current displayed.
     - **Sorting keywords** (and thus criterion) include:
@@ -344,11 +372,11 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Format: `sort -by <sorting keyword> [-by <sorting keyword>] [-by <sorting keyword>]`
     - Example: `sort -by date -by descriptionR` (sorts by date, then by reversed alphabetical order of the descriptions)
 
-    | ![sort_example](./images/ug_example/sort_example.PNG) <br> _Single parameter sort: ascending Date order_ | ![sort_example_2](./images/ug_example/sort_example_2.PNG) <br> _Multiple parameter sort: in order of appearance – date, then description, then amount (see Expenses 1 and 2)_ |
-    |-------------------------------------------------------|---------------------------------------------------------|
-    |![sort_example_3](./images/ug_example/sort_example_3.PNG) <br> _Multi-parameter sort will take the last sorting keyword if there are duplicates_|![sort_example_4](./images/ug_example/sort_example_4.PNG) <br> _Sorting after using `Find`_ |
+    | ![sort_example](./images/ug_example/sort_example.PNG) <br> _Single parameter sort: ascending Date order_                                       | ![sort_example_2](./images/ug_example/sort_example_2.PNG) <br> _Multiple parameter sort: in order of appearance – date, then description, then amount (see Expenses 1 and 2)_ |
+    |------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    |![sort_example_3](./images/ug_example/sort_example_3.PNG) <br> _Multi-parameter sort will take the last sorting keyword if there are duplicates_|![sort_example_4](./images/ug_example/sort_example_4.PNG) <br> _Sorting after using `Find`_                                                                                    |
     &nbsp;
-    
+
 1. **Switch Category `switch`** <a name="switch"></a>
     - Switches expense book to requested category.
     - Displays all expenses tagged under requested category.
@@ -379,7 +407,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Example: `alias add spent`
     - Each command may only have up to one shortcut at each time. If a new shortcut is provided for a command, the old shortcut will be un-mapped.
     - Reversing the two parameters will remove the particular shortcut from the command.
-        - Example: `alias spent add` 
+        - Example: `alias spent add`
 
     ![alias_example](./images/ug_example/alias_example.PNG)
     _Map "spent" to "add" command_
@@ -390,24 +418,24 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
     ![alias_example_3](./images/ug_example/alias_example_3.PNG)
     _"spent" keyword can no longer function as "add"_
-        
+
 1. **Reset Command Shortcuts `resetAlias`** <a name="resetAlias"></a>
     - Removes all existing shortcuts defined by user.
     - Format: `resetAlias`
     - Example: `resetAlias`
-    
+
     ![resetAlias_example](./images/ug_example/resetAlias_example.PNG)
-    
+
 1. **Graph Command `graph`** <a name="graph"></a>
     - Opens a window that displays a pie chart representing categorical expenses.
     - Format: `graph`
     - Example: `graph`
-    - Note: The pie chart does not update dynamically. 
+    - Note: The pie chart does not update dynamically.
       If a command that edits the Expense Book is entered while the graph window is open, the pie chart will not be updated.
       User must re-enter the graph command to update the pie chart accordingly.
-    
+
     ![graph_example](./images/ug_example/graph_example.PNG)
-    
+
 1. **Display Help `help`** <a name="help"></a>
     - Displays a help link to the User Guide, which comprehensively covers Bamboo's commands.
     - Format: `help`
@@ -415,13 +443,13 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
     ![help_example](./images/ug_example/help_example.PNG)
     &nbsp;
-      
+
 1. **Clear All Expenses `clear`** <a name="clear"></a>
     - Clears all expenses from Bamboo, resulting in an empty expense book.
     - Format: `clear`
     - Example: `clear`
-    
-    ![clear_example](images/ug_example/clear_example.PNG)
+
+    ![clear_example](images/ug_example/clear_example.png)
 
 1. **Exit Application `exit`** <a name="exit"></a>
     - Exits the application.
@@ -436,6 +464,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 |  **Edit**     | `edit <index> [-d <description>] [-$<amount_spent>] [-@<date>] [t/<category>]`<br> e.g.,`edit 1 -d lunch -$12.50`, `edit 1 -$12.50 -d lunch -@11-11-2020 t/Lunch`|
 | **Delete**    | `delete <index>`<br> e.g., `delete 1`                                                                                                                            |
 | **Topup**     | `topup -$<amount> [t/<category>]`<br> e.g., `topup -$200`, `topup -$30 t/Food`                                                                                   |
+| **Reduce**    | `reduce -$<amount> [t/<category>]`<br> e.g., `reduce -$50`, `reduce -$40 t/Food`                                                                                 |
 |  **Find**     | `find [-d <description>] [-@<date>]` <br> e.g., `find -d lunch`, `find -d lunch -@01-07-2020`                                                                    |
 | **Remark**    | `remark <index> -r<remark>` <br> e.g., `remark 11 -r Pepper Lunch`                                                                                               |
 | **Sort**      | `sort -by <sorting keyword> [-by <sorting keyword>] [-by <sorting keyword>]` <br> e.g., `sort -by date -by descriptionR`                                         |

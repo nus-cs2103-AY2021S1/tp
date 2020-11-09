@@ -40,13 +40,13 @@ Given below are my contributions to the project.
   * Modifying classes to encourage more abstraction barriers (Pull request [\#77](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/77))
   * Fixing of bugs that causes unideal results (Pull request [\#155](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/155), [\#156](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/156))
   * Setting character limits to textfield input to prevent excessive amount of input to lag the application (Pull request [\#158](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/158))
-  
+
 * **Documentation**:
   * User Guide:
     * Added initial documentation for basic features. [\#11](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/11)
     * Updated documentation to v1.2 [\#48](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/48)
     * Added documentation for the features `help`, `deleteCat` and `switch` [\#91](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/91)
-    * Added example screenshots to features in Usage 
+    * Added example screenshots to features in Usage
   * Developer Guide:
     * Added implementation details of the `switch` feature. [\#66](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/66)
     * Updated `switch` feature, user stories, spacing and use case 13 [\#159](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/159)

@@ -275,7 +275,7 @@ Sample usage: By default, the only command word for `FindCommand` is `"find"`
 * `alias find get` -> The user can now trigger a `FindCommand` with `"get"` alias. The `"find"` command word will still work.
 * `alias get find` -> The "get" alias is removed from `AliasMap` object and only `"find"` can now trigger `FindCommand`. In other words, `FindCommand` no longer has an alias.
 
-To maintain some degree of simplicity and neatness, we require that `AliasCommand` and `ResetAliasCommand` cannot have aliases themselves. Furthermore, any custom alias is restricted to 10 case-sensitive alphabetical characters and each command can only have up to a single alias at any point in time. Default command words of each `Command` subclasses cannot be used as aliases. 
+To maintain some degree of simplicity and neatness, we require that `AliasCommand` and `ResetAliasCommand` cannot have aliases themselves. Furthermore, any custom alias is restricted to 10 case-sensitive alphabetical characters and each command can only have up to a single alias at any point in time. Default command words of each `Command` subclasses cannot be used as aliases.
 
 To allow for customisation to remain even after the user exits the app and subsequently restarts it, a customised alias-to-command mapping will be stored in JSON format, which can be converted to `AliasMap` and `AliasEntry` objects when Bamboo runs.
 
@@ -283,7 +283,7 @@ The `ExpenseBookParser`'s `parseCommand()` method takes in an AliasMap object in
 
 Step 1. The user launches the application for the first time. Assume no alias is present (by default, aliases in the JSON file will be the default command word).
 
-Step 2. The user inputs `alias find get` to update the alias for `FindCommand` as `”get”`.  
+Step 2. The user inputs `alias find get` to update the alias for `FindCommand` as `”get”`.
 This will not only update the current AliasMap object, but will also update the JSON mapping with the help of StorageManager which handles all types of storage including JsonAliasMapStorage.
 
 The following is a sequence diagram showing how it works:
@@ -321,6 +321,27 @@ The default category generally functions the same way as any user-created catego
 renamed. It is contained separately from the user-created categories (if any) for this reason. If a new ExpenseBook is
 started, the default category is automatically initialized so that the User can use the full range of the basic
 features even without creating customized categories.
+
+### Expense and Budget Categorization Feature
+
+The budgets and expenses in the expense book are grouped according to the user's specifications, as they can freely create
+the categories that they need, top-up the desired amount for each category, and tag their expenses (both new and old) to
+the respective categories to keep track of their spending.
+
+#### Implementation
+
+Each expense is tagged to exactly one category, and the category must exist in the expense book before any expenses can
+be tagged to it. When a category is created in the expense book, the corresponding budget is automatically initialized
+with zero amount. Thereafter, the user can top-up (or reduce) each budget accordingly, and the balance after deducting
+all expenses within that category is shown to the user.
+
+![AddingCategorizedExpenseActivityDiagram](images/CategoryBudgetActivityDiagram.png)
+
+The activity diagram above shows a possible flow of the user attempting to add an expense tagged to a specific category.
+
+![ToppingUpCategoryBudgetActivityDiagram](images/CategoryBudgetActivityDiagram2.png)
+
+This second activity diagram shows a possible flow of the user trying to top-up the budget of a specific category.
 
 ### Graphical Representation Feature
 
@@ -426,7 +447,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user who likes to see progress             | use a progress tracker to motivate myself                                                            | keep working at saving up                                              |
 | `*`      | cautious user                              | view my ledger data in a human-readable format and only edit the file when commands are executed     | be assured that the accounts are updated and accurate                  |
 | `*`      | long-time user                             | archive older data from my view                                                                      | manage my expenses easier                                              |
-| `*`      | careless user                              | revert my commands                                                                                   | easily undo changes I made to my budgeting
+| `*`      | careless user                              | revert my commands                                                                                   | easily undo changes I made to my budgeting                             |
 | `*`      | user who likes to plan in advance          | simulate future spending                                                                             | visualize my journey towards my financial goals                        |
 | `*`      | forgetful user                             | receive notifications of budget limits and bill payments                                             | better plan for daily expenditure and make payments on time            |
 
@@ -688,6 +709,50 @@ Similar to U9, except it's the opposite.
     * 1a1. Bamboo shows an error message.
 
       Use case ends.
+      
+#### Use case U15: Graph Command Keyword
+**MSS**
+
+1. User requests to view graph of his personal finance.
+2. Bamboo displays a pop-up window containing a pie chart showing amount spent for each category.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User has not recorded any expenditures into the app.
+    * 1a1. Bamboo shows a blank pop-up window.
+
+      Use case ends.
+
+#### Use case U14: Reduce Category Budget
+**MSS**
+
+1. User requests to reduce a given amount of budget from a specific category.
+2. Bamboo reduces the matching category-budget by the specified amount.
+3. Bamboo shows the new budget amount for that category.
+4. Bamboo updates the budget balance bar.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The category does not exist in the expense book.
+    * 1a1. Bamboo shows an error message.
+
+      Use case ends.
+
+* 1b. The specified amount is invalid.
+    * 1b1. Bamboo shows an error message.
+
+      Use case ends.
+
+* 1c. The specified amount exceeds the amount present in the specified budget.
+    * 1c1. Bamboo reduces the amount in the specified budget to zero.
+    * 1c2. Bamboo alerts the user that the amount reduced from the budget exceeded the amount present.
+    * 1c3. Bamboo updates the budget balance bar.
+
+      Use case resumes from 4.
 
 ### Non-Functional Requirement
 
