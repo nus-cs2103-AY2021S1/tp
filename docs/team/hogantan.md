@@ -1,8 +1,9 @@
-# Hogan Tan Shao Han - Project Portfolio
-
-## PROJECT: Reeve
-
 ---
+layout: page
+title: Hogan Tan Shao Han's Project Portfolio Page
+---
+
+## Project: Reeve
 
 ## Overview
 
