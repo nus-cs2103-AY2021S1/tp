@@ -159,7 +159,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Add entries feature 
 *(Written by Nicholas Canete)* <br>
 
-This feature allows user to add entries.
+This feature allows user to add entries to an account.
 
 #### Implementation
 The proposed Edit entries feature is facilitated by `AddCommand`. It extends `Command` and 
@@ -208,7 +208,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 ## Delete feature
 *(Written by Jordan Yoong)* <br>
 
-This feature allows the user to delete previously added entries.
+This feature allows the user to delete previously added entries from an account.
 
 #### Implementation
 
@@ -585,7 +585,7 @@ Explanation why a certain design is chosen.
 ### Calculate net profits feature
 *(Written by Cheok Su Anne)* <br>
 
-This feature allows user to calculate and view the current profits.
+This feature allows the user to calculate and view profits made in an account.
 
 #### Implementation
 The calculate net profits mechanism is facilitated by `GetProfitCommand`. It extends `Command` and is identified by `CommonCentsParser`. The `GetProfitCommand` interacts with `Account` and the interaction is managed by `ActiveAccount`. As such, it implements the following operations:   
