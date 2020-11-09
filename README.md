@@ -3,7 +3,9 @@
 
 ![Ui](docs/images/Ui.png)
 
-* tCheck is a desktop application that helps bubble tea store managers manage the staffs’ contact information, store’s inventory and historical sales data. It is optimized for CLI(Command Line Interface) users to update and retrieve the information more efficiently.
+* tCheck is a desktop application that offers an integrated system to efficiently manage a bubble tea shop, of the 
+(imaginary) brand T-sugar, by providing sales tracking, ingredient tracking and manpower management. It is optimized 
+for Command Line Interface (CLI) users to update and retrieve the information more efficiently.
 
 * It is named tCheck, which is a word play on tea Check. This application is tailor-made for bubble tea shop managers, to help them on store management.
 
