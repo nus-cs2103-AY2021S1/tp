@@ -3,73 +3,35 @@ layout: page
 title: Joshua Wong's Project Portfolio Page
 ---
 
-## Project: Cap 5.0 Buddy
+## Project: CAP5Buddy
 
 ### Project Overview
-
-Cap 5 Buddy is a project developed for a software engineering module (CS2103T) at the National University of Singapore.
-It has a GUI created using JavaFX, and it is written in Java.
-
+CAP5Buddy is a desktop module tracker application used to centralise key module details. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20 kLoC.
 ### Summary of Contributions
-
-Given below are my contributions to the project.
-
-* **New Feature**: Added the ability to delete modules.
-  * What it does: allows the user to remove a module from the Module List.
-  * Justification: This feature is necessary as it allows the user to remove unnecessary modules from the Module List.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
-
-* **New Feature**: Added the Assignment components to each module.
-  * What it does: allows the user to add their assignment with a percentage and result to the module.
-  * Justification:
-  * Highlights:
-  * Credits:
-
-* **New Feature**: Added the Grade component to each module.
-  * What it does:
-  * Justification:
-  * Highlights:
-  * Credits:
-
-* **New Feature**: Tested Module components.
-  * What it does:
-  * Justification:
-  * Highlights:
-  * Credits:
-
-* **New Feature**: Tested Assignment and GradeTracker components.
-  * What it does:
-  * Justification:
-  * Highlights:
-  * Credits:
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=murtubak)
 
-* **Project management**:
-  * Approved PRs.
-
+Given below are my contributions to the project.
+* **New Feature**: Added the assignments and grades feature to the module.
+  * What it does: Allows the user to store and represent their graded assignments for the module.
+  * Justification: This feature improves the product significantly because it fulfills the user's need for storing and tracking information about their module.
+  * Highlights: This enhancement was particularly challenging despite its similarity to how a Person was created/edited/deleted in `Addressbook-level3`.
+    The assignments had to be stored within a module class which meant that the methods used for `Module` had to be recreated for `Assignment` and had to function within
+    the `Module` component.
+  * Credits: *`Addressbook-level3`'s `Person` class and their commands and parsers.*
+  
 * **Enhancements to existing features**:
-  * Refactored Add / Delete / View / Edit / Add Zoom Link commands (Pull requests [\#200](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/200))
-
-* **Contributions to documentation**:
+  * Refactored basic commands for Module when we shifted our project to brownfield implementation (Pull request [\#200](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/200))
+  * Updated the side panel to display the module lessons and zoom links hashmap (Pull request [\#569](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/569), [\#586](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/586))
+  * Wrote additional tests for existing features(Pull requests [\#602](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/602)), increasing coverage by 6.73% (Pull Request [\#651](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/651))
+  
+* **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for GradeTracker commands.
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
-
-* **Contributions to team-based tasks**:
-  * Refactor past team contributions from the previous iteration from before we shifted our paradigm back to brownfield.
-
+    * Added documentation for GradeTracker commands.
+    * Added UML diagrams for components of the `Model`, `ContactList` and `ModuleList`.
+   
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+  * PRs reviewed (with non-trivial review comments): (Pull requests [\#209](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/209), [\#596](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/596))
+  * Reported bugs and suggestions for other teams in the class (Examples can be found in [here](https://github.com/murtubak/ped/issues))
