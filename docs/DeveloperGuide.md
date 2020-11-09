@@ -150,7 +150,7 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 
 Step 1. The user launches the application for the first time. `QuickCache` will be initialized with the initial state.
 
-Step 2. The user executes `add q/question...` command to add a flashcard. 
+Step 2. The user executes `add q/question...` command to add a flashcard.
 The following sequence diagram shows how the input command gets parsed:
 
 ![AddOpenEndedSequenceDiagram](images/AddOpenEndedParserSequenceDiagram.png)
@@ -187,7 +187,7 @@ Given below is an example usage scenario and how the Add Multiple Choice Questio
 
 Step 1. The user launches the application for the first time. `QuickCache` will be initialized with the initial state.
 
-Step 2. The user executes `addmcd q/question ans/1 c/first c/second` command to add a flashcard. 
+Step 2. The user executes `addmcd q/question ans/1 c/first c/second` command to add a flashcard.
 The following sequence diagram shows how the input is parsed:
 
 ![AddMcqSequenceDiagram](images/AddMcqParserSequenceDiagram.png)
@@ -251,7 +251,7 @@ The following sequence diagram shows how the Open mechanism works:
 
 * **Current implementation:** Flashcard is taken from the last displayed list
   * Pros: Easy to implement and CLI-optimized.
-  * Cons: nil
+  * Cons: *nil*
 
 ### Tags
 
@@ -341,6 +341,11 @@ The Delete By Index mechanism deletes the flashcard at the specified index of th
 
 ##### Usage
 
+The following activity diagram briefly summarizes what happens when a user executes the delete command to delete
+flashcards by tags:
+
+![DeleteByIndexActivityDiagram](images/DeleteByIndexActivityDiagram.png)
+
 Given below is an example usage scenario and how the Delete By Index mechanism behaves at each step.
 
 Step 1. The user launches the application.
@@ -382,6 +387,11 @@ It works by filtering for the flashcards in the `model` and deleting them one by
 
 ##### Usage
 
+The following activity diagram briefly summarizes what happens when a user executes the delete command to delete
+flashcards by tags:
+
+![DeleteByTagActivityDiagram](images/DeleteByTagActivityDiagram.png)
+
 Given below is an example usage scenario and how the Delete By Tag mechanism behaves at each step.
 
  Step 1. The user launches the application.
@@ -394,7 +404,7 @@ Given below is an example usage scenario and how the Delete By Tag mechanism beh
  Step 4. A new `DeleteCommand` object will be created with its `isDeleteByTag` field set to `true`. The `FlashcardPredicate`
  will also be passed to the `DeleteCommand` object.
  The following sequence diagram briefly shows how the parser operation works (`FlashcardPredicate` not shown):
- 
+
  ![DeleteByTagParserSequenceDiagram](images/DeleteByTagParserSequenceDiagram.png)
 
  Step 5. `DeleteCommand#execute` will filter the `QuickCache` model with the provided predicate and get back the filtered list
@@ -837,7 +847,7 @@ For all use cases below, the **System** is the `QuickCache` and the **Actor** is
   * 3a1. QuickCache shows an error message.
 
     Use case resumes at step 2.
-    
+
 **Use case: UC04 - Delete multiple flashcards**
 
 **Preconditions: User has QuickCache open.**
@@ -884,7 +894,7 @@ For all use cases below, the **System** is the `QuickCache` and the **Actor** is
 * 1c. User provided more than one question or answer
 
   * 1c1. QuickCache shows an error message.
-  
+
     Use case ends.
 
 
@@ -907,27 +917,27 @@ For all use cases below, the **System** is the `QuickCache` and the **Actor** is
 * 1a. The question is empty.
 
   * 1a1. QuickCache shows an error message.
-    
+
     Use case ends.
-  
+
 * 1b. The answer is empty.
 
   * 1b1. QuickCache shows an error message.
-    
+
     Use case ends.
 
 * 1c. The choices are empty.
 
   * 1c1. QuickCache shows an error message.
-    
+
     Use case ends.
-    
+
 * 1d. User provided more than one question or answer
 
   * 1d1. QuickCache shows an error message.
-  
+
     Use case ends.
-    
+
 
 **Use case: UC07 - Test a single flashcard**
 
@@ -1070,11 +1080,11 @@ MSS:
   * 1b1. QuickCache shows an error message.
 
     Use case ends.
-    
+
 * 2a. Duplicate flashcard found.
 
   * 2a1. QuickCache ignores the duplicate flashcard.
-  
+
     Use case resumes from step 3.
 
 
@@ -1107,13 +1117,13 @@ MSS:
 * 1a. The list is empty.
 
     Use case ends.
-    
+
 * 2a. The given index in invalid.
 
   * 2a1. QuickCache shows an error message.
 
     Use case resumes at step 2.
-    
+
 * 2b. User provides no field to edit.
 
   * 2b1. QuickCache shows an error message.
@@ -1124,7 +1134,7 @@ MSS:
 
   * 3b1. QuickCache shows an error message.
 
-    Use case resumes at step 2.    
+    Use case resumes at step 2.
 
 **Use case: UC13 - Search for flashcards based on tags and/or question**
 
