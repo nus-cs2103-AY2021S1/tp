@@ -85,6 +85,8 @@ Given below are my contributions to the project.
     [\#96](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/96), 
     [\#98](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/98), 
     [\#105](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/149)
+    * Added current bugs:
+    [\#278](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/278)
   * Developer Guide:
     * Updated the class diagrams of Model, Storage, and UI:
     [\#130](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/130),
@@ -99,7 +101,9 @@ Given below are my contributions to the project.
     [\#262](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/262)
     * Added the manual testing for most features:
     [\#262](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/262),
-    [\#272](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/272),
+    [\#272](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/272)
+    * Added current bugs:
+    [\#278](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/278)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 

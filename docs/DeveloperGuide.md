@@ -505,6 +505,16 @@ Example of the tag bug:
 
 ![TagBug](images/TagBug.png)
 
+* No validation of instructor existence for modules. Adding a non-existent instructor by editing the 
+`addressbook.json` file will not throw any error.
+
+Example of the instructor bug:
+
+![JSONFileComposite](images/JSONFileComposite.png)
+
+
+![InstructorBug](images/InstructorBug.png)
+
 ### Feature ideas:
 
 * Order filter results of contacts and modules by how much they match the specified parameters.
@@ -839,10 +849,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list modules
 2.  FaculType shows the list of modules
-3.  User requests to find module(s) by their attributes
+3. User requests to find module(s) by their attributes
 4.  FaculType shows a list of modules that fulfills all constraints specified
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -899,10 +909,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  FaculType shows the list of contacts
 3.  User requests to list modules
 4.  FaculType shows the list of modules
-5.  User requests to unassign a contact to some modules
+5.  User requests to unassign a contact from some modules
 6.  FaculType updates the instructor list of the specified modules
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -932,7 +942,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 4.
 
-**Use case: Unassign a contact from all module(s)**
+**Use case: Unassign a contact from all modules**
 
 **MSS**
 
@@ -940,10 +950,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  FaculType shows the list of contacts
 3.  User requests to list modules
 4.  FaculType shows the list of modules
-5.  User requests to unassign a contact
-6.  FaculType updates the instructor list of the modules.
+5.  User requests to unassign a contact from all modules
+6.  FaculType updates the instructor list of the modules
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -964,9 +974,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  User requests to list modules
 4.  FaculType shows the list of modules
 5.  User requests to unassign all contacts from all modules
-6.  FaculType updates the instructor list of modules
+6.  FaculType updates the instructor list of all modules
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1123,14 +1133,13 @@ Expected : Error message saying "Module list is already empty".
    1. Open the `FaculType.jar` file and do any type of modification on the contact or module list.
    1. Inside the data folder edit the `addressbook.json` file and do any of the following:
         1. Invalid person test cases
-            - Test case: invalid phone number <br>
-              Insert an alphabetical or special characters into the `phone` attribute in `persons`. <br>
-              Example: `987654321abcd`<br>
-              Expected: FaculType will restart with the placeholder contacts and modules, all previous information
-               will be deleted.
             - Test case: invalid name <br>
               Insert any special character into the `name` attribute in `persons`.<br>
               Example: `Alex Yeoh**`<br>
+              Expected: FaculType will restart with an empty contact and module list.
+            - Test case: invalid phone number <br>
+              Insert an alphabetical or special characters into the `phone` attribute in `persons`. <br>
+              Example: `987654321abcd`<br>
               Expected: Similar to previous.
             - Test case: invalid email <br>
               Modify the email to be in an invalid format.<br>
@@ -1161,11 +1170,20 @@ Expected : Error message saying "Module list is already empty".
            Test case: copy and paste any contact in `persons`.<br>
            Expected: Similar to previous.
         1. Duplicate modules<br>
-           Test case: copy and paste any module in `modules`.<br>
+           Test case: copy and paste any module in `semOneModules` or `semTwoModules`.<br>
            Expected: Similar to previous.
+        1. Duplicate instructors<br>
+           Test case: copy and paste any instructor in `instructors` in `semOneModules` or `semTwoModules`.<br>
+           Expected: FaculType will restart as usual, with no duplicate instructor displayed in the instructor list.   
+        1. Non-existent instructor<br>
+           Test case: copy and paste any contact in `persons` into `instructors` in `semOneModules` or `semTwoModules
+           ` and edit any of its attributes.<br>
+           Expected: FaculType will restart as usual, with the added non-existent instructor in the module's
+            instructor list (This is a bug).
         1. Invalid JSON format<br>
-           Test case: delete `modules` or `persons` or erase any commas (`,`) or brackets (`{ }`).<br>
-           Expected: Similar to previous.
+           Test case: delete `semOneModules`, `semTwoModules`, `persons` or erase any commas (`,`) or brackets
+            (`{ }`), or colons (`:`).<br>
+           Expected: FaculType will restart with an empty contact and module list.
 
 1. Dealing with missing files.
     
