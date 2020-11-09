@@ -44,11 +44,13 @@ public class DoneCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
-        Deadline[] deadlinesToMarkAsDone =
+
+        Task[] selectedTasks =
                 checkIndexValidity(targetIndexes, lastShownList, Messages.MESSAGE_INVALID_TASKS_DISPLAYED_INDEX)
-                        .toArray(new Deadline[0]);
+                        .toArray(new Task[0]);
 
         checkIfAllAreDeadlines(lastShownList);
+        Deadline[] deadlinesToMarkAsDone = Arrays.copyOf(selectedTasks, selectedTasks.length, Deadline[].class);
         checkAllHaveIncompleteStatus(deadlinesToMarkAsDone);
         model.markAsDone(deadlinesToMarkAsDone, durations);
         return new CommandResult(buildMessage(deadlinesToMarkAsDone));
