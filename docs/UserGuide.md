@@ -289,7 +289,7 @@ More examples:
 
 ### Editing your assignment : `edit`
 
-Format: `edit INDEX PREFIX/EDITTED_FIELD [MORE_PREFIX/EDITTED_FIELD]`
+Format: `edit INDEX PREFIX/EDITED_FIELD [MORE_PREFIX/EDITED_FIELD]`
 
 You can specify an assignment's index to edit its fields. These fields are the name, module code and deadline of assignment.
 
@@ -315,7 +315,7 @@ Here is an example with steps for you to follow:
 ![EditCommand1](images/EditCommand1.png)
 *Figure 12: `edit 1 n/Statistics Lab` inputted by user*
 
-2) The assignment name will be changed to "Statistics Lab".
+2) The name of the assignment is changed to "Statistics Lab".
 
 3) A message that indicates details of the edited assignment is displayed in the Message Box.
 
@@ -329,7 +329,7 @@ More examples:
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
-* **One** `INDEX` and **at least one** `PREFIX/EDITTED_FIELD` must be present. For example, `edit` is invalid.
+* **One** `INDEX` and **at least one** `PREFIX/EDITED_FIELD` must be present. For example, `edit` is invalid.
 </div>
 
 ### Setting reminders for assignments : `remind`
