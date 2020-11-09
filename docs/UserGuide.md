@@ -15,8 +15,10 @@ title: User Guide
         * [FAQ](#FAQ)
     * [Command summary](#command-summary)
 
+<div style="page-break-after: always;"></div>
 
 ## Introduction <a name="introduction"></a>
+
 <img src="images/tCheckLogo.png" width="200" height="200" />
 
 Welcome to the User Guide of **tCheck**!
@@ -25,7 +27,7 @@ Are you a bubble tea store manager (from T-Sugar) looking to reduce your time sp
 management? Look no further, as tCheck can assist you with these tasks.
 
 tCheck is a desktop application that offers an integrated system to efficiently manage a bubble tea shop, of 
-the (imaginary) brand T-sugar, by providing sales tracking, ingredient tracking and manpower management. It is an
+the (imaginary) brand T-sugar, by providing sales tracking, ingredients tracking and manpower management. It is an
 application optimized for the Command Line Interface (CLI); this means that you use this application by typing
 commands into a _Command Box_. If you are a fast typist, then you will be able to update and retrieve the
 information in tCheck more efficiently, as opposed to using other applications that requires a mouse.
@@ -34,7 +36,8 @@ This User Guide will help you get started with tCheck and learn how to use the f
 You can start from the [Quick Start](#quick-start) section to learn how to obtain tCheck to begin managing
  your store more efficiently.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Quick start <a name="quick-start"></a>
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -43,28 +46,18 @@ You can start from the [Quick Start](#quick-start) section to learn how to obtai
 
 1. Copy the file to the folder you want to use as the _home folder_ for your tCheck.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note
+1. Double-click the file to start the app. The graphic user interface (GUI) similar to the figure below should appear in a few seconds. Note
 how the figure below shows some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press "Enter" on your keyboard to execute it. e.g. typing **`help`** and pressing "Enter" will open the help window.<br>
-   Some example commands you can try:
 
-   * **`c-add`**`n/John Doe p/98765432 e/81234567 a/Blk 123 Brooklin Street t/parttime` : Adds an employee
-    named `John Doe` to tCheck.
-
-   * **`c-delete`**`3` : Deletes the 3rd employee shown in the current list of employees.
-
-   * **`c-clear`** : Deletes all employees.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## 3. About this document <a name="about"></a>
+## About this document <a name="about"></a>
 
-### 3.1 Structure of this document
+### 1. Structure of this document
 
 We have structured this User Guide in a way so that you can find what you need easily and quickly. In the next section,
 [Section 3.2 - Reading this document](#reading-this-document), you can find sevaral useful tips on how to read this guide. The following section,
@@ -76,40 +69,40 @@ We have structured this User Guide in a way so that you can find what you need e
 
    * Manpower Management
 
-   * Other general features
+   * Other General Features
 
-### 3.2 Reading this document <a name="reading-this-document"></a>
+### 2. Reading this document <a name="reading-this-document"></a>
 
 This section introduces you to some key technical terms, symbols and syntax that are used throughout this guide.
-You may want to familarize yourself with them before moving on to the next section.
+You may want to familarise yourself with them before moving on to the next section.
 
-#### 3.2.1 Terminology related to the GUI
+#### 2.1 Terminology related to the GUI
 
 Figure 2 shows the GUI of **tCheck**, annotated with descriptions for all components of the GUI.
 
-<img src="images/tCheckInfographic.png" width="1000" height="700" />
+<img src="images/tCheckInfographic.png" width="1000"/>
 Figure 2 - Annotated GUI of tCheck
 
-#### 3.2.2. General Symbols and Syntax 
+#### 2.2 General Symbols and Syntax 
 
 The following table explains the general symbols and syntax used in this User Guide.
+<div style="page-break-after: always;"></div>
 
 | Syntax |  What it means |
 |----------|-------------|
 | `command` |  The grey block specifies an execuable command which can be entered in the command box |
 | _italics_ | Italicised text specifies the terms related to tCheck's GUI |
-|<div markdown="block" class="alert alert-info"> :information_source: </div>  | An exclamation mark indicates that the following text is a note |
-|<div markdown="span" class="alert alert-primary">:bulb:  | An bulb indicates that the following text is a tip |
+|<div markdown="block" class="alert alert-info"> :information_source: </div>  | An exclamation mark indicates that the following text is a note|
 
-#### 3.2.3. Command Syntax and Usage
+#### 2.3 Command Syntax and Usage
 
 The following table explains the technical terms used in this user guide.
 
 | Technical Term | What it means |
 | ---------------| --------------|
-| Prefix | The first word of a command. tCheck uses this command word to decide what kinds of actions it should perform |
-| Command Word | It is the input that follows behind a prefix. It is used to distinguish different kinds of parameters |
-| Parameter | Values given for specific operations |
+| Command Word | The first word of a command. tCheck uses this command word to decide what kinds of actions it should perform. |
+| Prefix | It is the characters before every "/". They are used to distinguish different kinds of parameters. |
+| Parameter | The words after every "/". They are values given to a command to perform the specified action.|
 
 **Example:** <br>
 `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]`
@@ -128,21 +121,21 @@ The following points explain the format of a command.
    e.g. `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]` can be used as `c-add n/Betsy Crowe e/81234567 p/89007413 a/Blk 120 ABC Road t/Friday` 
     or as `c-add n/Betsy Crowe e/81234567 p/89007413 a/Blk 120 ABC Road`.
 
-* Items with `…​` after them can be used multiple times, including zero times.<br>
-   e.g. `[t/TAG] …​` can be used as ` ` (i.e. 0 times), `t/Friday`, `t/Friday t/PartTime`, etc.
+* Items with `...​` after them can be used multiple times, including zero times.<br>
+   e.g. `[t/TAG] ...` can be used as `  ` (i.e. 0 times), `t/Friday`, `t/Friday t/PartTime`, etc.
 
 * Parameters can be in any order.<br>
    e.g. If the command specifies `p/PHONE_NUMBER e/EMERGENCY_CONTACT`, `e/EMERGENCY_CONTACT p/PHONE_NUMBER` is also acceptable.
     
 
-#### 3.2.4 Prefix process and usage
+#### 2.4 Prefix processing and usage
 
 The table below explains some important features of how prefix(es) are processed in tCheck to help you understand and use prefix(es) in commands.
 
 Situation | What will happen
 -------|------------------------------
 Duplicate (2 or more) valid prefixes detected | Only the last prefix and its following parameter are accepted and processed as part of the command.
-Invalid prefix entered | tCheck will not recognize this "prefix" and thus it will be processed as part of the parameter for the nearest previous valid prefix, which may result in error for the parameter.
+Invalid prefix entered | tCheck will not recognise this "prefix" and thus it will be processed as part of the parameter for the nearest previous valid prefix, which may result in error for the parameter.
 Unexpected prefix(es) entered for commands which do not take in any parameter | tCheck will not accept or process these prefix(es) because all words entered after the command words will be ignored. 
 
 **Example 1:**
@@ -158,8 +151,8 @@ Thus, the command will be processed in the same way as `i-set i/Boba m/90`.
 
 **How the command is processed:**
 
-In this example, the prefixes `M/`, `P/`, `B/`, `L`, `G` and `S/` are valid but `T/` is invalid. Hence, the situation of
-invalid prefix entered takes place. Since tCheck will not be able to recognize the `T/` entered as a prefix. Thus, it will be treated as
+In this example, the prefixes `M/`, `P/`, `B/`, `L/`, `G/` and `S/` are valid but `T/` is invalid. Hence, the situation of
+invalid prefix entered takes place. Since tCheck will not be able to recognise the `T/` entered as a prefix. Thus, it will be treated as
 part of the parameter for the nearest previous prefix, which is `S/`. This will cause the command to fail because `10 T/20` is an invalid format for amount and appropriate error message will be shown.
 
 **Example 3:**
@@ -171,25 +164,10 @@ In this example, `help` is a command which does not take in any parameter. Hence
 Thus, tCheck will ignore all words come after the command word `help` and the command will be processed in the same way as `help`.
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Features <a name="features"></a>
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `i-set i/INGREDIENT_NAME m/AMOUNT`, both `INGREDIENT_NAME` and `AMOUNT` are parameters which can be used as `i-set i/Milk m/90`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `...`​ after them can be used once or multiple times.<br>
-  e.g. `sales A/NUM B/NUM C/NUM ...` can be used as `sales BSBM/100` or `sales BSBM/100 BSBBT/120`.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-</div>
+This section provides the details and commands for all tCheck's features.
 
 ### 1. Commands - Sales Tracking <a name="commands-sales-tracking"></a>
 The Sales Tracking features allows you to keep a record of the sales of the bubble tea drinks inside the
@@ -200,19 +178,14 @@ Sales Tracker. You are able to view data related to sales tracking in the Sales 
 **:information_source: Notes about available drinks:**<br>
 
 Currently, there are 6 types of drinks that can be tracked by tCheck's Sales Tracker. The drinks and their respective
- abbreviations are shown as below:<br>
+ abbreviations are shown as below: <br>
 
-* `BSBM`  : Brown Sugar Boba Milk<br>
-
-* `BSBBT` : Brown Sugar Boba Black Tea<br>
-
-* `BSBGT` : Brown Sugar Boba Green Tea<br>
-
-* `BSPM`  : Brown Sugar Pearl Milk<br>
-
-* `BSPBT` : Brown Sugar Pearl Black Tea<br>
-
-* `BSPGT` : Brown Sugar Pearl Green Tea<br>
+* `BSBM`  : Brown Sugar Boba Milk
+* `BSBBT` : Brown Sugar Boba Black Tea
+* `BSBGT` : Brown Sugar Boba Green Tea
+* `BSPM`  : Brown Sugar Pearl Milk
+* `BSPBT` : Brown Sugar Pearl Black Tea
+* `BSPGT` : Brown Sugar Pearl Green Tea
 
 </div>
 
@@ -225,7 +198,7 @@ Format: `s-update DRINK [MORE_DRINKS]`
 * where `DRINK` is formatted as `A/NUM`
     * `A` refers to the drink's abbreviation.
     * `NUM` refers to the number of drinks sold. It should be a **non-negative unsigned integer** that is 
-less than or equal to 99999999.
+less than or equal to 9,999,999.
 * The sales of at least one drink item should be recorded when using this command.
 
 Example: 
@@ -300,18 +273,14 @@ Before executing:<br>
 After executing:<br>
 ![SalesFindCommandScreenshot](images/SalesFindResult.png)
 
-#### 1.4 Ranking the list of drinks sold : `s-rank`
-Shows a ranked list of all types of drinks sold in the Sales Tracker. The list of drinks
-is ranked from the most popular to least popular.
-
-Format: `s-rank`
-
 ### 2. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
 
+The Ingredients Tracking features allows you to keep an inventory of the ingredients for a T-Sugar store inside the Ingredient Tracker.
+You are able to view data related to ingredients tracking in the Ingredient Tracker inside the _Main View_.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about ingredients:**<br>
+**:information_source: Notes about ingredients<a name="commands-ingredients-tracking-notes-about-ingredients"></a>:**<br>
 
 * Unit of measurement for ingredients:<br>
    * Unit for solid items / jelly (Pearl, Boba and Brown Sugar) : **KG**<br>
@@ -348,6 +317,17 @@ Format: `i-set i/INGREDIENT_NAME m/AMOUNT`
 
 * Sets the `INGREDIENT_NAME` to the specified `AMOUNT`.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about amounts:** <br>
+
+You can use one or two leading zeros when setting the amounts if you prefer, as long as the total number of digits entered for the amount is less than or equal to three, except for zero. Zero will always be displayed as one single "0".
+This applies for both setting one ingredient's level and setting all ingredients' levels.
+
+For example, tCheck accepts `07`, `007` and `070` as valid parameters for `AMOUNT`, but `0007` is rejected.
+
+</div>
+
 Example:
 
 Let's say you want to set the ingredient Milk's level to 90 L. 
@@ -363,10 +343,10 @@ Outcome:
 
 Before the execution:
 
-<img src="images/IngredientSetCommand.png" width="850" height="595" />
+![IngredientSetCommand](images/IngredientSetCommand.png)
 Figure above shows tCheck's GUI during the command is being entered.
 
-<img src="images/IngredientSetCommandResultDisplay.png" width="850" height="595" />
+![IngredientSetCommandResultDisplay](images/IngredientSetCommandResultDisplay.png)
 Figure above showing tCheck's GUI after pressing "Enter". Note that the amount for Milk is updated in Ingredient Tracker section inside the _Main View_.
 
 #### 2.2 Setting all ingredients' levels to different specified amounts : `i-set-all`
@@ -390,10 +370,10 @@ Outcome:
 1. The _Result Display_ will show a success message.
 2. You can now see that tCheck has updated all ingredients' levels to the specified amounts in the Ingredient Tracker inside the _Main View_.
 
-<img src="images/IngredientSetAllCommand.png" width="850" height="595" />
+![IngredientSetAllCommand](images/IngredientSetAllCommand.png)
 Figure above shows tCheck's GUI during the command is being entered.
 
-<img src="images/IngredientSetAllCommandResultDisplay.png" width="850" height="595" />
+![IngredientSetAllCommandResultDisplay](images/IngredientSetAllCommandResultDisplay.png)
 Figure above showing tCheck's GUI after pressing "Enter". Note that all amounts for the ingredients are updated in Ingredient Tracker inside the _Main View_.
 
 #### 2.3 Setting all ingredients to different levels : `i-set-default`
@@ -417,7 +397,13 @@ Outcome:
 1. The _Result Display_ will show a success message.
 2. You can now see that tCheck has updated all ingredients' levels to the pre-determined default amounts in the Ingredient Tracker inside the _Main View_.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:** <br>
+
 tCheck GUI behaves similarly to examples given in the previous command, except no parameters are taken in.
+
+</div>
 
 #### 2.4 Listing all ingredients' levels : `i-list`
 Lists the ingredient's levels of all ingredient types.
@@ -426,7 +412,7 @@ Format: `i-list`
 
 Example:
 
-Let's say you want to list all the ingredients. 
+Let's say you want to see the list of all the ingredients.
 You can follow these instructions:
 
 1. Type `i-list` into the _Command Box_.
@@ -442,7 +428,7 @@ Outcome:
 Figure x. A screenshot showing the outcome of an `i-list` command
 
 #### 2.5 Finding ingredients by keywords : `i-find`
-Finds all ingredients that contain the KEYWORD(s) in their names.
+Finds all ingredients that contain one or more keywords in their names.
 
 Format: `i-find KEYWORD [MORE_KEYWORDS]`
 
@@ -467,16 +453,22 @@ Outcome:
 2. The Ingredient Tracker inside the _Main View_ will show the ingredient `Black Tea`, the ingredient `Green Tea` and 
 the ingredient `Brown Sugar`.
 
-![IngredientFindCommandScreenshot](images/IngredientFindCommandScreenshot.png)
+Before executing:<br>
+![BeforeIngredientFindCommandScreenshot](images/BeforeIngredientFindCommandCommand.png)
+
+
+After executing:<br>
+![AfterIngredientFindCommandScreenshot](images/AfterIngredientFindCommandScreenshot.png)
 
 Figure x. A screenshot showing the outcome of an `i-find` command
 
 #### 2.6 Resetting all ingredients' levels to zero : `i-reset-all`
-Resets the ingredients' levels of all ingredient types to zero.
+Resets the ingredient's levels of all ingredient types to zero.
 
 Format: `i-reset-all`
 
-Let's say you want to reset all ingredients' levels to zero, and the ingredient's levels are not currently all at zero.
+Let's say you want to reset all ingredients' levels to zero when one or more ingredients have 
+non-zero ingredient's levels.
 You can follow these instructions:
 
 1. Type ` i-reset-all` into the _Command Box_.
@@ -485,7 +477,8 @@ You can follow these instructions:
 Outcome:
 
 1. The _Result Display_ will show a success message.
-2. You can now see that tCheck has updated all the ingredients' levels to zero in the Ingredient Tracker inside the _Main View_.
+2. You can now see that all ingredients' levels are zero in the Ingredient Tracker inside 
+the _Main View_.
 
 ![IngredientResetAllCommandScreenshot](images/IngredientResetAllCommandScreenshot.png)
 
@@ -500,13 +493,13 @@ Format: `i-restock`
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**<br>
-Refer to the "Notes about ingredients" below the [Commands - Ingredients Tracking](#commands-ingredients-tracking)
+Refer to the [Notes about ingredients](#commands-ingredients-tracking-notes-about-ingredients)
 for details on the pre-determined default levels of different types of ingredients.
 </div>
 
 Example: 
 
-Let's say you want to find out which ingredients you need to restock.
+Let's say you want to see a list of ingredients that you need to restock.
 You can follow these instructions:
 
 1. Type ` i-restock` into the _Command Box_.
@@ -541,8 +534,8 @@ Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:** <br>
-* PHONE_NUMBER and EMERGENCY_CONTACT must be 8-digit number and start with 8 or 9.<br>
+**:information_source: Notes:** <br>
+PHONE_NUMBER and EMERGENCY_CONTACT must be 8-digit number and start with 8 or 9.<br>
 </div>
 
 Example: 
@@ -604,11 +597,11 @@ You can follow these instructions:
 1. Press "Enter" to execute.
 
 Outcome:
-1. The _Result Display_ will show that you edit the employee.=
+1. The _Result Display_ will show that you edit the employee.
 2. All active employees will be listed in the _Main View_.
 
 Before executing:<br>
-![BeforeEditCommandScreenshot](images/BeforeClearCommand.png)
+![BeforeEditCommandScreenshot](images/BeforeEditCommand.png)
 
 
 After executing:<br>
@@ -889,7 +882,7 @@ Format: `c-archive-all`
 
 Example:
 
-Let's say after you familiarize yourself with tCheck, you want to remove all sample data in employee directory. But
+Let's say after you familiarise yourself with tCheck, you want to remove all sample data in employee directory. But
  you don't want to permanently delete those data, so that you can use them as a reference in the future. To archive
   all employees, you can follow these instructions:
 
@@ -1003,6 +996,9 @@ After executing:<br>
 Figure x. Screenshot showing the outcome of an `c-unarchive 1` command
 
 ### 4. Commands - General <a name="commands-general"></a>
+
+This section provides an overview of the general commands used in tCheck.
+
 #### 4.1 Viewing help : `help`
 
 Show a message explaining how to access the help page, which is the tCheck User Guide.
@@ -1033,6 +1029,9 @@ Exits the program.
 Format: `exit`
 
 ### 5. Other Features <a name="other-features"></a>
+
+This section provides an overview of the other features of tCheck which do not use a command.
+
 #### 5.1 Saving the data :
 All tCheck data (i.e. ingredient data, sales data, employees' data) are saved in the hard disk automatically after each
  command. There is no need to save manually.
@@ -1078,7 +1077,6 @@ Action | Format, Examples
 **List**| `s-list`
 **Find**| `s-find KEYWORD [MORE_KEYWORDS]` <br> e.g., `s-find BSBM BSBBT`
 
-
 ### Ingredients Tracking
 
 Action | Format, Examples
@@ -1088,7 +1086,7 @@ Action | Format, Examples
 **Set all ingredients to default**  | `i-set-default` <br> e.g., `i-set-default`
 **List**| `i-list`
 **Find**| `i-find KEYWORD [MORE_KEYWORDS]`  <br> e.g., `i-find milk sugar`
-**Reset all ingredients to zero**| `i-reset-all`
+**Reset all ingredients' levels to zero**| `i-reset-all`
 **View all ingredients that the user should restock**| `i-restock`
 
 ### Manpower Management
@@ -1106,7 +1104,6 @@ Action | Format, Examples
 **Archive an employee** |  `c-archive INDEX`<br> e.g., `c-archive 1`  
 **Archive all employees** |  `c-archive-all` <br>
 **Unarchive** | `c-unarchive INDEX`<br> e.g., `c-unarchive 1` 
-
 
 ### General
 
