@@ -579,6 +579,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Eva informs the user that there are conflicting records.
     * 1a2. Eva requests the user to type the command in again. 
     * 1a3  User types in a new leave date.
+    
     Steps 1a1-1a3 are repeated until the data entered are correct.<br>
     Use case resumes from step 2.
 
@@ -617,6 +618,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Eva informs the user that there are no exiting leave records containing specified date.
     * 1a2. Eva requests the user to type the command in again. 
     * 1a3  User types in a new leave date.
+    
     Steps 1a1-1a3 are repeated until the data entered are correct.<br>
     Use case resumes from step 2.<br>
 
