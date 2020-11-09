@@ -57,16 +57,13 @@ public interface ExerciseModel {
     void setExerciseBookFilePath(Path exerciseBookFilePath);
 
     /**
-<<<<<<< HEAD
      * Replaces exercise book data with the data in {@code exerciseBook}.
-=======
      * Sets the user prefs' goal book file path.
      */
     void setGoalBookFilePath(Path goalBookFilePath);
 
     /**
      * Replaces goal book data with the data in {@code goalBook}.
->>>>>>> 73964788116bf5a1204853ef6458f89a192c3eae
      */
     void setExerciseBook(ReadOnlyExerciseBook exerciseBook);
 
