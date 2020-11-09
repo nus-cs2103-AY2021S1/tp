@@ -97,6 +97,13 @@ public class LogicManager implements Logic {
         model.setGuiSettings(guiSettings);
     }
 
+    //==== ContactList ===========================================================
+
+    @Override
+    public Path getContactListFilePath() {
+        return model.getContactListFilePath();
+    }
+
     @Override
     public ReadOnlyContactList getContactList() {
         return model.getContactList();
@@ -106,6 +113,7 @@ public class LogicManager implements Logic {
     public ObservableList<Contact> getFilteredContactList() {
         return model.getFilteredContactList();
     }
+
 
     @Override
     public ReadOnlyTodoList getTodoList() {
@@ -117,10 +125,6 @@ public class LogicManager implements Logic {
         return model.getFilteredTodoList();
     }
 
-    @Override
-    public Path getContactListFilePath() {
-        return model.getModuleListFilePath();
-    }
 
     @Override
     public ReadOnlyEventList getEventList() {

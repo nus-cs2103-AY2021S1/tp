@@ -23,13 +23,14 @@ import seedu.address.model.module.grade.GradePoint;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCompletedModuleCommand object
+ * Parses input arguments and creates a new AddCompletedModuleCommand object.
  */
 public class AddCompletedModuleParser implements Parser<AddCompletedModuleCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCompletedModuleCommand
      * and returns an AddCompletedModuleCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public AddCompletedModuleCommand parse(String args) throws ParseException {
         Module module;

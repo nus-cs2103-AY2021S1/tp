@@ -9,12 +9,13 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new ArchiveModuleCommand object
+ * Parses input arguments and creates a new ArchiveModuleCommand object.
  */
 public class ArchiveModuleParser implements Parser<ArchiveModuleCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ArchiveModuleCommand
      * and returns a ArchiveModuleCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public ArchiveModuleCommand parse(String args) throws ParseException {

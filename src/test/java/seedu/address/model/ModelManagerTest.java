@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 // import static seedu.address.testutil.contact.TypicalContacts.BENSON;
 import static seedu.address.testutil.TypicalModules.CS2030;
 import static seedu.address.testutil.contact.TypicalContacts.ALICE;
+import static seedu.address.testutil.todolist.TypicalTasks.LAB_05;
 // import static seedu.address.testutil.TypicalModules.CS2101;
 // import static seedu.address.testutil.TypicalModules.CS2030;
 // import static seedu.address.testutil.TypicalModules.CS2101;
@@ -133,6 +134,52 @@ public class ModelManagerTest {
     @Test
     public void getFilteredContactList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredContactList().remove(0));
+    }
+
+    @Test
+    public void getSortedContactList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getSortedContactList().remove(0));
+    }
+
+    @Test
+    public void hasTask_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasTask(null));
+    }
+
+    @Test
+    public void hasTask_taskNotInTodoList_returnsFalse() {
+        assertFalse(modelManager.hasTask(LAB_05));
+    }
+
+    @Test
+    public void hasTask_taskInTodoList_returnsTrue() {
+        modelManager.addTask(LAB_05);
+        assertTrue(modelManager.hasTask(LAB_05));
+    }
+
+    @Test
+    public void setTask_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setTask(null, null));
+    }
+
+    @Test
+    public void deleteTask_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.deleteTask(null));
+    }
+
+    @Test
+    public void addTask_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.addTask(null));
+    }
+
+    @Test
+    public void getFilteredTodoList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTodoList().remove(0));
+    }
+
+    @Test
+    public void getSortedTodoList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getSortedTodoList().remove(0));
     }
 
     /*
