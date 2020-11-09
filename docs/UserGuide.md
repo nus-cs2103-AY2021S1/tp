@@ -663,8 +663,6 @@ Shows all past `Mastery Check` sessions.
 * When the `Mastery Check` time is the same as the local time (year, month, date, hour, and minute all equal), it is considered to have occurred in the past.
 </div>
 
-<div style="page-break-after: always;"></div>
-
 #### 6.6.12 Viewing upcoming `Mastery Checks` : `-mcu`
 
 Shows all upcoming `Mastery Check` sessions.
@@ -690,6 +688,8 @@ This includes `Todo`, `Event` and `Deadline`, which are all considered `Tasks`.
 Shows the list of all your current `Todos`.
 
 <br>**Format: `view -tt`**
+
+<div style="page-break-after: always;"></div>
 
 #### 6.6.15 Viewing all `Events` : `-te`
 
