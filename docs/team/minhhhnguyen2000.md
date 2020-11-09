@@ -28,6 +28,8 @@ Given below are my contributions to the project.
   * Created Schedule Class
   * Wrote additional tests for existing features to increase coverage
   
+<div style="page-break-after: always;"></div>
+  
 * **Team-based tasks**:
   * Propose the idea of morphing the product and come up with features to implement
   * Refactored Person Class to Assignment Class
