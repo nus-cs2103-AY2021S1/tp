@@ -48,6 +48,10 @@ public class DeleteIngredientCommand extends Command implements Undoable {
         this.ingredient = res.getValue();
 
         if (this.quantity.isPresent()) {
+            if (this.quantity.get().isZero()) {
+                return CommandResult.error("Quantity should not be zero");
+            }
+
             try {
                 var splitIngredient = this.ingredient.split(this.quantity.get());
                 this.updatedIngredient = splitIngredient.snd();

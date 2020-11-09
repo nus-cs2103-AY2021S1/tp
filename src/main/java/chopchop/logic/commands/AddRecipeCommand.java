@@ -54,8 +54,11 @@ public class AddRecipeCommand extends Command implements Undoable {
             var seenIngredients = new HashSet<String>();
             for (var ingr : this.ingredients) {
                 if (seenIngredients.contains(ingr.getName())) {
-
                     return CommandResult.error("Ingredient '%s' was specified twice", ingr.getName());
+                }
+
+                if (ingr.getQuantity().isZero()) {
+                    return CommandResult.error("Quantity should not be zero (for ingredient '%s')", ingr.getName());
                 }
 
                 seenIngredients.add(ingr.getName());

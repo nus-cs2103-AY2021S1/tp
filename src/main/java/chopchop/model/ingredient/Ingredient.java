@@ -2,6 +2,7 @@ package chopchop.model.ingredient;
 
 import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -96,6 +97,16 @@ public class Ingredient extends Entry {
             // well. then it's just the first one.
             return this.sets.firstEntry().getValue();
         }
+    }
+
+    public Quantity getUnexpiredQuantity() {
+        assert !this.sets.isEmpty();
+
+        return this.sets.tailMap(Optional.of(new ExpiryDate(LocalDate.now())))
+                .values()
+                .stream()
+                .reduce((a, b) -> a.add(b).getValue())
+                .orElseThrow(() -> new IncompatibleIngredientsException("No unexpired ingredients"));
     }
 
     public Optional<ExpiryDate> getExpiryDate() {

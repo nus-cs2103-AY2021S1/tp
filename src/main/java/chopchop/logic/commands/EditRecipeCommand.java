@@ -20,6 +20,7 @@ import chopchop.logic.edit.TagEditDescriptor;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.ItemReference;
 import chopchop.model.Model;
+import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.Step;
 import chopchop.model.attributes.Tag;
 import chopchop.model.attributes.units.Count;
@@ -107,6 +108,10 @@ public class EditRecipeCommand extends Command implements Undoable {
             var type = edit.getEditType();
             var name = edit.getIngredientName();
             var qtyOpt = edit.getIngredientQuantity();
+
+            if (qtyOpt.map(Quantity::isZero).orElse(false)) {
+                return Result.error("Quantity should not be zero (for ingredient '%s')", name);
+            }
 
             enforceContains(type, EditOperationType.ADD, EditOperationType.EDIT, EditOperationType.DELETE);
             if (type == EditOperationType.ADD) {

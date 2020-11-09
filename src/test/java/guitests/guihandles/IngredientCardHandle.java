@@ -4,6 +4,7 @@ import chopchop.model.ingredient.Ingredient;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,6 +41,8 @@ public class IngredientCardHandle extends NodeHandle<Node> {
         tagLabels = tagsContainer
                 .getChildrenUnmodifiable()
                 .stream()
+                .map(StackPane.class::cast)
+                .map(s -> s.getChildren().get(1))
                 .map(Label.class::cast)
                 .collect(Collectors.toList());
     }

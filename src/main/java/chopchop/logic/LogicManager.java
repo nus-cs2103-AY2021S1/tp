@@ -63,7 +63,7 @@ public class LogicManager implements Logic {
         var cmd = res.getValue();
         var result = cmd.execute(this.model, this.historyManager);
 
-        if (cmd instanceof Undoable) {
+        if (cmd instanceof Undoable && result.didSucceed()) {
             this.historyManager.addCommand((Undoable) cmd);
         }
 

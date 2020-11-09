@@ -96,7 +96,7 @@ The `UI` component:
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-The following activity diagram shows the general flow of events for the Ui component when the application is launched:
+The following activity diagram shows the general flow of events for the UI component when the application is launched:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="diagrams/ui/UiLauchActivityDiagram.png" style="width: 65%"> <br />
@@ -305,12 +305,12 @@ Figure 7.2: <i>A sequence diagram for parsing an <code>add recipe</code> command
 
 The current parser is written in an exception-free manner, using monadic result types (`Result`, `Optional`) and their composition (`map`, `then`) instead.
 
-  - Option A: use exceptions
-    - Pros: easier interfacing with existing AB3 code
-    - Cons: harder to visualise error source and propagation, calling site gets cluttered with syntactic `try-catch` noise
-  - **Option B (chosen)**: use monadic types
-    - Pros: more explicit, easier to visualise error source and propagation
-    - Cons: slightly harder to write
+  - Option A: Use exceptions.
+    - Pros: Easier interfacing with existing AB3 code.
+    - Cons: Harder to visualise error source and propagation, calling site gets cluttered with syntactic `try-catch` noise.
+  - **Option B (chosen)**: Use monadic types.
+    - Pros: More explicit, easier to visualise error source and propagation.
+    - Cons: Slightly harder to write.
 
 Since the parser was going to be heavily refactored if not completely rewritten, removing exceptions was the chosen option. An excerpt of this style can be seen below:
 ```java
@@ -329,15 +329,15 @@ Here, `Result<T>` is similar to a Java `Optional<T>`, but also encapsulating a d
 
 ChopChop allows referring to items (recipes and ingredients) both by their full name, as well as by its index number (as in AB3).
 
-  - Option A: allow only numbers
-    - Pros: easier to implement
-    - Cons: less intuitive for the user, index number can change as views are updated
-  - Option B: allow only names
-    - Pros: easier to implement
-    - Cons: full name of the ingredient or recipe might be tedious to type out each time
-  - **Option C (chosen)**: allow both
-    - Pros: best of both worlds
-    - Cons: slightly more code to implement
+  - Option A: Allow only numbers.
+    - Pros: Easier to implement.
+    - Cons: Less intuitive for the user, index number can change as views are updated.
+  - Option B: Allow only names.
+    - Pros: Easier to implement.
+    - Cons: Full name of the ingredient or recipe might be tedious to type out each time.
+  - **Option C (chosen)**: Allow both names and numbers.
+    - Pros: Best of both worlds.
+    - Cons: Slightly more code to implement.
 
 After abstracting out functions that resolve an item reference, code complexity did not increase significantly, and ease-of-use was greatly improved; thus, option C was chosen.
 
@@ -398,24 +398,24 @@ In the current implementation, there are a number of specific units of Volume (*
 <h4>Design Considerations</h4>
 **1. Unit representation**
 
-  - Option A: represent units as a simple string
-    - Pros: easier to implement
-    - Cons: less intuitive for the user, only exactly-compatible units can be added
-  - **Option B (chosen)**: represent units in a typed manner
-    - Pros: intuitive unit handling for the user
-    - Cons: more implementation effort, supported units must be known in advance
+  - Option A: Represent units as a simple string.
+    - Pros: Easier to implement.
+    - Cons: Less intuitive for the user, only exactly-compatible units can be added.
+  - **Option B (chosen)**: Represent units in a typed manner.
+    - Pros: Intuitive unit handling for the user.
+    - Cons: More implementation effort, supported units must be known in advance.
 
   The extra implementation effort was deemed to be acceptable to allow for a better user experience. Mainly, the ability to let recipes specify a quantity as *3 cups*, while keeping track of the ingredient in *litres* was a key feature, to save the user the hassle of converting these units before keying them into the application.
 
   Furthermore, this implementation also allows *rescaling* the quantity, so that `1700mL` can be better displayed as `1.7L`.
 
 **2. User extensible units**
-  - Option A: support custom user-defined units
-    - Pros: more flexible from the user's perspective
-    - Cons: more implementation effort, necessary to integrate (eg. defining units via command line)
-  - **Option B (chosen)**: only allow a fixed set of units
-    - Pros: less implementation work
-    - Cons: less flexible from the user's perspective
+  - Option A: Support custom user-defined units.
+    - Pros: More flexible from the user's perspective.
+    - Cons: More implementation effort, necessary to integrate (eg. defining units via command line).
+  - **Option B (chosen)**: Only allow a fixed set of units.
+    - Pros: Less implementation work.
+    - Cons: Less flexible from the user's perspective.
 
   Option B was chosen here due to the limited time available to work on the application. The primary mitigation was to include more commonly-used units built into ChopChop, for instance teaspoons, tablespoons, and cups for volumes.
 
@@ -467,7 +467,7 @@ When extending ChopChop to include new commands, it is important to follow these
 #### 4.5.1&ensp;Current implementation
 
 The statistics feature keeps track of the recipes that were made and the ingredients that were consumed in the process.
-The feature spans across the 4 components of the App.
+The feature spans across the 4 main components of ChopChop.
 It is mainly supported by `UsageList` and `Usage` in the Model component. `UsageList` and `Usage` are similar to `EntryBook` and `Entry` respectively in terms of their purpose.
 
 
@@ -509,7 +509,7 @@ This section details the design considerations of the statistics feature.
 
   - **Option B(chosen)**: Store the relevant information such as name, and the date and time of which the recipe was made or ingredient was used in `Usage` which is then stored in `UsageList`.
     - Pros:
-      - Easier to implement
+      - Easier to implement.
       - Allows quick access to certain data such as latest recipe usages.
     - Cons:
       - Modifications to `Usage` and its associated classes may be required to support computation of more kinds of statistics.
@@ -546,7 +546,7 @@ This section details the design considerations of the statistics feature.
 For more information on the Parser, view [4.1 Command Parser](#41command-parser). 
 
 
-The7 supported statistics commands are `StatsRecipeTopCommand`, `StatsRecipeMadeCommand`, `StatsIngredientUsedCommand`, `StatsRecipeRecentCommand` and `StatsIngredientRecentCommand` which update the `recipeList` in `StatsBox`, as well as `StatsRecipeClearCommand` and `StatsIngredientClearCommand` which remove all `Usage` in their respective `UsageList`.
+The 7 supported statistics commands are `StatsRecipeTopCommand`, `StatsRecipeMadeCommand`, `StatsIngredientUsedCommand`, `StatsRecipeRecentCommand` and `StatsIngredientRecentCommand` which update the `recipeList` in `StatsBox`, as well as `StatsRecipeClearCommand` and `StatsIngredientClearCommand` which remove all `Usage` in their respective `UsageList`.
 All the statistics commands function in a similar way so we will go through just one of the commands in details below.
 
 <a name="view-top-recipes"></a>
@@ -571,7 +571,7 @@ Figure 12.1 <i>The sequence diagram of the execution of StatsRecipeTopCommand </
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/RecipeTopCmdStatsBox.png" style="width: 40%"> <br />
-Figure 12.2. GUI of statistics box after `stats recipe top` command is executed
+Figure 12.2. <i> GUI of statistics box after `stats recipe top` command is executed </i>
 </div>
 
 
@@ -652,7 +652,7 @@ Figure 13.7: <i>An activity diagram for the undo/redo feature</i>
 
 <h4>Design considerations</h4>
 
-**Aspect: How state is saved**
+**Aspect: How state is saved.**
 
 - **Option A (current choice):** Save each undoable command as it is executed. Each command implements its own undo/redo operation.
   - Pros: Uses less memory since the entire state of the application does not have to be saved, and is also faster since only a small part of the model needs to be modified each time.
@@ -751,10 +751,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error messages.
+    * 2a1. FRMS displays an error messages.<br>
 	  Use case ends.
 * 2b. FRMS detects a duplicate recipe.
-    * 2b1. FRMS displays an error messages.
+    * 2b1. FRMS displays an error messages.<br>
       Use case ends.
 
 <a name="U02"></a>
@@ -771,13 +771,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 3a. There are no recipes in the FRMS.
-    * 3a1. FRMS displays an error message.
+    * 3a1. FRMS displays an error message.<br>
       Use case ends.
 * 3b. The recipe to be deleted is not the FRMS.
-    * 3b1. FRMS displays an error message.
+    * 3b1. FRMS displays an error message.<br>
 	  Use case ends.
 
 
@@ -796,16 +796,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 3a. FRMS detects an invalid input parameter.
-    * 3a1. FRMS displays an error message.
+    * 3a1. FRMS displays an error message.<br>
       Use case ends.
 * 4a. There are no recipes in the FRMS.
-    * 4a1. FRMS displays an error message.
+    * 4a1. FRMS displays an error message.<br>
       Use case ends.
 * 4b. The recipe to be edited is not the FRMS.
-    * 4b1. FRMS displays an error message.
+    * 4b1. FRMS displays an error message.<br>
 	  Use case ends.
 
 
@@ -823,10 +823,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays error messages.
+    * 2a1. FRMS displays error messages.<br>
 	  Use case ends.
 * 3a. There are no recipes in the FRMS.
-     * 3a1. FRMS displays an error message.
+     * 3a1. FRMS displays an error message.<br>
        Use case ends.
 
 
@@ -844,13 +844,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 3a. There are no recipes in the FRMS.
-    * 3a1. FRMS displays an error message.
+    * 3a1. FRMS displays an error message.<br>
       Use case ends.
 * 3b. The recipe to be displayed is not the FRMS.
-    * 3b1. FRMS displays an error message.
+    * 3b1. FRMS displays an error message.<br>
 	  Use case ends.
 
 <a name="U06"></a>
@@ -867,13 +867,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 3a. There are no recipes in the FRMS.
-    * 3a1. FRMS displays an error message.
+    * 3a1. FRMS displays an error message.<br>
       Use case ends.
 * 3b. There are no recipes that match the filter conditions in the FRMS.
-    * 3b1. FRMS displays an error message.
+    * 3b1. FRMS displays an error message.<br>
       Use case ends.
 
 
@@ -891,13 +891,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 3a. There are no recipes in the FRMS.
-    * 3a1. FRMS displays an error message.
+    * 3a1. FRMS displays an error message.<br>
       Use case ends.
 * 3b. The recipe to be displayed is not the FRMS.
-    * 3b1. FRMS displays an error message.
+    * 3b1. FRMS displays an error message.<br>
 	  Use case ends.
 
 
@@ -915,10 +915,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays error messages.
+    * 2a1. FRMS displays error messages.<br>
 	  Use case ends.
 * 3a. There are no recipes in the FRMS.
-     * 3a1. FRMS displays an error message.
+     * 3a1. FRMS displays an error message.<br>
        Use case ends.
 
 
@@ -936,13 +936,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 3a. There are no recipe statistics in the FRMS.
-    * 3a1. FRMS displays an error message.
+    * 3a1. FRMS displays an error message.<br>
       Use case ends.
 * 3b. There are no recipe statistics for the given parameters in the FRMS.
-    * 3b1. FRMS displays an error message.
+    * 3b1. FRMS displays an error message.<br>
       Use case ends.
 
 
@@ -960,14 +960,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions:**
 
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 2b. FRMS detects a duplicate recipe but the unit of measurement for the quantity of the ingredients are the same.
     * 2b1. FRMS updates the quantity of the ingredient.
-    * 2b2. FRMS displays a confirmation message.
+    * 2b2. FRMS displays a confirmation message.<br>
       Use case ends.
 * 2c. FRMS detects a duplicate recipe but the unit of measurement for the quantity of the ingredients are different.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 
 
@@ -984,13 +984,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions:**
 
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 3a. There are no ingredients in the FRMS.
-    * 3a1. FRMS displays an error message.
+    * 3a1. FRMS displays an error message.<br>
       Use case ends.
 * 3b. The ingredient to be deleted is not the FRMS.
-    * 3b1. FRMS displays an error message.
+    * 3b1. FRMS displays an error message.<br>
 	  Use case ends.
 
 
@@ -1009,16 +1009,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 3a. FRMS detects an invalid input parameter.
-    * 3a1. FRMS displays an error message.
+    * 3a1. FRMS displays an error message.<br>
       Use case ends.
 * 4a. There are no ingredients in the FRMS.
-    * 4a1. FRMS displays an error message.
+    * 4a1. FRMS displays an error message.<br>
       Use case ends.
 * 4b. The ingredient to be edited is not the FRMS.
-    * 4b1. FRMS displays an error message.
+    * 4b1. FRMS displays an error message.<br>
 	  Use case ends.
 
 
@@ -1036,10 +1036,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays error messages.
+    * 2a1. FRMS displays error messages.<br>
 	  Use case ends.
 * 3a. There are no ingredients in the FRMS.
-     * 3a1. FRMS displays an error message.
+     * 3a1. FRMS displays an error message.<br>
        Use case ends.
 
 
@@ -1057,13 +1057,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 3a. There are no ingredients in the FRMS.
-    * 3a1. FRMS displays an error message.
+    * 3a1. FRMS displays an error message.<br>
       Use case ends.
 * 3b. There are no ingredients that match the filter conditions in the FRMS.
-    * 3b1. FRMS displays an error message.
+    * 3b1. FRMS displays an error message.<br>
       Use case ends.
 
 
@@ -1081,13 +1081,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 * 2a. FRMS detects an invalid input format or parameter.
-    * 2a1. FRMS displays an error message.
+    * 2a1. FRMS displays an error message.<br>
       Use case ends.
 * 3a. There are no ingredient statistics in the FRMS.
-    * 3a1. FRMS displays an error message.
+    * 3a1. FRMS displays an error message.<br>
       Use case ends.
 * 3b. There are no ingredient statistics for the given parameters in the FRMS.
-    * 3b1. FRMS displays an error message.
+    * 3b1. FRMS displays an error message.<br>
       Use case ends.
 
 
@@ -1338,7 +1338,7 @@ All successful test cases in the section **Deleting recipes** will result in the
    1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop.
 
    1. Test case: `delete recipe #1`<br>
-      Expected: The recipe **#1** `Apple Tart` is deleted from the recipe list.
+      Expected: The recipe #1 `Apple Tart` is deleted from the recipe list.
 
    1. Test case: `delete recipe #20`<br>
       Expected: No recipe deleted as the recipe with the given index does not exist. Error details shown in the Command Output box.
@@ -1735,7 +1735,7 @@ Here are the steps you can follow and execute in order, to create a sample usage
 
 #### B.4.1&ensp;Viewing recipes made in a given time frame 
 
-1. View recipes with 3 recipes A, B and C that were made at least 1 minute apart from each other.
+1. View recipes made with past recipe usage records.
 
     1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
     
@@ -1755,6 +1755,7 @@ Here are the steps you can follow and execute in order, to create a sample usage
         Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box returns to default panel showing recently made recipes.
    
 1. View recipes made with no past recipe usage records
+
     1. Prerequisites: No recipe usages saved. This can be done by executing `stats recipe clear` which should clear all recipe usages.
     
     1. Test case: `stats recipe made`<br>
@@ -1773,7 +1774,7 @@ Here are the steps you can follow and execute in order, to create a sample usage
         Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box shows "No recipes were made recently".
 
 #### B.4.2&ensp;Viewing recipes made most recently
-1. View recipes with 3 recipes A, B and C were made in this order.
+1. View recipes made with past recipe usage records.
 
     1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
     
@@ -1795,7 +1796,7 @@ Here are the steps you can follow and execute in order, to create a sample usage
         
    
 #### B.4.3&ensp;Viewing recipes made most frequently
-1. View most made recipes with records of recipe made.
+1. View recipes made with past recipe usage records.
 
     1. Prerequisites: Cleared previous usage records and made recipe A 3 times and recipe B once.
     
@@ -1811,7 +1812,7 @@ Here are the steps you can follow and execute in order, to create a sample usage
         Expected: The stats box shows "No recipes were made recently"
 
 #### B.4.4&ensp;Clearing recipe usages
-1. Clear records of recipe usages after making Recipes A, B and C.
+1. Clear records of recipe usages when there are past recipe usage records.
 
     1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
     
@@ -1832,7 +1833,7 @@ Here are the steps you can follow and execute in order, to create a sample usage
    
 #### B.4.5&ensp;Viewing ingredients used in a given time frame 
 
-1. View ingredients with 3 ingredients A, B and C (used in this order) that were used at least 1 minute apart from each other.
+1. View ingredients used with past ingredient usage records.
     1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
     
     1. Test case: `stats ingredient used`<br>
@@ -1869,7 +1870,7 @@ Here are the steps you can follow and execute in order, to create a sample usage
         Expected: The command output box shows "Error: 'after' date cannot be later than 'before' date". The stats box returns to default panel showing recently made recipes.
    
 #### B.4.6&ensp;Viewing ingredients used most recently
-1. View ingredients with 3 ingredients A, B and C were made in this order.
+1. View ingredients used with past ingredient usage records.
 
     1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
 
@@ -1883,7 +1884,7 @@ Here are the steps you can follow and execute in order, to create a sample usage
         Expected: The stats box shows "No ingredients were made" with no lists shown below.
    
 #### B.4.7&ensp;Clearing ingredient usages
-1. Clear records of ingredient usages after making Ingredients A, B and C.
+1. Clear records of ingredient usages when there are past ingredient usage records.
 
     1. Prerequisites: For this section, we will be using the sample usage data made by following the steps above. 
 
@@ -1922,6 +1923,7 @@ In addition, a comprehensive set of tests were written for each command parser t
 
 #### C.1.3&ensp;Statistics and Recommendations
 The development of the statistics feature follows a depth-first approach because it requires additional classes and operations across all major components in ChopChop.
+Likewise, the recipe recommendations feature spans across all major components in ChopChop. It uses existing data structures such as `FilteredList` to compute its recommendations.
 
 #### C.1.4&ensp;Automated GUI Testing
 To ensure that our ChopChop GUI conform to its expected behaviour, we implemented Unit tests that test the individual components components comprehensively.

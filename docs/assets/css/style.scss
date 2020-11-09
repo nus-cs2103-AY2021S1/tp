@@ -55,11 +55,11 @@ kbd {
     margin-top: -80px;
 }
 
-// @media print {
-//     div {
-//         break-inside: avoid;
-//     }
-// }
+@media print {
+    a:visited {
+        color: $link-base-color;
+    }
+}
 
 @page {
     size: auto;

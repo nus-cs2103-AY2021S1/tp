@@ -49,7 +49,7 @@ Added detailed walkthrough for the GUI ([#175](https://github.com/AY2021S1-CS210
 
 **Developer Guide**
 
-Primary custodian for the Developer Guide, ensured consistent formatting, phrasing, and visuals. Added user stories, use cases, parts of the instructions for manual testing and implementation details for the UI ([#175](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/175), [#296](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/296), [#300](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/300), [#303](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/303), [#319](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/319), [#322](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/322)).
+Primary custodian for the Developer Guide, ensured consistent formatting, phrasing, and visuals. Added user stories, use cases, parts of the instructions for manual testing and implementation details for the UI ([#175](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/175), [#296](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/296), [#300](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/300), [#303](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/303), [#319](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/319), [#322](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/322), [#324](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/324), [#326](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/326), [#329](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/329)).
 
 
 
