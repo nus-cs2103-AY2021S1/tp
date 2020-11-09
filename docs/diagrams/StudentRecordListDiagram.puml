@@ -10,9 +10,9 @@ show members
 class StudentRecordListManager {
     -internalList : ObservableList<StudentRecord>
     -internalUnmodifiableList : ObservableList<StudentRecord>
-    
+
     +{static} StudentRecordList of(List<Student>)
-    
+
     +void markStudentAttendance(NusnetId, AttendanceType)
     +void markAllStudentAttendances(AttendanceType)
     +void scoreStudentParticipation(NusnetId, double)
@@ -22,7 +22,7 @@ class StudentRecordListManager {
     +double getLowestScore()
     +ObservableList<StudentRecord> asUnmodifiableObservableList()
     +Iterator<StudentRecord> iterator()
-    
+
     -{static} StudentRecord createEditedStudentRecord(StudentRecord, EditStudentRecordDescriptor)
     -boolean studentsAreUnique(List<StudentRecord>)
 }
