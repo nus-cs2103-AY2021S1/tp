@@ -22,7 +22,8 @@ public class ShowAttendanceCommandTest {
     @Test
     public void execute_presentAttendance_success() {
         Attendance attendance = Attendance.fromDateString("27/03/1998");
-        String message = "Alice Pauline was present on " + attendance.date.toString();
+        String message = "Alice Pauline was present on " + attendance.date.toString()
+            + "\nYou may view results in the Attendance tab.";
 
         ShowAttendanceCommand showAttendanceCommand = new ShowAttendanceCommand(INDEX_FIRST_PERSON, attendance);
         assertCommandSuccess(showAttendanceCommand, model, message, expectedModel);
@@ -31,7 +32,8 @@ public class ShowAttendanceCommandTest {
     @Test
     public void execute_absentAttendance_success() {
         Attendance attendance = Attendance.fromDateString("28/03/1998");
-        String message = "Alice Pauline was absent on " + attendance.date.toString();
+        String message = "Alice Pauline was absent on " + attendance.date.toString()
+            + "\nYou may view results in the Attendance tab.";
 
         ShowAttendanceCommand showAttendanceCommand = new ShowAttendanceCommand(INDEX_FIRST_PERSON, attendance);
         assertCommandSuccess(showAttendanceCommand, model, message, expectedModel);
