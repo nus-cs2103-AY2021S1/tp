@@ -65,13 +65,14 @@ This was challenging as the use of `Optionals` had to be implemented throughout 
 [\#211](https://github.com/AY2021S1-CS2103T-F13-3/tp/pull/211), [\#224](https://github.com/AY2021S1-CS2103T-F13-3/tp/pull/224),
 [\#244](https://github.com/AY2021S1-CS2103T-F13-3/tp/pull/244))
 
-<div style="page-break-after: always;"></div>
-
 **Documentation:**
 * User Guide:
     * Added documentation for logging in and creating account features. (Pull request [\#152](https://github.com/AY2021S1-CS2103T-F13-3/tp/pull/152))
     * Added documentation for logout feature. (Pull request [\#242](https://github.com/AY2021S1-CS2103T-F13-3/tp/pull/242))
     * Added documentation for `edit` feature. (Pull request [\#118](https://github.com/AY2021S1-CS2103T-F13-3/tp/pull/118))
+    
+<div style="page-break-after: always;"></div>
+    
 * Developer's Guide:
     * Added implementation details for creating accounts and logging in. (Pull requests [\#152](https://github.com/AY2021S1-CS2103T-F13-3/tp/pull/103),
     [\#242]((https://github.com/AY2021S1-CS2103T-F13-3/tp/pull/242)))
