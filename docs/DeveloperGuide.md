@@ -172,7 +172,7 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.addressbook.commons` package, the package contains 2 sub packages, which are:
 
 - core: Contains software settings and information, also contains loggers for debugging purposes.
-- util: Contains utilities for other classes to use. Utilities can perform tasks such as parse strings or convert objects to and from Json format.
+- util: Contains utilities for other classes to use. Utilities can perform tasks such as parse strings or convert objects to and from JSON format.
 
 
 
@@ -188,11 +188,11 @@ Trackr has three different data types:
 - `Student`: The students currently being taught by the user
 
 As shown in Figure 4.4a, 
-Trackr stores these data in the following manner: UniqueModuleList contains Modules. Each module has a UniqueTutorialGroupList 
+Trackr stores these data in the following manner: UniqueModuleList contains Modules. Each Module has a UniqueTutorialGroupList 
 that stores all the Tutorial Groups of that particular Module. Lastly, each Tutorial Group has a UniqueStudentList that stores all the
 Students of that particular Tutorial Group.
 
-Trackr's three data type also share the same commands, which are:
+Trackr's three data types also share the some commands, which are:
 * Add
 * Delete
 * Edit
@@ -202,7 +202,7 @@ Trackr's three data type also share the same commands, which are:
 * Clear
 * Exit
 
-Since Trackr stores and manages its data recursively, the commands for Module, Tutorial Group and Student work similarly.
+Since Trackr stores and manages its data recursively, these shared commands for Module, Tutorial Group and Student work in a similar manner.
 
 #### Design Considerations:
 **Aspect: List to contain the data types**
@@ -842,6 +842,7 @@ be able to accomplish most of the tasks faster using commands than using the mou
 ## **Appendix E - Glossary**
 
 -   **Mainstream OS**: Windows, Linux, Unix, OS-X
+-   **JSON**: A format in which data is stored in attribute-value pairs
 -   **Private contact detail**: A contact detail that is not meant to be shared with others
 -   **TA**: Teaching Assistant
 -   **Modules**: University courses that Teaching Assistants teach
