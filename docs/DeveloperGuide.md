@@ -412,13 +412,13 @@ Aspect: How to duplicate activity *(deep/shallow copy)*
     - Cons: Harder to implement. Users need a way to differentiate deep/shallow copies to avoid unintentionally editing
     a shallow copy. Potentially more edge cases to think about and handle.
 
+<div style="page-break-after: always;"></div>
+
 ### Move Feature
 
 #### Implementation
 
 The move mechanism makes use of both the copy and delete mechanism.
-
-<div style="page-break-after: always;"></div>
 
 ### Find Feature
 
@@ -511,7 +511,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Wanderlust` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Wanderlust` and **Actor** is the `user`, unless otherwise specified)
 
 **Use case: UC01 - Navigate to a specific travel plan**
 
@@ -1019,6 +1019,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC24 - Find friend in travel plan**
 
 **MSS**
@@ -1039,8 +1041,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-<div style="page-break-after: always;"></div>
-
 **Use case: UC25 - Move activity from wishlist to travel plan**
 
 **MSS**
@@ -1060,6 +1060,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. Wanderlust shows an error message.
 
     Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC26 - Copy activity from wishlist to travel plan**
 
