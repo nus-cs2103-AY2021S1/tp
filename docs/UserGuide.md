@@ -149,7 +149,7 @@ we will bring you through the [features we have implemented for staff](#33-staff
 Following which, you will be introduced to the [features for managing applicant records](#34-applicant-commands). 
 
 Finally, you will learn about [how to add and delete comments to applicants and staff](#35-comment-commands) and 
-[our very own unique script engine](#35-script-engine) (experimental feature). By then, you will definitely become a master in using Eva! 
+[our very own unique script engine](#36-script-engine-experimental) (experimental feature). By then, you will definitely become a master in using Eva! 
 So let's get started! 
 
 ### 3.1. Eva GUI
@@ -158,19 +158,19 @@ Before we dive into the features, let us help you familiarize yourself with our 
 
 As of `v1.4`, Eva currently has four different application panels it can switch between:
 
-#### 3.1.1. Staff List
+#### 3.1.1. Staff List : `Staff List Panel`
 
 ![staffListPanel intro](images/ugimages/Intro1.png)
 
-#### 3.1.2. Staff Profile
+#### 3.1.2. Staff Profile : `Staff Profile Panel`
 
 ![staffProfilePanel intro](images/ugimages/Intro2.png)
 
-#### 3.1.3. Applicant List
+#### 3.1.3. Applicant List : `Applicant List Panel`
 
 ![applicantListPanel intro](images/ugimages/Intro3.png)
 
-#### 3.1.4. Applicant Profile
+#### 3.1.4. Applicant Profile : `Applicant Profile Panel`
 
 ![applicantProfilePanel intro](images/ugimages/Intro4.png)
 
@@ -235,6 +235,8 @@ This command changes the panel to the [`Staff List`](#31-eva-gui) and shows a li
 
 Format: `list s-`
 
+The image below shows what you would see after executing this example.
+
 ![listStaff](images/ugimages/ListStaff.png)
 
 #### 3.3.2. Add a staff : `adds`
@@ -279,7 +281,7 @@ Examples:
 * To add a tag along with the necessary fields <br>
 `adds n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/12345678 t/Developer`
 
-The image below shows what you would see after executing the third example given.
+The image below shows what you would see after executing the last example given. Notice that Betsy Crowe is now recorded as a staff in our database.
 
 ![addStaff](images/ugimages/AddStaff.png)
 
@@ -291,6 +293,10 @@ Format `find FIND_TYPE- KEYWORD`
 
 Examples:
 * `find s- Doe`
+
+* `find s- Alex`
+
+The image below shows what you would see after executing the last example given. Notice that no other staffs are listed as there is only one Alex.
 
 ![findStaff](images/ugimages/FindStaff.png)
 
@@ -304,6 +310,8 @@ Format: `view INDEX`
 
 Example:
 * `view 1`
+
+The image below shows what you would see after executing the example given.
 
 ![viewStaff](images/ugimages/ViewStaff.png)
 
@@ -323,6 +331,10 @@ Format: `dels INDEX`
 
 Example:
 * `dels 1`
+
+* `dels 7`
+
+The image below shows what you would see after executing the last example given. Notice that the last staff in the list now has index 6.
 
 ![deleteStaff](images/ugimages/DeleteStaff.png)
 
@@ -344,6 +356,10 @@ Format: `edits INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [t/TAG] [c/
 
 Example:
 * `edits 1 n/John Doe p/99999999 a/John Street e/NEW@example.com`
+
+* `edits 1 n/Balakrishnan Roy`
+
+The image below shows what you would see after executing the last example given. Notice how Roy Balakrishnan has changed to Balakrishnan Roy.
 
 ![editStaff](images/ugimages/EditStaff.png)
 
@@ -374,7 +390,10 @@ Examples:
 * `list s-` followed by `addl 2 l/d/20/10/2020` adds the leave record with the given date(s) to the 2nd person in the shown list.
 * `find s- Betsy` followed by `addl 1 l/d/20/10/2020` adds the leave to the 1st person in the results of the `find s-` command.
 * `addl 1 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`
-* `addl 2 l/d/10/10/2020 d/08/10/2020 l/d/09/09/2020`
+* `addl 7 09/09/2020`
+* `addl 7 l/d/10/10/2020 d/08/10/2020`
+
+The image below shows what you would see after executing the last example given. Notice how the leave appears on the ui.
 
 ![addLeave](images/ugimages/AddLeave.png)
 
@@ -404,7 +423,8 @@ If a leave record has a date range that lasts from 08/11/2020 to 12/11/2020, any
 Examples:
 * `list s-` followed by `dell 2 d/09/10/2020` deletes the leave record of which the given date coincides with from the 2nd person in shown list.
 * `find s- Betsy` followed by `dell 1 d/09/10/2020` deletes the leave from the 1st person in the results of the `find s-` command.
-* `dell 2 d/09/10/2020`
+
+The image below shows what you would see after executing the example given. Notice how the leave disappears from the ui.
 
 ![deleteLeave](images/ugimages/DeleteLeave.png)
 
@@ -511,6 +531,10 @@ Format `find FIND_TYPE- KEYWORD`
 Examples:
 * `find a- Doe`
 
+* `find a- Yu`
+
+The image below shows what you would see after executing the last example given.
+
 ![findApplicant](images/ugimages/FindApplicant.png)
 
 #### 3.4.4. View : `view`
@@ -521,6 +545,8 @@ Format: `view INDEX`
 
 Example:
 * `view 1`
+
+The image below shows what you would see after executing this example.
 
 ![viewApplicant](images/ugimages/ViewApplicant.png)
 
@@ -540,6 +566,8 @@ Format: `dela INDEX`
 
 Example:
 * `dela 1`
+
+The image below shows what you would see after executing this example. Notice how Bernice Yu is now at index 1.
 
 ![deleteApplicant](images/ugimages/DeleteApplicant.png)
 
@@ -564,6 +592,9 @@ Format: `edita INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [c/COMMENT]
 Example:
 * `edita 1 n/NEWNAME p/99999999 a/NEWADDRESS e/NEW@example.com`
 * `edita 1 id/ 10/10/2010`
+* `edita 2 p/98762345`
+
+The image below shows what you would see after executing the last example given.
 
 ![editApplicant](images/ugimages/EditApplicant.png)
 
@@ -592,6 +623,8 @@ Example:
 * `addapp 1 data/resume.txt`
 * `addapp 1 sample`
 
+The image below shows what you would see after executing the last example given.
+
 ![addApplication](images/ugimages/AddApplication.png)
 
 #### 3.4.8. Delete an application: `delapp`
@@ -618,6 +651,8 @@ Format: `delapp INDEX`
 Example:
 * `delapp 1`
 
+The image below shows what you would see after executing this example.
+
 ![deleteApplication](images/ugimages/DeleteApplication.png)
 
 #### 3.4.9. Set application status: `setas`
@@ -635,6 +670,9 @@ Format: `setas INDEX as/NEW_APPLICATION_STATUS`
   
 Example:
 * `setas 1 as/received`
+* `setas 3 as/accepted`
+
+The image below shows what you would see after executing the last example given.
 
 ![setApplicationStatus](images/ugimages/SetApplicationStatus.png)
 
@@ -655,7 +693,7 @@ Please take note that this action is irreversible.**
 Format: `clear a-`
 
 The image below shows what you would see after using this command. 
-Notice that there are no more records of staff in the
+Notice that there are no more records of applicants in the
 Applicant List.
 
 ![clearApplicantDatabase](images/ugimages/ClearApplicant.png)
@@ -690,6 +728,9 @@ Format: `addc INDEX c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/DESCRIPTIONS`
 
 Example:
 * `addc 1 c/ ti/Working Ethics d/10/10/2010 desc/Good`
+* `addc 2 c/ ti/Punctuality d/10/10/2020 d/This applicant as a problem with punctuality`
+
+The image below shows what you would see after executing the last example given.
 
 ![addComment](images/ugimages/AddComment.png)
 
@@ -708,21 +749,33 @@ Please take note that this action is irreversible.**
 
 Format: `delc INDEX c/ ti/TITLE_OF_COMMENT_TO_DELETE`
 
-Example Scenario:
-* Comment to delete has Title: Working Ethics, Date: 10/10/2010, Description:Good, Staff index is 1
-* Command: `delc 1 c/ ti/Working Ethics`
+Example:
+* `delc 1 c/ ti/Working Ethics`
+* `delc 2 c/ ti/Punctuality`
+
+The image below shows what you would see after executing the last example given.
 
 ![deleteComment](images/ugimages/DeleteComment.png)
 
 #### 3.5.3. Edit comment on a staff: `editc`
 
-Edits only the description of a comment on a staff. 
+Edits the description of a comment on a staff.
+
+<div markdown="block" class="alert alert-primary">
+
+**:information_source: Note:** <br>
+
+Users can only view comment descriptions on staff or applicant profile pages.
+
+</div>
 
 Format: `editc INDEX c/ ti/TITLE_OF_COMMENT_TO_CHANGE d/DATE_OF_COMMENT_TO_CHANGE desc/NEW_DESCRIPTION`
 
-Example Scenario:
-* Comment to change has Title: Working Ethics, Date: 10/10/2010, Description: Good, and staff index is 1
-* Command: `editc 1 c/ ti/Working Ethics d/10/10/2010 desc/Quite Bad`
+Example:
+* `editc 1 c/ ti/Working Ethics d/10/10/2010 desc/Quite Bad`
+* `editc 3 c/ti/Review d/10/10/2010 desc/Suitable to be team leader due to experience in marketing`
+
+The image below shows what you would see after executing the last example given.
 
 ![editComment](images/ugimages/EditComment.png)
 
@@ -733,11 +786,13 @@ Eva has a built-in script to execute JavaScript that can be used to extend the f
 Please refer to [Nashorn official website](https://www.oracle.com/technical-resources/articles/java/jf14-nashorn.html)
 for supported JavaScript features, and how to import Java classes to extend Eva features.
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-danger">
 
-**Warning:** <br>
+:exclamation: **Important!** <br>
 
-* While loading script can extend the features of Eva and simplify the workflow, a script can also break the application. Use with caution! <br>
+* Please take note that this feature is not ready and is **purely experimental**.
+
+* While loading scripts can extend the features of Eva and simplify the workflow, a script can also break the application. Use with caution! <br>
 
 * Scripts downloaded over Internet could contain malicious content and pose security threats to your computer. Use at your own risks! <br>
 
@@ -759,7 +814,7 @@ Example Scenario:
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Eva home folder.
 
 **Q**: I can't run the app by double clicking! What do I do?<br>
-**A**: Open terminal and traverse to the directory the `eva.jar` file is in. Then type the command `java -jar eva.jar`.
+**A**: Open terminal and traverse to the directory the `eva.jar` file is in. Then type the command `java -jar Eva.jar`.
 
 --------------------------------------------------------------------------------------------------------------------
 

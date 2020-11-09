@@ -69,7 +69,7 @@ The sections below give more details of each component.
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CurrentPanelHeader`, `ResultDisplay`, `CommandBox`, `HelpWindow`, and the various `Panels`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-There are four different possible `Panels` and/or `PanelStates` :
+There are four different possible `Panel` objects :
 * `StaffListPanel` : this is where the user can view the list of staffs in the database
 * `ApplicantListPanel` : this is where the user can view the list of applicants in the database
 * `StaffProfilePanel` : this is where the user can view the profile of a staff in the database
@@ -144,7 +144,7 @@ Classes used by multiple components are in the `com.eva.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-###3.1 Overview of Staff and Applicants
+### 3.1 Overview of Staff and Applicants
 
 The class diagram below shows how applicant and staff are related to each other and the various classes they are 
 associated to. The following sections will elaborate more on the applicant and staff management sections.
@@ -160,20 +160,47 @@ A staff record also contains `Leave`. More about how this is implemented is elab
 
 #### 3.2.1 Leave System
 
-The current leave recording system is facilitated by the `ModelManager`. It contains a filtered list of all staffs, `filteredStaffs` and
-implements the following operations:
-
-* `ModelManager#getPanelState()` — Gets the current panel state.
-* `ModelManager#getFilteredStaffList()` — Gets the current filtered staff list.
-* `ModelManager#addStaffLeave()` — Adds a leave to a staff.
-* `ModelManager#setStaff()` — Sets the specified staff in the filtered list.
-* `ModelManager#setCurrentViewStaff()` — Sets the current view staff.
+The current leave recording system is facilitated by the `LogicManager` and `ModelManager`. The `Logic Manager` contains a `ModelManeger` which contains a filtered list of all staffs, `filteredStaffs`.
 
 Given below is an example usage scenario and how the leave recording system behaves at each step.
 
-Step 1. While looking at the staff list, the command: `addl 1 l/d/10/10/2020` is executed by the user to add a leave with the date 10/10/2020 to the 1st person in the staff list.
-The `addl` command calls 
+Similar to what was mentioned in the [Logic Component](#212-logic-component), the commands related to the leave system,
+`addl` and `dell`, are also executed and handled in the same way.
 
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("addl 1 l/d/10/10/2020")` API call.
+
+![Interactions Inside the Logic Component for the `delete 1` Command](images/AddLeaveSequenceDiagram.png)
+
+#### 3.2.2 Design consideration:
+
+##### Aspect: adding multiple leaves at once
+
+* **Alternative 1 (current choice):** addl can add multiple leaves at once.
+  * Pros: Makes it easier on the user to add leaves, not a drastic change from Alternative 2.
+  * Cons: Makes the command syntax a little more complicated, makes the implementation more complicated.
+
+* **Alternative 2:** addl should only allow the addition of one leave at once.
+  * Pros: Easy to implement.
+  * Cons: Less options for the user.
+  
+##### Aspect: deleting leaves
+
+* **Alternative 1 (current choice):** The date the user inputs will delete the entire leave if it falls within the date range of a staff leave.
+* Pros: Standardises the behavior when deleting leaves.
+* Cons: Makes the user enter more commands to change leave information.
+
+* **Alternative 2:** dell will take in a date range and delete all the leave dates between that. If a leave is partially within the range, it truncates the leave instead.
+* Pros: Easier to delete leaves.
+* Cons: May cause the unintentional deletion of leaves.
+
+##### Aspect: leave taken
+
+* **Alternative 1 (current choice):** Counts up from 0, records the total number of leaves taken.
+* Pros: Easy to implement.
+
+* **Alternative 2:** Counts down from the default leave balance, records the number of leave days left.
+* Pros: Able to easily see how many days of leave each staff has left.
+* Cons: Harder to implement, needs to be paired with a command that sets the default leave.
   
 ### 3.3. Applicant Management System
 
@@ -198,9 +225,47 @@ The application management system consists of the following:
      
 ### 3.2. Panels (List/Profile) display
 
-Ben to update
+Eva currently uses the panel state defined in [GUISettings](https://github.com/AY2021S1-CS2103T-W13-1/tp/blob/master/src/main/java/com/eva/commons/core/GuiSettings.java)
+to know which panel state to display.
 
-_{more aspects and alternatives to be added}_
+These are the four possible panel states and the commands that will cause eva to switch to them:
+* `STAFF_LIST`: `list s-`, `adds`
+* `STAFF_PROFILE`: `view` (on staff list)
+* `APPLICANT_LIST`: `list a-`, `adda`
+* `APPLICANT_PROFILE`: `view` (on applicant list)
+
+As explained in the [Logic Component](#212-logic-component), these commands go through the `Logic Manger` and `Model Manager`
+to be parsed and executed. However, the CommandResult returned to `MainWindow.java` lets Eva know that the panel state has changed.
+
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `view 1` API call on a `staff list`.
+
+![Interactions Inside the Logic Component for the `view 1` Command](images/ViewSequenceDiagram.png)
+
+Given below is the Sequence Diagram for interactions within the `Ui` component for the command `view 1` on a `staff list`.
+
+![Interactions Inside the Ui Component for the `view 1` Command](images/ViewSequenceDiagram1.png)
+
+#### 3.2.2 Design consideration:
+
+##### Aspect: Having different panel states
+
+* **Alternative 1 (current choice):** Separate all four panels
+  * Pros: Gives users an individual page to view the information they want.
+  * Cons: Complicated to implement.
+
+* **Alternative 2:** Have all the information on one panel
+  * Pros: Easy to implement.
+  * Cons: Cluttered and unfocused view.
+
+##### Aspect: Storing panel state in GUISettings
+
+* **Alternative 1 (current choice):** saves the panel state in GUISettings.
+  * Pros: Enables last viewed panel state to persist after app closure.
+  * Cons: Complicated to implement
+
+* **Alternative 2:** pass around an object containing the panel state.
+  * Pros: Easy to implement.
+  * Cons: Does not allow panel state to persist after app closure.
 
 --------------------------------------------------------------------------------------------------------------------
 

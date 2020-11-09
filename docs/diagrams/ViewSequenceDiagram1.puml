@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+
+box Ui LOGIC_COLOR_T1
+participant ":UiManager" as UiManager LOGIC_COLOR
+participant ":MainWindow" as MainWindow LOGIC_COLOR
+end box
+
+box Logic MODEL_COLOR_T1
+participant ":Logic" as Logic MODEL_COLOR
+end box
+
+[-> UiManager :
+activate UiManager
+
+UiManager -> MainWindow : start()
+activate MainWindow
+
+MainWindow -> Logic : executeCommand("view 1")
+activate Logic
+Logic--> MainWindow : result
+deactivate Logic
+MainWindow -> MainWindow : SwitchPanel(panelState)
+MainWindow --> UiManager :
+deactivate MainWindow
+
+[<--UiManager
+deactivate UiManager
+@enduml
