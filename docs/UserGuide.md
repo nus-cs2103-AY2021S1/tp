@@ -373,12 +373,12 @@ refer to Figure 10.
 There is no remove-d since a pending delivery does not have a quantity
 </div>
 
-<div style="page-break-after: always;"></div>
-
 <a name="edit"></a>
 #### 3.1.4 Editing an item or delivery: `edit-i` or `edit-d`
 
 Edits an existing item in the Inventory book or an existing pending delivery in the Delivery book.
+
+<div style="page-break-after: always;"></div>
 
 ##### 3.1.4a `edit-i`
 
