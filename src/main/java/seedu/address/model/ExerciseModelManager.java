@@ -15,6 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.parser.exceptions.CaloriesOverflow;
+import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Template;
 import seedu.address.model.exercise.TemplateList;
@@ -131,11 +132,14 @@ public class ExerciseModelManager implements ExerciseModel {
     public Optional<Goal> addExercise(Exercise exercise) throws CaloriesOverflow {
         exerciseBook.addExercise(exercise);
         updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISE);
+
         if (goalBook.hasGoal(new Goal(exercise.getDate()))) {
+            Calories calorie = new Calories(String.valueOf(getCaloriesByDay().get(exercise.getDate().value)));
             Goal goal = goalBook.getGoal(exercise.getDate());
-            goalBook.removeGoal(goal);
-            goal = goal.updateGoal(exercise.getCalories());
-            goalBook.addGoal(goal);
+            goal = goal.updateGoal(calorie);
+            //goalBook.removeGoal(goal);
+            //goal = goal.updateGoal(exercise.getCalories());
+            //goalBook.addGoal(goal);
             return Optional.of(goal);
         }
         return Optional.empty();
@@ -157,7 +161,6 @@ public class ExerciseModelManager implements ExerciseModel {
         TemplateList.addTemplate(template);
         //updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISE);
     }
-
 
     @Override
     public void setExercise(Exercise target, Exercise editedExercise) {

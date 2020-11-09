@@ -21,6 +21,7 @@ Calo is a desktop app that is **designed for keeping track of calories burnt thr
   - [3.11. Recall : `recall`](#311-recall--recall)
   - [3.12. Add templates : `create`](#312-add-templates--create)
   - [3.13. Add an exercise using template : `addt`](#313-add-an-exercise-using-template--addt)
+  - [3.14 Add an goal : `goal`](#314-creates-a-goal-goal)
   - [4. FAQ](#4-faq)
   - [5. Command summary](#5-command-summary)
 
@@ -100,8 +101,11 @@ Format: `update INDEX [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [m/MUS
 - Existing values of the exercise will be updated to the input values.
 - When editing tags/muscles, the existing tags/muscles of the exercise will be removed i.e adding of tags/muscles is not cumulative.
 - You can remove all the exercise/muscle's tags by typing t/ or m/ respectively (without specifying any tags after it).
+- For all other fields, supplying an empty value will result in an error message.
 
 - `update 1 n/Push up d/30 at/09-07-2020 c/260 m/chest m/arm t/home t/gym` Updates the exercise, the description, the date, calories burnt, muscles worked, and tags of the 1st exercise to be `push up`, `30`,  `09-07-2020`, `260`, `[chest, arm]`, and `[home, gym]` respectively.
+- `update 1 m/` will remove all the previous muscle tags from the 1st exercise.
+- `update 1 n/` will result in an error since the name of the 1st exercise is blank.
 
 ## 3.4. Delete : `delete`
 Deletes an exercise that a user has previously added.
@@ -213,6 +217,25 @@ Examples:<br>
 
 - `addt temp/pushup d/half an hour at/09-06-2020` Creates the exercise using the template called pushup with the date 09-06-2020, description half an hour and default calories 100.
 
+## 3.14. Creates a goal: `goal`
+
+Creates a goal of calories to be burnt on a particular date.
+- The format for the DATE should be in the form of DD-MM-YYYY.
+
+- The format for the CALORIES should be an integer.
+
+- Aside from an Exercise Book the application contains a goalBook. A goalBook 
+will help you create a goal of the number of calories to be burnt on a particular date.
+
+- Adding exercises on a particular date with goal will update your goal for that day accordingly.
+
+Examples:<br>
+
+-  `goal c/69 at/09-11-2020`  Creates a goal of 69 calories to be burnt on 09-11-2020.
+-  `goal c/420 at/23-12-2023` Creates a goal of 420 calories to burnt on 23-12-2023
+
+
+Format:goal `c/CALORIES at/DATE`
 
 
 ---

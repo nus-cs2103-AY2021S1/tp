@@ -1,0 +1,73 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":CaloriesGraph" as CaloriesGraph UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ExerciseBookParser" as ExerciseBookParser LOGIC_COLOR
+participant "x:XYZCommand" as XYZCommand LOGIC_COLOR
+end box
+
+
+[-> MainWindow : enter valid_command
+activate MainWindow
+note bottom
+enter is not a method.
+It is user typing
+into Calo
+end note
+
+
+
+MainWindow -> LogicManager : execute(input)
+activate LogicManager
+
+LogicManager -> ExerciseBookParser : parseCommand(xyz)
+activate ExerciseBookParser
+
+note right
+XYZCommand
+refers to any valid
+Command in Calo
+end note
+
+
+
+create XYZCommand
+ExerciseBookParser -> XYZCommand : xyzCommand(model)
+
+activate XYZCommand
+XYZCommand --> ExerciseBookParser
+deactivate XYZCommand
+
+
+ExerciseBookParser --> LogicManager : x
+deactivate ExerciseBookParser
+
+LogicManager -> XYZCommand : execute()
+activate XYZCommand
+
+XYZCommand --> LogicManager : result
+deactivate XYZCommand
+XYZCommand -[hidden]-> LogicManager : result
+destroy XYZCommand
+
+MainWindow<--LogicManager
+deactivate LogicManager
+
+MainWindow -> LogicManager : getCaloriesByDay()
+activate LogicManager
+
+MainWindow<--LogicManager
+deactivate LogicManager
+
+MainWindow -> CaloriesGraph : CaloriesGraph(CaloriesByDay)
+activate CaloriesGraph
+
+CaloriesGraph --> MainWindow
+deactivate CaloriesGraph
+@enduml
