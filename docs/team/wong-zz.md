@@ -57,7 +57,7 @@ Given below are my contributions to the project.
     * Added implementation details for the `Context` interface.
     * Added implementation details for the `Record` class.
     * Added some use cases.
-    * Added and updated multiple sequence/class diagrams.
+    * Updated class diagram for `Storage Component`, added class and sequence diagrams for enhanced `find` command, `Context` interface and `Record` class.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#39](https://github.com/AY2021S1-CS2103T-F13-3/tp/pull/39), [\#58](https://github.com/AY2021S1-CS2103T-F13-3/tp/pull/58), [\#13](https://github.com/AY2021S1-CS2103T-F13-3/tp/pull/13), [\#77](https://github.com/AY2021S1-CS2103T-F13-3/tp/pull/77)
