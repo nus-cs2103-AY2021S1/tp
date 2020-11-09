@@ -340,7 +340,7 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
 <div markdown="span" class="alert alert-info">
    
-:information_source: **Note:** The type <code>ModelManager**</code> of the objects stored in <code>History</code>  in the following diagrams is used as a simplified presentation for <code>Pair&lt;McGymmy&lt;Pair&lt;Predicate&lt;Food&gt;, MacroList&gt;&gt;</code>, so that the diagrams look less complicated.
+:information_source: **Note:** The type <code>ModelManager**</code> of the objects stored in <code>History</code>  in the following diagrams is used as a simplified presentation for <code>Pair&lt;McGymmy, Pair&lt;Predicate&lt;Food&gt;, MacroList&gt;&gt;</code>, so that the diagrams look less complicated.
 
 </div>
 
@@ -794,7 +794,7 @@ Use case ends.
 1. The data should be stored locally and should be in a human editable text file.
 1. The product should be for a single user i.e. (not a multi-user product).
 1. Each Command entered by the user should be processed within 1 second.
-1. All numeric values must be accurate to within 5 significant figures
+1. All numeric values must be accurate to within 5 significant figures.
 1. The size of the final compiled JAR file should be less than 100Mb.
 1. The software should not depend on a private remote server.
 
@@ -805,7 +805,7 @@ Use case ends.
 * **Command Line Interface (CLI)**: A command-line interface (CLI) processes commands to a computer program in the form of lines of text.
 * **Flag**: A dash followed by a letter to denote the start of a parameter. For example, in `-n Chicken Rice`, `-n` is a flag for name and `Chicken Rice` is the input that will be processed by the application.
 * **Graphical User Interface (GUI)**: A visual way of interacting with a computer using items such as windows, icons, and menus, used by most modern operating systems.
-* **Macro command**: A command that allows you to execute multiple built-in commands sequentially with just one line of input
+* **Macro command**: A command that allows you to execute multiple built-in commands sequentially with just one line of input.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **McGymmy/MG**: The name of this application, can be used interchangeably in this guide.
 * **Parameter**: Inputs given to the flag. For example, in `-n Chicken Rice`, `Chicken Rice` is the parameter passed to the flag `-n`.
@@ -825,15 +825,15 @@ testers are expected to do more *exploratory* testing.
 
 ### 10.1 Launch and shutdown
 
-1. Initial launch
+1. Initial launch.
 
-   1. Download the JAR file and copy into any folder
+   1. Download the JAR file and copy into any folder.
 
-   1. Double-click the JAR file
+   1. Double-click the JAR file.
       <br>
       Expected: Shows the GUI with a set of sample food items. The window size may not be optimum.
 
-1. Saving window preferences
+1. Saving window preferences.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
@@ -847,23 +847,23 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all food items using the `list` command. Multiple food items in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `delete 1`.<br>
       Expected: First food item is deleted from the list. Details of the deleted food item shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `delete 0`.<br>
       Expected: No food item is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size).<br>
       Expected: Similar to previous.
 
 
 ### 10.3 Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing/corrupted data files.
 
    1. Delete the 'data' file if any. Relaunch the app by double-clicking the JAR file.
    <br>
-   Expected: A new data file is generated
+   Expected: A new data file is generated.
 
    1. Open the data file inside the `data` folder using any text editor and edit the file to invalid values.
    <br>
