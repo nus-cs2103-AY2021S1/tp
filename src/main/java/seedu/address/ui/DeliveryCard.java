@@ -95,7 +95,7 @@ public class DeliveryCard extends UiPart<Region> {
             tempDateTime = tempDateTime.plusDays(days);
 
             long hours = tempDateTime.until(endTime, ChronoUnit.HOURS);
-            tempDateTime =  tempDateTime.plusHours(hours);
+            tempDateTime = tempDateTime.plusHours(hours);
 
             long minutes = tempDateTime.until(endTime, ChronoUnit.MINUTES);
             tempDateTime = tempDateTime.plusMinutes(minutes);
@@ -114,8 +114,8 @@ public class DeliveryCard extends UiPart<Region> {
                 time.setFill(Color.web("#f24e6c")); // light red
             } else { // DELIVER BY: XXmin XXsec (in green)
                 String timeString = "DELIVER BY: "
-                        + (days > 0 ? days + "days ": "")
-                        + (hours > 0 ? hours + "hours ": "")
+                        + (days > 0 ? days + "days " : "")
+                        + (hours > 0 ? hours + "hours " : "")
                         + minutes
                         + "min "
                         + seconds
