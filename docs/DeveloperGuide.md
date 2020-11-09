@@ -620,7 +620,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Teaching Assistant         | add/delete students to my list                  | properly manage the list of students                          |
 | `* * *`  | Teaching Assistant         | edit a student                                  | correct any errors                                            |
 | `* * *`  | Teaching Assistant         | find a student                                  | search for a student I'm looking for                          |
-| `* * *`  | Teaching Assistant         | add/delete attendance to a student              | properly track the attendance of my students                  |
+| `* * *`  | Teaching Assistant         | add/delete attendance of a student              | properly track the attendance of my students                  |
 | `* * *`  | Teaching Assistant         | list all the students I teach                   | have an overall view of all the students                      |
 | `* * *`  | Teaching Assistant         | edit attendance of a student                    | correct any errors                                            |
 | `* * *`  | Teaching Assistant         | filter attendance of my students                | check the attendance rate of my students                      |
