@@ -3,7 +3,7 @@ layout: page
 title: Ashley's Project Portfolio Page
 ---
 
-## Project: Warenager
+### Project: Warenager
 
 Warenager is an **inventory application** to help tech-savvy warehouse managers to keep track of items in their warehouse.
 It **optimizes management tasks** for warehouse managers including but not exhaustive of updating,
@@ -63,13 +63,10 @@ Given below are my contributions to the project.
 
 * **Testing**:
   * User Guide:
-    * Added unit test for `add` feature (AddCommandParser). (Pull request [\#107](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/107), [\#149](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/149))
-    * Added integration test for `add` feature (AddCommand). (Pull request [\#107](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/107), [\#149](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/149))
-    * Added unit test for `print` feature (PrintCommandParser). (Pull request [\#156](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/156))
-    * Added integration test for `print` feature (PrintCommand). (Pull request [\#156](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/156))
+    * Added unit test and integration test for `add` feature (AddCommandParser, AddCommand). (Pull request [\#107](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/107), [\#149](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/149))
+    * Added unit test and integration test for `print` feature (PrintCommandParser, PrintCommand). (Pull request [\#156](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/156))
     * Added testing for bases classes in model package (Stock, Location, Quantity, Source, Name). (Pull request [\#102](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/102))
-    * Added test classes for storage package (JsonAdaptedStock, JsonSerializableStockBook,
-     JsonStockBookStorage, JsonUserPrefsStorage and StorageManager) (Pull request [\#191](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/191))
+    * Added test classes for storage package (JsonAdaptedStock, JsonSerializableStockBook, JsonStockBookStorage, JsonUserPrefsStorage and StorageManager). (Pull request [\#191](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/191))
 
 * **Tracking of task**
   * Ensures that all assigned tasks completed before deadline and TP task tracker badges updated correctly.
