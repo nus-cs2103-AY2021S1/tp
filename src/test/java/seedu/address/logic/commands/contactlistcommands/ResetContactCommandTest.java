@@ -36,7 +36,6 @@ public class ResetContactCommandTest {
     public void execute_validIndexNotImportantToNotImportantUnfilteredList_resetSuccessful() {
 
         Contact contactToReset = model.getFilteredContactList().get(INDEX_FIRST_CONTACT.getZeroBased());
-        contactToReset = contactToReset.markAsNotImportant();
         ResetContactCommand resetContactCommand = new ResetContactCommand(INDEX_FIRST_CONTACT);
 
         ModelManager expectedModel = new ModelManager(
@@ -68,7 +67,6 @@ public class ResetContactCommandTest {
         showContactAtIndex(model, INDEX_FIRST_CONTACT);
 
         Contact contactToReset = model.getFilteredContactList().get(INDEX_FIRST_CONTACT.getZeroBased());
-        contactToReset = contactToReset.markAsNotImportant();
         ResetContactCommand resetContactCommand = new ResetContactCommand(INDEX_FIRST_CONTACT);
 
         ModelManager expectedModel = new ModelManager(
