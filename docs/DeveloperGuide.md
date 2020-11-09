@@ -417,8 +417,8 @@ A short description of the process including the parsing of macros is as follows
 
 1. If command word is `macro`, return a `NewMacroCommand` (which will create a new `macro` when executed).
 2. Else if command word is an existing macro, call the `asCommandInstance` method in the `MacroRunner` class to create a `CommandExecutable` from the macro and return that.
-3. Else hand over to primitive command parser.
-4. Else, a CommandException will be thrown
+3. Else if command word is a primitive command, pass control over to primitive command parser.
+4. Otherwise, a `ParseException` will be thrown.
 
 #### 7.5.2 Structure of the macro classes
 
