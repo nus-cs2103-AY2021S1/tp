@@ -90,7 +90,7 @@ Important cautions that needs to be known before using the feature.
 # 3. User Interface Overview
 *(Written by Le Hue Man)* <br>
 
-As you can see, **figure 3-1** below shows the default user interface (UI) of _Common Cents_ with its components.  
+As you can see, **Figure 3-1** below shows the default user interface (UI) of _Common Cents_ with its components.  
 ![annotatedUi](images/commands/annotatedUi.PNG)
 <p align="center"> <sub> <b>Figure 3-1</b>: Default user interface of <i>Common Cents</i> </sub> </p>
 
