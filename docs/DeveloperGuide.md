@@ -353,7 +353,8 @@ The command text is passed into `LogicManager` (an implementation of Logic) whic
 
 If the fields are all valid, a new `Task` object would be created and passed into the `AddTaskCommand` class. 
 
-Within the `AddTaskCommand` class, an instance of `AddTaskCommand` is created, along with an instance of the task created in the same class and this instance of `Command` is passed back to `LogicManager`.
+Within the `AddTaskCommand` class, an instance of `AddTaskCommand` is created, along with an instance of the task
+ is created in the same class and this instance of `Command` is passed back to `LogicManager`.
 
 LogicManager then calls the method `execute` of the `AddTaskCommand` which stores the task into the respective project's task list.
 
@@ -468,7 +469,7 @@ The following activity diagram summarizes what happens when a user executes a ta
   * Pros: The user always gets to see all the tasks every time (s)he enters the project.
   * Cons: The user have to filter everytime (s)he re-enters the same project if (s)he only wants to see tasks assigned to him/her.
 
-### New Teammate feature
+### New Person feature
 
 #### Implementation
 
@@ -478,7 +479,7 @@ The New Teammate created is added in the following places:
  - global static variable `allPeople` in the Person class 
  - within the project it was created for, in the associated Participation class
 
-The New Teammate command has to be prefixed with `addteammate` and include **all** of the following fields:
+The New Teammate command has to be prefixed with `addperson` and include **all** of the following fields:
  - `mn/` prefix followed by the name of the new teammate
  - `mg/` prefix followed by the teammate's Github User Name
  - `mp/` prefix followed by the phone number of the teammate
@@ -486,21 +487,26 @@ The New Teammate command has to be prefixed with `addteammate` and include **all
  - `ma/` prefix followed by the address of the teammate
  - *Each of the fields above is validated upon entry by the user, and failing the validation, will display to the user that the command failed, and requesting the user to try again.*
 
-The teammate is created in the project scope and assigned to that project. Further assignment of that user to other projects can be done in the scope of other projects.
+The teammate can be created in any scope. However, if created in the project scope, it is added to that project to be
+ come a teammate. The following explanation will detail `AddPerson` being executed in the project scope.
+ 
+ Once created in the project scope, the newly created person is added into that particular project.
+ Further assignment of a user to other projects can be done in the scope of other projects.
 
-Given below is an example usage scenario and how the `AddTeammate` mechanism behaves at each step:
+Given below is an example usage scenario and how the `AddPerson` mechanism behaves at each step:
 
 Step 1: The user enters `startproject 2` for example to start project 1 from the mainscreen.The user is greeted with the
  projects list on the left, and the description of the project in the centre.
 
 ![MainscreenUi](images/MainscreenUi.png)
 
-   *Figure 24: What the app looks like after 'start 2' command*
+   *Figure 24: What the app looks like after 'startproject 2' command*
 
-Step 2: The user enters a AddPerson command such as `addteammate mn/John Ivy mg/Ivydesign98 mp/82938281 me/imjon
-@gmail.com ma/13 Cupertino Loop`. The command text is passed into `LogicManager` (an implementation of Logic) which
+Step 2: The user enters a AddPerson command such as `addperson mn/John Ivy mg/Ivydesign98 mp/82938281 me/imjon@gmail
+.com ma/13 Cupertino Loop`.
+ The command text is passed into `LogicManager` (an implementation of Logic) which
  passes the raw text into the `MainCatalogueParser` to validate the first command word, which in this case is
-  `addperson`. A new instance of `TeammateCommandParser` class is then created which proceeds to parse the various
+  `addperson`. A new instance of `AddPersonCommandParser` is then created which proceeds to parse the various
    fields of the command. Any invalid fields such as invalid field prefixes or invalid format of data would throw an exception at this stage. 
 
 If the fields are all valid, a new `Person` object would be created in the same class and passed into the
@@ -509,14 +515,14 @@ If the fields are all valid, a new `Person` object would be created in the same 
 Within the `AddTeammateCommand` class, an instance of `AddPersonCommand` is created, along with an instance of the
  teammate created in the same class and this instance of `Command` is passed back to `LogicManager`.
 
-LogicManager then calls the method `execute` of the NewTeammateCommand which stores the teammate into the respective
+`LogicManager` then calls the method `execute` of the NewTeammateCommand which stores the teammate into the respective
  project's participation list, and for the project to be stored in the teammate's participation list. 
  While seeming to increase coupling, it however keeps both classes separate and would not break each other when something is changed.
 
 The diagram below summarises what is happening above with the help of a sequence diagram:
 ![AddPersonSequenceDiagramImage](images/AddPersonSequenceDiagram.png)
 
-   *Figure 25: Sequence Diagram of the 'addteammate' command*
+   *Figure 25: Sequence Diagram of the 'addperson' command*
 
 The diagram below gives a short overview on what happens when a user's input is received:
 
@@ -593,8 +599,8 @@ To illustrate, the object diagram below shows the how Project and Person classes
 
 **How Project and Person are associated**
     
-Project and Person cannot be directly linked, and hence are related in this manner to allow the Participation class to
- handle the association. If the instance of Participation is deleted for example, the Project and Person can still
+`Project` and `Person` cannot be directly linked, and hence are related in this manner to allow the `Participation` class to
+ handle the association. If the instance of `Participation` is deleted for example, the `Project` and `Person` can still
   exist, without an association between them.
 
 If the Git Username is valid, the `allPeople` list in Person (*which is a list of all persons, stored as a static
@@ -610,9 +616,9 @@ LogicManager then calls the method `execute` of the DeletePersonCommand which de
  
  ![DeletePersonActivityDiagram](images/DeletePersonActivityDiagram.png)
  
- #### Design consideration:
+#### Design consideration:
  
- ##### Aspect: Which scope deletion of a teammate should happen in.
+##### Aspect: Which scope deletion of a teammate should happen in.
  
  * **Alternative 1 (current choice):** Deletion should happen in the listperson scope.
    * Pros: All teammates can be viewed at once, and one can be selected for deletion there.
@@ -736,12 +742,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                 | I want to …​                | So that I can …​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | project team leader | add a new teammate |                      |  
-| `* * *`  | project team leader | edit a teammate |  change details of a teammate                     |  
+| `* * *`  | project team leader   | add a project                  |                      |
+| `* * *`  | project team leader | add a new person |                      |  
+| `* * *`  | project team leader | edit a person |  change details of a person                     |  
 | `* * *`  | project team leader | add a teammate to another project | have a teammate in multiple projects |
 | `* * *`  | project team leader | remove a teammate from a project | remove a teammate when he leaves a project   |
-| `* * *`  | project team leader | delete a teammate | remove a teammate who has left my team entirely |
-| `* * *`  | project team leader   | add a project                  |                      |
+| `* * *`  | project team leader | delete a person | remove a person that will never collaborates again |
 | `* *`  | project team leader  | view projects of a teammate      | assess a specific teammate's workload |
 | `* *` | project team leader   | view a dashboard of tasks my project   | see at a glance what needs to be done for a project  |
 | `* * *`| forgetful user | add in teammate's information           | keep track of my teammate's contact information                                                 |
@@ -791,16 +797,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### System: Teammates Tracking System (TMTS)
 
-**Use Case: UC3 - Add A Teammate**
+**Use Case: UC3 - Add A Person**
 
 **Actor:** User
 
 **MSS:**
 
-1. User creates a new teammate's profile.
-2. TMTS asks for the details of the teammates such as `personName`, `phone`, `email`, and `gitUserName`.
+1. User creates a new person's profile.
+2. TMTS asks for the details of the person such as `personName`, `phone`, `email`, and `gitUserName`.
 3. User keys in the details.
-4. TMTS stores the teammate's profile into the data file.
+4. TMTS stores the person's profile into the data file.
 
    Use case ends.
 
@@ -811,15 +817,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    
    Use case resumes at 3.
 
-**Use Case: UC4 - Edit An Existing Teammates**
+**Use Case: UC4 - Edit An Existing Person**
 
 **Actor:** User
 
 **MSS:**
 
-1. User chooses to edit a teammate's profile.
-2. PTS asks for the `gitUserName` of the teammate whose profile is to be edited.
-3. User keys in the `gitUserName` of the teammate.
+1. User chooses to edit a person's profile.
+2. PTS asks for the `gitUserName` of the person whose profile is to be edited.
+3. User keys in the `gitUserName` of the person.
 4. Same as <u>UC3</u> 2-4.
 
    Use case ends.
