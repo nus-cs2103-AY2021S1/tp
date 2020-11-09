@@ -109,7 +109,7 @@ Here are some general information you would need to know about our commands as y
 
 <div markdown="span" class="alert alert-info">
 
-:information_souce: **Notes about input format**
+:information_source: **Notes about input format:** <br>
 
 In Eva, you can store information about staff and applicants. Information includes details like name, phone number 
 and more. As such, in order to store these details in a neat and tidy manner, be sure to follow these guidelines
