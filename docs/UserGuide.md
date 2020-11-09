@@ -779,14 +779,14 @@ editstu INDEX (n/UPDATED_NAME) (m/UPDATED_MATRICULATION) (e/UPDATED_EMAIL_ADDRES
 
 :green_book: **Examples:**
 
-* `editstu 1 n/Alvina Lee` followed by `yes` edits the 2nd student in the student list with an updated name `Alvina Lee`. **(Figure 5.3.5)**
+* `editstu 1 n/Alvina Lee` followed by `yes` edits the 1st student in the student list with an updated name `Alvina Lee`. **(Figure 5.3.5)**
 * `editstu 3 t/active` followed by `yes` edits the 3rd student in the student list with an updated tag `active`.
 </div>
 
 **Outcome:**
 
 ![Editstu](images/user-guide/5.3.5-Editstu.png)
-<p align="center"> <sub> <b>Figure 5.3.5</b>: After confirming the editing of student 2 (confirmation is similar to delete student, thus not shown)</sub> </p>   
+<p align="center"> <sub> <b>Figure 5.3.5</b>: After confirming the editing of student 1 (confirmation is similar to delete student, thus not shown)</sub> </p>   
 
 { end of `features#student#editstu` written by: Marcus Tan Wei }
 
@@ -819,11 +819,11 @@ clearstu
 
 **Outcome:**
 ![Clearstu](images/user-guide/5.3.6-Clearstu.png)
-<p align="center"> <sub> <b>Figure 5.3.6</b>: Clearing the student list (confirmation is similar to delete student, thus not shown) </sub> </p>
+<p align="center"> <sub> <b>Figure 5.3.6</b>: After confirming the clearing of the student list (confirmation is similar to delete student, thus not shown) </sub> </p>
 
 { end of `features#student#clearstu` written by: Marcus Tan Wei }
 
-{ start of `sessions` written by: Alvin Chee Teck Weng }
+{ start of `features#sessions` written by: Alvin Chee Teck Weng }
 
 ### 5.4. Sessions
 
@@ -1032,7 +1032,7 @@ enterses INDEX
 ![enterses](images/user-guide/5.4.5-enterses.png)
 <p align="center"> <sub> <b>Figure 5.4.5</b>: After entering a session</sub> </p>
 
-{ end of `sessions` written by: Alvin Chee Teck Weng }
+{ end of `features#sessions` written by: Alvin Chee Teck Weng }
 
 { start of `features#current_session` written by: Zhang Sheng Yang }
 
