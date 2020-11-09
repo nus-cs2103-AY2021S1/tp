@@ -32,30 +32,29 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=w-yeehong)
 
 * **Enhancements to existing features**:
-  * Updated GUI color scheme and separate CSS into multiple files based on the names of the views for easier lookup (Pull request [#101](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/101))
-  * Refactored and repackaged the codebase for better organization of files based on the model type handled (Pull requests [#22](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/22), [#107](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/107))
-  * Reduced code duplication (Pull request [#154](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/154))
+  * Updated GUI color scheme and separate CSS into multiple files based on the names of the views for easier lookup (Pull request [\#101](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/101)).
+  * Refactored and repackaged the codebase for better organization of files based on the model type handled (Pull requests [\#22](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/22), [#107](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/107)).
+  * Reduced code duplication (Pull request [\#154](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/154)).
 
 * **Testing**:
-  * Added unit tests to test and validate that the description and due date of a task should conform to a specified format.
-  * Added unit tests for the `addtask`, `deletetask`, and `edittask` features.
+  * Added unit tests to test and validate that the description and due date of a task should conform to a specified format. (Pull requests [\#27](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/27), [\#228](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/228))
+  * Added unit tests for the `addtask`, `deletetask`, and `edittask` features (Pull requests [\#27](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/27), [\#78](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/78), [\#89](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/89), [\#242](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/242))
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `addtask`, `deletetask`, and `edittask` [\#153](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/153)
-    * Improved "Getting Started" section for Covigent` [[\#153](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/153)
+    * Added documentation for the features `addtask`, `deletetask`, and `edittask`
+    * Improved "Getting Started" section for Covigent
   * Developer Guide:
     * Added the implementation details for `Task` and its CRUD operations
-    * Added the implementation details for the user interface of `Task`
+    * Added the section on planned features
     * Updated to reflect the high-level view of the architecture of Covigent
-    * Updated the testing guide to include additional instructions for testing Covigent
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#10](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/10),
    [\#12](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/12), [\#26](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/26),
    [\#60](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/60), [\#64](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/64),
    [\#72](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/72), [\#100](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/100),
-   [\#105](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/105)
+   [\#105](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/105), [\#244](https://github.com/AY2021S1-CS2103T-W12-1/tp/pull/244)
   * Reported bugs and provided suggestions for Jarvis, a project by another teams in the class: [link](https://github.com/w-yeehong/ped/issues)
 
 * **Tools**:
