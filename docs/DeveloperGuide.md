@@ -12,6 +12,7 @@ This document is the developer guide for CanoE-COACH, a training scheduling app 
 
 This developer guide serves to provide developers with an understanding on how CanoE-COACH is designed.
 
+--------------------------------------------------------------------------------------------------------------------
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
