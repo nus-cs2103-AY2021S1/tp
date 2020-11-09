@@ -435,7 +435,7 @@ Examples:
 
 If you are no longer taking up a client, you can delete the client which can be found in the Client List. This helps in reducing obsolete information.
 
-Format: `cdel INDEX`
+Format: `cdel INDEX [f/]`
 
 Points to take note when deleting a client from the Client List:
 * Deletes the client at the specified `INDEX`.
@@ -469,7 +469,7 @@ You can view the full details of a client from the Client List.
 You can easily look up the following information about the client in the Main Window:
 * Your client's name, email, address, phone, tags
 * Your client's weight history in line graph form
-* A list of schedules associated with your client, together with the interval, exercise type and remark
+* A list of schedules associated with your client, together with the interval, exercise type, payment status, and remark
 
 Format: `cview INDEX`
 
@@ -688,7 +688,7 @@ Each schedule contains information about the client and the attended session.
 Listed below are three other types of information that you can add into a schedule:
 1. your client's weight if you have recorded your client's weight during a session
 1. exercises done by your client during the session as remark
-1. your client's payment status on whether he has or has not paid for the session
+1. your client's payment status on whether your client has or has not paid for the session
 
 </div>
 
@@ -728,7 +728,7 @@ Points to take note when adding a schedule:
 
 Example:
 
-* `schadd c/1 s/1` schedules the first client in the Client List with the first session in the Session List. As you can see in the figure below, Alex Yeoh (the fifth client, marked by the red square) is added to the first session in the list (marked by the blue square).
+* `schadd c/1 s/1` schedules the first client in the Client List with the first session in the Session List. As you can see in the figure below, Alex Yeoh (the first client, marked by the red square) is added to the first session in the list (marked by the blue square).
 
  <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
      <p>
@@ -756,7 +756,7 @@ Points to take note when editing a schedule's details:
 Examples:
 
 *  `schedit c/1 s/1 us/2` reschedules the first session in the Session List to the second session in the Session List while keeping all other fields the same
-*  `schedit c/1 s/1 pd/paid` indicates that the first client in the Client List has paid for the second session in the Session List while keeping all other fields the same
+*  `schedit c/1 s/1 pd/paid` indicates that the first client in the Client List has paid for the first session in the Session List while keeping all other fields the same
 *  `schedit c/1 s/1 r/did 5 pushups` edits the schedule containing client index 1 and session index 1 to have remark of doing 5 pushups while keeping all other fields the same
 *  `schedit c/1 s/1 w/70` edits the schedule containing client index 1 and session index 1 to a weight of 70kg while keeping all other fields the same
 * `schedit c/1 s/1 r/` clears the schedule containing client index 1 and session index 1 remarks while keeping all other fields the same
@@ -788,7 +788,7 @@ Examples:
 
 # 4 FAQ
 
-**Q**: How do I transfer my data to another Computer?
+**Q**: How do I transfer my data to another Computer?  
 **A**: Install the app in the other computer and overwrite the empty `data` folder it creates with your previous FitEgo `data` folder.
 
 **Q**: I have encountered difficulties with FitEgo. May I know who do I reach out to for assistance?  
