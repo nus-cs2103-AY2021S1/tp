@@ -3,7 +3,6 @@ package seedu.address.logic.parser.todolistparsers;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
@@ -15,7 +14,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.todolistcommands.AddTaskCommand;
 import seedu.address.logic.commands.todolistcommands.ClearTaskCommand;
 import seedu.address.logic.commands.todolistcommands.CompleteTaskCommand;
