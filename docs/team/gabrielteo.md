@@ -40,7 +40,7 @@ Given below are my contributions to the project.
     * Updated `find` command to include new find by `NRIC` functionality (Pull request [\#71](), [\#170]())
     * Updated `delete` command to include new delete by `NRIC` functionality (Pull request [\#71]())
     * Updated Command summary table for new `NRIC` parameter (Pull request [\#71]())
-    * Updated product screenshots and included some new screenshots (Pull requests [\#71](), [\#157](), [\#170]())
+    * Updated product screenshots and included some new screenshots (Pull requests [\#71](), [\#157](), [\#170](), [\#271]())
     * Added documentation for the feature `addAppt` (Pull request [\#170]())
     * Added documentation for the feature `editAppt` (Pull request [\#170]())
     * Added documentation for the feature `deleteAppt` (Pull request [\#170]())
