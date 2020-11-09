@@ -8,12 +8,15 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ViewCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -31,9 +34,14 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ModuleListPanel moduleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ContactListPanel contactListPanel;
+    private EventListPanel eventListPanel;
+    private TodoListPanel todoListPanel;
+    private DetailDisplay detailDisplay;
+    private Calender calender;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,13 +50,28 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private VBox moduleListPanelPlaceholder;
+
+    @FXML
+    private VBox contactListPanelPlaceholder;
+
+    @FXML
+    private VBox todoListPanelPlaceholder;
+
+    @FXML
+    private VBox eventListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private VBox viewItemDisplayPanel;
+
+    @FXML
+    private AnchorPane calenderPlaceHolder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -62,8 +85,8 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
-        setAccelerators();
+        //resizeTest();
+        //setAccelerators();
 
         helpWindow = new HelpWindow();
     }
@@ -110,14 +133,29 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
+        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+
+        contactListPanel = new ContactListPanel(logic.getFilteredContactList());
+        contactListPanelPlaceholder.getChildren().add(contactListPanel.getRoot());
+
+        eventListPanel = new EventListPanel(logic.getFilteredEventList());
+        eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+
+        todoListPanel = new TodoListPanel(logic.getFilteredTodoList());
+        todoListPanelPlaceholder.getChildren().add(todoListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        detailDisplay = new DetailDisplay();
+        viewItemDisplayPanel.getChildren().add(detailDisplay.getRoot());
+
+        // StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        // statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        calender = new Calender(logic.getEventList());
+        calenderPlaceHolder.getChildren().add(calender.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -133,6 +171,11 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+    }
+
+    private void resizeTest() {
+        primaryStage.setHeight(1000);
+        primaryStage.setWidth(1000);
     }
 
     /**
@@ -163,8 +206,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ModuleListPanel getPersonListPanel() {
+        return moduleListPanel;
     }
 
     /**
@@ -176,8 +219,12 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
+            if (commandText.contains("view") && !commandText.contains("archive")) {
+                detailDisplay.setDisplay((ViewCommandResult) commandResult);
+                resultDisplay.setFeedbackToUser("ViewModule has been successfully executed!");
+            } else {
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            }
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
@@ -185,6 +232,12 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            // Update charts for TodoList
+            todoListPanel.updateCompletionChart(logic.getFilteredTodoList());
+            todoListPanel.updateFutureBar(logic.getFilteredTodoList());
+            // update the calendar
+            calender.loadNow();
 
             return commandResult;
         } catch (CommandException | ParseException e) {

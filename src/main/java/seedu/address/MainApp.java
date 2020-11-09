@@ -15,18 +15,30 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
+import seedu.address.model.ContactList;
+import seedu.address.model.EventList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ModuleList;
+import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyEventList;
+import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TodoList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.ContactListStorage;
+import seedu.address.storage.EventListStorage;
+import seedu.address.storage.JsonContactListStorage;
+import seedu.address.storage.JsonEventListStorage;
+import seedu.address.storage.JsonModuleListStorage;
+import seedu.address.storage.JsonTodoListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.ModuleListStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.TodoListStorage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -48,7 +60,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing ModuleList ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,8 +68,14 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        ModuleListStorage moduleListStorage = new JsonModuleListStorage(userPrefs.getModuleListFilePath());
+        ModuleListStorage archivedModuleListStorage = new JsonModuleListStorage(
+                userPrefs.getArchivedModuleListFilePath());
+        ContactListStorage contactListStorage = new JsonContactListStorage(userPrefs.getContactListFilePath());
+        TodoListStorage todoListStorage = new JsonTodoListStorage(userPrefs.getTodoListFilePath());
+        EventListStorage eventListStorage = new JsonEventListStorage(userPrefs.getEventListFilePath());
+        storage = new StorageManager(moduleListStorage, archivedModuleListStorage,
+                contactListStorage, todoListStorage, eventListStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -69,28 +87,153 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
+     * Returns a {@code ModelManager} with the data from {@code storage}'s module list, contact list
+     * and {@code userPrefs}. <br>
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
-        try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
-            }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+        ReadOnlyModuleList initialModuleList = initializeModuleList(storage);
+        ReadOnlyModuleList initialArchivedModuleList = initializeArchivedModuleList(storage);
+        if (hasDuplicateModules(initialModuleList, initialArchivedModuleList)) {
+            initialArchivedModuleList = SampleDataUtil.getSampleArchivedModuleList();
         }
+        ReadOnlyContactList initialContactList = initializeContactList(storage);
+        ReadOnlyTodoList initialTodoList = initializeTodoList(storage);
+        ReadOnlyEventList initialEventList = initializeEventList(storage);
+        return new ModelManager(initialModuleList, initialArchivedModuleList, initialContactList,
+                initialTodoList, initialEventList, userPrefs);
+    }
 
-        return new ModelManager(initialData, userPrefs);
+    /**
+     * Returns a {@code ReadOnlyContactList} with the data from {@code storage}'s Module list.
+     *
+     * @param storage Storage object containing module list data.
+     * @return ReadOnlyContactList containing the modules from the Storage argument.
+     */
+    private ReadOnlyModuleList initializeModuleList(Storage storage) {
+        Optional<ReadOnlyModuleList> moduleListOptional;
+        ReadOnlyModuleList initialModuleList;
+        try {
+            moduleListOptional = storage.readModuleList();
+            if (!moduleListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample ModuleList");
+                initialModuleList = moduleListOptional.orElseGet(SampleDataUtil::getSampleModuleList);
+            } else {
+                initialModuleList = moduleListOptional.get();
+            }
+            //to be used when sample modulelist is created
+            //initialData = moduleListOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty ModuleList");
+            initialModuleList = new ModuleList();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty ModuleList");
+            initialModuleList = new ModuleList();
+        }
+        return initialModuleList;
+    }
+
+    /**
+     * Returns a {@code ReadOnlyModuleList} with the data from {@code storage}'s Archived Module list.
+     *
+     * @param storage Storage object containing archived module list data.
+     * @return ReadOnlyContactList containing the archived modules from the Storage argument.
+     */
+    private ReadOnlyModuleList initializeArchivedModuleList(Storage storage) {
+        Optional<ReadOnlyModuleList> moduleListOptional;
+        ReadOnlyModuleList initialArchivedModuleList;
+        try {
+            moduleListOptional = storage.readArchivedModuleList();
+            if (!moduleListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample ArchivedModuleList");
+                initialArchivedModuleList = moduleListOptional.orElseGet(SampleDataUtil::getSampleArchivedModuleList);
+            } else {
+                initialArchivedModuleList = moduleListOptional.get();
+            }
+        } catch (DataConversionException ex) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty ArchivedModuleList");
+            initialArchivedModuleList = new ModuleList();
+        } catch (IOException ex) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty ArchivedModuleList");
+            initialArchivedModuleList = new ModuleList();
+        }
+        return initialArchivedModuleList;
+    }
+    /**
+     * Returns a {@code ReadOnlyContactList} with the data from {@code storage}'s contact list.
+     *
+     * @param storage Storage object containing contact list data.
+     * @return ReadOnlyContactList containing the contacts from the Storage argument.
+     */
+    private ReadOnlyContactList initializeContactList(Storage storage) {
+        Optional<ReadOnlyContactList> contactListOptional;
+        ReadOnlyContactList initialContactList;
+        try {
+            contactListOptional = storage.readContactList();
+            if (!contactListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample ContactList");
+                initialContactList = contactListOptional.orElseGet(SampleDataUtil::getSampleContactList);
+            } else {
+                initialContactList = contactListOptional.get();
+            }
+        } catch (DataConversionException ex) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty ContactList");
+            initialContactList = new ContactList();
+        } catch (IOException ex) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty ModuleList");
+            initialContactList = new ContactList();
+        }
+        return initialContactList;
+
+    }
+
+    private ReadOnlyEventList initializeEventList(Storage storage) {
+        Optional<ReadOnlyEventList> eventListOptional;
+        ReadOnlyEventList initialEventList;
+        try {
+            eventListOptional = storage.readEventList();
+            if (!eventListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample EventList");
+                initialEventList = SampleDataUtil.getSampleEventList();
+            } else {
+                initialEventList = eventListOptional.get();
+            }
+        } catch (DataConversionException ex) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty EventList");
+            initialEventList = new EventList();
+        } catch (IOException ex) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty EventList");
+            initialEventList = new EventList();
+        }
+        return initialEventList;
+    }
+
+    /**
+     * Returns a {@code ReadOnlyTodoList} with the data from {@code storage}'s todo list.
+     *
+     * @param storage Storage object containing todo list data.
+     * @return ReadOnlyTodoList containing the tasks from the Storage argument.
+     */
+    private ReadOnlyTodoList initializeTodoList(Storage storage) {
+        Optional<ReadOnlyTodoList> todoListOptional;
+        ReadOnlyTodoList initialTodoList;
+        try {
+            todoListOptional = storage.readTodoList();
+            if (!todoListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample TodoList");
+                initialTodoList = todoListOptional.orElseGet(SampleDataUtil::getSampleTodoList);
+            } else {
+                initialTodoList = todoListOptional.get();
+            }
+        } catch (DataConversionException ex) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty TodoList");
+            initialTodoList = new TodoList();
+        } catch (IOException ex) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty TodoList");
+            initialTodoList = new TodoList();
+        }
+        return initialTodoList;
     }
 
     private void initLogging(Config config) {
@@ -151,7 +294,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with default user prefs");
             initializedPrefs = new UserPrefs();
         }
 
@@ -163,6 +306,20 @@ public class MainApp extends Application {
         }
 
         return initializedPrefs;
+    }
+
+    /**
+     * Returns true if two module lists do not have duplicate modules
+     */
+    private boolean hasDuplicateModules(ReadOnlyModuleList moduleList, ReadOnlyModuleList archivedModuleList) {
+        for (int i = 0; i < moduleList.getModuleList().size(); i++) {
+            for (int j = 0; j < archivedModuleList.getModuleList().size(); j++) {
+                if (moduleList.getModuleList().get(i).equals(archivedModuleList.getModuleList().get(j))) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override

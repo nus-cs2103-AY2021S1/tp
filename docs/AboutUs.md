@@ -5,55 +5,61 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the following emails:
+* Jonas Ng: `e0415645@u.nus.edu`
+* Li HuanKang:
+* David Cai:
+* Joshua Wong:
+* Michael:
 
-## Project team
+## Cap 5.0 Buddy Team
 
-### John Doe
+### Jonas Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jonasngs.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jonasngs)]
+[[portfolio](team/jonasngs.md)]
 
-* Role: Project Advisor
+* Role: Team lead, Integration
+* Responsibilities:
 
-### Jane Doe
+### Li Huankang (Matthias)
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/matthiaslhk.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/MatthiasLHK)]
+[[portfolio](team/matthiaslhk.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team Lead , Scheduling and tracking
+* Responsibilities: Responsible for overall project coordination and in charge of defining, assigning, and tracking project tasks.
 
-### Johnny Doe
+### Michael Setia Atmaja
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/michael-setia.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/michael-setia)]
+[[portfolio](team/michael-setia.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### David Cai Qifan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/davidcaiqifan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/davidcaiqifan)]
+[[portfolio](team/davidcaiqifan.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Joshua Wong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/murtubak.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/murtubak)]
+[[portfolio](team/murtubak.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code quality

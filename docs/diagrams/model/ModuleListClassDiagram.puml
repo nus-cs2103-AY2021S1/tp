@@ -1,0 +1,35 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Class ModuleList
+
+Package Task <<Rectangle>>{
+Class UniqueModuleList
+Class Module
+Class ModuleName
+Class ModularCredits
+Class GradeTracker
+Class ModuleLesson
+Class ZoomLink
+}
+
+Package Tag {
+Class Tag
+}
+}
+
+ModuleList *--> "1" UniqueModuleList
+UniqueModuleList o--> "*" Module
+
+Module *---> "1" ModuleName
+Module *---> "0..*" Tag
+Module *---> "1" ModularCredits
+Module *---> "1" GradeTracker
+Module *---> "0..*" ModuleLesson
+Module *---> "0..*" ZoomLink
+ModuleLesson - ZoomLink
+@enduml

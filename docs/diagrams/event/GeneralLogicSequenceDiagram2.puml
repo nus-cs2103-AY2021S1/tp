@@ -1,0 +1,48 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":XYZParser" as XYZParser LOGIC_COLOR
+participant ":XYZCommand" as XYZCommand LOGIC_COLOR
+participant ":CommandResult" as commandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as model MODEL_COLOR
+end box
+
+[-> XYZParser : from XYZFeatureParser
+
+activate XYZParser LOGIC_COLOR
+
+create XYZCommand
+XYZParser -> XYZCommand : new XYZCommand()
+activate XYZCommand LOGIC_COLOR
+
+XYZCommand -> XYZParser
+deactivate XYZCommand
+
+[<- XYZParser : to XYZFeatureParser
+
+deactivate XYZParser
+
+[-> XYZCommand : from LogicManager "execute()"
+
+activate XYZCommand LOGIC_COLOR
+
+XYZCommand -> model
+activate model MODEL_COLOR
+
+deactivate model
+
+create commandResult
+XYZCommand -> commandResult : "execute()"
+activate commandResult LOGIC_COLOR
+
+commandResult -> XYZCommand
+deactivate commandResult
+
+[<- XYZCommand : to LogicManager (CommandResult)
+deactivate XYZCommand
+
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Interface ReadOnlyContactList <<Interface>>
+
+Package contact {
+    Class UniqueContactList
+    Class Contact
+    Class ContactName
+    CLass Email
+    Class Telegram
+    Class boolean
+}
+
+Package tag {
+    Class Tag
+}
+
+ContactList *-down-> "1" UniqueContactList
+ContactList .up.|> ReadOnlyContactList
+
+UniqueContactList o-down->"*" Contact
+
+Contact *-->"1" ContactName
+Contact *-->"1" Email
+Contact *-->"0..1" Telegram
+Contact *-->"1" boolean: isImportant
+Contact *-->"*" Tag
+
+@enduml

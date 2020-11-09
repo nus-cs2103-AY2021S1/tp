@@ -1,0 +1,27 @@
+@startuml
+
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package task {
+    Class Task
+}
+
+class TaskName
+class Tag
+enum Priority
+enum Status
+class Date
+class LocalDate
+
+Task *--"1" TaskName
+Task *--"0..*" Tag
+Task *--"0..1" Priority
+Task *--"1" Status
+Task *--"0..1" Date
+Task *--"1" LocalDate
+
+
+@enduml

@@ -1,0 +1,45 @@
+{
+  "contacts" : [ {
+    "name" : "Alice Pauline",
+    "email" : "alice@example.com",
+    "telegram" : "@alice",
+    "tagged" : [ "friends" ],
+    "isImportant" : false
+  }, {
+    "name" : "Benson Meier",
+    "email" : "johnd@example.com",
+    "telegram" : "@benson",
+    "tagged" : [ "owesMoney", "friends" ],
+    "isImportant" : false
+  }, {
+    "name" : "Carl Kurz",
+    "email" : "heinz@example.com",
+    "telegram" : "@alice",
+    "tagged" : [ ],
+    "isImportant" : false
+  }, {
+    "name" : "Daniel Meier",
+    "email" : "cornelia@example.com",
+    "telegram" : "@alice",
+    "tagged" : [ "family" ],
+    "isImportant" : false
+  }, {
+    "name" : "Elle Meyer",
+    "email" : "werner@example.com",
+    "telegram" : "@elleM",
+    "tagged" : [ ],
+    "isImportant" : false
+  }, {
+    "name" : "Fiona Kunz",
+    "email" : "lydia@example.com",
+    "telegram" : "@alice",
+    "tagged" : [ ],
+    "isImportant" : false
+  }, {
+    "name" : "George Best",
+    "email" : "anna@example.com",
+    "telegram" : "@george",
+    "tagged" : [ ],
+    "isImportant" : false
+  } ]
+}

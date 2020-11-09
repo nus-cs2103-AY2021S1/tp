@@ -7,8 +7,14 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyEventList;
+import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.ReadOnlyTodoList;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.event.Event;
+import seedu.address.model.module.Module;
+import seedu.address.model.task.Task;
 
 /**
  * API of the Logic component
@@ -24,21 +30,6 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
-     *
-     * @see seedu.address.model.Model#getAddressBook()
-     */
-    ReadOnlyAddressBook getAddressBook();
-
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
-
-    /**
-     * Returns the user prefs' address book file path.
-     */
-    Path getAddressBookFilePath();
-
-    /**
      * Returns the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();
@@ -47,4 +38,54 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the AddressBook.
+     *
+     * @see seedu.address.model.Model#getModuleList()
+     */
+    ReadOnlyModuleList getModuleList();
+
+    /** Returns an unmodifiable view of the filtered list of modules */
+    ObservableList<Module> getFilteredModuleList();
+
+    /**
+     * Returns the user prefs' address book file path.
+     */
+    Path getModuleListFilePath();
+
+
+    //===== ContactList =================================================
+    /**
+     * Returns the user pref's contact list file path.
+     */
+    Path getContactListFilePath();
+
+    /**
+     * Returns the ContactList.
+     */
+    ReadOnlyContactList getContactList();
+
+    /**
+     * Returns an unmodifiable view of the filtered list of contacts.
+     */
+    ObservableList<Contact> getFilteredContactList();
+
+    /**
+     * Returns the Todo List.
+     */
+    public ReadOnlyTodoList getTodoList();
+
+    /**
+     * Returns an unmodifiable list of filtered tasks.
+     */
+    ObservableList<Task> getFilteredTodoList();
+
+
+    public ReadOnlyEventList getEventList();
+
+    public ObservableList<Event> getFilteredEventList();
+
+    public Path getEventListFilePath();
+
 }

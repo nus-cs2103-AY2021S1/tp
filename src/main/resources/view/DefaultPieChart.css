@@ -1,0 +1,20 @@
+.default-color0.chart-pie {
+    -fx-pie-color: tomato;
+}
+.default-color1.chart-pie {
+    -fx-pie-color: orange;
+}
+.default-color2.chart-pie {
+    -fx-pie-color: mediumaquamarine;
+}
+
+.chart-pie-label-line {
+    -fx-stroke: #8b4513;
+    -fx-fill: #8b4513;
+    -fx-label-line-length: 10px;
+}
+
+.chart-pie-label {
+    -fx-fill: white;
+    -fx-font-size: 10px;
+}

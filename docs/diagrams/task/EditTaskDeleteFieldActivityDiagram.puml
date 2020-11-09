@@ -1,0 +1,25 @@
+@startuml
+
+start
+
+:User enters the command to edit a task;
+
+:EditTaskParser parsers the command arguments and create descriptor;
+
+if () then ([empty description for a prefix])
+        :Set isDeletedPrefix in descriptor to true;
+        :Create an EditTaskCommand;
+        :Execute EditTaskCommand;
+        :Set isDeletedPrefix boolean to true;
+        :Delete the field represented by the prefix;
+        :Edit the other field normally;
+else ([else])
+        :Create an EditTaskCommand;
+        :Execute EditTaskCommand;
+        :Edit task normally;
+
+endif
+
+stop
+
+@enduml
