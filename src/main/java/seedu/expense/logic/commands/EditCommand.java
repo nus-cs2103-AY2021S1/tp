@@ -48,6 +48,7 @@ public class EditCommand extends Command {
             + "Please add it using the \"AddCat\" command first.";
     public static final String MESSAGE_INVALID_AMOUNT = "Amount of the expense cannot be negative. Please "
             + "specify a non-negative amount of the expense.";
+    public static final String MESSAGE_SUM_OVER_LIMIT = "Total sum of expenses cannot exceed 10e9.";
 
     private final Index index;
     private final EditExpenseDescriptor editExpenseDescriptor;
@@ -86,6 +87,12 @@ public class EditCommand extends Command {
 
         if (!expenseToEdit.isSameExpense(editedExpense) && model.hasExpense(editedExpense)) {
             throw new CommandException(MESSAGE_DUPLICATE_EXPENSE);
+        }
+
+        try {
+            model.tallyExpenses().subtract(expenseToEdit.getAmount()).add(editedExpense.getAmount());
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(MESSAGE_SUM_OVER_LIMIT);
         }
 
         model.setExpense(expenseToEdit, editedExpense);
