@@ -358,6 +358,8 @@ Example 1: `remove-i 2 q/10` using [Figure 1](#uiwithannotationpng) as the start
 
 2. Either press Enter on your keyboard or click Send to execute the command.
 
+<div style="page-break-after: always;"></div>
+
 3. Success Message will be shown in the Result Display and the 2nd item will show up with its updated fields,
 refer to Figure 10.
     <br>
