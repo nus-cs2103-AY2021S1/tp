@@ -123,12 +123,13 @@ NUStorage allows you to add and save a new inventory record. Each inventory reco
 __Format:__ `create_inventory i/ITEM_NAME q/QUANTITY [c/ITEM_COST]`
 
 This creates a new inventory record for the item `ITEM_NAME` of quantity `QUANTITY`. 
-**Note** that `QUANTITY` and `ITEM_COST` are limited to a maximum value of `2000,000,000`. `QUANTITY` must be an integer and `ITEM_COST` can have up to 2 decimal places.
+**Note** that `QUANTITY` and `ITEM_COST` are bounded by a minimum value of `0` and a maximum value of `2,000,000,000`. `QUANTITY` must be an integer and `ITEM_COST` can have up to 2 decimal places.
 
 For the `ITEM_COST` parameter:
 
 * If given, then a finance record will be created automatically with a total amount of `ITEM_COST * QUANTITY`.
 * If left empty, then an **empty** finance record will be created with an amount of `0`.
+* If given more than 2 decimal places, it will be rounded **up** to 2 decimal places.
 
 __Example:__ `create_inventory i/iphone q/10 c/20`
 
@@ -156,7 +157,7 @@ For the purpose of this section, we have created two other inventory records, yo
 
 **:information_source: What this command does:**
 
-`delete_inventory` allows us to delete an inventory record currently stored within NUStorage.
+`delete_inventory` allows us to delete an inventory record, and the corresponding finance record currently stored within NUStorage.
 
 **:information_source: Using the command:** Below are instructions on how to use the `delete_inventory` command.
 
@@ -190,13 +191,17 @@ Currently, our NUStorage has two records as shown below:
 
 **:information_source: What this command does:**
 
-`edit_inventory` allows us to edit the item name, quantity or unit cost of the specified record in the inventory list.
+`edit_inventory` allows us to edit the item name, quantity or item cost of the specified record in the inventory and then update the corresponding finance record if needed.
 
 **:information_source: Using the command:** Below are instructions on how to use the `edit_inventory` command.
 
 __Format:__ `edit_inventory INDEX [i/ITEM_NAME] [q/QUANTITY] [c/ITEM_COST]`
 
-This allows us to change the item name, quantity and cost of the inventory record with the ID `INDEX`. Note that `QUANTITY` is currently limited to a maximum value of `2147483647` and that `INDEX` must be the **first** parameter for this command.
+This allows us to change the item name, quantity and cost of the inventory record with the ID `INDEX`. Please be reminded that `QUANTITY` and `ITEM_COST` are bounded by a minimum value of `0` to a maximum value of `2,000,000,000`.
+
+`INDEX` must be the **first** parameter for this command.
+
+**Note** that there can be no two inventory records with the same `ITEM_NAME`.
 
 __Example:__ `edit_inventory 2 i/iPad q/10 c/2000` edits the inventory record at index `2`.
 
