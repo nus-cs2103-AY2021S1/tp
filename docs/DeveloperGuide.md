@@ -628,7 +628,7 @@ should be able to accomplish most of the tasks faster using commands than using 
 * **Archive Mode**: The mode which allows users to view the archive.
 * **Priority Indicator**: The rectangle that shows the priority of the client in the list.
 
-|Priority Type   |Syntax  |Picture(Unarchived)   |Picture(archived) |
+|Priority Type   |Syntax  |Picture (Unarchived)   |Picture (Archived) |
 |---|---|---|---|
 |Undefined   |`l/undefined`,`l/u`, `l/U`   |![Undefined Priority](images/Priority Bar/UndefinedPriority.png) |![Undefined Priority](images/Priority Bar/UndefinedPriorityArchived.png) |
 |Low   |`l/low`,`l/l`, `l/L`    |![Low Priority](images/Priority Bar/LowPriority.png)   |![Low Priority](images/Priority Bar/LowPriorityArchived.png) | 
@@ -682,6 +682,7 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `list r/`<br>
        Expected: All archived clients listed. Success message shown. "Archived Client List" is shown below the success message.
        The color of the priority indicator for each archived client is [darkened](#glossary). 
+       
        ![List All Archived Clients](images/listAllArchivedClients.png)
        
        
@@ -692,10 +693,9 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all active clients (see [List Active Clients](#listing-all-active-clients)).
     The client is not already in the client list, i.e. a client that is different from those already in the client list should be added.
     2 clients are considered different if 
-    - They have different names OR
-    - They have the same name BUT have different email or phone number
-    
-    
+        - They have different names OR
+        - They have the same name BUT have different email or phone number.
+       
     2. Test case: `add n/John Cena`<br>
     Expected: The client John Cena is added to the active list. Success message shown. Priority of the user is undefined (white rectangle)
     
@@ -712,7 +712,7 @@ testers are expected to do more *exploratory* testing.
       Expected: 
       First client is archived, and is no longer shown in the active list. Details of the archived client shown in the status message.
       Upon listing all archived clients (see [List Archived Clients](#listing-all-archived-clients)), the archived client can be seen.  
-      The color of the archived client will be darkened to indicator that the client has been archived.     
+      The color of the archived client will be [darkened](#glossary) to indicator that the client has been archived.     
 
    3. Test case: `archive 0`<br>
       Expected: No client is archived. Error details shown in the status message.
