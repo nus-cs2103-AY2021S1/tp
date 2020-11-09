@@ -371,23 +371,17 @@ Shows the quiz questions attempted. Red options indicate wrong answer input and 
 
 Format: `view INDEX`
 
-Example: Index input must start from 1. Out of bounce index will not be recorded. e.g `view 1`
+Example: `view 1`
 
 ![view message](images/view_attempt.png)
 
 ### Viewing help : `help`
 
-Shows a message explaining the features of the app, and the format of the command associated with each feature.
+Shows a message containing URL to our user guide.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
-### Exiting application : `exit`
-
-Exits the programme.
-
-Format: `exit`
 
 
 ### Saving the data
