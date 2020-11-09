@@ -40,7 +40,8 @@ public class ExerciseEditCommandParser implements Parser<ExerciseEditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ExerciseEditCommand.MESSAGE_USAGE));
         }
-        if (argMultimap.getValue(PREFIX_EXERCISE).isPresent() && argMultimap.getAllValues(PREFIX_EXERCISE).size() != 1) {
+        if (argMultimap.getValue(PREFIX_EXERCISE).isPresent()
+                && argMultimap.getAllValues(PREFIX_EXERCISE).size() != 1) {
             throw new ParseException(String.format(
                     MESSAGE_INVALID_COMMAND_FORMAT, ExerciseEditCommand.MESSAGE_USAGE));
         }
