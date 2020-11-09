@@ -77,6 +77,7 @@ The `UI` component,
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
 <div style="page-break-after: always;"></div>
+
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -98,6 +99,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 </div>
 
 <div style="page-break-after: always;"></div>
+
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -139,6 +141,7 @@ Classes used by multiple components are in the `seedu.taskmaster.commons` packag
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
+
 ## **Additional Features Implemented**
 
 ### SessionList
@@ -165,7 +168,9 @@ The `Session`,
 * can mark the attendance of all students in the StudentRecordList with a single Command.
 
 The current running Session, `currentSession`, is also stored as an attribute in the Taskmaster.
+
 <div style="page-break-after: always;"></div>
+
 Given below is the Sequence Diagram for interactions within the `Session` component when `Taskmaster#markStudentWithNusnetId(nusnetId, attendanceType)` is called.
 
 ![Interactions iside the Session class for the `markStudentAttendance'` method call](images/MarkStudentAttendanceSequenceDiagram.png)
@@ -192,7 +197,9 @@ session with a specified name already exist inside the session list.
     of the code for `Session` to store another data structure which encapsulate the student submission data. On the other hand,
     storing a `StudentRecordList` can allow `Session` store such additional data without modifying its code at all, as all student-related
     data is encapsulated in a `StudentRecord`.
+    
 <div style="page-break-after: always;"></div>
+
 **Future Expansion**
 
 Beyond v1.4, additional features can be implemented for **Session**:
@@ -240,6 +247,7 @@ The `StudentRecord`,
   * a `ClassParticipation` representing the score awarded to the student for participating in the `Session`.
 
 <div style="page-break-after: always;"></div>
+
 Given below is the Sequence Diagram for interactions within the `StudentRecordListManager` component when `StudentRecordListManager#markStudentAttendance(nusnetId, attendanceType)` is called.
 
 ![Interactions inside the StudentRecordListManager class for the `markStudentAttendance'` method call](images/StudentRecordListAttendanceSequenceDiagram.png)
@@ -324,6 +332,8 @@ Author: **Jaya Rengam**
 
 ![Structure of the Storage Component](images/NewStorageClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 **Implementation details**
 
 A new method `JsonTaskmasterStorage#saveSessionList` will store the `SessionList` in the running `Taskmaster` to a separate .json file.
@@ -345,6 +355,8 @@ A new method `JsonTaskmasterStorage#saveSessionList` will store the `SessionList
 * Implement `saveSessionList` method in `JsonTaskmasterStorage`
 * Create the new `JsonSerializable..`/`JsonAdapted..` classes
 <br>
+
+<div style="page-break-after: always;"></div>
 
 **_Notes from developer:_**
 * This implementation of the feature uses Jackson libraries/formatting that is used in existing AB3 Storage classes
@@ -370,6 +382,8 @@ A new method `JsonTaskmasterStorage#saveSessionList` will store the `SessionList
         or a command to view all absences over the course of the semester. <br>
         To implement these commands, it would make sense for all Sessions to already be loaded into `Taskmaster` so that they are easily searchable.
         - This might also result in the user having to manage a lot of files.     
+            
+            <div style="page-break-after: always;"></div>
             
 **Future Expansion**
 
@@ -478,6 +492,8 @@ The following is my implementation of the Ui.
 
 ![Structure of the UI Component](images/UpdatedUiClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 * New classes `StudentRecordListPanel` and `StudentRecordCard` was added to support the display of Student Records in
 `MainWindow`.
 * A new class, `SessionListPanel` was added to support the display of Sessions.
@@ -507,6 +523,9 @@ The following is my implementation of the Ui.
 Alternative implementations considered:
 * Use FXML's tab feature to display class records: Does not fit the overall theme of TAskmaster and does not support
 indefinite number of sessions.
+
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -518,6 +537,8 @@ indefinite number of sessions.
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -539,6 +560,8 @@ indefinite number of sessions.
 * add and remove students easily
 * create student records for each individual class conducted
 * mark and view attendance and class participation in these classes quickly
+
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -563,6 +586,8 @@ Priorities:
 
 
 *{More to be added}*
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -614,6 +639,8 @@ Use case ends.
 <br>
 
 
+<div style="page-break-after: always;"></div>
+
 **Use Case: Delete a student**
 
 **MSS**
@@ -651,6 +678,7 @@ Extensions
 
 <br>
 
+<div style="page-break-after: always;"></div>
 
 **Use Case: Change view to a session**
 
@@ -698,6 +726,7 @@ Extensions
 
 <br>
 
+<div style="page-break-after: always;"></div>
 
 **Use Case: Mark all students' attendances**
 
@@ -734,6 +763,7 @@ Extensions
 
 <br>
 
+<div style="page-break-after: always;"></div>
 
 **Use Case: Score all students' participation**
 
@@ -772,6 +802,8 @@ Extensions
        
 <br>
 
+<div style="page-break-after: always;"></div>
+
 **Use case: Get a random student which is present**
 
 **MSS**
@@ -805,10 +837,14 @@ Extensions
 
 *{More to be added}*
 
+<div style="page-break-after: always;"></div>
+
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, macOS
+* **Mainstream OS**: Windows, Linux (Ubuntu), Unix, macOS
 * **Private identification detail**: A personal particular that is not meant to be shared with others (e.g. NUSNET ID)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -835,6 +871,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a student
 
@@ -881,6 +919,8 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `edit-student`, `edit-student x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a student
 
 1. Deleting a student while all students are being shown
@@ -913,6 +953,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect add commands to try: `add-session First Session`, `...`<br>
       Expected: Similar to previous.
    
+   <div style="page-break-after: always;"></div>
 
 ### Changing the current session view
 
@@ -958,6 +999,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `mark 1 a/present`<br>
        Expected: Current view does not change. Status message informs user to select a session first.
 
+<div style="page-break-after: always;"></div>
+
 ### Marking all students attendances
 
 1. Marking all students attendances within a session
@@ -989,6 +1032,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `mark all a/present`<br>
        Expected: Current view does not change. Status message informs user to select a session first.
 
+<div style="page-break-after: always;"></div>
+
 ### Scoring a student
 The below testcases assume that you are in a session and have 7 students inside it.
 
@@ -1017,6 +1062,8 @@ The below testcases assume that you are in a session and have 7 students inside 
     5. Test case: `lowest-score` followed by `mark all a/absent`<br>
        Expected: All students in the student record list, **not just those with the lowest score**, have their scores updated. 
        UI updates to shows all student records.
+
+<div style="page-break-after: always;"></div>
 
 ### Showing a student with the lowest score
 
@@ -1052,7 +1099,8 @@ The below testcases assume that you are in a session and have 7 students inside 
 
    1. Test case: `clear`<br>
       Expected: The contents of the student and session list will be emptied.
-      
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting a session
 
@@ -1077,6 +1125,7 @@ The below testcases assume that you are in a session and have 7 students inside 
    1. Test case: `exit`<br>
       Expected: The window of the program will close.
 
+<div style="page-break-after: always;"></div>
 
 ### Saving data
 
@@ -1101,6 +1150,7 @@ The below testcases assume that you are in a session and have 7 students inside 
    the student's name and nusnetId should be filled in correctly, and his class participation and attendance type should be set to their default values.<br>
    When restarted, the UI should show one session which shows the corresponding student record when the view is changed.
 
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
@@ -1123,7 +1173,7 @@ As compared to AB3, this project was tougher and requires more effort to build. 
     of a milestone could potentially have cascading repercussions down the chain of workflow. Between milestones, we have had changes in the design patterns,
     and this has caused us to change, rewrite, or otherwise refactor our code. We believe that it is a group achievement to have maintained cohesiveness 
     and be steadfast in our development, not letting these issues come to interfere with our releases.
-
+<div style="page-break-after: always;"></div>
 2. Integrating model with UI
 
    Another major challenge we faced was in integrating the model with the UI.
