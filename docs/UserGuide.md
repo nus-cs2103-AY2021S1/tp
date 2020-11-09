@@ -259,12 +259,12 @@ users can do the following:
 
 <div markdown="block" class="alert alert-info">
 
-
 **:information_source: Notes**<br>
 
 * Multiple inputs of the same attribute is not allowed. 
   E.g. `event title:Project meeting title:Group meeting date:07-11-2020 from:09:00 to:12:30 tag:CS2103T` is not allowed as the `title` attribute is input twice.
-  </div>
+
+</div>
 
 <br>
 
