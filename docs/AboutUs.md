@@ -30,7 +30,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/ethanthegoondu.png"  width="200px">
 
-[[github](http://github.com/ethanthegoondu)] [portfolio](team/ethanthegoondu.md)]
+[[github](http://github.com/ethanthegoondu)] [[portfolio](team/ethanthegoondu.md)]
 
 -   Role: Programmer
 
