@@ -10,6 +10,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.cc.commons.core.index.Index;
+import seedu.cc.model.account.entry.Entry;
 import seedu.cc.model.account.entry.Expense;
 import seedu.cc.model.account.entry.Revenue;
 
@@ -149,6 +151,12 @@ public class ActiveAccountManager implements ActiveAccount {
         requireAllNonNull(target, editedRevenue);
 
         activeAccount.setRevenue(target, editedRevenue);
+    }
+
+    @Override
+    public Entry getEntryAtIndex(Index index, List<? extends Entry> list) {
+        Entry entryAtIndex = list.get(index.getZeroBased());
+        return entryAtIndex;
     }
 
     @Override
