@@ -10,7 +10,6 @@ import static seedu.address.testutil.TypicalTutorialGroups.T05;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 

@@ -9,9 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.module.ModuleContainsKeywordsPredicate;
 import seedu.address.model.tutorialgroup.TutorialContainsKeywordsPredicate;
-import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.TutorialGroupBuilder;
 
 public class TutorialContainsKeywordsPredicateTest {

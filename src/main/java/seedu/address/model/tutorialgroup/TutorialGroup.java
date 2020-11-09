@@ -1,7 +1,7 @@
 package seedu.address.model.tutorialgroup;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
