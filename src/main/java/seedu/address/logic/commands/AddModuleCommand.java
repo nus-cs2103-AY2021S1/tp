@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARTICIPANT;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -83,6 +84,7 @@ public class AddModuleCommand extends Command {
             String nonExistentPersonNamesString = sb.substring(0, sb.length() - 2);
             throw new CommandException(String.format(MESSAGE_NONEXISTENT_PERSON, nonExistentPersonNamesString));
         }
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         Set<Person> personList = new HashSet<>();
         for (Name name : nameList) {
