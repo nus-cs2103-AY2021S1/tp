@@ -344,6 +344,9 @@ The following sequence diagram shows how the cclear operation works:
  end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 <br/>
+The follow activity diagram summarizes what happens when a user executes a Cclearcommand:
+
+![CclearActivityDiagram](images/CclearActivityDiagram.png)
 
 ### Clear all modules feature
 
@@ -361,6 +364,9 @@ The following sequence diagram shows how the mclear operation works:
  end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 <br/>
+The follow activity diagram summarizes what happens when a user executes a Mclearcommand:
+
+![MclearActivityDiagram](images/MclearActivityDiagram.png)
 
 ### Switch active semester feature
 
