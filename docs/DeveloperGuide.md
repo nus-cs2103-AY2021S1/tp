@@ -322,7 +322,7 @@ The following Predicate classes implements `Predicate<Assignment>` and specific 
 - DeadlineContainsKeywordsPredicate for date or time keywords
 - PriorityContainsKeywordsPredicate for priority keywords
 
-The keywords are stored in a `List<String>` that is passed into the constructor of the predicate so that the overridden `test` method from `Predicate<Assignment>` class can evaluate the keywords with the specific attribute of an assignment, being name, module code, deadline or priority, to return a boolean value.
+The keywords are stored in a `List<String>` attribute `keywords` that is passed into the constructor of the predicate so that the `test` method can evaluate the keywords for the specific attribute of an assignment, being name, module code, deadline or priority, to return a boolean value.
 
 ##### FindCommandParser Class
 The `FindCommandParser` class implements `Parser<FindCommand>` and it is responsible for parsing input arguments with the `parse` method to create a new `FindCommand` object. It contains private methods which checks for the presence of multiple prefixes and invalid keywords, which will throw a `ParseException` if detected.

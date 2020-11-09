@@ -145,7 +145,7 @@ Here is an example with steps for you to follow:
 1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the Command Box which corresponds to their indexes in the assignment list.
 
 ![DeleteCommand1](images/DeleteCommandDiagram1.png)
-*Figure 4: User input and location of assignment indexes*
+*Figure 4: `delete 1 3` inputted by user and location of assignment indexes*
 
 
 2) You have successfully deleted both assignments from the assignment list, and they are no longer displayed.
@@ -244,17 +244,17 @@ You can find your assignments based on keywords you enter. The types of keywords
 <div markdown="span" class="alert alert-success">
 
 **:bulb: Tip:**
-If your assignment list is really long, the `find` command comes in handy as it  filters the list based on assignments u want to see!
+If your assignment list is really long, this command comes in handy as it filters the list based on assignments u want to see!
 </div>
 
 This is the table of prefixes used:
 
 | Prefix | Syntax | Example |
 |-|-|-|
-| `n/` | n/NAME_OF_ASSIGNMENT | - `n/Tutorial` |
-| `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT | - `mod/ST2334` |
-| `d/` | d/DUE_DATE_OR_TIME_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
-| `p/` | p/PRIORITY_OF_ASSIGNMENT | - `p/HIGH` |
+| `n/` | n/NAME_OF_ASSIGNMENT [MORE_NAME_OF_ASSIGNMENT] | - `n/Tutorial` |
+| `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT [MORE_MODULE_CODE_OF_ASSIGNMENT] | - `mod/ST2334` |
+| `d/` | d/DUE_DATE_OR_TIME_OF_ASSIGNMENT [MORE_DUE_DATE_OR_TIME_OF_ASSIGNMENT] | - `d/24-10-2020 1300` |
+| `p/` | p/PRIORITY_OF_ASSIGNMENT [MORE_PRIORITY_OF_ASSIGNMENT] | - `p/HIGH` |
 
 <div markdown="block" class="alert alert-primary">
 
@@ -315,7 +315,7 @@ Here is an example with steps for you to follow:
 1) To edit the name of the assignment with the first index in the assignment list to "Statistics Lab", you can simply key in `edit 1 n/Statistics Lab` in the Command Box. 
 
 ![EditCommand1](images/EditCommand1.png)
-*Figure 12: `edit 1 n/Statistics Lab` inputted by user*
+*Figure 12: `edit 1 n/Statistics Lab` inputted by user and location of assignment index*
 
 2) The name of the assignment is changed to "Statistics Lab".
 
