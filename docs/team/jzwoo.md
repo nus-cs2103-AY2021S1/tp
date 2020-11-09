@@ -24,7 +24,7 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product because it allows for a more flexible search option in `find` and `findmod`.
   * Highlights: This feature requires understanding of how to manipulate strings and the requirements of our search functions. 
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=jzwoo&tabRepo=AY2021S1-CS2103-T14-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jzwoo)
 
 * **Enhancements to existing features**:
   * Added icons for contact attributes (Pull requests
