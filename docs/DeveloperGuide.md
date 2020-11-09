@@ -1667,6 +1667,21 @@ Use case same as UC14: Delete Meeting
 
     Use case ends.
     
+**Extensions**
+    
+* 4a. No suggestions available for text entered
+    
+  * 4a1. Modduke shows an empty suggestions list
+  
+    Use case resumes from step 3.
+    
+    * *a. At any time, User chooses to exit autocomplete mode.
+    
+      * *a1. User makes a request to Modduke to exit autocomplete mode.
+      * *a2. Modduke accepts request and exits autocomplete mode.
+    
+        Use case ends.
+    
 **UC22: Switch to light theme**
 
 **Guarantees**
@@ -1692,20 +1707,22 @@ Use case same as UC14: Delete Meeting
 2.  Modduke switches to dark theme
 
     Use case ends.
+    
+**UC24: Command History**
+
+**MSS**
+
+1.  User makes request to view last inputted command
+2.  Modduke updates text field with last inputted command
+
+    Use case ends.
 
 **Extensions**
 
-* 4a. No suggestions available for text entered
+* 2a. No inputted command in current session
 
-  * 4a1. Modduke shows an empty suggestions list
-
-    Use case resumes from step 3.
-
-* *a. At any time, User chooses to exit autocomplete mode.
-
-  * *a1. User makes a request to Modduke to exit autocomplete mode.
-  * *a2. Modduke accepts request and exits autocomplete mode.
-
+  * 2a1. Modduke does nothing
+  
     Use case ends.
 
 ### Non-Functional Requirements
