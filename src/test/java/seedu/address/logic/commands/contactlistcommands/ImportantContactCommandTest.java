@@ -57,7 +57,6 @@ public class ImportantContactCommandTest {
     @Test
     public void execute_validIndexImportantToImportantUnfilteredList_resetSuccessful() {
         Contact contactToMark = model.getFilteredContactList().get(INDEX_FIRST_CONTACT.getZeroBased());
-        contactToMark = contactToMark.markAsImportant();
         ImportantContactCommand importantContactCommand = new ImportantContactCommand(INDEX_FIRST_CONTACT);
 
         ModelManager expectedModel = new ModelManager(
@@ -89,7 +88,6 @@ public class ImportantContactCommandTest {
         showContactAtIndex(model, INDEX_SECOND_CONTACT);
 
         Contact contactToMark = model.getFilteredContactList().get(INDEX_FIRST_CONTACT.getZeroBased());
-        contactToMark = contactToMark.markAsNotImportant();
         ImportantContactCommand importantContactCommand = new ImportantContactCommand(INDEX_FIRST_CONTACT);
 
         ModelManager expectedModel = new ModelManager(
@@ -115,7 +113,6 @@ public class ImportantContactCommandTest {
         showContactAtIndex(model, INDEX_FIRST_CONTACT);
 
         Contact contactToMark = model.getFilteredContactList().get(INDEX_FIRST_CONTACT.getZeroBased());
-        contactToMark = contactToMark.markAsImportant();
         ImportantContactCommand importantContactCommand = new ImportantContactCommand(INDEX_FIRST_CONTACT);
 
         ModelManager expectedModel = new ModelManager(
@@ -125,13 +122,12 @@ public class ImportantContactCommandTest {
             new TodoList(),
             new EventList(),
             new UserPrefs());
-        Contact markedContact = model.getFilteredContactList().get(INDEX_FIRST_CONTACT.getZeroBased());
-        markedContact = markedContact.markAsImportant();
-        expectedModel.setContact(contactToMark, markedContact);
+        expectedModel.setContact(contactToMark, contactToMark.markAsImportant());
 
         showContactAtIndex(expectedModel, INDEX_SECOND_CONTACT);
 
-        String expectedMessage = String.format(ImportantContactCommand.MESSAGE_MARK_CONTACT_SUCCESS, markedContact);
+        String expectedMessage = String.format(ImportantContactCommand.MESSAGE_MARK_CONTACT_SUCCESS,
+                contactToMark.markAsImportant());
 
         assertCommandSuccess(importantContactCommand, model, expectedMessage, expectedModel);
     }
