@@ -65,7 +65,7 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added implementation details of the `assign` and `switch` features [\#261](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/261), [\#128](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/128)
     * Added manual testing instructions for the `assign` and `switch` features [\#261](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/261)
-    * Added `effort` appendix [\#281](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/281),
+    * Added `effort` appendix [\#281](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/281)
     * Add current bugs and upcoming features [\#263](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/263)
     * Maintained correctness and consistency from time to time:
     [\#41](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/41),
