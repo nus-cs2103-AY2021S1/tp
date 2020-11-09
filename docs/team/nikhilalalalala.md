@@ -25,7 +25,7 @@ Given below are my contributions to the project.
     
 - Deleting an applicant record
   - What it does: Allows the user to delete a specific record of a staff based on the index provided.
-    Justification: This record allows HR managers to remove specific records so that they can keep the database relevant
+  - Justification: This record allows HR managers to remove specific records so that they can keep the database relevant
     without having outdated entries. 
     
  <div style="page-break-after: always;"></div>
