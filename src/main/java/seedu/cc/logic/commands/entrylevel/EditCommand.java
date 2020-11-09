@@ -68,21 +68,22 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
         requireNonNull(model);
-        assert(activeAccount != null && model != null);
+        requireNonNull(activeAccount);
 
-        List<? extends Entry> lastShownList;
+        List<? extends Entry> listToAccess;
         if (editEntryDescriptor.isEntryExpense()) {
-            lastShownList = activeAccount.getFilteredExpenseList();
+            listToAccess = activeAccount.getFilteredExpenseList();
+
         } else {
             assert editEntryDescriptor.isEntryRevenue();
-            lastShownList = activeAccount.getFilteredRevenueList();
+            listToAccess = activeAccount.getFilteredRevenueList();
         }
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= listToAccess.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_INDEX);
         }
 
-        Entry entryToEdit = lastShownList.get(index.getZeroBased());
+        Entry entryToEdit = activeAccount.getEntryAtIndex(this.index, listToAccess);
         Entry editedEntry = createEditedEntry(entryToEdit, editEntryDescriptor);
 
         // Set previous state for undo before entry is edited
@@ -111,6 +112,7 @@ public class EditCommand extends Command {
         if (entryToEdit instanceof Revenue) {
             return new Revenue(updatedDescription, updatedAmount, updatedTags);
         } else {
+            assert(entryToEdit instanceof Expense);
             return new Expense(updatedDescription, updatedAmount, updatedTags);
         }
 

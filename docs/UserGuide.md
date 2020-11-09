@@ -47,6 +47,8 @@ Note how the app contains some sample expenses and revenues if you have not used
 --------------------------------------------------------------------------------------------------------------------
 [comment]: <> (Copy the blocks below and edit your message)
 # 2. How to identify notations
+*(Written by Lim Zi Yang)* <br>
+
 These blocks are a few examples of notations that will be used in this document. Each block and icon 
 has a different meaning so do look out for them under our features.
 
@@ -83,6 +85,8 @@ Important cautions that needs to be known before using the feature.
 
 --------------------------------------------------------------------------------------------------------------------
 # 3. User Interface Overview
+*(Written by Le Hue Man)* <br>
+
 As you can see, **figure 3-1** below shows the default user interface (UI) of _Common Cents_ with its components.  
 ![annotatedUi](images/commands/annotatedUi.PNG)
 <p align="center"> <sub> <b>Figure 3-1</b>: Default user interface of <i>Common Cents</i> </sub> </p>
@@ -158,7 +162,7 @@ your Entries in Common Cents.
 --------------------------------------------------------------------------------------------------------------------
 
 # 5. Features
-Here are some general notes about the commands in _Common Cents_ 
+Here are some general notes about the commands in _Common Cents_. 
 
 <div markdown="block" class="alert alert-info">
 
@@ -358,6 +362,7 @@ You can use this to make edits to any existing entries in the tracker when the d
 
 
 ### 5.2.4 Locating entries by description: `find`
+*(Written by Le Hue Man)*
 
 You can use this command to list expenses and/or revenues that have the given keyword(s) in their descriptions. This is 
 useful when you want to find some particular entries to [`delete`](#522-deleting-an-entry-delete) or [`edit`](#523-editing-an-entry-edit). 
@@ -475,6 +480,8 @@ The `profit` function will show deficits as a negative number if the total expen
 
 ### 5.2.8 Undoing Entry-level commands: `undo`
 
+*(Written by Lim Zi Yang)* <br>
+
 You can use this command to return to the state of the entry prior to the previous command.
 
  
@@ -518,9 +525,12 @@ before you exit the app!
 </div>
 
 ## 5.3 Account-level Commands
+
 Account-Level commands involve managing the different accounts in the app. 
 
 ### 5.3.1 Adding new account: `newacc`
+
+*(Written by Lim Zi Yang)* <br>
 
 You can create a new account to manage a different set of entries with this command. 
 
@@ -548,6 +558,8 @@ You can create a new account to manage a different set of entries with this comm
 </div>
 
 ### 5.3.2 Deleting an account: `deleteacc`
+
+*(Written by Lim Zi Yang)* <br>
 
 You can remove an account by using this command. This command is useful for clearing accounts you are no longer using.
 
@@ -592,6 +604,8 @@ irreversible action and cannot be undone. Do delete your account with caution!
 
 ### 5.3.3 Editing the name of the current account: `editacc`
 
+*(Written by Lim Zi Yang)* <br>
+
 You can edit the name of the current account you are on using this command.
 
 **Format:** `editacc n/NAME`
@@ -620,6 +634,8 @@ and edit the name from there.
 
 ### 5.3.4 Listing accounts you have: `listacc`
 
+*(Written by Lim Zi Yang)* <br>
+
 You can check the accounts you have in the app by using this command. Each account will be numbered with an index and 
 displayed as their names.
 
@@ -637,6 +653,8 @@ displayed as their names.
 <p align="center"> <sub> <b>Figure 5.3-4</b>: All the accounts are listed in the Result Display </sub> </p>
 
 ### 5.3.5 Switching accounts: `switchacc`
+
+*(Written by Lim Zi Yang)* <br>
 
 You can use this command to switch to the desired account. This is useful if you want to manage entries in the 
 desired account or edit the name of the desired account.
@@ -709,22 +727,21 @@ prefix indicated is wrong after checking the `add` section in the User Guide. Ho
 wrong (**Figure 6.2**). Can I clarify on this situation?<br>
 
 ![errorMessage](images/commands/errorMessage.png)
-<p align="center"> <sub> <b>Figure 6.2</b>: Error message that might cause confusion </sub> </p></br>
+<p align="center"> <sub> <b>Figure 6.2</b>: Error message that might cause confusion </sub> </p>
 
 **Answer:** 
 Yes, the prefix indicated is wrong as it should be `d/` instead of `n/`. As a result, the category parameter is read as
 `expense n/buy McSpicy a/8.60` instead of `expense`. Do remember to check that the **prefixes and parameters required for a command
 are correct!** If you are unsure of the prefixes and parameters required, do check the sections under features above! 
 
-3\. **Question:** What if I typed in multiple prefixes with valid parameters? For instance, `add c/expense c/revenue d/Buy lunch a/4.30`. </br>
+3\. **Question:** What if I typed in multiple prefixes with valid parameters? For instance, `add c/expense c/revenue d/Buy lunch a/4.30`.
 
 **Answer:** Multiple instances of prefixes, as well as indexes except for `tags (t/)` will not be executed and an error 
 message will be shown. For instance, the example above has both `c/expense` and `c/revenue`, hence the command will not be executed. 
 Please follow the format of the commands closely in the [Features](#5-features) section above!
 --------------------------------------------------------------------------------------------------------------------
 
-# 7. Command summary
-
+# 7. Command Summary
 The table below summarises the above commands in the order of appearance in this User Guide for your reference. 
 
 Action | Format

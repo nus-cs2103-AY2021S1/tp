@@ -52,7 +52,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1 c/expense`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -60,12 +60,14 @@ The sections below give more details of each component.
 
 ### UI component
 
+The UI component represents elements directly interacting with the user.
+
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-**API** :
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `AccountListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+**API:** The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `AccountListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/ui/Ui.java)
 
@@ -93,27 +95,41 @@ the result of the command execution and is passed back to the `Ui`,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deleteacc 1")` API call.
 
-![Interactions Inside the Logic Component for the `deleteacc 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deleteacc 1` Command](images/DeleteAccountSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteAccountCommandParser`, `DeleteAccountCommand` and `CommandResultFactory` should end at the destroy marker (X) but due to a limitation of PlantUML, their lifeline reach the end of diagram.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `DeleteAccountCommandParser`, `DeleteAccountCommand` and `CommandResultFactory` should end at the destroy marker (X) but due to a limitation of PlantUML, their lifeline reach the end of diagram.
+
 </div>
 
 ### Model component
-The model component stores the relevant data for _Common Cents_.<br>
+The model component stores the relevant data for _Common Cents_. The model component consist of two key aspects, the `Model` and the `ActiveAccount`<br>
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/model/Model.java), [`ActiveAccount.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/model/account/ActiveAccount.java)
 
 The `Model`,
 
+* Responsible for managing the data of Accounts
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the CommonCents data.
 * stores an unmodifiable list of Accounts.
 * does not depend on any of the other three components.
 
+The `ActiveAccount`,
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `CommonCents`, which `Entry` references. This allows `CommonCents` to only require one `Tag` object per unique `Tag`, instead of each `Entry` needing their own `Tag` object.<br>
+* Responsible for managing the data of the currently active Account
+* stores a `Account` object that represents the current Account that the user is managing.
+* stores an `ObservableList<Expense>` that can be `observed` e.g. the UI can be bounde to this list so that the UI automatically updates when the data in the list change.
+* stores an `ObservableList<Revenue>` that can be `observed` e.g. the UI can be bounde to this list so that the UI automatically updates when the data in the list change.
+* stores an `Optional<ActiveAccount>` that represents the previous state of the `ActiveAccount`.
+* does not depend on any of the other four components.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `CommonCents`, which `Entry` references. This allows `CommonCents` to only require one `Tag` object per unique `Tag`, instead of each `Entry` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -132,7 +148,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.cc.commons` package.
+Classes used by multiple components are in the [`seedu.cc.commons`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/cc/commons) package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -140,50 +156,145 @@ Classes used by multiple components are in the `seedu.cc.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Undo feature
-This feature allows the user to undo their previous entry-level commands.
+
+## Delete feature
+
+*(Written by Jordan Yoong)* <br>
+
+This feature allows the user to delete previously added entries.
 
 #### Implementation
 
-The undo mechanism is facilitated by `ActiveAccountManager` which implements the interface `ActiveAccount`. The `ActiveAccountManager` 
-stores its previous state as an `ActiveAccount` attribute when a entry command is executed. On the other hand, the `ActiveAccount` sets the previous 
-state as its current state when the undo commands is executed. As such, it implements the following operations:
+The Delete entries feature is facilitated by `DeleteCommand`. It extends `Command` and 
+is identified by `CommonCentsParser` and `DeleteCommandParser`. The DeleteCommand interacts 
+with `Account` and the interactions are managed by `ActiveAccount`. As such, it implements the following
+operations: 
 
-* `ActiveAccountManager#setPreviousState()` — Saves a copy of the current `ActiveAccountManager` state as an attribute in `ActiveAccountManager`.
-* `ActiveAccountManager#returnToPreviousState()` — Restores the previous `ActiveAccountManager` state from its attribute.
+* `Account#deleteExpense(Expense expense)` — Executes delete logic for specified _Expense_ entry.
+* `Account#deleteRevenue(Revenue revenue)` — Executes delete logic for specified _Revenue_ entry.
 
-These operations are exposed in the `ActiveAccount` interface as `ActiveAccount#setPreviousState()` and `ActiveAccount#returnToPreviousState()` respectively.
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
 
-Given below is an example usage scenario and how the undo mechanism behaves at each step.
+* Step 1: The user inputs the delete command to specify which entry to delete in the specified category
+of `ActiveAccount`. `CommandParser` identifies the command word `delete` and calls `DeleteCommandParser#parse(String args)`
+to parse the input into a valid `DeleteCommand`.
 
-Prelude. When the user first runs Common Cents, `ActiveAccountManager` does not store any previous states as shown in the diagram below.
+* Step 2: `DeleteCommand` starts to be executed. In the execution:
+    * If the user input for category matches that of the _Expense_ keyword, the entry matching the 
+    specified index in the Expense List will be removed.
+    * If the user input for category matches that of the _Revenue_ keyword, the entry matching the 
+    specified index in the Revenue List will be removed.
+
+The following sequence diagram shows how a delete entry operation works:
+
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Some of the interactions with the utility classes,
+such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+of the find entries command.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
+
+#### Design consideration
+Explanation why a certain design is chosen.
+
+##### Aspect: How find entries command is parsed
+* **Choice:** User needs to use prefixes before the keywords.
+    * Pros: 
+        * Easy to implement as the arguments can be tokenized in the event of inputs with multiple arguments.
+        * Allows Parser to filter out invalid commands
+    * Cons: Less convenience for the user. 
+
+## Clear feature
+
+*(Written by Jordan Yoong)* <br>
+
+This feature allows the user to clear previously added entries.
+
+#### Implementation
+
+The clear entries feature is facilitated by `ClearCommand`. It extends `Command` and 
+is identified by `CommonCentsParser` and `ClearCommandParser`. The ClearCommand interacts 
+with `Account` and the interactions are managed by `ActiveAccount`. As such, it implements the following
+operations: 
+
+* `Account#clearExpenses()` — Executes clear all entries logic in _Expense_ category.
+* `Account#clearRevenues()` — Executes clear all entries logic in _Revenue_ category.
+
+Given below is an example usage scenario and how the clear command mechanism behaves at each step.
+
+* Step 1: The user inputs the clear command to specify which category it wants to clear in either lists
+of `ActiveAccount`. `CommandParser` identifies the command word `clear` and calls `ClearCommandParser#parse(String args)`
+to parse the input into a valid `ClearCommand`.
+
+* Step 2: `ClearCommand` starts to be executed. In the execution:
+    * If user input does not specify a category, both _Expense_ and _Revenue_ Lists will be cleared.
+    * If the user input for category matches that of the _Expense_ keyword, Expense List will be cleared.
+    * If the user input for category matches that of the _Revenue_ keyword, Revenue List will be cleared.
+
+The following sequence diagram shows how a clear entry operation works:
+
+![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Some of the interactions with the utility classes,
+such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+of the find entries command.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![ClearActivityDiagram](images/ClearActivityDiagram.png)
+
+#### Design consideration
+Explanation why a certain design is chosen.
+
+##### Aspect: How find entries command is parsed
+* **Choice:** User needs to use prefixes before the keywords.
+    * Pros: 
+        * Easy to implement as the arguments can be tokenized
+        * Allows Parser to filter out invalid commands
+    * Cons: Less convenience for the user. 
+    
+### Undo feature
+*(Written by Lim Zi Yang)* <br>
+
+This feature allows the user to undo their previous _entry-level_ commands.
+
+#### Implementation
+
+The undo mechanism is facilitated by `UndoCommand`, which extends `Command` and is identified by `CommonCentsParser`. 
+The `UndoCommand` interacts with `ActiveAccount` using methods in `ActiveAccount`. As such, it implements the following operations:
+
+* `ActiveAccount#setPreviousState()` — Saves a copy of the current `ActiveAccount` state as an attribute in `ActiveAccount`.
+* `ActiveAccount#returnToPreviousState()` — Restores the previous `ActiveAccount` state from its attribute.
+
+Given below is an example usage scenario and how the undo mechanism behaves at each step. Note that each step starts with an explanation followed by a diagram.
+
+* Step 1. When the user first runs _Common Cents_, `ActiveAccount` does not store any previous states as shown in the diagram below.
 
 ![UndoState0](images/UndoState0.png)
 
-Step 1. The user executes `delete 5 c/expense` command to delete the 5th expense in the expense list in the Account in `ActiveAccountManager`. The `delete` command calls `ActiveAccountManager#setPreviousState()` initially, 
-causing a copy of the `ActiveAccountManager` state before the `delete 5 c/expense` command executes to be saved as an attribute. After this, the `delete 5 c/expense` command executes and the
-model is updated according to the modified account in ActiveAccount.
+* Step 2. The user executes `delete 5 c/expense` command to delete the 5th expense in the expense list in `ActiveAccount`. The `delete` command calls `ActiveAccount#setPreviousState()` initially, 
+causing a copy of the `ActiveAccount` state before the `delete 5 c/expense` command executes to be saved as an attribute. After this, the `delete 5 c/expense` command executes and the
+model is updated according to the modified `ActiveAccount`.
 
 ![UndoState1](images/UndoState1.png)
 
-Step 3. The user executes `add c/expense …​` to add a new expense. The `add` command calls `ActiveAccountManager#setPreviousState()` initially, 
-causing a copy of the `ActiveAccountManager` state before the command executes to be saved as an attribute. After this, the `add c/expense …​` command executes and the
-model is updated according to the modified account in ActiveAccount.
-
-![UndoState2](images/UndoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `ActiveAccountManager#setPreviousState()`, so the state will not be saved into its attribute.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `ActiveAccount#setPreviousState()`, so the state will not be saved into its attribute.
 
 </div>
 
-Step 4. The user now decides that adding the expense was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `ActiveAccountManager#returnToPreviousState()`, 
-which will set data of the previous state attribute to the current `ActiveAccountManager`. 
+* Step 3. The user now decides that deleting the expense was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `ActiveAccount#returnToPreviousState()`, 
+which will set data of the previous state attribute to the current `ActiveAccount`. 
 
-![UndoState3](images/UndoState3.png)
+![UndoState3](images/UndoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `ActiveAccountManager` does not have a previous state 
-(i.e The `previousState` attribute in `ActiveAccountManager` is empty) then there are no previous `ActiveAccountManager` states to restore. 
-The `undo` command uses `Model#hasNoPreviousState()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `ActiveAccount` does not have a previous state 
+(i.e The `previousState` attribute in `ActiveAccount` is empty) then there are no previous `ActiveAccount` states to restore. 
+The `undo` command uses `ActiveAccount#hasNoPreviousState()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -192,7 +303,9 @@ The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**:
+<div markdown="block" class="alert alert-info">
+ 
+ :information_source: **Note:**:
 
  * The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
  * Some of the interactions with the utility classes, such as `CommandResult`, `CommandResultFactory` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
@@ -204,8 +317,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** `ActiveAccountManager#setPreviousState()` is only called in `add`, `delete`, `edit`, and `clear` commands. 
-Hence, the `undo` command only works on the previously stated commands which interacts with entries.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `ActiveAccount#setPreviousState()` is only called in `add`, `delete`, `edit`, and `clear` commands. 
+Hence, the `undo` command only works on the previously stated _entry-level_ commands.
 
 </div>
 
@@ -224,14 +337,15 @@ Explanation why a certain design is chosen.
   * Pros: More commands can be undone, for instance commands dealing with accounts.
   * Cons: 
     * May have performance issues in terms of memory usage. 
-    * We must ensure that the implementation avoids unnecessary changes to Model or ActiveAccount that can result in errors.
+    * We must ensure that the implementation avoids unnecessary changes to Model or ActiveAccount that can result in bugs.
 
-* **Alternative 3:** Individual command knows how to undo/redo by
-  itself.
+* **Alternative 3:** Individual command knows how to undo by itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the entry being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 ### Edit account feature
+*(Written by Lim Zi Yang)* <br>
+
 This feature allows the user to edit the information of a specific existing entry.
 
 #### Implementation
@@ -245,10 +359,10 @@ This operation is exposed in the `ActiveAccount` interface as `ActiveAccount#set
 
 Given below is an example usage scenario and how the edit account mechanism behaves at each step.
 
-* Step 1: The user inputs the edit command to edit the current account in `ActiveAccount`. `CommonCentsParser` identifies
+* Step 1: The user inputs the edit account command to edit the current account in `ActiveAccount`. `CommonCentsParser` identifies
 the command word and calls `EditCommandParser#parse(String args)` to parse the input into a valid `EditAccountCommand`
 
-* Step 2: `EditAccountCommand` starts to be executed. In the execution, the current account, namely `previousAccount`
+* Step 2: `EditAccountCommand` starts to be executed. In its execution, the current account, namely `previousAccount`
 in `ActiveAccount` is retrieved.
 
 * Step 3: `ActiveAccount#setName(Name editedName)` is called with the edited name to replace the name of the current
@@ -263,7 +377,9 @@ The following sequence diagram shows how an edit account operation works:
 
 ![EditAccountSequenceDiagram](images/EditAccountSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:**
 
 * The lifeline for `EditAccountCommandParser` and `EditAccountCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, their lifeline reach the end of diagram.
 * Some of the interactions with the utility classes, such as `CommandResult`, `CommandResultFactory` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
@@ -292,14 +408,121 @@ Explanation why a certain design is chosen.
   
 ##### Aspect: Mutability of account
 * **Choice:** Allowing name attribute of Account to be mutated by EditCommand.
-  * Rationale: Initially, we implemented the name attribute of Account to be immutable. However, we realize that it
-  is difficult to edit the name of the account if it is immutable. Hence, to overcome this obstacle, we decided
-  to make the name attribute mutable.
-  * Implications: Extra precaution needs to be implemented, for instance creating copies of account in methods that interacts
+  * Rationale: Initially,  the name attribute of Account was implemented to be immutable. However, it
+  is difficult to edit the name of the account if it is immutable. Hence, to overcome this obstacle,name attribute was made mutable.
+  * Implications: Extra precautions needed to be implemented, for instance creating copies of account in methods that interacts
   with the accounts to prevent unnecessary changes to accounts in account list. Hence, it resulted in more defensive coding 
   which resulted in more lines of code.
+  
+### Add entries feature 
+
+#### Implementation
+The proposed Edit entries feature is facilitated by `AddCommand`. It extends `Command` and 
+is identified by `CommonCentsParser` and `AddCommandParser`. The AddCommand interacts 
+with `Account` and the interactions are managed by `ActiveAccount`. As such, it implements the following
+operations: 
+* `Account#addExpense(Expense entry)` and `Account#addRevenue(Revenue entry)` — Adds the specified
+revenue or expense entries into the Revenue or Expense list of the current account.
+list to the specified edited expense
+* `Model#setAccount(Account editedAccount)` — Sets the current account in the model as
+the specified edited account after adding an Entry
+
+The operations are exposed in the `ActiveAccount` interface as `ActiveAccount#addExpense` 
+and `ActiveAccount#addRevenue`, and in `Model` as `Model#setAccount`.
+
+Given below is an example usage scenario and how the find entries mechanism behaves 
+at each step.
+
+* Step 1. The user inputs the edit command to edit the entries of a specified index and entry
+type (Expense or Revenue) from current `ActiveAccount`. `CommandParser` identifies the command word `edit`
+and calls `AddCommandParser#parse(String args)` to parse the input into a valid `AddCommand`.
+It will check for compulsory category (to specify whether the entry is an expense or revenue), 
+description and amount, as well as optional tags. It will use these fields to create an Entry
+object to be used in the `AddCommand` constructor.
+
+* Step 2. `AddCommand` starts to be executed. In the execution, 
+    * The added Entry will go through a condition check whether it is a Revenue or Expense.
+    It will call `ActiveAccount#addRevenue` or `ActiveAccount#addExpense` accordingly
+    * It will call on both `ActiveAccount.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES)`
+    and `ActiveAccount.updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE)` to update the User
+    Interface after adding the new Entry.
+    * It will update the current account by calling `Model#setAccount`.
+    
+The following sequence diagram shows how add entry operation works:
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Some of the interactions with the utility classes,
+such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+of the edit entries command.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+![AddActivityDiagram](images/AddActivityDiagram.png)
+
+
+  
+### Edit entries feature 
+  
+#### Implementation
+The proposed Edit entries feature is facilitated by `EditCommand`. It extends `Command` and 
+is identified by `CommonCentsParser` and `EditCommandParser`. The EditCommand interacts 
+with `Account` and the interactions are managed by `ActiveAccount`. As such, it implements the following
+operations: 
+* `Account#setExpense(Expense target, Expense editedExpense)` — Sets the target expense in the expense 
+list to the specified edited expense
+* `Account#setRevenue(Revenue target, Revenue editedRevenue)` — Sets the target revenue in the revenue 
+list to the specified edited revenue
+* `Model#setAccount(Account editedAccount)` — Sets the current account in the model as
+the specified edited account
+
+The operations are exposed in the `ActiveAccount` interface as `ActiveAccount#setExpense` and
+`ActiveAccount#setRevenue`, and in `Model` as `Model#setAccount`.
+
+Given below is an example usage scenario and how the find entries mechanism behaves 
+at each step.
+
+* Step 1. The user inputs the edit command to edit the entries of a specified index and entry
+type (Expense or Revenue) from current `ActiveAccount`. `CommandParser` identifies the command word `edit`
+and calls `EditCommandParser#parse(String args)` to parse the input into a valid `EditCommand`.
+It will check for the desired index, a compulsory category (expense or revenue) and optional
+fields (e.g. description, amount, tags) to create an `EditEntryDescriptor`, a static class
+to help create new `Entry` objects to edit existing ones.
+
+* Step 2. `EditCommand` starts to be executed. In the execution, 
+    * The index of the desired entry to edit will be checked against the revenue list or expense
+    list to see if that index is valid (i.e. within the size of the specified list) and
+    nonzero positive integer
+    * It will use the parsed fields from Step 1 above to create a new `Revenue` or `Expense`
+    object to edit a pre-existing one according to the specified index and Category.
+    * It will call on `ActiveAccount#setRevenue` or `ActiveAccount#setExpense` to modify
+    the specified `Expense` or `Revenue` and update the current account by calling 
+    `Model#setAccount`.
+    
+The following sequence diagram shows how edit entry operation works:
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Some of the interactions with the utility classes,
+such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+of the edit entries command.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+![EditActivityDiagram](images/EditActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Specifying indexes to edit 
+* **Choice:** User needs to specify a category "c/expense" or "c/revenue" instead of just
+specifying index and edited fields alone. 
+    * Pros: 
+        * Easy to implement and can specifically target whether edits want to be made in the
+        revenue list or expense list
+        * Indexes easier to follow, just follow the numbers from the User Interface
+    * Cons: Less convenience for the user, as more typing needs to be done. 
 
 ### Find entries feature 
+*(Written by Le Hue Man)* <br>
+
 This feature allows the user to find specific existing entries using a given keyword.
   
 #### Implementation
@@ -337,6 +560,10 @@ such as `CommandResult` and `Storage` are left out of the sequence diagram as th
 of the find entries command.
 </div>
 
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
 #### Design consideration
 Explanation why a certain design is chosen.
 
@@ -372,7 +599,9 @@ The following sequence diagram shows how a calculate net profits operation works
 
 ![CalculateProfitSequenceDiagram](images/CalculateProfitSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**:
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:**:
 
  * The lifeline for `GetProfitCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
  * Some of the interactions with the utility classes, such as `CommandResult`, `CommandResultFactory` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
@@ -391,10 +620,6 @@ Explanation why a certain design is chosen.
 * Choice: Calculates the net profits by retrieving the expense and revenue lists from the account. 
     * Pros: Easy to implement 
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -410,7 +635,7 @@ This section includes the guides for developers to reference.
 ## **Appendix: Requirements**
 This includes the different functional as well as non-functional requirements of _Common Cents_. 
 ### Product scope
-The problems _Common Cents_ aims to tackle.
+This section highlights the problems that _Common Cents_ solves by describing the target user profile and value proposition of the app.
 
 **Target user profile:**
 
@@ -463,8 +688,6 @@ Priorities are represented by the number of `*`
 | `* *` | user | have an app that caters specifically to different types of accounts (business or personal) | efficiently manage my expenses and revenues | 
 | `*` | user | be given tips and tricks on how to use the app to plan my spending | save my money effectively |
 
-*{More to be added}*
-
 ### Use cases 
 This captures different scenarios of how a user will perform tasks while using _Common Cents_. 
 (Update the number once all the use cases are done) (Comment)
@@ -472,7 +695,8 @@ This captures different scenarios of how a user will perform tasks while using _
 (For all use cases below, the **System** is the `CommonCents` and the **Actor** is the `user`, unless specified otherwise)
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC01 - Adding an expense**
+
+**Use Case: UC01 - Adding an expense**
 
 **MSS**
 
@@ -491,7 +715,8 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC02 - Adding a revenue**
+
+**Use Case: UC02 - Adding a revenue**
 
 **MSS**
 
@@ -510,7 +735,8 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC03 - Deleting an expense**
+
+**Use Case: UC03 - Deleting an expense**
 
 **MSS**
 
@@ -529,7 +755,8 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC04 - Deleting a revenue**
+
+**Use Case: UC04 - Deleting a revenue**
 
 **MSS**
 
@@ -548,15 +775,99 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Undoing an add command**
+
+**Use Case: UC05 - Editing an expense**
+
+**MSS**
+
+1.  User requests to edit an expense entry.
+2.  Common Cents edits the supplied parameters the expense entry in the expense list and displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command input is in invalid format.
+
+    * 1a1. Common cents shows an error message.
+
+      Use case resumes at step 1.
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+**Use Case: UC06 - Editing a revenue**
+
+**MSS**
+
+1.  User requests to edit a revenue entry.
+2.  Common Cents edits the supplied parameters the revenue entry in the revenue list and displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command input is in invalid format.
+
+    * 1a1. Common cents shows an error message.
+
+      Use case resumes at step 1.
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+**Use Case: UC07 - Clearing all expense entries**
+
+**MSS**
+
+1. User requests to clear all entries in expense list.
+2. Common Cents clears all expense entries in the expense list and displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command input is in invalid format.
+
+    * 1a1. Common cents shows an error message.
+
+      Use case resumes at step 1.    
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+**Use Case: UC08 - Clearing all revenue entries**
+
+**MSS**
+
+1. User requests to clear all entries in revenue list.
+2. Common Cents clears all expense entries in the revenue list and displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command input is in invalid format.
+
+    * 1a1. Common cents shows an error message.
+
+      Use case resumes at step 1.    
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+**Use Case: UC09 - Undoing an add command**
 
 **MSS**
 
 1.  User requests <u> add an expense (UC01)</u>.
 2.  User requests to undo command.
 3.  Common Cents returns to the state prior to the add command and displays success message.
+</div>
 
-**Use case: UC - Undoing a delete command**
+<div markdown="block" class="alert alert-success">
+
+**Use Case: UC10 - Undoing a delete command**
 
 **MSS**
 
@@ -566,17 +877,41 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Undoing a edit command**
+
+**Use Case: UC11 - Undoing an edit command**
 
 **MSS**
 
-1.  User requests <u> edit an expense (UC)</u>.
+1.  User requests <u> edit an expense (UC05)</u>.
 2.  User requests to undo command.
 3.  Common Cents returns to the state prior to the edit command and displays success message.
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Finding specific expenses**
+
+**Use Case: UC12 - Undoing a clear all expenses command**
+
+**MSS**
+
+1.  User requests to <u> clear all expenses (UC07)</u>.
+2.  User requests to undo command.
+3.  Common Cents returns to the state prior to the clear expenses command and displays success message.
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+**Use Case: UC13 - Undoing a clear all revenues command**
+
+**MSS**
+
+1.  User requests to <u> clear all revenues (UC08)</u>.
+2.  User requests to undo command.
+3.  Common Cents returns to the state prior to the clear revenues command and displays success message.
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+**Use Case: UC14 - Finding specific expenses**
 
 **MSS**
 
@@ -607,7 +942,8 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Finding specific revenues**
+
+**Use Case: UC15 - Finding specific revenues**
 
 **MSS**
 
@@ -638,14 +974,15 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Finding specific entries (either expenses or revenues)**
+
+**Use Case: UC16 - Finding specific entries (either expenses or revenues)**
 
 **MSS**
 
 1. User requests to find some specific entries by giving keywords.
 2. Common Cents filters both expense and revenue lists to show the required entries and displays success message.
 
-    Use case ends.
+    Use case ends. 
 
 **Extensions**
 
@@ -669,7 +1006,34 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Adding an account**
+
+**Use Case: UC17 - Calculate total profits**
+
+**MSS**
+
+1. User requests to calculate profits at current state.
+2. Common Cents calculates profits by finding the difference between revenues and expense and returns profit amount as a message.
+
+    Use case ends.
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+**Use Case: UC18 - List all entries**
+
+**MSS**
+
+1. User requests to find some specific entries (UC16).
+2. User requests to list all entries.
+3. Commmon Cents displays all entries again before find command was used.
+
+    Use case ends.
+</div>
+
+
+<div markdown="block" class="alert alert-success">
+
+**Use Case: UC19 - Adding an account**
 
 **MSS**
 
@@ -694,7 +1058,8 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Adding an account**
+
+**Use Case: UC20 - Adding an account**
 
 **MSS**
 
@@ -719,7 +1084,8 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Listing accounts**
+
+**Use Case: UC21 - Listing accounts**
 
 **MSS**
 
@@ -730,7 +1096,8 @@ This captures different scenarios of how a user will perform tasks while using _
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Delete a account**
+
+**Use Case: UC22 - Delete an account**
 
 **MSS**
 
@@ -742,26 +1109,26 @@ This captures different scenarios of how a user will perform tasks while using _
 
 **Extensions**
 
-* 2a. The given command input is in invalid format.
-
-    * 2a1. Common cents shows an error message.
+* 1a. The given command input is in invalid format.
+    * 1a1. Common cCnts shows an error message.
 
       Use case resumes at step 2.
 
-* 2b. Common Cents only has an account.
-
-    * 2b1. Common Cents shows an error message.
+* 1b. Common Cents only has an account.
+    * 1b1. Common Cents shows an error message.
     
       Use case resumes at step 2.
     
-* 2c. User is currently managing the account to be deleted.
-    * 2c1. Common Cents shows an error message.
+* 1c. User is currently managing the account to be deleted.
+    * 1c1. Common Cents shows an error message.
           
       Use case resumes at step 2.
+
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Editing the account's name**
+
+**Use Case: UC23 - Editing the account's name**
 
 **MSS**
 
@@ -775,29 +1142,30 @@ This captures different scenarios of how a user will perform tasks while using _
 
 * 2a. The given command input is in invalid format.
 
-    * 2a1. Common cents shows an error message.
+    * 2a1. Common Cents shows an error message.
 
       Use case resumes at step 2.
       
 * 2b. The new account name is the same as a name of an existing account.
 
-    * 2b1. Common cents shows an error message.
+    * 2b1. Common Cents shows an error message.
     
       Use case resumes at step 2.
       
 * 2c. The new account name is the same as the current name of the account.
 
-    * 2c1. Common cents shows an error message.
+    * 2c1. Common Cents shows an error message.
     
       Use case resumes at step 2.
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Switching to an account**
+
+**Use Case: UC24 - Switching to an account**
 
 **MSS**
 
-1.  User requests <u> list all the account (UC)</u>.
+1.  User requests <u> list all the account (UC) </u>.
 2.  User requests to switch to another account.
 3.  Common Cents switches to another account and displays success message.
 
@@ -807,19 +1175,20 @@ This captures different scenarios of how a user will perform tasks while using _
 
 * 2a. The given command input is in invalid format.
 
-    * 2a1. Common cents shows an error message.
+    * 2a1. Common Cents shows an error message.
 
       Use case resumes at step 2.
       
 * 2b. The user is already on the account to be switched.
 
-    * 2b1. Common cents shows an error message.
+    * 2b1. Common Cents shows an error message.
     
       Use case resumes at step 2.
 </div>
 
 <div markdown="block" class="alert alert-success">
-**Use case: UC - Exiting app**
+
+**Use Case: UC25 - Exiting app**
     
 **MSS**
 
@@ -840,13 +1209,14 @@ This specifies criteria that can be used to judge the operation of _Common Cents
 4.  Should be able to perform simple arithmetic with up to 1000 entries without a significant drop in performance
 5.  Should be able to understand the layout of product without much reference to the user guide
 6.  Should be able to hold up to 100 accounts without taking up excess memory
-*{More to be added}*
 
 ### Glossary
 Definitions of certain terms used in this Developer Guide.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Entry-level commands**: Commands that interacts with expenses or revenues.
+* **Account-level commands**: Commands that interacts with accounts.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -854,7 +1224,9 @@ Definitions of certain terms used in this Developer Guide.
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
@@ -866,7 +1238,8 @@ Basic instructions to test the launch and shutdown of _Common Cents_.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file <br>
+       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -877,7 +1250,7 @@ Basic instructions to test the launch and shutdown of _Common Cents_.
 
 
 ### Entry-level commands
-Basic instructions to test entry-level commands of _Common Cents_.
+Basic instructions to test _entry-level_ commands of _Common Cents_.
 
 1. Adding an entry while all entries are being shown
    1. Prerequisites: List all entries using the `list` command.
@@ -887,7 +1260,7 @@ Basic instructions to test entry-level commands of _Common Cents_.
       Pie chart and total expense value are updated.
       
    1. Test case: `add c/revenue d/selling paintings a/25 t/arts`<br>   
-      Expected: Revenue  is added to the end of the revenue list. Details of the revenue added shown in the status message. 
+      Expected: Revenue is added to the end of the revenue list. Details of the revenue added shown in the status message. 
       Pie chart and total revenue value are updated.
       
    1. Test case: `add c/wronginput d/buying paint a/6.45 t/arts`<br>
@@ -923,35 +1296,35 @@ Basic instructions to test entry-level commands of _Common Cents_.
         * Expense list is updated with only 1 expense that has the description `canvas` inside. 
         * Revenue list remains the same. 
         * Result display shows "Entries updated". 
-        * Pie chart and total expense value remain.
+        * Pie chart and total expense value remain unchanged.
     
    1. Test case: `find c/revenue k/cases`<br>
         Expected: 
         * Expense list remains the same.
         * Revenue list is updated with only 1 revenue that has the description containing `cases`.
         * Result display shows "Entries updated". 
-        * Pie chart and total expense value remain. 
+        * Pie chart and total expense value remain unchanged. 
 
    1. Test case: `find k/cases canvas`<br>
         Expected: 
         * Both lists are updated with 1 expense that has the description containing `canvas` and 
-        1 revenue that has the description containing `cases`.
+        * revenue that has the description containing `cases`.
         * Result display shows "Entries updated". 
-        * Pie chart and total expense value remain. 
+        * Pie chart and total expense value remain unchanged. 
          
    1. Test case: `find c/expense k/nonexistent`<br>
         Expected: 
         * Expense list is updated with no entries inside.
         * Revenue list remains the same. 
         * Result display shows "No entries found". 
-        * Pie chart and total expense value remain. 
+        * Pie chart and total expense value remain unchanged. 
    
    1. Test case: `find c/revenue k/nonexistent`<br>
        Expected: 
        * Expense list remains the same.
        * Revenue list is updated with no entries inside. 
        * Result display shows "No entries found". 
-       * Pie chart and total expense value remain.
+       * Pie chart and total expense value remain unchanged.
 
    1. Test case: `find c/expense`<br>
        Expected: Neither list is updated. Error details shown in the status message.
@@ -960,7 +1333,7 @@ Basic instructions to test entry-level commands of _Common Cents_.
         Expected: Similar behaviour with previous testcase. Note that error details may differ based on 
         which parameters of the input that is in an incorrect format. 
 
-1. Undoing an entry-level command
+1. Undoing an _entry-level_ command
 
    1. Prerequisites: Use at least one add, edit or delete `command`.
    
@@ -969,18 +1342,18 @@ Basic instructions to test entry-level commands of _Common Cents_.
    Pie chart is reverted to the state prior to the previous command.
    
 ### Account-level commands
-Basic instructions to test account-level commands of _Common Cents_.
+Basic instructions to test _account-level_ commands of _Common Cents_.
 1. Adding a new unique account
-   1. Prerequisite: Ensure no accounts in Common Cents has the name `New Account`.
+   1. Prerequisite: Ensure no accounts in _Common Cents_ has the name `New Account`.
 
    1. Test case: `newacc n/New Account`<br>
-      Expected: New account is added to Common Cents. (use `listacc` command to check) First expense entry is deleted from the expense list. 
+      Expected: New account is added to _Common Cents_. (use `listacc` command to check) First expense entry is deleted from the expense list. 
       Details of the added account is shown in the status message.
    
    1. Test case: `newacc n/`<br>
       Expected: No account is added. Error details shown in the status message.
       
-   1. Other incorrect add account commands to try: `newacc`.<br>
+   1. Other incorrect add account commands to try: `newacc`<br>
       Expected: Similar behaviour with previous testcase. Note that error details may differ based on which parameters of the input that is in an incorrect format.   
          
 1. Deleting an account
@@ -1002,6 +1375,39 @@ Basic instructions to test saving and loading of user data of _Common Cents_.
 1. Dealing with missing/corrupted data files
 
    1. Prerequisite: Remove commonCents.json in data folder in the home folder.
-   1. Launch Common Cent via CLI
+   1. Launch _Common Cents_ via CLI
        1. Expected: CLI displays log stating that data file is not found and a sample data is loaded. Common Cents
        launches with two accounts, `Default Account 1` and `Default Account 2` and each account has sample expenses and revenues.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+This section highlights the team effort to build _Common Cents_ from AB3. While it was not easy, it was a fufilling and valuable experience for all of us.
+
+### Effort
+* Total of 10k LoC written.
+* Total 245 hours of work: 7 hours spent per person per week (total 5 of us).
+* ~30 pages of UG
+* ~40 pages of DG
+
+### Challenges
+
+#### Management
+* During v1.2 iterations, the deadlines were not set properly and we struggled to produce a working app in that iteration. From there, we learnt to set internal deadlines and longer buffer periods in v1.3 and v1.4.
+* Documentation was not updated regularly as the focus was on the code.
+
+#### Coding
+* We had to modify the OOP structure of AB3 to include another layer of logic, which is the Account and ActiveAccount layer. 
+* It was difficult to maintain relatively high code coverage for JUnit tests as many new classes were added through the iterations.
+* JavaFX was a foreign library to learn and apply in the application.
+* Much defensive coding had to be implemented to avoid unnecessary mutability of variables.
+
+### Milestones
+* Week 7: Started to modify AB3
+* Week 8: UI design is completed
+* Week 9: First successful run of _Common Cents_
+* Week 10: Release of v1.2.1
+* Week 11: Completion of v1.3 of _Common Cents_ and first draft of UG/DG
+* Week 11: Release of v1.3
+* Week 12: Completion of v1.4 of _Common Cents_
+* Week 13: Release of v1.4 and submission of final draft of UG/DG

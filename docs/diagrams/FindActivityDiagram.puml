@@ -1,23 +1,18 @@
 @startuml
 
-(*) --> User enters command
---> if "" then
----> [invalid args] "User enters command"
-    else
-    -down-> [valid args] "Account is retrieved from ActiveAccount"
-    endif
---> if "" then
---> [expense predicate exists] "Expense list is updated"
-else
---> if "" then
---> [revenue predicate exists] "Revenue list is updated"
-    --> (*)
-    else
-    --> [else] (*)
+start
+repeat :User enters command;
+repeat  while () is ([invalid args])
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+:Account is retrieved from ActiveAccount;
+if () then ([expense predicate exists])
+: Expense list of ActiveAccount is filtered;
+else ([else]);
 endif
-
-
+if () then ([revenue predicate exists])
+: Revenue list of ActiveAccount is filtered;
+else ([else]);
 endif
-
-
+stop
 @enduml

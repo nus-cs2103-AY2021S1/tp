@@ -56,8 +56,9 @@ ModelManager o--> "1" UserPrefs
 UserPrefs .down..|> ReadOnlyUserPrefs
 ModelManager --> Account: filtered list
 
+ActiveAccountManager "1" --> "0..1" ActiveAccountManager : previous state
 ActiveAccountManager ..|> ActiveAccount
-ActiveAccountManager o-right-> "1" Account
+ActiveAccountManager o-left-> "1" Account
 
 CommonCents *--> "1" UniqueAccountList
 UniqueAccountList o--> "1..*" Account

@@ -59,7 +59,7 @@ public class JsonAdaptedRevenue extends JsonAdaptedEntry {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Amount.class.getSimpleName()));
         }
         if (!Amount.isValidAmount(amount)) {
-            throw new IllegalValueException(String.format(Amount.MESSAGE_CONSTRAINTS));
+            throw new IllegalValueException(Amount.MESSAGE_CONSTRAINTS);
         }
         final Amount modelAmount = new Amount(amount);
         final Set<Tag> modelTags = new HashSet<>(entryTags);

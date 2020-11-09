@@ -140,8 +140,8 @@ public class EntryUtil {
         StringBuilder sb = new StringBuilder();
         boolean isRevenue = entry instanceof Revenue;
         String category = isRevenue
-                ? "revenue"
-                : "expense";
+                ? REVENUE_STRING
+                : EXPENSE_STRING;
         sb.append(PREFIX_CATEGORY + category + " ");
         sb.append(PREFIX_DESCRIPTION + entry.getDescription().toString() + " ");
         sb.append(PREFIX_AMOUNT + entry.getAmount().toString() + " ");
