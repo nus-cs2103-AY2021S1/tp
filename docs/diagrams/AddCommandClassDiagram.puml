@@ -69,10 +69,6 @@ note as N2
 end note
 
 note as N3
-    <size: 11><u>hasXYZ(xyz):</u>
-    <size: 11>hasConsultation(Consultation),
-    <size: 11>hasTodo(Todo), etc
-    <size: 11>
     <size: 11><u>addXYZ(xyz):</u>
     <size: 11>addConsultation(Consultation),
     <size: 11>addTodo(Todo), etc

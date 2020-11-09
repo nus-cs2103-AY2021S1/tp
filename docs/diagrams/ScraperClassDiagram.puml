@@ -14,7 +14,7 @@ class WebDriver
 
 class ScraperManager implements Scraper
 
-ScraperManager o-> "1" UserLogin
-ScraperManager o--> "1" WebDriver
+ScraperManager -> "1" UserLogin
+ScraperManager --> "1" WebDriver
 
 @enduml

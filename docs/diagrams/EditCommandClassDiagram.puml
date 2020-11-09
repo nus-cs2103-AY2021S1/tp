@@ -18,16 +18,10 @@ class Model <<Interface>> {
 }
 
 class ModelManager {
-    /' Attributes '/
-
-    /' Methods '/
-    + updateFilteredPersonList(Predicate<Student> predicate) : void
-    + updateMissionsList(Predicate<Mission> predicate) : void
-    + updateQuestsList(Predicate<Quest> predicate) : void
-    + updateFilteredConsultationList() : void
-    + updateFilteredMasteryCheckList() : void
-    + updateFilteredTaskList(Predicate<Task> predicate) : void
 }
+
+hide ModelManager attributes
+hide ModelManager methods
 
 abstract class "{abstract}\nEditCommand"{
     /' Attributes '/

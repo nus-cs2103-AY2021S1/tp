@@ -13,7 +13,7 @@ end box
 [-> ScraperManager : startScraping()
 activate ScraperManager
 
-ScraperManager -> WebDriver : get("sourceacademy.nus.edu.sg")
+ScraperManager -> WebDriver : get("https://sourceacademy.nus.edu.sg")
 activate WebDriver
 
 deactivate WebDriver

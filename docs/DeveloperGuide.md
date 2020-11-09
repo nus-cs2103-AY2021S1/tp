@@ -125,9 +125,9 @@ The ***Architecture Diagram*** given above explains the high-level design of Jar
 
 The rest of Jarvis consists of five components.
 
-* [**`UI`**](#ui-component): The UI of the App.
+* [**`UI`**](#ui-component): The UI of the app.
 * [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`Model`**](#model-component): Holds the data of the app in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 * [**`Scraper`**](#scraper-component): Scrapes [https://sourceacademy.nus.edu.sg](https://sourceacademy.nus.edu.sg) for course-info.
 
@@ -145,7 +145,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
  the command `delete -c 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Sequence Diagram of Architecture](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
@@ -231,7 +231,7 @@ The `Storage` component,
 
 The `Scraper` component,
 * reads user login information from the `UserLogin` object passed to it.
-* uses the _Chrome_Driver_ package to scrape [Source Academy](https://sourceacademy.nus.edu.sg) for course-info such as missions, quests, student names.
+* uses the _Chrome_Driver_ package to scrape [Source Academy](https://sourceacademy.nus.edu.sg) for course-info such as `Missions`, `Quests`, `Student` names.
 * can save the scraped information to `Model`.
 
 ### 3.7 Common classes
@@ -331,7 +331,7 @@ The sequence diagram for the `ViewMissionDeadlineCommand` is shown below:
 ![Sequence Diagram of ViewMissionDeadlineCommand](images/ViewMissionDeadlineSequenceDiagram.png)
 
 The `LogicManager` will call the `parseCommand` method of `AddressBookParser`, which then passes the second argument to the `ViewCommandParser` object.
-The `ViewCommandParser`, after parsing the necessary arguments through static methods of the ParserUtil class, will return a `ViewMissionDeadlineCommand` object.
+The `ViewCommandParser`, after parsing the necessary arguments through static methods of the `ParserUtil` class, will return a `ViewMissionDeadlineCommand` object.
 This object will then be returned to the `LogicManager`. Next, the `LogicManager` will call the `execute(model)` method using the
 `ViewMissionDeadlineCommand` object. In this method, it will use the `Model` object to call the method `updateMissionList()`, with parameter `PREDICATE_SHOW_ALL_MISSIONS` which will show all the missions. When completed, the `execute(model)` will return a
 `CommandResult` object with the success message to the `LogicManager`, indicating that the command execution is a success.
@@ -379,7 +379,7 @@ The following diagram shows the overview of `AddCommand` detailed Class Diagram 
 ![Class Diagram of Add Commands](images/AddXYZCommandClassDiagram.png)
 
 * The class `AddCommand` contains 3 subclasses: `AddTaskCommand`, `AddConsultationCommand` and `AddMasteryCheckCommand`.
-* These `AddCommand` subclasses interacts with `Model` and the related class models each AddCommand is supposed to execute with.
+* These `AddCommand` subclasses interacts with `Model` and the related class models each `AddCommand` is supposed to execute with.
 * Upon successful `AddCommand`, these subclasses communicates with `Model` to add `Task`, `Consultation` and `MasteryCheck` into `Model`.
 
 #### 4.3.4 Structure of AddCommandParser
@@ -413,7 +413,7 @@ The sequence diagram for the `AddTaskCommand` adding an `Event` is shown below:
 ![Sequence Diagram of Add Task](images/AddTaskSequenceDiagram.png)
 
 The `LogicManager` will call the `parseCommand` method of `AddressBookParser`, which then passes the second argument to the newly created `AddCommandParser` object.
-The `AddCommandParser` will then call specific parse method, in this case, `parseEvent` method of `TaskCommandParser`. `TaskCommandParser` returns an `Event` object
+The `AddCommandParser` will then call the specific parse method, in this case, `parseEvent` method of `TaskCommandParser`. `TaskCommandParser` returns an `Event` object
 created to `AddCommandParser` so that it can return a new `AddTaskCommand` created with the `Event` object.
 This object will then be returned to the `LogicManager`. Next, the `LogicManager` will call the `execute(model)` method using the
 `AddTaskCommand` object. In this method, it will use the `Model` object to call the method `hasEvent()`, which checks if there is a duplicated `Event` in the `Model`.
@@ -1008,9 +1008,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The system should be backward compatible with data produced by earlier versions of the system.
 5. The system should work on both 32-bit and 64-bit environments.
-6. The system should respond within one second.
-7. For now, the product is not required to handle the printing of reports.
-8. Should be easy for the user to migrate all information in Jarvis onto a separate computer.
+6. For now, the product is not required to handle the printing of reports.
+7. Should be easy for the user to migrate all information in Jarvis onto a separate computer.
 
 
 ### 6.5 Glossary
@@ -1047,8 +1046,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The most recent window size and location is retained.
+   1. Re-launch the app by double-clicking the jar file.
+   <br>
+   Expected: The most recent window size and location is retained.
 
 1. Saving login details
 

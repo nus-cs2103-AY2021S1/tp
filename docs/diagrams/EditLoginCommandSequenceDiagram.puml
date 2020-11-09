@@ -28,20 +28,26 @@ create EditCommandParser
 AddressBookParser -> EditCommandParser
 activate EditCommandParser
 
+EditCommandParser -> AddressBookParser
+deactivate EditCommandParser
+
+AddressBookParser -> EditCommandParser : parse("-l")
+activate EditCommandParser
+
 EditCommandParser -> ParserUtil : parseFlag("-l")
 activate ParserUtil
 
 ParserUtil --> EditCommandParser : commandFlag
 deactivate ParserUtil
 
-EditCommandParser -> ParserUtil : parseUsername("/u")
+EditCommandParser -> ParserUtil : parseUsername("u/")
 activate ParserUtil
 
 ParserUtil --> EditCommandParser : username
 
 deactivate ParserUtil
 
-EditCommandParser -> ParserUtil : parsePassword("/u")
+EditCommandParser -> ParserUtil : parsePassword("p/")
 activate ParserUtil
 
 ParserUtil --> EditCommandParser : password
@@ -49,10 +55,6 @@ ParserUtil --> EditCommandParser : password
 deactivate ParserUtil
 
 EditCommandParser --> AddressBookParser
-deactivate EditCommandParser
-
-AddressBookParser -> EditCommandParser : parse("-l")
-activate EditCommandParser
 
 create EditLoginCommand
 EditCommandParser -> EditLoginCommand
@@ -62,9 +64,12 @@ EditLoginCommand --> EditCommandParser : v
 deactivate EditLoginCommand
 
 EditCommandParser --> AddressBookParser : v
-deactivate EditCommandParser
+
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 EditCommandParser -[hidden]-> AddressBookParser
+
+deactivate EditCommandParser
+
 destroy EditCommandParser
 
 AddressBookParser --> LogicManager : v
