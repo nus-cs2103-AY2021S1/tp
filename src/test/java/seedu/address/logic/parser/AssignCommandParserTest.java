@@ -88,7 +88,7 @@ public class AssignCommandParserTest {
         assertParseFailure(parser, "1" + ASSIGN_DATE + ASSIGN_DATE_TIME + INVALID_DURATION_NON_INTEGER_DESC,
                 ParserUtil.MESSAGE_INVALID_DURATION);
         assertParseFailure(parser, "1" + ASSIGN_DATE + ASSIGN_TIME + INVALID_DURATION_EXCEED_CLOSING_TIME_DESC,
-                Time.MESSAGE_CONSTRAINTS);
+                ParserUtil.MESSAGE_DURATION_EXCEEDED);
         assertParseFailure(parser, "1" + ASSIGN_DATE + ASSIGN_TIME + INVALID_DURATION_EMPTY_DESC,
                 ParserUtil.MESSAGE_EMPTY_DURATION);
         assertParseFailure(parser, "1" + ASSIGN_DATE + ASSIGN_TIME + INVALID_DURATION_WHITESPACE_DESC,
