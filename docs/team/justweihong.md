@@ -44,5 +44,9 @@ I am in-charge of the **UI/UX** of the **front-end development** of TrackIt@NUS.
 * Help Formatted : the [Features](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/UserGuide.md#features) sections.
 ## 4. Contributions to the Developer Guide
 * Formatted the numbering of TOC, logo and logo footer
-* Included the UI section as part of my contribution to code base [UI Component](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/DeveloperGuide.md#ui) and [Module Tab](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/DeveloperGuide.md#module-tab)
+* Included the UI section as part of my contribution to code base [UI Component](https://github.com/AY2021S1-CS2103T
+-W13-4/tp/blob/master/docs/DeveloperGuide.md#ui) and [Module Tab](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob
+/master/docs/DeveloperGuide.md#module-tab), as well as Activity Diagram for user scroll in [Upcoming Tab](https://github
+.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/DeveloperGuide.md#upcoming-tab).
+                                                                                           /master/docs/DeveloperGuide.md#module-tab)
 * Included Appendix sections for [Use Cases](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/DeveloperGuide.md#appen-c) and [User Stories](https://github.com/AY2021S1-CS2103T-W13-4/tp/blob/master/docs/DeveloperGuide.md#appen-b).
