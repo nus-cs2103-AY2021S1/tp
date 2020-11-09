@@ -123,7 +123,11 @@ public class ExerciseModelManager implements ExerciseModel {
 
     @Override
     public void deleteExercise(Exercise target) {
+        
         this.exerciseBook.removeExercise(target);
+        if (goalBook.hasGoal(new Goal(target.getDate()))) {
+            
+        }
     }
 
 
