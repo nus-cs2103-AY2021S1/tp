@@ -53,7 +53,7 @@ public class Contact {
      * @param isImportant boolean describing the isImportant field of the Contact object.
      */
     public Contact(ContactName name, Email email, Telegram telegram, Set<Tag> tags, boolean isImportant) {
-        requireAllNonNull(name, email, telegram, tags, isImportant);
+        requireAllNonNull(name, email, tags, isImportant);
         this.name = name;
         this.email = email;
         this.telegram = telegram;
