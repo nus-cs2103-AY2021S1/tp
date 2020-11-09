@@ -607,32 +607,32 @@ The following activity diagram summarizes how data from the Json file is read an
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                               | I want to …​                                                          | So that I can…​                                                 |
-| -------- | ------------------------------------- | -----------------------------------| --------------------------------------------------------------- |
-| `* * *`  | Teaching Assistant         | add/delete a module                             | properly manage the list of modules                           |
-| `* * *`  | Teaching Assistant         | edit a module                                   | correct any errors                                            |
-| `* * *`  | Teaching Assistant         | find a module                                   | search for a module I'm looking for                           |
-| `* * *`  | Teaching Assistant         | list all the modules I teach                    | have an overall view of all the modules                       |
-| `* * *`  | Teaching Assistant         | add/delete a tutorial group                     | properly manage the list of tutorial groups                   |
-| `* * *`  | Teaching Assistant         | edit a tutorial group                           | correct any errors                                            |
-| `* * *`  | Teaching Assistant         | find a tutorial group                           | search for a tutorial group I'm looking for                   |
-| `* * *`  | Teaching Assistant         | list all the tutorial groups I teach            | have an overall view of all the tutorial groups               |
-| `* * *`  | Teaching Assistant         | add/delete students to my list                  | properly manage the list of students                          |
-| `* * *`  | Teaching Assistant         | edit a student                                  | correct any errors                                            |
-| `* * *`  | Teaching Assistant         | find a student                                  | search for a student I'm looking for                          |
-| `* * *`  | Teaching Assistant         | add/delete attendance of a student              | properly track the attendance of my students                  |
-| `* * *`  | Teaching Assistant         | list all the students I teach                   | have an overall view of all the students                      |
-| `* * *`  | Teaching Assistant         | edit attendance of a student                    | correct any errors                                            |
-| `* * *`  | Teaching Assistant         | filter attendance of my students                | check the attendance rate of my students                      |
-| `* * *`  | Teaching Assistant         | add participation scores of my students         | properly track my student's participation level               |
-| `* * *`  | Teaching Assistant         | edit participation scores of my students        | correct any errors in their scores                            |
-| `* * *`  | Teaching Assistant         | filter participation scores of my students      | check if any of my students are not participating             |
-| `* * *`  | Teaching Assistant         | save my data                                    | continue where I left off                                     |
-| `* * *`  | Teaching Assistant         | clear all my existing data                      | easily start on a clean slate for a new semester              |
-| `* * *`  | Teaching Assistant         | access a help guide                             | look up my problems if when I encounter any                   |
-| `* * *`  | Teaching Assistant         | exit the app                                    | exit the app immediately to close it                          |
-| `* * `   | Teaching Assistant         | have a way to upload stored on an excel sheet   | input information I already have stored elsewhere             |
-| `* * `   | Teaching Assistant         | have a way to export data onto an excel sheet   | easily extract information from the app to submit             |
+| Priority | As a …​                               | I want to …​                                                          | So that I can…​|
+| -------- | ------------------------------------- | -----------------------------------| ---------------------------------------------------------------  |
+| `* * *`  | Teaching Assistant         | add/delete a module                             | manage the list of modules I teach                             |
+| `* * *`  | Teaching Assistant         | edit a module                                   | keep the module information accurate if there are changes      |
+| `* * *`  | Teaching Assistant         | find a module                                   | quickly get to the module I am looking for                     |
+| `* * *`  | Teaching Assistant         | list all the modules I teach                    | have an overall view of all the modules                        |
+| `* * *`  | Teaching Assistant         | add/delete a tutorial group                     | manage the list of tutorial groups I teach                     | 
+| `* * *`  | Teaching Assistant         | edit a tutorial group                           | keep the tutorial group information accurate if there are changes| 
+| `* * *`  | Teaching Assistant         | find a tutorial group                           | quickly get to the tutorial group I am looking for             |
+| `* * *`  | Teaching Assistant         | list all the tutorial groups I teach            | have an overall view of all the tutorial groups                |
+| `* * *`  | Teaching Assistant         | add/delete students to my list                  | manage the list of students I teach                            |
+| `* * *`  | Teaching Assistant         | edit a student                                  | keep the student information accurate if there are changes     |
+| `* * *`  | Teaching Assistant         | find a student                                  | quickly get to the student I am looking for                    |
+| `* * *`  | Teaching Assistant         | add/delete attendance of a student              | properly track the attendance of my students                   |
+| `* * *`  | Teaching Assistant         | list all the students I teach                   | have an overall view of all the students                       |
+| `* * *`  | Teaching Assistant         | edit attendance of a student                    | keep the attendance information accurate if there are changes  |
+| `* * *`  | Teaching Assistant         | filter attendance of my students                | find students who have not been attending classes              |
+| `* * *`  | Teaching Assistant         | add participation scores of my students         | credit my students for their participation                     |
+| `* * *`  | Teaching Assistant         | edit participation scores of my students        | keep the participation information accurate if there are changes|
+| `* * *`  | Teaching Assistant         | filter participation scores of my students      | check if any of my students are not participating              |
+| `* * *`  | Teaching Assistant         | save my data                                    | continue where I left off in the previous session              |
+| `* * *`  | Teaching Assistant         | clear all my existing data                      | easily start on a clean slate for a new semester               |
+| `* * *`  | Teaching Assistant         | access a help guide                             | look up my problems if when I encounter any                    |
+| `* * *`  | Teaching Assistant         | exit the app                                    | exit the app immediately to close it                           |
+| `* * `   | Teaching Assistant         | have a way to upload stored on an excel sheet   | input information I already have stored elsewhere              |
+| `* * `   | Teaching Assistant         | have a way to export data onto an excel sheet   | easily extract information from the app to submit              |
 
 _{More to be added}_
 
