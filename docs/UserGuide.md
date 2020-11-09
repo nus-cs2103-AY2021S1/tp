@@ -740,4 +740,4 @@ are likely to change frequently and hence, will not need to be persisted.
 ## 9. FAQ
 
 `Q: How do I transfer my data to another Computer?`
-<br>`A: Install the app in the other computer and overwrite the empty data file(.json file) it creates with the file(.json file) that contains the data of your previous Jarvis home folder.`
+<br>`A: Install the app in the other computer and overwrite the empty data file (jarvis.json file) it creates with the file (jarvis.json file) that contains the data of your previous Jarvis home folder.`
