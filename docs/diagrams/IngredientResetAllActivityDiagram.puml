@@ -15,7 +15,7 @@ if () then ([not all ingredients' levels are already at zero])
 else ([else])
     :Show an error message to the
     user stating that all ingredients'
-    levels are already at zero
+    levels are already at zero$
     before the execution of the
     command;
 endif
