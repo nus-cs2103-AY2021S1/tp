@@ -167,31 +167,63 @@ The following sequence diagram shows how the Priority operation works:
   * Pros: Will use less memory (No need to show the parser field).
   * Cons: Increased coupling
 
-### \[Proposed\] Policy feature
+### Policy feature
 
-#### Proposed Implementation
+#### Implementation
 
-Policy (class) is a field in Person that is uniquely different from the current fields in Person
- such as phone, address, email, etc. A Person can have up to a single Policy. 
- 
- Policy class contains 3 attributes: String name, String description.
+`Policy` is implemented as shown in this class diagram:
 
-Prior to adding a Policy field to a Person, User creates the Policy objects 
-via `addp` (Add Policy Command). A collection stores these Policy objects to be referenced and
- a json file stores Policy objects that are created. 
- 
- A user can then add one of these Policy objects as a field in a Person object by specifying with 
-  `z/ [POLICY_NAME]` during Add Command.
-  
-Sequence diagram to create new Policy:
+![Policy0](images/PolicyClassDiagram.png)
 
-<img src="images/AddPolicySequenceDiagram.png"/>
+`PolicyName` and `PolicyDescription` are separate classes rather than string fields.
+Implementing `Policy` this way conforms to the same structure as `Person` where string fields are
+their own classes.
+It also allows for abstraction of methods specified for each of the field classes such as 
+checking for validity of each of the individual class's inputs.
 
-Additionally, a new Command, ClearPolicyCommand will clear the collection of Policy classes
-in the list to facilitate the management of Policy objects.
+Example:
 
-When adding the Policy field to a Person object, the Policy name has to be correct, and
-the Policy object should already be created.
+* `PolicyName#isValidPolicyName` & `PolicyDescription#isValidPolicyDescription`
+
+As shown in [**`Model`**](#model-component) above, each Person has an optional `Policy` field.
+The `Policy` field can be added to a client using the `add` command, which is specified by the
+PolicyName Prefix followed by a valid PolicyName. The PolicyName must be valid and a corresponding
+`Policy` must already be in the `PolicyList` maintained by `ModelManager`. The specific `Policy` object
+is then referenced from the `PolicyList` and maintained in the `Person` object.
+
+Thus, Commands to add `Policy` objects into the `PolicyList` have been implemented.
+
+Given below is the Sequence Diagram that shows how the Add Policy Command `addp` works.
+
+![AddPolicyCommand](images/AddPolicySequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddPolicyCommandParser` and `AddPolicyCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+First, `ClientListParser` will parse if the correct command, `addp` in this case, is called. Then,
+`AddPolicyCommandParser` will parse the parameters for  `Policy`'s name and description for their validity
+and values. `AddPolicyCommandParser` then constructs an `AddPolicyCommand` with the given Policy using the
+name and description. The Command object is returned to `LogicManager` which calls the execute 
+method of the `Command`. Execute checks if the `Policy` already exists in the `PolicyList` stored
+in Model and if it is not, then the `Policy` is added to the `PolicyList`.
+
+A command used to clear the `PolicyList`, `clearp` was also implemented to give the user 
+more control over the `PolicyList`. `clearp` clears the `PolicyList` as well as all the 
+`Policy`s allocated to clients through interaction with `Model`'s `ClientList` and `PolicyList`.
+The Command works similar to the Add Policy Command as illustrated in the sequence diagram
+in terms of parsing and command creation, but works differently in `Model` as it clears all
+`Policy` objects from the `PolicyList` as well as the `Policy` field of `Person` in
+ the `ClientList`.
+
+`PolicyList` is a List class stored in `Model`. It stores multiple `Policy` objects in a 
+`HashMap`. A `HashMap` was used
+because checking if a key is in the `HashMap` can be done quickly. Additionally, `HashMap` 
+was chosen over `HashTable` because we do not require the Collection to be synchronized. 
+Thus, `HashMap` is more apt due to its higher efficiency and speed.
+
+Lastly, `PolicyList` is also stored in memory as `json` file. This requires json-adapted classes to be
+created. The storage classes are shown in [**`Storage`**](#storage-component). They were implemented
+using AB3's storage classes as template.
 
 ### Archive feature
 
@@ -330,9 +362,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | expert user                                | view all archived clients      | see the clients that I am no longer working with                       |
 | `* *`    | expert user                                | unarchive clients              | display them when I start working with them again                      |
 | `* *`    | regular user                               | clear all clients              | delete irrelevant client data when I move to a new company             |
+| `* *`    | regular user                               | add existing policies          | keep track of policies my company offers and the policies my clients subscribe to|
+| `* *`    | regular user                               | clear all policies             | delete irrelevant policy data when I move to a new company             |
 | `* *`    | regular user                               | exit the app                   | start to relax                                                         | 
-
-
 
 ### Use cases
 
@@ -366,7 +398,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c1. System gives corresponding error message.
 
       Use case ends.
+    
+* 1d. User attempts to add a client with invalid fields.
+   
+    * 1d1. System gives corresponding error message.
+
+      Use case ends.
       
+* 1e. User attempts to add a client with policy name that corresponds to none of the policies in the policy list.
+   
+    * 1e1. System gives corresponding error message.
+
+      Use case ends.
+        
 **UC02 - User deletes client**
 
 **MSS**
@@ -516,8 +560,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The list is empty.
 
   Use case ends.
-  
-**UC09 - User exits the app**
+      
+**UC09 - User adds a new policy**    
+
+**MSS**
+
+1. User chooses to add a new policy with a name and description.
+2. System gives success message.
+    
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters wrong add policy command format.
+
+    * 1a1. System gives corresponding error message.
+    
+        Use case ends.
+        
+* 1b. User attempts to add an existing policy.
+
+    * 1b1. System gives corresponding error message.
+    
+        Use case ends.
+
+**UC10 - User clears the list of existing policy**    
+
+**MSS**
+
+1. User chooses to clear the policy list.
+2. System gives success message.
+    
+    Use case ends.
+    
+**UC11 - User exits the app**
 
 **MSS**
 
@@ -527,9 +603,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
       
 
-
-
-      
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` installed.
@@ -677,7 +750,7 @@ testers are expected to do more *exploratory* testing.
    
    5. Another similar test to try: Deleting a client while archived clients are being shown
 
-### Clearing the list
+### Clearing the client list
 
 1. Clearing the client list.
 
@@ -708,15 +781,23 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: `exit`<br>
        Expected: The app closes.
-       
-     
-**TO UPDATE BELOW**
 
+### Adding a policy
 
-### Saving data
+1. Adding a policy.
+    
+    1. Prerequisites: Policy to be added is not already in the policy list. 
+    Two policies are considered different if they have different names.
+    
+    2. Test case: `addp pn/Medishield pd/Government Insurance`<br>
+    Expected: The policy Medishield is added to the policy list. Success message shown. 
+    
+### Clearing the policy list
 
-1. Dealing with missing/corrupted data files
+1. Clearing the policy list.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+    1. Prerequisites: None.
+    
+    2. Test case: `clearp` <br>
+    Expected:
+    Status message will indicate that the policy list has been cleared. Policy fields of all clients are also cleared.
