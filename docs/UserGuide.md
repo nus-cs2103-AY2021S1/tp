@@ -64,9 +64,13 @@ Let's get started! :smiley:
 ### Installing Nuudle
 
 Follow these steps to get started with Nuudle:
+
 1. Ensure you have **Java 11** or above installed in your Computer.
+
 1. Download the latest version of Nuudle from [here](https://github.com/ay2021s1-cs2103t-t12-4/tp/releases).
+
 1. Copy the file to the folder you want to use as the home folder for Nuddle.
+
 1. Double-click the file to start up Nuudle. An application window similar to the one below should appear in a few seconds.<br>
    Notice how Nuudle also comes with some sample data to get you started.<br>
    ![Ui](images/Ui.png)
@@ -135,7 +139,7 @@ The main viewing area consists of the *Patient Book*, the *Appointment Book* and
 
   * Another important part of an appointment is the *Appointment Status*. There are four status types used in Nuudle and the meaning of each status is shown in the table below:
 
-  **Appointment Status** | **What it means**
+  **Appointment Status** | **Meaning**
   :---------------:|:----------------
   ![StatusDone](images/StatusDone.png) | A completed appointment that has been marked as done using the `done` command
   ![StatusUpcoming](images/StatusUpcoming.png) | An uncompleted appointment that will be happening in the future.
@@ -349,7 +353,7 @@ By pressing the <kbd>↑</kbd> and <kbd>↓</kbd> arrow keys in the *command box
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** You can use this feature together with `undo` command to correct a wrongly executed command.
+:bulb: **Tip:** This feature can be used together with `undo` to correct a wrongly executed command.<br>
 
 <br>
 The steps below illustrate how this correction can be done:<br>
