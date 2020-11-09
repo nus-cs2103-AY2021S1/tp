@@ -12,7 +12,7 @@ title: User Guide
         * [Commands - Manpower Management](#commands-manpower-management)
         * [Commands - General](#commands-general)
         * [Other Features](#other-features)
-        * [FAQ](#FAQ)
+    * [FAQ](#FAQ)
     * [Command summary](#command-summary)
 
 <div style="page-break-after: always;"></div>
@@ -49,6 +49,8 @@ You can start from the [Quick Start](#quick-start) section to learn how to obtai
 1. Double-click the file to start the app. The graphic user interface (GUI) similar to the figure below should appear in a few seconds. Note
 how the figure below shows some sample data.<br>
    ![Ui](images/Ui.png)
+   
+   _Figure 1. A screenshot showing the tCheck's UI_
 
 1. Type the command in the command box and press "Enter" on your keyboard to execute it. e.g. typing **`help`** and pressing "Enter" will open the help window.<br>
 
@@ -80,8 +82,11 @@ You may want to familarise yourself with them before moving on to the next secti
 
 Figure 2 shows the GUI of **tCheck**, annotated with descriptions for all components of the GUI.
 
+
 <img src="images/tCheckInfographic.png" width="1000"/>
-Figure 2 - Annotated GUI of tCheck
+
+_Figure 2 - Annotated GUI of tCheck_
+
 
 #### 2.2 General Symbols and Syntax 
 
@@ -121,7 +126,7 @@ The following points explain the format of a command.
    e.g. `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]` can be used as `c-add n/Betsy Crowe e/81234567 p/89007413 a/Blk 120 ABC Road t/Friday` 
     or as `c-add n/Betsy Crowe e/81234567 p/89007413 a/Blk 120 ABC Road`.
 
-* Items with `...​` after them can be used multiple times, including zero times.<br>
+* Items with `...` after them can be used multiple times, including zero times.<br>
    e.g. `[t/TAG] ...` can be used as `  ` (i.e. 0 times), `t/Friday`, `t/Friday t/PartTime`, etc.
 
 * Parameters can be in any order.<br>
@@ -217,7 +222,7 @@ Outcome:
 
 ![SalesUpdateCommandScreenshot](images/SalesUpdateCommandScreenshot.png)
 
-Figure x. A screenshot showing the outcome of an `s-update` command
+_Figure 3. A screenshot showing the outcome of an `s-update` command_
 
 #### 1.2 Listing the number of drinks sold : `s-list`
 Shows a list of all types of drinks sold in the Sales Tracker. The list of drinks shown is 
@@ -241,7 +246,7 @@ Outcome:
 
 ![SalesListCommandScreenshot](images/SalesListCommandScreenshot.png)
 
-Figure x. A screenshot showing the outcome of an `s-list` command
+_Figure 4. A screenshot showing the outcome of an `s-list` command_
 
 #### 1.3 Finds the number of drinks by keywords : `s-find`
 
@@ -267,11 +272,18 @@ Outcome:
 1. The _Result Display_ will show that how many drinks you find.
 2. All matching drink's sales data will be listed in the _Main View_.
 
-Before executing:<br>
+Before the execution:<br>
+
 ![BeforeSalesFind](images/BeforeSalesFind.png)
 
-After executing:<br>
+_Figure 5a. A screenshot showing the view before executing `s-find` command_
+
+After the execution:<br>
+
 ![SalesFindCommandScreenshot](images/SalesFindResult.png)
+
+_Figure 5b. A screenshot showing the outcome of an `s-find` command_
+
 
 ### 2. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
 
@@ -344,10 +356,17 @@ Outcome:
 Before the execution:
 
 ![IngredientSetCommand](images/IngredientSetCommand.png)
-Figure above shows tCheck's GUI during the command is being entered.
+
+_Figure 6a. A screenshot showing the view before executing `i-set` command_
+
+After the execution:<br>
 
 ![IngredientSetCommandResultDisplay](images/IngredientSetCommandResultDisplay.png)
-Figure above showing tCheck's GUI after pressing "Enter". Note that the amount for Milk is updated in Ingredient Tracker section inside the _Main View_.
+
+_Figure 6b. A screenshot showing the outcome of an `i-set` command_
+
+Note that the amount for Milk is updated in Ingredient Tracker section inside the _Main View_.
+
 
 #### 2.2 Setting all ingredients' levels to different specified amounts : `i-set-all`
 
@@ -370,11 +389,16 @@ Outcome:
 1. The _Result Display_ will show a success message.
 2. You can now see that tCheck has updated all ingredients' levels to the specified amounts in the Ingredient Tracker inside the _Main View_.
 
+Before the execution:<br>
 ![IngredientSetAllCommand](images/IngredientSetAllCommand.png)
-Figure above shows tCheck's GUI during the command is being entered.
+_Figure 7a. A screenshot showing the view before executing `i-set-all` command_
 
+After the execution:<br>
 ![IngredientSetAllCommandResultDisplay](images/IngredientSetAllCommandResultDisplay.png)
-Figure above showing tCheck's GUI after pressing "Enter". Note that all amounts for the ingredients are updated in Ingredient Tracker inside the _Main View_.
+_Figure 7b. A screenshot showing the outcome of an `i-set-all` command_
+
+Note that all amounts for the ingredients are updated in Ingredient Tracker inside the _Main View_.
+
 
 #### 2.3 Setting all ingredients to different levels : `i-set-default`
 
@@ -425,7 +449,7 @@ Outcome:
 
 ![IngredientListCommandScreenshot](images/IngredientListCommandScreenshot.png)
 
-Figure x. A screenshot showing the outcome of an `i-list` command
+_Figure 8. A screenshot showing the outcome of an `i-list` command_
 
 #### 2.5 Finding ingredients by keywords : `i-find`
 Finds all ingredients that contain one or more keywords in their names.
@@ -453,14 +477,16 @@ Outcome:
 2. The Ingredient Tracker inside the _Main View_ will show the ingredient `Black Tea`, the ingredient `Green Tea` and 
 the ingredient `Brown Sugar`.
 
-Before executing:<br>
+
+Before the execution:<br>
 ![BeforeIngredientFindCommandScreenshot](images/BeforeIngredientFindCommandScreenshot.png)
 
+_Figure 9a. A screenshot showing the view before executing `i-find` command_
 
-After executing:<br>
+After the execution:<br>
 ![AfterIngredientFindCommandScreenshot](images/AfterIngredientFindCommandScreenshot.png)
 
-Figure x. A screenshot showing the outcome of an `i-find` command
+_Figure 9b. A screenshot showing the outcome of an `i-find` command_
 
 #### 2.6 Resetting all ingredients' levels to zero : `i-reset-all`
 Resets the ingredient's levels of all ingredient types to zero.
@@ -482,7 +508,7 @@ the _Main View_.
 
 ![IngredientResetAllCommandScreenshot](images/IngredientResetAllCommandScreenshot.png)
 
-Figure x. A screenshot showing the outcome of an `i-reset-all` command
+_Figure 10. A screenshot showing the outcome of an `i-reset-all` command_
 
 #### 2.7 Listing all ingredients that the user should restock : `i-restock`
 Lists the ingredient's levels of all ingredient types that fall below their pre-determined default levels and require the user to 
@@ -512,7 +538,7 @@ its ingredient's level and the amount needed for the ingredient to reach its pre
 
 ![IngredientRestockCommandScreenshot](images/IngredientRestockCommandScreenshot.png)
 
-Figure x. A screenshot showing the outcome of an `i-restock` command
+_Figure 11. A screenshot showing the outcome of an `i-restock` command_
 
 <div markdown="block" class="alert alert-info">
 
@@ -522,6 +548,33 @@ is shown in the screenshot above. In the actual application, you can scroll down
 </div>
 
 ### 3. Commands - Manpower Management <a name="commands-manpower-management"></a>
+
+The Manpower Management features allows you to keep a record of your employees' data (i.e. employee's names,
+employee's phone numbers, tags that indicate what days the employee is available to work, etc) inside
+Employee Directory. You are able to view data related to manpower in the Employee Directory inside the _Main
+ View_.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about employee(s) and Employee Directory:**<br>
+
+* All employees who are currently working in the shop are active (unarchived) employees.
+
+* Employees who are no longer working in the shop can be deleted from the Employee Directory (refer to 
+ `c-delete` command for details), or moved to the archived Employee Directory (refer to `c-archive` command for
+  details).
+
+* All active (unarchived) employees' information is stored in the active Employee Directory (refer to `c-active-list
+` to view the active Employee Directory).
+
+* All archived employees' information is stored in the archived Employee Directory (refer to `c-archive-list`
+ to view the archived Employee Directory).
+
+* The list shown in the Employee Directory inside the _Main View_ when the app is launched is always the active
+ Employee Directory.
+ 
+</div>
+
 #### 3.1 Adding an employee : `c-add`
 
 Adds an employee to the Employee Directory.
@@ -535,12 +588,15 @@ Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...`
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:** <br>
+
 PHONE_NUMBER and EMERGENCY_CONTACT must be 8-digit number and start with 8 or 9.<br>
+
 </div>
 
 Example: 
 
-Let's say you want to add an employee called John Doe to the Employee Directory. His phone number is 98765432. His emergency contact is 81234567. His address is Blk 123 ABC Road. Assume he is a part-time employee, and he only can work on Friday. So you want to indicate these two characteristics in tCheck. You can assign him two labels, "Friday" and "PartTime" so that you can use find-employees-by-tags features (refer to `c-tag-find` for more details) to find a group of employees by their tag(s).You can follow these instructions:
+Let's say you want to add an employee called John Doe to the Employee Directory. His phone number is 98765432. His
+ emergency contact is 81234567. His address is Blk 123 ABC Road. Assume he is a part-time employee, and he only can work on Friday. So you want to indicate these two characteristics in tCheck. You can assign him two labels, "Friday" and "PartTime" so that you can use find-employees-by-tags features (refer to `c-tag-find` for more details) to find a group of employees by their tag(s). You can follow these instructions:
 
 1. Type `c-add n/John Doe p/98765432 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime` into the _Command Box_.
 1. Press "Enter" to execute.
@@ -551,6 +607,8 @@ Outcome:
 2. All active employees will be listed in the Employee Directory inside the _Main View_.
 
 ![AddEmployeeCommandScreenshot](images/AddEmployeeCommandResult.png)
+
+_Figure 12. A screenshot showing the outcome of an `c-add` command_
 
 #### 3.2 Listing all employees in the active list: `c-active-list`
 
@@ -573,6 +631,7 @@ Outcome:
 
 ![ActiveEmployeeListCommand](images/ActiveListResult.png)
 
+_Figure 13. A screenshot showing the outcome of an `c-active-list` command_
 
 #### 3.3 Editing a person : `c-edit`
 
@@ -600,12 +659,17 @@ Outcome:
 1. The _Result Display_ will show that you edit the employee.
 2. All active employees will be listed in the _Main View_.
 
-Before executing:<br>
+Before the execution:<br>
 ![BeforeEditCommandScreenshot](images/BeforeEditCommand.png)
 
 
-After executing:<br>
+_Figure 14a. A screenshot showing the view before executing `c-edit` command_
+
+
+After the execution:<br>
 ![EditCommandScreenshot](images/EditCommandResult.png)
+
+_Figure 14b. A screenshot showing the outcome of a `c-edit` command_
 
 
 #### 3.4 Locating persons by keywords: `c-find`
@@ -635,6 +699,9 @@ Outcome:
 
 ![EmployeeFindCommandScreenshot](images/EmployeeFindResult.png)
 
+_Figure 15. A screenshot showing the outcome of a `c-find` command_
+
+
 #### 3.5 Locating employees based on matching tags: `c-tag-find`
 
 Finds all employees whose tags contain the one or more `KEYWORD(s)`.
@@ -651,10 +718,10 @@ Format: `c-tag-find KEYWORD [MORE_KEYWORDS]`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**<br>
+**:information_source: Notes:**<br>
 In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
-. You may set an employee's tags when adding the employee into tCheck (Refer to `c-add` command), or edit the
-tag(s) by editing employee's information feature (Refer to `c-edit` command).<br>
+. You may set an employee's tags when adding the employee into tCheck (refer to `c-add` command), or edit the
+tag(s) by editing employee's information feature (refer to `c-edit` command).<br>
 
 </div>
 
@@ -675,7 +742,7 @@ Outcome:
 
 ![FindByTagCommandScreenshot](images/FindByTagCommandScreenshot.png)
 
-Figure x. A screenshot showing the outcome of an `c-tag-find monday friday` command
+_Figure 16. A screenshot showing the outcome of an `c-tag-find` command_
 
 #### 3.6 Locating all employees who are available to work today: `c-today`
 
@@ -689,10 +756,10 @@ Format: `c-today`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**<br>
+**:information_source: Notes:**<br>
 In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
-. You may set an employee's tags when adding the employee into tCheck (Refer to `c-add` command), or edit the
-tag(s) by editing employee's information feature (Refer to `c-edit` command).<br>
+. You may set an employee's tags when adding the employee into tCheck (refer to `c-add` command), or edit the
+tag(s) by editing employee's information feature (refer to `c-edit` command).<br>
 
 </div>
 
@@ -718,7 +785,7 @@ Outcome:
 
 ![FindByTagTodayCommandScreenshot](images/FindByTagTodayCommandScreenshot.png)
 
-Figure x. A screenshot showing the outcome of an `c-today` command
+_Figure 17. A screenshot showing the outcome of an `c-today` command_
 
 #### 3.7 Locating all employees who are available to work tomorrow: `c-tomorrow`
 
@@ -732,10 +799,10 @@ Format: `c-tomorrow`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**<br>
+**:information_source: Notes:**<br>
 In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
-. You may set an employee's tags when adding the employee into tCheck (Refer to `c-add` command), or edit the
-tag(s) by editing employee's information feature (Refer to `c-edit` command).<br>
+. You may set an employee's tags when adding the employee into tCheck (refer to `c-add` command), or edit the
+tag(s) by editing employee's information feature (refer to `c-edit` command).<br>
 
 </div>
 
@@ -760,7 +827,7 @@ Outcome:
 
 ![FindByTagTomorrowCommandScreenshot](images/FindByTagTomorrowCommandScreenshot.png)
 
-Figure x. A screenshot showing the outcome of an `c-tomorrow` command
+_Figure 18. A screenshot showing the outcome of an `c-tomorrow` command_
 
 #### 3.8 Deleting a person : `c-delete`
 
@@ -785,6 +852,9 @@ Outcome:
 
 ![DeleteEmployeeCommandScreenshot](images/DeleteEmployeeResult.png)
 
+_Figure 19. A screenshot showing the outcome of a `c-delete` command_
+
+
 #### 3.9 Clearing all entries : `c-clear`
 
 Clears all entries from the Employee Directory.
@@ -802,11 +872,16 @@ Example:
 Outcome:
 1. No employees will be listed in the Employee Directory inside the _Main View_.
 
-Before executing:<br>
+Before the execution:<br>
 ![ListEmployeeScreenshot](images/BeforeClearCommand.png)
 
-After executing:<br>
+_Figure 20a. A screenshot showing the view before executing `c-clear` command_
+
+After the execution:<br>
 ![ClearEmployeeCommandScreenshot](images/ClearEmployeeResult.png)
+
+_Figure 20b. A screenshot showing the outcome of a `c-clear` command_
+
 
 #### 3.10 Archiving an employee : `c-archive`
 
@@ -831,6 +906,7 @@ If _Employee Directory_ currently shows a list of archived employees (archived e
   by `INDEX`.<br>
 </div>
 
+
 Example:
 
 Let's say one of your employees, Alex Yeoh, is no longer working in your bubble tea shop. But he may come back
@@ -848,15 +924,15 @@ Outcome:
 1. The _Result Display_ will show a success message with the employee's name that you have archived.
 2. Alex Yeoh's information will be removed from Employee Directory inside the _Main View_.
 
-Before executing:<br>
+Before the execution:<br>
 ![BeforeArchiveCommandScreenshot](images/BeforeArchiveCommandScreenshot.png)
 
-Figure x. Screenshot showing the view before executing `c-archive 1` command
+_Figure 21a. Screenshot showing the view before executing `c-archive` command_
 
-After executing:<br>
+After the execution:<br>
 ![AfterArchiveCommandScreenshot](images/AfterArchiveCommandScreenshot.png)
 
-Figure x. Screenshot showing the outcome of an `c-archive 1` command
+_Figure 21b. Screenshot showing the outcome of an `c-archive` command_
 
 #### 3.11 Archiving all employees : `c-archive-all`
 
@@ -895,15 +971,15 @@ Outcome:
 2. All employees will be removed from Employee Directory inside the _Main View_.
 
 
-Before executing:<br>
+Before the execution:<br>
 ![BeforeArchiveAllCommandScreenshot](images/BeforeArchiveAllCommandScreenshot.png)
 
-Figure x. Screenshot showing the view before executing `c-archive-all` command
+_Figure 22a. Screenshot showing the view before executing `c-archive-all` command_
 
-After executing:<br>
+After the execution:<br>
 ![AfterArchiveAllCommandScreenshot](images/AfterArchiveAllCommandScreenshot.png)
 
-Figure x. Screenshot showing the outcome of an `c-archive-all` command
+_Figure 22b. Screenshot showing the outcome of an `c-archive-all` command_
 
 #### 3.12 Listing all archived employees : `c-archive-list`
 
@@ -922,7 +998,7 @@ Archived employees will be shown with a red color label, named as "[Archived]", 
 
 Example:
 
-Let's say you want to see an archived employee's information. You can follow these instructions:
+Let's say you want to find an archived employee's information. You can follow these instructions:
 
 1. Type `c-archive-list` into the _Command Box_.
 2. Press "Enter" to execute.
@@ -935,7 +1011,7 @@ Outcome:
 
 ![ArchiveListCommandScreenshot](images/ArchiveListCommandScreenshot.png)
 
-Figure x. A screenshot showing the outcome of an `c-archive-list` command
+_Figure 23. A screenshot showing the outcome of an `c-archive-list` command_
 
 #### 3.13 Unarchiving an employee : `c-unarchive`
 Unarchives the specified employee from the archived employee list.
@@ -952,13 +1028,6 @@ Employee Directory inside the _Main View_. For example, there are 2 employees li
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about Employee Directory:**<br>
-* All employees who are currently working in the shop are active/unarchived employees. They are stored in the active
-(unarchived) Employee Directory. You may refer to `c-active-list` to view the active (unarchived) Employee Directory
-.<br>
-
-* All archived employees (refer to `c-archive` to see how to archive an employee) will be stored in the archived
- Employee Directory. You may refer to `c-archive-list` to view the archived Employee Directory.<br>
-
 * If _Employee Directory_ currently shows a list of active/unarchived employees (Archived employees are displayed with a
  red color label, named as "[Archived]", in front of their names. While employees in the active/unarchived employee list
   don't have this red label.), command `c-archive-list` needs to be used first to see a list of all your archived
@@ -985,15 +1054,15 @@ Outcome:
 2. Alex Yeoh's information will be removed from the archived employee list shown in Employee Directory inside
  the _Main View_.
 
-Before executing:<br>
+Before the execution:<br>
 ![BeforeUnarchiveCommandScreenshot](images/BeforeUnarchiveCommandScreenshot.png)
 
-Figure x. Screenshot showing the view before executing `c-unarchive 1` command
+_Figure 24a. Screenshot showing the view before executing `c-unarchive` command_
 
-After executing:<br>
+After the execution:<br>
 ![AfterUnarchiveCommandScreenshot](images/AfterUnarchiveCommandScreenshot.png)
 
-Figure x. Screenshot showing the outcome of an `c-unarchive 1` command
+_Figure 24b. Screenshot showing the outcome of an `c-unarchive` command_
 
 ### 4. Commands - General <a name="commands-general"></a>
 
@@ -1020,7 +1089,7 @@ Outcome:
 
 ![HelpCommandScreenshot](images/HelpCommandScreenshot.png)
 
-Figure x. A screenshot showing the outcome of a `help` command
+_Figure 25. A screenshot showing the outcome of a `help` command_
 
 #### 4.2 Exiting the program : `exit`
 
@@ -1033,6 +1102,7 @@ Format: `exit`
 This section provides an overview of the other features of tCheck which do not use a command.
 
 #### 5.1 Saving the data :
+
 All tCheck data (i.e. ingredient data, sales data, employees' data) are saved in the hard disk automatically after each
  command. There is no need to save manually.
  
@@ -1057,15 +1127,20 @@ tCheck also shows the calendar for the current month when you start the applicat
  
  ![CalendarScreenshot](images/CalendarScreenshot.png)
  
- Figure x. Screenshots showing the calendar in tCheck
+ _Figure 26. Screenshots showing the calendar in tCheck_
 
-## 6. FAQ <a name="FAQ"></a>
+## FAQ <a name="FAQ"></a>
 
 **Q**: Why does tCheck ignore additional or extra input that I add after single-word commands, like `help`? <br>
 **A**: Any extra input after a single-word command, for example, the input `123` inside the input `c-list 123`, will 
 be ignored because extra input does not affect the operation conducted by `c-list`. These single-word commands 
 include: `s-list`, `i-set-default`, `i-list`, `i-reset-all`, `i-restock`, `c-list`, `c-today`, `c-tomorrow`,
   `c-clear`, `c-archive-all`, `c-archive-list`, `help`, `exit`.
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install tCheck in another computer and overwrite the three data files it creates (saved in the folder named
+ "data" in tCheck home folder) with the files that contain the data in your previous tCheck home folder.
+
 
 ## Command summary <a name="command-summary"></a>
 
@@ -1094,7 +1169,7 @@ Action | Format, Examples
 Action | Format, Examples
 -------|------------------------------
 **Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime`
-**List** | 1. **For all active (unarchived) employees:**  `c-active-list`<br>2. **For all archived employees:**  `c-archive-list`
+**List all active employees** |  `c-active-list` 
 **Edit** | `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG] ...`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
 **Find by name** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
 **Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-tag-find Friday Monday PartTime`
@@ -1103,6 +1178,7 @@ Action | Format, Examples
 **Clear** | `c-clear`
 **Archive an employee** |  `c-archive INDEX`<br> e.g., `c-archive 1`  
 **Archive all employees** |  `c-archive-all` <br>
+**List all archived employees** |  `c-archive-list`
 **Unarchive** | `c-unarchive INDEX`<br> e.g., `c-unarchive 1` 
 
 ### General
