@@ -422,7 +422,7 @@ Instead of using `DeleteSessionCommandParser`, it uses `AddScheduleCommandParser
 As shown in the figure above, first it gets the Client and Session from the filtered (displayed) lists. Then, it checks for existing identical Schedule (Schedule that consists of the same Client and Session) using `hasAnyScheduleAssociatedWithClientAndSession()`. 
 Since for this case no identical Schedule is not found, a new Schedule object is created and added into the Model using `Model#addSchedule()`. Finally, it returns the CommandResult to indicate a success.
 
-Thus, `schadd c/2 s/1` will add a Schedule associated with Andy (the second Client in the Client List) and endurance training from 12/12/2020 1400 - 1600 (the first Session in the Session List). The result can be illustrated by the following object diagram, which shows a new Schedule is created.
+Thus, `schadd c/2 s/1` will add a Schedule associated with Andy (the second Client in the Client List) and endurance training from 12/02/2020 1400 - 1600 (the first Session in the Session List). The result can be illustrated by the following object diagram, which shows a new Schedule is created.
 
  <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
      <p>
@@ -433,7 +433,7 @@ Thus, `schadd c/2 s/1` will add a Schedule associated with Andy (the second Clie
 
 **Case 2:** `schadd c/1 s/1`
 
-On the other hand, invoking `schadd c/1 s/1` will result in an error shown to the user as an identical Schedule already exists. [Here](#f17), John is already scheduled to the endurance training Session from 12/12/2020 1400 - 1600.
+On the other hand, invoking `schadd c/1 s/1` will result in an error shown to the user as an identical Schedule already exists. [Here](#f17), John is already scheduled to the endurance training Session from 12/02/2020 1400 - 1600.
 
 ### 3.6 Edit Schedule feature
 
