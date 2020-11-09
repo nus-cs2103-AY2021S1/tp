@@ -1117,6 +1117,14 @@ MSS:
 
     Use case ends.
 
+**Extensions**
+
+* 1a. The tags are invalid.
+
+  * 1a1. QuickCache shows an error message.
+
+    Use case ends.
+
 **Use case: UC12 - Edit an existing flashcard**
 
 **Actor: User**
@@ -1227,6 +1235,25 @@ MSS:
 * 3a. Invalid file name.
 
   * 3a1. QuickCache shows an error message.
+
+    Use case ends.
+
+**Use case: UC17 - Add difficulty during creation of a flashcard**
+
+**Actor: User**
+
+MSS:
+
+1. User creates a flashcard and specifies the difficulty level associated with it
+2. QuickCache creates the flashcards and adds the difficulty level to it
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The difficulty level is invalid.
+
+  * 1a1. QuickCache shows an error message.
 
     Use case ends.
 
