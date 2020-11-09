@@ -8,17 +8,20 @@ Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
 Interface AddressBookStorage <<Interface>>
 Interface IngredientBookStorage <<Interface>>
+Interface SalesBookStorage <<Interface>>
 
 Class StorageManager
 Class JsonUserPrefsStorage
 Class JsonAddressBookStorage
 Class JsonIngredientBookStorage
+Class JsonSalesBookStorage
 
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
 StorageManager o--> AddressBookStorage
 StorageManager o-down-> IngredientBookStorage
+StorageManager o-down-> SalesBookStorage
 
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
@@ -29,5 +32,8 @@ JsonSerializablePerson .right.> JsonAdaptedTag
 JsonIngredientBookStorage .up.|> IngredientBookStorage
 JsonIngredientBookStorage .down.> JsonSerializableIngredientBookStorage
 JsonSerializableIngredientBookStorage ..> JsonSerializableIngredient
+JsonSalesBookStorage .up.|> SalesBookStorage
+JsonSalesBookStorage .down.> JsonSerializableSalesBookStorage
+JsonSerializableSalesBookStorage ..> JsonSerializableSalesRecordEntry
 
 @enduml

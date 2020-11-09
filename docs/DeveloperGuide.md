@@ -125,18 +125,27 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* Stores the `Person`, `SalesRecordEntry` and `Ingredient` sub-components.
 * does not depend on any of the other three components.
 
-
-Given below is the class diagram showing details of the person model:
 
 The `Person` sub-component,
 * stores the address book data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* an employee is modelled as a person in tCheck
+
+Given below is the class diagram showing details of the `Person` model
 
 ![Structure of the Person Model Component](images/PersonModelClassDiagram.png)
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Notes:** An alternative (arguably, a more OOP
+) model is given below. It has a `Tag` list in the `tCheck` application, which `Person` references. This allows
+ `tCheck` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+
+![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+
+</div><br>
 
 Given below is the class diagram showing the details of the `SalesRecordEntry` model:
 
@@ -154,14 +163,6 @@ Given below is the class diagram showing details of the ingredient model:
 <div markdown="block" class="alert alert-info">:information_source: **Note:** The text in the middle of the
  association arrows represents the role of the class at the arrow head. However, due to a limitation of
  PlantUML, where there cannot be two textboxes at the arrow head, the role has been placed in the middle of the arrow.
-</div>
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP
-) model is given below. It has a `Tag` list in the `tCheck` application, which `Person` references. This allows
- `tCheck` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
 </div>
 
 
@@ -530,7 +531,7 @@ Step 4: The current `FilteredList` will be updated to only show active `Persons`
 
 ![ArchiveSequenceDiagram](images/ArchiveSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveCommand`
+<div markdown="span" class="alert alert-info">:information_source: **Notes:** The lifeline for `ArchiveCommand`
  should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -552,7 +553,7 @@ Step 4: The current `FilteredList` will be updated to only show active `Persons`
 
 ![UnarchiveSequenceDiagram](images/UnarchiveSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnarchiveCommand` should
+<div markdown="span" class="alert alert-info">:information_source: **Notes:** The lifeline for `UnarchiveCommand` should
  end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -568,12 +569,13 @@ Step 3: The current `FilteredList` will be updated to only show the empty active
 
 ![ArchiveAllSequenceDiagram](images/ArchiveAllSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveAllCommand` should
- end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Notes:** The lifeline for 
+`ArchiveAllCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches
+ the end of diagram.
 </div>
 
 
-#### Design consideration:
+#### Design considerations:
 
 ##### Aspect: The implementation to store archived employees
 
@@ -885,7 +887,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">:information_source: **Notes:** These instructions only provide a
+ starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
