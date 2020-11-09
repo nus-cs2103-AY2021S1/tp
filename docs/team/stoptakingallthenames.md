@@ -39,7 +39,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Documented the `overdue` ([\#79](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/79)) and `question` ([\#71](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/103)) features.
-    * Did cosmetic tweaks to existing documentation of features: ([\#140](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/140) and [\#212](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/194)).
+    * Did cosmetic tweaks to existing documentation of features: ([\#140](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/140) and [\#212](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/212)).
   * Developer Guide:
     * Added implementation details of the `overdue` ([\#105](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/105)) and `question` ([\#103](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/103))
       features.
