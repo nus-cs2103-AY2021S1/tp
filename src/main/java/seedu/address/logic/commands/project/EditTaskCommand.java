@@ -76,12 +76,13 @@ public class EditTaskCommand extends Command {
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+        project.deleteTask(taskToEdit);
+
         if (!project.addTask(editedTask)) {
+            project.addTask(taskToEdit);
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        project.deleteTask(taskToEdit);
-        //        project.addTask(editedTask);
         if (editedTask.hasAnyAssignee()) {
             editedTask.getAssignees().forEach(assignee -> project.getParticipation(assignee).deleteTask(taskToEdit));
             editedTask.getAssignees().forEach(assignee -> project.getParticipation(assignee).addTask(editedTask));
