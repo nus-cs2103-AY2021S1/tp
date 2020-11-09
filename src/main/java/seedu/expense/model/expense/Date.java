@@ -44,6 +44,13 @@ public class Date {
     }
 
     /**
+     * Factory method returns {@code Date} using current Date.
+     */
+    public static Date getDateNow() {
+        return new Date();
+    }
+
+    /**
      * Returns if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {

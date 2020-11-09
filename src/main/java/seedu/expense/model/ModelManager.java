@@ -126,6 +126,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Amount tallyExpenses() {
+        return expenseBook.tallyExpenses();
+    }
+
+    @Override
     public Budget getTotalBudget() {
         return expenseBook.getBudgets();
     }

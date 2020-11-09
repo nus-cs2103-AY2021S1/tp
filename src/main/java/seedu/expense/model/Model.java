@@ -97,6 +97,8 @@ public interface Model {
      */
     void setExpense(Expense target, Expense editedExpense);
 
+    Amount tallyExpenses();
+
     void setAliasMap(AliasMap aliasMap);
 
     AliasMap getAliasMap();

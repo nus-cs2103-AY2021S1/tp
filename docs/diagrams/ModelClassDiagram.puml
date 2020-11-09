@@ -72,6 +72,11 @@ CategoryBudget *--> "1" Tag
 Budget ^.right. UniqueCategoryBudgetList
 Budget ^.. CategoryBudget
 
+ExpenseBook *--> "1" AliasMap
+
+ExpenseBook *--> "1" UniqueTagList
+UniqueTagList o--> "*" Tag
+
 Class HiddenOutside2 #FFFFFF
 HiddenOutside2 -[hidden]-> Amount
 Tag -[hidden]left-> HiddenOutside2

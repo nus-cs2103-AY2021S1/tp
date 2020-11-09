@@ -24,6 +24,7 @@ import seedu.expense.model.Model;
 import seedu.expense.model.ModelManager;
 import seedu.expense.model.UserPrefs;
 import seedu.expense.model.alias.AliasMap;
+import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.testutil.EditExpenseDescriptorBuilder;
 import seedu.expense.testutil.ExpenseBuilder;
@@ -136,6 +137,16 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_sumExpensesTooLarge_failure() {
+        Expense expenseInFilteredList = model.getFilteredExpenseList().get(INDEX_FIRST_EXPENSE.getZeroBased());
+        Expense editedExpense = new ExpenseBuilder(expenseInFilteredList)
+                .withAmount(Amount.MAX_VALUE.toPlainString()).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_EXPENSE,
+                new EditExpenseDescriptorBuilder().withAmount(Amount.MAX_VALUE.toPlainString()).build());
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_SUM_OVER_LIMIT);
     }
 
     /**

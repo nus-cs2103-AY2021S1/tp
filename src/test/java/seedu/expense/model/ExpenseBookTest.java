@@ -141,6 +141,11 @@ public class ExpenseBookTest {
         public Amount tallyBalance() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public String getBudgetBarLabel() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
 }
