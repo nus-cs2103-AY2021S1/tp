@@ -28,8 +28,7 @@ public class ParserUtil {
             + " and has an upper limit of 2,000,000,000 and a lower limit of -2,000,000,000";
     public static final String MESSAGE_INVALID_ITEM_COST = "Item cost must be more than or equal to zero,"
             + " and has an upper limit of 2000,000,000"
-            + "\nWill be rounded up to the nearest 2 decimal place.";
-    public static final String MESSAGE_LONG_ITEM_COST = "Please round up your cost to the nearest 2 decimal place.";
+            + "\nWill be rounded to the nearest 2 decimal place.";
     public static final String MESSAGE_INVALID_YES_NO = "Yes/No input must be one of the following: yes/y/no/n.";
     public static final String MESSAGE_INVALID_ITEM_NAME = "Item name cannot be empty";
 
@@ -39,9 +38,6 @@ public class ParserUtil {
     public static double parseItemCost(String itemCost) throws ParseException {
         requireNonNull(itemCost);
         String trimmedAmount = itemCost.trim();
-        if (trimmedAmount.length() > 12) {
-            throw new ParseException(MESSAGE_LONG_ITEM_COST);
-        }
         try {
             double cost = Double.parseDouble(trimmedAmount);
             if (cost < 0 || cost > 2000000000) {

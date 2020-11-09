@@ -3,6 +3,7 @@ package nustorage.logic;
 import static nustorage.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static nustorage.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -122,5 +123,17 @@ public class LogicManagerTest {
                                       String expectedMessage, Model expectedModel) {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedModel, model);
+    }
+
+    @Test
+    public void setGuiSettings_nullGuiSettings_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> logic.setGuiSettings(null));
+    }
+
+    @Test
+    public void getGuiSettings_nullGuiSettings_throwsNullPointerException() {
+        assertTrue(logic.getGuiSettings().getWindowHeight() == 600);
+        assertTrue(logic.getGuiSettings().getWindowWidth() == 740);
+
     }
 }

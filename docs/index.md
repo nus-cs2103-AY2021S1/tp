@@ -20,9 +20,9 @@ title: NUStorage
 
 ## Site Map
 
-* [User Guide](./docs/UserGuide.md)
-* [Developer Guide](./docs/DeveloperGuide.md)
-* [About Us](./docs/AboutUs.md)
+* [User Guide](https://ay2021s1-cs2103t-t11-3.github.io/tp/UserGuide.html)
+* [Developer Guide](https://ay2021s1-cs2103t-t11-3.github.io/tp/DeveloperGuide.html)
+* [About Us](https://ay2021s1-cs2103t-t11-3.github.io/tp/AboutUs.html)
 
 ---
 
