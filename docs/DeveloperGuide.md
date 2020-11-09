@@ -1008,9 +1008,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The system should be backward compatible with data produced by earlier versions of the system.
 5. The system should work on both 32-bit and 64-bit environments.
-6. The system should respond within one second.
-7. For now, the product is not required to handle the printing of reports.
-8. Should be easy for the user to migrate all information in Jarvis onto a separate computer.
+6. For now, the product is not required to handle the printing of reports.
+7. Should be easy for the user to migrate all information in Jarvis onto a separate computer.
 
 
 ### 6.5 Glossary
@@ -1047,8 +1046,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The most recent window size and location is retained.
+   1. Re-launch the app by double-clicking the jar file.
+   <br>
+   Expected: The most recent window size and location is retained.
 
 1. Saving login details
 
