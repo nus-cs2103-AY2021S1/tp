@@ -3,13 +3,10 @@ layout: page
 title: David Cai Qifan's Project Portfolio Page
 ---
 
-## Project: Cap 5.0 Buddy
+## Project: CAP5Buddy
 
 ## Project Overview
-Cap 5 Buddy is a desktop module tracker application used to centralise key module details. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20 kLoC.
-
-![Ui](../images/Ui.png)
-Figure 1. UI of Cap 5 Buddy.
+CAP5Buddy is a desktop module tracker application used to centralise key module details. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20 kLoC.
 
 ## Summary of contributions
 Given below are my contributions to the project.
@@ -43,9 +40,9 @@ Given below are my contributions to the project.
   * Managed project meeting agendas
   
 * **Enhancements to existing features**:
-  * Updated the side panel to display the module assignment list (Pull request [\#577]())
-  * Wrote additional tests for existing features that increased coverage(Pull requests [\#549](), [\#579](), [\#596](), [\#607](), [\#631](), 
-  [\#634](), [\#637](), [\#649](), [\#650]())
+  * Updated the side panel to display the module assignment list (Pull request [\#577](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/577))
+  * Wrote additional tests for existing features that increased coverage(Pull requests [\#549](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/549), [\#579](), [\#596](), [\#607](), [\#631](), 
+  [\#634](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/634), [\#637](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/637), [\#649](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/649), [\#650](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/650))
   
 * **Documentation**:
   * User Guide:
