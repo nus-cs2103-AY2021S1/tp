@@ -16,23 +16,27 @@ PlaNus reduces the time spent by students in task management as adding tasks and
 
 Given below are my contributions to the project.
 
-* **New Features**: Added the ability to find tasks/lessons.
+* **New Features**: Added the ability to find tasks and lessons.
   * What it does: easy-to-use CLI commands to find a particular task or lesson according to a set of specified attributes.
   * Justifications: The `find-task` and `find-lesson` features are integral in managing a large amount of tasks and lessons.
   * Highlights: This feature requires deep integration with other features because the there are many attributes that a task/lesson
-  can be searched for. Also, it requires some clever design to decide specifically what attributes to search so as to allow easy finding.
+  can be searched for. Also, it requires rigorous analysis in deciding what specific attributes should be included in the search feature
+  so as to allow users find what they want with ease. Lastly, since many attributes are involved, prudence is required in implementing the feature
+  to ensure that different combinations of attributes do not result in a bug. 
 
-* **New Features**: Added the ability to edit/delete lesson.
+* **New Features**: Added the ability to edit and delete a lesson.
   * What it does: allows user to edit or delete a lesson by a set of attributes. The calendar and data analysis will be updated as well.
   * Justifications: The ability to edit or delete a lesson is important in managing lessons. Users need to use this feature frequently to edit a lesson under
   many situations, for example the user makes a typo in the lesson title or the lesson is not relevant anymore.
   * Highlights: This feature requires a meticulous and creative design to ensure that the edited lesson is reflected on the calendar view
-  as well as the data analysis as well.
+  as well as the data analysis as well. Also, it needs to integrate well with the `Overlap` class implemented by my teammate Marcus to
+  ensure that edited lessons do not overlap with other time slots already existing in PlaNus. 
 
 * **New Features**: Adds the ability to save lessons in JSON.
   * What it does: Allows lessons to be saved locally to a JSON.
   * Justifications: Similar to tasks, it is important that the lessons that a user adds to PlaNus is properly saved and can be referred next time
-  PlaNus runs.
+  PlaNus runs. The lessons saved should not take too much space of the JSON file. Also, PlaNus should be able to read all the relevant lesson events
+  from the saved lessons when starting.
   * Highlights: As lesson is essentially a set of recurring tasks, a naive solution is to simply save all the recurring tasks to the JSON. However,
   this can results in too much data being saved locally and make PlaNus app too large, which contravenes with the objective of making PlaNus lightweight. So 
   instead of saving all recurring tasks, I decided to save only the lesson information and reconstruct all the recurring tasks based on the lessons read from
