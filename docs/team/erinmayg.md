@@ -104,7 +104,6 @@ Given below are my contributions to the project.
     [\#272](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/272)
     * Added current bugs:
     [\#278](https://github.com/AY2021S1-CS2103-T14-1/tp/pull/278)
-    
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 
