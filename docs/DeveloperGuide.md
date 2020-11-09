@@ -275,7 +275,34 @@ using the template and returns a new AddCommand object. The parse method in AddT
 of creating a new template and returns a new AddTemplateCommand object.
 The template list is stored in the data file folder as a txt file.
 
-=== Updating an exercise
+### 4.5. GoalBook
+Author: Nauman Sajid
+Calo has been designed to ensure that a user is accountable for this own progress. A key aspect of this accountability is
+ensuring that the user sets clear goals and meets them. To achieve this we have created a goalBook which is similar
+to the exerciseBook. The goalBook helps the user track and update his goals.
+
+
+#### 4.5.1. Implementation
+The goalBook is implemented via a `HashMap` which makes it distinct from an ExerciseBook. The goal command creates a 
+goal with the `Key` being the `Date` and the `Value` being an `Calorie` goal. The goalBook is updated whenever an exercise
+is added or deleted for a particular Date.
+
+
+#### 4.5.2. Design Consideration
+
+*Aspect*: Should the goalBook be separate from the Exercise Book?
+
+Alternative 1 (current choice): Separate. 
+Pros: Ensures SRP principle.
+
+
+Alternative 2: Joint Book.
+Pros: Fewer files.
+
+*Reason for option 1*:   
+Option 1 allows easier debugging. As the goal Book has been seperated from the Exercise Book.
+
+### Updating an exercise
 
 Author: Lee Wei Min
 
