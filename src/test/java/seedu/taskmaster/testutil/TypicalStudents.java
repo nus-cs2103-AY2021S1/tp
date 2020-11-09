@@ -39,7 +39,7 @@ public class TypicalStudents {
             .withNusnetId("e0123456")
             .withEmail("alice@example.com")
             .withTelegram("alicepauline")
-            .withTags("friends").build();
+            .withTags("weak").build();
 
     public static final Student BENSON =
             new StudentBuilder()
@@ -47,7 +47,7 @@ public class TypicalStudents {
             .withNusnetId("e0456789")
             .withEmail("johnd@example.com")
             .withTelegram("benson_m")
-            .withTags("owesMoney", "friends").build();
+            .withTags("strong", "smart").build();
 
     public static final Student CARL =
             new StudentBuilder()
@@ -62,7 +62,7 @@ public class TypicalStudents {
                     .withTelegram("dms_only")
                     .withEmail("cornelia@example.com")
                     .withNusnetId("e0987465")
-                    .withTags("friends").build();
+                    .withTags("slacker").build();
 
     public static final Student ELLE = new StudentBuilder()
             .withName("Elle Meyer")

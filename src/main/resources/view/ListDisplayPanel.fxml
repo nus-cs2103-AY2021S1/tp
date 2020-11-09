@@ -5,12 +5,11 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane fx:id="currentView" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="viewName" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" styleClass="listHeader" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0">
+            <Label fx:id="viewName" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" styleClass="listHeader" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="0.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -18,7 +17,7 @@
                   <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                </padding>
             </Label>
-            <Label fx:id="viewDateTime" maxHeight="50.0" maxWidth="110.0" minHeight="50.0" minWidth="110.0" prefHeight="50.0" prefWidth="110.0" styleClass="listHeader" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label fx:id="viewDateTime" maxHeight="50.0" maxWidth="125.0" minHeight="50.0" minWidth="125.0" prefHeight="50.0" prefWidth="125.0" styleClass="listHeader" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
