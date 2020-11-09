@@ -3,10 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
+import static seedu.address.testutil.person.TypicalPersons.ALICE;
+import static seedu.address.testutil.person.TypicalPersons.HOON;
+import static seedu.address.testutil.person.TypicalPersons.IDA;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -36,8 +36,8 @@ public class JsonAddressBookStorageTest {
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
         return prefsFileInTestDataFolder != null
-                ? TEST_DATA_FOLDER.resolve(prefsFileInTestDataFolder)
-                : null;
+            ? TEST_DATA_FOLDER.resolve(prefsFileInTestDataFolder)
+            : null;
     }
 
     @Test
@@ -61,6 +61,38 @@ public class JsonAddressBookStorageTest {
     }
 
     @Test
+    public void readAddressBook_invalidDateInReminderAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidDateInReminderAddressBook.json"));
+    }
+
+    @Test
+    public void readAddressBook_invalidPersonInReminderAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonInReminderAddressBook.json"));
+    }
+
+    @Test
+    public void readAddressBook_invalidAndValidReminderAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidReminderAddressBook.json"));
+    }
+
+    @Test
+    public void readAddressBook_invalidDateInMeetingAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidDateInMeetingAddressBook.json"));
+    }
+
+    @Test
+    public void readAddressBook_invalidPersonInMeetingAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, ()
+            -> readAddressBook("invalidPersonInMeetingAddressBook.json"));
+    }
+
+    @Test
+    public void readAddressBook_invalidAndValidMeetingAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, ()
+            -> readAddressBook("invalidAndValidMeetingAddressBook.json"));
+    }
+
+    @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         AddressBook original = getTypicalAddressBook();
@@ -76,7 +108,8 @@ public class JsonAddressBookStorageTest {
         original.removePerson(ALICE);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
-        assertEquals(original, new AddressBook(readBack));
+        AddressBook tmp = new AddressBook(readBack);
+        assertEquals(original, tmp);
 
         // Save and read without specifying file path
         original.addPerson(IDA);
@@ -97,7 +130,7 @@ public class JsonAddressBookStorageTest {
     private void saveAddressBook(ReadOnlyAddressBook addressBook, String filePath) {
         try {
             new JsonAddressBookStorage(Paths.get(filePath))
-                    .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
+                .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

@@ -1,31 +1,60 @@
 package seedu.address.ui;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.application.HostServices;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
 /**
- * Controller for a help page
+ * Controller for a help page.
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USER_GUIDE_URL = "https://ay2021s1-cs2103t-t11-1.github.io/tp/UserGuide.html";
+
+    public static final String HELP_MESSAGE = "Refer to the user guide: ";
+
+    public static final String MINIMUM_FOUR_WHITESPACE = "\\s{4,}";
+
+    public static final String COMMAND_HELP_LEGEND = "\nThe information below is formatted"
+            + " as (COMMAND NAME, COMMAND DESCRIPTION, COMMAND USAGE).";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
+
     private static final String FXML = "HelpWindow.fxml";
 
-    @FXML
-    private Button copyButton;
+    private final CommandTable commandTable = new CommandTable();
+
+    private boolean isUserGuideLinkOpened = false;
 
     @FXML
-    private Label helpMessage;
+    private Text helpMessage;
+
+    @FXML
+    private Hyperlink helpLink;
+
+    @FXML
+    private Label commandHelpLegend;
+
+    @FXML
+    private GridPane table;
+
+    private HostServices hostServices;
 
     /**
      * Creates a new HelpWindow.
@@ -34,14 +63,96 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+        try {
+            populateHelpWindow();
+        } catch (IOException e) {
+            logger.warning(e::getMessage);
+        }
     }
 
     /**
      * Creates a new HelpWindow.
      */
-    public HelpWindow() {
+    public HelpWindow(HostServices hostServices) {
         this(new Stage());
+        this.hostServices = hostServices;
+    }
+
+    /**
+     * Populates the help window with all StonksBook command description.
+     *
+     * @throws IOException
+     */
+    private void populateHelpWindow() throws IOException {
+        helpMessage.setText(HELP_MESSAGE);
+        helpLink.setText(USER_GUIDE_URL);
+
+        commandHelpLegend.setText(COMMAND_HELP_LEGEND);
+
+        try (InputStream resource = this.getClass().getClassLoader()
+                .getResourceAsStream("text/helpForAllCommands.txt")) {
+
+            new BufferedReader(new InputStreamReader(resource, StandardCharsets.UTF_8))
+                    .lines().forEachOrdered(this::addToCommandTable);
+        }
+    }
+
+    private void addToCommandTable(String line) {
+        String[] components = line.split(MINIMUM_FOUR_WHITESPACE);
+
+        if (this.commandTable.isHeader(components)) {
+            this.commandTable.addHeaders(components[0]);
+        } else {
+            this.commandTable.addCommandDescription(components);
+        }
+    }
+
+    private class CommandTable {
+
+        private static final int STARTING_ROW_INDEX = 2;
+
+        private final List<String> colors = Arrays.asList("#d72c2c", "ffcccb", "#08aeae",
+                "#11cf11", "#c307c3", "#f3a517", "#dbbc11");
+
+        private int headerCounter = 0;
+
+        private int currentRowIdx = STARTING_ROW_INDEX;
+
+        private boolean isHeader(String[] components) {
+            return components.length == 1 && !components[0].isBlank();
+        }
+
+        /**
+         * Adds colored command headers.
+         *
+         * @param headerText header text to be added.
+         */
+        private void addHeaders(String headerText) {
+            Label header = new Label(headerText);
+            header.setStyle("-fx-text-fill: " + this.colors.get(this.headerCounter / 2));
+            table.addRow(this.currentRowIdx, header);
+            this.currentRowIdx++;
+            this.headerCounter++;
+        }
+
+        /**
+         * Adds command description.
+         *
+         * @param descriptionParts parts of the command description to be added.
+         */
+        private void addCommandDescription(String[] descriptionParts) {
+            List<Label> commandDescParts = new ArrayList<>();
+
+            for (String descriptionPartText : descriptionParts) {
+                Label descriptionPart = new Label(descriptionPartText);
+                descriptionPart.setMinWidth(Region.USE_PREF_SIZE);
+                descriptionPart.setStyle("-fx-label-padding: 0 1em 0 0; -fx-text-fill: white;");
+                commandDescParts.add(descriptionPart);
+            }
+
+            table.addRow(this.currentRowIdx, commandDescParts.toArray(new Label[0]));
+            this.currentRowIdx++;
+        }
     }
 
     /**
@@ -90,13 +201,22 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
-     * Copies the URL to the user guide to the clipboard.
+     * Opens the webpage directed by the URL.
+     * Sets events on URL hyperlinks for customised colors.
      */
     @FXML
-    private void copyUrl() {
-        final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ClipboardContent url = new ClipboardContent();
-        url.putString(USERGUIDE_URL);
-        clipboard.setContent(url);
+    private void openLink() {
+        if (!this.isUserGuideLinkOpened) {
+            this.isUserGuideLinkOpened = true;
+            this.setActionsOnLink();
+        }
+
+        this.hostServices.showDocument(USER_GUIDE_URL);
+    }
+
+    private void setActionsOnLink() {
+        this.helpLink.setStyle("-fx-text-fill: grey");
+        this.helpLink.setOnMouseMoved((v) -> this.helpLink.setStyle("-fx-text-fill: #0b6df3"));
+        this.helpLink.setOnMouseExited((v) -> this.helpLink.setStyle("-fx-text-fill: grey"));
     }
 }

@@ -1,8 +1,9 @@
 package seedu.address.ui;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -16,6 +17,7 @@ public class CommandBox extends UiPart<Region> {
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
 
+    private final UserInputHistory userInputHistory;
     private final CommandExecutor commandExecutor;
 
     @FXML
@@ -26,9 +28,24 @@ public class CommandBox extends UiPart<Region> {
      */
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
+        userInputHistory = new UserInputHistory();
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+    }
+
+    /**
+     * Handles the Up or Down key pressed event.
+     */
+    @FXML
+    private void handleKeyPressed(KeyEvent event) {
+        if (event.getCode() == KeyCode.UP) {
+            String prevInput = userInputHistory.getPreviousInput();
+            commandTextField.setText(prevInput);
+        } else if (event.getCode() == KeyCode.DOWN) {
+            String nextInput = userInputHistory.getNextInput();
+            commandTextField.setText(nextInput);
+        }
     }
 
     /**
@@ -36,11 +53,15 @@ public class CommandBox extends UiPart<Region> {
      */
     @FXML
     private void handleCommandEntered() {
+        if (!commandTextField.getText().equals("")) {
+            userInputHistory.addToHistory(commandTextField.getText());
+        }
+
         try {
             commandExecutor.execute(commandTextField.getText());
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
-            setStyleToIndicateCommandFailure();
+            commandTextField.setText("");
         }
     }
 
@@ -49,19 +70,6 @@ public class CommandBox extends UiPart<Region> {
      */
     private void setStyleToDefault() {
         commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
-    }
-
-    /**
-     * Sets the command box style to indicate a failed command.
-     */
-    private void setStyleToIndicateCommandFailure() {
-        ObservableList<String> styleClass = commandTextField.getStyleClass();
-
-        if (styleClass.contains(ERROR_STYLE_CLASS)) {
-            return;
-        }
-
-        styleClass.add(ERROR_STYLE_CLASS);
     }
 
     /**

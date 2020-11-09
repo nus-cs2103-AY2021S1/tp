@@ -8,7 +8,11 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.sale.Sale;
+import seedu.address.model.tag.Tag;
 
 /**
  * API of the Logic component
@@ -30,8 +34,45 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /**
+     * Returns an unmodifiable view of the filtered list of persons.
+     */
     ObservableList<Person> getFilteredPersonList();
+
+    /**
+     * Returns an unmodifiable view of the sorted list of persons.
+     */
+    ObservableList<Person> getSortedPersonList();
+
+    /**
+     * Returns an unmodifiable view of the sorted list of meetings.
+     */
+    ObservableList<Meeting> getSortedMeetingList();
+
+    /**
+     * Returns an unmodifiable view of the sorted list of reminders.
+     */
+    ObservableList<Reminder> getSortedReminderList();
+
+    /**
+     * Returns an unmodifiable view of the sorted list of sales.
+     */
+    ObservableList<Sale> getSortedSaleList();
+
+    /**
+     * Returns an unmodifiable view of the list of contact tags.
+     */
+    ObservableList<Tag> getContactTagList();
+
+    /**
+     * Returns an unmodifiable view of the list of sales tags.
+     */
+    ObservableList<Tag> getSalesTagList();
+
+    /**
+     * Returns an unmodifiable view of the filtered list of reminders.
+     */
+    ObservableList<Reminder> getFilteredReminderList();
 
     /**
      * Returns the user prefs' address book file path.
