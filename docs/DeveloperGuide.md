@@ -6,6 +6,7 @@ by Team W12-2
 ## **Table of Contents**
 * [Section 1 - Preface](#section-1---preface)
 * [Section 2 - Using this document](#section-2---using-this-document)
+    * [Section 2.2 - Formatting](#section-22---formatting)
 * [Section 3 - Setting up, getting started](#section-3---setting-up-getting-started)
 * [Section 4 - Design](#section-4---design)
     * [4.1 - High-Level Architecture](#section-41---high-level-architecture)
@@ -37,13 +38,32 @@ by Team W12-2
 
 
 ## **Section 1 - Preface**
-This is a Developer Guide to Trackr. A student and task management system for Teaching Assistants of all faculties who want to manage their students from various modules and tutorial groups, all in one place.
-
+**Trackr** is a desktop module management application made for Teaching Assistants of all faculties. It is designed 
+with a focus on the Command Line Interface (CLI), while still retaining the benfits of a simple yet intuitive Graphical User Interface (GUI). 
+**Trackr** allows Teaching Assistants to keep track of Modules, Tutorial Groups, and Students they teach all in one location.
 
 ---
 
 ## **Section 2 - Using this Document**
+This Developer Guide will help you understand the thought processes behind the design and implementation of 
+**Trackr**. It will begin with how to [get started](#section-3---setting-up-getting-started), followed by the [design](#section-4---design) and [implementation](#section-5---implementation), and ending with 
+the [documentation]((#section-6---documentation-logging-testing-configuration-dev-ops)) for this project. 
 
+This section will provide you the [formatting]() used in this throughout the document so that understand in quick and simple.
+For more information on confusing terms encountered, you can check the [glossary](#appendix-e---glossary) for clarification. 
+
+### Section 2.2 - Formatting
+
+This document is written in a manner where formatting is applied to text in order to convey different meanings. The table below will explain what these formatting uses are, what they look like, and what they mean in the context of the document.
+
+| Formatting    | Meaning                                                      |
+| ------------- | ------------------------------------------------------------ |
+| `code`        | Words in 'code' format refer to class names or fields within classes. |
+| *Italics*     | Words in italics refer to the type of diagrams used.|
+| [Underline]() | Words that are in blue and underlined when hovered over refer to hyperlinks. Hyperlinks are clickable, and bring you either to different parts of this document or to external websites, for the convenience of navigating quickly to different parts of the document or the web. |
+| **Bold**      | Words in bold refer to important points within the document. |
+
+---
 
 ## **Section 3 - Setting up, getting started**
 
@@ -56,6 +76,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ### Section 4.1 - High-Level Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
+<figcaption> Figure 4.1a Architecture Diagram of Trackr </figcaption>
 
 The **_Architecture Diagram_** given above explains the high-level design of Trackr. Given below is a quick overview of each component.
 
@@ -84,6 +105,7 @@ Each of the four components,
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+<figcaption> Figure 4.1b Class Diagram of the Logic Component </figcaption>
 
 **How the architecture components interact with each other**
 
@@ -94,23 +116,29 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 The sections below give more details of each component.
 
 ### Section 4.2 - UI component
-The UI Component defines what the user will see and interact with while using Trackr. `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
+<figcaption> Figure 4.2a Class Diagram of the UI Component </figcaption>
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The `UI` Component defines what the user will see and interact with while using Trackr. `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class. The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` Component defines what the user will see and interact with while using Trackr. 
+
+`MainWindow` is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter`, `ViewDisplay` etc. 
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class. The `UI` component uses JavaFx UI framework. 
+The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. 
+For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) 
+is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
-
 -   executes user commands using the `Logic` component.
 -   listens for changes to `Model` data so that the `UI` can be updated with the modified data.
 
 ### Section 4.3 - Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
+<figcaption> Figure 4.3a Class Diagram of the Logic Component </figcaption>
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
@@ -126,13 +154,14 @@ The `Logic` component contains the `TrackrParser` object that creates `Parser` o
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deleteTG 1")` API call.
 
 ![Interactions Inside the Logic Component for the `deleteTG 1` Command](images/DeleteSequenceDiagram.png)
+<figcaption> Figure 4.3b Sequence Diagram of DeleteTutorialGroupCommand </figcaption>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTutorialGroupCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 ### Section 4.4 - Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
+<figcaption> Figure 4.4a Class Diagram of the Model Component </figcaption>
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -151,6 +180,7 @@ The `Model` component,
 ### Section 4.5 - Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
+<figcaption> Figure 4.5a Class Diagram of the Storage Component </figcaption>
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -166,7 +196,7 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.addressbook.commons` package, the package contains 2 sub packages, which are:
 
 - core: Contains software settings and information, also contains loggers for debugging purposes.
-- util: Contains utilities for other classes to use. Utilities can perform tasks such as parse strings or convert objects to and from Json format.
+- util: Contains utilities for other classes to use. Utilities can perform tasks such as parse strings or convert objects to and from JSON format.
 
 
 
@@ -181,12 +211,12 @@ Trackr has three different data types:
 - `TutorialGroup`: The tutorial groups that the user is teaching
 - `Student`: The students currently being taught by the user
 
-As mentioned in [insert design diagram number], 
-Trackr stores these data in the following manner: UniqueModuleList contains Modules. Each module has a UniqueTutorialGroupList 
+As shown in Figure 4.4a, 
+Trackr stores these data in the following manner: UniqueModuleList contains Modules. Each Module has a UniqueTutorialGroupList 
 that stores all the Tutorial Groups of that particular Module. Lastly, each Tutorial Group has a UniqueStudentList that stores all the
 Students of that particular Tutorial Group.
 
-Trackr's three data type also share the same commands, which are:
+Trackr's three data types also share the some commands, which are:
 * Add
 * Delete
 * Edit
@@ -196,11 +226,11 @@ Trackr's three data type also share the same commands, which are:
 * Clear
 * Exit
 
-Since Trackr stores and manages its data recursively, the commands for Module, Tutorial Group and Student work similarly.
+Since Trackr stores and manages its data recursively, these shared commands for Module, Tutorial Group and Student work in a similar manner.
 
 #### Design Considerations:
-**Aspect: List to contain the models**
-- Alternative 1: Use a single generic `UniqueList` that contains the models.
+**Aspect: List to contain the data types**
+- Alternative 1: Use a single generic `UniqueList` that contains the data types.
     - Pros: Code that is easier to maintain due to abstraction. 
     - Cons: Harder to implement.
 - Alternative 2 (Current choice): Use a separate `UniqueList` for each model such as `UniqueModuleList`.
@@ -221,8 +251,10 @@ Each command class extends `Command`.
 Given below is an example of the interaction between the Model and the `AddModuleCommand` of Trackr.
 
 ![AddModuleSequenceDiagram](images/AddModSequenceDiagram.png)
+<figcaption> Figure 5.1a Sequence Diagram of AddModuleCommand</figcaption>
 
 ![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
+<figcaption> Figure 5.1b Activity Diagram of AddModuleCommand</figcaption>
 
 Step 1. The user executes `addMod m/CS2103T` to add a module called CS2103T to Trackr. The `addMod` command calls
 `LogicManager#execute(String)`.
@@ -268,8 +300,10 @@ Each command class extends `Command`.
 Given below is an example of the interaction between the Model and the `DeleteModuleCommand` of Trackr.
 
 ![DeleteModuleSequenceDiagram](images/DeleteModuleSequenceDiagram.png)
+<figcaption> Figure 5.2a Sequence Diagram of DeleteModuleCommand</figcaption>
 
 ![DeleteCommandActivityDiagram](images/DeleteCommandActivityDiagram.png)
+<figcaption> Figure 5.2b Activity Diagram of DeleteModuleCommand</figcaption>
 
 Step 1. The user executes `deleteMod 1` to delete the first module in the displayed list. The `deleteMod` command calls
 `LogicManager#execute(String)`.
@@ -315,8 +349,10 @@ Each command class extends `Command`.
 Given below is an example of the interaction between the Model and the `EditModuleCommand` of Trackr.
 
 ![EditModuleSequenceDiagram](images/EditModuleSequenceDiagram.png)
+<figcaption> Figure 5.3a Sequence Diagram of EditModuleCommand</figcaption>
 
 ![EditCommandActivityDiagram](images/EditCommandActivityDiagram.png)
+<figcaption> Figure 5.3b Activity Diagram of EditModuleCommand</figcaption>
 
 Step 1. The user executes `editMod 1 m/CS2100` to edit the first module in the displayed list. The `editMod` command 
 calls `LogicManager#execute(String)`.
@@ -364,8 +400,10 @@ Each command class extends `Command`.
 Given below is an example of the interaction between the Model and the `FindModuleCommand` of Trackr.
 
 ![FindModuleSequenceDiagram](images/FindModuleSequenceDiagram.png)
+<figcaption> Figure 5.4a Sequence Diagram of FindModuleCommand</figcaption>
 
 ![FindCommandActivityDiagram](images/FindCommandActivityDiagram.png)
+<figcaption> Figure 5.4b Activity Diagram of FindModuleCommand</figcaption>
 
 Step 1. The user executes `findMod cs2100` to find module(s) that contain the keyword _cs2100_. The `findMod` command 
 calls `LogicManager#execute(String)`.
@@ -418,8 +456,10 @@ Each command class extends `Command`.
 Given below is an example of the interaction between the Model and the `ListModuleCommand` of Trackr.
 
 ![ListModSequenceDiagram](images/ListModuleCommandSequenceDiagram.png)
+<figcaption> Figure 5.5a Sequence Diagram of ListModuleCommand</figcaption>
 
 ![ListCommandActivityDiagram](images/ListCommandActivityDiagram.png)
+<figcaption> Figure 5.5b Activity Diagram of ListModuleCommand</figcaption>
 
 Step 1. The user executes `listMod` to view all the modules in Trackr. The `listMod` command calls
 `LogicManager#execute(String)`.
@@ -465,8 +505,10 @@ is no View command for `Module`. Each command class extends `Command`.
 Given below is an example of the interaction between the Model and the `ViewTutorialGroupCommand` of Trackr.
 
 ![ViewTGSequenceDiagram](images/ViewTutorialGroupCommandSequenceDiagram.png)
+<figcaption> Figure 5.6a Sequence Diagram of ViewTutorialGroupCommand</figcaption>
 
 ![ViewTGActivityDiagram](images/ViewTutorialGroupCommandActivityDiagram.png)
+<figcaption> Figure 5.6b Activity Diagram of ViewTutorialGroupCommand</figcaption>
 
 Step 1. The user executes `viewTG 1` to view the tutorial groups of the first module within the Module View. The
 `viewTG` command calls `LogicManager#execute(String)`.
@@ -506,8 +548,10 @@ The command class extends `Command`.
 Given below is an example of the interaction between the Model and the `ClearCommand` of Trackr.
 
 ![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
+<figcaption> Figure 5.7a Sequence Diagram of ClearCommand</figcaption>
 
 ![ClearCommandActivityDiagram](images/ClearCommandActivityDiagram.png)
+<figcaption> Figure 5.7b Activity Diagram of ClearCommand</figcaption>
 
 ### Section 5.8 - Exit Command - `exit`
 
@@ -523,8 +567,10 @@ The command class extends `Command`.
 Given below is an example of the interaction between the Model and the `ExitCommand` of Trackr.
 
 ![ExitCommandSequenceDiagram](images/ExitCommandSequenceDiagram.png)
+<figcaption> Figure 5.8a Sequence Diagram of ExitCommand</figcaption>
 
 ![ExitCommandActivityDiagram](images/ExitCommandActivityDiagram.png)
+<figcaption> Figure 5.8b Activity Diagram of ExitCommand</figcaption>
 
 ### Section 5.9 - Data saving and loading
 
@@ -558,6 +604,7 @@ Step 4. Once all layers of the Json objects have been converted to their corresp
 The following activity diagram summarizes how data from the Json file is read and loaded when a user starts up the application:
 
 ![LoadJsonActivityDiagram](images/LoadJsonActivityDiagram.png)
+<figcaption> Figure 5.9a Activity Diagram of data saving and loading</figcaption>
 
 #### Design consideration:
 
@@ -819,6 +866,7 @@ be able to accomplish most of the tasks faster using commands than using the mou
 ## **Appendix E - Glossary**
 
 -   **Mainstream OS**: Windows, Linux, Unix, OS-X
+-   **JSON**: A format in which data is stored in attribute-value pairs
 -   **Private contact detail**: A contact detail that is not meant to be shared with others
 -   **TA**: Teaching Assistant
 -   **Modules**: University courses that Teaching Assistants teach
