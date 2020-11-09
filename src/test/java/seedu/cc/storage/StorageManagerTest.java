@@ -16,6 +16,8 @@ import seedu.cc.model.ReadOnlyCommonCents;
 import seedu.cc.model.UserPrefs;
 
 public class StorageManagerTest {
+    private static final String COMMON_CENTS_STORAGE_FILEPATH = "ab";
+    private static final String USER_PREF_STORAGE_FILEPATH = "prefs";
 
     @TempDir
     public Path testFolder;
@@ -24,8 +26,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonCommonCentsStorage commonCentsStorage = new JsonCommonCentsStorage(getTempFilePath("ab"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
+        JsonCommonCentsStorage commonCentsStorage = new JsonCommonCentsStorage(getTempFilePath(
+            COMMON_CENTS_STORAGE_FILEPATH));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath(USER_PREF_STORAGE_FILEPATH));
         storageManager = new StorageManager(commonCentsStorage, userPrefsStorage);
     }
 
