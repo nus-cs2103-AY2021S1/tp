@@ -1154,7 +1154,7 @@ Action | Format, Examples
 Action | Format, Examples
 -------|------------------------------
 **Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime`
-**List** | 1. **For all active (unarchived) employees:**  `c-active-list`<br>2. **For all archived employees:**  `c-archive-list`
+**List all active employees** |  `c-active-list` 
 **Edit** | `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG] ...`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
 **Find by name** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
 **Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-tag-find Friday Monday PartTime`
@@ -1163,6 +1163,7 @@ Action | Format, Examples
 **Clear** | `c-clear`
 **Archive an employee** |  `c-archive INDEX`<br> e.g., `c-archive 1`  
 **Archive all employees** |  `c-archive-all` <br>
+**List all archived employees** |  `c-archive-list`
 **Unarchive** | `c-unarchive INDEX`<br> e.g., `c-unarchive 1` 
 
 
