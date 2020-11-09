@@ -257,6 +257,11 @@ class DeleteCategoryCommandTest {
         public void deleteAlias(AliasEntry entry) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Amount tallyExpenses() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

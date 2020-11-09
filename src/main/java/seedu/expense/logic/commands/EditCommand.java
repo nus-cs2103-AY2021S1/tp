@@ -90,7 +90,7 @@ public class EditCommand extends Command {
         }
 
         try {
-            model.getStatistics().tallyExpenses().subtract(expenseToEdit.getAmount()).add(editedExpense.getAmount());
+            model.tallyExpenses().subtract(expenseToEdit.getAmount()).add(editedExpense.getAmount());
         } catch (IllegalArgumentException e) {
             throw new CommandException(MESSAGE_SUM_OVER_LIMIT);
         }

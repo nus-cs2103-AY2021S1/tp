@@ -62,7 +62,7 @@ public class AddCommand extends Command {
         }
 
         try {
-            model.getStatistics().tallyExpenses().add(toAdd.getAmount());
+            model.tallyExpenses().add(toAdd.getAmount());
         } catch (IllegalArgumentException e) {
             throw new CommandException(MESSAGE_SUM_OVER_LIMIT);
         }

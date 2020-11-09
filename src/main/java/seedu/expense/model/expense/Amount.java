@@ -18,10 +18,10 @@ public class Amount implements Comparable<Amount> {
             + "    \".<cents>\" input is optional but <dollars> should contain at least 1 digit.\n"
             + "Value Restrictions: -10e9 to 10e9 inclusive";
     public static final String VALIDATION_REGEX = "(?<dollars>\\-??\\d+)(.(?<cents>\\d{1,2}))?";
-    private static final RoundingMode ROUNDING_MODE = RoundingMode.HALF_EVEN;
-    private static final BigDecimal MAX_VALUE = new BigDecimal("10e9");
-    private static final BigDecimal MIN_VALUE = new BigDecimal("-10e9");
+    public static final BigDecimal MAX_VALUE = new BigDecimal("10e9");
+    public static final BigDecimal MIN_VALUE = new BigDecimal("-10e9");
     private static final BigDecimal ZERO_VALUE = new BigDecimal("0");
+    private static final RoundingMode ROUNDING_MODE = RoundingMode.HALF_EVEN;
 
     // value in Amount stored as cents
     protected final BigDecimal value;
