@@ -9,10 +9,6 @@ participant "editedSession:EditSessionCommand" as EditSessionCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
-end box
-
 [-> LogicManager : execute("sedit 1 g/coolgym")
 activate LogicManager
 
@@ -45,17 +41,11 @@ destroy EditSessionCommandParser
 AddressBookParser --> LogicManager : target, editedSession
 deactivate AddressBookParser
 
-LogicManager -> EditSessionCommand : execute()
+LogicManager -> EditSessionCommand : execute(model)
 activate EditSessionCommand
 
-EditSessionCommand -> Model : setSession(target, editedSession)
-activate Model
-
-Model --> EditSessionCommand
-deactivate Model
-
 create CommandResult
-EditSessionCommand -> CommandResult
+EditSessionCommand -> CommandResult : CommandResult(String)
 activate CommandResult
 
 CommandResult --> EditSessionCommand
