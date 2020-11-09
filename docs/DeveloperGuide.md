@@ -509,137 +509,130 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### 8. Appendix C: Use cases
 
-(For all use cases below, the **System** is the `Calo` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Calo` application and the **Actor** is the `user`, unless specified otherwise)
 
 #### **Use case: Add an exercise**
 
 *MSS*
-1.  User requests to add an exercise  
-2.  Calo adds the exercise and displays on the Graph.  
-  Use case ends.
+1.  User requests to add an exercise. 
+2.  Calo adds the exercise to the current list of exercises and displays it (in the left panel).
+3.  Calo updates the calories burnt (for the date of the exercise) on the graph.
+   Use case ends.
 
 *Extensions*
 <p>
-    The request have some missing compulsory information.<br>  
-      1a1. Calo shows an error message, information the user about the correct format and information necessary.<br>  
-    Use case ends.  
+    1a. The request contains some missing compulsory information.<br> 
+      1a1. Calo shows an error message, displaying the correct command format.<br>  
+    Use case ends. 
+</p>
+
+<p>
+    1b. An exercise with the same name, description, date and exercise tags exists.<br>
+      1b1. Calo shows an error message, informing the user about duplicate template.<br>  
+    Use case ends.
 </p>
 
 #### **Use case: Add a template**
 
 *MSS*
-1.  User requests to create a template for an exercise  
-2.  Calo adds the template and displays on the Template Panel.  
+1.  User requests to create a template for an exercise.
+2.  Calo adds the template to the current list of templates and displays it (right panel).  
   Use case ends.
 
 *Extensions*
 <p>
-    The request have some missing compulsory information. <br> 
-      1a1. Calo shows an error message, information the user about the correct format and information necessary. <br>  
+    1a. The request contains some missing compulsory information.<br> 
+      1a1. Calo shows an error message, displaying the correct command format. <br>  
     Use case ends.  
 </p>
 
 <p>
-    Template with the same name exists.<br>
-      1a1. Calo shows an error message, informing the user about duplicate template.<br>  
+    1b. A template with the same name exists.<br>
+      1b1. Calo shows an error message, informing the user about duplicate template.<br>  
     Use case ends.<br>
+</p>
+
+#### **Use case: Add an exercise based on an existing template**
+
+*MSS*
+1.  User requests to add an exercise from an existing template.
+2.  Calo adds the exercise (based off the template) to the current list of exercises and displays it (in the left panel).
+3.  Calo updates the calories burnt (for the date of the exercise) on the graph.  
+   Use case ends.
+
+*Extensions*
+<p>
+    1a. The template does not exist.<br>
+      1a1. Calo shows an error message, informing the user about the missing template.<br>  
+    Use case ends.
+</p>
+
+<p>
+    1b. An exercise with the same name, description, date and exercise tags exists.<br>
+      1b1. Calo shows an error message, informing the user about duplicate template.<br>  
+    Use case ends.
 </p>
 
 #### **Use case: Add a goal**
 
 *MSS*
-1.  User requests to create a goal for a day.  
-2.  Calo adds the template and displays on the Template Panel.    
+1.  User requests to create a goal for the day.  
+2.  Calo adds the goal and displays a message informing the user about the new goal.    
   Use case ends.
 
 *Extensions*
 <p>
-    The request have some missing compulsory information. <br> 
-      1a1. Calo shows an error message, information the user about the correct format and information necessary. <br>  
+    1a. The request contains some missing compulsory information.<br> 
+      1a1. Calo shows an error message, displaying the correct command format. <br>  
     Use case ends.  
 </p>
 
 <p>
-    The user have already set a goal for the specific day. <br> 
-      1a1. Calo shows an error message, information the user about the pre-existing goal. <br>  
+    1b. The user has already set a goal for the same day. <br> 
+      1b1. Calo shows an error message, displaying that a goal is already present on the date specified.<br>  
     Use case ends.  
 </p>
-
-
-
 
 #### **Use case: Archive data**
+
   *MSS*
-1.  User requests to archive data to a different file location
-2.  Calo archives data to the specified location
+1.  User requests to archive data to a different file location.
+2.  Calo archives data to the specified location.  
     Use case ends.
 
 *Extensions*
 <p>
-    1a. User does not have permission to create file at specified location <br>
-      1a1. Calo shows a message indicating that file cannot be created at specified file.<br>
+    1a. User does not have the permission to create the file at the specified location. <br>
+      1a1. Calo shows an error message, displaying that the file cannot be created at the specified location.<br>
     Use case ends.
-</p>
-
-
-#### **Use case: Create Template**
-*MSS*
-1.  User requests to create a template for an exercise  
-2.  Calo adds the template and displays on the Template Panel.  
-    Use case ends.
-
-*Extensions*
-<p>
-    The request have some missing compulsory information.<br>
-      1a1. Calo shows an error message, information the user about the correct format and information necessary.<br>
-    Use case ends.<br>
-</p>
-
-<p>
-    Template with the same name exists.<br>  
-      1a1. Calo shows an error message, informing the user about duplicate template.<br>  
-    Use case ends.<br>
-</p>
-
-#### **Use case: Add Exercise based on Template**
-*MSS*
-1.  User requests to add an exercise from a template he previously created.
-2.  Calo adds the template and displays on the Exercise Panel.  
-    Use case ends.
-
-*Extensions*
-<p>
-    The template does not exist.<br>
-      1a1. Calo shows an error message, information the user about the template does not exist.<br>  
-    Use case ends.<br>
 </p>
 
 #### **Use case: Find exercises with a keyword**
 
 *MSS*  
-1.  User requests to find exercises with a keyword
-2.  Calo shows a list of exercises which contain the keyword
+1.  User requests to find exercises with a keyword.
+2.  Calo shows a list of exercises which contain the keyword.
     Use case ends.
 
 *Extensions*
 <p>
-    The list is empty <br>
-      1a1. Calo shows a message indicating that no such exercise exists.<br>
-    Use case ends.<br>
+    1a. No exercises contain the keyword. <br>
+      1a1. Calo shows an error message, displaying that no such exercise exists.<br>
+    Use case ends.
 </p>
 
 #### **Use case: Recall exercises with a keyword**
 
 *MSS*  
-1.  User requests to recall the most recent time he did an exercise.
+1.  User requests to recall the most recent time where he performed the exercise.
 2.  Calo shows the details of the most recent exercise with the given time.
     Use case ends.
 
 *Extensions*
 <p>
-    The user have never done the exercise.<br>
-      1a1. Empty list is shown.<br>
-    Use case ends.<br>
+    1a. The user has not added that exercise before.<br>
+      1a1. Calo displays an empty list.<br>
+    Use case ends.
 </p>
 
 
@@ -647,13 +640,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *MSS*
 
-1.  User requests to update a specific exercise in the list
-2.  Calo updates the exercise and the Calories Graph changes accordingly.
-    Use case ends.<br>
+1.  User requests to update a specific exercise.
+2.  Calo updates the exercise and displays the message informing the user about the updated exercise.
+3.  Calo updates the calories burnt (for the date of the exercise) on the graph.
+    Use case ends.
+
 *Extensions*
 <p>
-    1a. The index is invalid<br>
-      1a1. Calo shows a message indicating that no such exercise exists.<br>
+    1a. The index is invalid.<br>
+      1a1. Calo displays an error message, indicating that the index is invalid.<br>
     Use case ends.
 </p>
 
@@ -662,14 +657,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *MSS*
 
 1.  User requests to delete a specific exercise in the list.
-2.  Calo deletes the exercise
-
+2.  Calo deletes the exercise.  
     Use case ends.
 
 *Extensions*
 <p>
-    1a. The index is invalid<br>
-      1a1. Calo shows a message indicating that no such exercise exists.<br>
+    1a. The index is invalid.<br>
+      1a1. Calo displays an error message, indicating that the index is invalid.<br>
     Use case ends.
 </p>
 
@@ -677,9 +671,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: List exercises**
 
 *MSS*
-1.  User requests to list exercises
-2.  Calo shows a list of exercises
+1.  User requests to list all the exercises.
+2.  Calo displays a list of exercises (in the left panel)
   Use case ends.
+
+*Extensions*
+<p>
+    1a. The list of exercises is empty.<br>
+      1a1. Calo displays an empty list.<br>
+    Use case ends.
+</p>
 
 ### 9. Appendix D: Non-Functional Requirements
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
