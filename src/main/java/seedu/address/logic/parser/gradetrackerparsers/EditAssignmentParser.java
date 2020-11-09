@@ -20,6 +20,9 @@ import seedu.address.model.module.grade.AssignmentName;
 import seedu.address.model.module.grade.AssignmentPercentage;
 import seedu.address.model.module.grade.AssignmentResult;
 
+/**
+ * Parses input arguments and creates a new EditAssignmentParser object.
+ */
 public class EditAssignmentParser implements Parser<EditAssignmentCommand> {
 
     /**

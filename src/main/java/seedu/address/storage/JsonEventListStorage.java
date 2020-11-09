@@ -14,6 +14,9 @@ import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyEventList;
 
+/**
+ * A class to access EventList data stored as a json file on the hard disk.
+ */
 public class JsonEventListStorage implements EventListStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonEventListStorage.class);

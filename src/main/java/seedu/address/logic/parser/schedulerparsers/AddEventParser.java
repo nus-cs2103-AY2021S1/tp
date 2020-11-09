@@ -20,6 +20,9 @@ import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventTime;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Parses input arguments and creates a new AddEventParser object.
+ */
 public class AddEventParser implements Parser<AddEventCommand> {
     @Override
     public AddEventCommand parse(String userInput) throws ParseException {

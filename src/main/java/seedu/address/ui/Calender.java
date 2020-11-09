@@ -25,6 +25,9 @@ import javafx.scene.paint.Color;
 import seedu.address.model.ReadOnlyEventList;
 import seedu.address.model.event.Event;
 
+/**
+ * Represents a calendar in the GUI.
+ */
 public class Calender extends UiPart<Region> {
     private static final String FILEPATH = "Calender.fxml";
     private LocalDate now;

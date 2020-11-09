@@ -18,6 +18,9 @@ import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.GradeTracker;
 
+/**
+ * Encapsulates methods and information to delete an assignment from the gradetracker of a module at a specified index.
+ */
 public class DeleteAssignmentCommand extends Command {
     public static final String COMMAND_WORD = "deleteassignment";
 

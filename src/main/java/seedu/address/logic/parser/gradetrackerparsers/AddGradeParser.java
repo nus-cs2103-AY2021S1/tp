@@ -17,6 +17,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.grade.Grade;
 
+/**
+ * Parses input arguments and creates a new AddGradeParser object.
+ */
 public class AddGradeParser implements Parser<AddGradeCommand> {
     @Override
     public AddGradeCommand parse(String args) throws ParseException {

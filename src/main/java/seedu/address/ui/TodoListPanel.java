@@ -21,7 +21,9 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TodoListUtil;
 
-
+/**
+ * Panel containing the list of Tasks.
+ */
 public class TodoListPanel extends UiPart<Region> {
     private static final String FXML = "TodoListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TodoListPanel.class);

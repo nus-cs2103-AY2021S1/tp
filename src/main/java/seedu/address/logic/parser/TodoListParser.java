@@ -14,7 +14,6 @@ import seedu.address.logic.commands.todolistcommands.CompleteTaskCommand;
 import seedu.address.logic.commands.todolistcommands.DeleteTaskCommand;
 import seedu.address.logic.commands.todolistcommands.EditTaskCommand;
 import seedu.address.logic.commands.todolistcommands.FindTaskCommand;
-import seedu.address.logic.commands.todolistcommands.HelpTaskCommand;
 import seedu.address.logic.commands.todolistcommands.ListTaskCommand;
 import seedu.address.logic.commands.todolistcommands.ResetTaskCommand;
 import seedu.address.logic.commands.todolistcommands.SortTaskCommand;
@@ -27,6 +26,9 @@ import seedu.address.logic.parser.todolistparsers.FindTaskParser;
 import seedu.address.logic.parser.todolistparsers.ResetTaskParser;
 import seedu.address.logic.parser.todolistparsers.SortTaskParser;
 
+/**
+ * Parses user input.
+ */
 public class TodoListParser implements FeatureParser {
     /**
      * Used for initial separation of command word and args.
@@ -76,9 +78,6 @@ public class TodoListParser implements FeatureParser {
         case CompleteTaskCommand.COMMAND_WORD:
             return new CompleteTaskParser().parse(arguments);
 
-        case HelpTaskCommand.COMMAND_WORD:
-            return singleWordCommandsChecker(HelpTaskCommand.COMMAND_WORD, arguments);
-
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -95,9 +94,6 @@ public class TodoListParser implements FeatureParser {
 
         case ListTaskCommand.COMMAND_WORD:
             return new ListTaskCommand();
-
-        case HelpTaskCommand.COMMAND_WORD:
-            return new HelpTaskCommand();
 
         default:
             throw new ParseException("Invalid command");

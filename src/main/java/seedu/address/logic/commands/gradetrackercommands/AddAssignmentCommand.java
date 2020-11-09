@@ -19,6 +19,9 @@ import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.GradeTracker;
 
+/**
+ * Encapsulates methods and information to add an assignment to the grade tracker of a module.
+ */
 public class AddAssignmentCommand extends Command {
 
     public static final String COMMAND_WORD = "addassignment";

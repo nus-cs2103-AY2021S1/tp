@@ -19,6 +19,9 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Parses input arguments and creates a new EditEventParser object.
+ */
 public class EditEventParser implements Parser<EditEventCommand> {
     @Override
     public EditEventCommand parse(String userInput) throws ParseException {

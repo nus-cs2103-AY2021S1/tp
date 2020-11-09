@@ -7,6 +7,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.logic.commands.ViewCommandResult;
 
+/**
+ * Represents the display of the small details region of the GUI.
+ */
 public class DetailDisplay extends UiPart<Region> {
 
     private static final String FXML = "DetailsDisplay.fxml";
