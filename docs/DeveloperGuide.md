@@ -308,7 +308,7 @@ The following sequence diagram shows how the import operation works:
 #### 7.4.1 Implementation
 
 The proposed undo mechanism is facilitated by `ModelManager` and `History`.
-`History` combines `ReadOnlyMcGymmy`, `Predicate<Food>` and `MacroList` gotten from `ModelManager` together, then store multiple groups of different versions in a stack, with the most recent version on top.
+`History` combines `ModelManager`'s `McGymmy`, `Predicate<Food>` and `MacroList` together, then store multiple groups of different versions in a stack, with the most recent version on top.
 Whenever there is a change to either `ModelManager`'s data, filter predicate, or macro list, `ModelManager` will pass itself into `History` to be saved into the stack.
 Additionally, `ModelManager` implements the following operations:
 
@@ -319,6 +319,10 @@ Additionally, `ModelManager` implements the following operations:
 The first 2 operations are exposed in the `Model` interface as `Model#canUndo()` and `Model#undo()` respectively.
 
 Given below is an example usage scenario and how the undo mechanism behaves at each step.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The type <code>ModelManager**</code> of the objects stored in <code>History</code>  in the following diagrams is used as a simplified presentation for <code>Pair&lt;McGymmy&lt;Pair&lt;Predicate&lt;Food&gt;, MacroList&gt;&gt;</code>, so that the diagrams look less complicated.
+</div>
 
 Step 1. The user launches the application for the first time. The `ModelManager` will be initialized with the empty `mcGymmyStack`.
 
