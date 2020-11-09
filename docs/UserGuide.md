@@ -265,9 +265,9 @@ score INDEX cp/SCORE
 - Scores the participation of the student associated with the specified `INDEX` number shown in the displayed student record list.
 - The `INDEX` **must be a positive integer** that exists in said list.
 - The `SCORE` **must be a non-negative number** between 0 and 10, inclusive. 
-Taskmaster supports a detailed score of up to 2 decimal places.
+TAskmaster supports a detailed score of up to 2 decimal places.
 For scores with more than 2 decimal places, the score will be rounded to the nearest 2 decimal places.  
-Taskmaster supports scoring students' participation score even though the student is absent, to allow for
+TAskmaster supports scoring students' participation score even though the student is absent, to allow for
 module-specific instructions (e.g. a module coordinator instructs the TA to give
 a participation mark of 6 if a valid MC is given).
 
@@ -301,7 +301,7 @@ random-student
 - Does not work if the session has no present students.
 
 ### Clearing all entries: `clear`
-Clears all saved data in Taskmaster (both students and sessions).
+Clears all saved data in TAskmaster (both students and sessions).
 ```
 clear
 ```

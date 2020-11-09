@@ -345,7 +345,7 @@ The `ClassParticipation` is made such that it:
 * Has a method to return the `String` representation of itself.
 * Will be used by `StudentRecord`.
 
-To support the `ClassParticipation` class, Taskmaster needs to be able to set a student's score in a session.  
+To support the `ClassParticipation` class, TAskmaster needs to be able to set a student's score in a session.  
 In setting the student's score, TAskmaster needs to comply with the following specifications:
 * Supports checking of the session (i.e. throws an error in case of no sessions made, or no sessions selected)
 * Able to identify the NUSNET ID from the index of student in the session.
