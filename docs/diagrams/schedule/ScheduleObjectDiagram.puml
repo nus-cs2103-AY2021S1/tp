@@ -1,0 +1,71 @@
+@startuml
+!include ../style.puml
+
+show members
+
+Object "__schedule:Schedule__" as Schedule {
+    -  title = "Short Schedule"
+    - startDate = "5 May 2020"
+    - endDate = "6 May 2020"
+    - numDays = 2
+    - budget = 500
+    - exchangeRate = 2.9
+}
+
+Object "__: AppointmentManager__" as AppointmentManager {
+    -  hasSchedule = true
+}
+
+Object "__: Calendar__" as Calendar {
+    -  hasSchedule = true
+}
+
+Object "__: UniqueAppointmentList__" as UniqueAppointmentList {
+    -  hasSchedule = true
+}
+
+Object "__: DaySchedule__" as DaySchedule1
+Object "__: DaySchedule__" as DaySchedule2
+
+Object "__: DayScheduleEntry__" as DayScheduleEntry1 {
+- type = TRANSPORT
+- title = "plane"
+- startDateTime = "5 May 2020 10: 00"
+- endDateTime = "5 May 2020 11: 00"
+- durationInHours = 1
+- location = "KL"
+}
+
+Object "__: DayScheduleEntry__" as DayScheduleEntry2 {
+- type = ACTIVITY
+- title = "Shopping"
+- startDateTime = "5 May 2020 16: 00"
+- endDateTime = "5 May 2020 18: 00"
+- durationInHours = 2
+- location = "Times Square"
+}
+
+Object "__: DayScheduleEntry__" as DayScheduleEntry3 {
+- type = TRANSPORT
+- title = "plane"
+- startDateTime = "6 May 2020 13: 00"
+- endDateTime = "6 May 2020 14: 00"
+- durationInHours = 1
+- location = "Singapore"
+}
+
+Schedule - AppointmentManager
+
+AppointmentManager -- Calendar
+AppointmentManager -- UniqueAppointmentList
+AppointmentManager -- DaySchedule1
+AppointmentManager -- DaySchedule2
+
+DaySchedule1 -- DayScheduleEntry1
+DaySchedule1 -- DayScheduleEntry2
+DaySchedule2 -- DayScheduleEntry3
+
+Schedule -down[hidden]- DaySchedule1
+Schedule -down[hidden]- DaySchedule2
+
+@enduml

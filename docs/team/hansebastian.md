@@ -68,7 +68,7 @@ _Contributions to Developer Guide:_
 Rationale, current implementation, design considerations and UML diagrams for the following portions:
 1. List Manager and List Tracker (Pull Request [#171](https://github.com/AY2021S1-CS2103T-W13-3/tp/pull/171))
 1. Service Manager (Pull Request [#219](https://github.com/AY2021S1-CS2103T-W13-3/tp/pull/219))
-1. Finance Breakdown (Pull Request [#219](https://github.com/AY2021S1-CS2103T-W13-3/tp/pull/219))
+1. Finance Breakdown (Pull Request [#226](https://github.com/AY2021S1-CS2103T-W13-3/tp/pull/226))
 
 ##### Contributions to documentation (Extracts)
 The contributions listed in this section will not be extensive, please refer to the respective documents for the full contributions.
