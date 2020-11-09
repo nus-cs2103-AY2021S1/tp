@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSIGNMENT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +27,8 @@ public class RemindCommand extends Command {
     public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD
             + " INDEX [MORE_INDEXES] (must be positive integers)";
 
-    public static final String MESSAGE_REMIND_ASSIGNMENT_SUCCESS = "Set reminder for Assignment: %1$s";
-    public static final String MESSAGE_REMIND_ASSIGNMENTS_SUCCESS = "Mark assignments as done: %1$s";
+    public static final String MESSAGE_REMIND_ASSIGNMENT_SUCCESS = "Set reminders for Assignment: %1$s";
+    public static final String MESSAGE_REMIND_ASSIGNMENTS_SUCCESS = "Set reminders for Assignments: %1$s";
 
     // for single index
     public static final String MESSAGE_REMINDED_ASSIGNMENT = "This assignment already has reminders set.";
@@ -78,7 +77,6 @@ public class RemindCommand extends Command {
             Assignment remindedAssignment = createRemindedAssignment(assignmentToRemind);
 
             model.setAssignment(assignmentToRemind, remindedAssignment);
-            model.updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT);
             assignmentsToRemind.add(assignmentToRemind);
         }
 

@@ -48,7 +48,7 @@ deactivate ProductiveNusParser
 LogicManager -> FindCommand : execute()
 activate FindCommand
 
-FindCommand -> Model : updateFilteredAssignmentList(NameContainsKeywordsPredicate({"Lab"}))
+FindCommand -> Model : updateFilteredAssignmentList(NameContainsKeywordsPredicate(["Lab"]))
 activate Model
 
 Model --> FindCommand
@@ -57,10 +57,6 @@ deactivate Model
 create CommandResult
 FindCommand -> CommandResult
 activate CommandResult
-
-CommandResult -> Model : getFilteredAssignmentList()
-activate Model
-Model --> CommandResult
 
 CommandResult --> FindCommand
 deactivate CommandResult

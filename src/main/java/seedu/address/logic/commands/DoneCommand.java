@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSIGNMENT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +76,6 @@ public class DoneCommand extends Command {
             Assignment assignmentMarkedDone = createAssignmentMarkedDone(assignmentToMarkDone);
 
             model.setAssignment(assignmentToMarkDone, assignmentMarkedDone);
-            model.updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT);
             assignmentsToMarkDone.add(assignmentToMarkDone);
         }
 

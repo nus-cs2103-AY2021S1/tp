@@ -108,7 +108,8 @@ public class RemindCommandTest {
 
         String expectedMessage = String.format(RemindCommand.MESSAGE_REMIND_ASSIGNMENT_SUCCESS, assignmentsToRemind);
 
-        Model expectedModel = new ModelManager(model.getProductiveNus(), new UserPrefs(), null);
+        Model expectedModel = new ModelManager(
+                model.getProductiveNus(), new UserPrefs(), null, model.getFilteredAssignments());
         expectedModel.setAssignment(model.getFilteredAssignmentList().get(0), assignmentToRemind);
 
         assertCommandSuccess(remindCommand, model, expectedMessage, expectedModel);
