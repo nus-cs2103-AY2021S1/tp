@@ -1020,11 +1020,11 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
 
 ### 6.2 Adding a Client
 
-1. Adding a Client while all Clients are being shown
+1. Adding a Client while all Clients are being shown.
 
    1. Test case: `cadd n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/injured-thigh t/allergy-dairy` <br>
       Expected: Client is added to the list. <br>
-      Details of the added Client shown in the status message.
+      Details of the added Client are shown in the status message.
     
    1. Other incorrect Add Client commands to try: <br>
        `cadd n/John Doe p/98765432 a/311, Clementi Ave 2, #02-25 t/injured-thigh` (email not added), <br>
@@ -1033,13 +1033,13 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
 
 ### 6.3 Editing a Client
 
-1. Editing a Client while all Clients are being shown
+1. Editing a Client while all Clients are being shown.
 
    1. Prerequisites: There should be at least 1 Client in the Client List.
     
    1. Test case: `cedit 1 p/91234567` <br>
       Expected: First Client's detail (phone number) is edited. <br>
-      Details of the edited Client shown is in the status message.
+      Details of the edited Client are shown is in the status message.
 
    1. Other incorrect Edit Client commands to try: 
        `cedit 0 p/91234567` (index out of bound) <br>
@@ -1048,13 +1048,13 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
       
 ### 6.4 Deleting a Client
 
-1. Deleting a Client while all Clients are being shown
+1. Deleting a Client while all Clients are being shown.
 
    1. Prerequisites: There should be at least 1 Client in the Client List.
     
    1. Test case: `cdel 1` <br>
       Expected: First Client is being deleted from the list. <br>
-      Details of the deleted Client is shown in the status message.
+      Details of the deleted Client are shown in the status message.
 
 ### 6.5 Adding a Session
 
@@ -1062,7 +1062,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
 
     1. Test case: `sadd g/Machoman Gym ex/Endurance at/29/09/2020 1600 t/120` <br>
        Expected: Session is added to the list. <br>
-       Details of the added Session shown in the status message.
+       Details of the added Session are shown in the status message.
        
     1. Other incorrect Add Session commands to try: 
         `sadd g/machoman ex/endurance at/29/09/2020 t/120` (wrong date format), <br>
@@ -1078,7 +1078,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
     
    1. Test case: `sedit 1 g/Machoman at/29/09/2020 1600 t/120` <br>
       Expected: First Session's gym location and timing is edited. <br>
-      Details of the edited Session is shown in the status message.
+      Details of the edited Session are shown in the status message.
       
 ### 6.7 Deleting a Session
 
@@ -1088,7 +1088,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
    
    1. Test case: `sdel 1 f/` <br>
       Expected: The 1st Session in the Session List will be deleted alongside all Schedules associated to the Session. <br>
-      Details of the deleted Session is shown in the status message.
+      Details of the deleted Session are shown in the status message.
 
 ### 6.8 Viewing Sessions within Period
 
@@ -1111,7 +1111,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
    
    1. Test case: `schadd c/1 s/1`<br>
       Expected: Add a Schedule associated with the first Client in the Client List and first Session in the Session List. <br>
-      Details of the added Schedule is shown in the status message.
+      Details of the added Schedule are shown in the status message.
       
 
 ### 6.10 Editing a Schedule
@@ -1122,7 +1122,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
 
    1. Test case: `schedit c/1 s/1 us/2 pd/paid r/text`<br>
       Expected: Edit Schedule with the first Client and first Session is edited to second Session in the Session List, with payment updated to paid and remarks updated to text. <br>
-      Details of the edited Schedule is shown in the status message.
+      Details of the edited Schedule are shown in the status message.
 
 
 ### 6.11 Deleting a Schedule
@@ -1133,7 +1133,7 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
    
    1. Test case: `schdel c/1 s/1`<br>
       Expected: Delete the Schedule associated with first Client in the Client List and first Session in the Session List. <br>
-      Details of the deleted Schedule is shown in the status message.
+      Details of the deleted Schedule are shown in the status message.
 
 ### 6.12 Saving data
 
