@@ -307,13 +307,13 @@ Format: `edit-task INDEX ATTRIBUTE_1:NEW_VALUE ATTRIBUTE_2:NEW_VALUE ...`
 * Fields that the user can modify differ by the type of task(Event or Deadline) the user is trying to modify.
 </div>
 
-  * Available attributes for both deadline and event in v1.3 include:
+  * Available attributes for both deadline and event in 4 include:
     * `title:` edits the title of the specified task
     * `desc:` edits the description of the specified task
     * `tag:` edits the tag of the specified task
-  * Available attributes for **deadline only** in v1.3 include:
+  * Available attributes for **deadline only** in v1.4 include:
       * `datetime:` edits the date and time of the specified deadline
-  * Available attributes for **event only** in v1.3 include:
+  * Available attributes for **event only** in v1.4 include:
       * `date:` edits the date of the specified event
       * `from:` edits the start time of the specified event
       * `to:` edits the end time of the specified event
@@ -374,7 +374,7 @@ Format: `find-task ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...`
 * If the user provides multiple search phrases of the same attribute in the command, tasks that match any of the search phrases will be displayed.
 </div>
 
-Available attributes in v1.3 include:
+Available attributes in v1.4 include:
 * `title:` finds all tasks which contain the search phrase in the given title
 * `desc:` finds all tasks which contain the search phrase in the given description
 * `date:` finds all tasks happening on or due the searched date
@@ -575,7 +575,7 @@ Format: `find-lesson ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...`
 * If the user provides multiple search phrases of the same attribute in the command, lessons that match any of the search phrases will be displayed.
 </div>
 
-Available attributes in v1.3 include:
+Available attributes in v1.4 include:
 * `title:` finds all lessons which contain the search phrase in the given title
 * `desc:` finds all lessons which contain the search phrase in the given description
 * `date:` finds all lessons happening on the searched date
