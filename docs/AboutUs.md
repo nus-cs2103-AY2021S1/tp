@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/drake25122000.png" width="200px">
 
 [[github](http://github.com/drake25122000)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/drake25122000.md)]
 
 * Role: Developer
 * Responsibilities: Code quality
