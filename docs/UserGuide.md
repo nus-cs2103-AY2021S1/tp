@@ -62,9 +62,9 @@ how the figure below shows some sample data.<br>
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## 3. About this document <a name="about"></a>
+## About this document <a name="about"></a>
 
-### 3.1 Structure of this document
+### 1. Structure of this document
 
 We have structured this User Guide in a way so that you can find what you need easily and quickly. In the next section,
 [Section 3.2 - Reading this document](#reading-this-document), you can find sevaral useful tips on how to read this guide. The following section,
@@ -78,38 +78,38 @@ We have structured this User Guide in a way so that you can find what you need e
 
    * Other general features
 
-### 3.2 Reading this document <a name="reading-this-document"></a>
+### 2. Reading this document <a name="reading-this-document"></a>
 
 This section introduces you to some key technical terms, symbols and syntax that are used throughout this guide.
 You may want to familarize yourself with them before moving on to the next section.
 
-#### 3.2.1 Terminology related to the GUI
+#### 2.1 Terminology related to the GUI
 
 Figure 2 shows the GUI of **tCheck**, annotated with descriptions for all components of the GUI.
 
 <img src="images/tCheckInfographic.png" width="1000" height="700" />
 Figure 2 - Annotated GUI of tCheck
 
-#### 3.2.2. General Symbols and Syntax 
+#### 2.2. General Symbols and Syntax 
 
 The following table explains the general symbols and syntax used in this User Guide.
+<div style="page-break-after: always;"></div>
 
 | Syntax |  What it means |
 |----------|-------------|
 | `command` |  The grey block specifies an execuable command which can be entered in the command box |
 | _italics_ | Italicised text specifies the terms related to tCheck's GUI |
-|<div markdown="block" class="alert alert-info"> :information_source: </div>  | An exclamation mark indicates that the following text is a note |
-|<div markdown="span" class="alert alert-primary">:bulb:  | An bulb indicates that the following text is a tip |
+|<div markdown="block" class="alert alert-info"> :information_source: </div>  | An exclamation mark indicates that the following text is a note|
 
-#### 3.2.3. Command Syntax and Usage
+#### 2.3. Command Syntax and Usage
 
 The following table explains the technical terms used in this user guide.
 
 | Technical Term | What it means |
 | ---------------| --------------|
-| Prefix | The first word of a command. tCheck uses this command word to decide what kinds of actions it should perform |
-| Command Word | It is the input that follows behind a prefix. It is used to distinguish different kinds of parameters |
-| Parameter | Values given for specific operations |
+| Command Word | The first word of a command. tCheck uses this command word to decide what kinds of actions it should perform. |
+| Prefix | It is the character before every "/". It is used to distinguish different kinds of parameters. |
+| Parameter | The words after every "/". They are values given to a command to perform the specified action.|
 
 **Example:** <br>
 `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]`
@@ -128,8 +128,8 @@ The following points explain the format of a command.
    e.g. `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]` can be used as `c-add n/Betsy Crowe e/81234567 p/89007413 a/Blk 120 ABC Road t/Friday` 
     or as `c-add n/Betsy Crowe e/81234567 p/89007413 a/Blk 120 ABC Road`.
 
-* Items with `…​` after them can be used multiple times, including zero times.<br>
-   e.g. `[t/TAG] …​` can be used as ` ` (i.e. 0 times), `t/Friday`, `t/Friday t/PartTime`, etc.
+* Items with `...​` after them can be used multiple times, including zero times.<br>
+   e.g. `[t/TAG]...` can be used as `  ` (i.e. 0 times), `t/Friday`, `t/Friday t/PartTime`, etc.
 
 * Parameters can be in any order.<br>
    e.g. If the command specifies `p/PHONE_NUMBER e/EMERGENCY_CONTACT`, `e/EMERGENCY_CONTACT p/PHONE_NUMBER` is also acceptable.
@@ -171,25 +171,6 @@ In this example, `help` is a command which does not take in any parameter. Hence
 Thus, tCheck will ignore all words come after the command word `help` and the command will be processed in the same way as `help`.
 
 --------------------------------------------------------------------------------------------------------------------
-## Features <a name="features"></a>
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `i-set i/INGREDIENT_NAME m/AMOUNT`, both `INGREDIENT_NAME` and `AMOUNT` are parameters which can be used as `i-set i/Milk m/90`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `...`​ after them can be used once or multiple times.<br>
-  e.g. `sales A/NUM B/NUM C/NUM ...` can be used as `sales BSBM/100` or `sales BSBM/100 BSBBT/120`.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-</div>
 
 ### 1. Commands - Sales Tracking <a name="commands-sales-tracking"></a>
 The Sales Tracking features allows you to keep a record of the sales of the bubble tea drinks inside the
@@ -541,8 +522,8 @@ Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:** <br>
-* PHONE_NUMBER and EMERGENCY_CONTACT must be 8-digit number and start with 8 or 9.<br>
+**:information_source: Notes:** <br>
+PHONE_NUMBER and EMERGENCY_CONTACT must be 8-digit number and start with 8 or 9.<br>
 </div>
 
 Example: 
