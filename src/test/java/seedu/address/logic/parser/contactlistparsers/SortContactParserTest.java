@@ -1,5 +1,6 @@
 package seedu.address.logic.parser.contactlistparsers;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
@@ -12,22 +13,33 @@ public class SortContactParserTest {
     private SortContactParser parser = new SortContactParser();
 
     @Test
-    public void parse_emptyArg_parseSuccess() {
-        /*SortContactCommand expectedSortContactCommand =
-                new SortContactCommand(new ContactComparatorByName());
-        assertTrue(parser.parse("") != null); */
+    public void parse_validArgs_returnsSortContactCommand() throws Exception {
+
+        // empty string
+        assertDoesNotThrow(() -> parser.parse(""));
+
+        // with trailing whitespaces
+        assertDoesNotThrow(() -> parser.parse(" "));
+        assertDoesNotThrow(() -> parser.parse("   "));
+
+        // valid reversed [r] indicator
+        assertDoesNotThrow(() -> parser.parse("r"));
     }
 
     @Test
-    public void parse_validArgsSpecified_returnsSortCommand() {
-        /*SortContactCommand expectedSortContactCommand =
-                new SortContactCommand(new ContactComparatorByName().reversed());
-        assertParseSuccess(parser, "r", expectedSortContactCommand);*/
-    }
+    public void parse_invalidArgs_throwsParseException() {
 
-    @Test
-    public void parse_invalidArgsSpecified_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                SortContactCommand.MESSAGE_USAGE));
+        // invalid input that has more than one word
+        assertParseFailure(parser, "a b", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            SortContactCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, "R", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            SortContactCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, " ///", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            SortContactCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, " 123", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            SortContactCommand.MESSAGE_USAGE));
     }
 }

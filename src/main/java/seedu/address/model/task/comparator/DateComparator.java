@@ -13,7 +13,7 @@ public class DateComparator implements Comparator<Date> {
      *
      * @param date first date
      * @param otherDate second date
-     * @return 1 if date is earlier, 0 if both dates are the same, and -1 if
+     * @return -1 if date is earlier, 0 if both dates are the same, and 1 if
      *         otherDate is earlier
      */
     @Override

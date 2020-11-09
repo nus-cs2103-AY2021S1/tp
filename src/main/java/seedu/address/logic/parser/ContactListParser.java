@@ -26,6 +26,9 @@ import seedu.address.logic.parser.contactlistparsers.ResetContactParser;
 import seedu.address.logic.parser.contactlistparsers.SortContactParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Encapsulates method and information to parse the user input.
+ */
 public class ContactListParser implements FeatureParser {
 
     /**
@@ -34,10 +37,10 @@ public class ContactListParser implements FeatureParser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
-     * Parses user input into command for execution.
+     * Parses the user input into a command for execution.
      *
-     * @param userInput full user input string
-     * @return the command based on the user input
+     * @param userInput Full user input string.
+     * @return Command object based on the user input.
      * @throws ParseException If the user input does not conform the expected format.
      */
     public Command parseCommand(String userInput) throws ParseException {

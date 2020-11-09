@@ -6,7 +6,7 @@ import java.util.List;
 import seedu.address.model.exceptions.VersionedListException;
 
 /**
- * Class that stores versioned history and future of a contact list used for undo/redo functions
+ * Class that stores versioned history and future of a contact list used for undo/redo functions.
  */
 public class VersionedContactList extends ContactList {
     private static final String MESSAGE_NO_REDO_HISTORY = "There are no Contact List commands to redo";
@@ -23,7 +23,8 @@ public class VersionedContactList extends ContactList {
     }
     /**
      * Creates a versioned contact list using the contact list in the {@code toBeCopied}
-     * @param toBeCopied
+     *
+     * @param toBeCopied Contact list to be copied.
      */
     public VersionedContactList(ReadOnlyContactList toBeCopied) {
         super(toBeCopied);

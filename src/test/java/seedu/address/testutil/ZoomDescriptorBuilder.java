@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.modulelistcommands.ZoomDescriptor;
+import seedu.address.logic.commands.modulelistcommands.ZoomLinkCommand.ZoomDescriptor;
 import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ZoomLink;
 
