@@ -43,23 +43,24 @@ ProductiveNUS is a desktop application targeted at Computing students of Nationa
     * **Why:** This feature improves the user's experience as it is easier for them to spot assignments that are of greater importance so as to better plan their schedule.
     * **Note:** This enhancement is compatible with the Find feature, where users are able to list assignments of a specific priority tag.
 
-### My Contributions to the User Guide
-  [\#36](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/36/files),
-  [\#95](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/95/files),
-  [\#132](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/132/files),
-  [\#163](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/163/files),
-  [\#170](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/170/files),
-  [\#248](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/248/files)
-  * I added the Import and Prioritize/Unprioritize segments of the User Guide.
-  * I also made format changes to ensure that the document is standardised.
+### My Contributions to the Documentation
+  * User Guide:
+    [\#36](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/36/files),
+    [\#95](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/95/files),
+    [\#132](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/132/files),
+    [\#163](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/163/files),
+    [\#170](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/170/files),
+    [\#248](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/248/files)
+    * I added the Import and Prioritize/Unprioritize segments of the User Guide.
+    * I also made format changes to ensure that the document is standardised.
 
-### My Contributions to the Developer Guide
-  [\#59](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/59/files),
-  [\#61](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/61/files),
-  [\#134](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/134/files),
-  [\#272](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/272/files)
-  * I added the Import and Prioritize/Unprioritize segments of the Developer Guide.
-  * I also made format changes to ensure the document is standardised.
+  * Developer Guide:
+    [\#59](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/59/files),
+    [\#61](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/61/files),
+    [\#134](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/134/files),
+    [\#272](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/272/files)
+    * I added the Import and Prioritize/Unprioritize segments of the Developer Guide.
+    * I also made format changes to ensure the document is standardised.
 
 ### My Contributions to team-based tasks
   [\#180](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/180/files),
