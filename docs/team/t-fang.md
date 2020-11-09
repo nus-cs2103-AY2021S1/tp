@@ -44,6 +44,7 @@ Given below are my contributions to the project.
     * Added and updated Use Cases related to `filter`
     * Modified the `Logic` component section in DG. (Pull Request [\#131](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/131))
     * Added the implentation of the `filter` feature (Pull Request [\#146](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/146))
+    * Added the manual testing instruction for `deletetask` command (Pull Request [\#372](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/372))
 * **Testing**: 
 
   * Wrote test cases for commands that I created: (Pull Requests [\#188](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/188) [\#271](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/271))
