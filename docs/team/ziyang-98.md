@@ -68,7 +68,6 @@ Given below are my contributions to the project.
   [\#192](https://github.com/AY2021S1-CS2103T-T11-1/tp/issues/192), 
   [\#193](https://github.com/AY2021S1-CS2103T-T11-1/tp/issues/193), 
   [\#194](https://github.com/AY2021S1-CS2103T-T11-1/tp/issues/194))
-
 <div style="page-break-after: always;"></div>
 
 ### Documentation
@@ -80,12 +79,12 @@ Given below are my contributions to the project.
 [#5.3](https://ay2021s1-cs2103t-t13-4.github.io/tp/UserGuide.html#53-account-level-commands)
 
 #### Developer Guide:
-  * **Added details to `Logic` section**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#logic-component)
-  * **Added details to `Model` section**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#model-component)
-  * **Added implementation details of the `undo` feature**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#undo-feature)
-  * **Added implementation details of the `edit account` feature**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#edit-account-feature)
-  * **Added some details to `Use case` section**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#use-cases)
-  * **Added details to `Appendix: Instructions for manual testing` section**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#appendix-instructions-for-manual-testing)
+* **Added details to `Logic` section**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#logic-component)
+* **Added details to `Model` section**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#model-component)
+* **Added implementation details of the `undo` feature**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#undo-feature)
+* **Added implementation details of the `edit account` feature**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#edit-account-feature)
+* **Added some details to `Use case` section**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#use-cases)
+* **Added details to `Appendix: Instructions for manual testing` section**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#appendix-instructions-for-manual-testing)
   
 
 

@@ -83,6 +83,7 @@ Given below are my contributions to the project.
     * Created static helper/stub classes to aid in testing for other teammates (examples: 
     [\#87](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/87), 
     [\#154](https://github.com/AY2021S1-CS2103T-W11-3/tp/issues/154))
+<div style="page-break-after: always;"></div>
 
 ### Documentation
 
@@ -91,5 +92,5 @@ Given below are my contributions to the project.
 * **Added documentation for the `Components` section**: [#4](https://ay2021s1-cs2103t-t13-4.github.io/tp/UserGuide.html#4-components)
 * **Added General Inquiries into FAQ section:** [#6.1](https://ay2021s1-cs2103t-t13-4.github.io/tp/UserGuide.html#61-general-inquiry)
 #### Developer Guide:
-  * **Added implementation details of the `add` entry feature**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#add-entries-feature)
-  * **Added implementation details of the `edit` entry feature**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#edit-entries-feature)
+* **Added implementation details of the `add` entry feature**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#add-entries-feature)
+* **Added implementation details of the `edit` entry feature**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#edit-entries-feature)
