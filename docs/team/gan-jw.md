@@ -16,8 +16,7 @@ Given below are my contributions to the project.
    mastered the concepts in CS2040S. Hence, this feature allows the user to optimise their learning by verifying their
     knowledge.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&until=2020-11-09&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=gan-jw&tabRepo=AY2021S1-CS2103-T14-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
-
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=gan-jw)
 * **Project management**:
   * Setting up the GitHub team org/repo settings
   * Set up GitHub page
