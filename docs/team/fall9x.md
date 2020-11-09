@@ -40,24 +40,24 @@ Kept track of deadlines for project milestones, updated Gradle dependencies and 
 
 1. Enhance ingredient model to consist of multiple sets of quantity+expiry date ([#59](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/59), [#75](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/75)).
 
-2. Increased code coverage by writing a series of GUI tests ([#](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/).
+2. Increased code coverage by writing a series of GUI tests ([#178](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/178), [#261](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/261).
 
 
 
 #### Documentation
 **User Guide**
 
-Added detailed walkthrough for the [GUI](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/197)
+Added detailed walkthrough for the GUI ([#175](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/175), [#197](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/197), [#279](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/279)
 
 **Developer Guide**
 
-Primary custodian for the Developer Guide, ensured consistent formatting, phrasing, and visuals. Added implementation details for the [UI](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/175).
+Primary custodian for the Developer Guide, ensured consistent formatting, phrasing, and visuals. Added implementation details for the UI ([#175](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/175), [#296](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/296), [#300](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/300), [#303](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/303), [#319](https://github.com/AY2021S1-CS2103T-T10-3/tp/pull/319), .)
 
 
 
 
 #### Community
 
-Reviewed pull requests:
+Reviewed pull requests.
 
 Contributed bug reports for other teams during PE-D, and responded quickly to any queries after PE-D: [ped repo](https://github.com/fall9x/ped/issues)
