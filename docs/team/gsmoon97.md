@@ -57,11 +57,11 @@ Given below are my contributions to the project.
     * Made improvements to existing documentation for consistent styling and format [\#140](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/140)
   * Developer Guide:
     * Added documentation for some parts of the Appointment Feature section [\#279](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/279)
-    * Added new use cases for the features `add`, `edit`, `delete`, `addappt`, `editappt`, and `deleteappt` [\#287](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/287), [\#96](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/96), [\#35](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/35)
-    * Added new instruction for manual testing `add`, `edit`, and `editappt` [\#287](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/287),
+    * Added new use cases for the features `add`, `edit`, `delete`, `addappt`, `editappt`, and `deleteappt` [\#288](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/288), [\#96](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/96), [\#35](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/35)
+    * Added new instruction for manual testing `add`, `edit`, and `editappt` [\#288](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/288),
     * Updated details of the diagrams `ModelClassDiagram` and `BetterModelClassDiagram` [\#96](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/96)
     * Added an activity diagram `DeleteAppointmentActivityDiagram` and `BetterModelClassDiagram` [\#279](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/279) [\#96](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/96)
-    * Made improvements to existing documentation for consistent styling and format [\#287](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/287), [\#140](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/140)
+    * Made improvements to existing documentation for consistent styling and format [\#288](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/288), [\#140](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/140)
 
 * **Community**:
   * Reported bugs and suggestions for other teams in the class (example: [Practical Exam Dry Run](https://github.com/gsmoon97/ped/issues))
