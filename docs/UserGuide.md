@@ -914,6 +914,8 @@ Outcome:
 1. The _Result Display_ will show deleted employee's information.
 2. Remaining employees will be listed in the Employee Directory inside the _Main View_.
 
+<div style="page-break-after: always;"></div>
+
 ![DeleteEmployeeCommandScreenshot](images/DeleteEmployeeResult.png)
 
 _Figure 19. A screenshot showing the outcome of a `c-delete` command_
