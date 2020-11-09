@@ -167,13 +167,12 @@ If you are unsure of any of the commands, this command will direct you to the he
 
 Format: `help`
 
-Expected Outcome:
+Expected outcome:
 
 The following figure (Figure 3) shows the help window entering the command `help`.
 
 ![help message](images/helpMessage.png)
 <div align="center">Figure 3: Help window</div>
-
 
 #### 3.2.2 Toggling between academic and administrative details: `toggle` (By: Hogan)
 
@@ -295,7 +294,7 @@ You can use `list` or `find` (e.g `find n/Amy`) to display her information again
 Examples:
 *  `edit 1 n/Arthur p/98727030 s/Meridian Junior College` edits the name, phone number and school of the 1st student to be `Arthur`, `98727030` and `Meridian Junior College` respectively.
 
-Expected Outcome:
+Expected outcome:
 The following figure (Figure 7) shows the expected outcome after executing the above example.
 
 ![EditCommandExpectedOutcome](images/EditCommandExpectedOutcome.png)
@@ -368,7 +367,7 @@ Format: `overdue`
 * Students tutored for free (i.e. `FEE` = $0.00) will not be displayed.
 * If all students have paid their fees within the past month, no students will be displayed.
 
-Expected Outcome:
+Expected outcome:
 
 The following figure (Figure 8) shows the expected result after entering the command `overdue`.
 
@@ -402,7 +401,7 @@ Format: `detail add STUDENT_INDEX t/DETAIL_TEXT`
 Examples:
 * `detail add 1 t/Smart` adds the "Smart" detail to the 1st student in **Reeve**.
 
-Expected Outcome:
+Expected outcome:
 The following figure (Figure 9) shows the expected outcome after executing the above example.
 
 ![AddDetailExpectedOutcome](images/AddDetailExpectedOutcome.png)
@@ -421,7 +420,7 @@ Format: `detail edit STUDENT_INDEX i/DETAIL_INDEX t/DETAIL_TEXT`
 Examples:
 * `detail edit 1 i/2 t/Handsome` edits the 2nd detail for the 1st student in **Reeve**, to "Handsome".
 
-Expected Outcome:
+Expected outcome:
 The following figure (Figure 10) shows the expected outcome after executing the above example.
 
 ![EditDetailExpectedOutcome](images/EditDetailExpectedOutcome.png)
@@ -440,7 +439,7 @@ Format: `detail delete STUDENT_INDEX i/DETAIL_INDEX`
 Examples:
 * `detail delete 1 i/1` deletes the 1st detail for the 1st student in **Reeve**.
 
-Expected Outcome:
+Expected outcome:
 The following figure (Figure 11) shows the expected outcome after executing the above example.
 
 ![DeleteDetailExpectedOutcome](images/DeleteDetailExpectedOutcome.png)
@@ -542,7 +541,7 @@ Format: `question add STUDENT_INDEX t/QUESTION_TEXT`
 Example:
 * `question add 1 t/How do birds fly?` records "How do birds fly?" as a question from the 1st student in **Reeve**.
 
-Expected Outcome:
+Expected outcome:
 
 The following figure (Figure 14) shows the result of recording "How do I pass CS2101?" as a new question from Bernice Yu.
 
@@ -573,7 +572,7 @@ Format: `question solve STUDENT_INDEX i/QUESTION_INDEX t/SOLUTION_TEXT`
 Example:
 * `question solve 1 i/1 t/Read a book.` marks the 1st question of the 1st student in **Reeve** as answered.
 
-Expected Outcome:
+Expected outcome:
 
 The following figure (Figure 15) shows the result of resolving Bernice's second question.
 
@@ -597,7 +596,7 @@ Format: `question delete STUDENT_INDEX i/QUESTION_INDEX`
 Example:
 * `question delete 1 i/1` deletes the 1st question of the 1st student in **Reeve**.
 
-Expected Outcome:
+Expected outcome:
 
 The following figure (Figure 16) shows the result of deleting Bernice's second question.
 
@@ -740,7 +739,7 @@ Examples:
 * `attendance add 1 d/31/10/2020 a/absent` adds to the 1st student in **Reeve** a new attendance record for a
 lesson on 31 Oct 2020, where he was absent, and the tutor has no feedback for him.
 
-Expected Outcome:
+Expected outcome:
 The following figure (Figure 21) shows the expected outcome after executing the above example.
 
 ![AddAttendanceExpectedOutcome](images/AddAttendanceExpectedOutcome.png)
@@ -758,7 +757,7 @@ Format: `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`
 Example:
 * `attendance delete 1 d/06/05/2010` deletes the attendance with the date 6 Apr 2020 from the 1st student in the displayed students list in **Reeve**.
 
-Expected Outcome:
+Expected outcome:
 The following figure (Figure 22) shows the expected outcome after executing the above example.
 
 ![DeleteAttendanceExpectedOutcome](images/DeleteAttendanceExpectedOutcome.png)

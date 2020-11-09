@@ -38,8 +38,10 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
     * Added documentation for the features `edit` ([\#37](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/37)) , `detail` ([\#102](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/102)) and `attendance` ([\#129](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/129)).
     * Added Table of Contents ([\#129](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/129)).
     * Updated the order, and content of Command summary ([\#147](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/147))
+    * Added Figure numbering, aimed to make document consistent ([\#262](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/262))  
   * Developer Guide:
     * Added implementation details of the `edit` ([\#113](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/113)), `detail` ([\#229](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/229)) and `attendance` ([\#229](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/229)) features.
+    * Added Figure numbering, aimed to make document consistent ()
 
 * **Community**:
   * Reviewed PRs (with non-trivial review comments): [\#71](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/71), [\#77](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/77), [\#56](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/56)
