@@ -83,7 +83,8 @@ public class Amount implements Comparable<Amount> {
     }
 
     private static boolean isWithinMinTermRange(BigDecimal value) {
-        return value.compareTo(MAX_VALUE.multiply(new BigDecimal("100"))) <= 0 && value.compareTo(MIN_VALUE.multiply(new BigDecimal("100"))) >= 0;
+        return value.compareTo(MAX_VALUE.multiply(new BigDecimal("100"))) <= 0
+                && value.compareTo(MIN_VALUE.multiply(new BigDecimal("100"))) >= 0;
     }
 
     /**
