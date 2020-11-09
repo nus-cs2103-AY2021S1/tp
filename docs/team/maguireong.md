@@ -49,7 +49,7 @@ Given below are my contributions to the project.
         * Reformat User Guide to ensure consistency. [\#231](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/231), [\#267](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/267)
     
   * Developer Guide:
-    * Added Use Case, UML diagrams, description and implementation details of the Add Client [\#45](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/45), Edit Session and Edit Schedule features. [\#153](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/153)
+    * Added Use Case, UML diagrams, description and implementation details of the Edit Session and Edit Schedule features. [\#153](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/153)
     * Reformat User Guide to ensure consistency. [\#231](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/231), [\#267](https://github.com/AY2021S1-CS2103T-T13-3/tp/pull/267)
     
 * **Review or mentoring contributions**:
