@@ -30,6 +30,8 @@ I was responsible for implementing the following features of NUStorage:
         - Editing records
 - Test cases for the above
 
+<div style="page-break-after: always;"></div>
+
 ### Contributions to User Guide
 
 I contributed to the finance commands for the user guide related to the operations listed above.
