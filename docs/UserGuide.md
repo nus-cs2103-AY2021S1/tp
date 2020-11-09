@@ -838,6 +838,9 @@ You can find the comprehensive list of commands in the table below.
 | Find | Client by Name | `cfind KEYWORD [MORE_KEYWORDS]` |
 
 
+---
+
+
 # 6 Acknowledgement
 * This project uses libraries from [ControlsFX](https://github.com/controlsfx/controlsfx)
 
