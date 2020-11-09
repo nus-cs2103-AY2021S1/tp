@@ -64,6 +64,8 @@ For example, the `Logic` component (see the class diagram given below) defines i
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 <br/>*Figure 2: Class Diagram for Logic Component*
 
+The sections below give more details of each component.
+
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
