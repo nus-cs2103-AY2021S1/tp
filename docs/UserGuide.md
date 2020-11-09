@@ -281,7 +281,7 @@ For example:
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **Tip:** To view a list of changes that can be undone, use the [`view-history` command](#viewing-change-history--view-history).
+:bulb: **Tip:** To view a list of changes that can be undone, use the [`view-history`](#viewing-change-history--view-history) command.
 
 </div>
 
