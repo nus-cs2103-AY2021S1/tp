@@ -137,8 +137,6 @@ The `Person` sub-component,
 
 ![Structure of the Person Model Component](images/PersonModelClassDiagram.png)
 
-Figure x. Class diagram showing the structure of `Person` sub-component
-
 Given below is the class diagram showing the details of the `SalesRecordEntry` model:
 
 ![Structure of the SalesRecordEntry sub-component](images/SalesRecordEntryModelClassDiagram.png)
@@ -163,16 +161,12 @@ Given below is the class diagram showing details of the ingredient model:
 
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
-Figure x. Class diagram showing the alternative structure of `Person` sub-component
-
 </div>
 
 
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
-
-Figure x. Class diagram showing the `Storage` structure
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -516,13 +510,10 @@ In tCheck, each employee is modeled as `Person` object. The archiving employee f
 
 ![Structure of the Archive/Unarchive Component](images/ArchiveClassDiagram.png)
 
-*Figure Archive-1. Overview class diagram representation of archiving/unarchiving implementation*
-
 Given below shows how the `c-archive`, `c-unarchive`, and `c-archive-all` mechanism works in steps based on different scenarios. Two activity diagrams are provided before each detailed explanation to describe how tCheck handles an archiving/unarchiving commands. Three sequence diagrams are attached after the description
 
 ##### 1. Archive an employee
-
-*Figure Archive-2. Activity diagram representation of the general flow of archiving of a peron in tCheck*
+![Structure of the Storage Component](images/ArchiveActivityDiagram.png)
 
 User can archive a specific employee (modeled as a `Person` in the code) by entering the `c-archive INDEX` command. The
  following steps describe how this behavior is implemented:
@@ -538,8 +529,6 @@ Step 4: The current `FilteredList` will be updated to only show active `Persons`
 
 ![Structure of the Storage Component](images/ArchiveSequenceDiagram.png)
 
-*Figure Archive-2. Sequence diagram representation of archiving an employee*
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveCommand`
  should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -548,8 +537,6 @@ Step 4: The current `FilteredList` will be updated to only show active `Persons`
 ##### 2. Unarchive an employee
 
 ![Structure of the Storage Component](images/UnarchiveActivityDiagram.png)
-
-*Figure Archive-3. Activity diagram representation of the general flow of unarchiving an employee in tCheck*
 
 User can unarchive an already-archived employee(modeled as `Person` in the code) by entering the `c-unarchive INDEX
 ` command. The following steps describe how this behavior is implemented:
@@ -563,8 +550,6 @@ Step 3: The `Person` will have a new `ArchivedStatus` value, which will be set t
 Step 4: The current `FilteredList` will be updated to only show active `Persons`, facilitated by the predicate `Model#PREDICATE_SHOW_ALL_ACTIVE_PERSONS`
 
 ![Structure of the Storage Component](images/UnarchiveSequenceDiagram.png)
-
-*Figure Archive-4. Sequence diagram representation of unarchiving an employee*
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnarchiveCommand` should
  end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -581,8 +566,6 @@ Step 2: For each `Person` in the observable 'PersonList', `ArchiveAllCommand` wi
 Step 3: The current `FilteredList` will be updated to only show the empty active `Persons`, facilitated by the predicate `Model#PREDICATE_SHOW_ALL_ACTIVE_PERSONS`
 
 ![Structure of the Storage Component](images/ArchiveAllSequenceDiagram.png)
-
-*Figure Archive-5. Sequence diagram representation of archiving all employees*
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveAllCommand` should
  end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
