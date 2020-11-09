@@ -74,7 +74,6 @@ Given below are my contributions to the project.
 [\#189](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/189/)
   
 #### Developer Guide:
-* Formatting edits
 * **Added implementation details of the `delete` feature**: 
 [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#delete-feature)
 * **Added implementation details of the `clear` feature**: 
