@@ -167,22 +167,26 @@ For the good majority of visual learners, we figured to present information in a
 
 5. If double-clicking do not work:
     
-    1. For Windows users, you can type "cmd" in the folder path bar to open up command prompt in that directory and type "java -jar atas.jar" in the command prompt.
+    a. For Windows users, you can type "cmd" in the folder path bar to open up command prompt in that directory and type "java -jar atas.jar" in the command prompt. **(Figure 3.1)**
+    
     ![WindowsCommandPromptStartPage](images/user-guide/3.1-WindowsCommandPromptStartPage.png)
     
     <p align="center"> <sub> <b>Figure 3.1</b>: Welcome page </sub> </p>
     
-    1. For Mac users, you can right click the folder you saved atas.jar in and click on "New Terminal at Folder" and type "java -jar atas.jar" in the terminal.
+    b. For Mac users, you can right click the folder you saved atas.jar in and click on "New Terminal at Folder" and type "java -jar atas.jar" in the terminal. **(Figure 3.2)**
+    
     ![MacbookTerminalStartPage](images/user-guide/3.2-MacbookTerminalStartPage.png)
     
     <p align="center"> <sub> <b>Figure 3.2</b>: Welcome page </sub> </p>
 
 6. The GUI similar to the below image should appear in a few seconds.<br>
+
     ![WelcomePage](images/user-guide/3.3-WelcomePage.png)
 
     <p align="center"> <sub> <b>Figure 3.3</b>: Welcome page </sub> </p>
 
 7. Now click on the Student tab and notice how the app contains some sample data. <br/>
+
     ![StudentSampleData](images/user-guide/3.4-StudentSampleData.png)
 
     <p align="center"> <sub> <b>Figure 3.4</b>: Student sample data </sub> </p>
@@ -951,7 +955,7 @@ editses INDEX (s/UPDATED_NAME) (d/UPDATED_DATE)
 <div markdown="block" class="alert alert-success">
 
 **:green_book: Example**:
-* `editses 1 s/Tutorial 6 d/10/10/2020` followed by `yes` edits the 1st session in the session list with a new session name `Tutorial 6` and a new session date `10/10/2020`. **(Figure 5.4.3)**
+* `editses 1 s/Tutorial 6 d/10/10/2020` followed by `yes` updates the 1st session in the session list to a new session name `Tutorial 6` and a new session date `10/10/2020`. **(Figure 5.4.3)**
 
 </div>
 

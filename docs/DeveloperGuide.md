@@ -371,7 +371,7 @@ Step 3. `EnterSessionCommandParser#parse()` checks if there argument passed is v
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If an invalid argument is found, a `ParseException` will be thrown and the execution terminates.
 </div><br>
 
-Step 4. `ModelManager#enterSession()` will be called by `EnterSession#execute()` and the displayed tab will be switched to Current Session. Details of session 2 will be displayed to the user.
+Step 4. `ModelManager#enterSession()` will be called by `EnterSession#execute()` and the displayed tab will be switched to Current Session. Details of session 1 will be displayed to the user.
 
 The following sequence diagram shows how the enter session operation works:
 
