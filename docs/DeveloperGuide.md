@@ -6,6 +6,7 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Introduction**
 
@@ -26,6 +27,7 @@ The intended audience is any person who is looking to understand the system arch
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -47,6 +49,8 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
+<div style="page-break-after: always;"></div>
+
 The rest of the App consists of four components.
 
 * [**`UI`**](#ui-component): The UI of the App.
@@ -63,6 +67,8 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete -activity 1`.
@@ -70,6 +76,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -86,6 +94,8 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -106,6 +116,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 
@@ -135,6 +147,7 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -167,6 +180,8 @@ The class diagram below shows the relevant classes involved:
 
 ![GoToUiClassDiagram](images/GoToUiClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Navigating between directories
 
 `MainWindow` and `CommandResult` facilitates the navigation between directories.
@@ -181,6 +196,8 @@ has been navigated to.
 The activity diagram below illustrates the flow of execution when the UI decides which directory to view:
 
 ![GoToUiActivityDiagram](images/GoToUiActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 Below is a sequence diagram that shows a scenario whereby the UI navigates to a specified `travelplan` in `Wanderlust`:
 
@@ -198,6 +215,8 @@ Aspect: How navigation between directory works
 - **Alternative 2**: Passing the Directory as a parameter in CommandResult method
   - Pros: Easy to implement since we just have to return a new CommandResult which has an additional parameter of Directory.
   - Cons: Break the abstraction layer as Commands (Logic) should not have to be aware of how the Model is working.
+
+<div style="page-break-after: always;"></div>
 
 ### Editing Information
 
@@ -235,12 +254,16 @@ Hence, child classes of EditCommand accounts for editing valid types of field. E
 `TravelPlan` contains duplicates when two instances have the same name
 When the editing of an object results in a duplicated edited object within travelplan list or travelplan object list, an error will be thrown.
 
+<div style="page-break-after: always;"></div>
+
 Given below is the class diagram showing relevant classes involved
 ![EditCommandClassDiagramDiagram](images/EditCommandClassDiagram.png)
 
 #### Editing a TravelPlan or TravelPlanObject
 Given below is an example usage scenario and how the edit mechanism behaves at each step.
 ![EditActivityDiagram](images/EditActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 Below is a sequence diagram that shows a scenario whereby the user edits a specified activity in Wanderlust
 
@@ -254,6 +277,7 @@ the image below contains further details from the `execute` reference frame from
 
 ![EditSequenceDiagram](images/EditSequenceRef.png)
 
+<div style="page-break-after: always;"></div>
 
 ### Design Consideration
 Aspect: How edit executes
@@ -265,6 +289,8 @@ Aspect: How edit executes
 - **Alternative 2**: Require the user to switch travel plan object tabs within the travelplan to edit the specified travelplan object
   - Pros: User will not require to specify the type of travelplan object to be edited
   - Cons: Still require user to specify editing of a travelplan object or travelplan
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a TravelPlan or TravelPlanObject
 
@@ -283,6 +309,8 @@ The activity diagram below shows a scenario whereby a user adds inputs an add co
 
 ![AddActivityDiagram](images/AddActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 The sequence diagram below shows a scenario whereby a user adds an `Activity` to the `TravelPlan`/`Wishlist` in the current directory:
 
 ![AddActivitySequenceDiagram](images/AddActivitySequenceDiagram.png)
@@ -298,6 +326,8 @@ Aspect: How to add `TravelPlanObject`s to the `TravelPlan` in the current `Direc
 - **Alternative 2**: Using a `AddTravelPlanObjectCommand` class.
   - Pros: Lesser repetition of code.
   - Cons: Lesser abstraction.
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting a TravelPlan or TravelPlanObject
 
@@ -330,6 +360,7 @@ Aspect: How to delete a `TravelPlanObject` from the `TravelPlan` in the current 
     - Pros: Lesser repetition of code.
     - Cons: Lesser abstraction and the logic will be reliant on one class.
 
+<div style="page-break-after: always;"></div>
 
 ### Copy feature
 
@@ -345,6 +376,8 @@ the `filteredWishlist` in `Model`. This means, even if the `find` command is use
 wishlist, the indexes in the `filteredWishlist` will be updated accordingly (and so will the Ui). Hence, as long as the
 user uses the index as displayed in the Ui, the correct activity will be referenced.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram shows how the copy operation works:
 
@@ -385,6 +418,8 @@ Aspect: How to duplicate activity *(deep/shallow copy)*
 
 The move mechanism makes use of both the copy and delete mechanism.
 
+<div style="page-break-after: always;"></div>
+
 ### Find Feature
 
 #### Implementation
@@ -406,6 +441,8 @@ The class diagram shows the relevant classes involved:
 
 ![FindCommandClassDiagram](images/DGFindCommandClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the find operation works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
@@ -415,6 +452,7 @@ The following activity diagram summarizes what happens when a user executes the 
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -444,6 +482,8 @@ The following activity diagram summarizes what happens when a user executes the 
 * Manage travel plans faster than using a typical mouse/GUI driven app.
 Removes the need for a physical travel planner. Increase the motivation to plan travelling by making planning easier and interactive.
 
+<div style="page-break-after: always;"></div>
+
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -467,6 +507,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                                       | have a move and copy feature | move/copy activities in my wishlist to my travel plan easily  |
 | `*`      | user                                       | be able to switch tabs | view my activities, accommodation and friends easily |
 
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -520,6 +561,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC04 - Add an activity**
 
 **MSS**
@@ -564,6 +607,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC06 - Add a friend**
 
 **MSS**
@@ -607,6 +652,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Wanderlust shows an error message.
 
       Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC08 - Delete an activity**
 
@@ -662,6 +709,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC10 - Delete a friend**
 
 **MSS**
@@ -715,6 +764,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. Wanderlust shows an error message.
 
      Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC12 - Edit an activity**
 
@@ -770,6 +821,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC14 - Edit a friend**
 
 **MSS**
@@ -818,6 +871,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. Wanderlust shows an error message.
 
       Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC16 - View friends in travel plan**
 
@@ -880,6 +935,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC20 - Sort accommodation list in travel plan**
 
 **MSS**
@@ -939,6 +996,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. Wanderlust returns an empty list.
 
     Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC23 - Find accommodation in travel plan**
 
@@ -1000,6 +1059,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC26 - Copy activity from wishlist to travel plan**
 
 **MSS**
@@ -1051,6 +1112,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 8.  Should not crash when data is given in compatible formats.
 9.  The app should be accessible via the downloaded JAR file without any other installations needed.
 
+<div style="page-break-after: always;"></div>
 
 ### Glossary
 
@@ -1065,6 +1127,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **View**: Use the `show` command to provide a list of specified travel plan object
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -1089,6 +1152,8 @@ testers are expected to do more *exploratory* testing.
 
    b. Re-launch the app by running the jar file in the command prompt and enter `java -jar wanderlust.jar`.<br>
        Expected: The most recent window size and location is retained.
+
+<div style="page-break-after: always;"></div>
 
 ### Delete
 
@@ -1116,6 +1181,7 @@ testers are expected to do more *exploratory* testing.
     d. Other incorrect delete commands to try: `delete`, `delete -travelplan x`, `...` (where x is larger than the list size)<br>
         Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
 
 ### Add
 
@@ -1149,6 +1215,7 @@ testers are expected to do more *exploratory* testing.
     d. Other incorrect add commands to try: `add`, `add -travelplan n/Europe`<br>
         Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
 
 ### Edit
  - Note `x` refers to a valid index
@@ -1181,6 +1248,8 @@ testers are expected to do more *exploratory* testing.
    d. Other incorrect add commands to try: `edit -travelplan`<br>
       Expected: Error message is thrown.
 
+<div style="page-break-after: always;"></div>
+
 ### Show
 
 1. Showing an activity/accommodation/friend while in a travel plan directory. We will use `accommodation` as an example.
@@ -1198,6 +1267,8 @@ testers are expected to do more *exploratory* testing.
 
    e. Other incorrect show commands to try: `show -accommodation c/20`<br>
       Expected: Error message is thrown.
+
+<div style="page-break-after: always;"></div>
 
 ### Find
  - Note `y` refers to keyword provided by user
@@ -1232,6 +1303,8 @@ testers are expected to do more *exploratory* testing.
    c. Other incorrect add commands to try: `find`, `find -friend y`<br>
       Expected: Invalid command. Error message is thrown.
 
+<div style="page-break-after: always;"></div>
+
 ### Goto
 
 1. Navigate to a `travelplan` or `wishlist` directory.
@@ -1250,6 +1323,8 @@ testers are expected to do more *exploratory* testing.
 
    e. Other incorrect add commands to try: `goto`, `goto -random`<br>
       Expected: Error message is thrown.
+
+<div style="page-break-after: always;"></div>
 
 ### Sort
 
@@ -1281,6 +1356,8 @@ testers are expected to do more *exploratory* testing.
 
    e. Other incorrect sort commands to try: `sort`, `sort -friend name`<br>
       Expected: Error message is thrown.
+
+<div style="page-break-after: always;"></div>
 
 ### Copy
 
@@ -1328,6 +1405,8 @@ testers are expected to do more *exploratory* testing.
    e. Other incorrect copy commands to try: `move`, `move x`, `move y`<br>
       Expected: Error message is thrown.
 
+<div style="page-break-after: always;"></div>
+
 ### Clear
 
 1. Clear the entire data in wanderlust and returns an empty travel planner.
@@ -1335,6 +1414,7 @@ testers are expected to do more *exploratory* testing.
     a. Test case: `clear`<br>
        Expected: Returns an empty travel planner. Existing data is wiped.
 
+<div style="page-break-after: always;"></div>
 
 ## *Appendix: Effort*
 
@@ -1365,6 +1445,8 @@ able to display the correct `travelplan` or `wishlist`.
 
 Additional efforts were also put into validating user input and ensuring that _wanderlust_'s parser can handle unexpected input smoothly.
 
+<div style="page-break-after: always;"></div>
+
 ### Storage
 The `Storage` was extended to store more classes of _wanderlust_. `activity`, `accommodation`, and `friend` objects have to be organised and
 stored in a `travelplan`, and all these data will be placed in a JSON file in an organised manner. Essentially, the JSON file will contain
@@ -1376,9 +1458,13 @@ Significant time and effort were put into discussing and planning the best way t
 
 ### Ui
 The `Ui` component took us the most amount of time. We have to redesign the entire AB3 Ui to fit _wanderlust_ design.
-Alot of effort was placed in planning the structure of the `Ui` so that our user interface will be user-friendly and appealing.
+A lot of effort was placed in planning the structure of the `Ui` so that our user interface will be user-friendly and appealing.
 Furthermore, additional logic of navigating between travel plans and switching between the activity/accommodation/friend tabs was implemented
-so that users can use the application smoothly. We also spent a considerable amount of time in studying javafxml so that we are able to implement an
+so that users can use the application smoothly. The logic of handling 3 different objects as opposed to just 1 in AB3
+turned out to be far more complex than imagined, and we had to do multiple rounds of experimenting and refactoring to
+work within certain constraints of JavaFX. One example is that JavaFX's ListView does not accept wildcard-types, thus we
+could not simply use `? extends TravelPlanObject` in the `TravelPlanObjectPanel`. This led us to ultimately make use of tab panes
+to handle the 3 TravelPlanObject types differently. We also spent a considerable amount of time in studying javafxml and css so that we are able to implement an
 entirely new UI with icons and navigation options, making it a more interactive experience for the users as compared to the single page view of AB3's Ui.
 
 ### Overall
