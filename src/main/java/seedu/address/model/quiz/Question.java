@@ -90,5 +90,4 @@ public abstract class Question implements Comparable<Question> {
         return otherQuestion != null
                 && otherQuestion.getPrompt().equals(getPrompt());
     }
-
 }
