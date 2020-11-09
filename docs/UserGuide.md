@@ -273,10 +273,11 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 :information_source: You must provide at least one search parameter.
 
-<div markdown="block" class="alert alert-danger">
-:exclamation: Take note that only flashcards which fulfill **all** the specified search parameters will be displayed. Flashcards that fulfill only some search parameters will not be diplayed.
-
 </div>
+
+<div markdown="block" class="alert alert-danger">
+
+:exclamation: Take note that only flashcards which fulfill **all** the specified search parameters will be displayed. Flashcards that fulfill only some search parameters will not be diplayed.
 
 </div>
 
