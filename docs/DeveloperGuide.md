@@ -444,7 +444,7 @@ the ingredients. Since all ingredients' levels are already zero except `Milk`, t
 calls `Model#setIngredient(Ingredient target, Ingredient newAmount)`, causing the ingredient `target`, which is `Milk`, 
 to be replaced by the ingredient `newAmount` with the same ingredient name and a zero ingredient's level.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If there are multiple ingredients that 
+<div markdown="span" class="alert alert-info">:information_source: **Notes:** If there are multiple ingredients that 
 have non-zero ingredient's levels, `Model#setIngredient(Ingredient target, Ingredient newAmount)` will be called 
 multiple times, each time to replace an ingredient with a new ingredient with the same ingredient name and a zero 
 ingredient's level.
