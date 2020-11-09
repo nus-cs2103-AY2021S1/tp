@@ -111,19 +111,20 @@ Here are some general information you would need to know about our commands as y
 
 :information_source: **Notes about input format:** <br>
 
-In Eva, you can store information about staff and applicants. Information includes details like name, phone number 
-and more. As such, in order to store these details in a neat and tidy manner, be sure to follow these guidelines
-on storing these details as shown in the table below.<br>
+In Eva, using our commands, you can store and access information about staff and applicants. Information includes details like name, phone number 
+and more. As such, in order to store and access these details in a neat and tidy manner, be sure to follow these guidelines
+on storing and accessing these details as shown in the table below.<br>
 <br>
 
-
-| Field       | Constraints                                                                                                                                                                                                                                                                                                                                             | Example                                                                                                                                                                 |
-|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**    | can contain only alphanumeric characters and has a character limit of 70 characters.                                                                                                                                                                                                                                                                    | `John Doe`                                                                                                                                                              |
-| **Phone**   | can only contain numbers, and must be between 8 and 20 digits long.                                                                                                                                                                                                                                                                                     | `6590018978`                                                                                                                                                            |
-| **Email**   | should be of the format local-part@domain where the local-part should contain alphanumeric characters or special characters which includes ``( !#$%&'*+/=?`{&#124;}~^.-_ )`` excluding the parentheses.The domain name should have at least 2 characters and contain only alphanumeric with a period or a hyphen for   the characters in between if needed. | `john_doe@email.com`                                                                                                                                                    |
-| **Tag**     | can only contain alphanumeric characters.                                                                                                                                                                                                                                                                                                               | `hardworking`                                                                                                                                                           |
-| **Date**    | must be in the format `DD/MM/YYYY`                                                                                                                                                                                                                                                                                                                    | 6th of July 2020 represented as `06/07/2020`<br> Note: Eva automatically corrects wrong dates like 30/02/2020 and 31/11/2020 to 29/02/2020 and 30/11/2020 respectively. |
+<table>
+<tr><th>Field</th><th>Constraints</th><th>Example</th></tr>
+<tr><td><code><strong>NAME</strong></code></td><td>can contain only alphanumeric characters, cannot be blank, and has a character limit of 70 characters.</td><td><code>John Doe</code></td></tr>
+<tr><td><code><strong>EMAIL</strong></code></td><td>should be of the format local-part@domain <br>where the local-part should contain alphanumeric characters or special characters which includes the characters !#$%&'*+/=?`{&#124;}~^.-_ <br>The domain name should have at least 2 characters and contain only alphanumeric with a period or a hyphen for the characters in between if needed.</td><td>john_Doe12345@example123.com</td></tr>
+<tr><td><code><strong>PHONE</strong></code></td><td>can only contain numbers, and must be between 8 and 20 digits long. </td><td><code>6590018978</code> </td></tr>
+<tr><td><code><strong>TAG</strong></code></td><td> can only contain alphanumeric characters, cannot be blank, and has a character limit of 25 characters.</td><td><code>hardworking</code></td></tr>
+<tr><td><code><strong>INDEX</strong></code></td><td>The index of the staff or applicant<br> <br> It must be a valid index number.</td><td><code>2</code> this index will represent the staff/applicant with index-2 in the displayed list.</td></tr>
+<tr><td><code><strong>DATE</strong></code></td><td>must be in the format <code>DD/MM/YYYY</code></td><td><code>06/07/2020</code> represents the 6th of July 2020<br> Note: Eva automatically corrects wrong dates like <code>30/02/2020</code> and <code>31/11/2020</code> to <code>29/02/2020</code> and <code>30/11/2020</code> respectively.</td></tr>
+</table>
 
 </div>
 
