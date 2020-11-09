@@ -8,17 +8,21 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Design**
 
 ### Architecture
 
-![Architecture Diagram](images/ArchitectureDiagram.png)
+<img src="images/ArchitectureDiagram.png" width="450" />
 
 The ***Architecture Diagram*** given above explains the high-level design of HelloFile. Given below is a quick overview of each component.
 
@@ -52,6 +56,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -67,6 +73,8 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -88,6 +96,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -103,6 +113,7 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Tag>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -125,11 +136,15 @@ This diagram shows how the `AddressBook` is saved to json file after executing a
 This diagram shows how the `AddressBook` is read from json file when executing the app.
 ![ReadSuccessSequence](images/ReadStorageSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -144,6 +159,8 @@ can take in a relative path or absolute path.<br>
 This is the class diagram for Tag <br>
 ![TagClassDiagram](images/TagClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Data Structure: Label
 [Label](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/label/Label.java)
 stores a `Label`, which is an optional field in `Tag`. A `Label` must only contain alphanumeric characters, and up to 
@@ -152,6 +169,8 @@ serves as extra information of a tagged file.
 
 This sequence diagram shows a successful execution of `LabelCommand`.<br>
 ![LabelCommandSuccessExecution](images/LabelCommandSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Adding of Tags: TagCommand
 
@@ -173,6 +192,7 @@ path to the current path stored in `Model`.
 We designed `TagCommand` this way so that the users can use our File Explorer interface to navigate to
 a folder, then tag files using relative file addresses.
 
+<div style="page-break-after: always;"></div>
 
 ### Opening of Tags: OpenCommand
 
@@ -201,6 +221,8 @@ Regretfully, we have yet to find an elegant solution for this problem after cons
 The current solution is running `Desktop.open()` on a separate thread, which solves the problem.
 We have tested this command under Windows and Ubuntu Linux.
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting Tags: UntagCommand
 
 [UntagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/UntagCommand.java)
@@ -210,6 +232,8 @@ This command checks the existence of the `Tag` with `model.findFilteredTagList()
 
 This sequence diagram shows a successful execution of `UntagCommand`.<br>
 ![UntagCommandSuccessExecution](images/UntagSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Renaming of Tags: RetagCommand
 
@@ -222,6 +246,8 @@ It then sets the tag with the new `TagName`.
 This sequence diagram shows a successful execution of `RetagCommand`.<br>
 ![RetagCommandSuccessExecution](images/RetagSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Changing of Directory: CdCommand
 
 [CdCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/CdCommand.java)
@@ -229,7 +255,8 @@ changes the current directory of the HelloFile internal File Explorer. `CommandE
 is invalid, cannot be found, or cannot be set as the current directory (*e.g. the given directory is not a folder*).
 
 This sequence diagram shows a successful execution of `CdCommand`.<br>
-![CdCommandSuccessExecution](images/CdCommandSuccessSequenceDiagram.png)
+
+<img src="images/CdCommandSuccessSequenceDiagram.png" width="450" />
 
 CdCommand gets the `CurrentPath` from `Model`, then it gets the new path to set using the current `CurrentPath`. 
 After that, `CdCommand` calls `setAddress` method in `CurrentPath` to set the current directory to the new address.
@@ -237,6 +264,8 @@ Lastly, `CdCommand` returns a `CommandResult` which will be used as the feedback
 If `CdCommand` fails to get a valid new path, `CommandException` will be thrown to inform the user why the command failed.
 
 The UI components of Internal File Explorer will update themselves after a success execution of `CdCommand`.
+
+<div style="page-break-after: always;"></div>
 
 ### Find a specific tag: FindCommand
 
@@ -246,6 +275,8 @@ applies a `TagContainsCharPredicate` to the list of `FilteredTags` in `Model`. T
 
 This is the sequence diagram of the FindCommand.<br>  
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Showing a tag's file path: ShowCommand
 
@@ -258,6 +289,8 @@ This diagram shows a successful execution of `ShowCommand` to show the informati
 
 ShowCommand gets the specified tag by applying `TagNameEqualsKeywordPredicate` that extends from `java.util.function.predicate` to `ObservableList<Tag>` using `model.findFilteredTagList()`.
 
+<div style="page-break-after: always;"></div>
+
 ### Listing out all the tags: ListCommand
 
 [ListCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ListCommand.java)
@@ -268,6 +301,8 @@ This diagram shows a successful execution of `ListCommand`.<br>
 ![ListSuccessSequence](images/ListCommandSequenceDiagram.png)
 
 ListCommand updates the `ObservableList<Tag>` by using `java.util.function.predicate`.
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting a tag's label: UnlabelCommand
 
@@ -282,6 +317,8 @@ This diagram shows a successful execution of `UnlabelCommand` using 1 label as t
 UnlabelCommand checks the existence of the specified `Tag` using `model.findFilteredTagList()`. 
 It takes the `Set<Label>` of the `Tag` and deletes all the labels that matches with user's input with the help of `java.util.stream`. 
 Then, a new `Tag` is created using the modified `Set<Label>` and added back to the `AddressBook` using `model.setTag()`.
+
+<div style="page-break-after: always;"></div>
 
 ### Internal File Explorer
 
@@ -317,6 +354,8 @@ persist across every use of our app.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -326,6 +365,8 @@ persist across every use of our app.
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -343,6 +384,7 @@ persist across every use of our app.
 **Value proposition**: CS students can manage/access their files by typing
                        and using a simple GUI. Help CS students to see file relations easily.
 
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -364,7 +406,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | Forgetful user who always forget where his files are located   | tag frequently used files with a easy to remember tag | locate my files easily                                        |
 | `*`      | Intermediate user                                              | delete tagged files                                   | not be distracted by it.                                      |
 
-
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -678,6 +720,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         
 <br />
 
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
