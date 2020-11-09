@@ -345,6 +345,3 @@ The TAskmaster stores the running list of students and sessions automatically to
 
 Avoid modifying the files as this may cause the program to read the input as invalid on startup and load with an
 empty student list without any sessions.
-
-## Frequently Asked Questions (FAQ)
-How to download java? [Here](https://lmgtfy.com/?q=how+to+download+java)
