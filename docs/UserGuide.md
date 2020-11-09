@@ -99,14 +99,15 @@ In this section, we will be looking at a series of commands that **Hospify** sup
 
 ### 3.1 Displaying usage instructions: `help` (by Peh Jun Siang)
 
-The `help` command shows the list of all the commands and their usages with examples supported by **Hospify**.
+The `help` command shows you the list of all the commands and their usages with examples supported by **Hospify**.
 
 Format: `help`
 
-After executing the `help`, the **sizable Help Window** pops up as shown below. The commands are sorted alphabetically.
+After executing `help`, the **sizable Help Window** pops up as shown below in **Figure 2.1**. The commands are sorted alphabetically.
 
-![tp_help_command](images/helpWindow.PNG)\
-Figure 2.1 Help window
+![tp_help_command](images/helpWindow.PNG)
+
+Figure 2.1 Sizable Help Window
 
 <div markdown="block" class="alert alert-primary">
 
@@ -376,6 +377,7 @@ You can simply **double click** on the patient to display all the appointments o
 
 ![show appointments via gui](images/showAppt/showAppt_gui.PNG)
 Figure 10.1 Show appointments via GUI
+
 ###### 3.9.2 Using the `Command Line`
 If the number of patients is too large, it might be difficult to find the patient's information to click.
 In that case, you can use the command line to show the patient's appointments.
@@ -393,7 +395,7 @@ The **Appointment window should pop up** after successfully running the command 
 Figure 10.3 Appointments window with appointments of patient
 
 <div markdown="span" class="alert alert-primary">
-**:bulb: Tip:** You can **click on the **DATE** header** to sort the appointments from earliest to latest or latest to earliest.
+**:bulb: Tip:** You can click on the **DATE** header to sort the appointments from earliest to latest or latest to earliest.
 </div>
 
 <div markdown="span" class="alert alert-warning">
