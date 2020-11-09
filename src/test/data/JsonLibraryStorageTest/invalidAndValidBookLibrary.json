@@ -1,0 +1,13 @@
+{
+  "books": [ {
+    "name": "Valid Book",
+    "isbn": "9482424",
+    "email": "hans@example.com",
+    "language": "4th street"
+  }, {
+    "name": "Book With Invalid Isbn Field",
+    "isbn": "948asdf2424",
+    "email": "hans@example.com",
+    "language": "4th street"
+  } ]
+}

@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":LibraryParser" as LibraryParser LOGIC_COLOR
+participant ":RandomCommandParser" as RandomCommandParser LOGIC_COLOR
+participant "a:RandomCommand" as RandomCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+
+[-> LogicManager : execute("random Classics")
+activate LogicManager
+
+LogicManager -> LibraryParser : parseCommand("random Classics")
+activate LibraryParser
+
+create RandomCommandParser
+LibraryParser -> RandomCommandParser
+activate RandomCommandParser
+
+RandomCommandParser --> LibraryParser
+deactivate RandomCommandParser
+
+LibraryParser -> RandomCommandParser : parse("Classics")
+activate RandomCommandParser
+
+create RandomCommand
+RandomCommandParser -> RandomCommand
+activate RandomCommand
+
+RandomCommand --> RandomCommandParser : a
+deactivate RandomCommand
+
+RandomCommandParser --> LibraryParser : a
+deactivate RandomCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+RandomCommandParser -[hidden]-> LibraryParser
+destroy RandomCommandParser
+
+LibraryParser --> LogicManager : a
+deactivate LibraryParser
+
+LogicManager -> RandomCommand : execute()
+activate RandomCommand
+
+RandomCommand -> Model : updateFilteredBookList(...)
+activate Model
+
+Model --> RandomCommand
+deactivate Model
+
+create CommandResult
+RandomCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> RandomCommand
+deactivate CommandResult
+
+RandomCommand --> LogicManager : result
+deactivate RandomCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

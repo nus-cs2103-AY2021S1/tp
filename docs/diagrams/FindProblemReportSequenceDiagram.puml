@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":LibraryParser" as LibraryParser LOGIC_COLOR
+participant ":FindProblemCommandParser" as FindProblemCommandParser LOGIC_COLOR
+participant "a:FindProblemCommand" as FindProblemCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("findpr chair")
+activate LogicManager
+
+LogicManager -> LibraryParser : parseCommand("findpr chair")
+activate LibraryParser
+
+create FindProblemCommandParser
+LibraryParser -> FindProblemCommandParser
+activate FindProblemCommandParser
+
+FindProblemCommandParser --> LibraryParser
+deactivate FindProblemCommandParser
+
+LibraryParser -> FindProblemCommandParser : parse("chair")
+activate FindProblemCommandParser
+
+create FindProblemCommand
+FindProblemCommandParser -> FindProblemCommand
+activate FindProblemCommand
+
+FindProblemCommand --> FindProblemCommandParser : a
+deactivate FindProblemCommand
+
+FindProblemCommandParser --> LibraryParser : a
+deactivate FindProblemCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindProblemCommandParser -[hidden]-> LibraryParser
+destroy FindProblemCommandParser
+
+LibraryParser --> LogicManager : a
+deactivate LibraryParser
+
+LogicManager -> FindProblemCommand : execute()
+activate FindProblemCommand
+
+FindProblemCommand -> Model : updateFilteredProblemList(...)
+activate Model
+
+Model --> FindProblemCommand
+deactivate Model
+
+create CommandResult
+FindProblemCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindProblemCommand
+deactivate CommandResult
+
+FindProblemCommand --> LogicManager : result
+deactivate FindProblemCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

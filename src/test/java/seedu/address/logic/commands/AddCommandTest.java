@@ -16,44 +16,46 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.Library;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyLibrary;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.book.Book;
+import seedu.address.model.problem.Problem;
+import seedu.address.testutil.BookBuilder;
+import seedu.address.ui.Mode;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullBook_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_bookAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingBookAdded modelStub = new ModelStubAcceptingBookAdded();
+        Book validBook = new BookBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validBook).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validBook), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validBook), modelStub.booksAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateBook_throwsCommandException() {
+        Book validBook = new BookBuilder().build();
+        AddCommand addCommand = new AddCommand(validBook);
+        ModelStub modelStub = new ModelStubWithBook(validBook);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_BOOK, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Book alice = new BookBuilder().withName("Alice").build();
+        Book bob = new BookBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -70,7 +72,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different book -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -99,95 +101,161 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getLibraryFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setLibraryFilePath(Path filePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addBook(Book book) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setLibrary(ReadOnlyLibrary newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyLibrary getLibrary() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasBook(Book book) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deleteBook(Book target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setBook(Book target, Book editedBook) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Book> getFilteredBookList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredBookList(Predicate<Book> predicate, Mode mode) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns true if a book with the same identity as {@code book} exists in the library.
+         *
+         * @param problem
+         */
+        @Override
+        public boolean hasProblem(Problem problem) {
+            return false;
+        }
+
+        /**
+         * Deletes the given book.
+         * The book must exist in the library.
+         *
+         * @param problem
+         */
+        @Override
+        public void deleteProblem(Problem problem) {
+
+        }
+
+        @Override
+        public void addProblem(Problem problem) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Replaces the given book {@code target} with {@code editedBook}.
+         * {@code target} must exist in the library.
+         * The book identity of {@code editedBook} must not be the same as another existing book in the library.
+         *
+         * @param target
+         * @param problem
+         */
+        @Override
+        public void setProblem(Problem target, Problem problem) {
+
+        }
+
+        /**
+         * Returns an unmodifiable view of the filtered book list
+         */
+        @Override
+        public ObservableList<Problem> getFilteredProblemList() {
+            return null;
+        }
+
+        /**
+         * Updates the filter of the filtered book list to filter by the given {@code predicate}.
+         *
+         * @param predicate
+         * @param mode
+         * @throws NullPointerException if {@code predicate} is null.
+         */
+        @Override
+        public void updateFilteredProblemList(Predicate<Problem> predicate, Mode mode) {
+
+        }
+
+        @Override
+        public String getProblemString() {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+    }
+
+    /**
+     * A Model stub that contains a single book.
+     */
+    private class ModelStubWithBook extends ModelStub {
+        private final Book book;
+
+        ModelStubWithBook(Book book) {
+            requireNonNull(book);
+            this.book = book;
+        }
+
+        @Override
+        public boolean hasBook(Book book) {
+            requireNonNull(book);
+            return this.book.isSameBook(book);
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that always accept the book being added.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubAcceptingBookAdded extends ModelStub {
+        final ArrayList<Book> booksAdded = new ArrayList<>();
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        @Override
+        public boolean hasBook(Book book) {
+            requireNonNull(book);
+            return booksAdded.stream().anyMatch(book::isSameBook);
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
-        }
-    }
-
-    /**
-     * A Model stub that always accept the person being added.
-     */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public void addBook(Book book) {
+            requireNonNull(book);
+            booksAdded.add(book);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyLibrary getLibrary() {
+            return new Library();
         }
     }
 

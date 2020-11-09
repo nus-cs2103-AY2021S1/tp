@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "<<class>>\n:ParseUtil" as ParserUtil LOGIC_COLOR
+participant "e:EditCommand" as EditCommand LOGIC_COLOR
+participant "s:Stocking" as Stocking LOGIC_COLOR
+end box
+
+[-> EditCommandParser : parse("1 s/scienceLb 10 centralLb 30")
+activate EditCommandParser
+
+EditCommandParser -> ParserUtil : parseStocking("scienceLb 10 centralLb 30")
+activate ParserUtil
+
+create Stocking
+ParserUtil -> Stocking
+activate Stocking
+
+Stocking --> ParserUtil : s
+deactivate Stocking
+
+ParserUtil --> EditCommandParser : s
+deactivate ParserUtil
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+EditCommand --> EditCommandParser : e
+deactivate EditCommand
+
+[<--EditCommandParser : e
+deactivate EditCommandParser
+[<-[hidden]- EditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+destroy EditCommandParser
+
+@enduml

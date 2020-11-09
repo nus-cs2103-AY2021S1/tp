@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":LibraryParser" as LibraryParser LOGIC_COLOR
+participant ":DeleteByCommandParser" as DeleteByCommandParser LOGIC_COLOR
+participant "d:DeleteByCommand" as DeleteByCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("deleteby n/Linear Algebra")
+activate LogicManager
+
+LogicManager -> LibraryParser : parseCommand("deleteby n/Linear Algebra")
+activate LibraryParser
+
+create DeleteByCommandParser
+LibraryParser -> DeleteByCommandParser
+activate DeleteByCommandParser
+
+DeleteByCommandParser --> LibraryParser
+deactivate DeleteByCommandParser
+
+LibraryParser -> DeleteByCommandParser : parse("Linear Algebra")
+activate DeleteByCommandParser
+
+create DeleteByCommand
+DeleteByCommandParser -> DeleteByCommand
+activate DeleteByCommand
+
+DeleteByCommand --> DeleteByCommandParser : d
+deactivate DeleteByCommand
+
+DeleteByCommandParser --> LibraryParser : d
+deactivate DeleteByCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteByCommandParser -[hidden]-> LibraryParser
+destroy DeleteByCommandParser
+
+LibraryParser --> LogicManager : d
+deactivate LibraryParser
+
+LogicManager -> DeleteByCommand : execute()
+activate DeleteByCommand
+
+DeleteByCommand -> Model : deleteBook(book)
+activate Model
+
+Model --> DeleteByCommand
+deactivate Model
+
+create CommandResult
+DeleteByCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteByCommand
+deactivate CommandResult
+
+DeleteByCommand --> LogicManager : result
+deactivate DeleteByCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

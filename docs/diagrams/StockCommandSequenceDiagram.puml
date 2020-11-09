@@ -1,0 +1,84 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressbookParser" as StockressBookParser LOGIC_COLOR
+participant ":StockCommandParser" as StockCommandParser LOGIC_COLOR
+participant "<<class>>\n:ParseUtil" as ParserUtil LOGIC_COLOR
+participant "a:StockCommand" as StockCommand LOGIC_COLOR
+participant "s:Stocking" as Stocking LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("stock n/gun")
+activate LogicManager
+
+LogicManager -> StockressBookParser : parseCommand("stock n/gun")
+activate StockressBookParser
+
+create StockCommandParser
+StockressBookParser -> StockCommandParser
+activate StockCommandParser
+
+StockCommandParser --> StockressBookParser
+deactivate StockCommandParser
+
+StockressBookParser -> StockCommandParser : parse("...")
+activate StockCommandParser
+
+StockCommandParser -> ParserUtil : parseStocking("scienceLb 10 centralLb 30 HSSMLb 30")
+activate ParserUtil
+
+create Stocking
+ParserUtil -> Stocking
+activate Stocking
+
+Stocking --> ParserUtil : s
+deactivate Stocking
+
+ParserUtil -> StockCommandParser : s
+deactivate ParserUtil
+
+create StockCommand
+StockCommandParser -> StockCommand
+activate StockCommand
+
+StockCommand --> StockCommandParser : a
+deactivate StockCommand
+
+StockCommandParser --> StockressBookParser : a
+deactivate StockCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+StockCommandParser -[hidden]-> StockressBookParser
+destroy StockCommandParser
+
+StockressBookParser --> LogicManager : a
+deactivate StockressBookParser
+
+LogicManager -> StockCommand : execute()
+activate StockCommand
+
+StockCommand -> Model : StockBook(...)
+activate Model
+
+Model --> StockCommand
+deactivate Model
+
+create CommandResult
+StockCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> StockCommand
+deactivate CommandResult
+
+StockCommand --> LogicManager : result
+deactivate StockCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

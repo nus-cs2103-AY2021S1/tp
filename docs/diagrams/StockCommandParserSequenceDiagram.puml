@@ -1,0 +1,26 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+
+participant ":StockCommandParser" as StockCommandParser LOGIC_COLOR
+participant "s:StockCommand" as StockCommand LOGIC_COLOR
+end box
+
+[-> StockCommandParser : parse("n/Guns")
+activate StockCommandParser
+
+create StockCommand
+StockCommandParser -> StockCommand
+activate StockCommand
+
+StockCommand --> StockCommandParser : s
+deactivate StockCommand
+
+[<--StockCommandParser : s
+deactivate StockCommandParser
+[<-[hidden]- StockCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+destroy StockCommandParser
+
+@enduml

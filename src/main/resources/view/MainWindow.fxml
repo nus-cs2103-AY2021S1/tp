@@ -11,15 +11,18 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="IntelliBrary" minWidth="1140" minHeight="400" onCloseRequest="#handleExit">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/library_32.png" />
   </icons>
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@DarkTheme.css" />
+        <URL value="@ColourTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
 
@@ -35,7 +38,7 @@
 
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
         </StackPane>
 
@@ -46,12 +49,39 @@
           </padding>
         </StackPane>
 
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+        <HBox styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" maxWidth="Infinity">
+          <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+          <Label>
+            <font>
+              <Font name="System Bold" size="14.0" />
+            </font>
+            Books
+          </Label>
+
+            <VBox fx:id="bookList" styleClass="pane-with-border" minWidth="600" prefWidth="500" VBox.vgrow="ALWAYS" >
+              <padding>
+                <Insets top="5" right="10" bottom="5" left="10" />
+              </padding>
+              <StackPane fx:id="bookListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            </VBox>
+          </VBox>
+
+          <!-- problem report list -->
+          <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+          <Label>
+            <font>
+              <Font name="System Bold" size="14.0" />
+            </font>
+            Problem Report
+          </Label>
+            <VBox fx:id="problemReportList" styleClass="pane-with-border" minWidth="500" prefWidth="500" VBox.vgrow="ALWAYS">
+              <padding>
+                <Insets top="5" right="10" bottom="5" left="10" />
+              </padding>
+              <StackPane fx:id="problemReportListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            </VBox>
+          </VBox>
+        </HBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<HBox id="bookReview" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" />
+    </columnConstraints>
+        <VBox alignment="TOP_LEFT" minHeight="86" prefWidth="400" GridPane.columnIndex="0" spacing="5">
+            <padding>
+                <Insets top="5.0" bottom="5.0" right="5.0"/>
+            </padding>
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label fx:id="id" styleClass="cell_big_label" />
+                <Label fx:id="rating" text="\$first" />
+            </HBox>
+            <Label fx:id="content" styleClass="cell_small_label" text="\$content" />
+            <FlowPane fx:id="time" />
+        </VBox>
+    </GridPane>
+</HBox>

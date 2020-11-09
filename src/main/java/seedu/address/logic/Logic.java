@@ -1,14 +1,17 @@
 package seedu.address.logic;
 
+import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyLibrary;
+import seedu.address.model.book.Book;
+import seedu.address.model.problem.Problem;
 
 /**
  * API of the Logic component
@@ -20,23 +23,26 @@ public interface Logic {
      * @return the result of the command execution.
      * @throws CommandException If an error occurs during command execution.
      * @throws ParseException If an error occurs during parsing.
+     * @throws IOException
      */
-    CommandResult execute(String commandText) throws CommandException, ParseException;
+    CommandResult execute(String commandText) throws CommandException, ParseException, IOException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the Library.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getLibrary()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyLibrary getLibrary();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of books */
+    ObservableList<Book> getFilteredBookList();
+
+    ObservableList<Problem> getFilteredProblemReportList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' library file path.
      */
-    Path getAddressBookFilePath();
+    Path getLibraryFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -44,7 +50,12 @@ public interface Logic {
     GuiSettings getGuiSettings();
 
     /**
-     * Set the user prefs' GUI settings.
+     * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Gets smart suggestions from user input.
+     */
+    List<String> getSuggestions();
 }

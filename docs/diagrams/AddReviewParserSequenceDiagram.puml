@@ -1,0 +1,63 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+
+participant ":AddReviewCommandParser" as AddReviewCommandParser LOGIC_COLOR
+participant "<<class>>\n:ParseUtil" as ParserUtil LOGIC_COLOR
+participant "a:AddReviewCommand" as AddReviewCommand LOGIC_COLOR
+participant "ra:Rating" as Rating LOGIC_COLOR
+participant "re:ReviewContent" as ReviewContent LOGIC_COLOR
+participant "r:Review" as Review LOGIC_COLOR
+end box
+
+[-> AddReviewCommandParser : parse("1 ra/5 re/Make review")
+activate AddReviewCommandParser
+
+AddReviewCommandParser -> ParserUtil : parseRating("5")
+activate ParserUtil
+
+create Rating
+ParserUtil -> Rating
+activate Rating
+
+Rating --> ParserUtil : ra
+deactivate Rating
+
+ParserUtil --> AddReviewCommandParser : ra
+deactivate ParserUtil
+
+AddReviewCommandParser -> ParserUtil : parseReviewContent("Make review")
+activate ParserUtil
+
+create ReviewContent
+ParserUtil -> ReviewContent
+activate ReviewContent
+
+ReviewContent --> ParserUtil : re
+deactivate ReviewContent
+
+ParserUtil --> AddReviewCommandParser : re
+deactivate ParserUtil
+
+create Review
+AddReviewCommandParser -> Review
+activate Review
+
+Review --> AddReviewCommandParser : r
+deactivate Review
+
+create AddReviewCommand
+AddReviewCommandParser -> AddReviewCommand
+activate AddReviewCommand
+
+AddReviewCommand --> AddReviewCommandParser : a
+deactivate AddReviewCommand
+
+[<--AddReviewCommandParser : a
+deactivate AddReviewCommandParser
+[<-[hidden]- AddReviewCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+destroy AddReviewCommandParser
+
+@enduml

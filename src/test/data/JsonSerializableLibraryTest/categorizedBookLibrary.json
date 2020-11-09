@@ -1,0 +1,164 @@
+{
+  "books" : [ {
+    "name" : "The Guns of August",
+    "isbn" : "9780026203104",
+    "email" : "book@example.com",
+    "language" : "123, Jurong West Ave 6, #08-111",
+    "times" : "12",
+    "stocking" : {
+      "centralLibrary" : 14,
+      "scienceLibrary" : 10
+    },
+    "reviews" : [ {
+      "ratingNumber" : 3,
+      "reviewContent" : "Some detail may not be shown in certain part of the book"
+    }, {
+      "ratingNumber" : 4,
+      "reviewContent" : "Exciting to see how the plot will develop"
+    }, {
+      "ratingNumber" : 5,
+      "reviewContent" : "Interesting book with insight into the history"
+    } ],
+    "author" : "Barbara W Tuchman",
+    "publisher" : "Presidio Press",
+    "categorised" : [ "History", "ModernWar" ]
+  }, {
+    "name" : "A Brief History of Time",
+    "isbn" : "9780553175219",
+    "email" : "book@example.com",
+    "language" : "311, Clementi Ave 2, #02-25",
+    "times" : "20",
+    "stocking" : {
+      "centralLibrary" : 37,
+      "scienceLibrary" : 10
+    },
+    "reviews" : [ {
+      "ratingNumber" : 3,
+      "reviewContent" : "Some detail may not be shown in certain part of the book"
+    }, {
+      "ratingNumber" : 4,
+      "reviewContent" : "Exciting to see how the plot will develop"
+    }, {
+      "ratingNumber" : 5,
+      "reviewContent" : "Interesting book with insight into the history"
+    } ],
+    "author" : "Stephen Hawking",
+    "publisher" : "Bantam Dell Publishing Group",
+    "categorised" : [ "Science", "Physics" ]
+  }, {
+    "name" : "Pride and Prejudice",
+    "isbn" : "9780143058175",
+    "email" : "book@example.com",
+    "language" : "wall street",
+    "times" : "34",
+    "stocking" : {
+      "centralLibrary" : 12,
+      "scienceLibrary" : 16
+    },
+    "reviews" : [ {
+      "ratingNumber" : 3,
+      "reviewContent" : "Some detail may not be shown in certain part of the book"
+    }, {
+      "ratingNumber" : 4,
+      "reviewContent" : "Exciting to see how the plot will develop"
+    }, {
+      "ratingNumber" : 5,
+      "reviewContent" : "Interesting book with insight into the history"
+    } ],
+    "author" : "Jane Austen",
+    "publisher" : "T Egerton Whitehall",
+    "categorised" : [ "Novels" ]
+  }, {
+    "name" : "Daniel Meier",
+    "isbn" : "87652533",
+    "email" : "cornelia@example.com",
+    "language" : "10th street",
+    "times" : "56",
+    "stocking" : {
+      "centralLibrary" : 19,
+      "scienceLibrary" : 21
+    },
+    "reviews" : [ {
+      "ratingNumber" : 3,
+      "reviewContent" : "Some detail may not be shown in certain part of the book"
+    }, {
+      "ratingNumber" : 4,
+      "reviewContent" : "Exciting to see how the plot will develop"
+    }, {
+      "ratingNumber" : 5,
+      "reviewContent" : "Interesting book with insight into the history"
+    } ],
+    "author" : "a",
+    "publisher" : "pub",
+    "categorised" : [ "ModernHistory" ]
+  }, {
+    "name" : "Elle Meyer",
+    "isbn" : "9482224",
+    "email" : "werner@example.com",
+    "language" : "michegan ave",
+    "times" : "68",
+    "stocking" : {
+      "centralLibrary" : 10,
+      "scienceLibrary" : 10
+    },
+    "reviews" : [ {
+      "ratingNumber" : 3,
+      "reviewContent" : "Some detail may not be shown in certain part of the book"
+    }, {
+      "ratingNumber" : 4,
+      "reviewContent" : "Exciting to see how the plot will develop"
+    }, {
+      "ratingNumber" : 5,
+      "reviewContent" : "Interesting book with insight into the history"
+    } ],
+    "author" : "a",
+    "publisher" : "pub",
+    "categorised" : [ "Chemistry" ]
+  }, {
+    "name" : "Fiona Kunz",
+    "isbn" : "9482427",
+    "email" : "lydia@example.com",
+    "language" : "little tokyo",
+    "times" : "79",
+    "stocking" : {
+      "centralLibrary" : 10,
+      "scienceLibrary" : 10
+    },
+    "reviews" : [ {
+      "ratingNumber" : 3,
+      "reviewContent" : "Some detail may not be shown in certain part of the book"
+    }, {
+      "ratingNumber" : 4,
+      "reviewContent" : "Exciting to see how the plot will develop"
+    }, {
+      "ratingNumber" : 5,
+      "reviewContent" : "Interesting book with insight into the history"
+    } ],
+    "author" : "a",
+    "publisher" : "pub",
+    "categorised" : [ "History", "AncientHistory" ]
+  }, {
+    "name" : "George Best",
+    "isbn" : "9482442",
+    "email" : "anna@example.com",
+    "language" : "4th street",
+    "times" : "19",
+    "stocking" : {
+      "centralLibrary" : 10,
+      "scienceLibrary" : 10
+    },
+    "reviews" : [ {
+      "ratingNumber" : 3,
+      "reviewContent" : "Some detail may not be shown in certain part of the book"
+    }, {
+      "ratingNumber" : 4,
+      "reviewContent" : "Exciting to see how the plot will develop"
+    }, {
+      "ratingNumber" : 5,
+      "reviewContent" : "Interesting book with insight into the history"
+    } ],
+    "author" : "a",
+    "publisher" : "pub",
+    "categorised" : [ "Mathematics" ]
+  } ]
+}

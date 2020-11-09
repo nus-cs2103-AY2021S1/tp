@@ -1,0 +1,26 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Library *-right-> "1" UniqueBookList
+Library *-right-> "1" UniqueCategoryList
+UniqueCategoryList -[hidden]down- UniqueBookList
+UniqueCategoryList -[hidden]down- UniqueBookList
+
+UniqueCategoryList *-right-> "*" Category
+UniqueBookList o-right-> Book
+
+Book -up-> "*" Category
+
+Book *--> Name
+Book *--> Isbn
+Book *--> Email
+Book *--> Language
+Book *--> Stocking
+Book *-right-> "*" Review
+Book *--> Publisher
+Book *--> Author
+Book *--> Times
+@enduml

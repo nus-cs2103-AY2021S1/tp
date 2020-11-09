@@ -1,0 +1,8 @@
+{
+  "books": [ {
+    "name": "Book with invalid name field: Ha!ns Mu@ster",
+    "isbn": "9482424",
+    "email": "hans@example.com",
+    "language": "4th street"
+  } ]
+}

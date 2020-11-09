@@ -1,0 +1,384 @@
+{
+  "books" : [ {
+    "name" : "The Guns of August",
+    "isbn" : "94351253",
+    "email" : "alice@example.com",
+    "language" : "123, Jurong West Ave 6, #08-111",
+    "times" : "50",
+    "stocking" : {
+      "centralLibrary" : 10,
+      "scienceLibrary" : 10,
+      "hssmLibrary" : 10
+    },
+    "reviews" : [ {
+      "ratingNumber" : 5,
+      "reviewContent" : "Some detail may not be shown in certain part of the book",
+      "createdTime" : "2018/10/24 17:30",
+      "editedTime" : "2020/11/06 13:13"
+    }, {
+      "ratingNumber" : 5,
+      "reviewContent" : "Exciting to see how the plot will develop",
+      "createdTime" : "2018/10/24 17:30",
+      "editedTime" : "2018/10/24 17:30"
+    }, {
+      "ratingNumber" : 5,
+      "reviewContent" : "The content is interesting",
+      "createdTime" : "2020/11/06 11:52",
+      "editedTime" : ""
+    }, {
+      "ratingNumber" : 5,
+      "reviewContent" : "The content is interesting",
+      "createdTime" : "2020/11/06 11:52",
+      "editedTime" : ""
+    } ],
+    "author" : "a",
+    "publisher" : "pub",
+    "categorised" : [ "ModernWar", "History" ]
+  }, {
+    "name" : "A Brief History of Time",
+    "isbn" : "98765432",
+    "email" : "johnd@example.com",
+    "language" : "311, Clementi Ave 2, #02-25",
+    "times" : "20",
+    "stocking" : {
+      "centralLibrary" : 10,
+      "scienceLibrary" : 10,
+      "hssmLibrary" : 10
+    },
+    "reviews" : [ {
+      "ratingNumber" : 3,
+      "reviewContent" : "Some detail may not be shown in certain part of the book",
+      "createdTime" : "2018/10/24 17:30",
+      "editedTime" : ""
+    }, {
+      "ratingNumber" : 5,
+      "reviewContent" : "Interesting book with insight into the history",
+      "createdTime" : "2018/10/24 17:30",
+      "editedTime" : "2019/10/24 17:30"
+    }, {
+      "ratingNumber" : 5,
+      "reviewContent" : "The book is really interesting",
+      "createdTime" : "2018/10/24 17:30",
+      "editedTime" : ""
+    } ],
+    "author" : "b",
+    "publisher" : "pub",
+    "categorised" : [ "Science", "Physics" ]
+  }, {
+    "name" : "Carl Kurz",
+    "isbn" : "95352563",
+    "email" : "heinz@example.com",
+    "language" : "wall street",
+    "times" : "45",
+    "stocking" : {
+      "centralLibrary" : 15,
+      "scienceLibrary" : 30,
+      "hssmLibrary" : 10
+    },
+    "reviews" : [ {
+      "ratingNumber" : 3,
+      "reviewContent" : "Some detail may not be shown in certain part of the book",
+      "createdTime" : "2018/10/24 17:30",
+      "editedTime" : "2019/10/24 17:30"
+    }, {
+      "ratingNumber" : 4,
+      "reviewContent" : "Exciting to see how the plot will develop",
+      "createdTime" : "2018/10/24 18:30",
+      "editedTime" : ""
+    }, {
+      "ratingNumber" : 5,
+      "reviewContent" : "Interesting book with insight into the history",
+      "createdTime" : "2018/10/24 17:42",
+      "editedTime" : ""
+    } ],
+    "author" : "a",
+    "publisher" : "pub",
+    "categorised" : [ "Physics" ]
+  }, {
+    "name" : "Daniel Meier",
+    "isbn" : "87652533",
+    "email" : "cornelia@example.com",
+    "language" : "10th street",
+    "times" : "35",
+    "stocking" : {
+      "centralLibrary" : 10,
+      "scienceLibrary" : 10,
+      "hssmLibrary" : 10
+    },
+    "reviews" : [ {
+      "ratingNumber" : 3,
+      "reviewContent" : "Some detail may not be shown in certain part of the book",
+      "createdTime" : "2018/10/24 17:30",
+      "editedTime" : "2018/10/24 17:30"
+    }, {
+      "ratingNumber" : 4,
+      "reviewContent" : "Exciting to see how the plot will develop",
+      "createdTime" : "2018/10/24 15:30",
+      "editedTime" : "2018/10/24 15:30"
+    }, {
+      "ratingNumber" : 5,
+      "reviewContent" : "Interesting book with insight into the history",
+      "createdTime" : "2018/10/24 17:30",
+      "editedTime" : ""
+    } ],
+    "author" : "a",
+    "publisher" : "pub",
+    "categorised" : [ "AncientHistory" ]
+  }, {
+    "name" : "Elle Meyer",
+    "isbn" : "9482224",
+    "email" : "werner@example.com",
+    "language" : "michegan ave",
+    "times" : "60",
+    "stocking" : {
+      "centralLibrary" : 10,
+      "scienceLibrary" : 10,
+      "hssmLibrary" : 10
+    },
+    "reviews" : [ {
+      "ratingNumber" : 3,
+      "reviewContent" : "Some detail may not be shown in certain part of the book",
+      "createdTime" : "2018/10/24 17:30",
+      "editedTime" : ""
+    }, {
+      "ratingNumber" : 4,
+      "reviewContent" : "Exciting to see how the plot will develop",
+      "createdTime" : "2018/10/24 17:30",
+      "editedTime" : "2018/10/24 17:30"
+    }, {
+      "ratingNumber" : 5,
+      "reviewContent" : "Interesting book with insight into the history",
+      "createdTime" : "2018/10/24 17:30",
+      "editedTime" : "2018/10/24 17:30"
+    } ],
+    "author" : "a",
+    "publisher" : "pub",
+    "categorised" : [ "Novels" ]
+  }, {
+    "name" : "Fiona Kunz",
+    "isbn" : "9482427",
+    "email" : "lydia@example.com",
+    "language" : "little tokyo",
+    "times" : "30",
+    "stocking" : {
+      "centralLibrary" : 10,
+      "scienceLibrary" : 10,
+      "hssmLibrary" : 10
+    },
+    "reviews" : [ {
+      "ratingNumber" : 3,
+      "reviewContent" : "Some detail may not be shown in certain part of the book",
+      "createdTime" : "2018/10/24 17:30",
+      "editedTime" : "2019/11/24 17:30"
+    }, {
+      "ratingNumber" : 4,
+      "reviewContent" : "Exciting to see how the plot will develop",
+      "createdTime" : "2018/10/24 17:30",
+      "editedTime" : "2019/10/24 17:30"
+    }, {
+      "ratingNumber" : 5,
+      "reviewContent" : "Interesting book with insight into the history",
+      "createdTime" : "2018/10/24 17:30",
+      "editedTime" : "2020/10/24 17:30"
+    } ],
+    "author" : "a",
+    "publisher" : "pub",
+    "categorised" : [ "Mathematics" ]
+  }, {
+    "name" : "George Best",
+    "isbn" : "9482442",
+    "email" : "anna@example.com",
+    "language" : "4th street",
+    "times" : "15",
+    "stocking" : {
+      "centralLibrary" : 10,
+      "scienceLibrary" : 10,
+      "hssmLibrary" : 10
+    },
+    "reviews" : [ {
+      "ratingNumber" : 3,
+      "reviewContent" : "Some detail may not be shown in certain part of the book",
+      "createdTime" : "2018/10/24 17:30",
+      "editedTime" : "2019/11/24 17:30"
+    }, {
+      "ratingNumber" : 4,
+      "reviewContent" : "Exciting to see how the plot will develop",
+      "createdTime" : "2018/10/24 17:30",
+      "editedTime" : "2019/12/24 17:30"
+    }, {
+      "ratingNumber" : 5,
+      "reviewContent" : "Interesting book with insight into the history",
+      "createdTime" : "2018/10/24 17:30",
+      "editedTime" : "2019/10/24 17:30"
+    } ],
+    "author" : "a",
+    "publisher" : "pub",
+    "categorised" : [ "Chemistry" ]
+  }, {
+    "name" : "Linear Algebra",
+    "isbn" : "98765432",
+    "email" : "xxxxxx@example.com",
+    "language" : "xxxxx",
+    "times" : "20",
+    "stocking" : {
+      "centralLibrary" : 10,
+      "scienceLibrary" : 10,
+      "hssmLibrary" : 10
+    },
+    "reviews" : [ ],
+    "author" : "Victor",
+    "publisher" : "pku",
+    "categorised" : [ "Science", "Math" ]
+  }, {
+    "name" : "Linear Algebra 1",
+    "isbn" : "98765432",
+    "email" : "xxxxxx@example.com",
+    "language" : "xxxxx",
+    "times" : "20",
+    "stocking" : {
+      "centralLibrary" : 30,
+      "scienceLibrary" : 45,
+      "hssmLibrary" : 10
+    },
+    "reviews" : [ ],
+    "author" : "Victor",
+    "publisher" : "pku",
+    "categorised" : [ "Science", "Math" ]
+  }, {
+    "name" : "Linear Algebra 2",
+    "isbn" : "98765432",
+    "email" : "xxxxxx@example.com",
+    "language" : "xxxxx",
+    "times" : "20",
+    "stocking" : {
+      "centralLibrary" : 45,
+      "scienceLibrary" : 30,
+      "hssmLibrary" : 10
+    },
+    "reviews" : [ ],
+    "author" : "Victor",
+    "publisher" : "pku",
+    "categorised" : [ "Science", "Math" ]
+  }, {
+    "name" : "Linear Algebra 3",
+    "isbn" : "98765432",
+    "email" : "xxxxxx@example.com",
+    "language" : "xxxxx",
+    "times" : "20",
+    "stocking" : {
+      "centralLibrary" : 45,
+      "scienceLibrary" : 99999,
+      "hssmLibrary" : 10
+    },
+    "reviews" : [ ],
+    "author" : "Victor",
+    "publisher" : "pku",
+    "categorised" : [ "Science", "Math" ]
+  }, {
+    "name" : "Artificial Intelligence",
+    "isbn" : "9780134610993",
+    "email" : "xxxxxx@example.com",
+    "language" : "xxxxx",
+    "times" : "20",
+    "stocking" : {
+      "centralLibrary" : 30,
+      "scienceLibrary" : 0,
+      "hssmLibrary" : 10
+    },
+    "reviews" : [ ],
+    "author" : "Stuart Russell",
+    "publisher" : "PEARSON",
+    "categorised" : [ "Science" ]
+  }, {
+    "name" : "Artificial Intelligence 2",
+    "isbn" : "9780134610993",
+    "email" : "xxxxxx@example.com",
+    "language" : "xxxxx",
+    "times" : "20",
+    "stocking" : {
+      "centralLibrary" : 2,
+      "scienceLibrary" : 3,
+      "hssmLibrary" : 1
+    },
+    "reviews" : [ ],
+    "author" : "Stuart Russell",
+    "publisher" : "PEARSON",
+    "categorised" : [ "Science" ]
+  }, {
+    "name" : "Artificial Intelligence 3",
+    "isbn" : "9780134610993",
+    "email" : "xxxxxx@example.com",
+    "language" : "xxxxx",
+    "times" : "20",
+    "stocking" : {
+      "centralLibrary" : 20,
+      "scienceLibrary" : 30,
+      "hssmLibrary" : 10
+    },
+    "reviews" : [ ],
+    "author" : "Stuart Russell",
+    "publisher" : "PEARSON",
+    "categorised" : [ "Science" ]
+  }, {
+    "name" : "Linear Algebra 6",
+    "isbn" : "98765432",
+    "email" : "xxxxxx@example.com",
+    "language" : "xxxxx",
+    "times" : "20",
+    "stocking" : {
+      "centralLibrary" : 0,
+      "scienceLibrary" : 0,
+      "hssmLibrary" : 0
+    },
+    "reviews" : [ ],
+    "author" : "Victor",
+    "publisher" : "pku",
+    "categorised" : [ "Science", "Math" ]
+  }, {
+    "name" : "Linear Algebra 7",
+    "isbn" : "98765432",
+    "email" : "xxxxxx@example.com",
+    "language" : "xxxxx",
+    "times" : "20",
+    "stocking" : {
+      "centralLibrary" : 10,
+      "scienceLibrary" : 0,
+      "hssmLibrary" : 0
+    },
+    "reviews" : [ ],
+    "author" : "Victor",
+    "publisher" : "pku",
+    "categorised" : [ "Science", "Math" ]
+  }, {
+    "name" : "Linear Algebra 8",
+    "isbn" : "98765432",
+    "email" : "xxxxxx@example.com",
+    "language" : "xxxxx",
+    "times" : "20",
+    "stocking" : {
+      "centralLibrary" : 10,
+      "scienceLibrary" : 0,
+      "hssmLibrary" : 1
+    },
+    "reviews" : [ ],
+    "author" : "Victor",
+    "publisher" : "pku",
+    "categorised" : [ "Science", "Math" ]
+  }, {
+    "name" : "Linear Algebra 9",
+    "isbn" : "98765432",
+    "email" : "xxxxxx@example.com",
+    "language" : "xxxxx",
+    "times" : "20",
+    "stocking" : {
+      "centralLibrary" : 30,
+      "scienceLibrary" : 20,
+      "hssmLibrary" : 10
+    },
+    "reviews" : [ ],
+    "author" : "Victor",
+    "publisher" : "pku",
+    "categorised" : [ "Science", "Math" ]
+  } ],
+  "problems" : [ ]
+}

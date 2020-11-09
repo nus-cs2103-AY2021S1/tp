@@ -1,0 +1,93 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":LibraryParser" as LibraryParser LOGIC_COLOR
+participant ":AddProblemCommandParser" as AddProblemCommandParser LOGIC_COLOR
+participant "severity:Severity" as Severity LOGIC_COLOR
+participant "description:description" as Description LOGIC_COLOR
+participant "problem:Problem" as Problem LOGIC_COLOR
+participant "command:AddProblemCommand" as AddProblemCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("report s/high d/book is broken")
+activate LogicManager
+
+LogicManager -> LibraryParser : parseCommand("report s/high d/book is broken")
+activate LibraryParser
+
+create AddProblemCommandParser
+LibraryParser -> AddProblemCommandParser : AddProblemCommandParser()
+activate AddProblemCommandParser
+
+AddProblemCommandParser --> LibraryParser
+deactivate AddProblemCommandParser
+
+LibraryParser -> AddProblemCommandParser : parse("s/high d/book is broken")
+activate AddProblemCommandParser
+
+create Severity
+AddProblemCommandParser -> Severity : Severity("high")
+activate Severity
+
+Severity --> AddProblemCommandParser : severity
+deactivate Severity
+
+create Description
+AddProblemCommandParser -> Description : Description("book is broken")
+activate Description
+
+Description --> AddProblemCommandParser : description
+deactivate Description
+
+create Problem
+AddProblemCommandParser -> Problem : Problem(severity, description)
+activate Problem
+
+Problem --> AddProblemCommandParser : problem
+deactivate Problem
+
+create AddProblemCommand
+AddProblemCommandParser -> AddProblemCommand : AddProblemCommand(problem)
+activate AddProblemCommand
+
+AddProblemCommand --> AddProblemCommandParser : command
+deactivate AddProblemCommand
+
+AddProblemCommandParser --> LibraryParser : command
+deactivate AddProblemCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddProblemCommandParser -[hidden]-> LibraryParser
+destroy AddProblemCommandParser
+
+LibraryParser --> LogicManager : command
+deactivate LibraryParser
+
+LogicManager -> AddProblemCommand : execute()
+activate AddProblemCommand
+
+AddProblemCommand -> Model : addProblem(problem)
+activate Model
+
+Model --> AddProblemCommand
+deactivate Model
+
+create CommandResult
+AddProblemCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddProblemCommand
+deactivate CommandResult
+
+AddProblemCommand --> LogicManager : result
+deactivate AddProblemCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

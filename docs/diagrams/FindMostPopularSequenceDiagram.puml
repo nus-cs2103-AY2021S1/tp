@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":LibraryParser" as LibraryParser LOGIC_COLOR
+participant ":FindMostPopularCommandParser" as FindMostPopularCommandParser LOGIC_COLOR
+participant "a:FindMostPopularCommand" as FindMostPopularCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+
+[-> LogicManager : execute("findpop Science")
+activate LogicManager
+
+LogicManager -> LibraryParser : parseCommand("findpop Science")
+activate LibraryParser
+
+create FindMostPopularCommandParser
+LibraryParser -> FindMostPopularCommandParser
+activate FindMostPopularCommandParser
+
+FindMostPopularCommandParser --> LibraryParser
+deactivate FindMostPopularCommandParser
+
+LibraryParser -> FindMostPopularCommandParser : parse("Science")
+activate FindMostPopularCommandParser
+
+create FindMostPopularCommand
+FindMostPopularCommandParser -> FindMostPopularCommand
+activate FindMostPopularCommand
+
+FindMostPopularCommand --> FindMostPopularCommandParser : a
+deactivate FindMostPopularCommand
+
+FindMostPopularCommandParser --> LibraryParser : a
+deactivate FindMostPopularCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindMostPopularCommandParser -[hidden]-> LibraryParser
+destroy FindMostPopularCommandParser
+
+LibraryParser --> LogicManager : a
+deactivate LibraryParser
+
+LogicManager -> FindMostPopularCommand : execute()
+activate FindMostPopularCommand
+
+FindMostPopularCommand -> Model : updateFilteredBookList(...)
+activate Model
+
+Model --> FindMostPopularCommand
+deactivate Model
+
+create CommandResult
+FindMostPopularCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindMostPopularCommand
+deactivate CommandResult
+
+FindMostPopularCommand --> LogicManager : result
+deactivate FindMostPopularCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

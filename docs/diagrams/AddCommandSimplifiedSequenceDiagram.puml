@@ -1,0 +1,86 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":LibraryParser" as LibraryParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "<<class>>\n:ParseUtil" as ParserUtil LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant "n:Name" as Name LOGIC_COLOR
+
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add n/Linear Algebra \n i/98765432 e/seller@example.com \n l/English c/Science t/20 \n s/centralLb 30 scienceLb 15 HSSMLb 10 \n a/Victor p/pku")
+activate LogicManager
+
+LogicManager -> LibraryParser : parseCommand("add n/Linear Algebra \n i/98765432 e/seller@example.com \n l/English c/Science t/20 \n s/centralLb 30 scienceLb 15 HSSMLb 10 \n a/Victor p/pku")
+activate LibraryParser
+
+create AddCommandParser
+LibraryParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> LibraryParser
+deactivate AddCommandParser
+
+LibraryParser -> AddCommandParser : parse("n/Linear Algebra \n i/98765432 e/seller@example.com \n l/English c/Science t/20 \n s/centralLb 30 scienceLb 15 HSSMLb 10 \n a/Victor p/pku")
+activate AddCommandParser
+
+
+AddCommandParser -> ParserUtil : parseName("Linear Algebra")
+activate ParserUtil
+
+create Name
+ParserUtil -> Name
+activate Name
+
+Name --> ParserUtil : n
+deactivate Name
+
+ParserUtil -> AddCommandParser : n
+deactivate ParserUtil
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser : a
+deactivate AddCommand
+
+AddCommandParser --> LibraryParser : a
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> LibraryParser
+destroy AddCommandParser
+
+LibraryParser --> LogicManager : a
+deactivate LibraryParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> Model : AddBook(...)
+activate Model
+
+Model --> AddCommand
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : result
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

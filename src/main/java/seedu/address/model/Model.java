@@ -5,14 +5,19 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.book.Book;
+import seedu.address.model.problem.Problem;
+import seedu.address.ui.Mode;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
+    Predicate<Book> PREDICATE_SHOW_ALL_BOOKS = unused -> true;
+    Predicate<Problem> PREDICATE_SHOW_ALL_PROBLEMS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,53 +40,101 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' library file path.
      */
-    Path getAddressBookFilePath();
+    Path getLibraryFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' library file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setLibraryFilePath(Path libraryFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces library data with the data in {@code library}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    void setLibrary(ReadOnlyLibrary library);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns the Library
      */
-    boolean hasPerson(Person person);
+    ReadOnlyLibrary getLibrary();
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Returns true if a book with the same identity as {@code book} exists in the library.
      */
-    void deletePerson(Person target);
+    boolean hasBook(Book book);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Deletes the given book.
+     * The book must exist in the library.
      */
-    void addPerson(Person person);
+    void deleteBook(Book target);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Adds the given book.
+     * {@code book} must not already exist in the a library.
      */
-    void setPerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    void addBook(Book book);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Replaces the given book {@code target} with {@code editedBook}.
+     * {@code target} must exist in the library.
+     * The book identity of {@code editedBook} must not be the same as another existing book in the Llibrary.
+     */
+    void setBook(Book target, Book editedBook);
+
+    /**
+     * Returns an unmodifiable view of the filtered book list
+     */
+    ObservableList<Book> getFilteredBookList();
+
+    /**
+     * Updates the filter of the filtered book list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredBookList(Predicate<Book> predicate, Mode mode);
+
+    // problems
+
+    /**
+     * Returns true if a book with the same identity as {@code book} exists in the library.
+     */
+    boolean hasProblem(Problem problem);
+
+    /**
+     * Deletes the given book.
+     * The book must exist in the library.
+     */
+    void deleteProblem(Problem problem);
+
+    /**
+     * Adds the given book.
+     * {@code book} must not already exist in the a library.
+     */
+    void addProblem(Problem problem);
+
+    /**
+     * Replaces the given book {@code target} with {@code editedBook}.
+     * {@code target} must exist in the library.
+     * The book identity of {@code editedBook} must not be the same as another existing book in the Llibrary.
+     */
+    void setProblem(Problem target, Problem problem);
+
+    /**
+     * Returns an unmodifiable view of the filtered book list
+     */
+    ObservableList<Problem> getFilteredProblemList();
+
+    /**
+     * Updates the filter of the filtered book list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredProblemList(Predicate<Problem> predicate, Mode mode);
+
+    /**
+     * @return a string that represents the problems.
+     */
+    String getProblemString();
 }

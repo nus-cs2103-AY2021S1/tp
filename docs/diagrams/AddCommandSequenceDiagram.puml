@@ -1,0 +1,209 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":LibraryParser" as LibraryParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "<<class>>\n:ParseUtil" as ParserUtil LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant "n:Name" as Name LOGIC_COLOR
+participant "i:Isbn" as Isbn LOGIC_COLOR
+participant "e:Email" as Email LOGIC_COLOR
+participant "l:Language" as Language LOGIC_COLOR
+participant "t:Times" as Times LOGIC_COLOR
+participant "c:Category" as Category LOGIC_COLOR
+participant "s:Stocking" as Stocking LOGIC_COLOR
+participant "a:Author" as Author LOGIC_COLOR
+participant "p:Publisher" as Publisher LOGIC_COLOR
+participant "r:Review" as Review LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add add n/Linear Algebra \n i/98765432 e/seller@example.com \n l/English c/Science t/20 \n s/centralLb 30 scienceLb 15 HSSMLb 10 \n a/Victor p/pku")
+activate LogicManager
+
+LogicManager -> LibraryParser : parseCommand("add n/Linear Algebra \n i/98765432 e/seller@example.com \n l/English c/Science t/20 \n s/centralLb 30 scienceLb 15 HSSMLb 10 \n a/Victor p/pku")
+activate LibraryParser
+
+create AddCommandParser
+LibraryParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> LibraryParser
+deactivate AddCommandParser
+
+LibraryParser -> AddCommandParser : parse("n/Linear Algebra \n i/98765432 e/seller@example.com \n l/English c/Science t/20 \n s/centralLb 30 scienceLb 15 HSSMLb 10 \n a/Victor p/pku")
+activate AddCommandParser
+
+
+AddCommandParser -> ParserUtil : parseName("Linear Algebra")
+activate ParserUtil
+
+create Name
+ParserUtil -> Name
+activate Name
+
+Name --> ParserUtil : n
+deactivate Name
+
+ParserUtil -> AddCommandParser : n
+deactivate ParserUtil
+
+
+AddCommandParser -> ParserUtil : parseIsbn("98765432")
+activate ParserUtil
+
+create Isbn
+ParserUtil -> Isbn
+activate Isbn
+
+Isbn --> ParserUtil : i
+deactivate Isbn
+
+ParserUtil -> AddCommandParser : i
+deactivate ParserUtil
+
+
+AddCommandParser -> ParserUtil : parseEmail("seller@example.com")
+activate ParserUtil
+
+create Email
+ParserUtil -> Email
+activate Email
+
+Email --> ParserUtil : e
+deactivate Email
+
+ParserUtil -> AddCommandParser : e
+deactivate ParserUtil
+
+
+AddCommandParser -> ParserUtil : parseLangauage("English")
+activate ParserUtil
+
+create Language
+ParserUtil -> Language
+activate Language
+
+Language --> ParserUtil : l
+deactivate Language
+
+ParserUtil -> AddCommandParser : l
+deactivate ParserUtil
+
+
+AddCommandParser -> ParserUtil : parseTimes("20")
+activate ParserUtil
+
+create Times
+ParserUtil -> Times
+activate Times
+
+Times --> ParserUtil : t
+deactivate Times
+
+ParserUtil -> AddCommandParser : t
+deactivate ParserUtil
+
+
+AddCommandParser -> ParserUtil : parseCategories("Science")
+activate ParserUtil
+
+create Category
+ParserUtil -> Category
+activate Category
+
+Category --> ParserUtil : c
+deactivate Category
+
+ParserUtil -> AddCommandParser : c
+deactivate ParserUtil
+
+AddCommandParser -> ParserUtil : parseStocking("science library 10 central library 30")
+activate ParserUtil
+
+create Stocking
+ParserUtil -> Stocking
+activate Stocking
+
+Stocking --> ParserUtil : s
+deactivate Stocking
+
+ParserUtil -> AddCommandParser : s
+deactivate ParserUtil
+
+AddCommandParser -> ParserUtil : parseAuthor("Victor")
+activate ParserUtil
+
+create Author
+ParserUtil -> Author
+activate Author
+
+Author --> ParserUtil : a
+deactivate Author
+
+ParserUtil -> AddCommandParser : a
+deactivate ParserUtil
+
+AddCommandParser -> ParserUtil : parsePublisher("pku")
+activate ParserUtil
+
+create Publisher
+ParserUtil -> Publisher
+activate Publisher
+
+Publisher --> ParserUtil : a
+deactivate Publisher
+
+ParserUtil -> AddCommandParser : a
+deactivate ParserUtil
+
+create Review
+AddCommandParser -> Review : new Review()
+activate Review
+Review --> AddCommandParser : r
+deactivate Review
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser : a
+deactivate AddCommand
+
+AddCommandParser --> LibraryParser : a
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> LibraryParser
+destroy AddCommandParser
+
+LibraryParser --> LogicManager : a
+deactivate LibraryParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> Model : AddBook(...)
+activate Model
+
+Model --> AddCommand
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : result
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

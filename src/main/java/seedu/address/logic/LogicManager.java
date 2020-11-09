@@ -2,19 +2,21 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.LibraryParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyLibrary;
+import seedu.address.model.book.Book;
+import seedu.address.model.problem.Problem;
 import seedu.address.storage.Storage;
 
 /**
@@ -26,7 +28,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final LibraryParser libraryParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,19 +36,19 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        libraryParser = new LibraryParser();
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException, IOException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = libraryParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveLibrary(model.getLibrary());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +57,23 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyLibrary getLibrary() {
+        return model.getLibrary();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Book> getFilteredBookList() {
+        return model.getFilteredBookList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public ObservableList<Problem> getFilteredProblemReportList() {
+        return model.getFilteredProblemList();
+    }
+
+    @Override
+    public Path getLibraryFilePath() {
+        return model.getLibraryFilePath();
     }
 
     @Override
@@ -77,5 +84,36 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public List<String> getSuggestions() {
+        List<String> keywords = new ArrayList<>();
+        keywords.add(AddCommand.SUGGESTION);
+        keywords.add(AddProblemCommand.SUGGESTION);
+        keywords.add(AddReviewCommand.SUGGESTION);
+        keywords.add(ClearCommand.COMMAND_WORD);
+        keywords.add(DeleteByCommand.SUGGESTION);
+        keywords.add(DeleteCommand.SUGGESTION);
+        keywords.add(DeleteProblemCommand.SUGGESTION);
+        keywords.add(DeleteReviewCommand.SUGGESTION);
+        keywords.add(EditCommand.SUGGESTION);
+        keywords.add(EditProblemCommand.SUGGESTION);
+        keywords.add(EditReviewCommand.SUGGESTION);
+        keywords.add(ExitCommand.COMMAND_WORD);
+        keywords.add(FindCommand.SUGGESTION);
+        keywords.add(FindMostPopularCommand.SUGGESTION);
+        keywords.add(FindProblemCommand.SUGGESTION);
+        keywords.add(HelpCommand.COMMAND_WORD);
+        keywords.add(HistoryCommand.COMMAND_WORD);
+        keywords.add(ListCommand.COMMAND_WORD);
+        keywords.add(RandomCommand.SUGGESTION);
+        keywords.add(SearchReviewCommand.SUGGESTION);
+        keywords.add(StockCommand.SUGGESTION);
+        keywords.add(TimesCommand.SUGGESTION);
+        keywords.add(UsageByCommand.SUGGESTION);
+        keywords.add(UsageCommand.SUGGESTION);
+        keywords.add(ViewProblemCommand.COMMAND_WORD);
+        return keywords;
     }
 }

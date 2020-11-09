@@ -18,7 +18,7 @@ import java.util.logging.SimpleFormatter;
 public class LogsCenter {
     private static final int MAX_FILE_COUNT = 5;
     private static final int MAX_FILE_SIZE_IN_BYTES = (int) (Math.pow(2, 20) * 5); // 5MB
-    private static final String LOG_FILE = "addressbook.log";
+    private static final String LOG_FILE = "intellibrary.log";
     private static Level currentLogLevel = Level.INFO;
     private static final Logger logger = LogsCenter.getLogger(LogsCenter.class);
     private static FileHandler fileHandler;
@@ -74,6 +74,7 @@ public class LogsCenter {
      * Remove all the handlers from {@code logger}.
      */
     private static void removeHandlers(Logger logger) {
+        assert logger != null;
         Arrays.stream(logger.getHandlers())
                 .forEach(logger::removeHandler);
     }

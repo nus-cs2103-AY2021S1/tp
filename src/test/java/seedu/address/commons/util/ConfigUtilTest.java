@@ -1,7 +1,6 @@
 package seedu.address.commons.util;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.IOException;
@@ -42,9 +41,8 @@ public class ConfigUtilTest {
     public void read_fileInOrder_successfullyRead() throws DataConversionException {
 
         Config expected = getTypicalConfig();
-
         Config actual = read("TypicalConfig.json").get();
-        assertEquals(expected, actual);
+        assertTrue(expected.equals(actual));
     }
 
     @Test
@@ -57,8 +55,7 @@ public class ConfigUtilTest {
     public void read_extraValuesInFile_extraValuesIgnored() throws DataConversionException {
         Config expected = getTypicalConfig();
         Config actual = read("ExtraValuesConfig.json").get();
-
-        assertEquals(expected, actual);
+        assertTrue(expected.equals(actual));
     }
 
     private Config getTypicalConfig() {
