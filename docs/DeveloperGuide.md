@@ -441,7 +441,7 @@ The Edit Schedule feature allows user to edit a Schedule that is associated with
 
 #### 3.6.1 Implementation
 
-The proposed Edit Schedule mechanism is facilitated by `Addressbook`, similar to the [Edit Session Command](#36-edit-schedule-feature).
+The proposed Edit Schedule mechanism is facilitated by `Addressbook`, similar to the [Edit Session Command](#33-edit-session-feature).
 
 This operation is exposed in the `Model` interface as `Model#setSchedule()`.
 
@@ -669,7 +669,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `FitEgo` and the **Actor** is the `user`, unless specified otherwise)
 
 
-<b id="uc01">Use case: UC01 Add a Client** </b>
+<b id="uc01">Use case: UC01 Add a Client</b>
 
 **MSS**
 
@@ -693,7 +693,7 @@ Use case ends.
 
 <br/>
 
-**Use case: UC02 Edit a Client**
+<b id="uc02">Use case: UC02 Edit a Client</b>
 
 **MSS**
 
@@ -716,7 +716,7 @@ Use case ends.
       Use case resumes at step 2.  
 <br/>
 
-**Use case: UC03 Delete a Client**
+<b id="uc03">Use case: UC03 Delete a Client</b>
 
 **MSS**
 
@@ -752,7 +752,7 @@ Use case ends.
       
 <br/>
 
-**Use case:  UC04 Find Clients**
+<b id="uc04">Use case: UC04 Find a Client</b>
 
 **MSS**
 
@@ -770,7 +770,7 @@ Use case ends.
 
 <br/>
 
-**Use case: UC05 View a Client**
+<b id="uc05">Use case: UC05 View a Client</b>
 
 **MSS**
 
@@ -807,13 +807,13 @@ Similar to [UC01 (Add a Client)](#uc01), but replace Client with Session.
       
 **Use case: UC07 Edit a Session**
 
-Similar to <u>UC02 (Edit a Client)</u>, but replace Client with Session.
+Similar to [UC02 (Edit a Client)](#uc02), but replace Client with Session.
 
 <br>
 
 **Use case: UC08 Delete a Session**
 
-Similar to <u>UC03 (Delete a Client)</u>, but replace Client with Session.
+Similar to [UC03 (Delete a Client)](#uc03), but replace Client with Session.
 
 <br/>
 
@@ -868,9 +868,9 @@ Use case ends.
 
 **MSS**
 
- 1.  FitEgo shows a list of Schedule
- 2.  User requests to edit a specific Schedule in the list (i.e. updated Session index, update payment, update weight)
- 3.  FitEgo edits the Schedule according to the specified details
+ 1.  FitEgo shows a list of Clients and list of Sessions.
+ 2.  User requests to edit a specific Schedule in the list. (i.e. updated Session index, update payment, update weight)
+ 3.  FitEgo edits the Schedule according to the specified details.
 
 Use case ends.
 
