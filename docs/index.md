@@ -1,11 +1,10 @@
 ---
 layout: page
-title: AddressBook Level-3
+title: DSAce
 ---
-https://github.com/AY2021S1-CS2103-T14-2/tp/tree/master/docs
-[![CI Status](https://github.com/AY2021S1-CS2103-T14-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103-T14-2/tp/actions)
-[![codecov](https://github.com/AY2021S1-CS2103-T14-2/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021S1-CS2103-T14-2/tp)
 
+[![CI Status](https://github.com/AY2021S1-CS2103-T14-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103-T14-2/tp/actions)
+[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
 ![Ui](images/Ui.png)
 
 **DSAce is a desktop application for managing your CS2040S revision.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
