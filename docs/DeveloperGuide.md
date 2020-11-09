@@ -233,10 +233,15 @@ This feature is facilitated by the following classes:
 
 Given below is an example usage scenario and how the mechanism for adding module behaves at each step:
 Step 1. `LogicManager` receives the user input `addmodule n/CS2100 mc/4.0 t/Coremodule ` from `Ui`
+
 Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `AddModuleParser`
+
 Step 3. Additionally, `ModuleListParser` will call the `AddModuleParser#parse()` method to parse the command arguments
+
 Step 4. This creates an `AddModuleCommand` and `AddModuleCommand#execute()` will be invoked by `LogicManager` to execute the command to add the `Module`
+
 Step 5. The `Model#addModule()` operation exposed in the `Model` interface is invoked to add the new `Module`
+
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to add a `Module` works:
@@ -299,10 +304,15 @@ This feature is facilitated by the following classes:
 
 Given below is an example usage scenario and how the mechanism for editing a `Module` behaves at each step:
 Step 1. `LogicManager` receives the user input `editmodule 1 n/CS2100 mc/4.0 gp/5.0 t/Coremodule ` from `Ui`
+
 Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `EditModuleParser`
+
 Step 3. Additionally, `ModuleListParser` will call the `EditModuleParser#parse()` method to parse the command arguments
+
 Step 4. This creates an `EditModuleCommand` and `EditModuleCommand#execute()` will be invoked by `LogicManager` to edit the target `Module`
+
 Step 5. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target `Module` with the edited `Module`
+
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to edit a `Module` works:
@@ -349,13 +359,19 @@ This feature is facilitated by the following classes:
 
 Given below is an example usage scenario and how the mechanism for finding `Module` behaves at each step:
 Step 1. `LogicManager` receives the user input `findmodule CS2100` from `Ui`
+
 Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create a `FindModuleParser`
+
 Step 3. Additionally, `ModuleListParser` will call the `FindModuleParser#parse()` method to parse the command arguments
+
 Step 4. This creates a `NameContainsKeywordsPredicate` that will be used to obtain the filtered displayed `ModuleList`
-Step 4. Additionally, a `FindModuleCommand` is created and `FindModuleCommand#execute()` will be invoked by `LogicManager` to find matching modules
-Step 5. The `Model#updateFilteredModuleList()` operation exposed in the `Model` interface is invoked to update the displayed `ModuleList`
+
+Step 5. Additionally, a `FindModuleCommand` is created and `FindModuleCommand#execute()` will be invoked by `LogicManager` to find matching modules
+
+Step 6. The `Model#updateFilteredModuleList()` operation exposed in the `Model` interface is invoked to update the displayed `ModuleList`
         using `NameContainsKeywordsPredicate`
-Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to find modules works:
 ![FindModuleCommandSequenceDiagram](images/Module/FindModuleCommandSequenceDiagram.png)
@@ -2168,6 +2184,38 @@ testers are expected to do more *exploratory* testing.
    
    * Prerequisites : List all archived modules using the `viewarchive` command. Multiple modules in the list.
    
+#### Finding a module
+ 
+1. Finding a module while all modules are being shown.
+
+   1. Prerequisites: List out all modules using the `listmodule` command. Multiple modules in the list.
+
+   1. Test case: `findmodule CS2030` <br>
+      Expected: Any module with their name containing the word `CS2030` will be displayed in the contact list panel.
+     
+   1. Test case: `findmodule CS2030 CS2040` <br>
+     Expected: Any module with their name containing the word `CS2030`  or `CS2040` will be displayed in the contact list panel.
+
+   1. Test case: `findmodule` <br>
+      Expected: No module is found.
+      
+#### Clearing modules
+
+1. Clearing module list while all modules are being shown.
+
+   1. Prerequisites: List out all modules using the `listmodule` command. Multiple modules in the list.
+
+   1. Test case: `clearmodule` <br>
+      Expected: All modules cleared, module list should be empty.
+
+
+2. Clearing module list while some modules are being shown.
+
+   1. Prerequisites: List out some modules using the `findmodule` command. A few modules in the list.
+
+   1. Test case: `clearmodule` <br>
+      Expected: All modules cleared, module list should be empty.
+
 #### Calculate CAP
  
  1. Calculate CAP
@@ -2186,9 +2234,6 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `targetcap 5`<br>
       Expected: Target CAP details are calculated. Target CAP details shown in the status message.    
    
- 
-      
-
 ### Contact List
 
 
