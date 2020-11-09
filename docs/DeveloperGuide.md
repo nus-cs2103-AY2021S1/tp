@@ -117,6 +117,7 @@ The `Model`,
     * `ObservableList<Exercise>`
     * `ObservableList<Routine>`
     * `ObservableList<Lesson>`
+    * `ObservableList<Slot>`
     * `ObservableList<Body>`
     * `ObservableList<DailyCalorie>`
 
@@ -209,9 +210,10 @@ Given below is the activity diagram a user will go through when creating a routi
     * Pros: Saves time for user, typing one long chain.
     * Cons: Increases coupling between Routine and Exercise.
 
-Alternative 1 was chosen for the command to add an Exercise to a Routine to be seperate. This is due to the fact that
- we wanted to adhere to the Seperation of Concerns Principle. Even though, it comes at the cost of user's time, we
-  believe that the trade-off to gain lower coupling and prevent ripple effects across fitNUS.
+Alternative 1 was chosen for the command to add an Exercise to a Routine to be separate. This is due to the fact that
+ we wanted to adhere to the Separation of Concerns Principle. Even though, it comes at the cost of user's time, we
+  believe that the trade-off to gain lower coupling and prevent ripple effects across fitNUS was the right choice to
+  make.
 
 ##### Aspect: Whether to implement Tag for Routine
 
@@ -1009,8 +1011,9 @@ edited or deleted as well.
 We envisioned fitNUS to be more of a "visual" product, where users will feel that the product is intuitive to use and
 the interface is lean. We are proud and sure that we have achieved this goal, despite not knowing any JavaFX before
 CS2103T.  We are especially proud of the calorie graph that is on the homepage that dynamically updates as the user
-enters calories as well as the timetable tab that is able to concisely display the user's routines and lessons.
-
+enters calories as well as the timetable tab that is able to concisely display the user's routines and lessons. 
+We spent a considerable amount of time on independent learning to understand how the graph and tabs can be implemented, 
+and how to best integrate these components into fitNUS.
 
 ### 4. Conclusion
 
