@@ -46,7 +46,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-T17-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -518,7 +518,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student                                    | list all the flashcards                                                  |                                                                                             |
 | `* * *`  | student                                    | delete flashcard                                                         | remove flashcards that are not relevant or helpful for my learning                          |
 | `* * *`  | careful student                            | edit details of flashcard                                                | make sure that the content in the flashcard is accurate and relevant                        |
-| `* * *`  | organized student                          | create custom category for flashcards                                    | better organize the content to my liking so that it is easier to review                     |
+| `* * *`  | organized student                          | create custom category for flashcards                                    | better organize the content so that it is easier to review                     |
 | `* * *`  | busy student                               | find flashcards easily                                                   | save time without having to look through the whole list of flashcards                       |
 | `* * `   | hardworking student                        | review flashcards 1 by 1                                                 | revise for exams by testing myself                                                          |
 | `* * `   | student                                    | skip particular flashcards while reviewing                               | save time by reviewing relevant flashcards only                                             |
