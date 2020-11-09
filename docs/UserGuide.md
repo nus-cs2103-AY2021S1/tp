@@ -251,7 +251,8 @@ Shows a message that explans how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-=======
+
+
 ## 3.15. Creates a goal: `goal`
 
 Creates a goal of calories to be burnt on a particular date.

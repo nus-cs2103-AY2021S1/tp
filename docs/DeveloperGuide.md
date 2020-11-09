@@ -25,7 +25,7 @@
 7.[ Appendix B: User Stories](#7-appendix-b-user-stories)  
 8.[ Appendix C: Use Cases](#8-appendix-c-use-cases)  
 9.[ Appendix D: Non-Functional Requirements](#9-appendix-d-non-functional-requirements)  
-10.[ Appendix E: Glossary](#10-appendix-e-glossary)
+10.[ Appendix E: Glossary](#10-appendix-e-glossary)  
 11.[ Appendix F: Instructions For Manumal Testing](#11-appendix-f-instructions-for-manual-testing)
 
 
