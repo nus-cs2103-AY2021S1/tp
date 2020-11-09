@@ -113,7 +113,8 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
     }
 
     /**
-     * Tops up a category budget.
+     * Tops up a category-budget by a given amount.
+     *
      * @throws CategoryNotFoundException if requested category does not exist.
      */
     public void topupCategoryBudget(Tag category, Amount amount) {
@@ -159,6 +160,27 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
     public void updateFilteredBudgets(Predicate<CategoryBudget> predicate) {
         requireNonNull(predicate);
         budgets.filterCategoryBudget(predicate);
+    }
+
+    /**
+     * Returns true if the {@code CategoryBudget} that matches the specified category contains the given {@code amount}
+     * or more.
+     * @see UniqueCategoryBudgetList#categoryBudgetHasAmount(Tag, Amount)
+     */
+    public boolean categoryBudgetHasAmount(Tag category, Amount amount) {
+        return budgets.categoryBudgetHasAmount(category, amount);
+    }
+
+    /**
+     * Reduces a category-budget by a given amount.
+     *
+     * @throws CategoryNotFoundException if requested category does not exist.
+     */
+    public void reduceCategoryBudget(Tag category, Amount amount) throws CategoryNotFoundException {
+        if (!containsCategory(category)) {
+            throw new CategoryNotFoundException(category);
+        }
+        budgets.reduceCategoryBudget(category, amount);
     }
 
     //// expense-level operations

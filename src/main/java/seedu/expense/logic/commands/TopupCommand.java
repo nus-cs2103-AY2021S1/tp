@@ -30,6 +30,9 @@ public class TopupCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New budget amount for %s: $%s";
     public static final String MESSAGE_INVALID_CATEGORY = "The \"%s\" category does not exist in the expense book. "
             + "If you need to, please add it using the \"AddCat\" command first.";
+    public static final String MESSAGE_INVALID_AMOUNT = "Amount to top-up the budget by cannot be negative. Please "
+            + "specify the non-negative amount to top-up the budget by.\n"
+            + "If you wish to decrease the amount in the budget, use the \"reduce\" command instead.";
 
     private final Amount toAdd;
     private final Tag category;
@@ -59,6 +62,10 @@ public class TopupCommand extends Command {
 
         if (!model.hasCategory(category)) {
             throw new CommandException(String.format(MESSAGE_INVALID_CATEGORY, category));
+        }
+
+        if (toAdd.smallerThan(Amount.zeroAmount())) {
+            throw new CommandException(MESSAGE_INVALID_AMOUNT);
         }
 
         model.topupCategoryBudget(category, toAdd);

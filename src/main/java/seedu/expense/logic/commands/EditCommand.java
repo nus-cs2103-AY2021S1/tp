@@ -36,7 +36,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_AMOUNT + "AMOUNT] "
             + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "CATEGORY]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_AMOUNT + "10 "
             + PREFIX_DATE + "01-07-2020";
@@ -46,6 +46,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_EXPENSE = "This expense already exists in the expense book. ";
     public static final String MESSAGE_INVALID_CATEGORY = "The \"%s\" category does not exist in the expense book. "
             + "Please add it using the \"AddCat\" command first.";
+    public static final String MESSAGE_INVALID_AMOUNT = "Amount of the expense cannot be negative. Please "
+            + "specify a non-negative amount of the expense.";
 
     private final Index index;
     private final EditExpenseDescriptor editExpenseDescriptor;
@@ -77,6 +79,10 @@ public class EditCommand extends Command {
 
         Expense expenseToEdit = lastShownList.get(index.getZeroBased());
         Expense editedExpense = createEditedExpense(expenseToEdit, editExpenseDescriptor);
+
+        if (editedExpense.getAmount().smallerThan(Amount.zeroAmount())) {
+            throw new CommandException(MESSAGE_INVALID_AMOUNT);
+        }
 
         if (!expenseToEdit.isSameExpense(editedExpense) && model.hasExpense(editedExpense)) {
             throw new CommandException(MESSAGE_DUPLICATE_EXPENSE);
