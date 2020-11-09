@@ -53,20 +53,20 @@ Given below are my contributions to the project.
   * Managed release `v1.2.1` on GitHub
 
 * **Enhancements to existing features**:
-  * Assisted in styling of GUI ([\#149](), [\#233]())
-  * Wrote additional tests for `ParserUtil`, `CommandResult`, `LogicManager` classes. ([\#164](), [\#168](), [\#169]())
+  * Assisted in styling of GUI ([\#149](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/149), [\#233](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/233))
+  * Wrote additional tests for `ParserUtil`, `CommandResult`, `LogicManager` classes. ([\#164](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/164), [\#168](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/168), [\#169](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/169))
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `addpicture`, `addvisit` and `profile` ([\#148]())
-    * Improve overall styling and removed discrepancies on formatting issues ([\#255](), [\#265]())
+    * Added documentation for the features `addpicture`, `addvisit` and `profile` ([\#148](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/148))
+    * Improve overall styling and removed discrepancies on formatting issues ([\#255](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/255), [\#265](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/265))
   * Developer Guide:
-    * Added implementation details of the `addpicture`, `addvisit` and `profile`feature ([\#83]())
-    * Added new use cases for `addpicture` functionality. ([\#83]())
-    * Added manual testing instructions for `addpicture`, `addvisit` and `profile` features ([\#266]())
+    * Added implementation details of the `addpicture`, `addvisit` and `profile` feature ([\#83](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/83))
+    * Added new use cases for `addpicture` and `profile` functionality. ([\#251](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/251))
+    * Added manual testing instructions for `addpicture`, `addvisit` and `profile` features ([\#266](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/266))
 
 * **Community**:
   * Reported bugs and suggestions for other teams in the class (during Practical Dry Run): [Issues link](https://github.com/afroneth/ped/issues)
-  * PR reviewed (with non-trivial review comments) ([\#252]())
+  * PR reviewed (with non-trivial review comments) ([\#252](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/252))
 * **Tools**:
-  * Integrated a third party library (Commons IO) to the project ([\#61]())
+  * Integrated a third party library (Commons IO) to the project ([\#61](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/61))
