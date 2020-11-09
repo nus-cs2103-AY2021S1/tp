@@ -13,6 +13,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
+Note that the diagrams shown inside the are created using `Diagrams.net`
+
 ### Architecture
 
 ![Class Diagram of the Logic Component](images/ArchitectureDiagram.png)
@@ -749,8 +751,8 @@ The following activity diagram depicts the user journey and how the GUI responds
 Upon launch, the PropertyFree will set the focus in the `CommandBox`'s text field. 
 This section highlights three simple key-press `Ui` navigation feature.
 
-- Navigating to next month in CalendarView: `CONTROL`
-- Navigating to previous month in CalendarView: `ALT / OPTIONS (Mac OS)`
+- Navigating to next month in CalendarView: `CONTROL / CTRL` + `RIGHT ARROW KEY`
+- Navigating to previous month in CalendarView: `CONTROL / CTRL` + `LEFT ARROW KEY`
 - Navigating to `CommandBox`'s text field (when not in focus): `ENTER`
 
 The key-press navigation is implemented in `MainWindow` where the method `handleFocusRequestWhenKeyPressed(CommandBox)` 
@@ -763,7 +765,7 @@ Thereafter executes one of the three possible navigation.
 #### 3. Calendar Navigation Command
 
 Calendar Navigation Command serves to provide an alternative for users to view the `CalendarView` if the user's keyboard
-layout does not provide convenience for `ALT / OPTION` or `CONTROL`.
+layout does not provide convenience for `CONTROL` + `ARROW KEY`.
 
 Two commands are created to handle the user input:
 

@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -228,13 +229,18 @@ public class MainWindow extends UiPart<Stage> {
      * Creates the key pressed event triggers.
      */
     public void handleFocusRequestWhenKeyPressed(CommandBox commandBox) {
+
+        final KeyCombination keyCtrlRight = new KeyCodeCombination(KeyCode.RIGHT, KeyCombination.CONTROL_DOWN);
+        final KeyCombination keyCtrlLeft = new KeyCodeCombination(KeyCode.LEFT, KeyCombination.CONTROL_DOWN);
+
+
         primaryStage.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
-                if (keyEvent.getCode() == KeyCode.CONTROL) {
+                if (keyCtrlRight.match(keyEvent)) {
                     calendarView.handleToNext();
                 }
-                if (keyEvent.getCode() == KeyCode.ALT) {
+                if (keyCtrlLeft.match(keyEvent)) {
                     calendarView.handleToPrev();
                 }
                 if (!commandBox.isCommandTextFieldFocused() && keyEvent.getCode() == KeyCode.ENTER) {

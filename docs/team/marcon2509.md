@@ -81,6 +81,8 @@ ___
 
 * **Project management**:
   * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
+  * Integration of `CodeCov` 
+  * Managed overall UserGuide.md to ensure standardization and proper formatting
 
 * **Enhancements to existing features**:
   * Wrote additional tests for existing bid features to increase coverage. Pull requests: [#262](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/262), [#150](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/150), [#200](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/200/files?file-filters%5B%5D=.java&file-filters%5B%5D=.json)
@@ -89,6 +91,7 @@ ___
 * **Documentation**:
   * User Guide:
     * Added documentation for the bid features
+    * Added table of command summary for easier reference
     * Did cosmetic tweaks to existing documentation of all bid features
     * Reviewed and standardized entire user guide. Pull requests: [#283](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/283), [#286](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/286/files)
   * Developer Guide:
