@@ -362,13 +362,13 @@ The diagram below summarises the events above with the help of a sequence diagra
 ![AddTaskSequenceDiagramImage](images/AddTaskSequenceDiagram.png)
 
    *Figure 18: Sequence Diagram of the 'addtask' command*
-   
+
 The diagram below gives a short overview on what happens when a user's input is received:
 
 ![AddTaskActivityDiagramImage](images/AddTaskActivityDiagram.png)
 
    *Figure 19: Activity Diagram of the 'addtask' command*
-   
+
 #### Design consideration:
 
 ##### Aspect: Whether a Task object can be instantiated without filling up all of its attributes
@@ -489,7 +489,7 @@ The New Teammate command has to be prefixed with `addperson` and include **all**
 
 The teammate can be created in any scope. However, if created in the project scope, it is added to that project to be
  come a teammate. The following explanation will detail `AddPerson` being executed in the project scope.
- 
+
  Once created in the project scope, the newly created person is added into that particular project.
  Further assignment of a user to other projects can be done in the scope of other projects.
 
@@ -618,7 +618,7 @@ LogicManager then calls the method `execute` of the DeletePersonCommand which de
 
 
 #### Design consideration:
- 
+
 ##### Aspect: Which scope deletion of a teammate should happen in.
 
  * **Alternative 1 (current choice):** Deletion should happen in the listperson scope.
@@ -744,8 +744,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | project team leader   | add a project                  |                      |
-| `* * *`  | project team leader | add a new person |                      |  
-| `* * *`  | project team leader | edit a person |  change details of a person                     |  
+| `* * *`  | project team leader | add a new person |                      |
+| `* * *`  | project team leader | edit a person |  change details of a person                     |
 | `* * *`  | project team leader | add a teammate to another project | have a teammate in multiple projects |
 | `* * *`  | project team leader | remove a teammate from a project | remove a teammate when he leaves a project   |
 | `* * *`  | project team leader | delete a person | remove a person that will never collaborates again |
@@ -1079,7 +1079,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `deleteteammate`, `delete teammate ...`,  where the input is incomplete
     or the command is incorrect. <br> Expected: Similar to previous.
-    
+   
 ### Editing a Teammate from project scope
 
 1. Editing a teammate while in a project's view
@@ -1125,13 +1125,11 @@ testers are expected to do more *exploratory* testing.
 1. Deleting a task while in a project
 
    1. Prerequisites: Have a valid project created, and start it using `startproject`
-
-   1. Test case: `deletetask 1`<br>
+1. Test case: `deletetask 1`<br>
       Expected: First task is deleted from the task list. Name of the deleted task shown to the user. 
       If the user was viewing the task's details using `viewtask`, the task detail panel will close as the task is now deleted.
-
    1. Test case: `deletetask 0`<br>
-      Expected: No project is deleted. Error details about incorrect format shown to the user.
-
+   Expected: No project is deleted. Error details about incorrect format shown to the user.
    1. Other incorrect delete commands to try: `deletetask`, `deletetask x`, `...` (where x is larger than the task list size)<br>
       Expected: Similar to previous.
+
