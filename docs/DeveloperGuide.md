@@ -1133,9 +1133,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## **Appendix E: Glossary**
 
+* **Appointment**: An upcoming arrangement for a meeting with the doctor.
+* **GUI**: Graphic User Interface, a user interface that enables the user to interact with the application through visual elements.
+* **Main window**: Application’s opening window which displays the top menu bar, main display area, result display area and command input area.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Patient records**: Extensive collection of patients’ private information (not meant to be shared) and medical histories.
-* **Main window**: Application’s opening window which displays a command bar and the list of patients.
+* **Profile window**: A pop-up window that displays the patient's information and past visitations.
+* **Visitation**: A completed consultation with the doctor.
+* **Visitation Log Window**: A pop-up window that allows the user to fill in visitation details in a form.
 
 ## **Appendix F: Instructions for manual testing**
 
