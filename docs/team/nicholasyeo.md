@@ -83,10 +83,16 @@ active voice and you-language. [#93](https://github.com/AY2021S1-CS2103T-T09-2/t
 
 ## Contributions to the Developer Guide:
 
+* Updated the Model and Storage component from AB3 to better reflect how fitNUS works. [#209](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/209)
+
 * Added implementation details of the command `timetable_add_routine`, through the use of a sequence diagram
 to illustrate the flow of method calls in fitNUS. [#88](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/88)
 
-* Updated the Model component from AB3 to better reflect how fitNUS works.
+* Added design considerations for the implementation of the `lesson_delete` feature. [#209](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/209)
+
+* Refined and added more use cases in the Appendix. [#209](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/209)
+
+* Added manual testing for Timetable and Routine commands, and contributed to the Efforts section. [#209](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/209)
 
 ## Community
   * Reported bugs/feature flaws and suggestions for other teams in the class during PE Dry Run.
