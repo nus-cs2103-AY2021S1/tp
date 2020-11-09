@@ -102,7 +102,13 @@ Examples:
 
 Notes: 
 
-* If the priority field is empty, I4I will set the priority of the client to undefined. 
+* The client to be added should not already be in the client list.
+  
+  2 clients are considered different if
+    * They have different names OR
+    * They have the same name BUT have different email or phone number
+
+* If the priority field is empty, I4I will set the priority of the client to `Undefined`. 
     See [Priority Feature](#priority-feature) for more information.
 
 * The policy must already exist in the policy list. You can do so by using the
