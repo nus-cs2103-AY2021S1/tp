@@ -125,12 +125,36 @@ The `Model`,
 
 #### Module Tracker
 
+##### Module List
+<p aligin="center"><img src="images/Module/ModuleListClassDiagram.png" border="2px solid black"></p>
+
+##### ModuleList class
+**ModuleList class** : [`ModuleList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/ModuleList.java)
+
+* Wraps all data i.e. Modules at the module list level
+* Stores Modules in memory
+* Stores a UniqueModuleList
+* Duplicate Modules are not allowed
+
+##### Module class
+**Module package** : [`seedu.address.model.module`](https://github.com/AY2021S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/model/module)
+
+* Module is a container class that stores :
+  * Name of a module
+  * HashMap of ModuleLesson and ZoomLink key value pairs
+  * GradeTracker of a module
+  * ModularCredits of a module
+  * Tag(s) of a module
+* GradeTracker is a container class that stores:
+  * Grade for a module
+  * Assignments for a module
+  
 #### Contact List
 
 #### Todo List
 
 #### Scheduler
-<p aligin="center"><img src ="images/EventListClassDiagram.png" border="1px solid black"></p>p>
+<p aligin="center"><img src ="images/EventListClassDiagram.png" border="1px solid black"></p>
 
 ##### EventList class
 **EventList class** : [`EventList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/EventList.java)
@@ -164,7 +188,7 @@ The `Model`,
 
 ### Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+<p aligin="center"><img src="images/StorageClassDiagram.png" border="2px solid black"></p>
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -191,33 +215,6 @@ Adapted objects related to their feature type.
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
-### Common classes
-
-**API** :
-
-## Module List
-![Structure of the Module List Component](images/Module/ModuleListClassDiagram.png)
-
-**Module package** : [`seedu.address.model.module`](https://github.com/AY2021S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/model/module)
-
-* Module is a container class that stores :
-  * Name of a module
-  * HashMap of ModuleLesson and ZoomLink key value pairs
-  * GradeTracker of a module
-  * ModularCredits of a module
-  * Tag(s) of a module
-* GradeTracker is a container class that stores:
-  * Grade for a module
-  * Assignments for a module
-
-#### ModuleList class
-**ModuleList class** : [`ModuleList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/ModuleList.java)
-
-* Wraps all data i.e. Modules at the module list level
-* Stores Modules in memory
-* Stores a UniqueModuleList
-* Duplicate Modules are not allowed
-
 
 ## Contact List
 
@@ -333,14 +330,20 @@ This feature is facilitated by the following classes:
 
 Given below is an example usage scenario and how the mechanism for adding module behaves at each step:
 Step 1. `LogicManager` receives the user input `addmodule n/CS2100 mc/4.0 t/Coremodule ` from `Ui`
+
 Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `AddModuleParser`
+
 Step 3. Additionally, `ModuleListParser` will call the `AddModuleParser#parse()` method to parse the command arguments
+
 Step 4. This creates an `AddModuleCommand` and `AddModuleCommand#execute()` will be invoked by `LogicManager` to execute the command to add the `Module`
+
 Step 5. The `Model#addModule()` operation exposed in the `Model` interface is invoked to add the new `Module`
+
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to add a `Module` works:
-![AddModuleSequenceDiagram](images/Module/AddModuleSequenceDiagram.png)
+<p aligin="center"><img src="images/Module/AddModuleSequenceDiagram.png" border="2px solid black"></p>
+
 Figure 3.1.1.1 Sequence diagram for the execution of `AddModuleCommand`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddModuleCommand` and `AddModuleParser` should end 
@@ -364,7 +367,7 @@ After the user input has been parsed by `DeleteModuleParser`, `LogicManager` wil
 `DeleteModuleCommand#execute()`. This deletes the target `Module` by invoking the `Model#deleteModule()` method exposed in the `Model` interface.
 
 Given below is the sequence diagram of how the operation to delete a `Module` works:
-![DeleteModuleSequenceDiagram](images/Module/DeleteModuleCommandSequenceDiagram.png)
+<p aligin="center"><img src="images/Module/DeleteModuleCommandSequenceDiagram.png" border="2px solid black"></p>
 
 #### Design consideration:
 
@@ -399,14 +402,19 @@ This feature is facilitated by the following classes:
 
 Given below is an example usage scenario and how the mechanism for editing a `Module` behaves at each step:
 Step 1. `LogicManager` receives the user input `editmodule 1 n/CS2100 mc/4.0 gp/5.0 t/Coremodule ` from `Ui`
+
 Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `EditModuleParser`
+
 Step 3. Additionally, `ModuleListParser` will call the `EditModuleParser#parse()` method to parse the command arguments
+
 Step 4. This creates an `EditModuleCommand` and `EditModuleCommand#execute()` will be invoked by `LogicManager` to edit the target `Module`
+
 Step 5. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target `Module` with the edited `Module`
+
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to edit a `Module` works:
-![EditModuleSequenceDiagram](images/Module/EditModuleCommandSequenceDiagram.png)
+<p aligin="center"><img src="images/Module/EditModuleCommandSequenceDiagram.png" border="2px solid black"></p>
 
 
 #### Design consideration:
@@ -449,16 +457,22 @@ This feature is facilitated by the following classes:
 
 Given below is an example usage scenario and how the mechanism for finding `Module` behaves at each step:
 Step 1. `LogicManager` receives the user input `findmodule CS2100` from `Ui`
+
 Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create a `FindModuleParser`
+
 Step 3. Additionally, `ModuleListParser` will call the `FindModuleParser#parse()` method to parse the command arguments
+
 Step 4. This creates a `NameContainsKeywordsPredicate` that will be used to obtain the filtered displayed `ModuleList`
-Step 4. Additionally, a `FindModuleCommand` is created and `FindModuleCommand#execute()` will be invoked by `LogicManager` to find matching modules
-Step 5. The `Model#updateFilteredModuleList()` operation exposed in the `Model` interface is invoked to update the displayed `ModuleList`
+
+Step 5. Additionally, a `FindModuleCommand` is created and `FindModuleCommand#execute()` will be invoked by `LogicManager` to find matching modules
+
+Step 6. The `Model#updateFilteredModuleList()` operation exposed in the `Model` interface is invoked to update the displayed `ModuleList`
         using `NameContainsKeywordsPredicate`
-Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to find modules works:
-![FindModuleCommandSequenceDiagram](images/Module/FindModuleCommandSequenceDiagram.png)
+<p aligin="center"><img src="images/Module/FindModuleCommandSequenceDiagram.png" border="2px solid black"></p>
 Fig ??
 
 #### Module list data archiving
@@ -473,14 +487,13 @@ compared the the current `ModuleList` that stores currently relevant modules. Ad
 * `ModelManager#unarchiveModule()` - Un-archives a module by removing it from the archived `ModuleList` and placing it in the current `ModuleList`.
 
 The following sequence diagram shows how the archive module operation works:
-![ArchiveModuleSequenceDiagram](images/Module/ArchiveModuleSequenceDiagram.png)
+<p aligin="center"><img src="images/Module/ArchiveModuleSequenceDiagram.png" border="2px solid black"></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveModuleCommand`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 The `unarchivemodule` command does the opposite — it calls `Model#unarchiveModule()`, which removes the specified module  from the archived `ModuleList` and placing it in the current `ModuleList`.
-
 
 ### Module Assignment 
 In order for CAP 5 Buddy to properly support the students study, information of the students grades assignments and results should be kept.
@@ -719,7 +732,7 @@ grade points and modular credits, both stored internally `gradePoints` and `modu
 * `CalculateCapCommand#calculateCap()` - Calculates CAP using data from modules tagged as completed in current `ModuleList` and archived `ModuleList`.
 
 The following sequence diagram shows how the calculate cap operation works:
-![CalculateCapSequenceDiagram](images/Module/CalculateCapSequenceDiagram.png)
+<p aligin="center"><img src="images/Module/CalculateCapSequenceDiagram.png" border="2px solid black"></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CalculateCapCommand`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -745,7 +758,7 @@ The calculate CAP function is facilitated by `TargetCapCalculatorCommand`. It ex
 * `TargetCapCalculatorCommand#calculateCapNeeded()` - Calculates CAP needed for planned modules for user to achieve input target CAP using data from modules in current `ModuleList` and archived `ModuleList`.
 
 The following sequence diagram shows how the target cap operation works:
-![CalculateCapSequenceDiagram](images/Module/TargetCapCalculatorSequenceDiagram.png)
+<p aligin="center"><img src="images/Module/TargetCapCalculatorSequenceDiagram.png" border="2px solid black"></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CalculateCapCommand`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -1918,15 +1931,16 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 Step 1. The user launches the application for the first time. The `VersionedModuleList` will be initialized with the initial `ModuleList` state, and the `currentStatePointer` pointing to that single `ModuleList` state.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+<p aligin="center"><img src="images/UndoRedoState0.png" border="2px solid black"></p>
 
 Step 2. The user executes `deletemodule 5` command to delete the 5th module in the `ModuleList`. The `deletemodule` command calls `Model#commitModuleList()`, causing the modified state of the `ModuleList` after the `deletemodule 5` command executes to be saved in the `moduleListStateList`, and the `currentStatePointer` is shifted to the newly inserted `ModuleList` state.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+<p aligin="center"><img src="images/UndoRedoState1.png" border="2px solid black"></p>
 
 Step 3. The user executes `addmodule n/CS2103T​` to add a new module. The `addmodule` command also calls `Model#commitModuleList()`, causing another modified `ModuleList` state to be saved into the `moduleListStateList`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+<p aligin="center"><img src="images/UndoRedoState2.png" border="2px solid black"></p>
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitModuleList()`, so the `ModuleList` state will not be saved into the `moduleListStateList`.
 
@@ -1934,7 +1948,7 @@ Step 3. The user executes `addmodule n/CS2103T​` to add a new module. The `add
 
 Step 4. The user now decides that adding the module was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoModuleList()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous `ModuleList` state, and restores the `ModuleList` to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+<p aligin="center"><img src="images/UndoRedoState3.png" border="2px solid black"></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial `ModuleList` state, then there are no previous `ModuleList` states to restore. The `undo` command uses `isIndexZero()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
@@ -1943,7 +1957,7 @@ than attempting to perform the undo.
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+<p aligin="center"><img src="images/UndoSequenceDiagram.png" border="2px solid black"></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -1957,15 +1971,15 @@ The `redo` command does the opposite — it calls `Model#redoModuleList()`, 
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify `ModuleList`, such as `list`, will usually not call `Model#commitModuleList()`, `Model#undoModuleList()` or `Model#redoModuleList()`. Thus, the `ModuleListStateList` remains unchanged.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+<p aligin="center"><img src="UndoRedoState4.png" border="2px solid black"></p>
 
 Step 6. The user executes `clearmodule`, which calls `Model#commitModuleList()`. Since the `currentStatePointer` is not pointing at the end of the `moduleListStateList`, all `ModuleList` states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `addmodule n/CS2103​` command. This is the behavior that most modern desktop applications follow.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+<p aligin="center"><img src="UndoRedoState5.png" border="2px solid black"></p>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+<p aligin="center"><img src="images/CommitActivityDiagram.png" border="2px solid black"></p>
 
 #### Design consideration:
 
@@ -2841,6 +2855,38 @@ testers are expected to do more *exploratory* testing.
    
    * Prerequisites : List all archived modules using the `viewarchive` command. Multiple modules in the list.
    
+#### Finding a module
+ 
+1. Finding a module while all modules are being shown.
+
+   1. Prerequisites: List out all modules using the `listmodule` command. Multiple modules in the list.
+
+   1. Test case: `findmodule CS2030` <br>
+      Expected: Any module with their name containing the word `CS2030` will be displayed in the contact list panel.
+     
+   1. Test case: `findmodule CS2030 CS2040` <br>
+     Expected: Any module with their name containing the word `CS2030`  or `CS2040` will be displayed in the contact list panel.
+
+   1. Test case: `findmodule` <br>
+      Expected: No module is found.
+      
+#### Clearing modules
+
+1. Clearing module list while all modules are being shown.
+
+   1. Prerequisites: List out all modules using the `listmodule` command. Multiple modules in the list.
+
+   1. Test case: `clearmodule` <br>
+      Expected: All modules cleared, module list should be empty.
+
+
+2. Clearing module list while some modules are being shown.
+
+   1. Prerequisites: List out some modules using the `findmodule` command. A few modules in the list.
+
+   1. Test case: `clearmodule` <br>
+      Expected: All modules cleared, module list should be empty.
+
 #### Calculate CAP
  
  1. Calculate CAP
@@ -2859,9 +2905,6 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `targetcap 5`<br>
       Expected: Target CAP details are calculated. Target CAP details shown in the status message.    
    
- 
-      
-
 ### Contact List
 
 
