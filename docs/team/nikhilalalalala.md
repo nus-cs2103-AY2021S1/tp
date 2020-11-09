@@ -5,7 +5,7 @@ title: Nikhilalalalala's Project Portfolio Page
 
 <img src="../images/nikhilalalalala.png" width="200px">
 
-[[github](http://github.com/Ben-Hanan)]
+[[github](http://github.com/Nikhilalalalala)]
 
 Project: Eva
 Eva is a desktop HR management application built in the java language. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
@@ -61,4 +61,3 @@ Given below are my contributions to the project.
 - Non trivial Code Reviews here: [#51](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/51) , [#63](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/63),
 [#89](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/89), [#57](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/57)
 
-Tools:
