@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":tCheckParser" as tCheckParser LOGIC_COLOR
+participant ":TCheckParser" as TCheckParser LOGIC_COLOR
 participant ":UnarchiveCommand" as UnarchiveCommand LOGIC_COLOR
 end box
 
@@ -13,18 +13,18 @@ end box
 [-> LogicManager : execute(unarchive)
 activate LogicManager
 
-LogicManager -> tCheckParser : parseCommand(unarchive)
-activate tCheckParser
+LogicManager -> TCheckParser : parseCommand(unarchive)
+activate TCheckParser
 
 create UnarchiveCommand
-tCheckParser -> UnarchiveCommand
+TCheckParser -> UnarchiveCommand
 activate UnarchiveCommand
 
-UnarchiveCommand --> tCheckParser
+UnarchiveCommand --> TCheckParser
 deactivate UnarchiveCommand
 
-tCheckParser --> LogicManager :
-deactivate tCheckParser
+TCheckParser --> LogicManager :
+deactivate TCheckParser
 
 LogicManager -> UnarchiveCommand : execute()
 activate UnarchiveCommand
