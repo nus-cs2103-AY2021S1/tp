@@ -591,6 +591,47 @@ testers are expected to do more *exploratory* testing.
     than the question list size)<br>
       Expected: Similar to previous.
 
+### Sorting a flashcard
+
+1. Sorting flashcards by priority while all flashcards are being shown
+
+   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list.
+   
+   1. Test case: `sort`
+      Expected: Flashcards are sorted in order of ascending priority (when unspecified). Success message shown in status message. Timestamp in the status bar is updated.
+
+   1. Test case: `sort asc` or `sort ASC` (case insensitive)
+      Expected: Flashcards are sorted in order of ascending priority. Success message shown in status message. Timestamp in the status bar is updated.
+
+   1. Test case: `sort desc` or `sort DESC` (case insensitive) <br>
+      Expected: Flashcards are sorted in order of descending priority. Success message shown in status message. Timestamp in the status bar is updated.
+
+
+   1. Other incorrect answer commands to try: `sort 123`, `sort ascending`, `sort descending`, `sort as`
+   `, `...` <br>
+      Expected: Error details shown in status message. Status bar remains the same
+
+### Flipping a flashcard
+
+1. Flipping flashcards by index while all flashcards are being shown
+
+   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list. The second flashcard has already been flipped (visible definition).
+   
+   1. Test case: `flip 1`<br>
+      Expected: The definition of the first flashcard is now visible. Success message shown in status message. Timestamp in the status bar is updated.
+      
+   1. Test case: `flip 2`<br>
+      Expected: The definition of the second flashcard is now hidden. Success message shown in status message. Timestamp in the status bar is updated.
+
+   1. Test case: `flip 0`<br>
+      Expected: No flashcard is flipped. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect answer commands to try: `flip`, `flip one`, `flip x`, `...` (where x is larger than the list size)<br>
+        Expected: Similar to previous.
+      
+
+      
+      
 1. _{ more test cases …​ }_
 
 ### Saving data
