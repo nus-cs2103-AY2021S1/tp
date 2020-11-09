@@ -50,8 +50,10 @@ Here are my contributions to this project:
     * Refined project description and made cosmetic tweaks to each command 
     (Pull request [\#140](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/140))
   * Developer Guide:
-    * Modified UML class diagrams of Model and Storage components to reflect refactoring
-    performed when adding the `score` feature 
-    * Added implementation details of the `scores` feature. (Pull requests [\#122](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/122))
-    * Added non-functional requirements and glossary 
+    * Significantly changed UML class diagram of Storage component from AddressBook-3 to reflect modified class relationships; 
+    edited UML class diagram of Model to reflect classes created when adding the `score` feature (Pull request [\#242](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/242))   
+    * Added implementation details of the `scores` feature. (Pull requests [\#122](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/122),
+    [\#249](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/249))
+    * Added score testing workflow in the 'Instructions for Manual Testing' (Pull request [\#242](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/242))   
+    * Added non-functional requirements and glossary
     based on team discussion (Pull request [\#72](https://github.com/AY2021S1-CS2103T-W16-2/tp/pull/72))

@@ -208,7 +208,7 @@ The following activity diagram outlines the process of quizzing:
 
 ![QuizActivityDiagram](images/QuizActivityDiagram.png)
 
-The following sequence diagram shows how the quiz operation works:
+The following sequence diagram shows how the quiz operation works with respect to the logic component:
 
 ![QuizCommandSequenceDiagram](images/QuizCommandSequenceDiagram.png)
 
@@ -303,7 +303,7 @@ other aspects of the program.
 
 ![SortCommandClassDiagram](images/SortCommandClassDiagram.png)
 
-The following sequence diagram briefly outlines the execution process when a user enters the command "sort english":
+The following sequence diagram briefly outlines the execution process with respect to the `Logic` component when a user enters the command "sort english":
 
 ![SortCommandSequenceDiagram](images/SortCommandSequenceDiagram.png)
 
@@ -612,8 +612,9 @@ testers are expected to do more *exploratory* testing.
 1.  Viewing a non-empty score list
     1. Prerequisites: 
         * List all flashcards using the `list` command. 
-        * Multiple flashcards in the glossary. For simplicity, the flashcard with German phrase ‘vergesslichkeit’ and English phrase ‘forgetfulness’ should not already exist in the glossary. 
-        * For simplicity, let the score list be empty (easily done through `reset scores`).
+        * Have multiple flashcards in the glossary. Ensure your glossary does not already contain a flashcard with 
+        German phrase ‘vergesslichkeit’ and English phrase ‘forgetfulness’, as it will be added in this test.
+        * For simplicity, let the score list be empty (easily achieved through `reset scores`).
    
     1. Test case: `quiz` -> `end quiz` -> `scores` <br>
     Expected: The score and German phrases tested in this attempt are shown.
@@ -621,7 +622,8 @@ testers are expected to do more *exploratory* testing.
     1. [To be executed immediately after (b)] Test case: `add g/Vergesslichkeit e/forgetfulness` -> `quiz` -> `end quiz` -> `scores` <br>
     Expected: The score and German phrases tested in this attempt are shown at the top of the list, above the previous attempt.
 
-    1. [To be executed immediately after (c)] Test case: `sort latest` -> `delete 1` -> `quiz` -> `end quiz` -> `scores` <br>
+    1. [To be executed immediately after \(c)] <br>
+    Test case: `sort latest` -> `delete 1` -> `quiz` -> `end quiz` -> `scores` <br>
     Expected: The list of flashcards tested is the same as in (b), so this score is considered a duplicate. The score list displayed will remain the same as in ©.
 
 1. Viewing an empty score list

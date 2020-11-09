@@ -2,15 +2,15 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR_T4
-participant ":GlossaryParser" as GlossaryParser LOGIC_COLOR_T4
-participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR_T4
-participant "scmd:SortCommand" as SortCommand LOGIC_COLOR_T4
-participant ":CommandResult" as CommandResult LOGIC_COLOR_T4
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":GlossaryParser" as GlossaryParser LOGIC_COLOR
+participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
+participant "scmd:SortCommand" as SortCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR_T4
+participant ":Model" as Model MODEL_COLOR
 end box
 
 [-> LogicManager : execute("sort english")

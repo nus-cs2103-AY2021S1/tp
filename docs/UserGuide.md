@@ -354,9 +354,10 @@ Format: `exit`
 **Q**: How do I transfer my data to another Computer?<br>
 **A**:
 1. Install the app in your other computer.
-1. Locate the `data` folder in your previous ForgetfulNUS home folder, and find the `glossary.JSON` file inside.
-1. Transfer the `glossary.JSON` file to your new computer
-1. Place the `glossary.JSON` file in the `data` folder of the ForgetfulNUS home folder in your other computer.
+1. Locate the `data` folder in your previous ForgetfulNUS home folder, and find the `glossary.JSON` and `scores.JSON` files inside.
+1. Transfer the `glossary.JSON` and `scores.JSON` files to your new computer
+1. Place the `glossary.JSON` and `scores.JSON` files in the `data` folder of the ForgetfulNUS home folder 
+in your other computer.
 
 --------------------------------------------------------------------------------------------------------------------
 
