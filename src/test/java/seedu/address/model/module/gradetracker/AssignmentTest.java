@@ -11,8 +11,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_PERC
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_RESULT_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_RESULT_2;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAssignments.LAB_1;
-import static seedu.address.testutil.TypicalAssignments.QUIZ_2;
+import static seedu.address.testutil.gradetracker.TypicalAssignments.LAB_1;
+import static seedu.address.testutil.gradetracker.TypicalAssignments.QUIZ_2;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +20,7 @@ import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.AssignmentName;
 import seedu.address.model.module.grade.AssignmentPercentage;
 import seedu.address.model.module.grade.AssignmentResult;
-import seedu.address.testutil.AssignmentBuilder;
+import seedu.address.testutil.gradetracker.AssignmentBuilder;
 
 public class AssignmentTest {
 
@@ -46,16 +46,16 @@ public class AssignmentTest {
         AssignmentResult quizResult = new AssignmentResult(VALID_ASSIGNMENT_RESULT_1);
 
         // check setAssignmentName
-        testAssignmentConstructor.setAssignmentName(quizName);
-        assertEquals(testAssignmentConstructor.getAssignmentName().get(), quizName);
+        Assignment updatedAssignmentName = testAssignmentConstructor.setAssignmentName(quizName);
+        assertEquals(updatedAssignmentName.getAssignmentName().get(), quizName);
 
         //check setAssignmentPercentage
-        testAssignmentConstructor.setAssignmentPercentage(quizPercentage);
-        assertEquals(testAssignmentConstructor.getAssignmentPercentage().get(), quizPercentage);
+        Assignment updatedAssignmentPercentage = testAssignmentConstructor.setAssignmentPercentage(quizPercentage);
+        assertEquals(updatedAssignmentPercentage.getAssignmentPercentage().get(), quizPercentage);
 
         //check setAssignmentResult
-        testAssignmentConstructor.setAssignmentResult(quizResult);
-        assertEquals(testAssignmentConstructor.getAssignmentResult().get(), quizResult);
+        Assignment updatedAssignmentResult = testAssignmentConstructor.setAssignmentResult(quizResult);
+        assertEquals(updatedAssignmentResult.getAssignmentResult().get(), quizResult);
     }
 
     @Test

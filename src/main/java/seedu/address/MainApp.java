@@ -195,7 +195,7 @@ public class MainApp extends Application {
             contactListOptional = storage.readEventList();
             if (!contactListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample EventList");
-                initialEventList = new EventList();
+                initialEventList = SampleDataUtil.getSampleEventList();
             } else {
                 initialEventList = contactListOptional.get();
             }

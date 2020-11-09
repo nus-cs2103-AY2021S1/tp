@@ -10,7 +10,7 @@ import seedu.address.logic.commands.modulelistcommands.DeleteModuleCommand;
 import seedu.address.model.module.Module;
 
 /**
- * A utility class for Person.
+ * A utility class for Module.
  */
 public class ModuleUtil {
 
