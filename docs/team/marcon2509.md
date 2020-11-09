@@ -12,7 +12,7 @@ and there clients.
 
 #### My Contributions to PropertyFree
 
-* **Add/Edit/List/Delete Bid Feature**: Added the ability to add/edit/list/delete a bid in a list of bids. Pull request: [#76](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/76), [#161](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/161), [#76](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/76), [#161](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/161)
+* **Add/Edit/List/Delete Bid Feature**: Added the ability to add/edit/list/delete a bid in a list of bids. Pull request: [#76](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/76), [#161](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/161)
   * What it does: Add allows the user to add a bid. Edit allows the user to change parameters in the bid. List allows the user to display the entire bid list. Delete allows the user to remove a bid. 
   * Justification: This feature is a necessary feature to allow the user to manage bids for a property.
   * Highlights: The add-bid/edit-bid feature will automatically slot the bid based on a comparator so the displayed list is always organized.
@@ -41,7 +41,7 @@ and there clients.
   * Integration of `CodeCov` and managed overall UserGuide.md to ensure standardization and proper formatting
 
 * **Enhancements to existing features**:
-  * Wrote additional tests for existing bid features and other features to increase coverage. Pull requests: [#262](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/262), [#150](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/150), [#200](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/200/files?file-filters%5B%5D=.java&file-filters%5B%5D=.json), [#262](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/262)
+  * Wrote additional tests for existing bid features and other features to increase coverage. Pull requests: [#262](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/262), [#150](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/150), [#200](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/200/files?file-filters%5B%5D=.java&file-filters%5B%5D=.json)
 
 * **Documentation**:
   * User Guide:
@@ -49,7 +49,7 @@ and there clients.
     * Added table of command summary for easier reference Pull request: [#283](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/283)
     * Reviewed and standardized entire user guide. Pull requests: [#283](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/283), [#286](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/286/files)
   * Developer Guide:
-    * Added implementation details for the general `add`, `list`, specific bid auto sort and bids/meetings validity check feature Pull request: [#297](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/297), [#297](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/297)
+    * Added implementation details for the general `add`, `list`, specific bid auto sort and bids/meetings validity check feature Pull request: [#297](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/297)
     * Updated Overall Architecture model and description. Pull request: [#297](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/297)
     * Updated User Stories and Non-Functional requirements. Pull Request: [#344](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/344)
 
@@ -58,5 +58,5 @@ and there clients.
    [#247](https://github.com/AY2021S1-CS2103T-W16-4/tp/issues/247), [#248](https://github.com/AY2021S1-CS2103T-W16-4/tp/issues/248)).
   * Reported bugs and suggestions for team mates (pull request [#153](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/153)).
   * Participated in forum discussion. Related Issues: [#214](https://github.com/nus-cs2103-AY2021S1/forum/issues/214), [#132](https://github.com/nus-cs2103-AY2021S1/forum/issues/132)
-  , [#95](https://github.com/nus-cs2103-AY2021S1/forum/issues/95), [#67](https://github.com/nus-cs2103-AY2021S1/forum/issues/67), [#95](https://github.com/nus-cs2103-AY2021S1/forum/issues/95#issuecomment-682431502)
+  , [#95](https://github.com/nus-cs2103-AY2021S1/forum/issues/95), [#67](https://github.com/nus-cs2103-AY2021S1/forum/issues/67)
 
