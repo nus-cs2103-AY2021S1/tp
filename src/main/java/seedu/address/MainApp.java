@@ -15,21 +15,29 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ExerciseBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.GoalBook;
+import seedu.address.model.ReadOnlyExerciseBook;
+import seedu.address.model.ReadOnlyGoalBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.exercise.TemplateList;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.ExerciseBookStorage;
+import seedu.address.storage.GoalBookStorage;
+import seedu.address.storage.JsonExerciseBookStorage;
+import seedu.address.storage.JsonGoalBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
+import seedu.address.storage.StorageForGoal;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.StorageManagerForGoal;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.ui.ExerciseUiManager;
 import seedu.address.ui.Ui;
-import seedu.address.ui.UiManager;
 
 /**
  * Runs the application.
@@ -43,12 +51,13 @@ public class MainApp extends Application {
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
+    protected StorageForGoal goalStorage;
     protected Model model;
     protected Config config;
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing ExerciseBook ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,41 +65,67 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        ExerciseBookStorage exerciseBookStorage = new JsonExerciseBookStorage(userPrefs.getExerciseBookFilePath());
+        storage = new StorageManager(exerciseBookStorage, userPrefsStorage);
+        GoalBookStorage goalBookStorage = new JsonGoalBookStorage(userPrefs.getGoalBookFilePath());
+        goalStorage = new StorageManagerForGoal(goalBookStorage, userPrefsStorage);
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
+        model = initModelManager(storage, goalStorage, userPrefs);
 
-        logic = new LogicManager(model, storage);
+        logic = new LogicManager(model, storage, goalStorage);
 
-        ui = new UiManager(logic);
+        ui = new ExerciseUiManager(logic);
+
+        TemplateList.load();
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s exercise book and {@code userPrefs}. <br>
+     * The data from the sample exercise book will be used instead if {@code storage}'s exercise book is not found,
+     * or an empty exercise book will be used instead if errors occur when reading {@code storage}'s exercise book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+    private Model initModelManager(Storage storage,
+                                   StorageForGoal goalStorage, ReadOnlyUserPrefs userPrefs) {
+        Optional<ReadOnlyExerciseBook> exerciseBookOptional;
+        ReadOnlyExerciseBook initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            exerciseBookOptional = storage.readExerciseBook();
+            if (!exerciseBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample ExerciseBook");
+                initialData = SampleDataUtil.getSampleExerciseBook();
+            } else {
+                initialData = exerciseBookOptional.get();
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty ExerciseBook");
+            initialData = new ExerciseBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty ExerciseBook");
+            initialData = new ExerciseBook();
+        } catch (ParseException e) {
+            logger.warning("");
+            initialData = new ExerciseBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        Optional<ReadOnlyGoalBook> goalBookOptional;
+        ReadOnlyGoalBook initialGoalData;
+        try {
+            goalBookOptional = goalStorage.readGoalBook();
+            if (!goalBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample GoalBook");
+            }
+            initialGoalData = goalBookOptional.orElseGet(SampleDataUtil::getSampleGoalBook);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty GoalBook");
+            initialGoalData = new GoalBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty GoalBook");
+            initialGoalData = new GoalBook();
+        }
+
+        return new ModelManager(initialData, initialGoalData, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -151,7 +186,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty ExerciseBook");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,17 +202,26 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting ExerciseBook " + MainApp.VERSION);
+        logger.info("Starting GoalBook " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Exercise Book ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
+
+        logger.info("============================ [ Stopping Goal Book ] =============================");
+        try {
+            goalStorage.saveUserPrefs(model.getUserPrefs());
+        } catch (IOException e) {
+            logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
+        }
     }
+
 }

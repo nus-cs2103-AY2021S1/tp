@@ -1,17 +1,18 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalExercise.getTypicalExerciseBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.CaloriesOverflow;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.Weight;
+import seedu.address.testutil.ExerciseBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -22,24 +23,28 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalExerciseBook(), null, new UserPrefs());
     }
 
     @Test
-    public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().build();
+    public void execute_newExercise_success() {
+        try {
+            Exercise validExercise = new ExerciseBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
+            Model expectedModel =
+                    new ModelManager(model.getExerciseBook(), null, new UserPrefs());
+            expectedModel.addExercise(validExercise);
 
-        assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
-    }
+            String expectedMessage = String.format(AddCommand.MESSAGE_SUCCESS, validExercise)
+                    + String.format(AddCommand.MESSAGE_WEIGHT, new Weight(validExercise.getCalories()).toString());
 
-    @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+            assertCommandSuccess(new AddCommand(validExercise), model, expectedMessage, expectedModel);
+
+        } catch (CaloriesOverflow err) {
+            throw new AssertionError(err);
+        } catch (Exception err) {
+            throw new AssertionError(err);
+        }
     }
 
 }

@@ -1,67 +1,91 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Optional;
+
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.CaloriesOverflow;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.Weight;
+import seedu.address.model.goal.Goal;
 
 /**
- * Adds a person to the address book.
+ * Adds an exercise to Calo.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an exercise to Calo. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + "[" + PREFIX_DATE + "DATE] "
+            + "[" + PREFIX_CALORIES + "CALORIES] "
+            + "[" + PREFIX_MUSCLE + "MUSCLE]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_NAME + "running "
+            + PREFIX_DESCRIPTION + "10 mins "
+            + PREFIX_DATE + "31-12-2020 "
+            + PREFIX_CALORIES + "100 "
+            + PREFIX_MUSCLE + "chest "
+            + PREFIX_MUSCLE + "arm "
+            + PREFIX_TAG + "home";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New exercise added: %1$s\n";
+    public static final String MESSAGE_WEIGHT = "You have burnt %.5s kg\n";
+    public static final String MESSAGE_GOAL = "Congratulations! Now you only have %s more calories to burn on %s!";
+    public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists in the exercise book";
 
-    private final Person toAdd;
+
+    private final Exercise toAdd;
+    private final Weight burntWeight;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Exercise}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Exercise exercise) {
+        requireNonNull(exercise);
+        toAdd = exercise;
+        this.burntWeight = new Weight(toAdd.getCalories());
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
-
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasExercise(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EXERCISE);
         }
 
-        model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        if (model.checkOverflow(toAdd)) {
+            throw new CaloriesOverflow();
+        }
+
+        Optional<Goal> optionalGoal = model.addExercise(toAdd);
+        if (optionalGoal.isPresent()) {
+            Goal goal = optionalGoal.get();
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd)
+                    + String.format(MESSAGE_WEIGHT, burntWeight.getWeight())
+                    + String.format(MESSAGE_GOAL, goal.getCalories(), goal.getDate()));
+        }
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd)
+                + String.format(MESSAGE_WEIGHT, burntWeight.toString()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                && toAdd.equals(((AddCommand) other).toAdd)); // state check
     }
 }

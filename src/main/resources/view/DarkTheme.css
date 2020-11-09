@@ -132,6 +132,12 @@
     -fx-text-fill: #010504;
 }
 
+.cell_description {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-background-color: #df5527
+}
+
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
 }
@@ -345,6 +351,20 @@
 #tags .label {
     -fx-text-fill: white;
     -fx-background-color: #3e7b91;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#muscleTags {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#muscleTags .label {
+    -fx-text-fill: white;
+    -fx-background-color: #008000;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;

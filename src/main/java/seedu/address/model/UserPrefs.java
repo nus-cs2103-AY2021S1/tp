@@ -14,12 +14,15 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path addressBookFilePath = Paths.get("data", "addressbook.json");
+    private Path exerciseBookFilePath = Paths.get("data", "testing.json");
+    private Path goalBookFilePath = Paths.get("data", "goalbook.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
      */
-    public UserPrefs() {}
+    public UserPrefs() {
+    }
 
     /**
      * Creates a {@code UserPrefs} with the prefs in {@code userPrefs}.
@@ -36,6 +39,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setGoalBookFilePath(newUserPrefs.getGoalBookFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -51,10 +55,29 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return addressBookFilePath;
     }
 
+    public Path getExerciseBookFilePath() {
+        return exerciseBookFilePath;
+    }
+
+    public Path getGoalBookFilePath() {
+        return goalBookFilePath;
+    }
+
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
     }
+
+    public void setExerciseBookFilePath(Path exerciseBookFilePath) {
+        requireNonNull(addressBookFilePath);
+        this.exerciseBookFilePath = exerciseBookFilePath;
+    }
+
+    public void setGoalBookFilePath(Path goalBookFilePath) {
+        requireNonNull(goalBookFilePath);
+        this.goalBookFilePath = goalBookFilePath;
+    }
+
 
     @Override
     public boolean equals(Object other) {
