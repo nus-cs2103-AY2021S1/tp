@@ -49,7 +49,7 @@ Given below are my contributions to the project.
 * Added documentation for the `profit` command: [#5.2.7](https://ay2021s1-cs2103t-t13-4.github.io/tp/UserGuide.html#527-calculating-net-profits-based-on-expenses-and-revenues-profit)
 
 #### Developer Guide:
-* Added implementation details of the `profit` feature**: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#calculate-net-profits-feature)
+* Added implementation details of the `profit` feature: [Link](https://ay2021s1-cs2103t-t13-4.github.io/tp/DeveloperGuide.html#calculate-net-profits-feature)
 * Added some details to the use case section
 
 
