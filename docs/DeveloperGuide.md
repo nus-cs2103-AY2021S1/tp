@@ -591,6 +591,8 @@ The user can add an assignment by providing keywords of the following fields:
 - Priority level (Optional)
 - Remind (Optional)
 
+Note: The remind keyword, if provided, has to be the **last** keyword entered.
+
 It implements the following operations:
 - `add n/Lab 3 mod/CS2100 d/24-10-2020 2359` - Adds an assignment with name Lab 3, module code CS2100, due time 2359, and with due date 24-10-2020.
 - `add n/Lab 3 mod/CS2100 d/24-10-2020 2359 p/HIGH` - Adds a high priority assignment with name Lab 3, module code CS2100, due time 2359 and with due date 24-10-2020.  
@@ -634,7 +636,7 @@ If there are missing or invalid keywords, a `ParseException` will be thrown.
 
 The `parse` method takes in a String of user input, `args` and contains a `ArgumentMultimap` object, `argMultimap`.
 Regular expressions are used to identify whether optional keywords like `remind` and `/p` are present.
-The remind keyword is identified using `.*\bremind\b.*` while priority keyword is identified using `.*\bp/\b.*`.
+The remind keyword, which will be the last keyword if entered, is identified using `.*\bremind\b$` while priority keyword is identified using `.*\bp/.*`.
 In the event that the remind keyword is present, `remind` will be removed from `args` before the parsing of the other keywords by `argMultimap` since `remind` has no prefixes.
 The `tokenize` method of `ArgumentTokenizer` will be called. The keywords are parsed and return as `argMultimap`.
 The keywords are subsequently extracted from `argMultimap` to create a new `Assignment` object, `assignment`, which is used
@@ -663,7 +665,7 @@ Given below is the sequence diagram for the interactions within `LogicManager` f
 
 ### Marking assignments as done and Setting reminders for assignments features
 
-Both features are implemented in a similar way, though the reasons for implementation differs.There are also some differences in the implementation, which will be pointed out along the way.
+Both features are implemented similarly, though the reasons for implementation differs.There are also differences in the implementation, which will be mentioned along the way.
 
 ##### Marking assignments as done and Setting reminders for assignments
 The user can mark one or multiple assignments as done at a time. Similarly, the user can also set reminders for one or multiple assignments at a time. 
@@ -1246,10 +1248,10 @@ These instructions only provide a starting point for testers to work on; testers
       Expected: Similar to previous.
 
 1. Marking one assignment as done while some assignments are being shown
-   1. Prerequisites: List some assignments using the `list x` command (where x is number of days from current date and time such that only some assignments are shown). Multiple assignments in the list. No assignments mark as done.
+   1. Prerequisites: List some assignments using the `list x` command (where x is number of days from current date and time such that only some assignments are shown). Multiple assignments in the list. No assignments marked as done.
    
    1. Test case: `done 1` <br>
-      Expected: Similar to `done 1` test case when all assignments are shown. Assignment list will be refreshed to show all assignments.
+      Expected: Similar to `done 1` test case when all assignments are shown.
       
    1. Test case: `done 0` <br>
       Expected: Similar to `done 0` test case when all assignments are shown.
@@ -1273,7 +1275,7 @@ These instructions only provide a starting point for testers to work on; testers
    1. Prerequisites: List some assignments using the `list x` command (where x is number of days from current date such that only some assignments are shown).. Multiple assignments in the list. No assignments marked as done.
    
    1. Test case: `done 1 2` <br>
-      Expected: Similar to `done 1 2` test case when all assignments are shown. Assignment list will be refreshed to show all assignments.
+      Expected: Similar to `done 1 2` test case when all assignments are shown.
       
    1. Test case: `done 1 1` <br>
       Expected: Similar to `done 1 1` test case when all assignments are shown.
@@ -1299,7 +1301,7 @@ These instructions only provide a starting point for testers to work on; testers
    1. Prerequisites: List some assignments using the `list x` command (where x is number of days from current date and time such that only some assignments are shown). Multiple assignments in the list. First 3 assignments in the assignment list marked as done.
    
    1. Test case: `undone 1` <br>
-      Expected: Similar to `done 1` test case when all assignments are shown. Assignment list will be refreshed to show all assignments.
+      Expected: Similar to `done 1` test case when all assignments are shown.
       
    1. Test case: `undone 0` <br>
       Expected: Similar to `done 0` test case when all assignments are shown.
