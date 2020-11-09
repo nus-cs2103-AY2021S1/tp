@@ -183,7 +183,7 @@ The proposed quiz feature defines a set of sample questions related to CS2040S, 
 
 #### Implementation
 
-The feature is facilitated by `QuizPaser`, `Performance`, `Attempt`, `Response` and `Question`. 
+The feature is facilitated by `QuizPaser`, `Performance`, `Attempt`, `Response` and `Question`.
 `Performance` is a public class that keeps track of past attempts by storing `Attempt` as an internal
  `UniqueAttemptList`.
 `Attempt` is a public class keeping track of user responses to a question by storing `Response` as an internal
@@ -198,7 +198,7 @@ The following shows a Class Diagram of the structure of Quiz components:
 
 * `addAttempt(Attempt attempt)` - Records an attempt into performance.
 * `getAttempts()` - Provides a list of past attempts.
-* `getFormattedTimestamp(LocalDateTime timestamp)` - Returns a date and time in format yyyy/MM/dd HH:mm:ss. 
+* `getFormattedTimestamp(LocalDateTime timestamp)` - Returns a date and time in format yyyy/MM/dd HH:mm:ss.
 
 `Attempt` implements the following operations:
 
@@ -206,7 +206,7 @@ The following shows a Class Diagram of the structure of Quiz components:
 * `calculateScore()` - total score of attempt based on number of correct responses.
 * `attemptAnalysis()` - Returns a detailed attempt analysis.
 * `getResponses()` - Provides a list of responses in current attempt.
- 
+
 `Response` implements the following operations:
 
 * `markResponse()` - Checks if answer of response is correct.
