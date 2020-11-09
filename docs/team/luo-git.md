@@ -66,7 +66,7 @@ Given below are my contributions to the project.
   (Pull request [\#118](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/118))
   * Write additional tests to increase test coverage.
   (Pull requests [\#189](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/189),
-  [\#268](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/268))
+  [\#268](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/268)
   [\#287](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/287))
 
 * **Documentation**:
