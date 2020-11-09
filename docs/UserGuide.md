@@ -115,7 +115,7 @@ Format: `add n/NAME i/ISBN e/EMAIL l/LANGUAGE [c/CATEGORY]... t/TIMES s/STOCKING
 * ```c/``` is the category of the book and is optional. For restrictions on categories, please refer to the detailed explanation in the later category part.
 * ```t/``` is followed by the number of times that the book is borrowed, it is restricted to a non-negative integer.
 * ```s/``` is followed by the stocking information, stockings at 0 to 3 specified libraries can be added(please refer to the stocking part for more details).
- And the prefix tag ```s/``` is compulsory when adding a book, please refer to the detailed format explanation in the later stocking part.
+ And the prefix tag ```s/``` is compulsory when adding a book, please refer to the format examples and explanation in stocking part. [Storage format](#storage-examples)
 * ```a/``` is followed by the author of the book, it should only contain alphanumeric characters and spaces, and it should not be blank.
 * ```p/``` is followed by the publisher of the book, it should only contain alphanumeric characters and spaces, and it should not be blank.
 
@@ -154,7 +154,7 @@ Restrictions:
 * ```l/``` is followed by the language of the book, it should only contain alphabetical characters (spaces are not allowed), and it should not be blank.
 * ```c/``` is the category of the book and is optional. For restrictions on categories, please refer to the detailed explanation in the later category part.
 * ```t/``` is followed by the number of times that the book is borrowed, it is restricted to a non-negative integer.
-* ```s/``` is followed by the stocking information, stockings at 0 to 3 specified libraries can be added (please refer to the stocking part for more details).
+* ```s/``` is followed by the stocking information, stockings at 0 to 3 specified libraries can be added (please refer to the stocking part for more details).[Storage format](#storage-examples)
 * ```a/``` is followed by the author of the book, it should only contain alphanumeric characters and spaces, and it should not be blank.
 * ```p/``` is followed by the publisher of the book, it should only contain alphanumeric characters and spaces, and it should not be blank.
 
@@ -184,7 +184,7 @@ Examples:
     * A book has exactly 1 stocking, which stores all the stocking information of the same book in every location. This is not only appropriate but also necessary because the list of library locations in stocking are specific to libraries in NUS and it is fixed, which is contrary to categories, where user can add new categories dynamically.
     * `s/centralLb 30 scienceLb 20 HSSMLb 10` brings more convenience to the user since there is less work in typing.
 
-Examples:
+##### Storage Examples:
 * `s/centralLb 30 scienceLb 20 HSSMLb 10`
 * `s/scienceLb 20 HSSMLb 10`
 * `s/centralLb 10`
@@ -543,7 +543,7 @@ Format: `findpr KEYWORD [MORE_KEYWORDS]`
 * Report descriptions matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `table chair` will return `chair light`, `light table`
 
-Visual View of finding report reports that is related to `level 1`:
+Visual View of finding problem reports that are related to `level 1`:
 
 ![Find Report View](images/findReport.png)
 
