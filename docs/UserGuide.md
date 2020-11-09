@@ -290,7 +290,7 @@ Everyone should have permission to access the image path or online image URL you
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
    Wishful Shrinking numbers each instruction step after separating the input instruction by the position(s) of
     `.` so there is no need to number the instructions. Instructions are separated by one full stop, 
-    no consecutive full stops are allowed. Wishful Shrinking will remove consecutive full stops.
+    Wishful Shrinking will remove consecutive full stops if present.
 </div> 
 
 Examples:
