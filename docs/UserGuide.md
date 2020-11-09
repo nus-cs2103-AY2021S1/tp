@@ -41,6 +41,12 @@ There are many versions of Java `11` listed. Select the correct version based on
     
     ![Hospify download page](images/Hospify%20download%20page.png)
     Figure 1.1 **Hospify** download page
+    
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+The actual download page may differ slightly from the one shown in Figure 1.1 as we are constantly updating Hospify to better serve your needs! Do not worry, just click on the same `hospify.jar` as shown above, to download the latest version of **Hospify**.
+</div>
 
 1. Copy the file to the folder you want to use as the _home folder_ for the **Hospify** app.
 
@@ -51,7 +57,7 @@ There are many versions of Java `11` listed. Select the correct version based on
 
 1. You can now try typing your very first command in the command box and press `Enter` to execute it! Not sure what to type? Try typing **`help`** and pressing `Enter`. A help window as shown in figure 1.3 below should appear.<br>
     
-    ![Help window](images/cleanHelpWindow.PNG)
+    ![Help window](images/IntroHelpWindow.PNG)
     Figure 1.3 Help window
     
    Now, you can try out some other commands:
@@ -66,7 +72,7 @@ There are many versions of Java `11` listed. Select the correct version based on
 
    * **`exit`** : Exits the app.
 
-1. You can refer to the [Features](#features) below for a list of all the commands available and the details of each command.
+1. You can refer to the [Features](#3-features) below for a list of all the commands available and the details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -147,9 +153,9 @@ Format: `add n/NAME ic/NRIC p/PHONE_NUMBER [e/EMAIL] a/ADDRESS mr/MEDICAL_RECORD
 * The `NAME` (upper limit of 100 characters) and `ALLERGIES` (upper limit of 100 characters) field should contain alphanumeric characters.
 * The `NRIC` field should start with an alphabet, followed by 7 digits, before ending with another alphabet.
 * The `PHONE_NUMBER` field should contain a number that is between 3 and 15 digits (inclusive) long.
-* The `EMAIL` field should contain a valid email address (for more information on email validity, please refer to the [Command Summary](#command-summary)).
+* The `EMAIL` field should contain a valid email address (for more information on email validity, please refer to the [Command Summary](#5-command-summary)).
 * The `ADDRESS` (upper limit of 200 characters) field can contain any word or number.
-* The `MEDICAL_RECORD` field should contain a valid url (for more information on url validity, please refer to the [Command Summary](#command-summary)).
+* The `MEDICAL_RECORD` field should contain a valid url (for more information on url validity, please refer to the [Command Summary](#5-command-summary)).
 
 <div markdown="block" class="alert alert-info">
 
@@ -169,7 +175,7 @@ Figure 3.1 Adding a patient (success scenario)
 
 ### 3.3 Listing all patients: `list` (by Cedric Lim Jun Wei)
 
-This command allows you to display the complete list of patients recorded in **Hospify**. This may be useful after you have used the [`find`](#locating-patients-by-name-or-nric-find-by-gabriel-teo-yu-xiang) command (which displays a partial list of patients) and you wish to revert back to the complete list of patients again.
+This command allows you to display the complete list of patients recorded in **Hospify**. This may be useful after you have used the [`find`](#35-locating-patients-by-name-or-nric-find-by-gabriel-teo-yu-xiang) command (which displays a partial list of patients) and you wish to revert back to the complete list of patients again.
 
 To use the command, simply type in `list` on the command line with no additional parameters.
 
@@ -261,15 +267,16 @@ Format: `find KEYWORD [MORE_KEYWORDS] [NRIC] [MORE_NRICs]`
 * Only full NRICs will be matched e.g. `S12345` will not match `S1234567A`
 </div>
 
+After executing the command, a message will appear showing the number of patients found, as well as the patients in the list displayed as shown in figures 6.1 and 6.2 below.
+
 Examples:
-* `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
-  Figure 6.1
+  Figure 6.1 Finding patients `Alex Yeoh` and `David Li`
 
 * `find bernice s0000003a` returns `Bernice Yu`, `Charlotte Oliveiro`
   ![result for 'find bernice s0000003a'](images/findbernices0000003aResult.png)
-  Figure 6.2
+  Figure 6.2 Finding patients `Bernice Yu` and `Charlotte Oliveiro`
 
 ### 3.6 Deleting a patient: `delete` (by Cao Qin)
 
@@ -458,10 +465,10 @@ Examples:
 * `addAppt S1234567A appt/25/12/2020 15:00`
 * `addAppt S0000001A appt/28/09/2022 20:00 d/Eye Check-up`
 
-When an `Appointment` is successfully added to a patient, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in the figure below.<br>
+When an `Appointment` is successfully added to a patient, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in figure 11.1 below.<br>
 
 ![result for 'add appointment'](images/addAppt.png)
-Figure 11.1
+Figure 11.1 Adding an appointment (success scenario)
 
 ### 3.11 Editing an Appointment: `editAppt` (by Gabriel Teo Yu Xiang)
 
@@ -492,10 +499,10 @@ Examples:
 * `editAppt S0000001A oldappt/28/09/2022 20:00 newappt/30/09/2022 15:00`
 * `editAppt S1234567A oldappt/25/12/2020 20:00 newappt/10/01/2021 14:00 d/Revisit`
 
-When an `Appointment` is successfully edited, a success message will appear in the message box as shown in the figure below.<br>
+When an `Appointment` is successfully edited, a success message will appear in the message box as shown in figure 12.1 below.<br>
 
 ![result for 'edit appointment'](images/editAppt.png)
-Figure 12.1
+Figure 12.1 Editing an appointment (success scenario)
 
 ### 3.12 Deleting an Appointment: `deleteAppt` (by Gabriel Teo Yu Xiang)
 
@@ -507,19 +514,19 @@ Format: `deleteAppt NRIC appt/DATE TIME`
 * The `Appointment` name/description does not need to be specified, since **Hospify** does not allow multiple appointments of the same timing for the same patient, and every appointment will have a unique timing.
 * `NRIC` represents the `NRIC` of the patient whose `Appointment` you are deleting.
 * `DATE` and `TIME` represent the date and time of the `Appointment` to be deleted.
-* `DATE` and `TIME` formats follow the same format as specified in the [`addAppt`](#adding-an-appointment-addappt-by-gabriel-teo-yu-xiang) command section.
+* `DATE` and `TIME` formats follow the same format as specified in the [`addAppt`](#310-adding-an-appointment-addappt-by-gabriel-teo-yu-xiang) command section.
 
 Examples:
 * `deleteAppt S0000001A appt/28/09/2022 20:00`
 
-When an `Appointment` is successfully deleted, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in the figure below.<br>
+When an `Appointment` is successfully deleted, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in figure 13.1 below.<br>
 
 ![result for 'delete appointment'](images/deleteAppt.png)
-Figure 13.1
+Figure 13.1 Deleting an appointment (success scenario)
 
 ### 3.13 Using the Medical Record feature: `mr/` (by Cedric Lim Jun Wei)
 
-By now we have learnt that we can [`add`](#adding-a-patient-add-by-cedric-lim-jun-wei) and [`edit`](#editing-a-patient-edit-by-cao-qin) patients by including the `mr/MEDICAL_RECORD_URL` field. Recall that this is a compulsory field for the `add` command while it is an optional field for the `edit` command and we can summarise the command formats as shown below.
+By now we have learnt that we can [`add`](#32-adding-a-patient-add-by-cedric-lim-jun-wei) and [`edit`](#34-editing-a-patient-edit-by-cao-qin) patients by including the `mr/MEDICAL_RECORD_URL` field. Recall that this is a compulsory field for the `add` command while it is an optional field for the `edit` command and we can summarise the command formats as shown below.
 
 Format: `add n/NAME …​ mr/MEDICAL_RECORD_URL …​` or `edit INDEX …​ [mr/MEDICAL_RECORD_URL] …​`
 
@@ -560,7 +567,7 @@ In the following example, we will be using [Google Docs](https://docs.google.com
 
 The example we have just discussed uses the `add` command. The usage of the `MEDICAL_RECORD_URL` field in `edit` works in the same way as described in the `add` example as well.
 
-Another method to access the online medical record of the patient directly (without the copy-and-paste mechanism) is shown in the `showMr` command section below.
+Another method to access the online medical record of the patient directly (without the copy-and-paste mechanism) is shown in the [`showMr`](#314-show-medical-record-directly-showmr-by-peh-jun-siang) command section below.
 
 ### 3.14 Show medical record directly: `showMr` (by Peh Jun Siang)
 We understand that it might be quite a hassle to copy the URL and paste it in your browser manually. Therefore, we
@@ -577,7 +584,7 @@ Figure 15.1 Using the `showMr` command to open patient's medical record.
 <div markdown="block" class="alert alert-warning">
 
 In the unlikely event that `showMr` command does not open up the medical record in your default browser,
-use the **manual method** described in [the above section](#using-the-medical-record-feature-mr-by-cedric-lim-jun-wei)
+use the **manual method** described in [the above section](#313-using-the-medical-record-feature-mr-by-cedric-lim-jun-wei)
 on the medical record feature.
 
 **:warning: Important:** - Check that your URL is valid if the medical record does not open on your browser.
