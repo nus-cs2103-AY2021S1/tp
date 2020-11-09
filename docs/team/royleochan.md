@@ -34,7 +34,7 @@ Given below are my contributions to the project.
 
 * **Refactoring**:
   * Removed address from the application ([\#76](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/76)))
-  * Refactored and standardised the command format to have command category and command verb for all Modduke commands ([\#77](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/77/files))
+  * Refactored and standardised the command formats ([\#77](https://github.com/AY2021S1-CS2103-F10-2/tp/pull/77/files))
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=royleochan&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
