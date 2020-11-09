@@ -61,11 +61,10 @@ public class DeleteVisitCommand extends Command {
         Patient patientEdited = patientToEdit;
         VisitHistory visitHistory = patientEdited.getVisitHistory();
         ObservableList<Visit> observableHistory = visitHistory.getObservableVisits();
-
+        // Defensive programming
         if (visitIndex == EMPTY_VISIT_LOG) {
-
             if (!observableHistory.isEmpty()) {
-                return new CommandResult(MESSAGE_MISSING_INDEX_PROMPT, observableHistory);
+                throw new CommandException(MESSAGE_MISSING_INDEX_PROMPT);
             } else {
                 return new CommandResult("", observableHistory);
             }

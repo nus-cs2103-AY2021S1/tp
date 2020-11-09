@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
@@ -36,6 +38,7 @@ public class EmptyVisitHistory extends UiPart<Stage> {
     public EmptyVisitHistory(Stage root) {
         super(FXML, root);
         text.setText(EMPTY_MESSAGE);
+        setEscAsClose();
     }
 
     /**
@@ -81,5 +84,17 @@ public class EmptyVisitHistory extends UiPart<Stage> {
     @FXML
     private void copyUrl() {
         this.hide();
+    }
+
+    /**
+     * Sets the escape key to close the No Past Visitation Records Window.
+     */
+    private void setEscAsClose() {
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ESCAPE) {
+                Stage stage = ((Stage) getRoot().getScene().getWindow());
+                stage.close();
+            }
+        });
     }
 }

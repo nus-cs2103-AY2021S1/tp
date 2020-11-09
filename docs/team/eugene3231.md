@@ -51,7 +51,7 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for the features `undo`, `redo`, `editvisit` and `deletevisit` [\#160](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/160)
     * Did overall formatting tweaks for the document by reorganizing content into respective categories. [\#118](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/118), [\#119](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/119)
-    * Added more information to introduce user about the GUI. [\#240](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/240)
+    * Added a section on user interface to introduce user to the GUI. [\#240](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/240)
     * Did cosmetic tweaks to overall table of contents and existing documentation of feature: `Retrieving past commands using arrow keys`. [\#112](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/112)
     * Added formatting guidelines for the user to follow. [\#173](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/173)
   * Developer Guide:
@@ -68,6 +68,6 @@ Given below are my contributions to the project.
   * Reported bugs and suggestions for other teams in the class (during Practical Exam - Dry Run): [Issues Link](https://github.com/eugene3231/ped/issues)
 
 * **Tools**:
-  * Integrated a third party library (JFoenix) to the project and improved the aesthetics of tabs in GUI ([\#252](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/252))
+  * Integrated a third party library (JFoenix) to the project improving the aesthetics of tabs in GUI ([\#252](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/252))
 
 
