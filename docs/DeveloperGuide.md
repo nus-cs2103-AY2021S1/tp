@@ -346,7 +346,7 @@ This command requires a compulsory field "Keyword" to specify the records that q
 This is done within `FindInventoryRecordCommandParser#parse()`, which checks and extracts the keyword field from the command string.
 
 If there was a keyword provided, then `FindInventoryRecordCommandParser` creates a `FindInventoryRecordCommand` object.
-The sequence diagram below (figure 18) shows how the `DeleteInventoryRecordCommand` object is created.
+The sequence diagram below (figure 18) shows how the `FindInventoryRecordCommand` object is created.
 
 ![Find Inventory Record Diagram](images/FindInventoryRecordSequenceDiagram.png)
 Figure 18. Sequence Diagram for the Find Inventory record command.
