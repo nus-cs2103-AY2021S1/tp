@@ -321,7 +321,7 @@ Here is an example with steps for you to follow:
 
 3) A message that indicates details of the edited assignment is displayed in the Message Box.
 
-![EditCommand2](images/EditCommand2.png)
+![EditCommand2](images/EditCommandDiagram2.png)
 *Figure 13: The displayed message and the edited assignment*
 
 More examples: 
