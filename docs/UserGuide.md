@@ -143,8 +143,7 @@ Figure 1.2: <i>The Recipe List Panel of ChopChop.</i>
 ChopChop does your bidding by listening to your commands — the *Command Box* is where you type your textual commands.
 After typing your commands, press <kbd>enter</kbd> to input the command. You can also use the <kbd>up</kbd> and <kbd>down</kbd> arrow keys to navigate through the history of commands you've typed previously.
 
-To learn about the commands you can use, check out our [command summary](#CommandSummary) for a quick overview or our [commands](#Commands) for a detailed list.
-If you have yet to check out ChopChop's [tab completion](#TabCompletion) section, do drop by to learn this handy feature!
+To learn about the commands you can use, check out our [command summary](#CommandSummary) for a quick overview or our [commands](#Commands) for a detailed list. You can also use [tab completion](#TabCompletion) to speed up typing commmands!
 
 
 
