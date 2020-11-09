@@ -59,7 +59,7 @@ You can reach us at the following emails:
 <img src="images/murtubak.png" width="200px">
 
 [[github](http://github.com/murtubak)]
-[[portfolio](team/murtubak.md)]
+[[portfolio](team/joshuawong.md)]
 
 * Role: Developer
 * Responsibilities: Code quality
