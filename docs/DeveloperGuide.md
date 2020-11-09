@@ -1292,10 +1292,10 @@ Basic instructions to test _entry-level_ commands of _Common Cents_.
       Expected: Similar behaviour with previous testcase. Note that error details may differ based on which parameters of the input that is in an incorrect format.   
 
 1. Finding all entries that have specific keywords
-
-   1. Prerequisites: Delete the existing `CommonCents.json` file in the `data` folder. Use the default data. 
    
    <div style="page-break-after: always;"></div>
+   1. Prerequisites: Delete the existing `CommonCents.json` file in the `data` folder. Use the default data. 
+   
    1. Test case: `find c/expense k/canvas`<br>
         Expected: 
         * Expense list is updated with only 1 expense that has the description `canvas` inside. 
