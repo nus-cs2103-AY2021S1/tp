@@ -17,6 +17,16 @@ public class PerformanceCommandResult extends CommandResult {
         this.switchToResponses = switchToResponses;
     }
 
+    /**
+     * Constructs a {@code PerformanceCommandResult} with the specified fields (3),
+     * and other fields set to their default value.
+     */
+    public PerformanceCommandResult(String feedbackToUser, boolean showHelp) {
+        super(feedbackToUser, false, false, true, false, false);
+        this.switchToAttempts = false;
+        this.switchToResponses = false;
+    }
+
     public boolean isSwitchToAttempts() {
         return switchToAttempts;
     }

@@ -18,6 +18,7 @@ DSAce is a **desktop app for creating flashcards and practising quiz questions f
    * [**`flip`** : Flipping a flashcard.](#flipping-a-flashcard--flip)
    * [**`clear`** : Clearing all flashcards.](#clearing-all-entries--clear)
    * [**`enter quiz`** : Entering Quiz mode.](#entering-quiz-mode--enter-quiz)
+   * [**`answer`** : Answering a quiz question.](#answering-a-quiz-question--answer)
    * [**`leave quiz`** : Leaving Quiz mode.](#leaving-quiz-mode--leave-quiz)
    * [**`exit`** : Exiting the program.](#exiting-the-program--exit)
    * [**`performance`** : Opening performance interface.](#checking-performance--performance)
@@ -72,7 +73,7 @@ DSAce is a **desktop app for creating flashcards and practising quiz questions f
 
       * **`start attempt`** : Starts a new quiz attempt. (command is only valid in the quiz interface)
 
-      * **`answer`** `1 a/true` : Answers the first quiz question. (command is only valid in the quiz interface)
+      * **`answer`** `1 a/true` : Answers the first quiz question in the displayed quiz question list. (command is only valid in the quiz interface)
 
       * **`end attempt`**: Ends the current quiz attempt. (command is only valid in the quiz interface)
 
@@ -287,7 +288,7 @@ Format: `exit`
 ## Quiz interface
 
 <div markdown="block" class="alert alert-info">
-* Command line below are only workable under quiz interface.
+* Only commands listed in this section are valid in the quiz interface.
 </div>
 
 ### Starting an attempt : `start attempt`
@@ -296,18 +297,21 @@ Starts an attempt of the set of questions.
 
 Format: `start attempt`
 
-### Answering quiz questions : `answer`
+### Answering a quiz question : `answer`
 
-Answers the specific indexed quiz question.
+Answers the specified quiz question in displayed quiz question list.
 
 Format: `answer INDEX a/ANSWER`
 
-* For True/False questions, answer in true/false. (case-insensitive)
-* For MCQ questions, answer in positive integer as labelled in the quiz list.
+* The index refers to the index number associated with the quiz question user intends to answer, as shown in the
+ displayed quiz question list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* For True/False questions, answer in `true` or `false`. (case-insensitive)
+* For MCQ questions, answer in a positive integer corresponding to the option in the question.
 
 Examples:
-For True/False questions, type e.g `answer 1 a/true` or `answer 1 a/TrUe` or `answer 1 a/false`
-For MCQ questions, type e.g `answer 2 a/1` for option 1 or `answer 2 a/2` for option 2. Invalid out of bounce index will not be recorded.
+* For True/False questions, enter `answer 1 a/true` or `answer 1 a/false`
+* For MCQ questions, enter `answer 2 a/1` for option 1 or `answer 2 a/2` for option 2.
 
 ### Ending an attempt : `end attempt`
 
@@ -347,8 +351,12 @@ Format: `exit`
 ## Performance interface
 
 <div markdown="block" class="alert alert-info">
+<<<<<<< HEAD
 * Command line below are only workable under perfomance interface.
 * New table of performance will pop out. Can be closed by clicking 'close' button of the window.
+=======
+* Only commands listed in this section are valid in the performance interface.
+>>>>>>> 5697ddef069c2260f4d1e5365c953a92428946b3
 </div>
 
 ### Listing historical attempts results: `list`
@@ -407,7 +415,7 @@ Action | Format, Examples
 **Exit** | `exit`
 **Enter Quiz** | `enter quiz`
 **Start attempt**  | `start attempt`
-**Answer** | `answer INDEX a/ANSWER` <br> e.g., `ansewer 1 a/true` for True/False questions and `ansewer 2 a/1` for MCQ questions
+**Answer** | `answer INDEX a/ANSWER` <br> e.g., `answer 1 a/true` for True/False questions and `answer 2 a/1` for MCQ questions
 **End attempt**  | `end attempt`
 **Leave Quiz** | `leave quiz`
 **Performance** | `performance`
