@@ -67,9 +67,13 @@ public class TagTest {
     }
 
     @Test
-    public void validTagName_singleCharacter() {
-        constructor_validTagName("a");
-        constructor_validTagName("1");
+    public void invalidTagName_singleCharacter_throwsIllegalArgumentException() {
+        constructor_invalidTagName_throwsIllegalArgumentException("1");
+    }
+
+    @Test
+    public void validTagName_twoCharacter() {
+        constructor_validTagName("a1");
     }
 
     @Test

@@ -360,11 +360,10 @@ Format: `cadd n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]`
 
 Points to take note when adding a client's information:
 * Email is unique for each client. This means you cannot add a new client if the email specified is already used by another client.
+* Each tag is at least 2 characters long and only include alphanumeric characters or hyphen (`-`). You are not allowed to start or end a tag with a hyphen.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A client can have any number of tags (including 0). Each tag can include
-alphanumeric characters or hyphen (`-`), but you are not allowed to start or end
-a tag with a hyphen. You can use this tag feature to document client's injury history or allergies.
+A client can have any number of tags (including 0). You can use this tag feature to document client's injury history or allergies.
 </div>
 
 <div markdown="block" class="alert alert-warning">
