@@ -215,6 +215,11 @@ during this rendering process, `CaloriesGraph` takes in `HashMap` that contains 
 for that day as the value. `CaloriesGraph` will then take values for the most recent 7 days (including today) and display
 them on the Calories Graph.
 
+![Sequence Diagram for Calories Graph](images/CaloriesGraph.png)
+
+
+Test 1 2 3
+![Sequence Diagram for Calories Graph](diagrams/CaloriesGraph.puml)
 
 #### 4.2.2. Design Consideration
 
