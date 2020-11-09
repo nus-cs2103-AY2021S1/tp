@@ -482,6 +482,8 @@ The following shows the sequence diagram for executing `UiManager#start()`.
 
 ## 4. Documentation, Testing, Logging, Configuration and DevOps Guides
 
+The following are links to other guides for this project.
+
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
@@ -492,7 +494,11 @@ The following shows the sequence diagram for executing `UiManager#start()`.
 
 ## 5. Appendix: Requirements
 
+This section documents the project requirements.
+
 ### 5.1. Product Scope
+
+The following documents the project scope.
 
 **Target user profile**:
 
@@ -508,6 +514,8 @@ The following shows the sequence diagram for executing `UiManager#start()`.
 
 ### 5.2. User Stories
 
+The following documents user stories for this project.
+
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​ | I want to …​ | So that I can… |
@@ -522,6 +530,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ---
 
 ### 5.3. Use Cases
+
+The following documents use cases proposed for this project.
 
 For all use cases (unless specified otherwise):
 
@@ -636,6 +646,8 @@ For all use cases (unless specified otherwise):
 
 ### 5.4. Non-Functional Requirements
 
+The following documents the NFRs of this project.
+
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 100 financial records and 100 inventory items without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
@@ -651,6 +663,8 @@ Given below are instructions to test the app manually.
 </div>
 
 ### 6.1. Launching and Shutting Down
+
+The following documents manual testing instructions for launching and quitting the software.
 
 1. Initial launch
 
@@ -681,6 +695,8 @@ Given below are instructions to test the app manually.
 
 ### 6.2. Adding/Creating a Record
 
+The following documents manual testing instructions for adding / creating a record.
+
 1. Adding/Creating a financial/inventory record.
 
    1. Prerequisites: None.
@@ -701,6 +717,8 @@ Given below are instructions to test the app manually.
 ---
 
 ### 6.3. Deleting a Record
+
+The following documents manual testing instructions for deleting a record.
 
 1. Deleting a record while all inventory/financial records are being shown.
 
@@ -723,6 +741,8 @@ Given below are instructions to test the app manually.
 
 ### 6.4. Editing a Record
 
+The following documents manual testing instructions for editing a record.
+
 1. Editing a record while all inventory/financial records are being shown.
 
    1. Prerequisites: List all inventory/financial records using the `list_inventory` or `list_finance` commands respectively. Multiple records in the list. Ensure that the financial record to be edited is not linked to an inventory record. Otherwise, edit the record from the Inventory side.
@@ -743,6 +763,8 @@ Given below are instructions to test the app manually.
 ---
 
 ### 6.5. Listing Records
+
+The following documents manual testing instructions for listing all records.
 
 1. Listing all inventory/finance records
 
@@ -782,6 +804,8 @@ Given below are instructions to test the app manually.
 
 ## 7. Appendix: Proposed Features for Future Implementation
 
+The following documents proposed features for the upcoming iterations of the project.
+
 1. Customizable Commands<br>
    1. We understand that not everybody that uses NUStorage would be comfortable with the current names of commands. Therefore, we plan to implement a feature that allows users to rename the commands to better suit their liking.
 
@@ -798,6 +822,8 @@ Given below are instructions to test the app manually.
 ---
 
 ## 8. Glossary and Terms
+
+The following documents the technical terms that are relevant to this project.
 
 * **Mainstream OS**: Windows, Linux, MacOS
 * **Inventory**: An item that a user wishes to record. An inventory item can refer to any existing object.
