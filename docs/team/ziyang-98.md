@@ -69,6 +69,8 @@ Given below are my contributions to the project.
   [\#193](https://github.com/AY2021S1-CS2103T-T11-1/tp/issues/193), 
   [\#194](https://github.com/AY2021S1-CS2103T-T11-1/tp/issues/194))
 
+<div style="page-break-after: always;"></div>
+
 ### Documentation
 
 #### User Guide:

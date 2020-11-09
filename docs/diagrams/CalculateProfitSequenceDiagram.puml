@@ -41,6 +41,6 @@ deactivate GetProfitCommand
 GetProfitCommand -[hidden]-> LogicManager : result
 destroy GetProfitCommand
 
+[<--LogicManager
 deactivate LogicManager
-
 @enduml
