@@ -5,12 +5,12 @@ title: TheSpaceCuber's Project Portfolio Page
 
 ## Project: Eva
 
-Eva is a desktop HR management application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Eva is a desktop app for human resource management, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Eva can get your human resource management tasks done faster than traditional GUI apps.
 
 Given below are my contributions to the project.
 
 **New Feature**:
-- Application management system, which consists of the following:
+- Application management system, which consists of a resume parser and generator:
    * Resume parser
      * The parser scans a resume text file using a given filepath to detect a given name, as well as experience as education history.
      * Following which, the resume data will be stored as an application inside an applicant under Eva's database.
@@ -26,6 +26,8 @@ Given below are my contributions to the project.
 
 **Code contributed**: 
 [RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=TheSpaceCuber&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zA=TheSpaceCuber&zR=AY2021S1-CS2103T-W13-1%2Ftp%5Bmaster%5D&zACS=248.18696883852692&zS=2020-08-14&zFS=W13&zU=2020-11-06&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
+
+<div style="page-break-after: always;"></div>
 
 **Project management**:
 - Setup GitHub Organisation and repository
