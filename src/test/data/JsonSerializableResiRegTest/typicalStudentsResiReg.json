@@ -1,0 +1,67 @@
+{
+  "semester" : {
+    "academicYear" : 2020,
+    "semesterNumber" : 1,
+    "allocations" : [ ],
+    "roomFees" : { }
+  },
+  "_comment": "ResiReg save file which contains the same Student values as in TypicalStudents#getTypicalResiReg()",
+  "students" : [ {
+    "name" : "Alice Pauline",
+    "phone" : "12345678",
+    "email" : "alice@example.com",
+    "faculty": "FASS",
+    "studentId": "E0111110",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Benson Meier",
+    "phone" : "01234567",
+    "email" : "benson@example.com",
+    "faculty": "SOC",
+    "studentId": "E0222228",
+    "tagged" : [ "owesMoney", "friends" ],
+    "room": {
+      "floor": "1",
+      "roomNumber": "101",
+      "roomType": "CN"
+    }
+  }, {
+    "name" : "Carl Kurz",
+    "phone" : "34567890",
+    "email" : "carl@example.com",
+    "faculty": "DEN",
+    "studentId": "E0111112",
+    "tagged" : [ ]
+  }, {
+    "name" : "Daniel Meier",
+    "phone" : "12234567",
+    "email" : "daniel@example.com",
+    "faculty": "DNUS",
+    "studentId": "E0111113",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Elle Meyer",
+    "phone" : "12234571",
+    "email" : "elle@example.com",
+    "faculty": "FASS",
+    "studentId": "E0111114",
+    "tagged" : [ ]
+  }, {
+    "name" : "Fiona Kunz",
+    "phone" : "72234573",
+    "email" : "fiona@example.com",
+    "faculty": "FASS",
+    "studentId": "E0111115",
+    "tagged" : [ ]
+  }, {
+    "name" : "George Best",
+    "phone" : "62345673",
+    "email" : "george@example.com",
+    "faculty": "FASS",
+    "studentId": "E0111101",
+    "tagged" : [ ]
+  } ],
+  "rooms": [ ],
+  "allocations": [],
+  "binItems": []
+}

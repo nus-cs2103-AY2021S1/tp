@@ -1,0 +1,34 @@
+{
+  "semester" : {
+    "academicYear" : 2020,
+    "semesterNumber" : 1,
+    "allocations" : [ ],
+    "roomFees" : { }
+  },
+  "students" : [ ],
+  "rooms": [ ],
+  "allocations": [ ],
+  "binItems" : [ {
+    "dateDeleted" : "2020-11-05",
+    "roomItem" : null,
+    "studentItem" : {
+      "name" : "Bernice Yu",
+      "phone" : "12345678",
+      "email" : "berniceyu@example.com",
+      "faculty" : "SOC",
+      "studentId" : "E0222222",
+      "tagged" : [ "colleagues", "friends" ]
+    }
+  }, {
+    "dateDeleted" : "2020-11-05",
+    "roomItem" : null,
+    "studentItem" : {
+      "name" : "Bernice Yu",
+      "phone" : "12345678",
+      "email" : "berniceyu@example.com",
+      "faculty" : "SOC",
+      "studentId" : "E0222222",
+      "tagged" : [ "colleagues", "friends" ]
+    }
+  } ]
+}

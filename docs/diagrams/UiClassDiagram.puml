@@ -11,10 +11,22 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
+Class MainPanel
 Class StatusBarFooter
 Class CommandBox
+
+skinparam componentBorderColor transparent
+package Room <<Rectangle>>{
+Class RoomListPanel
+}
+
+package Student <<Rectangle>> {
+Class StudentListPanel
+}
+
+package BinItem <<Rectangle>>{
+Class BinItemListPanel
+}
 }
 
 package Model <<Rectangle>> {
@@ -33,28 +45,37 @@ UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> PersonListPanel
+MainWindow *-down-> MainPanel
 MainWindow *-down-> StatusBarFooter
 
-PersonListPanel -down-> PersonCard
+MainPanel *-down-> RoomListPanel
+MainPanel *-down-> StudentListPanel
+MainPanel *-down-> BinItemListPanel
 
-MainWindow -left-|> UiPart
+RoomListPanel --|> UiPart
+BinItemListPanel --|> UiPart
+StudentListPanel --|> UiPart
+
+StudentListPanel ..right.> Model
+BinItemListPanel ..[hidden]right.> Model
+RoomListPanel ..right.> Model
+
+MainWindow --left|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
+MainPanel --|> UiPart
 
-PersonCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+RoomListPanel -[hidden]left- BinItemListPanel
+StudentListPanel -[hidden]right- RoomListPanel
 
 MainWindow -[hidden]-|> UiPart
 @enduml

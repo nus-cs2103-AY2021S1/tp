@@ -1,0 +1,32 @@
+{
+  "semester" : {
+    "academicYear" : 2020,
+    "semesterNumber" : 1,
+    "allocations" : [ ],
+    "roomFees" : { }
+  },
+  "students": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "faculty": "FASS",
+    "studentId": "E0407881",
+    "tagged": [ "friends" ]
+  } ],
+  "rooms": [ {
+    "floor" : "11",
+    "roomNumber" : "108",
+    "roomType" : "CA",
+    "tagged" : [ "normal" ]
+  } ],
+  "allocations": [ {
+    "floor" : "11",
+    "roomNumber" : "108",
+    "studentId" : "E0407881"
+  }, {
+    "floor" : "11",
+    "roomNumber" : "108",
+    "studentId" : "E0407881"
+  } ],
+  "binItems": []
+}

@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HelpCommand" as HelpCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":CommandException" as CommandException LOGIC_COLOR
+participant ":Help" as Help LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":AliasUtils" as AliasUtils MODEL_COLOR
+end box
+
+LogicManager --> HelpCommand : execute()
+    activate HelpCommand
+HelpCommand --> Model : getCommandWordAliases()
+    activate Model
+    return aliasList
+    deactivate Model
+HelpCommand --> AliasUtils : makeAliasToCommandWordMap(aliasList)
+    activate AliasUtils
+    return aliasMap
+    deactivate AliasUtils
+alt input is blank
+        HelpCommand --> CommandResult ** : CommandResult(generalHelpMessage)
+        activate CommandResult
+        return
+        deactivate CommandResult
+else input is a valid command word or an alias to a command word
+        HelpCommand --> Help : getFullMessage()
+        activate Help
+            return msg
+        deactivate Help
+        HelpCommand --> CommandResult ** : CommandResult(msg)
+        activate CommandResult
+        return
+        deactivate CommandResult
+else else
+        HelpCommand --> CommandException ** : CommandException()
+        activate CommandException
+        return
+        deactivate CommandException
+end
+    deactivate HelpCommand
+HelpCommand --> LogicManager
+@enduml

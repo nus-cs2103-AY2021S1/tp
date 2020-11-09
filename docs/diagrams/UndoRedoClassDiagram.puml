@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+interface ReadOnlyResiReg <<Interface>>
+class "{abstract}\nCommand" as Command LOGIC_COLOR
+
+class ResiReg
+ResiReg .up.|> ReadOnlyResiReg
+
+class StatefulResiReg
+StatefulResiReg .up[hidden].>UndoCommand
+StatefulResiReg -right-|> ResiReg
+StatefulResiReg o-right-> "1..*" ReadOnlyResiReg : contains >
+
+class ModelManager
+ModelManager *--> "1" StatefulResiReg
+
+class UndoCommand LOGIC_COLOR
+UndoCommand .left[#blue].> ModelManager
+UndoCommand -up[#blue]-|> Command
+
+class RedoCommand LOGIC_COLOR
+RedoCommand .left[#blue].> ModelManager
+RedoCommand -up[#blue]-|> Command
+@enduml

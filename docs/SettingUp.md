@@ -23,7 +23,7 @@ If you plan to use Intellij IDEA (highly recommended):
 1. **Import the project as a Gradle project**: Follow the guide [_[se-edu/guides] IDEA: Importing a Gradle project_](https://se-education.org/guides/tutorials/intellijImportGradleProject.html) to import the project into IDEA.<br>
   :exclamation: Note: Importing a Gradle project is slightly different from importing a normal Java project.
 1. **Verify the setup**:
-   1. Run the `seedu.address.Main` and try a few commands.
+   1. Run the `seedu.resireg.Main` and try a few commands.
    1. [Run the tests](Testing.md) to ensure they all pass.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -53,3 +53,8 @@ If you plan to use Intellij IDEA (highly recommended):
    * [Tracing code](tutorials/TracingCode.md)
    * [Removing fields](tutorials/RemovingFields.md)
    * [Adding a new command](tutorials/AddRemark.md)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Before pushing code
+We use [gradle-githook](https://plugins.gradle.org/plugin/com.star-zero.gradle.githook) to configure a pre-push hook that runs the following gradle tasks: `test`, `clean`, `checkstyleMain`, and `checkstyleTest`. This helps us ensure that the tests pass locally and code follows the Style Guide before we spend precious CI minutes on it.

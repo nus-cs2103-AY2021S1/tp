@@ -1,0 +1,32 @@
+@startuml
+!include style.puml
+
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+interface Binnable
+
+class ResiReg
+class BinItem
+class UniqueBinItemList
+class Student
+
+ResiReg *--> UniqueStudentList
+ResiReg *--> UniqueRoomList
+ResiReg *--> UniqueBinItemList
+
+UniqueBinItemList o--> "*" BinItem
+
+BinItem *--> "1" Binnable
+BinItem *--> "1" LocalDate
+
+
+Binnable <|.. Student
+Binnable <|.. Room
+
+
+UniqueStudentList o----> "*" Student
+UniqueRoomList o----> "*" Room
+
+@enduml

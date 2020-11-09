@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <!--minHeight needs to be -Infinity to allow the label to expand vertically-->
+    <Label fx:id="command" styleClass="result-display-text" minHeight="-Infinity"/>
+    <Label fx:id="feedback" styleClass="result-display-text" minHeight="-Infinity"/>
+   <padding>
+      <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+   </padding>
+</VBox>

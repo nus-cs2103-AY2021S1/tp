@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<ScrollPane fx:id="resultDisplayScroll"
+            styleClass="pane-with-border"
+            xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            hbarPolicy="NEVER"
+            fitToHeight="true"
+            fitToWidth="true"
+            hvalue="1"
+            vbarPolicy="ALWAYS">
+            <!--scroll bar won't appear without this for some reason-->
 
-<StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/8"
-    xmlns:fx="http://javafx.com/fxml/1">
-  <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display"/>
-</StackPane>
+    <VBox fx:id="responseContainer">
+        <padding>
+            <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+        </padding>
+    </VBox>
+</ScrollPane>

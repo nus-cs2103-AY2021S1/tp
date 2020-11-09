@@ -30,13 +30,27 @@
 }
 
 .tab-pane {
-    -fx-padding: 0 0 0 1;
+    -fx-tab-min-width: 120px;
 }
 
-.tab-pane .tab-header-area {
-    -fx-padding: 0 0 0 0;
-    -fx-min-height: 0;
-    -fx-max-height: 0;
+.tab-header-background {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+.tab {
+    -fx-font-size: 14;
+    -fx-background-color: derive(#1d1d1d, 40%);
+}
+
+.tab-label, .tab-label:selected {
+    -fx-text-fill: white;
+}
+
+.tab:selected {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-border-color: #3e7b91 transparent transparent transparent;
+    -fx-border-width: 2px 0 0 0;
+    -fx-font-weight: bold;
 }
 
 .table-view {
@@ -146,15 +160,23 @@
     -fx-background-color: derive(#1d1d1d, 30%);
 }
 
-.result-display {
+.result-display-text {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
+    -fx-control-inner-background: derive(#1d1d1d, 20%);
+    -fx-font-size: 12pt;
     -fx-text-fill: white;
+    -fx-wrap-text: true;
 }
 
-.result-display .label {
-    -fx-text-fill: black !important;
+.result-display-valid-command {
+    -fx-font-weight: bold;
+    -fx-text-fill: lightblue;
+}
+
+.result-display-invalid-command {
+    -fx-font-weight: bold;
+    -fx-text-fill: orange;
 }
 
 .status-bar .label {
@@ -307,6 +329,18 @@
     -fx-padding: 8 1 8 1;
 }
 
+.split-view-title {
+    -fx-font-size: 13pt;
+    -fx-text-fill: white;
+    -fx-label-padding: 4 12 4 12;
+}
+
+#newModeLabel {
+    -fx-font-size: 13pt;
+    -fx-text-fill: orange;
+    -fx-label-padding: 4 12 4 12;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
@@ -349,4 +383,16 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#responseContainer {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+#semesterLabel {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-font-size: 15pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
 }

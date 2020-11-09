@@ -1,0 +1,19 @@
+@startuml
+start
+:User executes undo command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([canUndo() returns true])
+    :Add currState to redoStatesStack;
+    :Pop previous state from
+    undoStatesStack;
+    :Reset ResiReg data using this previous
+    state;
+    :Set currState to this state;
+else ([else])
+    :Throw NoUndoableStateException;
+endif
+stop
+@enduml

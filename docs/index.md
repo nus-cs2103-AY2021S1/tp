@@ -1,19 +1,34 @@
 ---
 layout: page
-title: AddressBook Level-3
+title: ResiReg
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
+[![Java CI](https://github.com/AY2021S1-CS2103-T16-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103-T16-3/tp/actions)
+[![codecov](https://codecov.io/gh/AY2021S1-CS2103-T16-3/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021S1-CS2103-T16-3/tp)
 
 ![Ui](images/Ui.png)
 
-**AddressBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**ResiReg** (**Resi**dential **Reg**ulation) is a productivity app designed to help admin staff at Residential Colleges (RCs) in NUS with their daily tasks. 
 
-* If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+**ResiReg** has the following main features:
 
+- Manage records of students.
+- Manage records of rooms.
+- Manage allocations of students to rooms in the College
 
-**Acknowledgements**
+Our application is geared towards users who prefer typing over mouse actions, so interactions with our application are mainly keyboard based.
 
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+## Site Map
+
+- [User Guide](UserGuide.md)
+- [Developer Guide](DeveloperGuide.md)
+- [About Us](AboutUs.md)
+- [Contact Us](ContactUs.md)
+
+## Acknowledgements
+
+- This project is a based off the AddressBook-Level3 project, created by SE-EDU initiative at https://se-education.org
+- Some parts of this sample application were inspired by the excellent http://code.makery.ch/library/javafx-8-tutorial/[Java FX tutorial] by _Marco Jakob_.
+- Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+
+## License : [MIT](LICENSE)

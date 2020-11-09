@@ -4,9 +4,10 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '4.0.4'
     id 'application'
     id 'jacoco'
+    id "com.star-zero.gradle.githook" version "1.2.1"
 }
 
-mainClassName = 'seedu.address.Main'
+mainClassName = 'seedu.resireg.Main'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
@@ -66,7 +67,21 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'resireg.jar'
+}
+
+githook {
+    failOnMissingHooksDir = true
+    createHooksDirIfNotExist = true
+    hooks {
+        "pre-push" {
+            task = "test clean checkstyleMain checkStyleTest"
+        }
+    }
+}
+
+run {
+    enableAssertions = true
 }
 
 defaultTasks 'clean', 'test'
