@@ -63,7 +63,7 @@ ___
 * Managed the weekly tasks and the mini goals we had between each iteration. Helped keep the team in check when the pace was off and when we were falling behind.
 
 * **Enhancements to existing features**:
-  * Wrote additional tests for existing features to increase coverage and one example is from 65% to 67% (Pull requests [\#272]())
+  * Wrote additional tests for existing features to increase coverage and one example is from 65% to 67% (Pull requests [\#272](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/272))
 
 * **Documentation**:
   * User Guide:
@@ -73,8 +73,14 @@ ___
     * Added implementation details of the `LOGIC` component for the system.
     * Added implementation details of the `edit` feature.
     * Helped with the formatting and the standardisation of the overall document.
+    * Helped add use cases.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#208](), [\#256](), [\#134]()]
-  * Contributed to forum discussions (examples: [#222](), [#147](), [#223]())
+  * PRs reviewed (with non-trivial review comments): 
+[\#208](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/208), [\#256](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/256), [\#134](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/134)]
+  * Contributed to forum discussions (examples: [#222](https://github.com/nus-cs2103-AY2021S1/forum/issues/222), [#147](https://github.com/nus-cs2103-AY2021S1/forum/issues/147), [#223](https://github.com/nus-cs2103-AY2021S1/forum/issues/223))
   * Reported bugs and suggestions for other teams. Reported 14 bugs for other teams such as T14-2.
+  [1](https://github.com/Christopher-LM/ped/issues/7)
+  [2](https://github.com/Christopher-LM/ped/issues/6)
+  [3](https://github.com/Christopher-LM/ped/issues/13)
+  [4](https://github.com/Christopher-LM/ped/issues/3)
