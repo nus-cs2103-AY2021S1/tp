@@ -546,6 +546,9 @@ Employee Directory. You are able to view data related to manpower in the Employe
 * All archived employees' information is stored in the archived Employee Directory (refer to `c-archive-list`
  to view the archived Employee Directory).
 
+* The list shown in the Employee Directory inside the _Main View_ when the app is launched is always the active
+ Employee Directory.
+ 
 </div>
 
 #### 3.1 Adding an employee : `c-add`
