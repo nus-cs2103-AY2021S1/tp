@@ -16,7 +16,7 @@ public class SortCommand extends Command {
             + "Parameters: ASC / DESC (can be in lowercase)\n"
             + "Example: " + COMMAND_WORD + " ASC";
 
-    public static final String MESSAGE_SUCCESS = "Flashcards sorted";
+    public static final String MESSAGE_SUCCESS = "Flashcards sorted in ";
 
     private final String sortOrder;
 
@@ -28,6 +28,6 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.sortFilteredFlashcardList(sortOrder);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS + sortOrder + "ending order.");
     }
 }
