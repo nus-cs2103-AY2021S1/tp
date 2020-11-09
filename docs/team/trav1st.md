@@ -29,7 +29,7 @@ Shows the 10 most recently made recipes / recently used ingredients. It is cappe
 
 ##### View recipes/ingredients that were made/used commands
 
-Shows the recipes made and ingredients used in the given time frame. If the user does not specify any time frame (i.e. `/before` and `after` tags are missing in user's input), we assumed that the user wants to view recipes made/ ingredients used on the day itself.
+Shows the recipes made and ingredients used in the given time frame. If the user does not specify any time frame (i.e. `/before` and `/after` tags are missing in user's input), we assumed that the user wants to view recipes made / ingredients used on the day itself.
 
 ##### Clear recipes/ingredient usage records commands
 
@@ -51,11 +51,11 @@ Contributed in ensuring the tests are sufficient and updated regularly.
 #### Documentation
 **User Guide**
 
-Author for the Statistic commands section of User Guide. Added detailed examples for the [StatisticsCommands](https://ay2021s1-cs2103t-t10-3.github.io/tp/UserGuide.html#56statistics-commands).
+Author for the Statistic commands section of User Guide. Added detailed examples for the statistics commands ([StatisticsCommands](https://ay2021s1-cs2103t-t10-3.github.io/tp/UserGuide.html#56statistics-commands)).
 
 **Developer Guide**
 
-Ensured that the UML diagrams are updated and accurate. Added implementation details for the statistics feature. [StatisticsFeature](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/docs/DeveloperGuide.md#45statistics-feature).
+Ensured that the UML diagrams are updated and accurate. Added implementation details for the statistics feature ([StatisticsFeature](https://ay2021s1-cs2103t-t10-3.github.io/tp/DeveloperGuide.html#45statistics-feature)).
 
 
 #### Community
