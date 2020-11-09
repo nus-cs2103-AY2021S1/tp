@@ -1049,7 +1049,7 @@ The TodoList feature has two main component :
 
 * **Containee component** (Task-related classes)
 
-![TaskClassDiagram]()
+![TaskClassDiagram](images/Task/TaskClassDiagram.png)
 
   * `Task` - container class to store information about a task
   * `TaskName` - wrapper class to store the name of a task
@@ -1059,8 +1059,6 @@ The TodoList feature has two main component :
   * `LocalDate` - built-in class to represent the date creation of the task
 
 * **Container component** (List-like classes)
-
-![SimpleTodoListClassDiagram]()
 
   * `UniqueTodoList` - container class for storing tasks
   * `TodoList` - wrapper class for UniqueTodoList
@@ -1187,8 +1185,6 @@ Below are the list of the all the implemented commands for TodoList:
 
 #### Add Task Feature
 
-![AddTaskSequenceDiagram]()
-
 The add task feature is the most fundamental feature in the TodoList as it allows the user to add
 a task to the list. The implementation is similar compared to the other big feature. In addition,
 this feature does not allow the user to add duplicate task where 2 tasks are considered to be
@@ -1220,7 +1216,7 @@ Step 6. A `CommandResult` from the command execution is returned to `LogicManage
 
 Given below is the sequence diagram of how the operation to add a `Task` works:
 
-![AddTaskSequenceDiagram](images/Task/AddTaskSequenceDiagram.png)
+![AddTaskSequenceDiagram](images/TodoList/AddTaskSequenceDiagram.png)
 Figure Sequence diagram for the execution of `AddTaskCommand`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddTaskCommand` and `AddTaskParser` should end 
@@ -1280,7 +1276,7 @@ Step 5. The `Model#setTask()` operation exposed in the `Model` interface is invo
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to edit a `Task` works:
-![EditTaskSequenceDiagram](images/Task/EditTaskCommandSequenceDiagram.png)
+![EditTaskSequenceDiagram](images/TodoList/EditTaskCommandSequenceDiagram.png)
 
 In addition, as mentioned previously the edit task feature support the operation to delete a detail from
 the task. The steps are given below:
@@ -1296,7 +1292,7 @@ Step 4. If the boolean is true for a specific prefix, the detail of the task rep
 Step 5. The following steps should continue from step 5 from above sequence.
 
 Given below is the activity diagram of how the above steps work:
-![EditTaskDeleteFieldDiagram](images/Task/EditTaskCommandSequenceDiagram.png)
+![EditTaskDeleteFieldActivityDiagram](images/TodoList/EditTaskDeleteFieldActivityDiagram.png)
 
 #### Design Consideration
 
@@ -1372,7 +1368,7 @@ In addition the classes below are uses by the comparator classes mentioned above
     * It implements `Comparator#comapre()` for comparing `Date` objects
 
 Given below is the class diagram describing the comparators:
-![diagram]()
+![TaskComparatorClassDiagram](images/Task/TaskComparatorClassDiagram.png)
 
 Given below is an example usage scenario and how the mechanism for sorting tasks behaves at each step:
 
@@ -1391,7 +1387,7 @@ by updating the `Model#sortedTodoList` with the new comparator.
 
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
-![diagram]()
+![SortTaskCommandSequenceDiagram](images/TodoList/SortTaskCommandSequenceDiagram.png))
 
 In addition, if the user wants to reverse order, the `Comparator<Task>` will be updated in the `SortTaskParser#parse()`
 using the built-in java method `Comparator#reversed()`.
