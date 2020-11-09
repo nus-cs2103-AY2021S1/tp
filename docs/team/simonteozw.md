@@ -33,7 +33,7 @@ This portfolio aims to document the contributions that I have made to the **Trac
 
 ### Minor Enhancement: Added Test cases for Task Manager
 
-Because I was the one who implemented the Task Manager and all its related methods, I was responsible for writing the
+* Because I was the one who implemented the Task Manager and all its related methods, I was responsible for writing the
  test cases of the Task Manager as well.
  
 ### Minor Enhancement: Added Test cases for Storage classes
