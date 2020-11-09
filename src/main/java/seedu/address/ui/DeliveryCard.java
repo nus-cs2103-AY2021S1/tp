@@ -91,6 +91,12 @@ public class DeliveryCard extends UiPart<Region> {
 
             LocalDateTime tempDateTime = LocalDateTime.from(currentTime);
 
+            long days = tempDateTime.until(endTime, ChronoUnit.DAYS);
+            tempDateTime = tempDateTime.plusDays(days);
+
+            long hours = tempDateTime.until(endTime, ChronoUnit.HOURS);
+            tempDateTime =  tempDateTime.plusHours(hours);
+
             long minutes = tempDateTime.until(endTime, ChronoUnit.MINUTES);
             tempDateTime = tempDateTime.plusMinutes(minutes);
 
@@ -98,18 +104,22 @@ public class DeliveryCard extends UiPart<Region> {
 
             if ((minutes < 0 || seconds < 0)) { // OVERDUE BY: XXmin XXsec (in red)
                 String timeString = "OVERDUE BY: "
-                                    + (minutes < 0 ? (-1 * minutes) : minutes)
-                                    + "min "
-                                    + (seconds < 0 ? (-1 * seconds) : seconds)
-                                    + "sec";
+                        + (days < 0 ? (-1 * days) + "days " : "")
+                        + (hours < 0 ? (-1 * hours) + "hours " : "")
+                        + (minutes < 0 ? (-1 * minutes) : minutes)
+                        + "min "
+                        + (seconds < 0 ? (-1 * seconds) : seconds)
+                        + "sec";
                 time.setText(timeString);
                 time.setFill(Color.web("#f24e6c")); // light red
             } else { // DELIVER BY: XXmin XXsec (in green)
                 String timeString = "DELIVER BY: "
-                                    + minutes
-                                    + "min "
-                                    + seconds
-                                    + "sec";
+                        + (days > 0 ? days + "days ": "")
+                        + (hours > 0 ? hours + "hours ": "")
+                        + minutes
+                        + "min "
+                        + seconds
+                        + "sec";
                 time.setText(timeString);
                 if (minutes < 10) {
                     time.setFill(Color.ORANGE);
