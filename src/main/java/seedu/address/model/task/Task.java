@@ -205,7 +205,7 @@ public class Task implements Comparable<Task> {
     }
 
     /**
-     * Returns true if all fields are equal.
+     * Returns true if name and deadline fields are equal.
      */
     @Override
     public boolean equals(Object o) {
@@ -217,7 +217,7 @@ public class Task implements Comparable<Task> {
         }
         Task task = (Task) o;
         return getTaskName().equals(task.getTaskName())
-                && Objects.equals(getDeadline(), task.getDeadline());
+                && getDeadline().equals(task.getDeadline());
     }
 
     @Override

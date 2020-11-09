@@ -1061,5 +1061,25 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-1. _{ more test cases …​ }_
+   1. Test case: Delete maincatalogue.json to simulate a missing data file. <br>
+      Expected: A new maincatalogue.json is created with default projects and persons.
+   
+   1. Test case: Delete "Participations" from maincatalogue.json. <br>
+      Expected: Taskmania will start with an empty maincatalogue.json with no default projects and persons.
+      
+### Adding a Task 
+
+1. Adding a task into a project while in a project scope
+   1. Prerequisites: Have a valid project created, and start with `startproject 1`. 
+
+   1. Test case: `addtask tn/Refactor Person class tp/0 `<br>
+      Expected: A new task is added to project 1.  "New task added: [Refactor Person Class]" message is returned to the
+       user.
+
+   1. Test case: `addtask`<br>
+      Expected: No task added to the project. Error details about incorrect format shown to user.
+      .
+
+   1. Other incorrect delete commands to try: `addtask tn/%&`, `add teammate ...`,  where the input is incomplete
+    or the command is incorrect. <br> Expected: Similar to previous.
+    
