@@ -3,6 +3,7 @@ package seedu.address.model.consultation;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_AMY;
@@ -23,6 +24,7 @@ import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.consultation.exceptions.ConflictingGroupConsultationException;
 import seedu.address.model.consultation.exceptions.ConflictingPersonalConsultationException;
 import seedu.address.model.consultation.exceptions.ConsultationNotFoundException;
 import seedu.address.model.consultation.exceptions.DuplicateConsultationException;
@@ -121,6 +123,14 @@ public class UniqueConsultationListTest {
             .withTime(ALICE_TIME)
             .build();
         assertThrows(ConflictingPersonalConsultationException.class, () -> uniqueConsultList.add(conflictingConsult));
+    }
+
+    @Test
+    public void add_groupConsultWithSameGroupConsultDifferentLocation_throwsConflictingGroupConsultationException() {
+        uniqueConsultList.add(GROUP_CONSULT);
+        Consultation groupConsult = new ConsultationBuilder(GROUP_CONSULT).withName(VALID_NAME_AMY)
+                .withLocation(VALID_LOCATION_AMY).build();
+        assertThrows(ConflictingGroupConsultationException.class, () -> uniqueConsultList.add(groupConsult));
     }
 
     @Test
