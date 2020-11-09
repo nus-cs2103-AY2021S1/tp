@@ -156,16 +156,114 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## 4. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
+I added the template class which stores information about a template. The template class has attributes name, calories,
+muscleTags, and tags. The class has the get methods for the different attributes and a toString method to convert the 
+template to a string in a more readable format. The class also has one parseToArgument() method which converts the 
+template to the command argument. The class has one static method writeToFile which takes in template lists as parameter
+and write the content of the list into the file. The class also has an equals method which takes in a template object 
+and check whether the template object is equal to the template itself.
+I also added a templateList class which stores the information about the template list in the app. The class has the 
+following static methods:
+-	getTemp: returns the template that has a specific name
+-	addTemplate: add the template into the template list
+-	load: load the template list from the file
+-	readTask: read the template list from the file
+-	checkEqual: Check whether the given template is equal to any of the template in the list
+-	reset: empty the content of templatelist
+The methods in the templateList classes are all static because it will be easier to just call the method in the 
+templateList instead of having to create a new templateList object.
+Two new parsers are also created for the command of creating a new template and the command of adding exercise from the 
+template respectively. The parse method in AddExerciseFromTemplateParser parses the command of adding the exercise 
+using the template and returns a new AddCommand object. The parse method in AddTemplateCommand parses the command 
+of creating a new template and returns a new AddTemplateCommand object.
+The template list is stored in the data file folder as a txt file.
+
+=== Updating an exercise
+
+Author: Lee Wei Min
+
+This section details how an `Exercise` is modified using the `update` command.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The update command 
+updates an existing exercise, where all fields are optional but at least one field to update must
+be specified. For more details, please refer to the [update section](https://ay2021s1-cs2103t-w17-2.github.io/tp/UserGuide.html#33-update-exercises--update) of the user guide
+</div>
+
+==== Implementation
+
+We will use the following example command: `update 1 d/30 c/260 m/chest t/home`.
+
+The below sequence diagram details the execution flow:
+
+![UpdateSequenceDiagram](images/UpdateSequenceDiagram.png)
+
+Here are the steps:
+- Step 1: `LogicManager` calls its  `execute` method, supplying the argument "update 1 d/30 c/260 m/chest t/home", which was entered by the user.
+
+- Step 2: `LogicManager` calls the `exerciseBookParser`'s `parseCommand` method, supplying the user input.
+
+- Step 3: In `parseCommand`, the user input is parsed and its command word (`update`) is matched to the `UpdateCommandParser`. `UpdateCommandParser`'s `parse` method is called, passing in the parsed arguments.
+
+- Step 4: In `UpdateCommandParser`'s `parse` method, a `EditExerciseDescriptor` object
+is created. Each field of the parsed arguments are added to the `EditExerciseDescriptor` object. `UpdateCommandParser` then creates an `UpdateCommand` object containing the index of the `exercise` to edit and the `EditExerciseDescriptor` object. In the sequence diagram, the argument `index` refers
+to the `Index` object representing the index of the first exercise, while `editExerciseDescriptor`
+refers to the `EditExerciseDescriptor` object that contains the data (from the parsed
+arguments) to update.
+
+- Step 5: `LogicManager` obtains the `UpdateCommand` object, which is referenced by the `command` variable. It then executes the `execute` method of  the `UpdateCommand` object.
+
+- Step 6: In the `execute` method, the `UpdateCommand` object calls `getFilteredExerciseList` to 
+to obtain `lastShownExerciseList`. The `Exercise` to edit is retrieved from the `lastShownExerciseList` using the `index`, and assigned to `exerciseToEdit`. Another `Exercise` object, named `editedExercise` is created to hold the data to be updated. The `UpdateCommand` object then calls the `setExercise` method of `Model`, with `exerciseToEdit` and `editedExercise`.
+
+- Step 7: A new `CommandResult` is created containing the message to be displayed to the user,
+which is "Edited Exercise: Name: running Description: 30 Date: 10-12-2020 Calories: 260 Muscles worked:[chest] Tags: [home]". This `CommandResult` is returned to `LogicManager`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The activation bar
+of commandResult should be joined to the side of the box representing the commandResult instance.
+Due to a limitation of PlantUML, it is not possible to do so here.
+</div>
+
+==== Design Considerations
+
+===== Aspect: Process of updating the new data in `model`
+
+- **Alternative 1 (Current choice)**: Replace `Exercise` to be updated in `UniqueExerciseList` of `ExerciseBook` with another `Exercise` object containing the updated data.
+
+  - Pros:
+    - Atomic updates.
+  - Cons:
+    - May have performance issues in terms of memory usage.
+    - Eg. If only one field of the original `Exercise` object will be updated, another `Exercise`
+      object will still be created containing the original data of the unchanged fields.
+
+<br>
+
+- **Alternative 2**: Update the fields of the original exercise one at a time.
+
+  - Pros:
+    - Will use less memory (no new `Exercise` object will be created)
+  - Cons:
+    - If an error occurs in the middle of the process, the fields which were updated would not recover the original values.
+
+#### Summary
+
+The following activity diagram summarizes what happens when a user executes an `update` command:
+
+![UndoRedoState5](images/UpdateActivityDiagram.png)
+
+### Proposed Implementation of Undo
 
 ### 4.1. Searching for specific `exercise`
 
 (by Xinyi)
+=======
 
 This section addresses how the `find` and `recall` commands work. 
 
 The `find` command allows users to search through the Exercise Book based on what users enter for the `Field`s. Users should enter at least one `Field`. The search results can then be displayed in the GUI's Exercise Book.
 
 Meanwhile, the `recall` command allows users to search for the most recent exercise with the specific name entered by the user.
+
 
 [NOTE]
 `Field`s here indicate which `Exercise` attributes we are interested in. Exact search finds `Exercise` objects with values that exactly match the user-specified values of the fields (`Name`, `Description`, `Date` ,`Calories`).
@@ -195,7 +293,6 @@ Step 4: `LogicManager` calls the `execute` method of the created `FindCommand`, 
 It then returns a new CommandResult object reflecting the status of the execution. These changes are eventually reflected in the GUI.
 
 The `find` command therefore searches through the existing Exercise List and then displays the relevant search results in the GUI’s Exercise List.
-
 
 To search for the most recent exercise with the user-specified `Name`, we use `RecallCommandParser` to parse the user input and create a new `RecallCommand` object with the parsed input.
 The `RecallCommand` then goes through the existing Exercise List to find the most recent date, creates the `TheMostRecentDatePredicate`, and updates the GUI display when executed.
