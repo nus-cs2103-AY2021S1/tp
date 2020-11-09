@@ -1,14 +1,20 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+# FixMyAbs
 
-![Ui](docs/images/Ui.png)
+[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103-F10-3/tp/actions)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+![Ui](docs/images/screenshots/v1.4homescreen.png)
+
+# FixMyAbs
+
+FixMyAbs is a workout tracker that helps lazy programmers transform their round belly into toned six packs. If you are unmotivated for a workout, FixMyAbs will be your partner in helping you to change your life. 😎
+
+
+For more information, check out the [FixMyAbs Website](https://ay2021s1-cs2103-f10-3.github.io/tp).
+
+
+### Disclaimer
+
+* While we make outlandish promises, there is no guarantee that six packs will form after you have downloaded this application
+* The formation of six packs requires hard work on your side
+* We are also not liable for any injuries that you may sustain while using this application
+* Please consult with your doctor before you begin any exercise program

@@ -1,0 +1,43 @@
+{
+  "_comment": "LogBook save file which contains the same Log values as in TypicalLogs#getTypicalLogBook()",
+  "logs" : [ {
+    "exercise" : "Flying kicks",
+    "dateTime" : "2020-01-01T01:01:00",
+    "rep" : "1",
+    "comment" : "This"
+  }, {
+    "exercise" : "Sit ups",
+    "dateTime" : "2020-02-02T02:02:00",
+    "rep" : "2",
+    "comment" : "is"
+  }, {
+    "exercise" : "Pull ups",
+    "dateTime" : "2020-03-03T03:03:00",
+    "rep" : "34",
+    "comment" : "a"
+  }, {
+    "exercise" : "Jumping jacks",
+    "dateTime" : "2020-04-04T04:04:00",
+    "rep" : "56",
+    "comment" : "typical"
+  } ],
+  "exercises" : [ {
+    "name" : "Flying kicks",
+    "caloriesPerRep" : 15
+  }, {
+    "name" : "Sit ups",
+    "caloriesPerRep" : 30
+  }, {
+    "name" : "Pull ups",
+    "caloriesPerRep" : 20
+  }, {
+    "name" : "Jumping jacks",
+    "caloriesPerRep" : 15
+  }, {
+    "name" : "Run 100m",
+    "caloriesPerRep" : 30
+  }, {
+    "name" : "Stretch",
+    "caloriesPerRep" : 20
+  } ]
+}

@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FixMyAbsParser" as FixMyAbsParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "a:FindCommand" as FindCommand LOGIC_COLOR
+participant "newLog:Log" as Log LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(command)
+activate LogicManager
+
+LogicManager -> FixMyAbsParser : parseCommand(command)
+activate FixMyAbsParser
+
+create FindCommandParser
+FixMyAbsParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser --> FixMyAbsParser
+deactivate FindCommandParser
+
+FixMyAbsParser -> FindCommandParser : parse(command)
+activate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand
+activate FindCommand
+
+FindCommand --> FindCommandParser : a
+deactivate FindCommand
+
+FindCommandParser --> FixMyAbsParser : a
+deactivate FindCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindCommandParser -[hidden]-> FixMyAbsParser
+destroy FindCommandParser
+
+FixMyAbsParser --> LogicManager : a
+deactivate FixMyAbsParser
+
+LogicManager -> FindCommand : execute(model)
+activate FindCommand
+
+FindCommand -> Model : updateFilteredLogList()
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

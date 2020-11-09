@@ -8,6 +8,12 @@ src/main/resources/docs/
 /out/
 /*.iml
 
+# Eclipse files
+.project
+.classpath
+.settings
+/bin/
+
 # Storage/log files
 /data/
 /config.json
@@ -20,3 +26,6 @@ src/test/data/sandbox/
 # MacOS custom attributes files created by Finder
 .DS_Store
 docs/_site/
+
+# vscode files
+.vscode
