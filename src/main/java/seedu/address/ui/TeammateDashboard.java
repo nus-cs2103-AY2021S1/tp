@@ -53,14 +53,31 @@ public class TeammateDashboard extends UiPart<Region> {
     public TeammateDashboard(Optional<Participation> teammate) {
         super(FXML);
         this.teammate = teammate.get();
+        setHeader();
+        setLabels();
+        setText();
+        setListOfTasks();
+    }
+
+    private void setHeader() {
+        header1.setText("Tasks assigned: ");
+    }
+
+    private void setLabels() {
         Person person = this.teammate.getPerson();
         teammateName.setText(person.getPersonName().toString());
         gitUserName.setText("Teammate gitUserName: " + person.getGitUserNameString());
         phone.setText("Teammate phone number: " + person.getPhone());
         email.setText("Teammate email: " + person.getEmail());
+    }
+
+    private void setText() {
+        Person person = this.teammate.getPerson();
         address.setWrappingWidth(500);
         address.setText("Teammate address: " + person.getAddress());
-        header1.setText("Tasks assigned: ");
+    }
+
+    private void setListOfTasks() {
         AtomicInteger index = new AtomicInteger();
         index.getAndIncrement();
         tasks.setText(this.teammate.getTasks().stream()

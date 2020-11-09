@@ -143,6 +143,12 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void fillPanels() {
+        setList();
+        setMiddleDashboard();
+        setRightDashboard();
+    }
+
+    private void setList() {
         if (logic.isProjectsView()) {
             projectListPanelPlaceholder.setVisible(true);
             projectListPanelPlaceholder.setManaged(true);
@@ -158,7 +164,9 @@ public class MainWindow extends UiPart<Stage> {
             projectListPanelPlaceholder.setManaged(false);
             projectListPanelPlaceholder.setVisible(false);
         }
+    }
 
+    private void setMiddleDashboard() {
         if (logic.getProjectToBeDisplayedOnDashBoard().isEmpty()
                 && logic.getPersonToBeDisplayedOnDashboard().isEmpty()) {
             emptyProjectDashboard = new EmptyDashboard(EMPTY_PROJECT_DASHBOARD_MSG);
@@ -172,7 +180,9 @@ public class MainWindow extends UiPart<Stage> {
             projectDashboard = new ProjectDashboard(logic.getProjectToBeDisplayedOnDashBoard());
             middleDashboardPlaceHolder.setContent(projectDashboard.getRoot());
         }
+    }
 
+    private void setRightDashboard() {
         if (logic.getTaskToBeDisplayedOnDashboard().isEmpty()
                 && logic.getTeammateToBeDisplayedOnDashboard().isPresent()) {
             teammateDashboard = new TeammateDashboard(logic.getTeammateToBeDisplayedOnDashboard());
