@@ -82,6 +82,8 @@ Terminology | Definition
 
 ## Contributions to the Developer Guide (Extract)
 
+<div style="page-break-after: always;"></div>
+
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
