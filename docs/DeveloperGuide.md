@@ -43,6 +43,9 @@
             * [6.3.3.2 Delete attendance command](#6332-delete-attendance-command)
     * [6.4 Schedule command](#64-schedule-command)
     * [6.5 Notebook feature](#65-notebook-feature)
+        * [6.5.1 Add note command](#651-add-note-command)
+        * [6.5.2 Edit note command](#652-edit-note-command)
+        * [6.5.3 Delete note command](#653-delete-note-command)
 - [7. Documentation](#7-documentation)
 - [8. Logging](#8-logging)
 - [9. Testing](#9-testing)
@@ -134,7 +137,7 @@ The rest of the App consists of four components.
 
 Each of the four components,
 
-* defines its *API* in an `interface` with the same name as the Component.
+* defines its API in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component (in the diagram below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
