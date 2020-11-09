@@ -144,16 +144,32 @@ public class ConsultationMasteryCheckCommandParser {
             throws ParseException {
         String taskDateTime = dateString.substring(2) + " " + timeString.substring(2);
         DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern(DATE_FORMAT);
-        LocalDateTime formattedEventDateTime;
+        LocalDateTime formattedConsultationDateTime;
 
         try {
-            formattedEventDateTime = LocalDateTime.parse(taskDateTime, dateTimeFormat);
+            formattedConsultationDateTime = LocalDateTime.parse(taskDateTime, dateTimeFormat);
         } catch (DateTimeParseException e) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_INVALID_DATETIME));
         }
 
-        return formattedEventDateTime;
+        if (isDateTimeChanged(taskDateTime, formattedConsultationDateTime)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_INVALID_DATETIME));
+        }
+
+        return formattedConsultationDateTime;
+    }
+
+    /**
+     * Compares if the string forms of user input and parsed LocalDateTime have the same values.
+     * @param userInput date time input by the user.
+     * @param parsedDateTime date time parsed into Java LocalDateTime.
+     * @return a boolean value check if both araguments' values are the same.
+     */
+    private static boolean isDateTimeChanged(String userInput, LocalDateTime parsedDateTime) {
+        String stringifiedParsedDateTime = parsedDateTime.toString().replace('T', ' ');
+        return !(userInput.equals(stringifiedParsedDateTime));
     }
 
 }
