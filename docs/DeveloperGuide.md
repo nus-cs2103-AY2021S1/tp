@@ -155,29 +155,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## 4. Implementation
 
-This section describes some noteworthy details on how certain features are implemented.
-I added the template class which stores information about a template. The template class has attributes name, calories,
-muscleTags, and tags. The class has the get methods for the different attributes and a toString method to convert the 
-template to a string in a more readable format. The class also has one parseToArgument() method which converts the 
-template to the command argument. The class has one static method writeToFile which takes in template lists as parameter
-and write the content of the list into the file. The class also has an equals method which takes in a template object 
-and check whether the template object is equal to the template itself.
-I also added a templateList class which stores the information about the template list in the app. The class has the 
-following static methods:
--	getTemp: returns the template that has a specific name
--	addTemplate: add the template into the template list
--	load: load the template list from the file
--	readTask: read the template list from the file
--	checkEqual: Check whether the given template is equal to any of the template in the list
--	reset: empty the content of templatelist
-The methods in the templateList classes are all static because it will be easier to just call the method in the 
-templateList instead of having to create a new templateList object.
-Two new parsers are also created for the command of creating a new template and the command of adding exercise from the 
-template respectively. The parse method in AddExerciseFromTemplateParser parses the command of adding the exercise 
-using the template and returns a new AddCommand object. The parse method in AddTemplateCommand parses the command 
-of creating a new template and returns a new AddTemplateCommand object.
-The template list is stored in the data file folder as a txt file.
-
 ### 4.1. Archive
 (Phyo Han)  
 
@@ -257,8 +234,32 @@ The main reason is that it will not significant improvement in the performance o
 everything after a command anyway. The only downside to current implementation is the stress put on the call stack since
 in order to get the `HashMap` in `UniqueExerciseList` that contains the relevant information, it needs to be called through numerous
 classes, as shown below. Current version of Calo is still 'light' enough for the system to handle the stress, but given time
-`CaloriesGraph` is encouraged to be refactored to fulfill the Observer Design Pattern.
+`CaloriesGraph` should be refactored to fulfill the Observer Design Pattern especially when `Calo` get more complicated.
 
+#### 4.3. Template
+(Roy)  
+This section describes some noteworthy details on how certain features are implemented.
+I added the template class which stores information about a template. The template class has attributes name, calories,
+muscleTags, and tags. The class has the get methods for the different attributes and a toString method to convert the 
+template to a string in a more readable format. The class also has one parseToArgument() method which converts the 
+template to the command argument. The class has one static method writeToFile which takes in template lists as parameter
+and write the content of the list into the file. The class also has an equals method which takes in a template object 
+and check whether the template object is equal to the template itself.
+I also added a templateList class which stores the information about the template list in the app. The class has the 
+following static methods:
+-	getTemp: returns the template that has a specific name
+-	addTemplate: add the template into the template list
+-	load: load the template list from the file
+-	readTask: read the template list from the file
+-	checkEqual: Check whether the given template is equal to any of the template in the list
+-	reset: empty the content of templatelist
+The methods in the templateList classes are all static because it will be easier to just call the method in the 
+templateList instead of having to create a new templateList object.
+Two new parsers are also created for the command of creating a new template and the command of adding exercise from the 
+template respectively. The parse method in AddExerciseFromTemplateParser parses the command of adding the exercise 
+using the template and returns a new AddCommand object. The parse method in AddTemplateCommand parses the command 
+of creating a new template and returns a new AddTemplateCommand object.
+The template list is stored in the data file folder as a txt file.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -385,13 +386,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | user                                       | add an exercise                | keep track of calories burnt through the day                           |
-| `* * *`  | user                                       | have a system that tolerate invalid/incomplete command      |                                                                        |
-| `* * *`  | data conscious user                        | list down all the exercises for the day       | monitor the calories burned accurately                                   |
-| `* * *`  | user                                       | delete an exercise in case I key in wrongly          |  |
-| `* *`    | user                                       | update an exercise             |                 |
-| `* *`    | user                                       | save my data in a file         | import the saved data into the new computer                                                 |
-
-*{More to be added}*
+| `* * *`  | user                                       | create a template | store exercises that I do frequently for future reference. |
+| `* * *`  | user                                       | create an exercise based on template | record exercises that I do frequently faster. |
+| `* * *`  | user                                       | delete an exercise in case I key in wrongly |  |
+| `* * *`  | user                                       | have a system that tolerate invalid/incomplete command |           |
+| `* * *`  | data conscious user                        | list down all the exercises for the day | monitor the calories burned accurately |
+| `* * *`  | user                                       | see all the templates I have created | |
+| `* * *`  | user                                       | see my progress for the past week | know the progress that I have been making so far |
+| `* *`    | user                                       | add tags to an Exercise | |
+| `* *`    | user                                       | create an exercise from template with different details such as calories | account for the same exercises that I did with different intensity  |
+| `* *`    | user                                       | clear all information stored in the application | |
+| `* *`    | user                                       | find the most recent information of a particular exercise | |
+| `* *`    | user                                       | indicate which are the muscle group that an exercise work on | better track which muscles that I have worked on |
+| `* *`    | user                                       | know how much more calories I need to burn to reach the goal | |
+| `* *`    | user                                       | set a goal for a day | |
+| `* *`    | user                                       | update an exercise             |  |
+| `*`    | user                                       | save my data in a file         | import the saved data into the new computer |
 
 ### 8. Appendix C: Use cases
 
