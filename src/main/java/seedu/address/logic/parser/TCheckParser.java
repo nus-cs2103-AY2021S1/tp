@@ -103,6 +103,7 @@ public class TCheckParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
+        //@@author Diwu-Yi
         case IngredientSetCommand.COMMAND_WORD:
             return new IngredientSetCommandParser().parse(arguments);
 
@@ -113,12 +114,13 @@ public class TCheckParser {
         case IngredientListCommand.COMMAND_WORD:
             return new IngredientListCommand();
 
-        //@@author
+        //@@author Diwu-Yi
         case IngredientSetAllCommand.COMMAND_WORD:
             return new IngredientSetAllCommandParser().parse(arguments);
 
         case IngredientSetDefaultCommand.COMMAND_WORD:
             return new IngredientSetDefaultCommand();
+        //@@author
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
