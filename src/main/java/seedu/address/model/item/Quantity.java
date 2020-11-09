@@ -3,6 +3,8 @@ package seedu.address.model.item;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.item.exceptions.OverflowQuantityException;
+
 /**
  * Represents a Item's quantity in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidQuantity(String)}
@@ -10,15 +12,15 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Quantity implements Comparable<Quantity> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Quantity should only contain numbers, and it should be at least 1 digit long, \n"
+            "Quantity should only contain numbers, and it should be between 1-9 digits long, \n"
             + "and it should be greater than or equals to 0";
     public static final String MESSAGE_INVALID_QUANTITY_REMOVED =
             "Quantity removed should be less than the available quantity";
     public static final String MESSAGE_CONSTRAINTS_MAX_QUANTITY =
-            "Max Quantity should only contain numbers, it should be at least 1 digit long, \n"
+            "Max Quantity should only contain numbers, it should be between 1-9 digits long, \n"
             + "and it should be greater than 0";
-    public static final String VALIDATION_REGEX = "\\d{1,}";
-    public static final String VALIDATION_REGEX_MAX_QUANTITY = "^[1-9]\\d*";
+    public static final String VALIDATION_REGEX = "\\d{1,9}";
+    public static final String VALIDATION_REGEX_MAX_QUANTITY = "\\d{1,9}";
     public final String value;
 
     /**
@@ -51,9 +53,14 @@ public class Quantity implements Comparable<Quantity> {
      * @param quantity another quantity
      * @return Quantity of both quantity's value added up
      */
-    public Quantity add(Quantity quantity) {
+    public Quantity add(Quantity quantity) throws OverflowQuantityException {
         int value = Integer.parseInt(this.value) + Integer.parseInt(quantity.value);
-        return new Quantity(Integer.toString(value));
+        String qty = Integer.toString(value);
+        if (isValidQuantity(qty)) {
+            return new Quantity(qty);
+        } else {
+            throw new OverflowQuantityException(qty);
+        }
     }
 
     /**
