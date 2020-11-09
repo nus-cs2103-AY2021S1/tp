@@ -2,7 +2,6 @@
 layout: page
 title: Zhang Yi's Project Portfolio Page
 ---
-
 ## Project: tCheck
 tCheck is a desktop application that offers an integrated system to efficiently manage a bubble tea shop, of the (imaginary) brand T-sugar, by providing sales tracking, ingredient tracking and manpower management. It is optimized for CLI users to update and retrieve the information more efficiently.
   
@@ -24,8 +23,6 @@ Given below are my contributions to the project.
     * What it does : Allow a user (a store manager) to set one single ingredient's level to the specified amount in his/her T-Sugar stall.
     * Justification : This is a must-have feature for the application because it is necessary to offer users a command which they can use to adjust the ingredients' levels so that the ingredient tracking purpose can be achieved.
     * Related PR(s) (non-exhaustive):
-    [#62](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/62)
-    [#78](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/78)
     [#105](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/105)
     [#161](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/161)
     
@@ -34,7 +31,8 @@ Given below are my contributions to the project.
     * Justification : This is a nice-to-have feature for the application because it acts as a shortcut for stall managers to start using tCheck. Instead of manually adjusting each of the ingredient's level, all levels can be set to default using a short command.
     * Related PR(s) (non-exhaustive):
     [#78](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/78)
-    
+<div style="page-break-after: always;"></div>
+
   * Added `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` command.
     * What it does : Allow a to set all ingredients' levels to different specified amounts for all available ingredients in a T-sugar stall.
     * Justification : This is also a nice-to-have feature for the application. It enables expert users to conveniently set all available ingredients' levels in one single command.
@@ -48,13 +46,10 @@ Given below are my contributions to the project.
     [#146](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/146)
     [#152](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/152)
    
-  
 * **Project management**:
 
   * Added issues assigned to milestone v1.1, v1.2, 1.3 and v1.4.
   * Managed v1.4 release on GitHub.
-  * Closed and noted issues reported for Practical Examination Dry Run.
-  * Actively reviewed teammates' pull requests and assisted merging.
   
 * **Quality assurance**:
 
@@ -72,7 +67,6 @@ Given below are my contributions to the project.
     * Authored three sections of About Us section (sub-section 1, 2.1 and 2.4).
     * Added notes and explanations for the designing of commands under the ingredient tracking section.
     * Added visuals such as screenshots for setting ingredients' levels feature and tCheckInfographic for better presenting of User Guide.
-    * Related PR(s) (non-exhaustive):
     [#254](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/254)
     [#118](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/118)
     
@@ -80,16 +74,11 @@ Given below are my contributions to the project.
     * Added documentation for the section of use cases (UC03).
     * Added documentation and diagrams for commands to set ingredients' levels.
     * Added a diagram for the ingredient model.
-    * Authored audience part in the introduction section.
-    * Authored the Glossary section with others.
+    * Authored audience part in the introduction section and Glossary with others.
     * Added documentation for Instruction for manual testing of setting ingredients' levels feature.
-    * Related PR(s) (non-exhaustive):
     [#91](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/91)
-    [#254](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/254)
     
 * **Community involvement**:
-
-  * Contributed to forum discussion on GitHub.
   * Offered non-trivial suggestions to pull requests reviewed.
   * Related PR(s) (non-exhaustive):
   [#252](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/252)
