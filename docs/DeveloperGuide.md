@@ -937,7 +937,7 @@ For all use cases below, the **System** is the `QuickCache` and the **Actor** is
 2.  QuickCache shows a list of flashcards
 3.  User requests to delete a specific flashcard in the list
 4.  QuickCache deletes the flashcard
-5.  QuickCache updates flashcard save file (UC09)
+5.  QuickCache <u>updates flashcard save file (UC09)</u>
 
     Use case ends.
 
@@ -963,9 +963,9 @@ For all use cases below, the **System** is the `QuickCache` and the **Actor** is
 2.  QuickCache shows a list of flashcards
 3.  User requests to delete all flashcards with a specified tag
 4.  QuickCache deletes all flashcards that contains the specified tag
-5.  QuickCache updates flashcard save file (UC07)
+5.  QuickCache <u>updates flashcard save file (UC07)</u>
 6. QuickCache displays a message indicating that all flashcards with the specified tag has been deleted
-7. QuickCache updates flashcard save file (UC09)
+7. QuickCache <u>updates flashcard save file (UC09)</u>
 
     Use case ends.
 
@@ -977,7 +977,7 @@ For all use cases below, the **System** is the `QuickCache` and the **Actor** is
 
 1.  User requests to add a flashcard
 2.  QuickCache adds it to the list
-3.  QuickCache updates flashcard save file (UC09)
+3.  QuickCache <u>updates flashcard save file (UC09)</u>
 4.  User requests to list flashcards
 5.  QuickCache shows the list of flashcards including the recently added flashcard
 
@@ -1011,7 +1011,7 @@ For all use cases below, the **System** is the `QuickCache` and the **Actor** is
 
 1.  User requests to add a flashcard
 2.  QuickCache adds it to the list
-3.  QuickCache updates flashcard save file (UC09)
+3.  QuickCache <u>updates flashcard save file (UC09)</u>
 4.  User requests to list flashcards
 5.  QuickCache shows the list of flashcards including the recently added flashcard
 
@@ -1078,7 +1078,7 @@ MSS:
 1. User requests to list categories
 2. QuickCache shows a list of categories
 3. User requests to test a specific category in the list
-4. User tests each flashcard on the list (UC07)
+4. User <ul>tests each flashcard on the list (UC07)</u>
 5. QuickCache shows the number of successful questions at the end
 
     Use case ends.
@@ -1117,11 +1117,11 @@ MSS:
 
 * 4b. The user cancels the test midway.
 
-  * Use case resumes from step 5.
+  Use case resumes from step 5.
 
 * 4c. The user runs out of time midway.
 
-  * Use case resumes from step 5.
+  Use case resumes from step 5.
 
 * 4d. The user closes QuickCache
 
@@ -1211,7 +1211,7 @@ MSS:
 1. User wants to edit an existing flashcard
 2. User enters new information pertaining to the flashcard fields he wants to update
 4. QuickCache edits the flashcard with the new information
-5. QuickCache updates flashcard save file (UC09)
+5. QuickCache <u>updates flashcard save file (UC09)</u>
 
     Use case ends.
 
@@ -1270,8 +1270,6 @@ MSS:
     Use case resumes at step 3.
 
 **Use case: UC15 - Clear statistics of a flashcard**
-
-**Preconditions: User has QuickCache open.**
 
 **MSS**
 
@@ -1387,8 +1385,12 @@ User can create two types of flashcards - containing open end question or multip
    
    1. Test Case 4: `add q/Test OEQ 1 ans/Test ans 1 t/Invalid Tag`<br>
       Expected: QuickCache responds with an error message indicating that tag field is invalid. Flashcard is not added.<br>
+      <div markdown="block" class="alert alert-info">
+      
       :information_source: Note that flashcards containing similar questions and answers but different tags are treated as different flashcards.
-
+      
+      </div>
+      
    1. Test Case 5: `add q/Test OEQ 1 ans/Test ans 1 d/Invalid Difficulty`<br>
       Expected: QuickCache responds with an error message indicating that difficulty field is invalid. Flashcard is not added.<br>
       <div markdown="block" class="alert alert-info">
@@ -1488,8 +1490,12 @@ User can create two types of flashcards - containing open end question or multip
 
 1. Test Case 5: `edit 1 d/`<br>
    Expected: Difficulty tag is removed from the flashcard with index 1. The details of the question will be shown in the display window on the side.<br>
+   <div markdown="block" class="alert alert-info">
+   
    :information_source: User can also use `edit 1 d/UNSPECIFIED` to achieve the same result.
-
+   
+   </div>
+   
 1. Test Case 6: `edit 1 c/Choice1`<br>
    Expected: Error message displayed. Choices should not be provided for open ended questions.
 
