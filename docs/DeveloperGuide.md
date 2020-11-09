@@ -118,7 +118,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### 3.4. Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](diagrams/ModelClassDiagram.puml)
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -156,6 +156,88 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## 4. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### 4.1. Archive
+(Phyo Han)  
+
+Since Calo always stores all the exercises that the user did in the past, it is always a good idea to archive past exercises
+so that the user can start afresh without the past records slowing down the performance of the application. Therefore, Calo
+provides the user the `archive` function to stores these records. 
+
+#### 4.1.1. Implementation
+This section describes how the `archive` command is implemented. Unlike all the other command that only needs to interact
+with `Model` component, the `archive` command needs to interact with `Storage` component which is responsible for reading
+and writing `.json` file to the system, with the proper formatting for future read. 
+
+To implement this, before executing `ArchiveCommand`, the `LogicManager` will pass `Storage` to the `ArchiveCommand`.  
+
+A high level illustration of the executation is given in the following sequence diagram.
+
+
+Step 1: Users enter the command which will consists of the keyword `archive`, the parameter `f/` followed by the file location.
+This input is stored as a `String`.  
+Step 2: The `String` is then passed to `ExerciseBookParser` which will cascade the `String` into meaning parts.  
+Step 3: `ExerciseBookParser` create the `ArchiveCommand` and set the `Storage` component for `ArchiveCommand`.  
+Step 4: `ExerciseBookParser` passes the `ArchiveCommand` back to the `LogicManager` and the `LogicManager` executes the command.
+Step 5: During the executation, `ArchiveCommand` interacts with `Storage` who will write to the Local File on the user's computer.  
+Step 6: If the user has no permission to write on the specific file location, an error message will appear on user screen.
+Else, a success message will appear on the user Response Box.  
+
+
+
+#### 4.1.2. Design Consideration
+
+**Aspect**: How to decide the file path?
+
+Alternative 1 (current choice): Have the user specify the file location and file name to store the archived file.
+* Pros: Easier to implement. The user have the freedom on where to store and what to call the archived file. 
+* Cons: Error prone. The user need to enter the file location  specifically whcih may be difficult for users who are used
+to GUI.
+* Reasons for choosing: Though this choice is more error prone, we decide that since our app is Command-Line Interface,
+our users are likely accustomed to entering file location and the freedom to decide the location and name is always nice
+to have. 
+
+
+Alternative 2: Have a dedicated file location that the file will be stored.
+* Pros: Easier for the user to archive.
+* Cons: Difficult for the system to give a meaningful name to the archived file. If we were to name the file as `file_1`,
+`file 2` etc, we need to check if there exists such file name first.
+
+
+
+### 4.2. Displaying Graph of Calories Burnt
+(Phyo Han)  
+
+Since Calo aims to encourage the user to get active and track his progress, a graph of how much calories burnt for the past
+few days can motivate the user to push further.
+
+#### 4.2.1. Implementation
+After each command, the UI will render itself through `MainWindow.fillInnerPart()` to update all the Ui Component. So
+during this rendering process, `CaloriesGraph` takes in `HashMap` that contains the `Date` as the key and total `Calories` burn
+for that day as the value. `CaloriesGraph` will then take values for the most recent 7 days (including today) and display
+them on the Calories Graph.
+
+
+#### 4.2.2. Design Consideration
+
+**Aspect**: How to generate the CaloriesGraph?
+
+Alternative 1 (current choice): Let the `LogicManager` passes a `HashMap<String,Integer>` that has `Date` as a key and
+sum of `Calories` as a Integer value to `MainWindow` after each command.
+Pros: Easy to implement.
+
+Alternative 2: Convert the `HashMap<String,Integer>` that 
+Pros: Follow the Design Pattern (Observer) and less stress on Call Stack (explained below)
+Cons: Needs of Refactoring. Calo team has implemented the CaloriesGraph before the idea of Observer Pattern is introduced
+to us. 
+
+**Reason for Not refactoring**:   
+The main reason is that it will not significant improvement in the performance of `Calo`, since the Ui needs to be re-rendered
+everything after a command anyway. The only downside to current implementation is the stress put on the call stack since
+in order to get the `HashMap` in `UniqueExerciseList` that contains the relevant information, it needs to be called through numerous
+classes, as shown below. Current version of Calo is still 'light' enough for the system to handle the stress, but given time
+`CaloriesGraph` is encouraged to be refactored to fulfill the Observer Design Pattern.
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -224,6 +306,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Design consideration:
 
+
 ##### Aspect: How undo & redo executes
 
 * **Alternative 1 (current choice):** Saves the entire exercise book.
@@ -272,6 +355,7 @@ _{more aspects and alternatives to be added}_
 
 **Value proposition**: manage workouts faster than a typical mouse/GUI driven desktop/mobile app
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### 7. Appendix B: User stories
 
