@@ -60,12 +60,12 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/definition/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103-T14-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` and `PerformanceWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`, `StatusBarFooter` etc.
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/definition/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103-T14-2/tp/blob/master/src/main/java/seedu/address/MainApp.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103-T14-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -77,7 +77,7 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagramNew.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/definition/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103-T14-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `FlashcardParser`, `QuizParser` and `PerformanceParser` classes to parse the user command
  depending on which mode the app is in.
@@ -107,27 +107,22 @@ The execution for the `end attempt` command is similar.
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/definition/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103-T14-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the definition book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
 
 
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/definition/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103-T14-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -148,12 +143,6 @@ is converted to data that can be stored in the text file.
 ![load Sequence Diagram](images/store8.png)
 
 ![save Sequence Diagram](images/store6.png)
-
-### Common classes
-
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
-Example of class diagram for addCommandParser:
-![classDiagram0](images/classDiagram0.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -198,7 +187,7 @@ The following sequence diagram shows how the flip feature works:
 
 ![flip0](images/Flip0.png)
 
-### [Proposed] Quiz feature
+### Quiz feature 
 
 The proposed quiz feature defines a set of sample questions related to CS2040S, containing both MCQ and True-False
  questions, for users to test their knowledge of CS2040S content.
@@ -272,7 +261,7 @@ The following sequence diagram shows how the view attempt feature works:
 
 ##### Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire definition book.
+* **Alternative 1 (current choice):** Saves the entire flashcard book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -281,9 +270,6 @@ The following sequence diagram shows how the view attempt feature works:
   * Pros: Will use less memory (e.g. for `delete`, just save the flashcard being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
