@@ -57,7 +57,7 @@ Given below are my contributions to the project.
     [3](https://github.com/HynRidge/ped/issues/3),
     [4](https://github.com/HynRidge/ped/issues/2))
     
-## \[Optional\] Contributions to the User Guide  (Extract)
+## Contributions to the User Guide  (Extract)
 
 ### 4.8 Finding a tag : `find`
 
@@ -80,7 +80,7 @@ Terminology | Definition
 
 <br>
 
-## \[Optional\] Contributions to the Developer Guide (Extract)
+## Contributions to the Developer Guide (Extract)
 
 ### User stories
 
