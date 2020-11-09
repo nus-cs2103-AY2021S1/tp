@@ -167,7 +167,7 @@ Each of these tabs consists of one or more List Panels and its respective Card. 
 
 The UI component:
 * Executes user commands using the `Logic` component.
-* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Listens for changes to `Model` data so that the UI can be updathed wit the modified data.
 
 #### **3.2.1. Upcoming Tab** <a name="upcoming-tab"></a>
 
@@ -178,6 +178,13 @@ The *Class Diagram* below shows how the components in the `Upcoming Tab` interac
 
 ##### **Responsibilities**
 The `Upcoming Tab` consists of a list of an `UpcomingSectionCard` for the Overdue section, 7 `UpcomingSectionDayCards` to represent each day of the next week, and finally another `UpcomingSectionCard` for the Future section. Each `UpcomingSectionCard` comprises of a `TaskPanel` and each `UpcomingSectionDayCard` comprises of a `TaskPanel` and a `LessonPanel`.
+
+##### **Flow of adding lessons**
+When a user scrolls down the `Upcoming Tab` and reaches a date, the `UpcomingLessonCard` that happens for the day
+ will be loaded into the `LessonListPanel` within the `UpcomingSectionDayCard`. The *Activity Diagram* below shows
+  how the `UpcomingLessonCards` are added in to result in the display in the `UpcomingPanel`.
+  
+![UiScrollActivityDiagram](images/UiScrollActivityDiagram.png)
 
 #### **3.2.2. Module Tab** <a name="module-tab"></a>
 
