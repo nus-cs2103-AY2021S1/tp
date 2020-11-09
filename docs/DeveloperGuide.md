@@ -91,6 +91,7 @@ The Logic component parses and executes the commands. <br>
 or affect the `Model` directly (e.g. adding an account).
 * Based on the changes the command execution made, the `CommandResultFactory` generates a `CommandResult` object which encapsulates
 the result of the command execution and is passed back to the `Ui`.
+<div style="page-break-after: always;"></div>
 * In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deleteacc 1")` _API_ call.
