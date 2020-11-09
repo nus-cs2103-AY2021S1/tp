@@ -104,12 +104,22 @@ This section explains the format of commands in this User Guide.
     - Command: `sort` 
     - [Usage](#sort)
 
-1. **Map Command Keyword**
-    - Maps user-specified keyword to existing command.
+1. **Add Command Shortcut**
+    - Maps user-specified shortcut to existing command.
     - Command: `alias`
     - [Usage](#alias)
 
-1. **Help command**
+1. **Reset Command Shortcuts**
+    - Removes all user-specified command shortcuts.
+    - Command: `resetAlias`
+    - [API](#resetAlias)
+
+1. **Graph Command**
+    - Opens a window that displays a pie chart representing categorical expenses.
+    - Command: `graph`
+    - [API](#graph)
+
+1. **Help Command**
     - Renders a help link to the commands in User Guide
     - Command: `help`
     - [Usage](#help)
@@ -122,7 +132,7 @@ This section explains the format of commands in this User Guide.
 1. **Save Load Function**
     - Automatically saves the state of the expense book after each operation.
     - Automatically loads previously saved data on app start-up.
-        
+
 1. **Notifications for budget limits &lt;pending&gt;**
 1. **Track progress for long-term purchases &lt;pending&gt;**
 1. **Achievement system &lt;pending&gt;**
@@ -181,20 +191,22 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
 1. **alias** <a name="alias"></a>
     - "Also known as" for commands.
-    - Alternative names for commands can be used to invoke original commands.
+    - Alternative shortcuts for commands can be used to invoke original commands.
     - Added with [alias](#alias) command
     - Format: `alias <original_command> <new_command>`
-    - Restrictions: 
-        - Alphanumeric 
-        - Up to 10 characters long
-        - Cannot be one fo the command keywords listed in [Commands](#commands)
-        - Only one alias for a command at any point in time.
-    - Example: `alias add spent`
+    - Input Restrictions:
+        - The shortcut cannot be the same as the original command.
+        - Original command must exist.
+        - Length of shortcut must not exceed 10 characters long.
+        - Shortcut may consist of only case-sensitive alphabetical characters.
+        - Cannot remap the `alias` and `resetAlias` commands.
+        - Only one shortcut for a command at any point in time.
+    - Example: `alias add spent` makes `spent` a command shortcut for `add`
 
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Note:** Prefixes function with or without whitespace after. For example, `d dinner` and `-ddinner` will yield the same results.
+:bulb: **Note:** Prefixes function with or without whitespace after. For example, `-d dinner` and `-ddinner` will yield the same results.
 
 </div>
 
@@ -203,20 +215,18 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Order of arguments is flexible.
     - If multiple fields of the same type are specified, only the last one is processed.
     - Date input (dd-MM-yyyy) is optional, defaults to system's date (usually today).
-    - Tag (or category) input is optional, defaults to the "Default" category. This means that the expense is subtracted 
-    from the "Default" Budget.
+    - Tag (or category) input is optional, defaults to the "Default" category. This means that the expense is subtracted from the "Default" Budget.
     - Format: `add -d <description> -$<amount_spent> [-@<date>] [t/<category>]`
     - Example: `add -d dinner -$10.50` Adds the expense to **current date's** record.
     - Example: `add -d dinner -$10.50 -@24-06-2020 t/Food` Adds the expense under **24 June 2020** and tags it under "Food" category.
-      
+
     _**Specifying Category/Tag**_
-    - Example: `add -d dinner -$10.50 -@20-08-2020 t/Food t/Basic` As stated above, only `t/Basic` is processed, 
-    thus the expense is tagged with the "Basic" category, if it exists.
+    - Example: `add -d dinner -$10.50 -@20-08-2020 t/Food t/Basic` As stated above, only `t/Basic` is processed, thus the expense is tagged with the "Basic" category, if it exists.
     - Input constraints:
       - If specified, the tag input must match one of the existing categories in the expense book. If not, the
-       expense will be added to the "Default" category - the new category needs to be created first (see [addCategory](#addCat)) 
+       expense will be added to the "Default" category - the new category needs to be created first (see [addCategory](#addCat))
       - The expense to be added must not share the same identity fields (description, amount and date) as any expense in the expense book.
-    
+
     ![add_example](images/ug_example/add_example.PNG)
     &nbsp;
     
@@ -224,7 +234,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Displays all the items in the list.
     - Displays the budget balance based on **total expenditure** against the **total sum of all budgets**.
     - Format: `list`
-    - Example: `list` 
+    - Example: `list`
 
     ![list_example](images/ug_example/list_example.PNG)
     &nbsp;
@@ -241,11 +251,11 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Input constraints:
       - See [add](#add)
     <div markdown="span" class="alert alert-primary">
-    
+
     :bulb: **Note**: Specifying a blank tag field (e.g. `edit 1 t/`) is the same as editing the tag to the "Default" tag.
 
     </div>
-    
+
     ![edit_example](images/ug_example/edit_example.PNG)
     &nbsp;
 
@@ -263,10 +273,10 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - The category must not already exist in the expense book.
     - Format: `addCat t/<category>`
     - Example: `addCat t/Food`
-    
+
     ![addCat_example](images/ug_example/addCat_example.PNG)
     _"Shopping" category is added_
-    
+
     ![addCat_example](images/ug_example/addCat_example_2.PNG)
     _Use "Shopping" category_
     &nbsp;
@@ -277,7 +287,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - All expenses tagged with deleted category will be reverted to "Default" category.
     - Format: `deleteCat t/<category>`
     - Example: `deleteCat t/Food`
-    
+
     ![deleteCat_example](./images/ug_example/deleteCat_example.PNG)
     _Expense 9 is reverted from "Shopping" category to "Default" category_
     &nbsp;
@@ -290,7 +300,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Example: `topup -$10` Increases the `Default` category's budget by 10 dollars.
     - Example: `topup -$20 t/Food` Adds an extra budget of 20 dollars to the Food category-budget.
     <div markdown="span" class="alert alert-primary">
-        
+
     :bulb: **Note**: Each budget is associated with 1 category, and vice versa.
 
     </div>
@@ -309,7 +319,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
     ![find_example](images/ug_example/find_example.PNG)
     _Find by partial description keyword_
-    
+
     ![find_example_2](images/ug_example/find_example_2.PNG)
     _Find by description keyword and date_
     &nbsp;
@@ -328,10 +338,10 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - **Sorting keywords** (and thus criterion) include:
         - expense amount: `amount`
         - date: `date`
-        - description (alphabetical order): `description` 
+        - description (alphabetical order): `description`
     - Add a "R" behind sorting keywords to induce reversed sorting order
     - Sorting criterion are assigned priority in order of appearance.
-    - A minimum of 1 sorting keyword is required  
+    - A minimum of 1 sorting keyword is required
     - Format: `sort -by <sorting keyword> [-by <sorting keyword>] [-by <sorting keyword>]`
     - Example: `sort -by date -by descriptionR` (sorts by date, then by reversed alphabetical order of the descriptions)
 
@@ -348,7 +358,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Format: `switch t/<category>`
     - Example: `switch t/Food`
     <div markdown="span" class="alert alert-primary">
-        
+
     :bulb: **Note**: Can also switch to the "Default" category view.
 
     </div>
@@ -357,38 +367,53 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     _Budget balance displayed here is the budget for the "Food" category_
     &nbsp;
 
-1. **Map Command Keyword `alias`** <a name="alias"></a>
-    - Maps user-specified keyword to existing command.
+1. **Map Command Shortcut `alias`** <a name="alias"></a>
+    - Maps user-specified shortcut to existing command.
     - Original command keyword will still function as before.
-    - Input Restrictions: 
-        - The 2 commands specified cannot be the same.
+    - Input Restrictions:
+        - The shortcut specified and the original command cannot be the same.
         - Original command must exist.
-        - New alias command: 
-            - Is case-sensitive.
-            - Cannot be a keyword that is already being used i.e. command keywords listed in [Commands](#commands)
-            - Must be alphanumeric.
-            - Can be up to 10 characters long.
-            - Cannot remap the `alias` and `resetAlias` commands.
+        - Length of shortcut must not exceed 10 characters long.
+        - Shortcut may consist of only case-sensitive alphabetical characters.
+        - Cannot remap the `alias` and `resetAlias` commands.
     - Format: `alias <original_command> <new_command>`
     - Example: `alias add spent`
-    <div markdown="span" class="alert alert-primary">
-    
-    :bulb: **Note**: Only one user-provided alias command can be mapped to an original command at any point in time. If a new alias is provided for a command, the old user-alias will be un-mapped.
+    - Each command may only have up to one shortcut at each time. If a new shortcut is provided for a command, the old shortcut will be un-mapped.
+    - Reversing the two parameters will remove the particular shortcut from the command.
+        - Example: `alias spent add` 
 
-    </div>
-    
     ![alias_example](./images/ug_example/alias_example.PNG)
     _Map "spent" to "add" command_
-    
+
     ![alias_example_2](./images/ug_example/alias_example_2.PNG)
-    _"spent" keyword now functions as "add"_
+    _"spent" keyword can now function as "add"_
     &nbsp;
 
+    ![alias_example_3](./images/ug_example/alias_example_3.PNG)
+    _"spent" keyword can no longer function as "add"_
+        
+1. **Reset Command Shortcuts `resetAlias`** <a name="resetAlias"></a>
+    - Removes all existing shortcuts defined by user.
+    - Format: `resetAlias`
+    - Example: `resetAlias`
+    
+    ![resetAlias_example](./images/ug_example/resetAlias_example.PNG)
+    
+1. **Graph Command `graph`** <a name="graph"></a>
+    - Opens a window that displays a pie chart representing categorical expenses.
+    - Format: `graph`
+    - Example: `graph`
+    - Note: The pie chart does not update dynamically. 
+      If a command that edits the ExpenseBook is entered while the graph window is open, the pie chart will not be updated.
+      User must re-enter the graph command to update the pie chart accordingly.
+    
+    ![graph_example](./images/ug_example/graph_example.PNG)
+    
 1. **Display Help `help`** <a name="help"></a>
     - Displays a help link to the User Guide, which comprehensively covers Bamboo's commands.
     - Format: `help`
-    - Example: `help` 
-    
+    - Example: `help`
+
     ![help_example](./images/ug_example/help_example.PNG)
     &nbsp;
       
@@ -415,5 +440,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 | **AddCat**    | `addCat t/<category>`<br> e.g., `addCat t/Food`                                                                                                                  |
 | **DeleteCat** | `deleteCat t/<category>` <br> e.g., `deleteCat t/Food`                                                                                                           |
 | **Alias**     | `alias <original_command> <new_command>` <br> e.g., `alias add spent`                                                                                            |
+| **resetAlias**| `resetAlias`                                                                                                                                                     |
+| **Graph**     | `graph`                                                                                                                                                          |
 | **Help**      | `help`                                                                                                                                                           |
 | **Clear**     | `clear`                                                                                                                                                          |

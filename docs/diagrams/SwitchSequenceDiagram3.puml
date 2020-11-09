@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+mainframe sd update lists
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ExpenseBook" as ExpenseBook MODEL_COLOR
+participant ":UniqueCategoryBudgetList" as UniqueCategoryBudgetList MODEL_COLOR
+participant ":UniqueExpenseList" as UniqueExpenseList MODEL_COLOR
+end box
+[-> Model : updateExpenseBookCategory(category)
+activate Model
+
+Model -> Model : updateFilteredBudgetList(predicate)
+activate Model
+
+Model -> ExpenseBook : updateFilteredBudgets(predicate)
+activate ExpenseBook
+
+ExpenseBook -> UniqueCategoryBudgetList : filterCategoryBudget(predicate)
+activate UniqueCategoryBudgetList
+
+UniqueCategoryBudgetList -> ExpenseBook
+deactivate UniqueCategoryBudgetList
+
+ExpenseBook -> Model
+deactivate ExpenseBook
+
+Model -> Model
+deactivate Model
+
+Model -> Model : updateFilteredExpenseList(predicate)
+activate Model
+
+Model -> ExpenseBook : updateFilteredExpenses(predicate)
+activate ExpenseBook
+
+ExpenseBook -> UniqueExpenseList : filterExpenses(predicate)
+activate UniqueExpenseList
+
+UniqueExpenseList -> ExpenseBook
+deactivate UniqueExpenseList
+
+ExpenseBook -> Model
+deactivate ExpenseBook
+
+[<--Model
+deactivate Model
+@enduml

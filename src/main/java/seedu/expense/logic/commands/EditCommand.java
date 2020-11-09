@@ -20,7 +20,6 @@ import seedu.expense.model.expense.Date;
 import seedu.expense.model.expense.Description;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.Remark;
-import seedu.expense.model.expense.exceptions.CategoryNotFoundException;
 import seedu.expense.model.tag.Tag;
 
 /**
@@ -42,9 +41,13 @@ public class EditCommand extends Command {
             + PREFIX_AMOUNT + "10 "
             + PREFIX_DATE + "01-07-2020";
 
-    public static final String MESSAGE_EDIT_EXPENSE_SUCCESS = "Edited expense: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_EXPENSE = "This expense already exists in the expense book.";
+    public static final String MESSAGE_EDIT_EXPENSE_SUCCESS = "Edited expense: %1$s ";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided. ";
+    public static final String MESSAGE_DUPLICATE_EXPENSE = "This expense already exists in the expense book. ";
+    public static final String MESSAGE_INVALID_CATEGORY = "The \"%s\" category does not exist in the expense book. "
+            + "Please add it using the \"AddCat\" command first.";
+    public static final String MESSAGE_INVALID_AMOUNT = "Amount of the expense cannot be negative. Please "
+            + "specify a non-negative amount of the expense.";
 
     private final Index index;
     private final EditExpenseDescriptor editExpenseDescriptor;
@@ -71,11 +74,15 @@ public class EditCommand extends Command {
         }
 
         if (editExpenseDescriptor.getTag().isPresent() && !model.hasCategory(editExpenseDescriptor.getTag().get())) {
-            throw new CategoryNotFoundException();
+            throw new CommandException(String.format(MESSAGE_INVALID_CATEGORY, editExpenseDescriptor.getTag().get()));
         }
 
         Expense expenseToEdit = lastShownList.get(index.getZeroBased());
         Expense editedExpense = createEditedExpense(expenseToEdit, editExpenseDescriptor);
+
+        if (editedExpense.getAmount().smallerThan(Amount.zeroAmount())) {
+            throw new CommandException(MESSAGE_INVALID_AMOUNT);
+        }
 
         if (!expenseToEdit.isSameExpense(editedExpense) && model.hasExpense(editedExpense)) {
             throw new CommandException(MESSAGE_DUPLICATE_EXPENSE);

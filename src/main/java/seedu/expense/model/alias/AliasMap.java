@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.IntPredicate;
+import java.util.function.Predicate;
 
 import seedu.expense.logic.commands.AddCategoryCommand;
 import seedu.expense.logic.commands.AddCommand;
@@ -34,20 +36,22 @@ public class AliasMap {
     public static final String DUPLICATE_KEYWORD_FOUND = "The [%s] keyword already exists.";
     public static final String UNCHANGED_ALIAS = "Previous and updated alias must not be the same.";
     public static final String ALIAS_NOT_FOUND = "The [%s] alias cannot be found.";
-    private static final Set<String> RESERVED_KEYWORDS;
+    public static final String ALIAS_ALPHABETS_ONLY = "Only case-sensitive alphabets can be used as aliases.";
+    public static final String ALIAS_COMMAND_UNALIASABLE = "`alias` and `reset alias` commands cannot have aliases.";
+    public static final String MESSAGE_OVERRIDE_ALIAS = "Override existing alias instead: %s";
+    public static final String MESSAGE_TOO_LONG = "Alias can only be up to 10 characters long.";
+    public static final Predicate<String> IS_VALID_LENGTH = x -> x.length() < 11;
+    public static final IntPredicate IS_ALPHABET_ASCII = x -> (x > 96 && x < 123 || x > 64 && x < 91);
+    public static final Set<String> RESERVED_KEYWORDS = Set.of(
+            AddCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD,
+            EditCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD, FindCommand.COMMAND_WORD,
+            HelpCommand.COMMAND_WORD, ListCommand.COMMAND_WORD, RemarkCommand.COMMAND_WORD,
+            TopupCommand.COMMAND_WORD, AliasCommand.COMMAND_WORD, AddCategoryCommand.COMMAND_WORD,
+            DeleteCategoryCommand.COMMAND_WORD, SwitchCommand.COMMAND_WORD, SortCommand.COMMAND_WORD
+    );
 
+    // Maps String alias to String default_command
     private final HashMap<String, String> aliasMap;
-
-    static {
-        RESERVED_KEYWORDS =
-                Set.of(
-                        AddCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD,
-                        EditCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD, FindCommand.COMMAND_WORD,
-                        HelpCommand.COMMAND_WORD, ListCommand.COMMAND_WORD, RemarkCommand.COMMAND_WORD,
-                        TopupCommand.COMMAND_WORD, AliasCommand.COMMAND_WORD, AddCategoryCommand.COMMAND_WORD,
-                        DeleteCategoryCommand.COMMAND_WORD, SwitchCommand.COMMAND_WORD, SortCommand.COMMAND_WORD
-                );
-    }
 
     /**
      * Constructs a new {@code AliasMap}.
@@ -105,11 +109,12 @@ public class AliasMap {
 
     public String getValue(String aliasString) throws IllegalArgumentException {
         requireNonNull(aliasString);
-        if (!this.aliasMap.containsKey(aliasString) && !RESERVED_KEYWORDS.contains(aliasString)) {
-            throw new IllegalArgumentException(String.format(ALIAS_NOT_FOUND, aliasString));
-        }
-        if (!this.aliasMap.containsKey(aliasString) && RESERVED_KEYWORDS.contains(aliasString)) {
+        // by definition, RESERVED_KEYWORD cannot be aliases
+        if (RESERVED_KEYWORDS.contains(aliasString)) {
             return aliasString;
+        }
+        if (!this.aliasMap.containsKey(aliasString)) {
+            throw new IllegalArgumentException(String.format(ALIAS_NOT_FOUND, aliasString));
         }
         return this.aliasMap.get(aliasString);
     }
@@ -132,24 +137,35 @@ public class AliasMap {
         requireNonNull(prev);
         requireNonNull(update);
         assert (prev.getValue().equals(update.getValue())) : "Must replace the same value (command) alias";
-        if (!this.aliasMap.containsKey(prev.getKey()) && RESERVED_KEYWORDS.contains(prev.getKey())) {
-            addAlias(update);
-            return;
+        if (prev.getKey().equals(AliasCommand.COMMAND_WORD)) {
+            throw new IllegalArgumentException(ALIAS_COMMAND_UNALIASABLE);
         }
-        if (!this.aliasMap.containsKey(prev.getKey())) {
-            throw new IllegalArgumentException(String.format(ALIAS_NOT_FOUND, prev.getKey()));
+        if (!update.getKey().chars().allMatch(IS_ALPHABET_ASCII)) {
+            throw new IllegalArgumentException(ALIAS_ALPHABETS_ONLY);
         }
-        if (prev.getKey().equals(update.getKey())) {
-            throw new IllegalArgumentException(UNCHANGED_ALIAS);
+        if (aliasMap.containsKey(update.getKey())) {
+            throw new IllegalArgumentException(String.format(DUPLICATE_KEYWORD_FOUND, update.getKey()));
         }
         if (RESERVED_KEYWORDS.contains(update.getKey()) && !prev.getValue().equals(update.getKey())) {
             throw new IllegalArgumentException(String.format(MESSAGE_RESERVED, update.getKey()));
         }
-        if (this.aliasMap.containsKey(update.getKey())) {
-            throw new IllegalArgumentException(String.format(DUPLICATE_KEYWORD_FOUND, update.getKey()));
+        if (prev.getKey().equals(update.getKey())) {
+            throw new IllegalArgumentException(UNCHANGED_ALIAS);
+        }
+        if (RESERVED_KEYWORDS.contains(prev.getKey())) {
+            for (HashMap.Entry<String, String> e: this.aliasMap.entrySet()) {
+                if (e.getValue().equals(prev.getKey())) {
+                    throw new IllegalArgumentException(String.format(MESSAGE_OVERRIDE_ALIAS, e.getKey()));
+                }
+            }
+        }
+        if (!IS_VALID_LENGTH.test(update.getKey())) {
+            throw new IllegalArgumentException(MESSAGE_TOO_LONG);
         }
         this.aliasMap.remove(prev.getKey());
-        addAlias(update);
+        if (!RESERVED_KEYWORDS.contains(update.getKey())) {
+            addAlias(update);
+        }
     }
 
     public List<AliasEntry> getAliasList() {
@@ -166,6 +182,14 @@ public class AliasMap {
      */
     public void removeAlias(AliasEntry alias) {
         aliasMap.remove(alias.getKey());
+    }
+
+    public void removeAllAliases() {
+        aliasMap.clear();
+    }
+
+    public boolean isEmpty() {
+        return this.aliasMap.isEmpty();
     }
 
     @Override

@@ -83,6 +83,7 @@ public class ModelManagerTest {
 
     @Test
     public void hasExpense_expenseInExpenseBook_returnsTrue() {
+        modelManager.addCategory(FEL_BDAY.getTag());
         modelManager.addExpense(FEL_BDAY);
         assertTrue(modelManager.hasExpense(FEL_BDAY));
     }

@@ -36,7 +36,7 @@ public class SortCommand extends Command {
             + PREFIX_SORT + "date "
             + PREFIX_SORT + "descriptionR ";
 
-    public static final String MESSAGE_SUCCESS = "Expenses sorted according to: %s";
+    public static final String MESSAGE_SUCCESS = "Expenses sorted according to: %s. ";
 
     private Comparator<Expense> expenseComparator;
     private List<String> sortOrder;

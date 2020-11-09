@@ -56,8 +56,8 @@ class DeleteCategoryCommandTest {
         DeleteCategoryCommand deleteCategoryCommand = new DeleteCategoryCommand(invalidTag);
         DeleteCategoryCommandTest.ModelStub modelStub = new DeleteCategoryCommandTest.ModelStubWithTag(validTag);
 
-        assertThrows(CommandException.class,
-            DeleteCategoryCommand.MESSAGE_INVALID_CATEGORY, () -> deleteCategoryCommand.execute(modelStub));
+        assertThrows(CommandException.class, String.format(DeleteCategoryCommand.MESSAGE_INVALID_CATEGORY,
+                invalidTag), () -> deleteCategoryCommand.execute(modelStub));
     }
 
     @Test
@@ -190,6 +190,16 @@ class DeleteCategoryCommandTest {
 
         @Override
         public void topupCategoryBudget(Tag category, Amount amount) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean categoryBudgetHasAmount(Tag category, Amount amount) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void reduceCategoryBudget(Tag category, Amount amount) {
             throw new AssertionError("This method should not be called.");
         }
 

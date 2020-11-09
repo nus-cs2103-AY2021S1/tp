@@ -33,15 +33,15 @@ public class ExpenseTest {
         editedFelBD = new ExpenseBuilder(FEL_BDAY).withDescription(VALID_DESCRIPTION_BUS).build();
         assertFalse(FEL_BDAY.isSameExpense(editedFelBD));
 
-        // same description, same amount, different attributes -> returns true
+        // same description, same amount, different attributes -> returns false
         editedFelBD = new ExpenseBuilder(FEL_BDAY).withDate(VALID_DATE_BUS)
                 .withTag(VALID_TAG_TRANSPORT).build();
-        assertTrue(FEL_BDAY.isSameExpense(editedFelBD));
+        assertFalse(FEL_BDAY.isSameExpense(editedFelBD));
 
-        // same description, same date, different attributes -> returns true
+        // same description, same date, different attributes -> returns false
         editedFelBD = new ExpenseBuilder(FEL_BDAY).withAmount(VALID_AMOUNT_BUS)
                 .withTag(VALID_TAG_TRANSPORT).build();
-        assertTrue(FEL_BDAY.isSameExpense(editedFelBD));
+        assertFalse(FEL_BDAY.isSameExpense(editedFelBD));
 
         // same description, same amount, same date, different attributes -> returns true
         editedFelBD = new ExpenseBuilder(FEL_BDAY).withTag(VALID_TAG_TRANSPORT).build();

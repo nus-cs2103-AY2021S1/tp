@@ -146,11 +146,11 @@ public class UniqueExpenseList implements Iterable<Expense> {
      * Calculates the sum of the expenses in the expense list.
      * @return sum of expenses.
      */
-    public double tallyExpenses() {
-        double sum = 0;
+    public Amount tallyExpenses() {
+        Amount sum = new Amount("0");
         Iterator<Expense> i = iterator();
         while (i.hasNext()) {
-            sum += i.next().getAmount().asDouble();
+            sum = sum.add(i.next().getAmount());
         }
         return sum;
     }

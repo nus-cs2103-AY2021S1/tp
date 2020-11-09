@@ -76,15 +76,15 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
      * Calculates the sum of the budgets in the category-budgets list.
      * @return sum of budgets.
      */
-    public double tallyAmounts() {
+    public Amount tallyAmounts() {
         int size = filteredList.size();
-        double sum = internalList.size() == size && size != 1 || isAllDefaultCategory()
-            ? defaultCategory.getAmount().asDouble()
-            : 0;
-        assert sum >= 0;
+        Amount sum = internalList.size() == size && size != 1 || isAllDefaultCategory()
+            ? defaultCategory.getAmount()
+            : Amount.zeroAmount();
+        assert sum.greaterThanEquals(Amount.zeroAmount());
         Iterator<CategoryBudget> i = iterator();
         while (i.hasNext()) {
-            sum += i.next().getAmount().asDouble();
+            sum = sum.add(i.next().getAmount());
         }
         return sum;
     }
@@ -172,14 +172,50 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
                 .forEach(categoryBudget -> categoryBudget.topupBudget(toAdd));
     }
 
+    /**
+     * Reduces the {@code CategoryBudget} that matches the specified category by the given amount {@code toSubtract}.
+     */
+    public void reduceCategoryBudget(Tag category, Amount toSubtract) {
+        requireAllNonNull(category, toSubtract);
+
+        if (category.equals(DEFAULT_TAG)) {
+            reduceBudget(toSubtract);
+        }
+
+        internalList.stream()
+                .filter(categoryBudget -> categoryBudget.getTag().equals(category))
+                .forEach(categoryBudget -> categoryBudget.reduceBudget(toSubtract));
+    }
+
     @Override
     public Amount getAmount() {
-        return new Amount(tallyAmounts());
+        return tallyAmounts();
     }
 
     @Override
     public void topupBudget(Amount toAdd) {
         defaultCategory.topupBudget(toAdd);
+    }
+
+    @Override
+    public void reduceBudget(Amount toSubtract) {
+        defaultCategory.reduceBudget(toSubtract);
+    }
+
+    /**
+     * Returns true if the default budget contains the specified {@code amount} or more.
+     */
+    @Override
+    public boolean hasAmount(Amount amount) {
+        return defaultCategory.hasAmount(amount);
+    }
+
+    /**
+     * Returns true if the {@code CategoryBudget} that matches the specified category contains the given {@code amount}
+     * or more.
+     */
+    public boolean categoryBudgetHasAmount(Tag category, Amount amount) {
+        return getCategoryBudget(category).hasAmount(amount);
     }
 
     private boolean isAllDefaultCategory() {

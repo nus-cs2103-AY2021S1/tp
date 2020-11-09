@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+
+mainframe sd hasCategory
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ExpenseBook" as ExpenseBook MODEL_COLOR
+participant ":UniqueTagList" as UniqueTagList MODEL_COLOR
+end box
+[-> Model : hasCategory(category)
+activate Model
+
+Model -> ExpenseBook: containsCategory(toCheck)
+activate ExpenseBook
+
+ExpenseBook -> UniqueTagList:contains(toCheck)
+activate UniqueTagList
+
+UniqueTagList -> ExpenseBook : contains result
+deactivate UniqueTagList
+
+ExpenseBook -> Model : containsCategory result
+deactivate ExpenseBook
+
+[<--Model : hasCategory result
+deactivate Model
+@enduml
