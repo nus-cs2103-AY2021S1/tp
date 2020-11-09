@@ -1578,7 +1578,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `add n/Brendan Tan p/93211234 s/Commonwealth Secondary School v/Blk 33 West Coast Rd #21-214 t/15 1430-1630 f/25 d/10/10/2020 a/Likes Algebra`
     <br>Expected: Expected: No student is added as due to invalid class time. Error details displayed in the result display.
 
-2. Deleting a student while all students are being shown.
+1. Deleting a student while all students are being shown.
 
    1. Prerequisites: At least one student in the students list.
 
@@ -1590,127 +1590,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-3. Finding students with overdue fees (i.e last payment date is more than one month ago) while all students are shown.
-
-   1. Prerequisite: Set at least one student's last payment date to within one month of the current date with `edit` command. Multiple students in the list.
-
-   1. Test case: `overdue`<br>
-      Expected: All students except those whose payment date is within one month from the current date are listed. The number of students found is displayed.
-
-4. Finding students with overdue fees while some students are hidden.
-
-   1. Prerequisite: Hide some students with overdue fees with `find` command.
-
-   1. Test case: `overdue`<br>
-      Expected: All students except those whose payment date is within one month from the current date are displayed again. The number of students found is displayed.
-
-5. Viewing schedule of classes
-
-    1. Prerequisites: There are students stored in Reeve currently with non-overlapping class times.
-
-    1. Test case: `schedule m/weekly d/02/11/2020`
-       Expected: Shows the schedule of classes in the whole week of 02/11/2020.
-
-    1. Test case: `schedule m/daily d/02/11/2020`
-       Expected: Shows the schedule of classes in the day of 02/11/2020.
-
-    1. Test case: `schedule m/dAiLy d/02/11/2020`
-       Expected: Shows the schedule successfully as the case letters of the view mode does not matter.
-
-    1. Test case: `schedule m/day d/02/11/2020`
-       Expected: Displays error message indicating invalid view mode.
-
-    1. Test case: `schedule m/weekly d/02-11-2020`
-       Expected: Displays error message indicating invalid date format.
-
-6. Finding a student while all students are being shown with several matching students
-
-   1. Prerequisites: List all students using the `list` command. Two students in the list. One student has name _Samuel_ and has school _yishun secondary_. Another student has name _Sam_ and has school _yishun sec school_.
-
-   1. Test case: `find n/samuel`<br>
-      Expected: Only the student with name _Samuel_ and school _yishun secondary_ shows up in the list.
-
-   2. Test case: `find n/sam`<br>
-      Expected: Only the student with name _Sam_ and school _yishun sec school_ showsinp on the list.
-
-   3. Test case: `find s/yishun sec`<br>
-      Expected: Both students show up in the list.
-
-   4. Incorrect find commands to try: `find`, `find samuel`, `find yishun sec`
-      Expected: No changes show up on the list. Error details shown in the status message.
-
-### F.4 Student Academic Features
-
-1. Adding an exam record to a student. 
-
-   1. Prerequisites: At least one student in the students list.
-   
-   1. Test case: `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`
-   <br>Expected: Mid Year 2020 exam record is added to the exams list of the first student in the displayed students list.
-   
-   1. Test case: `exam add 1 n/Mid Year 2020 d/08/12/2020 s/50/10`
-   <br>Expected: No exam record is added due to invalid score as numerator is larger than denominator.
-   
-   1. Test case: `exam add 1 n/Mid Year 2020 d/30/30/2020 s/50/100`
-   <br>Expected: No exam record is added due to invalid exam date.
-   
-1. Deleting an exam record from a student.
-
-   1. Prerequisites: At least one student in the students list. At least one exam record in the student's exams list.
-   
-   1. Test case: `exam delete 1 i/1`
-   <br>Expected: First exam record of the exam list of the first student in the displayed students list is deleted. Details of deleted exam record shown in the result display.
-   
-   1. Test case: `exam delete 1 i/0`
-   <br>Expected: No exam is deleted due to invalid exam index. Error details shown in the result display.
-   
-1. Displaying exam statistics of a student
-
-   1. Prerequisites: At least one student in the students list.
-
-   1. Test case: `exam stats 1`
-   <br>Expected: Opens the exam statistics window of the first student in the displayed students list.
-   
-### F.5 Notes Feature
-
-### F.6 Saving Data
-
-1. Dealing with missing data files
-
-   1. Test case: `data/addressbook.json` missing or deleted<br>
-      Expected: Reeve initialises with sample student data, notebook data is intact.
-
-   1. Test case: `data/notebook.json` missing or deleted<br>
-      Expected: Reeve initialises with sample notebook data, student data is intact.
-
-1. Dealing with corrupted data files (Student data)
-
-   1. Prerequisite: Ensure `data/addressbook.json` is present. Modify the data using `edit` or `delete` to create `data/addressbook.json` if absent.
-
-   1. Test case: delete a random field from a random student in `addressbook.json`<br>
-      Expected: Reeve initialises with an empty student list.
-
-   1. Test case: duplicate a student's record again in `addressbook.json`<br>
-      Expected: Similar to previous.
-
-   1. Test case: invalid data in `addressbook.json` (e.g add special characters to the "name" field) <br>
-      Expected: Similar to previous.
-
-1. Dealing with corrupted data files (Notebook data)
-
-   1. Prerequisite: Ensure `data/notebook.json` is present. Modify the data using note commands to create `data/notebook.json` if absent.
-
-   1. Test case: "description" field has more than 80 characters<br>
-      Expected: Reeve initialises with an empty notebook.
-
-   1. Test case: "title" field has more than 15 characters<br>
-      Expected: Reeve initialises with an empty notebook.
-
-   1. Test case: duplicate note in `notebook.json`<br>
-      Expected: Similar to previous.
-
-### F.4 Finding students with overdue fees
 
 1. Finding students with overdue fees (i.e last payment date is more than one month ago) while all students are shown.
 
@@ -1726,79 +1605,40 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `overdue`<br>
       Expected: All students except those whose payment date is within one month from the current date are displayed again. The number of students found is displayed.
 
-### F.5 Managing questions from students
-
-1. Adding questions to a student.
-
-    1. Prerequisite: List all students using `list` command. View academic data with `toggle` command. Multiple students present.
-
-    1. Test case: `question add 1 t/RANDOM_QUESTION`
-       Expected: New unresolved (cross symbol) question whose description matches your input added to first student.
-
-    1. Test case: `question add 0 t/RANDOM_QUESTION`
-       Expected: No question added. Error details shown in status message. List stays the same.
-
-    1. Test case: `question add 1 t/   `
-       Expected: Similar to previous.
-
-    1. Test case: `question add 1 t/SAME_QUESTION_IN_TEST_CASE_2`
-       Expected: Similar to previous.
-
-1. Resolving questions from a student.
-
-    1. Prerequisite: List all students using `list` command. View academic data with `toggle` command. First student on the list must have at least one unresolved question.
-
-    1. Test case: `question solve 1 i/UNSOLVED_QUESTION_INDEX t/   `
-       Expected: No question resolved. Error details shown in status message.
-
-    1. Test case: `question solve 1 i/UNSOLVED_QUESTION_INDEX t/RANDOM_SOLUTION`
-       Expected: Status of question at `UNSOLVED_QUESTION_INDEX` changed to a tick, `RANDOM_SOLUTION` added next to the question text in square brackets (`[]`).
-       Details of the question resolved and student's name included in status message.
-
-    1. Test case: `question solve 0 i/1 t/RANDOM_SOLUTION`
-       Expected: No question resolved. Error details shown in status message.
-
-    1. Test case: `question solve 1 i/0 t/RANDOM_SOLUTION`
-       Expected: Similar to previous.
-
-    1. Test case: `question solve 1 i/INDEX_OF_QUESTION_SOLVED_IN_TEST_CASE_2 t/RANDOM_SOLUTION`
-       Expected: Similar to previous.
-
-1. Deleting questions from a student.
-
-    1. Prerequisite: List all students using `list` command. View academic data with `toggle` command. First student on the list must have at least one question.
-
-    1. Test case: `question delete 0 i/1`
-       Expected: No question deleted. Error details shown in status message.
-
-    1. Test case: `question delete 1 i/0`
-       Expected: Similar to previous.
-       
-    1. Test case: `question delete 1 i/QUESTION_INDEX`
-       Expected: Question at `QUESTION_INDEX` is removed. Details of deleted question included in status message.
-
-### F.00 Schedule
-
 1. Viewing schedule of classes
 
     1. Prerequisites: There are students stored in Reeve currently with non-overlapping class times.
-    
+
     1. Test case: `schedule m/weekly d/02/11/2020`
        Expected: Shows the schedule of classes in the whole week of 02/11/2020.
-       
+
     1. Test case: `schedule m/daily d/02/11/2020`
        Expected: Shows the schedule of classes in the day of 02/11/2020.
-       
+
     1. Test case: `schedule m/dAiLy d/02/11/2020`
        Expected: Shows the schedule successfully as the case letters of the view mode does not matter.
-    
+
     1. Test case: `schedule m/day d/02/11/2020`
        Expected: Displays error message indicating invalid view mode.
-       
+
     1. Test case: `schedule m/weekly d/02-11-2020`
        Expected: Displays error message indicating invalid date format.
 
-### F.0 Managing additional details in students
+1. Finding a student while all students are being shown with several matching students
+
+   1. Prerequisites: List all students using the `list` command. Two students in the list. One student has name _Samuel_ and has school _yishun secondary_. Another student has name _Sam_ and has school _yishun sec school_.
+
+   1. Test case: `find n/samuel`<br>
+      Expected: Only the student with name _Samuel_ and school _yishun secondary_ shows up in the list.
+
+   2. Test case: `find n/sam`<br>
+      Expected: Only the student with name _Sam_ and school _yishun sec school_ showsinp on the list.
+
+   3. Test case: `find s/yishun sec`<br>
+      Expected: Both students show up in the list.
+
+   4. Incorrect find commands to try: `find`, `find samuel`, `find yishun sec`
+      Expected: No changes show up on the list. Error details shown in the status message.
 
 1. Adding details to a student.
 
@@ -1849,7 +1689,39 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
        
     1. Test case: `detail delete`
-           Expected: Similar to previous.
+       Expected: Similar to previous.
+
+### F.4 Student Academic Features
+
+1. Adding an exam record to a student. 
+
+   1. Prerequisites: At least one student in the students list.
+   
+   1. Test case: `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`
+   <br>Expected: Mid Year 2020 exam record is added to the exams list of the first student in the displayed students list.
+   
+   1. Test case: `exam add 1 n/Mid Year 2020 d/08/12/2020 s/50/10`
+   <br>Expected: No exam record is added due to invalid score as numerator is larger than denominator.
+   
+   1. Test case: `exam add 1 n/Mid Year 2020 d/30/30/2020 s/50/100`
+   <br>Expected: No exam record is added due to invalid exam date.
+   
+1. Deleting an exam record from a student.
+
+   1. Prerequisites: At least one student in the students list. At least one exam record in the student's exams list.
+   
+   1. Test case: `exam delete 1 i/1`
+   <br>Expected: First exam record of the exam list of the first student in the displayed students list is deleted. Details of deleted exam record shown in the result display.
+   
+   1. Test case: `exam delete 1 i/0`
+   <br>Expected: No exam is deleted due to invalid exam index. Error details shown in the result display.
+   
+1. Displaying exam statistics of a student
+
+   1. Prerequisites: At least one student in the students list.
+
+   1. Test case: `exam stats 1`
+   <br>Expected: Opens the exam statistics window of the first student in the displayed students list.
 
 1. Adding attendance to a student.
 
@@ -1880,6 +1752,55 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `attendance delete d/12/02/2020`
        Expected: Similar to previous.
 
+1. Adding questions to a student.
+
+    1. Prerequisite: List all students using `list` command. View academic data with `toggle` command. Multiple students present.
+
+    1. Test case: `question add 1 t/RANDOM_QUESTION`
+       Expected: New unresolved (cross symbol) question whose description matches your input added to first student.
+
+    1. Test case: `question add 0 t/RANDOM_QUESTION`
+       Expected: No question added. Error details shown in status message. List stays the same.
+
+    1. Test case: `question add 1 t/   `
+       Expected: Similar to previous.
+
+    1. Test case: `question add 1 t/SAME_QUESTION_IN_TEST_CASE_2`
+       Expected: Similar to previous.
+
+1. Resolving questions from a student.
+
+    1. Prerequisite: List all students using `list` command. View academic data with `toggle` command. First student on the list must have at least one unresolved question.
+
+    1. Test case: `question solve 1 i/UNSOLVED_QUESTION_INDEX t/   `
+       Expected: No question resolved. Error details shown in status message.
+
+    1. Test case: `question solve 1 i/UNSOLVED_QUESTION_INDEX t/RANDOM_SOLUTION`
+       Expected: Status of question at `UNSOLVED_QUESTION_INDEX` changed to a tick, `RANDOM_SOLUTION` added next to the question text in square brackets (`[]`).
+       Details of the question resolved and student's name included in status message.
+
+    1. Test case: `question solve 0 i/1 t/RANDOM_SOLUTION`
+       Expected: No question resolved. Error details shown in status message.
+
+    1. Test case: `question solve 1 i/0 t/RANDOM_SOLUTION`
+       Expected: Similar to previous.
+
+    1. Test case: `question solve 1 i/INDEX_OF_QUESTION_SOLVED_IN_TEST_CASE_2 t/RANDOM_SOLUTION`
+       Expected: Similar to previous.
+
+1. Deleting questions from a student.
+
+    1. Prerequisite: List all students using `list` command. View academic data with `toggle` command. First student on the list must have at least one question.
+
+    1. Test case: `question delete 0 i/1`
+       Expected: No question deleted. Error details shown in status message.
+
+    1. Test case: `question delete 1 i/0`
+       Expected: Similar to previous.
+       
+    1. Test case: `question delete 1 i/QUESTION_INDEX`
+       Expected: Question at `QUESTION_INDEX` is removed. Details of deleted question included in status message.
+
 ### F.5 Notes Feature
 
 1. Adding a note to the notebook.
@@ -1887,10 +1808,10 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `note add t/things to do d/mark practice papers`
     <br>Expected: Note with title things to do is added and details shown in the results display.
 
-    2. Test case: `note add t/things to finish by tomorrow d/mark practice papers`
+    1. Test case: `note add t/things to finish by tomorrow d/mark practice papers`
     <br>Expected: No note is added due to a title that is too long. Error details shown in the results display.
 
-2. Deleting a note.
+1. Deleting a note.
 
    1. Prerequisites: At least one note in the notebook.
 
