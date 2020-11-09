@@ -3,63 +3,85 @@ layout: page
 title: Jonas Ng's Project Portfolio Page
 ---
 
-## Project: Cap 5.0 Buddy
-
-## Overview
-
-Cap 5 Buddy is a desktop module tracker application used to centralise key module details. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20 kLoC.
-
-![Ui](../images/Ui.png)
-Figure 1. UI of Cap 5 Buddy.
-
-## Summary of Contributions
-
+#### Project: CAP5Buddy
+#### Overview
+CAP5Buddy is a desktop module tracker application used to centralise key module details. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 30 kLoC.
+#### Summary of Contributions
 Given below are my contributions to the project.
-
+* **Enhancement:** Implemented the feature to find items using multiple search parameters. 
+                   This includes the following functionalities: find contact, find task.
+  * **What it does:** This feature allows the user to filter contacts, tasks and events using multiple search parameters. 
+  * **Justification:** This feature enhances the product significantly as users might store many contacts, tasks and events, and locating specific 
+                   information may be tedious. 
+  * **Highlights:** This feature required in-depth analysis of the implementation of Contact and Task. As users can provide a variable number of search parameters, defensive programming was employed
+      to ascertain exactly which search parameters were provided before the command is executed.
+  * Relevant Pull requests: [\#156](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/156)
+                            [\#257](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/257)
+                            [\#425](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/425)
+                            [\#419](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/419)
+                            [\#600](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/600)
+* **Enhancement:** Implemented zoom link management feature. This includes the following functionalities: add zoom link, edit zoom link, delete zoom link
+  * **What is does:** This feature allows users to manage a list of zoom links for various module lessons in each distinct module.           
+  * **Justification:** This feature enhances the product significantly since users are enrolled in numerous modules 
+                   and might have a substantial number of zoom links to keep track of.
+  * **Highlights:** In-depth analysis of Module and its behaviour is required since ZoomLink and ModuleLesson is coupled with module.
+                This is important as it prevents unexpected regressions when zoom link commands are modified.
+  * Relevant Pull requests: [\#80](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/80)
+                            [\#96](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/96)
+                            [\#428](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/428)
+                            [\#541](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/541)
+                            [\#553](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/553)
+                            [\#555](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/555)        
+        
+* **Enhancement:** Implemented contact list management feature. 
+                   This feature includes the following functionalities: add contact, delete contact, edit contact, clear contact, list contact
+  <div style="page-break-after: always;"></div>
+  
+  * **What it does:** This feature allows users to keep track of module related contacts while managing all their contact details.               
+  * **Justification:** This feature enhances the product significantly as module contacts are vital information
+                   that users access on a regular basis. As users are enrolled in numerous lessons, the number of contacts to track can be overwhelming.                
+  * **Highlights:**
+    * This feature requires development in all the components of Cap 5 Buddy: `Logic`, `Model`, `Storage` and `Ui`. As such,
+      in-depth analysis of how the components interacted with each other was required. Also, it provides flexibility for users 
+      as not all contact fields are compulsory when creating contacts.
+  * Relevant Pull requests: [\#228](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/228)
+                            [\#249](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/249)
+                            [\#250](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/250)
+                            [\#251](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/251)
+                            [\#257](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/257)
+                            [\#258](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/258)
+                            [\#383](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/383)
+                            [\#422](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/422)
+                            [\#454](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/454) 
+                            [\#592](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/592)
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jonasngs)
-
-* **Major enhancement:** Implement feature to find items using multiple search parameters
-
-  * What it does: This feature allows the user to efficiently search for the desired contact, task or event using multiple search parameter. This ensures that module related
-                  information and details can be retrieved easily whenever needed.
-  
-  * Justification: Finding the necessary module related information is crucial for users given that users may require the specific information 
-                   at any given moment. Additionally, as users might store large numbers of different contacts, tasks and events in their application,
-                   there is a need to provide a feature that allows users to conduct more accurate and refined searches. Finding items
-                   using a single parameter, similar to the `FindCommand` feature provided by `Addressbook-level3` which searches for contacts based on a single name parameter,
-                   may yield many search results. This can hinder user experience as users might have to scan through the search results again. As such,
-                   implementing a feature which allows users to find items using more than one search parameter can narrow down the search results, increasing
-                   the probability of users being able to retrieve their intended search result.
-  
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  
-  * Relevant Pull requests: 
-
-
 * **Project management**:
-  * Set up the GitHub team repo and organization
+  * Set up the GitHub team organization and repository
+  * Performed GitHub team repo setup (enable issue tracker, set up product website etc) 
   * Managed releases `v1.2`, `v1.3` (2 releases) on GitHub
-  * Managed milestones `V1.1`, `V1.3`. Closed the milestone when all issues have been completed before the stipulated deadline.
-
+  * Managed and closed milestones `V1.1`, `V1.2`, `V1.3`. 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
-
-
+  * Updated the GUI color scheme for contact card (Pull request [\#582](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/582))
+  * Refactored `Model` package to suit the implementation of CAP5Buddy (Pull request [\#197](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/197))
+  * Wrote additional tests for existing features to increase coverage 
+    (Pull requests [\#292](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/292), 
+                   [\#295](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/295),
+                   [\#571](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/571),
+                   [\#598](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/598),
+                   [\#621](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/621))
 * **Documentation**:
   * User Guide:
-    * Added documentation for the Contact list management features 
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
-    
+    * Added documentation for contact list features, zoom link features and find task feature
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
-
+    * Updated documentation for the `Logic` component
+    * Added implementation details of the contact list features, zoom link features and find task feature.
+    * Added user stories, user cases
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-
-
+  * PRs reviewed (with non-trivial review comments): [\#226](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/226), 
+                                                     [\#244](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/244), 
+                                                     [\#306](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/306), 
+                                                     [\#308](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/308),
+                                                     [\#388](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/388),
+                                                     [\#413](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/413),
+                                                     [\#440](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/440))
+  * Reported bugs and suggestions for other teams in the class: [Reported 7 bugs during PE dry run](https://github.com/jonasngs/ped/issues)
