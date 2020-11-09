@@ -98,7 +98,7 @@
                                             </Label>
                                             <Label fx:id="noAllergiesLabel">
                                             </Label>
-                                 <ScrollPane fitToHeight="true" maxHeight="74.0" vbarPolicy="NEVER">
+                                 <ScrollPane fitToHeight="true" hbarPolicy="NEVER" maxHeight="74.0">
                                     <VBox.margin>
                                        <Insets />
                                     </VBox.margin>
