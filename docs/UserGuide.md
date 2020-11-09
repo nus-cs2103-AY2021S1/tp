@@ -64,6 +64,8 @@ If you are a private tutor that wants to not only manage your students' administ
 
 Let's dive into the User Guide to find out more!
 
+<div style="page-break-after: always;"></div>
+
 ### 1.2 Understanding the User Guide
 The goal of this User Guide is to provide you with the information on how to utilise **Reeve** to its fullest.
 
@@ -78,6 +80,8 @@ Symbol | Meaning
 `USER_INPUT` | User input into the CLI
 :information_source: | Important information
 :warning: | Warnings
+
+<div style="page-break-after: always;"></div>
 
 ## 2. Quick start
 This section serves to explain how to set up **Reeve** on your computer and how to make sense of the visual layout of the application.
@@ -136,6 +140,8 @@ This section serves to help you understand the layout of **Reeve**. Please refer
 5. **Command Box**
 
     The command box allows you to type any commands that is accepted in **Reeve**.
+
+<div style="page-break-after: always;"></div>
 
 ## 3. Features
 
@@ -199,6 +205,8 @@ Example:
 You can exit the program with the `exit` command. Any changes you have made to **Reeve** is automatically saved to your drive, so do not have to worry about losing data.
 
 Format: `exit`
+
+<div style="page-break-after: always;"></div>
 
 ### 3.3 Features for managing student administrative details
 
@@ -509,6 +517,8 @@ If you ever need to clear all existing data in **Reeve**, you can do so using th
 
 Format: `clear`
 
+<div style="page-break-after: always;"></div>
+
 ### 3.4 Features for Managing Student Academic Details
 
 **Reeve's** student academics features allows you to keep track of key academic details of each of your students such as questions, exams and etc.
@@ -770,6 +780,8 @@ The following figure (Figure 23) shows the expected outcome after executing the 
 ![DeleteAttendanceExpectedOutcome](images/DeleteAttendanceExpectedOutcome.png)
 <div align="center">Figure 23: After entering delete attendance command</div><br>
 
+<div style="page-break-after: always;"></div>
+
 ### 3.5 Notebook feature (By: Choon Siong)
 
 You can store notes containing small amounts of information inside the notebook. This is useful when you want to store information or details that is not related to any student and cannot do so anywhere else in **Reeve**.
@@ -823,6 +835,8 @@ Example:
 * Your first note was to remind yourself to grab a cup of coffee. Now that you have bought your cup of coffee, the note is no longer needed.
     * You can use `note delete 1` to delete the note.
 
+<div style="page-break-after: always;"></div>
+
 ## 4. Command summary
 
 This following table (Table 2) provides a summary of all the commands in **Reeve**.
@@ -858,6 +872,8 @@ Action | Format, Examples
 **Help** | `help`
 **Exit** | `exit`
 
+<div style="page-break-after: always;"></div>
+
 ## 5. Glossary
 
 The following table (Table 3) provides the definitions of the various terms used in this User Guide.
@@ -871,6 +887,8 @@ Academic Details | Details such as questions, exam records and attendance record
 Detail | Any miscellaneous information regarding a student
 Exam Record | A record of an exam which includes its name, date and the student's score
 Index | Position of an item in a list (1, 2 3 etc)
+
+<div style="page-break-after: always;"></div>
 
 ## 6. FAQ
 This section provides the answers to Frequently Asked Questions (FAQ) by users.
