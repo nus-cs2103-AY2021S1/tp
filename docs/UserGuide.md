@@ -406,7 +406,6 @@ Other examples:
 
 <br>
 
-
 ### 2.7 Delete a task : `delete-task`
 (Done by: Gangwei)
 
