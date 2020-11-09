@@ -112,7 +112,7 @@ The model component stores the relevant data for _Common Cents_. The model compo
 
 The `Model`,
 
-* responsible for managing the data of Accounts.
+* responsible for managing the data of _Common Cents_ which holds all the accounts.
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the CommonCents data.
 * stores an unmodifiable list of Accounts.
@@ -420,7 +420,7 @@ The following sequence diagram shows how the undo operation works:
  :information_source: **Note:**:
 
  * The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
- * Some of the interactions with the utility classes, such as `CommandResult`, `CommandResultFactory` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+ * Some of the interactions with the utility classes, such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
    of the undo command. 
    
 </div>
@@ -495,7 +495,7 @@ The following sequence diagram shows how an edit account operation works:
 :information_source: **Note:**
 
 * The lifeline for `EditAccountCommandParser` and `EditAccountCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, their lifeline reach the end of diagram.
-* Some of the interactions with the utility classes, such as `CommandResult`, `CommandResultFactory` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+* Some of the interactions with the utility classes, such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
 of the edit account command. 
 
 </div>
@@ -624,7 +624,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 #### Design consideration
 Explanation why a certain design is chosen.
 
-##### Aspect: How calculate net profits executes:
+##### Aspect: How calculate net profits executes
 * **Choice:** Calculates the net profits by retrieving the expense and revenue lists from the account. 
     * Pros: Easy to implement 
 
@@ -1184,7 +1184,7 @@ For all use cases below, the **System** is the `CommonCents` and the **Actor** i
 ### Non-Functional Requirements
 This specifies criteria that can be used to judge the operation of _Common Cents_.
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1.  Should work on any _Mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 entries per account without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Should be able to perform simple arithmetic with up to 1000 entries without a significant drop in performance.

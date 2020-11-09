@@ -10,6 +10,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":ActiveAccountManager" as ActiveAccount MODEL_COLOR
+participant ":ModelManager" as Model MODEL_COLOR
 end box
 
 [-> LogicManager : execute("delete 1 c/expense")
@@ -37,9 +38,29 @@ deactivate CommonCentsParser
 LogicManager -> DeleteCommand: execute(model, activeAccount)
 activate DeleteCommand
 
+alt delete expense
+DeleteCommand -> ActiveAccount: deleteExpense(1)
+activate ActiveAccount
+
+ActiveAccount --> DeleteCommand
+deactivate ActiveAccount
+else delete revenue
+DeleteCommand -> ActiveAccount: deleteRevenue(1)
+activate ActiveAccount
+ActiveAccount --> DeleteCommand
+deactivate ActiveAccount
+end
+
+DeleteCommand -> Model: setAccount()
+activate Model
+
+Model -> DeleteCommand
+deactivate Model
+
 DeleteCommand --> LogicManager
 deactivate DeleteCommand
 
+[<--LogicManager
 deactivate LogicManager
 @enduml
 
