@@ -5,10 +5,11 @@ start
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([command executes findmod])
+if () then ([modules found])
     :Filters module list;
     :Update GUI to show filtered module list;
 else ([else])
+    :Update GUI to show empty filtered module list;
 endif
 stop
 @enduml
