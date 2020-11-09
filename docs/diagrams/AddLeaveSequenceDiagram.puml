@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":EvaParser" as EvaParser LOGIC_COLOR
+participant ":AddLeaveCommandParser" as AddLeaveCommandParser LOGIC_COLOR
+participant ":AddLeaveCommand" as AddLeaveCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addl 1 l/d/10/10/2020")
+activate LogicManager
+
+LogicManager -> EvaParser : parseCommand("addl 1 l/d/10/10/2020")
+activate EvaParser
+
+create AddLeaveCommandParser
+EvaParser -> AddLeaveCommandParser
+activate AddLeaveCommandParser
+
+AddLeaveCommandParser --> EvaParser
+deactivate AddLeaveCommandParser
+
+EvaParser -> AddLeaveCommandParser : parse("1 l/d/10/10/2020")
+activate AddLeaveCommandParser
+
+create AddLeaveCommand
+AddLeaveCommandParser -> AddLeaveCommand
+activate AddLeaveCommand
+
+AddLeaveCommand --> AddLeaveCommandParser : d
+deactivate AddLeaveCommand
+
+AddLeaveCommandParser --> EvaParser : d
+deactivate AddLeaveCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddLeaveCommandParser -[hidden]-> EvaParser
+destroy AddLeaveCommandParser
+
+EvaParser --> LogicManager : d
+deactivate EvaParser
+
+LogicManager -> AddLeaveCommand : execute()
+activate AddLeaveCommand
+
+AddLeaveCommand -> Model : addStaffLeave(staff, leave)
+activate Model
+
+Model --> AddLeaveCommand
+deactivate Model
+
+create CommandResult
+AddLeaveCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddLeaveCommand
+deactivate CommandResult
+
+AddLeaveCommand --> LogicManager : result
+deactivate AddLeaveCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
