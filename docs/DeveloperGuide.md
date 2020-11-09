@@ -988,47 +988,156 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 
-### Testing Bidder Features
+### Testing Bidder and Seller Features
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** as the implementation of Bidder and Seller are similar, do note that the the manual testing section for `Bidder` and `Seller` can be tested similarly.
+
+- For example: in the following segment, `Adding a bidder while all bidders are being shown.`, the command which is given for bidder
+`add-b` can be changed to `add-s`. The output will be similar to that as mentioned but in the context of `Seller` instead.
+
+</div>
 
 #### Adding a bidder while all bidders are being shown.
 
-1. Test case: `add-b n/Kor Ming Soon p/8222222`
+1. Prerequisite: No other bidders have the exact **same name** or **same phone number**.
+
+2. Restriction: Name cannot exceed 26 characters with spaces included and the phone number cannot exceed 10 digits (inclusive).
+
+3. Test case: `add-b n/Kor Ming Soon p/8222222`
 
     Expected: A bidder with the name: `Kor Ming Soon`, phone: `82222222` will be created and assigned a unique `BidderId`.
     A visual `Tag` with the role `bidder` is also assigned. 
+
+#### Edit a bidder while all bidders are being shown.
+
+1. Prerequisite: A bidder exists inside the bidder list with the index `3`, this will also imply that there are bidders indexed
+at `1` and `2` as the indexes are sequentially ordered.
+
+2. Restriction: No other bidders have the exact **same name** or **same phone number**.
+
+3. Test case: `edit-b 3 n/Nigel Ng Yong Sheng` 
+
+   Expected: The bidder which belongs at index 3, will have his or her name edited to the input which is `Nigel Ng Yong Sheng`.
+   Other details of the bidder will remain the same (i.e phone number, tag, and Bidder Id).
+
+4. Test case: `edit-b 2 p/1784695`
     
+    Expected: The bidder which belongs at index 2, will have his or her phone number edited to the input which is `1784695`.
+   Other details of the bidder will remain the same (i.e name, tag, and Bidder Id).
+
+#### Delete a bidder while all bidders are being shown.
+
+Note that bidder and seller delete functions are slightly different, and both will be elaborated.
+
+1. Prerequisite: A bidder with exists inside the bidder list with the index `3`, this will also imply that there are bidders indexed
+at `1` and `2` as the indexes are sequentially ordered.
+
+2. Test case: `delete-b 3` 
+
+   Expected: The bidder which belongs at index `3`, will be deleted. The result display would output the information of the bidder
+   who was deleted (i.e name, phone number, tag and id). In addition, all `Meeting` and `Bid` which contain the `Id` of the bidder who
+   was deleted will be deleted as well. 
+
+#### Delete a seller while all sellers are being shown.
+
+Note that bidder and seller delete functions are slightly different, and both will be elaborated.
+
+1. Prerequisite: A seller with exists inside the seller list with the index `3`, this will also imply that there are sellers indexed
+at `1` and `2` as the indexes are sequentially ordered.
+
+2. Test case: `delete-s 3` 
+
+   Expected: The seller which belongs at index `3`, will be deleted. The result display would output the information of the seller
+   who was deleted (i.e name, phone number, tag and id). In addition, all `Property` which contains the `Id` of the seller who
+   was deleted will be deleted as well. Property in turn will delete all `Bid` and `Meeting` relating to the Property's `Id`. 
+
 #### Find a bidder while all bidders are being shown.
 
-1. Test case: `find-b Kor`
+1. Prerequisite: A bidder with a name containing `Kor` is inside the bidder list.
 
-    Expected: The 
+2. Test case: `find-b Kor`
 
+    Expected: The list will be filtered accordingly to the user input, which in this case is `Kor`, so all bidders
+    whose name contain `Kor` will be shown. 
+    
+    Note that the names which are filtered contain the name `Kor` in full (i.e other names such as
+    `Kore` or `exampleKor` will not be filtered.)
+    
+#### List a bidder while only some bidders are being shown.
 
-### Testing Seller Features
+1. Prerequisite: The bidder list is currently filtered (i.e a `find` command has been executed).
+
+2. Test case: `list-b`
+
+    Expected: The list will show in full all the bidders who are existing in the list.  
 
 ### Testing Property Features
 
-### Deleting a person
+#### Adding a property while all property are being shown.
 
-1. Deleting a person while all persons are being shown
+1. Prerequisite: Seller id must exist inside the seller list.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+2. Restrictions:
+    -  Price must be greater than 0 and less or equals to 1 trillion.
+    -  Price will be truncated to 2 decimal places.
+    -  PropertyName, Address and PropertyType have a maximum of 100 characters
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+3. Test case: `add-p n/Sunrise s/S1 ap/100 t/Landed a/99 Sunrise Street r/No`
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    Expected: A property with the name: `Sunrise`, seller id: `S1`, asking price: `$100.00`, property type: `Landed`,
+    address: `99 Sunrise Street` (note that the is_Rental will only be reflected if the `r/` input is `yes`).
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+#### Listing a property while some property are being shown.
 
-### Saving data
+1. Prerequisite: The property list is currently filtered (i.e a `find` command has been executed). 
 
-1. Dealing with missing/corrupted data files
+2. Test case: `list-p`
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    Expected: The list will show in full all the properties that are existing in the list.
 
-1. _{ more test cases …​ }_
+#### Editing a property while all property are being shown.
+
+1. Prerequisite: 
+    - A property exists inside the property list with the index `3`, this will also imply that there are property indexed
+   at `1` and `2` as the indexes are sequentially ordered.
+   - No other properties in the list contain the address "23 Cove Street".
+
+2. Restrictions: 
+    - Address is unique and the user input (if editing address) must not match any other properties' address in the list.
+
+3. Test case: `edit-p 1 n/Cove Residences a/23 Cove Street`
+
+    Expected: A property indexed at 1 will be edited with the new information
+     name: `Cove Residences`, address: `23 Cove Street`. The other fields will remain unedited.
+
+
+#### Deleting a property while all property are being shown.
+
+1. Prerequisite: property exists inside the property list with the index `3`, this will also imply that there are property indexed
+   at `1` and `2` as the indexes are sequentially ordered.
+
+2. Test case: `delete-p 3`
+
+    Expected: A property indexed at 3 will be deleted. The result display would output the information of the property
+    that was deleted (i.e name, seller id etc). In addition, all `Bid` and `Meeting` relating to the deleted property's `Id` would be
+    deleted as well.
+    
+#### Finding a property while all property are being shown.
+
+1. Prerequisite: 
+    - A property exists inside the property list with the index `3`, this will also imply that there are property indexed
+   at `1` and `2` as the indexes are sequentially ordered.
+
+2. Restrictions: 
+    - The search is case insensitive, all attributes e.g cove will match Cove
+    - Only full words will be match e.g sun will not match sunrise
+    - Properties matching at least one keyword will be considered a match e.g sunrise view will match sunrise avenue when
+    `sun` is input
+
+3. Test case: `find-p n/Cove Sunrise ap/<= 100 r/no`
+
+    Expected: Displays all properties whose names contains either Cove or Sunrise, 
+    asking price is less than or equals to 100, and is not a rental property.
+    

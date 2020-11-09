@@ -91,6 +91,12 @@ Below are the details of my contribution:
   
 #### User Interface Functions
 
+The `CalendarView` (both `.java` and `.fxml`) was referenced from:
+- [Senior Team Project](https://github.com/SirGoose3432/javafx-calendar/blob/master/src/FullCalendarView.java) 
+- [External Github Repo](https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java)
+
+Major edits mostly done in `.fxml` to fit the look to PropertyFree.
+
 * **New Feature**: Implemented the `AutoTab` switching function for PropertyFree
   * **What it does**: Changes the tab from entity to entity depending on the command executed by the user.
   
