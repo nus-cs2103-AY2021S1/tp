@@ -54,7 +54,7 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for the features `add`, `edit`, `delete`, and `editappt` [\#235](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/235), [\#165](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/165)
     * Added screenshots for all features `history`, `clearhistory`, `undo`, `redo`, `add`, `addpicture`, `edit`, `delete`, `clear`, `find`, and `list` [\#274](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/274) [\#120](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/120)
-    * Made improvements to existing documentation for consistent styling and format [\#140](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/140)
+    * Made improvements to existing documentation for consistent styling and format [\#253](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/253), [\#140](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/140)
   * Developer Guide:
     * Added documentation for some parts of the Appointment Feature section [\#279](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/279)
     * Added new use cases for the features `add`, `edit`, `delete`, `addappt`, `editappt`, and `deleteappt` [\#288](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/288), [\#96](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/96), [\#35](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/35)
