@@ -206,12 +206,14 @@ Beyond v1.4, additional features can be implemented for **Session**:
 
 Author: **Goh Siau Chiak**
 
-* Implementing the classes that encapsulate a list of student records.
+* Implemented the classes that encapsulate a list of student records.
 
 ![Structure of StudentRecordList Component](images/StudentRecordDiagram.png)
 
 The `StudentRecordList`,
+
 ![Student Record List Class](images/StudentRecordListDiagram.png)
+
 * is stored by a `Session`.
 * encapsulates a list of zero or more `StudentRecord` objects.
 * can provide a list of the `StudentRecord` objects that it contains (to pass to the UI).
@@ -231,18 +233,21 @@ Given below is the Sequence Diagram for interactions within the `StudentRecordLi
 
 ![Interactions inside the StudentRecordListManager class for the `markStudentAttendance'` method call](images/StudentRecordListAttendanceSequenceDiagram.png)
 
-Considerations for `markStudentAttendance`:
+**Considerations for `markStudentAttendance`**
     
 On one hand, the mark command uses an index to identify the record, for ease of usage for the user, as compared to 
 having to type out the record's NUSNET ID. On the other hand, the mark attendance method within the `Model` identifies 
 the record to mark using its NUSNET ID, to ensure correctness. Furthermore, the student records have to be stored in a 
-JavaFX `ObservableList` to be easily displayable on the GUI. In the end, I decided to find the record to mark by 
+JavaFX `ObservableList` to be easily displayable on the GUI. 
+
+In the end, I decided to find the record to mark by 
 iterating through the record list and comparing NUSNET IDs, since each student's NUSNET ID must be unique. The `O(N)`
 time complexity of this method does not incur significant time cost because we expect there to be no more than 1000
 students recorded in any session created by TAs using TAskmaster.
 
-Design alternatives:
-- Make `StudentRecord` mutable.
+**Design alternatives**
+
+* Make `StudentRecord` mutable.
 
     This was the original design of `StudentRecord` which made sense at the time because a student's record
     would be frequently updated for marking of attendnace and awarding of class participation scores. However,
@@ -250,21 +255,21 @@ Design alternatives:
     objects were added or deleted. This resulted in a bug where the GUI will not show the changes made when a
     student record was updated. In the end, it was decided that `StudentRecord` should be immutable to fix this bug.
 
-- Make each `StudentRecordList` be dependent on and backed by the `StudentList` maintained by TAskmaster.
+* Make each `StudentRecordList` be dependent on and backed by the `StudentList` maintained by TAskmaster.
 
     This alternative was eventually rejected because it did not make sense from a design perspective. Each
     student record list represents the record of students **for that particular session only**. If we 
     implemented this alternative, edits to the student list will result in changes to all the student record
     lists, which does not follow the design of the student record list. For example:
-    - Suppose a TA is currently teaching three students, `A, B, C` which are all present for the first session.
-    - When the TA creates a new session `S1` , it will contain three corresponding student records.
-    - Subsequently after the session is over, student `A` informs the TA that he is going to drop the module
-    - When the TA deletes student `A` from the student list, the student record list of `S1` will update and
+    * Suppose a TA is currently teaching three students, `A, B, C` which are all present for the first session.
+    * When the TA creates a new session `S1` , it will contain three corresponding student records.
+    * Subsequently after the session is over, student `A` informs the TA that he is going to drop the module
+    * When the TA deletes student `A` from the student list, the student record list of `S1` will update and
     no longer reflect that `A` was enrolled in the module when `S1` occurred
-    - However, this does not change the fact that student `A` was present at session `S1`, and so the records of `S1`
+    * However, this does not change the fact that student `A` was present at session `S1`, and so the records of `S1`
     should reflect that `A` was present.
 
-- Have `StudentRecord` contain the whole `Student` object, not just its `Name` and `NusnetId`
+* Have `StudentRecord` contain the whole `Student` object, not just its `Name` and `NusnetId`
 
     This was considered and ultimately rejected because of the design considerations in the previous 
     alternative. Each student record, once created, is supposed to be independent of the student in the
@@ -279,6 +284,24 @@ Design alternatives:
     Since editing of `NusnetId` is not allowed, there will be no issues with syncing of data. For example, even if the
     name of a particular student is edited after his `StudentRecord` was saved, we can find that student using their
     `NusnetId`.
+
+**Future Expansions**
+
+Beyond 1.4, there are several features that can be added to improve TAskmaster
+
+* Add a centralised view to see attendance and class participation score over all sessions.
+
+    This would allow the user to, at a glance, observe the attendances and class participation scores of his students. 
+    This could be done by reading through the student record lists of all sessions and displaying the data in a table 
+    form whenever the centralised view is selected by the user. A potential problem is the fact that different sessions 
+    can have different students enrolled, which means that the table will not be complete, i.e. some cells may be empty.
+
+* Add statistics tracking attendance and class participation score to each student
+
+    This would allow the user to, at a glance, analyse how often a student is attending lessons and how much they are
+    participating in each session. This could be done by finding their record in each of the student record lists of
+    all the sessions and displaying the aggregated data in another view for data visualisaion, for e.g. with line 
+    graphs and pie charts.
 
 <br>
 
@@ -668,7 +691,7 @@ Extensions
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, macOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others (e.g. NUSNET ID)
+* **Private identification detail**: A personal particular that is not meant to be shared with others (e.g. NUSNET ID)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -791,6 +814,61 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect add commands to try: `goto First Session`, `...`<br>
       Expected: Similar to previous.
+
+### Marking a student's attendance
+
+1. Marking a student's attendance within a session
+
+    1. Prerequisites: 
+        - Add a session to the session list by running the command `add-session s/First Session dt/23-10-2020 0900`.
+
+    1. Test case: `mark 1 a/present`<br>
+       Expected: First student in the student record list of First Session is marked as present.
+
+    1. Test case: `mark a/present`<br>
+       Expected: Current view does not change. Error details shown in the status message.
+
+    1. Test case: `random-student` followed by `mark 1 a/absent`<br>
+       Expected: Random student selected is marked as absent.
+
+    1. Other incorrect add commands to try: `mark`, `mark 1`, `mark x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+2. Marking a student's attendance when no session is selected
+
+    1. Prerequisites: List all students using the `list-students` command. Multiple students in the list.
+
+    1. Test case: `mark 1 a/present`<br>
+       Expected: Current view does not change. Status message informs user to select a session first.
+
+### Marking all students attendances
+
+1. Marking all students attendances within a session
+
+    1. Prerequisites: 
+        - Add a session to the session list by running the command `add-session s/First Session dt/23-10-2020 0900`.
+
+    1. Test case: `mark all a/present`<br>
+       Expected: All students in the student record list of First Session are marked as present.
+
+    1. Test case: `mark all`<br>
+       Expected: Current view does not change. Error details shown in the status message.
+
+    1. Test case: `random-student` followed by `mark all a/absent`<br>
+       Expected: All students in the student record list, **not just the random student**, are marked absent.
+
+    1. Test case: `lowest-score` followed by `mark all a/absent`<br>
+       Expected: All students in the student record list, **not just those with the lowest score**, are marked absent.
+
+    1. Other incorrect add commands to try: `mark all a/x` (where x is not a valid attendance type)<br>
+       Expected: Similar to previous.
+
+2. Marking a student's attendance when no session is selected
+
+    1. Prerequisites: List all students using the `list-students` command. Multiple students in the list.
+
+    1. Test case: `mark all a/present`<br>
+       Expected: Current view does not change. Status message informs user to select a session first.
 
 ### Scoring a student
 The below testcases assume that you are in a session and have 7 students inside it.
