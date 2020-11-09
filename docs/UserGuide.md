@@ -8,7 +8,6 @@ DSAce is a **desktop app for creating flashcards and practising quiz questions f
 ## Table of Contents
 * [Quick start](#quick-start)
 * [Features](#features)
-<<<<<<< HEAD
    * [General Commands](#general-commands)
       * [**`help`** : Viewing help.](#viewing-help--help)
       * [**`exit`** : Exiting the program.](#exiting-the-program--exit)
@@ -390,6 +389,12 @@ DSAce data is saved in the DSAce folder automatically after any command that cha
 ### FAQ
 Q: How do I transfer my data to another Computer? <br>
 A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous DSAce home folder.
+
+Q: How do I make my own quiz questions? <br>
+A: CRUD quiz questions are part of our future plans.
+
+Q: Why is there a need for both enter quiz and start attempt? <br>
+A: This makes it easier to implement other quiz mode commands in the future (open for extension).
 
 --------------------------------------------------------------------------------------------------------------------
 
