@@ -796,16 +796,18 @@ and calls the `handleToNext()` or `handleToPrev()` method in `CalendarView` depe
 
 **Target user profile**:
 
-* Has a need to manage a significant number of property details, seller details and buyer details
+* Has a need to manage a significant number of property details, seller details, buyer details as well as the various bid amounts
 * Prefer desktop apps over other types
 * Can type fast
 * Prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Able to manage property listings, client 
-contact details as well as creating a meeting schedule easily 
-while being faster and more convenient than traditional bookkeeping 
-softwares such as Excel. 
+**Value proposition**: 
+* Able to store all the property listings, bidders as well as seller details for easy access.
+* Able to store the various bids which makes it easier for agents to access details of the bids.
+* Generate a list of meetings which allows the agent to keep track of all the different meetings.
+* Able to search through the different lists based on the different attributes for ease of access of information. 
+* Will be much more automated compared to softwares such as excel and also has an accompanying GUI that would make it easier to filter through the different list.
 
 
 ## Appendix B: User stories
@@ -847,15 +849,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ## Appendix C: Use cases
 
 (For all use cases below, the **System** is the `PropertyFree` and the **Actor** is the `Real Estate Agent`, unless specified otherwise)
+For our product, we have different entities such as `Meeting` `Bid` `Bidder` `Seller` `Property`. However across the different entities,
+the implementations are rather similar. Therefore, below we will use `ENTITY` to generalise the the different entities and then provide use
+cases for the general entity. If any of the features have a different implementation, we will provide the alternative use case below. 
 
-**1. Use case: Delete a property form the list of properties**
+**1. Use case: Delete an `ENTITY` from the list**
 
 **MSS**
 
-1. User requests to list of properties
-2. PropertyFree shows a list of properties
-3. User requests to delete a specific property in the list
-4. PropertyFree deletes the property  
+1. User requests to list of an `ENTITY`
+2. PropertyFree shows a list of the `ENTITY`
+3. User requests to delete a specific `ENTITY` in the `ENTITY` list
+4. PropertyFree deletes the `ENTITY` 
     Use case ends.
     
 **Extensions**
@@ -864,28 +869,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 * 3a. The given index is invalid.
     * 3a1. PropertyFree shows an error message.  
-        Use case resumes at step 2.
+     Use case ends.
         
-**2. Use case: Add a property**
+**Special cases**
+* In the case when the `ENTITY` is `Bidder`, a deletion of the `Bidder` will result in the deletion of the associated `bids` and
+`meetings`
+* In the case when the `ENTITY` is `Property`, a deletion of the `Property` will result in the deletion of the associated `bids` and
+`meetings`
+        
+**2. Use case: Add an `ENTITY`**
 
 **MSS**
 
-1. User requests to add a property
-2. PropertyFree adds the property to the list  
+1. User requests to add a `ENTITY`
+2. PropertyFree adds the `ENTITY` to the list  
     Use case ends.
     
 **Extensions**
 
-* 2a. The given property is of the wrong format.
-    * 3a1. PropertyFree shows an error message.  
+* 2a. The input format is invalid.
+    * 2a1. PropertyFree shows an error message.  
         Use case ends.
         
-**3. Use case: View a calendar of meetings**
+* 2b. The given `ENTITY` already exists in the list.
+    * 2b1. PropertyFree shows an error message.  
+        Use case ends.
+        
+* 2c. The given `ENTITY` is given invalid inputs.
+    * 2c1. PropertyFree shows an error message.  
+         Use case ends.
+        
+        
+**3. Use case: View a list of `ENTITY`**
 
 **MSS**
 
-1. User requests for a list of meetings scheduled
-2. PropertyFree shows a list of meetings scheduled.  
+1. User requests for a list of `ENTITY`.
+2. PropertyFree shows a list of `ENTITY`.  
 Use case ends.
 
     
@@ -893,64 +913,56 @@ Use case ends.
 
 * 2a. The list of meetings is empty.  
     Use case ends.
+    
 
-**4. Use case: Edit an Existing Meeting on the Calendar**
+**4. Use case: Edit an Existing `ENTITY` from the respective list**
 
 **MSS**
 
-1. User requests to edit a meeting on the calendar.
-2. PropertyFree shows the old meeting details and the new meeting details.  
+1. User requests to edit a `ENTITY`.
+2. PropertyFree shows the new `ENTITY` details.  
    Use case ends
 
 **Extensions**
 
-* 2a. There is no corresponding meeting existing to be edited.  
-  Use case ends.
+* 1a. User enters an invalid input.
+    * 1a1. PropertyFree shows an error message.  
+         Use case ends.  
 
-**5. Use case: Add Bid to a Property**
+* 1b. User enters attributes that result in a duplicate attribute.
+    * 1b1. PropertyFree shows an error message.  
+         Use case ends.  
 
-**MSS**
-
-1. User requests to view the list of existing properties inside the property list.
-2. PropertyFree shows the current list of properties that are on the list.
-3. User requests to add bid to a specific property
-4. PropertyFree shows the property updated with the addition of the new bid.
-
-
-**Extensions**
-
-* 2a. There are no properties in the list.  
-  Use case ends.
-* 3a. There are no properties corresponding to what the user input is.  
-  Use case ends.
-  
-**6. Use case: Edit Bid to a Property**
+**5. Use case: Find an Existing `ENTITY` from the respective list**
 
 **MSS**
 
-1. User requests to list of bids
-2. PropertyFree shows a list of bids
-3. User requests to edit a specific bid in the list
-4. PropertyFree edits the bid  
-Use case ends.
-
+1. User requests to find a `ENTITY`.
+2. PropertyFree shows the `ENTITY` details that match the attributes that the user has keyed in.  
+   Use case ends
 
 **Extensions**
 
-* 2a. The list is empty.  
-Use case ends.
-* 3a. The given index is invalid.
-    * 3a1. PropertyFree shows an error message.  
-        Use case resumes at step 2.
-* 3b. The given format of message is wrong.
-    * 3b1. PropertyFree shows an error message.  
-        Use case ends.
-        
-**7. Use case: Edit Current Meeting(to be implemented)**
+* 1a. User enters an invalid input.
+    * 1a1. PropertyFree shows an error message.  
+         Use case ends.  
 
-**8. Use case: Edit Details of a property(to be implemented)**
 
-**9. Use case: Edit type of meeting(to be implemented)**
+**6. Use case: Sort an Existing `ENTITY` from the respective list**
+
+**MSS**
+
+1. User requests to sort an `ENTITY` list.
+2. PropertyFree shows the sorted `ENTITY` list.  
+   Use case ends
+
+**Extensions**
+
+* 1a. User enters an invalid order input.
+    * 1a1. PropertyFree shows an error message.  
+         Use case ends.  
+
+
 
 ### Non-Functional Requirements
 
@@ -986,42 +998,245 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Run `java -jar PropertyFree.jar`.  
+   
+      Expected: Shows the GUI with a set of sample data. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   2. Re-launch the app by double-clicking the jar file.<br>  
+   
+      Expected: The most recent window size and location is retained.  
 
-1. _{ more test cases …​ }_
+3. Subsequent launch  
 
+    1. Run `java -jar PropertyFree.jar`.  
 
-## Bidder Commands
+       Expected: Shows the GUI with data loaded from the json files. 
+    
+### Testing Bids Features  
 
+For all test cases for bid features, the GUI will automatically switch to the bid tab.  
 
-### Deleting a person
+#### Adding a Bid  
 
-1. Deleting a person while all persons are being shown
+1. Prerequisites: Bidder with bidder id `B1` and property with property id `P2` exists in the respective lists.  
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+2. Restrictions:  
+    - Price must be more than 0 and less or equals to 1 trillion.  
+    - Price will be truncated to 2 dp.  
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+3. Test case: `add-bid b/P1 c/B2 m/150000.20`.  
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   Expected: The new bid is added to the bid list with the following message displayed:  
+   ```
+   New bid added: 
+   Bid of $150000.20
+   by B2
+   to property: P1
+   ```
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+#### View Full List of Bids  
 
-1. _{ more test cases …​ }_
+1. Test case: `list-bid`.  
 
-### Saving data
+   Expected: All bids will be displayed on the GUI, with the following message displayed:  
+   ```
+   Displaying full bid list.
+   ```  
 
-1. Dealing with missing/corrupted data files
+#### Deletion of Existing Bid  
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Prerequisites: The bid to be deleted must exist in the bid list.  
 
-1. _{ more test cases …​ }_
+2. Test case: `delete-bid 1`.  
+
+   Expected: The bid at index 1 is deleted, with the following message displayed:  
+   ```
+   Deleted Bid: 
+   Bid of $150000.20
+   by B2
+   to property: P1
+   ```  
+   The exact information depends the bid being deleted.  
+
+#### Editing a Bid  
+
+1. Prerequisites: The bid to be edited must exist in the bid list.  
+
+2. Restrictions:  
+    - At least one optional field must be provided.  
+    - All restrictions and prerequisites from ![Adding a Bid](#adding-a-bid) hold.  
+
+3. Test case: `edit-bid 1 b/P99 c/B12 m/1.20`  
+
+   Expected: The bid at index 1 will be updated to the new values, with the following message displayed:  
+   ```
+   Edited Bid:
+   
+   FROM: 
+   Bid of $999999.00
+   by B2
+   to property: P3 
+   
+   TO: 
+   Bid of $1.20
+   by B12
+   to property: P99
+   ```
+   The exact information depends on the bid being edited.  
+   
+#### Find a specific bid based on key words  
+
+1. Test case: `find-bid P1 B2 $65000.00`.  
+
+   Expected: All bids whose attributes matches at least one keyword will be displayed, with the following message displayed:  
+   ```
+   1 bid(s) listed!
+   ```
+   The number of bids listed corresponds to the number of bids that match the keywords.  
+   
+### Testing Meeting Features  
+
+For all test cases for meeting features, the GUI will automatically switch to the meeting tab.  
+
+#### Add a Meeting  
+
+1. Prerequisites: A bidder with bidder id `B1` and a property with property id `P1` must exist in their respective lists.  
+
+2. Restrictions:  
+    - Meeting type is either `v` for `viewing`, `a`, for `admin` or `p` for `paperwork`.  
+    - Date is of the format `DD-MM-YYYY` and cannot be a past date.  
+    - Time is of the format `HH-MM`. The timings can clash each other and the hours and minutes will overflow (eg `24:30` is same as `00:30`).  
+
+3. Test case: `add-m q/v b/B1 p/P1 v/2 ALBERT PARK d/11-12-2021 s/12:30 e/13:00`  
+
+   Expected: Adds the meeting to the meeting list, with the following message displayed:  
+   ```
+   New meeting added: 
+   Meeting Type: Viewing
+   Bidder Id: B1
+   Property Id: P1
+   Venue: 2 ALBERT PARK
+   Date: 11-12-2021
+   Start Time: 12:30
+   End Time: 13:00
+   ```  
+   
+#### Deleting an Existing Meeting  
+
+1. Prerequisite: The meeting to be deleted must exist in the meeting list.  
+
+2. Test case: `delete-m 3`.  
+
+   Expected: The meeting at index 3 will be deleted, with the following message displayed:  
+   ```
+   Deleted Meeting: 
+   Meeting Type: Viewing
+   Bidder Id: B1
+   Property Id: P1
+   Venue: 2 ALBERT PARK
+   Date: 11-12-2021
+   Start Time: 12:30
+   End Time: 13:00
+   ```  
+   The exact information depends on the meeting being deleted.  
+   
+#### View the List of All Meetings  
+
+1. Test case: `list-m`  
+
+   Expected: Displays all the meetings in the meeting list, with the following message displayed:  
+   ```
+   Displaying full meeting list.
+   ```  
+   
+#### Editing an Existing Meeting  
+
+1. Prerequisite: The meeting to be edited must exist in the meeting list.  
+
+2. Restrictions:  
+    - At least one optional field is required.  
+    - The prerequisites and restrictions of ![Adding a Meeting](#add-a-meeting) hold.  
+
+3. Test case: `edit-m 2 v/eunos`.  
+
+   Expected: The meeting will be updated to the provided values, with the following message displayed:  
+   ```Edited Meeting: Admin
+      Bidder Id: B12
+      Property Id: P12
+      Venue: eunos
+      Date: 12-05-2016
+   ```  
+   
+#### Sorting the existing Meeting List  
+
+1. Test case: `sort-m o/asc`.  
+
+   Expected: Sorts the meeting list in ascending order according to meeting date, with the following message displayed:  
+   ```
+   Successfully sorted meeting
+   ```  
+   
+#### Finding an Existing Meeting  
+
+1. Restrictions:  
+    - At least one optional field is required.  
+    
+2. Test case: `find-m b/B1 v/bedok`  
+
+   Expected: Displays all the meetings whose attributes matches the specified keywords, with the following message displayed:  
+   ```2 meeting(s) listed!```  
+   The actual number depends on the number of meetings that fulfil the criteria. 
+   
+### Calendar Navigation Features  
+
+#### Navigating to the Next Month in the Calendar  
+
+1. Test case: `next`  
+
+   Expected: Displays the next month in the calendar, with the following message:  
+   ```
+   Display next month of Calendar
+   ```
+   
+#### Navigating to the Previous Month in the Calendar  
+
+1. Test case: `prev`  
+
+   Expected: Displays the previous month in the calendar, with the following message:  
+   ```
+   Display previous month of Calendar
+   ```  
+   
+### Testing Keyboard Navigation  
+
+#### Focus on `CommandBox`  
+
+1. Prerequisite: When the `CommandBox` is not in focus (i.e. the cursor is not blinking).  
+
+2. Test case: `PRESS ENTER`  
+
+   Expected: The `CommandBox` will be brought into focus.  
+   
+#### Next Month in `Calendar`  
+
+1. Test case:  
+   ```PRESS CTRL + RIGHT ARROW KEY - Windows OS
+       or
+       PRESS CONTROL + RIGHT ARROW KEY - Mac OS
+   ```  
+   
+   Expected: Displays the next month in `Calendar`.  
+   
+#### Previous Month in `Calendar`  
+
+1. Test case:  
+    ```PRESS CTRL + LEFT ARROW KEY - Windows OS
+        or
+        PRESS CONTROL + LEFT ARROW KEY - Mac OS
+   ```  
+   
+   Expected: Displays the previous month in `Calendar`.  

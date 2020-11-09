@@ -71,7 +71,8 @@ ___
     * Added documentation for the property-related features: `add-p`, `delete-p`, `find-p`, `edit-p`, `list-p`
   * Developer Guide:
     * Added implementation details of property-related features: `add-p`, `delete-p`, `find-p`, `edit-p`, `list-p`  
-    * Added the user stories  
+    * Added the initial user stories  
+    * Added the manual testing guide for `bid`, `meeting`, `calendar` and `keyboard navigation`  
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#297](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/297), [\#192](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/192), [\#151](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/151), [\#127](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/127), [\#124](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/124), [\#76](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/76), [\#77](https://github.com/AY2021S1-CS2103-W14-1/tp/pull/77#discussion_r499703796)   
