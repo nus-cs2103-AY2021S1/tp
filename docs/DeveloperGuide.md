@@ -187,7 +187,7 @@ Trackr has three different data types:
 - `TutorialGroup`: The tutorial groups that the user is teaching
 - `Student`: The students currently being taught by the user
 
-As mentioned in [insert design diagram number], 
+As shown in Figure 4.4a, 
 Trackr stores these data in the following manner: UniqueModuleList contains Modules. Each module has a UniqueTutorialGroupList 
 that stores all the Tutorial Groups of that particular Module. Lastly, each Tutorial Group has a UniqueStudentList that stores all the
 Students of that particular Tutorial Group.
@@ -205,8 +205,8 @@ Trackr's three data type also share the same commands, which are:
 Since Trackr stores and manages its data recursively, the commands for Module, Tutorial Group and Student work similarly.
 
 #### Design Considerations:
-**Aspect: List to contain the models**
-- Alternative 1: Use a single generic `UniqueList` that contains the models.
+**Aspect: List to contain the data types**
+- Alternative 1: Use a single generic `UniqueList` that contains the data types.
     - Pros: Code that is easier to maintain due to abstraction. 
     - Cons: Harder to implement.
 - Alternative 2 (Current choice): Use a separate `UniqueList` for each model such as `UniqueModuleList`.
