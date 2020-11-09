@@ -29,22 +29,33 @@ wholesome user experience.
 
 ## Summary of Contributions
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **Major enhancement**: I implemented the Lesson class and its associated commands.
+  * What it does: This allows users to add, delete, edit, find and list their lessons or modules in fitNUS.
+  * Justification: This feature is one of the building blocks of fitNUS because users can now manage their set of Lesson items and subsequently add them to their customisable Timetable.
+  * Highlights: This enhancement requires a deep understanding of how parsing and storage worked in the original AB3. Applying these concepts to our application's architecture is also
+  required to ensure that the commands work as intended.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **Major enhancement**: I implemented the `help` command.
+  * What it does: This allows users to do a look-up of a full command list supported by fitNUS by redirecting them to a pop-up window. I also added the option of finding a group of commands by searching `help` followed by a command keyword substring.
+  * Justification: This allows users to streamline their search for more efficient searches. Users no longer have to click the link to go to the full User Guide once the pop-up window appears.
+  They can simply search for the commands they wish to execute directly from the pop-up window.
+  * Highlights: This enhancement requires cosmetic tweaks to the UI and understand how to utilize a LinkedHashMap to do a filtered search if the keyword matches a substring of any command.
+  
+* **Minor enhancement**: I implemented substring search using `find` command across fitNUS.
+  * What it does: This allows users to search for Routine, Exercise and Lesson entries by inputting incomplete keywords to search for a group of commands containing these substrings.
+  * Justification: Users no longer require to type the full keyword. Results can still be shown if they enter an incomplete keyword for optimization.
+  * Highlights: This enhancement relies on Predicate s across Routine, Exercise and Lesson to do a categorical search.
 
 * **Code contributed**: You can view my code contributions to fitNUS [here](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=iqbxl&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other).
 
 * **Project management**:
-  * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
+  * My product idea of an application that is geared towards fitness was implemented by the team.
+  * Created milestone v1.4, facilitated issue tracker and user testing.
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Refactored the entire code base of fitNUS so that there are no references to AB3 while packaging the classes appropriately. [#185](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/185)
+  * Wrote test cases for Lesson features, storage and logic components to increase coverage. [#106](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/106) [#171](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/171)
+  * Added updated pictures for all commands in the User Guide. [#206](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/206)
 
 ## Contribution to the User Guide:
     Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.
@@ -59,10 +70,6 @@ wholesome user experience.
 
 [../DeveloperGuide.md](https://github.com/AY2021S1-CS2103T-T09-2/tp/blob/master/docs/DeveloperGuide.md#delete-lesson) (Added implementation details of the `lesson_delete` feature)<br/>
 
-* **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* _{you can add/remove categories in the list above}_
+## Community:
+  * Reported feature flaws, functionality bugs and constructive suggestions for other teams during PE Dry Run. [#1](https://github.com/iqbxl/ped/issues/1) [#2](https://github.com/iqbxl/ped/issues/2)
+  [#3](https://github.com/iqbxl/ped/issues/3) [#4](https://github.com/iqbxl/ped/issues/4) [#5](https://github.com/iqbxl/ped/issues/5) [#6](https://github.com/iqbxl/ped/issues/6)
