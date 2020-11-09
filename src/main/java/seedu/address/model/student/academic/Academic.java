@@ -50,6 +50,7 @@ public class Academic {
         return new ArrayList<>(exams);
     }
 
+    //@@author VaishakAnand
     /**
      * Get Question of student formatted for GUI use.
      * @return formatted questions.
@@ -77,7 +78,9 @@ public class Academic {
         }
         return result;
     }
+    //@@author
 
+    //@@author hogantan
     /**
      * Get exams of student formatted for GUI use.
      * @return formatted exams.
@@ -91,6 +94,7 @@ public class Academic {
         }
         return result;
     }
+    //@@author
 
     @Override
     public int hashCode() {
