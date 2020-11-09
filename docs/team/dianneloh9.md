@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Dianne's Project Portfolio Page
+title: Dianne Loh Wen Hui's Project Portfolio Page
 ---
 
 ## Project: PropertyFree
