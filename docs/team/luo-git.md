@@ -122,11 +122,11 @@ is pointing to a valid file.
 Moreover, TagCommand checks if the file is present before adding the tag to `Model`.
 
 This diagram shows a successful execution of `TagCommand`, resulting in a new tag added to `Model`.
-![TagSuccessSequence](images/TagCommandSuccessSequenceDiagram.png)
+![TagSuccessSequence](../images/TagCommandSuccessSequenceDiagram.png)
 
 This diagram shows an unsuccessful execution of `TagCommand`, resulting in `CommandException` thrown.
 In this case, the file was not present.<br>
-![TagFailureSequence](images/TagCommandFailureSequenceDiagram.png)
+![TagFailureSequence](../images/TagCommandFailureSequenceDiagram.png)
 
 `TagCommand` checks if the file address given is absolute or relative file path.
 If the address is relative, it converts the relative path to absolute address by concatenating the relative
@@ -145,7 +145,7 @@ After that, it opens the files located at the `Tag`'s `FileAddress` if the file 
 `CommandException` is thrown if tag is not present, the file cannot be found or no read permission.
 
 This sequence diagram shows a successful execution of `OpenCommand`. <br>
-![OpenCommandSuccessExecution](images/OpenCommandSuccessSequenceDiagram.png)
+![OpenCommandSuccessExecution](../images/OpenCommandSuccessSequenceDiagram.png)
 
 We implemented OpenCommand using `java.awt.Desktop`,
 which supports various desktop capabilities such as `open()`. `Desktop` ensures that our application can operation across
