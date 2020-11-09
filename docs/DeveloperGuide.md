@@ -103,7 +103,7 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `tCheckParser` class to parse the user command.
+1. `Logic` uses the `TCheckParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. setting the ingredient's level of an ingredient).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
