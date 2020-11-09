@@ -1,5 +1,5 @@
 # 1. Welcome
-Calo is a desktop app that is **designed for keeping track of calories burnt throughout the day**.
+`Calo` is a desktop app that is **designed for keeping track of calories burnt throughout the day**.
 It is optimized for use via a **Command Line Interface (CLI)** while still having Graphical User Interface (GUI).
 If you are a skilled typer, you can carry out various tasks such as adding new exercises and checking records for
 previous days much faster than the traditional GUI apps.
@@ -32,7 +32,7 @@ previous days much faster than the traditional GUI apps.
 
 2. Download the latest `Calo.jar` from [here](https://github.com/AY2021S1-CS2103T-W17-2/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your Calo.
+3. Copy the file to the folder you want to use as the _home folder_ for your `Calo`.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
    Note how the app contains some sample data.
@@ -84,7 +84,7 @@ Format: `add n/EXERCISE d/DESCRIPTION [at/DATE] [c/CALORIES] [m/MUSCLE] [t/TAG].
 
 - The format for the DATE should be in the form of DD-MM-YYYY.
 - If DATE is not provided, the default date will be the current day.
-- Exercises are uniquely identified by names, descriptions, dates, and tags. Duplicate exercises cannot be added to Calo. You may consider including additional information in description (e.g. 2nd time) if you want to do the same exercise more than once a day.
+- Exercises are uniquely identified by names, descriptions, dates, and tags. Duplicate exercises cannot be added to `Calo`. You may consider including additional information in description (e.g. 2nd time) if you want to do the same exercise more than once a day.
 
 Examples:
 - `add n/running d/10 mins at/31-12-2020 c/100 m/chest m/arm t/home t/gym`
@@ -193,7 +193,7 @@ Examples:
   Path that contains root element, e.g. C:\Users\user_name\Desktop\FILE_NAME.json
 
 * **Relative Path:**
-  Path will take reference from the file that contains **Calo.jar** For example, if Calo is inside
+  Path will take reference from the file that contains **Calo.jar** For example, if `Calo` is inside
   the `C:/Users/UserName/App` and the user entered `data\archived_file.json` as the destination, the archived file will be
   at `C:/Users/UserName/App/data/archived_file.json`
 </div>

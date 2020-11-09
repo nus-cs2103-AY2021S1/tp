@@ -34,7 +34,7 @@
 
 ## 1. About This Guide
 
-This document serves as a developer guide for Calo App with sufficient and comprehensive overview of the software
+This document serves as a developer guide for `Calo` App with sufficient and comprehensive overview of the software
 so that new developers, like you, will have a working knowledge of the application by the end of the guide.  
 
 Note that this guide only provide reasonable depth. By no means this guide serves as a replacement for the actual code. 
@@ -169,8 +169,8 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ### 4.1. Archive Command
 (Phyo Han)  
 
-Since Calo always stores all the exercises that the user did in the past, it is always a good idea to archive past exercises
-so that the user can start afresh without the past records slowing down the performance of the application. Therefore, Calo
+Since `Calo` always stores all the exercises that the user did in the past, it is always a good idea to archive past exercises
+so that the user can start afresh without the past records slowing down the performance of the application. Therefore, `Calo`
 provides the user the `archive` function to stores these records. 
 
 #### 4.1.1. Implementation
@@ -222,7 +222,7 @@ to have.
 ### 4.2. Displaying Graph of Calories Burnt
 (Phyo Han)  
 
-Since Calo aims to encourage the user to get active and track his progress, a graph of how much calories burnt for the past
+Since `Calo` aims to encourage the user to get active and track his progress, a graph of how much calories burnt for the past
 few days can motivate the user to push further.
 
 #### 4.2.1. Implementation
@@ -255,14 +255,14 @@ sum of `Calories` as a Integer value to `MainWindow` after each command.
 
 * **Alternative 2:** Convert the `HashMap<String,Integer>` that 
   * Pros: Follow the Design Pattern (Observer) and less stress on Call Stack (explained below)
-  * Cons: Needs of Refactoring. Calo team has implemented the CaloriesGraph before the idea of Observer Pattern is introduced
+  * Cons: Needs of Refactoring. `Calo` team has implemented the CaloriesGraph before the idea of Observer Pattern is introduced
 to us. 
 
 **Reason for Not refactoring**:   
 The main reason is that it will not significant improvement in the performance of `Calo`, since the Ui needs to be re-rendered
 everything after a command anyway. The only downside to current implementation is the stress put on the call stack since
 in order to get the `HashMap` in `UniqueExerciseList` that contains the relevant information, it needs to be called through numerous
-classes, as shown below. Current version of Calo is still 'light' enough for the system to handle the stress, but given time
+classes, as shown below. Current version of `Calo` is still 'light' enough for the system to handle the stress, but given time
 `CaloriesGraph` should be refactored to fulfill the Observer Design Pattern especially when `Calo` get more complicated.
 
 ![Calories Graph Call Stack](images/CaloriesGraphCallStack.png)
@@ -295,7 +295,7 @@ The template list is stored in the data file folder as a txt file.
 ### 4.4. GoalBook
 (Nauman Sajid)  
 
-Calo has been designed to ensure that a user is accountable for this own progress. A key aspect of this accountability is
+`Calo` has been designed to ensure that a user is accountable for this own progress. A key aspect of this accountability is
 ensuring that the user sets clear goals and meets them. To achieve this we have created a goalBook which is similar
 to the exerciseBook. The goalBook helps the user track and update his goals.
 
@@ -521,13 +521,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *MSS*
 1.  User requests to add an exercise  
-2.  Calo adds the exercise and displays on the Graph.  
+2.  `Calo` adds the exercise and displays on the Graph.  
   Use case ends.
 
 *Extensions*
 <p>
     The request have some missing compulsory information.<br>  
-      1a1. Calo shows an error message, information the user about the correct format and information necessary.<br>  
+      1a1. `Calo` shows an error message, information the user about the correct format and information necessary.<br>  
     Use case ends.  
 </p>
 
@@ -537,19 +537,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *MSS*
 1.  User requests to create a template for an exercise  
-2.  Calo adds the template and displays on the Template Panel.  
+2.  `Calo` adds the template and displays on the Template Panel.  
   Use case ends.
 
 *Extensions*
 <p>
     The request have some missing compulsory information. <br> 
-      1a1. Calo shows an error message, information the user about the correct format and information necessary. <br>  
+      1a1. `Calo` shows an error message, information the user about the correct format and information necessary. <br>  
     Use case ends.  
 </p>
 
 <p>
     Template with the same name exists.<br>
-      1a1. Calo shows an error message, informing the user about duplicate template.<br>  
+      1a1. `Calo` shows an error message, informing the user about duplicate template.<br>  
     Use case ends.<br>
 </p>
 
@@ -559,19 +559,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *MSS*
 1.  User requests to create a goal for a day.  
-2.  Calo adds the template and displays on the Template Panel.    
+2.  `Calo` adds the template and displays on the Template Panel.    
   Use case ends.
 
 *Extensions*
 <p>
     The request have some missing compulsory information. <br> 
-      1a1. Calo shows an error message, information the user about the correct format and information necessary. <br>  
+      1a1. `Calo` shows an error message, information the user about the correct format and information necessary. <br>  
     Use case ends.  
 </p>
 
 <p>
     The user have already set a goal for the specific day. <br> 
-      1a1. Calo shows an error message, information the user about the pre-existing goal. <br>  
+      1a1. `Calo` shows an error message, information the user about the pre-existing goal. <br>  
     Use case ends.  
 </p>
 
@@ -580,13 +580,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Archive data**
   *MSS*
 1.  User requests to archive data to a different file location
-2.  Calo archives data to the specified location
+2.  `Calo` archives data to the specified location
     Use case ends.
 
 *Extensions*
 <p>
     1a. User does not have permission to create file at specified location <br>
-      1a1. Calo shows a message indicating that file cannot be created at specified file.<br>
+      1a1. `Calo` shows a message indicating that file cannot be created at specified file.<br>
     Use case ends.
 </p>
 
@@ -595,19 +595,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Create Template**
 *MSS*
 1.  User requests to create a template for an exercise  
-2.  Calo adds the template and displays on the Template Panel.  
+2.  `Calo` adds the template and displays on the Template Panel.  
     Use case ends.
 
 *Extensions*
 <p>
     The request have some missing compulsory information.<br>
-      1a1. Calo shows an error message, information the user about the correct format and information necessary.<br>
+      1a1. `Calo` shows an error message, information the user about the correct format and information necessary.<br>
     Use case ends.<br>
 </p>
 
 <p>
     Template with the same name exists.<br>  
-      1a1. Calo shows an error message, informing the user about duplicate template.<br>  
+      1a1. `Calo` shows an error message, informing the user about duplicate template.<br>  
     Use case ends.<br>
 </p>
 
@@ -616,13 +616,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Add Exercise based on Template**
 *MSS*
 1.  User requests to add an exercise from a template he previously created.
-2.  Calo adds the template and displays on the Exercise Panel.  
+2.  `Calo` adds the template and displays on the Exercise Panel.  
     Use case ends.
 
 *Extensions*
 <p>
     The template does not exist.<br>
-      1a1. Calo shows an error message, information the user about the template does not exist.<br>  
+      1a1. `Calo` shows an error message, information the user about the template does not exist.<br>  
     Use case ends.<br>
 </p>
 
@@ -632,13 +632,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *MSS*  
 1.  User requests to find exercises with a keyword
-2.  Calo shows a list of exercises which contain the keyword
+2.  `Calo` shows a list of exercises which contain the keyword
     Use case ends.
 
 *Extensions*
 <p>
     The list is empty <br>
-      1a1. Calo shows a message indicating that no such exercise exists.<br>
+      1a1. `Calo` shows a message indicating that no such exercise exists.<br>
     Use case ends.<br>
 </p>
 
@@ -648,7 +648,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *MSS*  
 1.  User requests to recall the most recent time he did an exercise.
-2.  Calo shows the details of the most recent exercise with the given time.
+2.  `Calo` shows the details of the most recent exercise with the given time.
     Use case ends.
 
 *Extensions*
@@ -665,12 +665,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *MSS*
 
 1.  User requests to update a specific exercise in the list
-2.  Calo updates the exercise and the Calories Graph changes accordingly.
+2.  `Calo` updates the exercise and the Calories Graph changes accordingly.
     Use case ends.<br>
 *Extensions*
 <p>
     1a. The index is invalid<br>
-      1a1. Calo shows a message indicating that no such exercise exists.<br>
+      1a1. `Calo` shows a message indicating that no such exercise exists.<br>
     Use case ends.
 </p>
 
@@ -681,14 +681,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *MSS*
 
 1.  User requests to delete a specific exercise in the list.
-2.  Calo deletes the exercise
+2.  `Calo` deletes the exercise
 
     Use case ends.
 
 *Extensions*
 <p>
     1a. The index is invalid<br>
-      1a1. Calo shows a message indicating that no such exercise exists.<br>
+      1a1. `Calo` shows a message indicating that no such exercise exists.<br>
     Use case ends.
 </p>
 
@@ -698,7 +698,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *MSS*
 1.  User requests to list exercises
-2.  Calo shows a list of exercises
+2.  `Calo` shows a list of exercises
   Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
