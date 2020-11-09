@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindModuleCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.gradetrackercommands.AddGradeCommand;
 import seedu.address.logic.commands.modulelistcommands.AddCompletedModuleCommand;
@@ -21,6 +20,7 @@ import seedu.address.logic.commands.modulelistcommands.DeleteModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.DeleteZoomLinkCommand;
 import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.EditZoomLinkCommand;
+import seedu.address.logic.commands.modulelistcommands.FindModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.ListModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.RedoCommand;
 import seedu.address.logic.commands.modulelistcommands.TargetCapCalculatorCommand;
@@ -38,7 +38,7 @@ import seedu.address.logic.parser.modulelistparsers.DeleteModuleParser;
 import seedu.address.logic.parser.modulelistparsers.DeleteZoomLinkParser;
 import seedu.address.logic.parser.modulelistparsers.EditModuleParser;
 import seedu.address.logic.parser.modulelistparsers.EditZoomLinkParser;
-import seedu.address.logic.parser.modulelistparsers.FindModuleCommandParser;
+import seedu.address.logic.parser.modulelistparsers.FindModuleParser;
 import seedu.address.logic.parser.modulelistparsers.TargetCapCalculatorParser;
 import seedu.address.logic.parser.modulelistparsers.UnarchiveModuleParser;
 import seedu.address.logic.parser.modulelistparsers.ViewModuleParser;
@@ -80,7 +80,7 @@ public class ModuleListParser implements FeatureParser {
             return new DeleteModuleParser().parse(arguments);
 
         case FindModuleCommand.COMMAND_WORD:
-            return new FindModuleCommandParser().parse(arguments);
+            return new FindModuleParser().parse(arguments);
 
         case AddZoomLinkCommand.COMMAND_WORD:
             return new AddZoomLinkParser().parse(arguments);
@@ -102,7 +102,6 @@ public class ModuleListParser implements FeatureParser {
 
         case TargetCapCalculatorCommand.COMMAND_WORD:
             return new TargetCapCalculatorParser().parse(arguments);
-
         case ArchiveModuleCommand.COMMAND_WORD:
             return new ArchiveModuleParser().parse(arguments);
 

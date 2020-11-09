@@ -6,7 +6,7 @@ import java.util.List;
 import seedu.address.model.exceptions.VersionedListException;
 
 /**
- * Class that stores versioned history and future of a module list used for undo/redo functions
+ * Class that stores versioned history and future of a module list used for undo/redo functions.
  */
 public class VersionedModuleList extends ModuleList {
     public static final String MESSAGE_NO_REDO_HISTORY = "There are no Module List commands to redo";
@@ -24,7 +24,8 @@ public class VersionedModuleList extends ModuleList {
 
     /**
      * Creates a versioned module list using the module list in the {@code toBeCopied}
-     * @param toBeCopied
+     *
+     *  @param toBeCopied Module list to be copied.
      */
     public VersionedModuleList(ReadOnlyModuleList toBeCopied) {
         super(toBeCopied);
@@ -64,14 +65,12 @@ public class VersionedModuleList extends ModuleList {
         this.currentStatePointer += 1;
         super.resetData(moduleListStateList.get(currentStatePointer));
     }
-
     /**
      * Returns true if state pointer is at 0.
      */
     public boolean isIndexZero() {
         return currentStatePointer == 0;
     }
-
     /**
      * Returns true if state pointer greater than the size of the eventList state list
      */

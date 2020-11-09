@@ -232,7 +232,7 @@ public class Module {
     /**
      * Edits the zoom link of the specified module lesson in this module.
      *
-     * @param lesson Module lesson which contains the zoom link to be edited.
+     * @param lesson Module lesson which the zoom link to be edited is mapped to.
      * @param editedLink Edited zoom link.
      * @return Module containing the updated zoom links.
      */
@@ -341,10 +341,7 @@ public class Module {
      * Returns true if module has a grade point.
      */
     public boolean hasGradePoint() {
-        if (this.gradeTracker.getGradePoint().isPresent()) {
-            return true;
-        }
-        return false;
+        return this.gradeTracker.getGradePoint().isPresent();
     }
 
     /**
@@ -375,7 +372,8 @@ public class Module {
         }
 
         Module otherModule = (Module) other;
-        return otherModule.getName().equals(getName());
+        return otherModule.getName().equals(getName())
+                && otherModule.getGradeTracker().equals(getGradeTracker());
         //&& otherModule.getAllLinks().equals(getAllLinks());
         /*return otherModule.getName().equals(getName());
                 && otherModule.getLink().equals(getLink())

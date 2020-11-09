@@ -1,11 +1,11 @@
 package seedu.address.logic;
 
+import seedu.address.logic.parser.ContactListParser;
 import seedu.address.logic.parser.FeatureParser;
 import seedu.address.logic.parser.GradeTrackerParser;
 import seedu.address.logic.parser.ModuleListParser;
 import seedu.address.logic.parser.SchedulerParser;
 import seedu.address.logic.parser.TodoListParser;
-import seedu.address.logic.parser.contactlistparsers.ContactListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 

@@ -1,0 +1,66 @@
+{
+  "tasks" : [ {
+    "name" : "Finish Lab01",
+    "priority" : "HIGH",
+    "date" : "2020-11-05",
+    "status" : "NOT_COMPLETED",
+    "dateCreated" : "2020-11-08",
+    "tags" : [ "CS2030", "Lab" ]
+  }, {
+    "name" : "Finish Lab02",
+    "priority" : "NORMAL",
+    "date" : "2020-11-06",
+    "status" : "COMPLETED",
+    "dateCreated" : "2020-11-08",
+    "tags" : [ "CS2030", "Lab" ]
+  }, {
+    "name" : "Finish Assignment01",
+    "priority" : "HIGH",
+    "date" : "2020-11-07",
+    "status" : "NOT_COMPLETED",
+    "dateCreated" : "2020-11-08",
+    "tags" : [ "Assignment", "CS2105" ]
+  }, {
+    "name" : "Finish Assignment02",
+    "priority" : "NORMAL",
+    "date" : "2020-11-08",
+    "status" : "COMPLETED",
+    "dateCreated" : "2020-11-08",
+    "tags" : [ "Assignment", "CS2105" ]
+  }, {
+    "name" : "Submit Problem Set 1",
+    "priority" : "HIGH",
+    "date" : "2020-11-09",
+    "status" : "NOT_COMPLETED",
+    "dateCreated" : "2020-11-08",
+    "tags" : [ "CS2040", "ProblemSet" ]
+  }, {
+    "name" : "Submit Problem Set 2",
+    "priority" : "NORMAL",
+    "date" : "2020-11-10",
+    "status" : "COMPLETED",
+    "dateCreated" : "2020-11-08",
+    "tags" : [ "CS2040", "ProblemSet" ]
+  }, {
+    "name" : "Submit Quiz Week 1",
+    "priority" : "HIGH",
+    "date" : "2020-11-11",
+    "status" : "NOT_COMPLETED",
+    "dateCreated" : "2020-11-08",
+    "tags" : [ "Quiz", "CS2103T" ]
+  }, {
+    "name" : "Submit Quiz Week 1",
+    "priority" : "HIGH",
+    "date" : "2020-11-11",
+    "status" : "NOT_COMPLETED",
+    "dateCreated" : "2020-11-08",
+    "tags" : [ "Quiz", "CS2103T" ]
+  }, {
+    "name" : "Submit Quiz Week 2",
+    "priority" : "NORMAL",
+    "date" : "2020-11-12",
+    "status" : "COMPLETED",
+    "dateCreated" : "2020-11-08",
+    "tags" : [ "Quiz", "CS2103T" ]
+  } ]
+}

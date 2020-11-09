@@ -115,10 +115,20 @@ at a specified file location. When the program is started, it will attempt to re
 component will be converting data in json format into java objects.
 
 * can save `UserPref` objects in json format and read it back.
-* can save the module list data in json format and read it back.
-* can save the contact list data in json format and read it back.
-* can save the todo list data in json format and read it back.
+* can save the `ModuleList` data in json format and read it back.
+* can save the `ContactList` data in json format and read it back.
+* can save the `TodoList` data in json format and read it back.
+* can save the `EventList` data in json format and read it back.
 
+#### Json Adapted Objects
+Each of the higher level Json Adapted objects shown in the storage diagram above is dependent on other lower level Json
+Adapted objects related to their feature type.
+
+* `JsonAdaptedModule` is dependent on `JsonAdaptedTag`, `JsonAdaptedGradeTracker` and `JsonAdaptedZoomLink`.
+    * `JsonAdaptedGradeTracker` is dependent on `JsonAdaptedAssignment`
+* `JsonAdaptedContact` is dependent on `JsonAdaptedTag`, `JsonAdaptedGradeTracker` and `JsonAdaptedZoomLink`.
+* `JsonAdaptedTask` is dependent on `JsonAdaptedTag`.
+* `JsonAdaptedEvent` is dependent on `JsonAdaptedTag`.
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
@@ -127,14 +137,16 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 **API** :
 
 ## Module List
-![Structure of the Module List Component](images/ModuleListDiagram.png)
+![Structure of the Module List Component](images/Module/ModuleListClassDiagram.png)
 
 **Module package** : [`seedu.address.model.module`](https://github.com/AY2021S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/model/module)
 
 * Module is a container class that stores :
   * Name of a module
-  * Zoom link of a module
+  * HashMap of ModuleLesson and ZoomLink key value pairs
   * GradeTracker of a module
+  * ModularCredits of a module
+  * Tag(s) of a module
 * GradeTracker is a container class that stores:
   * Grade for a module
   * Assignments for a module
@@ -147,9 +159,37 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 * Stores a UniqueModuleList
 * Duplicate Modules are not allowed
 
-## CAP Calculator
+## Scheduler List
+<p aligin="center"><img src ="images/EventListClassDiagram.png" border="1px solid black"></p>p>
 
-## Scheduler
+#### EventList class
+**EventList class** : [`EventList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/EventList.java)
+
+* Holds and stores all the events.
+* Saves to `Storage` after each execution of a command.
+* Stores a `UniqueEventList` that ensures no duplicates of events.
+* Duplicate events are not allowed.
+#### Event class
+**Event class** : [`Event.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/event/Event.java)
+
+* Holds the `EventName` and `EventTime` of the created Event.
+* EventName and EventTime cannot be null.
+* Events are considered to be the same if the EventName is equal.
+* `Tags` are optional for each event.
+
+#### EventName class
+**EventName class** : [`EventName.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/event/EventName.java)
+
+* Holds the date for the name of the String.
+* Acts like a logic container for the name of the event.
+
+#### EventTime class
+**EventTime class** : [`EventTime.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/event/EventTime.java)
+
+* Holds the date and time of the event.
+* Stores the date and time as a LocalDateTime object.
+* Follows a strict input format of : day-month-year 24h time, e.g. `5-12-2020 1200`
+* Throws an error if the wrong format or invalid date is enterred.
 
 ## Contact List
 
@@ -196,7 +236,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 * Stores a UniqueTodoList
 * Duplicate Task objects are now allowed
 
-TodoList will be explained more comprehensively in the [TodoList feature](#todolist-feature) Section
+TodoList will be explained more comprehensively in the [TodoList feature](#33-todolist-feature) Section
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -204,64 +244,349 @@ TodoList will be explained more comprehensively in the [TodoList feature](#todol
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### 3.1 Logic
+![Structure of the XYZ command](images/GeneralLogicSequenceDiagram1.png)
+![Structure of the XYZ command](images/GeneralLogicSequenceDiagram2.png)
 
-## 3.1 Module list management feature
+#### Implementation
+The idea of this implementation is to abstract the overall process into a more OOP focused design, where each class only handles the functions
+that is relevant to its responsibility. As we have many features that each have their own commands, we decided to
+create a new Facade class `ParserManager` to handle which Feature parser to call. Feature parser are those in charge of
+handling all commands related to that feature. For instance, `ModuleListParser` will be selected by the ParserManager when
+a module related command is called.
+
+After the appropriate feature parser is selected, the user input is passed into it to be broken down. It splits the user input into
+command word and arguments, where the command word is checked and the respective sub-parser is called. For instance, if the
+command word is `addmodule`, then the sub-parser that will be called is `AddModuleParser`. The argument is then passed into the
+sub-parser and tokenized by `ArgumentTokenizer` and a `ArgumentMultiMap` is returned, which is a HashMap of the strings for each
+prefix enterred. The relevant supporting classes are then created based on the strings under each prefix, and the appropriate
+command is created.
+
+The returned command is then executed by the `LogicManager`, which will execute the function of the command. The respecitve changes are
+changed in the model provided in the command. At the end, a `CommandResult` is returned where the results are stored in.
+
+#### Design consideration:
+
+##### Aspect: Whether to create a Facade class `ParserManager` to handle all the individual parsers.
 
 
+##### Aspect: Whether to create a custom parser for each of the feature to handle their respective commands.
+Option 1 **(Current implementation)**: A custom Parser in charge of all **Scheduler** related commands **only**.
+Pros: 
+- More OOP orientated.
+- More defensive programming.
+Cons:
+- More Parsers to handle by the ParserManager
+
+Option 2: Place the Scheduler related parser together with the rest of the other parsers for other features, like module list, etc.
+Pros:
+- Faster to implement.
+- Less effort needed, simply add on to the existing Parser.
+Cons:
+- Mess and less readable, hard to distinguish between different commands.
+- Higher chance of errors, as we are mixing all the different parsers for every feature into a single Parser.
+- LONG methods.
+
+## 3.1 Module list management features
+
+### Basic Module Tracker features
+
+#### Add Module feature
+
+This feature creates and adds a new `Module` into the `ModuleList` if the `Module` does not already exist. 
+
+This feature is facilitated by the following classes:
+
+ * `AddModuleParser`:
+   * It implements `AddModuleParser#parse()` to parse and validate the user arguments to create a new `Module`.
+
+ * `AddModuleCommand`:
+   * It implements `AddModuleCommand#execute()` which executes the addition of the new `Module` into `Model`.
+
+Given below is an example usage scenario and how the mechanism for adding module behaves at each step:
+Step 1. `LogicManager` receives the user input `addmodule n/CS2100 mc/4.0 t/Coremodule ` from `Ui`
+Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `AddModuleParser`
+Step 3. Additionally, `ModuleListParser` will call the `AddModuleParser#parse()` method to parse the command arguments
+Step 4. This creates an `AddModuleCommand` and `AddModuleCommand#execute()` will be invoked by `LogicManager` to execute the command to add the `Module`
+Step 5. The `Model#addModule()` operation exposed in the `Model` interface is invoked to add the new `Module`
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Given below is the sequence diagram of how the operation to add a `Module` works:
+![AddModuleSequenceDiagram](images/Module/AddModuleSequenceDiagram.png)
+Figure 3.1.1.1 Sequence diagram for the execution of `AddModuleCommand`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddModuleCommand` and `AddModuleParser` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+The add completed module feature serves a very similar function — it calls `Model#addModule()` also but creates a `Module` that contains the "completed" tag by default instead.
+
+#### Delete Module Feature
+
+The delete module feature deletes a pre-existing `module` using the index of the `Module` on the displayed `ModuleList`.
+This feature is facilitated by the following classes: 
+
+  * `DeleteModuleParser`:
+    * It implements `DeleteModuleParser#parse()` to parse and validate the `Module` ID
+
+  * `DeleteModuleCommand`:
+    * It implements `DeleteModuleCommand#execute()` to delete the `Module` from `Model`
+
+After the user input has been parsed by `DeleteModuleParser`, `LogicManager` will execute the delete operation by invoking
+`DeleteModuleCommand#execute()`. This deletes the target `Module` by invoking the `Model#deleteModule()` method exposed in the `Model` interface.
+
+Given below is the sequence diagram of how the operation to delete a `Module` works:
+![DeleteModuleSequenceDiagram](images/Module/DeleteModuleCommandSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Method to delete module
+
+* **Alternative 1 (current choice):** Delete a `Module` based on its index in the displayed `ModuleList`
+  * Pros: Using the `Module` index allows us to uniquely identify the target `Module` to delete, reducing the room for possible error
+  * Cons: The target `Module` to be deleted might not be displayed on the `ModuleList` and hence the `Module` index might not be
+          readily available. This can inconvenience users who have to search for the `Module` to retrieve the `Module` index
+
+* **Alternative 2:** Delete a `Module` based on the `Module` name
+  * Pros: It can make the deletion process simpler for **users** who can provide the name of the `Module` without having to execute more commands
+  * Cons: This is more difficult to implement
+
+Alternative 1 was chosen since it is easier to implement and it makes the command simpler for users to input.
 
 
-### Module list features
+#### Edit Module Feature
+
+The edit module feature edits a pre-existing `Module` in the `ModuleList` using `Module` details provided by the user.
+This feature is facilitated by the following classes:
+
+  * `EditModuleParser`: 
+    * It implements `EditModuleParser#parse()` to parse and validate the provided `Module` details and `Module` index
+
+  * `EditModuleDescriptor`:
+    * It stores the `Module` details which will be used to edit the target `Module`
+
+  * `EditModuleCommand`:
+    * It implements `EditModuleCommand#execute()` to edit the `Module` in `Model`
 
 
+Given below is an example usage scenario and how the mechanism for editing a `Module` behaves at each step:
+Step 1. `LogicManager` receives the user input `editmodule 1 n/CS2100 mc/4.0 gp/5.0 t/Coremodule ` from `Ui`
+Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `EditModuleParser`
+Step 3. Additionally, `ModuleListParser` will call the `EditModuleParser#parse()` method to parse the command arguments
+Step 4. This creates an `EditModuleCommand` and `EditModuleCommand#execute()` will be invoked by `LogicManager` to edit the target `Module`
+Step 5. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target `Module` with the edited `Module`
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Given below is the sequence diagram of how the operation to edit a `Module` works:
+![EditModuleSequenceDiagram](images/Module/EditModuleCommandSequenceDiagram.png)
+
+
+#### Design consideration:
+
+##### Aspect: Implementation of `EditModuleCommand`
+
+* **Alternative 1 (current choice):** 
+  * Pros: Reduces coupling between the command classes and `EditModuleCommand` can be implemented without restrictions,
+          or a need to consider how it might affect the other command classes
+  * Cons: Additional methods have to be implemented to replace the target module with the edited module
+
+* **Alternative 2:** Reuse `DeleteModuleCommand` to delete the target `Module` and `AddModuleCommand` to add the edited `Module`
+  * Pros: Reusing other commands would make the implementation of `EditModuleCommand` simpler and easier
+  * Cons: It increases coupling between the 3 commands and this can cause issues in `EditModuleCommand` if either 
+          `DeleteModuleCommand` or `AddModuleCommand` developed bugs or errors. Also, it might affect performance since 
+          executing `EditModuleCommand` will execute 2 other commands
+
+Alternative 1 was chosen since it gave more freedom with regard to the implementation of `EditModuleCommand` since
+we were not restricted to reusing other commands. Less coupling between the classes meant that changes in one class would 
+less likely require changes to other classes.
+
+
+#### Find Module Feature
+
+The find `Module` feature is important since sieving through all modules to search for a specific `Module` can be 
+tedious and not user-friendly.
+
+The find `Module` feature searches for modules using the `Module` name.
+For each search parameter, modules have to match at least one keyword to fulfil the search criteria.
+
+This feature is facilitated by the following classes:
+
+  * `FindModuleParser`:
+    * It implements `FindModuleParser#parse()` to parse and validate the user input
+    * It creates `NameContainsKeywordsPredicate` objects using the command arguments
+   
+  * `FindModuleCommand`:
+    * It implements `FindModuleCommand#execute()` to find all matching modules by updating the 
+      filtered displayed module list in `Model` using the `NameContainsKeywordsPredicate` from `FindModuleParser`
+
+Given below is an example usage scenario and how the mechanism for finding `Module` behaves at each step:
+Step 1. `LogicManager` receives the user input `findmodule CS2100` from `Ui`
+Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create a `FindModuleParser`
+Step 3. Additionally, `ModuleListParser` will call the `FindModuleParser#parse()` method to parse the command arguments
+Step 4. This creates a `NameContainsKeywordsPredicate` that will be used to obtain the filtered displayed `ModuleList`
+Step 4. Additionally, a `FindModuleCommand` is created and `FindModuleCommand#execute()` will be invoked by `LogicManager` to find matching modules
+Step 5. The `Model#updateFilteredModuleList()` operation exposed in the `Model` interface is invoked to update the displayed `ModuleList`
+        using `NameContainsKeywordsPredicate`
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Given below is the sequence diagram of how the operation to find modules works:
+![FindModuleCommandSequenceDiagram](images/Module/FindModuleCommandSequenceDiagram.png)
+Fig ??
+
+#### Module list data archiving
+
+##### Implementation
+
+The module list data archiving function is facilitated by `ModelManager`. It keeps track of a additional `ModuleList` which stores archived modules as
+compared the the current `ModuleList` that stores currently relevant modules. Additionally, it implements the following operations:
+
+* `ModelManager#archiveModule()` - Archives a module by removing it from the current `ModuleList` and placing it in the archived `ModuleList`.
+
+* `ModelManager#unarchiveModule()` - Un-archives a module by removing it from the archived `ModuleList` and placing it in the current `ModuleList`.
+
+The following sequence diagram shows how the archive module operation works:
+![ArchiveModuleSequenceDiagram](images/Module/ArchiveModuleSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveModuleCommand`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+The `unarchivemodule` command does the opposite — it calls `Model#unarchiveModule()`, which removes the specified module  from the archived `ModuleList` and placing it in the current `ModuleList`.
 
 
 ### Module Assignment 
+In order for CAP 5 Buddy to properly support the students study, information of the students grades assignments and results should be kept.
+This would allow the student to adequately assess the current grades that he or she currently has. With knowledge of the grades already achieved for the module
+CAP 5 Buddy can calculate the current percentage and results for the student so that the student can understand how close he or she
+is to their next grade.
 
-### \[Proposed\] GradeTracker feature
+The section below provides details on the implementation of each assignment related function and design considerations of these features.
 
-#### Proposed Implementation
+### Details of implementation
 
-The proposed grade tracker feature is an association class used to store additional information for the module. 
-The `Assignments` each store their own `assignment name`, `percentage of final grade` and `result`. 
+The model below shows the implementation of the `GradeTracker` that is stored under the `Module` class.
+Each `Module` can only have one `GradeTracker` which manages the assignments under that module.
+The `GradeTracker` stores a `UniqueAssignmentList` that ensures assignments within the list are not duplicates of each other.
+Each `Assignment` contains the following three fields: an `AssignmentName`, `AssignmentPercentage` and `AssignmentResult`.
 
+![Structure of the Grade Tracker Component](images/GradeTrackerDiagram.png)
 
-![Structure of the Module List Component](images/GradeTrackerDiagram.png)
+The list of all `GradeTracker` related features are:
+1. Add an Assignment: Adds a new assignment to the `GradeTracker`.
+2. Edit an Assignment: Edits a pre-existing assignment in the `GradeTracker`.
+3. Delete an Assignment: Deletes a pre-existing assignment in the `GradeTracker`.
+4. Add a Grade: Adds a grade for the overall module.
 
+#### Add Assignment Feature
+
+This feature creates and adds a new `Assignment` to the `GradeTracker` of a `Module`. This action
+is only allowed if the `Assignment` does not already exist in the `GradeTracker`.
+
+This feature is facilitated by the following classes:
+
+* `AddAssignmentParser`:
+  * It implements `AddAssignmentParser#parse()` to validate and parse the module name and assignment details.
+* `AddAssignmentCommand`:
+  * It implements `AddAssignmentCommand#execute()` which executes the creation of the `Assignment` and adds the
+  assignment to the module identified by the `ModuleName` that was parsed.
 
 When an `assignment` is added, it follows the sequence diagram as shown below. The sequence flows similarly 
 to the rest of the project as the command is parsed and then executed.
 
 ![Sequence Diagram of the Add Assignment Command](images/AddAssignmentSequenceDiagram.png)
 
+Given below is an example usage scenario and how the mechanism for adding an `Assignment` behaves at each step:
+
+Step 1. `LogicManager` receives the user input `addassignment n/CS2100 a/Quiz 1 %/20 r/85` from `Ui`
+
+Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create a `AddAssignmentParser`
+
+Step 3. Additionally, `AddAssignmentParser` will call the `AddAssignmentParser#parse()` method to parse the command arguments
+
+Step 4. An `AddAssignmentCommand` is created and the command arguments are passed to it.
+
+Step 5.  `AddAssignmentCommand#execute()` will be evoked by `LogicManager` to creates an `Assignment` using the parsed inputs, `Quiz 1` for `AssignmentName`, `20` for `AssignmentPercentage`
+and `85` for `AssignmentResult`. A `ModuleName` is also created using the input `CS2100`.
+
+Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
+`Module#addAssignment()` is executed with the `Assignment`, adding the assignment to the module's `GradeTracker`.
+
+Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+
 #### Design consideration:
 
-##### Aspect: Format to store the grade for a module
-* Alternative 1 : Grade stores CAP.
-    * Pros : Easier to integrate with Cap Calculator
-    * Cons : User has to manually input CAP and does not know the average from the assignments accumulated
+##### Aspect: Whether to directly store the assignments under module
+* Alternative 1 : Module stores assignments directly without any association class.
+    * Pros : Less work to be done.
+    * Cons : Less OOP.
     
-* Alternative 2 (current choice): Grade stores the raw score calculated from assignment
-    * Pros : Grade can be automatically calculated from the assignment overall percentage for user to view
-    * Cons : Requires separate CAP to be stored for Cap Calculator to access
+* Alternative 2 (current choice): Module stores a separate class that then stores the assignments
+    * Pros : More OOP and the assignments are less coupled to the Module.
+    * Cons : Takes more effort and complexity to recreate the unique object list within another layer(`Module`).
+    
+We implemented the second option despite its difficulty and complexity, taking more time to carry out as we felt
+that this feature was major enough to warrant the time and depth to implement.
 
+####Edit Assignment Feature
 
+This feature allows `assignments` within a `GradeTracker` to be edited. The fields that can be edited are the
+`AssignmentName`, `AssignmentPercentage` and its `AssignmentResult`. The grade tracker of the module to act on must
+currently have a valid assignment to target.
+
+This feature requires the following classes:
+
+* `EditAssignmentDescriptor`:
+  * It represents and encapsulates the edited assignment and stores the fields to replace the current ones.
+* `EditAssignmentParser`:
+  * It implements `EditAssignmentParser#parse()` to validate and parse the assignment `Index`, module name and assignment
+  edited details, creating an `EditAssignmentDescriptor` object with the edited details.
+* `EditAssignmentCommand`:
+  * It implements `EditAssignmentCommand#execute()` which will execute the editing of the assignment at the corresponding
+  assignment `Index` in the corresponding `Module` identified by the parsed module name.
+
+Given below is an example usage scenario and how the mechanism for editing an `Assignment` behaves at each step:
+
+Step 1. `LogicManager` receives the user input `editassignment 1 n/CS2100 a/Quiz 1` from `Ui`
+
+Step 2. `LogicManager` calls `GradeTrackerParser#parseCommand()` to create a `EditAssignmentParser`
+
+Step 3. Additionally, `EditAssignmentParser` will call the `EditAssignmentParser#parse()` method to parse the command arguments
+
+Step 4. An `EditAssignmentCommand` is created and the command arguments are passed to it.
+
+Step 5. `EditAssignmentCommand#execute()` will be evoked by `LogicManager` to creates an `EditAssignmentDescriptor`
+using the parsed inputs, `Quiz 1` for `AssignmentName`. A `ModuleName` is also created using the input `CS2100`.
+
+Step 6. The `Module` is searched for through the `Model#getFilteredModuleList()` and when it is found, the
+`Module#setAssignment()` is executed with the `Assignment`, adding the assignment to the module's `GradeTracker`.
+
+Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+
+#### Design consideration:
+
+##### Aspect: Whether to directly store the assignments under module
+* Alternative 1 : Module stores assignments directly without any association class.
+    * Pros : Less work to be done.
+    * Cons : Less OOP.
+    
+* Alternative 2 (current choice): Module stores a separate class that then stores the assignments
+    * Pros : More OOP and the assignments are less coupled to the Module.
+    * Cons : Takes more effort and complexity to recreate the unique object list within another layer(`Module`).
+    
+We implemented the second option despite its difficulty and complexity, taking more time to carry out as we felt
+that this feature was major enough to warrant the time and depth to implement.
 
 ### Cap Calculator
 
-### \[Proposed\] Calculate CAP feature
+#### Calculate CAP Feature
 
-#### Proposed Implementation
-
-The proposed calculate CAP function is facilitated by `CalculateCapCommand`. It extends Command with a counter for total
+The calculate CAP function is facilitated by `CalculateCapCommand`. It extends Command with a counter for total
 grade points and modular credits, both stored internally `gradePoints` and `modularCredits` respectively. Additionally, it implements the following operations:
 
-* `CalculateCapCommand#accumulate(ModuleList)` - Loops through a given `ModuleList` and updates the grade points and
-modular credits count accordingly.
-
-* `CalculateCapCommand#calculateCap()` - Calculates CAP based the grade points and modular credits counter.
+* `CalculateCapCommand#calculateCap()` - Calculates CAP using data from modules tagged as completed in current `ModuleList` and archived `ModuleList`.
 
 The following sequence diagram shows how the calculate cap operation works:
-![CalculateCapSequenceDiagram](images/CalculateCapSequenceDiagram.png)
+![CalculateCapSequenceDiagram](images/Module/CalculateCapSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CalculateCapCommand`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -271,19 +596,29 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 
 ##### Aspect: Information used to calculate cap
 * Alternative 1 (current choice): Calculates based on academic information on mods tagged as completed.
-    * Pros : Easy to implement
-    * Cons : User has to manually input every module taken
-    
+    * Pros : Easy to implement.
+    * Cons : User has to manually input every module to be used as data for calculation.
+
 * Alternative 2 : Prompts user for academic information used for last calculated cap and stores it.
-    * Pros : 
+    * Pros :
      * User does not need to input unnecessary modules.
-     * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user). 
+     * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user).
     * Cons : Will require additional storage.
+    
+#### Calculate target CAP details Feature
 
+The calculate CAP function is facilitated by `TargetCapCalculatorCommand`. It extends Command. Additionally, it implements the following operations:
 
+* `TargetCapCalculatorCommand#calculateCapNeeded()` - Calculates CAP needed for planned modules for user to achieve input target CAP using data from modules in current `ModuleList` and archived `ModuleList`.
 
+The following sequence diagram shows how the target cap operation works:
+![CalculateCapSequenceDiagram](images/Module/TargetCapCalculatorSequenceDiagram.png)
 
-## Zoom Link Management
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CalculateCapCommand`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+### Zoom Link Management
 
 As Cap 5 Buddy is designed to suit the needs of SoC students during the transition to online learning,
 it is crucial to design features which allows efficient management of zoom links which are widely used during
@@ -594,6 +929,7 @@ This feature is facilitated by the following classes:
   * `EditContactCommand`:
     * It implements `EditContactCommand#execute()` to edit the contact in `Model`
 
+
 Given below is an example usage scenario and how the mechanism for editing contact behaves at each step:
 Step 1. `LogicManager` receives the user input `editcontact 1 n/John te/@johndoe` from `Ui`
 Step 2. `LogicManager` calls `ContactListParser#parseCommand()` to create an `EditContactParser`
@@ -897,57 +1233,219 @@ Step 6. A `CommandResult` from the command execution is returned to `LogicManage
 
 Alternative 2 was chosen as it conformed with the standard practice of handling errors using exception. Moreover, it removes any room for 
 ambiguity by ensuring all constraints related to the command are made known to the users.
-
-
-
-
     
 ### 3.4 Event list management feature
 
+### Add Event Feature
+![Add Event Sequence Diagram](images/AddEventSequenceDiagram.png)
+
+#### Implementation
+The way this feature is currently implemented is similar to that of AB3. In the `Logic` component, we are using a specialised parser called
+`SchedulerParser` that is currently set to handle all event related commands called by the user. This parser will activate the *_AddEventParser_*
+that works similarly to AB3, returning the `AddEventCommand` that is executed in the `LogicManager`. Similar to AB3 and Module Tracker, the addevent
+command will create the event based on the given user input and add that to the `EventList` to be stored.
+
+This command is being facilitated by two supporting classes, `EventName` and `EventTime`. `EventName` is a logic container that contains the name of the
+event to be created, and `EventTime` is the logic container for holding the date and time set by the user, as a LocalDateTime object. These two
+classes are used in the creation of an `Event`, as the `Event` Object will take in a `EventName` and `EventTime`.
+
+This is how Add Event works:<br>
+Step 1. `LogicManager` takes the user input from the `UiManager` and checks the command word to decide which parser to pass onto.<br>
+Step 2. `ParserManager` then selects `SchedulerParser` based on the command word.<br>
+Step 3. `SchedulerParser` takes the user input and separate the command word from the arguments.<br>
+Step 4. Based on the command word, the switch case selects the `AddEventParser` and passes the arguments into the parser.<br>
+Step 5. `AddEventParser` then uses the `ArgumentTokenizer` to break down the arguments by the Prefixes and returns them in a `ArgumentMultiMap`.<br>
+Step 6. Information under the name, date and tag prefixes are pulled out and checked for any invalid and null values,
+if any are present, an `ParseException` is thrown.<br>
+Step 7. Once all the relevant information is parsed, the respective supporting objects are created such as `EventName`, `EventTime` and `Tag`.<br>
+Step 8. The supporting objects are used to create the new `Event` that passes to the `AddEventCommand` constructor.<br>
+Step 9. `LogicManager` receives the newly created `AddEventCommand` and executes it.<br>
+Step 10. The execute method of `AddEventCommand` takes in the current model and adds the `Event` to the eventlist of the model.<br>
+
+### Delete Event Feature
+
+#### Implementation
+The implementation is similar to that of AB3 and of Add Event as mentioned previously. The main difference is the arguments that
+delete event takes in. Delete event will take in just one parameter, which is the index of the event based on the eventlist shown in the
+GUI.
+
+This is how Delete Event works:<br>
+Step 1. `LogicManager` takes the user input from the `UiManager` and checks the command word to decide which parser to pass onto.<br>
+Step 2. `ParserManager` then selects `SchedulerParser` based on the command word.<br>
+Step 3. `SchedulerParser` takes the user input and separate the command word from the arguments.<br>
+Step 4. Based on the command word, the switch case selects the `DeleteEventParser` and passes the arguments into the parser.<br>
+Step 5. `DeleteEventParser` then uses the `ArgumentTokenizer` to break down the arguments by the Prefixes and returns them in a `ArgumentMultiMap`.<br>
+Step 6. The value of the index is pulled out and checked for any invalid (non-positive integers) and null values,
+if any are present, an `ParseException` is thrown.<br>
+Step 7. The value parsed is used to create an `Index` that represents the value.<br>
+Step 8. The `Index` passes to the `DeleteEventCommand` constructor.<br>
+Step 9. `LogicManager` receives the newly created `DeleteEventCommand` and executes it.<br>
+Step 10. The execute method of `DeleteEventCommand` takes in the current model and removes the `Event` from the eventlist of the model.<br>
+
+### Edit Event Feature
+
+#### Implementation
+Just like in AB3, this feature is supported by a static inner class `EditEventDescriptor` which serves as a logic container to
+hold all the information fields that needs to be changed in the target event.
+
+`EditEventDescriptor` is used to inform the later command of what needs to be changed and what will remain tha same. It is designed
+using `Optional` where if the user did not input a new value for a parameter, then it will be an empty optinal object. Later on
+in the execution of the command, when the value in the descriptor is empty, then it will take the original value in the target event.
+
+The `EditEventCommand` also has a method called `createEditedEvent` which will help to make the newly update `Event`. It takes in the target
+event object and the descriptor that holds the changes to be made. How this works is that it will check for each field in event, if there exist
+a new value for that field. If there is, then the new field will be used to create the `Event`. For instance, if there is a new name for the event,
+then a new `EventName` will be created based on the new name and the new `Event` will be created with thi new `EventName`.
+
+This is how Edit Event works:<br>
+Step 1. `LogicManager` takes the user input from the `UiManager` and checks the command word to decide which parser to pass onto.<br>
+Step 2. `ParserManager` then selects `SchedulerParser` based on the command word.<br>
+Step 3. `SchedulerParser` takes the user input and separate the command word from the arguments.<br>
+Step 4. Based on the command word, the switch case selects the `EditEventParser` and passes the arguments into the parser.<br>
+Step 5. `EditEventParser` then uses the `ArgumentTokenizer` to break down the arguments by the Prefixes and returns them in a `ArgumentMultiMap`.<br>
+Step 6. The values under the preamble, name, date and tag prefixes are extracted out and checked for any invalid (non-positive integers) and null values,
+if any are present, an `ParseException` is thrown.<br>
+Step 7. The values parsed are used to create the supporting classes, `Index`, `EventName`, `EventTime` and `Tag`.<br>
+Step 8. These supporting classes will be passed into the descriptor object using the respective `set` methods.<br>
+Step 9. The descriptor and index passes along to the `EditEventCommand` constructor.<br>
+Step 10. `LogicManager` receives the newly created `EditEventCommand` and executes it.<br>
+Step 11. The execute method of `EditEventCommand` takes in the current model and calls the `createEditedEvent` methods as mentioned above, and
+replaces the target event with the new `Event` that is created.<br>
+
+### Find Event Feature
+
+#### Implementation
+Same as the previously mentioned features, the Find Event feature is similar as well. The key difference is that all of the
+parameters are optional but at least one must be present. The Find Event feature will search through the EventList and return a
+new filtered list that contains all the events that matches the given keywords.
+
+This feature is supported by four classes:
+ * `FindEventCritera` is used as a logic container to hold all the predicates that are going to be entered into the find command.
+ * `EventNameContainsKeyWordsPredicate` is used to create the predicate that returns true for all events that contains any of the keywords in their `EventName` field.
+ * `EventContainsDatePredicate` is used to create the predicate that returns true for all events that have the exact same date and time as entered by the user.
+ * `EventContainsTagPredicate` is used to create the predicate that returns true for all events that have the same `Tag` under them.
+
+This is how Find Event works:<br>
+Step 1. Similar to the other features mentioned previously.<br>
+Step 2. Similar to the other features mentioned previously.<br>
+Step 3. Similar to the other features mentioned previously.<br>
+Step 4. Similar to the other features mentioned previously.<br>
+Step 5. Similar to the other features mentioned previously.<br>
+Step 6. The values parsed by the `ArgumentTokenizer` are extracted out and used to create the supporting classes, `EventNameContainsKeyWordsPredicate`,
+`EventNameContainsKeyWordsPredicate`, `EventContainsDatePredicate` and `EventContainsTagPredicate`.<br>
+Step 7. `FindEventCriteria` is created and all the predicates will be added to it using the add method.<br>
+Step 8. The `FindEventCriteria` is then passed to the `FindEventCommand` constructor.<br>
+Step 9. The `LogicManager` receives the `FindEventCommand` and executes it.<br>
+Step 10. The execute method of `FindEventCommand` will pass all the predicates to the filtered list.<br>
+Step 11. The filtered list will take in the predicates and filters out the events that passes the predicates and update the
+`FilteredList<Event>`, which will be displayed in the GUI.<br>
 
 
-### \[Proposed\] Add Event feature
-![Structure of the Add Event command](images/AddEventSequenceDiagram.png)
-#### Proposed Implementation
-The idea of this feature is to be able to allow the user to keep track of his/her current events that
-will be happening. Events can be either a one time event like an exam for a particular module, or a recurring
-event like a weekly tutorial class.
+### Calendar GUI Feature
+![Calendar](images/CalendarView.png)
+#### Implementation  
+The Calendar is added to help reflect the Eventlist in the model. It generates an accurate monthly Calendar based on the current date
+and time of the user. This Calendar feature has 2 main parts, the FXML design and the GUI-component class, `Calendar`.
 
-How we are currently implementing this feature is by following the same implementation as the AB3. We have an event
-object under the Model package. Two classes called EventName and EventTime act as information containers to store
-the respective data and help support the Event class.
+The design of the Calender mainly consists of 2 Gridpanes, one for the header and the other is used to form the days in each month. The header Gridpane
+is a 1 x 1 grid, that contains a Label for the month and year, and two buttons for the users to cycle between the months in the Calender.
+The second Gridpane is a 7 x 7 grid. The first row is reserved for headers for the different days of the week, while the rest are used
+for filling up the days based on the month and year.
 
-We also make sure in the Logic package, there are personal sub-parsers for each of the existing Event
-related commands, and an overall Parser known as SchedulerParser that is in charge of managing all of the
-sub-parsers of the Scheduler. 
+The logic of the Calender is located in the `Calendar` under the Ui component. It contains methods to load the month based on the date of the header, a method to scan
+through the eventlist in model to identify the days of the events in the eventlist, and the methods for the buttons to switch between the next month and previous month.
+The constructor of the Calendar takes in the `ReadOnlyEventList` from model, so that it can check for the dates that need to be marked out. The constructor also
+loads in the values for `headerMonth`, `headerYear` and `now`. The `headerMonth` and `headerYear` is used to track which month and year to display in the Calendar, while the `now` tracks the
+current month and year to start the Calendar in each time it loads up.
 
-Each of the commands of the Scheduler will always return a CommandResult class, that is basically an information
-container that stores all the relevant data of the results. This CommandResult object is then passes back up to the
-UiManager, where it is then passed to the GUI components for it to be displayed.
+Each time the user presses any of the two buttons, depending on which, the method for handling the buttons will either add or minus a month from the `headerMonth`. This updates the
+Calendar on which month to display. Also, the method will check if the current is either the start or end on the year, so that it knows when to change the values of the year.
+
+Next, the method that loads the Calendar will pull the values of `headerMonth` and `headerYear`. It will check if the month is Feburary, and if so, it will check if the
+year is a leap year. Then, it will return the appropriate number of days for the `headerMonth`. Then, it checks what is the day of the week that the first day of
+this month is on, then it starts to fill up the grid starting from the first day of the week. A VBox is created for each grid cell, and a Label is created and added
+to that VBox with the correct value of the dates. If there is an event that falls on the date, it the colour of the VBox will be set to a different color
+to indicate an existing event.
+  
+##General Features
+
+### Undo/redo feature
+
+#### Implementation
+The undo/redo mechanism is facilitated by the respective versioned lists of each list type. For example
+`VersionedModuleList` for a `ModuleList` type. We will use `VersionedModuleList` to demonstrate the implementation of undo/redo mechanism. It extends `ModuleList` with an undo/redo history, stored internally as an `moduleListStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+
+* `VersionedModuleList#commit()` — Saves the current `ModuleList` state in its history.
+* `VersionedModuleList#undo()` — Restores the previous `ModuleList` state from its history.
+* `VersionedModuleList#redo()` — Restores a previously undone `ModuleList` state from its history.
+
+These operations are exposed in the `Model` interface as `Model#commitModuleList()`, `Model#undoModuleList()` and `Model#ModuleList()` respectively.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedModuleList` will be initialized with the initial `ModuleList` state, and the `currentStatePointer` pointing to that single `ModuleList` state.
+
+![UndoRedoState0](images/UndoRedoState0.png)
+
+Step 2. The user executes `deletemodule 5` command to delete the 5th module in the `ModuleList`. The `deletemodule` command calls `Model#commitModuleList()`, causing the modified state of the `ModuleList` after the `deletemodule 5` command executes to be saved in the `moduleListStateList`, and the `currentStatePointer` is shifted to the newly inserted `ModuleList` state.
+
+![UndoRedoState1](images/UndoRedoState1.png)
+
+Step 3. The user executes `addmodule n/CS2103T​` to add a new module. The `addmodule` command also calls `Model#commitModuleList()`, causing another modified `ModuleList` state to be saved into the `moduleListStateList`.
+
+![UndoRedoState2](images/UndoRedoState2.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitModuleList()`, so the `ModuleList` state will not be saved into the `moduleListStateList`.
+
+</div>
+
+Step 4. The user now decides that adding the module was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoModuleList()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous `ModuleList` state, and restores the `ModuleList` to that state.
+
+![UndoRedoState3](images/UndoRedoState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial `ModuleList` state, then there are no previous `ModuleList` states to restore. The `undo` command uses `isIndexZero()` to check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the undo.
+
+</div>
+
+The following sequence diagram shows how the undo operation works:
+
+![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The `redo` command does the opposite — it calls `Model#redoModuleList()`, which shifts the `currentStatePointer` once to the right, pointing to the previously committed state, and restores the `ModuleList` to that state.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `moduleListStateList.size() - 1`, pointing to the latest `ModuleList` state, then there are no undone `ModuleList` states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+
+</div>
+
+Step 5. The user then decides to execute the command `list`. Commands that do not modify `ModuleList`, such as `list`, will usually not call `Model#commitModuleList()`, `Model#undoModuleList()` or `Model#redoModuleList()`. Thus, the `ModuleListStateList` remains unchanged.
+
+![UndoRedoState4](images/UndoRedoState4.png)
+
+Step 6. The user executes `clearmodule`, which calls `Model#commitModuleList()`. Since the `currentStatePointer` is not pointing at the end of the `moduleListStateList`, all `ModuleList` states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `addmodule n/CS2103​` command. This is the behavior that most modern desktop applications follow.
+
+![UndoRedoState5](images/UndoRedoState5.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: Whether to create a new Parser for Scheduler.
-Option 1 **(Current implementation)**: A custom Parser in charge of all **Scheduler** related commands **only**.
-Pros: 
-- More OOP orientated.
-- More defensive programming.
-Cons:
-- More Parsers to handle by the ParserManager
+##### Aspect: How undo & redo executes
 
-Option 2: Place the Scheduler related parser together with the rest of the other parsers for other features, like module list, etc.
-Pros:
-- Faster to implement.
-- Less effort needed, simply add on to the existing Parser.
-Cons:
-- Mess and less readible, hard to distinguish between differnt commands.
-- Higher chance of errors, as we are mixing all the different parsers for every feature into a single Parser.
-- LONG methods.
-  
-    
-    
+* **Alternative 1 (current choice):** Saves the entire `moduleList`.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
 
-
+* **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+  * Pros: Will use less memory (e.g. for `deletemodule`, just save the module being deleted).
+  * Cons: We must ensure that the implementation of each individual command is correct.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -990,7 +1488,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete a module                | remove modules that are completed                      |
 | `* *`    | user                                       | find a module by name          | locate details of a module without having to go through the entire list |
 | `* *`    | user                                       | add a zoom link to a module    | keep track and retrieve it easily                      |
-| `* *`    | user                                       | calculate my cumulative average point   | plan my academic progress for the future      |
+| `* *`    | user                                       | calculate my CAP details   | plan my academic progress for the future      |
+| `* *`    | user                                       | archive a modules   | hide less relevant modules that might still be useful for future purposes|
 | `* *`    | user                                       | add graded assignments       | add the information of the assignments that contributed to my grade      |
 |          | contact list                               |                                | |
 | `* *`    | user                                       | edit my graded assignments     | update the information of the assignments I have completed     |
@@ -1005,6 +1504,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | filter tasks based on criteria | easily manage the tasks by group                       |
 | `*`      | user                                       | reset the status of a task     | change a task from labeled as completed to not completed |
 | `*`      | user                                       | archive a task                 | hide irrelevant tasks that might still be useful for future purposes |
+| `*`      | user                                       | quickly add a module tagged as completed                 | input data to calculate CAP details quickly |
 | | todo list | |
 | | event list | |
 
@@ -1014,16 +1514,187 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `CAP5BUDDY` and the **Actor** is the `user`, unless specified otherwise)
 
+
+
+=======
 ## Module list use cases
 
+**Use case: UC04 - View a module**
 
+**MSS**
+
+1. User requests to view the list of modules.
+2. CAP5BUDDY displays all the modules in a list.
+3. User requests to view the information of a specific module from the list.
+4. CAP5BUDDY displays all information related to the specified module.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends here.
+
+* 3a. The given index is invalid or null.
+
+  * 3a1. CAP5BUDDY displays an error message.
+
+  Use case resumes at step 2.
+
+**Use case: UC05 - Archive a module**
+
+**MSS**
+
+1. User <ins>requests to show all the un-archived modules (UC09).</ins>
+2. User wants to archive a specific module from the list.
+3. CAP5BUDDY archives the module.
+
+**Extensions**
+* 1a. The list is empty.
+
+  Use case ends here.
+
+* 2a. The given index is invalid or does not exist.
+
+  * 2a1. CAP5BUDDY displays an error message.
+
+    Use case resumes at step 2.
+    
+**Use case: UC06 - Un-archive a module**
+
+**MSS**
+
+1. User <ins>requests to show all the archived modules (UC10).</ins>
+2. User wants to un-archive a specific module from the list.
+3. CAP5BUDDY un-archives the module.
+
+**Extensions**
+* 1a. The list is empty.
+
+  Use case ends here.
+
+* 2a. The given index is invalid or does not exist.
+
+  * 2a1. CAP5BUDDY displays an error message.
+
+    Use case resumes at step 2.
+
+**Use case: UC07 - Calculate CAP**
+
+**MSS**
+
+1. User requests to calculate CAP
+2. CAP5BUDDY calculates and displays CAP to user.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. There are no modules tagged as completed.
+
+  * 2a1. CAP5BUDDY displays an error message.
+
+  * 2a2. User enters required data.
+
+  Steps 2a1-2a2 are repeated until the data requirements are fulfilled.<br>
+  Use case resumes at step 2.
+
+
+**Use case: UC08 - Calculate target CAP details**
+
+**MSS**
+
+1. User requests to calculate target CAP details
+2. CAP5BUDDY calculates and displays target CAP details to user.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. There are no modules marked as completed.
+
+  * 2a1. CAP5BUDDY displays an error message.
+
+  * 2a2. User enters required data.
+
+  Steps 2a1-2a2 are repeated until the data requirements are fulfilled.<br>
+  Use case resumes at step 2.
+
+* 2b. User inputs invalid target cap value.
+ 
+   * 2b1. CAP5BUDDY displays an error message.
+ 
+   * 3b2. User enters valid input.
+ 
+   Steps 2a1-2a2 are repeated until the data requirements are fulfilled.<br>
+   Use case resumes at step 2.
+   
+* 2c. Target cap is unachievable.
+ 
+   * 2c1. CAP5BUDDY displays an error message.
+ 
+   * 4c2. User enters valid input.
+ 
+   Steps 3a1-3a2 are repeated until the data requirements are fulfilled.<br>
+   Use case resumes at step 2. 
+   
+**Use case: UC09 - View un-archived module list**
+
+**MSS**
+
+1. User requests to view the list of un-archived modules.
+2. CAP5BUDDY displays all the un-archived modules.
+
+Use case ends.
+
+**Use case: UC10 - View archived module list**
+
+**MSS**
+
+1. User requests to view the list of un-archived modules.
+2. CAP5BUDDY displays all the un-archived modules.
+
+Use case ends.
 
 ## Contact list use cases
 
 
 ## Todo list use cases
 
-**Use case: Add a new Module**
+## General feature use cases
+
+**Use case: Undo previous command**
+
+  **MSS**
+  1. User requests to undo previous command.
+  2. CAP5BUDDY undoes the previous command.
+  
+  Use case ends.
+
+  **Extensions**
+
+  * 2a. There are no commands to undo.
+
+    * CAP5BUDDY shows an error message.
+
+      Use case resumes at step 1.
+      
+**Use case: Redo undone command**
+
+  **MSS**
+  1. User requests to redo most recent undone command.
+  2. CAP5BUDDY redoes the undone command.
+  
+  Use case ends.
+
+  **Extensions**
+
+  * 2a. There are no commands to redo.
+
+    * CAP5BUDDY shows an error message.
+
+      Use case resumes at step 1.
+      
+**Use case: UC01 Add a new Module**
 
 **MSS**
 
@@ -1033,7 +1704,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-**Use case: Delete a module**
+**Use case: UC02 - Delete a module**
 
 **MSS**
 
@@ -1056,7 +1727,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-**Use case: Edit a module**
+**Use case: UC03 - Edit a module**
 
 **MSS**
 
@@ -1081,75 +1752,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 4a1. CAP5BUDDY display an error message.
 
-  Use case resumes at step 2.
-
-  *{More to be added}*
-
-**Use case: View a module**
-
-**MSS**
-
-1. User requests to view the list of modules.
-2. CAP5BUDDY displays all the modules in a list.
-3. User requests to view the information of a specific module from the list.
-4. CAP5BUDDY displays all information related to the specified module.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends here.
-
-* 3a. The given index is invalid or null.
-
-  * 3a1. CAP5BUDDY displays an error message.
-
-  Use case resumes at step 2.
-
-**Use case: Input module Cumulative Average Point(CAP) details**
-
-**MSS**
-
-1. User requests to input CAP details(Grade point and Credit) for a module.
-2. CAP5BUDDY saves CAP details under the specified module.
-
-Use case ends.
-
-**Extensions**
-
-* 2a. Input contains invalid CAP details.
-
-  * 2a1. CAP5BUDDY displays an error message.
-  * 2a2. User enters the correct data.
-  Use case resumes at step 1.
-
-**Use case: Calculate Cumulative Average Point(CAP)**
-
-**MSS**
-
-1. User requests to calculate CAP
-2. CAP5BUDDY calculates and displays CAP to user.
-
-Use case ends.
-
-**Extensions**
-
-* 2a. One or more modules do not contain details of grade point or credits.
-
-  * 2a1. CAP5BUDDY displays an error message.
-
-  * 2a2. User enters required data.
-
-  Steps 2a1-2a2 are repeated until the data requirements are fulfilled.<br>
-  Use case resumes at step 2.
-
-* 3a. One or more modules contain invalid details of grade point or credits.
-
-  * 3a1. CAP5BUDDY displays an error message.
-
-  * 3a2. User enters valid data.
-
-  Steps 2a1-2a2 are repeated until the data requirements are fulfilled.<br>
   Use case resumes at step 2.
 
   *{More to be added}*
@@ -1514,7 +2116,7 @@ Use case ends.
     * CAP5BUDDY shows an error message.
 
       Use case resumes at step 2.
-
+      
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -1530,6 +2132,8 @@ Use case ends.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Module List**: A list of all modules currently being tracked and stored in the CAP5BUDDY.
+* **CAP**: Calculate Cumulative Average Point, a grading number that rates academic level in NUS.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1560,6 +2164,61 @@ testers are expected to do more *exploratory* testing.
 
 ### Module List
 
+#### Deleting a module
+
+1. Deleting a module while all modules are being shown
+
+   1. Prerequisites: List all un-archived modules using the `listmodule` command. Multiple modules in the list.
+
+   1. Test case: `deletemodule 1`<br>
+      Expected: First module is deleted from the list. Details of the deleted module shown in the status message.
+
+   1. Test case: `deletemodule 0`<br>
+      Expected: No module is deleted. Error details shown in the status message.
+
+   1. Other incorrect delete module commands to try: `deletemodule`, `deletemodule x`, `...` (where x is larger than the module list size)<br>
+      Expected: Similar to previous.
+      
+#### Archiving a module
+ 
+ 1. Archiving a module while all modules are being shown
+ 
+    1. Prerequisites: List all modules using the `listmodule` command. Multiple modules in the list.
+ 
+    1. Test case: `archivemodule 1`<br>
+       Expected: First module is archived. Details of the deleted module shown in the status message.
+ 
+    1. Test case: `archivemodule 0`<br>
+       Expected: No module is archived. Error details shown in the status message.
+ 
+    1. Other incorrect archive module commands to try: `archivemodule`, `archivemodule x`, `...` (where x is larger than the module list size)<br>
+       Expected: Similar to previous.
+       
+ * Similar test procedures can be used to test the un-archive module feature. This can be done by using the keyword `unarchivemodule`
+   instead of `archivemodule`.
+   
+   * Prerequisites : List all archived modules using the `viewarchive` command. Multiple modules in the list.
+   
+#### Calculate CAP
+ 
+ 1. Calculate CAP
+ 
+    1. Prerequisites: There must be at least one module tagged as completed and containing grade point information.
+ 
+    1. Test case: `calculatecap`<br>
+       Expected: CAP is calculated. Details of the calculated CAP shown in the status message.
+       
+#### Calculate target CAP details
+
+1. Target Cap
+
+   1. Prerequisites: There must be at least one module tagged as completed and containing grade point information.
+
+   1. Test case: `targetcap 5`<br>
+      Expected: Target CAP details are calculated. Target CAP details shown in the status message.    
+   
+ 
+      
 
 ### Contact List
 
@@ -1568,6 +2227,40 @@ testers are expected to do more *exploratory* testing.
 
 
 ### Event List
+
+### Common Features
+
+#### Undo a command
+ 
+ 1. There is an undoable command
+ 
+    1. Prerequisites: A command that modifies the storage has been entered is since the application started.
+ 
+    1. Test case: `undo`<br>
+       Expected: Most recent undoable command is undone. Undo command success message shown in the status message.
+ 
+ 2. There is no undoable command      
+ 
+    1. Prerequisites: The application is freshly started with no commands entered yet.
+     
+    1. Test case: `undo`<br>
+       Expected: No command is undone. Error details shown in the status message.
+         
+#### Redo a command
+ 
+ 1. There is a redoable command
+ 
+    1. Prerequisites: A command has been redone. Commands that modify the storage have not been entered since. (e.g deletemodule)
+ 
+    1. Test case: `redo`<br>
+       Expected: Most recent undoable command is undone. Redo command success message shown in the status message.
+ 
+ 2. There is no redoable command      
+ 
+    1. Prerequisites: The application is freshly started with no commands entered yet.
+     
+    1. Test case: `redo`<br>
+       Expected: No command is redone. Error details shown in the status message.
 
 ### Saving data
 

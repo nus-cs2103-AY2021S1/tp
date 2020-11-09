@@ -69,6 +69,6 @@ public class EventBuilder {
      * @return an Event
      */
     public Event build() {
-        return new Event(this.eventName, this.eventTime, new HashSet<Tag>());
+        return new Event(this.eventName, this.eventTime, this.tags);
     }
 }

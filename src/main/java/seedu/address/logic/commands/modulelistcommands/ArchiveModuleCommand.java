@@ -13,7 +13,8 @@ import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 
 /**
- * Archives a module identified using it's displayed index from the address book.
+ * Encapsulates methods and information to archive a module identified using it's displayed index
+ * from the module list.
  */
 public class ArchiveModuleCommand extends Command {
     public static final String COMMAND_WORD = "archivemodule";
@@ -30,6 +31,12 @@ public class ArchiveModuleCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates and initialises a new ArchiveModuleCommand for the archiving of a module in the module list.
+     *
+     * @param targetIndex Index object encapsulating the index of the target module in the filtered displayed
+     *                    module list.
+     */
     public ArchiveModuleCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

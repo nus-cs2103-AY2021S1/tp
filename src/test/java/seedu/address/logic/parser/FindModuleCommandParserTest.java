@@ -8,13 +8,13 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.FindModuleCommand;
-import seedu.address.logic.parser.modulelistparsers.FindModuleCommandParser;
+import seedu.address.logic.commands.modulelistcommands.FindModuleCommand;
+import seedu.address.logic.parser.modulelistparsers.FindModuleParser;
 import seedu.address.model.module.NameContainsKeywordsPredicate;
 
 public class FindModuleCommandParserTest {
 
-    private FindModuleCommandParser parser = new FindModuleCommandParser();
+    private FindModuleParser parser = new FindModuleParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
@@ -23,14 +23,14 @@ public class FindModuleCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsFindModuleCommand() {
         // no leading and trailing whitespaces
         FindModuleCommand expectedFindModuleCommand =
-                new FindModuleCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindModuleCommand);
+                new FindModuleCommand(new NameContainsKeywordsPredicate(Arrays.asList("CS2030", "CS2103")));
+        assertParseSuccess(parser, "CS2030 CS2103", expectedFindModuleCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindModuleCommand);
+        assertParseSuccess(parser, " \n CS2030 \n \t CS2103  \t", expectedFindModuleCommand);
     }
 
 }

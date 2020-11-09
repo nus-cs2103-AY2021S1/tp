@@ -31,9 +31,9 @@ public class AddAssignmentCommand extends Command {
             + PREFIX_ASSIGNMENT_RESULT + " RESULT ACHIEVED "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2100 "
-            + PREFIX_ASSIGNMENT_NAME + "Quiz 1"
-            + PREFIX_ASSIGNMENT_PERCENTAGE + " 15"
-            + PREFIX_ASSIGNMENT_RESULT + " 0.85";
+            + PREFIX_ASSIGNMENT_NAME + "Quiz 1 "
+            + PREFIX_ASSIGNMENT_PERCENTAGE + "15 "
+            + PREFIX_ASSIGNMENT_RESULT + "0.85";
 
     public static final String MESSAGE_SUCCESS = "New assignment %1$s added.";
     public static final String MESSAGE_ASSIGNMENT_NOT_ADDED = "Module to add to not found.";
@@ -79,9 +79,10 @@ public class AddAssignmentCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_ASSIGNMENT);
         }
 
-        module.addAssignment(assignmentToAdd);
+        Module updatedModule = module.addAssignment(assignmentToAdd);
         logger.info("Assignment has been added: " + assignmentToAdd.toString());
         module.getGradeTracker().calculateNewGrade();
+        model.setModule(module, updatedModule);
         model.commitModuleList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, assignmentToAdd));
     }

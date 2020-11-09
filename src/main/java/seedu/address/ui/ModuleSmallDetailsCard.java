@@ -35,7 +35,11 @@ public class ModuleSmallDetailsCard extends UiPart<Region> {
     @FXML
     private Label modularCredits;
     @FXML
+    private Label gradePoints;
+    @FXML
     private FlowPane tags;
+    @FXML
+    private Label grade;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -47,9 +51,15 @@ public class ModuleSmallDetailsCard extends UiPart<Region> {
         name.setStyle("-fx-text-fill: white");
         modularCredits.setText(module.getModularCredits().toString() + " modular credits");
         modularCredits.setStyle("-fx-text-fill: white");
+        module.getGradeTracker().getGradePoint()
+                .ifPresentOrElse(x -> gradePoints.setText(x.toString() + " grade points"), () ->
+                        gradePoints.setText(""));
+        gradePoints.setStyle("-fx-text-fill: white");
         module.getTagsForUi().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        grade.setText("Grade:" + module.getGradeTracker().getGrade().toDisplay() + "%");
+        grade.setStyle("-fx-text-fill: white");
     }
 
     @Override

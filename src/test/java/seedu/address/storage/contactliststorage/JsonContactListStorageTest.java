@@ -53,7 +53,7 @@ public class JsonContactListStorageTest {
     }
 
     @Test
-    public void readModuleList_invalidContactContactList_throwDataConversionException() {
+    public void readContactList_invalidContactContactList_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readContactList("invalidContactContactList.json"));
     }
 
