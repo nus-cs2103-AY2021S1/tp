@@ -1284,7 +1284,7 @@ These instructions only provide a starting point for testers to work on; testers
 ### Marking assignments as not done
 
 1. Marking assignments as not done while all assignment are being shown
-   1. Prerequisites: List all assignments using the `list` command. Multiple assignments in the list. First 5 assignments in the assignment list marked as done.
+   1. Prerequisites: List all assignments using the `list` command. Multiple assignments in the list. First 3 assignments in the assignment list marked as done.
    
    1. Test case: `undone 1` <br>
       Expected: First assignment in assignment list is marked as not done. Details of the assignment shown in the Message Box.
@@ -1296,7 +1296,7 @@ These instructions only provide a starting point for testers to work on; testers
       Expected: Similar to previous.
 
 1. Marking one assignment as not done while some assignments are being shown
-   1. Prerequisites: List some assignments using the `list x` command (where x is number of days from current date and time such that only some assignments are shown). Multiple assignments in the list. No assignments mark as done.
+   1. Prerequisites: List some assignments using the `list x` command (where x is number of days from current date and time such that only some assignments are shown). Multiple assignments in the list. First 3 assignments in the assignment list marked as done.
    
    1. Test case: `undone 1` <br>
       Expected: Similar to `done 1` test case when all assignments are shown. Assignment list will be refreshed to show all assignments.
