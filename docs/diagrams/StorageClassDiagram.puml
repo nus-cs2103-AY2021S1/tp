@@ -21,5 +21,6 @@ JsonCanoeCoachStorage .left.|> CanoeCoachStorage
 JsonCanoeCoachStorage .down.> JsonSerializableCanoeCoach
 JsonSerializableCanoeCoach .right.> JsonAdaptedStudent
 JsonSerializableCanoeCoach .left.> JsonAdaptedTraining
+JsonAdaptedStudent .down.> JsonAdaptedAttendance
 JsonAdaptedStudent .right.> JsonAdaptedTag
 @enduml

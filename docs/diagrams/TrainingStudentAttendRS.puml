@@ -2,18 +2,20 @@
 hide circle
 
 Class Training {
+
 }
 
 Class Student {
 }
 
-Class Attend {
+Class Attendance {
 trainingTime
-hasAttended
-attendsTraining()
+isMarked
+marks()
+unmarks()
 }
 
-Training o-- "*" Student
-Student o-- "*" Attend
+Training --right> "*" Student
+Student --right> "*" Attendance
 
 @enduml

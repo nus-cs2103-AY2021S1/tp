@@ -11,7 +11,7 @@ import seedu.canoe.model.student.Attendance;
 /**
  * Jackson-friendly version of {@link Attendance}.
  */
-class JsonAdaptedAttend {
+class JsonAdaptedAttendance {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Attend's %s field is missing!";
 
@@ -19,11 +19,11 @@ class JsonAdaptedAttend {
     private boolean isMarked = false;
 
     /**
-     * Constructs a {@code JsonAdaptedAttend} with the given {@code trainingTime}.
+     * Constructs a {@code JsonAdaptedAttendance} with the given {@code trainingTime}.
      */
     @JsonCreator
-    public JsonAdaptedAttend(@JsonProperty("trainingTime") LocalDateTime trainingTime,
-                             @JsonProperty("isMarked") boolean isMarked) {
+    public JsonAdaptedAttendance(@JsonProperty("trainingTime") LocalDateTime trainingTime,
+                                 @JsonProperty("isMarked") boolean isMarked) {
         this.trainingTime = trainingTime;
         this.isMarked = isMarked;
     }
@@ -31,7 +31,7 @@ class JsonAdaptedAttend {
     /**
      * Converts a given {@code Attend} into this class for Jackson use.
      */
-    public JsonAdaptedAttend(Attendance source) {
+    public JsonAdaptedAttendance(Attendance source) {
         trainingTime = source.getTrainingTime();
         isMarked = source.isMarked();
     }
