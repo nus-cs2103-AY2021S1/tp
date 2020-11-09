@@ -59,7 +59,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `addpicture`, `addvisit` and `profile` ([\#148](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/148))
-    * Improve overall styling ([\#255](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/255), )
+    * Improve overall styling ([\#255](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/255))
     * Removed discrepancies on formatting issues ([\#265](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/265))
   * Developer Guide:
     * Added implementation details of the `addpicture`, `addvisit` and `profile` feature ([\#83](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/83))
