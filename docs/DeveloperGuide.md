@@ -996,8 +996,6 @@ For all use cases below, the **System** is the `QuickCache` and the **Actor** is
 
 **Use case: UC07 - Test a single flashcard**
 
-**Actor: User**
-
 **MSS:**
 
 1. User requests to list flashcards
@@ -1024,8 +1022,6 @@ For all use cases below, the **System** is the `QuickCache` and the **Actor** is
 **System: QuickCache**
 
 **Use case: UC08 - Test a set of flashcards by category**
-
-**Actor: User**
 
 MSS:
 
@@ -1113,8 +1109,6 @@ MSS:
 
 **Use case: UC10 - Import flashcard data file**
 
-**Actor: User**
-
 MSS:
 
 1. User specifies the file name containing the set of flashcards to import from
@@ -1145,8 +1139,6 @@ MSS:
 
 **Use case: UC11 - Add tags during creation of a flashcard**
 
-**Actor: User**
-
 MSS:
 
 1. User creates a flashcard and specifies the tags associated with it
@@ -1163,8 +1155,6 @@ MSS:
     Use case ends.
 
 **Use case: UC12 - Edit an existing flashcard**
-
-**Actor: User**
 
 MSS:
 
@@ -1200,8 +1190,6 @@ MSS:
     Use case resumes at step 2.
 
 **Use case: UC13 - Search for flashcards based on tags and/or question**
-
-**Actor: User**
 
 **MSS**
 
@@ -1255,9 +1243,6 @@ MSS:
 
 **Use case: UC16 - Export flashcard data file**
 
-
-**Actor: User**
-
 MSS:
 
 1. User requests to list flashcards
@@ -1276,8 +1261,6 @@ MSS:
     Use case ends.
 
 **Use case: UC17 - Add difficulty during creation of a flashcard**
-
-**Actor: User**
 
 MSS:
 
