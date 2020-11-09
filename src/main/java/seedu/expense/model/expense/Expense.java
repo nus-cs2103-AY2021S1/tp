@@ -37,9 +37,9 @@ public class Expense {
 
     /**
      * Returns a generic {@code Expense} with specific {@code Tag} used for some internal functions.
-     * @see ExpenseBook#getBudgetBarLabel()
-     *
+     * 
      * @param tag Specific Tag to initialise new Expense.
+     * @see ExpenseBook#getBudgetBarLabel()
      */
     public static Expense getGenericExpenseWithTag(Tag tag) {
         return new Expense(Description.getGenericDescription(), Amount.getGenericAmount(),
