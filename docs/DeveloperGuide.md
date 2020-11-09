@@ -878,23 +878,24 @@ Similar to [UC03 (Delete a Client)](#uc03), but replace Client with Session.
 
 **MSS**
 
- 1. FitEgo shows a list of Clients and list of Sessions.
- 2. User requests to add a specific Schedule between a specified Client from Client List and Session from Session List.
- 3. FitEgo adds the Schedule. <br/> Use case ends.
+ 1. User requests to list Clients and Sessions.
+ 2. FitEgo shows a list of Clients and list of Sessions.
+ 3. User requests to add a specific Schedule between a specified Client from Client List and Session from Session List.
+ 4. FitEgo adds the Schedule. <br/> Use case ends.
 
 **Extensions**
 
-- 2a. The Client index or Session index is invalid.
+- 3a. The Client index or Session index is invalid.
 
-  - 2a1. FitEgo shows an error message.
+  - 3a1. FitEgo shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
   
-- 2b. The Schedule to be added already exists.
+- 3b. The Schedule to be added already exists.
 
-  - 2b1. FitEgo shows an error message.
+  - 3b1. FitEgo shows an error message.
 
-    Use case resumes at step 1.  
+    Use case resumes at step 2.  
 <br/>
 
 **Use case: UC11 Edit a Schedule**
@@ -923,23 +924,24 @@ Similar to [UC03 (Delete a Client)](#uc03), but replace Client with Session.
 
 **MSS**
 
- 1. FitEgo shows a list of Clients and list of Sessions.
- 2. User requests to delete a Schedule associated with a specified Client from the Client List and Session from the Session List.
- 3. FitEgo deletes the Schedule.  <br/> Use case ends.
+ 1. User requests to list Clients and Sessions.
+ 2. FitEgo shows a list of Clients and list of Sessions.
+ 3. User requests to delete a Schedule associated with a specified Client from the Client List and Session from the Session List.
+ 4. FitEgo deletes the Schedule. <br/> Use case ends.
 
 **Extensions**
 
-- 2a. The Client index or Session index is invalid.
+- 3a. The Client index or Session index is invalid.
 
-  - 2a1. FitEgo shows an error message.
+  - 3a1. FitEgo shows an error message.
   
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
-- 2b. There is no Schedule associated with the specified Client and Session.
+- 3b. There is no Schedule associated with the specified Client and Session.
 
-  - 2b1. FitEgo shows an error message.
+  - 3b1. FitEgo shows an error message.
 
-    Use case resumes at step 1.  
+    Use case resumes at step 2.  
 <br/>
 
 **Use case: UC13 Open User Guide in Browser**
