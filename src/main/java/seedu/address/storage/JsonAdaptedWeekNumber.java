@@ -14,7 +14,7 @@ class JsonAdaptedWeekNumber {
     private final String weekNumber;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
+     * Constructs a {@code JsonAdaptedWeekNumber} with the given {@code weekNumber}.
      */
     @JsonCreator
     public JsonAdaptedWeekNumber(@JsonProperty("weekNumber") String weekNumber) {

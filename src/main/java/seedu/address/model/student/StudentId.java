@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Student's id in the app.
+ * Represents a Student's id in Trackr.
  * Guarantees: immutable; is valid as declared in {@link #isValidStudentId(String)}
  */
 public class StudentId {

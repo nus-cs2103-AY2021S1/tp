@@ -5,26 +5,32 @@ by Team W12-2
 
 ## **Table of Contents**
 * [Section 1 - Preface](#section-1---preface)
-* [Section 2 - Setting up, getting started](#section-2---setting-up-getting-started)
-* [Section 3 - Design](#section-3---design)
-    * [3.1 - High-Level Architecture](#section-31---high-level-architecture)
-    * [3.2 - UI Component](#section-32---ui-component)
-    * [3.3 - Logic Component](#section-33---logic-component)
-    * [3.4 - Model Component](#section-34---model-component)
-    * [3.5 - Storage Component](#section-35---storage-component)
-    * [3.6 - Common Classes](#section-36---common-classes)
-* [Section 4 - Implementation](#section-4---implementation)
-    * [4.1 - Add Commands](#section-41---add-commands)
-    * [4.2 - Delete Commands](#section-42---delete-commands)
-    * [4.3 - Edit Commands](#section-43---edit-commands)
-    * [4.4 - Find Commands](#section-44---find-commands)
-    * [4.5 - List Commands](#section-45---list-commands)
-    * [4.6 - View Commands](#section-46---view-commands)
-    * [4.7 - Clear Command](#section-47---clear-command)
-    * [4.8 - Exit Command](#section-48---exit-command)
-    * [4.9 - Add Commands](#section-49---add-commands)
-* [Section 5 - Documentation, logging, testing, configuration, dev-ops](#section-5---documentation-logging-testing-configuration-dev-ops)
-* [Section 6 - Appendix](#section-6---appendix)
+* [Section 2 - Using this document](#section-2---using-this-document)
+* [Section 3 - Setting up, getting started](#section-3---setting-up-getting-started)
+* [Section 4 - Design](#section-4---design)
+    * [4.1 - High-Level Architecture](#section-41---high-level-architecture)
+    * [4.2 - UI Component](#section-42---ui-component)
+    * [4.3 - Logic Component](#section-43---logic-component)
+    * [4.4 - Model Component](#section-44---model-component)
+    * [4.5 - Storage Component](#section-45---storage-component)
+    * [4.6 - Common Classes](#section-46---common-classes)
+* [Section 5 - Implementation](#section-5---implementation)
+    * [5.1 - Add Commands - `addMod`, `addTG` and `addStudent`](#section-51---add-commands---addmod-addtg-and-addstudent)
+    * [5.2 - Delete Commands - `deleteMod`, `deleteTG` and `deleteStudent`](#section-52---delete-commands---deletemod-deletetg-and-deletestudent)
+    * [5.3 - Edit Commands - `editMod`, `editTG` and `editStudent`](#section-53---edit-commands---editmod-edittg-and-editstudent)
+    * [5.4 - Find Commands - `findMod`, `findTG` and `findStudent`](#section-54---find-commands---findmod-findtg-and-findstudent)
+    * [5.5 - List Commands - `listMod`, `listTG` and `listStudent`](#section-55---list-commands---listmod-listtg-and-liststudent)
+    * [5.6 - View Commands - `viewTG` and `viewStudent`](#section-56---view-commands---viewtg-and-viewstudent)
+    * [5.7 - Clear Command - `clear`](#section-57---clear-command---clear)
+    * [5.8 - Exit Command - `exit`](#section-58---exit-command---exit)
+    * [5.9 - Data saving and loading](#section-59---data-saving-and-loading)
+* [Section 6 - Documentation, logging, testing, configuration, dev-ops](#section-6---documentation-logging-testing-configuration-dev-ops)
+* [Appendix A - Product Scope](#appendix-a---product-scope)
+* [Appendix B - User Stories](#appendix-b---user-stories)
+* [Appendix C - Use Cases](#appendix-c---use-cases)
+* [Appendix D - Non-Functional Requirements](#appendix-d---non-functional-requirements)
+* [Appendix E - Glossary](#appendix-e---glossary)
+* [Appendix F - Instructions for Manual Testing](#appendix-f---instructions-for-manual-testing)
 
 ---
 
@@ -36,29 +42,30 @@ This is a Developer Guide to Trackr. A student and task management system for Te
 
 ---
 
+## **Section 2 - Using this Document**
 
-## **Section 2 - Setting up, getting started**
+
+## **Section 3 - Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ---
 
-## **Section 3 - Design**
+## **Section 4 - Design**
 
-### Section 3.1 - High-Level Architecture
+### Section 4.1 - High-Level Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-The **_Architecture Diagram_** given above explains the high-level design of the App. Given below is a quick overview of each component.
+The **_Architecture Diagram_** given above explains the high-level design of Trackr. Given below is a quick overview of each component.
 
 <div markdown="span" class="alert alert-primary">
-
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
--   At app launch: Initializes the components in the correct sequence, and connects them up with each other.
--   At shut down: Shuts down the components and invokes cleanup methods where necessary.
+-   at app launch: Initializes the components in the correct sequence, and connects them up with each other.
+-   at shut down: Shuts down the components and invokes clean-up methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
@@ -86,79 +93,88 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### Section 3.2 - UI component
+### Section 4.2 - UI component
 The UI Component defines what the user will see and interact with while using Trackr. `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` Component defines what the user will see and interact with while using Trackr. `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class. The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
--   Executes user commands using the `Logic` component.
--   Listens for changes to `Model` data so that the UI can be updated with the modified data.
+-   executes user commands using the `Logic` component.
+-   listens for changes to `Model` data so that the `UI` can be updated with the modified data.
 
-### Section 3.3 - Logic component
+### Section 4.3 - Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+The `Logic` component contains the `TrackrParser` object that creates `Parser` objects for each `Command` based on the user input taken from the `UI` component. The `Parser` object will break down the user input to obtain the arguments, and either create the corresponding `Command` object or throw an exception in the case of invalid inputs for the arguments. The `Logic` component also contains the `Model` component which allows for execution of the created `Command`.
+
+1. `Logic` uses the `TrackrParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a student to a tutorial group).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deleteTG 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deleteTG 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Section 3.4 - Model component
+### Section 4.4 - Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-The `Model`,
+The `Model` component contains the `Trackr` object, that handles the main type of data in the app, which is in the form of a list of `Module` objects. The `Module` object contains a list of `TutorialGroup` objects, and the `TutorialGroup` objects contains a list of `Student` objects. The `ModelManager` class exposes the methods which allows for the manipulation of this data (e.g. Editing a `Module` object's `ModuleId` object, deleting a `TutorialGroup` object, adding participation score for a `Student` object).
+
+The `Model` component,
 
 -   stores a `UserPref` object that represents the user’s preferences.
 -   stores the Trackr data.
 -   exposes unmodifiable `ObservableList<Module>`, `ObservableList<TutorialGroup>` and `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 -   does not depend on any of the other three components.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
 
-### Section 3.5 - Storage component
+### Section 4.5 - Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W12-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+
+The `Storage` component contains the `JsonModuleListStorage` object, which contains the `JsonSerializableModuleListStorage` which serves as the JSON version of a Trackr object; the main data type in the app. The methods `readModuleList()` and `saveModuleList()` convert the JSON objects to and from their native object types respectively (e.g. Converting a `JsonAdaptedTutorialGroup` object into a `TutorialGroup` object).
 
 The `Storage` component,
 
 -   can save `UserPref` objects in json format and read it back.
--   can save the module data in json format and read it back.
+-   can save the `Trackr` data in json format and read it back.
 
-### Section 3.6 - Common classes
+### Section 4.6 - Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.addressbook.commons` package, the package contains 2 sub packages, which are:
+
+- core: Contains software settings and information, also contains loggers for debugging purposes.
+- util: Contains utilities for other classes to use. Utilities can perform tasks such as parse strings or convert objects to and from Json format.
+
+
 
 ---
 
-## **Section 4 - Implementation**
+## **Section 5 - Implementation**
 
-This section describes some noteworthy details on how certain features are implemented. 
+This section describes some noteworthy details on how certain features are implemented.
 
 Trackr has three different data types: 
 - `Module`: The current module the user is teaching
@@ -182,7 +198,17 @@ Trackr's three data type also share the same commands, which are:
 
 Since Trackr stores and manages its data recursively, the commands for Module, Tutorial Group and Student work similarly.
 
-### Section 4.1 - Add Commands `addMod` `addTG` `addStudent`
+#### Design Considerations:
+**Aspect: List to contain the models**
+- Alternative 1: Use a single generic `UniqueList` that contains the models.
+    - Pros: Code that is easier to maintain due to abstraction. 
+    - Cons: Harder to implement.
+- Alternative 2 (Current choice): Use a separate `UniqueList` for each model such as `UniqueModuleList`.
+    - Pros: Easier to implement.
+    - Cons: More repetitive code.
+
+### Section 5.1 - Add Commands - `addMod`, `addTG` and `addStudent`
+
 #### Overview
 
 The Add command in Trackr enables users to easily add data types to the app. Users will be able to keep track of data they are
@@ -196,15 +222,41 @@ Given below is an example of the interaction between the Model and the `AddModul
 
 ![AddModuleSequenceDiagram](images/AddModSequenceDiagram.png)
 
-#### Design Considerations
-**Aspect: List to contain the models**
-- Option 1: Generic `UniqueList` that contains the models
-    - Pros: Abstraction,
-    - Cons: Harder to implement
-- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
-    - Pros: Easier to implement
-    - Cons: More repetitive code
-### Section 4.2 - Delete Commands `deleteMod` `deleteTG` `deleteStudent`
+![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
+
+Step 1. The user executes `addMod m/CS2103T` to add a module called CS2103T to Trackr. The `addMod` command calls
+`LogicManager#execute(String)`.
+
+Step 2. The contents of the `String` is parsed in `AddModuleCommandParser#parse(String)`. This method creates a new
+`Module` object with the parsed arguments. An `AddModuleCommand` object is then initialised with this `Module` object.
+
+Step 3. `LogicManager#execute(String)` calls the `AddModuleCommand#execute(Model)` method of the `AddModuleCommand`
+object.
+
+Step 4. Within `Model`, the method `Model#addModule(Module)` is executed and this adds the `Module` to the
+`internalList` of `UniqueModuleList`.
+
+Step 5. Once the `Module` has been added to the `internaList`, `AddModuleCommand#execute(Model)` creates a
+`CommandResult` object and the `CommandResult` is returned to `LogicManager`.
+
+> Note: There are some differences for the add commands of `TutorialGroup` and `Student` during Step 4.
+>
+> For `TutorialGroup`:
+> - Within each `Module`, there is an `UniqueTutorialGroupList`.
+> - The `Model` will check if the user is currently in the Tutorial Group View using `Model#isInTutorialGroupView()`.
+> This ensures that there is a target `Module` for the `TutorialGroup` to be added to.
+> - `Model#addTutorialGroup(TutorialGroup)` method then retrieves the `UniqueTutorialGroupList` of the target `Module`
+> and adds the `TutorialGroup` to the `internalList` of the `UniqueTutorialGroupList`.
+>
+> For `Student`:
+> - Within each `TutorialGroup`, there is an `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be added to.
+> - `Model#addStudent(Student)` method then retrieves the `UniqueStudentList` of the target `Module` and `TutorialGroup`
+> and adds the `Student` to the `internalList` of the `UniqueStudentList`.
+
+### Section 5.2 - Delete Commands - `deleteMod`, `deleteTG` and `deleteStudent`
+
 #### Overview
 
 The Delete command in Trackr enables users to easily delete data types from the app.
@@ -217,16 +269,41 @@ Given below is an example of the interaction between the Model and the `DeleteMo
 
 ![DeleteModuleSequenceDiagram](images/DeleteModuleSequenceDiagram.png)
 
-#### Design Considerations
-**Aspect: List to contain the models**
-- Option 1: Generic `UniqueList` that contains the models
-    - Pros: Abstraction,
-    - Cons: Harder to implement
-- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
-    - Pros: Easier to implement
-    - Cons: More repetitive code
-    
-### Section 4.3 - Edit Commands `editMod` `editTG` `editStudent`
+![DeleteCommandActivityDiagram](images/DeleteCommandActivityDiagram.png)
+
+Step 1. The user executes `deleteMod 1` to delete the first module in the displayed list. The `deleteMod` command calls
+`LogicManager#execute(String)`.
+
+Step 2. The contents of the `String` is parsed in `DeleteModuleCommandParser#parse(String)`. This method creates a new
+`Index` object with the parsed arguments. A `DeleteModuleCommand` object is then initialised with this `Index` object.
+
+Step 3. `LogicManager#execute(String)` calls the `DeleteModuleCommand#execute(Model)` method of the
+`DeleteModuleCommand` object.
+
+Step 4. Within `Model`, the method `Model#deleteModule(Module)` is executed and this deletes the `Module` from the
+`internalList` of `UniqueModuleList`.
+
+Step 5. Once the `Module` has been deleted from the `internaList`, `DeleteModuleCommand#execute(Model)` creates an
+`CommandResult` object and the `CommandResult` is returned to `LogicManager`.
+
+> Note: There are some differences for the delete commands of `TutorialGroup` and `Student` during Step 4.
+>
+> For `TutorialGroup`:
+> - Within each `Module`, there is an `UniqueTutorialGroupList`.
+> - The `Model` will check if the user is currently in the Tutorial Group View using `Model#isInTutorialGroupView()`.
+> This ensures that there is a target `Module` for the `TutorialGroup` to be deleted from.
+> - `Model#deleteTutorialGroup(TutorialGroup)` method then retrieves the `UniqueTutorialGroupList` of the target
+> `Module` and deletes the `TutorialGroup` from the `internalList` of the `UniqueTutorialGroupList`.
+>
+> For `Student`:
+> - Within each `TutorialGroup`, there is a `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be deleted from.
+> - `Model#deleteStudent(Student)` method then retrieves the `UniqueStudentList` of the target `Module` and
+> `TutorialGroup` and deletes the `Student` from the `internalList` of the `UniqueStudentList`.
+
+### Section 5.3 - Edit Commands - `editMod`, `editTG` and `editStudent`
+
 #### Overview
 
 The Edit command in Trackr enables users to easily edit data types. Users will be able to modify data.
@@ -239,16 +316,42 @@ Given below is an example of the interaction between the Model and the `EditModu
 
 ![EditModuleSequenceDiagram](images/EditModuleSequenceDiagram.png)
 
-#### Design Considerations
-**Aspect: List to contain the models**
-- Option 1: Generic `UniqueList` that contains the models
-    - Pros: Abstraction,
-    - Cons: Harder to implement
-- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
-    - Pros: Easier to implement
-    - Cons: More repetitive code
-    
-### Section 4.4 - Find Commands `findMod` `findTG` `findStudent`
+![EditCommandActivityDiagram](images/EditCommandActivityDiagram.png)
+
+Step 1. The user executes `editMod 1 m/CS2100` to edit the first module in the displayed list. The `editMod` command 
+calls `LogicManager#execute(String)`.
+
+Step 2. The contents of the `String` is parsed in `EditModuleCommandParser#parse(String)`. This method creates a new
+`Index` and `EditModuleDescriptor` object with the parsed arguments. An `EditModuleCommand` object is then initialised
+with the `Index` and `EditModuleDescriptor` object.
+
+Step 3. `LogicManager#execute(String)` calls the `EditModuleCommand#execute(Model)` method of the `EditModuleCommand`
+object. The method creates a new `Module` object with the edited fields.
+
+Step 4. Within `Model`, the method `Model#setModule(Module, Module)` is executed and this replaces the current `Module`
+from the `internalList` of `UniqueModuleList` with the edited one.
+
+Step 5. Once the `Module` has been edited in the `internaList`, `EditModuleCommand#execute(Model)` creates an
+`CommandResult` object and the `CommandResult` is returned to `LogicManager`.
+
+> Note: There are some differences for the edit commands of `TutorialGroup` and `Student` during Step 4.
+>
+> For `TutorialGroup`:
+> - Within each `Module`, there is an `UniqueTutorialGroupList`.
+> - The `Model` will check if the user is currently in the Tutorial Group View using `Model#isInTutorialGroupView()`.
+> This ensures that there is a target `Module` for the `TutorialGroup` to be edited from.
+> - `Model#setTutorialGroup(TutorialGroup, TutorialGroup)` method then retrieves the `UniqueTutorialGroupList` of the
+> target `Module` and edits the `TutorialGroup` in the `internalList` of the `UniqueTutorialGroupList`.
+>
+> For `Student`:
+> - Within each `TutorialGroup`, there is a `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be edited from.
+> - `Model#setStudent(Student, Student)` method then retrieves the `UniqueStudentList` of the target `Module` and
+> `TutorialGroup` and edits the `Student` in the `internalList` of the `UniqueStudentList`.
+
+### Section 5.4 - Find Commands - `findMod`, `findTG` and `findStudent`
+
 #### Overview
 
 The Find command in Trackr enables users to easily find data based on keywords. This will save their time whenever they want to 
@@ -262,16 +365,48 @@ Given below is an example of the interaction between the Model and the `FindModu
 
 ![FindModuleSequenceDiagram](images/FindModuleSequenceDiagram.png)
 
-#### Design Considerations
-**Aspect: List to contain the models**
-- Option 1: Generic `UniqueList` that contains the models
-    - Pros: Abstraction,
-    - Cons: Harder to implement
-- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
-    - Pros: Easier to implement
-    - Cons: More repetitive code
-    
-### Section 4.5 - List Commands `listMod` `listTG` `listStudent`
+![FindCommandActivityDiagram](images/FindCommandActivityDiagram.png)
+
+Step 1. The user executes `findMod cs2100` to find module(s) that contain the keyword _cs2100_. The `findMod` command 
+calls `LogicManager#execute(String)`.
+
+Step 2. The contents of the `String` is parsed in `FindModuleCommandParser#parse(String)`. This method creates a new
+`ModuleContainsKeywordsPredicate` object with the parsed arguments. A `FindModuleCommand` object is then initialised
+with the `ModuleContainsKeywordsPredicate` object.
+
+Step 3. `LogicManager#execute(String)` calls the `FindModuleCommand#execute(Model)` method of the `FindModuleCommand`
+object.
+
+Step 4. Within `Model`, the method `Model#updateFilteredModuleList(Predicate<Module>)` is executed and this updates
+the displayed list of modules.
+
+Step 5. `FindModuleCommand#execute(Model)` creates a `CommandResult` object and the `CommandResult` is returned to
+`LogicManager`.
+
+> Note: There are some differences for the find commands of `TutorialGroup` and `Student` during Step 4. `TutorialGroup`
+> also has its own predicate class called `TutorialContainsKeywordsPredicate` while `Student`'s predicate class is
+> called `NameContainsKeywordsPredicate`.
+>
+> For `TutorialGroup`:
+> - Within each `Module`, there is an `UniqueTutorialGroupList`.
+> - The `Model` will check if the user is currently in the Tutorial Group View using `Model#isInTutorialGroupView()`.
+> This ensures that there is a target `Module` for the `TutorialGroup` to be searched from.
+> - `Model#updateFilteredTutorialGroupList(Predicate<TutorialGroup>)` method then updates the displayed list of
+> tutorial groups.
+>
+> For `Student`:
+> - Within each `TutorialGroup`, there is a `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be searched from.
+> - `Model#updateFilteredStudentList(Predicate<Student>)` method then updates the displayed list of students.
+>
+> The commands `attendanceBelow` and `participationBelow` also follow similar implementations. Their predicate classes
+> are `AttendanceBelowSpecifiedScorePredicate` and `ParticipationBelowSpecifiedScorePredicate` respectively. Like the
+> aforementioned find command for `Student`, `attendanceBelow` and `participationBelow` uses the 
+> `Model#updateFilteredStudentList` method to update the displaye list of students.
+
+### Section 5.5 - List Commands - `listMod`, `listTG` and `listStudent`
+
 #### Overview
 
 The List command in Trackr enables users to easily list all data. Users will be able to see all data after using the Find Commands.
@@ -284,19 +419,44 @@ Given below is an example of the interaction between the Model and the `ListModu
 
 ![ListModSequenceDiagram](images/ListModuleCommandSequenceDiagram.png)
 
-#### Design Considerations
-**Aspect: List to contain the models**
-- Option 1: Generic `UniqueList` that contains the models
-    - Pros: Abstraction,
-    - Cons: Harder to implement
-- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
-    - Pros: Easier to implement
-    - Cons: More repetitive code
-    
-### Section 4.6 - View Commands `viewTG` `viewStudent`
+![ListCommandActivityDiagram](images/ListCommandActivityDiagram.png)
+
+Step 1. The user executes `listMod` to view all the modules in Trackr. The `listMod` command calls
+`LogicManager#execute(String)`.
+
+Step 2. The contents of the `String` is parsed in `TrackrParser#parseCommand(String)`. This method creates a new
+`ListModuleCommand` object.
+
+Step 3. `LogicManager#execute(String)` calls the `ListModuleCommand#execute(Model)` method of the `ListModuleCommand`
+object.
+
+Step 4. Within `Model`, the method `Model#updateFilteredModuleList(Predicate<Module>)` is executed and this displays
+all the modules within Trackr.
+
+Step 5. `ListModuleCommand#execute(Model)` creates a `CommandResult` object and the `CommandResult` is returned to
+`LogicManager`.
+
+> Note: There are some differences for the list commands of `TutorialGroup` and `Student` during Step 4.
+>
+> For `TutorialGroup`:
+> - Within each `Module`, there is an `UniqueTutorialGroupList`.
+> - The `Model` will check if the user is currently in the Tutorial Group View using `Model#isInTutorialGroupView()`.
+> This ensures that there is a target `Module` for the `TutorialGroup` to be listed from.
+> - `Model#updateFilteredTutorialGroupList(Predicate<TutorialGroup>)` method then displays all the tutorial groups
+> within the target `Module`.
+>
+> For `Student`:
+> - Within each `TutorialGroup`, there is an `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be listed from.
+> - `Model#updateFilteredStudentList(Predicate<Student>)` method then displays all the students within the target 
+> `Module` and `TutorialGroup`.
+
+### Section 5.6 - View Commands - `viewTG` and `viewStudent`
+
 #### Overview
 
-The Vieww command in Trackr enables users to easily navigate between the different views: Module View, Tutorial Group View and Student View.
+The View command in Trackr enables users to easily navigate between the different views: Module View, Tutorial Group View and Student View.
 
 #### Implementation
 Each View command for `TutorialGroup`, and `Student` is split into `ViewTutorialGroupCommand`, and `ViewStudentCommand`, respectively. Note that there
@@ -306,16 +466,35 @@ Given below is an example of the interaction between the Model and the `ViewTuto
 
 ![ViewTGSequenceDiagram](images/ViewTutorialGroupCommandSequenceDiagram.png)
 
-#### Design Considerations
-**Aspect: List to contain the models**
-- Option 1: Generic `UniqueList` that contains the models
-    - Pros: Abstraction,
-    - Cons: Harder to implement
-- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
-    - Pros: Easier to implement
-    - Cons: More repetitive code
-    
-### Section 4.7 - Clear Command `clear`
+![ViewTGActivityDiagram](images/ViewTutorialGroupCommandActivityDiagram.png)
+
+Step 1. The user executes `viewTG 1` to view the tutorial groups of the first module within the Module View. The
+`viewTG` command calls `LogicManager#execute(String)`.
+
+Step 2. The contents of the `String` is parsed in `ViewTutorialGroupCommandParser#parse(String)`. This method creates a
+new `Index` object with the parsed arguments. A `ViewTutorialGroupCommand` object is then initialised with this `Index`
+object.
+
+Step 3. `LogicManager#execute(String)` calls the `ViewTutorialGroupCommand#execute(Model)` method of the
+`ViewTutorialGroupCommand` object.
+
+Step 4. Within `Model`, the method `Model#setViewToTutorialGroup(Module)` is executed and this displays all the tutorial
+groups of the target `Module`.
+
+Step 5. `ViewTutorialGroupCommand#execute(Model)` creates a `CommandResult` object and the `CommandResult` is returned
+to `LogicManager`.
+
+> Note: There are some differences for the view command of `Student` during Step 4.
+>
+> For `Student`:
+> - Within each `TutorialGroup`, there is an `UniqueStudentList`.
+> - The `Model` will check if the user is currently in the Student View using `Model#isInStudentView()`. This ensures
+> that there is a target `Module` and `TutorialGroup` for the `Student` to be viewed from.
+> - `Model#setViewToStudent(TutorialGroup)` method then displays all the students of the target `Module` and 
+> `TutorialGroup`.
+
+### Section 5.7 - Clear Command - `clear`
+
 #### Overview
 
 The Clear command in Trackr enables users to easily clears all data. Users will be able to erase all data in one simple command.
@@ -328,16 +507,10 @@ Given below is an example of the interaction between the Model and the `ClearCom
 
 ![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
 
-#### Design Considerations
-**Aspect: List to contain the models**
-- Option 1: Generic `UniqueList` that contains the models
-    - Pros: Abstraction,
-    - Cons: Harder to implement
-- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
-    - Pros: Easier to implement
-    - Cons: More repetitive code
-    
-### Section 4.8 - Exit Command `exit`
+![ClearCommandActivityDiagram](images/ClearCommandActivityDiagram.png)
+
+### Section 5.8 - Exit Command - `exit`
+
 #### Overview
 
 The Exit command in Trackr enables users to easily exit the app. Users will be able to close the application. Data will be
@@ -351,16 +524,9 @@ Given below is an example of the interaction between the Model and the `ExitComm
 
 ![ExitCommandSequenceDiagram](images/ExitCommandSequenceDiagram.png)
 
-#### Design Considerations
-**Aspect: List to contain the models**
-- Option 1: Generic `UniqueList` that contains the models
-    - Pros: Abstraction,
-    - Cons: Harder to implement
-- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
-    - Pros: Easier to implement
-    - Cons: More repetitive code
+![ExitCommandActivityDiagram](images/ExitCommandActivityDiagram.png)
 
-### Section 4.9 - Data saving and loading
+### Section 5.9 - Data saving and loading
 
 #### Implementation
 
@@ -409,8 +575,7 @@ The following activity diagram summarizes how data from the Json file is read an
 
 ---
 
-## **Section 5 - Documentation, logging, testing, configuration, dev-ops**
-
+## **Section 6 - Documentation, logging, testing, configuration, dev-ops**
 -   [Documentation guide](Documentation.md)
 -   [Testing guide](Testing.md)
 -   [Logging guide](Logging.md)
@@ -418,173 +583,240 @@ The following activity diagram summarizes how data from the Json file is read an
 -   [DevOps guide](DevOps.md)
 
 ---
-# **Section 6 - Appendix**
-## **Appendix: Requirements**
 
-### Product scope
-
+## **Appendix A - Product Scope**
 **Target user profile**:
+-   Teaching Assistants(TAs) across NUS
+-   Teaches multiple modules
+-   Needs to manage multiple classes
+-   Needs to manage multiple students
+-   Prefers desktop apps over other types
+-   Prefers data to be consolidated in one place
+-   Prefers data to be saved locally
+-   Can type fast
+-   Prefers typing to mouse interactions
+-   Is reasonably comfortable using Command Line Interface (CLI) apps
 
--   has a need to manage a significant number of students
--   prefer desktop apps over other types
--   can type fast
--   prefers typing to mouse interactions
--   is reasonably comfortable using CLI apps
+**Value proposition**: 
+-   Trackr allows teaching assistants to manage modules, tutorial groups, and students all in one place.
+-   Trackr stores and retrives information faster and more efficiently than a typical mouse/GUI driven app. 
+-   Breeze through your admin work with Trackr, so you can focus on the work that really matters
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 
-### User stories
+## **Appendix B - User Stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                               | I want to …​                                                          | So that I can…​                                                 |
-| -------- | ------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------- |
-| `* * *`  | TA                                    | add/delete students to my list                                        | easily categorize them                                          |
-| `* * *`  | TA                                    | add/delete modules                                                    |                                                                 |
-| `* * *`  | TA                                    | rename a module                                                       | correct any errors                                              |
-| `* * *`  | TA who needs to contact many students | search a person by name or module                                     | get their contact details                                       |
-| `* * *`  | TA managing many modules              | have a checklist of the things I want to do in each tutorial          | remember what I need to cover in each tutorial                  |
-| `* * *`  | TA                                    | save my data                                                          | continue where I left off                                       |
-| `* * *`  | TA                                    | update a checklist of task such as deleting or marking a task as done | know what to do and keep track of the tasks that have been done |
+| Priority | As a …​                               | I want to …​                                                          | So that I can…​|
+| -------- | ------------------------------------- | -----------------------------------| ---------------------------------------------------------------  |
+| `* * *`  | Teaching Assistant         | add/delete a module                             | manage the list of modules I teach                             |
+| `* * *`  | Teaching Assistant         | edit a module                                   | keep the module information accurate if there are changes      |
+| `* * *`  | Teaching Assistant         | find a module                                   | quickly get to the module I am looking for                     |
+| `* * *`  | Teaching Assistant         | list all the modules I teach                    | have an overall view of all the modules                        |
+| `* * *`  | Teaching Assistant         | add/delete a tutorial group                     | manage the list of tutorial groups I teach                     | 
+| `* * *`  | Teaching Assistant         | edit a tutorial group                           | keep the tutorial group information accurate if there are changes| 
+| `* * *`  | Teaching Assistant         | find a tutorial group                           | quickly get to the tutorial group I am looking for             |
+| `* * *`  | Teaching Assistant         | list all the tutorial groups I teach            | have an overall view of all the tutorial groups                |
+| `* * *`  | Teaching Assistant         | add/delete students to my list                  | manage the list of students I teach                            |
+| `* * *`  | Teaching Assistant         | edit a student                                  | keep the student information accurate if there are changes     |
+| `* * *`  | Teaching Assistant         | find a student                                  | quickly get to the student I am looking for                    |
+| `* * *`  | Teaching Assistant         | add/delete attendance of a student              | properly track the attendance of my students                   |
+| `* * *`  | Teaching Assistant         | list all the students I teach                   | have an overall view of all the students                       |
+| `* * *`  | Teaching Assistant         | edit attendance of a student                    | keep the attendance information accurate if there are changes  |
+| `* * *`  | Teaching Assistant         | filter attendance of my students                | find students who have not been attending classes              |
+| `* * *`  | Teaching Assistant         | add participation scores of my students         | credit my students for their participation                     |
+| `* * *`  | Teaching Assistant         | edit participation scores of my students        | keep the participation information accurate if there are changes|
+| `* * *`  | Teaching Assistant         | filter participation scores of my students      | check if any of my students are not participating              |
+| `* * *`  | Teaching Assistant         | save my data                                    | continue where I left off in the previous session              |
+| `* * *`  | Teaching Assistant         | clear all my existing data                      | easily start on a clean slate for a new semester               |
+| `* * *`  | Teaching Assistant         | access a help guide                             | look up my problems if when I encounter any                    |
+| `* * *`  | Teaching Assistant         | exit the app                                    | exit the app immediately to close it                           |
+| `* * `   | Teaching Assistant         | have a way to upload stored on an excel sheet   | input information I already have stored elsewhere              |
+| `* * `   | Teaching Assistant         | have a way to export data onto an excel sheet   | easily extract information from the app to submit              |
 
 _{More to be added}_
 
-### Use cases
+---
 
-(For all use cases below, the **System** is the `Trackr` and the **Actor** is the `user`, unless specified otherwise)
+## **Appendix C - Use Cases**
 
-**Use case: UC01 - Add a person**
+(For all use cases below, the **System** is `Trackr` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: UC01 - View all tutorial groups within a module**
+
+**Preconditions: User is in Module View**
 
 **MSS**
 
-1.  User requests to list persons
-2.  Trackr shows a list of persons
-3.  User requests to add a specific person to the list
-4.  Trackr adds the person
+1. User keys in command to view the tutorial groups of a specific module.
+2. Trackr displays the list of tutorial groups and shows a confirmation message.
 
 Use case ends.
 
 **Extensions**
 
--   2a. Incorrect input format
-    -   2a1. Trackr shows an error message
-    Use Case resumes at 2
+- 1a. Trackr detects an error in the command parameter.
+    - 1a1. Trackr displays an error message and proper command format.
+    - 1a2. User enters a new parameter.
 
-**Use case: UC02 - Delete a person**
+    Steps 1a1-1a2 are repeated until the parameter entered are correct.
+
+    Use case resumes from step 2.
+
+**Use case: UC02 - View all students within a tutorial group of a module**
+
+**Preconditions: User is in Tutorial Group View**
 
 **MSS**
 
-1.  User requests to list persons
-2.  Trackr shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  Trackr deletes the person
+1. User requests to view all tutorial groups within a module (UC01).
+2. User keys in command to view the students of a specific tutorial group.
+3. Trackr displays the list of students and shows a confirmation message.
 
 Use case ends.
 
 **Extensions**
 
--   2a. The list is empty.
+- 2a. Trackr detects an error in the command parameter.
+    - 2a1. Trackr displays an error message and proper command format.
+    - 2a2. User enters a new parameter.
 
-Use case ends.
+    Steps 2a1-2a2 are repeated until the parameter entered are correct.
 
--   3a. The given index is invalid.
+    Use case resumes from step 3.
 
-    -   3a1. Trackr shows an error message.
+**Use case: UC03 - Add a student**
 
-        Use case resumes at step 2.
-
-**Use case: UC03 - Loading a save file**
-
-**MSS**
-
-1. User launches the application
-2. Trackr attempts to read the save file
-3. Trackr successfully parses the save file and loads the lists of modules on it
-4. User can start using the application
-
-    Use case ends.
-
-**Extensions**
-
--   3a. The save file is corrupted / in the wrong format
-
-    -   3a1. Trackr shows an error message
-    -   3a2. Trackr starts a new save file and overwrites the existing one
-
-        Use case resumes at step 4.
-
--   3b. The save file does not exist
-
-    -   3b1. Trackr creates a new save file
-
-        Use case resumes at step 4.
-
-**Use case: UC04 - Search for a person**
+**Preconditions: User is in Student View**
 
 **MSS**
 
-1.  User requests to list persons
-2.  Trackr shows a list of persons
-3.  User requests to search for a specific person in the list
-4.  Trackr displays the person
+1. User requests to view all students within a tutorial group of a module (UC02).
+2. User enters the student data.
+3. Trackr adds the student to the displayed list.
+4. Trackr shows a message with the added student's details.
 
 Use case ends.
 
 **Extensions**
 
--   2a. The list is empty.
+- 2a. Trackr detects that the data entered is in the wrong format.
+    - 2a1. Trackr displays an error message and proper command format.
+    - 2a2. User enters new data.
 
-Use case ends.
+    Steps 2a1-2a2 are repeated until the data entered are correct.
 
--   3a. The given information is invalid.
+    Use case resumes from step 3.
 
-    -   3a1. Trackr shows an error message.
+**Use case: UC04 - Delete a student**
 
-    Use case resumes at 1.
-
-**Use case: UC05 - Add a checklist of task**
+**Preconditions: User is in Student View**
 
 **MSS**
 
-1.  User requests to list checklist of tasks
-2.  Trackr shows a list of tasks
-3.  User requests to add a specific task to the list
-4.  Trackr adds the task to the list
+1. User requests to view all students within a tutorial group of a module (UC02).
+2. User enters command to delete a specific student in the displayed list.
+3. Trackr deletes the student from the displayed list.
+4. Trackr shows a message with the deleted student's details.
 
 Use case ends.
 
 **Extensions**
 
--   2a. Incorrect input format
-    -   2a1. Trackr shows an error message
-    Use Case resumes at 2
+- 1a. The list is empty.
+Use case ends.
 
-**Use case: UC06 - Mark a task in the list as done**
+- 2a. Trackr detects an error in the command parameter.
+    - 2a1. Trackr displays an error message and proper command format.
+    - 2a2. User enters a new parameter.
+
+    Steps 2a1-2a2 are repeated until the parameter entered are correct.
+
+    Use case resumes from step 3.
+
+**Use case: UC05 - Loading a save file**
 
 **MSS**
 
-1.  User requests to list checklist of tasks
-2.  Trackr shows a list of tasks
-3.  User requests to mark a specific task as done
-4.  Trackr marks the task as done
-    Use case ends.
+1. User launches the application.
+2. Trackr attempts to read the save file.
+3. Trackr successfully parses the save file and loads the lists of modules on it.
+4. User can start using the application.
+
+Use case ends.
 
 **Extensions**
 
--   2a. Incorrect input format
-    -   2a1. Trackr shows an error message
-    Use Case resumes at 2
+- 3a. The save file is corrupted or in the wrong format.
+    - 3a1. Trackr shows an error message.
+    - 3a2. Trackr starts a new save file and overwrites the existing one.
 
-### Non-Functional Requirements
+    Use case resumes from step 4.
+
+- 3b. The save file does not exist.
+    - 3b1. Trackr creates a new save file.
+
+    Use case resumes from step 4.
+
+**Use case: UC06 - Search for a student**
+
+**Preconditions: User is in Student View**
+
+**MSS**
+
+1. User requests to view all students within a tutorial group of a module (UC02).
+2. User enters the find command with keyword(s) to search for a specific student in the list.
+3. Trackr displays a list of student(s) with name(s) that match the keyword(s).
+
+Use case ends.
+
+**Extensions**
+
+- 1a. The list is empty.
+
+Use case ends.
+
+**Use case: UC07 - Edit a student's details**
+
+**Preconditions: User is in Student View**
+
+**MSS**
+
+1. User requests to view all students within a tutorial group of a module (UC02).
+2. User enters the edit command with new student details for a specific student in the list.
+3. Trackr edits the student in the displayed list.
+4. Trackr shows a message with the edited student's details.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. The list is empty.
+
+Use case ends.
+
+- 2a. Trackr detects an error in the command.
+    - 2a1. Trackr displays an error message and proper command format.
+    - 2a2. User enters new command.
+
+    Steps 2a1-2a2 are repeated until the parameter entered are correct.
+
+    Use case resumes from step 3.
+
+---
+
+## **Appendix D - Non-Functional Requirements**
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 student details without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  The data should be stored locally so the user would not require the Internet to access his data.
+2.  Should be able to hold up to 1000 module, tutorial group and student details without a noticeable sluggishness in
+performance for typical usage.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
+be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The data should be stored locally, so the user would not require the Internet to access his data.
 
-_{More to be added}_
+---
 
-### Glossary
+## **Appendix E - Glossary**
 
 -   **Mainstream OS**: Windows, Linux, Unix, OS-X
 -   **Private contact detail**: A contact detail that is not meant to be shared with others
@@ -595,7 +827,7 @@ _{More to be added}_
 
 ---
 
-## **Appendix: Instructions for manual testing**
+## **Appendix F - Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 

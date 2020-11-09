@@ -30,7 +30,8 @@ public class JsonSerializableModuleList {
     /**
      * Converts a given {@code ReadOnlyModuleList} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableModuleList}.
+     * @param source The module list that gets converted, future changes to this will not affect
+     * the created {@code JsonSerializableModuleList}.
      */
     public JsonSerializableModuleList(ReadOnlyTrackr<Module> source) {
         assert source != null;

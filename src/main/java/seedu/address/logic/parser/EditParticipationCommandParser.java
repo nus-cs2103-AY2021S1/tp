@@ -9,7 +9,7 @@ import seedu.address.logic.commands.EditParticipationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EditParticipationCommandParser object.
+ * Parses input arguments and creates a new EditParticipationCommand object.
  */
 public class EditParticipationCommandParser implements Parser<EditParticipationCommand> {
 

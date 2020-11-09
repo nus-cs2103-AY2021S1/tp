@@ -6,6 +6,9 @@ import seedu.address.logic.commands.AttendanceBelowCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.AttendanceBelowSpecifiedScorePredicate;
 
+/**
+ * Parses input arguments and creates a new AttendanceBelowCommand object.
+ */
 public class AttendanceBelowCommandParser {
     /**
      * Parses the given {@code String} of arguments in the context of the AttendanceBelowCommand

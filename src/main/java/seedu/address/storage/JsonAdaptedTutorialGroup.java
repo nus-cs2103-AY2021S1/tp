@@ -14,6 +14,9 @@ import seedu.address.model.tutorialgroup.TimeOfDay;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.model.tutorialgroup.TutorialGroupId;
 
+/**
+ * Jackson-friendly version of {@link TutorialGroup}.
+ */
 public class JsonAdaptedTutorialGroup {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Tutorial Group's %s field is missing!";
@@ -55,9 +58,9 @@ public class JsonAdaptedTutorialGroup {
     }
 
     /**
-     * Converts this Jackson-friendly adapted module object into the model's {@code Module} object.
+     * Converts this Jackson-friendly adapted tutorial group object into the model's {@code TutorialGroup} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted module.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted tutorial group.
      */
     public TutorialGroup toModelType() throws IllegalValueException {
 

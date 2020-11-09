@@ -6,6 +6,9 @@ import seedu.address.logic.commands.ParticipationBelowCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.ParticipationBelowSpecifiedScorePredicate;
 
+/**
+ * Parses input arguments and creates a new ParticipationBelowCommand object.
+ */
 public class ParticipationBelowCommandParser {
     /**
      * Parses the given {@code String} of arguments in the context of the ParticipationBelowCommand

@@ -6,6 +6,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
+/**
+ * Lists all the students within the current tutorial group.
+ */
 public class ListStudentCommand extends Command {
     public static final String COMMAND_WORD = "listStudent";
 
