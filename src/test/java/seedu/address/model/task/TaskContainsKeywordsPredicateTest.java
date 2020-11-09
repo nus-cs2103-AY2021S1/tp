@@ -121,7 +121,7 @@ public class TaskContainsKeywordsPredicateTest {
         predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_TITLE, "assignment");
         assertTrue(predicate.test(new DeadlineBuilder().withTitle("submit assignment").build()));
-        predicate.setKeyword(PREFIX_DATE, "01-01-2020");
+        predicate.setKeyword(PREFIX_DATE, "01-01-2222");
         assertFalse(predicate.test(new DeadlineBuilder().withTitle("submit assignment").build()));
         assertFalse(predicate.test(new DeadlineBuilder().withTitle("random").build()));
     }
