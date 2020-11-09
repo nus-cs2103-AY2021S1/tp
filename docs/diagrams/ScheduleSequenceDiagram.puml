@@ -26,13 +26,18 @@ Model -> SchedulePrefs : setViewMode(ScheduleViewMode)
 ScheduleCommand -> Model : updateFilteredStudentList(Predicate)
 
 ScheduleCommand -> Model : updateClassTimesToEvent()
+activate Model
+
 Model -> Scheduler : mapClassTimesToLessonEvent(List<Student>)
 activate Scheduler
 
 Scheduler -> Scheduler : resetData(List<Event>)
-
 Scheduler -[hidden]-> Scheduler
+Scheduler --> Model
 deactivate Scheduler
+
+Model --> ScheduleCommand
+deactivate Model
 destroy Scheduler
 
 create CommandResult
