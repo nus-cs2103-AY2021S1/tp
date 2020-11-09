@@ -248,7 +248,7 @@ The following activity diagram summarises what happens when a user executes the 
 
 ![RandomQuizActivityDiagram](images/RandomQuizActivityDiagram.png)
 
-### <a name="scoring"></a>\[Implemented\] Saving Score History
+### <a name="scoring"></a> Saving Score History
 
 This feature saves scores from previous rounds of quizzing. It is facilitated by classes in the `Command`, `Model` and `Storage` components.
 
@@ -618,7 +618,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `quiz` -> `end quiz` -> `scores` <br>
     Expected: The score and German phrases tested in this attempt are shown.
     
-    1. [To be executed immediately after (b)] Test case: `add e/forgetfulness g/vergesslichkeit` -> `quiz` -> `end quiz` -> `scores` <br>
+    1. [To be executed immediately after (b)] Test case: `add g/Vergesslichkeit e/forgetfulness` -> `quiz` -> `end quiz` -> `scores` <br>
     Expected: The score and German phrases tested in this attempt are shown at the top of the list, above the previous attempt.
 
     1. [To be executed immediately after (c)] Test case: `sort latest` -> `delete 1` -> `quiz` -> `end quiz` -> `scores` <br>
