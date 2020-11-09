@@ -1016,3 +1016,27 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: Change system time to 15 days in the future (procedure for [Mac](https://support.apple.com/en-za/guide/mac-help/mchlp2996/mac) and [Windows 10](https://support.microsoft.com/en-us/windows/how-to-set-your-time-and-time-zone-dfaa7122-479f-5b98-2a7b-fa0b6e01b261)) Restart ResiReg. <br>
     Expected: No bin item is removed. 
+
+### Archiving a semester
+1. Archiving the currently displayed semester
+
+    1. Test case: `archive`<br>
+       Expected: All current allocations are reset, meaning students should no longer be assigned to a room. The GUI should display the succeeding semester.
+
+### Allocating a student to a room
+1. Allocating a student present in ResiReg, to a Room present in ResiReg
+
+   1. Prerequisites: The student should be displayed in the students list, and the room should be displayed in the rooms list. The `toggle-split` command may be used for a side-by-side view of the 2 lists. Ensure that Room 1 has been allocated to Student 1.
+
+   1. Test case: `allocate ri/3 si/3`<br>
+      Expected: The third student in the students list should be allocated to the third room in the rooms list.
+
+   1. Test case: `allocate ri/1 si/2`<br>
+      Expected: The student is not allocated to the room. An error message describing the problem is shown.
+
+   1. Test case: `allocate ri/2 si/1`<br>
+      Expected: The student is not allocated to the room. An error message describing the problem is shown.
+
+   1. Other incorrect delete commands to try: `allocate ri/0 si/3`, `allocate ri/x si/3`, `...` (where x is larger than the list size)<br>
+      Expected: An error message describing the problem is shown.
+
