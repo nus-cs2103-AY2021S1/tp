@@ -14,10 +14,6 @@ and their clients.
 
 #### My Contributions to PropertyFree
 
-My contribution to PropertyFree is largely two segments:
-1. Implementation of `Bidder` and `Seller` functions
-2. Overhaul of `Ui` as well as introduction of `Ui` commands to improve constraint of user's preference for command line interface.
-
 Below are the details of my contribution:
 * **Code contributed**: 
 [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=kormingsoon&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
@@ -41,8 +37,7 @@ Below are the details of my contribution:
   * **Justification**: This feature is important as the user may want to remove certain clients for any reasons such as client's loss of 
   interest or if the deal is already closed. 
   
-  * **Highlights**: 
-    - Implementing a so-called "cascading" deletion function where the deletion of:
+  * **Highlights**: Implementing "cascading" deletion function where the deletion of:
         - `Bidder` also subsequently deletes all `Meeting` and `Bid` that it is tied to. This is done by leveraging on the unique `Id` that is assigned
         to `Bidder` and captured by `Meeting` and `Bids`.
         - `Seller` also subsequently deletes all `Property` that it is tied to. This is done by leveraging on the unique `Id` that is assigned 
