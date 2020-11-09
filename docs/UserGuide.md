@@ -127,7 +127,7 @@ Look for the file trackr.jar.
 4. Double-click trackr.jar to start the app. The GUI (Figure 3.1) should appear in a few seconds.
 
 ![Ui](images/Ui.png) <br>
-Figure 3.1 Trackr GUI
+Figure 3.1a Trackr GUI
 
 ### 3.2 Using Trackr
 __Trackr__ boasts many useful features to make using the app seamless and smooth. These include
@@ -136,7 +136,7 @@ type the command into the command box (see Figure 3.2) and press _Enter_ to exec
 all the commands are listed in [Section 4, "Features"](#4-features).
 
 ![CommandExample](images/CommandExample.png) <br>
-Figure 3.2 Command example
+Figure 3.2a Command example
 
 ### 3.3 Switching Views
 __Trackr__ allows you to switch the current view from Module View (Figure 3.3.1) to Tutorial Group View (Figure 3.3.2)
@@ -146,13 +146,13 @@ Module View. This is achieved using `prevView`. The correct syntax for these com
 [Section 4, "Features"](#4-features). The top of the app shows the view you are currently in.
 
 ![ModuleView](images/ModuleView.png) <br>
-Figure 3.3.1 Module View
+Figure 3.3a Module View
 
 ![TutorialGroupView](images/TutorialGroupView.png) <br>
-Figure 3.3.2 Tutorial Group View
+Figure 3.3b Tutorial Group View
 
 ![StudentView](images/StudentView.png) <br>
-Figure 3.3.3 Student view
+Figure 3.3c Student view
 
 
 ## 4. Features
@@ -173,6 +173,7 @@ Example: `help`
 Expected Outcome:
 
 ![HelpCommand](images/HelpCommand.png)
+Figure 4.1.1a Expected outcome of performing the `help` command
 
 #### 4.1.2 Clear Trackr: `clear`
 Clears all data inside Trackr.
@@ -190,6 +191,7 @@ Example: `clear`
 Expected Outcome:
 
 ![ClearCommand](images/ClearCommand.png)
+Figure 4.1.2a Expected outcome of performing the `clear` command
 
 #### 4.1.3 Exit Trackr: `exit`
 Exits Trackr and automatically saves the data.
@@ -220,6 +222,7 @@ Example:
 Expected Outcome:
 
 ![ListModuleCommand](images/ListModuleCommand.png)
+Figure 4.2.1a Expected outcome of performing the `listMod` command
 
 #### 4.2.2 View all tutorial groups in a module: `viewTG`
 Shows the tutorial group list of a target module.
@@ -236,6 +239,7 @@ Example:
 
 Expected Outcome:
 ![ViewTgCommand](images/ViewTutorialGroupCommand.png)
+Figure 4.2.2a Expected outcome of performing the `viewTG` command
 
 #### 4.2.3 List all Tutorial Groups in the current Module: `listTG`
 Lists all tutorial groups in the Tutorial Group view.
@@ -252,6 +256,7 @@ Example:
 
 Expected Outcome:
 ![ListTgCommand](images/ListTutorialGroupCommand.png)
+Figure 4.2.3a Expected outcome of performing the `listTG` command
 
 #### 4.2.4 View all students in a tutorial group: `viewStudent`
 Shows the student list of a target tutorial group.
@@ -269,6 +274,7 @@ Example:
 
 Expected Outcome:
 ![ViewStudentCommand](images/ViewStudentCommand.png)
+Figure 4.2.4a Expected outcome of performing the `viewStudent` command
 
 #### 4.2.5 List all students in a tutorial group: `listStudent`
 Lists all students in the Student view.
@@ -285,6 +291,7 @@ Example:
 
 Expected Outcome:
 ![ListStudentCommand](images/ListStudentCommand.png)
+Figure 4.2.5a Expected outcome of performing the `listStudent` command
 
 #### 4.2.6 Return to previous view: `prevView`
 Returns to the previous view.
@@ -298,6 +305,7 @@ Format: `prevView`
 Example: `prevView`
 
 ![PrevViewCommand](images/PrevViewCommand.png)
+Figure 4.2.6a Expected outcome of performing the `prevView` command
 
 ### 4.3 Module Features
 
@@ -322,6 +330,7 @@ Example:
 Expected Outcome:
 
 ![AddModuleCommand](images/AddModuleCommand.png)
+Figure 4.3.1a Expected outcome of performing the `addMod` command
 
 #### 4.3.2 Delete a module: `deleteMod`
 
@@ -342,6 +351,7 @@ Example:
 Expected Outcome:
 
 ![DeleteModuleCommand](images/DeleteModuleCommand.png)
+Figure 4.3.2a Expected outcome of performing the `deleteMod` command
     
 #### 4.3.3 Edit a module: `editMod`
 
@@ -363,6 +373,7 @@ Example:
 Expected Outcome:
 
 ![EditModuleCommand](images/EditMod.png)
+Figure 4.3.3a Expected outcome of performing the `editMod` command
 
 #### 4.3.4 Find a module: `findMod`
 
@@ -386,6 +397,7 @@ Example:
 Expected Outcome:
 
 ![FindModuleCommand](images/FindModuleCommand.png)
+Figure 4.3.4a Expected outcome of performing the `findMod` command
 
 
 ### 4.4 Tutorial Group Features
@@ -413,6 +425,7 @@ Example:
 Expected Outcome:
 
 ![AddTutorialGroupCommand](images/addTG.png)
+Figure 4.4.1a Expected outcome of performing the `addTG` command
 
 #### 4.4.2 Delete a tutorial group: `deleteTG`
 Deletes a tutorial group based on the given `INDEX`
@@ -432,6 +445,7 @@ Example:
 Expected Outcome:
 
 ![DeleteTutorialGroupCommand](images/deleteTG.png)
+Figure 4.4.2a Expected outcome of performing the `deleteTG` command
 
 #### 4.4.3 Edit a Tutorial Group: `editTG`
 Edits a module with the provided details.
@@ -453,6 +467,7 @@ Example:
 Expected Outcome:
 
 ![EditTutorialGroupCommand](images/editTG.png)
+Figure 4.4.3a Expected outcome of performing the `editTG` command
 
 #### 4.4.4 Find a tutorial group: `findTG`
 Finds and lists all tutorial groups in the current Tutorial Group view whose tutorial group code contains any of the given keywords.
@@ -470,11 +485,11 @@ Example:
 - Finds a tutorial group with `KEYWORD` _T03_.
 
     - `findTG T03`
-    
 
 Expected Outcome:
 
 ![FindTutorialGroupCommand](images/findTG.png)
+Figure 4.4.4a Expected outcome of performing the `findTG` command
 
 ### 4.5 Student Features
 
@@ -503,6 +518,7 @@ and tag _student_ to the student list.
 Expected Outcome:
 
 ![AddStudentCommand](images/AddStudentCommand.png)
+Figure 4.5.1a Expected outcome of performing the `addStudent` command
 
 #### 4.5.2 Delete a student: `deleteStudent`
 
@@ -524,6 +540,7 @@ Example:
 Expected Outcome:
 
 ![DeleteStudentCommand](images/DeleteStudentCommand.png)
+Figure 4.5.2a Expected outcome of performing the `deleteStudent` command
 
 #### 4.5.3 Edit a student: `editStudent`
 
@@ -548,6 +565,7 @@ Example:
 Expected Outcome:
 
 ![EditStudentCommand](images/EditStudentCommand.png)
+Figure 4.5.3a Expected outcome of performing the `editStudent`command
 
 #### 4.5.4 Find a student: `findStudent`
 
@@ -571,6 +589,7 @@ Example:
 Expected Outcome:
 
 ![FindStudentCommand](images/FindStudentCommand.png)
+Figure 4.5.4a Expected outcome of performing the `findStudent` command
 
 ### 4.6 Attendance Features
 
@@ -595,6 +614,7 @@ Example:
 Expected Outcome:
 
 ![AddAttendanceCommand](images/AddAttendanceCommand.png)
+Figure 4.6.1a Expected outcome of performing the `addAttendance` command
 
 #### 4.6.2 Delete attendance: `deleteAttendance`
 
@@ -617,6 +637,7 @@ Example:
 Expected Outcome:
 
 ![DeleteAttendanceCommand](images/DeleteAttendanceCommand.png)
+Figure 4.6.2a Expected outcome of performing the `deleteAttendance` command
 
 #### 4.6.3 View all attendance of a student: `viewAttendance`
 
@@ -635,7 +656,9 @@ Example:
   - `viewAttendance 1`
 
 Expected Outcome:
+
 ![ViewAttendanceCommand](images/ViewAttendanceCommand.png)
+Figure 4.6.3a Expected outcome of performing the `viewAttendance` command
 
 #### 4.6.4 Show students who fall below an attendance score: `attendanceBelow`
 
@@ -655,7 +678,9 @@ Example:
   - `attendanceBelow 5`
 
 Expected Outcome:
+
 ![AttendanceBelowCommand](images/AttendanceBelowCommand.png)
+Figure 4.6.4a Expected outcome of performing the `attendanceBelow` command
 
 #### 4.6.5 Edit a student's participation: `editParticipation`
 
@@ -677,7 +702,9 @@ Example:
   - `editParticipation 1 score/10`
 
 Expected Outcome:
+
 ![EditParticipationCommand](images/EditParticipationCommand.png)
+Figure 4.6.5a Expected outcome of performing the `editParticipation` command
 
 #### 4.6.6 Show students who fall below a participation score: `participationBelow`
 
@@ -697,8 +724,9 @@ Example:
   - `participationBelow 35`
 
 Expected Outcome:
-![ParticipationBelowCommand](images/ParticipationBelowCommand.png)
 
+![ParticipationBelowCommand](images/ParticipationBelowCommand.png)
+Figure 4.6.6a Expected outcome of performing the `participationBelow` command
 
 ## 5. FAQ
 __Q:__ Why did the command I input change colour from white to red? <br>
