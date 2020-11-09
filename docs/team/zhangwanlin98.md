@@ -17,6 +17,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added a view feature which allows users to view all appointment on a specific date.([\#91](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/91))
     * **Justification**: This feature improves the product significantly since it allows the nurse to view all the appointments on a certain day without scanning through the appointment book.
+    * **Highlights**: Even though multiple methods can be used for the implementation of this feature, it is challenging to be implemented with a more Object-Oriented way because of the unavailability of the required patient. Hence, additional classes are required to encapsulate the user input.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=zhangwanlin98&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=ZhangWanlin98&tabRepo=AY2021S1-CS2103T-T12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
@@ -28,11 +29,11 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `list`, `edit`and `find` [\#47](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/47)
-    * Authored introduction for `Command` section.
-    * Added `Natural Date & Time` section under `Command format`.
-    * Added link between `Date & Time format` and `FAQ`.
-    * Authored `Glossary` section.
+    * Added documentation for the features `list`, `edit`and `find`. ([\#47](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/47))
+    * Authored introduction for `Command` section. ([\#198](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/198))
+    * Added `Natural Date & Time` section under `Command format`. ([\#198](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/198))
+    * Added link between `Date & Time format` and `FAQ`. ([\#198](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/198))
+    * Authored `Glossary` section. ([\#198](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/198))
 
   * Developer Guide:
     * Authored `Use Cases` segment. ([\#48](https://github.com/AY2021S1-CS2103T-T12-4/tp/pull/48))
