@@ -851,7 +851,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | staff of a quarantine facility       | key in new patient information | keep track of the information of new patients in the facility |
 | `* * *`  | staff of a quarantine facility       | edit patient information       | update his/her health status                                                                |
-| `* * *` | staff of a quarantine facility | delete the records of patients who no longer resides in the facility | focus on information of existing patients residing in the facility
+| `* * *` | staff of a quarantine facility | delete the records of patients who no longer resides in the facility | focus on information of existing patients residing in the facility|
 | `* * *`  | staff of a quarantine facility       | view which rooms are empty     | allocate patients to them |
 | `* * *`  | staff of a quarantine facility       | allocate patients to room     |keep track of which room they are living in|
 | `* * *`  | staff of a quarantine facility | quickly find the room that a patient is staying in | locate the patient in the facility easily |
@@ -859,7 +859,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | staff of a quarantine facility       | key in new task information    | keep track of the details of the tasks that I must complete                                  |
 | `* *`    | staff of the quarantine facility     | indicate that I have completed the task in the room | let other staff know that they no longer have to handle them
 | `* *`    | staff of a quarantine facility | find out all the outstanding tasks left in each room |  serve the quarantined individuals better                                               |
-| `* *` | staff of a quarantine facility | quickly search through patient information | find the patients that match my criteria
+| `* *` | staff of a quarantine facility | quickly search through patient information | find the patients that match my criteria|
 | `* *` | staff of a quarantine facility | look at all the rooms| find out which rooms are occupied and which are not |
 | `* *`| staff of a quarantine facility | initialise the number of rooms many times with previous information retained | define correct number of rooms if mistake is made I can correct it without having to tediously key in information again|
 |`* * `| staff of a quarantine facility | find out an empty room | to allocate patient to that empty room easily without having to search through the rooms for an empty room |
