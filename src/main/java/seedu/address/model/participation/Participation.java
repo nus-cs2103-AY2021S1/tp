@@ -43,10 +43,6 @@ public class Participation {
         tasks = new HashSet<>();
     }
 
-    public void changeRole(Role role) {
-        this.role = role;
-    }
-
     /**
      * Assigns task to the person
      *
@@ -127,14 +123,16 @@ public class Participation {
      * @param personToDelete person whose participations are to be deleted.
      */
     public static void deleteAllParticipationOf(Model model, Person personToDelete) {
+        String nameOfPersonToDelete = personToDelete.getGitUserNameString();
         Participation currentParticipation;
         Project currentProject;
 
         for (int i = 0; i < Project.getAllProjects().size(); i++) {
             currentProject = Project.getAllProjects().get(i);
-            if (currentProject.hasParticipation(personToDelete.getGitUserNameString())) {
-                currentParticipation = currentProject.getParticipation(personToDelete.getGitUserNameString());
+            if (currentProject.hasParticipation(nameOfPersonToDelete)) {
+                currentParticipation = currentProject.getParticipation(nameOfPersonToDelete);
                 currentProject.removeParticipation(currentParticipation);
+                currentProject.getTasks().forEach(task -> task.removeAssigneeOfName(nameOfPersonToDelete));
                 model.deleteParticipation(currentParticipation);
             }
         }

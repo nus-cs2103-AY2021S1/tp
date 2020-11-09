@@ -15,6 +15,11 @@ Class ProjectListPanel
 Class ProjectCard
 Class StatusBarFooter
 Class CommandBox
+Class EmptyDashboard
+Class TeammateDashboard
+Class TaskDashboard
+Class MeetingDashboard
+Class ProjectDashboard
 }
 
 package Model <<Rectangle>> {
@@ -31,10 +36,15 @@ HiddenOutside ..> Ui
 UiManager .left.|> Ui
 UiManager -down-> MainWindow
 MainWindow --> HelpWindow
-MainWindow *-down-> CommandBox
-MainWindow *-down-> ResultDisplay
-MainWindow *-down-> ProjectListPanel
-MainWindow *-down-> StatusBarFooter
+MainWindow *--> CommandBox
+MainWindow *--> EmptyDashboard
+MainWindow *--> TeammateDashboard
+MainWindow *--> TaskDashboard
+MainWindow *--> MeetingDashboard
+MainWindow *--> ProjectDashboard
+MainWindow *--> ResultDisplay
+MainWindow *--> ProjectListPanel
+MainWindow *--> StatusBarFooter
 
 ProjectListPanel -down-> ProjectCard
 
@@ -42,12 +52,18 @@ MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-ProjectListPanel --|> UiPart
 ProjectCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
+EmptyDashboard --|> UiPart
+TeammateDashboard --|> UiPart
+TaskDashboard --|> UiPart
+MeetingDashboard --|> UiPart
+ProjectDashboard --|> UiPart
 
-ProjectCard ..> Model
+TeammateDashboard ..> Model
+TaskDashboard ..> Model
+ProjectDashboard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 

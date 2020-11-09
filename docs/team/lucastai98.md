@@ -33,6 +33,7 @@ Given below are my contributions to the project.
       * Created AddTaskCommand and its relevant parser
       * Added relevant test cases
     
+<div style="page-break-after: always;"></div>
 * **New Feature**: Created new command to edit an existing task (Pull request: [\#100](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/100))
     * What it does: allows the user to edit the properties of an existing task.
     * What changes made:
@@ -44,11 +45,12 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Came up with the content outline of the first draft of modified User Guide.
-    * Added user guide for dashboard-related features, including project dashboard and task dashboard.
+    * Added user guide for dashboard-related features, including project dashboard and task dashboard. (Pull request: [\#45](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/45))
     * Added the glossary of terms (Pull request: [\#272](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/272))
   * Developer Guide:
-    * Wrote the implementation of the design of the storage.
-    * Wrote the implementation of task feature. (Pull request: [\#181](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/181))
+    * Edited the implementation of the design of the storage to fit our apps new storage design. (Pull requests: [\#151](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/151)
+    & [\#368](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/368/files))
+    * Wrote most of the implementation of task feature. (Pull request: [\#181](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/181))
     * Added the glossary of terms (Pull request: [\#272](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/272))
 
 * **Community**:

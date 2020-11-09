@@ -59,13 +59,24 @@ public class ProjectDashboard extends UiPart<Region> {
     public ProjectDashboard(Optional<Project> project) {
         super(FXML);
         this.project = project.get();
-        projectName.setText(this.project.getProjectName().fullProjectName);
-        deadline.setText("Project deadline: " + this.project.getDeadline().toString());
-        repoUrl.setText("Project repourl: " + this.project.getRepoUrl().value);
+        setLabels();
+        setText();
+        setHeaders();
+        setListOfTeammates();
+        setListOfTasks();
+    }
+
+    private void setHeaders() {
         header1.setText("Project description: ");
-        projectDescription.setWrappingWidth(500);
-        projectDescription.setText(this.project.getProjectDescription().value);
+        String headerOfListOfTasks = "Filtered List Of Tasks: ";
+        if (this.project.isFullListOfTasks()) {
+            headerOfListOfTasks = "All Tasks: ";
+        }
         header2.setText("Teammates: ");
+        header3.setText(headerOfListOfTasks);
+    }
+
+    private void setListOfTeammates() {
         String listOfTeammates = "";
         int ctr1 = 1;
         for (Participation teammate : this.project.getTeammates()) {
@@ -74,15 +85,24 @@ public class ProjectDashboard extends UiPart<Region> {
             ctr1++;
         }
         teammates.setText(listOfTeammates);
-        String headerOfListOfTasks = "Filtered List Of Tasks: ";
-        if (this.project.isFullListOfTasks()) {
-            headerOfListOfTasks = "All Tasks: ";
-        }
-        header3.setText(headerOfListOfTasks);
+    }
+
+    private void setListOfTasks() {
         AtomicInteger index = new AtomicInteger();
         index.getAndIncrement();
         tasks.setText(this.project.getFilteredSortedTaskList().stream()
                 .map(Task::getTaskName).reduce("", (a, b) -> a + index.getAndIncrement() + ". " + b + "\n"));
+    }
+
+    private void setLabels() {
+        projectName.setText(this.project.getProjectName().fullProjectName);
+        deadline.setText("Project deadline: " + this.project.getDeadline().toString());
+        repoUrl.setText("Project repourl: " + this.project.getRepoUrl().value);
+    }
+
+    private void setText() {
+        projectDescription.setWrappingWidth(500);
+        projectDescription.setText(this.project.getProjectDescription().value);
     }
 
     @Override

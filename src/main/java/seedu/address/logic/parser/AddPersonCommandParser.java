@@ -3,11 +3,11 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.ArgumentMultimapUtil.hasAllPrefixes;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_GIT_USERNAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_GIT_USERNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_PHONE;
 
 import seedu.address.logic.commands.global.AddPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -31,31 +31,31 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
     public AddPersonCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_TEAMMATE_NAME, PREFIX_TEAMMATE_GIT_USERNAME,
-                PREFIX_TEAMMATE_PHONE, PREFIX_TEAMMATE_EMAIL, PREFIX_TEAMMATE_ADDRESS);
+            ArgumentTokenizer.tokenize(args, PREFIX_PERSON_NAME, PREFIX_PERSON_GIT_USERNAME,
+                PREFIX_PERSON_PHONE, PREFIX_PERSON_EMAIL, PREFIX_PERSON_ADDRESS);
 
-        if (!hasAllPrefixes(argMultimap, PREFIX_TEAMMATE_NAME, PREFIX_TEAMMATE_GIT_USERNAME,
-            PREFIX_TEAMMATE_PHONE, PREFIX_TEAMMATE_EMAIL, PREFIX_TEAMMATE_ADDRESS)
+        if (!hasAllPrefixes(argMultimap, PREFIX_PERSON_NAME, PREFIX_PERSON_GIT_USERNAME,
+            PREFIX_PERSON_PHONE, PREFIX_PERSON_EMAIL, PREFIX_PERSON_ADDRESS)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand
                 .MESSAGE_USAGE));
         }
 
         PersonName name = ParsePersonUtil.parsePersonName(argMultimap
-            .getValue(PREFIX_TEAMMATE_NAME).get());
+            .getValue(PREFIX_PERSON_NAME).get());
 
         GitUserName gitUserName =
             ParsePersonUtil.parseGitUserName(argMultimap
-                .getValue(PREFIX_TEAMMATE_GIT_USERNAME).get());
+                .getValue(PREFIX_PERSON_GIT_USERNAME).get());
 
         Phone phone = ParsePersonUtil.parsePhone(argMultimap
-            .getValue(PREFIX_TEAMMATE_PHONE).get());
+            .getValue(PREFIX_PERSON_PHONE).get());
 
         Email email = ParsePersonUtil.parseEmail(argMultimap
-            .getValue(PREFIX_TEAMMATE_EMAIL).get());
+            .getValue(PREFIX_PERSON_EMAIL).get());
 
         Address address = ParsePersonUtil.parseAddress(argMultimap
-            .getValue(PREFIX_TEAMMATE_ADDRESS).get());
+            .getValue(PREFIX_PERSON_ADDRESS).get());
 
         Person teammate = new Person(name, gitUserName, phone, email, address);
         return new AddPersonCommand(teammate);

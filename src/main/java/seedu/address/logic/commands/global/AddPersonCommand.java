@@ -1,11 +1,11 @@
 package seedu.address.logic.commands.global;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_GIT_USERNAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_GIT_USERNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_PHONE;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,17 +27,17 @@ public class AddPersonCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a new teammate as a part of this project"
         + "\nParameters: "
-        + PREFIX_TEAMMATE_NAME + "TEAMMATE NAME "
-        + PREFIX_TEAMMATE_GIT_USERNAME + "GIT USERNAME "
-        + PREFIX_TEAMMATE_PHONE + "PHONE "
-        + PREFIX_TEAMMATE_EMAIL + "EMAIL "
-        + PREFIX_TEAMMATE_ADDRESS + "ADDRESS\n"
+        + PREFIX_PERSON_NAME + "NAME "
+        + PREFIX_PERSON_GIT_USERNAME + "GIT USERNAME "
+        + PREFIX_PERSON_PHONE + "PHONE "
+        + PREFIX_PERSON_EMAIL + "EMAIL "
+        + PREFIX_PERSON_ADDRESS + "ADDRESS\n"
         + "Example: " + COMMAND_WORD + " mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road";
 
-    public static final String MESSAGE_NEW_TEAMMATE_SUCCESS = "New Teammate added: %1$s";
+    public static final String MESSAGE_NEW_PERSON_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the main catalogue";
 
-    private static final Logger logger = Logger.getLogger("NewTeammateCommandLogger");
+    private static final Logger logger = Logger.getLogger("AddPersonCommandLogger");
     private final Person toAdd;
 
     /**
@@ -58,6 +58,7 @@ public class AddPersonCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (model.hasPerson(toAdd)) {
+            logger.log(Level.WARNING, MESSAGE_DUPLICATE_PERSON);
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
         model.addPerson(toAdd);
@@ -74,7 +75,7 @@ public class AddPersonCommand extends Command {
         }
         logger.log(Level.INFO, "New Person added");
 
-        return new CommandResult(String.format(MESSAGE_NEW_TEAMMATE_SUCCESS, toAdd.getGitUserNameString()));
+        return new CommandResult(String.format(MESSAGE_NEW_PERSON_SUCCESS, toAdd.getGitUserNameString()));
     }
 
     @Override

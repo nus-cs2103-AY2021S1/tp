@@ -11,6 +11,7 @@ public class DeletePersonCommandParser implements Parser<DeletePersonCommand> {
 
     /**
      * Parses {@code userInput} into a command and returns it.
+     *
      * @param userInput input command from user
      * @return instance of DeletePersonCommandParser
      * @throws ParseException if {@code userInput} does not conform the expected format

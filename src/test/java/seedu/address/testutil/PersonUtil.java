@@ -1,10 +1,10 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_GIT_USERNAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_GIT_USERNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_PHONE;
 
 import seedu.address.logic.commands.global.AddPersonCommand;
 import seedu.address.logic.commands.project.EditTeammateCommand;
@@ -41,11 +41,11 @@ public class PersonUtil {
      */
     public static String getProjectDetails(Person teammate) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_TEAMMATE_NAME + teammate.getPersonName().toString() + " ");
-        sb.append(PREFIX_TEAMMATE_GIT_USERNAME + teammate.getGitUserName().toString() + " ");
-        sb.append(PREFIX_TEAMMATE_PHONE + teammate.getPhone().toString() + " ");
-        sb.append(PREFIX_TEAMMATE_EMAIL + teammate.getEmail().toString() + " ");
-        sb.append(PREFIX_TEAMMATE_ADDRESS + teammate.getAddress().toString() + " ");
+        sb.append(PREFIX_PERSON_NAME + teammate.getPersonName().toString() + " ");
+        sb.append(PREFIX_PERSON_GIT_USERNAME + teammate.getGitUserName().toString() + " ");
+        sb.append(PREFIX_PERSON_PHONE + teammate.getPhone().toString() + " ");
+        sb.append(PREFIX_PERSON_EMAIL + teammate.getEmail().toString() + " ");
+        sb.append(PREFIX_PERSON_ADDRESS + teammate.getAddress().toString() + " ");
 
         return sb.toString();
     }

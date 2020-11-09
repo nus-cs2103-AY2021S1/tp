@@ -168,7 +168,7 @@ Format: `listpersons`
 
 Example: `listpersons` lists all persons in the catalogue to the user.
 
-# 2.2 Projects management
+## 2.2 Projects management
 
 ### 2.2.1 Start work on an existing project `startproject`
 
@@ -284,7 +284,7 @@ Note: Please enter a valid repository URL. Taskmania is an offline application a
 
 Example: `edit 1 n/ResidentEvil d/ new horror` changes the name of the first project in the list to **Evil project**, and the description to **new horror**.
 
-# 2.3 Tasks management within a project
+## 2.3 Tasks management within a project
 
 ### 2.3.1 Add task to a project `addtask`
 
@@ -464,7 +464,7 @@ Format: `viewtask INDEX `
 
 Example: `viewtask 1` displays all information from task number 1 in the list.
 
-# 2.4 Teammate and person management within a project
+## 2.4 Teammate and person management within a project
 
 ### 2.4.1 Create a new person `addperson`
 
@@ -473,7 +473,7 @@ If the app is currently working on a project, this person will also be added to 
 
 Valid scopes: all.
 
-![add_teammate](images/addTeammate.png)
+![add_teammate](images/addPerson.png)
 
    *Figure 22: New teammate `Lucas` is added to the project and shown on the teammate list*
 
@@ -492,9 +492,9 @@ Example: `addperson mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 
   - email of lucas@gmail.com
   - address of 18 Evelyn road
 
-### 2.4.2 Add a teammate to a project `addtoproject`
+### 2.4.2 Add a person to a project `addtoproject`
 
-Add an existing teammate to the current project.
+Add an existing person to the current project, making them a teammate.
 
 Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
@@ -537,7 +537,7 @@ Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 Format: `editteammate GITHUB_USERNAME [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]`
   - Any combination or number of fields can be filled in
   - Teammate name has to be 1 or more words consisting only of letters
-  - The Github User name cannot be changes, but is required to identify the teammate to edit
+  - The Github User name cannot be changed, but is required to identify the teammate to edit
   - The phone number has to be a minimum of 3 and maximum of 16 numbers
   - The email has to have a proper prefix and proper domain name consisting of at least 2 letters
   - Address can be any amount of letters, symbols and numbers, the only constraint is that it cannot be blank
@@ -640,5 +640,8 @@ Action | Format, Examples | Scope: | `PROJECT_LIST` | `PERSON_LIST` | `PROJECT` 
 # 5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
-* **Teammate**: A person belonging to a project of the team leader's team.
 * **Scope**: The confines of when certain commands will work.
+* **Teammate**: A member of the user's team in a particular project.
+* **Person** A person that could be in any number of the user's team's projects.
+* **Project** A software project with at least a GitHub repository link and a deadline.
+* **Task** Something to be done for a project with a certain progress status.

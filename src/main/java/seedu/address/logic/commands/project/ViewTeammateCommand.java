@@ -2,8 +2,6 @@ package seedu.address.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.GitUserIndex;
 import seedu.address.logic.commands.Command;
@@ -24,13 +22,14 @@ public class ViewTeammateCommand extends Command {
             + "by the index number used in the displayed teammate list.\n"
             + "example: " + COMMAND_WORD + " LucasTai98 ";
 
-    public static final String MESSAGE_VIEW_TEAMMATE_SUCCESS = "Started TEAMMATE: %1$s";
+    public static final String MESSAGE_VIEW_TEAMMATE_SUCCESS = "Started TEAMMATE ";
 
     private final GitUserIndex gitUserIndex;
 
     /**
-     * @param gitUserIndex of the teammate in the current project to view
+     * Constructor for ViewTeammateComand
      *
+     * @param gitUserIndex of the teammate in the current project to view
      */
     public ViewTeammateCommand(GitUserIndex gitUserIndex) {
         requireNonNull(gitUserIndex);
@@ -41,7 +40,6 @@ public class ViewTeammateCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
-        List<Participation> lastShownList = project.getTeammates();
 
         if (!project.hasParticipation(gitUserIndex.getGitUserNameString())) {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_NAME);

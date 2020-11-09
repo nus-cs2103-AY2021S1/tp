@@ -21,7 +21,6 @@ class JsonAdaptedParticipation {
     private final String project;
     private final Role role;
     private List<JsonAdaptedTask> tasks = new ArrayList<>();
-    //    private Set<Meeting> meetings;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given {@code taskName}.
@@ -36,7 +35,6 @@ class JsonAdaptedParticipation {
         this.project = project;
         this.role = role;
         this.tasks = tasks;
-        //        this.meetings = meetings;
     }
 
     /**

@@ -42,7 +42,7 @@ public class AddPersonCommandTest {
         AddPersonCommand addPersonCommand = new AddPersonCommand(DESC_A);
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         model.updateProjectToBeDisplayedOnDashboard(AI);
-        String expectedResult = String.format(AddPersonCommand.MESSAGE_NEW_TEAMMATE_SUCCESS,
+        String expectedResult = String.format(AddPersonCommand.MESSAGE_NEW_PERSON_SUCCESS,
             DESC_A.getGitUserNameString());
 
         try {

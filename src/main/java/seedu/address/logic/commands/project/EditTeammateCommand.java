@@ -1,11 +1,10 @@
 package seedu.address.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_GIT_USERNAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_PHONE;
 
 import java.util.HashMap;
 import java.util.Optional;
@@ -35,23 +34,19 @@ public class EditTeammateCommand extends Command {
 
     public static final String COMMAND_WORD = "editteammate";
 
-    //TODO CHANGE THE IDENTIFIER OF TEAMMATES TO A TEAMMATE 'CODE' instead of simply the name, because teammates can
-    // have the same name
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the teammate identified "
         + "by the name used in the displayed project list. Git User Name cannot be changed. "
         + "Existing values will be overwritten by the input values.\n"
-        + "Parameters: NAME (must be a name of an existing teammate) "
-        + "[" + PREFIX_TEAMMATE_NAME + "NAME] "
-        + "[" + PREFIX_TEAMMATE_GIT_USERNAME + "GIT USERNAME "
-        + "[" + PREFIX_TEAMMATE_PHONE + "PHONE] "
-        + "[" + PREFIX_TEAMMATE_EMAIL + "EMAIL]\n"
-        + "[" + PREFIX_TEAMMATE_ADDRESS + "ADDRESS] "
+        + "Parameters: GITUSERNAME (must be of an existing teammate) "
+        + "[" + PREFIX_PERSON_NAME + "NAME] "
+        + "[" + PREFIX_PERSON_PHONE + "PHONE] "
+        + "[" + PREFIX_PERSON_EMAIL + "EMAIL]\n"
+        + "[" + PREFIX_PERSON_ADDRESS + "ADDRESS] "
         + "Example: " + COMMAND_WORD + " "
-        + PREFIX_TEAMMATE_NAME + "Lucas "
-        + PREFIX_TEAMMATE_GIT_USERNAME + "lucas93 "
-        + PREFIX_TEAMMATE_PHONE + "92912645 "
-        + PREFIX_TEAMMATE_EMAIL + "lucaskia@gmail.com "
-        + PREFIX_TEAMMATE_ADDRESS + "13 lay road";
+        + PREFIX_PERSON_NAME + "Lucas "
+        + PREFIX_PERSON_PHONE + "92912645 "
+        + PREFIX_PERSON_EMAIL + "lucaskia@gmail.com "
+        + PREFIX_PERSON_ADDRESS + "13 lay road";
 
     public static final String MESSAGE_EDIT_TEAMMATE_SUCCESS = "Teammate has been edited: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -102,8 +97,16 @@ public class EditTeammateCommand extends Command {
      * edited with {@code editPersonDescriptor}.
      */
     private static Person createEditedTeammate(Participation teammateToEdit,
-                                                      EditTeammateDescriptor editTeammateDescriptor) {
+          EditTeammateDescriptor editTeammateDescriptor) throws CommandException {
+
         assert teammateToEdit != null;
+
+        if (!editTeammateDescriptor.getTeammateName().isPresent()
+            && !editTeammateDescriptor.getPhone().isPresent()
+            && !editTeammateDescriptor.getEmail().isPresent()
+            && !editTeammateDescriptor.getAddress().isPresent()) {
+            throw new CommandException(MESSAGE_NOT_EDITED);
+        }
 
         Person personToEdit = teammateToEdit.getPerson();
         PersonName updatedTeammateName =
@@ -117,8 +120,6 @@ public class EditTeammateCommand extends Command {
         Person editedPerson = new Person(updatedTeammateName, gitUserName, updatedPhone, updatedEmail, updatedAddress,
                 updatedParticipation);
 
-        // TODO: take note gitUserName is not changed
-        // TODO: add fields for participation update, and change the return value
         return editedPerson;
     }
 
