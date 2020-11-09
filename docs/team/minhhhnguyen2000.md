@@ -25,9 +25,14 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=minhhhnguyen2000)
 
 * **Enhancements to existing features**:
-  * Refactored Person Class to Assignment Class
   * Created Schedule Class
   * Wrote additional tests for existing features to increase coverage
+  
+* **Team-based tasks**:
+  * Propose the idea of morphing the product and come up with features to implement
+  * Refactored Person Class to Assignment Class
+  * Updated README.md with Motivation and Aim
+  * Updated Developer Guide with Target user profile and Value proposition
 
 * **Documentation**:
   * User Guide:
@@ -39,5 +44,6 @@ Given below are my contributions to the project.
 
 * **Community**:
   * Vocal during weekly team meetings
+  * Proposed reasons for new features and suggested implementation details.  
   * PRs reviewed
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/minhhhnguyen2000/ped/issues/1), [2](https://github.com/minhhhnguyen2000/ped/issues/2), [3](https://github.com/minhhhnguyen2000/ped/issues/3))
