@@ -1,5 +1,3 @@
-# About Us
-
 Trackr is designed and developed by the [CS2013T-W12-2](https://github.com/AY2021S1-CS2103T-W12-2) team.
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
