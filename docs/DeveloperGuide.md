@@ -96,7 +96,7 @@ The `UI` component:
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-The following activity diagram shows the general flow of events for the Ui component when the application is launched:
+The following activity diagram shows the general flow of events for the UI component when the application is launched:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="diagrams/ui/UiLauchActivityDiagram.png" style="width: 65%"> <br />
@@ -305,12 +305,12 @@ Figure 7.2: <i>A sequence diagram for parsing an <code>add recipe</code> command
 
 The current parser is written in an exception-free manner, using monadic result types (`Result`, `Optional`) and their composition (`map`, `then`) instead.
 
-  - Option A: use exceptions
-    - Pros: easier interfacing with existing AB3 code
-    - Cons: harder to visualise error source and propagation, calling site gets cluttered with syntactic `try-catch` noise
-  - **Option B (chosen)**: use monadic types
-    - Pros: more explicit, easier to visualise error source and propagation
-    - Cons: slightly harder to write
+  - Option A: Use exceptions.
+    - Pros: Easier interfacing with existing AB3 code.
+    - Cons: Harder to visualise error source and propagation, calling site gets cluttered with syntactic `try-catch` noise.
+  - **Option B (chosen)**: Use monadic types.
+    - Pros: More explicit, easier to visualise error source and propagation.
+    - Cons: Slightly harder to write.
 
 Since the parser was going to be heavily refactored if not completely rewritten, removing exceptions was the chosen option. An excerpt of this style can be seen below:
 ```java
@@ -329,15 +329,15 @@ Here, `Result<T>` is similar to a Java `Optional<T>`, but also encapsulating a d
 
 ChopChop allows referring to items (recipes and ingredients) both by their full name, as well as by its index number (as in AB3).
 
-  - Option A: allow only numbers
-    - Pros: easier to implement
-    - Cons: less intuitive for the user, index number can change as views are updated
-  - Option B: allow only names
-    - Pros: easier to implement
-    - Cons: full name of the ingredient or recipe might be tedious to type out each time
-  - **Option C (chosen)**: allow both
-    - Pros: best of both worlds
-    - Cons: slightly more code to implement
+  - Option A: Allow only numbers.
+    - Pros: Easier to implement.
+    - Cons: Less intuitive for the user, index number can change as views are updated.
+  - Option B: Allow only names.
+    - Pros: Easier to implement.
+    - Cons: Full name of the ingredient or recipe might be tedious to type out each time.
+  - **Option C (chosen)**: Allow both names and numbers.
+    - Pros: Best of both worlds.
+    - Cons: Slightly more code to implement.
 
 After abstracting out functions that resolve an item reference, code complexity did not increase significantly, and ease-of-use was greatly improved; thus, option C was chosen.
 
@@ -398,24 +398,24 @@ In the current implementation, there are a number of specific units of Volume (*
 <h4>Design Considerations</h4>
 **1. Unit representation**
 
-  - Option A: represent units as a simple string
-    - Pros: easier to implement
-    - Cons: less intuitive for the user, only exactly-compatible units can be added
-  - **Option B (chosen)**: represent units in a typed manner
-    - Pros: intuitive unit handling for the user
-    - Cons: more implementation effort, supported units must be known in advance
+  - Option A: Represent units as a simple string.
+    - Pros: Easier to implement.
+    - Cons: Less intuitive for the user, only exactly-compatible units can be added.
+  - **Option B (chosen)**: Represent units in a typed manner.
+    - Pros: Intuitive unit handling for the user.
+    - Cons: More implementation effort, supported units must be known in advance.
 
   The extra implementation effort was deemed to be acceptable to allow for a better user experience. Mainly, the ability to let recipes specify a quantity as *3 cups*, while keeping track of the ingredient in *litres* was a key feature, to save the user the hassle of converting these units before keying them into the application.
 
   Furthermore, this implementation also allows *rescaling* the quantity, so that `1700mL` can be better displayed as `1.7L`.
 
 **2. User extensible units**
-  - Option A: support custom user-defined units
-    - Pros: more flexible from the user's perspective
-    - Cons: more implementation effort, necessary to integrate (eg. defining units via command line)
-  - **Option B (chosen)**: only allow a fixed set of units
-    - Pros: less implementation work
-    - Cons: less flexible from the user's perspective
+  - Option A: Support custom user-defined units.
+    - Pros: More flexible from the user's perspective.
+    - Cons: More implementation effort, necessary to integrate (eg. defining units via command line).
+  - **Option B (chosen)**: Only allow a fixed set of units.
+    - Pros: Less implementation work.
+    - Cons: Less flexible from the user's perspective.
 
   Option B was chosen here due to the limited time available to work on the application. The primary mitigation was to include more commonly-used units built into ChopChop, for instance teaspoons, tablespoons, and cups for volumes.
 
@@ -509,7 +509,7 @@ This section details the design considerations of the statistics feature.
 
   - **Option B(chosen)**: Store the relevant information such as name, and the date and time of which the recipe was made or ingredient was used in `Usage` which is then stored in `UsageList`.
     - Pros:
-      - Easier to implement
+      - Easier to implement.
       - Allows quick access to certain data such as latest recipe usages.
     - Cons:
       - Modifications to `Usage` and its associated classes may be required to support computation of more kinds of statistics.
@@ -652,7 +652,7 @@ Figure 13.7: <i>An activity diagram for the undo/redo feature</i>
 
 <h4>Design considerations</h4>
 
-**Aspect: How state is saved**
+**Aspect: How state is saved.**
 
 - **Option A (current choice):** Save each undoable command as it is executed. Each command implements its own undo/redo operation.
   - Pros: Uses less memory since the entire state of the application does not have to be saved, and is also faster since only a small part of the model needs to be modified each time.
@@ -1338,7 +1338,7 @@ All successful test cases in the section **Deleting recipes** will result in the
    1. Prerequisites: There are recipes in the recipe list. For this section, we will be using the sample data of ChopChop.
 
    1. Test case: `delete recipe #1`<br>
-      Expected: The recipe **#1** `Apple Tart` is deleted from the recipe list.
+      Expected: The recipe #1 `Apple Tart` is deleted from the recipe list.
 
    1. Test case: `delete recipe #20`<br>
       Expected: No recipe deleted as the recipe with the given index does not exist. Error details shown in the Command Output box.
