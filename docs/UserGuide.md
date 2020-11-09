@@ -80,7 +80,7 @@ Follow these steps to get started:
 An application window similar to the one below should appear in a few seconds.<br>
 ![GitHub download page](images/QuickStart3.png)
 
-    * Notice how Nuudle also comes with some sample data to get you started.<br>
+    * Notice how Nuudle comes with sample data to get you started.<br>
     ![Ui](images/Ui.png)
 1. Congratulations! Nuudle is now ready for your perusal :smiley:
 
