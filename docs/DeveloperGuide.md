@@ -95,8 +95,12 @@ The `UI` component:
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+The following activity diagram shows the general flow of events for the Ui component when the application is launched:
 
-
+<div style="text-align: center; padding-bottom: 2em">
+<img src="diagrams/ui/UiLauchActivityDiagram.png" style="width: 45%"> <br />
+Figure 999: <i>An activity diagram for the Ui during application launch</i>
+</div>
 
 
 -------------------
