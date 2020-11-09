@@ -28,7 +28,7 @@ Given below are my contributions to the project.
     `StudentRecordList` as a data structure that supports the controlled addition and editing of student records. This
     was challenging as it required an in-depth analysis of design alternatives (discussion found in the [developer guide](../DeveloperGuide.md#studentrecordlist))
     to how the `StudentRecord` and `StudentRecordList` classes should be implemented.
-    * Credits: The design of `StudentRecordList` was inspired by the design of `UniquePersonList` in AB3.
+    * Credits: Design inspired by `UniquePersonList` in AB3.
             
 * **New Feature:** Added the ability to mark a student's attendance, or all students' attendances at once, in a
 particular session.
@@ -51,7 +51,6 @@ particular session.
 * **Project Management:**
   * Managed releases `v1.2` - `v1.3` (2 releases) on GitHub.
   * Authored, tracked and closed issues on Github.
-  * Reviewed more than 30 PRs on GitHub.
 
 * **Enhancements to existing features:**
     * Fixed many bugs found during PE-D and developer testing of TAskmaster. (PR
