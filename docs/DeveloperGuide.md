@@ -161,9 +161,9 @@ the autocomplete mode. And secondly, `prefix` which refers to the string that wi
 
 #### Structure of Autocomplete
 
-The autocomplete mechanism is facilitated by `AutocompleteModule` which can be attached to a JavaFX `TextField`. 
-An instance of `AutocompleteModule` will must be binded to one `TextField` object which will be enhanced with Autocomplete capabilities. 
-`AutocompleteModule` will setup the relevant listeners to its attached `TextField` object and will internally store and managed the `isAutocompleteMode` and `hasSetPrefix` states. 
+The autocomplete mechanism is facilitated by `AutocompleteModule` which can be attached to a JavaFX `TextField`.
+An instance of `AutocompleteModule` will must be binded to one `TextField` object which will be enhanced with Autocomplete capabilities.
+`AutocompleteModule` will setup the relevant listeners to its attached `TextField` object and will internally store and managed the `isAutocompleteMode` and `hasSetPrefix` states.
 This feature also makes use of the `Suggestions` class to facilitate suggestion generation based on given `prefix`. Below is a class diagram representing this structure.
 
 ![Structure of the UI Component](images/AutocompleteClassDiagram.png)
@@ -248,8 +248,8 @@ This feature is actually an improvement from autocomplete which was inspired fro
 Having visual feedback and improving flexibility of the search were the focus of this feature, however despite serving similar purposes
 we have decided to split this into two features because we want to position the `Autocomplete` feature as an entity-specific autocompletion, while our `Fuzzy Find` feature is a search-everywhere feature.
 
-The Fzf feature is facilitated by the `FzfModule` class which adopts the `TextField` module structure 
-similar to that in the `AutocompleteModule` class where we have the `FzfModule` class latching onto a TextField 
+The Fzf feature is facilitated by the `FzfModule` class which adopts the `TextField` module structure
+similar to that in the `AutocompleteModule` class where we have the `FzfModule` class latching onto a TextField
 enhancing it with Fzf capabilities. You can refer to the Autocomplete section to find out more, but to sum it up, upon attaching the module
 to a given `textfield` instance, the module instance will attach the relevant listeners to the `textfield` and manage the logic and state of the feature.
 
@@ -265,9 +265,9 @@ Besides the differences in trigger points and exit points, the biggest differenc
 feature, the query is calculated from the caret position of the last character in the `commandPrefix` to the end of string.
 
 ![ac query](./images/acQuery.png)
- 
-This inevitably has some drawbacks which forces us to disallow autocompletion from the middle of the section. To support a truly dynamic `query` field, 
-one would have to track the caret position of the start and end positions of the query, and would have to update the position accordingly to any given keystroke (e.g. Backspace or when user jumps the caret position). 
+
+This inevitably has some drawbacks which forces us to disallow autocompletion from the middle of the section. To support a truly dynamic `query` field,
+one would have to track the caret position of the start and end positions of the query, and would have to update the position accordingly to any given keystroke (e.g. Backspace or when user jumps the caret position).
 
 However, thankfully for us JavaFx already supports such a component out of the box : `TextField`. Below is a sequence diagram showing how
 `FzfModule` updates its query field using the `TextField` component.
@@ -972,7 +972,9 @@ It stores the details to edit the meeting with and each non-empty field value wi
 
 ### Viewing a Specific Meeting's Agendas and Notes
 
-#### Implementation:
+![MeetingViewExample](images/MeetingViewExample.gif)
+
+#### Implementation
 
 The mechanism to view a specific meeting's agendas and notes is primarily facilitated by the `ViewMeetingCommand`. It
 extends `Command` and implements the `execute` operation:
@@ -993,15 +995,16 @@ selected meeting field in the `ModelManager` before creating a `CommandResult` w
 
  ![ViewMeetingSequenceDiagram](images/ViewMeetingSequenceDiagram.png)
 
-When the Logic signals that an update is required, the following update method in `MainWindow` is invoked to update the
+When the Logic signals that an update is required, the following method in `MainWindow` is invoked to update the
 selected meeting user interface:
 
 ```
-public void update() {
-    logger.info("UI update triggered");
-    if (logic.getSelectedMeeting() == null) {
+public void updateSelectedMeeting() {
+    logger.info("UI update selected meeting triggered");
+    if (logic.getSelectedMeeting() == null && selectedMeetingPlaceholder.getChildren().size() > 0) {
         selectedMeetingPlaceholder.getChildren().remove(0);
-    } else {
+    }
+    if (logic.getFilteredMeetingList().size() != 0 && logic.getSelectedMeeting() != null) {
         MeetingDetailsPanel selectedMeeting = new MeetingDetailsPanel(logic.getSelectedMeeting(),
                 logic.getFilteredMeetingList().indexOf(logic.getSelectedMeeting()) + 1);
         if (selectedMeetingPlaceholder.getChildren().size() == 1) {
@@ -1013,16 +1016,9 @@ public void update() {
 }
 ```
 
-Given below is a object diagram of the initial state of the application. If the `MeetingBook` is not empty, the
-`selectedMeeting` field in `ModelManager` will be set to the first meeting in the `MeetingBook`. Otherwise, it will be
-set to null. Note that on the first launch, the `MeetingBook` is guaranteed to have sample data with the first meeting
-being CS2100 Report Discussion. Irrelevant details have been omitted from the diagram.
+Given below is the class diagram representing the structure of this implementation.
 
-![ViewMeetingInitialStateObjectDiagram](images/ViewMeetingInitialStateObjectDiagram.png)
-
-Given below is the object diagram after the `meeting view m/CS2103 n/Weekly Meeting` command is executed.
-
-![ViewMeetingFinalObjectDiagram](images/ViewMeetingFinalObjectDiagram.png)
+ ![ViewMeetingClassDiagram](images/ViewMeetingClassDiagram.png)
 
 #### Design Considerations:
 
@@ -1103,6 +1099,23 @@ The following commands affect the `TimelineWindow`:
 * `AddMeetingCommand`
 * `EditMeetingCommand`
 * `DeleteMeetingCommand`
+
+### Theme switch feature
+
+![ThemeSwitchExample](images/ThemeSwitchExample.gif)
+
+#### Implementation
+
+The mechanism to view switch to light theme is facilitated by `LightThemeCommand` while the mechanism to switch to dark theme is facilitated by `DarkThemeCommand`. Both
+extends `Command` and implements the `execute` operation. Additionally, the theme switch can also be activated by the `F2` and `F3` keys or using the mouse to click the menu options.
+
+Given below is the sequence diagram when the `light` command is entered. The dark command has the same sequence diagram except that light is replaced with dark and `setStylesheet(Themes.DARK_THEME)` is called instead of `setStylesheet(Themes.LIGHT_THEME)`.
+
+![SwitchThemeSequenceDiagram](images/SwitchThemeSequenceDiagram.png)
+
+Since the UI has 3 separate windows: MainWindow, HelpWindow and TimelineWindow, these windows need to check the current theme and select the right stylesheet to used. Given below is the sequence diagram when the `help` command is issued to illustrate how the help window selects the right theme. The other 2 windows follow similar logic.
+
+![HelpWindowActivityDiagram](images/HelpWindowActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1254,7 +1267,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3b1. Modduke shows an error message.
 
     Use case resumes at step 2.
-    
+
 **UC04: View Contacts**
 
 **MSS**
@@ -1263,7 +1276,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Modduke shows a list of contacts
 
  Use case ends.
- 
+
 **Extensions**
 
 * 2a. The list is empty.
@@ -1341,7 +1354,7 @@ Same as View Contacts Use Case except only contacts that match the given paramet
 2.  Modduke deletes all existing contacts.
 
  Use case ends.
- 
+
 **UC09: Add Module**
 
 **MSS**
@@ -1482,25 +1495,25 @@ Same as View Contacts Use Case except only contacts that match the given paramet
   * 1a1. Modduke shows an error message.
 
     Use case ends
-    
+
 * 1b. Given module does not exist in Modduke.
 
   * 1b1. Modduke shows an error message.
 
-    Use case ends    
+    Use case ends
 
 * 1c. Meeting with the same combination of module and meeting name already exists.
 
   * 1c1. Modduke shows an error message.
 
     Use case ends.
-    
+
 * 1d. Meeting with the same date and time already exists.
 
   * 1d1. Modduke shows an error message.
 
     Use case ends.
-    
+
 * 1e. Participants indicated are not in given module.
 
   * 1e1. Modduke shows an error message.
@@ -1515,7 +1528,7 @@ Same as View Contacts Use Case except only contacts that match the given paramet
 2.  Modduke accepts request and makes changes to meeting
 
     Use case ends.
-    
+
 **Extensions**
 
 * 1a. Specified combination of module and meeting does not exist.
@@ -1540,12 +1553,12 @@ Same as View Contacts Use Case except only contacts that match the given paramet
   * 1a1. Modduke shows an error message.
 
     Use case ends
-    
+
 * 1b. Given module does not exist in Modduke.
 
   * 1b1. Modduke shows an error message.
 
-    Use case ends    
+    Use case ends
 
 * 1c. Specified combination of module and meeting does not exist.
 
@@ -1558,13 +1571,13 @@ Same as View Contacts Use Case except only contacts that match the given paramet
   * 1d1. Modduke shows an error message.
 
     Use case ends.
-    
+
 * 1e. Edited meeting results in the same date and time as an existing meeting exists.
 
   * 1e1. Modduke shows an error message.
 
     Use case ends.
-    
+
 * 1f. New participants indicated are not in given module.
 
   * 1f1. Modduke shows an error message.
@@ -1577,9 +1590,9 @@ Same as View Contacts Use Case except only contacts that match the given paramet
 
 1.  User chooses to view details of a meeting
 2.  Modduke accepts request and displays both agendas and notes for the selected meeting
-    
+
     Use case ends.
-    
+
 **Extensions**
 
 * 1a. Modduke detects invalid command format.
@@ -1587,13 +1600,13 @@ Same as View Contacts Use Case except only contacts that match the given paramet
   * 1a1. Modduke gives an alert for the invalid command format.
 
     Use case ends
-    
+
 * 1b. User enters a meeting that does not exist.
 
   * 1b1. Modduke shows a message informing user that the meeting provided is not in the meeting list.
 
-    Use case ends  
-    
+    Use case ends
+
 
 **UC17: List Meetings**
 
@@ -1778,20 +1791,77 @@ testers are expected to do more *exploratory* testing.
 ### Copying a contact's information
 
 1. Copying a contact while all contacts are being shown
-    
+
     1. Prerequisites: List all contacts using the `contact list` command. Multiple contacts in the list.
-    
+
     1. Test case: `copy phone n/Alex Yeoh`<br>
        Expected: Clipboard should have phone number of Contact Alex Yeoh.
-    
+
     1. Test case: `copy email t/colleagues`<br>
        Expected: Clipboard should have email addresses of all Contacts with colleague tag.
-    
+
     1. Test case: `copy email m/CS1100`<br>
        Expected: Clipboard should have email addresses of all Contacts in the CS1100 Module.
-       
+
     1. Test case: `copy email n/Alex Yeoh n/Bernice Yu t/prof m/CS1102`<br>
        Expected: Clipboard should have email addresses of Contacts Alex Yeoh and Bernice Yu, all Contacts with the prof tag and all Contacts in the CS1102 Module.
-    
+
     1. Other incorrect copy commands to try: `copy email`, `copy email n/x` (where x is a name not in the list of contacts), `copy phone t/y` (where y is a tag not in the list of contacts), `copy phone m/z` (where z is a module not in the list of modules)<br>
        Expected: Status message will be an error message.
+
+### Autocomplete Feature
+
+1. Trigger Autocomplete Mode
+
+    1. Enter 'cn/' into command box.<br/>Expected: Text should turn orange
+
+1. Generating Suggestions<br/>
+_Assuming you have a contact named "Alex Yeoh", else feel free to use any prefix you like given that the contact exists_
+    1. Type in "alex" and press `Tab`<br/>
+    Expected: Modduke should return a suggestion from your contact list. If there are multiple suggestions, suggestions should be offered alphabetically.
+
+1. Locking in a Suggestion
+    1. Press `Enter` to lock in your suggestion<br/>
+    Expected: 'cn/' should be removed. Text should change back to white.
+
+### Fuzzy Find Completion (Fzf) Feature
+
+1. Trigger Fzf Mode
+    1. In the command box, press `Ctrl` + `Space`<br/>
+    Expected: A menu should pop up given that user has atleast 1 entry in either Contact, Module or Meeting.
+
+1. Generating Suggestions
+    1. Type some text<br/>
+    Expected: The menu should show suggestions that contain given text. If text enter by user is not empty but has no appropriate suggestions, menu should be hidden.
+
+1. Navigating Suggestions
+    1. Use `Up` or `Down` arrow keys to navigate suggestions<br/>
+    Expected: User should be allowed to navigate suggestions.
+
+1. Locking in a Suggestion
+    1. Press `Enter` to lock in your suggestion<br/>
+    Expected: Menu should be removed and the result should appear in command box.
+
+
+### Viewing a selected meeting details
+
+1. View a selected meeting's agenda and notes
+
+    1. Prerequisites: Meeting is a valid meeting.
+
+    1. Test case: `meeting view m/CS1100 n/Weekly Meeting` <br>
+       Expected: Selected meeting panel should display the correct meeting. User can toggle between viewing the meeting's agenda or notes by clicking on the corresponding Agenda or Notes tab.
+
+### Change to light theme
+
+1. Switch the application theme to light theme
+
+   1. Test case: `light` <br>
+      Expected: Application should switch to light theme and status message should say "Light theme set successfully."
+
+### Change to dark theme
+
+1. Switch the application theme to dark theme
+
+   1. Test case: `dark` <br>
+      Expected: Application should switch to dark theme and status message should say "Dark theme set successfully."
