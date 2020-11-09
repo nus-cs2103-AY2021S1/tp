@@ -519,7 +519,7 @@ assignments will contain the following fields:
 
   Expected Outcome: 
   
- <p aligin="center"><img src="docs/images/GradeTracker/AddAssignment.PNG" border="2px solid black"></p>
+ <p aligin="center"><img src="images/GradeTracker/AddAssignment.png" border="2px solid black"></p>
 
 
 #### Editing an assignment in a module: `editassignment`
@@ -586,7 +586,7 @@ To be implemented:
    
    Expected Outcome: 
      
-<p aligin="center"><img src="docs/images/GradeTracker/AddGrade.PNG" border="2px solid black"></p>
+<p aligin="center"><img src="images/GradeTracker/AddGrade.png" border="2px solid black"></p>
 
 #### Calculating Cumulative Average Point(CAP): `calculatecap`
 
