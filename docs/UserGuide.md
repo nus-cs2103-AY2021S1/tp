@@ -126,6 +126,12 @@ Examples:
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 - `edit 2 n/Betsy Crower tg/` Edits the name of the 2nd students to be `Betsy Crower` and clears all existing tags.
 
+  *Before editing*
+  ![Before running 'edit 2 n/Betsy Crower tg/'](images/edit2before.png)
+  
+  *After editing*
+  ![result for 'edit 2 n/Betsy Crower tg/'](images/edit2after.png)
+  
 ### Locating students by name: `find`
 
 Finds students whose names contain any of the given keywords.
