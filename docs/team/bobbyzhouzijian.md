@@ -55,6 +55,7 @@ Given below are my contributions to the project.
   * Redesign the `help` feature to display a much more user-friendly help window instead of just a 
   URL to the user guide implemented by the original ab3. The new help window now includes a summary view of all the commands in PlaNus.
   Users do not have to navigate to the user guide to look up for all the commands. [\#200](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/200)
+<div style="page-break-after: always;"></div>
 * **Documentation**:
   * User Guide:
     * Added hyperlinks to Table of Content [\#74](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/74)
