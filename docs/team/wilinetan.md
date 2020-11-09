@@ -17,7 +17,9 @@ Given below are my contributions to the project.
   * Highlights: This is a core feature for our app as it serves as a reminder for Avengers on their upcoming marking tasks
   so that they can manage their time.
   * Credits: *Selenium WebDriver for the ability to scrape for information on Source Academy*
+
 <br>
+
 * **New Feature**: Added the ability to view ungraded Missions and Quests
   * What it does: List all the ungraded Missions and Quests that the Avenger has yet to mark.
   * Justification: This feature allows users to keep track of the Missions and Quests that they have yet to mark so
@@ -25,7 +27,9 @@ Given below are my contributions to the project.
   * Highlights: This is another core feature for our app as it serves as a reminder for Avengers on which Missions and Quests
   they have to mark so that they can manage their time.
   * Credits: *Selenium WebDriver for the ability to scrape for information on Source Academy*
+
 <br>
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=wilinetan)
 
 * **Project management**:
