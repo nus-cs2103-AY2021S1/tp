@@ -69,25 +69,25 @@ Given below are my contributions to the project.
   
   * User Guide:
     * Head writer and maintainer of team aspects of the user guide
-      (eg. sections include introduction, quick start, definitions, features, commands) (Pull request [\#276](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/267))
+      (eg. sections include introduction, quick start, definitions, features, commands) (PR [\#276](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/267))
     * Added documentation for the features `find` (PR [\#111](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/111), [\#276](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/267)),
     `findexact` (PR [\#120](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/120), [\#276](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/267)),
     `note` (PR [\#154](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/154)),
     `notedelete` (PR [\#154](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/154), [\#272](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/272)),
-    `stockview` (Pull request [\#272](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/272))
+    and `stockview` (Pull request [\#272](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/272))
     
   * Developer Guide:
-    * Added implementation and UML diagrams for the Find and FindExact features. (Pull request [\#163](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/163), [\#165](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/165))
-    * Added implementation and UML diagrams for the Note feature. (Pull request [\#290](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/290), [\#294](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/294))
-    * Added implementation and UML diagrams for the StockView feature. (Pull request [\#294](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/294))
+    * Added implementation and UML diagrams for Find and FindExact features (PR [\#163](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/163), [\#165](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/165)),
+    the Note feature (PR [\#290](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/290), [\#294](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/294)),
+    and the StockView feature (PR [\#294](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/294))
     * Rebased Architecture, UI component, Logic component,
-    Model component and Storage component UML diagrams from AB3 to Warenager. (Pull request [\#165](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/165))
-    * Added use cases and manual testing test cases for the feature `find`. (Pull request [\#62](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/62))
-    * Added use cases and manual testing test cases for the feature `findexact`. (Pull request [\#154](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/154))
-    * Added use cases and manual testing test cases for the feature `note`. (Pull request [\#154](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/154))
-    * Added use cases and manual testing test cases for the feature `notedelete`. (Pull request [\#154](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/154))
-    * Added use cases and manual testing test cases for feature `stockview`. (Pull request [\#290](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/290))
-    * Added documentation for `non-functional requirements` and `glossary`sections. (Pull request [\#62](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/62))
+    Model component and Storage component UML diagrams from AB3 to Warenager. (PR [\#165](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/165))
+    * Added use cases and instructions manual testing test cases for the features `find` (PR [\#62](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/62)),
+    `findexact` (PR [\#154](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/154)),
+    `note` (PR [\#154](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/154)),
+    `notedelete` (PR [\#154](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/154)),
+    and `stockview` (PR [\#290](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/290)).
+    * Added documentation for `non-functional requirements` and `glossary`sections. (PR [\#62](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/62))
     
 * **Testing**:
    * Created unit tests for `find` feature (find command parser, find command). (Pull request [\#129](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/129))
