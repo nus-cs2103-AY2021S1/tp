@@ -16,13 +16,14 @@ import seedu.address.model.routine.Routine;
 import seedu.address.model.util.Name;
 
 /**
- * Parses input arguments and creates a new RoutineCreateCommand object
+ * Parses input arguments and creates a new RoutineCreateCommand object.
  */
 public class RoutineCreateCommandParser implements Parser<RoutineCreateCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the RoutineCreateCommand
      * and returns a RoutineCreateCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public RoutineCreateCommand parse(String args) throws ParseException {

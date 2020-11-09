@@ -18,6 +18,9 @@ public class Weight {
 
     public static final String VALIDATION_REGEX = "\\d+(\\.\\d{1,2})?";
 
+    /**
+     * The weight of the user.
+     */
     private final double weight;
 
     /**

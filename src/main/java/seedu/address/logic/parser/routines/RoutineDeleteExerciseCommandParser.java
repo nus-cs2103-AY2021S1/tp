@@ -21,13 +21,14 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.util.Name;
 
 /**
- * Parses input arguments and creates a new RoutineDeleteExerciseCommand object
+ * Parses input arguments and creates a new RoutineDeleteExerciseCommand object.
  */
 public class RoutineDeleteExerciseCommandParser implements Parser<RoutineDeleteExerciseCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the RoutineDeleteExerciseCommand
      * and returns a RoutineDeleteExerciseCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public RoutineDeleteExerciseCommand parse(String args) throws ParseException {

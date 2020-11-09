@@ -15,6 +15,9 @@ import seedu.address.model.timetable.Day;
 import seedu.address.model.timetable.Duration;
 import seedu.address.model.timetable.Slot;
 
+/**
+ * Adds a Lesson to the Timetable in fitNUS.
+ */
 public class TimetableAddLessonCommand extends Command {
 
     public static final String COMMAND_WORD = "timetable_add_lesson";
@@ -35,10 +38,19 @@ public class TimetableAddLessonCommand extends Command {
     public static final String MESSAGE_DUPLICATE_SLOT = "This slot already exists in your timetable";
     public static final String MESSAGE_OVERLAP_SLOT = "This slot overlaps with another slot in your timetable";
 
+    /**
+     * The Lesson to be added.
+     */
     private final Lesson lesson;
 
+    /**
+     * The Day to be added to in the timetable.
+     */
     private final Day day;
 
+    /**
+     * The Duration to be added to in the timetable.
+     */
     private final Duration duration;
 
     /**

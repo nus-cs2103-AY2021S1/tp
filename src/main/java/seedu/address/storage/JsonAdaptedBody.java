@@ -13,8 +13,6 @@ import seedu.address.model.body.Weight;
  */
 class JsonAdaptedBody {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Body's %s field is missing!";
-
     private final double height;
     private final double weight;
 

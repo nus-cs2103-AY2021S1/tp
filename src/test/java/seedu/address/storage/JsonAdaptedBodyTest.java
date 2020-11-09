@@ -18,9 +18,6 @@ public class JsonAdaptedBodyTest {
 
     private static final Weight MODEL_WEIGHT = new Weight(70);
     private static final Height MODEL_HEIGHT = new Height(170);
-    private static final JsonAdaptedBody VALID_BODY =
-            new JsonAdaptedBody(170, 70);
-
     private static final Body MODEL_SOURCE = new Body();
 
 

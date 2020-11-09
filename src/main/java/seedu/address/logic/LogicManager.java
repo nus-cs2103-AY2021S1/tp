@@ -51,7 +51,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveFitNus(model.getFitNus());
+            storage.saveFitNus(getFitNus());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -92,11 +92,6 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Lesson> getFilteredLessonList() {
         return model.getFilteredLessonList();
-    }
-
-    @Override
-    public ObservableList<Slot> getFilteredSlotList() {
-        return model.getFilteredSlotList();
     }
 
     @Override

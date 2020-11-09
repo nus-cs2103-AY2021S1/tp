@@ -21,13 +21,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new ExerciseEditCommand object
+ * Parses input arguments and creates a new ExerciseEditCommand object.
  */
 public class ExerciseEditCommandParser implements Parser<ExerciseEditCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the ExerciseEditCommand
      * and returns an ExerciseEditCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public ExerciseEditCommand parse(String args) throws ParseException {
@@ -38,6 +39,11 @@ public class ExerciseEditCommandParser implements Parser<ExerciseEditCommand> {
         if (argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ExerciseEditCommand.MESSAGE_USAGE));
+        }
+        if (argMultimap.getValue(PREFIX_EXERCISE).isPresent()
+                && argMultimap.getAllValues(PREFIX_EXERCISE).size() != 1) {
+            throw new ParseException(String.format(
+                    MESSAGE_INVALID_COMMAND_FORMAT, ExerciseEditCommand.MESSAGE_USAGE));
         }
 
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());

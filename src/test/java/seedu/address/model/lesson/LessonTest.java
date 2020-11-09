@@ -23,18 +23,18 @@ public class LessonTest {
     @Test
     public void isSameLesson() {
         // same object -> returns true
-        assertTrue(GES1028.isSameLesson(GES1028));
+        assertTrue(GES1028.isSameActivity(GES1028));
 
         // null -> returns false
-        assertFalse(GES1028.isSameLesson(null));
+        assertFalse(GES1028.isSameActivity(null));
 
         // different name -> returns false
         Lesson editedGes1028 = new LessonBuilder(GES1028).withName(VALID_LESSON_NAME_CS2106).build();
-        assertFalse(GES1028.isSameLesson(editedGes1028));
+        assertFalse(GES1028.isSameActivity(editedGes1028));
 
         // same name, different tags -> returns true
         editedGes1028 = new LessonBuilder(GES1028).withTags(VALID_LESSON_TAG_LECTURE).build();
-        assertTrue(GES1028.isSameLesson(editedGes1028));
+        assertTrue(GES1028.isSameActivity(editedGes1028));
     }
 
     @Test

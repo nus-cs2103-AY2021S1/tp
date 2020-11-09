@@ -1,11 +1,8 @@
 package seedu.address.logic.commands.calories;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +12,6 @@ import seedu.address.logic.commands.calorie.CalorieAddCommand;
 import seedu.address.model.FitNus;
 import seedu.address.model.ReadOnlyFitNus;
 import seedu.address.model.calorie.Calorie;
-import seedu.address.model.calorie.DailyCalorie;
 
 public class CalorieAddCommandTest {
 
@@ -53,32 +49,9 @@ public class CalorieAddCommandTest {
     }
 
     /**
-     * Stub used to contain a single DailyCalorie.
-     */
-    private class ModelStubWithDailyCalorie extends ModelStub {
-        private final DailyCalorie dailyCalorie;
-
-        ModelStubWithDailyCalorie(DailyCalorie dailyCalorie) {
-            requireNonNull(dailyCalorie);
-            this.dailyCalorie = dailyCalorie;
-        }
-
-        @Override
-        public int getCalories() {
-            return dailyCalorie.getCalories();
-        }
-
-        @Override
-        public void addCalories(Calorie calorie) {
-            dailyCalorie.addCalories(calorie);
-        }
-    }
-
-    /**
      * Stub that accepts any DailyCalorie added to it.
      */
     private class ModelStubAcceptingDailyCalorie extends ModelStub {
-        final ArrayList<DailyCalorie> dailyCalories = new ArrayList<>();
         private int calories = 0;
 
         @Override

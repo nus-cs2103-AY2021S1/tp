@@ -14,6 +14,9 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.body.Height;
 
+/**
+ * Parses input arguments and creates a new AddHeightCommand object.
+ */
 public class AddHeightCommandParser implements Parser<AddHeightCommand> {
 
     /**

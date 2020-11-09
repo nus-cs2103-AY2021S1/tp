@@ -10,14 +10,14 @@ import seedu.address.model.Model;
 import seedu.address.model.calorie.Calorie;
 
 /**
- * Adds an Daily Calorie to fitNUS.
+ * Deducts a Calorie from fitNUS for the particular day.
  */
 public class CalorieMinusCommand extends Command {
 
     public static final String COMMAND_WORD = "calorie_minus";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deducts the specified calorie amount from today's sum. "
+    public static final String MESSAGE_USAGE =
+            COMMAND_WORD + ": Deducts the specified calorie amount from today's total calorie count. "
             + "Parameters: "
             + PREFIX_CALORIE + "CALORIE "
             + "\n"
@@ -27,10 +27,13 @@ public class CalorieMinusCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Calories successfully deducted: %1$s" + "\nToday's calories are: ";
     public static final String MESSAGE_FAILURE = "You are deducting a sum that is greater than today's calories!";
 
+    /**
+     * The Calorie to be deducted for that particular day.
+     */
     private final Calorie toDeduct;
 
     /**
-     * Creates an CalorieMinusCommand to add the specified {@code DailyCalorie}
+     * Creates an CalorieMinusCommand to deduct the specified {@code Calorie}
      */
     public CalorieMinusCommand(Calorie calorie) {
         toDeduct = calorie;

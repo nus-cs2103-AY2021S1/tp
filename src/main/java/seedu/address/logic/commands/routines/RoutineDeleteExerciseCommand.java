@@ -13,7 +13,7 @@ import seedu.address.model.exercise.exceptions.ExerciseNotFoundException;
 import seedu.address.model.routine.Routine;
 
 /**
- * Deletes an exercise from a routine in fitNUS.
+ * Deletes an Exercise from a Routine in fitNUS.
  */
 public class RoutineDeleteExerciseCommand extends Command {
 
@@ -32,7 +32,14 @@ public class RoutineDeleteExerciseCommand extends Command {
     public static final String MESSAGE_MISSING_ROUTINE = "This routine does not exist in fitNUS!";
     public static final String MESSAGE_MISSING_EXERCISE = "This exercise does not exist within this routine!";
 
+    /**
+     * The Routine to delete the Exercise from.
+     */
     private final Routine routine;
+
+    /**
+     * The Exercise to delete.
+     */
     private final Exercise exercise;
 
     /**

@@ -23,8 +23,9 @@ import seedu.address.model.timetable.Slot;
 public class TimetableDeleteSlotCommandParser implements Parser<TimetableDeleteSlotCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the RoutineAddExerciseCommand
-     * and returns an RoutineAddExerciseCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the TimetableDeleteSlotCommand
+     * and returns an TimetableDeleteSlotCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public TimetableDeleteSlotCommand parse(String args) throws ParseException {

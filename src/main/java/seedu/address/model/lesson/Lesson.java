@@ -17,7 +17,9 @@ import seedu.address.model.util.Name;
  */
 public class Lesson extends Activity {
 
-    // Data fields
+    /**
+     * The set of Tags the Lesson contains.
+     */
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -35,19 +37,6 @@ public class Lesson extends Activity {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
-    }
-
-    /**
-     * Returns true if both lessons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two lessons.
-     */
-    public boolean isSameLesson(Lesson otherLesson) {
-        if (otherLesson == this) {
-            return true;
-        }
-
-        return otherLesson != null
-                && otherLesson.getName().equals(getName());
     }
 
     /**
