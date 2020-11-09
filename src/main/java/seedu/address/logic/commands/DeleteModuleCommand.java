@@ -25,7 +25,7 @@ public class DeleteModuleCommand extends Command {
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module: %1$s";
 
     public static final String MESSAGE_NOT_IN_MODULE_VIEW =
-            "You are currently not in the Module view. Run listMod to go back to the module view.";
+            "You are currently not in the Module view. \n" + "Run listMod to go back to the Module view.";
 
     private final Index targetIndex;
 
