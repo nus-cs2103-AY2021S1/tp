@@ -594,7 +594,7 @@ Use case ends.
 <br>
 - 1a. User passes a command as argument into help command.
     - 1a1. Help will show the argument to the command, and the usage of the command.<br>
-    Use case end.<br>
+    Use case ends.<br>
 - 1b. User passes an invalid command as argument into help command.<br>
     - 1b1. McGymmy will throw an error.<br>
     Use case ends.<br>
@@ -652,7 +652,7 @@ Use case ends.
 2. McGymmy shows a list of food.
 3. User request to remove tag from a specific food on the list.
 4. McGymmy removes the tag from the food.<br>
-Use case ends
+Use case ends.
 
 **Extensions**
 - 2a. The list is empty.<br>
