@@ -113,12 +113,12 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: Note: The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### 3.4. Model component
 
-![Structure of the Model Component](diagrams/ModelClassDiagram.puml)
+![Structure of the Model Component](images/ModelClassDiagram.png)
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/src/main/java/seedu/address/model/ExerciseModel.java)
 
@@ -130,11 +130,12 @@ The `Model`,
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ExerciseBook`, which `Exercise` references. This allows `ExerciseBook` to only require one `Tag` object per unique `Tag`, instead of each `Exercise` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">
+:information_source: Note: An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ExerciseBook`, which `Exercise` references. This allows `ExerciseBook` to only require one `Tag` object per unique `Tag`, instead of each `Exercise` needing their own `Tag` object.<br>
+</div>
 
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
-</div>
 
 
 ### 3.5. Storage component
@@ -188,18 +189,17 @@ Else, a success message will appear on the user Response Box.
 
 **Aspect**: How to decide the file path?
 
-Alternative 1 (current choice): Have the user specify the file location and file name to store the archived file.
-* Pros: Easier to implement. The user have the freedom on where to store and what to call the archived file. 
-* Cons: Error prone. The user need to enter the file location  specifically whcih may be difficult for users who are used
+* **Alternative 1 (current choice):** Have the user specify the file location and file name to store the archived file.
+  * Pros: Easier to implement. The user have the freedom on where to store and what to call the archived file. 
+  * Cons: Error prone. The user need to enter the file location  specifically whcih may be difficult for users who are used
 to GUI.
-* Reasons for choosing: Though this choice is more error prone, we decide that since our app is Command-Line Interface,
+  * Reasons for choosing: Though this choice is more error prone, we decide that since our app is Command-Line Interface,
 our users are likely accustomed to entering file location and the freedom to decide the location and name is always nice
 to have. 
 
-
-Alternative 2: Have a dedicated file location that the file will be stored.
-* Pros: Easier for the user to archive.
-* Cons: Difficult for the system to give a meaningful name to the archived file. If we were to name the file as `file_1`,
+* **Alternative 2:** Have a dedicated file location that the file will be stored.
+  * Pros: Easier for the user to archive.
+  * Cons: Difficult for the system to give a meaningful name to the archived file. If we were to name the file as `file_1`,
 `file 2` etc, we need to check if there exists such file name first.
 
 
@@ -216,7 +216,6 @@ during this rendering process, `CaloriesGraph` takes in `HashMap` that contains 
 for that day as the value. `CaloriesGraph` will then take values for the most recent 7 days (including today) and display
 them on the Calories Graph.
 
-
 Step 1: User enter a valid command.  
 Step 2: The command is passed to the `LogicManager` which parse and execute the command.  
 Step 3: After the update is done, `MainWindow` called `getCaloriesByDay()` which is a HashMap that contains the summarised information.  
@@ -232,13 +231,13 @@ The following is the Sequence Diagram that describes the process in slightly mor
 
 **Aspect**: How to generate the CaloriesGraph?
 
-Alternative 1 (current choice): Let the `LogicManager` passes a `HashMap<String,Integer>` that has `Date` as a key and
+* **Alternative 1 (current choice):** Let the `LogicManager` passes a `HashMap<String,Integer>` that has `Date` as a key and
 sum of `Calories` as a Integer value to `MainWindow` after each command.
-Pros: Easy to implement.
+  * Pros: Easy to implement.
 
-Alternative 2: Convert the `HashMap<String,Integer>` that 
-Pros: Follow the Design Pattern (Observer) and less stress on Call Stack (explained below)
-Cons: Needs of Refactoring. Calo team has implemented the CaloriesGraph before the idea of Observer Pattern is introduced
+* **Alternative 2:** Convert the `HashMap<String,Integer>` that 
+  * Pros: Follow the Design Pattern (Observer) and less stress on Call Stack (explained below)
+  * Cons: Needs of Refactoring. Calo team has implemented the CaloriesGraph before the idea of Observer Pattern is introduced
 to us. 
 
 **Reason for Not refactoring**:   
@@ -276,7 +275,8 @@ of creating a new template and returns a new AddTemplateCommand object.
 The template list is stored in the data file folder as a txt file.
 
 ### 4.4. GoalBook
-Author: Nauman Sajid
+(Nauman Sajid)  
+
 Calo has been designed to ensure that a user is accountable for this own progress. A key aspect of this accountability is
 ensuring that the user sets clear goals and meets them. To achieve this we have created a goalBook which is similar
 to the exerciseBook. The goalBook helps the user track and update his goals.
@@ -290,28 +290,27 @@ is added or deleted for a particular Date.
 
 #### 4.4.2. Design Consideration
 
-*Aspect*: Should the goalBook be separate from the Exercise Book?
+**Aspect**: Should the goalBook be separate from the Exercise Book?
 
-Alternative 1 (current choice): Separate. 
-Pros: Ensures SRP principle.
+* **Alternative 1 (current choice):** Separate. 
+  * Pros: Ensures SRP principle.
 
 
-Alternative 2: Joint Book.
-Pros: Fewer files.
+* **Alternative 2:** Joint Book.
+  * Pros: Fewer files.
 
-*Reason for option 1*:   
+**Reason for option 1**:   
 Option 1 allows easier debugging. As the goal Book has been seperated from the Exercise Book.
 
 ### 4.5. Updating an exercise
-
-Author: Lee Wei Min
+(Lee Wei Min)
 
 This section details how an `Exercise` is modified using the `update` command.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The update command 
+**Note:** The update command
 updates an existing exercise, where all fields are optional but at least one field to update must
 be specified. For more details, please refer to the [update section](https://ay2021s1-cs2103t-w17-2.github.io/tp/UserGuide.html#33-update-exercises--update) of the user guide
-</div>
+
 
 #### 4.5.1. Implementation
 
@@ -324,27 +323,21 @@ The below sequence diagram details the execution flow:
 Note: If you find the text above too small, you might want to check out the diagram [here](https://github.com/AY2021S1-CS2103T-W17-2/tp/blob/master/docs/images/UpdateSequenceDiagram.png).
 
 Here are the steps:
-- Step 1: `LogicManager` calls its  `execute` method, supplying the argument "update 1 d/30 c/260 m/chest t/home", which was entered by the user.
-
-- Step 2: `LogicManager` calls the `exerciseBookParser`'s `parseCommand` method, supplying the user input.
-
-- Step 3: In `parseCommand`, the user input is parsed and its command word (`update`) is matched to the `UpdateCommandParser`. `UpdateCommandParser`'s `parse` method is called, passing in the parsed arguments.
-
-- Step 4: In `UpdateCommandParser`'s `parse` method, a `EditExerciseDescriptor` object
+Step 1: `LogicManager` calls its  `execute` method, supplying the argument "update 1 d/30 c/260 m/chest t/home", which was entered by the user.  
+Step 2: `LogicManager` calls the `exerciseBookParser`'s `parseCommand` method, supplying the user input.  
+Step 3: In `parseCommand`, the user input is parsed and its command word (`update`) is matched to the `UpdateCommandParser`. `UpdateCommandParser`'s `parse` method is called, passing in the parsed arguments.
+Step 4: In `UpdateCommandParser`'s `parse` method, a `EditExerciseDescriptor` object
 is created. Each field of the parsed arguments are added to the `EditExerciseDescriptor` object. `UpdateCommandParser` then creates an `UpdateCommand` object containing the index of the `exercise` to edit and the `EditExerciseDescriptor` object. In the sequence diagram, the argument `index` refers
 to the `Index` object representing the index of the first exercise, while `editExerciseDescriptor`
 refers to the `EditExerciseDescriptor` object that contains the data (from the parsed
-arguments) to update.
+arguments) to update.  
+Step 5: `LogicManager` obtains the `UpdateCommand` object, which is referenced by the `command` variable. It then executes the `execute` method of  the `UpdateCommand` object.  
+Step 6: In the `execute` method, the `UpdateCommand` object calls `getFilteredExerciseList` to 
+to obtain `lastShownExerciseList`. The `Exercise` to edit is retrieved from the `lastShownExerciseList` using the `index`, and assigned to `exerciseToEdit`. Another `Exercise` object, named `editedExercise` is created to hold the data to be updated. The `UpdateCommand` object then calls the `setExercise` method of `Model`, with `exerciseToEdit` and `editedExercise`.  
+Step 7: A new `CommandResult` is created containing the message to be displayed to the user,
+which is "Edited Exercise: Name: running Description: 30 Date: 10-12-2020 Calories: 260 Muscles worked:[chest] Tags: [home]". This `CommandResult` is returned to `LogicManager`.  
 
-- Step 5: `LogicManager` obtains the `UpdateCommand` object, which is referenced by the `command` variable. It then executes the `execute` method of  the `UpdateCommand` object.
-
-- Step 6: In the `execute` method, the `UpdateCommand` object calls `getFilteredExerciseList` to 
-to obtain `lastShownExerciseList`. The `Exercise` to edit is retrieved from the `lastShownExerciseList` using the `index`, and assigned to `exerciseToEdit`. Another `Exercise` object, named `editedExercise` is created to hold the data to be updated. The `UpdateCommand` object then calls the `setExercise` method of `Model`, with `exerciseToEdit` and `editedExercise`.
-
-- Step 7: A new `CommandResult` is created containing the message to be displayed to the user,
-which is "Edited Exercise: Name: running Description: 30 Date: 10-12-2020 Calories: 260 Muscles worked:[chest] Tags: [home]". This `CommandResult` is returned to `LogicManager`.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The activation bar
+<div markdown="span" class="alert alert-info">:information_source: Note: The activation bar
 of commandResult should be joined to the side of the box representing the commandResult instance.
 Due to a limitation of PlantUML, it is not possible to do so here.
 </div>
@@ -353,23 +346,16 @@ Due to a limitation of PlantUML, it is not possible to do so here.
 
 **Aspect**: Process of updating the new data in `model`
 
-- **Alternative 1 (Current choice)**: Replace `Exercise` to be updated in `UniqueExerciseList` of `ExerciseBook` with another `Exercise` object containing the updated data.
-
-  - Pros:
-    - Atomic updates.
-  - Cons:
-    - May have performance issues in terms of memory usage.
+* **Alternative 1 (Current choice)**: Replace `Exercise` to be updated in `UniqueExerciseList` of `ExerciseBook` with another `Exercise` object containing the updated data.
+  * Pros: Atomic updates.
+  * Cons: May have performance issues in terms of memory usage.
     - Eg. If only one field of the original `Exercise` object will be updated, another `Exercise`
       object will still be created containing the original data of the unchanged fields.
-
 <br>
 
-- **Alternative 2**: Update the fields of the original exercise one at a time.
-
-  - Pros:
-    - Will use less memory (no new `Exercise` object will be created)
-  - Cons:
-    - If an error occurs in the middle of the process, the fields which were updated would not recover the original values.
+* **Alternative 2**: Update the fields of the original exercise one at a time.
+  * Pros: Will use less memory (no new `Exercise` object will be created)
+  * Cons:If an error occurs in the middle of the process, the fields which were updated would not recover the original values.
 
 #### 4.4.3 Summary
 
@@ -405,16 +391,12 @@ The sequence diagram below demonstrates how the `find` command works:
 
 How the `find` command works:
 
-Step 1: `LogicManager` executes the user input, using `ExerciseBookParser` to realise this is a `find` command, and create a new `FindCommandParser` object.
-
-Step 2: The `FindCommandParser` object parses the user-entered arguments, and creates a `PropertiesMatchPredicate`.
-
-Step 3: This `PropertiesMatchPredicate` object is  then used to construct a new `FindCommand` object, returned to `LogicManager`.
-
-Step 4: `LogicManager` calls the `execute` method of the created `FindCommand`, which filters for `Exercise` objects that evaluate the predicate created previously to be true.
+Step 1: `LogicManager` executes the user input, using `ExerciseBookParser` to realise this is a `find` command, and create a new `FindCommandParser` object.  
+Step 2: The `FindCommandParser` object parses the user-entered arguments, and creates a `PropertiesMatchPredicate`.  
+Step 3: This `PropertiesMatchPredicate` object is  then used to construct a new `FindCommand` object, returned to `LogicManager`.  
+Step 4: `LogicManager` calls the `execute` method of the created `FindCommand`, which filters for `Exercise` objects that evaluate the predicate created previously to be true.  
 It then returns a new CommandResult object reflecting the status of the execution. These changes are eventually reflected in the GUI.
-
-The `find` command therefore searches through the existing Exercise List and then displays the relevant search results in the GUI’s Exercise List.
+The `find` command therefore searches through the existing Exercise List and then displays the relevant search results in the GUI’s Exercise List.  
 
 To search for the most recent exercise with the user-specified `Name`, we use `RecallCommandParser` to parse the user input and create a new `RecallCommand` object with the parsed input.
 The `RecallCommand` then goes through the existing Exercise List to find the most recent date, creates the `TheMostRecentDatePredicate`, and updates the GUI display when executed.
@@ -424,12 +406,10 @@ The sequence diagram below demonstrates how the `recall` command works:
 
 How the `recall` command works:
 
-Step 1: `LogicManager` executes the user input, using `ExerciseBookParser` to realise this is a `recall` command, and create a new `RecallCommandParser` object.
-
-Step 2: The `RecallCommandParser` object parses the user-entered arguments, and creates a `RecallCommand` object which is returned to `LogicManager`.
-
+Step 1: `LogicManager` executes the user input, using `ExerciseBookParser` to realise this is a `recall` command, and create a new `RecallCommandParser` object.  
+Step 2: The `RecallCommandParser` object parses the user-entered arguments, and creates a `RecallCommand` object which is returned to `LogicManager`.  
 Step 3: `LogicManager` calls the `execute` method of the created `RecallCommand`, which creates the `TheMostRecentDatePredicate` and filters for `Exercise` objects that evaluate the predicate created previously to be true.
-It then returns a new CommandResult object reflecting the status of the execution. These changes are eventually reflected in the GUI.
+It then returns a new CommandResult object reflecting the status of the execution. These changes are eventually reflected in the GUI.  
 
 The `recall` command therefore searches for the most recent exercise with the specified name in the existing Exercise List and then displays the relevant search results in the GUI.
 
@@ -701,7 +681,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">:information_source: Note: These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
