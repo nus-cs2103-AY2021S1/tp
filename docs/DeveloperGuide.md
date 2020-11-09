@@ -976,38 +976,245 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Run `java -jar PropertyFree.jar`.  
+   
+      Expected: Shows the GUI with a set of sample data. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   2. Re-launch the app by double-clicking the jar file.<br>  
+   
+      Expected: The most recent window size and location is retained.  
 
-1. _{ more test cases …​ }_
+3. Subsequent launch  
 
-### Deleting a person
+    1. Run `java -jar PropertyFree.jar`.  
 
-1. Deleting a person while all persons are being shown
+       Expected: Shows the GUI with data loaded from the json files. 
+    
+### Testing Bids Features  
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+For all test cases for bid features, the GUI will automatically switch to the bid tab.  
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+#### Adding a Bid  
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+1. Prerequisites: Bidder with bidder id `B1` and property with property id `P2` exists in the respective lists.  
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+2. Restrictions:  
+    - Price must be more than 0 and less or equals to 1 trillion.  
+    - Price will be truncated to 2 dp.  
 
-1. _{ more test cases …​ }_
+3. Test case: `add-bid b/P1 c/B2 m/150000.20`.  
 
-### Saving data
+   Expected: The new bid is added to the bid list with the following message displayed:  
+   ```
+   New bid added: 
+   Bid of $150000.20
+   by B2
+   to property: P1
+   ```
 
-1. Dealing with missing/corrupted data files
+#### View Full List of Bids  
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Test case: `list-bid`.  
 
-1. _{ more test cases …​ }_
+   Expected: All bids will be displayed on the GUI, with the following message displayed:  
+   ```
+   Displaying full bid list.
+   ```  
+
+#### Deletion of Existing Bid  
+
+1. Prerequisites: The bid to be deleted must exist in the bid list.  
+
+2. Test case: `delete-bid 1`.  
+
+   Expected: The bid at index 1 is deleted, with the following message displayed:  
+   ```
+   Deleted Bid: 
+   Bid of $150000.20
+   by B2
+   to property: P1
+   ```  
+   The exact information depends the bid being deleted.  
+
+#### Editing a Bid  
+
+1. Prerequisites: The bid to be edited must exist in the bid list.  
+
+2. Restrictions:  
+    - At least one optional field must be provided.  
+    - All restrictions and prerequisites from ![Adding a Bid](#adding-a-bid) hold.  
+
+3. Test case: `edit-bid 1 b/P99 c/B12 m/1.20`  
+
+   Expected: The bid at index 1 will be updated to the new values, with the following message displayed:  
+   ```
+   Edited Bid:
+   
+   FROM: 
+   Bid of $999999.00
+   by B2
+   to property: P3 
+   
+   TO: 
+   Bid of $1.20
+   by B12
+   to property: P99
+   ```
+   The exact information depends on the bid being edited.  
+   
+#### Find a specific bid based on key words  
+
+1. Test case: `find-bid P1 B2 $65000.00`.  
+
+   Expected: All bids whose attributes matches at least one keyword will be displayed, with the following message displayed:  
+   ```
+   1 bid(s) listed!
+   ```
+   The number of bids listed corresponds to the number of bids that match the keywords.  
+   
+### Testing Meeting Features  
+
+For all test cases for meeting features, the GUI will automatically switch to the meeting tab.  
+
+#### Add a Meeting  
+
+1. Prerequisites: A bidder with bidder id `B1` and a property with property id `P1` must exist in their respective lists.  
+
+2. Restrictions:  
+    - Meeting type is either `v` for `viewing`, `a`, for `admin` or `p` for `paperwork`.  
+    - Date is of the format `DD-MM-YYYY` and cannot be a past date.  
+    - Time is of the format `HH-MM`. The timings can clash each other and the hours and minutes will overflow (eg `24:30` is same as `00:30`).  
+
+3. Test case: `add-m q/v b/B1 p/P1 v/2 ALBERT PARK d/11-12-2021 s/12:30 e/13:00`  
+
+   Expected: Adds the meeting to the meeting list, with the following message displayed:  
+   ```
+   New meeting added: 
+   Meeting Type: Viewing
+   Bidder Id: B1
+   Property Id: P1
+   Venue: 2 ALBERT PARK
+   Date: 11-12-2021
+   Start Time: 12:30
+   End Time: 13:00
+   ```  
+   
+#### Deleting an Existing Meeting  
+
+1. Prerequisite: The meeting to be deleted must exist in the meeting list.  
+
+2. Test case: `delete-m 3`.  
+
+   Expected: The meeting at index 3 will be deleted, with the following message displayed:  
+   ```
+   Deleted Meeting: 
+   Meeting Type: Viewing
+   Bidder Id: B1
+   Property Id: P1
+   Venue: 2 ALBERT PARK
+   Date: 11-12-2021
+   Start Time: 12:30
+   End Time: 13:00
+   ```  
+   The exact information depends on the meeting being deleted.  
+   
+#### View the List of All Meetings  
+
+1. Test case: `list-m`  
+
+   Expected: Displays all the meetings in the meeting list, with the following message displayed:  
+   ```
+   Displaying full meeting list.
+   ```  
+   
+#### Editing an Existing Meeting  
+
+1. Prerequisite: The meeting to be edited must exist in the meeting list.  
+
+2. Restrictions:  
+    - At least one optional field is required.  
+    - The prerequisites and restrictions of ![Adding a Meeting](#add-a-meeting) hold.  
+
+3. Test case: `edit-m 2 v/eunos`.  
+
+   Expected: The meeting will be updated to the provided values, with the following message displayed:  
+   ```Edited Meeting: Admin
+      Bidder Id: B12
+      Property Id: P12
+      Venue: eunos
+      Date: 12-05-2016
+   ```  
+   
+#### Sorting the existing Meeting List  
+
+1. Test case: `sort-m o/asc`.  
+
+   Expected: Sorts the meeting list in ascending order according to meeting date, with the following message displayed:  
+   ```
+   Successfully sorted meeting
+   ```  
+   
+#### Finding an Existing Meeting  
+
+1. Restrictions:  
+    - At least one optional field is required.  
+    
+2. Test case: `find-m b/B1 v/bedok`  
+
+   Expected: Displays all the meetings whose attributes matches the specified keywords, with the following message displayed:  
+   ```2 meeting(s) listed!```  
+   The actual number depends on the number of meetings that fulfil the criteria. 
+   
+### Calendar Navigation Features  
+
+#### Navigating to the Next Month in the Calendar  
+
+1. Test case: `next`  
+
+   Expected: Displays the next month in the calendar, with the following message:  
+   ```
+   Display next month of Calendar
+   ```
+   
+#### Navigating to the Previous Month in the Calendar  
+
+1. Test case: `prev`  
+
+   Expected: Displays the previous month in the calendar, with the following message:  
+   ```
+   Display previous month of Calendar
+   ```  
+   
+### Testing Keyboard Navigation  
+
+#### Focus on `CommandBox`  
+
+1. Prerequisite: When the `CommandBox` is not in focus (i.e. the cursor is not blinking).  
+
+2. Test case: `PRESS ENTER`  
+
+   Expected: The `CommandBox` will be brought into focus.  
+   
+#### Next Month in `Calendar`  
+
+1. Test case:  
+   ```PRESS CTRL + RIGHT ARROW KEY - Windows OS
+       or
+       PRESS CONTROL + RIGHT ARROW KEY - Mac OS
+   ```  
+   
+   Expected: Displays the next month in `Calendar`.  
+   
+#### Previous Month in `Calendar`  
+
+1. Test case:  
+    ```PRESS CTRL + LEFT ARROW KEY - Windows OS
+        or
+        PRESS CONTROL + LEFT ARROW KEY - Mac OS
+   ```  
+   
+   Expected: Displays the previous month in `Calendar`.  

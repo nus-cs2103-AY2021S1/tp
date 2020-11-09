@@ -448,7 +448,10 @@ Asking price: $100.00
 Seller Id: S1
 ```
 
-ℹ️ As seen in the example, a unique unmodifiable property id is automatically generated for every new property.  
+<div markdown="span" class="alert alert-primary">
+:bulb: If the property is a rental, an additional line `Rental` will be displayed in the expected output.<br><br>
+:information_source: As seen in the example, a unique unmodifiable property id is automatically generated for every new property.  
+</div>  
 
 ## Listing all properties
 
