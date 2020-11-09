@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.lesson.Lesson;
 
 /**
- * Deletes a lesson identified using it's displayed index from fitNUS.
+ * Deletes a Lesson identified using its displayed index from fitNUS.
  */
 public class LessonDeleteCommand extends Command {
 
@@ -26,8 +26,14 @@ public class LessonDeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_LESSON_SUCCESS = "Deleted Lesson: %1$s";
 
+    /**
+     * The Index of the lesson to be deleted.
+     */
     private final Index targetIndex;
 
+    /**
+     * Creates a LessonDeleteCommand to delete the specified lesson identified by its {@code Index}.
+     */
     public LessonDeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

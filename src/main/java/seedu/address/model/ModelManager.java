@@ -152,14 +152,8 @@ public class ModelManager implements Model {
     @Override
     public void addCalories(Calorie calorie) {
         fitNus.addCalories(calorie);
-        updateFilteredCalorieLog(PREDICATE_SHOW_ALL_LOGS);
     }
 
-    @Override
-    public void updateFilteredCalorieLog(Predicate<DailyCalorie> predicate) {
-        requireNonNull(predicate);
-        filteredDailyCalories.setPredicate(predicate);
-    }
 
     @Override
     public void minusCalories(Calorie calorie) {
@@ -255,7 +249,6 @@ public class ModelManager implements Model {
     @Override
     public void addSlotToTimetable(Slot slot) {
         fitNus.addSlotToTimetable(slot);
-        updateFilteredCalorieLog(PREDICATE_SHOW_ALL_LOGS);
     }
 
     @Override
@@ -314,15 +307,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Lesson> getFilteredLessonList() {
         return filteredLessons;
-    }
-
-    /**
-     * Returns an unmodifiable view of the list of {@code DailyCalorie} backed by the internal list of
-     * {@code versionedFitNus}
-     */
-    @Override
-    public ObservableList<DailyCalorie> getFilteredDailyCalorieList() {
-        return filteredDailyCalories;
     }
 
     @Override

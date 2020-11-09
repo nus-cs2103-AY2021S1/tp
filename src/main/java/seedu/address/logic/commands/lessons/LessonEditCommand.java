@@ -43,10 +43,19 @@ public class LessonEditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_LESSON = "This lesson already exists in fitNUS.";
 
+    /**
+     * The Index of the lesson to be edited.
+     */
     private final Index index;
+
+    /**
+     * The details to edit the lesson with.
+     */
     private final EditLessonDescriptor editLessonDescriptor;
 
     /**
+     * Creates a LessonEditCommand to edit the specified lesson identified by its {@code Index}.
+     *
      * @param index of the lesson in the filtered lesson list to edit
      * @param editLessonDescriptor details to edit the lesson with
      */
@@ -70,7 +79,7 @@ public class LessonEditCommand extends Command {
         Lesson lessonToEdit = lastShownList.get(index.getZeroBased());
         Lesson editedLesson = createEditedLesson(lessonToEdit, editLessonDescriptor);
 
-        if (!lessonToEdit.isSameLesson(editedLesson) && model.hasLesson(editedLesson)) {
+        if (!lessonToEdit.isSameActivity(editedLesson) && model.hasLesson(editedLesson)) {
             throw new CommandException(MESSAGE_DUPLICATE_LESSON);
         }
 

@@ -14,6 +14,9 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.body.Weight;
 
+/**
+ * Parses input arguments and creates a new AddWeightCommand object.
+ */
 public class AddWeightCommandParser implements Parser<AddWeightCommand> {
 
     /**

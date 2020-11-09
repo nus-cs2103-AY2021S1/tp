@@ -10,7 +10,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String MESSAGE_LIMIT = "Tags names should not be longer than 50";
+    public static final String MESSAGE_CONSTRAINTS_CASE_SENSITIVE =
+            "Tags are case-sensitive! Please refrain from adding duplicates.";
+    public static final String MESSAGE_LIMIT = "Tags names should not be longer than 50 characters";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
     private static final int CHARACTER_LIMIT = 50;
 

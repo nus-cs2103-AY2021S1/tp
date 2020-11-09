@@ -15,13 +15,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.calorie.Calorie;
 
 /**
- * Parses input arguments and creates a new CalorieMinusCommand object
+ * Parses input arguments and creates a new CalorieMinusCommand object.
  */
 public class CalorieMinusCommandParser implements Parser<CalorieMinusCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the CalorieMinusCommand
      * and returns an CalorieMinusCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public CalorieMinusCommand parse(String args) throws ParseException {

@@ -28,6 +28,8 @@ convenience and utility in the long-run. Aimed at NUS students who are keen on i
 the perfect solution in which the Graphical User Interface is integrated with Command Line Interface to provide a
 wholesome user experience.
 
+<div style="page-break-after: always;"></div>
+
 ## Summary of Contributions
 
 * **New Feature**: Added Timetable and Slot classes together with their relevant implementations.
@@ -63,6 +65,8 @@ wholesome user experience.
   [#201](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/201) [#204](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/204)
   * Fixed the case-sensitive issues of allowing duplicate Routine, Exercise or Lesson to be added into fitNUS.
   Fixed the issue of having too long names by restricting it to maximum of 50 characters. [#187](https://github.com/AY2021S1-CS2103T-T09-2/tp/pull/187)
+
+<div style="page-break-after: always;"></div>
 
 ## Contributions to the team-based tasks:
 

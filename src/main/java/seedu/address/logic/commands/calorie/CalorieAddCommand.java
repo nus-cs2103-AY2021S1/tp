@@ -10,13 +10,14 @@ import seedu.address.model.Model;
 import seedu.address.model.calorie.Calorie;
 
 /**
- * Adds a DailyCalorie to fitNUS.
+ * Adds a Calorie to fitNUS for the particular day.
  */
 public class CalorieAddCommand extends Command {
 
     public static final String COMMAND_WORD = "calorie_add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds the user's caloric intake to today's sum. "
+    public static final String MESSAGE_USAGE =
+            COMMAND_WORD + ": Adds the user's caloric intake to today's total calorie count. "
             + "Parameters: "
             + PREFIX_CALORIE + "CALORIE "
             + "\n"
@@ -26,10 +27,13 @@ public class CalorieAddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Calories successfully added: %1$s" + "\nToday's calories are: ";
     public static final String MESSAGE_FAILURE = "Daily calorie intake is too large, please input an accurate figure.";
 
+    /**
+     * The Calorie to be added for that particular day.
+     */
     private final Calorie toAdd;
 
     /**
-     * Creates an CalorieAddCommand to add the specified {@code DailyCalorie}
+     * Creates an CalorieAddCommand to add the specified {@code Calorie}
      */
     public CalorieAddCommand(Calorie calorie) {
         toAdd = calorie;

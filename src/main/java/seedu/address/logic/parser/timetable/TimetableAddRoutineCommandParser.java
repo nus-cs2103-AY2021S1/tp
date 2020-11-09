@@ -25,8 +25,9 @@ import seedu.address.model.util.Name;
 public class TimetableAddRoutineCommandParser implements Parser<TimetableAddRoutineCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the RoutineAddExerciseCommand
-     * and returns an RoutineAddExerciseCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the TimetableAddRoutineCommand
+     * and returns an TimetableAddRoutineCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public TimetableAddRoutineCommand parse(String args) throws ParseException {

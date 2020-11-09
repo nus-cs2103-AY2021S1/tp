@@ -16,10 +16,6 @@ public class FitNusBuilder {
         fitNus = new FitNus();
     }
 
-    public FitNusBuilder(FitNus fitNus) {
-        this.fitNus = fitNus;
-    }
-
     /**
      * Adds a new {@code Lesson} to the {@code fitNUS} that we are building.
      */

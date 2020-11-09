@@ -270,11 +270,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<DailyCalorie> getFilteredDailyCalorieList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public int getCalories() {
             throw new AssertionError("This method should not be called.");
         }
@@ -305,11 +300,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateFilteredCalorieLog(Predicate<DailyCalorie> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void updateFilteredExerciseList(Predicate<Exercise> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -334,7 +324,7 @@ public class AddCommandTest {
         @Override
         public boolean hasLesson(Lesson lesson) {
             requireNonNull(lesson);
-            return this.lesson.isSameLesson(lesson);
+            return this.lesson.isSameActivity(lesson);
         }
     }
 
@@ -347,7 +337,7 @@ public class AddCommandTest {
         @Override
         public boolean hasLesson(Lesson lesson) {
             requireNonNull(lesson);
-            return lessonsAdded.stream().anyMatch(lesson::isSameLesson);
+            return lessonsAdded.stream().anyMatch(lesson::isSameActivity);
         }
 
         @Override

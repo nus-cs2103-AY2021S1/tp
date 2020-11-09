@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.routine.Routine;
 
 /**
- * Views all exercises for a specified routine in fitNUS.
+ * Views all exercises for a specified Routine in fitNUS.
  */
 public class RoutineViewCommand extends Command {
 
@@ -25,10 +25,13 @@ public class RoutineViewCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Routine shown above:";
     public static final String MESSAGE_OUT_OF_BOUNDS_ROUTINE = "This routine index is out of bounds!";
 
+    /**
+     * The Index of the routine to view.
+     */
     private final Index toView;
 
     /**
-     * Creates a RoutineViewCommand to view all exercises for the specified {@code Index} of the routine
+     * Creates a RoutineViewCommand to view all exercises for the specified routine identified by its {@code Index}.
      */
     public RoutineViewCommand(Index index) {
         requireNonNull(index);

@@ -9,6 +9,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.body.Weight;
 
+/**
+ * Adds the user's Weight to fitNUS.
+ */
 public class AddWeightCommand extends Command {
     public static final String COMMAND_WORD = "weight";
 
@@ -20,6 +23,9 @@ public class AddWeightCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Weight added: %1$s";
 
+    /**
+     * The Weight of the user.
+     */
     private final Weight weight;
 
     /**

@@ -21,13 +21,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new LessonEditCommand object
+ * Parses input arguments and creates a new LessonEditCommand object.
  */
 public class LessonEditCommandParser implements Parser<LessonEditCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the LessonEditCommand
      * and returns a LessonEditCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public LessonEditCommand parse(String args) throws ParseException {
@@ -36,6 +37,10 @@ public class LessonEditCommandParser implements Parser<LessonEditCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_LESSON, PREFIX_TAG);
 
         if (argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(
+                    MESSAGE_INVALID_COMMAND_FORMAT, LessonEditCommand.MESSAGE_USAGE));
+        }
+        if (argMultimap.getValue(PREFIX_LESSON).isPresent() && argMultimap.getAllValues(PREFIX_LESSON).size() != 1) {
             throw new ParseException(String.format(
                     MESSAGE_INVALID_COMMAND_FORMAT, LessonEditCommand.MESSAGE_USAGE));
         }

@@ -4,9 +4,19 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+/**
+ * Represents the user with his Body details such as height and weight.
+ */
 public class Body {
 
+    /**
+     * The Height of the user.
+     */
     private Height height;
+
+    /**
+     * The Weight of the user.
+     */
     private Weight weight;
 
     /**
@@ -35,6 +45,7 @@ public class Body {
 
     /**
      * Returns Height of this Body.
+     *
      * @return Height of this Body.
      */
     public Height getHeight() {
@@ -43,6 +54,7 @@ public class Body {
 
     /**
      * Returns Weight of this Body.
+     *
      * @return Weight of this Body.
      */
     public Weight getWeight() {
@@ -81,6 +93,7 @@ public class Body {
 
     /**
      * Calculates the BMI of this Body.
+     *
      * @return Double representing the BMI.
      */
     public double getBmi() {

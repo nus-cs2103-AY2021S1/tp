@@ -10,13 +10,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.LessonNameContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new LessonFindCommand object
+ * Parses input arguments and creates a new LessonFindCommand object.
  */
 public class LessonFindCommandParser implements Parser<LessonFindCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the LessonFindCommand
      * and returns a LessonFindCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public LessonFindCommand parse(String args) throws ParseException {
