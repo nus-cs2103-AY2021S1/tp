@@ -40,7 +40,7 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-Each of the four components,
+Each of the four components
 
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
@@ -90,7 +90,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 </div>
 
 ### Model component
@@ -136,7 +136,7 @@ Classes used by multiple components are in the `seedu.taskmaster.commons` packag
 ### SessionList
 
 Author: **Joshua Chew**
-* Implement the class `SessionList` that encapsulate a list of tutorial sessions.
+* Implement the class `SessionList` that encapsulates a list of tutorial sessions.
 * Implement the class `Session` that represents a tutorial session conducted by a teaching assistant.
 * Implement the commands in which a session is created and deleted.
 * Implement the command to select the current session.
@@ -177,8 +177,8 @@ session with a specified name already exist inside the session list.
 
 * Make `Session` store an `AttendanceList` and a `ClassParticipationList`.
 
-    Initially, the attendance and class participation data was meant to be stored as seperate data structures. However, this
-    approach was abandoned in favour of allowing the `Session` class store the interface `StudentRecordList` instead. This would
+    Initially, the attendance and class participation data was meant to be stored as separate data structures. However, this
+    approach was abandoned in favour of allowing the `Session` class to store the interface `StudentRecordList` instead. This would
     support the Open-Closed Principle. It would allow greater ease of future extensions in the functionality of TAskmaster. For
     example, if we wished to allow a session store data on student submissions, the original approach would necessitate the modification
     of the code for `Session` to store another data structure which encapsulate the student submission data. On the other hand,
@@ -250,7 +250,7 @@ students recorded in any session created by TAs using TAskmaster.
 * Make `StudentRecord` mutable.
 
     This was the original design of `StudentRecord` which made sense at the time because a student's record
-    would be frequently updated for marking of attendnace and awarding of class participation scores. However,
+    would be frequently updated for marking of attendance and awarding of class participation scores. However,
     the JavaFX `ObservableList` interface is **not notified when contained objects are modified**, only when 
     objects were added or deleted. This resulted in a bug where the GUI will not show the changes made when a
     student record was updated. In the end, it was decided that `StudentRecord` should be immutable to fix this bug.
@@ -261,7 +261,7 @@ students recorded in any session created by TAs using TAskmaster.
     student record list represents the record of students **for that particular session only**. If we 
     implemented this alternative, edits to the student list will result in changes to all the student record
     lists, which does not follow the design of the student record list. For example:
-    * Suppose a TA is currently teaching three students, `A, B, C` which are all present for the first session.
+    * Suppose a TA is currently teaching three students, `A, B, C` who are all present for the first session.
     * When the TA creates a new session `S1` , it will contain three corresponding student records.
     * Subsequently after the session is over, student `A` informs the TA that he is going to drop the module
     * When the TA deletes student `A` from the student list, the student record list of `S1` will update and
@@ -300,7 +300,7 @@ Beyond 1.4, there are several features that can be added to improve TAskmaster
 
     This would allow the user to, at a glance, analyse how often a student is attending lessons and how much they are
     participating in each session. This could be done by finding their record in each of the student record lists of
-    all the sessions and displaying the aggregated data in another view for data visualisaion, for e.g. with line 
+    all the sessions and displaying the aggregated data in another view for data visualisation, for e.g. with line 
     graphs and pie charts.
 
 <br>
@@ -312,9 +312,21 @@ Author: **Jaya Rengam**
 
 ![Structure of the Storage Component](images/NewStorageClassDiagram.png)
 
-A new method `JsonTaskmasterStorage#saveSessionList` will store the SessionList in the running Taskmaster to a separate .json file.
+**Implementation details**
+
+A new method `JsonTaskmasterStorage#saveSessionList` will store the `SessionList` in the running `Taskmaster` to a separate .json file.
 * The SessionList will be represented by a `JsonSerializableSessionList`, which contains a `List<JsonSerializableSession>`
-* Each `JsonSerializableSession` will contain a `List<JsonAdaptedStudentRecord>`
+* Each `JsonSerializableSession` will contain a `List<JsonAdaptedStudentRecord>`, along with two fields for its name and date-time.
+* The respective fields of each class are converted into Json values using the existing `toString()` methods available.
+* For the conversion of each JSON serializable class back to its model type:
+    * `StudentRecord`: Check for null (empty) values, then pass the field to its constructor.(The `Double` value for `ClassParticipation` is parsed first.)
+    * `Session`: 
+        `SessionName` is created directly from the stored string, while the corresponding `SessionDateTime` JSON field needs to first be parsed to a `LocalDateTime` before it can be converted.
+        For the `StudentRecords`, maintain a list of NusnetIds in addition to a list of StudentRecords. 
+        Loop through the list of `JsonAdaptedStudentRecords`, converting them to `StudentRecord`, and check for duplicate `NusnetId` before adding them to the list.
+    * `SessionList`:
+        Create a new `SessionList`, then loop through the list of `JsonSerializableSessions`; after each `Session` is converted, 
+        check that the `SessionList` does not already have a session with the same name before adding it.
 
 **To-Do:**
 * Update `TaskmasterStorage` interface (add `saveSessionList(ReadOnlyTaskmaster taskmaster)` method)
@@ -326,9 +338,42 @@ A new method `JsonTaskmasterStorage#saveSessionList` will store the SessionList 
 * This implementation of the feature uses Jackson libraries/formatting that is used in existing AB3 Storage classes
 <br>
 
-Alternative implementations:
-* Store the SessionList as a JSON field in the existing Taskmaster file
-    * Doing it this way would mean that the file would be repeatedly overwritten and any format errors will invalidate the whole file, including the StudentList.
+**Alternative implementations:**
+* Store the `SessionList` as a JSON field in the existing `Taskmaster` file
+    * Doing it this way would mean that the file would be repeatedly overwritten and any format errors will invalidate the whole file, including the list of students.
+    
+* Store each `Session` in a separate file, like what was done with the old `AttendanceList`
+    * A possible implementation method would be to have the relevant `Session` file is updated when the taskmaster is in a particular session. This would require some kind of additional field in `Taskmaster` 
+    which would be responsible for keeping track of what sessions have been created that is accessed to load the require file when the user requests to change the session.
+    
+    * Advantage: Session files can be viewed, transferred or even edited individually, and formatting errors in one Session file will not affect other data. 
+    
+    * Disadvantages:
+        - The primary disadvantage to this implementation would be that it would no longer make sense for Sessions not in use to be loaded in memory, 
+        unless session-related commands are rewritted to trigger a storage operation when the implementation is changed. This would require a refactoring of the code in a way that would increase coupling, 
+        and fundamentally change the nature of `CommandResult`, as it would now have to contain information about the session being modified, 
+        so that `LogicManager` is able to tell `Storage` which session file to update.
+        - Not having Sessions not loaded in memory would affect future features of the product regarding `StudentRecord`. 
+        For example, a command that calculates the average class participation/attendance rate of a particular student across all `Sessions` that they have attended,
+        or a command to view all absences over the course of the semester. <br>
+        To implement these commands, it would make sense for all Sessions to already be loaded into `Taskmaster` so that they are easily searchable.
+        - This might also result in the user having to manage a lot of files.     
+            
+**Future Expansion**
+
+Refactoring Storage: <br>
+An improvement that could be done to the code would be to abstract out the `Storage` instruction to a new abstract class or interface, following the Command pattern.
+Subclasses of this abstract class can then be used to save/load different `Model` classes. <br>
+These storage instructions can then be created and run within `Commands`, instead of within `LogicManager`. However, this would require that `Commands` take in `Storage` as an additional parameter.
+ 
+* This would then allow for the addition of storage-related features, such as:
+    * saving all attendance records of a particular student to a file for viewing
+        * This would allow for TAs to print the attendance in an easy-to-read format that they can then use to mark student's attendance on the official platform for their module.
+    * saving student records from one particular Session to a file for viewing
+    * saving the current state of the Taskmaster to a new file for backup purposes (that file can then be loaded with a new Command)
+        * This could even be done in the background, to prevent accidental deletion of data from the `clear` command or otherwise.
+
+<br>
 
 ### Class Participation Score
 
@@ -345,9 +390,9 @@ The `ClassParticipation` is made such that it:
 * Has a method to return the `String` representation of itself.
 * Will be used by `StudentRecord`.
 
-To support the `ClassParticipation` class, Taskmaster needs to be able to set a student's score in a session.  
+To support the `ClassParticipation` class, TAskmaster needs to be able to set a student's score in a session.  
 In setting the student's score, TAskmaster needs to comply with the following specifications:
-* Supports checking of session (i.e. throws an error in case of no sessions made, or no sessions selected)
+* Supports checking of the session (i.e. throws an error in case of no sessions made, or no sessions selected)
 * Able to identify the NUSNET ID from the index of student in the session.
 * Has input validation for the score (between 0 and 10 inclusive)
 * Able to truncate score to 2 decimal places (to follow with the `ClassParticipation` class)
@@ -358,34 +403,34 @@ Based on the specification above, the following is the activity diagram when som
 
 **Design Considerations**
 
-The specifications above has undergone several revisions, with the following considerations taken into account:
+The specifications above have undergone several revisions, with the following considerations taken into account:
 * Session checking needs to be done, as the scoring depends on the session the user is currently on.
-* Support of scoring from the index is for ease of use for the user. 
+* Support for scoring from the index is for ease of use for the user. 
 Internally, it uses NUSNET ID to see which student needs to be scored as the NUSNET ID is unique for each student.
 Therefore, there needs to be some lookup needed to bridge between these two.
-* Input validation is needed to ensure that the score inputed is valid.
+* Input validation is needed to ensure that the score inputted is valid.
 * The choice of 0-10 `double` score is to support the granularity of score detail 
 (most TA would use at most 1 decimal place, therefore we added support for 2 decimal places for meticulous TAs), while
-still maintaining good display for the sake of UX. Negative scores are not supported as negative score
+still maintaining good display for the sake of UX. Negative scores are not supported as a negative score
 does not make sense in this case.
 * Marking all students will be a feature that supports the user experience of TAs using TAskmaster. Oftentimes there
 is a baseline on what TAs consider basic participation marks - and many students barring the exceptional ones will get
-similar, if not the same sccore. The `mark all` command comes from our observation of this fact.
+similar, if not the same score. The `mark all` command comes from our observation of this fact.
 
 **Design Alternatives**
 
 * Make `ClassParticipation` a field in `StudentRecord`.  
 This was the initial plan for `StudentRecord`. However, there are advantages to having ClassParticipation as its own class.
-This would support data abstraction as we abstract away lower level data items, as well as help with decoupling. 
+This would support data abstraction as we abstract away lower-level data items, as well as help with decoupling. 
 The implementer of `StudentRecord` does not need to know the internal details of the implementation of `ClassParticipation`, whether is it an enum (of, let's say
 `GREAT, GOOD, AVERAGE, BAD`) or a `double` score as we have chosen to implement. Having a `ClassParticipation` class would
 also support future expansion in the scoring of class participation without going through the internal details of `StudentRecord`.
 
 * Make `ClassParticipation` an enum or use `int` values for the score.  
-This was initially considered but ultimately scrapped to increase the flexibility, as well as attention to detail. 
-Having an enum as the scoring system would work, but in effect, it would reduce the detail of score given to a student.
+This was initially considered but ultimately scrapped to increase flexibility as well as attention to detail. 
+Having an enum as the scoring system would work, but in effect, it would reduce the detail of the score given to a student.
 This may cause some TAs to not be satisfied with the scoring system. While having integer is a better solution, we
-decided on using `double` due to the fact that 0-10 is easily scalable (e.g. to get percentage, the TA can just glance
+decided on using `double` due to the fact that 0-10 is easily scalable (e.g. to get the percentage, the TA can just glance
 at the score) and provides more detail. An alternative that may also be considered for future iteration is to use
 `float` instead of `double` as we do not necessarily need double-precision decimal representation with only two decimal
 places.
@@ -397,11 +442,11 @@ Beyond 1.4, there are several improvements that can be done:
 * Set a maximum score for the session.  
 This would include one extra command to change the maximum value of the score. In this case, we need to implement
 a field in `ClassParticipation` for the maximum score, and see from this value for input validation. A problem that we
-forsee in implementing this is the default choice of maximum score, validation of current score (what happens if
-there is a student with score 5.5 but we set the maximum score to 5), as well as possible coupling due to the command
+foresee in implementing this is the default choice of the maximum score, validation of current score (what happens if
+there is a student with a score of 5.5 but we set the maximum score to 5), as well as possible coupling due to the command
 needing to see the maximum value of the class participation score.
 * Have alternatives for scoring class participation.  
-We have thought about the possiblity that the TA does not need the granularity of a `double` value to 2 decimal places.
+We have thought about the possibility that the TA does not need the granularity of a `double` value to 2 decimal places.
 In the future, it would be good to support a command that changes the type of the score, e.g. to discrete values given
 by enum. Some considerations would be about existing scores, implementation of classes beyond `ClassParticipation`,
 as well as command handling.
@@ -427,8 +472,8 @@ A new method `MainWindow#fillInnerParts2` will change the contents of the Ui to 
 * Implementation still buggy: Ui does not update accordingly for student records.
 
 Alternative implementations considered:
-* Use FXML's tab feature to display class records:
-    - Does not support future expansion when sessions is implemented - there may be an indefinite amount of sessions created.
+* Use FXML's tab feature to display class records: Does not support future expansion when sessions is implemented - 
+there may be an indefinite amount of sessions created.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -601,6 +646,7 @@ Extensions
 
 <br>
 
+> Note: The following use cases **all** have the precondition that the user is in a session view.
 
 **Use Case: Mark a student's attendance**
 
@@ -671,10 +717,48 @@ Extensions
     * 1b1. System shows an error message.
         Use case resumes at step 1.
 
+<br>
 
-*{More to be added}*
+**Use Case: View all students with the lowest participation score**
 
+**MSS**
+1. User requests to view all students with the lowest participation score.
+2. System shows all students with the lowest participation score.
 
+Extensions
+* 1a. System is not within the context of a session.
+    * 1a1. System shows an error message.
+    Use case ends.
+    
+* 1b. The given input is invalid.
+    * 1b1. System shows an error message.
+        Use case resumes at step 1.
+
+* 1c. There are no students present.
+    * 1b1. System shows an error message.
+       
+<br>
+
+**Use case: Get a random student which is present**
+
+**MSS**
+1. User requests to view a random student.
+2. System shows a student picked at random who is present
+
+Extensions
+* 1a. System is not within the context of a session.
+    * 1a1. System shows an error message.
+    Use case ends.
+    
+* 1b. The given input is invalid.
+    * 1b1. System shows an error message.
+        Use case resumes at step 1.
+        
+* 1c. There are no students present.
+    * 1b1. System shows an error message.
+    Use case ends.
+    
+<br>
 
 ### Non-Functional Requirements
 
@@ -856,10 +940,12 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `random-student` followed by `mark all a/absent`<br>
        Expected: All students in the student record list, **not just the random student**, are marked absent.
-
+       UI updates to shows all student records.
+       
     1. Test case: `lowest-score` followed by `mark all a/absent`<br>
        Expected: All students in the student record list, **not just those with the lowest score**, are marked absent.
-
+       UI updates to shows all student records.
+       
     1. Other incorrect add commands to try: `mark all a/x` (where x is not a valid attendance type)<br>
        Expected: Similar to previous.
 
@@ -892,6 +978,40 @@ The below testcases assume that you are in a session and have 7 students inside 
     Expected: No scores changed, an error shows that the input is invalid as it is negative.
     3. Test case: `score all cp/10.52`  
     Expected: No scores changed, an error shows that the input is invalid as it is greater than 10.
+    4. Test case: `random-student` followed by `score all a/8`<br>
+       Expected: All students in the student record list, **not just the random student**, have their scores updated. 
+       UI updates to show all student records.
+    5. Test case: `lowest-score` followed by `mark all a/absent`<br>
+       Expected: All students in the student record list, **not just those with the lowest score**, have their scores updated. 
+       UI updates to shows all student records.
+
+### Showing a student with the lowest score
+
+1. Getting the present student(s) with the lowest score
+    1. Prerequisite: A newly-created session with at least 3 students.
+    
+    1. Test case: Enter `mark all a/present`, `score all cp/5.0`, `mark 1 a/absent`, then enter `lowest-score` <br>
+    Expected: Only the students marked as present appear in the list
+   
+    1. Test case: Enter `mark all a/present`, `score all cp/5.0`, `mark 1 a/absent`, `score 1 cp/0`, then enter `lowest-score` <br>
+    Expected: Only the students marked as present (with score 5.0) appear in the list.
+    
+    1. Test case: Enter `lowest-score` (all student attendance should be `NO RECORD`) <br>
+    Expected: No students in the student record list are shown, an error shows that there are no present students in the session.
+
+### Showing a random student who is present
+
+1. Getting a random student who is present
+    1. Prerequisite: A newly-created session with at least 3 students.
+    
+    1. Test case: Enter `mark all a/present`, then enter `random-student` a few times. <br>
+    Expected: Different students, one at a time, should appear in no particular order. 
+   
+    1. Test case: Enter `mark 1 a/present`, then enter `random-student` a few times. <br>
+    Expected: Only the first student should appear each time.
+    
+    1. Test case: Enter `random-student` (all student attendance should be `NO RECORD`) <br>
+    Expected: No students in the student record list are shown, an error shows that there are no present students in the session.
 
 ### Clearing contents of student and session list
 
@@ -928,11 +1048,64 @@ The below testcases assume that you are in a session and have 7 students inside 
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. If there is no file at the default location `./data/taskmaster.json`, sample data will be loaded into the `Taskmaster` upon startup. 
+      This sample data can be found in [`model/util/SampleDataUtil.java`](https://github.com/AY2021S1-CS2103-F09-1/tp/blob/master/src/main/java/seedu/taskmaster/model/util/SampleDataUtil.java)
+   1. If either the `Taskmaster` or `SessionList` storage files have invalid formatting/values, the application loads with an empty Taskmaster.
+   For testing, invalid data can easily be created by starting a new TAskmaster and then editing the fields/formatting in the created JSON files.
 
-1. _{ more test cases …​ }_
+2. Updating storage files during the running of the program
+   
+   1. Prerequisite: Start with a new TAskmaster
+   
+   1. Test case: Add a student `add-student n/John Tan u/johntan98 e/johntan98@gmail.com i/e0012345 t/tardy`, then close and restart the application <br>
+   Expected: In `data/taskmaster.json`, there should be a new JSON field representing the student added and his details. <br>
+   When restarted, the UI should show one student named 'John Tan' with the details as shown above.
+   
+   1. Test case: Add a student `add-student n/John Tan u/johntan98 e/johntan98@gmail.com i/e0012345 t/tardy`, then add a session `add-session s/First Session dt/23-10-2020 0900`, 
+   then close and restart the application. <br>
+   Expected: In `data/session_list.json`, there should be a new JSON field representing the session and its details. In the `records` field, 
+   the student's name and nusnetId should be filled in correctly, and his class participation and attendance type should be set to their default values.<br>
+   When restarted, the UI should show one session which shows the corresponding student record when the view is changed.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
 
+As compared to AB3, this project was tougher and requires more effort to build. First, we consider the behaviour of TAskmaster within each session. The difficulty of implementing this is on par with AB3, since we are having similar functionality to AB3 - just with regards to marking attendance and scoring participation score as compared to AB3's operations on the list of people. This is coupled with a lot of design considerations and iterative changes made to accommodate UI integration and unexpected UI behaviours as will be discussed below. Second, we shall look into the session command itself - this requires a significant update with regards to the UI, adding the sidebar and adjusting sizes to make the user experience better. Additionally, this also entails more commands, which is the creation and deletion of the sessions. On top of that, there needs to be integration with the changed AB3 feature, in which the students from the student list (the morphed AB3) needs to be taken to build the session. Third, we should see the refactoring of AB3 into TAskmaster, changing the input validation and fields as necessary. Overall, we can see that this project has a higher difficulty than AB3, and we are happy to have delivered v1.4 of this product. The following is an elaboration on the challenges we found along the way:
+
+1. Integration Issues
+    
+    As each of us worked on features that were closely linked to each other, our team had to ensure that each of us followed sound
+    software engineering principles, especially the Open-Closed Principle. At every team meeting, we ensured that all of us agreed
+    on a particular design pattern before implementing each of our assigned features, and that our design pattern has sufficient
+    functional and data abstraction.
+    
+    The features had to be done sequentially, which made the integration much more challenging. For example, `StudentRecord` and `StudentRecordList`
+    had to be completed before `Session` and `SessionList` was implemented. Only after the feature for adding sessions have been created, could the
+    features for storing session data be implemented. Finally, as the GUI depended on the backend logic of `StudentRecord` and `Session` to be complete,
+    incremental additions to GUI had to always be completed last in the milestone.
+    
+    As a result, the design choices agreed upon at the start of every milestone had to be absolutely sound, as changing design patterns in the middle 
+    of a milestone could potentially have cascading repercussions down the chain of workflow. Between milestones, we have had changes in the design patterns,
+    and this has caused us to change, rewrite, or otherwise refactor our code. We believe that it is a group achievement to have maintained cohesiveness 
+    and be steadfast in our development, not letting these issues come to interfere with our releases.
+
+2. Integrating model with UI
+
+   Another major challenge we faced was in integrating the model with the UI.
+   
+   1. Updating StudentRecords with Immutability.  
+   It was found out that without sticking to immutability, the UI would not update properly, causing a number of refactoring to be needed for this project. 
+   As of v1.4, this issue has been successfully fixed - as a vital part of our product, we have ensured that this part will work as expected.
+   
+   2. Ensuring that the list of student records is updated properly in session view <br>
+   When implementing the `random-student` and `lowest-score` commands, we ran into various difficulties as a result of how the existing application was coded.
+   We had to modify how the list of student records from the running session was stored in `Model`, to allow for the student record lists of different sessions to be loaded.
+   In the absence of UI tests, we also had to debug the running of the program extensively to identify how and when the student record list was being updated in the UI, and 
+   adjust our code accordingly. In this process, we found ourselves having to refactor the code several times until we settled on a solution that was working properly.
+
+3. Difficulty of writing automated tests
+
+    Some features, especially the GUI, had difficulties implementing unit tests. As a result, testing for the GUI had to be done manually and through the
+    debugger. A lot of effort had to be made on Jin Feng's part to ensure that the testing was comprehensive. This is an achievement in and of itself, as manual testing
+    is something that is not easy to do and a lot of elaborate efforts have been done to warrant the correctness of the GUI behaviour.

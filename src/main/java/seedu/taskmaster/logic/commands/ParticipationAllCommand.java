@@ -20,7 +20,7 @@ public class ParticipationAllCommand extends ParticipationCommand {
             + "Example 1: " + COMMAND_WORD + " 1 " + PREFIX_CLASS_PARTICIPATION + "7\n"
             + "Example 2: " + COMMAND_WORD + " all " + PREFIX_CLASS_PARTICIPATION + "6\n";
 
-    public static final String MESSAGE_MARK_ALL_SUCCESS = "Scored %1$s for all students' participation mark.";
+    public static final String MESSAGE_MARK_ALL_SUCCESS = "Scored %1$s for all present students' participation mark.";
 
     public ParticipationAllCommand(double score) {
         super(null, score);

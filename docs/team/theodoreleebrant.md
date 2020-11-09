@@ -13,8 +13,8 @@ This application consists of two major parts:
 1. A database of students. Each entry keeps track of the name of the student, his unique NUSNET ID, Telegram handle, 
 as well as email address. This database supports adding, editing, and deleting students.
 2. Tutorial sessions. TAs can create and delete tutorial sessions. 
-Every tutorial session will have an list of student records for that particular session. 
-Each student record consist of the student’s name, NUSNET ID, attendance mark, as well as participation score. 
+Every tutorial session will have a list of student records for that particular session. 
+Each student record consists of the student’s name, NUSNET ID, attendance mark, as well as participation score. 
 Each session supports two operations: assigning class participation score and marking attendance of students.
 
 Given below are my contributions to the project.
@@ -32,7 +32,7 @@ Given below are my contributions to the project.
     change the Participation Record of the student.
     * Highlights:
         * Challenges were had due to the number of changes to the design of the Participation Record, causing an equivalent number of changes in the newly-made Score Command.
-        * The possible pitfalls of this command has caused bug-catching to be hard to debug especially with the lack of step debugger in Streams.
+        * The possible pitfalls of this command have caused bug-catching to be hard to debug especially with the lack of a step debugger in Streams.
   
   
 * **Code contributed**: 
@@ -43,32 +43,26 @@ Given below are my contributions to the project.
   * Included the CI and codecov badge inside the project.
   * Managed the overall code coverage of the project.
   * Created the pull request template which includes a checklist of what needs to be done for an approval.
-  * Created bug report and features request template to make it more descriptive.
+  * Created bug report and features request templates to make them more descriptive.
 
 * **Enhancements to existing features**:
     * Changed the address field to one that supports NUSNET ID.
       * Updated the regular expression validation for the field.
-      * Justification: TAs do not need to know students' address, but an NUSNET ID would be useful. Additionally, it
-      provides a unique identifier for the student as there is a one-to-one correspondence between a student and his
-      NUSNET ID.
     * Changed the phone number to a telegram account.
       * Updated the input validation to one that conforms to 
       [Telegram's API](https://core.telegram.org/method/account.checkUsername).
-      * Justification: NUS classes now mainly use the Telegram chatting client instead of text or phone-number based
-      chats (e.g. WhatsApp). This needs to have a corresponding change in the input validation, according to what
-      the API of Telegram specifies in their website.
-    * Refactored Addressbook to Taskmaster.
+    * Refactored Addressbook to TAskmaster.
     * Wrote additional tests for existing features to 
-    increase coverage from 59.8% to 64.2% (Pull request [\#105]()).
+    increase coverage from 59.8% to 64.2% (Pull request [\#105](https://github.com/AY2021S1-CS2103-F09-1/tp/pull/105)).
     * Adapted the file writing behaviour of the original storage to include a new line at end-of-file to conform with 
       checkstyle.
         * Justification: Save files were violating CheckStyle tests, and changing this behaviour resulted in a higher
-        quality of life to the developers as this file is created automatically and needs to be pushed to the repository.
+        quality of life for the developers as this file is created automatically and needs to be pushed to the repository.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `score` and `score all`: [\#109]()
-    * Fixed the overall formatting for all tables and headings, as well as broken links: [\#113](), [\#114]()
+    * Added documentation for the features `score` and `score all`: [\#109](https://github.com/AY2021S1-CS2103-F09-1/tp/pull/109)
+    * Fixed the overall formatting for all tables and headings, as well as broken links: [\#113](https://github.com/AY2021S1-CS2103-F09-1/tp/pull/113), [\#114](https://github.com/AY2021S1-CS2103-F09-1/tp/pull/114)
   * Developer Guide:
     * Added implementation details, diagram, as well as manual test cases of Class Participation Scoring (`score` command)
 
@@ -86,7 +80,8 @@ Given below are my contributions to the project.
   * Reported bugs and suggestions for other teams in the class (examples: 
   [1](https://github.com/AY2021S1-CS2103-W14-3/tp/issues/112), 
   [2](https://github.com/AY2021S1-CS2103-W14-3/tp/issues/113), 
-  [3](https://github.com/AY2021S1-CS2103-W14-3/tp/issues/117))
+  [3](https://github.com/AY2021S1-CS2103-W14-3/tp/issues/117),
+  [4](https://github.com/AY2021S1-CS2103-T16-3/tp/issues/203))
 
 * **Tools**:
     * Managed and configured the code coverage tools (using [codecov.io](https://www.codecov.io))

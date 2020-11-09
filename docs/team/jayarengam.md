@@ -31,6 +31,8 @@ Given below are my contributions to the project.
 
 * **Bug Fix**: [Block duplicate `Session` names](https://github.com/AY2021S1-CS2103-F09-1/tp/pull/164)
 
+* **Bug Fix**: [Update functionality of `MarkAllCommand` and `ParticipationAllCommand`](https://github.com/AY2021S1-CS2103-F09-1/tp/pull/242)
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=jayarengam&tabRepo=AY2021S1-CS2103-F09-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 * **Enhancements to existing features**:
@@ -42,7 +44,7 @@ Given below are my contributions to the project.
     * Added documentation for above implemented features.
     * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
   * Developer Guide:
-    * Added implementation details for storage of `SessionList`
+    * Added implementation details for Storage
     * Updated Use Cases for new features
     * Added non-functional requirements
   * Maintained project document
