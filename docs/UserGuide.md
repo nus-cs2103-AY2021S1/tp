@@ -85,7 +85,7 @@ DSAce is a **desktop app for creating flashcards and practising quiz questions f
       * **`answer`** `1 a/true` : Answers the first quiz question in the displayed quiz question list.
 
       * **`end attempt`**: Ends the current quiz attempt. <br/>
-      
+
       `start attempt`, `answer`, and `end attempt` are commands that are valid only in the quiz interface.
 
    * **`leave quiz`** : Leaves Quiz mode.
@@ -95,7 +95,7 @@ DSAce is a **desktop app for creating flashcards and practising quiz questions f
      * **`view`** `1` : Views the results of the first quiz attempt.
 
      * **`list`** : Lists all past quiz attempts. <br/>
-     
+
      `view` and `list` are the only valid commands in the performance interface.
 
    * **`exit`** : Exits the app.
@@ -355,6 +355,23 @@ Format: `end attempt`
 * If `end attempt` is entered without answering any quiz questions, the current quiz attempt will end but no results
  will be stored in the performance interface.
 
+### Checking performance : `performance`
+
+Opens the performance interface where past quiz attempts are recorded.
+
+Format: `performance`
+
+* When `performance` is entered, all past quiz attempts are displayed to the user. For each attempt, the timestamp
+ representing the time at which the attempt was started, as well as the number of correct responses out of the total
+  number of responses submitted for that particular attempt are displayed.
+
+### Viewing help : `help`
+
+Opens up a help window containing a link to the user guide.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
 
 ### Leaving Quiz mode : `leave quiz`
 
@@ -384,9 +401,9 @@ an incorrect answer and a green option indicates a correct answer.
 For example, in the image displayed below, the correct answer to the first question is `true`, and the first question
  was correctly answered by the user. On the other hand, the correct answer to the second question is 25, which is
   option `4`, but the user submitted an incorrect answer,  option `3`.
-  
+
   ![attempt result](images/attemptResult.png)
-  
+
 Format: `view INDEX`
 
 Example: `view 1`
