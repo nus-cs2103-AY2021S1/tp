@@ -730,7 +730,7 @@ The user input is the parsed in the context of the `AddModuleCommand`.
 `AddModuleCommand` checks if the model contains the given module. If so, a `CommandException` is thrown, indicating that the module already exists within the model.
 
 ##### Check if model contains all participants
-`AddModuleCommand` checks if the model also contains all the given participants. If not, a `Command exception` is thrown, 
+`AddModuleCommand` checks if the model also contains all the given participants. If not, a `Command exception` is thrown,
 indicating that the one or more of the participants given do not exist within the model.
 
 #### Activity Diagram
@@ -790,7 +790,7 @@ The delete module mechanism is primarily facilitated by `DeleteModuleCommand`. I
 
 * `execute(Model model)` — Executes the `DeleteModuleCommand` on the model,
 creating and adding a new meeting in the `Model Manager` before creating a `CommandResult`,
-triggering a UI update in `ModuleListPanel`. It also deletes the meetings of the provided module and triggers a UI update in the 
+triggering a UI update in `ModuleListPanel`. It also deletes the meetings of the provided module and triggers a UI update in the
 `MeetingListPanel`
 
 This operation is exposed in the Command class as `Command#execute`
@@ -1283,7 +1283,7 @@ Same as View Contacts Use Case except only contacts that match the given paramet
 3.  User requests to tag a specific contact in the list
 4.  Modduke tags the contact
 
- Use case ends.
+    Use case ends.
 
 **Extensions**
 
