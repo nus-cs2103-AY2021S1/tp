@@ -876,9 +876,9 @@ For all use cases below, the **System** is the `CommonCents` and the **Actor** i
       Use case resumes at step 1.    
 </div>
 
+<div style="page-break-after: always;"></div>
 <div markdown="block" class="alert alert-success">
  
-<div style="page-break-after: always;"></div>
 **Use Case: UC09 - Undoing an add command**
 
 **MSS**
