@@ -814,29 +814,36 @@ and calls the `handleToNext()` or `handleToPrev()` method in `CalendarView` depe
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                           | So that I can…​                                                         |
-| -------- | ----------------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Priority | As a …​                     | I want to …​                                                                        | So that I can…​                                                        |
+| -------- | --------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `* * *`  | Real estate agent           | add a new property listing                                                          | add a new property entry when a seller wants to sell a new property    |
 | `* * *`  | Real estate agent           | add bidder or seller                                                                | keep track of bidders or sellers involved                              |
 | `* * *`  | Real estate agent           | view the list of interested sellers                                                 | keep track of property owners                                          |
-| `* *`    | Real estate agent           | edit the property listing                                                           | ensure that the property information is accurate                       |
-| `* * *`  | Real estate agent           | delete a property listing                                                           | remove listings that are closed or that sellers no longer want to sell |
-| `* *`    | Real estate agent           | view the listings I have by area                                                    | be better equipped to give more options to the buyers on the spot      |
-| `* *`    | Real estate agent           | input details about the rental                                                      | inform the client about the renter’s property                          |
-| `* *`    | Real estate agent           | edit the details of the property rental                                             | update with new information from the client                            |
+| `* * *`  | Real estate agent           | delete a property listing                                                           | remove listings that are closed or the sellers do not wish to sell     |
 | `* * *`  | Real estate agent           | search the properties by id, name or area etc                                       | filter properties according to my criteria                             |
 | `* * *`  | Real estate agent           | sort the listing according to my criteria                                           | obtain a filtered list to easily observe properties of the same type   |
-| `*`      | Real estate agent           | mark a property as sold                                                             | keep track on which houses are already sold                            |
-| `*`      | Real estate agent           | see the historical transactions                                                     | track my performance                                                   |
 | `* * *`  | Real estate agent           | add bids to my properties                                                           | keep track of my customers’ bids                                       |
-| `* * *`  | Real estate agent           | delete bids                                                                         | so that I can remove bids that are withdrawn by the bidders            |
+| `* * *`  | Real estate agent           | delete bids                                                                         | remove bids that are withdrawn by the bidders                          |
 | `* * *`  | Real estate agent           | view the current bids organised by property, sellers and buyers                     | keep track of the bids                                                 |
-| `* *`    | Real estate agent           | edit bids                                                                           | so that I can remove bids that are withdrawn by the bidders            |
-| `* * *`  | Busy real estate agent      | create meetings                                                                     | so that I can remove bids that are withdrawn by the bidders            |
-| `* * *`  | Busy real estate agent      | view the list of meetings                                                           | so that I can remove bids that are withdrawn by the bidders            |
-| `* * *`  | Busy real estate agent      | delete meetings                                                                     | so that I can remove bids that are withdrawn by the bidders            |
-| `* *`    | Busy real estate agent      | schedule meetings such that it can warn me if there is any clashes in meetings      | so that I can remove bids that are withdrawn by the bidders            |
-| `* *`    | Busy real estate agent      | edit meeting details                                                                | ensure that meeting details are accurate in case of changes            |
+| `* * *`  | Real estate agent           | create meetings                                                                     | set-up meetings easily with bidders and sellers for property           |
+| `* * *`  | Real estate agent           | view the list of meetings                                                           | keep track of all my meetings                                          |
+| `* * *`  | Real estate agent           | delete meetings                                                                     | remove meetings that are no longer happening                           |
+| `* *`    | Real estate agent           | view the listings I have by address                                                 | be better equipped to give more options to the buyers for certain areas|
+| `* *`    | Real estate agent           | edit the property listing                                                           | ensure that the property information is accurate                       |
+| `* *`    | Real estate agent           | label a property as a rental or not                                                 | to give options for buyers who may wish to rent only                   |
+| `* *`    | Real estate agent           | label the type of property the property is                                          | filter out specific properties based on the type buyers wish to buy    |
+| `* *`    | Real estate agent           | edit the details of the property rental                                             | update with new information from the client                            |
+| `* *`    | Real estate agent           | edit bids                                                                           | edit bids to ensure the information is accurate                        |
+| `* *`    | Real estate agent           | edit meeting details                                                                | ensure that meeting details are accurate in case of changes            |
+| `*`      | Real estate agent           | mark a property as sold                                                             | keep track on which houses are already sold without having to delete it|
+| `*`      | Real estate agent           | see the historical transactions                                                     | track my performance                                                   |
+| `* * *`  | Busy real estate agent      | delete bids or meetings related to properties/bidders that i delete                 | ensure that any invalid bids/meetings are conveniently removed         |
+| `* * *`  | Busy real estate agent      | delete properties related to a seller that I delete                                 | ensure that any invalid properties are conveniently removed            |
+| `* * *`  | Busy real estate agent      | delete properties related to a seller that I delete                                 | ensure that any invalid properties are conveniently removed            |
+| `* * *`  | Busy real estate agent      | sort meetings by date                                                               | can quickly reference upcoming meetings without having to search       |
+| `* *`    | Busy real estate agent      | see what is the highest bid amount for a property                                   | quickly check if the highest bid amount is satisfactory for the seller |
+| `* *`    | Busy real estate agent      | schedule meetings such that it can warn me if there is any clashes in meetings      | ensure my schedule will not be problematic due to unintended clashes   |
+
 
 
 ## Appendix C: Use cases
@@ -960,8 +967,11 @@ Use case ends.
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 500 Entities(Property, Bidder, Seller, Bid, Meeting) without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The product should be able to work without an internet connection.
+5.  The product should be able to save all changes to storage locally.
+6.  The product should not take above 10 seconds to execute any commands.
 
 
 ### Glossary
@@ -988,17 +998,23 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Run `java -jar PropertyFree.jar`.  
+   
+      Expected: Shows the GUI with a set of sample data. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   2. Re-launch the app by double-clicking the jar file.<br>  
+   
+      Expected: The most recent window size and location is retained.  
 
-1. _{ more test cases …​ }_
+3. Subsequent launch  
 
+    1. Run `java -jar PropertyFree.jar`.  
+
+       Expected: Shows the GUI with data loaded from the json files. 
 
 ### Testing Bidder and Seller Features
 
@@ -1225,3 +1241,231 @@ at `1` and `2` as the indexes are sequentially ordered.
    2 properties listed!
    ```
    
+
+### Testing Bids Features  
+
+For all test cases for bid features, the GUI will automatically switch to the bid tab.  
+
+#### Adding a Bid  
+
+1. Prerequisites: Bidder with bidder id `B1` and property with property id `P2` exists in the respective lists.  
+
+2. Restrictions:  
+    - Price must be more than 0 and less or equals to 1 trillion.  
+    - Price will be truncated to 2 dp.  
+
+3. Test case: `add-bid b/P1 c/B2 m/150000.20`.  
+
+   Expected: The new bid is added to the bid list with the following message displayed:  
+   ```
+   New bid added: 
+   Bid of $150000.20
+   by B2
+   to property: P1
+   ```
+
+#### View Full List of Bids  
+
+1. Test case: `list-bid`.  
+
+   Expected: All bids will be displayed on the GUI, with the following message displayed:  
+   ```
+   Displaying full bid list.
+   ```  
+
+#### Deletion of Existing Bid  
+
+1. Prerequisites: The bid to be deleted must exist in the bid list.  
+
+2. Test case: `delete-bid 1`.  
+
+   Expected: The bid at index 1 is deleted, with the following message displayed:  
+   ```
+   Deleted Bid: 
+   Bid of $150000.20
+   by B2
+   to property: P1
+   ```  
+   The exact information depends the bid being deleted.  
+
+#### Editing a Bid  
+
+1. Prerequisites: The bid to be edited must exist in the bid list.  
+
+2. Restrictions:  
+    - At least one optional field must be provided.  
+    - All restrictions and prerequisites from ![Adding a Bid](#adding-a-bid) hold.  
+
+3. Test case: `edit-bid 1 b/P99 c/B12 m/1.20`  
+
+   Expected: The bid at index 1 will be updated to the new values, with the following message displayed:  
+   ```
+   Edited Bid:
+   
+   FROM: 
+   Bid of $999999.00
+   by B2
+   to property: P3 
+   
+   TO: 
+   Bid of $1.20
+   by B12
+   to property: P99
+   ```
+   The exact information depends on the bid being edited.  
+   
+#### Find a specific bid based on key words  
+
+1. Test case: `find-bid P1 B2 $65000.00`.  
+
+   Expected: All bids whose attributes matches at least one keyword will be displayed, with the following message displayed:  
+   ```
+   1 bid(s) listed!
+   ```
+   The number of bids listed corresponds to the number of bids that match the keywords.  
+   
+### Testing Meeting Features  
+
+For all test cases for meeting features, the GUI will automatically switch to the meeting tab.  
+
+#### Add a Meeting  
+
+1. Prerequisites: A bidder with bidder id `B1` and a property with property id `P1` must exist in their respective lists.  
+
+2. Restrictions:  
+    - Meeting type is either `v` for `viewing`, `a`, for `admin` or `p` for `paperwork`.  
+    - Date is of the format `DD-MM-YYYY` and cannot be a past date.  
+    - Time is of the format `HH-MM`. The timings can clash each other and the hours and minutes will overflow (eg `24:30` is same as `00:30`).  
+
+3. Test case: add-m q/v b/B1 p/P1 v/2 ALBERT PARK d/11-12-2021 s/12:30 e/13:00  
+
+   Expected: Adds the meeting to the meeting list, with the following message displayed:  
+   
+  ```
+   New meeting added: 
+   Meeting Type: Viewing
+   Bidder Id: B1
+   Property Id: P1
+   Venue: 2 ALBERT PARK
+   Date: 11-12-2021
+   Start Time: 12:30
+   End Time: 13:00
+  ```
+  
+#### Deleting an Existing Meeting  
+
+1. Prerequisite: The meeting to be deleted must exist in the meeting list.  
+
+2. Test case: delete-m 3.  
+
+   Expected: The meeting at index 3 will be deleted, with the following message displayed:  
+   
+   ```
+   Deleted Meeting: 
+   Meeting Type: Viewing
+   Bidder Id: B1
+   Property Id: P1
+   Venue: 2 ALBERT PARK
+   Date: 11-12-2021
+   Start Time: 12:30
+   End Time: 13:00
+   ```
+   The exact information depends on the meeting being deleted.
+
+   
+#### View the List of All Meetings  
+
+1. Test case: `list-m`  
+
+   Expected: Displays all the meetings in the meeting list, with the following message displayed:  
+   ```
+   Displaying full meeting list.
+   ```  
+   
+#### Editing an Existing Meeting  
+
+1. Prerequisite: The meeting to be edited must exist in the meeting list.  
+
+2. Restrictions:  
+    - At least one optional field is required.  
+    - The prerequisites and restrictions of ![Adding a Meeting](#add-a-meeting) hold.  
+
+3. Test case: `edit-m 2 v/eunos`.  
+
+   Expected: The meeting will be updated to the provided values, with the following message displayed:  
+   ```Edited Meeting: Admin
+      Bidder Id: B12
+      Property Id: P12
+      Venue: eunos
+      Date: 12-05-2016
+   ```  
+   
+#### Sorting the existing Meeting List  
+
+1. Test case: `sort-m o/asc`.  
+
+   Expected: Sorts the meeting list in ascending order according to meeting date, with the following message displayed:  
+   ```
+   Successfully sorted meeting
+   ```  
+   
+#### Finding an Existing Meeting  
+
+1. Restrictions:  
+    - At least one optional field is required.  
+    
+2. Test case: `find-m b/B1 v/bedok`  
+
+   Expected: Displays all the meetings whose attributes matches the specified keywords, with the following message displayed:  
+   ```2 meeting(s) listed!```  
+   The actual number depends on the number of meetings that fulfil the criteria. 
+   
+### Calendar Navigation Features  
+
+#### Navigating to the Next Month in the Calendar  
+
+1. Test case: `next`  
+
+   Expected: Displays the next month in the calendar, with the following message:  
+   ```
+   Display next month of Calendar
+   ```
+   
+#### Navigating to the Previous Month in the Calendar  
+
+1. Test case: `prev`  
+
+   Expected: Displays the previous month in the calendar, with the following message:  
+   ```
+   Display previous month of Calendar
+   ```  
+   
+### Testing Keyboard Navigation  
+
+#### Focus on `CommandBox`  
+
+1. Prerequisite: When the `CommandBox` is not in focus (i.e. the cursor is not blinking).  
+
+2. Test case: `PRESS ENTER`  
+
+   Expected: The `CommandBox` will be brought into focus.  
+   
+#### Next Month in `Calendar`  
+
+1. Test case:  
+   ```PRESS CTRL + RIGHT ARROW KEY - Windows OS
+       or
+       PRESS CONTROL + RIGHT ARROW KEY - Mac OS
+   ```  
+   
+   Expected: Displays the next month in `Calendar`.  
+   
+#### Previous Month in `Calendar`  
+
+1. Test case:  
+    ```PRESS CTRL + LEFT ARROW KEY - Windows OS
+        or
+        PRESS CONTROL + LEFT ARROW KEY - Mac OS
+   ```  
+   
+   Expected: Displays the previous month in `Calendar`.  
