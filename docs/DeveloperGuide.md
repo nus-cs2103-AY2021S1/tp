@@ -2027,106 +2027,202 @@ Use case ends.
 ## Contact list use cases
 
 
-## Todo list use cases
+## Todo List Use Cases
 
-**Use case: Add a task to todo list**
-
-**MSS**
+**Use case: UC - Add a task to todo list**
+**Actor: user**
+**MSS:**
 
 1. User wants to add a task to the todo list.
-2. User chooses the type of task to be added.
-3. User enters the information regarding the task.
-4. CAP5BUDDY saves the given task in the todo list.
+2. User enters the command to add a task.
+3. CAP 5 Buddy saves the given task in the todo list.
 
 Use case ends.
 
 **Extensions**
 
-* 3a. Format for information about the task is invalid.
+* 2a. Format for information about the task is invalid.
 
-  * 3a1. CAP5BUDDY displays an error message and ask the user to use the correct format.
-  * 3a2. User enters the information with the correct format.
+  * 2a1. CAP 5 Buddy displays an error message and ask the user to use the correct format.
+  * 2a2. User enters the information with the correct format.
 
-  Use case resumes at step 4
+  Use case resumes at step 3.
 
-  *{More to be added}*
+* 2b. User enters the wrong information.
 
-**Use case: Delete a task in the todo list**
+  * 2b1. User edits the task.
+  
+  Use case ends.
 
+* 2c. User enters an already existing task.
+
+  Use case resumes at step 1.
+
+**Use case: UC - Delete a task in the todo list**
+**Actor: user**
 **MSS**
 
 1. User wants to delete a task in the todo list.
-2. User chooses the task to be deleted.
-3. CAP5BUDDY shows a prompt message asking if the user really wants to delete the task.
-4. User clicks the "YES" button.
-5. CAP5BUDDY deletes the task from the todo list.
+2. User enters the command to delete a task.
+3. CAP 5 Buddy deletes the task from the todo list.
 
 Use case ends.
 
 **Extensions**
 
-* 4a. User accidentally clicked the "NO" button.
+* 3a. User accidentally delete the wrong task.
 
-  * 4a1. The prompt message disappears and CAP5BUDDY does not delete the task.
+  * 3a1. User enters the undo command.
 
-  Use case ends.
+  Use case resumes at step 1.
 
-  *{More to be added}*
+**Use case: UC - Delete a task in the todo list**
+**Actor: user**
+**MSS**
 
-**Use case: Sort task in the todo list**
+1. User wants to delete a task in the todo list.
+2. User enters the command to delete a task.
+3. CAP 5 Buddy deletes the task from the todo list.
 
+Use case ends.
+
+**Extensions**
+
+* 3a. User accidentally delete the wrong task.
+
+  * 3a1. User enters the undo command.
+
+  Use case resumes at step 1.
+
+**Use case: UC - Edit a task in the todo list**
+**Actor: user**
+**MSS**
+
+1. User wants to edit a task in the todo list.
+2. User enters the command to edit a task.
+3. CAP 5 Buddy edits the specified task.
+
+Use case ends.
+
+**Extensions**
+
+* 3a. User accidentally edits the wrong task.
+
+  * 3a1. User enters the undo command.
+
+  Use case resumes at step 1.
+
+**Use case: UC - Sort task in the todo list**
+**Actor: user**
 **MSS**
 
 1. User wants to sort the tasks in the todo list.
-2. User chooses the basis for sorting the tasks.
-3. CAP5BUDDY displays the sorted tasks based on the chosen basis.
+2. User enters the command to sort the todo list based on a criterion.
+3. CAP 5 Buddy displays the sorted tasks based on the chosen criterion.
 
 Use case ends.
 
-  *{More to be added}*
-
 **Use case: Find a task in the todo list**
-
+**Actor: user**
 **MSS**
 
 1. User wants to find a task in the todo list.
-2. User chooses whether to find task based on date or keyword.
-3. User enters the date or keyword.
-4. CAP5BUDDY displays all task based on the user input from step 3.
+2. User enters the command to find a task based on keywords.
+3. CAP5 Buddy displays all task based on the user input from step 2.
 
 Use case ends.
 
 **Extensions**
 
-* 3a. User inputs the date with an incorrect format.
+* 3a. User input is invalid.
 
-  * 3a1. CAP5BUDDY displays an error message and ask the user to use the correct format.
-  * 3a2. User enters the date with the correct format.
+  * 3a1. CAP 5 Buddy displays an error message and tells the user the correct format.
+  * 3a2. User enters the keywords with the correct format.
 
-  Use case resumes at step 4
+  Use case resumes at step 3
 
-  *{More to be added}*
-
-**Use case: Archive a task in the todo list**
-
+**Use case: UC - Label a task in the todo list as completed**
+**Actor: user**
 **MSS**
 
-1. User wants to archive a task in the todo list.
-2. CAP5BUDDY shows a prompt message asking if the user is sure to archive the task.
-3. User clicks the "YES" button.
-4. CAP5BUDDY archives the task.
+1. User wants label a task as "completed".
+2. User enters the command to complete a task.
+3. CAP 5 Buddy labels the specified task as "completed".
 
 Use case ends.
 
 **Extensions**
 
-* 3a. User accidentally clicked the "NO" button.
+* 3a. User accidentally labels the wrong task.
 
-  * 3a1. The prompt message disappears and CAP5BUDDY does not archive the task.
+  * 3a1. User enters the undo or reset task command.
+
+  Use case resumes at step 1.
+
+**Use case: UC - Reset task label in the todo list to "not completed"**
+**Actor: user**
+**MSS**
+
+1. User wants reset a task to "not completed".
+2. User enters the command to reset a task.
+3. CAP 5 Buddy labels the specified task as "not completed".
+
+Use case ends.
+
+**Extensions**
+
+* 3a. User accidentally labels the wrong task.
+
+  * 3a1. User enters the undo or complete task command.
+
+  Use case resumes at step 1.
+
+**Use case: UC - List all tasks in the list**
+**Actor: user**
+**Precondition: User just entered a sort task or find task command"**
+**MSS**
+
+1. User wants see all the tasks in the list with the default ordering.
+2. User enters the command to list all tasks.
+3. CAP 5 Buddy displays all the tasks with the default ordering.
+
+Use case ends.
+
+**Use case: UC - Clear all tasks in the list**
+**Actor: user**
+**MSS**
+
+1. User wants to remove all tasks from the list.
+2. User enters the command to clear the list.
+3. CAP 5 Buddy removes all the tasks from the list.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. User changed mind and wants the list back.
+
+  * 3a1. The user enter the undo command.
 
   Use case ends.
 
-  *{More to be added}*
+**Use case: Archive a task in the todo list (Proposed)**
+**Actor: user**
+**MSS**
+
+1. User wants to archive a task in the todo list.
+2. User input the command to archive a task.
+4. CAP 5 BU archives the task.
+
+Use case ends.
+
+**Extensions**
+
+* 3a. User accidentally archive the wrong task.
+
+  * 3a1. The user enter the undo command.
+
+  Use case resumes at step 1.
 
 ## General feature use cases
 
