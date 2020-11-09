@@ -26,6 +26,8 @@ The architecture diagram given below shows the high-level design of the software
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
+*Figure 2.1: Architecture diagram*
+
 NUStorage implements the following design patterns:
 
 * Model-View-Controller (MVC) for UI components, with Observer pattern between Model and View
@@ -75,7 +77,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)<br>
 
-*Figure 1: Class Diagram of Logic Component*
+*Figure 2.1.3.4: Class Diagram of Logic Component*
 
 ---
 
@@ -85,7 +87,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 ![Architecture sequence diagram](images/ArchitectureSequenceDiagram.png)
 
-*Figure 2: Sequence diagram for executing the command `delete_inventory 1`*
+*Figure 2.2: Sequence diagram for executing the command `delete_inventory 1`*
 
 Section 2.3 elaborates on each of the components in detail.
 
@@ -113,7 +115,7 @@ Given below is the class diagram of the `UI` component of NUStorage.
 
 ![Structure of the UI Component](images/UiComponent.png)<br>
 
-*Figure 3: Class Diagram of UI Component*
+*Figure 2.3.2: Class Diagram of UI Component*
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T11-3/tp/blob/master/src/main/java/nustorage/ui/Ui.java)
@@ -139,7 +141,7 @@ Given below is the class diagram of the `Logic` component of NUStorage.
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)<br>
 
-*Figure 4: Class Diagram of Logic Component*
+*Figure 2.3.3a: Class Diagram of Logic Component*
 
 **API**:
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-T11-3/tp/blob/master/src/main/java/nustorage/logic/Logic.java)
@@ -156,7 +158,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `delete_finance 1` Command](images/DeleteFinanceSequenceDiagram.png)<br>
 
-*Figure 5: Sequence Diagram of Delete Finance Command*
+*Figure 2.3.3b: Sequence Diagram of Delete Finance Command*
 
 ---
 
@@ -168,7 +170,7 @@ Given below is the class diagram of the `Model` component.
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)<br>
 
-*Figure 6: Class Diagram of Model Component*
+*Figure 2.3.4: Class Diagram of Model Component*
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T11-3/tp/blob/master/src/main/java/nustorage/model/Model.java)
 
@@ -189,7 +191,7 @@ Given below is the class diagram of the `Storage` component.
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)<br>
 
-*Figure 7: Class Diagram of Storage Component*
+*Figure 2.3.5a: Class Diagram of Storage Component*
 
 The storage component comprises three different sections:
 
@@ -213,15 +215,15 @@ The storage component comprises three different sections:
   The diagram given below shows the decision pathways of the storage component when saving inventory.
 
       ![Activity Diagram for saving inventory](images/SavingInventoryActivityDiagram.png)<br>
-      
-      *Figure 8: Activity Diagram for Saving Inventory*
+
+      *Figure 2.3.5b: Activity Diagram for Saving Inventory*
 
   * The following is the **sequence** diagram for saving the inventory. Saving finance account works similarly.
   The diagram given below shows the function calls between classes when saving inventory.
 
       ![Sequence Diagram for saving inventory](images/SaveInventorySequenceDiagram.png)<br>
-      
-      *Figure 9: Sequence Diagram for Saving Inventory*
+
+      *Figure 2.3.5c: Sequence Diagram for Saving Inventory*
 
 * Loading finance account:
 
@@ -229,15 +231,15 @@ The storage component comprises three different sections:
   The diagram given below shows the decision pathways of the storage component when loading finance account.
 
       ![Activity Diagram for loading finance account](images/LoadingFinanceActivityDiagram.png)<br>
-      
-      *Figure 10: Activity Diagram for Loading Finance*
+
+      *Figure 2.3.5d: Activity Diagram for Loading Finance*
 
   * The following is the **sequence** diagram for loading the finance account. Loading inventory works similarly.
   The diagram given below shows the function calls between classes when loading finance account.
 
       ![Sequence Diagram for loading finance](images/LoadFinanceSequenceDiagram.png)<br>
-      
-      *Figure 11: Sequence Diagram for Loading Finance*
+
+      *Figure 2.3.5e: Sequence Diagram for Loading Finance*
 
 ---
 
@@ -265,14 +267,14 @@ Take a look at the Logic Class Diagram in the [Logic Component](#233-logic-compo
 
 ![AddInventoryRecordSequenceDiagram](images/AddInventoryRecordSequenceDiagram.png)<br>
 
-*Figure 12. Sequence Diagram for the Create Inventory command*
+*Figure 3.1a Sequence Diagram for the Create Inventory command*
 
 The `CreateInventoryRecordCommand` has been successfully created and its `execute` method would be called by `LogicManager#execute`, which then called by `MainWindow#executeCommand`.
 Below is another sequence diagram that depicts the interactions between `LogicManager`, `CreateInventoryRecordCommand`, `ModelManager` as well as `Storage`, when `CreateInventoryRecordCommand#execute` is called.
 
 ![inventoryCommandExecuteSequenceDiagram](images/AddInventoryCommandExecuteSequenceDiagram.png)<br>
 
-*Figure 13. Sequence Diagram for `CreateInventoryRecordCommand#execute()`*
+*Figure 3.1b Sequence Diagram for `CreateInventoryRecordCommand#execute()`*
 
 As you can see, the Inventory Record, as well as a Finance Record, is added into NUStorage's [Model Component](#234-model-component).
 In addition, the updated lists of Inventory Records and Finance Records are saved into the [Storage Component](#235-storage-component) of NUStorage.
@@ -304,14 +306,14 @@ Take a look at the Logic Class diagram in the [Logic Component](#233-logic-compo
 
 ![DeleteInventoryRecordSequenceDiagram](images/DeleteInventoryRecordSequenceDiagram.png)<br>
 
-*Figure 14. Sequence Diagram for the Delete Inventory command*
+*Figure 3.2a Sequence Diagram for the Delete Inventory command*
 
 The `DeleteInventoryRecordCommand` has been successfully created and its `execute` method would be called by `LogicManager#execute`, which then called by `MainWindow#executeCommand`.
 Below is another sequence diagram that depicts the interactions between `LogicManager`, `DeleteInventoryCommand`, `ModelManager` as well as `Storage`, when `DeleteInventoryCommand#execute` is called.
 
 ![DeleteInventoryRecordCommandExecuteSequenceDiagram](images/DeleteInventoryRecordCommandExecuteSequenceDiagram.png)<br>
 
-*Figure 15. Sequence Diagram for `DeleteInventoryRecordCommand#execute()`*
+*Figure 3.2b Sequence Diagram for `DeleteInventoryRecordCommand#execute()`*
 
 As you can see, the original Inventory Record, along with the Finance record linked to it, in NUStorage's [Model Component](#234-model-component) has now been deleted.
 In addition, the updated list of Inventory and Finance Records are saved into the [Storage Component](#235-storage-component) of NUStorage.
@@ -345,14 +347,14 @@ Take a look at the Logic Class diagram in the [Logic Component](#233-logic-compo
 
 ![EditFinanceSequenceDiagram](images/EditFinanceSequenceDiagram.png)<br>
 
-*Figure 16. Sequence Diagram for the Edit Finance command*
+*Figure 3.3a Sequence Diagram for the Edit Finance command*
 
 The `EditFinanceCommand` has been successfully created and its `execute` method would be called by `LogicManager#execute`, which then called by `MainWindow#executeCommand`.
 Below is another sequence diagram that depicts the interactions between `LogicManager`, `EditFinanceCommand`, `ModelManager` as well as `Storage`, when `EditFinanceCommand#execute` is called.
 
 ![EditFinanceCommandExecuteSequenceDiagram](images/EditFinanceCommandExecuteSequenceDiagram.png)<br>
 
-*Figure 17. Sequence Diagram for `EditFinanceCommand#execute()`*
+*Figure 3.3b Sequence Diagram for `EditFinanceCommand#execute()`*
 
 As you can see, the original Finance Record in NUStorage's [Model Component](#234-model-component) has now been updated with the new values.
 In addition, the updated list of Finance Records is saved into the [Storage Component](#235-storage-component) of NUStorage.
@@ -382,14 +384,14 @@ The sequence diagram below (figure 18) shows how the `FindInventoryRecordCommand
 
 ![Find Inventory Record Diagram](images/FindInventoryRecordSequenceDiagram.png)
 
-*Figure 18. Sequence Diagram for the Find Inventory record command*
+*Figure 3.4a Sequence Diagram for the Find Inventory record command*
 
 The `FindInventoryRecordCommand` has been successfully created and its `execute` method would be called by `LogicManager#execute`, which then called by `MainWindow#executeCommand`.
 Below is another sequence diagram that depicts the interactions between `LogicManager`, `FindInventoryRecordCommand`, `ModelManager` as well as `Storage`, when `FindInventoryRecordCommand#execute` is called.
 
 ![Find Inventory Execution](images/FindInventoryRecordCommandExecuteSequenceDiagram.png)
 
-*Figure 19. Sequence Diagram for `FindInventoryRecordCommand#execute()`*
+*Figure 3.4b Sequence Diagram for `FindInventoryRecordCommand#execute()`*
 
 As you can see, `ModelManager#updateFilteredInventoryList` is used to apply a predicate to the inventory list stored in `ModelManager`, which changes the inventory records that would be displayed.
 At the end of the operation, a `CommandResult` object is returned in which we will use for UI purposes.
@@ -416,14 +418,14 @@ This scenario is depicted in the sequence diagram below.
 
 ![ListInventoryRecordSequenceDiagram](images/ListInventorySequenceDiagram.png)<br>
 
-*Figure 20. Sequence Diagram for List Inventory upon parsing*
+*Figure 3.5a Sequence Diagram for List Inventory upon parsing*
 
 The `ListInventoryCommand` has been successfully created and its `execute` method would be called by `LogicManager#execute`, which is in turn called by `MainWindow#executeCommand`.
 Below is another sequence diagram that depicts the interactions between `LogicManager`, `AddInventory` as well as `ModelManager`, when `ListInventoryCommand#execute` is called.
 
 ![ListCommandExecuteSequence](images/ListCommandExecuteSequence.png)<br>
 
-*Figure 21. Sequence Diagram for `ListInventoryCommand#execute()`*
+*Figure 3.5b Sequence Diagram for `ListInventoryCommand#execute()`*
 
 Now, all there is left is to display a message to the user informing him/her about the status of their command input, as well as displaying all listed Inventory Records on NUStorage's GUI.
 The `CommandResult` object returned previously is now used to create a new `CommandBox` object, which is used to display items on NUStorage's UI.
@@ -448,14 +450,14 @@ The sequence diagram below (figure 20) shows how the `UpdateInventoryRecordComma
 
 ![Update Inventory Command Sequence Diagram](images/UpdateInventoryCommandSequenceDiagram.png)
 
-*Figure 22. Sequence diagram for the creation of the UpdateInventoryCommand object*
+*Figure 3.6a Sequence diagram for the creation of the UpdateInventoryCommand object*
 
 The `UpdateInventoryCommand` has been successfully created and its `execute` method would be called by `LogicManager#execute`, which is in turn called by `MainWindow#executeCommand`.
 Below is another sequence diagram that depicts the interactions between `LogicManager`, `DeleteInventoryCommand`, `ModelManager` as well as `Storage`, when `DeleteInventoryCommand#execute` is called.
 
 ![Update Inventory Command Execution Sequence Diagram](images/UpdateInventoryCommandExecuteSequenceDiagram.png)
 
-*Figure 23. Sequence Diagram for `UpdateInventoryCommand#execute()`*
+*Figure 3.6b Sequence Diagram for `UpdateInventoryCommand#execute()`*
 
 As you can see, a new Inventory Record with its quantity updated is created which replaces the old Inventory Record.
 In addition, a new Finance Record is created to reflect the change in total amount which also replaces the old Finance Record.
@@ -473,8 +475,8 @@ With this, the Update Inventory record command fully finishes executing and NUSt
 The following shows the sequence diagram for executing `UiManager#start()`.
 
 ![inventoryUI](images/InventoryUI.png)<br>
-\n
-*Figure 24. Sequence Diagram for `UiManager#start()`*
+
+*Figure 3.7 Sequence Diagram for `UiManager#start()`*
 
 ---
 
@@ -644,8 +646,7 @@ For all use cases (unless specified otherwise):
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
 
 </div>
 
@@ -655,26 +656,26 @@ testers are expected to do more *exploratory* testing.
 
    1. If your system does not already have Java JDK 11 or above, head to [OpenJDK](https://openjdk.java.net/projects/jdk) and install Java JDK 11 or higher.
 
-   1. Download the jar file and copy into an empty folder.
+   2. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file<br>
+   3. Double-click the jar file<br>
       Expected: Shows the GUI with an introductory message. The window size may not be optimum.
 
       **NOTE**: If double-clicking the jar file does not work, open up your terminal and navigate to the directory that contains the jar file. Then, enter the following command:<br>
       `java -jar nustorage.jar` .
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. Saving and shutting Down
+3. Saving and shutting Down
 
    1. You may shut down NUStorage by entering the `exit` command or simply clicking the close button on the top-right corner of the application.
 
-   1. NUStorage automatically saves any changes made to records while the application is in use. Closing and re-opening the application will not result in any data loss.
+   2. NUStorage automatically saves any changes made to records while the application is in use. Closing and re-opening the application will not result in any data loss.
 
 ---
 
