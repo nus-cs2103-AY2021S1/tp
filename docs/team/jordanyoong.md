@@ -42,7 +42,7 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments):  
-  [\#126](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/126)
+  [\#220](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/220)
   * Reported bugs and suggestions for other teams in the class (examples: 
   [\#146](https://github.com/AY2021S1-CS2103T-T09-2/tp/issues/146),
   [\#147](https://github.com/AY2021S1-CS2103T-T09-2/tp/issues/147),
