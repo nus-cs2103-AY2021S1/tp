@@ -268,13 +268,12 @@ The `sedit` command calls `Model#setSession()`, causing changes to be made in th
 The following sequence diagram shows how the Edit Session operation works:
 
 <figure style="width:auto; text-align:center; padding:0.5em; font-style: italic; font-size: smaller;">
-    <p>
         <img src="images/EditSessionSequenceDiagram.png"/>
     </p>
     <figcaption>Figure 10 - Edit Session Sequence Diagram</figcaption>
 </figure>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditSessionCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditSessionCommand` and `EditSessionCommandParser` should both end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
