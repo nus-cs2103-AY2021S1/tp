@@ -2133,7 +2133,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | calculate my CAP details   | plan my academic progress for the future      |
 | `* *`    | user                                       | archive a modules   | hide less relevant modules that might still be useful for future purposes|
 | `* *`    | user                                       | add graded assignments       | add the information of the assignments that contributed to my grade      |
-|          | contact list                               |                                | |
 | `* * *`  | user                                       | add module contacts            | keep track of all contact details for future reference  |
 | `* * *`  | user                                       | delete a contact               | prevent unnecessary contacts from accumulating |
 | `* * *`  | user                                       | edit a contact                 | update contact details whenever they are changed |
@@ -2152,8 +2151,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                                       | reset the status of a task     | change a task from labeled as completed to not completed |
 | `*`      | user                                       | archive a task                 | hide irrelevant tasks that might still be useful for future purposes |
 | `*`      | user                                       | quickly add a module tagged as completed                 | input data to calculate CAP details quickly |
-| | todo list | |
-| | event list | |
 
 *{More to be added}*
 
@@ -2166,7 +2163,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## Module list use cases
 
-**Use case: UC04 - View a module**
+**Use case: UC01 - View a module**
 
 **MSS**
 
@@ -2187,11 +2184,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 2.
 
-**Use case: UC05 - Archive a module**
+**Use case: UC02 - Archive a module**
 
 **MSS**
 
-1. User <ins>requests to show all the un-archived modules (UC09).</ins>
+1. User <ins>requests to show all the un-archived modules (UC06).</ins>
 2. User wants to archive a specific module from the list.
 3. CAP5BUDDY archives the module.
 
@@ -2206,11 +2203,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
     
-**Use case: UC06 - Un-archive a module**
+**Use case: UC03 - Un-archive a module**
 
 **MSS**
 
-1. User <ins>requests to show all the archived modules (UC10).</ins>
+1. User <ins>requests to show all the archived modules (UC07).</ins>
 2. User wants to un-archive a specific module from the list.
 3. CAP5BUDDY un-archives the module.
 
@@ -2225,7 +2222,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-**Use case: UC07 - Calculate CAP**
+**Use case: UC04 - Calculate CAP**
 
 **MSS**
 
@@ -2246,7 +2243,7 @@ Use case ends.
   Use case resumes at step 2.
 
 
-**Use case: UC08 - Calculate target CAP details**
+**Use case: UC05 - Calculate target CAP details**
 
 **MSS**
 
@@ -2284,7 +2281,7 @@ Use case ends.
    Steps 3a1-3a2 are repeated until the data requirements are fulfilled.<br>
    Use case resumes at step 2. 
    
-**Use case: UC09 - View un-archived module list**
+**Use case: UC06 - View un-archived module list**
 
 **MSS**
 
@@ -2293,7 +2290,7 @@ Use case ends.
 
 Use case ends.
 
-**Use case: UC10 - View archived module list**
+**Use case: UC07 - View archived module list**
 
 **MSS**
 
@@ -2302,7 +2299,7 @@ Use case ends.
 
 Use case ends.
 
-**Use case: Add zoom link to module**
+**Use case: U08 - Add zoom link to module**
 
 **MSS**
 
@@ -2317,9 +2314,21 @@ Use case ends.
 
   * 2a. CAP5BUDDY detects that the module index is invalid.
   
-  * 2b.CAP5BUDDY detects that the provided zoom link details are invalid.
+    * 2a1. CAP5BUDDY displays an error message and informs the user of the invalid module index.
+    
+    Use case ends.
   
-  *
+  * 2b. CAP5BUDDY detects that the provided zoom link details are invalid.
+  
+    * 2b1. CAP5BUDDY displays an error message and informs the user of the invalid zoom link.
+    
+    Use case ends.
+  
+  * 2c. CAP5BUDDY detects that the provided zoom link already exists in the module.
+  
+    * 2c1. CAP5BUDDY displays an error message and informs the user that a duplicate zoom link exists.
+    
+     Use case ends.
   
 **Use case: Delete zoom link from module**
 
@@ -2333,6 +2342,7 @@ Use case ends.
 **Extensions**
 
   * 2a. CAP5BUDDY detects that the module index is invalid.
+
 
 
 ## Contact list use cases
