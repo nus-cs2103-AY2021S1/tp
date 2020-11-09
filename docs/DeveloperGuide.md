@@ -54,7 +54,7 @@ This section will elaborate on the design and software patterns applied in Inven
 
 This application applies the [MVC pattern](https://www.tutorialspoint.com/design_pattern/mvc_pattern.html).
 
-![Architecture Diagram](images/ArchitectureDiagram.png)
+<img src="images/ArchitectureDiagram.png" alt="Architecture Diagram" height="700">
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 Given below is a quick overview of each component.
