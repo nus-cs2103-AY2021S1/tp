@@ -1,5 +1,11 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
+import static seedu.address.testutil.bids.TypicalBid.getTypicalBidBook;
+import static seedu.address.testutil.meeting.TypicalMeeting.getTypicalMeetingAddressBook;
+import static seedu.address.testutil.property.TypicalProperties.getTypicalPropertyBook;
+import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -7,8 +13,9 @@ import java.nio.file.Paths;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
-import seedu.address.model.calendar.CalendarMeeting;
-import seedu.address.model.person.Person;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * A utility class for test cases.
@@ -33,33 +40,19 @@ public class TestUtil {
         return SANDBOX_FOLDER.resolve(fileName);
     }
 
-    /**
-     * Returns the middle index of the person in the {@code model}'s person list.
-     */
-    public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size() / 2);
-    }
-
-    /**
-     * Returns the last index of the person in the {@code model}'s person list.
-     */
-    public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size());
-    }
-
-    /**
-     * Returns the person in the {@code model}'s person list at {@code index}.
-     */
-    public static Person getPerson(Model model, Index index) {
-        return model.getFilteredPersonList().get(index.getZeroBased());
-    }
-
     // MEETING
     /**
      * Returns the person in the {@code model}'s meeting list at {@code index}.
      */
-    public static CalendarMeeting getMeeting(Model model, Index index) {
+    public static Meeting getMeeting(Model model, Index index) {
         return model.getFilteredMeetingList().get(index.getZeroBased());
+    }
+
+    /** Returns a ModelManager populated with all the typical books. */
+    public static ModelManager getTypicalModelManager() {
+        return new ModelManager(new UserPrefs(), getTypicalBidBook(), getTypicalPropertyBook(),
+                getTypicalBidderAddressBook(), getTypicalSellerAddressBook(),
+                getTypicalMeetingAddressBook());
     }
 
 

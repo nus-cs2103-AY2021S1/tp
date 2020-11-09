@@ -2,6 +2,7 @@ package seedu.address.model.person.seller;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.id.SellerId.DEFAULT_SELLER_ID;
 
 import java.util.Iterator;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.id.Id;
-import seedu.address.model.person.Person;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -22,7 +23,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Seller#isSamePerson(Person)
+ * @see Seller#isSameSeller(Seller)
  */
 public class UniqueSellerList implements Iterable<Seller> {
 
@@ -35,7 +36,7 @@ public class UniqueSellerList implements Iterable<Seller> {
      */
     public boolean contains(Seller toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameSeller);
     }
 
     /**
@@ -47,16 +48,19 @@ public class UniqueSellerList implements Iterable<Seller> {
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
         }
-        toAdd.setId(getLatestId());
+        if (toAdd.getId().equals(DEFAULT_SELLER_ID)) {
+            toAdd.setId(getLatestId().increment());
+        }
         internalList.add(toAdd);
     }
 
-    public Id getLatestId() {
+    public SellerId getLatestId() {
         if (internalList.size() == 0) {
-            return new Id("S", 1);
+            return new SellerId(0);
         }
-        return this.internalList.get(internalList.size() - 1).getId().increment();
+        return (SellerId) this.internalList.get(internalList.size() - 1).getId();
     }
+
     /**
      * Replaces the contents of this list with {@code sellers}.
      * {@code sellers} must not contain duplicate bidders.
@@ -88,7 +92,7 @@ public class UniqueSellerList implements Iterable<Seller> {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSamePerson(editedSeller) && contains(editedSeller)) {
+        if (!target.isSameSeller(editedSeller) && contains(editedSeller)) {
             throw new DuplicatePersonException();
         }
 
@@ -104,6 +108,18 @@ public class UniqueSellerList implements Iterable<Seller> {
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
         }
+    }
+
+    /**
+     * Checks if the seller list contains a seller with the given id.
+     *
+     * @param id The specified id.
+     * @return True if the seller list contains the bidder with the given id.
+     */
+    public boolean containsSellerId(Id id) {
+        requireNonNull(id);
+        return internalList.filtered(seller -> seller.getId().equals(id))
+                .size() > 0;
     }
 
 
@@ -126,22 +142,26 @@ public class UniqueSellerList implements Iterable<Seller> {
                 && internalList.equals(((UniqueSellerList) other).internalList));
     }
 
-    @Override
-    public int hashCode() {
-        return internalList.hashCode();
-    }
-
     /**
      * Returns true if {@code persons} contains only unique persons.
      */
     private boolean sellersAreUnique(List<Seller> sellers) {
         for (int i = 0; i < sellers.size() - 1; i++) {
             for (int j = i + 1; j < sellers.size(); j++) {
-                if (sellers.get(i).isSamePerson(sellers.get(j))) {
+                if (sellers.get(i).isSameSeller(sellers.get(j))) {
                     return false;
                 }
             }
         }
         return true;
+    }
+
+    /**
+     * Returns true if the list contains a seller that is equivalent to the seller.
+     */
+    public boolean containsExceptSellerId(Seller inCheck, SellerId excludedId) {
+        requireAllNonNull(inCheck, excludedId);
+        return internalList.stream().filter(seller -> !(seller.getId().equals(excludedId)))
+                .anyMatch(inCheck::isSameSeller);
     }
 }

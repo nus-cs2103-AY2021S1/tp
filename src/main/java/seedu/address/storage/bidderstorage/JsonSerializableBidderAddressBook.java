@@ -14,40 +14,40 @@ import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
 import seedu.address.model.person.bidder.Bidder;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable BidderAddressBook that is serializable to JSON format.
  */
-@JsonRootName(value = "selleraddressbook")
-class JsonSerializableBidderAddressBook {
+@JsonRootName(value = "addressbook")
+public class JsonSerializableBidderAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Bidders list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Bidders list contains duplicate bidder(s).";
 
-    private final List<JsonAdaptedBidder> persons = new ArrayList<>();
+    private final List<JsonAdaptedBidder> bidders = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableBidderAddressBook} with the given bidders.
      */
     @JsonCreator
-    public JsonSerializableBidderAddressBook(@JsonProperty("persons") List<JsonAdaptedBidder> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableBidderAddressBook(@JsonProperty("bidders") List<JsonAdaptedBidder> bidders) {
+        this.bidders.addAll(bidders);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyBidderAddressBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableBidderAddressBook}.
      */
     public JsonSerializableBidderAddressBook(ReadOnlyBidderAddressBook source) {
-        persons.addAll(source.getBidderList().stream().map(JsonAdaptedBidder::new).collect(Collectors.toList()));
+        bidders.addAll(source.getBidderList().stream().map(JsonAdaptedBidder::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code BidderAddressBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public BidderAddressBook toModelType() throws IllegalValueException {
         BidderAddressBook bidderAddressBook = new BidderAddressBook();
-        for (JsonAdaptedBidder jsonAdaptedBidder : persons) {
+        for (JsonAdaptedBidder jsonAdaptedBidder : bidders) {
             Bidder bidder = jsonAdaptedBidder.toModelType();
             if (bidderAddressBook.hasBidder(bidder)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);

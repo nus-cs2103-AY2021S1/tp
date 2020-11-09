@@ -1,0 +1,21 @@
+{
+  "properties" : [ {
+    "propertyId" : "B1",
+    "propertyName" : "Sunrise Condo",
+    "address" : "Block 123",
+    "sellerId" : "S1",
+    "propertyType" : "Condo",
+    "askingPrice" : "100.0",
+    "isRental" : "No",
+    "isClosedDeal" : "Active"
+  }, {
+    "propertyId" : "P2",
+    "propertyName" : "Sundown HDB",
+    "address" : "Block 456",
+    "sellerId" : "S2",
+    "propertyType" : "HDB",
+    "askingPrice" : "200.0",
+    "isRental" : "No",
+    "isClosedDeal" : "Active"
+  } ]
+}

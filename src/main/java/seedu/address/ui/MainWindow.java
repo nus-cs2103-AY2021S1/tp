@@ -1,11 +1,17 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -14,8 +20,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.EntityType;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.meeting.MeetingListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -24,15 +32,16 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String STATUS_MESSAGE = "Welcome to PropertyFree, "
+            + "the one place to manage all your properties.";
     private final Logger logger = LogsCenter.getLogger(getClass());
     private Stage primaryStage;
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
-    private BidListPanel bidListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CalendarView calendarView = new CalendarView();
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -50,8 +59,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personAndBidTabPanePlaceholder;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane calendarListPanePlaceholder;
 
+    @FXML
+    private StackPane calendar;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -70,6 +81,7 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
     }
+
 
     public Stage getPrimaryStage() {
         return primaryStage;
@@ -119,11 +131,32 @@ public class MainWindow extends UiPart<Stage> {
         TabBar personAndJobTabPane = new TabBar(this.logic);
         personAndBidTabPanePlaceholder.getChildren().add(personAndJobTabPane.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(STATUS_MESSAGE);
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        MeetingListPanel meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
+        calendarListPanePlaceholder.getChildren().add(meetingListPanel.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        setCommandBoxDefaultFocus(commandBox);
+
+        calendar.getChildren().add(calendarView.getRoot());
+
+        handleFocusRequestWhenKeyPressed(commandBox);
+        setCommandBoxDefaultFocus(commandBox);
+    }
+
+    /**
+     * Sets the default focus on launch to be commandBox
+     */
+    private void setCommandBoxDefaultFocus(CommandBox commandBox) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                commandBox.setCommandTextFieldFocusOnStart();
+            }
+        });
     }
 
     /**
@@ -167,6 +200,57 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Receives the corresponding entityType and executes the method to switch tab bar automatically.
+     */
+    @FXML
+    private void setAutoTab(EntityType entityType) {
+        if (entityType != null) {
+            TabBar personAndJobTabPane = new TabBar(this.logic);
+            personAndJobTabPane.setTab(entityType);
+            personAndBidTabPanePlaceholder.getChildren().add(personAndJobTabPane.getRoot());
+        }
+    }
+
+    /**
+     *
+     */
+    @FXML
+    private void setCalendarNavigation(String direction) throws CommandException {
+        if (direction.equals("next")) {
+            calendarView.handleToNext();
+        } else if (direction.equals("prev")) {
+            calendarView.handleToPrev();
+        } else {
+            throw new CommandException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
+
+    /**
+     * Creates the key pressed event triggers.
+     */
+    public void handleFocusRequestWhenKeyPressed(CommandBox commandBox) {
+
+        final KeyCombination keyCtrlRight = new KeyCodeCombination(KeyCode.RIGHT, KeyCombination.CONTROL_DOWN);
+        final KeyCombination keyCtrlLeft = new KeyCodeCombination(KeyCode.LEFT, KeyCombination.CONTROL_DOWN);
+
+
+        primaryStage.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                if (keyCtrlRight.match(keyEvent)) {
+                    calendarView.handleToNext();
+                }
+                if (keyCtrlLeft.match(keyEvent)) {
+                    calendarView.handleToPrev();
+                }
+                if (!commandBox.isCommandTextFieldFocused() && keyEvent.getCode() == KeyCode.ENTER) {
+                    commandBox.giveCommandTextFieldFocus();
+                }
+            }
+        });
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -174,8 +258,14 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
+
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            setAutoTab(commandResult.getEntityType());
+
+            if (commandResult.isCalendarNavigation()) {
+                setCalendarNavigation(commandText);
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

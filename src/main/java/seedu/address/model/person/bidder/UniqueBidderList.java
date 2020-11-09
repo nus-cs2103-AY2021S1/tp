@@ -2,14 +2,15 @@ package seedu.address.model.person.bidder;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.id.BidderId.DEFAULT_BIDDER_ID;
 
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.id.BidderId;
 import seedu.address.model.id.Id;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -22,7 +23,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Bidder#isSamePerson(Person)
+ * @see Bidder#isSameBidder(Bidder)
  */
 public class UniqueBidderList implements Iterable<Bidder> {
 
@@ -35,7 +36,7 @@ public class UniqueBidderList implements Iterable<Bidder> {
      */
     public boolean contains(Bidder toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameBidder);
     }
 
     /**
@@ -47,15 +48,17 @@ public class UniqueBidderList implements Iterable<Bidder> {
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
         }
-        toAdd.setId(getLatestId());
+        if (toAdd.getId().equals(DEFAULT_BIDDER_ID)) {
+            toAdd.setId(getLatestId().increment());
+        }
         internalList.add(toAdd);
     }
 
-    public Id getLatestId() {
+    public BidderId getLatestId() {
         if (internalList.size() == 0) {
-            return new Id("B", 1);
+            return new BidderId(0);
         }
-        return this.internalList.get(internalList.size() - 1).getId().increment();
+        return (BidderId) this.internalList.get(internalList.size() - 1).getId();
     }
 
     /**
@@ -71,7 +74,7 @@ public class UniqueBidderList implements Iterable<Bidder> {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSamePerson(editedBidder) && contains(editedBidder)) {
+        if (!target.isSameBidder(editedBidder) && contains(editedBidder)) {
             throw new DuplicatePersonException();
         }
 
@@ -108,6 +111,18 @@ public class UniqueBidderList implements Iterable<Bidder> {
     }
 
     /**
+     * Checks if the bidder list contains a bidder with the given id.
+     *
+     * @param id The specified id.
+     * @return True if the bidder list contains the bidder with the given id.
+     */
+    public boolean containsBidderId(Id id) {
+        requireNonNull(id);
+        return internalList.filtered(bidder -> bidder.getId().equals(id))
+                .size() > 0;
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Bidder> asUnmodifiableObservableList() {
@@ -126,22 +141,26 @@ public class UniqueBidderList implements Iterable<Bidder> {
                 && internalList.equals(((UniqueBidderList) other).internalList));
     }
 
-    @Override
-    public int hashCode() {
-        return internalList.hashCode();
-    }
-
     /**
      * Returns true if {@code bidders} contains only unique persons.
      */
     private boolean biddersAreUnique(List<Bidder> bidders) {
         for (int i = 0; i < bidders.size() - 1; i++) {
             for (int j = i + 1; j < bidders.size(); j++) {
-                if (bidders.get(i).isSamePerson(bidders.get(j))) {
+                if (bidders.get(i).isSameBidder(bidders.get(j))) {
                     return false;
                 }
             }
         }
         return true;
+    }
+
+    /**
+     * Returns true if the list contains a bidder that is equivalent to the bidder.
+     */
+    public boolean containsExceptBidderId(Bidder inCheck, BidderId excludedId) {
+        requireAllNonNull(inCheck, excludedId);
+        return internalList.stream().filter(bidder -> !(bidder.getId().equals(excludedId)))
+                .anyMatch(inCheck::isSameBidder);
     }
 }

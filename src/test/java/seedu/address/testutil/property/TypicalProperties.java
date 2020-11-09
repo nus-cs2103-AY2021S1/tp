@@ -16,7 +16,7 @@ public class TypicalProperties {
             .withAddress("101 Aljunied Drive")
             .withAskingPrice(999.99)
             .withSellerId("S1")
-            .build();;
+            .build();
     public static final Property PROPERTY_B = new PropertyBuilder()
             .withPropertyId("P2")
             .withPropertyType("Condo")
@@ -25,6 +25,29 @@ public class TypicalProperties {
             .withAskingPrice(100000)
             .withSellerId("S2")
             .build();
+    public static final Property PROPERTY_C = new PropertyBuilder()
+            .withPropertyId("P3")
+            .withPropertyType("Landed")
+            .withPropertyName("Carlson Mansion")
+            .withAddress("101 Carlson Avenue")
+            .withAskingPrice(12345678)
+            .withSellerId("S3")
+            .withIsRental("yes")
+            .withIsClosedDeal("close")
+            .build();
+
+    // not in typical property book
+    public static final Property PROPERTY_D = new PropertyBuilder()
+            .withPropertyId("P4")
+            .withPropertyType("HDB 5 room")
+            .withPropertyName("Dragon Mountain")
+            .withAddress("101 Duigan Avenue")
+            .withAskingPrice(12345678)
+            .withSellerId("S3")
+            .withIsRental("yes")
+            .withIsClosedDeal("close")
+            .build();
+
 
     private TypicalProperties() {} // prevent instantiation
 
@@ -40,7 +63,7 @@ public class TypicalProperties {
     }
 
     public static List<Property> getTypicalProperties() {
-        return new ArrayList<>(Arrays.asList(PROPERTY_A, PROPERTY_B));
+        return new ArrayList<>(Arrays.asList(PROPERTY_A, PROPERTY_B, PROPERTY_C));
     }
 
 }

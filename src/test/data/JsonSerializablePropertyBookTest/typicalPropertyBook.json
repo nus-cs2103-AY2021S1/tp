@@ -1,0 +1,31 @@
+{
+  "properties" : [ {
+    "propertyId" : "P1",
+    "propertyName" : "Aljunied Building",
+    "address" : "101 Aljunied Drive",
+    "sellerId" : "S1",
+    "propertyType" : "HDB 2 room",
+    "askingPrice" : "999.99",
+    "isRental" : "No",
+    "isClosedDeal" : "Active"
+  }, {
+    "propertyId" : "P2",
+    "propertyName" : "Bayfront Condominium",
+    "address" : "101 Bayfront Drive",
+    "sellerId" : "S2",
+    "propertyType" : "Condo",
+    "askingPrice" : "100000",
+    "isRental" : "No",
+    "isClosedDeal" : "Active"
+  },
+    {
+      "propertyId": "P3",
+      "propertyName": "Carlson Mansion",
+      "address": "101 Carlson Avenue",
+      "sellerId": "S3",
+      "propertyType": "Landed",
+      "askingPrice": "12345678",
+      "isRental": "Yes",
+      "isClosedDeal": "Close"
+    } ]
+}

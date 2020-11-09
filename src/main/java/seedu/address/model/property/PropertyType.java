@@ -10,13 +10,15 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class PropertyType {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Type should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Type should only contain alphanumeric characters and spaces, it should not be blank "
+            + "and its maximum length is 100 characters.";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final int MAX_LENGTH = 100;
 
     public final String type;
 
@@ -36,7 +38,7 @@ public class PropertyType {
      */
     public static boolean isValidPropertyType(String test) {
         // TODO: add more validation
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() <= MAX_LENGTH;
     }
 
 
@@ -50,11 +52,6 @@ public class PropertyType {
         return other == this // short circuit if same object
                 || (other instanceof PropertyType // instanceof handles nulls
                 && type.equals(((PropertyType) other).type)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return type.hashCode();
     }
 
 }

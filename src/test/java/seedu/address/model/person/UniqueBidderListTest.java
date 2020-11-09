@@ -3,10 +3,10 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalBidder.ALICE;
-import static seedu.address.testutil.TypicalBidder.BOB;
+import static seedu.address.testutil.bidder.TypicalBidder.ALICE;
+import static seedu.address.testutil.bidder.TypicalBidder.BIDDER_ALICE;
+import static seedu.address.testutil.bidder.TypicalBidder.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,7 +18,7 @@ import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.bidder.UniqueBidderList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.testutil.BidderBuilder;
+import seedu.address.testutil.bidder.BidderBuilder;
 
 public class UniqueBidderListTest {
 
@@ -43,8 +43,7 @@ public class UniqueBidderListTest {
     @Test
     public void contains_bidderWithSameIdentityFieldsInList_returnsTrue() {
         uniqueBidderList.add(ALICE);
-        Bidder editedAlice = new BidderBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Bidder editedAlice = new BidderBuilder(ALICE).build();
         assertTrue(uniqueBidderList.contains(editedAlice));
     }
 
@@ -75,7 +74,7 @@ public class UniqueBidderListTest {
     }
 
     @Test
-    public void setBidder_editedPersonIsSamePerson_success() {
+    public void setBidder_editedBidderIsSameBidder_success() {
         uniqueBidderList.add(ALICE);
         uniqueBidderList.setBidder(ALICE, ALICE);
         UniqueBidderList expectedUniqueBidderList = new UniqueBidderList();
@@ -84,10 +83,9 @@ public class UniqueBidderListTest {
     }
 
     @Test
-    public void setBidder_editedPersonHasSameIdentity_success() {
+    public void setBidder_editedBidderHasSameIdentity_success() {
         uniqueBidderList.add(ALICE);
-        Bidder editedAlice = new BidderBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Bidder editedAlice = new BidderBuilder(ALICE).build();
         uniqueBidderList.setBidder(ALICE, editedAlice);
         UniqueBidderList expectedUniqueBidderList = new UniqueBidderList();
         expectedUniqueBidderList.add(editedAlice);
@@ -121,7 +119,7 @@ public class UniqueBidderListTest {
     }
 
     @Test
-    public void remove_existingPerson_removesBidder() {
+    public void remove_existingBidder_removesBidder() {
         uniqueBidderList.add(ALICE);
         uniqueBidderList.remove(ALICE);
         UniqueBidderList expectedUniqueBidderList = new UniqueBidderList();
@@ -129,7 +127,7 @@ public class UniqueBidderListTest {
     }
 
     @Test
-    public void setPersons_nullUniqueBidderList_throwsNullPointerException() {
+    public void setBidders_nullUniqueBidderList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueBidderList.setBidders((UniqueBidderList) null));
     }
 
@@ -158,9 +156,9 @@ public class UniqueBidderListTest {
     }
 
     @Test
-    public void setBidders_listWithDuplicatePersons_throwsDuplicatePersonException() {
-        List<Bidder> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueBidderList.setBidders(listWithDuplicatePersons));
+    public void setBidders_listWithDuplicateBidders_throwsDuplicatePersonException() {
+        List<Bidder> listWithDuplicateBidders = Arrays.asList(BIDDER_ALICE, BIDDER_ALICE);
+        assertThrows(DuplicatePersonException.class, () -> uniqueBidderList.setBidders(listWithDuplicateBidders));
     }
 
     @Test

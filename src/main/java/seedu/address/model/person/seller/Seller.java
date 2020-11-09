@@ -1,11 +1,10 @@
 package seedu.address.model.person.seller;
 
-import java.util.Set;
+import static seedu.address.model.id.SellerId.DEFAULT_SELLER_ID;
 
-import seedu.address.model.id.Id;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.person.ClientPerson;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -14,25 +13,30 @@ import seedu.address.model.tag.Tag;
  */
 public class Seller extends ClientPerson {
 
-    /**
-     * Constructs the seller with the name, phone, tags, and id.
-     *
-     * @param name name of the seller.
-     * @param phone phone number.
-     * @param tags tags.
-     * @param id identifier.
-     */
-    public Seller(Name name, Phone phone, Set<Tag> tags, Id id) {
-        super(name, phone, tags, id);
-    }
+    public static final Tag SELLER_TAG = new Tag("seller");
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * Constructs the seller with the name, phone, tags, and id.
+     *  @param name name of the seller.
+     * @param phone phone number.
+     * @param sellerId identifier.
      */
-    @Override
-    public boolean isSamePerson(Person otherPerson) {
-        return otherPerson instanceof Seller && super.isSamePerson(otherPerson);
+    public Seller(Name name, Phone phone, SellerId sellerId) {
+        super(name, phone, SELLER_TAG, sellerId);
+    }
+
+    public Seller setDefaultSellerId() {
+        return new Seller(name, phone, DEFAULT_SELLER_ID);
+    }
+
+    public void setId(SellerId updatedId) {
+        super.setId(updatedId);
+        this.clientId = updatedId;
+    }
+
+
+    public boolean isSameSeller(Seller otherSeller) {
+        return this.isSameClient(otherSeller);
     }
 
     /**
@@ -52,7 +56,7 @@ public class Seller extends ClientPerson {
         Seller otherSeller = (Seller) other;
         return otherSeller.getName().equals(getName())
                 && otherSeller.getPhone().equals(getPhone())
-                && otherSeller.getTags().equals(getTags());
+                && otherSeller.getTag().equals(getTag());
     }
 
 }

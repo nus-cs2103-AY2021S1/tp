@@ -2,15 +2,13 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Set;
-
 import seedu.address.model.id.Id;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents the clients who interacts with the property agent.
  */
-public class ClientPerson extends Person {
+public abstract class ClientPerson extends Person {
 
     // Identity fields
     protected Id clientId;
@@ -20,11 +18,11 @@ public class ClientPerson extends Person {
      *
      * @param name name of client.
      * @param phone phone number of client.
-     * @param tags tags.
+     * @param tag tag.
      * @param id identifier.
      */
-    protected ClientPerson(Name name, Phone phone, Set<Tag> tags, Id id) {
-        super(name, phone, tags);
+    protected ClientPerson(Name name, Phone phone, Tag tag, Id id) {
+        super(name, phone, tag);
         requireAllNonNull(id);
         this.clientId = id;
     }
@@ -38,24 +36,29 @@ public class ClientPerson extends Person {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * checks if the other client is the same in any regard.
+     *
+     * @param otherClient the other client checked against.
+     * @return if the client contains the same information .
      */
-    @Override
-    public boolean isSamePerson(Person otherPerson) {
-        return otherPerson instanceof ClientPerson && super.isSamePerson(otherPerson);
+    public boolean isSameClient(ClientPerson otherClient) {
+        return otherClient != null
+                && (this == otherClient
+                || this.getName().equals(otherClient.getName())
+                || this.getPhone().equals(otherClient.getPhone()));
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append("\nName: ")
+                .append(getName())
                 .append("\nPhone: ")
                 .append(getPhone())
                 .append("\nId: ")
                 .append(getId())
-                .append("\nTags: ");
-        getTags().forEach(builder::append);
+                .append("\nTag: ")
+                .append(getTag());
         return builder.toString();
     }
 }

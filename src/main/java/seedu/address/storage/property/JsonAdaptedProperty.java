@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.id.Id;
+import seedu.address.model.id.PropertyId;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.price.Price;
 import seedu.address.model.property.Address;
 import seedu.address.model.property.IsClosedDeal;
@@ -65,18 +66,19 @@ class JsonAdaptedProperty {
         isClosedDeal = source.isClosedDeal().toString();
     }
 
-    /** Converts the Json propertyId string into the model's {@code Id} object.
+    /** Converts the Json propertyId string into the model's {@code PropertyId} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted id.
      */
-    private Id toModelPropertyId() throws IllegalValueException {
+    private PropertyId toModelPropertyId() throws IllegalValueException {
         if (propertyId == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Id.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PropertyId.class.getSimpleName()));
         }
-        if (!Id.isValidId(propertyId)) {
-            throw new IllegalValueException(Id.MESSAGE_CONSTRAINTS);
+        if (!PropertyId.isValidId(propertyId)) {
+            throw new IllegalValueException(PropertyId.MESSAGE_CONSTRAINTS);
         }
-        return new Id(propertyId);
+        return new PropertyId(propertyId);
     }
 
     /** Converts the Json propertyName string into the model's {@code PropertyName} object.
@@ -109,18 +111,19 @@ class JsonAdaptedProperty {
         return new Address(address);
     }
 
-    /** Converts the Json sellerId string into the model's {@code Id} object.
+    /** Converts the Json sellerId string into the model's {@code SellerId} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted Id.
      */
-    private Id toModelSellerId() throws IllegalValueException {
+    private SellerId toModelSellerId() throws IllegalValueException {
         if (sellerId == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Id.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    SellerId.class.getSimpleName()));
         }
-        if (!Id.isValidId(sellerId)) {
-            throw new IllegalValueException(Id.MESSAGE_CONSTRAINTS);
+        if (!SellerId.isValidId(sellerId)) {
+            throw new IllegalValueException(SellerId.MESSAGE_CONSTRAINTS);
         }
-        return new Id(sellerId);
+        return new SellerId(sellerId);
     }
 
     /** Converts the Json propertyType string into the model's {@code PropertyType} object.
@@ -195,10 +198,10 @@ class JsonAdaptedProperty {
      */
     public Property toModelType() throws IllegalValueException {
 
-        final Id modelPropertyId = toModelPropertyId();
+        final PropertyId modelPropertyId = toModelPropertyId();
         final PropertyName modelPropertyName = toModelPropertyName();
         final Address modelAddress = toModelAddress();
-        final Id modelSellerId = toModelSellerId();
+        final SellerId modelSellerId = toModelSellerId();
         final PropertyType modelPropertyType = toModelPropertyType();
         final Price modelAskingPrice = toModelAskingPrice();
         final IsRental modelIsRental = toModelIsRental();

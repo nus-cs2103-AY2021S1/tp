@@ -2,24 +2,40 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.commands.bidcommands.AddBidCommand.MESSAGE_INVALID_BIDDER_ID;
+import static seedu.address.logic.commands.bidcommands.AddBidCommand.MESSAGE_INVALID_BID_AMOUNT;
+import static seedu.address.logic.commands.bidcommands.AddBidCommand.MESSAGE_INVALID_PROPERTY_ID;
+import static seedu.address.logic.commands.meetingcommands.AddMeetingCommand.MESSAGE_BIDDER_ID_INVALID;
+import static seedu.address.logic.commands.meetingcommands.AddMeetingCommand.MESSAGE_PROPERTY_ID_INVALID;
+import static seedu.address.model.price.Price.isValidPrice;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.bid.BidComparator;
+import seedu.address.model.bidbook.BidBook;
+import seedu.address.model.bidbook.ReadOnlyBidBook;
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
-import seedu.address.model.calendar.CalendarMeeting;
-import seedu.address.model.id.Id;
+import seedu.address.model.id.BidderId;
+import seedu.address.model.id.PropertyId;
+import seedu.address.model.id.SellerId;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.seller.Seller;
 import seedu.address.model.property.Property;
+import seedu.address.model.property.exceptions.InvalidSellerIdException;
 import seedu.address.model.propertybook.PropertyBook;
 import seedu.address.model.propertybook.ReadOnlyPropertyBook;
 import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
@@ -29,43 +45,45 @@ import seedu.address.model.selleraddressbook.SellerAddressBook;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private static final BidComparator bidComparator = new BidComparator();
 
     private final BidBook bidBook;
-    private final AddressBook addressBook;
     private final BidderAddressBook bidderAddressBook;
     private final SellerAddressBook sellerAddressBook;
     private final UserPrefs userPrefs;
     private final PropertyBook propertyBook;
     private final MeetingBook meetingBook;
 
-    private final FilteredList<Person> filteredPersons;
     private final FilteredList<Seller> filteredSellers;
     private final FilteredList<Bidder> filteredBidders;
     private final FilteredList<Bid> filteredBids;
-    private final FilteredList<CalendarMeeting> filteredMeetings;
+    private final FilteredList<Meeting> filteredMeetings;
     private final FilteredList<Property> filteredProperties;
+    private final SortedList<Meeting> sortedMeetings;
+    private final SortedList<Bid> sortedBids;
 
     /**
      * Initializes a ModelManager with the given addressBook, userPrefs, bidBook, meetingManager and propertyBook.
      */
 
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyBidBook bidBook,
+    public ModelManager(ReadOnlyUserPrefs userPrefs, ReadOnlyBidBook bidBook,
                         ReadOnlyPropertyBook propertyBook, ReadOnlyBidderAddressBook bidderAddressBook,
-                        ReadOnlySellerAddressBook sellerAddressBook, ReadOnlyMeetingManager meetingManager) {
+                        ReadOnlySellerAddressBook sellerAddressBook, ReadOnlyMeetingBook meetingManager) {
         super();
-        requireAllNonNull(addressBook, userPrefs, bidBook, propertyBook,
+        requireAllNonNull(userPrefs, bidBook, propertyBook,
                 bidderAddressBook, sellerAddressBook, meetingManager);
 
-        logger.fine("Initializing with address book: " + addressBook
-                + " and user prefs " + userPrefs + " and bid book: " + bidBook
-                + " and property book: " + propertyBook
+        logger.fine("Initializing with: "
+                + "\n user prefs " + userPrefs
+                + "\n bid book: " + bidBook
+                + "\n property book: " + propertyBook
                 + "\n bidderAddressBook: " + bidderAddressBook
                 + "\n sellerAddressBook: " + sellerAddressBook
                 + "\n and meeting manager" + meetingManager
         );
 
-        this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.bidderAddressBook = new BidderAddressBook(bidderAddressBook);
         this.sellerAddressBook = new SellerAddressBook(sellerAddressBook);
@@ -73,12 +91,13 @@ public class ModelManager implements Model {
         this.meetingBook = new MeetingBook(meetingManager);
         this.propertyBook = new PropertyBook(propertyBook);
 
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredBidders = new FilteredList<>(this.bidderAddressBook.getBidderList());
         filteredSellers = new FilteredList<>(this.sellerAddressBook.getSellerList());
         filteredBids = new FilteredList<>(this.bidBook.getBidList());
         filteredMeetings = new FilteredList<>(this.meetingBook.getMeetingList());
         filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
+        sortedMeetings = new SortedList<>(this.meetingBook.getMeetingList());
+        sortedBids = new SortedList<>(this.bidBook.getBidList());
 
     }
 
@@ -86,13 +105,8 @@ public class ModelManager implements Model {
      * Constructor for the ModelManager.
      */
     public ModelManager() {
-        this(new AddressBook(),
-                new UserPrefs(),
-                new BidBook(),
-                new PropertyBook(),
-                new BidderAddressBook(),
-                new SellerAddressBook(),
-                new MeetingBook());
+        this (new UserPrefs(), new BidBook(), new PropertyBook(), new BidderAddressBook(), new SellerAddressBook(),
+            new MeetingBook());
 
     }
 
@@ -120,16 +134,99 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
+    //=========== BidBook ================================================================================
+
+
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public void setBidBook(ReadOnlyBidBook bidBook) {
+        this.bidBook.resetData(bidBook);
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public ReadOnlyBidBook getBidBook() {
+        return bidBook;
     }
+
+    @Override
+    public ObservableList<Bid> getFilteredBidList() {
+        return filteredBids;
+    }
+
+    @Override
+    public void addBid(Bid bid) throws CommandException {
+        checkIsValidBid(bid);
+        bidBook.addBid(bid);
+        updateSortedBidList(bidComparator);
+        updateFilteredBidList(PREDICATE_SHOW_ALL_BIDS);
+    }
+
+    @Override
+    public void updateFilteredBidList(Predicate<Bid> predicate) {
+        requireNonNull(predicate);
+        updateSortedBidList(bidComparator);
+        filteredBids.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean hasBid(Bid bid) {
+        requireNonNull(bid);
+        return bidBook.hasBid(bid);
+    }
+
+    /**
+     * checks a bid against the property and bidder list to see if the ids exists and if bid amount is valid
+     * @param bid bid to validate
+     * @throws CommandException
+     */
+    private void checkIsValidBid(Bid bid) throws CommandException {
+        requireNonNull(bid);
+        if (!containsPropertyId(bid.getPropertyId())) {
+            throw new CommandException(MESSAGE_INVALID_PROPERTY_ID);
+        }
+        if (!containsBidderId(bid.getBidderId())) {
+            throw new CommandException(MESSAGE_INVALID_BIDDER_ID);
+        }
+        if (!isValidPrice(bid.getBidAmount().getPrice())) {
+            throw new CommandException(MESSAGE_INVALID_BID_AMOUNT);
+        }
+    }
+
+    /**
+     * sorts the list using the comparator
+     * @param comparator predicate to use to compare
+     */
+    private void updateSortedBidList(Comparator<Bid> comparator) {
+        requireAllNonNull(comparator);
+        sortedBids.setComparator(comparator);
+        bidBook.setBids(sortedBids);
+    }
+
+    @Override
+    public void deleteBid(Bid target) {
+        bidBook.removeBid(target);
+    }
+
+    @Override
+    public void setBid(Bid target, Bid editedBid) throws CommandException {
+        requireAllNonNull(target, editedBid);
+        checkIsValidBid(editedBid);
+        bidBook.setBid(target, editedBid);
+    }
+
+    @Override
+    public void setBidBookFilePath(Path bidBookFilePath) {
+        requireNonNull(bidBookFilePath);
+        userPrefs.setBidBookFilePath(bidBookFilePath);
+    }
+
+    @Override
+    public Path getBidBookFilePath() {
+        return userPrefs.getBidBookFilePath();
+    }
+
+    //=========== Filtered List Accessors =============================================================
+
+    //=========== PropertyBook ================================================================================
 
     @Override
     public Path getPropertyBookFilePath() {
@@ -141,83 +238,6 @@ public class ModelManager implements Model {
         requireNonNull(propertyBookFilePath);
         userPrefs.setPropertyBookFilePath(propertyBookFilePath);
     }
-
-    //=========== AddressBook ================================================================================
-
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
-    }
-
-    @Override
-    public ReadOnlyBidBook getBidBook() {
-        return bidBook;
-    }
-
-    @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
-    }
-
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public ObservableList<Bid> getFilteredBidList() {
-        return filteredBids;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-    }
-
-    @Override
-    public void updateFilteredBidList(Predicate<Bid> predicate) {
-        requireNonNull(predicate);
-        filteredBids.setPredicate(predicate);
-    }
-
-    @Override
-    public void addBid(Bid bid) {
-        bidBook.addBid(bid);
-        updateFilteredBidList(PREDICATE_SHOW_ALL_BIDS);
-    }
-
-    //=========== PropertyBook ================================================================================
 
     @Override
     public void setPropertyBook(ReadOnlyPropertyBook propertyBook) {
@@ -236,34 +256,56 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPropertyExceptPropertyId(Property property, PropertyId excludedId) {
+        requireAllNonNull(property, excludedId);
+        return propertyBook.hasPropertyExceptPropertyId(property, excludedId);
+    }
+
+    @Override
     public void deleteProperty(Property target) {
+        PropertyId propertyId = target.getPropertyId();
+        bidBook.removeAllBidsWithPropertyId(propertyId);
+        meetingBook.removeAllMeetingsWithPropertyId(propertyId);
         propertyBook.removeProperty(target);
     }
 
     @Override
-    public void deletePropertyByPropertyId(Id id) {
-        propertyBook.removePropertyByPropertyId(id);
+    public void deletePropertyByPropertyId(PropertyId propertyId) {
+        bidBook.removeAllBidsWithPropertyId(propertyId);
+        meetingBook.removeAllMeetingsWithPropertyId(propertyId);
+        propertyBook.removePropertyByPropertyId(propertyId);
+    }
+
+    private boolean isValidProperty(Property property) {
+        return sellerAddressBook.containsSellerId(property.getSellerId());
     }
 
     @Override
-    public void addProperty(Property property) {
-        propertyBook.addProperty(property);
+    public Property addProperty(Property property) {
+        if (!isValidProperty(property)) {
+            throw new InvalidSellerIdException();
+        }
+        Property added = propertyBook.addProperty(property);
         updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
+        return added;
     }
 
     @Override
-    public Property getPropertyById(Id id) {
-        return propertyBook.getPropertyById(id);
+    public Property getPropertyById(PropertyId propertyId) {
+        return propertyBook.getPropertyById(propertyId);
     }
 
     @Override
-    public boolean containsPropertyId(Id id) {
-        return propertyBook.containsPropertyId(id);
+    public boolean containsPropertyId(PropertyId propertyId) {
+        return propertyBook.containsPropertyId(propertyId);
     }
 
     @Override
     public void setProperty(Property target, Property editedProperty) {
         requireAllNonNull(target, editedProperty);
+        if (!isValidProperty(editedProperty)) {
+            throw new InvalidSellerIdException();
+        }
         propertyBook.setProperty(target, editedProperty);
     }
 
@@ -287,52 +329,82 @@ public class ModelManager implements Model {
     //=========== MeetingManager ================================================================================
 
     @Override
-    public void setMeetingManager(ReadOnlyMeetingManager meetingManager) {
+    public void setMeetingManager(ReadOnlyMeetingBook meetingManager) {
         this.meetingBook.resetData(meetingManager);
     }
 
     @Override
-    public ReadOnlyMeetingManager getMeetingManager() {
+    public ReadOnlyMeetingBook getMeetingBook() {
         return meetingBook;
     }
 
     @Override
-    public boolean hasMeeting(CalendarMeeting meeting) {
+    public boolean hasMeeting(Meeting meeting) {
         requireNonNull(meeting);
         return meetingBook.hasMeetings(meeting);
     }
 
     @Override
-    public void deleteMeeting(CalendarMeeting target) {
+    public void deleteMeeting(Meeting target) {
         meetingBook.removeMeeting(target);
     }
 
     @Override
-    public void addMeeting(CalendarMeeting meeting) {
+    public void addMeeting(Meeting meeting) throws CommandException {
+        checkIsValidMeeting(meeting);
         meetingBook.addMeeting(meeting);
         updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
     }
 
-    @Override
-    public void setMeeting(CalendarMeeting target, CalendarMeeting editedMeeting) {
-        requireAllNonNull(target, editedMeeting);
+    /**
+     * checks a bid against the property and bidder list to see if the ids exists and if bid amount is valid
+     * @param  meeting meeting to validate
+     * @throws CommandException
+     */
+    private void checkIsValidMeeting(Meeting meeting) throws CommandException {
+        requireNonNull(meeting);
+        if (!containsPropertyId(meeting.getPropertyId())) {
+            throw new CommandException(MESSAGE_PROPERTY_ID_INVALID);
+        }
+        if (!containsBidderId(meeting.getBidderId())) {
+            throw new CommandException(MESSAGE_BIDDER_ID_INVALID);
+        }
+    }
 
+    @Override
+    public void setMeeting(Meeting target, Meeting editedMeeting) throws CommandException {
+        requireAllNonNull(target, editedMeeting);
+        checkIsValidMeeting(editedMeeting);
         meetingBook.setMeeting(target, editedMeeting);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
-
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<CalendarMeeting> getFilteredMeetingList() {
+    public ObservableList<Meeting> getSortedMeetingList() {
+        return sortedMeetings;
+    }
+
+    @Override
+    public void updateSortedMeetingList(Comparator<Meeting> comparator) {
+        requireAllNonNull(comparator);
+        sortedMeetings.setComparator(comparator);
+        meetingBook.setMeetings(sortedMeetings);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
+     * {@code versionedMeetingBook}
+     */
+    @Override
+    public ObservableList<Meeting> getFilteredMeetingList() {
         return filteredMeetings;
     }
 
     @Override
-    public void updateFilteredMeetingList(Predicate<CalendarMeeting> predicate) {
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
         requireNonNull(predicate);
         filteredMeetings.setPredicate(predicate);
     }
@@ -357,6 +429,8 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteBidder(Bidder target) {
+        bidBook.removeAllBidsWithBidderId((BidderId) target.getId());
+        meetingBook.removeAllMeetingsWithBidderId((BidderId) target.getId());
         bidderAddressBook.removeBidder(target);
     }
 
@@ -369,8 +443,12 @@ public class ModelManager implements Model {
     @Override
     public void setBidder(Bidder target, Bidder editedBidder) {
         requireAllNonNull(target, editedBidder);
-
         bidderAddressBook.setBidder(target, editedBidder);
+    }
+
+    @Override
+    public boolean containsBidderId(BidderId bidderId) {
+        return bidderAddressBook.containsBidderId(bidderId);
     }
 
     @Override
@@ -390,9 +468,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredBidderList(Predicate<Bidder> predicate) {
+    public void updateFilteredBidderList(Predicate<? super Person> predicate) {
         requireNonNull(predicate);
         filteredBidders.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean hasBidderExceptBidderId(Bidder editedBidder, BidderId bidderId) {
+        requireNonNull(editedBidder);
+        return bidderAddressBook.hasBidderExceptBidderId(editedBidder, bidderId);
     }
 
     //=========== Seller =============================================================
@@ -415,6 +499,8 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteSeller(Seller target) {
+        ArrayList<Property> propertiesToRemove = propertyBook.getPropertiesBySellerId((SellerId) target.getId());
+        propertiesToRemove.forEach(this::deleteProperty);
         sellerAddressBook.removeSeller(target);
     }
 
@@ -427,7 +513,6 @@ public class ModelManager implements Model {
     @Override
     public void setSeller(Seller target, Seller editedSeller) {
         requireAllNonNull(target, editedSeller);
-
         sellerAddressBook.setSeller(target, editedSeller);
     }
 
@@ -448,9 +533,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredSellerList(Predicate<Seller> predicate) {
+    public void updateFilteredSellerList(Predicate<? super Person> predicate) {
         requireNonNull(predicate);
         filteredSellers.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean hasSellerExceptSellerId(Seller editedSeller, SellerId sellerId) {
+        requireNonNull(editedSeller);
+        return sellerAddressBook.hasSellerExceptSellerId(editedSeller, sellerId);
     }
 
     //=========== EQUALS =============================================================
@@ -469,12 +560,20 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
+        return userPrefs.equals(other.userPrefs)
+                && sellerAddressBook.equals(other.sellerAddressBook)
+                && filteredSellers.equals(other.filteredSellers)
+
+                && bidderAddressBook.equals(other.bidderAddressBook)
+                && filteredBidders.equals(other.filteredBidders)
+
                 && meetingBook.equals(other.meetingBook)
                 && filteredMeetings.equals(other.filteredMeetings)
+
                 && propertyBook.equals(other.propertyBook)
-                && filteredProperties.equals(other.filteredProperties);
+                && filteredProperties.equals(other.filteredProperties)
+
+                && bidBook.equals(other.bidBook)
+                && filteredBids.equals(other.filteredBids);
     }
 }

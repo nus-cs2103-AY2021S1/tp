@@ -13,13 +13,19 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
-import seedu.address.model.calendar.CalendarMeeting;
-import seedu.address.model.calendar.VenueContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.model.bid.Bid;
+import seedu.address.model.bid.BidContainsKeywordsPredicate;
+import seedu.address.model.bidbook.BidBook;
+import seedu.address.model.bidderaddressbook.BidderAddressBook;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.VenueContainsKeywordsPredicate;
+import seedu.address.model.person.bidder.Bidder;
+import seedu.address.model.person.seller.Seller;
+import seedu.address.model.property.Property;
+import seedu.address.model.propertybook.PropertyBook;
+import seedu.address.model.selleraddressbook.SellerAddressBook;
 
 /**
  * Contains helper methods for testing commands.
@@ -30,10 +36,12 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_EMAIL_AMY = "amy@example.com";
-    public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+
+    //MEETING
+    public static final String VALID_TIME_01 = "03-05-2022";
+    public static final String VALID_TIME_02 = "04-06-2022";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -49,16 +57,6 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
-
-    static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -95,26 +93,46 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        PropertyBook expectedPropertyBook = new PropertyBook(actualModel.getPropertyBook());
+        BidderAddressBook expectedBidderAddressBook = new BidderAddressBook(actualModel.getBidderAddressBook());
+        SellerAddressBook expectedSellerAddressBook = new SellerAddressBook(actualModel.getSellerAddressBook());
+        MeetingBook expectedMeetingBook = new MeetingBook(actualModel.getMeetingBook());
+        BidBook expectedBidBook = new BidBook(actualModel.getBidBook());
+
+        List<Property> expectedFilteredProperties = new ArrayList<>(actualModel.getFilteredPropertyList());
+        List<Bidder> expectedFilteredBidders = new ArrayList<>(actualModel.getFilteredBidderList());
+        List<Seller> expectedFilteredSellers = new ArrayList<>(actualModel.getFilteredSellerList());
+        List<Meeting> expectedFilteredMeetings = new ArrayList<>(actualModel.getFilteredMeetingList());
+        List<Bid> expectedFilteredBids = new ArrayList<>(actualModel.getFilteredBidList());
+
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedPropertyBook, actualModel.getPropertyBook());
+        assertEquals(expectedBidderAddressBook, actualModel.getBidderAddressBook());
+        assertEquals(expectedSellerAddressBook, actualModel.getSellerAddressBook());
+        assertEquals(expectedMeetingBook, actualModel.getMeetingBook());
+        assertEquals(expectedBidBook, actualModel.getBidBook());
+
+        assertEquals(expectedFilteredProperties, actualModel.getFilteredPropertyList());
+        assertEquals(expectedFilteredBidders, actualModel.getFilteredBidderList());
+        assertEquals(expectedFilteredSellers, actualModel.getFilteredSellerList());
+        assertEquals(expectedFilteredMeetings, actualModel.getFilteredMeetingList());
+        assertEquals(expectedFilteredBids, actualModel.getFilteredBidList());
+
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered list to show only the bid at the given {@code targetIndex} in the
+     * {@code model}'s bid book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+    public static void showBidAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredBidList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        Bid bid = model.getFilteredBidList().get(targetIndex.getZeroBased());
+        final String[] splitName = bid.getPropertyId().toString().split("\\s+");
+        model.updateFilteredBidList(new BidContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredBidList().size());
     }
 
     /**
@@ -124,9 +142,10 @@ public class CommandTestUtil {
     public static void showMeetingAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredMeetingList().size());
 
-        CalendarMeeting meeting = model.getFilteredMeetingList().get(targetIndex.getZeroBased());
-        final String[] splitName = meeting.getCalendarVenue().venue.split("\\s+");
-        model.updateFilteredMeetingList(new VenueContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        Meeting meeting = model.getFilteredMeetingList().get(targetIndex.getZeroBased());
+        String splitInt = meeting.getVenue().venue;
+        final String[] splitName = splitInt.split("\\s+");
+        model.updateFilteredMeetingList(new VenueContainsKeywordsPredicate((Arrays.asList(splitName[0]))));
 
         assertEquals(1, model.getFilteredMeetingList().size());
     }

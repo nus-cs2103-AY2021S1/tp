@@ -5,14 +5,16 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.calendar.CalendarMeeting;
-import seedu.address.model.calendar.UniqueMeetingList;
+import seedu.address.model.id.BidderId;
+import seedu.address.model.id.PropertyId;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.UniqueMeetingList;
 
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class MeetingBook implements ReadOnlyMeetingManager {
+public class MeetingBook implements ReadOnlyMeetingBook {
 
     private final UniqueMeetingList meetings;
     /*
@@ -31,7 +33,7 @@ public class MeetingBook implements ReadOnlyMeetingManager {
     /**
      * Creates a Meeting Book using the Meetings in the {@code toBeCopied}
      */
-    public MeetingBook(ReadOnlyMeetingManager toBeCopied) {
+    public MeetingBook(ReadOnlyMeetingBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -42,14 +44,14 @@ public class MeetingBook implements ReadOnlyMeetingManager {
      * Replaces the contents of the meeting list with {@code meetings}.
      * {@code meetings} must not contain duplicate meetings.
      */
-    public void setMeetings(List<CalendarMeeting> meetings) {
+    public void setMeetings(List<Meeting> meetings) {
         this.meetings.setMeetings(meetings);
     }
 
     /**
      * Resets the existing data of this {@code MeetingBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyMeetingManager newData) {
+    public void resetData(ReadOnlyMeetingBook newData) {
         requireNonNull(newData);
 
         setMeetings(newData.getMeetingList());
@@ -59,7 +61,7 @@ public class MeetingBook implements ReadOnlyMeetingManager {
     /**
      * Returns true if a meeting with the same identity as {@code meeting} exists in the meeting book.
      */
-    public boolean hasMeetings(CalendarMeeting meeting) {
+    public boolean hasMeetings(Meeting meeting) {
         requireNonNull(meeting);
         return meetings.contains(meeting);
     }
@@ -68,7 +70,7 @@ public class MeetingBook implements ReadOnlyMeetingManager {
      * Adds a meeting to the meeting book.
      * The meeting must not already exist in the meeting book.
      */
-    public void addMeeting(CalendarMeeting meeting) {
+    public void addMeeting(Meeting meeting) {
         meetings.add(meeting);
     }
 
@@ -78,7 +80,7 @@ public class MeetingBook implements ReadOnlyMeetingManager {
      * The meeting identity of {@code editedMeeting} must not be the same as another existing
      * meeting in the meeting book.
      */
-    public void setMeeting(CalendarMeeting target, CalendarMeeting editedMeeting) {
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireNonNull(editedMeeting);
 
         meetings.setMeeting(target, editedMeeting);
@@ -88,8 +90,25 @@ public class MeetingBook implements ReadOnlyMeetingManager {
      * Removes {@code key} from this {@code MeetingBook}.
      * {@code key} must exist in the meeting book.
      */
-    public void removeMeeting(CalendarMeeting key) {
+    public void removeMeeting(Meeting key) {
         meetings.remove(key);
+    }
+
+    /**
+     * Removes meeting according to their bidder id.
+     *
+     */
+    public void removeAllMeetingsWithBidderId(BidderId bidderId) {
+        meetings.removeAllWithBidderId(bidderId);
+    }
+
+    /**
+     * Removes all meetings with the specified propertyId.
+     *
+     * @param propertyId The propertyId of the property to be deleted.
+     */
+    public void removeAllMeetingsWithPropertyId(PropertyId propertyId) {
+        meetings.removeAllWithPropertyId(propertyId);
     }
 
     //// util methods
@@ -101,7 +120,7 @@ public class MeetingBook implements ReadOnlyMeetingManager {
     }
 
     @Override
-    public ObservableList<CalendarMeeting> getMeetingList() {
+    public ObservableList<Meeting> getMeetingList() {
         return meetings.asUnmodifiableObservableList();
     }
 

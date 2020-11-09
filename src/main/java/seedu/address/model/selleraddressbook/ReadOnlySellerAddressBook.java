@@ -13,5 +13,4 @@ public interface ReadOnlySellerAddressBook {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Seller> getSellerList();
-
 }

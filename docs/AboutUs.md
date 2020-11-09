@@ -24,7 +24,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/dianneloh9.md)]
 
 * Role: Team Lead
-* Responsibilities: Property Management, UI
+* Responsibilities: Property Management
 
 ***
 
@@ -36,7 +36,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/kormingsoon.md)]
 
 * Role: Deliverables and deadlines, Intellij expert
-* Responsibilities: Storage, Client Management, UI
+* Responsibilities: Bidder/Seller Management, UI
 
 ***
 
@@ -48,7 +48,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/marcon2509.md)]
 
 * Role: Documentation, Code Quality
-* Responsibilities: Bid Management, Model
+* Responsibilities: Bid Management
 
 ***
 
@@ -60,7 +60,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/munharsha.md)]
 
 * Role: Testing, Integration
-* Responsibilities: Calendar Management, Storage
+* Responsibilities: Meetings Management
 
 ***
 
@@ -72,4 +72,4 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/christopher-lm.md)]
 
 * Role: Scheduling and tracking, Integration
-* Responsibilities: Calendar Management, Model
+* Responsibilities: Meetings Management

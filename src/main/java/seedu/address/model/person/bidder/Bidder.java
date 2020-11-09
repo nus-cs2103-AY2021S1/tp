@@ -1,11 +1,8 @@
 package seedu.address.model.person.bidder;
 
-import java.util.Set;
-
-import seedu.address.model.id.Id;
+import seedu.address.model.id.BidderId;
 import seedu.address.model.person.ClientPerson;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -14,30 +11,27 @@ import seedu.address.model.tag.Tag;
  */
 public class Bidder extends ClientPerson {
 
+    public static final Tag BIDDER_TAG = new Tag("bidder");
+    private boolean isWinningBidder; // meant for extension
+
     /**
      * Constructs the bidder with the name, phone, tags, and id.
-     * @param name name of the bidder.
-     * @param phone phone number.
-     * @param tags tags.
-     * @param id identifier.
+     *
+     * @param name     name of the bidder.
+     * @param phone    phone number.
+     * @param bidderId identifier.
      */
-    public Bidder(Name name, Phone phone, Set<Tag> tags, Id id) {
-        super(name, phone, tags, id);
-        tags.add(new Tag("bidder"));
+    public Bidder(Name name, Phone phone, BidderId bidderId) {
+        super(name, phone, BIDDER_TAG, bidderId);
     }
 
-    //    public static Bidder makeBidder(Name name, Phone phone, Set<Tag> tags, Id id) {
-    //        tags.add(new Tag("bidder"));
-    //        return new Bidder(name, phone, tags, id);
-    //    }
+    public void setId(BidderId updatedId) {
+        super.setId(updatedId);
+        this.clientId = updatedId;
+    }
 
-    /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
-     */
-    @Override
-    public boolean isSamePerson(Person otherPerson) {
-        return otherPerson instanceof Bidder && super.isSamePerson(otherPerson);
+    public boolean isSameBidder(Bidder otherBidder) {
+        return this.isSameClient(otherBidder);
     }
 
     /**
@@ -57,7 +51,7 @@ public class Bidder extends ClientPerson {
         Bidder otherBidder = (Bidder) other;
         return otherBidder.getName().equals(getName())
                 && otherBidder.getPhone().equals(getPhone())
-                && otherBidder.getTags().equals(getTags());
+                && otherBidder.getTag().equals(getTag());
     }
 
 }

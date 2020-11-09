@@ -3,10 +3,10 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalSeller.ALICE;
-import static seedu.address.testutil.TypicalSeller.BOB;
+import static seedu.address.testutil.seller.TypicalSeller.ALICE;
+import static seedu.address.testutil.seller.TypicalSeller.BOB;
+import static seedu.address.testutil.seller.TypicalSeller.SELLER_ALICE;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,7 +18,7 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.seller.Seller;
 import seedu.address.model.person.seller.UniqueSellerList;
-import seedu.address.testutil.SellerBuilder;
+import seedu.address.testutil.seller.SellerBuilder;
 
 public class UniqueSellerListTest {
 
@@ -43,8 +43,7 @@ public class UniqueSellerListTest {
     @Test
     public void contains_bidderWithSameIdentityFieldsInList_returnsTrue() {
         uniqueSellerList.add(ALICE);
-        Seller editedAlice = new SellerBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Seller editedAlice = new SellerBuilder(ALICE).build();
         assertTrue(uniqueSellerList.contains(editedAlice));
     }
 
@@ -86,8 +85,7 @@ public class UniqueSellerListTest {
     @Test
     public void setSeller_editedPersonHasSameIdentity_success() {
         uniqueSellerList.add(ALICE);
-        Seller editedAlice = new SellerBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Seller editedAlice = new SellerBuilder(ALICE).build();
         uniqueSellerList.setSeller(ALICE, editedAlice);
         UniqueSellerList expectedUniqueSellerList = new UniqueSellerList();
         expectedUniqueSellerList.add(editedAlice);
@@ -116,12 +114,12 @@ public class UniqueSellerListTest {
     }
 
     @Test
-    public void remove_bidderDoesNotExist_throwsPersonNotFoundException() {
+    public void remove_sellerDoesNotExist_throwsPersonNotFoundException() {
         assertThrows(PersonNotFoundException.class, () -> uniqueSellerList.remove(ALICE));
     }
 
     @Test
-    public void remove_existingPerson_removesSeller() {
+    public void remove_existingSeller_removesSeller() {
         uniqueSellerList.add(ALICE);
         uniqueSellerList.remove(ALICE);
         UniqueSellerList expectedUniqueSellerList = new UniqueSellerList();
@@ -129,12 +127,12 @@ public class UniqueSellerListTest {
     }
 
     @Test
-    public void setPersons_nullUniqueSellerList_throwsNullPointerException() {
+    public void setSellers_nullUniqueSellerList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueSellerList.setSellers((UniqueSellerList) null));
     }
 
     @Test
-    public void setSellers_uniqueSellerList_replacesOwnListWithProvidedUniquePersonList() {
+    public void setSellers_uniqueSellerList_replacesOwnListWithProvidedUniqueSellerList() {
         uniqueSellerList.add(ALICE);
         UniqueSellerList expectedUniqueSellerList = new UniqueSellerList();
         expectedUniqueSellerList.add(BOB);
@@ -159,8 +157,8 @@ public class UniqueSellerListTest {
 
     @Test
     public void setSellers_listWithDuplicatePersons_throwsDuplicatePersonException() {
-        List<Seller> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueSellerList.setSellers(listWithDuplicatePersons));
+        List<Seller> listWithDuplicateSellers = Arrays.asList(SELLER_ALICE, SELLER_ALICE);
+        assertThrows(DuplicatePersonException.class, () -> uniqueSellerList.setSellers(listWithDuplicateSellers));
     }
 
     @Test
