@@ -1,8 +1,8 @@
 ---
 layout: page
-title: User Guide ![Hospify logo](images/hospify/hospify_200x200.png)
+title: User Guide
 ---
-
+![Hospify logo](images/hospify/hospify_200x200.png)
 * Table of Contents
 {:toc}
 
@@ -633,7 +633,7 @@ Figure 17.2.2 Check windows java version
 
 <div markdown="block" class="alert alert-warning">
 **:warning: Important:** Ensure that the java version is at least `11`. If your version is less than `11`, 
-scroll down to the **:information_source: Notes** to the view the download link.
+scroll down to the **:information_source: Note** to the view the download link.
 
 After verifying that you have at least `java 11` installed, double click on the `hospify.jar` to run the app.
 
@@ -657,7 +657,7 @@ Figure 17.2.5 Mac java version command
 
 <div markdown="block" class="alert alert-warning">
 **:warning: Important:** Ensure that the java version is at least `11`. If your version is less than `11`,
-scroll down to the **:information_source: Notes** to the view the download link.
+scroll down to the **:information_source: Note** to the view the download link.
 
 After verifying that you have at least `java 11` installed, double click on the `hospify.jar` to run the app.
 
@@ -669,7 +669,7 @@ Figure 17.2.6 Running jar from Mac terminal
 </div>
 
 <div markdown="block" class="alert alert-primary">
-**:information_source: Notes:** If your java version is **less than 11**, download from
+**:information_source: Note:** If your java version is **less than 11**, download from
  the official Java website [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
 </div>
 
