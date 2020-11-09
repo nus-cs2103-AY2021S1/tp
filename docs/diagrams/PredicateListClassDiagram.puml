@@ -8,8 +8,8 @@ Interface Predicate <<Interface>>
 Class AnyMatchPredicateList
 Class AllMatchPredicateList
 Class IdMatchesPredicate
-Class EmailMatchesPredicate
-Class NameMatchesPredicate
+Class EmailContainsKeywordPredicate
+Class NameContainsKeywordsPredicate
 Class AcademicYearMatchesPredicate
 Class PhoneMatchesPredicate
 
