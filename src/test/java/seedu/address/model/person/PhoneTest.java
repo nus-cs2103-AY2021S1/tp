@@ -35,6 +35,17 @@ public class PhoneTest {
         // valid phone numbers
         assertTrue(Phone.isValidPhone("911")); // exactly 3 numbers
         assertTrue(Phone.isValidPhone("93121534"));
-        assertTrue(Phone.isValidPhone("124293842033123")); // long phone numbers
+    }
+
+    @Test
+    public void isValidLength() {
+        // invalid phone numbers
+        assertFalse(Phone.isValidLength("12345678910")); // 11 numbers
+        assertFalse(Phone.isValidLength("123456789101")); // 12 numbers
+
+        // valid phone numbers
+        assertTrue(Phone.isValidLength("911")); // exactly 3 numbers
+        assertTrue(Phone.isValidLength("93121534")); // commonly 8 numbers
+        assertTrue(Phone.isValidLength("1234567891")); // 10 numbers
     }
 }

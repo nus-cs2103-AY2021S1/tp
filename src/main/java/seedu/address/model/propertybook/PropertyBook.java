@@ -1,11 +1,14 @@
 package seedu.address.model.propertybook;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.id.Id;
+import seedu.address.model.id.PropertyId;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.UniquePropertyList;
 
@@ -67,11 +70,27 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     }
 
     /**
+     * Returns true if a property with the same identity as {@code property} exists in the property book,
+     * excluding the {@code excludedId}.
+     *
+     * @param property The property to check.
+     * @param excludedId The excluded property id.
+     * @return True if the property exists.
+     */
+    public boolean hasPropertyExceptPropertyId(Property property, PropertyId excludedId) {
+        requireAllNonNull(property, excludedId);
+        return properties.containsExceptPropertyId(property, excludedId);
+    }
+
+    /**
      * Adds a property to the property book.
      * The property must not already exist in the property book.
+     *
+     * @return The added property.
      */
-    public void addProperty(Property p) {
-        properties.add(p);
+    public Property addProperty(Property p) {
+        requireNonNull(p);
+        return properties.add(p);
     }
 
     /**
@@ -82,7 +101,6 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      */
     public void setProperty(Property target, Property editedProperty) {
         requireNonNull(editedProperty);
-
         properties.setProperty(target, editedProperty);
     }
 
@@ -91,6 +109,7 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      * {@code key} must exist in the property book.
      */
     public void removeProperty(Property key) {
+        requireNonNull(key);
         properties.remove(key);
     }
 
@@ -98,31 +117,49 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      * Removes property with {@code id} from this {@code PropertyBook}. A
      * property with this {@code id} must exist in the property book.
      *
-     * @param id The propertyId of the property to be removed.
+     * @param propertyId The propertyId of the property to be removed.
      */
-    public void removePropertyByPropertyId(Id id) {
-        properties.removeByPropertyId(id);
+    public void removePropertyByPropertyId(PropertyId propertyId) {
+        requireNonNull(propertyId);
+        properties.removeByPropertyId(propertyId);
     }
 
     /**
      * Gets property with {@code id} from this {@code PropertyBook}. A
      * property with this {@code id} must exist in the property book.
      *
-     * @param id The propertyId.
+     * @param propertyId The propertyId.
      * @return The property with the {@code id}.
      */
-    public Property getPropertyById(Id id) {
-        return properties.getPropertyById(id);
+    public Property getPropertyById(PropertyId propertyId) {
+        return properties.getPropertyById(propertyId);
+    }
+
+    /**
+     * Retrieves a list of properties which contain the seller id.
+     *
+     * @param sellerId seller id of which the properties will correspond to.
+     * @return list of properties which contain the seller id.
+     */
+    public ArrayList<Property> getPropertiesBySellerId(SellerId sellerId) {
+        requireNonNull(sellerId);
+        ArrayList<Property> propertiesWithSellerId = new ArrayList<>();
+        properties.forEach(property -> {
+            if (property.getSellerId().equals(sellerId)) {
+                propertiesWithSellerId.add(property);
+            }
+        });
+        return propertiesWithSellerId;
     }
 
     /**
      * Checks if this {@code PropertyBook} contains a property with the given {@code id}.
      *
-     * @param id The given id.
+     * @param propertyId The given id.
      * @return True if a property with the given id exists in the list.
      */
-    public boolean containsPropertyId(Id id) {
-        return properties.containsPropertyId(id);
+    public boolean containsPropertyId(PropertyId propertyId) {
+        return properties.containsPropertyId(propertyId);
     }
 
     //// util methods
@@ -130,7 +167,6 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     @Override
     public String toString() {
         return properties.asUnmodifiableObservableList().size() + " properties";
-        // TODO: refine later
     }
 
     @Override
@@ -145,8 +181,4 @@ public class PropertyBook implements ReadOnlyPropertyBook {
                 && properties.equals(((PropertyBook) other).properties));
     }
 
-    @Override
-    public int hashCode() {
-        return properties.hashCode();
-    }
 }

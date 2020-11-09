@@ -1,11 +1,12 @@
 package seedu.address.model.selleraddressbook;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.id.Id;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.person.seller.Seller;
 import seedu.address.model.person.seller.UniqueSellerList;
 
@@ -60,9 +61,9 @@ public class SellerAddressBook implements ReadOnlySellerAddressBook {
     /**
      * Returns true if a Seller with the same identity as {@code Seller} exists in the address book.
      */
-    public boolean hasSeller(Seller bidder) {
-        requireNonNull(bidder);
-        return sellers.contains(bidder);
+    public boolean hasSeller(Seller seller) {
+        requireNonNull(seller);
+        return sellers.contains(seller);
     }
 
     /**
@@ -84,6 +85,17 @@ public class SellerAddressBook implements ReadOnlySellerAddressBook {
     }
 
     /**
+     * Checks if this {@code SellerAddressBook} contains a seller with the given {@code id}.
+     *
+     * @param sellerId The given id.
+     * @return True if a bidder with the given id exists in the list.
+     */
+    public boolean containsSellerId(SellerId sellerId) {
+        return sellers.containsSellerId(sellerId);
+    }
+
+
+    /**
      * Removes {@code key} from this {@code SellerAddressBook}.
      * {@code key} must exist in the address book.
      */
@@ -103,8 +115,15 @@ public class SellerAddressBook implements ReadOnlySellerAddressBook {
         return sellers.asUnmodifiableObservableList();
     }
 
-    public Id getLastSellerId() {
-        return getSellerList().get(getSellerList().size()).getId().increment();
+    /**
+     * Checks seller existing in the seller address book with the exclusion of the id.
+     * @param editedSeller seller that is edited.
+     * @param sellerId the id of excluded seller.
+     * @return true if any information is true.
+     */
+    public boolean hasSellerExceptSellerId(Seller editedSeller, SellerId sellerId) {
+        requireAllNonNull(editedSeller, sellerId);
+        return sellers.containsExceptSellerId(editedSeller, sellerId);
     }
 
     @Override
@@ -114,8 +133,4 @@ public class SellerAddressBook implements ReadOnlySellerAddressBook {
                 && sellers.equals(((SellerAddressBook) other).sellers));
     }
 
-    @Override
-    public int hashCode() {
-        return sellers.hashCode();
-    }
 }

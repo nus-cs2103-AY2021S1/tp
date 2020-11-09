@@ -46,9 +46,4 @@ public class IsClosedDeal {
                 && isClosedDeal == ((IsClosedDeal) other).isClosedDeal); // state check
     }
 
-    @Override
-    public int hashCode() {
-        return isClosedDeal ? 1 : 0;
-    }
-
 }

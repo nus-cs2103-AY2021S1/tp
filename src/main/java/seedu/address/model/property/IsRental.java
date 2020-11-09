@@ -66,9 +66,4 @@ public class IsRental {
                 && isRental == ((IsRental) other).isRental); // state check
     }
 
-    @Override
-    public int hashCode() {
-        return isRental ? 1 : 0;
-    }
-
 }

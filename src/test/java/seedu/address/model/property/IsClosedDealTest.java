@@ -41,6 +41,24 @@ public class IsClosedDealTest {
         assertTrue(IsClosedDeal.isValidIsClosedDeal("ACTIVE"));
         assertTrue(IsClosedDeal.isValidIsClosedDeal("active"));
         assertTrue(IsClosedDeal.isValidIsClosedDeal("aCTIvE"));
+    }
 
+    @Test
+    public void equals() {
+        IsClosedDeal close = new IsClosedDeal("close");
+        IsClosedDeal active = new IsClosedDeal("active");
+
+        // same object
+        assertTrue(close.equals(close));
+        assertTrue(active.equals(active));
+
+        // different type
+        assertFalse(close.equals(new IsRental("yes")));
+
+        // same is closed deal
+        assertTrue(close.equals(new IsClosedDeal("close")));
+
+        // different is closed deal
+        assertFalse(close.equals(active));
     }
 }

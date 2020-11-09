@@ -2,7 +2,7 @@ package seedu.address.model.property;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.property.Property.DEFAULT_PROPERTY_ID;
+import static seedu.address.model.id.PropertyId.DEFAULT_PROPERTY_ID;
 
 import java.util.Iterator;
 import java.util.List;
@@ -11,6 +11,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.id.Id;
+import seedu.address.model.id.PropertyId;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.property.exceptions.DuplicatePropertyException;
 import seedu.address.model.property.exceptions.PropertyNotFoundException;
 
@@ -42,19 +44,38 @@ public class UniquePropertyList implements Iterable<Property> {
     }
 
     /**
+     * Returns true if the list contains an equivalent property that does not have the excludedId.
+     *
+     * @param toCheck The property to be checked.
+     * @param excludedId The property id that was exempt from being checked.
+     * @return True if the list contains such a property.
+     */
+    public boolean containsExceptPropertyId(Property toCheck, PropertyId excludedId) {
+        requireAllNonNull(toCheck, excludedId);
+        return internalList.stream().filter(property ->
+                !(property.getPropertyId().equals(excludedId)))
+                .anyMatch(toCheck::isSameProperty);
+    }
+
+    /**
      * Adds a property to the list.
      * The property must not already exist in the list.
+     *
+     * @return The added property.
      */
-    public void add(Property toAdd) {
+    public Property add(Property toAdd) {
         requireNonNull(toAdd);
+        Property added;
         if (contains(toAdd)) {
             throw new DuplicatePropertyException();
         }
         if (toAdd.getPropertyId().equals(DEFAULT_PROPERTY_ID)) {
-            internalList.add(toAdd.setId(getLastId().increment()));
+            added = toAdd.setId(getLastId().increment());
         } else {
-            internalList.add(toAdd);
+            added = toAdd;
         }
+        internalList.add(added);
+        return added;
     }
 
     /**
@@ -70,7 +91,7 @@ public class UniquePropertyList implements Iterable<Property> {
             throw new PropertyNotFoundException();
         }
 
-        if (!target.isSameProperty(editedProperty) && contains(editedProperty)) {
+        if (containsExceptPropertyId(editedProperty, target.getPropertyId())) {
             throw new DuplicatePropertyException();
         }
 
@@ -96,6 +117,17 @@ public class UniquePropertyList implements Iterable<Property> {
     public void removeByPropertyId(Id id) {
         requireNonNull(id);
         remove(getPropertyById(id));
+    }
+
+    /**
+     * Removes all properties with the corresponding seller id, if it exists.
+     *
+     * @param sellerId The seller id specified.
+     */
+    public void removeAllWithSellerId(SellerId sellerId) {
+        requireNonNull(sellerId);
+        internalList.removeIf(property -> property.getSellerId().equals(sellerId));
+
     }
 
     /**
@@ -164,11 +196,6 @@ public class UniquePropertyList implements Iterable<Property> {
                 && internalList.equals(((UniquePropertyList) other).internalList));
     }
 
-    @Override
-    public int hashCode() {
-        return internalList.hashCode();
-    }
-
     /**
      * Returns true if {@code properties} contains only unique properties.
      */
@@ -183,9 +210,9 @@ public class UniquePropertyList implements Iterable<Property> {
         return true;
     }
 
-    private Id getLastId() {
+    private PropertyId getLastId() {
         if (internalList.size() == 0) {
-            return new Id(PROPERTY_ID_PREFIX, 0);
+            return new PropertyId(0);
         }
         return internalList.get(internalList.size() - 1).getPropertyId();
     }

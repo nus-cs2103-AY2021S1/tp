@@ -13,9 +13,11 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.EntityType;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.property.Property;
+import seedu.address.model.property.exceptions.InvalidSellerIdException;
 import seedu.address.ui.UiManager;
 
 /**
@@ -26,14 +28,14 @@ public class AddPropertyCommand extends Command {
     public static final String COMMAND_WORD = "add-p";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a property to the property book. "
-            + "Parameters: "
-            + PREFIX_PROPERTY_NAME + "PROPERTY NAME "
-            + PREFIX_PROPERTY_ADDRESS + "ADDRESS "
-            + PREFIX_PROPERTY_SELLER_ID + "SELLER ID "
-            + PREFIX_PROPERTY_ASKING_PRICE + "ASKING PRICE "
-            + PREFIX_PROPERTY_TYPE + "PROPERTY TYPE "
-            + PREFIX_PROPERTY_IS_RENTAL + "IS RENTAL?\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "\n\nParameters: "
+            + "\n" + PREFIX_PROPERTY_NAME + "PROPERTY NAME "
+            + "\n" + PREFIX_PROPERTY_ADDRESS + "ADDRESS "
+            + "\n" + PREFIX_PROPERTY_SELLER_ID + "SELLER ID "
+            + "\n" + PREFIX_PROPERTY_ASKING_PRICE + "ASKING PRICE "
+            + "\n" + PREFIX_PROPERTY_TYPE + "PROPERTY TYPE "
+            + "\n" + PREFIX_PROPERTY_IS_RENTAL + "IS RENTAL?"
+            + "\n\nExample: " + COMMAND_WORD + " "
             + PREFIX_PROPERTY_NAME + "Harsha Vista "
             + PREFIX_PROPERTY_ADDRESS + "25 Marcus Street "
             + PREFIX_PROPERTY_SELLER_ID + "S2 "
@@ -63,8 +65,12 @@ public class AddPropertyCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
         }
 
-        model.addProperty(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        try {
+            Property added = model.addProperty(toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, added)).setEntity(EntityType.PROPERTY);
+        } catch (InvalidSellerIdException e) {
+            throw new CommandException(e.getMessage());
+        }
     }
 
     @Override

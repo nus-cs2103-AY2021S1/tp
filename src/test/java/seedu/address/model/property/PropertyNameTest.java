@@ -6,6 +6,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.property.PropertyCommandTestUtil;
+
 public class PropertyNameTest {
 
     @Test
@@ -17,6 +19,8 @@ public class PropertyNameTest {
     public void constructor_invalidPropertyName_throwsIllegalArgumentException() {
         String invalidPropertyName = "";
         assertThrows(IllegalArgumentException.class, () -> new PropertyName(invalidPropertyName));
+        assertThrows(IllegalArgumentException.class, () ->
+                new PropertyName(PropertyCommandTestUtil.getStringWithCharacters(PropertyName.MAX_LENGTH + 1)));
     }
 
     @Test
@@ -36,5 +40,25 @@ public class PropertyNameTest {
         assertTrue(PropertyName.isValidPropertyName("sunrise the 2nd")); // alphanumeric characters
         assertTrue(PropertyName.isValidPropertyName("Capital Rise")); // with capital letters
         assertTrue(PropertyName.isValidPropertyName("Sunrise Heights Block With Balconies 2nd")); // long names
+        assertTrue(PropertyName.isValidPropertyName(PropertyCommandTestUtil
+                .getStringWithCharacters(PropertyName.MAX_LENGTH)));
+    }
+
+    @Test
+    public void equals() {
+        PropertyName name = new PropertyName("Property");
+
+        // same object
+        assertTrue(name.equals(name));
+
+        // different type
+        assertFalse(name.equals(new Address("Property")));
+
+        // same name
+        assertTrue(name.equals(new PropertyName("Property")));
+
+        // different name
+        assertFalse(name.equals(new PropertyName("property")));
+
     }
 }

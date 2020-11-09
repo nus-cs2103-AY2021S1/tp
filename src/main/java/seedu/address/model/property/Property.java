@@ -1,10 +1,10 @@
 package seedu.address.model.property;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.id.PropertyId.DEFAULT_PROPERTY_ID;
 
-import java.util.Objects;
-
-import seedu.address.model.id.Id;
+import seedu.address.model.id.PropertyId;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.price.Price;
 
 /**
@@ -14,15 +14,13 @@ import seedu.address.model.price.Price;
  */
 public class Property {
 
-    public static final Id DEFAULT_PROPERTY_ID = new Id("P", 0);
-
     // Identity fields
-    private final Id propertyId;
+    private final PropertyId propertyId;
     private final Address address;
 
     // Data fields
     private final PropertyName propertyName;
-    private final Id sellerId;
+    private final SellerId sellerId;
     private final Price askingPrice;
     private final PropertyType propertyType;
     private final IsRental isRental;
@@ -31,8 +29,8 @@ public class Property {
     /**
      * Every field must be present and not null.
      */
-    public Property(Id propertyId, PropertyName propertyName, Id sellerId, Address address, Price askingPrice,
-                    PropertyType propertyType, IsRental isRental, IsClosedDeal isClosedDeal) {
+    public Property(PropertyId propertyId, PropertyName propertyName, SellerId sellerId, Address address,
+                    Price askingPrice, PropertyType propertyType, IsRental isRental, IsClosedDeal isClosedDeal) {
         requireAllNonNull(propertyId, propertyName, sellerId, address, askingPrice, propertyType,
                 isRental, isClosedDeal);
         this.propertyId = propertyId;
@@ -48,7 +46,7 @@ public class Property {
     /**
      * Every field must be present and not null.
      */
-    public Property(PropertyName propertyName, Id sellerId, Address address, Price askingPrice,
+    public Property(PropertyName propertyName, SellerId sellerId, Address address, Price askingPrice,
                     PropertyType propertyType, IsRental isRental, IsClosedDeal isClosedDeal) {
         requireAllNonNull(propertyName, sellerId, address, askingPrice, propertyType, isRental, isClosedDeal);
         this.propertyId = DEFAULT_PROPERTY_ID;
@@ -64,15 +62,15 @@ public class Property {
     /**
      * Creates a new Property with the specified id.
      *
-     * @param id The specified id.
+     * @param propertyId The specified id.
      * @return The new property.
      */
-    public Property setId(Id id) {
-        return new Property(id, propertyName, sellerId, address, askingPrice, propertyType,
+    public Property setId(PropertyId propertyId) {
+        return new Property(propertyId, propertyName, sellerId, address, askingPrice, propertyType,
                 isRental, isClosedDeal);
     }
 
-    public Id getPropertyId() {
+    public PropertyId getPropertyId() {
         return propertyId;
     }
 
@@ -84,7 +82,7 @@ public class Property {
         return address;
     }
 
-    public Id getSellerId() {
+    public SellerId getSellerId() {
         return sellerId;
     }
 
@@ -149,30 +147,24 @@ public class Property {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(propertyId, propertyName, address,
-                askingPrice, propertyType, sellerId, isRental, isClosedDeal);
-    }
-
-    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         if (isClosedDeal().isClosedDeal) {
-            builder.append("[CLOSED] ");
+            builder.append("[CLOSED]\n");
         }
         builder.append(getPropertyName())
-                .append(" Property Id: ")
+                .append("\nProperty Id: ")
                 .append(getPropertyId())
-                .append(" Address: ")
+                .append("\nAddress: ")
                 .append(getAddress())
-                .append(" Property type: ")
+                .append("\nProperty type: ")
                 .append(getPropertyType())
-                .append(" Asking price: ")
+                .append("\nAsking price: ")
                 .append(getAskingPrice())
-                .append(" Seller Id: ")
+                .append("\nSeller Id: ")
                 .append(getSellerId());
         if (isRental()) {
-            builder.append(" Rental");
+            builder.append("\nRental");
         }
         return builder.toString();
     }

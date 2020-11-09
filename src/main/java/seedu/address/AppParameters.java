@@ -52,13 +52,7 @@ public class AppParameters {
         if (!(other instanceof AppParameters)) {
             return false;
         }
-
         AppParameters otherAppParameters = (AppParameters) other;
         return Objects.equals(getConfigPath(), otherAppParameters.getConfigPath());
-    }
-
-    @Override
-    public int hashCode() {
-        return configPath.hashCode();
     }
 }

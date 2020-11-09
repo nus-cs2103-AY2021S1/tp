@@ -7,6 +7,7 @@ import seedu.address.logic.commands.property.DeletePropertyCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.id.IdParserUtil;
 import seedu.address.model.id.Id;
 
 /**
@@ -23,7 +24,7 @@ public class DeletePropertyCommandParser implements Parser<DeletePropertyCommand
         try {
             if (Id.isValidId(args.trim())) {
                 return new DeletePropertyCommand(null,
-                        PropertyParserUtil.parsePropertyId(args.trim()));
+                        IdParserUtil.parsePropertyId(args.trim()));
             }
             Index index = ParserUtil.parseIndex(args);
             return new DeletePropertyCommand(index, null);

@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Objects;
 
 import seedu.address.commons.core.GuiSettings;
 
@@ -135,13 +134,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
                 && propertyBookFilePath.equals(o.propertyBookFilePath)
                 && bidBookFilePath.equals(o.bidBookFilePath)
                 && meetingBookFilePath.equals(o.meetingBookFilePath);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath, bidBookFilePath,
-                bidderAddressBookFilePath, sellerAddressBookFilePath, meetingBookFilePath,
-                propertyBookFilePath);
     }
 
     @Override

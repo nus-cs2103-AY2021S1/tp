@@ -101,9 +101,10 @@ public class AddPropertyCommandTest {
         }
 
         @Override
-        public void addProperty(Property property) {
+        public Property addProperty(Property property) {
             requireNonNull(property);
             propertiesAdded.add(property);
+            return property;
         }
 
     }

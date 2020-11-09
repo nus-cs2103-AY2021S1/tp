@@ -43,6 +43,7 @@ public class IsRentalTest {
         assertFalse(IsRental.isValidIsRental("123"));
         assertFalse(IsRental.isValidIsRental("**&#"));
         assertFalse(IsRental.isValidIsRental("a1b*"));
+        assertFalse(IsRental.isValidIsRental("noo"));
 
         // valid isRental
         assertTrue(IsRental.isValidIsRental("yes"));
@@ -55,5 +56,21 @@ public class IsRentalTest {
         assertTrue(IsRental.isValidIsRental("No"));
         assertTrue(IsRental.isValidIsRental("n"));
         assertTrue(IsRental.isValidIsRental("N"));
+    }
+
+    @Test
+    public void equals() {
+        // same object
+        IsRental isRental = new IsRental("yes");
+        assertTrue(isRental.equals(isRental));
+
+        // different type
+        assertFalse(isRental.equals(new IsClosedDeal("close")));
+
+        // same is rental
+        assertTrue(isRental.equals(new IsRental("y")));
+
+        // different is rental
+        assertFalse(isRental.equals(new IsRental("no")));
     }
 }

@@ -6,22 +6,22 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
 * Represents an Id to uniquely identify elements in a list.
 */
-public class Id {
+public abstract class Id {
 
     public static final String MESSAGE_CONSTRAINTS = "Ids should start with a representative character, followed by"
             + "some numbers.";
 
     public static final String VALIDATION_REGEX = "[BSP]\\p{Digit}+";
 
-    private final String prefix;
-    private final int idNumber;
+    protected final String prefix;
+    protected final int idNumber;
 
     /**
     * Constructs the Id with a prefix and id number.
     * @param prefix The prefix representing the type of object.
     * @param idNumber The id number.
     */
-    public Id(String prefix, int idNumber) {
+    protected Id(String prefix, int idNumber) {
         this.prefix = prefix;
         this.idNumber = idNumber;
     }
@@ -31,7 +31,7 @@ public class Id {
      *
      * @param id The id in string format.
      */
-    public Id(String id) {
+    protected Id(String id) {
         requireNonNull(id);
         checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
         this.prefix = String.valueOf(id.charAt(0));
@@ -39,13 +39,19 @@ public class Id {
     }
 
     /**
+     * retrieves the id number from an id object
+     * @return id of a certain object
+     */
+    public int getId() {
+        return this.idNumber;
+    }
+
+    /**
      * Gets the next id with the same prefix.
      *
      * @return The next id.
      */
-    public Id increment() {
-        return new Id(prefix, idNumber + 1);
-    }
+    public abstract Id increment();
 
     /** Returns true if a given string is a valid Id. */
     public static boolean isValidId(String test) {

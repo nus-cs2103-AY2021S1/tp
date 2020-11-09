@@ -1,10 +1,12 @@
 package seedu.address.model.bidderaddressbook;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.id.BidderId;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.bidder.UniqueBidderList;
 
@@ -83,11 +85,32 @@ public class BidderAddressBook implements ReadOnlyBidderAddressBook {
     }
 
     /**
+     * Checks if this {@code BidderAddressBook} contains a bidder with the given {@code id}.
+     *
+     * @param bidderId The given id.
+     * @return True if a bidder with the given id exists in the list.
+     */
+    public boolean containsBidderId(BidderId bidderId) {
+        return bidders.containsBidderId(bidderId);
+    }
+
+    /**
      * Removes {@code key} from this {@code BidderAddressBook}.
      * {@code key} must exist in the address book.
      */
     public void removeBidder(Bidder key) {
         bidders.remove(key);
+    }
+
+    /**
+     * Checks bidder existing in the bidder address book with the exclusion of the id.
+     * @param editedBidder seller that is edited.
+     * @param bidderId the id of excluded seller.
+     * @return true if any information is true.
+     */
+    public boolean hasBidderExceptBidderId(Bidder editedBidder, BidderId bidderId) {
+        requireAllNonNull(editedBidder, bidderId);
+        return bidders.containsExceptBidderId(editedBidder, bidderId);
     }
 
     //// util methods
@@ -101,6 +124,7 @@ public class BidderAddressBook implements ReadOnlyBidderAddressBook {
     public ObservableList<Bidder> getBidderList() {
         return bidders.asUnmodifiableObservableList();
     }
+
 
     @Override
     public boolean equals(Object other) {

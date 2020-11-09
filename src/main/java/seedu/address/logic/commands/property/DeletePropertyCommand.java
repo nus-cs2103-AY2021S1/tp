@@ -8,10 +8,12 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.EntityType;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.id.Id;
+import seedu.address.model.id.PropertyId;
 import seedu.address.model.property.Property;
+import seedu.address.model.property.exceptions.PropertyNotFoundException;
 
 /**
  * Deletes a property identified using it's displayed index from the property book.
@@ -22,20 +24,21 @@ public class DeletePropertyCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the property identified by the index number used in the displayed property list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "\n\nParameters: \nINDEX (must be a positive integer)\n"
+            + "\n\nExample: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PROPERTY_SUCCESS = "Deleted Property: %1$s";
+    public static final String MESSAGE_DELETE_PROPERTY_SUCCESS = "Deleted Property: %1$s\n"
+            + "All related bids and meetings have been deleted.";
 
     private final Index targetIndex;
-    private final Id targetId;
+    private final PropertyId targetId;
 
     /**
      * Creates a DeletePropertyCommand to delete the specified {@code targetIndex} or {@code targetId}.
      */
-    public DeletePropertyCommand(Index targetIndex, Id targetId) {
+    public DeletePropertyCommand(Index targetIndex, PropertyId propertyId) {
         this.targetIndex = targetIndex;
-        this.targetId = targetId;
+        this.targetId = propertyId;
     }
 
     @Override
@@ -49,14 +52,25 @@ public class DeletePropertyCommand extends Command {
         } else {
             throw new AssertionError("Either targetId or targetIndex must be null.");
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_PROPERTY_SUCCESS, propertyToDelete));
+        model.deleteProperty(propertyToDelete);
+        return new CommandResult(String.format(
+                MESSAGE_DELETE_PROPERTY_SUCCESS, propertyToDelete)).setEntity(EntityType.PROPERTY);
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DeletePropertyCommand // instanceof handles nulls
-                && targetIndex.equals(((DeletePropertyCommand) other).targetIndex)); // state check
+        if (this == other) {
+            return true;
+        } else if (!(other instanceof DeletePropertyCommand)) {
+            return false;
+        } else {
+            DeletePropertyCommand command = (DeletePropertyCommand) other;
+            boolean isTargetIdEqual = (this.targetId == null && command.targetId == null)
+                    || (this.targetId != null && this.targetId.equals(command.targetId));
+            boolean isTargetIndexEqual = (this.targetIndex == null && command.targetIndex == null)
+                    || (this.targetIndex != null && this.targetIndex.equals(command.targetIndex));
+            return isTargetIdEqual && isTargetIndexEqual;
+        }
     }
 
     private Property deleteByProperty(Model model) throws CommandException {
@@ -67,13 +81,15 @@ public class DeletePropertyCommand extends Command {
         }
 
         Property propertyToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteProperty(propertyToDelete);
         return propertyToDelete;
     }
 
-    private Property deleteByPropertyId(Model model) {
-        Property propertyToDelete = model.getPropertyById(targetId);
-        model.deletePropertyByPropertyId(targetId);
-        return propertyToDelete;
+    private Property deleteByPropertyId(Model model) throws CommandException {
+        try {
+            Property propertyToDelete = model.getPropertyById(targetId);
+            return propertyToDelete;
+        } catch (PropertyNotFoundException e) {
+            throw new CommandException(PropertyNotFoundException.ERROR_MESSAGE);
+        }
     }
 }

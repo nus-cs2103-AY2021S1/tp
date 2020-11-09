@@ -12,7 +12,7 @@ import seedu.address.model.person.bidder.Bidder;
 import seedu.address.ui.UiPart;
 
 public class BidderListPanel extends UiPart<Region> {
-    private static final String FXML = "BidderListPanel.fxml";
+    private static final String FXML = "bidder/BidderListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(BidderListPanel.class);
 
     @FXML

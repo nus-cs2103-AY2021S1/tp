@@ -3,13 +3,18 @@ package seedu.address.model.price;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 /**
  * Represents a Price.
  * Guarantees: immutable; price is valid as declared in {@link #isValidPrice(double)}
  */
-public class Price {
+public class Price implements Comparable<Price> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Price should be greater than 0";
+    public static final String MESSAGE_CONSTRAINTS = "Price should be greater than 0 and less than 1 trillion";
+    public static final String MESSAGE_NOT_NUMERIC = "Price should be a number";
+    public static final DecimalFormat DF = new DecimalFormat("#.##");
 
     public final double price;
 
@@ -20,17 +25,28 @@ public class Price {
      */
     public Price(double price) {
         requireNonNull(price);
-        checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
-        this.price = price;
+        DF.setRoundingMode(RoundingMode.DOWN);
+        double truncated = Double.parseDouble(DF.format(price));
+        checkArgument(isValidPrice(truncated), MESSAGE_CONSTRAINTS);
+        this.price = truncated;
     }
 
     /**
      * Returns true if a given integer is a valid price.
      */
     public static boolean isValidPrice(double test) {
-        return test > 0;
+        DF.setRoundingMode(RoundingMode.DOWN);
+        double truncated = Double.parseDouble(DF.format(test));
+        return truncated > 0 && truncated <= Math.pow(10, 12);
     }
 
+    /**
+     * retrieves price from an object
+     * @return price in the double form
+     */
+    public double getPrice() {
+        return this.price;
+    }
 
     @Override
     public String toString() {
@@ -45,8 +61,7 @@ public class Price {
     }
 
     @Override
-    public int hashCode() {
-        return Double.hashCode(price);
+    public int compareTo(Price o) {
+        return Double.compare(this.price, o.price);
     }
-
 }

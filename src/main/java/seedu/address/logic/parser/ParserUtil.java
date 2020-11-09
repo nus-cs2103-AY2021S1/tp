@@ -2,19 +2,20 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.calendar.CalendarBidderId;
-import seedu.address.model.calendar.CalendarPropertyId;
-import seedu.address.model.calendar.CalendarTime;
-import seedu.address.model.calendar.CalendarVenue;
+import seedu.address.model.meeting.EndTime;
+import seedu.address.model.meeting.MeetingDate;
+import seedu.address.model.meeting.StartTime;
+import seedu.address.model.meeting.Venue;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.price.Price;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -45,6 +46,9 @@ public class ParserUtil {
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
+        if (!Name.isValidLength(name)) {
+            throw new ParseException(Name.NAME_LENGTH_EXCEED);
+        }
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
@@ -61,7 +65,7 @@ public class ParserUtil {
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
+        if (!Phone.isValidPhone(trimmedPhone) || !Phone.isValidLength(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
@@ -83,114 +87,124 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     *
-     * @throws ParseException if there is an error when parsing.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
-    }
-
-    /**
-     * trims off any excess white spaces for a given string
-     * @param propertyId string to trim
-     * @return a string that has no white spaces on the sides
-     * @throws ParseException If the property id is in the wrong format.
-     */
-    public static String parsePropertyId(String propertyId) throws ParseException {
-        requireNonNull(propertyId);
-        String trimmedPropertyId = propertyId.trim();
-        return trimmedPropertyId;
-    }
-
-    /**
-     * trims off any excess white spaces for a given string
-     * @param bidderId string to trim
-     * @return a string that has no white spaces on the sides
-     * @throws ParseException If the bidder id is in the wrong format.
-     */
-    public static String parseBidderId(String bidderId) throws ParseException {
-        requireNonNull(bidderId);
-        String trimmedBidderId = bidderId.trim();
-        return trimmedBidderId;
-    }
-
-    /**
-     *  trims off any excess white spaces for a given string
-     * @param bidAmount string to trim
-     * @return a string that has no white spaces on the sides
-     * @throws ParseException If the bidAmount is in the wrong format.
-     */
-    public static double parseBidAmount(String bidAmount) throws ParseException {
-        requireNonNull(bidAmount);
-        String trimmedBidAmount = bidAmount.trim();
-        double numericalBidAmount = Double.parseDouble(trimmedBidAmount);
-        return numericalBidAmount;
-    }
-
-    /**
      * Parses a {@code String venue} into a {@code venue}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code venue} is invalid.
      */
-    public static CalendarVenue parseCalendarVenue(String venue) throws ParseException {
+    public static Venue parseMeetingVenue(String venue) throws ParseException {
         requireNonNull(venue);
         String trimmedVenue = venue.trim();
-        return new CalendarVenue(trimmedVenue);
+        return new Venue(trimmedVenue);
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String type} into a {@code type}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code type} is invalid.
      */
-    public static CalendarTime parseCalendarTime(String time) throws ParseException {
-        requireNonNull(time);
-        String trimmedTime = time.trim();
-        return new CalendarTime(trimmedTime);
-    }
-
-    /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code phone} is invalid.
-     */
-    public static CalendarPropertyId parseCalendarPropertyId(String propertyId) throws ParseException {
-        requireNonNull(propertyId);
-        String trimmedpropertyId = propertyId.trim();
-        return new CalendarPropertyId(trimmedpropertyId);
-    }
-
-    /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code phone} is invalid.
-     */
-    public static CalendarBidderId parseCalendarBidderId(String bidderId) throws ParseException {
-        requireNonNull(bidderId);
-        String trimmedbidderId = bidderId.trim();
-        return new CalendarBidderId(trimmedbidderId);
-    }
-
-    /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code phone} is invalid.
-     */
-    public static String parseCalendarType(String type) throws ParseException {
+    public static String parseMeetingType(String type) throws ParseException {
         requireNonNull(type);
         String trimmedType = type.trim();
         return trimmedType;
     }
 
+    /**
+     * Parses {@code meetingDate} into an {@code MeetingDate} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     *
+     * @throws ParseException if the format of meetingDate is wrong.
+     */
+    public static MeetingDate parseDate(String date) throws ParseException {
+        String trimmedTime = date.trim();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            Date dateObject = formatter.parse(trimmedTime);
+            Date currentActualDate = Calendar.getInstance().getTime();
+            if (dateObject.before(currentActualDate)) {
+                throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS_PAST_DATE);
+            }
+            if (dateObject.after(formatter.parse("01-01-2050"))) {
+                throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS_FUTURE_DATE);
+            }
+            String dateString = formatter.format(dateObject);
+            return new MeetingDate(dateString);
+        } catch (java.text.ParseException e) {
+            throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses {@code startTime} into an {@code StartTime} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     *
+     * @throws ParseException if the start time is of the wrong format.
+     */
+    public static StartTime parseStartTime(String startTime) throws ParseException {
+        String trimmedTime = startTime.trim();
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+        try {
+            java.util.Date startTimeObject = formatter.parse(trimmedTime);
+            String startString = formatter.format(startTimeObject);
+            return new StartTime(startString);
+        } catch (java.text.ParseException e) {
+            throw new ParseException(StartTime.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses {@code endTime} into an {@code Endtime} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     *
+     * @throws ParseException if the end time is of the wrong format.
+     */
+    public static EndTime parseEndTime(String endTime) throws ParseException {
+        String trimmedTime = endTime.trim();
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+        try {
+            java.util.Date endTimeObject = formatter.parse(trimmedTime);
+            String endString = formatter.format(endTimeObject);
+            return new EndTime(endString);
+        } catch (java.text.ParseException e) {
+            throw new ParseException(EndTime.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String askingPrice} into an {@code Price}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code askingPrice} is invalid.
+     */
+    public static Price parsePrice(String askingPrice) throws ParseException {
+        requireNonNull(askingPrice);
+        String trimmedAskingPrice = askingPrice.trim();
+        try {
+            double doublePrice = Double.parseDouble(trimmedAskingPrice);
+            if (!Price.isValidPrice(doublePrice)) {
+                throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+            }
+            return new Price(doublePrice);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Price.MESSAGE_NOT_NUMERIC);
+        }
+    }
+
+    /**
+     * Parses a {@code String order} into a boolean option.
+     * True is returned when order is ascending.
+     * False is returned when order is descending or null
+     *
+     * @throws ParseException if the given {@code order} is invalid.
+     */
+    public static Boolean parseOrder(String order) throws ParseException {
+        if (order == null || order.trim().equalsIgnoreCase("dsc")) {
+            return false;
+        } else if (order.trim().equalsIgnoreCase("asc")) {
+            return true;
+        } else {
+            throw new ParseException("Order can only be 'asc' or 'dsc'");
+        }
+    }
 }
