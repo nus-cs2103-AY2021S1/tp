@@ -1,6 +1,7 @@
 package nustorage.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_COST;
 import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static nustorage.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static nustorage.model.Model.PREDICATE_SHOW_ALL_INVENTORY;
@@ -28,15 +29,15 @@ public class EditInventoryCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_QUANTITY + "QUANTITY] "
-            + "[" + PREFIX_ITEM_DESCRIPTION + "ITEM_NAME] ";
+            + "[" + PREFIX_ITEM_DESCRIPTION + "ITEM_NAME] "
+            + "[" + PREFIX_ITEM_COST + "ITEM_COST] ";
 
     public static final String MESSAGE_EDIT_INVENTORY_SUCCESS = "Edited Inventory record: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_INVENTORY_RECORD = "This inventory record already "
-            + "exists in the InventoryWindow";
+            + "exists in the Inventory";
     public static final String MESSAGE_INVALID_QUANTITY_INPUT = "You cannot change the current quantity to your "
             + "specified quantity!";
-    public static final String MESSAGE_INVALID_ITEM_NAME = "Item name cannot be empty";
     private final Index index;
     private final EditInventoryDescriptor editInventoryDescriptor;
 
@@ -55,8 +56,13 @@ public class EditInventoryCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         List<InventoryRecord> lastShownList = model.getFilteredInventory();
         System.out.println("create edited inventory record ");
+        if (lastShownList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_EMPTY_INVENTORY_LIST);
+        }
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_INVENTORY_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_INVENTORY_DISPLAYED_INDEX
+                    + "\nINDEX must be less than or equal to " + lastShownList.size()
+                    + ", and more than 0.");
         }
         InventoryRecord inventoryRecordToEdit = lastShownList.get(index.getZeroBased());
         InventoryRecord editedInventoryRecord = createEditedInventoryRecord(
@@ -192,7 +198,8 @@ public class EditInventoryCommand extends Command {
             EditInventoryDescriptor e = (EditInventoryDescriptor) other;
 
             return getQuantity().equals(e.getQuantity())
-                    && getDescription().equals(e.getDescription());
+                    && getDescription().equals(e.getDescription())
+                    && getUnitCost().equals(e.getUnitCost());
         }
     }
 }

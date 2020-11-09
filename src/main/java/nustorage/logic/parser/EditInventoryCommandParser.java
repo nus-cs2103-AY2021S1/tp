@@ -5,6 +5,7 @@ import static nustorage.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_COST;
 import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static nustorage.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static nustorage.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 
 import nustorage.commons.core.index.Index;
 import nustorage.logic.commands.EditInventoryCommand;
@@ -31,6 +32,9 @@ public class EditInventoryCommandParser implements Parser<EditInventoryCommand> 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
+            if (pe.getMessage().equals(MESSAGE_INVALID_INDEX)) {
+                throw pe;
+            }
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditInventoryCommand.MESSAGE_USAGE), pe);
         }
@@ -45,9 +49,6 @@ public class EditInventoryCommandParser implements Parser<EditInventoryCommand> 
         if (argMultimap.getValue(PREFIX_ITEM_DESCRIPTION).isPresent()) {
             String description = ParserUtil.parseItemDescription(
                     argMultimap.getValue(PREFIX_ITEM_DESCRIPTION).get());
-            if (description.isEmpty()) {
-                throw new ParseException((EditInventoryCommand.MESSAGE_INVALID_ITEM_NAME));
-            }
             editInventoryDescriptor.setDescription(description);
         }
 
