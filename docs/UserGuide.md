@@ -345,7 +345,7 @@ Format: `exit`
 ## Performance interface
 
 <div markdown="block" class="alert alert-info">
-* Command line below are only workable under perfomance interface.
+* Commands below are only workable under perfomance interface.
 </div>
 
 ### Listing historical attempts results: `list`
@@ -360,23 +360,17 @@ Shows the quiz questions attempted. Red options indicate wrong answer input and 
 
 Format: `view INDEX`
 
-Example: Index input must start from 1. Out of bounce index will not be recorded. e.g `view 1`
+Example: `view 1`
 
 ![view message](images/view_attempt.png)
 
 ### Viewing help : `help`
 
-Shows a message explaining the features of the app, and the format of the command associated with each feature.
+Shows a message containing URL to our user guide.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
-### Exiting application : `exit`
-
-Exits the programme.
-
-Format: `exit`
 
 
 ### Saving the data
@@ -404,7 +398,7 @@ Action | Format, Examples
 **Exit** | `exit`
 **Enter Quiz** | `enter quiz`
 **Start attempt**  | `start attempt`
-**Answer** | `answer INDEX a/ANSWER` <br> e.g., `ansewer 1 a/true` for True/False questions and `ansewer 2 a/1` for MCQ questions
+**Answer** | `answer INDEX a/ANSWER` <br> e.g., `answer 1 a/true` for True/False questions and `answer 2 a/1` for MCQ questions
 **End attempt**  | `end attempt`
 **Leave Quiz** | `leave quiz`
 **Performance** | `performance`
