@@ -224,6 +224,7 @@ operations:
 
 Given below is an example usage scenario and how the delete mechanism behaves at each step.
 
+<div style="page-break-after: always;"></div>
 * Step 1: The user inputs the delete command to specify which entry to delete in the specified category
 of `ActiveAccount`. `CommandParser` identifies the command word `delete` and calls `DeleteCommandParser#parse(String args)`
 to parse the input into a valid `DeleteCommand`.
