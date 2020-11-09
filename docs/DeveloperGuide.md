@@ -99,14 +99,14 @@ The `UI` component:
 The following activity diagram shows the general flow of events for the Ui component when the application is launched:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="diagrams/ui/UiLauchActivityDiagram.png" style="width: 45%"> <br />
+<img src="diagrams/ui/UiLauchActivityDiagram.png" style="width: 65%"> <br />
 Figure 3.2: <i>An activity diagram for the Ui during application launch</i>
 </div>
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user issues the command `list ingredients`:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/dg/UiSequenceDiagram.png" style="width: 75%" /> <br />
+<img src="images/dg/UiSequenceDiagram.png" style="width: 95%" /> <br />
 Figure 3.3: <i>A sequence diagram showing the execution of <code>list ingredients</code></i>
 </div>
 
@@ -177,7 +177,7 @@ Of note in the Model component are the `Recipe` and `Ingredient` classes; below 
 Figure 5.2: <i>The class diagram for Recipes and Ingredients</i>
 </div>
 
-Note that an instance of `Recipe` only stores `IngredientReferences` to the ingredients it uses, and not the actual `Ingredients` themselves — since the actual instance of the ingredient that will be used by the recipe is indeterminate.
+Note that an instance of `Recipe` only stores `IngredientReference`s to the ingredients it uses, and not the actual `Ingredient`s themselves — since the actual instance of the ingredient that will be used by the recipe is indeterminate.
 
 Only when a recipe is made are the references resolved to their actual ingredient.
 
@@ -352,7 +352,7 @@ This feature allows the user to quickly type in commands and complete long recip
 The main brains of the tab completer lies in determining which <i>kind</i> of item to complete (eg. a command name or a recipe name), and it can be (roughly) represented by the activity diagram below:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="diagrams/logic/act-tabcomplete.png" style="width: 45%"> <br />
+<img src="diagrams/logic/act-tabcomplete.png" style="width: 65%"> <br />
 Figure 8: <i>A high-level activity diagram for the tab completer</i>
 </div>
 
@@ -547,7 +547,7 @@ For more information on the Parser, view [4.1 Command Parser](#41command-parser)
 
 
 The7 supported statistics commands are `StatsRecipeTopCommand`, `StatsRecipeMadeCommand`, `StatsIngredientUsedCommand`, `StatsRecipeRecentCommand` and `StatsIngredientRecentCommand` which update the `recipeList` in `StatsBox`, as well as `StatsRecipeClearCommand` and `StatsIngredientClearCommand` which remove all `Usage` in their respective `UsageList`.
-All the statistics commands function in a similar way so we will go through just one of commands in details below.
+All the statistics commands function in a similar way so we will go through just one of the commands in details below.
 
 <a name="view-top-recipes"></a>
 <h4>View top recipes command</h4>
@@ -571,7 +571,7 @@ Figure 12.1 <i>The sequence diagram of the execution of StatsRecipeTopCommand </
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/dg/RecipeTopCmdStatsBox.png" style="width: 40%"> <br />
-Figure 12.2. GUI of statistics box after `stats recipe top` command is executed</i>
+Figure 12.2. GUI of statistics box after `stats recipe top` command is executed
 </div>
 
 
@@ -646,7 +646,7 @@ Figure 13.6: <i>The state of HistoryManager after command "list recipes"</i>
 The following activity diagram summarises what happens when a user executes a new command:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/dg/CommitActivityDiagram.png"> <br />
+<img src="images/dg/CommitActivityDiagram.png" style="width: 65%"> <br />
 Figure 13.7: <i>An activity diagram for the undo/redo feature</i>
 </div>
 
