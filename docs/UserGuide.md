@@ -441,7 +441,11 @@ Staff List.
 
 #### 3.4.1. List all applicants : `list a-`
 
-Shows a list of all applicants in Eva.
+This is an essential command for you to use when you wish to see the records of all applicants or even make changes to them.
+
+Format: `list a-`
+
+The image below shows what you would see when you execute this command.
 
 ![listApplicant](images/ugimages/ListApplicant.png)
 
