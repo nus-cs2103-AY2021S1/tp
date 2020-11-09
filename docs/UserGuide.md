@@ -274,7 +274,7 @@ Examples:
 
 scenario 1 (delete by index):
 
-* `list`(shown in Figure 2.4 below) followed by `delete 2`(shown in Figure 2.5 below) deletes the 2nd patient in **Hospify**.
+* `list`(shown in Figure 7.1 below) followed by `delete 2`(shown in Figure 7.2 below) deletes the 2nd patient in **Hospify**.
 
   `list` command shows all the patients and their corresponding index.
   ![result for 'list'](images/listResult.png)
