@@ -2,7 +2,7 @@
 layout: page
 title: Amy's Project Portfolio Page
 ---
-## Project: Warenager
+### Project: Warenager
 
 Warenager is an **inventory management application** to help warehouse managers
 of small scale companies keep track of stocks in their warehouse.
@@ -70,14 +70,13 @@ Given below are my contributions to the project.
   * User Guide:
     * Head writer and maintainer of team aspects of the user guide
       (eg. sections include introduction, quick start, definitions, features, commands) (Pull request [\#276](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/267))
-    * Added documentation for the feature `find`. (Pull request [\#111](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/111), [\#276](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/267))
-    * Added documentation for the feature `findexact`. (Pull request [\#120](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/120), [\#276](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/267))
-    * Added documentation for the feature `note`. (Pull request [\#154](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/154))
-    * Added documentation for the feature `notedelete`. (Pull request [\#154](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/154), [\#272](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/272))
-    * Added documentation for the feature `stockview`. (Pull request [\#272](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/272))
+    * Added documentation for the features `find` (PR [\#111](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/111), [\#276](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/267)),
+    `findexact` (PR [\#120](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/120), [\#276](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/267)),
+    `note` (PR [\#154](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/154)),
+    `notedelete` (PR [\#154](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/154), [\#272](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/272)),
+    `stockview` (Pull request [\#272](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/272))
     
   * Developer Guide:
-    * Vet and maintain DG
     * Added implementation and UML diagrams for the Find and FindExact features. (Pull request [\#163](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/163), [\#165](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/165))
     * Added implementation and UML diagrams for the Note feature. (Pull request [\#290](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/290), [\#294](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/294))
     * Added implementation and UML diagrams for the StockView feature. (Pull request [\#294](https://github.com/AY2021S1-CS2103T-T15-3/tp/pull/294))
