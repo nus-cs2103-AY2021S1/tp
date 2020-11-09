@@ -73,7 +73,7 @@ You can follow the steps below to get CliniCal up and running:
 
 1. Ensure you have Java `11` or above installed on your Computer. If you have not installed Java on your computer, download the installer from [Oracle](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
 
-1. Download the latest version of CliniCal from [GitHub](https://github.com/AY2021S1-CS2103T-W11-4/tp/releases).
+1. [Download](https://github.com/AY2021S1-CS2103T-W11-4/tp/releases) the latest version of CliniCal.
 
 1. Copy the file to the folder you want to use as the _home folder_ for CliniCal.
 
@@ -912,7 +912,7 @@ CliniCal data is saved in your hard disk automatically after any command that ch
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER ic/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…​` <br> e.g. `add n/James Ho p/22224444 ic/S2686887R e/jamesho@example.com a/123, Clementi Rd, 1234665 s/M b/B+ g/sulfa g/aspirin`
-**Add profile picture** | `addpicture 1 f/data/profile_picture.png`
+**Add profile picture** | `addpicture 1 f/data/stock_picture.png`
 **Add Visit** | `addvisit INDEX [vd/VISIT_DATE]` <br> e.g. `addvisit 1 vd/01/01/2020`
 **Add Appointment** | `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION` <br> e.g., `addappt 1 st/27/12/2020 14:00 d/60`
 **Clear** | `clear`
@@ -923,7 +923,7 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com `
 **Edit Appointment** | `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_START_TIME] [d/DURATION]` <br> e.g. `editappt 3 st/12/12/2020 10:10 d/40`
 **Edit Visit** | `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]` <br> e.g. `editvisit 1 i/2 vd/01/01/2020`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
+**Find** | `find KEYWORDS`<br> e.g. `find James Jake`
 **List** | `list`
 **Help** | `help`
 **Undo** | `undo`
