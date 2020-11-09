@@ -2,7 +2,7 @@
 layout: page
 title: Ben-Hanan's Project Portfolio Page
 ---
-<img src="images/ben-hanan.png" width="200px">
+<img src="../images/ben-hanan.png" width="200px">
 
 [[github](http://github.com/Ben-Hanan)]
 
@@ -47,5 +47,3 @@ Given below are my contributions to the project.
 * **Community**:
 
 - Non trivial code reviews: [#69](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/69), [#213](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/213)
-
-* **Tools**:
