@@ -24,27 +24,28 @@ Given below are my contributions to the project.
   - What it does: allows user to delete the record of a staff
   - Justification: This feature allows HR to remove staff records that are no longer required.
 
-* **Code contributed**: 
+**Code contributed**: 
 [RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=TheSpaceCuber&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zA=TheSpaceCuber&zR=AY2021S1-CS2103T-W13-1%2Ftp%5Bmaster%5D&zACS=248.18696883852692&zS=2020-08-14&zFS=W13&zU=2020-11-06&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
 
-* **Project management**:
-    - Setup GitHub Organisation and repository
-    - Finalised v1.3 release
-    - Maintained the issue tracker
+**Project management**:
+- Setup GitHub Organisation and repository
+- Finalised v1.3 release
+- Maintained the issue tracker
 
-* **Documentation**:
-    - User Guide
-        - Rewrote overall document hierarchy: [#91](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/91)
-        - Add documentation for application (resume) related matters. [#109](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/109)
-    - Developer's Guide
-        - Rewrote overall document hierarchy: [#118](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/118)
-        [#228](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/228)
-        - Adapt delete sequence diagram: [#91](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/91)
+**Documentation**:
+- User Guide
+    - Rewrote overall document hierarchy: [#91](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/91)
+    - Add documentation for application (resume) related matters: [#109](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/109)
+- Developer's Guide
+    - Rewrote overall document hierarchy: [#118](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/118),
+    [#228](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/228)
+    - Adapt delete sequence diagram: [#91](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/91)
+    - Add documentation for application management system: [#274](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/274)
 
-* **Community**:
-    - Examples of PRs reviewed (with non-trivial review comments): [#46](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/46),
-    [#49](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/49)
-    
-    - Reported bugs and suggestions for other teams in the class: [#1](https://github.com/TheSpaceCuber/ped/issues/1), 
-    [#2](https://github.com/TheSpaceCuber/ped/issues/2),
-    [#3](https://github.com/TheSpaceCuber/ped/issues/3)
+**Community**:
+- Examples of PRs reviewed (with non-trivial review comments): [#46](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/46),
+[#49](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/49)
+
+- Reported bugs and suggestions for other teams in the class: [#1](https://github.com/TheSpaceCuber/ped/issues/1), 
+[#2](https://github.com/TheSpaceCuber/ped/issues/2),
+[#3](https://github.com/TheSpaceCuber/ped/issues/3)
