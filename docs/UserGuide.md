@@ -16,8 +16,8 @@ title: User Guide
 4. [Features](#4-features)<br>
    4.1 [General Features](#41-general-features)<br>
    --- 4.1.1 [View help: `help`](#411-view-help-help)<br>
-   --- 4.1.2 [Clear Trackr: 'clear'](#412-clear-trackr-clear)<br>
-   --- 4.1.3 [Exit Trackr: 'exit'](#413-exit-trackr-exit)<br>
+   --- 4.1.2 [Clear Trackr: `clear`](#412-clear-trackr-clear)<br>
+   --- 4.1.3 [Exit Trackr: `exit`](#413-exit-trackr-exit)<br>
    4.2 [Navigation Features](#42-navigation-features)<br>
    --- 4.2.1 [List all modules in Trackr: `listMod`](#421-list-all-modules-in-trackr-listmod)<br>
    --- 4.2.2 [View all tutorial groups in a module: `viewtTG`](#422-view-all-tutorial-groups-in-a-module-viewtg)<br>
