@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SupperStrikersParser" as SupperStrikersParser LOGIC_COLOR
+participant ":RemoveCommandParser" as RemoveCommandParser LOGIC_COLOR
+participant "s:RemoveCommand" as RemoveCommand LOGIC_COLOR
+end box
+
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "o:OrderItem" as OrderItem MODEL_COLOR
+end box
+
+[-> LogicManager : execute("remove 1 1")
+activate LogicManager
+
+LogicManager -> SupperStrikersParser : parseCommand("remove 1 1")
+activate SupperStrikersParser
+
+create RemoveCommandParser
+SupperStrikersParser -> RemoveCommandParser
+activate RemoveCommandParser
+
+RemoveCommandParser --> SupperStrikersParser
+deactivate RemoveCommandParser
+
+SupperStrikersParser -> RemoveCommandParser : parse("1 1")
+activate RemoveCommandParser
+
+create RemoveCommand
+RemoveCommandParser -> RemoveCommand
+activate RemoveCommand
+RemoveCommand --> RemoveCommandParser : s
+deactivate RemoveCommand
+
+RemoveCommandParser --> SupperStrikersParser : s
+deactivate RemoveCommandParser
+RemoveCommandParser -[hidden]-> SupperStrikersParser
+destroy RemoveCommandParser
+
+SupperStrikersParser --> LogicManager : s
+deactivate SupperStrikersParser
+
+LogicManager -> RemoveCommand : execute()
+activate RemoveCommand
+
+RemoveCommand -> Model : getFilteredOrderItemList()
+
+create OrderItem
+RemoveCommand -> OrderItem
+activate OrderItem
+
+OrderItem --> RemoveCommand
+deactivate OrderItem
+
+RemoveCommand -> Model: removeOrderItem(o)
+
+RemoveCommand -> LogicManager
+deactivate RemoveCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+
+@enduml
