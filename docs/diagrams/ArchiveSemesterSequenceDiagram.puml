@@ -1,6 +1,8 @@
 @startuml
 !include style.puml
 
+scale 1.3
+
 box Logic LOGIC_COLOR_T1
 participant ":ArchiveCommand" as ArchiveCommand LOGIC_COLOR
 end box
@@ -22,11 +24,10 @@ ArchiveCommand -> Model : getResiReg()
 activate Model
 
 Model --> ArchiveCommand : resiReg
+deactivate Model
 
 ArchiveCommand -> ResiReg : getNextSemesterResiReg(resiReg)
 activate ResiReg
-
-
 
 ResiReg --> ArchiveCommand : newResiReg
 deactivate ResiReg
@@ -38,8 +39,11 @@ Storage --> ArchiveCommand
 deactivate Storage
 
 ArchiveCommand -> Model : setResiReg(newResiReg)
+activate Model
 Model --> ArchiveCommand
+deactivate Model
 ArchiveCommand -> Model : saveStateResiReg()
+activate Model
 Model --> ArchiveCommand
 deactivate Model
 

@@ -36,7 +36,6 @@ activate Model
 Model -> StatefulResiReg : undo()
 activate StatefulResiReg
 
-StatefulResiReg -> StatefulResiReg :resetData(ReadOnlyResiReg)
 StatefulResiReg --> Model :
 deactivate StatefulResiReg
 

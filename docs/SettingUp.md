@@ -53,3 +53,8 @@ If you plan to use Intellij IDEA (highly recommended):
    * [Tracing code](tutorials/TracingCode.md)
    * [Removing fields](tutorials/RemovingFields.md)
    * [Adding a new command](tutorials/AddRemark.md)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Before pushing code
+We use [gradle-githook](https://plugins.gradle.org/plugin/com.star-zero.gradle.githook) to configure a pre-push hook that runs the following gradle tasks: `test`, `clean`, `checkstyleMain`, and `checkstyleTest`. This helps us ensure that the tests pass locally and code follows the Style Guide before we spend precious CI minutes on it.
