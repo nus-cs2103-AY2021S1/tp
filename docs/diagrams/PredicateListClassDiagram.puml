@@ -7,18 +7,25 @@ skinparam classBackgroundColor MODEL_COLOR
 Interface Predicate <<Interface>>
 Class AnyMatchPredicateList
 Class AllMatchPredicateList
-Class Id
-Class Email
-Class Name
-Class AcademicYear
-Class Phone
+Class IdMatchesPredicate
+Class EmailContainsKeywordPredicate
+Class NameContainsKeywordsPredicate
+Class AcademicYearMatchesPredicate
+Class PhoneMatchesPredicate
 
-Predicate .up.|> AnyMatchPredicateList
-Predicate .up.|> AllMatchPredicateList
-Predicate -down-> Name
-Predicate -down-> Id
-Predicate -down-> Email
-Predicate -down-> Phone
-Predicate -down-> AcademicYear
+AnyMatchPredicateList .left.|> Predicate
+AllMatchPredicateList .right.|> Predicate
+
+AnyMatchPredicateList --> "*" NameContainsKeywordsPredicate
+AnyMatchPredicateList --> "*" IdMatchesPredicate
+AnyMatchPredicateList --> "*" EmailContainsKeywordPredicate
+AnyMatchPredicateList --> "*" PhoneMatchesPredicate
+AnyMatchPredicateList --> "*" AcademicYearMatchesPredicate
+
+AllMatchPredicateList --> "*" NameContainsKeywordsPredicate
+AllMatchPredicateList --> "*" IdMatchesPredicate
+AllMatchPredicateList --> "*" EmailContainsKeywordPredicate
+AllMatchPredicateList --> "*" PhoneMatchesPredicate
+AllMatchPredicateList --> "*" AcademicYearMatchesPredicate
 
 @enduml

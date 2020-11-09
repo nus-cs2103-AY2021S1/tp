@@ -19,7 +19,7 @@ Student *--> Name
 Student *--> Phone
 Student *--> Email
 Student *--> AcademicYear
-Student o-> "*" LocalDateTime
+Student o-> "*" Attendance
 Student *--> "5" Day
 
 Day <|-- Monday

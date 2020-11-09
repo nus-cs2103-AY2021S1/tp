@@ -7,13 +7,14 @@ Class Training {
 Class Student {
 }
 
-Class Attend {
+Class Attendance {
 trainingTime
-hasAttended
-attendsTraining()
+isMarked
+marks()
+unmarks()
 }
 
-Training o-- "*" Student
-Student o-- "*" Attend
+Training --> "*" Student
+Student --> "*" Attendance
 
 @enduml

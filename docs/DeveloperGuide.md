@@ -4,7 +4,6 @@ title: Developer Guide
 ---
 * Table of Contents
 {:toc}
-
 --------------------------------------------------------------------------------------------------------------------
 ## **Introduction**
 
@@ -12,6 +11,7 @@ This document is the developer guide for CanoE-COACH, a training scheduling app 
 
 This developer guide serves to provide developers with an understanding on how CanoE-COACH is designed.
 
+--------------------------------------------------------------------------------------------------------------------
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -143,9 +143,9 @@ This section describes some noteworthy details on how certain features are imple
 
 ### AnyMatchPredicateList / AllMatchPredicateList
 
-### AnyMatchPredicateList
+#### AnyMatchPredicateList
 
-### Implementation
+#### Implementation
 
 The `AnyMatchPredicateList` class implements the `Predicate` interface provided by the Java util library.
 
@@ -165,7 +165,7 @@ In the diagram above, the `CommonTimeCommandParser` will parse the arguments and
 
 This `AnyMatchPredicateList` is then used to filter the student list in the method `Model#updateFilteredStudentList()` which takes in the predicate list as an argument.
 
-### AllMatchPredicateList
+#### AllMatchPredicateList
 
 The `AllMatchPredicateList` has a similar implementation to the `AnyMatchPredicateList`. The only difference is that the `AllMatchPredicateList#test()` method returns true only if the passed `Student` matches **ALL** of the predicates in the predicate list.
 
