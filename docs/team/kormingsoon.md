@@ -49,21 +49,14 @@ Below are the details of my contribution:
         - `Seller` also subsequently deletes all `Property` that it is tied to. This is done by leveraging on the unique `Id` that is assigned 
         to `Seller` and captured by `Property`.
 
-* **New Feature**: Implemented the `Edit` function for `Bidder` and `Seller`
-  * **What it does**: allows the user to edit`Bidder` and `Seller`. The user is able to delete either the name, or phone number of the client.
+* **New Feature**: Implemented the `Find`, `List` and `Edit` function for `Bidder` and `Seller`
+  * **What it does**: Allows the user to edit`Bidder` and `Seller`, or find clients based on their names. Lastly to list it all after being filtered.
   
-  * **Justification**: This feature is important as the user may have to change certain information, 
-  such as a typo in the name, or when the client may have changed their phone number. 
+  * **Justification**: This feature is important as the user may have to change certain information, filter out and list all information.
   
   * **Highlights**:
-   My implementation of the `Edit` function prevents any clients from having the same name or same phone number (uniqueness within a book itself i.e
-  the information in `Bidder` is independent of that from `Seller`). 
-  
-* **New Feature**: Implemented the `Find` and `List` function for `Bidder` and `Seller`
-  * **What it does**: allows the user to search for `Bidder` and `Seller` according to their name, and to list all clients back after filtering.
-  
-  * **Justification**: List will allow the user to view the full list of either `Bidder` or `Seller` such as after executing `Find`.
-  
+   My implementation of the `Edit` function prevents any clients from having the same name or same phone number 
+      
 ##### User Interface Functions
 
 Major edits mostly done in `.fxml` to fit the look to PropertyFree.
@@ -80,15 +73,13 @@ Major edits mostly done in `.fxml` to fit the look to PropertyFree.
     command box so that the user is able to type commands.
   
   * **Justification**: The above-mentioned key press functions in PropertyFree helps the user to easily navigate PropertyFree.
-  The `CONTROL / CTRL` + `ARROW KEY` button helps the user to easily navigate through the calendar to identify which dates and days are important.
-  The `ENTER` aids in the event when the user may not have the cursor in the command box (i.e usage of mouse)
+  The button control helps the user to easily navigate through the calendar to identify which dates and days are important.
 
 * **New Feature**: Implemented the `next` and `prev` command for navigating the calendar.
   * **What it does**: Changes the `CalendarView` from month to month depending on the command executed by the user.
   
-  * **Justification**: On top of the key-press functions implemented above, there was a need to implement the command line function for calendar navigation
-  as the keyboard layout varies different from computer to computer. The `next` and `prev` command serve as an alternate option for users
-  to navigate the calendar, in the event it is inconvenient for users to use the key press functions (awkward positioning).
+  * **Justification**: To cater to different keyboard layouts, `next` and `prev` command serve as an alternate option for users
+  to navigate the calendar.
   The `CalendarView` (both `.java` and `.fxml`) was referenced from [Senior Team Project](https://github.com/SirGoose3432/javafx-calendar/blob/master/src/FullCalendarView.java) 
 * **Project management**:
   * Managed releases `v1.3a`, `v1.3b`, `v1.4` (3 releases) on GitHub
