@@ -1136,12 +1136,8 @@ Otherwise, the expected outcome: No changes are made. Error details shown in the
       does not exist inside the `clients` list. <br>
       Expected: FitEgo notices an invalid storage format and start with an empty addressbook.
       
-   2. Test case: Open `data/addressbook.json` and change one of the Schedule's `startTime` or `endTime` so that the
-<<<<<<< HEAD
-      resulting interval does not exist inside the Session List.  
-=======
+   2. Test case: Open `data/addressbook.json` and change one of the Schedule's `startTime` or `endTime` so that the  
       resulting interval does not exist inside the Session List. <br>
->>>>>>> 9f4146918e515b19381658cb2ae83857a726847c
       Expected: Similar to previous.
 
 ---
