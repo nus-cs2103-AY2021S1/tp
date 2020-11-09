@@ -125,9 +125,9 @@ The ***Architecture Diagram*** given above explains the high-level design of Jar
 
 The rest of Jarvis consists of five components.
 
-* [**`UI`**](#ui-component): The UI of the App.
+* [**`UI`**](#ui-component): The UI of the app.
 * [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`Model`**](#model-component): Holds the data of the app in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 * [**`Scraper`**](#scraper-component): Scrapes [https://sourceacademy.nus.edu.sg](https://sourceacademy.nus.edu.sg) for course-info.
 
@@ -145,7 +145,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
  the command `delete -c 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Sequence Diagram of Architecture](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
