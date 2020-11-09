@@ -308,11 +308,6 @@ After the execution:<br>
 
 Figure 5b. A screenshot showing the outcome of an `s-list` command
 
-#### 1.4 Ranking the list of drinks sold : `s-rank`
-Shows a ranked list of all types of drinks sold in the Sales Tracker. The list of drinks
-is ranked from the most popular to least popular.
-
-Format: `s-rank`
 
 ### 2. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
 
@@ -559,12 +554,15 @@ Employee Directory. You are able to view data related to manpower in the Employe
 
 * All employees who are currently working in the shop are active (unarchived) employees.
 
-* Employees who are no longer working in the shop can be deleted from the Employee Directory (refer to command `c
--delete` for details), or moved to the archived Employee Directory (refer to `c-archive` for details).
+* Employees who are no longer working in the shop can be deleted from the Employee Directory (refer to 
+ `c-delete` command for details), or moved to the archived Employee Directory (refer to `c-archive` command for
+  details).
 
-* All active (unarchived) employees' information is stored in the active Employee Directory.
+* All active (unarchived) employees' information is stored in the active Employee Directory (refer to `c-active-list
+` to view the active Employee Directory).
 
-* All archived employees' information is stored in the archived Employee Directory.
+* All archived employees' information is stored in the archived Employee Directory (refer to `c-archive-list`
+ to view the archived Employee Directory).
 
 </div>
 
@@ -710,8 +708,8 @@ Format: `c-tag-find KEYWORD [MORE_KEYWORDS]`
 
 **:information_source: Note:**<br>
 In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
-. You may set an employee's tags when adding the employee into tCheck (Refer to `c-add` command), or edit the
-tag(s) by editing employee's information feature (Refer to `c-edit` command).<br>
+. You may set an employee's tags when adding the employee into tCheck (refer to `c-add` command), or edit the
+tag(s) by editing employee's information feature (refer to `c-edit` command).<br>
 
 </div>
 
@@ -748,8 +746,8 @@ Format: `c-today`
 
 **:information_source: Note:**<br>
 In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
-. You may set an employee's tags when adding the employee into tCheck (Refer to `c-add` command), or edit the
-tag(s) by editing employee's information feature (Refer to `c-edit` command).<br>
+. You may set an employee's tags when adding the employee into tCheck (refer to `c-add` command), or edit the
+tag(s) by editing employee's information feature (refer to `c-edit` command).<br>
 
 </div>
 
@@ -791,8 +789,8 @@ Format: `c-tomorrow`
 
 **:information_source: Note:**<br>
 In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
-. You may set an employee's tags when adding the employee into tCheck (Refer to `c-add` command), or edit the
-tag(s) by editing employee's information feature (Refer to `c-edit` command).<br>
+. You may set an employee's tags when adding the employee into tCheck (refer to `c-add` command), or edit the
+tag(s) by editing employee's information feature (refer to `c-edit` command).<br>
 
 </div>
 
@@ -895,6 +893,7 @@ If _Employee Directory_ currently shows a list of archived employees (archived e
   list of all your employees. Then, `c-archive INDEX` can be used to archive a specified employee identified
   by `INDEX`.<br>
 </div>
+
 
 Example:
 
@@ -1092,6 +1091,7 @@ Format: `exit`
 
 ### 5. Other Features <a name="other-features"></a>
 #### 5.1 Saving the data :
+
 All tCheck data (i.e. ingredient data, sales data, employees' data) are saved in the hard disk automatically after each
  command. There is no need to save manually.
  
@@ -1118,13 +1118,18 @@ tCheck also shows the calendar for the current month when you start the applicat
  
  Figure 25. Screenshots showing the calendar in tCheck
 
-## 6. FAQ <a name="FAQ"></a>
+## FAQ <a name="FAQ"></a>
 
 **Q**: Why does tCheck ignore additional or extra input that I add after single-word commands, like `help`? <br>
 **A**: Any extra input after a single-word command, for example, the input `123` inside the input `c-list 123`, will 
 be ignored because extra input does not affect the operation conducted by `c-list`. These single-word commands 
 include: `s-list`, `i-set-default`, `i-list`, `i-reset-all`, `i-restock`, `c-list`, `c-today`, `c-tomorrow`,
   `c-clear`, `c-archive-all`, `c-archive-list`, `help`, `exit`.
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install tCheck in another computer and overwrite the three data files it creates (saved in the folder named
+ "data" in tCheck home folder) with the files that contain the data in your previous tCheck home folder.
+
 
 ## Command summary <a name="command-summary"></a>
 
