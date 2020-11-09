@@ -1,0 +1,8 @@
+{
+  "rooms" : [ {
+    "roomNumber" : false,
+    "isOccupied" : 1,
+    "patient" : null,
+    "task" : null
+  }
+]}

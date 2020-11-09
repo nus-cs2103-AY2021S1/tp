@@ -1,0 +1,21 @@
+.status-bar {
+    -fx-background-color: #aec6cf;
+}
+
+.status-bar .label {
+    -fx-font-size: 15px;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: black;
+    -fx-padding: 2px;
+    -fx-min-height: 2px;
+}
+
+.status-bar-with-border {
+    -fx-background-color: #aec6cf;
+    -fx-border-color: derive(#2b5c7b, 10%);
+    -fx-border-width: 2px;
+}
+
+.status-bar-with-border .label {
+    -fx-text-fill: white;
+}

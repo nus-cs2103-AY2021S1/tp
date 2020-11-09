@@ -1,0 +1,18 @@
+{
+  "patients": [ {
+    "name": "Alice Pauline",
+    "temperature": "36.7",
+    "periodOfStay": "20200103-20200117",
+    "phone": "94351253",
+    "age": "19",
+    "comment" : "-"
+  }, {
+    "name": "Alice Pauline",
+    "temperature": "37.2",
+    "periodOfStay": "20200103-20200117",
+    "phone": "94351253",
+    "age": "19",
+    "comment" : "-"
+  } ]
+}
+

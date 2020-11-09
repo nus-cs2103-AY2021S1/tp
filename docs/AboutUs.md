@@ -3,57 +3,51 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
-
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+We are team CS2103T-W12-1 based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 ## Project team
 
-### John Doe
+### Wee Yee Hong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/w-yeehong.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[Github](https://github.com/w-yeehong)][[Portfolio](team/w-yeehong.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Project Coordination
 
-### Johnny Doe
+### Ge Wai Lok
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/raymondge.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[Github](http://github.com/raymondge)][[Portfolio](team/raymondge.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Documentation
 
-### James Doe
+### Noorul Azlina
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/itssodium.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[Github](http://github.com/itssodium)][[Portfolio](team/itssodium.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code Quality
+
+### Chiam Yun Qing
+
+<img src="images/chiamyunqing.png" width="200px">
+
+[[Github](https://github.com/chiamyunqing)][[Portfolio](team/chiamyunqing.md)]
+
+* Role: Developer
+* Responsibilities: Testing
+
+### Lee Ming De
+
+<img src="images/leemingde.png" width="200px">
+
+[[Github](http://github.com/LeeMingDe)][[Portfolio](team/leemingde.md)]
+
+* Role: Developer
+* Responsibilities: Integration (version the code, maintain the code repository and integrate various parts into a software)

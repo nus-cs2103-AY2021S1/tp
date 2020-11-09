@@ -1,0 +1,15 @@
+.result-display {
+    -fx-min-height: 100px;
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 17px;
+    -fx-text-fill: black;
+}
+
+.result-display .content {
+    -fx-background-color: #fff1f1;
+    -fx-background-radius: 0;
+}
+
+.result-display .label {
+    -fx-text-fill: black !important;
+}

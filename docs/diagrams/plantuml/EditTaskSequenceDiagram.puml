@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":EditTaskCommandParser" as EditTaskCommandParser LOGIC_COLOR
+participant ":EditTaskCommand" as EditTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> EditTaskCommandParser : parse("r/2 t/1 d/HelloWorld")
+activate EditTaskCommandParser
+
+create EditTaskCommand
+EditTaskCommandParser -> EditTaskCommand
+activate EditTaskCommand
+
+EditTaskCommand --> EditTaskCommandParser
+deactivate EditTaskCommand
+
+[<-- EditTaskCommandParser
+deactivate EditTaskCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditTaskCommandParser -[hidden]->[
+destroy EditTaskCommandParser
+
+[-> EditTaskCommand : execute()
+activate EditTaskCommand
+
+EditTaskCommand -> Model : getRoomWithRoomNumber(2)
+activate Model
+
+Model --> EditTaskCommand : room2
+deactivate Model
+
+EditTaskCommand -> Model : getTaskFromRoomWithTaskIndex(1, room2)
+activate Model
+
+Model --> EditTaskCommand : task1OfRoom2
+deactivate Model
+
+EditTaskCommand -> EditTaskCommand : createEditedTask("HelloWorld")
+activate EditTaskCommand
+
+EditTaskCommand --> EditTaskCommand : editedTask
+deactivate EditTaskCommand
+
+EditTaskCommand -> Model : setTaskToRoom(task1OfRoom2, editedTask, room2)
+activate Model
+
+Model --> EditTaskCommand
+deactivate Model
+
+create CommandResult
+EditTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditTaskCommand
+deactivate CommandResult
+
+[<-- EditTaskCommand : result
+deactivate EditTaskCommand
+@enduml

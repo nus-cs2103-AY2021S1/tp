@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CovigentAppParser" as CovigentAppParser LOGIC_COLOR
+participant ":AddPatientCommandParser" as AddPatientCommandParser LOGIC_COLOR
+participant "d:AddPatientCommand" as AddPatientCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addpatient n/Alex a/36")
+activate LogicManager
+
+LogicManager -> CovigentAppParser : parseCommand("addpatient n/Alex a/36")
+activate CovigentAppParser
+
+create AddPatientCommandParser
+CovigentAppParser -> AddPatientCommandParser
+activate AddPatientCommandParser
+
+AddPatientCommandParser --> CovigentAppParser
+deactivate AddPatientCommandParser
+
+CovigentAppParser -> AddPatientCommandParser : parse("n/Alex a/36")
+activate AddPatientCommandParser
+
+create AddPatientCommand
+AddPatientCommandParser -> AddPatientCommand
+activate AddPatientCommand
+
+
+AddPatientCommand --> AddPatientCommandParser :
+deactivate AddPatientCommand
+
+AddPatientCommandParser --> CovigentAppParser :
+deactivate AddPatientCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddPatientCommandParser -[hidden]-> CovigentAppParser
+destroy AddPatientCommandParser
+
+CovigentAppParser --> LogicManager :
+deactivate CovigentAppParser
+
+LogicManager -> AddPatientCommand : execute()
+activate AddPatientCommand
+
+AddPatientCommand -> Model : hasPatient(Patient)
+activate Model
+
+Model --> AddPatientCommand
+deactivate Model
+
+AddPatientCommand -> Model : addPatient(Patient)
+activate Model
+
+Model --> AddPatientCommand
+deactivate Model
+
+create CommandResult
+AddPatientCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddPatientCommand
+deactivate CommandResult
+
+AddPatientCommand --> LogicManager : result
+deactivate AddPatientCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

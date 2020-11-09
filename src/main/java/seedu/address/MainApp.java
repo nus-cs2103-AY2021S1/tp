@@ -15,19 +15,24 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.PatientRecords;
+import seedu.address.model.ReadOnlyList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.RoomList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.room.Room;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.patient.JsonPatientRecordsStorage;
+import seedu.address.storage.patient.PatientRecordsStorage;
+import seedu.address.storage.rooms.JsonRoomOccupancyStorage;
+import seedu.address.storage.rooms.RoomRecordsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -48,7 +53,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing CovigentApp ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,8 +61,11 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        PatientRecordsStorage patientRecordsStorage =
+                new JsonPatientRecordsStorage(userPrefs.getCovigentAppFilePath());
+        RoomRecordsStorage roomOccupancyStorage = new JsonRoomOccupancyStorage(
+                userPrefs.getRoomsOccupiedFilePath());
+        storage = new StorageManager(patientRecordsStorage, roomOccupancyStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -69,28 +77,45 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s covigent app and RoomList
+     * and {@code userPrefs}. <br>
+     * The data from the sample covigent app and covigentApp will be used instead if {@code storage}'s covigent app is
+     * not found,or an empty covigent app will be used instead if errors occur when reading {@code storage}'s
+     * address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyList<Patient>> patientRecordsOptional;
+        ReadOnlyList<Patient> initialData;
+        Optional<ReadOnlyList<Room>> readOnlyRoomOccupancy;
+        ReadOnlyList<Room> initialRoomList;
+
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
-            }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            readOnlyRoomOccupancy = storage.readOnlyRoomOccupancy();
+            initialRoomList = readOnlyRoomOccupancy.orElseGet(SampleDataUtil::getSampleRoomList);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning(
+                    "Room Data file not in the correct format. Will be starting with an empty CovigentApp");
+            initialRoomList = new RoomList();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty CovigentApp");
+            initialRoomList = new RoomList();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        try {
+            patientRecordsOptional = storage.readPatientRecords();
+            if (!patientRecordsOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample CovigentApp");
+            }
+            initialData = patientRecordsOptional.orElseGet(SampleDataUtil::getSampleCovigentApp);
+        } catch (DataConversionException e) {
+            logger.warning(
+                    "Patient Data file not in the correct format. Will be starting with an empty CovigentApp");
+            initialData = new PatientRecords();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty CovigentApp");
+            initialData = new PatientRecords();
+        }
+        return new ModelManager(initialData, initialRoomList, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -151,7 +176,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty CovigentApp");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,7 +192,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting CovigentApp " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

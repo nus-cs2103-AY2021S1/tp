@@ -1,0 +1,25 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+Class RoomCard
+Class TaskCard
+Class PatientCard
+}
+
+
+package Model <<Rectangle>> {
+Class HiddenLogic #FFFFFF
+}
+
+
+
+RoomCard -down-> Model
+TaskCard -down-> Model
+PatientCard -down-> Model
+
+Model -[hidden]left- UI
+@enduml

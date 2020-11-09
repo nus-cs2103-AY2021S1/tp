@@ -1,0 +1,53 @@
+{
+  "_comment": "AddressBook save file which contains the same Person values as in TypicalPatients#getTypicalAddressBook()",
+  "patients" : [ {
+    "name" : "Alice Pauline",
+    "temperature": "36.8",
+    "periodOfStay": "20200911-20200918",
+    "phone" : "94351253",
+    "age": "31",
+    "comment" : "Vegan"
+  }, {
+    "name" : "Benson Meier",
+    "temperature": "38.0",
+    "periodOfStay": "20200810-20200824",
+    "phone" : "98765432",
+    "age": "67",
+    "comment" : "-"
+  }, {
+    "name" : "Carl Kurz",
+    "temperature": "38.3",
+    "periodOfStay": "20200910-20200917",
+    "phone" : "95352563",
+    "age": "17",
+    "comment": "asthmatic"
+  }, {
+    "name" : "Daniel Meier",
+    "temperature": "36.3",
+    "periodOfStay": "20200808-20200809",
+    "phone" : "87652533",
+    "age": "55",
+    "comment" : "-"
+  }, {
+    "name" : "Elle Meyer",
+    "temperature": "37.4",
+    "periodOfStay": "20200707-20200719",
+    "phone" : "9482224",
+    "age": "81",
+    "comment" : "-"
+  }, {
+    "name" : "Fiona Kunz",
+    "temperature": "36.1",
+    "periodOfStay": "20201004-20201019",
+    "phone" : "9482427",
+    "age": "11",
+    "comment" : "-"
+  }, {
+    "name" : "George Best",
+    "temperature": "36.4",
+    "periodOfStay": "20201101-20201114",
+    "phone" : "9482442",
+    "age": "28",
+    "comment" : "-"
+  } ]
+}

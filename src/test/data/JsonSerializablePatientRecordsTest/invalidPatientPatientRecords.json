@@ -1,0 +1,10 @@
+{
+  "patients": [ {
+    "name": "Hans Muster",
+    "temperature" : "36",
+    "periodOfStay" : "20200908-20201716",
+    "phone": "9482424",
+    "age": "26",
+    "comment" : "-"
+  } ]
+}

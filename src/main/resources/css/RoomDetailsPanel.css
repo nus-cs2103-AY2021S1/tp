@@ -1,0 +1,28 @@
+.room-details-panel .label {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #555555;
+    -fx-opacity: 0.9;
+}
+
+.scroll-pane {
+    -fx-padding: 20px 50px 30px 30px;
+    -fx-border-insets: 20px 50px 30px 30px;
+    -fx-background-insets: 20px 50px 30px 30px;
+}
+
+.room-details-panel #room-number {
+    -fx-font-size: 2.2em;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-opacity: 1;
+}
+
+.room-details-panel .label-header {
+    -fx-font-size: 1.5em;
+    -fx-font-weight: bold;
+    -fx-text-fill: #555555;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-opacity: 1;
+}

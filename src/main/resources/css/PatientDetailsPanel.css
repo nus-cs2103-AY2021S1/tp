@@ -1,0 +1,26 @@
+.patient-details-panel .label {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #555555;
+    -fx-opacity: 0.9;
+
+}
+
+#nameOfPatient {
+    -fx-font-size: 2.2em;
+    -fx-font-weight: bold;
+    -fx-text-fill: rgb(31, 31, 31);
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-opacity: 1;
+}
+
+#detailsHeader {
+    -fx-font-size: 1.4em;
+    -fx-font-weight: bold;
+}
+
+.scroll-pane {
+    -fx-padding: 20px 50px 30px 30px;
+    -fx-border-insets: 20px 50px 30px 30px;
+    -fx-background-insets: 20px 50px 30px 30px;
+}

@@ -1,0 +1,14 @@
+.command-box {
+    -fx-background-color: #fff1f1;
+}
+
+#commandTextField {
+    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-insets: 0;
+    -fx-border-color: #383838 #383838 #ffffff #383838;
+    -fx-border-insets: 0;
+    -fx-border-width: 1px;
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 17px;
+    -fx-text-fill: black;
+}

@@ -2,13 +2,17 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextInputControl;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
+import javafx.geometry.Insets;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -30,26 +34,57 @@ public class MainWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
 
+    private Image logoImage = new Image(this.getClass().getResourceAsStream("/images/covigent.png"));
+
+    // attributes for tabs ----------------------
+    private Image patientImage = new Image(this.getClass().getResourceAsStream("/images/patientlogo.png"));
+    private Image roomImage = new Image(this.getClass().getResourceAsStream("/images/roomlogo.png"));
+    private Image taskImage = new Image(this.getClass().getResourceAsStream("/images/tasklogo.png"));
+    private final String patientTabContent = "PATIENTS";
+    private final String roomTabContent = "ROOMS";
+    private final String taskTabContent = "TASKS";
+
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private PatientListPanel patientListPanel;
     private ResultDisplay resultDisplay;
+    private RoomListPanel roomListPanel;
+    private RoomTaskListPanel roomTaskListPanel;
     private HelpWindow helpWindow;
+
+    @FXML
+    private ImageView logoIcon;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
-    private MenuItem helpMenuItem;
+    private StackPane patientListPanelPlaceholder;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private TabPane covigentTabs;
+
+    @FXML
+    private Tab patientTab;
+
+    @FXML
+    private Tab roomTab;
+
+    @FXML
+    private Tab taskTab;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane statusBarPlaceholder;
 
+    @FXML
+    private StackPane roomListPanelPlaceHolder;
+
+    @FXML
+    private StackPane taskListPanelPlaceholder;
+
+    //@@author chiamyunqing
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -60,64 +95,62 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
 
+        //set images
+        this.setTabContent(patientTab, patientImage, patientTabContent);
+        this.setTabContent(roomTab, roomImage, roomTabContent);
+        this.setTabContent(taskTab, taskImage, taskTabContent);
+
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
-        setAccelerators();
 
         helpWindow = new HelpWindow();
     }
 
+    private void setTabContent(Tab tab, Image image, String text) {
+        VBox content = new VBox();
+        //set image
+        ImageView icon = new ImageView(image);
+        icon.setFitHeight(70);
+        icon.setFitWidth(70);
+        //set text
+        Label label = new Label(text);
+        label.setFont(Font.font("American Typewriter", FontWeight.BOLD, 15));
+        //manually centre-align text
+        if (!text.equals(patientTabContent)) {
+            label.setPadding(new Insets(0, 0, 0, 10));
+        }
+        content.getChildren().addAll(icon, label);
+        tab.setGraphic(content);
+    }
+    //@@author
+
+    public void displayAppIcon() {
+        logoIcon.setImage(logoImage);
+    }
+
+
     public Stage getPrimaryStage() {
         return primaryStage;
-    }
-
-    private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
-    }
-
-    /**
-     * Sets the accelerator of a MenuItem.
-     * @param keyCombination the KeyCombination value of the accelerator
-     */
-    private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
-        menuItem.setAccelerator(keyCombination);
-
-        /*
-         * TODO: the code below can be removed once the bug reported here
-         * https://bugs.openjdk.java.net/browse/JDK-8131666
-         * is fixed in later version of SDK.
-         *
-         * According to the bug report, TextInputControl (TextField, TextArea) will
-         * consume function-key events. Because CommandBox contains a TextField, and
-         * ResultDisplay contains a TextArea, thus some accelerators (e.g F1) will
-         * not work when the focus is in them because the key event is consumed by
-         * the TextInputControl(s).
-         *
-         * For now, we add following event filter to capture such key events and open
-         * help window purposely so to support accelerators even when focus is
-         * in CommandBox or ResultDisplay.
-         */
-        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
-                menuItem.getOnAction().handle(new ActionEvent());
-                event.consume();
-            }
-        });
     }
 
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
+        patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
+
+        roomListPanel = new RoomListPanel(logic.getFilteredRoomList());
+        roomListPanelPlaceHolder.getChildren().add(roomListPanel.getRoot());
+
+        roomTaskListPanel = new RoomTaskListPanel(logic.getFilteredRoomTaskRecords());
+        taskListPanelPlaceholder.getChildren().add(roomTaskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getCovigentAppFilePath());
+        statusBarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -163,8 +196,9 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+
+    public PatientListPanel getPatientListPanel() {
+        return patientListPanel;
     }
 
     /**

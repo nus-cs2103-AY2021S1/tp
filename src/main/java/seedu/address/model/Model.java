@@ -1,18 +1,29 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
+import java.util.PriorityQueue;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomTaskAssociation;
+import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Patient> PREDICATE_SHOW_ALL_PATIENTS = unused -> true;
+
+    Predicate<Room> PREDICATE_SHOW_ALL_ROOMS = unused -> true;
+
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,53 +46,226 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' covigent app file path.
      */
-    Path getAddressBookFilePath();
+    Path getCovigentAppFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' covigent app file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setCovigentAppFilePath(Path covigentAppFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces patient records with the data in {@code covigentApp}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setPatientRecords(ReadOnlyList<Patient> patientRecords);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the patient records */
+    ReadOnlyList<Patient> getPatientRecords();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Replaces room list with the data in {@code covigentApp}.
      */
-    boolean hasPerson(Person person);
+    void setRoomList(ReadOnlyList<Room> rooms);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Returns the room task records.
      */
-    void deletePerson(Person target);
+    ReadOnlyList<RoomTaskAssociation> getRoomTaskRecords();
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Returns true if a patient with the same identity as {@code patient} exists in the patient records.
      */
-    void addPerson(Person person);
+    boolean hasPatient(Patient patient);
+
+    void setInitNumOfRooms(int numOfRooms);
+    /**
+     * Returns the patient with the {@code nameOfPatient} if it exists. Otherwise, an empty optional
+     * is returned.
+     */
+    Optional<Patient> getPatientWithName(Name nameOfPatient);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Deletes the given patient.
+     * The patient must exist in the patient records.
      */
-    void setPerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    void deletePatient(Patient target);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Adds the given patient.
+     * {@code patient} must not already exist in the patient records.
+     */
+    void addPatient(Patient patient);
+
+    /**
+     * Replaces the given patient {@code target} with {@code editedPatient}.
+     * {@code target} must exist in the patient records.
+     * The patient identity of {@code editedPatient} must not be the same as
+     * another existing patient in the patient records.
+     */
+    void setPatient(Patient target, Patient editedPatient);
+
+    /**
+     * Checks if patient is already assigned to a room.
+     *
+     * @param name Of the patient.
+     * @return Boolean value of whether patient is already assigned.
+     */
+    boolean isPatientAssignedToRoom(Name name);
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Patient} backed by the internal list of
+     * {@code UniquePatientList}.
+     */
+    ObservableList<Patient> getFilteredPatientList();
+
+    /**
+     * Updates the filter of the filtered patient list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredPatientList(Predicate<Patient> predicate);
+
+    /**
+     * Returns total number of rooms in the application's {@code RoomList}.
+     */
+    int getNumOfRooms();
+
+    /**
+     * @param num is the number of rooms to define in a hotel.
+     */
+    void initRooms(int num);
+
+    /**
+     * Returns whether a decrease in number of rooms would have space for existing rooms
+     */
+    boolean hasSpaceForRooms();
+
+    /**
+     * Returns number of occupied rooms whose room number is more than the number of rooms to be defined
+     * using initRoom command
+     */
+    int getNumOfExcessOccupiedRooms();
+    /**
+     * Returns true if a room with the same identity as {@code room} exists in Covigent.
+     *
+     * @param room The room .
+     * @return true if {@code room} is in Covigent; false otherwise.
+     */
+    boolean hasRoom(Room room);
+
+    /**
+     * Returns the room with the {@code roomNumber} if it exists. Otherwise, an empty optional
+     * is returned.
+     */
+    Optional<Room> getRoomWithRoomNumber(int roomNumber);
+
+    /**
+     * sets specified room to roomList
+     */
+    void setRoom(Room room);
+    /**
+     * Replaces the given room {@code target} with {@code editedRoom}.
+     * {@code target} must exist in the application.
+     * The room identity of {@code editedRoom} must not be the same as
+     * another existing room in the application.
+     *
+     * @param target Of the room to be changed.
+     * @param editedRoom Is the newly edited room.
+     */
+    void setSingleRoom(Room target, Room editedRoom);
+
+    /**
+     * Removes the patient with the given name {@code patientName} from the room.
+     */
+    void removePatientFromRoom(Name patientName);
+
+    /**
+     * Checks if the given room number is present in the application.
+     *
+     * @param roomNumber to check if it is in the application.
+     * @return Index Of room that is found.
+     */
+    Index checkIfRoomPresent(Integer roomNumber);
+
+    /**
+     * Updates the room with the new edited patient.
+     *
+     * @param patientToEdit Patient that is to be edited.
+     * @param editedPatient Patient that is edited.
+     */
+    void updateRoomListWhenPatientsChanges(Patient patientToEdit, Patient editedPatient);
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
+     * {@code RoomList}.
+     */
+    ObservableList<Room> getRoomListObservableList();
+
+    RoomList getModifiableRoomList();
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
+     * {@code RoomList}.
+     */
+    ObservableList<Room> getFilteredRoomList();
+
+    /**
+     * Updates the filter of the filtered rooms to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredRoomList(Predicate<Room> predicate);
+
+    /**
+     * Returns Priority Queue of rooms
+     */
+    PriorityQueue<Room> getRooms();
+
+    /**
+     * Returns the task with the {@code taskIndex} in {code room} if it exists.
+     * Otherwise, an empty optional is returned.
+     */
+    Optional<Task> getTaskFromRoomWithTaskIndex(Index taskIndex, Room room);
+
+    /**
+     * Adds {@code task} to {@code room}.
+     * The room must exist in {@code CovigentApp}.
+     *
+     * @param task The task to add.
+     * @param room The room to which the task should be added.
+     */
+    void addTaskToRoom(Task task, Room room);
+
+    /**
+     * Deletes {@code task} from {@code room}.
+     * The room must exist in Covigent.
+     * The task must exist in room.
+     *
+     * @param task The task to delete.
+     * @param room The room from which the task should be delete.
+     */
+    void deleteTaskFromRoom(Task task, Room room);
+
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * The room must exist in Covigent.
+     * The task must exist in room.
+     *
+     * @param target The task to replace.
+     * @param editedTask The modified task to replace the original.
+     * @param room The room from which the task should be replaced.
+     */
+    void setTaskToRoom(Task target, Task editedTask, Room room);
+
+    /**
+     * Update the tasks in {@code filteredRoomTaskRecords} with {@code taskPredicate}.
+     *
+     * @param taskPredicate The predicate to filter the tasks.
+     */
+    void updateTasksInFilteredRoomTaskRecords(Predicate<Task> taskPredicate);
+
+    /**
+     * Returns an unmodifiable view of the list of {@code RoomTaskAssociation} backed by the
+     * internal list of {@code RoomTaskRecords}.
+     */
+    ObservableList<RoomTaskAssociation> getFilteredRoomTaskRecords();
 }

@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package RoomList <<Rectangle>> {
+Class RoomList
+Interface ReadOnlyList<<Interface>>
+
+Package Room {
+Class Room
+Class UniqueRoomList
+Class Patient
+Class RoomTasks
+
+Package Task {
+Class Task
+Class DateTimeDue
+Class Description
+Class TaskList
+}
+}
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> RoomList
+
+RoomList .left.|> ReadOnlyList
+RoomList *--> "1" UniqueRoomList
+UniqueRoomList o--> "*" Room
+Room *--> "0..1" Patient
+Room *--> "1" RoomTasks
+RoomTasks .left.|> ReadOnlyList
+
+RoomTasks *--> "1" TaskList
+TaskList o--> "*" Task
+Task *--> "1" Description
+Task *--> "0..1" DateTimeDue
+
+@enduml

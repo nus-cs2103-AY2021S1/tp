@@ -1,0 +1,12 @@
+{
+  "tasks" : [ {
+    "description" : "Remind Alice to change bedsheets.",
+    "dueAt" : "20201230 2359"
+  }, {
+    "description" : "Room #1 is running low on masks and needs to be restocked.",
+    "dueAt" : "20200925"
+  }, {
+    "description" : "Call the U.S. embassy for Bob.",
+    "dueAt" : "20201014 1800"
+  } ]
+}

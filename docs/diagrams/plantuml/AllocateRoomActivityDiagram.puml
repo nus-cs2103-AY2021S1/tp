@@ -1,0 +1,34 @@
+@startuml
+skinparam activity {
+  BackgroundColor 176CC1
+  FontName Calibri
+  FontColor White
+  BorderColor 176CC1
+}
+
+skinparam activityDiamond {
+    BackgroundColor 176CC1
+    BorderColor 176CC1
+}
+
+start
+:user inputs allocateroom;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then (["-" is input as patient name])
+    if () then ([No Patient in Room])
+    :Show error message;
+    else ([else])
+    :Remove patient from room;
+    endif
+else ([else])
+    if () then ([Patient name is valid])
+    :Allocate patient to room;
+    else ([else])
+    :Show error message;
+    endif
+endif
+stop
+@enduml

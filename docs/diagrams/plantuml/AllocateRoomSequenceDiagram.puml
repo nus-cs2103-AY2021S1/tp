@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CovigentAppParser" as CovigentAppParser LOGIC_COLOR
+participant ":AllocateRoomCommandParser" as AllocateRoomCommandParser LOGIC_COLOR
+participant "d:AllocateRoomCommand" as AllocateRoomCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("allocateroom 1 n/Alex")
+activate LogicManager
+
+LogicManager -> CovigentAppParser : parseCommand("allocateroom 1 n/Alex")
+activate CovigentAppParser
+
+create AllocateRoomCommandParser
+CovigentAppParser -> AllocateRoomCommandParser
+activate AllocateRoomCommandParser
+
+AllocateRoomCommandParser --> CovigentAppParser
+deactivate AllocateRoomCommandParser
+
+CovigentAppParser -> AllocateRoomCommandParser : parse("1 n/Alex")
+activate AllocateRoomCommandParser
+
+create AllocateRoomCommand
+AllocateRoomCommandParser -> AllocateRoomCommand
+activate AllocateRoomCommand
+
+
+AllocateRoomCommand --> AllocateRoomCommandParser : d
+deactivate AllocateRoomCommand
+
+AllocateRoomCommandParser --> CovigentAppParser : d
+deactivate AllocateRoomCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AllocateRoomCommandParser -[hidden]-> CovigentAppParser
+destroy AllocateRoomCommandParser
+
+CovigentAppParser --> LogicManager : d
+deactivate CovigentAppParser
+
+LogicManager -> AllocateRoomCommand : execute()
+activate AllocateRoomCommand
+
+AllocateRoomCommand -> Model : setSingleRoom(roomToEdit, editedRoom)
+activate Model
+
+Model --> AllocateRoomCommand
+deactivate Model
+
+create CommandResult
+AllocateRoomCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AllocateRoomCommand
+deactivate CommandResult
+
+AllocateRoomCommand --> LogicManager : result
+deactivate AllocateRoomCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

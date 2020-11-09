@@ -1,0 +1,10 @@
+{
+  "patients": [ {
+    "name": "Patient with invalid name field: Ha!ns Mu@ster",
+    "temperature": "36.5",
+    "periodOfStay": "20200103-20200117",
+    "phone": "9482424",
+    "age": "25",
+    "comment" : "-"
+  } ]
+}

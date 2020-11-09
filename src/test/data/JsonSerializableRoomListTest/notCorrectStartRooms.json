@@ -1,0 +1,118 @@
+{
+  "rooms" : [{
+  "roomNumber" : 2,
+  "isOccupied" : false,
+  "patient" : null,
+  "tasks" : {
+    "tasks" : [ ]
+  }
+},{
+"roomNumber" : 3,
+"isOccupied" : false,
+"patient" : null,
+"tasks" : {
+"tasks" : [ ]
+}
+},{
+"roomNumber" : 4,
+"isOccupied" : false,
+"patient" : null,
+"tasks" : {
+"tasks" : [ ]
+}
+},{
+"roomNumber" : 5,
+"isOccupied" : false,
+"patient" : null,
+"tasks" : {
+"tasks" : [ ]
+}
+},{
+"roomNumber" : 6,
+"isOccupied" : false,
+"patient" : null,
+"tasks" : {
+"tasks" : [ ]
+}
+},{
+"roomNumber" : 7,
+"isOccupied" : true,
+"patient" : {
+"name" : "Alice Pauline",
+"temperature": "36.8",
+"periodOfStay": "20200911-20200918",
+"phone" : "94351253",
+"age": "31",
+"comment" : "Vegan"
+},
+"tasks" : {
+"tasks" : [ ]
+}
+},{
+"roomNumber" : 8,
+"isOccupied" : true,
+"patient" : {
+"name" : "Benson Meier",
+"temperature": "38.0",
+"periodOfStay": "20200810-20200824",
+"phone" : "98765432",
+"age": "67",
+"comment" : "-"
+},
+"tasks" : {
+"tasks" : [ ]
+}
+} ,{
+"roomNumber" : 9,
+"isOccupied" : false,
+"patient" : null,
+"tasks" : {
+"tasks" : [ ]
+}
+},{
+"roomNumber": 10,
+"isOccupied": false,
+"patient": null,
+"tasks" : {
+"tasks" : [ ]
+}
+},
+{
+"roomNumber": 11,
+"isOccupied": false,
+"patient": null,
+"tasks": {
+"tasks": [{"description": "Room #1 is running low on masks and needs to be restocked.",
+"dueAt": "20200925"}]
+}
+},{
+"roomNumber" : 12,
+"isOccupied" : false,
+"patient" : null,
+"tasks" : {
+"tasks" : [ ]
+}
+},{
+"roomNumber" : 13,
+"isOccupied" : false,
+"patient" : null,
+"tasks" : {
+"tasks" : [ ]
+}
+},{
+"roomNumber" : 14,
+"isOccupied" : false,
+"patient" : null,
+"tasks" : {
+"tasks" : [ ]
+}
+},{
+"roomNumber" : 15,
+"isOccupied" : false,
+"patient" : null,
+"tasks" : {
+"tasks" : [ ]
+}
+}
+]
+}

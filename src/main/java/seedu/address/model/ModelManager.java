@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
+import java.util.PriorityQueue;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,7 +13,12 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomTaskAssociation;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,29 +26,46 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final PatientRecords patientRecords;
+    private final RoomList roomList;
+    private final RoomTaskRecords roomTaskRecords;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Patient> filteredPatients;
+    private final FilteredList<Room> filteredRooms;
+    private final FilteredList<RoomTaskAssociation> filteredRoomTaskRecords;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given patient records, room records and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyList<Patient> patientRecords, ReadOnlyList<Room> roomList,
+                        ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(patientRecords, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with Covigent App: " + patientRecords + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.patientRecords = new PatientRecords(patientRecords);
+        this.roomList = new RoomList(roomList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        RoomTaskRecords theRoomTaskRecords;
+        try {
+            theRoomTaskRecords = RoomTaskRecords.getInstance();
+        } catch (AssertionError e) { // need to first initialize RoomTasksRecords
+            theRoomTaskRecords = RoomTaskRecords.init(this.roomList.getReadOnlyList());
+        }
+
+        roomTaskRecords = theRoomTaskRecords;
+        filteredPatients = new FilteredList<>(this.patientRecords.getReadOnlyList());
+        filteredRooms = new FilteredList<>(this.roomList.getReadOnlyList());
+        filteredRoomTaskRecords = new FilteredList<>(this.roomTaskRecords.getReadOnlyList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new PatientRecords(), new RoomList(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    //=========== UserPrefs =================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -66,68 +90,274 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getCovigentAppFilePath() {
+        return userPrefs.getCovigentAppFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setCovigentAppFilePath(Path covigentAppFilePath) {
+        requireNonNull(covigentAppFilePath);
+        userPrefs.setCovigentAppFilePath(covigentAppFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Patient Records ===========================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setPatientRecords(ReadOnlyList<Patient> patientRecords) {
+        this.patientRecords.resetData(patientRecords);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyList<Patient> getPatientRecords() {
+        return patientRecords;
+    }
+
+    //=========== RoomList ==================================================================================
+
+    @Override
+    public void setRoomList(ReadOnlyList<Room> rooms) {
+        this.roomList.resetData(rooms);
+    }
+
+    //=========== RoomTaskRecords ===========================================================================
+
+    @Override
+    public ReadOnlyList<RoomTaskAssociation> getRoomTaskRecords() {
+        return roomTaskRecords;
+    }
+
+    //=========== Patients ==================================================================================
+
+    @Override
+    public boolean hasPatient(Patient patient) {
+        requireNonNull(patient);
+        return patientRecords.hasPatient(patient);
+    }
+
+    //@@author chiamyunqing
+    @Override
+    public Optional<Patient> getPatientWithName(Name nameOfPatient) {
+        requireNonNull(nameOfPatient);
+        return patientRecords.getPatientWithName(nameOfPatient);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deletePatient(Patient target) {
+        patientRecords.removePatient(target);
+        //model's responsibility to update room list when patient is updated
+        this.updateRoomListWhenPatientsChanges(target, null);
+    }
+    //@@author chiamyunqing
+
+    @Override
+    public void addPatient(Patient patient) {
+        updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+        patientRecords.addPatient(patient);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void setPatient(Patient target, Patient editedPatient) {
+        requireAllNonNull(target, editedPatient);
+        patientRecords.setPatient(target, editedPatient);
+    }
+
+    //@@author LeeMingDe
+    @Override
+    public boolean isPatientAssignedToRoom(Name name) {
+        requireNonNull(name);
+        for (Room room : roomList.getRoomObservableList()) {
+            if (room.getPatient().isPresent()) {
+                Name patientNameInRoom = room.getPatient().get().getName();
+                if (patientNameInRoom.equals(name)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    //@@author LeeMingDe
+
+    //=========== Filtered Patient List Accessors ===========================================================
+
+    @Override
+    public ObservableList<Patient> getFilteredPatientList() {
+        return filteredPatients;
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
-    }
-
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPatientList(Predicate<Patient> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredPatients.setPredicate(predicate);
     }
+
+    //=========== Room List =================================================================================
+
+    //@@author itssodium
+    @Override
+    public int getNumOfExcessOccupiedRooms() {
+        return roomList.getNumOfExcessOccupiedRooms();
+    }
+    @Override
+    public boolean hasSpaceForRooms() {
+        return roomList.hasSpaceForRooms();
+    }
+    @Override
+    public int getNumOfRooms() {
+        return roomList.getNumOfRooms();
+    }
+    @Override
+    public void setInitNumOfRooms(int numOfRooms) {
+        roomList.setPreferredNumOfRooms(numOfRooms);
+    }
+    @Override
+    public void initRooms(int num) {
+        roomList.initRooms(num);
+    }
+    @Override
+    public void setRoom(Room room) {
+        roomList.setRoom(room);
+    }
+    //@@author itssodium
+    //@@author LeeMingDe
+    @Override
+    public boolean hasRoom(Room room) {
+        requireNonNull(room);
+        return roomList.containsRoom(room);
+    }
+
+    @Override
+    public void setSingleRoom(Room target, Room editedRoom) {
+        requireAllNonNull(target, editedRoom);
+        roomList.setSingleRoom(target, editedRoom);
+    }
+    //@@author LeeMingDe
+
+    //@@author chiamyunqing
+    @Override
+    public void removePatientFromRoom(Name patientName) {
+        assert (isPatientAssignedToRoom(patientName));
+        roomList.removePatientFromRoom(patientName);
+    }
+    //@@author chiamyunqing
+
+    //@@author LeeMingDe
+    @Override
+    public Index checkIfRoomPresent(Integer roomNumber) {
+        ObservableList<Room> roomObservableList = this.getRoomListObservableList();
+        Index index = Index.fromZeroBased(0);
+        for (int i = 1; i <= roomObservableList.size(); i++) {
+            int roomNum = roomObservableList.get(i - 1).getRoomNumber();
+            boolean isValidRoom = (Integer.valueOf(roomNum)).equals(roomNumber);
+            if (isValidRoom) {
+                index = Index.fromZeroBased(i);
+                break;
+            }
+        }
+        return index;
+    }
+
+    @Override
+    public void updateRoomListWhenPatientsChanges(Patient patientToEdit, Patient editedPatient) {
+        requireNonNull(patientToEdit);
+        ObservableList<Room> roomObservableList = this.roomList.getRoomObservableList();
+        for (int i = 0; i < roomObservableList.size(); i++) {
+            Optional<Patient> patient = roomObservableList.get(i).getPatient();
+            if (isPatientAssignedToRoom(patientToEdit.getName()) && patient.isPresent()
+                    && patient.get().isSamePatient(patientToEdit)) {
+                Room updatedRoom = roomObservableList.get(i);
+                if (editedPatient == null) {
+                    updatedRoom.setOccupied(false);
+                }
+                updatedRoom.setPatient(editedPatient);
+                roomObservableList.set(i, updatedRoom);
+                break;
+            }
+        }
+    }
+    //@@author LeeMingDe
+
+    //@@author w-yeehong
+    @Override
+    public Optional<Room> getRoomWithRoomNumber(int roomNumber) {
+        assert (roomNumber > 0) : "Room number should be greater than 0.";
+        return roomList.getRoomWithRoomNumber(roomNumber);
+    }
+    //@@author w-yeehong
+
+    //=========== Filtered RoomList Accessors ===============================================================
+
+    @Override
+    public ObservableList<Room> getRoomListObservableList() {
+        return roomList.getReadOnlyList();
+    }
+
+    @Override
+    public RoomList getModifiableRoomList() {
+        return roomList;
+    }
+
+    @Override
+    public PriorityQueue<Room> getRooms() {
+        return this.getModifiableRoomList().getRooms();
+    }
+
+    @Override
+    public ObservableList<Room> getFilteredRoomList() {
+        return filteredRooms;
+    }
+
+    @Override
+    public void updateFilteredRoomList(Predicate<Room> predicate) {
+        requireNonNull(predicate);
+        filteredRooms.setPredicate(predicate);
+
+    }
+
+    //=========== Tasks =====================================================================================
+
+    //@@author w-yeehong
+    @Override
+    public Optional<Task> getTaskFromRoomWithTaskIndex(Index taskIndex, Room room) {
+        requireAllNonNull(taskIndex, room);
+        return room.getTaskWithTaskIndex(taskIndex);
+    }
+
+    @Override
+    public void addTaskToRoom(Task task, Room room) {
+        requireAllNonNull(task, room);
+        assert roomList.containsRoom(room) : "Room must be one of the rooms in the RoomList.";
+        room.addTask(task);
+    }
+
+    @Override
+    public void deleteTaskFromRoom(Task task, Room room) {
+        requireAllNonNull(task, room);
+        assert roomList.containsRoom(room) : "Room must be one of the rooms in the RoomList.";
+        room.deleteTask(task);
+    }
+
+    @Override
+    public void setTaskToRoom(Task target, Task editedTask, Room room) {
+        requireAllNonNull(target, editedTask, room);
+        assert roomList.containsRoom(room) : "Room must be one of the rooms in the RoomList.";
+        room.setTask(target, editedTask);
+    }
+    //@@author w-yeehong
+
+    //=========== Filtered RoomTaskRecords Accessors ========================================================
+
+    @Override
+    public void updateTasksInFilteredRoomTaskRecords(Predicate<Task> taskPredicate) {
+        requireNonNull(taskPredicate);
+        filteredRoomTaskRecords.setPredicate(roomTaskAssociation -> taskPredicate.test(roomTaskAssociation.getTask()));
+    }
+
+    @Override
+    public ObservableList<RoomTaskAssociation> getFilteredRoomTaskRecords() {
+        return filteredRoomTaskRecords;
+    }
+
+    //=========== Miscellaneous =============================================================================
 
     @Override
     public boolean equals(Object obj) {
@@ -143,9 +373,11 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
-    }
 
+        return patientRecords.equals(other.patientRecords)
+                && roomList.equals(other.roomList)
+                && userPrefs.equals(other.userPrefs)
+                && filteredPatients.equals(other.filteredPatients)
+                && filteredRooms.equals(other.filteredRooms);
+    }
 }

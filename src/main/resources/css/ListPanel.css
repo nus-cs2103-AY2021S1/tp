@@ -1,0 +1,32 @@
+.list-view {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-background-color: #aec6cf;
+}
+
+.list-cell {
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    -fx-padding: 0 0 0 0;
+}
+
+.list-cell:filled:even {
+    -fx-background-color: #fff1f1;
+}
+
+.list-cell:filled:odd {
+    -fx-background-color: derive(#fff1f1, 20%);
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: #fff2cc;
+}
+
+.list-cell:filled:selected .card-pane {
+    -fx-border-color: #78909c;
+    -fx-border-width: 3px;
+}
+
+.list-cell .label {
+    -fx-text-fill: #000000;
+}

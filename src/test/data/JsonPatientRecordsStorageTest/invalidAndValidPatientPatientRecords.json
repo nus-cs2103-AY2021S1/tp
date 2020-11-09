@@ -1,0 +1,17 @@
+{
+  "patients": [ {
+    "name": "Valid Patient",
+    "temperature": "36.5",
+    "periodOfStay": "20200103-20200117",
+    "phone": "9482424",
+    "age": "25",
+    "comment" : "-"
+  }, {
+    "name": "Patient with Invalid PeriodOfStay Field",
+    "temperature": "36.5",
+    "periodOfStay": "202abc001def03",
+    "phone": "9482424",
+    "age": "25",
+    "comment" : "-"
+  } ]
+}

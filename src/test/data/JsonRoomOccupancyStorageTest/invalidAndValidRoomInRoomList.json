@@ -1,0 +1,13 @@
+{
+  "rooms" : [ {
+    "roomNumber" : 1,
+    "isOccupied" : false,
+    "patient" : null,
+    "task" : null
+  }, {
+    "roomNumber" : false,
+    "isOccupied" : 3,
+    "patient" : null,
+    "task" : null
+  }
+]}
