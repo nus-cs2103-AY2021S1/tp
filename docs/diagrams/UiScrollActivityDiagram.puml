@@ -1,0 +1,15 @@
+@startuml
+start
+:User scrolls down upcoming tab;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([have lesson on the day])
+    :LessonListPanel loads UpcomingLessonCard;
+
+else ([else])
+endif
+:LessonListPanel graphics will be displayed on UpcomingPanel;
+stop
+@enduml
