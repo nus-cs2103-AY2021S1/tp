@@ -636,7 +636,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User types in `addapplicant n/<applicant_name> e/<email> p/<phoneno> a/<address> id/22/11/2020` 
+1.  User types in `adda n/<applicant_name> e/<email> p/<phoneno> a/<address> id/22/11/2020` 
 2.  Eva adds in the applicant record
 3.  Eva displays the applicant record added to User. <br>    
     Use case ends.
@@ -666,7 +666,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User navigates to applicant list by command 'list -applicants'.
 2. Eva shows a list of applicants with indexes beside each applicant. 
-3. User types in `delapplicant INDEX`.
+3. User types in `dela INDEX`.
 4. Eva deletes the applicant record and all related information permanently.
 5. Eva displays the confirmed message of deletion of that applicant record.  <br>
     Use case ends.
@@ -675,7 +675,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. Eva does not have any applicant records.
 
-    * 2a1. Eva shows error message if user types `delapplication 1` as there are no applciant records. <br>
+    * 2a1. Eva shows error message if user types `dela 1` as there are no applciant records. <br>
     Use case ends.<br>
     
 * 3a. Eva does not detect any input for index.
@@ -728,7 +728,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ***Use Case UC12 - Set the application status of an applicant***
 
 **MSS**
-1. User types in `setappstatus 1 as/<appstatus>`
+1. User types in `setas 1 as/<appstatus>`
 2. Eva shows all matched staff records to the` <applicant_name>` with indexes beside.
 3. User types in the index to delete
 4. Eva deletes the applicant record and all related information permanently.
@@ -740,7 +740,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. Eva does not detect any input for index or application status.
 
     * 1b1. Eva requests the user to type the command in again in the correct format. 
-    * 1b2. User types in the `setappstatus INDEX <app_status>`.    
+    * 1b2. User types in the `setas INDEX <app_status>`.    
     Steps 1b1-1b3 are repeated until the data entered are correct. <br>
     Use case resumes from step 2.
 
