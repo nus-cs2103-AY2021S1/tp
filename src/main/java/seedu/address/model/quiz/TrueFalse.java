@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.quiz.exceptions.InvalidQuestionAnswerException;
 
 /**
@@ -62,7 +63,7 @@ public class TrueFalse extends Question {
     @Override
     public boolean checkResponse(String response) throws InvalidQuestionAnswerException {
         if (!isValidResponse(response)) {
-            throw new InvalidQuestionAnswerException("Response is not a valid option.");
+            throw new InvalidQuestionAnswerException(Messages.MESSAGE_INVALID_TF_ANSWER);
         }
         String formattedResponse = response.toLowerCase();
         if (formattedResponse.equals("true")) {
