@@ -25,7 +25,7 @@ Given below are my contributions to the project.
 ### Project Management:
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments):  
+  * PRs reviewed (with non-trivial changes to codebase):  
   [\#131](https://github.com/AY2021S1-CS2103T-T13-4/tp/pull/131)
   * Reported bugs and suggestions for other teams in the class (examples: 
   [\#207](https://github.com/AY2021S1-CS2103T-W12-1/tp/issues/207),
