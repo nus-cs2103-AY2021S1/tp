@@ -626,6 +626,7 @@ irreversible action and cannot be undone. Do delete your account with caution!
 
 </div>
 <div style="page-break-after: always;"></div>
+
 ### 5.3.3 Editing the name of the current account: `editacc`
 *(Written by Lim Zi Yang)* <br>
 
@@ -775,9 +776,9 @@ Action | Format
 [**Add**](#521-adding-an-entry-add) | `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
 [**Delete**](#522-deleting-an-entry-delete) | `delete INDEX c/CATEGORY`
 [**Edit**](#523-editing-an-entry-edit) | `edit INDEX c/CATEGORY [d/DESCRIPTION] [a/AMOUNT] [t/TAG]`
-[**Find**](#524-locating-entries-by-description-find) | `find k/KEYWORD [MORE_KEYWORDS]`
+[**Find**](#524-locating-entries-by-description-find) | `find [c/CATEGORY] k/KEYWORD [MORE_KEYWORDS]`
 [**List**](#525-listing-all-entries-list) | `list`
-[**Clear**](#526-clearing-all-expenses-or-revenue-clear) | `clear c/CATEGORY`
+[**Clear**](#526-clearing-all-expenses-or-revenue-clear) | `clear [c/CATEGORY]`
 [**Profit**](#527-calculating-net-profits-based-on-expenses-and-revenues-profit) | `profit`
 [**Undo**](#528-undoing-entry-level-commands-undo) | `undo`
 [**New Account**](#531-adding-new-account-newacc) | `newacc n/NAME`
