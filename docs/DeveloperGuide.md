@@ -525,7 +525,8 @@ Explanation why a certain design is chosen.
 * **Alternative 1 (current choice):** Accounts can only be edited if they are active.
   * Pros: Easy to implement.
   * Cons: Less flexibility for user.
-
+  
+<div style="page-break-after: always;"></div>
 * **Alternative 2:** Accounts can be edited by retrieving them from the account list with an index input.
   * Pros: More flexibility for user.
   * Cons: It is difficult to implement and manage because we need to consider whether the account to be edited
