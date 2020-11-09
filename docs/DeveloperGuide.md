@@ -823,8 +823,12 @@ Use case ends.
 **MSS**
 
 1. User requests to search for an empty room to accommodate patient
-2. System polls the first room from Priority Queue
+2. System peeks the first room from Priority Queue
 3. System shows the empty room with lowest room number
+Use case ends.
+
+**Extensions**
+*  2a. System realises that there 
 ### A4. Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
