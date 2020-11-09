@@ -521,6 +521,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.  
 </p>
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### **Use case: Add a template**
 
 *MSS*
@@ -540,6 +542,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       1a1. Calo shows an error message, informing the user about duplicate template.<br>  
     Use case ends.<br>
 </p>
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### **Use case: Add a goal**
 
@@ -561,8 +565,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.  
 </p>
 
-
-
+--------------------------------------------------------------------------------------------------------------------
 
 #### **Use case: Archive data**
   *MSS*
@@ -577,6 +580,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 </p>
 
+--------------------------------------------------------------------------------------------------------------------
 
 #### **Use case: Create Template**
 *MSS*
@@ -597,6 +601,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.<br>
 </p>
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### **Use case: Add Exercise based on Template**
 *MSS*
 1.  User requests to add an exercise from a template he previously created.
@@ -609,6 +615,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       1a1. Calo shows an error message, information the user about the template does not exist.<br>  
     Use case ends.<br>
 </p>
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### **Use case: Find exercises with a keyword**
 
@@ -624,6 +632,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.<br>
 </p>
 
+--------------------------------------------------------------------------------------------------------------------
+
 #### **Use case: Recall exercises with a keyword**
 
 *MSS*  
@@ -638,6 +648,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.<br>
 </p>
 
+--------------------------------------------------------------------------------------------------------------------
 
 #### **Use case: Update an exercise**
 
@@ -652,6 +663,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       1a1. Calo shows a message indicating that no such exercise exists.<br>
     Use case ends.
 </p>
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### **Use case: Delete an exercise**
 
@@ -669,6 +682,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 </p>
 
+--------------------------------------------------------------------------------------------------------------------
 
 #### **Use case: List exercises**
 
@@ -676,6 +690,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list exercises
 2.  Calo shows a list of exercises
   Use case ends.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### 9. Appendix D: Non-Functional Requirements
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
