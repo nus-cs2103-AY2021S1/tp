@@ -68,6 +68,7 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireAllNonNull(model, activeAccount);
+        assert (expensePredicate != null || revenuePredicate != null);
         assert (activeAccount != null);
 
         if (expensePredicate != null) {
@@ -80,28 +81,28 @@ public class FindCommand extends Command {
         List<Expense> expenseList = activeAccount.getFilteredExpenseList();
         List<Revenue> revenueList = activeAccount.getFilteredRevenueList();
 
-        boolean noExpenseFound =
-            noExpenseFoundWithOnlyExpensePredicate(expenseList);
-        boolean noRevenueFound =
-            noRevenueFoundWithOnlyRevenuePredicate(revenueList);
-        boolean noEntryFound = noEntryInListFound(expenseList) && noEntryInListFound(revenueList);
+        boolean isNoExpenseFound =
+            isNoExpenseFoundWithOnlyExpensePredicate(expenseList);
+        boolean isNoRevenueFound =
+            isNoRevenueFoundWithOnlyRevenuePredicate(revenueList);
+        boolean isNoEntryFound = isNoEntryInListFound(expenseList) && isNoEntryInListFound(revenueList);
 
-        if (noEntryFound || noExpenseFound || noRevenueFound) {
+        if (isNoEntryFound || isNoExpenseFound || isNoRevenueFound) {
             return CommandResultFactory.createDefaultCommandResult(Messages.MESSAGE_EMPTY_FILTERED_LIST);
         } else {
             return CommandResultFactory.createDefaultCommandResult(Messages.MESSAGE_ENTRIES_UPDATED);
         }
     }
 
-    private boolean noExpenseFoundWithOnlyExpensePredicate(List<? extends Entry> list) {
+    private boolean isNoExpenseFoundWithOnlyExpensePredicate(List<? extends Entry> list) {
         return list.isEmpty() && expensePredicate != null && revenuePredicate == null;
     }
 
-    private boolean noRevenueFoundWithOnlyRevenuePredicate(List<? extends Entry> list) {
+    private boolean isNoRevenueFoundWithOnlyRevenuePredicate(List<? extends Entry> list) {
         return list.isEmpty() && revenuePredicate != null && expensePredicate == null;
     }
 
-    private boolean noEntryInListFound(List<? extends Entry> list) {
+    private boolean isNoEntryInListFound(List<? extends Entry> list) {
         return list.isEmpty();
     }
 
