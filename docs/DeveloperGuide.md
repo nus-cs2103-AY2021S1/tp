@@ -146,6 +146,11 @@ The Add Open Ended Question mechanism is facilitated by `QuickCache`.
 The flashcard created is stored internally inside a `UniqueFlashcardList` within the `QuickCache` object.
 
 ##### Usage
+
+The following activity diagram summarizes what happens when a user executes add open ended question  command on a specified flashcard:
+
+![AddOpenEndedActivityDiagram](images/AddOpenEndedActivityDiagram.png)
+
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. `QuickCache` will be initialized with the initial state.
@@ -163,10 +168,6 @@ The following sequence diagram shows how the Add Open Ended Question mechanism w
 
 ![AddOpenEndedSequenceDiagram](images/AddOpenEndedSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes add open ended question  command on a specified flashcard:
-
-![AddOpenEndedActivityDiagram](images/AddOpenEndedActivityDiagram.png)
-
 #### Design considerations
 
 * **Current implementation:** Flashcard is saved upon creation inside the QuickCache.
@@ -181,6 +182,10 @@ The Add Multiple Choice Question mechanism is facilitated by `QuickCache`.
 The flashcard created is stored internally inside a `UniqueFlashcardList` within the `QuickCache` object.
 
 ##### Usage
+
+The following activity diagram summarizes what happens when a user executes add multiple choice question  command on a specified flashcard:
+
+![AddMcqActivityDiagram](images/AddMcqActivityDiagram.png)
 
 Given below is an example usage scenario and how the addmcq mechanism behaves at each step.
 
@@ -198,10 +203,6 @@ The following sequence diagram shows how the parser operation works:
 The following sequence diagram shows how the Add Multiple Choice Question mechanism works:
 
 ![AddMcqSequenceDiagram](images/AddMcqSequenceDiagram.png)
-
-The following activity diagram summarizes what happens when a user executes add multiple choice question  command on a specified flashcard:
-
-![AddMcqActivityDiagram](images/AddMcqActivityDiagram.png)
 
 #### Design considerations:
 
