@@ -16,7 +16,17 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.CalendarCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteLessonCommand;
+import seedu.address.logic.commands.DeleteTaskCommand;
+import seedu.address.logic.commands.DoneCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindLessonCommand;
+import seedu.address.logic.commands.FindTaskCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListLessonCommand;
+import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.LessonContainsKeywordsPredicate;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
