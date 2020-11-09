@@ -365,7 +365,8 @@ Expected Outcome:
 
 ### 4.4 Tutorial Group Features
 
-> You should perform the following features while in the Tutorial Group view.
+> - You should perform the following features while in the Tutorial Group view.
+> - Refer to Section 4.2 - Navigation for help getting to the correct view
 
 #### 4.4.1 Add a tutorial group: `addTG`
 Adds a tutorial group to the tutorial group list.
@@ -382,9 +383,11 @@ Format: `addTG tg/TG_CODE day/DAY_OF_WEEK start/START_TIME end/END_TIME`
 
 Example: 
 - Adds a tutorial group _T03_ that takes place every _MON_ from _08:00_ to _10:00_ to the tutorial group list.
-    - `addTG tg/T03 day/MON start/08:00 end/10:00`
+    - `addTG tg/T03 day/MON start/11:00 end/13:00`
 
 Expected Outcome:
+
+![AddTutorialGroupCommand](images/addTG.png)
 
 #### 4.4.2 Delete a tutorial group: `deleteTG`
 Deletes a tutorial group based on the given `INDEX`
@@ -403,6 +406,8 @@ Example:
 
 Expected Outcome:
 
+![DeleteTutorialGroupCommand](images/deleteTG.png)
+
 #### 4.4.3 Edit a Tutorial Group: `editTG`
 Edits a module with the provided details.
 
@@ -418,9 +423,11 @@ Example:
 
 - Edits the third tutorial group to be _T04_, takes place every _TUE_ from _08:00_ to _10:00_.
 
-    - `editTG 3 tg/T04 day/TUE start/08:00 end/10:00`
+    - `editTG 1 tg/T03 day/MON start/11:00 end/13:00`
 
 Expected Outcome:
+
+![EditTutorialGroupCommand](images/editTG.png)
 
 #### 4.4.4 Find a tutorial group: `findTG`
 Finds and lists all tutorial groups in the current Tutorial Group view whose tutorial group code contains any of the given keywords.
@@ -435,9 +442,13 @@ however, _t5_ will not match _T05_).
 > - If no tutorial group matching the keyword is found, the Tutorial Group view will be empty.
 
 Example: 
-- Finds a tutorial group with `KEYWORD` _b14_.
+- Finds a tutorial group with `KEYWORD` _T03_.
 
-    - `findTG b14`
+    - `findTG T03`
+    
+Expected Outcome:
+
+![FindTutorialGroupCommand](images/findTG.png)
 
 ### 4.5 Student Features
 
