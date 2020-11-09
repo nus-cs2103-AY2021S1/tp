@@ -66,7 +66,12 @@ The sections below give more details of each component.
 
 ### UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component MainWindow](images/UiClassDiagramMainWindow.png)<br>
+Structure of the UI Component MainWindow
+![Structure of the UI Component DisplayPanel](images/UiClassDiagramDisplayPanel.png)<br>
+Structure of the UI Component for DisplayPanel
+![Structure of the UI Component UpcomingSchedule](images/UiClassDiagramUpcomingSchedule.png)<br>
+Structure of the UI Component for UpcomingSchedule and below
 
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)

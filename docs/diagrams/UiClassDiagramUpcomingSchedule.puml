@@ -1,0 +1,42 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+package UpcomingSchedule <<Rectangle>> {
+Class HiddenUpcomingSchedule #FFFFFF
+}
+Class "{abstract}\nUiPart" as UiPart
+Class ScheduleUiUtil
+Class TimeScaleCell
+Class TimeScale
+Class TaskCell
+Class CurrentTimePointer
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+UpcomingSchedule --|> UiPart
+TimeScaleCell --|> UiPart
+TimeScale --|> UiPart
+TaskCell --|> UiPart
+CurrentTimePointer --|> UiPart
+
+UpcomingSchedule *-down-> CurrentTimePointer
+UpcomingSchedule *-down-> TimeScale
+UpcomingSchedule -left-> ScheduleUiUtil
+
+TimeScale -down-> CurrentTimePointer
+TimeScale *-down-> TimeScaleCell
+TimeScale *-down-> TaskCell
+
+TaskCell .right.> Model
+
+TaskCell -[hidden]left-> CurrentTimePointer
+TimeScale -[hidden]right-> TaskCell
+
+@enduml
