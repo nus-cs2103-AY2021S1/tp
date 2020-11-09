@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Geon Sik Moon's Project Portfolio Page
+title: Moon Geon Sik's Project Portfolio Page
 ---
 
 ## Project: CliniCal
 
-CliniCal is a desktop application that allows doctors to manage patient records and schedule upcoming appointments. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
+CliniCal is a desktop application that allows doctors to manage patient records and schedule upcoming appointments. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 
 Given below are my contributions to the project.
 
@@ -21,11 +21,13 @@ Given below are my contributions to the project.
   * What it does: Appointment objects are serialized into json file format and clinical.json is deserialized into Appointment objects.
   * Justification: This implementation allows the user to automatically save the appointments in json file format and also to load the previously saved appointments when the application is restarted.
   * Highlights: This implementation is fundamental for saving and loading patient appointments, which is one of the main features of the application. It required an in-depth understanding of JSON serialization.
+  
+<div style="page-break-after: always;"></div>
     
 **New Implementation**: Added new field objects for patients.
   * What it does: New patient field objects allow the user to manage the extensive details of a patient, including NRIC, sex, blood type, and allergies.
   * Justification: This addition improves user's management of patient records because a user can store and view patient details that are essential for consultations.
-  * Highlights: This enhancement affects existing and future Patient commands. It required an in-depth understanding of regular expression(regex) to check the validity of the patient fields. The implementation required careful planning as it required changes to existing commands.
+  * Highlights: This enhancement affects existing and future Patient commands. It required an in-depth understanding of regular expression(regex) to check the validity of the patient fields.
     
 **New Implementation**: Implemented the base code for Visit and VisitHistory.
   * What it does: Visit stores the details of a patient's visit, including visit date, patient name, diagnosis, prescription, and comment. VisitHistory stores the list of visits for each patient.
@@ -44,11 +46,11 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Created the `AboutUs` page on product website
-  * Updated the `Index` to reflect the latest release
 
 * **Enhancements to existing features**:
-  * Updated the styling of GUI (Pull requests [\#260](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/260), [\#73](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/73)
-  * Wrote additional tests for existing features to increase coverage (Pull requests [\#76](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/76)), [\#73](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/73)
+  * Updated the styling of GUI (Pull requests [\#260](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/260), [\#73](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/73))
+
+<div style="page-break-after: always;"></div>
 
 * **Documentation**:
   * User Guide:
@@ -66,5 +68,5 @@ Given below are my contributions to the project.
 * **Community**:
   * Reported bugs and suggestions for other teams in the class (example: [Practical Exam Dry Run](https://github.com/gsmoon97/ped/issues))
   * PRs reviewed (with non-trivial review comments): [\#234](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/234) [\#252](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/252) [\#67](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/67)
-  * Contributed to forum discussions (example: [Class Diagram of the AB3 Model](https://github.com/nus-cs2103-AY2021S1/forum/issues/398)
+  * Contributed to forum discussions (example: [Class Diagram of the AB3 Model](https://github.com/nus-cs2103-AY2021S1/forum/issues/398))
 
