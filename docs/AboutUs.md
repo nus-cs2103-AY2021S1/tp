@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/ekamsinghpandher.md)]
 
 * Role: Developer + Integration
-* Responsibilities:
+* Responsibilities: Ensures that different components of the project work well together.
 
 ### Jay Chua
 
