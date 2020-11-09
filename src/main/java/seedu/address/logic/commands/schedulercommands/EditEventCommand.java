@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -59,12 +60,11 @@ public class EditEventCommand extends Command {
         List<Event> lastShownList = model.getFilteredEventList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
         Event eventToEdit = lastShownList.get(index.getZeroBased());
         Event updatedEvent = createEditedEvent(eventToEdit, descriptor);
-        System.out.println(eventToEdit.equals(updatedEvent));
         if (model.hasEvent(updatedEvent)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
@@ -74,17 +74,14 @@ public class EditEventCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, updatedEvent));
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 
     @Override
     public boolean equals(Object other) {
         if (this == other) {
             return true;
         } else if (other instanceof EditEventCommand) {
-            return this.descriptor.equals(((EditEventCommand) other).descriptor);
+            EditEventCommand toTest = (EditEventCommand) other;
+            return this.index.equals(toTest.index) && this.descriptor.equals(toTest.descriptor);
         } else {
             return false;
         }
@@ -94,10 +91,16 @@ public class EditEventCommand extends Command {
         requireNonNull(toEdit);
         requireNonNull(descriptor);
         Set<Tag> updatedTags = descriptor.getTags().orElse(toEdit.getTags());
-        EventName updatedName = descriptor.getName().orElse(toEdit.getName());
+        EventName updatedName = toEdit.getName();
+        if (!descriptor.getName().get().equals(new EventName())) {
+            updatedName = descriptor.getName().get();
+        }
         //TODO: Implement Event to take in Tags
-        EventTime updatedTime = descriptor.getTime().orElse(toEdit.getTime());
-        return new Event(updatedName, updatedTime);
+        EventTime updatedTime = toEdit.getTime();
+        if (!descriptor.getTime().get().equals(new EventTime())) {
+            updatedTime = descriptor.getTime().get();
+        }
+        return new Event(updatedName, updatedTime, updatedTags);
     }
 
     /**
@@ -114,6 +117,7 @@ public class EditEventCommand extends Command {
         public EditEventDescriptor() {
             this.eventName = new EventName();
             this.eventTime = new EventTime();
+            this.tags = new HashSet<>();
         }
 
         /**

@@ -5,11 +5,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.modulelistcommands.AddZoomLinkCommand;
-import seedu.address.logic.commands.modulelistcommands.ZoomDescriptor;
+import seedu.address.logic.commands.modulelistcommands.ZoomLinkCommand.ZoomDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -24,6 +26,8 @@ import seedu.address.model.module.ZoomLink;
  */
 public class AddZoomLinkParser implements Parser<AddZoomLinkCommand> {
 
+    private final Logger logger = LogsCenter.getLogger(AddZoomLinkParser.class);
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddZoomLinkCommand
      * and returns an AddZoomLinkCommand object for execution.
@@ -32,11 +36,15 @@ public class AddZoomLinkParser implements Parser<AddZoomLinkCommand> {
      */
     public AddZoomLinkCommand parse(String args) throws ParseException {
         requireNonNull(args);
+        logger.info("Parsing command arguments: " + args);
+
         ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME, PREFIX_ZOOM_LINK);
         ArgumentMultimap argMultimap = tokenizer.tokenize();
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ZOOM_LINK)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddZoomLinkCommand.MESSAGE_USAGE));
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ZOOM_LINK)
+                || argMultimap.getPreamble().isBlank()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddZoomLinkCommand.MESSAGE_USAGE));
         }
 
         Index moduleIndex;
@@ -57,7 +65,7 @@ public class AddZoomLinkParser implements Parser<AddZoomLinkCommand> {
     }
 
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given.
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

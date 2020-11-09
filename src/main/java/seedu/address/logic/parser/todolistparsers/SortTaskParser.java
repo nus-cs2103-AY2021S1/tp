@@ -61,7 +61,7 @@ public class SortTaskParser implements Parser<SortTaskCommand> {
         }
 
         if (!splitInput[0].equals("r")) {
-            throw new ParseException("Format should be in order i.e. [r] [CRITERION]");
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortTaskCommand.MESSAGE_USAGE));
         }
 
         return parseComparatorForSort(splitInput[1]).reversed();

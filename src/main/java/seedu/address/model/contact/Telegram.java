@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Contact's telegram in the contact list.
- * Guarantees: immutable; is valid as declared in {@link #isValidTelegram(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidTelegram(String)}.
  */
 public class Telegram {
 
@@ -16,28 +16,29 @@ public class Telegram {
                     + "3. Contain only alphanumeric characters and underscore \n"
                     + "4. Should not be blank";
 
-    /**
-     * Constraints for a telegram username as specified by the Telegram application.
-     */
+    /** Constraints for a telegram username. */
     public static final String USERNAME_REGEX = "[a-zA-Z0-9_]{5,}";
     public static final String VALIDATION_REGEX = "@" + USERNAME_REGEX;
 
-    /** String containing the telegram username. */
-    public final String telegramUsername;
+    /** String describing the telegram of a contact. */
+    private final String telegram;
 
     /**
      * Creates and initialises a new Telegram object.
      *
-     * @param telegramUsername Telegram username.
+     * @param telegram String describing a telegram.
      */
-    public Telegram(String telegramUsername) {
-        requireNonNull(telegramUsername);
-        checkArgument(isValidTelegram(telegramUsername), MESSAGE_CONSTRAINTS);
-        this.telegramUsername = telegramUsername;
+    public Telegram(String telegram) {
+        requireNonNull(telegram);
+        checkArgument(isValidTelegram(telegram), MESSAGE_CONSTRAINTS);
+        this.telegram = telegram;
     }
 
     /**
-     * Returns true if a given string is a valid telegram username.
+     * Determines if a given string is a valid telegram.
+     *
+     * @param test A given String to test.
+     * @return True if the given string is a valid telegram.
      */
     public static boolean isValidTelegram(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -45,19 +46,19 @@ public class Telegram {
 
     @Override
     public String toString() {
-        return this.telegramUsername;
+        return this.telegram;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Telegram // instanceof handles nulls
-                && this.telegramUsername.equals(((Telegram) other).telegramUsername)); // state check
+                && this.telegram.equals(((Telegram) other).telegram)); // state check
     }
 
     @Override
     public int hashCode() {
-        return this.telegramUsername.hashCode();
+        return this.telegram.hashCode();
     }
 
 }

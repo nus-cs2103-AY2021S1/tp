@@ -28,12 +28,15 @@
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
-      <FlowPane fx:id="zoomLinks" />
-      <Label fx:id="zoomLink" styleClass="cell_small_label" />
       <Label fx:id="modularCredits" layoutX="25.0" layoutY="71.0" styleClass="cell_small_label" text="\$modularCredits" />
-      <FlowPane fx:id="assignments" />
+         <Label fx:id="gradePoints" layoutX="25.0" layoutY="71.0" styleClass="cell_small_label" text="\\$gradePoints" />
       <FlowPane fx:id="tags" />
     </VBox>
+      <Label fx:id="grade" text="Label" GridPane.halignment="RIGHT">
+         <GridPane.margin>
+            <Insets right="6.0" />
+         </GridPane.margin>
+      </Label>
       <rowConstraints>
          <RowConstraints />
       </rowConstraints>

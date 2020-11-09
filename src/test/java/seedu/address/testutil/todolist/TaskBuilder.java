@@ -1,5 +1,6 @@
 package seedu.address.testutil.todolist;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -20,18 +21,20 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class TaskBuilder {
 
-    public static final String DEFAULT_NAME = "Finish Lab02";
+    public static final String DEFAULT_NAME = "Finish LAB 02";
     public static final String[] ARRAY_OF_TAGS = new String[] {"CS2100", "LAB"};
     public static final List<String> DEFAULT_TAGS = new ArrayList<>(Arrays.asList(ARRAY_OF_TAGS));
     public static final String DEFAULT_PRIORITY = "HIGH";
     public static final String DEFAULT_DATE = "2020-10-10";
-    public static final String DEFAULT_STATUS = "Not Completed";
+    public static final String DEFAULT_STATUS = "NOT_COMPLETED";
+    public static final String DEFAULT_DATE_CREATED = "2020-10-01";
 
     private TaskName name;
     private Set<Tag> tags;
     private Priority priority;
     private Date date;
     private Status status;
+    private LocalDate dateCreated;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -43,6 +46,7 @@ public class TaskBuilder {
         priority = Priority.valueOf(DEFAULT_PRIORITY);
         date = new Date(DEFAULT_DATE);
         status = Status.valueOf(DEFAULT_STATUS);
+        dateCreated = LocalDate.now();
     }
 
     /**
@@ -54,6 +58,7 @@ public class TaskBuilder {
         priority = taskToCopy.getPriority().orElse(null);
         date = taskToCopy.getDate().orElse(null);
         status = taskToCopy.getStatus().orElse(null);
+        dateCreated = taskToCopy.getDateCreated().orElse(null);
     }
 
     /**
@@ -76,7 +81,11 @@ public class TaskBuilder {
      * Sets the {@code Priority} of the {@code Task} that we are building.
      */
     public TaskBuilder withPriority(String priority) {
-        this.priority = Priority.valueOf(priority);
+        if (priority != null) {
+            this.priority = Priority.valueOf(priority);
+        } else {
+            this.priority = null;
+        }
         return this;
     }
 
@@ -84,7 +93,11 @@ public class TaskBuilder {
      * Sets the {@code Date} of the {@code Task} that we are building.
      */
     public TaskBuilder withDate(String date) {
-        this.date = new Date(date);
+        if (date != null) {
+            this.date = new Date(date);
+        } else {
+            this.date = null;
+        }
         return this;
     }
 
@@ -93,6 +106,16 @@ public class TaskBuilder {
      */
     public TaskBuilder withStatus(String status) {
         this.status = Status.valueOf(status);
+        return this;
+    }
+
+    /**
+     * Sets the {@code LocalDate dateCreated} of the {@code Task} that we are building.
+     * This method should be used only when it is not dependent to the current date to ensure
+     * the testcases are not time-dependent.
+     */
+    public TaskBuilder withDateCreated(String dateCreated) {
+        this.dateCreated = LocalDate.parse(dateCreated);
         return this;
     }
 
@@ -108,6 +131,7 @@ public class TaskBuilder {
         temp = temp.setPriority(priority);
         temp = temp.setDate(date);
         temp = temp.setStatus(status);
+        temp = temp.setDateCreated(dateCreated);
         return temp;
     }
 }

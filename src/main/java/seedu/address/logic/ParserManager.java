@@ -1,12 +1,13 @@
 package seedu.address.logic;
 
+import seedu.address.logic.parser.ContactListParser;
 import seedu.address.logic.parser.FeatureParser;
 import seedu.address.logic.parser.GradeTrackerParser;
 import seedu.address.logic.parser.ModuleListParser;
+import seedu.address.logic.parser.SchedulerParser;
 import seedu.address.logic.parser.TodoListParser;
-import seedu.address.logic.parser.contactlistparsers.ContactListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.schedulerparsers.SchedulerParser;
+
 
 /**
  * Represents the manager in charge of overseeing all the medium feature parsers.
@@ -56,6 +57,7 @@ public class ParserManager {
      */
     private boolean containsModuleListCommandWords(String commandWord) {
         return commandWord.contains("module") || commandWord.contains("undo") || commandWord.contains("redo")
-                || commandWord.contains("cap") || commandWord.contains("zoom") || commandWord.contains("archive");
+                || commandWord.contains("cap") || commandWord.contains("zoom") || commandWord.contains("archive")
+                || commandWord.contains("exit") || commandWord.contains("help");
     }
 }

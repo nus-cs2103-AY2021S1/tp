@@ -1,0 +1,32 @@
+@startuml
+
+start
+
+:User enters the command to add a zoom link;
+
+:AddZoomLinkParser parsers the command arguments;
+
+if () then ([command arguments are valid])
+        :Create ZoomDescriptor to encapsulate ZoomLink and ModuleLesson;
+        :Create and execute the AddZoomLinkCommand;
+        if() then ([the Module index is invalid])
+            :Throw command exception;
+            :Update UI to display error message;
+        else ([else])
+            if () then ([ZoomLink already exists in the module])
+                :Throw command exception;
+                :Update UI to display error message;
+            else ([else])
+                :Add the zoom link to the module;
+                :Update UI to display newly added zoom link;
+            endif
+        endif
+else ([else])
+        :Throw parse exception;
+        :Update UI to display error message;
+
+endif
+
+stop
+
+@enduml

@@ -30,26 +30,6 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
-     *
-     * @see seedu.address.model.Model#getModuleList()
-     */
-    ReadOnlyModuleList getModuleList();
-
-    /** Returns an unmodifiable view of the filtered list of modules */
-    ObservableList<Module> getFilteredModuleList();
-
-    /**
-     * Returns an unmodifiable view of the filtered list of modules for display
-     */
-    ObservableList<Module> getFilteredModuleListDisplay();
-
-    /**
-     * Returns the user prefs' address book file path.
-     */
-    Path getModuleListFilePath();
-
-    /**
      * Returns the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();
@@ -60,12 +40,34 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the Contact List.
+     * Returns the AddressBook.
+     *
+     * @see seedu.address.model.Model#getModuleList()
+     */
+    ReadOnlyModuleList getModuleList();
+
+    /** Returns an unmodifiable view of the filtered list of modules */
+    ObservableList<Module> getFilteredModuleList();
+
+    /**
+     * Returns the user prefs' address book file path.
+     */
+    Path getModuleListFilePath();
+
+
+    //===== ContactList =================================================
+    /**
+     * Returns the user pref's contact list file path.
+     */
+    Path getContactListFilePath();
+
+    /**
+     * Returns the ContactList.
      */
     ReadOnlyContactList getContactList();
 
     /**
-     * Returns an unmodifiable list of filtered contacts.
+     * Returns an unmodifiable view of the filtered list of contacts.
      */
     ObservableList<Contact> getFilteredContactList();
 
@@ -79,11 +81,6 @@ public interface Logic {
      */
     ObservableList<Task> getFilteredTodoList();
 
-    /**
-     * Returns the file Path of the Contact List.
-     * @return Path of contact list.
-     */
-    public Path getContactListFilePath();
 
     public ReadOnlyEventList getEventList();
 

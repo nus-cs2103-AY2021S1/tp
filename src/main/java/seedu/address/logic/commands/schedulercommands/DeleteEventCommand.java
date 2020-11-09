@@ -36,7 +36,7 @@ public class DeleteEventCommand extends Command {
         requireNonNull(model);
         List<Event> filteredList = model.getFilteredEventList();
         if (this.index.getZeroBased() >= filteredList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
         Event event = filteredList.get(this.index.getZeroBased());
         model.deleteEvent(event);
@@ -44,10 +44,6 @@ public class DeleteEventCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, event));
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 
     @Override
     public boolean equals(Object other) {

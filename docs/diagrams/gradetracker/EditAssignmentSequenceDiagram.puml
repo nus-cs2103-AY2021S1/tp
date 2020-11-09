@@ -1,0 +1,77 @@
+@startuml
+!include ../style.puml
+skinparam classFontSize 12
+
+box Logic LOGIC_COLOR_T1
+participant ":ParserManager" as ParserManager LOGIC_COLOR
+participant ":GradeTrackerParser" as GradeTrackerParser LOGIC_COLOR
+participant ":EditAssignmentParser" as EditAssignmentParser LOGIC_COLOR
+participant "e:EditAssignmentCommand" as EditAssignmentCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+ -> ParserManager : parseCommand("editassignment 1 n/CS2100")
+activate ParserManager
+
+create GradeTrackerParser
+ParserManager -> GradeTrackerParser
+activate GradeTrackerParser
+
+create EditAssignmentParser
+GradeTrackerParser -> EditAssignmentParser
+activate EditAssignmentParser
+
+EditAssignmentParser -> GradeTrackerParser
+deactivate EditAssignmentParser
+
+GradeTrackerParser -> EditAssignmentParser : parse("editassignment 1 n/CS2100")
+activate EditAssignmentParser
+
+ref over EditAssignmentParser: Create EditAssignmentDescriptor to store edited assignment details
+
+create EditAssignmentCommand
+EditAssignmentParser -> EditAssignmentCommand
+activate EditAssignmentCommand
+
+EditAssignmentCommand --> EditAssignmentParser : e
+deactivate EditAssignmentCommand
+
+EditAssignmentParser --> GradeTrackerParser : e
+deactivate EditAssignmentParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditAssignmentCommand -[hidden]-> EditAssignmentParser
+destroy EditAssignmentParser
+
+GradeTrackerParser --> ParserManager : e
+deactivate GradeTrackerParser
+
+[<-- ParserManager : e
+deactivate ParserManager
+
+ParserManager -> EditAssignmentCommand : execute(model)
+activate EditAssignmentCommand
+
+EditAssignmentCommand --> Model : setModule(module, updatedModule)
+activate Model
+
+Model --> EditAssignmentCommand
+deactivate Model
+
+create CommandResult
+EditAssignmentCommand --> CommandResult : execute(model)
+activate CommandResult
+
+CommandResult --> EditAssignmentCommand : result
+deactivate CommandResult
+
+[<--EditAssignmentCommand : result
+deactivate EditAssignmentCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+CommandResult -[hidden]-> EditAssignmentCommand
+destroy EditAssignmentCommand
+
+@enduml

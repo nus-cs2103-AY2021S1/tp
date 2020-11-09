@@ -16,7 +16,8 @@ import seedu.address.model.contact.Contact;
 
 
 /**
- * Deletes a contact identified using it's displayed index from the contact list.
+ * Encapsulates methods and information to delete a contact identified using
+ * it's displayed index from the contact list.
  */
 public class DeleteContactCommand extends Command {
 
@@ -31,16 +32,18 @@ public class DeleteContactCommand extends Command {
 
     private final Logger logger = LogsCenter.getLogger(DeleteContactCommand.class);
 
+    /** Index object representing the index of the contact to be deleted. */
     private final Index targetIndex;
 
     /**
-     * Creates and initialises a DeleteContactCommand object.
+     * Creates and initialises a DeleteContactCommand object for the deletion of a contact from the contact list.
      *
-     * @param targetIndex Index object encapsulating the index of the contact in the contact list.
+     * @param targetIndex Index object encapsulating the index of the target contact in the
+     *                    filtered contact list.
      */
     public DeleteContactCommand(Index targetIndex) {
         requireNonNull(targetIndex);
-        assert targetIndex.getZeroBased() >= 0 : "zero based index must be non-negative";
+        assert targetIndex.getZeroBased() >= 0 : "Zero-based index must be non-negative";
         logger.info("Deleting contact at index " + targetIndex.getOneBased());
         this.targetIndex = targetIndex;
     }
@@ -57,7 +60,7 @@ public class DeleteContactCommand extends Command {
         Contact contactToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteContact(contactToDelete);
         model.commitContactList();
-        logger.info("Contact has been deleted");
+        logger.info("Contact has been deleted: \n" + contactToDelete.toString());
         return new CommandResult(String.format(MESSAGE_DELETE_CONTACT_SUCCESS, contactToDelete));
     }
 
@@ -68,8 +71,4 @@ public class DeleteContactCommand extends Command {
                 && targetIndex.equals(((DeleteContactCommand) other).targetIndex)); // state check
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

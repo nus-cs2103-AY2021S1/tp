@@ -1,9 +1,11 @@
 package seedu.address.ui;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.Year;
 import java.time.YearMonth;
+import java.util.ArrayList;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -20,15 +22,17 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import seedu.address.model.ReadOnlyEventList;
+import seedu.address.model.event.Event;
 
 public class Calender extends UiPart<Region> {
     private static final String FILEPATH = "Calender.fxml";
     private LocalDate now;
     private int year;
-    private Month month;
     private Month headerMonth;
     private int headerYear;
     private boolean isLeapYear;
+    private ReadOnlyEventList eventList;
 
     @FXML
     private GridPane calenderGrid;
@@ -38,14 +42,14 @@ public class Calender extends UiPart<Region> {
     /**
      * Represents the calender that is going to be displayed.
      */
-    public Calender() {
+    public Calender(ReadOnlyEventList eventList) {
         super(FILEPATH);
         this.now = LocalDate.now();
         this.year = now.getYear();
-        this.month = now.getMonth();
         this.headerMonth = now.getMonth();
         this.headerYear = this.year;
         this.isLeapYear = now.isLeapYear();
+        this.eventList = eventList;
         loadNow();
     }
 
@@ -88,19 +92,42 @@ public class Calender extends UiPart<Region> {
         monthYearInput.setStyle("-fx-text-fill: white");
     }
 
-    private void loadNow() {
+    private ArrayList<Integer> loadEventList(int month, int year) {
+        ArrayList<Integer> listOfDays = new ArrayList<>();
+        for (Event event : this.eventList.getEventList()) {
+            LocalDateTime dateTime = event.getTime().getStart();
+            if (dateTime.getYear() == year && dateTime.getMonthValue() == month) {
+                listOfDays.add(dateTime.getDayOfMonth());
+            }
+        }
+        return listOfDays;
+    }
+
+    private boolean isInEventList(ArrayList<Integer> listofDays, int day) {
+        for (int i : listofDays) {
+            if (i == day) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Loads the Calendar with all the relevant information.
+     */
+    public void loadNow() {
         emptyCal();
         loadDayHeader();
         updateHeader(0);
-        this.month.firstDayOfYear(this.isLeapYear);
+        this.headerMonth.firstDayOfYear(this.isLeapYear);
         LocalDate start = YearMonth.of(this.headerYear, this.headerMonth).atDay(1);
         int first = start.getDayOfWeek().getValue();
         int count = 1;
+        ArrayList<Integer> daysToMark = loadEventList(this.headerMonth.getValue(), this.headerYear);
         for (int i = first; i < first + numOfDays(); i++) {
             Label label = new Label();
             label.setText(Integer.toString(count));
             label.setStyle("-fx-text-fill: white");
-            count++;
             VBox box = new VBox();
             box.setAlignment(Pos.CENTER);
             box.getChildren().add(label);
@@ -110,9 +137,14 @@ public class Calender extends UiPart<Region> {
             }
             box.setBorder(new Border(new BorderStroke(Color.valueOf("white"),
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
+            if (isInEventList(daysToMark, count)) {
+                box.setBackground(new Background(
+                        new BackgroundFill(Color.valueOf("#FA8072"), CornerRadii.EMPTY, Insets.EMPTY)));
+            }
             int col = parseCol(i);
             int row = parseRow(i);
             fillCalender(box, col, row);
+            count++;
         }
     }
 

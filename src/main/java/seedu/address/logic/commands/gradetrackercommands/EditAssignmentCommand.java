@@ -8,11 +8,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -23,6 +25,7 @@ import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.AssignmentName;
 import seedu.address.model.module.grade.AssignmentPercentage;
 import seedu.address.model.module.grade.AssignmentResult;
+import seedu.address.model.module.grade.GradeTracker;
 
 public class EditAssignmentCommand extends Command {
     public static final String COMMAND_WORD = "editassignment";
@@ -43,6 +46,8 @@ public class EditAssignmentCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_MODULE_INVALID = "The module to edit assignment is invalid.";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This assignment already exists in the gradetracker.";
+    public static final String MESSAGE_ASSIGNMENT_PERCENTAGE_THRESHOLD_EXCEEDED = "Editing this assignment would "
+            + "exceed the total assignment percentage limit of " + GradeTracker.ASSIGNMENT_PERCENTAGE_TOTAL + "%";
 
     private final Logger logger = LogsCenter.getLogger(EditAssignmentCommand.class);
 
@@ -60,7 +65,7 @@ public class EditAssignmentCommand extends Command {
         requireNonNull(moduleName);
         requireNonNull(editAssignmentDescriptor);
 
-        logger.info("Editing assignment at position " + index.toString() + " from:" + moduleName.toString() + "");
+        logger.info("Editing assignment at position " + index.getOneBased() + " from:" + moduleName.toString() + "");
         this.index = index;
         this.moduleName = moduleName;
         this.editAssignmentDescriptor = new EditAssignmentDescriptor(editAssignmentDescriptor);
@@ -94,6 +99,11 @@ public class EditAssignmentCommand extends Command {
         if (!assignmentToEdit.isSameAssignment(editedAssignment)
                 && moduleWithAssignment.getGradeTracker().containsDuplicateAssignment(editedAssignment)) {
             throw new CommandException(MESSAGE_DUPLICATE_ASSIGNMENT);
+        }
+
+        if (moduleWithAssignment.getGradeTracker().exceedsAssignmentPercentageThreshold(assignmentToEdit,
+                editedAssignment)) {
+            throw new CommandException(MESSAGE_ASSIGNMENT_PERCENTAGE_THRESHOLD_EXCEEDED);
         }
 
         moduleWithAssignment.getGradeTracker().setAssignment(assignmentToEdit, editedAssignment);
@@ -150,11 +160,81 @@ public class EditAssignmentCommand extends Command {
         // state check
         EditAssignmentCommand e = (EditAssignmentCommand) other;
         return index.equals(e.index)
+                && moduleName.equals(e.moduleName)
                 && editAssignmentDescriptor.equals(e.editAssignmentDescriptor);
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
+    /**
+     * Stores the details to edit the assignment with. Each non-empty field value will replace the
+     * corresponding field value of the assignment.
+     */
+    public static class EditAssignmentDescriptor {
+        private AssignmentName assignmentName;
+        private AssignmentPercentage assignmentPercentage;
+        private AssignmentResult assignmentResult;
+
+        public EditAssignmentDescriptor() {}
+
+        /**
+         * Copy constructor.
+         */
+        public EditAssignmentDescriptor(EditAssignmentDescriptor toCopy) {
+            setAssignmentName(toCopy.assignmentName);
+            setAssignmentPercentage(toCopy.assignmentPercentage);
+            setAssignmentResult(toCopy.assignmentResult);
+        }
+
+        /**
+         * Returns true if at least one field is edited.
+         */
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(assignmentName, assignmentPercentage, assignmentResult);
+        }
+
+        public void setAssignmentName(AssignmentName assignmentName) {
+            this.assignmentName = assignmentName;
+        }
+
+        public Optional<AssignmentName> getAssignmentName() {
+            return Optional.ofNullable(assignmentName);
+        }
+
+        public void setAssignmentPercentage(AssignmentPercentage assignmentPercentage) {
+            this.assignmentPercentage = assignmentPercentage;
+        }
+
+        public Optional<AssignmentPercentage> getAssignmentPercentage() {
+            return Optional.ofNullable(assignmentPercentage);
+        }
+
+        public void setAssignmentResult(AssignmentResult assignmentResult) {
+            this.assignmentResult = assignmentResult;
+        }
+
+        public Optional<AssignmentResult> getAssignmentResult() {
+            return Optional.ofNullable(assignmentResult);
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof EditAssignmentDescriptor)) {
+                return false;
+            }
+
+            // state check
+            EditAssignmentDescriptor e = (EditAssignmentDescriptor) other;
+
+            return getAssignmentName().equals(e.getAssignmentName())
+                    && getAssignmentPercentage().equals(e.getAssignmentPercentage())
+                    && getAssignmentResult().equals(e.getAssignmentResult());
+        }
     }
 }
+
+

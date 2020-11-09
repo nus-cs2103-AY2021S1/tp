@@ -1,0 +1,73 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ModuleListParser" as ModuleListParser LOGIC_COLOR
+participant ":DeleteModuleParser" as DeleteModuleParser LOGIC_COLOR
+participant "c:DeleteModuleCommand" as DeleteModuleCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(deletemodule)
+activate LogicManager
+
+LogicManager -> ModuleListParser : parseCommand(deletemodule)
+activate ModuleListParser
+
+create DeleteModuleParser
+ModuleListParser -> DeleteModuleParser
+activate DeleteModuleParser
+
+DeleteModuleParser --> ModuleListParser
+deactivate DeleteModuleParser
+
+ModuleListParser -> DeleteModuleParser :parse(commandArgument)
+activate DeleteModuleParser
+
+create DeleteModuleCommand
+DeleteModuleParser -> DeleteModuleCommand
+activate DeleteModuleCommand
+
+DeleteModuleCommand --> DeleteModuleParser: c
+deactivate DeleteModuleCommand
+
+DeleteModuleParser --> ModuleListParser: c
+deactivate DeleteModuleParser
+
+DeleteModuleParser -[hidden]-> DeleteModuleCommand
+destroy DeleteModuleParser
+
+ModuleListParser --> LogicManager: c
+deactivate ModuleListParser
+
+LogicManager -> DeleteModuleCommand : execute(model)
+activate DeleteModuleCommand
+
+DeleteModuleCommand -> Model : deleteModule(module)
+activate Model
+
+Model --> DeleteModuleCommand
+deactivate Model
+
+create CommandResult
+DeleteModuleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteModuleCommand: r
+deactivate CommandResult
+
+DeleteModuleCommand --> LogicManager: r
+deactivate DeleteModuleCommand
+
+DeleteModuleCommand -[hidden]-> LogicManager
+destroy DeleteModuleCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

@@ -15,7 +15,6 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.ArchivedModuleList;
 import seedu.address.model.ContactList;
 import seedu.address.model.EventList;
 import seedu.address.model.Model;
@@ -28,6 +27,7 @@ import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TodoList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.ContactListStorage;
 import seedu.address.storage.EventListStorage;
 import seedu.address.storage.JsonContactListStorage;
@@ -93,9 +93,11 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyModuleList> moduleListOptional;
         ReadOnlyModuleList initialModuleList = initializeModuleList(storage);
         ReadOnlyModuleList initialArchivedModuleList = initializeArchivedModuleList(storage);
+        if (hasDuplicateModules(initialModuleList, initialArchivedModuleList)) {
+            initialArchivedModuleList = SampleDataUtil.getSampleArchivedModuleList();
+        }
         ReadOnlyContactList initialContactList = initializeContactList(storage);
         ReadOnlyTodoList initialTodoList = initializeTodoList(storage);
         ReadOnlyEventList initialEventList = initializeEventList(storage);
@@ -112,12 +114,11 @@ public class MainApp extends Application {
     private ReadOnlyModuleList initializeModuleList(Storage storage) {
         Optional<ReadOnlyModuleList> moduleListOptional;
         ReadOnlyModuleList initialModuleList;
-        ReadOnlyEventList initialEventList = initializeEventList(storage);
         try {
             moduleListOptional = storage.readModuleList();
             if (!moduleListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ModuleList");
-                initialModuleList = new ModuleList();
+                initialModuleList = moduleListOptional.orElseGet(SampleDataUtil::getSampleModuleList);
             } else {
                 initialModuleList = moduleListOptional.get();
             }
@@ -146,16 +147,16 @@ public class MainApp extends Application {
             moduleListOptional = storage.readArchivedModuleList();
             if (!moduleListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ArchivedModuleList");
-                initialArchivedModuleList = new ArchivedModuleList();
+                initialArchivedModuleList = moduleListOptional.orElseGet(SampleDataUtil::getSampleArchivedModuleList);
             } else {
                 initialArchivedModuleList = moduleListOptional.get();
             }
         } catch (DataConversionException ex) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ArchivedModuleList");
-            initialArchivedModuleList = new ArchivedModuleList();
+            initialArchivedModuleList = new ModuleList();
         } catch (IOException ex) {
             logger.warning("Problem while reading from the file. Will be starting with an empty ArchivedModuleList");
-            initialArchivedModuleList = new ArchivedModuleList();
+            initialArchivedModuleList = new ModuleList();
         }
         return initialArchivedModuleList;
     }
@@ -194,7 +195,7 @@ public class MainApp extends Application {
             contactListOptional = storage.readEventList();
             if (!contactListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample EventList");
-                initialEventList = new EventList();
+                initialEventList = SampleDataUtil.getSampleEventList();
             } else {
                 initialEventList = contactListOptional.get();
             }
@@ -293,7 +294,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with default user prefs");
             initializedPrefs = new UserPrefs();
         }
 
@@ -305,6 +306,20 @@ public class MainApp extends Application {
         }
 
         return initializedPrefs;
+    }
+
+    /**
+     * Returns true if two module lists do not have duplicate modules
+     */
+    private boolean hasDuplicateModules(ReadOnlyModuleList moduleList, ReadOnlyModuleList archivedModuleList) {
+        for (int i = 0; i < moduleList.getModuleList().size(); i++) {
+            for (int j = 0; j < archivedModuleList.getModuleList().size(); j++) {
+                if (moduleList.getModuleList().get(i).equals(archivedModuleList.getModuleList().get(j))) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override

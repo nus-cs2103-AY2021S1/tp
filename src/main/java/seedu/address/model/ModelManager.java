@@ -22,36 +22,41 @@ import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the Cap 5 Buddy data.
  */
 public class ModelManager implements Model {
+
     public static final String MESSAGE_NO_UNDO_HISTORY = "There are no commands to undo";
     public static final String MESSAGE_NO_REDO_HISTORY = "There are no commands to redo";
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+
+    //=== Module List Model =====================================================
     private final ModuleList moduleListDisplay;
     private final ModuleList moduleList;
-    private final ArchivedModuleList archivedModuleList;
+    private final ModuleList archivedModuleList;
     private final VersionedModuleList versionedModuleList;
     private final VersionedModuleList versionedArchivedModuleList;
+
+    //=== Contact List Model ==============================================
     private final ContactList contactList;
     private final VersionedContactList versionedContactList;
+    private final FilteredList<Contact> filteredContacts;
+    private final SortedList<Contact> sortedContacts;
+
+    //=== TodoList Model ==================================================
     private final TodoList todoList;
     private final EventList eventList;
     private final VersionedEventList versionedEventList;
     private final VersionedTodoList versionedTodoList;
     private final UserPrefs userPrefs;
     private final FilteredList<Module> filteredModulesDisplay;
-    private final FilteredList<Module> filteredModules;
-    private final FilteredList<Module> filteredArchivedModules;
-    private final FilteredList<Contact> filteredContacts;
     private final FilteredList<Task> filteredTasks;
     private final FilteredList<Event> filteredEvents;
-    private final SortedList<Contact> sortedContacts;
     private final SortedList<Task> sortedTasks;
     private int accessPointer;
     private final List<CommandType> accessSequence;
     private boolean isArchiveModuleOnDisplay = false;
-    private FilteredList<Module> mainList;
 
     /**
      * Initializes a ModelManager with the given moduleList, archivedModuleList, contactList, todoList,
@@ -61,13 +66,13 @@ public class ModelManager implements Model {
                         ReadOnlyContactList contactList, ReadOnlyTodoList todoList, ReadOnlyEventList eventList,
                         ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(moduleList, todoList, userPrefs);
+        requireAllNonNull(moduleList, archivedModuleList, contactList, todoList, eventList, userPrefs);
 
         logger.fine("Initializing with module list: " + moduleList + " and todo list" + todoList
                 + " and user prefs " + userPrefs);
         this.moduleList = new ModuleList(moduleList);
         this.moduleListDisplay = new ModuleList(moduleList);
-        this.archivedModuleList = new ArchivedModuleList(archivedModuleList);
+        this.archivedModuleList = new ModuleList(archivedModuleList);
         this.versionedModuleList = new VersionedModuleList(moduleList);
         this.versionedArchivedModuleList = new VersionedModuleList(archivedModuleList);
         this.contactList = new ContactList(contactList);
@@ -78,8 +83,6 @@ public class ModelManager implements Model {
         this.versionedTodoList = new VersionedTodoList(todoList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredModulesDisplay = new FilteredList<>(this.moduleListDisplay.getModuleList());
-        filteredModules = new FilteredList<>(this.moduleList.getModuleList());
-        filteredArchivedModules = new FilteredList<>(this.archivedModuleList.getModuleList());
         sortedContacts = new SortedList<>(this.contactList.getContactList());
         filteredContacts = new FilteredList<>(sortedContacts);
         filteredEvents = new FilteredList<>(this.eventList.getEventList());
@@ -94,7 +97,7 @@ public class ModelManager implements Model {
      * eventList and userPrefs.
      */
     public ModelManager() {
-        this(new ModuleList(), new ArchivedModuleList(), new ContactList(), new TodoList(),
+        this(new ModuleList(), new ModuleList(), new ContactList(), new TodoList(),
                 new EventList(), new UserPrefs());
     }
 
@@ -131,6 +134,17 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setModuleListFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public Path getContactListFilePath() {
+        return userPrefs.getContactListFilePath();
+    }
+
+    @Override
+    public void setContactListFilePath(Path contactListFilePath) {
+        requireNonNull(contactListFilePath);
+        userPrefs.setContactListFilePath(contactListFilePath);
     }
 
     //=========== Module List ================================================================================
@@ -200,8 +214,8 @@ public class ModelManager implements Model {
         assert accessPointer >= 0;
         versionedModuleList.undo();
         versionedArchivedModuleList.undo();
-        setModuleList(versionedModuleList.getCurrentModuleList());
-        setArchivedModuleList(versionedArchivedModuleList.getCurrentModuleList());
+        setModuleList(versionedModuleList);
+        setArchivedModuleList(versionedArchivedModuleList);
     }
 
     @Override
@@ -209,8 +223,8 @@ public class ModelManager implements Model {
         assert accessPointer >= 0;
         versionedModuleList.redo();
         versionedArchivedModuleList.redo();
-        setModuleList(versionedModuleList.getCurrentModuleList());
-        setArchivedModuleList(versionedArchivedModuleList.getCurrentModuleList());
+        setModuleList(versionedModuleList);
+        setArchivedModuleList(versionedArchivedModuleList);
     }
     //Archived Modules
     @Override
@@ -245,7 +259,6 @@ public class ModelManager implements Model {
         if (getModuleListDisplay()) {
             this.moduleListDisplay.addModule(module);
         }
-        updateFilteredArchivedModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     @Override
@@ -266,13 +279,12 @@ public class ModelManager implements Model {
     @Override
     public void unarchiveModule(Module target) {
         deleteArchivedModule(target);
-        addModule(target);
+        moduleList.addModule(target);
     }
     @Override
     public void displayArchivedModules() {
         isArchiveModuleOnDisplay = true;
         this.moduleListDisplay.resetData(archivedModuleList);
-        //mainList = filteredArchivedModules;
     }
     @Override
     public void displayNonArchivedModules() {
@@ -312,13 +324,24 @@ public class ModelManager implements Model {
     public void setContact(Contact target, Contact editedContact) {
         requireAllNonNull(target, editedContact);
 
-        contactList.setContact(target, editedContact);
+        contactList.setContacts(target, editedContact);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Contact} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Contact> getFilteredContactList() {
+        return filteredContacts;
     }
 
     @Override
-    public Path getContactListFilePath() {
-        return userPrefs.getContactListFilePath();
+    public void updateFilteredContactList(Predicate<Contact> predicate) {
+        requireNonNull(predicate);
+        filteredContacts.setPredicate(predicate);
     }
+
 
     @Override
     public void commitContactList() {
@@ -333,14 +356,14 @@ public class ModelManager implements Model {
     public void undoContactList() throws VersionedListException {
         assert accessPointer >= 0;
         versionedContactList.undo();
-        setContactList(versionedContactList.getCurrentContactList());
+        setContactList(versionedContactList);
     }
 
     @Override
     public void redoContactList() throws VersionedListException {
         assert accessPointer >= 0;
         versionedContactList.redo();
-        setContactList(versionedContactList.getCurrentContactList());
+        setContactList(versionedContactList);
     }
 
     //=========== Todo List =============================================================
@@ -393,14 +416,14 @@ public class ModelManager implements Model {
     public void undoTodoList() throws VersionedListException {
         assert accessPointer >= 0;
         versionedTodoList.undo();
-        setTodoList(versionedTodoList.getCurrentTodoList());
+        setTodoList(versionedTodoList);
     }
 
     @Override
     public void redoTodoList() throws VersionedListException {
         assert accessPointer >= 0;
         versionedTodoList.redo();
-        setTodoList(versionedTodoList.getCurrentTodoList());
+        setTodoList(versionedTodoList);
     }
 
     //=========== General =============================================================
@@ -464,48 +487,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
-        //filteredModules.setPredicate(predicate);
         filteredModulesDisplay.setPredicate(predicate);
-    }
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Module} backed by the internal list of
-     * {@code versionedModuleList}
-     */
-    @Override
-    public ObservableList<Module> getFilteredArchivedModuleList() {
-        return filteredArchivedModules;
-    }
-    @Override
-    public void updateFilteredArchivedModuleList(Predicate<Module> predicate) {
-        requireNonNull(predicate);
-        filteredArchivedModules.setPredicate(predicate);
-    }
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Module} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Module> getFilteredUnarchivedModuleList() {
-        return filteredModules;
-    }
-
-
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Contact} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Contact> getFilteredContactList() {
-        return filteredContacts;
-    }
-
-    @Override
-    public void updateFilteredContactList(Predicate<Contact> predicate) {
-        requireNonNull(predicate);
-        filteredContacts.setPredicate(predicate);
     }
 
     /**
@@ -613,14 +595,14 @@ public class ModelManager implements Model {
     public void undoEventList() throws VersionedListException {
         assert accessPointer >= 0;
         versionedEventList.undo();
-        setEventList(versionedEventList.getCurrentEventList());
+        setEventList(versionedEventList);
     }
 
     @Override
     public void redoEventList() throws VersionedListException {
         assert accessPointer >= 0;
         versionedEventList.redo();
-        setEventList(versionedEventList.getCurrentEventList());
+        setEventList(versionedEventList);
     }
 
     @Override
@@ -638,11 +620,12 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return moduleList.equals(other.moduleList)
+                && archivedModuleList.equals(other.archivedModuleList)
                 && contactList.equals(other.contactList)
                 && todoList.equals(other.todoList)
                 && eventList.equals(other.eventList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredModules.equals(other.filteredModules);
+                && filteredModulesDisplay.equals(other.filteredModulesDisplay);
     }
     private enum CommandType {
         NULL,

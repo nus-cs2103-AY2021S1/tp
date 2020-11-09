@@ -11,8 +11,8 @@ import java.util.Objects;
 public class EventTime {
     public static final String MESSAGE_CONSTRAINTS = "Invalid date and time entered. Please follow this format: "
             + System.lineSeparator() + "day-month-year 24h time (d-M-uuuu HHmm)";
+    public static final LocalDateTime NULL_VALUE = LocalDateTime.parse("2020-02-02T12:00");
     private static final DateTimeFormatter validDateFormat = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
-    private static final LocalDateTime nullValue = LocalDateTime.parse("2020-02-02T12:00");
     private final LocalDateTime start;
     private final LocalDateTime end;
 
@@ -20,8 +20,8 @@ public class EventTime {
      * Creates an EventTime object that stores the start and end time.
      */
     public EventTime() {
-        this.start = nullValue;
-        this.end = nullValue;
+        this.start = NULL_VALUE;
+        this.end = NULL_VALUE;
     }
 
     /**
@@ -41,7 +41,7 @@ public class EventTime {
      */
     public EventTime(LocalDateTime start) {
         this.start = start;
-        this.end = null;
+        this.end = NULL_VALUE;
     }
 
     /**
@@ -67,6 +67,7 @@ public class EventTime {
         return this.end;
     }
 
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
@@ -85,12 +86,8 @@ public class EventTime {
             return false;
         } else if (otherTime instanceof EventTime) {
             EventTime other = (EventTime) otherTime;
-            if (this.getEnd() == null) {
-                return this.getStart().isEqual(other.getStart());
-            } else {
-                return this.getStart().isEqual(other.getStart())
-                        && this.getEnd().isEqual(other.getEnd());
-            }
+            return this.getStart().isEqual(other.getStart())
+                    && this.getEnd().isEqual(other.getEnd());
         } else {
             return false;
         }
@@ -100,4 +97,5 @@ public class EventTime {
     public int hashCode() {
         return Objects.hash(this.start, this.end);
     }
+
 }

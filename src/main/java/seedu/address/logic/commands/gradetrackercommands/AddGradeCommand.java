@@ -26,7 +26,7 @@ public class AddGradeCommand extends Command {
             + PREFIX_GRADE + " GRADE "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2100 "
-            + PREFIX_GRADE + "0.90";
+            + PREFIX_GRADE + "90.00";
 
     public static final String MESSAGE_SUCCESS = "New grade %1$s added.";
     public static final String MESSAGE_GRADE_NOT_ADDED = "Module to add to not found.";
@@ -40,6 +40,7 @@ public class AddGradeCommand extends Command {
      * Creates an AddAssignmentCommand to add the specified {@code Grade}
      */
     public AddGradeCommand(ModuleName moduleToAdd, Grade grade) {
+        requireNonNull(moduleToAdd);
         requireNonNull(grade);
         logger.info("Adding a grade: " + grade.toString());
         this.moduleToAdd = moduleToAdd;
@@ -52,7 +53,7 @@ public class AddGradeCommand extends Command {
         Module module = null;
         List<Module> lastShownList = model.getFilteredModuleList();
         for (Module eachModule : lastShownList) {
-            if (eachModule.getName().fullName.equals(moduleToAdd)) {
+            if (eachModule.getName().equals(moduleToAdd)) {
                 module = eachModule;
                 break;
             }
@@ -60,14 +61,28 @@ public class AddGradeCommand extends Command {
         if (module == null) {
             throw new CommandException(MESSAGE_GRADE_NOT_ADDED);
         }
-        module.addGrade(gradeToAdd);
+        Module updatedModule = module.addGrade(gradeToAdd);
         logger.info("Grade has been added: " + gradeToAdd.toString());
+        model.setModule(module, updatedModule);
         model.commitModuleList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, gradeToAdd));
     }
 
     @Override
-    public boolean isExit() {
-        return false;
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddGradeCommand)) {
+            return false;
+        }
+
+        // state check
+        AddGradeCommand command = (AddGradeCommand) other;
+        return moduleToAdd.equals(command.moduleToAdd)
+                && gradeToAdd.equals(command.gradeToAdd);
     }
 }

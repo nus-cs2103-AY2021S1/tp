@@ -15,7 +15,6 @@ import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.event.Event;
-import seedu.address.model.exceptions.VersionedListException;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
 
@@ -50,6 +49,11 @@ public class ModelStub implements Model {
 
     @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setContactListFilePath(Path contactListFilePath) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -239,12 +243,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void undoEventList() throws VersionedListException {
+    public void undoEventList() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void redoEventList() throws VersionedListException {
+    public void redoEventList() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -357,21 +361,6 @@ public class ModelStub implements Model {
 
     @Override
     public void displayNonArchivedModules() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ObservableList<Module> getFilteredArchivedModuleList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ObservableList<Module> getFilteredUnarchivedModuleList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void updateFilteredArchivedModuleList(Predicate<Module> predicate) {
         throw new AssertionError("This method should not be called.");
     }
     @Override

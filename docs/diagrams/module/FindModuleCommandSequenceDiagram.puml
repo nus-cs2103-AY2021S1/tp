@@ -1,0 +1,74 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ModuleListParser" as ModuleListParser LOGIC_COLOR
+participant ":FindModuleParser" as FindModuleParser LOGIC_COLOR
+participant "c:FindModuleCommand" as FindModuleCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(findmodule)
+activate LogicManager
+
+LogicManager -> ModuleListParser : parseCommand(findmodule)
+activate ModuleListParser
+
+create FindModuleParser
+ModuleListParser -> FindModuleParser
+activate FindModuleParser
+
+FindModuleParser --> ModuleListParser
+deactivate FindModuleParser
+
+ModuleListParser -> FindModuleParser :parse(commandArgument)
+activate FindModuleParser
+
+ref over FindModuleParser: Create NameContainsKeywordsPredicate
+
+create FindModuleCommand
+FindModuleParser -> FindModuleCommand
+activate FindModuleCommand
+
+FindModuleCommand --> FindModuleParser: c
+deactivate FindModuleCommand
+
+FindModuleParser --> ModuleListParser: c
+deactivate FindModuleParser
+
+FindModuleParser -[hidden]-> FindModuleCommand
+destroy FindModuleParser
+
+ModuleListParser --> LogicManager: c
+deactivate ModuleListParser
+
+LogicManager -> FindModuleCommand : execute(model)
+activate FindModuleCommand
+
+FindModuleCommand -> Model : updateFilteredModuleList(NameContainsKeywordsPredicate)
+activate Model
+
+Model --> FindModuleCommand
+deactivate Model
+
+create CommandResult
+FindModuleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindModuleCommand: r
+deactivate CommandResult
+
+FindModuleCommand --> LogicManager: r
+deactivate FindModuleCommand
+
+FindModuleCommand -[hidden]-> LogicManager
+destroy FindModuleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
