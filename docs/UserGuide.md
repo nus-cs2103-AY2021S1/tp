@@ -787,7 +787,7 @@ Example:
      
     * You should see a screen similar to the screen below (Figure 25) when the above command is entered.
     
-    ![Adding a note](images/screenshots/Adding a note.png)
+    ![Adding a note](images/screenshots/AddingNote.png)
     <div align="center">Figure 25: After entering add note command</div><br>
 
 #### 3.5.2 Editing a note `note edit`
