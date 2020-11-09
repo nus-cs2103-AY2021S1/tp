@@ -328,7 +328,7 @@ The following activity diagram summarizes the scoping features when a user execu
   * Pros: Only need one status field in `Model`, and easy to extend.
   * Cons: When lower levels of `PERSON` is implemented, child scopes of `PROJECT` like `TASK` might be reused, but it is not easy to implement this.
 
-* **Altertative 2:** Keeps a status for every level.
+* **Alternative 2:** Keeps a status for every level.
   * Pros: Do not need a hierarchy understanding of all scopes anymore, and will solve the duplication problem in alternative 1.
   * Cons: Need several status field in `Model`, which may make the code more complicated and harder to extend. 
   
@@ -346,14 +346,15 @@ The new task command has to be prefixed with 'addtask' and include **some** of t
 
  *The system validates each field upon entry by the user, and failing the validation, will display to the user that the command failed, and requesting the user to try again.*
 
-Given below is an example usage scenario and how the add task and edit task mechanism behaves at each step.
+Given below is an example usage scenario of how the add task mechanism behaves at each step.
 
-After entering the project scope of a chosen project, the user enters the command to add a new task such as "addtask n/Create Person class tp/25 td/9-11-2020 00:00:00".
+After entering the project scope of a chosen project, the user enters the command to add a new task such as "addtask tn/Create Person class tp/25 td/9-11-2020 00:00:00".
 The command text is passed into `LogicManager` (an implementation of Logic) which passes the raw text into the `MainCatalogueParser` to validate the first command word, which in this case is `addtask`. A new instance of `AddTaskCommandParser` class is then created which proceeds to parse the various fields of the command. Any invalid fields such as invalid field prefixes or invalid format of data would throw an exception at this stage. 
 
 If the fields are all valid, a new `Task` object would be created and passed into the `AddTaskCommand` class. 
 
-Within the `AddTaskCommand` class, an instance of `AddTaskCommand` is created, along with an instance of the task created in the same class and this instance of `Command` is passed back to `LogicManager`.
+Within the `AddTaskCommand` class, an instance of `AddTaskCommand` is created, along with an instance of the task
+ is created in the same class and this instance of `Command` is passed back to `LogicManager`.
 
 LogicManager then calls the method `execute` of the `AddTaskCommand` which stores the task into the respective project's task list.
 
@@ -370,24 +371,24 @@ The diagram below gives a short overview on what happens when a user's input is 
    
 #### Design consideration:
 
-##### Aspect: Whether Task can be instantiated without filling up all attributes
+##### Aspect: Whether a Task object can be instantiated without filling up all of its attributes
 
 * **Alternative 1:** All fields must be filled up
-  * Pros: No ambiguity about a task, every information of task is standardised.
-  * Cons: The user may not know every aspect of a task such as the description, for example.
+  * Pros: No ambiguity regarding the task, all information of the task is standardised.
+  * Cons: The user may not know every aspect of a task such as the description.
 
-* **Alternative 2 (current choice):** Only some fields have to be filled up, such as name and progress.
-  * Pros: Task can be created without knowing all information of a task.
-  * Cons: Missing description and deadline of a task is confusing the assignees as editing is not feasible after too many tasks are created.
+* **Alternative 2 (current choice):** Only some fields have to be filled up (i.e. name and progress)
+  * Pros: Task can be created without knowing all the information of a task.
+  * Cons: Users might forget to input a deadline or description for the task which might cause trouble for the user when sorting or filtering his/her tasks as the system would not inform them they had no input a deadline or description for the task.
   
-##### Aspect: Whether all tasks in a project is special without duplication allowed
-* **Alternative 1:** All tasks are not special
-  * Pros: The name of a task might be general such as `Enhance GUI` to keep it short and simple rather than be specific such as `Changing the color of GUI, Resize the MainWindow, and ..` which is more likely to be task description
-  * Cons: The user may be confused by the list of tasks with same name without know its description
+##### Aspect: Whether all tasks in a project have to be unique
+* **Alternative 1:** Tasks in a project can be duplicated
+  * Pros: The user can keep the name of the task short and simple. For instance, two task could have the same name `Update UG` with differing task descriptions of `update UG with glossary` and `update UG with FAQ`.
+  * Cons: The user may be confused by the list of tasks with the same name and deadline or might have accidentally created two of the same task but only intended to create one.
 
-* **Alternative 2 (current choice):** Task is not allowed to be created with the same name and deadline as the existing task
-  * Pros: No repeated names of tasks are shown in the list
-  * Cons: Tasks with same description might be making no sense
+* **Alternative 2 (current choice):** A task is not allowed to be created with the same name and deadline as an existing task
+  * Pros: Tasks with the same name and deadline are very likely to be the same task and so will spare the user from accidentally keying in the same task twice.
+  * Cons: Tasks with the same name and deadline but with different descriptions are still not allowed to be created.
 
 ### Filtering feature
 
@@ -468,7 +469,7 @@ The following activity diagram summarizes what happens when a user executes a ta
   * Pros: The user always gets to see all the tasks every time (s)he enters the project.
   * Cons: The user have to filter everytime (s)he re-enters the same project if (s)he only wants to see tasks assigned to him/her.
 
-### New Teammate feature
+### New Person feature
 
 #### Implementation
 
@@ -478,7 +479,7 @@ The New Teammate created is added in the following places:
  - global static variable `allPeople` in the Person class 
  - within the project it was created for, in the associated Participation class
 
-The New Teammate command has to be prefixed with `addteammate` and include **all** of the following fields:
+The New Teammate command has to be prefixed with `addperson` and include **all** of the following fields:
  - `mn/` prefix followed by the name of the new teammate
  - `mg/` prefix followed by the teammate's Github User Name
  - `mp/` prefix followed by the phone number of the teammate
@@ -486,21 +487,26 @@ The New Teammate command has to be prefixed with `addteammate` and include **all
  - `ma/` prefix followed by the address of the teammate
  - *Each of the fields above is validated upon entry by the user, and failing the validation, will display to the user that the command failed, and requesting the user to try again.*
 
-The teammate is created in the project scope and assigned to that project. Further assignment of that user to other projects can be done in the scope of other projects.
+The teammate can be created in any scope. However, if created in the project scope, it is added to that project to be
+ come a teammate. The following explanation will detail `AddPerson` being executed in the project scope.
+ 
+ Once created in the project scope, the newly created person is added into that particular project.
+ Further assignment of a user to other projects can be done in the scope of other projects.
 
-Given below is an example usage scenario and how the `AddTeammate` mechanism behaves at each step:
+Given below is an example usage scenario and how the `AddPerson` mechanism behaves at each step:
 
 Step 1: The user enters `startproject 2` for example to start project 1 from the mainscreen.The user is greeted with the
  projects list on the left, and the description of the project in the centre.
 
 ![MainscreenUi](images/MainscreenUi.png)
 
-   *Figure 24: What the app looks like after 'start 2' command*
+   *Figure 24: What the app looks like after 'startproject 2' command*
 
-Step 2: The user enters a AddPerson command such as `addteammate mn/John Ivy mg/Ivydesign98 mp/82938281 me/imjon
-@gmail.com ma/13 Cupertino Loop`. The command text is passed into `LogicManager` (an implementation of Logic) which
+Step 2: The user enters a AddPerson command such as `addperson mn/John Ivy mg/Ivydesign98 mp/82938281 me/imjon@gmail
+.com ma/13 Cupertino Loop`.
+ The command text is passed into `LogicManager` (an implementation of Logic) which
  passes the raw text into the `MainCatalogueParser` to validate the first command word, which in this case is
-  `addperson`. A new instance of `TeammateCommandParser` class is then created which proceeds to parse the various
+  `addperson`. A new instance of `AddPersonCommandParser` is then created which proceeds to parse the various
    fields of the command. Any invalid fields such as invalid field prefixes or invalid format of data would throw an exception at this stage. 
 
 If the fields are all valid, a new `Person` object would be created in the same class and passed into the
@@ -509,14 +515,14 @@ If the fields are all valid, a new `Person` object would be created in the same 
 Within the `AddTeammateCommand` class, an instance of `AddPersonCommand` is created, along with an instance of the
  teammate created in the same class and this instance of `Command` is passed back to `LogicManager`.
 
-LogicManager then calls the method `execute` of the NewTeammateCommand which stores the teammate into the respective
+`LogicManager` then calls the method `execute` of the NewTeammateCommand which stores the teammate into the respective
  project's participation list, and for the project to be stored in the teammate's participation list. 
  While seeming to increase coupling, it however keeps both classes separate and would not break each other when something is changed.
 
 The diagram below summarises what is happening above with the help of a sequence diagram:
 ![AddPersonSequenceDiagramImage](images/AddPersonSequenceDiagram.png)
 
-   *Figure 25: Sequence Diagram of the 'addteammate' command*
+   *Figure 25: Sequence Diagram of the 'addperson' command*
 
 The diagram below gives a short overview on what happens when a user's input is received:
 
@@ -593,8 +599,8 @@ To illustrate, the object diagram below shows the how Project and Person classes
 
 **How Project and Person are associated**
     
-Project and Person cannot be directly linked, and hence are related in this manner to allow the Participation class to
- handle the association. If the instance of Participation is deleted for example, the Project and Person can still
+`Project` and `Person` cannot be directly linked, and hence are related in this manner to allow the `Participation` class to
+ handle the association. If the instance of `Participation` is deleted for example, the `Project` and `Person` can still
   exist, without an association between them.
 
 If the Git Username is valid, the `allPeople` list in Person (*which is a list of all persons, stored as a static
@@ -610,9 +616,9 @@ LogicManager then calls the method `execute` of the DeletePersonCommand which de
  
  ![DeletePersonActivityDiagram](images/DeletePersonActivityDiagram.png)
  
- #### Design consideration:
+#### Design consideration:
  
- ##### Aspect: Which scope deletion of a teammate should happen in.
+##### Aspect: Which scope deletion of a teammate should happen in.
  
  * **Alternative 1 (current choice):** Deletion should happen in the listperson scope.
    * Pros: All teammates can be viewed at once, and one can be selected for deletion there.
@@ -625,7 +631,7 @@ LogicManager then calls the method `execute` of the DeletePersonCommand which de
  * **Alternative 2:** Deletion should happen in the project scope.
    * Pros: A teammate can be deleted quickly.
    * Cons: It would be impossible to delete a teammate if all associations are deleted.
-   * Cons: User would have to know which project the temmate is associated and navigate there to delete it. 
+   * Cons: User would have to know which project the teammate is associated and navigate there to delete it. 
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -635,10 +641,10 @@ LogicManager then calls the method `execute` of the DeletePersonCommand which de
 ### Person management
 
 **Current implementation in the project:**
-Call `listpersons` and `startperson` command can start the view of `Person` dashboard, which summarizes the information of this person, including the projects, tasks that this person involved in.
+Call `listpersons` and `startperson` command to start the view of `Person` dashboard, which summarizes the information of this person, including the projects, tasks that this person involved in.
 
 **Extension features:**
-Allow more manipulations on persons after entered the view of `Person` dashboard, including filtering tasks, viewing task dashboards, etc.
+Allow for more manipulations on persons after entering the view of `Person` dashboard, including filtering tasks, viewing task dashboards, etc.
 
 **Extension guidelines:**
 The behaviors of managing persons would be similar to the behaviors of managing projects. Thus, it is possible to reuse the commands that are set for `PROJECT` or lower scope. There are two suggested approaches:
@@ -996,9 +1002,9 @@ should be able to accomplish most of the tasks faster using commands than using 
 * **Participation**: The class of an object that handles the relations between a Project object and Person Object.
 * **Scope**: The confines of when certain commands will work.
 * **Teammate**: A member of the user's team in a project.
-* **Person** A person that could be in any number of the user's team's projects.
-* **Project** A software project with a GitHub repository link and a deadline.
-* **Task** Something to be done for a project with a certain progress status.
+* **Person**: A person that could be in any number of the user's team's projects.
+* **Project**: A software project with a GitHub repository link and a deadline.
+* **Task**: Something to be done for a project with a certain progress status.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
