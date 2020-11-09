@@ -29,10 +29,10 @@ Given below are my contributions to the project.
     [#78](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/78)
 <div style="page-break-after: always;"></div>
 
-* **New Features(continued)**:
+* **New Features(more)**:
   * Added `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` command.
     * What it does : Allow a to set all ingredients' levels to different specified amounts for all available ingredients in a T-sugar stall.
-    * Justification : This is also a nice-to-have feature for the application. It enables expert users to conveniently set all available ingredients' levels in one single command.
+    * Justification : This is also a nice-to-have feature for the application. It enables expert users to conveniently set all available ingredients' levels in one line.
     * Related PR(s) (non-exhaustive):
     [#82](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/82)
   * Implemented Ingredient Tracker Graphic User Interface (GUI) and integrate the Ingredient Tracker to the _Main Window_.
@@ -42,12 +42,10 @@ Given below are my contributions to the project.
     [#146](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/146)
     [#152](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/152)
 * **Project management**:
-  * Added issues assigned to milestone v1.1, v1.2, 1.3 and v1.4.
-  * Managed v1.4 release on GitHub.
+  * Added issues assigned to milestone v1.1, v1.2, 1.3 and v1.4 and managed v1.4 release.
 * **Quality assurance**:
   * Took charge of overall testing of functionalities of tCheck.
-  * Monitored test cases written for all teammates.
-  * Reminded teammates to add tests when the test coverage is not satisfactory.
+  * Monitored test cases written for all teammates and reminded teammates to add tests.
 * **Documentation**:
   * AboutUs page:
     * Updated my information in the AboutUs page of the project website.
@@ -59,12 +57,7 @@ Given below are my contributions to the project.
     [#254](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/254)
     [#118](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/118)
   * Developer Guide:
-    * Added documentation for the section of use cases (UC03).
     * Added documentation and diagrams for commands to set ingredients' levels, use cases and manual testing instructions.
     * Added a diagram for the ingredient model.
     * Authored audience part in the introduction section and Glossary with others.
     [#91](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/91)
-* **Community involvement**:
-  * Offered non-trivial suggestions to pull requests reviewed and contributed to forum discussions.
-  * Related PR(s) (non-exhaustive):
-  [#252](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/252)
