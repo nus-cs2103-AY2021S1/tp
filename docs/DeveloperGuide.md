@@ -467,7 +467,7 @@ When extending ChopChop to include new commands, it is important to follow these
 #### 4.5.1&ensp;Current implementation
 
 The statistics feature keeps track of the recipes that were made and the ingredients that were consumed in the process.
-The feature spans across the 4 main components of the ChopChop.
+The feature spans across the 4 main components of ChopChop.
 It is mainly supported by `UsageList` and `Usage` in the Model component. `UsageList` and `Usage` are similar to `EntryBook` and `Entry` respectively in terms of their purpose.
 
 
