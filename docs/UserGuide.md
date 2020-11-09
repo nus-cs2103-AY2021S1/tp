@@ -552,6 +552,11 @@ To be implemented:
   Example of usage:
    * `addgrade n/CS2100 g/85` adds a grade of `85` to the module `CS2100`.
    
+   Expected Outcome: 
+     
+   ![AddGrade](images/GradeTracker/AddGrade.PNG)
+
+
 #### Calculating Cumulative Average Point(CAP): `calculatecap`
 
 Calculates the user's CAP based on completed modules
