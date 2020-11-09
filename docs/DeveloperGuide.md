@@ -993,12 +993,12 @@ should be able to accomplish most of the tasks faster using commands than using 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
-* **Teammate**: A person belonging to a project of the team leader's team.
 * **Participation**: The class of an object that handles the relations between a Project object and Person Object.
 * **Scope**: The confines of when certain commands will work.
-<!-- may add more: e.g. person, participation, start, user, index -->
-<!-- I dont think you need to clarify those terms as they are self explanatory -->
-
+* **Teammate**: A member of the user's team in a project.
+* **Person** A person that could be in any number of the user's team's projects.
+* **Project** A software project with a GitHub repository link and a deadline.
+* **Task** Something to be done for a project with a certain progress status.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
