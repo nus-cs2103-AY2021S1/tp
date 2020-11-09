@@ -2338,12 +2338,23 @@ Use case ends.
 2. User provides the module index and module lesson which the target zoom link belongs to.
 3. CAP5BUDDY deletes the zoom link from the module.
 4. CAP5BUDDY indicates that the zoom has been successfully deleted.
+ 
+  Use case ends.
 
 **Extensions**
 
   * 2a. CAP5BUDDY detects that the module index is invalid.
 
-
+    * 2a1. CAP5BUDDY displays an error message and informs the user of the invalid module index.
+        
+        Use case ends.
+        
+  * 2b. CAP5BUDDY detects that the module lesson is invalid.
+  
+    * 2b1. CAP5BUDDY displays an error message and informs the user of the invalid module lesson.
+    
+       Use case ends.
+        
 
 ## Contact list use cases
 
