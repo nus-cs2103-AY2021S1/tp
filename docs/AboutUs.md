@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `ktaekwon000 [at] gmail dot com`.
 
 ## Project team
 
@@ -29,7 +29,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: UI
 
-### Taekwon Kim
+### Kim Tae Kwon
 
 <img src="images/ktaekwon000.png" width="200px">
 
@@ -39,7 +39,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Deliverables and Deadlines
 
-### Geon Sik Moon
+### Moon Geon Sik
 
 <img src="images/gsmoon97.png" width="200px">
 
