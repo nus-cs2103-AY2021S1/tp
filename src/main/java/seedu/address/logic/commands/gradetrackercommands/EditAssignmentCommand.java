@@ -25,6 +25,10 @@ import seedu.address.model.module.grade.AssignmentPercentage;
 import seedu.address.model.module.grade.AssignmentResult;
 import seedu.address.model.module.grade.GradeTracker;
 
+/**
+ * Encapsulates methods and information to edit the assignment stored in a gradetracker of a module
+ * with the specified details.
+ */
 public class EditAssignmentCommand extends Command {
     public static final String COMMAND_WORD = "editassignment";
 

@@ -23,6 +23,9 @@ import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventTime;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Represents the EditEventCommand.
+ */
 public class EditEventCommand extends Command {
 
     public static final String COMMAND_WORD = "editevent";

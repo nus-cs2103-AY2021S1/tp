@@ -22,6 +22,9 @@ import seedu.address.model.event.EventNameContainsKeyWordsPredicate;
 import seedu.address.model.event.FindEventCriteria;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Parses input arguments and creates a new FindEventParser object.
+ */
 public class FindEventParser implements Parser<FindEventCommand> {
     @Override
     public FindEventCommand parse(String userInput) throws ParseException {

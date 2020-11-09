@@ -11,6 +11,9 @@ import javafx.collections.ObservableList;
 import seedu.address.model.contact.exceptions.ContactNotFoundException;
 import seedu.address.model.contact.exceptions.DuplicateContactException;
 
+/**
+ * Represents a list of unique events.
+ */
 public class UniqueEventList implements Iterable<Event> {
 
     private final ObservableList<Event> internalList = FXCollections.observableArrayList();

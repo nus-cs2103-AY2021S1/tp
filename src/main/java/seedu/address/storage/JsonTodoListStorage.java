@@ -14,6 +14,9 @@ import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyTodoList;
 
+/**
+ * A class to access TodoList data stored as a json file on the hard disk.
+ */
 public class JsonTodoListStorage implements TodoListStorage {
     private static final Logger logger = LogsCenter.getLogger(JsonTodoListStorage.class);
     private Path filePath;

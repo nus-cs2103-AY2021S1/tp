@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * Represents the logic container for all the predicates to search for.
+ */
 public class FindEventCriteria {
     /**
      * List of predicates to be used to test for matching events.

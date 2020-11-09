@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.todolistcommands.AddTaskCommand;
 import seedu.address.logic.commands.todolistcommands.ClearTaskCommand;
 import seedu.address.logic.commands.todolistcommands.CompleteTaskCommand;
@@ -22,7 +23,6 @@ import seedu.address.logic.commands.todolistcommands.DeleteTaskCommand;
 import seedu.address.logic.commands.todolistcommands.EditTaskCommand;
 import seedu.address.logic.commands.todolistcommands.EditTaskDescriptor;
 import seedu.address.logic.commands.todolistcommands.FindTaskCommand;
-import seedu.address.logic.commands.todolistcommands.HelpTaskCommand;
 import seedu.address.logic.commands.todolistcommands.ListTaskCommand;
 import seedu.address.logic.commands.todolistcommands.ResetTaskCommand;
 import seedu.address.logic.commands.todolistcommands.SortTaskCommand;
@@ -99,19 +99,8 @@ public class TodoListParserTest {
     }
 
     @Test
-    public void parseCommand_help() throws Exception {
-        assertTrue(parser.parseCommand(HelpTaskCommand.COMMAND_WORD) instanceof HelpTaskCommand);
-    }
-
-    @Test
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListTaskCommand.COMMAND_WORD) instanceof ListTaskCommand);
-    }
-
-    @Test
-    public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                HelpTaskCommand.MESSAGE_USAGE), () -> parser.parseCommand(""));
     }
 
     @Test

@@ -15,6 +15,9 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleName;
 
+/**
+ * Parses input arguments and creates a new DeleteAssignmentParser object.
+ */
 public class DeleteAssignmentParser implements Parser<DeleteAssignmentCommand> {
 
     @Override

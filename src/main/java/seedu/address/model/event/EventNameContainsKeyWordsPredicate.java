@@ -5,6 +5,9 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 
+/**
+ * Represents a predicate that returns true for the given keyword.
+ */
 public class EventNameContainsKeyWordsPredicate implements Predicate<Event> {
     private final List<String> keywords;
 

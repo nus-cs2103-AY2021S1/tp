@@ -10,6 +10,9 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.grade.Assignment;
 
+/**
+ * Panel containing the list of Assignments.
+ */
 public class AssignmentPanel extends UiPart<Region> {
     private static final String FXML = "AssignmentPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(AssignmentPanel.class);

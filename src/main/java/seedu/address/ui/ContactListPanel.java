@@ -10,7 +10,9 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.contact.Contact;
 
-
+/**
+ * Panel containing the list of Contacts.
+ */
 public class ContactListPanel extends UiPart<Region> {
     private static final String FXML = "ContactListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ContactListPanel.class);
