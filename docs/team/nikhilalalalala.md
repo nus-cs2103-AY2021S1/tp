@@ -40,7 +40,7 @@ Given below are my contributions to the project.
 [RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=zoom&zA=Nikhilalalalala&zR=AY2021S1-CS2103T-W13-1%2Ftp%5Bmaster%5D&zACS=305.6120031176929&zS=2020-08-14&zFS=&zU=2020-10-30&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
 
 **Project management:**
-- Manages release for v1.2.1 (draft)
+- Managed release for v1.2.1 (draft)
 
 **Enhancements to existing features:**
 - User Guide
