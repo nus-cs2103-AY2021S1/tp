@@ -77,7 +77,7 @@ of the **XYZListPanel**.
 
 ![LogicClassDiagram](images/LogicClassDiagram.png)
 
-**API** : `Logic.java`
+**API** : [`Logic.java`]()
 
 1. `Logic` uses the `ParserManager` class to create the respective classes: `ModuleListParser`, `ContactListParser`, `TodoListParser`,
    `GradeTrackerParser` and `SchedulerParser` which will parse the user command.
@@ -2261,29 +2261,29 @@ testers are expected to do more *exploratory* testing.
 
 1. Prerequisites: List out all modules using the `listmodule` command. Multiple modules in the list.
 
-   1. Test case: `addzoom 1 n/lecture z/https://nus-sg.zoom.us/zoomlink`
+   1. Test case: `addzoom 1 n/lecture z/https://nus-sg.zoom.us/zoomlink` <br>
       Expected: A zoom link `https://nus-sg.zoom.us/zoomlink` for the module lesson `lecture` is added to the first module in the displayed module list.
                 Details of the newly created zoom link are shown in the status message.
 
-   1. Test case: `addzoom 0 n/lecture z/https://nus-sg.zoom.us/zoomlink`
+   1. Test case: `addzoom 0 n/lecture z/https://nus-sg.zoom.us/zoomlink` <br>
       Expected: No zoom link is added. Error message for invalid command format is shown in the status message.
       
-   1. Test case: `addzoom x n/lecture z/https://nus-sg.zoom.us/zoomlink` where `x` is larger than the module list size
+   1. Test case: `addzoom x n/lecture z/https://nus-sg.zoom.us/zoomlink` where `x` is larger than the module list size <br>
       Expected: No zoom link is added. Error message for invalid module index is shown in the status message.
 
-   1. Test case: `addzoom`
+   1. Test case: `addzoom` <br>
       Expected: No zoom link is added. Error message for invalid command format is shown in the status message.
    
-   1. Test case: `addzoom 1 n/*** z/https://nus-sg.zoom.us/zoomlink`
+   1. Test case: `addzoom 1 n/*** z/https://nus-sg.zoom.us/zoomlink` <br>
       Expected: No zoom link is added. Error message for invalid module lesson is shown in the status message.
    
-   1. Test case: `addzoom 1 n/lecture z/https://invalidzoomlink`
+   1. Test case: `addzoom 1 n/lecture z/https://invalidzoomlink` <br>
       Expected: No zoom link is added. Error message for invalid zoom link is shown in the status message.
    
-   1. Test case: `addzoom 1 n/lecture`
+   1. Test case: `addzoom 1 n/lecture` <br>
       Expected: No zoom link is added. Error message for invalid command format is shown in the status message.
 
-   1. Test case: `addzoom 1 z/https://nus-sg.zoom.us/zoomlink`
+   1. Test case: `addzoom 1 z/https://nus-sg.zoom.us/zoomlink` <br>
       Expected: No zoom link is added. Error message for invalid command format is shown in the status message.
 
 
@@ -2292,20 +2292,20 @@ testers are expected to do more *exploratory* testing.
 
 1. Prerequisites: List out all modules using the `listmodule` command. Multiple modules in the list.
 
-   1. Test case: `deletezoom 1 n/lecture`
+   1. Test case: `deletezoom 1 n/lecture` <br>
       Expected: Deletes the zoom link from the first module in the displayed module list for the module lesson `lecture`.
                 Details of the module lesson and module which the zoom link was deleted from are shown in the status message.
    
-   1. Test case: `deletezoom 0 n/lecture`
+   1. Test case: `deletezoom 0 n/lecture` <br>
       Expected: No zoom link is deleted. Error message for invalid command format is shown in the status message.
          
-   1. Test case: `deletezoom x n/lecture` where `x` is larger than the module list size
+   1. Test case: `deletezoom x n/lecture` where `x` is larger than the module list size <br>
       Expected: No zoom link is deleted. Error message for invalid module index is shown in the status message.
    
-   1. Test case: `deletezoom`
+   1. Test case: `deletezoom` <br>
       Expected: No zoom link is deleted. Error message for invalid command format is shown in the status message.
       
-   1. Test case: `deletezoom 1 n/***`
+   1. Test case: `deletezoom 1 n/***` <br>
       Expected: No zoom link is delete. Error message for invalid module lesson is shown in the status message.
    
    
@@ -2313,29 +2313,29 @@ testers are expected to do more *exploratory* testing.
    
 1. Prerequisites: List out all modules using the `listmodule` command. Multiple modules in the list.   
 
-   1. Test case: `editzoom 1 n/lecture z/https://nus-sg.zoom.us/newZoomLink`
+   1. Test case: `editzoom 1 n/lecture z/https://nus-sg.zoom.us/newZoomLink` <br>
       Expected: The zoom link for the module lesson `lecture` in the first module in the displayed module list is edited to `https://nus-sg.zoom.us/newZoomLink`.
                 Details of the newly created zoom link are shown in the status message.
    
-   1. Test case: `editzoom 0 n/lecture z/https://nus-sg.zoom.us/newZoomLink`
+   1. Test case: `editzoom 0 n/lecture z/https://nus-sg.zoom.us/newZoomLink` <br>
       Expected: No zoom link is edited. Error message for invalid command format is shown in the status message.
          
-   1. Test case: `editzoom x n/lecture z/https://nus-sg.zoom.us/newZoomLink` where `x` is larger than the module list size
+   1. Test case: `editzoom x n/lecture z/https://nus-sg.zoom.us/newZoomLink` where `x` is larger than the module list size <br>
       Expected: No zoom link is edited. Error message for invalid module index is shown in the status message.
    
-   1. Test case: `editzoom`
+   1. Test case: `editzoom` <br>
       Expected: No zoom link is edited. Error message for invalid command format is shown in the status message.
       
-   1. Test case: `editzoom 1 n/*** z/https://nus-sg.zoom.us/newZoomLink`
+   1. Test case: `editzoom 1 n/*** z/https://nus-sg.zoom.us/newZoomLink` <br>
       Expected: No zoom link is edited. Error message for invalid module lesson is shown in the status message.
       
-   1. Test case: `editzoom 1 n/lecture z/https://invalidzoomlink`
+   1. Test case: `editzoom 1 n/lecture z/https://invalidzoomlink` <br>
       Expected: No zoom link is edited. Error message for invalid zoom link is shown in the status message.
       
-   1. Test case: `editzoom 1 n/lecture`
+   1. Test case: `editzoom 1 n/lecture` <br>
       Expected: No zoom link is edited. Error message for invalid command format is shown in the status message.
    
-   1. Test case: `editzoom 1 z/https://nus-sg.zoom.us/newZoomLink`
+   1. Test case: `editzoom 1 z/https://nus-sg.zoom.us/newZoomLink` <br>
       Expected: No zoom link is added. Error message for invalid command format is shown in the status message.
 
 
@@ -2350,34 +2350,34 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
   
-   1. Test case: `addcontact n/john e/john@gmail.com`
+   1. Test case: `addcontact n/john e/john@gmail.com` <br>
       Expected: A contact with the name `john` and email `john@gmail.com` will be created. Details of the newly created contact are shown in the status message.
    
-   1. Test case: `addcontact n/john e/john@gmail.com te/@johndoe`
+   1. Test case: `addcontact n/john e/john@gmail.com te/@johndoe` <br>
       Expected: A contact with the name `john`, email `john@gmail.com` and telegram `@johndoe` will be created. Details of the newly created contact are shown in the status message.
 
-   1. Test case: `addcontact n/john e/john@gmail.com t/tag1 t/tag2`
+   1. Test case: `addcontact n/john e/john@gmail.com t/tag1 t/tag2` <br>
       Expected: A contact with the name `john`, email `john@gmail.com` and tags `tag1` and `tag2` will be created. Details of the newly created contact are shown in the status message.
 
-   1. Test case: `addcontact n/*** e/john@gmail.com`
+   1. Test case: `addcontact n/*** e/john@gmail.com` <br>
       Expected: The contact will not be created. Error message for invalid contact name is shown in the status message.
       
-   1. Test case: `addcontact n/john e/incorrectemail.com`
+   1. Test case: `addcontact n/john e/incorrectemail.com` <br>
       Expected: The contact will not be created. Error message for invalid contact email is shown in the status message.
       
-   1. Test case: `addcontact n/john e/john@gmail.com te/john`
+   1. Test case: `addcontact n/john e/john@gmail.com te/john` <br>
       Expected: The contact will not be created. Error message for invalid contact telegram is shown in the status message.
 
-   1. Test case: `addcontact n/john e/john@gmail.com t/&^*`
+   1. Test case: `addcontact n/john e/john@gmail.com t/&^*` <br>
       Expected: The contact will not be created. Error message for invalid contact tag is shown in the status message.
 
-   1. Test case: `addcontact`
+   1. Test case: `addcontact` <br>
       Expected: No contact will be created. Error message for invalid command format is shown in the status message.
    
-   1. Test case: `addcontact n/john`
+   1. Test case: `addcontact n/john` <br>
       Expected: No contact will be created. Error message for invalid command format is shown in the status message.
 
-   1. Test case: `addcontact e/john@gmail.com`
+   1. Test case: `addcontact e/john@gmail.com` <br>
       Expected: No contact will be created. Error message for invalid command format is shown in the status message.
 
 
@@ -2388,29 +2388,29 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
 
-   1. Test case: `deletecontact 1`
+   1. Test case: `deletecontact 1` <br>
       Expected: The first contact is deleted from the list. Details of the deleted contact shown in the status message.
       
-   1. Test case: `deletecontact 0`
+   1. Test case: `deletecontact 0` <br>
       Expected: No contact is deleted. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
 
-   1. Test case: `deletecontact x` where x is larger that the displayed contact list size
+   1. Test case: `deletecontact x` where x is larger that the displayed contact list size <br>
       Expected:  No contact is deleted. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
 
-   1. Test case: `deletecontact`
+   1. Test case: `deletecontact` <br>
       Expected: No contact is deleted. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
 
 2. Deleting a contact while some contacts are being shown
 
    1. Prerequisites: List out some contacts using the `findcontact` command. A few contacts in the list.
 
-   1. Test case: `deletecontact 1` (assuming there is at least one contact in the displayed contact list)
+   1. Test case: `deletecontact 1` (assuming there is at least one contact in the displayed contact list) <br>
       Expected: The first contact is deleted from the filtered contact list. Details of the deleted contact shown in the status message.
 
-   1. Test case: `deletecontact 0`
+   1. Test case: `deletecontact 0` <br>
       Expected: No contact is deleted. Error message for invalid command format shown in the status message. The contact list remains unchanged.  
    
-   1. Test case: `deletecontact x` where `x` is larger that the displayed contact list size
+   1. Test case: `deletecontact x` where `x` is larger that the displayed contact list size <br>
       Expected:  No contact is deleted. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
 
 
@@ -2420,41 +2420,41 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
 
-   1. Test case: `editcontact 1 n/john e/john@gmail.com`
+   1. Test case: `editcontact 1 n/john e/john@gmail.com` <br>
       Expected: The first contact in the displayed contact list will be edited with the name `john` and email `john@gmail.com`. 
                 Details of the newly edited contact are shown in the status message.
    
-   1. Test case: `editcontact 1 te/@johndoe`
+   1. Test case: `editcontact 1 te/@johndoe` <br>
       Expected: The first contact in the displayed contact list will be edited with the telegram `@johndoe`. 
                 Details of the newly edited contact are shown in the status message.             
    
-   1. Test case: `editcontact 1 te/tag1`
+   1. Test case: `editcontact 1 te/tag1` <br>
       Expected: The first contact in the displayed contact list will be edited with the tag `tag1`. 
                 Details of the newly edited contact are shown in the status message.
 
-   1. Test case: `editcontact 1 t/`
+   1. Test case: `editcontact 1 t/` <br>
       Expected: The first contact in the displayed contact list will be edited with all tags removed. 
                Details of the newly edited contact are shown in the status message.
 
-   1. Test case: `editcontact 1 n/***`
+   1. Test case: `editcontact 1 n/***` <br>
       Expected: The first contact will not be edited. Error message for invalid contact name is shown in the status message.
      
-   1. Test case: `editcontact e/incorrectemail.com`
+   1. Test case: `editcontact e/incorrectemail.com` <br>
       Expected: The first contact will not be edited. Error message for invalid contact email is shown in the status message.
         
-   1. Test case: `editcontact 1 te/john`
+   1. Test case: `editcontact 1 te/john` <br>
       Expected: The first contact will not be edited. Error message for invalid contact telegram is shown in the status message.
   
-  1. Test case: `editcontact 1 t/&^*`
+  1. Test case: `editcontact 1 t/&^*` <br>
      Expected: The first contact will not be edited. Error message for invalid contact tag is shown in the status message.
 
-  1. Test case: `editcontact 0 n/john`
+  1. Test case: `editcontact 0 n/john` <br>
      Expected: No contact is edited. Error message for invalid command format shown in the status message. The contact list remains unchanged.  
      
-  1. Test case: `editcontact x n/john` where `x` is larger that the displayed contact list size
+  1. Test case: `editcontact x n/john` where `x` is larger that the displayed contact list size <br>
      Expected: No contact is edited. Error message for invalid contact index shown in the status message. The contact list remains unchanged.  
 
-   1. Test case: `editcontact`
+   1. Test case: `editcontact` <br>
       Expected: No contact is edited. Error message for invalid command format shown in the status message. The contact list remains unchanged.  
 
 
@@ -2464,29 +2464,29 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
 
-   1. Test case: `findcontact n/john`
+   1. Test case: `findcontact n/john` <br>
       Expected: All contacts with their name containing the word `john` will be displayed in the contact list panel.
 
-   1. Test case: `findcontact t/friend`
+   1. Test case: `findcontact t/friend` <br>
       Expected: All contacts containing the tag `friend` will be displayed in the contact list panel.
 
-  1. Test case: `findcontact n/john t/friend`
+  1. Test case: `findcontact n/john t/friend` <br>
      Expected: All contacts which fulfil **all** the following criteria will be displayed in the contact list panel.
         
         * Contact name contains the word `john`
         
         * Contains the tag `friend`
 
-   1. Test case: `findcontact 1 t/john`
+   1. Test case: `findcontact 1 t/john` <br>
       Expected: No contact will be found. Error message for invalid command format shown in the status message. The displayed contact list remains unchanged.
    
-   1. Test case: `findcontact n/***`
+   1. Test case: `findcontact n/***` <br>
       Expected: No contact will be found. Error message for invalid contact name shown in the status message. The displayed contact list remains unchanged.
 
-   1. Test case: `findcontact t/$$`
+   1. Test case: `findcontact t/$$` <br>
       Expected: No contact will be found. Error message for invalid contact tag shown in the status message. The displayed contact list remains unchanged.
 
-   1. Test case: `findcontact`
+   1. Test case: `findcontact` <br>
       Expected: No contact will be found. Error message for invalid command format shown in the status message. The displayed contact list remains unchanged.
 
 
@@ -2496,7 +2496,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
 
-   1. Test case: `clearcontact`
+   1. Test case: `clearcontact` <br>
       Expected: All contacts cleared, displayed contact list should be empty.
 
 
@@ -2504,7 +2504,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List out some contacts using the `findcontact` command. A few contacts in the list.
    
-   1. Test case: `clearcontact`
+   1. Test case: `clearcontact` <br>
       Expected: All contacts cleared, displayed contact list should be empty.
 
 
@@ -2514,7 +2514,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List out all contacts using the `listcontact` command. Multiple contacts in the list.
 
-   1. Test case: `listcontact`
+   1. Test case: `listcontact` <br>
       Expected: Displayed contact list remains unchanged.
 
 
@@ -2522,7 +2522,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List out some contacts using the `findcontact` command. A few contacts in the list.
    
-   1. Test case: `listcontact`
+   1. Test case: `listcontact` <br>
       Expected: All contacts in the contact list are displayed.
 
 
@@ -2540,22 +2540,22 @@ testers are expected to do more *exploratory* testing.
 
 1. Prerequisites: List out all tasks using the `listtask` command. Multiple tasks in the list.
 
-   1. Test case: `findtask n/lab`
+   1. Test case: `findtask n/lab` <br>
       Expected: All tasks with their name containing the word `lab` will be displayed in the todolist panel.
 
-   1. Test case: `findtask t/easy`
+   1. Test case: `findtask t/easy` <br>
       Expected: All tasks containing the tag `easy` will be displayed in the todolist panel.
       
-   1. Test case: `findtask d/2020-01-01`
+   1. Test case: `findtask d/2020-01-01` <br>
       Expected: All tasks with the date `2020-01-01` will be displayed in the todolist panel.
       
-   1. Test case: `findtask p/high`
+   1. Test case: `findtask p/high` <br>
       Expected: All tasks with the priority `high` will be displayed in the todolist panel.
    
-   1. Test case: `findtask s/completed`
+   1. Test case: `findtask s/completed` <br>
       Expected: All tasks with the status `completed` will be displayed in the todolist panel.       
 
-   1. Test case: `findtask n/lab d/2020-01-01 p/high`
+   1. Test case: `findtask n/lab d/2020-01-01 p/high` <br>
       Expected: All tasks which fulfil **all** the following criteria will be displayed in the todolist panel.
         
         * Task name contains the word `lab`
@@ -2564,25 +2564,25 @@ testers are expected to do more *exploratory* testing.
         
         * Has the priority `high`
 
-   1. Test case: `findtask 1 t/easy`
+   1. Test case: `findtask 1 t/easy` <br>
       Expected: No task will be found. Error message for invalid command format shown in the status message. The displayed todolist remains unchanged.
    
-   1. Test case: `findtask n/***`
+   1. Test case: `findtask n/***` <br>
       Expected: No task will be found. Error message for invalid task name shown in the status message. The displayed todolist remains unchanged.
 
-   1. Test case: `findtask t/$$`
+   1. Test case: `findtask t/$$` <br>
       Expected: No task will be found. Error message for invalid task tag shown in the status message. The displayed todolist remains unchanged.
 
-   1. Test case: `findtask p/invalidPriority`
+   1. Test case: `findtask p/invalidPriority` <br>
       Expected: No task will be found. Error message for invalid task priority shown in the status message. The displayed todolist remains unchanged.
 
-   1. Test case: `findtask d/invalidDate`
+   1. Test case: `findtask d/invalidDate` <br>
       Expected: No task will be found. Error message for invalid task date shown in the status message. The displayed todolist remains unchanged.
    
-   1. Test case: `findtask s/invalidStatus`
+   1. Test case: `findtask s/invalidStatus` <br>
       Expected: No task will be found. Error message for invalid task status shown in the status message. The displayed todolist remains unchanged.
    
-   1. Test case: `findtask`
+   1. Test case: `findtask` <br>
       Expected: No task will be found. Error message for invalid command format shown in the status message. The displayed todolist remains unchanged.
 
 
