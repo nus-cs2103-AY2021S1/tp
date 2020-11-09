@@ -553,8 +553,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a flashcard
 
 1. Deleting a flashcard while all flashcards are being shown
@@ -569,6 +567,51 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+### Adding a flashcard
+
+1. Adding a flashcard while all flashcards are being shown
+
+   1. Test case: `add n/Testing d/Nothing p/High t/Sorting`<br>
+      Expected: New flashcard with name `Testing`, definition `Nothing`, priority `high`, and tag `Sorting` is added to
+      the bottom of the flashcard list. Details of the new flashcard are included in the status message.
+   
+   2. Test case: `add n/ d/sort slowly`
+      Expected: No flashcard is added. Error details are shown in the status message.
+
+### Editing a flashcard
+
+1. Editing a flashcard while all flashcards are being shown
+
+   1. Prerequisite: The flashcard list contains at least one flashcard. The first flashcard in the list does not have
+    the name `Testing`.
+
+   2. Test case: `edit 1 n/Testing`<br>
+      Expected: The name of the first flashcard in the list is changed to `Testing`.
+      
+   3. Test case: `edit -1 d/Wrong flashcard`<br>
+      Expected: No flashcard in the list is edited. Error details are shown in the status message.
+
+### Finding a flashcard
+
+1. Finding a flashcard while all flashcards are being shown
+
+   1. Prerequisite: The flashcard list contains at least one flashcard. One of the flashcards has the name `Quicksort`.
+   
+   2. Test case: `find n/Quicksort`
+      Expected: Only flashcards with the name `Quicksort` are displayed.
+      
+   3. Test case: `find`
+      Expected: The find command is not executed. Error details are displayed in the status message.
+
+
+### Sorting flashcards
+
+### Flipping flashcards
+
+### Starting a quiz attempt
+
+### Ending a quiz attempt
 
 ### Starting an attempt
 1. Starting an attempt while user is in quiz mode and has no an ongoing attempt.
@@ -614,7 +657,6 @@ testers are expected to do more *exploratory* testing.
    
    1. Test case: `end attempt`<br>
       Expected: Attempt ended and saved in performance. Success message shown in the status message.
-      
 
 ### Answering a question
 
@@ -679,6 +721,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. `DSAce.json`, the JSON file used to store flashcard data, contains the data for at least one flashcard. Delete
+    `"flashcards"` from the data for the first flashcard.
+     Expected: No flashcards are displayed in the app.
