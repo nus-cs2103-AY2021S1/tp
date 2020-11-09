@@ -768,7 +768,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User types in `delapp <index_of_applicant>`
+1. User types in `delapp INDEX`
+
 2. Eva removes the resume data from the applicant indicated. <br>
    Use case ends.
 
@@ -1061,7 +1062,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User types in `clear <list_type>`
+1. User types in `clear LIST_TYPE`
 2. Eva clears all entries. <br>
     Use case ends.
     
