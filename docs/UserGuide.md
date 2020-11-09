@@ -389,12 +389,8 @@ Format: `exit`
 ## Performance interface
 
 <div markdown="block" class="alert alert-info">
-<<<<<<< HEAD
 Only commands listed in this section are valid in the performance interface.
-=======
-* Command line below are only workable under perfomance interface.
-* New table of performance will pop out. Can be closed by clicking 'close' button of the window.
->>>>>>> 8ca0a28e6660fdd6c2842fd11c6e28ef4cdc5b66
+The performance interface is a separate window from the flashcard and quiz interfaces.
 </div>
 
 ### Listing past attempt results: `list`
