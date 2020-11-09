@@ -27,10 +27,10 @@
    --- 4.3.3 [Edit a module: `editMod`](#433-edit-a-module-editmod)<br>
    --- 4.3.4 [Find a module: `findMod`](#434-find-a-module-findmod)<br>
    4.4 [Tutorial Group Features](#44-tutorial-group-features)<br>
-   --- 4.4.1 [Add a tutorial group: `addTG`](#441-add-a-tutorial-group-to-a-module-addtg)<br>
-   --- 4.4.3 [Delete a tutorial group: `deleteTG`](#442-delete-a-tutorial-group-from-a-module-deletetg)<br>
-   --- 4.4.4 [Edit a Tutorial Group: `editTG`](#443-edit-a-tutorial-group-edittg)<br>
-   --- 4.4.2 [Find a tutorial group: `findTG`](#444-find-a-tutorial-group-findtg)<br>
+   --- 4.4.1 [Add a tutorial group: `addTG`](#441-add-a-tutorial-group-addtg)<br>
+   --- 4.4.2 [Delete a tutorial group: `deleteTG`](#442-delete-a-tutorial-group-deletetg)<br>
+   --- 4.4.3 [Edit a Tutorial Group: `editTG`](#443-edit-a-tutorial-group-edittg)<br>
+   --- 4.4.4 [Find a tutorial group: `findTG`](#444-find-a-tutorial-group-findtg)<br>
    4.5 [Student Features](#45-student-features)<br>
    --- 4.5.1 [Add a student: `addStudent`](#451-add-a-student-addstudent)<br>
    --- 4.5.2 [Delete a student: `deleteStudent`](#452-delete-a-student-deletestudent)<br>
@@ -127,7 +127,7 @@ Look for the file trackr.jar.
 4. Double-click trackr.jar to start the app. The GUI (Figure 3.1) should appear in a few seconds.
 
 ![Ui](images/Ui.png) <br>
-Figure 3.1 Trackr GUI
+Figure 3.1a Trackr GUI
 
 ### 3.2 Using Trackr
 __Trackr__ boasts many useful features to make using the app seamless and smooth. These include
@@ -136,7 +136,7 @@ type the command into the command box (see Figure 3.2) and press _Enter_ to exec
 all the commands are listed in [Section 4, "Features"](#4-features).
 
 ![CommandExample](images/CommandExample.png) <br>
-Figure 3.2 Command example
+Figure 3.2a Command example
 
 ### 3.3 Switching Views
 __Trackr__ allows you to switch the current view from Module View (Figure 3.3.1) to Tutorial Group View (Figure 3.3.2)
@@ -146,13 +146,13 @@ Module View. This is achieved using `prevView`. The correct syntax for these com
 [Section 4, "Features"](#4-features). The top of the app shows the view you are currently in.
 
 ![ModuleView](images/ModuleView.png) <br>
-Figure 3.3.1 Module View
+Figure 3.3a Module View
 
 ![TutorialGroupView](images/TutorialGroupView.png) <br>
-Figure 3.3.2 Tutorial Group View
+Figure 3.3b Tutorial Group View
 
 ![StudentView](images/StudentView.png) <br>
-Figure 3.3.3 Student view
+Figure 3.3c Student view
 
 
 ## 4. Features
@@ -174,6 +174,8 @@ Expected Outcome:
 
 ![HelpCommand](images/HelpCommand.png)
 
+Figure 4.1.1a Expected outcome of performing the `help` command
+
 #### 4.1.2 Clear Trackr: `clear`
 Clears all data inside Trackr.
 
@@ -190,6 +192,8 @@ Example: `clear`
 Expected Outcome:
 
 ![ClearCommand](images/ClearCommand.png)
+
+Figure 4.1.2a Expected outcome of performing the `clear` command
 
 #### 4.1.3 Exit Trackr: `exit`
 Exits Trackr and automatically saves the data.
@@ -221,6 +225,8 @@ Expected Outcome:
 
 ![ListModuleCommand](images/ListModuleCommand.png)
 
+Figure 4.2.1a Expected outcome of performing the `listMod` command
+
 #### 4.2.2 View all tutorial groups in a module: `viewTG`
 Shows the tutorial group list of a target module.
 
@@ -235,7 +241,10 @@ Example:
     - `viewTG 1`
 
 Expected Outcome:
+
 ![ViewTgCommand](images/ViewTutorialGroupCommand.png)
+
+Figure 4.2.2a Expected outcome of performing the `viewTG` command
 
 #### 4.2.3 List all Tutorial Groups in the current Module: `listTG`
 Lists all tutorial groups in the Tutorial Group view.
@@ -251,7 +260,10 @@ Example:
     - `listTG`
 
 Expected Outcome:
+
 ![ListTgCommand](images/ListTutorialGroupCommand.png)
+
+Figure 4.2.3a Expected outcome of performing the `listTG` command
 
 #### 4.2.4 View all students in a tutorial group: `viewStudent`
 Shows the student list of a target tutorial group.
@@ -268,7 +280,10 @@ Example:
     
 
 Expected Outcome:
+
 ![ViewStudentCommand](images/ViewStudentCommand.png)
+
+Figure 4.2.4a Expected outcome of performing the `viewStudent` command
 
 #### 4.2.5 List all students in a tutorial group: `listStudent`
 Lists all students in the Student view.
@@ -284,7 +299,10 @@ Example:
     - `listStudent`
 
 Expected Outcome:
+
 ![ListStudentCommand](images/ListStudentCommand.png)
+
+Figure 4.2.5a Expected outcome of performing the `listStudent` command
 
 #### 4.2.6 Return to previous view: `prevView`
 Returns to the previous view.
@@ -298,6 +316,8 @@ Format: `prevView`
 Example: `prevView`
 
 ![PrevViewCommand](images/PrevViewCommand.png)
+
+Figure 4.2.6a Expected outcome of performing the `prevView` command
 
 ### 4.3 Module Features
 
@@ -323,6 +343,8 @@ Expected Outcome:
 
 ![AddModuleCommand](images/AddModuleCommand.png)
 
+Figure 4.3.1a Expected outcome of performing the `addMod` command
+
 #### 4.3.2 Delete a module: `deleteMod`
 
 Deletes a module based on the given `INDEX`
@@ -342,6 +364,8 @@ Example:
 Expected Outcome:
 
 ![DeleteModuleCommand](images/DeleteModuleCommand.png)
+
+Figure 4.3.2a Expected outcome of performing the `deleteMod` command
     
 #### 4.3.3 Edit a module: `editMod`
 
@@ -363,6 +387,8 @@ Example:
 Expected Outcome:
 
 ![EditModuleCommand](images/EditMod.png)
+
+Figure 4.3.3a Expected outcome of performing the `editMod` command
 
 #### 4.3.4 Find a module: `findMod`
 
@@ -387,6 +413,8 @@ Expected Outcome:
 
 ![FindModuleCommand](images/FindModuleCommand.png)
 
+Figure 4.3.4a Expected outcome of performing the `findMod` command
+
 
 ### 4.4 Tutorial Group Features
 
@@ -404,7 +432,7 @@ Format: `addTG tg/TG_CODE day/DAY_OF_WEEK start/START_TIME end/END_TIME`
 > - `TG_CODE`, `DAY_OF_WEEK`, `START_TIME` and `END_TIME` should not be blank.
 > - `TG_CODE` should only contain alphanumeric characters.
 > - `DAY_OF_WEEK` should only be one of MON/TUE/WED/THU/FRI.
-> - `START_TIME` and `END_TIME` should be in the form of HH:MM.
+> - `START_TIME` and `END_TIME` should be in the form of 24HR format HH:MM.
 
 Example: 
 - Adds a tutorial group _T03_ that takes place every _MON_ from _08:00_ to _10:00_ to the tutorial group list.
@@ -412,7 +440,9 @@ Example:
 
 Expected Outcome:
 
-![AddTutorialGroupCommand](images/addTG.png)
+![AddTutorialGroupCommand](images/addTG.PNG)
+
+Figure 4.4.1a Expected outcome of performing the `addTG` command
 
 #### 4.4.2 Delete a tutorial group: `deleteTG`
 Deletes a tutorial group based on the given `INDEX`
@@ -431,7 +461,9 @@ Example:
 
 Expected Outcome:
 
-![DeleteTutorialGroupCommand](images/deleteTG.png)
+![DeleteTutorialGroupCommand](images/deleteTG.PNG)
+
+Figure 4.4.2a Expected outcome of performing the `deleteTG` command
 
 #### 4.4.3 Edit a Tutorial Group: `editTG`
 Edits a module with the provided details.
@@ -452,7 +484,9 @@ Example:
 
 Expected Outcome:
 
-![EditTutorialGroupCommand](images/editTG.png)
+![EditTutorialGroupCommand](images/editTG.PNG)
+
+Figure 4.4.3a Expected outcome of performing the `editTG` command
 
 #### 4.4.4 Find a tutorial group: `findTG`
 Finds and lists all tutorial groups in the current Tutorial Group view whose tutorial group code contains any of the given keywords.
@@ -464,17 +498,18 @@ Format: `findTG KEYWORD`
 > - `KEYWORD` is not case-sensitive (e.g. _t05_ will match _T05_).
 > - The search will look for matches, including partial match, in the tutorial group's code (e.g. _t_ will match _T05_,
 however, _t5_ will not match _T05_).
-> - If no tutorial group matching the keyword is found, the Tutorial Group view will be empty.
+> - If no tutorial groups matching the keyword are found, the Tutorial Group view will be empty.
 
 Example: 
 - Finds a tutorial group with `KEYWORD` _T03_.
 
     - `findTG T03`
-    
 
 Expected Outcome:
 
-![FindTutorialGroupCommand](images/findTG.png)
+![FindTutorialGroupCommand](images/findTG.PNG)
+
+Figure 4.4.4a Expected outcome of performing the `findTG` command
 
 ### 4.5 Student Features
 
@@ -497,12 +532,14 @@ Format: `addStudent n/NAME p/PHONE e/EMAIL id/STUDENT_ID [t/TAG]...`
 Example:
 
 - Adds a student called _John Tan_ with phone number _81234567_, email _johntan@u.nus.edu_, student id _A1234567X_
-and tag _student_ to the current tutorial group in view.
+and tag _student_ to the student list.
   - `addStudent n/John Tan p/81234567 e/johntan@u.nus.edu id/A1234567X t/student`
 
 Expected Outcome:
 
 ![AddStudentCommand](images/AddStudentCommand.png)
+
+Figure 4.5.1a Expected outcome of performing the `addStudent` command
 
 #### 4.5.2 Delete a student: `deleteStudent`
 
@@ -524,6 +561,8 @@ Example:
 Expected Outcome:
 
 ![DeleteStudentCommand](images/DeleteStudentCommand.png)
+
+Figure 4.5.2a Expected outcome of performing the `deleteStudent` command
 
 #### 4.5.3 Edit a student: `editStudent`
 
@@ -549,6 +588,8 @@ Expected Outcome:
 
 ![EditStudentCommand](images/EditStudentCommand.png)
 
+Figure 4.5.3a Expected outcome of performing the `editStudent`command
+
 #### 4.5.4 Find a student: `findStudent`
 
 Finds and lists all students in the current Student view whose name contains any of the given keywords.
@@ -571,6 +612,8 @@ Example:
 Expected Outcome:
 
 ![FindStudentCommand](images/FindStudentCommand.png)
+
+Figure 4.5.4a Expected outcome of performing the `findStudent` command
 
 ### 4.6 Attendance Features
 
@@ -596,6 +639,8 @@ Expected Outcome:
 
 ![AddAttendanceCommand](images/AddAttendanceCommand.png)
 
+Figure 4.6.1a Expected outcome of performing the `addAttendance` command
+
 #### 4.6.2 Delete attendance: `deleteAttendance`
 
 Deletes the attendance of a student for specific week(s). Can also be seen as marking a student as 'absent' for specific week(s).
@@ -618,6 +663,8 @@ Expected Outcome:
 
 ![DeleteAttendanceCommand](images/DeleteAttendanceCommand.png)
 
+Figure 4.6.2a Expected outcome of performing the `deleteAttendance` command
+
 #### 4.6.3 View all attendance of a student: `viewAttendance`
 
 Shows the attendance of target student by specifying the week(s) that the student has attended.
@@ -635,7 +682,10 @@ Example:
   - `viewAttendance 1`
 
 Expected Outcome:
+
 ![ViewAttendanceCommand](images/ViewAttendanceCommand.png)
+
+Figure 4.6.3a Expected outcome of performing the `viewAttendance` command
 
 #### 4.6.4 Show students who fall below an attendance score: `attendanceBelow`
 
@@ -655,7 +705,10 @@ Example:
   - `attendanceBelow 5`
 
 Expected Outcome:
+
 ![AttendanceBelowCommand](images/AttendanceBelowCommand.png)
+
+Figure 4.6.4a Expected outcome of performing the `attendanceBelow` command
 
 #### 4.6.5 Edit a student's participation: `editParticipation`
 
@@ -677,7 +730,10 @@ Example:
   - `editParticipation 1 score/10`
 
 Expected Outcome:
+
 ![EditParticipationCommand](images/EditParticipationCommand.png)
+
+Figure 4.6.5a Expected outcome of performing the `editParticipation` command
 
 #### 4.6.6 Show students who fall below a participation score: `participationBelow`
 
@@ -697,8 +753,10 @@ Example:
   - `participationBelow 35`
 
 Expected Outcome:
+
 ![ParticipationBelowCommand](images/ParticipationBelowCommand.png)
 
+Figure 4.6.6a Expected outcome of performing the `participationBelow` command
 
 ## 5. FAQ
 __Q:__ Why did the command I input change colour from white to red? <br>
@@ -750,9 +808,11 @@ Command | Description | Compatible View
 
 Command | Description | Compatible View
 --------|--------|--------
-`addTG tg/TG_CODE` | Adds a Tutorial Group to a Module | TUTORIAL GROUP
-`findTG TARGET_TG_CODE` | Finds a Tutorial Group | TUTORIAL GROUP
-`deleteTG TG_INDEX` | Deletes a Tutorial Group from a Module | TUTORIAL GROUP
+`addTG tg/TG_CODE day/DAY_OF_WEEK start/START_TIME end/END_TIME` | Adds a Tutorial Group to a Module | TUTORIAL GROUP
+`deleteTG INDEX` | Deletes a Tutorial Group from a Module | TUTORIAL GROUP
+`editTG INDEX [tg/TG_CODE] [day/DAY_OF_WEEK] [start/START_TIME] [end/END_TIME] ` | Edits a Tutorial Group from a Module | TUTORIAL GROUP
+`findTG KEYWORD` | Finds all Tutorial Groups containing the keyword | TUTORIAL GROUP
+
 
 ### 6.5 Student Commands
 
