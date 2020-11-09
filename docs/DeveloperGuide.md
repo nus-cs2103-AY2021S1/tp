@@ -862,6 +862,7 @@ Similar to [UC03 (Delete a Client)](#uc03), but replace Client with Session.
 
 **MSS**
 
+ 1.  User requests to list Sessions.
  1.  FitEgo shows a list of Sessions.
  2.  User requests to filter the Session List by a period.
  3.  FitEgo filters the Session List according to the specified period and updates the title displayed.
@@ -877,7 +878,7 @@ Similar to [UC03 (Delete a Client)](#uc03), but replace Client with Session.
 
     * 2a1. FitEgo shows an error message.
 
-      Use case resumes at step 1.     
+      Use case resumes at step 2.     
 <br/>
 
 **Use case: UC10 Add a Schedule**
@@ -909,6 +910,7 @@ Use case ends.
 
 **MSS**
 
+ 1.  User requests to list Clients and Sessions.
  1.  FitEgo shows a list of Clients and list of Sessions.
  2.  User requests to edit a specific Schedule in the list. (i.e. updated Session index, update payment, update weight)
  3.  FitEgo edits the Schedule according to the specified details.
@@ -924,7 +926,7 @@ Use case ends.
 
     * 2a1. FitEgo shows an error message.
 
-      Use case resumes at step 1.
+      Use case resumes at step 2.
       
 <br/>
 
