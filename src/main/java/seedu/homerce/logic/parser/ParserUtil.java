@@ -33,8 +33,6 @@ import seedu.homerce.model.util.attributes.Title;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_DAY_FORMAT = "Day should contain only the first 3 letters of the day.";
-    public static final String MESSAGE_INVALID_DURATION = "Duration should be a number in hours.";
     public static final String MESSAGE_INVALID_MONTH = "Month should be a number between 1 - 12";
     public static final String MESSAGE_INVALID_YEAR = "Year should be a positive valid number";
     public static final int VALID_YEAR = 2020;
