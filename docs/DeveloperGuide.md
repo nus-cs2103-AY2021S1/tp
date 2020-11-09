@@ -809,7 +809,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User chooses to list recipes.
 2. User requests for the recipes.
-3. FRMS display the recipes.
+3. FRMS displays the recipes.
 4. FRMS displays a confirmation message.
 
     Use case ends.
@@ -875,7 +875,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS:**
 
-1. User chooses to make a recipes.
+1. User chooses to make a recipe.
 2. User provides the recipe to be made.
 3. FRMS makes the recipe.
 4. FRMS displays a confirmation message.
@@ -901,7 +901,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User chooses to list recipes recommendations.
 2. User requests for the recipes recommendations.
-3. FRMS display the recipes.
+3. FRMS displays the recipes.
 4. FRMS displays a confirmation message.
 
     Use case ends.
@@ -1092,16 +1092,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Should be able to add multiple recipes at once
-5. Should have autocompletion for commands
-6. Should be able to fuzzy search for recipes/food
-7. Should be able to manage recipes in a interactive manner (like Google Assistant)
-8. Should have input sanitisation
+4. Should be able to add multiple recipes at once.
+5. Should have autocompletion for commands.
+6. Should be able to fuzzy search for recipes/food.
+7. Should be able to manage recipes in a interactive manner (like Google Assistant).
+8. Should have input sanitisation.
 
 ### A.5&ensp;Glossary
 
 * **Mainstream OS:** Latest version of Windows, MacOS or any Linux distro
 * **Recipe:** List of ingredients and steps needed to cook a dish
+
 | Word/Phrase     | Meaning                                                                                                               |
 |-----------------|-----------------------------------------------------------------------------------------------------------------------|
 | Case Insensitive| Capitalisation is not considered, eg. `aAaAaAaA` and `aaaaaaaa` are the same when comparing case insensitively        |
@@ -1879,7 +1880,7 @@ With 10 being the baseline of AB3, we estimate the effort required to deliver th
 These are the components which have involved significant effort on our part to (re)implement, including significant new features as well as improvements and extensions to existing AB3 features.
 
 #### C.1.1&ensp;GUI
-The GUI of ChopChop was designed to provide a seamless User Experience(UX) for our users; besides adding data to ChopChop, our users are likely to be operating ChopChop while cooking. As such, our User Interface(UI) is designed to handle both mouse and cli inputs to enable users to navigate the application with ease regardless the setting.
+The GUI of ChopChop was designed to provide a seamless User Experience(UX) for our users; besides adding data to ChopChop, our users are likely to be operating ChopChop while cooking. As such, our User Interface(UI) is designed to handle both mouse and cli inputs to enable users to navigate the application with ease regardless the setting. This design diverges vastly from AB3's non-switchable pane, un-resizable, cli only dark-themed design.
 
 In addition, ChopChop's "tab" switching and resizable display ensures that our users have no issues viewing the information they need. This implementation of the GUI, as well as making the colors, fonts and shapes to mesh well together into a welcoming cooking application required significant hours of trial-and-error.
 
