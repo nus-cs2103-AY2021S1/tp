@@ -32,14 +32,13 @@ Given below are my contributions to the project.
                             [\#541](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/541)
                             [\#553](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/553)
                             [\#555](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/555)
-
 <div style="page-break-after: always;"></div>        
                       
 * **Enhancement:** Implemented contact list management feature. 
                    This feature includes the following functionalities: add contact, delete contact, edit contact, clear contact, list contact
   * **What it does:** This feature allows users to keep track of module related contacts while managing all their contact details.               
-  * **Justification:** This feature can enhance the product significantly as module related contacts are one of the most vital module information
-                   that users need to access on a regular basis. As users are enrolled in numerous lessons, the number of contacts to track can be overwhelming.                
+  * **Justification:** This feature enhances the product significantly as module contacts are vital information
+                   that users access on a regular basis. As users are enrolled in numerous lessons, the number of contacts to track can be overwhelming.                
   * **Highlights:**
     * This feature requires development in all the components of Cap 5 Buddy: `Logic`, `Model`, `Storage` and `Ui`. As such,
       in-depth analysis of how the components interacted with each other was required. Also, it provides flexibility for users 
@@ -71,10 +70,10 @@ Given below are my contributions to the project.
                    [\#621](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/621))
 * **Documentation**:
   * User Guide:
-    * Added documentation for contact list management features, zoom link management features and find task feature
+    * Added documentation for contact list features, zoom link features and find task feature
   * Developer Guide:
-    * Update documentation for the `Logic` component under design 
-    * Added implementation details of the contact list management feature, zoom link management feature and find task feature.
+    * Updated documentation for the `Logic` component
+    * Added implementation details of the contact list features, zoom link features and find task feature.
     * Added user stories, user cases
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#226](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/226), 
