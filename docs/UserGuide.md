@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-
+![Hospify logo](images/hospify/hospify_200x200.png)
 * Table of Contents
 {:toc}
 
@@ -631,11 +631,12 @@ Format: `exit`
 
 In this section, we will be looking at some of the frequently asked questions from our users.
 
+<div markdown="block" class="alert alert-info">
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the **data file** with the `hospify.json` 
 that is in the **data file** of your other computer.
 
-* **Step 1.** Go into the **data file** in the previous home directory of the **Hospify** app.\
+* **Step 1.** Go into the **data file** in the previous home directory of the **Hospify** app.<br />
 ![data file](images/faq/data_file.PNG)
 Figure 17.1.1 Go to the **Data File**
 
@@ -643,23 +644,25 @@ Figure 17.1.1 Go to the **Data File**
 the web and paste the `hospify.json` file in the **data file** of your new **Hospify** app.
 ![replace json file](images/faq/replace_json.PNG)
 Figure 17.1.2 Replace `hospify.json` file
+</div>
 
-**Q**: I cannot run the `JAR` file! How do I get the program to run?<br/>
+<div markdown="block" class="alert alert-info">
+**Q**: I cannot run the `JAR` file! How do I get the program to run?<br />
 **A**: Check if you have at least `Java 11` installed on your Computer.
 
-* On **Windows**\
+* On **Windows**
     
-    **Step 1.** Open up **Command Prompt** by searching for **command prompt** in the task bar shown below.\
-![windows search command prompt](images/faq/search_commandPrompt.PNG)\
-Figure 17.2.1 Windows search for command prompt\
+    **Step 1.** Open up **Command Prompt** by searching for **command prompt** in the task bar shown below.<br />
+![windows search command prompt](images/faq/search_commandPrompt.PNG)<br />
+Figure 17.2.1 Windows search for command prompt
     
-    **Step 2.** Type the command `java -version` to check for the version.
-![windows java version](images/faq/windows_javaVersion.PNG)\
+    **Step 2.** Type the command `java -version` to check for the version.<br />
+![windows java version](images/faq/windows_javaVersion.PNG)<br />
 Figure 17.2.2 Check windows java version
 
 <div markdown="block" class="alert alert-warning">
 **:warning: Important:** Ensure that the java version is at least `11`. If your version is less than `11`, 
-scroll down to the **:information_source: Notes** to the view the download link.
+scroll down to the **:information_source: Note** to the view the download link.
 
 After verifying that you have at least `java 11` installed, double click on the `hospify.jar` to run the app.
 
@@ -671,19 +674,19 @@ Figure 17.2.3 Running jar from windows prompt
 
 </div>
 
-* On **MAC**\
+* On **MAC**
 
-**Step 1.** Open up **Terminal** by searching for **terminal** in the search bar shown below.\
-![mac search bar](images/faq/mac_search.PNG)\
-Figure 17.2.4 mac search bar\
+**Step 1.** Open up **Terminal** by searching for **terminal** in the search bar shown below.<br />
+![mac search bar](images/faq/mac_search.PNG)<br />
+Figure 17.2.4 mac search bar
 
-**Step 2.** Type the command `java -version` to check for the version shown below.
-![mac java version](images/faq/mac_javaVersion.PNG)\
+**Step 2.** Type the command `java -version` to check for the version shown below.<br />
+![mac java version](images/faq/mac_javaVersion.PNG)<br />
 Figure 17.2.5 Mac java version command
 
 <div markdown="block" class="alert alert-warning">
 **:warning: Important:** Ensure that the java version is at least `11`. If your version is less than `11`,
-scroll down to the **:information_source: Notes** to the view the download link.
+scroll down to the **:information_source: Note** to the view the download link.
 
 After verifying that you have at least `java 11` installed, double click on the `hospify.jar` to run the app.
 
@@ -695,19 +698,25 @@ Figure 17.2.6 Running jar from Mac terminal
 </div>
 
 <div markdown="block" class="alert alert-primary">
-**:information_source: Notes:** If your java version is **less than 11**, download from
+**:information_source: Note:** If your java version is **less than 11**, download from
  the official Java website [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
 </div>
 
-**Q**: How do I get the latest version of **Hospify**?\
+</div>
+
+<div markdown="block" class="alert alert-info">
+**Q**: How do I get the latest version of **Hospify**?<br />
 **A**: As of the latest version, **Hospify** does not support updating within the application. In order to get the
- latest version, go to the **GitHub releases** [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases/tag/v1.3) to download the latest version.\
-![download jar](images/faq/download_jar.PNG)\
+ latest version, go to the **GitHub releases** 
+ [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases/tag/v1.3) to download the latest version.<br />
+![download jar](images/faq/download_jar.PNG)<br />
 Figure 17.3.1 Download latest jar file
+</div>
 
-**Q**: My question is not listed in the FAQ. What should I do?\
+<div markdown="block" class="alert alert-info">
+**Q**: My question is not listed in the FAQ. What should I do?<br />
 **A**: For inquires, please send email to our developer team at **hospify_enquiry@gmail.com**.
-
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 

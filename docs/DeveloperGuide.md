@@ -446,34 +446,59 @@ the `GUI` or `CLI`.
 * Using the `GUI`
     * **Sequence Diagram** for `GUI`\
 ![showApptGuiSequenceDiagram](images/showAppt/ShowApptGuiSequenceDiagram.png)
-        * Clicking on the Patient Card triggers the `onDoubleClick` controller which updates the 
-        static `AppointmentWindow`.
-        * The controller calls `AppointmentWindow#setAppointmentWindow(patient)` to update the information of the 
+        * Clicking on the Patient Card triggers the `PatientCard#onDoubleClick` controller which updates the 
+        static `AppointmentWindow` housed in MainWindow.
+        * The controller calls `MainWindow#setAppointmentWindow(patient)` to update the information of the 
         patient in `AppointmentWindow`. 
         * `AppointmentWindow` retrieves all the appointments of the patient and map the
-        appointment into a tableView before calling `AppointmentWindow#show()` to show the window. 
+        appointments into `AppointmentDescription`(s). The purpose of `AppointmentDescription` is
+         to format long strings, and make sure it looks good in the column of the tableView before calling 
+         `AppointmentWindow#show()` to show the window. 
 * Using the `CLI`\
 `ShowAppt` on the `CLI` is more complicated than using the `GUI` because we have to find the 
 patient and check if the NRIC entered is valid. On the `GUI`, we only have to use a controller 
 to check if the patient is clicked and show the `AppointmentWindow` on the click event.
     * **Sequence Diagram** for `CLI`\
 ![showApptCliSequenceDiagram](images/showAppt/ShowApptCliSequenceDiagram.png)
-**Brief Description**
-        1. The `MainWindow` takes in the command from the user in the `UI`.
-        1. `LogicManager` parses the command under `Logic`.
-        1. `ShowCommandparser` verifies the command is in the stipulated format.
-        1. `LogicManager` exceutes the command and updates the **filteredPersonList** which contains the patient found.
-        1. `MainWindow` in the `UI` then verifies if there is only **ONE** patient found. If not, 
-        `MainWindow` throws an error to the User.
-        1. `MainWindow` updates the patient found to the `AppointmentWindow` by calling `AppointmentWindow#setAppointmentWindow(patient)`.
-        1. `AppointmentWindow` retrieves the appointments of the Patient and map the appointments
-        into a TableView.
-        1. Finally, `MainWindow` shows the updated `AppointmentWindow` to the User.
+**Description**
+        1. The `MainWindow` takes in the String command from the user in the `UI`.
+        1. `MainWindow passes the String command to `LogicManager#execute()` under **Logic** showed in the Sequence Diagram.
+        1. `ShowCommandparser#parse()` verifies the command is in the stipulated format.
+        1. `LogicManager#execute()` executes the showAppt command.
+        1. `ShowApptCommand#execute()` then verifies if only **ONE** patient with the **NRIC** is found.
+         Otherwise, it throws a commandException which notifies the user about the exact error.
+        1. If the patient is found successfully, `ShowApptCommand#execute()` updates the patient found
+         to the `AppointmentWindow` housed in `MainWindow` by calling the static method 
+         `MainWindow#setAppointmentWindow(patient)`.
+        1. The `MainWindow` receives the command result from `LogicManager#execute()` and checks if the command is
+        requires `AppointmentWindow` to be shown by calling the `isShowAppointment()` method in the command result.
+        1. Finally, `MainWindow` shows the calls the `show()` method in `AppointmentWindow`.
+        1. The process in which the appointments are retrieved and rendered are similar to the `GUI` described above.
+        
 <div markdown="block" class="alert alert-warning">
 **:warning: Important:** AppointmentWindow is **STATIC** (i.e. only **ONE** instance of AppointmentWindow is allowed).
 This design is to prevent Users from opening multiple windows of the same patient and freezing the App.
 </div>
-        
+
+### 4.7 Help feature (by Peh Jun Siang)
+###### Overview:
+
+The Help window shows all the commands that are available to **Hospify**.
+
+###### Implementation:
+The process in which the `HelpWindow` is shown is similar to the [showApptCommand](#46-show-appointment-feature-by-peh-jun-siang)
+ using the **CLI**.
+
+The only **main differences** are,
+* The `HelpWindow` does not have a parser.
+* Instead of retrieving appointments, it retrieves the `COMMAND_USAGE` from each of the commands and render them
+into a `CommandDescription` similar to `AppointmentDescription` which is responsible from making the Strings look good
+in the `HelpWindow`.
+* `MainWindow#execute()` checks for `isHelpWindow()` and calls `HelpWindow#show()` instead of `AppointmentWindow#show()`.
+
+The process in which the `CommandDescription` are rendered into a tableView is identical 
+to [showApptCommand](#46-show-appointment-feature-by-peh-jun-siang).
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **5. Documentation, logging, testing, configuration, dev-ops**
