@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
@@ -14,7 +13,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.task.FindTaskCriteria;
-import seedu.address.model.task.Task;
 
 /**
  * Encapsulates methods and information to find and list all tasks in the todolist
@@ -36,8 +34,10 @@ public class FindTaskCommand extends Command {
 
     private final Logger logger = LogsCenter.getLogger(FindTaskCommand.class);
 
-    /** Predicate object used to test for matching tasks. */
-    private final Predicate<Task> predicate;
+    /**
+     * Predicate to test if a task matches all the search criteria.
+     */
+    private final FindTaskCriteria findTaskCriteria;
 
     /**
      * Creates and initialises a new FindTaskCommand object to find tasks that match all the
@@ -47,16 +47,16 @@ public class FindTaskCommand extends Command {
      */
     public FindTaskCommand(FindTaskCriteria findTaskCriteria) {
         requireNonNull(findTaskCriteria);
+        requireNonNull(findTaskCriteria.getFindTaskPredicate());
         logger.info("Executing FindTaskCommand");
-        this.predicate = findTaskCriteria.getFindTaskPredicate();
-        requireNonNull(predicate);
+        this.findTaskCriteria = findTaskCriteria;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredTodoList(predicate);
-        logger.info("The find task command has been executed");
+        model.updateFilteredTodoList(findTaskCriteria.getFindTaskPredicate());
+        logger.info("The result of executing the find task command has been displayed");
         return new CommandResult(
                 String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTodoList().size()));
     }
@@ -65,7 +65,7 @@ public class FindTaskCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindTaskCommand // instanceof handles nulls
-                && predicate.equals(((FindTaskCommand) other).predicate)); // state check
+                && findTaskCriteria.equals(((FindTaskCommand) other).findTaskCriteria)); // state check
     }
 
 }

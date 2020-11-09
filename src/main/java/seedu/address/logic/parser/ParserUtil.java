@@ -294,16 +294,10 @@ public class ParserUtil {
     public static Priority parseTaskPriority(String priority) throws ParseException {
         assert priority != null;
         String priorityAllUpperCase = priority.toUpperCase();
-        switch(priorityAllUpperCase) {
-        case("HIGH"):
-            return Priority.HIGH;
-        case("NORMAL"):
-            return Priority.NORMAL;
-        case("LOW"):
-            return Priority.LOW;
-        default:
+        if (!Priority.isValidPriority(priorityAllUpperCase)) {
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
+        return Priority.valueOf(priorityAllUpperCase);
     }
 
     /**
@@ -314,18 +308,18 @@ public class ParserUtil {
      */
     public static Status parseTaskStatus(String status) throws ParseException {
         assert status != null;
-        String statusInUpperCase = status.toUpperCase();
+        String statusAllUpperCase = status.toUpperCase();
+        String convertedStatus = status;
 
-        switch (statusInUpperCase) {
-        case ("COMPLETED"):
-            return Status.COMPLETED;
+        if (statusAllUpperCase.equals("INCOMPLETE")) {
+            convertedStatus = "NOT_COMPLETED";
+        }
 
-        case ("INCOMPLETE"):
-            return Status.NOT_COMPLETED;
-
-        default:
+        if (!Status.isValidStatus(convertedStatus)) {
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
+
+        return Status.valueOf(convertedStatus);
     }
 
     /**
@@ -351,18 +345,29 @@ public class ParserUtil {
     public static Criterion parseTaskCriterion(String criterion) throws ParseException {
         assert criterion != null;
         String criterionAllUpperCase = criterion.toUpperCase();
+        String convertedCriterion = criterionAllUpperCase;
+
         switch(criterionAllUpperCase) {
-        case("NAME"):
-            return Criterion.NAME;
-        case("DATE"):
-        case("DEADLINE"):
-            return Criterion.DATE;
-        case("PRIORITY"):
+        case("N"):
+            convertedCriterion = "NAME";
+            break;
+        case("P"):
         case("PRIO"):
-            return Criterion.PRIORITY;
+            convertedCriterion = "PRIORITY";
+            break;
+        case("D"):
+        case("DEADLINE"):
+            convertedCriterion = "DATE";
+            break;
         default:
+            break;
+        }
+
+        if (!Criterion.isValidCriterion(convertedCriterion)) {
             throw new ParseException(Criterion.MESSAGE_CONSTRAINTS);
         }
+
+        return Criterion.valueOf(convertedCriterion);
     }
 
     ///////////////////// Scheduler /////////////////////////////

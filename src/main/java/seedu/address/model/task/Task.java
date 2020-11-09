@@ -132,6 +132,10 @@ public class Task {
             return true;
         }
 
+        if (otherTask == null) {
+            return false;
+        }
+
         return getName().equals((otherTask.getName()));
     }
 
@@ -169,17 +173,6 @@ public class Task {
     }
 
     /**
-     * Returns true if this task has the specified tag(s).
-     *
-     * @param tag the specified tag
-     * @return true if this task has the specified tag(s)
-     */
-    public boolean hasSameTag(Set<Tag> tag) {
-        requireNonNull(this.tags);
-        return this.tags.equals(tag);
-    }
-
-    /**
      * Checks if two tasks are equal.
      * This defines a stronger equality between two tasks.
      *
@@ -201,7 +194,8 @@ public class Task {
             && otherTask.getTags().equals(getTags())
             && otherTask.getPriority().equals(getPriority())
             && otherTask.getDate().equals(getDate())
-            && otherTask.getStatus().equals(getStatus());
+            && otherTask.getStatus().equals(getStatus())
+            && otherTask.getDateCreated().equals(getDateCreated());
     }
 
     @Override
