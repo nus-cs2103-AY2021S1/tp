@@ -37,9 +37,9 @@ public class EditTaskCommand extends Command {
             + "by the index number used in the displayed task list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TASK_NAME + "TASKNAME] "
+            + "[" + PREFIX_TASK_NAME + "TASK NAME] "
             + "[" + PREFIX_TASK_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_DESCRIPTION + "TASKDESCRIPTION] "
+            + "[" + PREFIX_DESCRIPTION + "TASK DESCRIPTION] "
             + "[" + PREFIX_TASK_PROGRESS + "TASK PROGRESS]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TASK_DEADLINE + "29-02-2020 00:00:00 ";
@@ -76,12 +76,13 @@ public class EditTaskCommand extends Command {
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+        project.deleteTask(taskToEdit);
+
         if (!project.addTask(editedTask)) {
+            project.addTask(taskToEdit);
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        project.deleteTask(taskToEdit);
-        //        project.addTask(editedTask);
         if (editedTask.hasAnyAssignee()) {
             editedTask.getAssignees().forEach(assignee -> project.getParticipation(assignee).deleteTask(taskToEdit));
             editedTask.getAssignees().forEach(assignee -> project.getParticipation(assignee).addTask(editedTask));

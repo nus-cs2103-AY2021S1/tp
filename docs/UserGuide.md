@@ -638,5 +638,8 @@ Action | Format, Examples | Scope: | `PROJECT_LIST` | `PERSON_LIST` | `PROJECT` 
 # 5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
-* **Teammate**: A person belonging to a project of the team leader's team.
 * **Scope**: The confines of when certain commands will work.
+* **Teammate**: A member of the user's team in a particular project.
+* **Person** A person that could be in any number of the user's team's projects.
+* **Project** A software project with at least a GitHub repository link and a deadline.
+* **Task** Something to be done for a project with a certain progress status.

@@ -156,6 +156,21 @@ public class Task implements Comparable<Task> {
         return assignees.contains(assignee.getPerson().toString());
     }
 
+    public boolean hasAssigneeOfName(String assignee) {
+        return assignees.contains(assignee);
+    }
+
+    /**
+     * Removes the assignee with the given name.
+     *
+     * @param assignee username of the assignee to be removed from the task
+     */
+    public void removeAssigneeOfName(String assignee) {
+        if (hasAssigneeOfName(assignee)) {
+            assignees.remove(assignee);
+        }
+    }
+
     public boolean hasAnyAssignee() {
         return !assignees.isEmpty();
     }
