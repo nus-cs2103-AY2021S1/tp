@@ -641,5 +641,5 @@ Action | Format, Examples | Scope: | `PROJECT_LIST` | `PERSON_LIST` | `PROJECT` 
 * **Scope**: The confines of when certain commands will work.
 * **Teammate**: A member of the user's team in a project.
 * **Person** A person that could be in any number of the user's team's projects.
-* **Project** A software project with a GitHub repository link and a deadline.
+* **Project** A software project with at least a GitHub repository link and a deadline.
 * **Task** Something to be done for a project with a certain progress status.
