@@ -145,7 +145,7 @@ In this section, we will be highlighting some key features and how they are bein
 
 ### 4.1 Find by name or NRIC feature (by Cao Qin)
 
-The find feature enables users to find patients by specifying their names (anyone from their first name, middle name or last name) or Nric numbers.
+The find feature enables users to find patients by specifying their names (anyone from their first names, middle names or last names) or Nric numbers.
 
 #### 4.1.1 Implementation
 
@@ -153,9 +153,9 @@ The following are the changes made to achieve this feature:
 
 * A `KeywordPredicate` class is added under the `model/patient` package. 
 * `FindCommand` class is modified to keep a KeywordPredicate object as a filed.
-* `FindCommandParser` class is modified to parser both patients' name and nric number.
+* `FindCommandParser` class is modified to parser both patients' names and nric numbers.
 
-Given below is an example usage scenario of this feature using both name and Nric as inputs.
+Given below is a usage scenario of this feature using both name and Nric as inputs.
 
 Step 1. The user executes `add n/Alex Yeoh ic/S0000001A p/87438807 e/alexyeoh@example.com a/Blk 30 Geylang Street 29, #06-40 mr/www.sample.com/01` to add a patient named Alex Yeho and with a Nric number “S0000001A”.
 
@@ -169,7 +169,7 @@ Step 5. The user executes `find Alex S0000002A` command to find 2 patients: one 
 
 Step 6. The user executes `list` command to view the full list of patients.
 
-The sequence diagram below illustrates Logic and Model Components when the user executes `find Alex S0000002A` command as in Step 5. 
+The sequence diagram below illustrates the interaction between Logic and Model components when the user executes `find Alex S0000002A` command as in Step 5. 
 
 ![FindSequenceDiagram](images/UML_Diagrams/FindSequenceDiagram.png)
 
@@ -181,14 +181,14 @@ The sequence diagram below illustrates Logic and Model Components when the user 
 
 </div>
 
-In the **Logic** Component, after user inputs `find Alex S0000002A`, these are the key methods:
-* `LogicManager#execute("find Alex S0000002A")` : The `LogicManager` takes in the command text string ("find Alex S0000002").
-* `HospifyParser#parseCommand("find")` : The `HospifyParser` parses the users' input and recognizes the command word, "find", and a `FindCommand` is created.
-* `FindCommand#execute(model)` : The `FindCommand` uses the `updateFilteredPatientList` method of `Model` to update the displayed patients list and returns a `CommandResult` object which represents the result of a
+In the **Logic** Component, when user inputs `find Alex S0000002A`, these are the key methods invoked:
+* `LogicManager#execute("find Alex S0000002A")`: The `LogicManager` takes in the command text string ("find Alex S0000002").
+* `HospifyParser#parseCommand("find")`: The `HospifyParser` parses the users' input and recognizes the command word, "find", and a `FindCommand` is created.
+* `FindCommand#execute(model)`: The `FindCommand` uses the `updateFilteredPatientList` method of `Model` to update the displayed patients list and returns a `CommandResult` object which represents the result of a
 command execution.
 
-In the **Model** Component, the following key method is used:
-* `Model#updateFilteredPatientLis(predicate)` : `Model` uses this method to update the displayed patients list.
+In the **Model** Component, This is the key method invoked:
+* `Model#updateFilteredPatientLis(predicate)`: `Model` uses this method to update the displayed patients list.
 
 The following activity diagram summarizes what happens when the user inputs a find command.
 ![FindActivityDiagram](images/UML_Diagrams/findActivityDiagram.png)
@@ -209,19 +209,29 @@ The following activity diagram summarizes what happens when the user inputs a fi
 
 
 
-### 4.2 Medical Record feature (by Cedric Lim Jun Wei)
+### 4.2 Add Patient + Medical Record URL feature (by Cedric Lim Jun Wei)
 
 #### 4.2.1 Implementation
 
-This feature enables users to add medical records of patients by specifying a url containing his/her online medical record document. The following are the additions required for this feature:
+The Medical Record URL (MR URL) feature enables users to add medical records of patients by specifying a URL containing his/her online medical record document. The following are the additions required for this feature:
 
 * A `MedicalRecord` class is added under the `patient` package.
 * A new prefix `mr/` is created to be used with the `add` and `edit` command to allow users to specify the url.
 * A new `MR URL` button is added to individual patient's tab to allow users to copy the medical record url onto the system clipboard.
 
-Given below is an example usage scenario.
+To understand how the Medical Record feature can be used, let us take a look at how the `add` command is implemented first.
 
-Step 1. The user executes `add n/John Doe …​ mr/www.medicalrecorddoc.com/patients1234567` command to add patient John Doe in Hospify. The sequence diagram below illustrates how the operation of adding a patient works.
+1. After the input is entered by the user, the `LogicManager#execute(String commandText)` method calls the `HospifyParser#parseCommand(String userInput)` method for Hospify to parse and interpret the user input.
+
+2. Based on `add` command word, an `AddCommandParser` object is created and the `AddCommandParser#parse(String args)` method is called for the `AddCommandParser` to parse and interpret the arguments in the user input.
+
+3. Subsequently, an `AddCommand` object is created and returned as an output to the `LogicManager#execute(String commandText)` method.
+
+4. The `LogicManager#execute(String commandText)` method then calls upon the `AddCommand#execute(Model model)` method, which in turn calls the `Model#addPatient(Patient patient)` method to add the new patient into Hospify.
+
+5. Finally, a new `CommandResult` object is returned with a success message when the patient is added to Hospify.
+
+The sequence diagram below illustrates how the operation of adding a patient works.
 
 ![AddSequenceDiagramMR](images/UML_Diagrams/AddSequenceDiagramMR.png)<br>
 
@@ -231,16 +241,25 @@ Step 1. The user executes `add n/John Doe …​ mr/www.medicalrecorddoc.com/pat
 
 * The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
-* For simplicity, the complete user input for the `add` command is omitted, showing only the `mr/www.medicalrecorddoc.com/patients1234567` portion, which is further simplified to `mr/MR_URL` in the sequence diagram.
+* For simplicity, the complete line of user input for the `add` command is omitted, showing only the `mr/www.medicalrecorddoc.com/patients1234567` portion, which is further simplified to `mr/MR_URL` in the sequence diagram.
 
 * The `Patient` object created is shown as `toAdd` in the sequence diagram.
+
+* The steps above illustrates a typical successful execution of the `add` command. In the activity diagram below, we will summarise all possible outcomes of executing this command.
+
 </div>
 
-Step 2. The user now decides to access the medical record of patient John Doe and can then do so by clicking on the `MR URL` button located at the bottom right corner of the patient's tab.
+![AddActivityDiagramMR](images/UML_Diagrams/AddActivityDiagram.png)
+
+The `MR URL` is one the required fields that users must provide for the `add` command. Given below is an example usage scenario.
+
+Step 1. The user executes `add n/John Doe …​ mr/www.medicalrecorddoc.com/patients1234567` command to add patient `John Doe` in Hospify.
+
+Step 2. The user now decides to access the medical record of patient `John Doe` and can then do so by clicking on the `MR URL` button located at the bottom right corner of the patient's tab.
 
 In doing so, the `PatientCard#copyUrl()` is called on the mouse click and the link to the medical record url is copied to the system clipboard.
 
-Step 3. The user opens his/her preferred web browser and paste the url that was copied in step 2.
+Step 3. The user opens his/her preferred web browser and paste the url that was copied in step 2, and can then access the online medical record.
 
 The following activity diagram summarizes what happens when a user adds a new patient:
 
