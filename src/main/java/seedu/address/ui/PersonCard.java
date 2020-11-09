@@ -98,47 +98,12 @@ public class PersonCard extends UiPart<Region> {
      * It uses components from the PriorityIndicatorComponent Class.
      */
     private void setPriorityShape(Person person) {
-        switch (person.getPriority().value) {
-        case "low":
-            if (!person.getIsArchive()) {
-                priorityShape.setBorder(PriorityIndicatorComponent.UNARCHIVED_LOW_PRIORITY_BORDER);
-                priorityShape.setBackground(PriorityIndicatorComponent.UNARCHIVED_LOW_PRIORITY_BACKGROUND);
-            } else {
-                priorityShape.setBorder(PriorityIndicatorComponent.ARCHIVED_LOW_PRIORITY_BORDER);
-                priorityShape.setBackground(PriorityIndicatorComponent.ARCHIVED_LOW_PRIORITY_BACKGROUND);
-            }
-            break;
-        case "medium":
-            if (!person.getIsArchive()) {
-                priorityShape.setBorder(PriorityIndicatorComponent.UNARCHIVED_MEDIUM_PRIORITY_BORDER);
-                priorityShape.setBackground(PriorityIndicatorComponent.UNARCHIVED_MEDIUM_PRIORITY_BACKGROUND);
-            } else {
-                priorityShape.setBorder(PriorityIndicatorComponent.ARCHIVED_MEDIUM_PRIORITY_BORDER);
-                priorityShape.setBackground(PriorityIndicatorComponent.ARCHIVED_MEDIUM_PRIORITY_BACKGROUND);
-            }
-            break;
-        case "high":
-            if (!person.getIsArchive()) {
-                priorityShape.setBorder(PriorityIndicatorComponent.UNARCHIVED_HIGH_PRIORITY_BORDER);
-                priorityShape.setBackground(PriorityIndicatorComponent.UNARCHIVED_HIGH_PRIORITY_BACKGROUND);
-            } else {
-                priorityShape.setBorder(PriorityIndicatorComponent.ARCHIVED_HIGH_PRIORITY_BORDER);
-                priorityShape.setBackground(PriorityIndicatorComponent.ARCHIVED_HIGH_PRIORITY_BACKGROUND);
-            }
-            break;
-        case "undefined":
-            if (!person.getIsArchive()) {
-                priorityShape.setBorder(PriorityIndicatorComponent.UNARCHIVED_UNDEFINED_PRIORITY_BORDER);
-                priorityShape.setBackground(PriorityIndicatorComponent.UNARCHIVED_UNDEFINED_PRIORITY_BACKGROUND);
-            } else {
-                priorityShape.setBorder(PriorityIndicatorComponent.ARCHIVED_UNDEFINED_PRIORITY_BORDER);
-                priorityShape.setBackground(PriorityIndicatorComponent.ARCHIVED_UNDEFINED_PRIORITY_BACKGROUND);
-            }
-            break;
-        default:
-            assert false : "priority shape UI cannot find priority keyword";
-            break;
-        }
+        boolean isArchive = person.getIsArchive();
+        String priority = person.getPriority().value;
+        priorityShape.setBorder(
+                PriorityIndicatorComponent.getBorder(isArchive, priority));
+        priorityShape.setBackground(
+                PriorityIndicatorComponent.getBackground(isArchive, priority));
     }
 
     @Override

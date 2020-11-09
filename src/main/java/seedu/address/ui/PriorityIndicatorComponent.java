@@ -16,92 +16,83 @@ import javafx.scene.layout.CornerRadii;
 public class PriorityIndicatorComponent {
     public static final int BORDER_SIZE = 5;
 
-    public static final Border UNARCHIVED_LOW_PRIORITY_BORDER = new Border(new BorderStroke(
-            ColorPicker.TURQUOISE_BORDER,
-            BorderStrokeStyle.SOLID,
-            CornerRadii.EMPTY,
-            new BorderWidths(BORDER_SIZE)));
+    public static Border getBorder(Boolean isArchive, String priority) {
+        if (isArchive) {
+            switch (priority) {
+            case "undefined":
+                return createBorder(ColorPicker.WHITE_BORDER_DARK);
+            case "low":
+                return createBorder(ColorPicker.TURQUOISE_BORDER_DARK);
+            case "medium":
+                return createBorder(ColorPicker.ORANGE_BORDER_DARK);
+            case "high":
+                return createBorder(ColorPicker.RED_BORDER_DARK);
+            default:
+                assert false : "Border priority not found";
+                return null;
+            }
+        } else {
+            switch (priority) {
+            case "undefined":
+                return createBorder(ColorPicker.WHITE_BORDER);
+            case "low":
+                return createBorder(ColorPicker.TURQUOISE_BORDER);
+            case "medium":
+                return createBorder(ColorPicker.ORANGE_BORDER);
+            case "high":
+                return createBorder(ColorPicker.RED_BORDER);
+            default:
+                assert false : "Border priority not found";
+                return null;
+            }
+        }
+    }
 
-    public static final Background UNARCHIVED_LOW_PRIORITY_BACKGROUND = new Background(new BackgroundFill(
-            ColorPicker.TURQUOISE,
-            CornerRadii.EMPTY,
-            Insets.EMPTY));
+    private static Border createBorder(javafx.scene.paint.Paint color) {
+        return new Border(new BorderStroke(
+                color,
+                BorderStrokeStyle.SOLID,
+                CornerRadii.EMPTY,
+                new BorderWidths(BORDER_SIZE)));
+    }
 
-    public static final Border ARCHIVED_LOW_PRIORITY_BORDER = new Border(new BorderStroke(
-            ColorPicker.TURQUOISE_BORDER_DARK,
-            BorderStrokeStyle.SOLID,
-            CornerRadii.EMPTY,
-            new BorderWidths(BORDER_SIZE)));
+    public static Background getBackground(Boolean isArchive, String priority) {
+        if (isArchive) {
+            switch (priority) {
+            case "undefined":
+                return createBackground(ColorPicker.WHITE_DARK);
+            case "low":
+                return createBackground(ColorPicker.TURQUOISE_DARK);
+            case "medium":
+                return createBackground(ColorPicker.ORANGE_DARK);
+            case "high":
+                return createBackground(ColorPicker.RED_DARK);
+            default:
+                assert false : "Background priority not found";
+                return null;
+            }
+        } else {
+            switch (priority) {
+            case "undefined":
+                return createBackground(ColorPicker.WHITE);
+            case "low":
+                return createBackground(ColorPicker.TURQUOISE);
+            case "medium":
+                return createBackground(ColorPicker.ORANGE);
+            case "high":
+                return createBackground(ColorPicker.RED);
+            default:
+                assert false : "Background priority not found";
+                return null;
+            }
+        }
+    }
 
-    public static final Background ARCHIVED_LOW_PRIORITY_BACKGROUND = new Background(new BackgroundFill(
-            ColorPicker.TURQUOISE_DARK,
-            CornerRadii.EMPTY,
-            Insets.EMPTY));
-
-    public static final Border UNARCHIVED_MEDIUM_PRIORITY_BORDER = new Border(new BorderStroke(
-            ColorPicker.ORANGE_BORDER,
-            BorderStrokeStyle.SOLID,
-            CornerRadii.EMPTY,
-            new BorderWidths(BORDER_SIZE)));
-
-    public static final Background UNARCHIVED_MEDIUM_PRIORITY_BACKGROUND = new Background(new BackgroundFill(
-            ColorPicker.ORANGE,
-            CornerRadii.EMPTY,
-            Insets.EMPTY));
-
-    public static final Border ARCHIVED_MEDIUM_PRIORITY_BORDER = new Border(new BorderStroke(
-            ColorPicker.ORANGE_BORDER_DARK,
-            BorderStrokeStyle.SOLID,
-            CornerRadii.EMPTY,
-            new BorderWidths(BORDER_SIZE)));
-
-    public static final Background ARCHIVED_MEDIUM_PRIORITY_BACKGROUND = new Background(new BackgroundFill(
-            ColorPicker.ORANGE_DARK,
-            CornerRadii.EMPTY,
-            Insets.EMPTY));
-
-    public static final Border UNARCHIVED_HIGH_PRIORITY_BORDER = new Border(new BorderStroke(
-            ColorPicker.RED_BORDER,
-            BorderStrokeStyle.SOLID,
-            CornerRadii.EMPTY,
-            new BorderWidths(BORDER_SIZE)));
-
-    public static final Background UNARCHIVED_HIGH_PRIORITY_BACKGROUND = new Background(new BackgroundFill(
-            ColorPicker.RED,
-            CornerRadii.EMPTY,
-            Insets.EMPTY));
-
-    public static final Border ARCHIVED_HIGH_PRIORITY_BORDER = new Border(new BorderStroke(
-            ColorPicker.RED_BORDER_DARK,
-            BorderStrokeStyle.SOLID,
-            CornerRadii.EMPTY,
-            new BorderWidths(BORDER_SIZE)));
-
-    public static final Background ARCHIVED_HIGH_PRIORITY_BACKGROUND = new Background(new BackgroundFill(
-            ColorPicker.RED_DARK,
-            CornerRadii.EMPTY,
-            Insets.EMPTY));
-
-    public static final Border UNARCHIVED_UNDEFINED_PRIORITY_BORDER = new Border(new BorderStroke(
-            ColorPicker.WHITE_BORDER,
-            BorderStrokeStyle.SOLID,
-            CornerRadii.EMPTY,
-            new BorderWidths(BORDER_SIZE)));
-
-    public static final Background UNARCHIVED_UNDEFINED_PRIORITY_BACKGROUND = new Background(new BackgroundFill(
-            ColorPicker.WHITE,
-            CornerRadii.EMPTY,
-            Insets.EMPTY));
-
-    public static final Border ARCHIVED_UNDEFINED_PRIORITY_BORDER = new Border(new BorderStroke(
-            ColorPicker.WHITE_BORDER_DARK,
-            BorderStrokeStyle.SOLID,
-            CornerRadii.EMPTY,
-            new BorderWidths(BORDER_SIZE)));
-
-    public static final Background ARCHIVED_UNDEFINED_PRIORITY_BACKGROUND = new Background(new BackgroundFill(
-            ColorPicker.WHITE_DARK,
-            CornerRadii.EMPTY,
-            Insets.EMPTY));
+    private static Background createBackground(javafx.scene.paint.Paint color) {
+        return new Background(new BackgroundFill(
+                color,
+                CornerRadii.EMPTY,
+                Insets.EMPTY));
+    }
 
 }
