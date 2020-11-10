@@ -5,10 +5,10 @@ skinparam ClassBorderColor #000000
 
 title Initial state
 
-package States {
-    class State1 as "__ab0:AddressBook__"
-    class State2 as "__ab1:AddressBook__"
-    class State3 as "__ab2:AddressBook__"
+package States <<rectangle>> {
+    class State1 as "__pb0:ProjectBookWithUi__"
+    class State2 as "__pb1:ProjectBookWithUi__"
+    class State3 as "__pb2:ProjectBookWithUi__"
 }
 State1 -[hidden]right-> State2
 State2 -[hidden]right-> State3

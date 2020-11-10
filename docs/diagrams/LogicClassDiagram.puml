@@ -8,7 +8,7 @@ package Logic {
 
 package Parser {
 Interface Parser <<Interface>>
-Class AddressBookParser
+Class ProjectBookParser
 Class XYZCommandParser
 Class CliSyntax
 Class ParserUtil
@@ -21,6 +21,17 @@ package Command {
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
+note bottom of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+}
+
+package Statistic {
+Interface StatisticGenerator <<Interface>>
+Class StatisticManager
+Class XYZStatistic
+Class CommandResult
+Class StatisticEntry
+Class "{abstract}\nStatistic" as Statistic
+note top of XYZStatistic: XYZStatistic = \nPeriodicTotalTimeStatistic, etc
 }
 
 Interface Logic <<Interface>>
@@ -31,12 +42,17 @@ package Model{
 Class HiddenModel #FFFFFF
 }
 
+package Storage{
+Class HiddenStorage #FFFFFF
+}
+
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .up.|> Logic
-LogicManager -->"1" AddressBookParser
-AddressBookParser .left.> XYZCommandParser: creates >
+LogicManager -->"1" ProjectBookParser
+LogicManager -right->"1" StatisticGenerator
+ProjectBookParser .left.> XYZCommandParser: creates >
 
 XYZCommandParser ..> XYZCommand : creates >
 XYZCommandParser ..|> Parser
@@ -51,12 +67,18 @@ ArgumentTokenizer .down.> Prefix
 XYZCommand -up-|> Command
 LogicManager .left.> Command : executes >
 
+LogicManager -up-> Storage
 LogicManager --> Model
-Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+Command .up.> Model
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult
 CommandResult -[hidden]-> Parser
+
+StatisticManager .up.|> StatisticGenerator
+StatisticManager --> "*" Statistic
+Statistic ..> "1..*" StatisticEntry
+XYZStatistic --|> Statistic
+
 @enduml

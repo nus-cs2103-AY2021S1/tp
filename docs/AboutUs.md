@@ -5,55 +5,54 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Balasubramaniam Praveen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pr4aveen.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/pr4aveen)]
+[[portfolio](team/pr4aveen.md)]
 
-* Role: Project Advisor
+* Role: Integration
+* Responsibilities: Functionality
 
-### Jane Doe
+### Cheong Ying Yi Clara
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/claracheong4.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/claracheong4)]
+[[portfolio](team/claracheong4.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Testing
+* Responsibilities: Testing
 
-### Johnny Doe
+### Farrell Nah Jun Hao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/boundtotheearth.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/boundtotheearth)]
+[[portfolio](team/boundtotheearth.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Integration
+* Responsibilities: Functionality
 
-### Jean Doe
+### Kang Su Min
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kkangs0226.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/kkangs0226)]
+[[portfolio](team/kkangs0226.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Documentation and Code Quality
+* Responsibilities: Functionality and Documentation
 
-### James Doe
+### Khoo De Hui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/khoodehui.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/khoodehui)]
+[[portfolio](team/khoodehui.md)]
 
-* Role: Developer
+* Role: Team Lead, Scheduling and Tracking
 * Responsibilities: UI

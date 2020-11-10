@@ -3,9 +3,9 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ProjectBookParser" as ProjectBookParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant "d:DeleteProjectCommand" as DeleteProjectCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -16,53 +16,60 @@ end box
 [-> LogicManager : execute("delete 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
-activate AddressBookParser
+LogicManager -> ProjectBookParser : parseCommand("delete 1")
+activate ProjectBookParser
 
 create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
+ProjectBookParser -> DeleteCommandParser
 activate DeleteCommandParser
 
-DeleteCommandParser --> AddressBookParser
+DeleteCommandParser --> ProjectBookParser
 deactivate DeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("1")
+ProjectBookParser -> DeleteCommandParser : parse("1")
 activate DeleteCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+create DeleteProjectCommand
+DeleteCommandParser -> DeleteProjectCommand
+activate DeleteProjectCommand
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
+DeleteProjectCommand --> DeleteCommandParser : d
+deactivate DeleteProjectCommand
 
-DeleteCommandParser --> AddressBookParser : d
+DeleteCommandParser --> ProjectBookParser : d
 deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
+DeleteCommandParser -[hidden]-> ProjectBookParser
 destroy DeleteCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+ProjectBookParser --> LogicManager : d
+deactivate ProjectBookParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+LogicManager -> DeleteProjectCommand : execute()
+activate DeleteProjectCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteProjectCommand -> Model : deleteTrackedItem(trackedItemToDelete)
 activate Model
 
-Model --> DeleteCommand
+Model --> DeleteProjectCommand
 deactivate Model
 
+DeleteProjectCommand -> Model : commitToHistory()
+activate Model
+
+Model --> DeleteProjectCommand
+deactivate Model
+
+
 create CommandResult
-DeleteCommand -> CommandResult
+DeleteProjectCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeleteProjectCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+DeleteProjectCommand --> LogicManager : result
+deactivate DeleteProjectCommand
 
 [<--LogicManager
 deactivate LogicManager

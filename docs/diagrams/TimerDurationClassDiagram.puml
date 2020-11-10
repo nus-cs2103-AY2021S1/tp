@@ -1,0 +1,64 @@
+@startuml
+!include detailed_style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+
+package TrackedItem {
+Class TrackedItem MODEL_COLOR {
+    startTimer() : Project
+    stopTimer() : Project
+    isRunning() : boolean
+}
+Class Timer MODEL_COLOR {
+    startDateTime : DateTimeWrapper
+    stopDateTime : DateTimeWrapper
+    isRunning : boolean
+    start() : void
+    stop() : void
+    getTimeBetween(ChronoUnit unit) : long
+}
+Class WorkDuration MODEL_COLOR {
+    startDateTime : DateTimeWrapper
+    stopDateTime : DateTimeWrapper
+    getTimeBetween(ChronoUnit unit) : long
+}
+
+}
+
+package Logic {
+
+Class "<<Interface>>\nStatisticGenerator" as StatisticGenerator LOGIC_COLOR {
+    updateStatistics() : void
+}
+Class StatisticManager LOGIC_COLOR {
+    statistics : Statistic[]
+}
+Class XYZStatistic LOGIC_COLOR
+Class StatisticEntry LOGIC_COLOR {
+    label : String
+    value : double
+}
+Class "{abstract}\nStatistic" as Statistic LOGIC_COLOR {
+    calculate(Model model) : void { abstract }
+    getDisplayList() : ObservableList<StatisticEntry> { abstract }
+}
+note top of XYZStatistic: XYZStatistic = \nPeriodicTotalTimeStatistic, etc
+
+}
+
+
+StatisticManager .up.|> StatisticGenerator
+StatisticManager --> "*" Statistic
+Statistic ..> "1..*" StatisticEntry
+XYZStatistic --|> Statistic
+
+TrackedItem *-down-> "*" WorkDuration
+TrackedItem *-left-> "1" Timer
+WorkDuration -[hidden]left-> Timer
+
+Statistic .left.> TrackedItem
+Statistic .left.> WorkDuration
+
+
+
+@enduml
