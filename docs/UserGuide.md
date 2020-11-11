@@ -702,19 +702,19 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 
 | Action | Format | Examples |
 |-|-|-|
-| **add** | `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE [p/PRIORITY] [remind]` | `add n/Math tutorial d/21-03-2020 1100 mod/ST2334` |
+| **add** | `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT mod/MODULE_CODE_OF_ASSIGNMENT [p/PRIORITY_OF_ASSIGNMENT] [remind]` | `add n/PAQ d/21-03-2020 1100 mod/IS1103` |
 | **delete** | `delete INDEX [MORE_INDEXES]` | `delete 3`<br>`delete 2 3 4` |
-| **import** | `import url/NUSMODS_URL` | `import url/https://nusmods.com/timetable/sem-2/share?CS2108=LEC:1` |
+| **import** | `import url/YOUR_NUSMODS_URL` | `import url/https://nusmods.com/timetable/sem-2/share?CS2108=LEC:1` |
 | **list** | `list [NUMBER_OF_DAYS]` | `list 2`<br>`list` |
-| **find** | `find PREFIX/ KEYWORD [MORE_KEYWORD]` | `find mod/CS2103T CS2100`<br>`find p/HIGH` |
+| **find** | `find PREFIX/KEYWORD [MORE_KEYWORDS]` | `find mod/CS2103T CS2100`<br>`find p/HIGH` |
 | **edit** | `edit INDEX PREFIX/EDITED_FIELD [MORE_PREFIX/EDITED_FIELD]` | `edit 3 mod/CS2100`<br>`edit 1 d/10-10-2020 1200` |
 | **remind** | `remind INDEX [MORE_INDEXES]` | `remind 5`<br>`remind 2 4 5` |
 | **unremind** | `unremind INDEX` | `unremind 2` |
-| **prioritize** | `prioritize INDEX p/PRIORITY` | `prioritize 3 p/HIGH`<br>`prioritize 1 p/LOW` |
+| **prioritize** | `prioritize INDEX p/PRIORITY_OF_ASSIGNMENT` | `prioritize 3 p/HIGH`<br>`prioritize 1 p/LOW` |
 | **unprioritize** | `unprioritize INDEX` | `unprioritize 1` |
-| **done** | `done INDEX` | `done 4` |
+| **done** | `done INDEX [MORE_INDEXES]` | `done 4` |
 | **undone** | `undone INDEX` | `undone 2` |
-| **schedule** | `schedule INDEX expected/EXPECTED_HOUR dobefore/BEFORE_DATE BEFORE_TIME` | `schedule 1 expected/2 before/23-12-2020 2359` |
+| **schedule** | `schedule INDEX hrs/EXPECTED_HOUR af/AFTER_DATE AFTER_TIME by/BEFORE_DATE BEFORE_TIME` | `schedule 1 hrs/2 af/23-12-2020 1800 by/23-12-2020 2359` |
 | **unschedule** | `unschedule INDEX` | `unschedule 1` |
 | **undo** | `undo` | `undo` |
 | **clear** | `clear` | `clear` |
