@@ -286,7 +286,7 @@ Here is an example with steps for you to follow:
 
 3) A message that indicates the number of assignments found is displayed in the Message Box.
 
-![FindCommand2](images/FindCommandDiagram2.png)
+![FindCommand2](images/FindCommand2.png)
 *Figure 11: The displayed message and the updated list*
 
 More examples: 
@@ -488,6 +488,7 @@ the command line based on the indexes labelled in the figure.
    *Figure 24: Message shown in Command Box labelled*
    
 <div markdown="block" class="alert alert-primary">
+  
  **:clipboard: Pointers to note:**<br>
 * At least one index must be present. For example, `done` without any index is invalid.
 * The indexes **must be found in your assignment list**.
@@ -525,6 +526,7 @@ you can simply enter `undone 2` into the command line based on the index labelle
    *Figure 27: Message shown in Command Box labelled*
    
 <div markdown="block" class="alert alert-primary">
+  
  **:clipboard: Pointers to note:**<br>
 * Assignments are marked as **not done by default**.
 * The index must be present. For example, `undone` without any index is invalid.
