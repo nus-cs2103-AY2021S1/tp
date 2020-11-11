@@ -5,52 +5,72 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyLibrary <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class Library
+Class ReadOnlyLibrary
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
+Class WordBank
 
-Package Person {
-Class Person
-Class Address
-Class Email
+Package Book {
+Class Book
 Class Name
-Class Phone
-Class UniquePersonList
+Class Genre
+Class TotalPages
+Class Bookmark
+Class UniqueBookList
 }
 
 Package Tag {
 Class Tag
+}
+
+package WordBank {
+Class WordBank
+
+package WordStore {
+Abstract class WordStore
+Class XYZWordStore
+}
+
+package Word {
+Class Word
+}
 }
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Library .up.|> ReadOnlyLibrary
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" Library
+ModelManager o--> "1" WordBank
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Library *--> "1" UniqueBookList
+UniqueBookList o--> "*" Book
+Book *--> Name
+Book *--> Genre
+Book *--> TotalPages
+Book *--> Bookmark
+Book *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+WordBank "*" -down-> "1" WordStore
+XYZWordStore .up.|> WordStore
+note left of XYZWordStore: "XYZWordStore = NameWordStore, \n GenreWordStore etc" as N1
+XYZWordStore "1" -> "*" Word
 
-ModelManager -->"1" Person : filtered list
+Name -[hidden]right-> Genre
+Genre-[hidden]right-> TotalPages
+TotalPages-[hidden]right-> Bookmark
+
+ModelManager -->"1" Book : filtered list
 @enduml

@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommandParser" as CommandParser LOGIC_COLOR
+participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
+participant "s:SortCommand" as SortCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("sort n/")
+activate LogicManager
+
+LogicManager -> CommandParser : parseCommand("sort n/")
+activate CommandParser
+
+create SortCommandParser
+CommandParser -> SortCommandParser
+activate SortCommandParser
+
+SortCommandParser --> CommandParser
+deactivate SortCommandParser
+
+CommandParser -> SortCommandParser : parse("n/")
+activate SortCommandParser
+
+create SortCommand
+SortCommandParser -> SortCommand
+activate SortCommand
+
+SortCommand --> SortCommandParser : s
+deactivate SortCommand
+
+SortCommandParser --> CommandParser : s
+deactivate SortCommandParser
+'Hidden arrow to position the destroy marker below the end os the activation bar.
+SortCommandParser -[hidden]-> CommandParser
+destroy SortCommandParser
+
+CommandParser --> LogicManager : s
+deactivate CommandParser
+
+LogicManager -> SortCommand : execute()
+activate SortCommand
+
+SortCommand -> Model : setSortingPreference("n/")
+activate Model
+
+Model --> SortCommand
+deactivate Model
+
+SortCommand -> Model : sortFilteredBookList\n (BookNameComparator)
+activate Model
+
+Model --> SortCommand
+deactivate Model
+
+create CommandResult
+SortCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortCommand
+deactivate CommandResult
+
+SortCommand --> LogicManager : result
+deactivate SortCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

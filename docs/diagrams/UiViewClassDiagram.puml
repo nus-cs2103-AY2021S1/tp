@@ -1,0 +1,19 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+class MainWindow
+class BookListPanel
+class DetailedBookListPanel
+class BookCard
+class DetailedBookCard
+
+MainWindow *-down-> "1" BookListPanel
+BookListPanel -right-> "*" BookCard : renders >
+DetailedBookListPanel -up-|> BookListPanel
+DetailedBookCard -up-|> BookCard
+DetailedBookCard -right-> "*" NoteCard : renders >
+
+@enduml

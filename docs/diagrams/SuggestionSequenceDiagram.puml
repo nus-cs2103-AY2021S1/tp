@@ -1,0 +1,57 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant ":FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":SuggestionAlgorithm" as SuggestionAlgorithm LOGIC_COLOR
+end box
+
+[-> FindCommandParser : parse("find n/h@arry")
+activate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand : new FindCommand(predicate, inputPrefix, keyWords)
+activate FindCommand
+
+FindCommand --> FindCommandParser :
+deactivate FindCommand
+
+[<--FindCommandParser
+deactivate FindCommandParser
+
+[-> FindCommand : execute()
+activate FindCommand
+
+loop for each keyword
+
+    FindCommand -> SuggestionAlgorithm : findSuggestions()
+    activate SuggestionAlgorithm
+
+    loop for each word in wordbank
+        SuggestionAlgorithm -> SuggestionAlgorithm : calculateDistance()
+        activate SuggestionAlgorithm
+        SuggestionAlgorithm --> SuggestionAlgorithm
+        deactivate SuggestionAlgorithm
+
+        SuggestionAlgorithm --> FindCommand :
+        deactivate SuggestionAlgorithm
+    end
+end
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SuggestionAlgorithm -[hidden]-> FindCommand
+destroy SuggestionAlgorithm
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+[<-- FindCommand : result
+deactivate FindCommand
+
+@enduml

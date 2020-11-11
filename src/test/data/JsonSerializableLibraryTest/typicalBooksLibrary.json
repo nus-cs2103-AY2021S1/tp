@@ -1,0 +1,67 @@
+{
+  "_comment": "bookmark save file which contains the same Book values as in TypicalBooks#getTypicalLibrary()",
+  "books" : [ {
+    "name" : "Harry Potter",
+    "genre" : "Fiction",
+    "tagged" : [ "Good" ],
+    "totalPages" : "1000",
+    "bookmark" : "500",
+    "goal" : "10 20-12-2024"
+  }, {
+    "name" : "To Kill a Mockingbird",
+    "genre" : "Fiction",
+    "tagged" : [ "Good", "Lengthy" ],
+    "totalPages" : "1500",
+    "bookmark" : "269",
+    "goal" : "10 20-12-2024",
+    "notes" : [
+      {
+        "title" : "Chapter 1",
+        "text" : "Chapter 1"
+      },
+      {
+        "title" : "Chapter 2",
+        "text" : "Chapter 2"
+      },
+      {
+        "title" : "Chapter 3",
+        "text" : "Chapter 3"
+      }
+    ]
+  }, {
+    "name" : "The Hunger Games",
+    "genre" : "Fiction",
+    "tagged" : [ ],
+    "totalPages" : "500",
+    "bookmark": "20",
+    "goal" : "10 20-12-2024"
+  }, {
+    "name" : "Crime and Punishment",
+    "genre" : "Crime",
+    "tagged" : [ "Bad" ],
+    "totalPages" : "1000",
+    "bookmark": "1000",
+    "goal" : "10 20-12-2024"
+  }, {
+    "name" : "Lord of the Flies",
+    "genre" : "Mystery",
+    "tagged" : [ ],
+    "totalPages" : "369",
+    "bookmark" : "123",
+    "goal" : "10 20-12-2024"
+  }, {
+    "name" : "Enders Game",
+    "genre" : "Thriller",
+    "tagged" : [ ],
+    "totalPages" : "123",
+    "bookmark" : "23",
+    "goal" : "10 20-12-2024"
+  }, {
+    "name" : "On the Road",
+    "genre" : "Travel",
+    "tagged" : [ ],
+    "totalPages" : "239",
+    "bookmark" : "111",
+    "goal" : "10 20-12-2024"
+  } ]
+}

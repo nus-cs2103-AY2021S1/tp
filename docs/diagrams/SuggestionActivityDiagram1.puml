@@ -1,0 +1,13 @@
+@startuml
+start
+:User misspell word in FindCommand;
+    :Search wordBank for suggestions;
+    while() is ([words remaining \n in wordBank])
+    if() then ([Word within \n Distance Limit])
+        :Add to Suggestion List;
+    else ([Else])
+    endif
+    endwhile ([else])
+    :Return Suggestion List;
+end
+@enduml

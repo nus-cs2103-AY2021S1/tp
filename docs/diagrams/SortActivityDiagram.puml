@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes sort command;
+
+if() then ([No user input error])
+:Generate comparator based on input prefix;
+
+:Update user sorting preference;
+
+:Sort internal Observable List according to comparator;
+else ([Input error])
+endif
+:Return message to user;
+stop
+@enduml

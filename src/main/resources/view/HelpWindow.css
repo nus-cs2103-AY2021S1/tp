@@ -1,0 +1,23 @@
+.headerbar {
+    -fx-background-color: #383838;
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+}
+
+.button {
+    -fx-font-size: 9pt;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+.bodymessage {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+}
+
+.body {
+    -fx-background-image: url("../images/helpwindowbg.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover, auto;
+}

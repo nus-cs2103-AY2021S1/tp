@@ -3,45 +3,51 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":CommandParser" as CommandParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
+participant ":ViewTypeManager" as ViewTypeManager LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":HistoryManager" as HistoryManager MODEL_COLOR
 end box
-[-> LogicManager : execute(undo)
+[-> LogicManager : execute("undo")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
-activate AddressBookParser
+LogicManager -> CommandParser : parseCommand("undo")
+activate CommandParser
 
 create UndoCommand
-AddressBookParser -> UndoCommand
+CommandParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> AddressBookParser
+UndoCommand --> CommandParser
 deactivate UndoCommand
 
-AddressBookParser --> LogicManager : u
-deactivate AddressBookParser
+CommandParser --> LogicManager : u
+deactivate CommandParser
 
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
 
-UndoCommand -> Model : undoAddressBook()
-activate Model
+UndoCommand -> ModelManager : undo()
+activate ModelManager
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
+ModelManager -> HistoryManager : undo()
+activate HistoryManager
 
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
+HistoryManager --> ModelManager : newCurrentState
+deactivate HistoryManager
 
-Model --> UndoCommand
-deactivate Model
+ModelManager --> UndoCommand : newCurrentState
+deactivate ModelManager
+
+UndoCommand -> ViewTypeManager : getViewType(newCurrentState)
+activate ViewTypeManager
+
+ViewTypeManager --> UndoCommand : viewType
+deactivate ViewTypeManager
 
 UndoCommand --> LogicManager : result
 deactivate UndoCommand

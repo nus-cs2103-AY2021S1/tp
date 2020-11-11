@@ -1,4 +1,4 @@
-title: "AB-3"
+title: "bookmark"
 theme: minima
 
 header_pages:
@@ -8,8 +8,9 @@ header_pages:
 
 markdown: kramdown
 
-repository: "se-edu/addressbook-level3"
+repository: "AY2021S1-CS2103T-F13-2/tp"
 github_icon: "images/github-icon.png"
+bookmark_icon: "images/bookmarkicon.png"
 
 plugins:
   - jemoji

@@ -1,0 +1,16 @@
+{
+  "books": [ {
+    "name": "Alice Pauline",
+    "genre": "fiction",
+    "totalPages": "100",
+    "bookmark": "20",
+    "tagged": [ "friends" ],
+    "goal" : "10 20-12-2024"
+  }, {
+    "name": "Alice Pauline",
+    "genre": "fiction",
+    "bookmark": "20",
+    "totalPages": "100",
+    "goal" : "10 20-12-2024"
+  } ]
+}

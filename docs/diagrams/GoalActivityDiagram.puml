@@ -1,0 +1,18 @@
+@startuml
+start
+:User executes goal command;
+if () then ([index, page and
+date are valid])
+    : Find the book using index;
+    : Set goal to the book;
+
+else ([else])
+    : Notify error to user;
+
+endif
+
+stop
+
+
+
+@enduml

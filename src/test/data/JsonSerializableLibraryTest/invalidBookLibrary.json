@@ -1,0 +1,8 @@
+{
+  "books": [ {
+    "name": "Hans Muster",
+    "genre": "invalid@genre",
+    "totalPages": "abc",
+    "bookmark": "20"
+  } ]
+}

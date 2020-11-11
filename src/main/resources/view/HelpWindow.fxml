@@ -1,39 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
   <scene>
     <Scene>
-         <HBox alignment="CENTER">
-            <children>
-               <Label fx:id="helpMessage" text="Label">
-                  <HBox.margin>
-                     <Insets right="5.0" />
-                  </HBox.margin>
-               </Label>
-               <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
-                  <HBox.margin>
-                     <Insets left="5.0" />
-                  </HBox.margin>
-               </Button>
-            </children>
-            <opaqueInsets>
-               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-            </opaqueInsets>
-            <padding>
-               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-            </padding>
-         </HBox>
+        <VBox prefHeight="535.0" prefWidth="520.0" stylesheets="@HelpWindow.css">
+            <HBox styleClass="headerbar" stylesheets="@HelpWindow.css">
+               <children>
+                   <ImageView fx:id="icon" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                    <Label fx:id="welcomeHelp" alignment="CENTER" minHeight="-Infinity" prefHeight="57.0" prefWidth="389.0" styleClass="headerbar" text="Label" wrapText="true" />
+                    <Button fx:id="copyButton" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
+                     <HBox.margin>
+                        <Insets top="16.0" />
+                     </HBox.margin>
+                    </Button>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+          <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" stylesheets="@HelpWindow.css" vvalue="1.0">
+               <content>
+                  <VBox fx:id="helpContainer" alignment="CENTER" styleClass="body" />
+               </content>
+               <styleClass>
+                  <String fx:value="body" />
+                  <String fx:value="edge-to-edge" />
+               </styleClass>
+            </ScrollPane>
+        </VBox>
     </Scene>
   </scene>
 </fx:root>

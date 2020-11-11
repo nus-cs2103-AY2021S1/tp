@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Logic {
+
+package Parser {
+Interface Parser <<Interface>>
+Class GoalCommandParser
+Class CommandParser
+}
+
+package Command {
+Class GoalCommand
+Class CommandResult
+Class "{abstract}\nCommand" as Command
+}
+
+GoalCommandParser .up.|> Parser
+CommandParser .right.> GoalCommandParser: creates >
+
+GoalCommandParser ..> GoalCommand : creates >
+
+GoalCommand .up.|> Command
+GoalCommand ..> CommandResult : creates >
+
+
+@enduml

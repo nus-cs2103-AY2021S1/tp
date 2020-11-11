@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommandParser" as CommandParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add \n n/Harry Potter g/Fiction \n tp/1000 b/100")
+activate LogicManager
+
+LogicManager -> CommandParser : parseCommand("add \n n/Harry Potter g/Fiction \n tp/1000 b/100")
+activate CommandParser
+
+create AddCommandParser
+CommandParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> CommandParser
+deactivate AddCommandParser
+
+CommandParser -> AddCommandParser : parse("n/Harry Potter g/Fiction \n tp/1000 b/100")
+activate AddCommandParser
+
+create AddCommand
+AddCommandParser -> AddCommand : book
+activate AddCommand
+
+AddCommand --> AddCommandParser :
+deactivate AddCommand
+
+AddCommandParser --> CommandParser :
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> CommandParser
+destroy AddCommandParser
+
+CommandParser --> LogicManager :
+deactivate CommandParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> Model : addBook(book)
+activate Model
+
+Model -> Model : sortByDefaultComparator()
+activate Model
+
+Model --> Model
+deactivate Model
+
+Model --> AddCommand
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : result
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommandParser" as CommandParser LOGIC_COLOR
+participant ":AddNoteCommandParser" as AddNoteCommandParser LOGIC_COLOR
+participant "n:AddNoteCommand" as AddNoteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("note 1 n/Thoughts txt/Something")
+activate LogicManager
+
+LogicManager -> CommandParser : parseCommand("note 1 n/Thoughts txt/Something")
+activate CommandParser
+
+create AddNoteCommandParser
+CommandParser -> AddNoteCommandParser
+activate AddNoteCommandParser
+
+AddNoteCommandParser --> CommandParser
+deactivate AddNoteCommandParser
+
+CommandParser -> AddNoteCommandParser : parse("1 n/Thoughts txt/Something")
+activate AddNoteCommandParser
+
+create AddNoteCommand
+AddNoteCommandParser -> AddNoteCommand
+activate AddNoteCommand
+
+AddNoteCommand --> AddNoteCommandParser : n
+deactivate AddNoteCommand
+
+AddNoteCommandParser --> CommandParser : n
+deactivate AddNoteCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddNoteCommandParser -[hidden]-> CommandParser
+destroy AddNoteCommandParser
+
+CommandParser --> LogicManager : n
+deactivate CommandParser
+
+LogicManager -> AddNoteCommand : execute()
+activate AddNoteCommand
+
+AddNoteCommand -> AddNoteCommand : createEditedBook()
+activate AddNoteCommand
+
+AddNoteCommand --> AddNoteCommand
+deactivate AddNoteCommand
+
+AddNoteCommand -> Model : setBook()
+activate Model
+
+Model --> AddNoteCommand
+deactivate Model
+
+AddNoteCommand -> Model : updateFilteredBookList()
+activate Model
+
+Model --> AddNoteCommand
+deactivate Model
+
+create CommandResult
+AddNoteCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddNoteCommand : result
+deactivate CommandResult
+
+AddNoteCommand --> LogicManager : result
+deactivate AddNoteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

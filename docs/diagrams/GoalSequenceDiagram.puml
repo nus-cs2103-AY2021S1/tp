@@ -1,0 +1,82 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommandParser" as CommandParser LOGIC_COLOR
+participant ":GoalCommandParser" as GoalCommandParser LOGIC_COLOR
+participant "goalCommand:GoalCommand" as GoalCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("goal 1 p/69 d/10-12-2020")
+activate LogicManager
+
+LogicManager -> CommandParser : parseCommand("goal 1 p/69 d/10-12-2020")
+activate CommandParser
+
+create GoalCommandParser
+CommandParser -> GoalCommandParser
+activate GoalCommandParser
+
+GoalCommandParser --> CommandParser
+deactivate GoalCommandParser
+
+CommandParser -> GoalCommandParser : parse("goal 1 p/69 d/10-12-2020")
+activate GoalCommandParser
+
+create GoalCommand
+GoalCommandParser -> GoalCommand
+activate GoalCommand
+
+GoalCommand --> GoalCommandParser : goalCommand
+deactivate GoalCommand
+
+GoalCommandParser --> CommandParser : goalCommand
+deactivate GoalCommandParser
+
+GoalCommandParser -[hidden]-> LogicManager
+destroy GoalCommandParser
+
+CommandParser --> LogicManager : goalCommand
+deactivate CommandParser
+
+LogicManager -> GoalCommand : execute()
+activate GoalCommand
+
+GoalCommand -> GoalCommand : createBookWithGoal()
+activate GoalCommand
+
+GoalCommand --> GoalCommand
+deactivate GoalCommand
+
+GoalCommand -> Model : getFilteredBookList()
+activate Model
+
+Model --> GoalCommand : filteredBookList
+deactivate Model
+
+GoalCommand -> Model : setBook()
+activate Model
+
+Model --> GoalCommand
+deactivate Model
+
+create CommandResult
+GoalCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> GoalCommand : result
+deactivate CommandResult
+
+GoalCommand --> LogicManager: result
+deactivate GoalCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+@enduml

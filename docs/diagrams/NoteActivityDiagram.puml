@@ -1,0 +1,18 @@
+@startuml
+start
+:User executes add note command;
+
+
+:Get the list of books;
+
+if () then ([index is valid])
+    :Create a copy of the book with the added note;
+    :Replace outdated book with the updated book;
+else ([else])
+endif
+
+stop
+
+
+
+@enduml

@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+
+
+package Logic {
+
+package Algorithm {
+Class SuggestionAlgorithm LOGIC_COLOR
+}
+
+package Command {
+Class FindCommand LOGIC_COLOR
+}
+}
+
+package Model {
+
+Class HiddenOutside #FFFFFF
+
+package WordBank {
+Class WordBank MODEL_COLOR
+
+package WordStore {
+Abstract class WordStore MODEL_COLOR
+Class XYZWordStore MODEL_COLOR
+}
+
+package Word {
+Class Word MODEL_COLOR
+}
+}
+}
+
+HiddenOutside .down.> WordBank
+
+SuggestionAlgorithm -> "1" WordBank
+FindCommand "1" -down-> "1" SuggestionAlgorithm
+note bottom of SuggestionAlgorithm: XYZAlgorithm = SuggestionAlgorithm etc
+WordBank "*" -down-> "1" WordStore
+XYZWordStore .up.|> WordStore
+note bottom of XYZWordStore: XYZWordStore = NameWordStore, GenreWordStore etc
+XYZWordStore "1" -> "*" Word
+@enduml

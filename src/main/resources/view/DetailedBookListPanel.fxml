@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="book-list">
+    <ListView fx:id="bookListView" VBox.vgrow="ALWAYS" minHeight="230" />
+    <padding>
+        <Insets top="7" right="5" bottom="5" left="25" />
+    </padding>
+</VBox>

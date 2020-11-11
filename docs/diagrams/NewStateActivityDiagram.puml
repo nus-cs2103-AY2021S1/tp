@@ -1,0 +1,20 @@
+@startuml
+start
+:User executes command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command modifies model])
+    :Clear all states in redo deque;
+    if () then ([undo deque is full])
+        :Remove oldest state in undo deque;
+    else ([else])
+    endif
+    :Move existing current state to undo deque;
+    :Create new state with the modified model;
+    :Save new state as the current state;
+else ([else])
+endif
+stop
+@enduml

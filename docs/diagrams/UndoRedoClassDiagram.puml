@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor MODEL_COLOR
+skinparam classAttributeFontColor white
+
+package Model {
+Interface Model <<Interface>>
+Class ModelManager
+Interface ReadOnlyLibrary<<Interface>>
+Interface ReadOnlyUserPrefs<<Interface>>
+Interface Predicate<<Interface>>
+Class HistoryManager
+Class State
+}
+
+package Logic {
+Class ViewTypeManager LOGIC_COLOR
+Class Command LOGIC_COLOR
+}
+
+ViewTypeManager : addViewTypePairing()
+ViewTypeManager : getViewType()
+show ViewTypeManager members
+
+Command --right-> ViewTypeManager
+Command ---> Model
+
+Model : undo()
+Model : redo()
+Model : save()
+show Model members
+
+HistoryManager : addNewState()
+HistoryManager : undo()
+HistoryManager : redo()
+show HistoryManager members
+
+ModelManager .up.|> Model
+ModelManager *--> HistoryManager
+
+HistoryManager --up-> "1..*" State : > Stores
+
+State *-up-> "1" ReadOnlyLibrary
+State *-up-> "1" ReadOnlyUserPrefs
+State *-up-> "0..1" Predicate
+
+@enduml

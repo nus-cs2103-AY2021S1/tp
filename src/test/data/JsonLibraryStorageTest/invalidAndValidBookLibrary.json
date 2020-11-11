@@ -1,0 +1,15 @@
+{
+  "books": [ {
+    "name": "Harry Potter",
+    "genre": "Fiction",
+    "totalPages": "500",
+    "bookmark": "20",
+    "goal" : "10 20-12/2024"
+  }, {
+    "name": " ",
+    "genre": "F@ction",
+    "totalPages": "120",
+    "bookmark": "20",
+    "goal" : "10b 20-12-2024"
+  } ]
+}

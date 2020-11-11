@@ -3,57 +3,57 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
-
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+We are a team based in the [National University of Singapore, School of Computing](http://www.comp.nus.edu.sg).
 
 ## Project team
 
-### John Doe
+### Tan Le Yang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tanleyang.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/TanLeYang)]
+[[portfolio](team/tanleyang.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Kenneth Teo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/angrybunny123.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/angrybunny123)]
+[[portfolio](team/angrybunny123.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Logic
 
-### James Doe
+### Lee Penn Han
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pennhanlee.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/pennhanlee)]
+[[portfolio](team/pennhanlee.md)]
+
+* Role: Developer
+* Responsibilities: Model
+
+### Pang Wai Kye
+
+<img src="images/pangpuncake.png" width="200px">
+
+[[github](http://github.com/pangpuncake)]
+[[portfolio](team/pangpuncake.md)]
+
+* Role: Developer
+* Responsibilities: Storage
+
+### Le Minh Giang
+
+<img src="images/mgiang2015.png" width="200px">
+
+[[github](http://github.com/mgiang2015)]
+
+[[portfolio](team/mgiang2015.md)]
 
 * Role: Developer
 * Responsibilities: UI

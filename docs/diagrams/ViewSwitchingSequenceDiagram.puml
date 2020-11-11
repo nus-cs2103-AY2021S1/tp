@@ -1,0 +1,64 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":DetailedBookListPanel" as DetailedBookListPanel UI_COLOR
+participant ":DetailedBookCard" as DetailedBookCard UI_COLOR
+participant ":NoteCard" as NoteCard UI_COLOR
+end box
+
+[-> MainWindow : executeCommand(command)]
+activate MainWindow
+
+MainWindow -> LogicManager : execute()
+activate LogicManager
+
+create CommandResult
+LogicManager -> CommandResult
+activate CommandResult
+
+CommandResult -> LogicManager : result
+deactivate CommandResult
+
+LogicManager -> MainWindow : result
+deactivate LogicManager
+
+MainWindow -> CommandResult : getViewType()
+activate CommandResult
+
+CommandResult -> MainWindow : ViewType.DETAILED
+deactivate CommandResult
+
+MainWindow -> MainWindow : changeToDetailedView()
+activate MainWindow
+
+create DetailedBookListPanel
+MainWindow -> DetailedBookListPanel
+activate DetailedBookListPanel
+
+create DetailedBookCard
+DetailedBookListPanel -> DetailedBookCard
+activate DetailedBookCard
+loop for all notes in the book to display
+    create NoteCard
+    DetailedBookCard -> NoteCard
+    activate NoteCard
+    NoteCard -> DetailedBookCard
+    deactivate NoteCard
+end
+
+DetailedBookCard -> DetailedBookListPanel
+deactivate DetailedBookCard
+
+DetailedBookListPanel -> MainWindow
+deactivate DetailedBookListPanel
+
+MainWindow -> MainWindow
+deactivate MainWindow
+@enduml

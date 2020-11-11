@@ -1,0 +1,13 @@
+@startuml
+start
+:User executes find command;
+
+if() then ([No user input error])
+:Generate predicate based on input prefix and keyword(s);
+
+:Apply predicate to FilteredList;
+else ([User input error])
+endif
+:Return message to user;
+stop
+@enduml

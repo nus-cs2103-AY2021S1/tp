@@ -1,0 +1,13 @@
+@startuml
+start
+:Add Words in Suggestion List to PriorityQueue();
+if() then ([No words in PriorityQueue])
+    :Prepare No Suggestion Message;
+else ([Else])
+    :Poll first word;
+    :Prepare Suggestion Message;
+endif
+:Return message to user;
+
+end
+@enduml
