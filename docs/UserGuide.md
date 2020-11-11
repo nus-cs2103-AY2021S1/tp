@@ -10,6 +10,8 @@ title: CliniCal User Guide
 
 ## 1. Introduction
 
+(Contributed by Kenneth)
+
 CliniCal (Clinic Calendar) is a **desktop app that allows doctors to manage patient records and schedule upcoming appointments**. With CliniCal, you can enhance your daily workflow through the effective scheduling of medical appointments. You can also have access to a digital database that safely stores all your patient records. 
 
 Furthermore, CliniCal is optimized for use via a Command Line Interface (CLI) and even retains the benefits of a Graphical User Interface (GUI). If you can type fast, CliniCal can get your work done faster than traditional GUI apps.
@@ -604,6 +606,8 @@ You want to display the profile of the 1st patient on the list.
 
 ### 5.3 Patient Visitation Commands
 
+(Contributed by Kenneth)
+
 Visitation commands help you make changes to the visitation logs specific to a patient. 
 
 These visitation logs store the following as a short summary of a patient's visit:
@@ -896,6 +900,8 @@ Retrieve and reuse past commands using the <kbd>↑</kbd> arrow and <kbd>↓</kb
 
 ### 5.6 Saving the data
 
+(Contributed by Kenneth)
+
 CliniCal data is saved in your hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -927,7 +933,7 @@ CliniCal data is saved in your hard disk automatically after any command that ch
 **A**: Yes! Our data is stored in the file `clinical.json` in the `data` folder you run CliniCal in. You may modify this file to modify the database directly. Keep in mind that if the data is stored in a format that doesn't match the formatting described in [Section 5.2.1](#521-adding-a-patient-add), the application will start with an empty set of data.
 
 **Q**: I've spotted a bug in your application. How can I report this?<br>
-**A**: We would love to hear from you. You can either email us at `seer [at] comp.nus.edu.sg` or make a GitHub issue at this [link](https://github.com/AY2021S1-CS2103T-W11-4/tp/issues) with the relevant details.
+**A**: We would love to hear from you. You can either email us at `ktaekwon000 [at] gmail dot com` or make a GitHub issue at this [link](https://github.com/AY2021S1-CS2103T-W11-4/tp/issues) with the relevant details.
 
 **Q**: Is there a way to export the calendar data into another application, say Google Calendar?<br>
 **A**: We are currently working on this feature and it is planned for `v2.0`, scheduled to be released in January 2021.
@@ -935,6 +941,8 @@ CliniCal data is saved in your hard disk automatically after any command that ch
 --------------------------------------------------------------------------------------------------------------------
 
 ## 7. Command summary
+
+(Contributed by Kenneth)
 
 Action | Format, Examples
 --------|------------------
