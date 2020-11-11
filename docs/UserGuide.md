@@ -286,7 +286,7 @@ Here is an example with steps for you to follow:
 
 3) A message that indicates the number of assignments found is displayed in the Message Box.
 
-![FindCommand2](images/FindCommand2.png)
+![FindCommand2](images/FindCommandDiagram2.png)
 *Figure 11: The displayed message and the updated list*
 
 More examples: 
@@ -334,7 +334,7 @@ Here is an example with steps for you to follow:
 
 3) A message that indicates details of the edited assignment is displayed in the Message Box.
 
-![EditCommand2](images/EditCommandDiagram2.png)
+![EditCommand2](images/EditCommand2.png)
 *Figure 13: The displayed message and the edited assignment*
 
 More examples: 
