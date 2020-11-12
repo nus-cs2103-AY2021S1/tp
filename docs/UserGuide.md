@@ -174,15 +174,15 @@ This is where you can zoom in on an individual staff and view more information a
 
 #### 3.1.3. Applicant List : `Applicant List Panel`
 
-Similar to the staff list, this is where you can see all your applicants in a condensed list view.
+Similar to the [`Staff List`](#311-staff-list--staff-list-panel), this is where you can see all your applicants in a condensed list view.
 
 ![applicantListPanel intro](images/ugimages/Intro3.png)
 
 #### 3.1.4. Applicant Profile : `Applicant Profile Panel`
 
-This is also similar to the staff profile where you can zoom in on an individual applicant and view more information about them.
+This is also similar to the [`Staff Profile`](#312-staff-profile--staff-profile-panel) where you can zoom in on an individual applicant and view more information about them.
 
-However, notice how the placement of the comments section differs from the [`staff list`](#311-staff-list--staff-list-panel).
+However, notice how the placement of the comments section differs from the [`Staff List`](#311-staff-list--staff-list-panel).
 
 ![applicantProfilePanel intro](images/ugimages/Intro4.png)
 
@@ -232,16 +232,16 @@ Eva makes use of these staff commands to give you the ability to keep track of y
 
 **:information_source: Note:** <br>
 
-* All commands under staff can only be done on either staff list or staff profile panel except `adds`, which can be done on any panel.<br>
+* All commands under staff can only be done on either [`Staff List`](#311-staff-list--staff-list-panel) or [`Staff Profile`](#312-staff-profile--staff-profile-panel) except `adds`, which can be done on any panel.<br>
  
-* On a staff profile, only the details of the profile that is being viewed can be changed.<br>
+* On a [`Staff Profile`](#312-staff-profile--staff-profile-panel), only the details of the profile that is being viewed can be changed.<br>
 
 </div>
 
 
 #### 3.3.1. List all staff : `list s-`
 
-The staff list panel serves as your primary tool to give you an overview of all the staffs in your company.
+The [`Staff List Panel`](#311-staff-list--staff-list-panel) panel serves as your primary tool to give you an overview of all the staffs in your company.
 
 This command changes the panel to the [`Staff List`](#31-eva-gui) and shows a list of all staffs in the Eva Database.
 
@@ -466,7 +466,7 @@ Please take note that this action is irreversible.**
 Format: `clear s-`
 
 The image below shows what you would see after using this command. Notice that there are no more records of staff in the
-Staff List.
+[`Staff List`](#311-staff-list--staff-list-panel).
 
 ![clearStaff](images/ugimages/ClearStaff.png)
 
@@ -478,7 +478,7 @@ Applicant commands give you the ability to keep track of your applicants which h
 
 :information_source: **Note:**<br>
 
-* All commands under applicant can only be done on either applicant list or applicant profile except `adda`, 
+* All commands under applicant can only be done on either [`Applicant List`](#313-applicant-list--applicant-list-panel)  or [`Applicant Profile`](#314-applicant-profile--applicant-profile-panel)  except `adda`, 
  which can be done on any panel. <br>
  
 * While in profiles, only details of the profile that is being viewed can be changed.
@@ -487,7 +487,7 @@ Applicant commands give you the ability to keep track of your applicants which h
 
 #### 3.4.1. List all applicants : `list a-`
 
-The applicant list panel serves as your primary tool to give you an overview of all the applicants in your company.
+The [`Applicant List Panel`](#313-applicant-list--applicant-list-panel) serves as your primary tool to give you an overview of all the applicants in your company.
 
 This command changes the panel to the [`Applicant List`](#31-eva-gui) and shows a list of all applicants in the Eva Database.
 
@@ -515,8 +515,8 @@ An applicant record can contain the details listed below:
  - Tags
  - Comments
  - Interview Date
- - Application Status
  - Application
+ - Application Status
  
 The fields marked with a asterisk (*) are compulsory and have to be provided in the parameters below.
 Without any of these fields, Eva will not accept your input. <br> 
@@ -597,7 +597,7 @@ The image below shows what you would see after executing this example.
 #### 3.4.5. Delete an applicant: `dela`
 
 If you need to remove specific records of applicants, you may use this command. By providing the index of the 
-applicant you see on Applicant List, you can remove that applicant's record. 
+applicant you see on [`Applicant List`](#313-applicant-list--applicant-list-panel) , you can remove that applicant's record. 
 
 <div markdown="block" class="alert alert-danger">
 
@@ -711,6 +711,7 @@ Application status can only be any one from the following:
   - processing
   - accepted
   - rejected
+
   
   </div>
   
@@ -742,7 +743,7 @@ Format: `clear a-`
 
 The image below shows what you would see after using this command. 
 Notice that there are no more records of applicants in the
-Applicant List.
+[`Applicant List`](#313-applicant-list--applicant-list-panel).
 
 ![clearApplicantDatabase](images/ugimages/ClearApplicant.png)
 
@@ -756,9 +757,9 @@ Commands to add, delete and edit comments on staff or applicants
 
 * Comment Commands take index reference from which type of person user is viewing. <br>
 
-* If user is viewing staff list or profile, comment commands takes index reference from staff list.<br>
+* If user is viewing [`Staff List`](#311-staff-list--staff-list-panel) or [`Staff Profile`](#312-staff-profile--staff-profile-panel), comment commands takes index reference from [`Staff List`](#311-staff-list--staff-list-panel).<br>
 
-* If user is viewing applicant list or profile, comment commands takes index reference from applicant list.<br>
+* If user is viewing [`Applicant List`](#313-applicant-list--applicant-list-panel) or [`Applicant Profile`](#314-applicant-profile--applicant-profile-panel), comment commands takes index reference from [`Applicant List`](#313-applicant-list--applicant-list-panel).<br>
 
 * Comments are arranged according to date, then alphabetically if same date.<br>
 
@@ -811,7 +812,7 @@ Edits the description of a comment on a staff/applicant.
 
 **:information_source: Note:** <br>
 
-Users can only view comment descriptions on staff or applicant profile panels.
+Users can only view comment descriptions on [`Staff Profile`](#312-staff-profile--staff-profile-panel) or [`Applicant Profile`](#314-applicant-profile--applicant-profile-panel) panels.
 
 </div>
 
