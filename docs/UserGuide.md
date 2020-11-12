@@ -1,7 +1,9 @@
 ---
-layout: page
+##layout: page
+
 title: User Guide
 ---
+Table of Contents:
 <div class="toc-no-bullet-points">
   * Table of Contents
   {:toc}
@@ -30,7 +32,8 @@ You can start from the [Quick Start](#quick-start) section to learn how to obtai
 
 <div style="page-break-after: always;"></div>
 
-## 2. Quick start <a name="quick-start"></a>
+<a name="quick-start"></a>
+## 2. Quick start 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -168,7 +171,6 @@ part of the parameter for the nearest previous prefix, which is `S/`. This will 
 In this example, `help` is a command which does not take in any parameter. Hence, the situation of unexpected prefix(es) entered for commands which do not take in any parameter takes place.
 Thus, tCheck will ignore all words come after the command word `help` and the command will be processed in the same way as `help`.
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ## 4. Features <a name="features"></a>
