@@ -556,7 +556,7 @@ You can follow these instructions:
 
 <div style="page-break-after: always;"></div>
 
-1. Type ` i-reset-all` into the _Command Box_.
+1. Type `i-reset-all` into the _Command Box_.
 
     ![IngredientResetAllStep1](images/IngredientResetAllStep1.png)
     
@@ -602,8 +602,8 @@ Example:
 Let's say you want to see a list of ingredients that you need to restock.
 You can follow these instructions:
 
-1. Type ` i-restock` into the _Command Box_.
-2. Press `"Enter" to execute the command.
+1. Type `i-restock` into the _Command Box_.
+2. Press "Enter" to execute the command.
 
 Outcome:
 
