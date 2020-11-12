@@ -342,7 +342,7 @@ The image below shows what you would see after executing the example given.
 
 #### 3.3.5. Delete a staff: `dels`
 
-Deletes a staff from Eva. 
+This command deletes a staff from Eva's database. By providing the index of the staff, you can remove that staff's record.
 
 <div markdown="block" class="alert alert-danger">
 
@@ -643,7 +643,7 @@ The image below shows what you would see after executing the last example given 
 
 #### 3.4.7. Add an application: `addapp`
 
-Adds an application (resume details) to an applicant with the specified index under Eva.
+This command scans an applicant's resume text file and adds an application (resume details) to an applicant with the specified index under Eva.
 
 Format: `addapp INDEX FILEPATH`
 
@@ -868,7 +868,7 @@ Example Scenario:
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. Command summary                                                                                 
-
+This section gives a summary of all the commands in the user guide.
 ### 5.1. System
 
 | Action                    | Format, Examples   |
@@ -907,46 +907,47 @@ Example Scenario:
 
 ## Appendix: Distribution of Contribution
 
-* <span>1.</span> Introduction (Royce and Nikhila)
-* <span>2.</span> Getting Started (Ben)
-* <span>3.</span> Features (Ben and Nikhila)
-    * 3.1. Eva GUI (Ben)
-        * 3.1.1. Staff List : Staff List Panel (Ben)
-        * 3.1.2. Staff Profile : Staff Profile Panel (Ben)
-        * 3.1.3. Applicant List : Applicant List Panel (Ben)
-        * 3.1.4. Applicant Profile : Applicant Profile Panel (Ben)
-    * 3.2. System Commands
-        * 3.2.1. Open help window : help (Royce)
-        * 3.2.2. Exit the program : exit (Royce)
-    * 3.3. Staff commands (Ben)
-        * 3.3.1. List all staff : list s- (Hou Rui)
-        * 3.3.2. Add a staff : adds (Nikhila)
-        * 3.3.3. Find a staff : find s- (Hou Rui)
-        * 3.3.4. View : view (Ben)
-        * 3.3.5. Delete a staff: dels (Royce)
-        * 3.3.6. Edit a staff: edits (Isaac)
-        * 3.3.7. Record leave taken by staff: addl (Ben)
-        * 3.3.8. Delete leave taken by staff: dell (Ben)
-        * 3.3.9. Clear staff database : clear s- (Nikhila)
-    * 3.4. Applicant commands
-        * 3.4.1. List all applicants : list a- (Hou Rui)
-        * 3.4.2 Add an applicant: adda (Nikhila)
-        * 3.4.3. Find an applicant : find a- (Hou Rui)
-        * 3.4.4. View : view (Ben)
-        * 3.4.5. Delete an applicant: dela (Nikhila)
-        * 3.4.6. Edit an applicant: edita (Isaac)
-        * 3.4.7. Add an application: addapp (Royce)
-        * 3.4.8. Delete an application: delapp (Royce)
-        * 3.4.9. Set application status: setas (Nikhila)
-        * 3.4.10 Clear applicant database: clear a- (Nikhila)
-    * 3.5. Comment Commands
-        * 3.5.1 Add comment to a staff/applicant: addc (Isaac)
-        * 3.5.2 Delete comment from a staff/applicant: delc (Isaac)
-        * 3.5.3. Edit comment on a staff: editc (Isaac)
-    * 3.6. Script Engine (Experimental) (Hou Rui)
-        * 3.6.1. Load a JavaScript script: load
-* <span>4.</span> FAQ (Ben)
-* <span>5.</span> Command summary (Royce)
-    * 5.1. System
-    * 5.2. Staff
-    * 5.3. Applicant
+* [<span>1.</span> Introduction (Royce and Nikhila)](#1-introduction)
+* [<span>2.</span> Getting Started (Ben)](#2-getting-started)
+* [<span>3.</span> Features (Ben and Nikhila)](#3-features)
+    * [3.1. Eva GUI (Ben)](#31-eva-gui)
+        [* 3.1.1. Staff List : Staff List Panel (Ben)](#311-staff-list--staff-list-panel)
+        [* 3.1.2. Staff Profile : Staff Profile Panel (Ben)](#312-staff-profile--staff-profile-panel)
+        [* 3.1.3. Applicant List : Applicant List Panel (Ben)](#313-applicant-list--applicant-list-panel)
+        [* 3.1.4. Applicant Profile : Applicant Profile Panel (Ben)](#314-applicant-profile--applicant-profile-panel)
+    [* 3.2. System Commands](#32-system-commands)
+        [* 3.2.1. Open help window : help (Royce)](#321-open-help-window--help)
+        [* 3.2.2. Exit the program : exit (Royce)](#322-exit-the-program--exit)
+    [* 3.3. Staff commands (Ben)](#33-staff-commands)
+        [* 3.3.1. List all staff : list s- (Hou Rui)](#331-list-all-staff--list-s-)
+        [* 3.3.2. Add a staff : adds (Nikhila)](#332-add-a-staff--adds)
+        [* 3.3.3. Find a staff : find s- (Hou Rui)](#333-find-a-staff--find-s-)
+        [* 3.3.4. View : view (Ben)](#334-view--view)
+        [* 3.3.5. Delete a staff: dels (Royce)](#335-delete-a-staff-dels)
+        [* 3.3.6. Edit a staff: edits (Isaac)](#336-edit-a-staff-edits)
+        [* 3.3.7. Record leave taken by staff: addl (Ben)](#337-record-leave-taken-by-staff-addl)
+        [* 3.3.8. Delete leave taken by staff: dell (Ben)](#338-delete-leave-taken-by-staff-dell)
+        [* 3.3.9. Clear staff database : clear s- (Nikhila)](#339-clear-staff-database--clear-s-)
+    * [3.4. Applicant commands](#34-applicant-commands)
+        [* 3.4.1. List all applicants : list a- (Hou Rui)](#341-list-all-applicants--list-a-)
+        [* 3.4.2 Add an applicant: adda (Nikhila)](#342-add-an-applicant-adda)
+        [* 3.4.3. Find an applicant : find a- (Hou Rui)](#343-find-an-applicant--find-a-)
+        [* 3.4.4. View : view (Ben)](#344-view--view)
+        [* 3.4.5. Delete an applicant: dela (Nikhila)](#345-delete-an-applicant-dela)
+        [* 3.4.6. Edit an applicant: edita (Isaac)](#346-edit-an-applicant-edita)
+        [* 3.4.7. Add an application: addapp (Royce)](#347-add-an-application-addapp)
+        [* 3.4.8. Delete an application: delapp (Royce)](#348-delete-an-application-delapp)
+        [* 3.4.9. Set application status: setas (Nikhila)](#349-set-application-status-setas)
+        [* 3.4.10 Clear applicant database: clear a- (Nikhila)](#3410-clear-applicant-database-clear-a-)
+    [* 3.5. Comment Commands](#35-comment-commands)
+        [* 3.5.1 Add comment to a staff/applicant: addc (Isaac)](#351-add-comment-to-a-staffapplicant-addc)
+        [* 3.5.2 Delete comment from a staff/applicant: delc (Isaac)](#352-delete-comment-from-a-staffapplicant-delc)
+        [* 3.5.3. Edit comment on a staff: editc (Isaac)](#353-edit-comment-on-a-staffapplicant-editc)
+    [* 3.6. Script Engine (Experimental) (Hou Rui)](#36-script-engine-experimental)
+        [* 3.6.1. Load a JavaScript script: load](#361-load-a-javascript-script-load)
+[* <span>4.</span> FAQ (Ben)](#4-faq)
+[* <span>5.</span> Command summary (Royce)](#5-command-summary)
+    [* 5.1. System](#51-system)
+    [* 5.2. Staff](#52-staff)
+    [* 5.3. Applicant](#53-applicant)
+
