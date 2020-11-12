@@ -353,7 +353,8 @@ Example:
 Let's say you want to set the ingredient Milk's level to 90 L. 
 You can follow these instructions:
 
-1. Type `i-set i/Milk m/90` into the _Command Box_ and press "Enter" on your keyboard to execute the command.
+1. Type `i-set i/Milk m/90` into the _Command Box_  
+2. Press "Enter" on your keyboard to execute the command.
 
 Before the execution:<br>
 ![IngredientSetCommand](images/IngredientSetCommand.png)
@@ -362,16 +363,18 @@ _Figure 6a. A screenshot showing the view before executing `i-set` command_
 
 <div style="page-break-after: always;"></div>
 
-Outcome (After the execution):
+Outcome:
 
 1. The _Result Display_ will show a success message.
 
+After the execution:<br>
 ![IngredientSetCommandResultDisplay](images/IngredientSetCommandResultDisplay.png)
 
 _Figure 6b. A screenshot showing the success message of an `i-set` command_
 
 2. You can now see that tCheck has updated Milk's level to 90 L in The Ingredient Tracker inside the _Main View_.
 
+After the execution:<br>
 ![IngredientSetCommandUpdate](images/IngredientSetCommandUpdate.png)
 
 _Figure 6c. A screenshot showing the outcome of an `i-set` command_
