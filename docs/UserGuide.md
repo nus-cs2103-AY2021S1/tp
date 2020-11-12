@@ -101,7 +101,7 @@ For example, 7:00 AM is `0700` while 7:00 PM is `1900`.
 Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT mod/MODULE_CODE_OF_ASSIGNMENT [p/PRIORITY_OF_ASSIGNMENT] 
 [remind]`
 
-You can add assignments into your assignment list so that you can manage and keep track of all your assignments and academic tasks. 
+You can add assignments into your assignment list to manage and keep track of all your academic tasks. 
 
 For example, to add a lab report assignment that is **due on 23th April 2020 12.30pm** and **associated with the module CS2100**, you can 
 simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. Once the assignment is added, it will appear in the assignment list and all its information will be displayed as shown in the figure below.
