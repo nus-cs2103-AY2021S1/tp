@@ -25,44 +25,17 @@ regarding how to make use of these features. The following shows the home page o
 
 ![Ui](./images/Ui.png)
 
+<br>
 The following shows an example of a personalised Timetable when you click on the Timetable tab:
+<br>
 
-![Timetable View](./images/timetable_view.png)
+![Timetable View](./images/ui-timetable.png)
+
+--------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
-## 2. Additional Information
-
-Please note the following formatting and notations that you will encounter as you read on about fitNUS features:
-
-Formatting | Meaning | Examples
---------|-------|-----------
-e/EXAMPLE | The character before the forward slash ("/") is a prefix, and words in **UPPER_CASE** after the slash are the parameters to be supplied by you | In `exercise_add e/EXERCISE`, you can use `EXERCISE` as a parameter as such: `exercise_add e/Deadlift`
-[ x/X ] | Square brackets signify optional fields that you can consider using | `exercise_add e/EXERCISE [t/TAG]` can be used as `exercise_add e/Deadlift t/glutes` or `exercise_add e/Deadlift`
-`...` | Fields which are followed by `...` indicate that you can use them more than once | `[t/TAG]...` can be used as `t/first t/important t/form` etc.
-Order of parameters | You can provide valid parameters in any order unless one of the parameters is `INDEX`, in which case `INDEX` must be the first parameter | In `exercise_edit INDEX [e/EXERCISE] [t/TAG]...`, `exercise_edit INDEX [t/TAG]... [e/EXERCISE]` is also accepted. However, `exercise_edit [e/EXERCISE] INDEX [t/TAG]...` is not allowed
-`mark-up` | Grey highlight of a word signifies the actual input that you can use | You can type `exercise_delete 1` in the command box and press *Enter* to execute the command
-Call Outs | Red boxes are drawn up around areas of interest to show the comparison before you input a command and the result of a successful command outcome. Blue boxes are drawn up around commands you are expected to input to achieve those outcomes | -
-
-<div markdown="block" class="alert alert-primary">
-
-**:bulb: Tip:**<br>Check out the list below to get started on using this User Guide.
-
-* If this is your first time using fitNUS, refer to the [Quick Start](#3-quick-start) for step-by-step instructions on how
-to download and set up fitNUS on your Computer.
-
-* If you want to explore the different features of fitNUS, go to the [Commands](#4-commands) section.
-
-* If you are familiar with fitNUS or want to do a quick lookup of all the available commands, go to the
-[Command Summary](#5-command-summary) section.
-
-</div>
-
-
-
---------------------------------------------------------------------------------------------------------------------
-## 3. Quick Start
+## 2. Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -86,9 +59,9 @@ here are some sample commands you can try:
    * **`timetable_add_routine`**`r/Upper Body Session D/Monday T/1600-1800` : Adds the Routine "Upper Body Session"
    to your timetable on Monday at 1600HRS - 1800HRS.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-primary">
 
-**:information_source: Note:**<br>
+**:bulb: Tip:**<br>
 
  Now that fitNUS is running as expected, you can kick-start your fitness journey and start working towards your goals!
 Experience first-hand the convenience that fitNUS brings to your life by exploring the various commands yourself.
@@ -102,6 +75,21 @@ Experience first-hand the convenience that fitNUS brings to your life by explori
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+## 3. Additional Information
+
+Please note the following formatting and notations that you will encounter as you read on about fitNUS features:
+
+Formatting | Meaning | Examples
+--------|-------|-----------
+e/EXAMPLE | The character before the forward slash ("/") is a prefix, and words in **UPPER_CASE** after the slash are the parameters to be supplied by you | In `exercise_add e/EXERCISE`, you can use `EXERCISE` as a parameter as such: `exercise_add e/Deadlift`
+[ x/X ] | Square brackets signify optional fields that you can consider using | `exercise_add e/EXERCISE [t/TAG]` can be used as `exercise_add e/Deadlift t/glutes` or `exercise_add e/Deadlift`
+`...` | Fields which are followed by `...` indicate that you can use them more than once | `[t/TAG]...` can be used as `t/first t/important t/form` etc.
+Order of parameters | You can provide valid parameters in any order unless one of the parameters is `INDEX`, in which case `INDEX` must be the first parameter | In `exercise_edit INDEX [e/EXERCISE] [t/TAG]...`, `exercise_edit INDEX [t/TAG]... [e/EXERCISE]` is also accepted. However, `exercise_edit [e/EXERCISE] INDEX [t/TAG]...` is not allowed
+`mark-up` | Grey highlight of a word signifies the actual input that you can use | You can type `exercise_delete 1` in the command box and press *Enter* to execute the command
+Call Outs | Red boxes are drawn up around areas of interest to show the comparison before you input a command and the result of a successful command outcome. Blue boxes are drawn up around commands you are expected to input to achieve those outcomes | -
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## 4. Commands
 
 In this section, each command will be explained in greater depth. Illustrations are used to allow visual aid.
@@ -642,35 +630,29 @@ Note that you can view all the lessons again.
 
 You can add both Routines and Lessons to your timetable to get an overview of your week. You can navigate between the
 Timetable and Homepage display by clicking on the corresponding tabs found at the top left of the interface. The following
-image shows an example of a personalised Timetable when you click on the Timetable tab:
+image shows an annotated example of a personalised Timetable when you click on the Timetable tab, for your reference:
 
-![Timetable View](./images/timetable_view.png)
+![Timetable View](./images/ui-timetable.png)
 
 <br>
-Any changes made to existing routines or lessons that have already been added as a slot in the Timetable will be
-reflected automatically on the Timetable. In this subsection, we will explore the timetable feature and its related commands.
+Any changes made to existing Routines or Lessons that have already been added as a slot in the Timetable will be
+reflected automatically on the Timetable. In this subsection, we will explore the Timetable feature and its related commands.
 
 #### 4.4.1 Add routine to timetable : `timetable_add_routine`
 
-Adds a complete routine into the timetable in fitNUS.
+You can add a complete routine into your timetable in fitNUS.
 
 Format: `timetable_add_routine r/ROUTINE D/DAY T/TIME`
 
 Example:
-* `timetable_add_routine r/Leg Workout D/Monday T/1600-1800`
-
-<br>
-Adds routine "Leg Workout" to timetable on Monday, 1600-1800.
-<br>
-<br>
+* `timetable_add_routine r/Leg Workout D/Monday T/1600-1800` fitNUS adds the routine "Leg Workout" to timetable on Monday, 1600-1800.
 
 **Before adding routine "Leg Workout" to Timetable:**
 
 ![Timetable Add Routine Before](./images/timetable_add_routine_before.png)
 
 <br>
-Notice that there are no Monday slots initially. Additionally, we have pre-added a routine "Leg Workout" using
-`routine_create r/Leg Workout` to be able to add a routine to the timetable.
+Notice that there are no Monday slots initially. Additionally, we have pre-added a routine "Leg Workout" to facilitate this example.
 <br>
 <br>
 
@@ -679,31 +661,25 @@ Notice that there are no Monday slots initially. Additionally, we have pre-added
 ![Timetable Add Routine After](./images/timetable_add_routine_after.png)
 
 <br>
-Note that a routine slot can be seen now on Monday.
+Note that a routine slot can be seen now on Monday representing the routine.
 <br>
 <br>
 
 #### 4.4.2 Add lesson to timetable : `timetable_add_lesson`
 
-Adds a lesson into the timetable in fitNUS.
+You can add a lesson into your timetable in fitNUS.
 
 Format: `timetable_add_lesson n/LESSON D/DAY T/TIME`
 
 Example:
-* `timetable_add_lesson n/CS2103T D/Wednesday T/1200-1400`
-
-<br>
-Adds lesson "CS2103T" to timetable on Wednesday, 1200-1400.
-<br>
-<br>
+* `timetable_add_lesson n/CS2103T D/Wednesday T/1200-1400` fitNUS adds lesson "CS2103T" to timetable on Wednesday, 1200-1400.
 
 **Before adding lesson "CS2103T" to Timetable:**
 
 ![Timetable Add Lesson Before](./images/timetable_add_lesson_before.png)
 
 <br>
-Notice that there are no Wednesday slots initially. Additionally, we have pre-added a lesson "CS2103T" using
-`lesson_add n/CS2103T` to be able to add a lesson to the timetable.
+Notice that there are no Wednesday slots initially. Additionally, we have pre-added a lesson "CS2103T" to facilitate this example.
 <br>
 <br>
 
@@ -712,19 +688,18 @@ Notice that there are no Wednesday slots initially. Additionally, we have pre-ad
 ![Timetable Add Lesson After](./images/timetable_add_lesson_after.png)
 
 <br>
-Note that a lesson slot can be seen now on Wednesday.
+Note that a lesson slot can be seen now on Wednesday representing the lesson.
 <br>
 <br>
 
 #### 4.4.3 Delete routine or lesson from schedule : `timetable_delete_slot`
 
-Deletes a routine or lesson from the timetable in fitNUS.
+You can choose to delete a routine or lesson from your timetable in fitNUS.
 
 Format: `timetable_delete_slot D/DAY T/TIME`
 
 Example:
-* `timetable_delete_slot D/Monday T/1600-1800`
-Deletes the routine or lesson scheduled on Monday, 1600-1800.
+* `timetable_delete_slot D/Monday T/1600-1800`fitNUS deletes the routine or lesson scheduled on Monday, 1600-1800.
 
 **Before removing slot from Timetable:**
 
@@ -759,12 +734,13 @@ upon your input.
 
 #### 4.5.1 Set height : `height`
 
-Sets the specified height, in centimetres, to fitNUS.
+You can now set your specified height, in centimetres, to fitNUS.
 
 Format: `height h/HEIGHT`
 
 Example:
-* `height h/170` Sets your height to 170 cm.
+* `height h/170` fitNUS sets the height of the user, which is 170 cm.
+
 
 **Before inputting "170" cm:**
 
@@ -785,12 +761,14 @@ Note the updated height of 170 cm after the change.
 
 #### 4.5.2 Set weight : `weight`
 
-Sets the specified weight, in kilograms, to fitNUS.
+You can set your specified weight, in kilograms, to fitNUS.
 
 Format: `weight w/WEIGHT`
 
 Example:
-* `weight w/72.8` Sets your weight to 72.8 kg.
+
+* `weight w/72.8` fitNUS sets the weight of the user, which is 72.8 kg.
+
 
 **Before inputting "72.8" kg:**
 
@@ -822,19 +800,19 @@ automatically reflected in the Calorie Graph on the Home tab.
 
 * You are able to increase or decrease your calorie intake for the day by typing in a whole number only.
 
-* As with all great calorie trackers, we only allow you to edit the current day's calorie log so as to prevent any
+* As with all great calorie trackers, fitNUS only allows you to edit the current day's calorie log so as to prevent any
 edits to previous entries.
 
 </div>
 
 #### 4.6.1 Add calories : `calorie_add`
 
-Adds the specified calorie amount to fitNUS.
+You can add a specified calorie amount to fitNUS.
 
 Format: `calorie_add c/CALORIE`
 
 Example:
-* `calorie_add c/1500` Adds 1500 calories to today's sum.
+* `calorie_add c/1500` fitNUS adds 1500 calories to today's sum.
 
 **Before adding "1500" calories:**
 
@@ -855,7 +833,7 @@ Note that the current calorie count now stands at 1500.
 
 #### 4.6.2 Deduct calories : `calorie_minus`
 
-Deducts the specified calorie amount from today's sum.
+You can deduct a specified calorie amount from today's sum.
 
 Format: `calorie_minus c/CALORIE`
 
@@ -886,13 +864,13 @@ include `help`, `clear` and `exit`.
 
 #### 4.7.1 Help: `help`
 
-Shows a brief description of all possible commands. Links you to the User Guide where there is a comprehensive guide of
+By entering this command, fitNUS shows a brief description of all possible commands and links you to the User Guide where there is a comprehensive guide of
 the program usage instructions in fitNUS. The link will appear in a pop-up.
 
 Format: `help`
 
 Example:
-* `help` Shows a scrollable full command list.
+* `help` fitNUS now shows a scrollable full command list as a pop-up.
 
 **Before inputting "help":**
 
@@ -903,15 +881,15 @@ Example:
 ![Help](./images/help_after.png)
 
 <br>
-Note how a pop-up window appears containing a list of 27 commands that fitNUS supports.
+Note how a pop-up window appears containing a list of all 27 commands that fitNUS supports.
 
-Alternatively, use a keyword to search for a group of commands.
+Alternatively, you may use a keyword to search for a group of commands.
 The following depicts what would happen if you chose to streamline your search to a certain keyword.
 
 Format: `help [COMMAND_KEYWORD]`
 
 Example:
-* `help timetable` Shows all the commands containing the word "timetable".
+* `help timetable` fitNUS shows all the commands containing the word "timetable".
 
 <div style="page-break-after: always;"></div>
 
@@ -928,12 +906,18 @@ Note how a pop-up window appears containing 3 commands that contain the word "ti
 
 #### 4.7.2 Clear: `clear`
 
-Clears all data entries from fitNUS.
+By entering this command, fitNUS clears all your data entries from memory.
 
 Format: `clear`
 
+<div markdown="block" class="alert alert-warning">
+
+:warning: **Caution:** fitNUS will not be able to undo this action. Please be very sure this is what you want to do.
+
+</div>
+
 Example:
-* `clear` Clear all data entries from fitNUS.
+* `clear` fitNUS clears all data entries from fitNUS.
 
 **Before clearing data:**
 
@@ -947,11 +931,11 @@ Notice that fitNUS currently displays some exercises, routines and lessons.
 **Successful outcome of clearing data:**
 
 ![Clear After](./images/clear_after.png)
-Note that all data entries have been cleared, the Calorie Graph shows no data points and the BMI Metrics have returned to default settings.
+Note that all data entries have been cleared from fitNUS, the Calorie Graph shows no data points and the BMI Metrics have returned to default settings.
 
 #### 4.7.3 Exit: `exit`
 
-Saves fitNUS data and terminates the application.
+fitNUS will save your existing data and will close the application upon your input of this command.
 
 Format: `exit`
 
@@ -1040,26 +1024,26 @@ Action | Format | Examples
 
 ## 7. Glossary
 
-**Application**: The fitNUS program you are using
+**Application**: Refers to the fitNUS program you are using
 
-**BMI**: Body Mass Index is a convenient measurement which reflects an individual's health
+**BMI**: Represents your Body Mass Index, a convenient measurement which serves as an indicator of your health
 
-**Calorie**: Measures how much energy your body can obtain from consuming it
+**Calorie**: Measures the amount of energy you have consumed from food or burned from your workout
 
-**Command**: Instruction to be performed by fitNUS to achieve a desired result
+**Command**: Refers to the instruction to be performed by fitNUS to achieve the desired result
 
-**Data Entry**: Any inputted data or information such as exercise, routine or lesson etc
+**Data Entry**: Refers to any inputted data or information such as exercise, routine or lesson etc
 
-**Exercise**: The physical activity you intend to include as part of your workout routine
+**Exercise**: Represents the physical activity you intend to include as part of your workout routine
 
-**Index**: The number beside the name of the corresponding data entry in fitNUS
+**Index**: Represents the number beside the name of the corresponding data entry in fitNUS
 
-**Keyword**: The user input to find matches during a search
+**Keyword**: Refers to the user input to find matches during a search command
 
-**Lesson**: Module provided by NUS
+**Lesson**: Represents the module taught by NUS
 
 **Routine**: Represents a collection of exercises
 
-**Tag**: A word that describes a data entry
+**Tag**: Refers to a word that describes a data entry
 
-**Timetable**: A customisable workout planner to organize your weekly lessons and workout routines
+**Timetable**: Shows a customisable workout planner to organize your weekly lessons and workout routines
