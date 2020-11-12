@@ -437,9 +437,9 @@ For example, if the user calls the following commands in sequence:
 `add -n Burger`, `help edit`, `undo`, the undo command will undo the adding operation, not the help one.
 * All additional input after the *command word* `undo` will be ignored. E.g. `undo` and `undo 123` will have the same effect.
 
-![Undo command example](images/CommandImagesForUG/Undo.png)
-
 </div>
+
+![Undo command example](images/CommandImagesForUG/Undo.png)
 
 ### 5.13 Creating a macro command : `macro`
 
@@ -497,13 +497,13 @@ Examples:
 
 </div>
 
-![Macro command example](images/CommandImagesForUG/Macro.png)
-
 <div markdown="block" class="alert alert-info">
 
 :information_source: When using it with conjunction with the undo command, macro will only undo the commands one at a time within the chain of macro commands<br>
 
 </div>
+
+![Macro command example](images/CommandImagesForUG/Macro.png)
 
 ### 5.14 Listing all macros : `listmacro`
 
