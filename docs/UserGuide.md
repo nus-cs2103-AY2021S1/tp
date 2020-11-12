@@ -752,8 +752,8 @@ for more information. Sample usage:
 
 PlaNus has two application views:
 
-* Task and Lesson view: place where you can see the list of your tasks and lessons
-* Calendar view: place where you can see all your tasks and lessons in a calendar
+* Task and Lesson view: interface where you can see the list of your tasks and lessons
+* Calendar view: interface where you can see all your tasks and lessons in a calendar
 
 You can switch between **Task and Lesson View** and **Calendar View**.
 
