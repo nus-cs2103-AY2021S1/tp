@@ -2,7 +2,7 @@
 layout: page
 title: Isaac Tin's Project Portfolio Page
 ---
-<img src="images/isaactin.png" width="200px">
+<img src="../images/isaactin.png" width="200px">
 
 [[github](http://github.com/IsaacTin)]
 

@@ -2,7 +2,8 @@
 layout: page
 title: User Guide
 ---
-Welcome to the User Guide for Eva!
+Welcome to the User Guide for Eva! 
+If you are viewing this on the pdf version, use Adobe Acrobat Reader and zoom in to 200% for the best viewing experience!
 
 * Table of Contents
 {:toc}
@@ -44,21 +45,22 @@ These messages are meant to alert you of certain consequences involved in the fe
 ------------------------------------------------------------------------------------------------------------------------
 
 ## 2. Getting Started
+Before you begin, here's a quick start guide on how to get Eva up and running on your computer!
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have [Java `11`](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) or above installed in your Computer.
 
-1. Download the latest `eva.jar` from [here](https://github.com/AY2021S1-CS2103T-W13-1/tp/releases).
+1. Download the latest `Eva.jar` from [here](https://github.com/AY2021S1-CS2103T-W13-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for Eva.
+1. Copy the downloaded jar file to the folder you want to use as the _home folder_ for Eva.
 
 1. Double-click the file to start the app. If you face any issues, refer to our [Frequently Asked Questions (FAQ) Section](#4-faq) 
-below. The GUI similar to the below should appear in a few seconds. 
-Note how the app contains some sample data.<br> 
+below. A GUI similar to the one below should appear in a few seconds. 
+Note how the app generate some sample data when you first launch it!<br> 
    ![Ui](images/Ui.png)
 
 1. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    
-   Some example commands you can try:
+   Here are some example commands you can try:
 
    * **`list a-`** : Lists all applicants, changes the panel to display the applicant list.
    
@@ -80,7 +82,7 @@ Note how the app contains some sample data.<br>
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#3-features) below for details of each command.
+1. That's it! Now, you can refer to the [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -160,17 +162,27 @@ As of `v1.4`, Eva currently has four different panels it can switch between:
 
 #### 3.1.1. Staff List : `Staff List Panel`
 
+This panel is where you can see all your staffs in a condensed list view.
+
 ![staffListPanel intro](images/ugimages/Intro1.png)
 
 #### 3.1.2. Staff Profile : `Staff Profile Panel`
+
+This is where you can zoom in on an individual staff and view more information about their leaves and comments.
 
 ![staffProfilePanel intro](images/ugimages/Intro2.png)
 
 #### 3.1.3. Applicant List : `Applicant List Panel`
 
+Similar to the staff list, this is where you can see all your applicants in a condensed list view.
+
 ![applicantListPanel intro](images/ugimages/Intro3.png)
 
 #### 3.1.4. Applicant Profile : `Applicant Profile Panel`
+
+This is also similar to the staff profile where you can zoom in on an individual applicant and view more information about them.
+
+However, notice how the placement of the comments section differs from the [`staff list`](#311-staff-list--staff-list-panel).
 
 ![applicantProfilePanel intro](images/ugimages/Intro4.png)
 
@@ -214,15 +226,15 @@ As mentioned earlier in [Features](#3-features), there is no need to manually sa
 
 ### 3.3. Staff commands
 
-Staff commands give you the ability to keep track of your staffs which help you make business and manpower decisions.
+Eva makes use of these staff commands to give you the ability to keep track of your staffs which help you make business and manpower decisions.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:** <br>
 
-* All commands under staff can only be done on either staff list or staff profile panel except `adds`, which can be done on any panel<br>
+* All commands under staff can only be done on either staff list or staff profile panel except `adds`, which can be done on any panel.<br>
  
-* While in staff profile, only details of the profile that is being viewed can be changed.<br>
+* On a staff profile, only the details of the profile that is being viewed can be changed.<br>
 
 </div>
 
@@ -297,7 +309,9 @@ The image below shows what you would see after executing the last example given.
 
 #### 3.3.3. Find a staff : `find s-`
 
-Shows a list of staffs whose name contains one of the given names.
+The command serves as a tool to help you quickly find all the staffs with the given name in your company.
+
+This command will show a list of staffs whose name contains one of the given names. It changes the panel to the [`Staff List`](#31-eva-gui) to display the result.
 
 Format `find FIND_TYPE- KEYWORD`
 
@@ -312,9 +326,10 @@ The image below shows what you would see after executing the last example given.
 
 #### 3.3.4. View : `view`
 
-Want a more in depth and focused view of a staff? Use this command to open up their individual profile!
+To get to the [`Staff Profile Panel`](#312-staff-profile--staff-profile-panel) mentioned earlier, 
+use this command from the [`Staff List Panel`](#311-staff-list--staff-list-panel). Over here, you can take a closer look at the leaves and comments of a staff.
 
-This command changes the panel to the [`Staff Profile`](#31-eva-gui) and Brings you to the profile panel of the staff at the specified index. 
+This command brings you to the profile panel of the staff at the specified index. 
 
 Format: `view INDEX`
 
@@ -375,7 +390,8 @@ The image below shows what you would see after executing the last example given.
 
 #### 3.3.7. Record leave taken by staff: `addl`
 
-This command records the leave taken by a staff in the Eva Database. <br>
+In a company, it is important to keep track of your manpower and know who will be working on which day.
+As such, Eva allows you to record down the leaves taken by a staff and show you the total number of leaves taken as well.
 
 Format: `addl INDEX l/d/DATE [d/DATE] [l/d/DATE [d/DATE]]…​`
 
@@ -387,9 +403,9 @@ Format: `addl INDEX l/d/DATE [d/DATE] [l/d/DATE [d/DATE]]…​`
 
 * Dates can be input in any order. Eva will sort the leaves and dates according to which date comes first.<br>
 
-* Eva automatically tells you if a staff has either already taken the leave, is in the process of taking it or has not taken the leave. This can be seen on the [Staff Profile](#31-eva-gui). <br>
+* Eva automatically tells you if a staff has either already taken the leave, is in the process of taking it or has not taken the leave. This can be seen on the [Staff Profile](#312-staff-profile--staff-profile-panel). <br>
 
-* Eva also automatically tallies up the total number of leave days taken by a staff and displays the total below the leaves! This can be seen on the [Staff Profile](#31-eva-gui). <br>
+* Eva also automatically tallies up the total number of leave days taken by a staff and displays the total below the leaves! This can be seen on the [Staff Profile](#312-staff-profile--staff-profile-panel). <br>
 
 </div>
 
@@ -406,9 +422,10 @@ The image below shows what you would see after executing the last example given 
 
 #### 3.3.8. Delete leave taken by staff: `dell`
 
-Should a staff be unable to take their leave and cancels or postpones, Eva allows you to delete their recorded leaves!
+Sometimes a staff becomes unable to take their leave and cancels or postpones, 
+Eva allows you to delete their recorded leaves. The total leave taken count is also automatically updated.
 
-This command removes the record of leave taken by staff, specified by the date given.<br>
+This command removes the record of leave taken by a staff, specified by the date given.<br>
 
 <div markdown="block" class="alert alert-danger">
 
@@ -455,7 +472,7 @@ Staff List.
 
 ### 3.4. Applicant commands
 
-Staff commands give you the ability to keep track of your applicants which help you make good recruitment decisions.
+Applicant commands give you the ability to keep track of your applicants which help you make good recruitment decisions.
 
 <div markdown="block" class="alert alert-info">
 
@@ -471,6 +488,8 @@ Staff commands give you the ability to keep track of your applicants which help 
 #### 3.4.1. List all applicants : `list a-`
 
 The applicant list panel serves as your primary tool to give you an overview of all the applicants in your company.
+
+This command changes the panel to the [`Applicant List`](#31-eva-gui) and shows a list of all applicants in the Eva Database.
 
 Format: `list a-`
 
@@ -543,7 +562,10 @@ Notice that John Doe is now recorded as an applicant in our database.
 
 #### 3.4.3. Find an applicant : `find a-`
 
-Shows a list of applicants whose name contains one of the given names.
+The command can help you quickly find all the applicant records with the given name in your company.
+
+This command will show a list of applicants whose name contains one of the given names. It changes the panel to the [`Applicant List`](#31-eva-gui) to display the result.
+
 
 Format `find FIND_TYPE- KEYWORD`
 
@@ -558,7 +580,10 @@ The image below shows what you would see after executing the last example given 
 
 #### 3.4.4. View : `view`
 
-Brings you to the profile panel of the applicant at the specified index. 
+To get to the [`Applicant Profile Panel`](#314-applicant-profile--applicant-profile-panel) mentioned earlier, 
+use this command from the [`Applicant List Panel`](#313-applicant-list--applicant-list-panel). Over here, you can take a closer look at the application and comments of an applicant.
+
+This command brings you to the profile panel of the applicant at the specified index. 
 
 Format: `view INDEX`
 
@@ -751,7 +776,7 @@ Format: `addc INDEX c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/DESCRIPTION`
 
 Example:
 * `addc 1 c/ ti/Working Ethics d/10/10/2010 desc/Good`
-* `addc 2 c/ ti/Punctuality d/10/10/2020 d/This applicant as a problem with punctuality`
+* `addc 2 c/ ti/Punctuality d/10/10/2020 desc/This applicant as a problem with punctuality`
 
 The image below shows what you would see after executing the last example given above.
 
@@ -778,15 +803,15 @@ The image below shows what you would see after executing the last example given 
 
 ![deleteComment](images/ugimages/DeleteComment.png)
 
-#### 3.5.3. Edit comment on a staff: `editc`
+#### 3.5.3. Edit comment on a staff/applicant: `editc`
 
-Edits the description of a comment on a staff.
+Edits the description of a comment on a staff/applicant.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:** <br>
 
-Users can only view comment descriptions on staff or applicant profile pages.
+Users can only view comment descriptions on staff or applicant profile panels.
 
 </div>
 
@@ -802,10 +827,11 @@ The image below shows what you would see after executing the last example given 
 
 ### 3.6. Script Engine (Experimental)
 
-Eva has a built-in script to execute JavaScript that can be used to extend the features of Eva.
+Eva provides a built-in script to execute JavaScript that can be used to extend the features of Eva.
 
-Please refer to [Nashorn official website](https://www.oracle.com/technical-resources/articles/java/jf14-nashorn.html)
-for supported JavaScript features, and how to import Java classes to extend Eva features.
+To write a script to extend the features of Eva,
+please refer to [Nashorn official website](https://www.oracle.com/technical-resources/articles/java/jf14-nashorn.html)
+for supported JavaScript features, and learn how to import Java classes to extend Eva features.
 
 <div markdown="block" class="alert alert-danger">
 
@@ -834,8 +860,11 @@ Example Scenario:
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Eva home folder.
 
+**Q**: How do I find the data file?<br>
+**A**: The `data` folder is automatically generated in the same directory as your Eva.jar file. The `data` folder should contain the data you have saved inside some `.json` files.
+
 **Q**: I can't run the app by double clicking! What do I do?<br>
-**A**: Open terminal and traverse to the directory the `Eva.jar` file is in. Then type the command `java -jar Eva.jar`.
+**A**: Open terminal and [traverse](https://www.howtogeek.com/659411/how-to-change-directories-in-command-prompt-on-windows-10/) to the directory the `Eva.jar` file is in. Then type the command `java -jar Eva.jar`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -876,3 +905,49 @@ Example Scenario:
 | **Delete Application** | `delapp INDEX` <br> e.g. `delapp 1`                                                       |
 | **Set AppStatus**      | `setas INDEX as/NEW_APPLICATION_STATUS` <br> e.g. `setas 1 as/processing`                               |
 | **Clear Applicant Database** | `clear a-`         |
+
+## Appendix: Distribution of Contribution
+
+* <span>1.</span> Introduction (Royce and Nikhila)
+* <span>2.</span> Getting Started (Ben)
+* <span>3.</span> Features (Ben and Nikhila)
+    * 3.1. Eva GUI (Ben)
+        * 3.1.1. Staff List : Staff List Panel (Ben)
+        * 3.1.2. Staff Profile : Staff Profile Panel (Ben)
+        * 3.1.3. Applicant List : Applicant List Panel (Ben)
+        * 3.1.4. Applicant Profile : Applicant Profile Panel (Ben)
+    * 3.2. System Commands
+        * 3.2.1. Open help window : help (Royce)
+        * 3.2.2. Exit the program : exit (Royce)
+    * 3.3. Staff commands (Ben)
+        * 3.3.1. List all staff : list s- (Hou Rui)
+        * 3.3.2. Add a staff : adds (Nikhila)
+        * 3.3.3. Find a staff : find s- (Hou Rui)
+        * 3.3.4. View : view (Ben)
+        * 3.3.5. Delete a staff: dels (Royce)
+        * 3.3.6. Edit a staff: edits (Isaac)
+        * 3.3.7. Record leave taken by staff: addl (Ben)
+        * 3.3.8. Delete leave taken by staff: dell (Ben)
+        * 3.3.9. Clear staff database : clear s- (Nikhila)
+    * 3.4. Applicant commands
+        * 3.4.1. List all applicants : list a- (Hou Rui)
+        * 3.4.2 Add an applicant: adda (Nikhila)
+        * 3.4.3. Find an applicant : find a- (Hou Rui)
+        * 3.4.4. View : view (Ben)
+        * 3.4.5. Delete an applicant: dela (Nikhila)
+        * 3.4.6. Edit an applicant: edita (Isaac)
+        * 3.4.7. Add an application: addapp (Royce)
+        * 3.4.8. Delete an application: delapp (Royce)
+        * 3.4.9. Set application status: setas (Nikhila)
+        * 3.4.10 Clear applicant database: clear a- (Nikhila)
+    * 3.5. Comment Commands
+        * 3.5.1 Add comment to a staff/applicant: addc (Isaac)
+        * 3.5.2 Delete comment from a staff/applicant: delc (Isaac)
+        * 3.5.3. Edit comment on a staff: editc (Isaac)
+    * 3.6. Script Engine (Experimental) (Hou Rui)
+        * 3.6.1. Load a JavaScript script: load
+* <span>4.</span> FAQ (Ben)
+* <span>5.</span> Command summary (Royce)
+    * 5.1. System
+    * 5.2. Staff
+    * 5.3. Applicant
