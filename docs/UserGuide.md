@@ -965,11 +965,14 @@ _Employee Directory_ pane. For example, there are 2 employees listed in the curr
 
 **:information_source: Notes about Employee Directory:**<br>
 
-If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
- color label, named as "[Archived]", in front of the name), command [`c-active-list`](#432-listing-all-employees-in-the-active-list-c-active-list) needs to be used first to
-  see a
-  list of all your employees. Then, `c-archive INDEX` can be used to archive a specified employee identified
+ * If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
+ color label, named as "[Archived]", in front of the name), command
+  [`c-active-list`](#432-listing-all-employees-in-the-active-list-c-active-list) needs to be used first to
+  see a list of all your employees. Then, `c-archive INDEX` can be used to archive a specified employee identified
   by `INDEX`.<br>
+  
+  * If you want to see all your archived employees, you can use command 
+  [`c-archive-list`](#4312-listing-all-archived-employees--c-archive-list-a-namec-archive-lista).
 </div>
 
 
@@ -981,28 +984,19 @@ permanently deleting his information, so that you can retrieve/move back his inf
 employee directory when he comes back to work again. To archive the first employee, Alex Yeoh, in the sample data, you
 can follow these instructions:
  
-1. Type `c-archive 1` into the _Command Box_.
-2. Press "Enter" to execute.
-
+1. Type `c-archive 1` into the _Command Box_, and press "Enter" to execute.
+![ArchiveCommandStep1Screenshot](images/ArchiveCommandStep1Screenshot.png)
 
 Outcome:
 
 1. The _Result Display_ will show a success message with the employee's name that you have archived.
+![ArchiveCommandStep2Screenshot](images/ArchiveCommandStep2Screenshot.png)
+
 2. Alex Yeoh's information will be removed from Employee Directory inside the _Main View_.
+![ArchiveCommandStep3Screenshot](images/ArchiveCommandStep3Screenshot.png)
 
 <div style="page-break-after: always;"></div>
 
-Before the execution:<br>
-![BeforeArchiveCommandScreenshot](images/BeforeArchiveCommandScreenshot.png)
-
-_Figure 21a. Screenshot showing the view before executing `c-archive` command_
-
-After the execution:<br>
-![AfterArchiveCommandScreenshot](images/AfterArchiveCommandScreenshot.png)
-
-_Figure 21b. Screenshot showing the outcome of an `c-archive` command_
-
-<div style="page-break-after: always;"></div>
 
 #### 4.3.11. Archiving all employees : `c-archive-all` <a name="c-archive-all"></a>
 
@@ -1106,13 +1100,21 @@ Employee Directory inside the _Main View_. For example, there are 2 employees li
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about Employee Directory:**<br>
-* If _Employee Directory_ currently shows a list of active/unarchived employees (Archived employees are displayed with a
- red color label, named as "[Archived]", in front of their names. While employees in the active/unarchived employee list
-  don't have this red label.), command [`c-archive-list`](#4312-listing-all-archived-employees--c-archive-list) 
+* If _Employee Directory_ currently shows a list of active/unarchived employees, command 
+[`c-archive-list`](#4312-listing-all-archived-employees--c-archive-list) 
   needs to be used first to see a list of all your archived
   employees. Then, `c-unarchive INDEX` can be used to unarchive a specified
    employee identified by `INDEX`.<br>
+   
+* Archived employees are displayed with a
+ red color label, named as "[Archived]", in front of their names. While employees in the active/unarchived employee list
+  don't have this red label.
+* To see the list of all archived employees, use command 
+[`c-archive-list`](#4312-listing-all-archived-employees--c-archive-list-a-namec-archive-lista).
 
+* To see the list of all active (unarchived) employees, use command
+[`c-active-list`](#432-listing-all-employees-in-the-active-list-c-active-list).
+   
 </div>
 
 Example:
@@ -1267,7 +1269,7 @@ Action | Format, Examples
 **Find available manpower** | 1. **For today:**  [`c-today`](#c-today)<br>2. **For the next day:**  [`c-tomorrow`](#c-tomorrow) <br>
 **Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
 **Clear** | `c-clear`
-**Archive an employee** |  [`c-archive INDEX`](#c-archive)br> e.g., `c-archive 1`  
+**Archive an employee** |  [`c-archive INDEX`](#c-archive)<br> e.g., `c-archive 1`  
 **Archive all employees** |  [`c-archive-all`](#c-archive-all) <br>
 **List all archived employees** |  [`c-archive-list`](#c-archive-list)
 **Unarchive** | [`c-unarchive INDEX`](#c-unarchive)<br> e.g., `c-unarchive 1` 
