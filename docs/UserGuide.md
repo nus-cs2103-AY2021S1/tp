@@ -210,11 +210,11 @@ this box.
            count of the fields stated in the previous paragraph, in the image above, it is the sentence "Remaining - Nothing!". The values are updated when Jarvis starts up and after a user command is entered.
              
         1. Greeting message - A welcome message for you. If you are not logged in, this message will prompt you to do
-         so.
+         so.<br><br>
         1. Weekly topic and today's date - The week count for the semester, together with the topic for the week and
-         today's date.
+         today's date.<br><br>
         1. Shortcut icons - These icons are positioned here for your convenience to quickly navigate to Source Academy
-         with the blue diamond on the left, and Jarvis' user guide with the white book icon on the right.
+         with the blue diamond on the left, and Jarvis' user guide with the white book icon on the right.<br><br>
         1. Jarvis logo.
 
 #### 4.1.2 Command Box
