@@ -2,8 +2,10 @@
 layout: page
 title: User Guide
 ---
-* Table of Contents
-{:toc}
+<div class="toc-no-bullet-points">
+  * Table of Contents
+  {:toc}
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -194,9 +196,9 @@ Currently, there are 6 types of drinks that can be tracked by tCheck's Sales Tra
 </div>
 
 
-#### 4.1.1. Updating the number of drinks sold : `s-update`
-Updates the number of drinks sold for each drink type as given in the user input. The previous records will
-be overwritten.
+#### 4.1.1. Updating the number of drinks sold : `s-update` <a name="s-update"></a>
+Updates the number of drinks sold for each drink type as given in the user input. The previous records for those
+ drinks will be overwritten.
 
 Format: `s-update DRINK [MORE_DRINKS]`
 * where `DRINK` is formatted as `A/NUM`
@@ -213,21 +215,30 @@ Let's say you want to update the sales of Brown Sugar Boba Milk, `BSBM`, to 100
 and Brown Sugar Boba Black Tea, `BSBBT`, to 120 in the Sales Tracker. You can follow these instructions:
 
 1. Type `s-update BSBM/100 BSBBT/120` into the _Command Box_.
+
+    ![SalesUpdateStep1](images/SalesUpdateStep1.png)
+
+    _Figure 3a. A screenshot showing the entering of an `s-update` command_
+
 2. Press "Enter" to execute the command.
 
 Outcome:
-
 1. The _Result Display_ will show a success message.
+
+    ![SalesUpdateOutcome1](images/SalesUpdateOutcome1.png)
+
+    _Figure 3b. A screenshot showing the success message_
+
 2. You can now see that tCheck has updated the sales of the two drinks in the Sales
- Tracker inside the _Main View_. 
+ Tracker inside the _Main View_. You may need to scroll through the Sales Tracker to find the drinks.
+ 
+    ![SalesUpdateOutcome2](images/SalesUpdateOutcome2.png)
 
-![SalesUpdateCommandScreenshot](images/SalesUpdateCommandScreenshot.png)
-
-_Figure 3. A screenshot showing the outcome of an `s-update` command_
+    _Figure 3c. A screenshot showing the changes in the Sales Tracker_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.1.2. Listing the number of drinks sold : `s-list`
+#### 4.1.2. Listing the number of drinks sold : `s-list` <a name="s-list"></a>
 Shows a list of all types of drinks sold in the Sales Tracker. The list of drinks shown is 
 ordered in descending order (i.e. ranked from the most to least sales).
 
@@ -235,8 +246,8 @@ Format: `s-list`
 
 Example: 
 
-Let's say you want to see an ordered list of drink sales that have been recorded with `s-update`.
-You can follow these instructions:
+Let's say you have recorded some drink sales using the instructions given in the `s-update` command.
+ You now want to see an ordered list of drink sales that have been recorded. You can follow these instructions:
 
 1. Type `s-list` into the _Command Box_.
 2. Press "Enter" to execute the command.
@@ -1229,8 +1240,8 @@ include: `s-list`, `i-set-default`, `i-list`, `i-reset-all`, `i-restock`, `c-lis
 
 Action | Format, Examples
 -------|------------------------------
-**Update**| `s-update DRINK [MORE_DRINKS]` <br> e.g., `s-update BSBM/100 BSBBT/120`
-**List**| `s-list`
+[**Update**](#s-update)| `s-update DRINK [MORE_DRINKS]` <br> e.g., `s-update BSBM/100 BSBBT/120`
+[**List**](#s-list)| `s-list`
 **Find**| `s-find KEYWORD [MORE_KEYWORDS]` <br> e.g., `s-find BSBM BSBBT`
 
 
