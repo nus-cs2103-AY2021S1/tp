@@ -985,21 +985,24 @@ employee directory when he comes back to work again. To archive the first employ
 can follow these instructions:
  
 1. Type `c-archive 1` into the _Command Box_, and press "Enter" to execute.
-![ArchiveCommandStep1Screenshot](images/ArchiveCommandStep1Screenshot.png)
 
-_Figure 21a. Screenshot showing the view before executing `c-archive` command_
+    ![ArchiveCommandStep1Screenshot](images/ArchiveCommandStep1Screenshot.png)
+    
+    _Figure 21a. Screenshot showing the view before executing `c-archive` command_
 
 Outcome:
 
 1. The _Result Display_ will show a success message with the employee's name that you have archived.
-![ArchiveCommandStep2Screenshot](images/ArchiveCommandStep2Screenshot.png)
 
-_Figure 21b. Screenshot showing the success message of an `c-archive` command_
+    ![ArchiveCommandStep2Screenshot](images/ArchiveCommandStep2Screenshot.png)
+    
+    _Figure 21b. Screenshot showing the success message of an `c-archive` command_
 
 2. Alex Yeoh's information will be removed from Employee Directory inside the _Main View_.
-![ArchiveCommandStep3Screenshot](images/ArchiveCommandStep3Screenshot.png)
+    
+    ![ArchiveCommandStep3Screenshot](images/ArchiveCommandStep3Screenshot.png)
 
-_Figure 21c. Screenshot showing the outcome of an `c-archive` command_
+    _Figure 21c. Screenshot showing the outcome of an `c-archive` command_
 
 <div style="page-break-after: always;"></div>
 
