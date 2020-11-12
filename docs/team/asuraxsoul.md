@@ -28,6 +28,8 @@ Given below are my contributions to the project.
   * Justification: This feature gives tutors ability to view their Tasks quickly based on different categories.
   * Highlights: I really appreciate the usefulness and flexibility of using an Observer pattern.
 
+<div style="page-break-after: always;"></div>
+
 * **New Feature**: Added a `History Command` that allows Tutors to navigate to previous commands using up/down keys.
   * What it does: Allows tutors to navigate through previous commands entered using up and down arrow keys.
   * Justification: Enhances the CLI nature of JARVIS which gives tutors ability to skim through previous commands, and
@@ -44,7 +46,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Add Task Section features. [\#83](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/83), [\#161](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/161)
   * Update storage to store and load Tasks. [\#115](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/115), [\#161](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/161)
-  * Update GUI with "Todo", "Event", "Deadline" tags for user to easily see what type of Task is that. [\#198](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/198)
+  * Update GUI with "Todo", "Event", "Deadline" tags for user to easily see what type of Task that is. [\#198](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/198)
   * Add access to Command History using "Up" and "Down" arrow keys. [\#298](https://github.com/AY2021S1-CS2103T-W11-2/tp/pull/298)
 
 * **Documentation**:

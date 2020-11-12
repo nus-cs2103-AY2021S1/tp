@@ -77,11 +77,12 @@ Jarvis is a desktop app for CS1101S Teaching Assistants (Avengers), optimized fo
     - [7.5 Exit Command Summary](#75-exit-command-summary)
     - [7.6 Help Command Summary](#76-help-command-summary)
     
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
 
 8. [Glossary](#8-glossary)
     - [8.1 Difference Between Consultations and Mastery Checks](#81-difference-between-consultations-and-mastery-checks)
 9. [FAQ](#9-faq)
+
 
 <div style="page-break-after: always;"></div>
 
@@ -128,23 +129,32 @@ Symbol | Meaning
 
 1. Ensure you have Java 11 or above installed in your Computer.
 
-1. Download the latest _`jarvis.jar`_ and your operating system's _Chrome Driver_ from [here](https://github.com/AY2021S1-CS2103T-W11-2/tp/releases/tag/v1.4).
+1. Download the latest _`[CS2103T-W11-2][Jarvis].jar`_ and the _`chrome_driver.zip`_ from [here](https://github.com/AY2021S1-CS2103T-W11-2/tp/releases/tag/v1.4).
+If the file downloaded does not show as _`chrome_driver.zip`_, rename the file to _`chrome_driver.zip`_ before proceeding. Unzip the zip file. Place all 3 unzipped files into a folder called _`chrome_driver`_. 
 It is crucial to have the Chrome Driver in order for Jarvis to start up. If the GUI does not launch,
-please check that you have installed the correct driver:
+please check that you have installed the correct driver in the _`chrome_driver`_ folder:
     1. Windows: chromedriver.exe
     1. MacOS: chromedriver_mac
     1. Linux: chromedriver_linux
 
-1. Copy both files to the folder you want to use as the _home folder_ for your Jarvis.
+<br>
+
+1. Copy both file and folder to the directory you want to use as the _home directory_ for your Jarvis.
 
 1. There are two options for launching Jarvis.
-    1. Double-click the `jarvis.jar` file to start the app.
-    1. Launch Jarvis from the Windows Command Prompt or MacOS command line by navigating to the directory containing `jarvis.jar`,
-    then typing the command `java -jar jarvis.jar`
+    1. Double-click the `[CS2103T-W11-2][Jarvis].jar` file to start the app.
+    1. Launch Jarvis from the Windows Command Prompt or MacOS command line by navigating to the directory containing `[CS2103T-W11-2][Jarvis].jar`,
+    then typing the command `java -jar [CS2103T-W11-2][Jarvis].jar`
 
+    <br>
+    
     A GUI similar to the screenshot below should appear in a few seconds.
+    
+    <div style="page-break-after: always;"></div>
 
    ![Jarvis](images/userguide/Jarvis.png)
+   
+1. For Mac users, you may see a security popup telling you that _`chrome_driver`_ is not authorized. To resolve this issue, right click on _`chrome_driver`_ and select `Open With Terminal`. Then proceed to start Jarvis again. 
 
 1. Upon start up, you will be prompted to log in to unlock Jarvis's
  full set of features.
@@ -161,7 +171,7 @@ please check that you have installed the correct driver:
    * `exit: Exits the app.`
 <br/>
 1. Refer to the [Features](#6-features) below for details of each command.
-
+<br/>
 1. Do note that the sample data displayed on initial startup of Jarvis will not be saved. This means that subsequent launches of Jarvis will only contain user-inputted data.
 
 <div style="page-break-after: always;"></div>
@@ -183,6 +193,8 @@ this box.
         1. Feedback Box - The feedback shown to the user for a given inputted command.
         1. Information Panel - A detailed list on the information stored within Jarvis.
         1. Tab Switcher - A tab switcher for browsing through the different types of information stored in Jarvis.
+
+<div style="page-break-after: always;"></div>
 
 #### 4.1.1 Top Bar
     
@@ -208,6 +220,8 @@ this box.
 
    * A text input box for all user commands to be keyed in. You may refer to a detailed guide on the various commands
     available in Jarvis. Hit the enter key to execute the inputted command.
+
+<div style="page-break-after: always;"></div>
 
 #### 4.1.3 Feedback Box
 
@@ -266,6 +280,8 @@ Within the red rectangle box, Jarvis will notify you if the login was successful
 The username, password and student names are covered with a red rectangle for this diagram only to protect the Avenger's account security.
 You will be able to see the login details you entered.
 
+<div style="page-break-after: always;"></div>
+
 ### 5.3 Updated Student Information
 Upon success, all information from Source Academy will be visible to you. The student information tab will display you student information.
 The `Telegram` and `E-mail` fields are test values as these information are not available on Source Academy.
@@ -276,6 +292,7 @@ You will have to edit them using the [Editing Student Information](#642-editing-
 ## 6. Features
 
 ### 6.1 General Notes
+This section includes some general notes on Jarvis.
 
 #### 6.1.1 Notes about Command Format
 
@@ -294,6 +311,8 @@ You will have to edit them using the [Editing Student Information](#642-editing-
 #### 6.1.2 Notes about Jarvis' relationship with Source Academy
    * Students’ names that are under the Avenger will be fetched automatically from [https://sourceacademy.nus.edu.sg](https://sourceacademy.nus.edu.sg) upon startup.
    * LumiNUS username and passwords will be stored in plaintext.
+
+<div style="page-break-after: always;"></div>
 
 #### 6.1.3 Notes about Tasks
    * Each `Task` you create, be it `Todo`, `Event` or `Deadline`, there will be an unique Task ID assigned to each of them, so
@@ -322,6 +341,8 @@ Shows a message explaining how to access the help page.
 
 <br>**Format: `help`**
 
+<div style="page-break-after: always;"></div>
+
 ### 6.3 Adding Information : `add`
 
 #### 6.3.1 Adding `Consultations` : `-c`
@@ -336,11 +357,14 @@ Adds a `Consultation` session with a `Student` at a specific date and time.
 * `add -c John Doe d/2020-09-20 t/13:30`
 * `add -c Mary Jane d/2021-01-02 t/09:15`
 
-<br>⚠️ Notes:
+<div style="page-break-after: always;"></div>
+
+<div markdown="block" class="alert alert-info">
 * When you add a `Consultation` for a future date while displaying only past `Consultations`, make sure to enter `view -c` to view the complete list to check if the `Consultation` has been added correctly.
 * Similarly, when you add a `Consultation` for a past date while displaying only future `Consultations`, make sure to enter `view -c`.
 * `NAME` does not have to correspond to an existing student; this is so that the tutor may freely use any nicknames or other identifiers as they see fit. However, it may not be left empty.
 * Because date and time is considered in order, the d/ prefix must come earlier than t/.
+</div>
 
 #### 6.3.2 Adding `Mastery Checks` : `-mc`
 
@@ -353,6 +377,8 @@ Adds a `Mastery Check` session with a `Student` at a specific `date` and `time`.
 <br>✏️ Examples:
 * `add -mc John Doe d/2020-09-20 t/13:30`
 * `add -mc Mary Jane d/2021-01-02 t/09:15`
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
 * When you add a `Mastery Check` for a future date while displaying only past `Mastery Checks`, make sure to enter `view -mc` to view the complete list to check if the `Mastery Check` has been added correctly.
@@ -375,6 +401,8 @@ Adds your personal `Todo` with a `description`.
 <div markdown="block" class="alert alert-info">
 * The way to input is similar to the screenshot of adding `Mastery Check` above, only without the date and time.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### 6.3.4 Adding `Events` : `-e`
 
@@ -404,7 +432,7 @@ Adds your personal `Deadline` with a `description`, to complete by a specific da
 * Similar to `Event`, a `Deadline` requires extra date and time specifications in order to create. You can refer to the screenshot of adding `Mastery Check` above for a real-life example of how the command would look like.
 </div>
 
-
+<div style="page-break-after: always;"></div>
 
 ### 6.4 Editing Information : `edit`
 
@@ -431,6 +459,8 @@ as we choose to give you the benefit of doubt of keying in the wrong login detai
 `Mission` and `Quest` information.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### 6.4.2 Editing `Student` Information : `-s`
 
 Edits the fields of a `Student`.
@@ -454,6 +484,8 @@ Edits the score of a `Mastery Check` session with a `Student`.
 
 ![EditMasteryCheck](images/userguide/editMasteryCheck.png)
 
+<div style="page-break-after: always;"></div>
+
 <br>✏️ Examples:
 * `edit -mc 1 s/0`
 * `edit -mc 3 s/1`
@@ -463,6 +495,8 @@ Edits the score of a `Mastery Check` session with a `Student`.
 * The `INDEX` parameter should be a non-zero unsigned integer that is a valid index currently displayed along with the target `Mastery Check`.
 * Jarvis allows editing to the same value; even if no values are actually updated by the command, it will display a success message.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### 6.5 Deleting Information : `delete`
 
@@ -480,6 +514,8 @@ Deletes a `Task` based on the `INDEX` you specify.
 <div markdown="block" class="alert alert-info">
 * The `INDEX` parameter should be a non-zero unsigned integer that is a valid index currently displayed along with the target `Consultation`.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### 6.5.2 Deleting `Mastery Checks` : `-mc`
 
@@ -533,16 +569,21 @@ Doe will be displayed.
 
 <br>**Format: `view -s NAME`**
 
+<div style="page-break-after: always;"></div>
+
 ![ViewOneStudentCommand](images/userguide/viewOneStudent.png)
 
 <br>✏️ Examples:
 * `view -s John Doe`
+
 
 #### 6.6.3 Viewing deadline for `Missions` : `-m`
 
 Shows the deadline for the current `Missions`.
 
 <br>**Format: `view -m`**
+
+<div style="page-break-after: always;"></div>
 
 ![ViewMissionDeadline](images/userguide/viewMissionDeadline.png)
 
@@ -559,6 +600,8 @@ Shows the `Missions` that you have not yet graded.
 <br>**Format: `view -um`**
 
 ![ViewUngradedMissions](images/userguide/viewUngradedMission.png)
+
+<div style="page-break-after: always;"></div>
 
 #### 6.6.5 Viewing deadline for `Quests` : `-q`
 
@@ -592,6 +635,8 @@ Shows all past `Consultation` sessions.
 <div markdown="block" class="alert alert-info">
 * When the `Consultation` time is the same as the local time (year, month, date, hour, and minute all equal), it is considered to have occurred in the past.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### 6.6.9 Viewing upcoming `Consultations`: `-cu`
 
@@ -654,6 +699,8 @@ Shows the list of all your current `Todos`.
 
 <br>**Format: `view -tt`**
 
+<div style="page-break-after: always;"></div>
+
 #### 6.6.15 Viewing all `Events` : `-te`
 
 Shows the list of all your current `Events`.
@@ -703,6 +750,8 @@ are likely to change frequently and hence, will not need to be persisted.
 | Edit `Student` information | -s | edit -s INDEX [n/NAME] [t/TELEGRAM] [e/EMAIL] |
 | Edit `Mastery Check` | -mc  | edit -mc INDEX s/SCORE |
 
+<div style="page-break-after: always;"></div>
+
 ### 7.3 Delete Command Summary
 
 | Function | Tag | Format, Examples |
@@ -726,6 +775,9 @@ are likely to change frequently and hence, will not need to be persisted.
 | View upcoming `Consultations` | -cu | view -cu |
 | View all `Mastery Checks` | -mc | view -mc |
 | View past `Mastery Checks` | -mcp | view -mcp |
+
+<div style="page-break-after: always;"></div>
+
 | View all upcoming `Mastery Checks` | -mcu | view -mcu  |
 | View all `Tasks` | -t | view -t |
 | View all `Todos` | -tt | view -tt |

@@ -36,6 +36,7 @@ It is optimized for use via a Command Line Interface (CLI) while still having th
     - [4.3 Add Command](#43-add-command)
         * [4.3.1 What is AddCommand](#431-what-is-addcommand)
         * [4.3.2 Structure of AddCommand](#432-structure-of-addcommand)
+           <div style="page-break-after: always;"></div>
         * [4.3.3 Structure of AddXYZCommand](#433-structure-of-addxyzcommand)
 
         <div style="page-break-after: always;"></div>
@@ -119,6 +120,7 @@ The ***Architecture Diagram*** given above explains the high-level design of Jar
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-W11-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
+<div style="page-break-after: always;"></div>
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/jarvis/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/jarvis/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -227,7 +229,7 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save `UserLogin` objects in json format and read it back.
 * can save the jarvis data in json format and read it back.
-
+<div style="page-break-after: always;"></div>
 ### 3.6 Scraper component
 
 ![Structure of the Scraper Component](images/ScraperClassDiagram.png)
@@ -393,7 +395,7 @@ when the command has not executed successfully due to an expected error from the
 The following diagram shows the overview of `AddCommand` detailed Class Diagram which has a similar structure as other `Commands`:
 
 ![Class Diagram of Add Commands](images/AddXYZCommandClassDiagram.png)
-
+<div style="page-break-after: always;"></div>
 * The class `AddCommand` contains 3 subclasses: `AddTaskCommand`, `AddConsultationCommand` and `AddMasteryCheckCommand`.
 * These `AddCommand` subclasses interacts with `Model` and the related class models each `AddCommand` is supposed to execute with.
 * Upon successful `AddCommand`, these subclasses communicates with `Model` to add `Task`, `Consultation` and `MasteryCheck` into `Model`.
@@ -412,6 +414,8 @@ the flag and return the correct `AddCommand` object.
 Due to Java `LocalDateTime` class used for our `Consultation`, `MasteryCheck`, `Event` and `Deadline` objects, `ConsultationMasteryCheckCommandParser`
 and `TaskCommandParser` are employed to parse the objects added.
 
+<div style="page-break-after: always;"></div>
+
 #### 4.3.5 Path Diagram of AddTaskCommand
 As there are many `AddCommand` subclasses such as `AddTaskCommand` and `AddConsultationCommand`,
 we will only bring in one of them. In this and the following section, we will be using the `AddTaskCommand`
@@ -424,6 +428,7 @@ The other `AddCommand` subclasses will execute similarly.
 <div markdown="span" class="alert alert-info">
 :information_source: **Reminder:** There are 3 `Task` types, namely, `Todo`, `Event` and `Deadline`.
 </div>
+
 <div style="page-break-after: always"></div>
 
 #### 4.3.6 Sequence Diagram of AddTaskCommand
@@ -517,6 +522,8 @@ The other `DeleteCommand` subclasses work similarly to this as well.
 
 In this section, we will introduce the `Edit Command`. It will show the structure of the `EditCommand` class as well as the path diagram and sequence diagram of the
 `EditLoginCommand` to capture the interactions between the `EditLoginCommand` and other object classes.
+
+<div style="page-break-after: always;"></div>
 
 #### 4.5.1 What is EditCommand
 The `EditCommand` is an abstract class encapsulating the different implementations to edit `Student`, `UserLogin` and `MasteryCheck`.
@@ -677,6 +684,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | tutor                                       | list my own tasks                      | can have an overview of all my tasks.                       |
 | `* * *`  | tutor                                       | delete tasks                           | can keep track of completed and incompleted tasks.           |
 
+<div style="page-break-after: always;"></div>
 
 ### 6.3 Use cases
 
@@ -1045,6 +1053,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 ### 6.4 Non-Functional Requirements
 
@@ -1107,6 +1116,7 @@ testers are expected to do more *exploratory* testing.
    1. Type `exit` command in the Command Box in GUI.
       <br>
       Expected: Stops and closes the program.
+
 <div style="page-break-after: always"></div>
 
 ### 7.2 Deleting a Consultation
@@ -1136,6 +1146,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect add commands to try: `add -d example deadline d/ t/17:55`, `add -d example deadline d/2020-02-31 t/20:20`<br>
       Expected: Similar to previous due to incorrect date and time or missing input.
+
 <div style="page-break-after: always"></div>
 
 ### 7.4 Viewing a Student
@@ -1152,6 +1163,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `view -s`<br>
       Expected: Success message of viewing all `Students` is shown in the status message. All `Students` displayed in the GUI under the `Student` tab.
+
 <div style="page-break-after: always"></div>
 
 ### 7.5 Edit Login Details
