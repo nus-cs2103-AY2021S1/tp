@@ -705,7 +705,7 @@ application status. You can use this command to change the status of any applica
 
 **:information_source: Note:** <br>
 
-Application status can only be any one from the following:
+Application status can only be any one from the following:<br>
 
  * received
  * processing
