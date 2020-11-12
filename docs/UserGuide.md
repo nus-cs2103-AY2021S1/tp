@@ -329,7 +329,7 @@ You are able to view data related to ingredients tracking in the Ingredient Trac
 
 <div style="page-break-after: always;"></div>
 
-#### 4.2.1. Setting one ingredient's level : `i-set`
+#### 4.2.1. Setting one ingredient's level : `i-set` <a name="i-set"></a>
 
 Sets the level of one single ingredient predefined in the ingredient book to the specified amount.
 
@@ -353,35 +353,49 @@ Example:
 Let's say you want to set the ingredient Milk's level to 90 L. 
 You can follow these instructions:
 
-1. Type `i-set i/Milk m/90` into the _Command Box_.
+1. Type `i-set i/Milk m/90` into the _Command Box_  
 2. Press "Enter" on your keyboard to execute the command.
 
-Outcome:
-
-1. The _Result Display_ will show a success message.
-2. You can now see that tCheck has updated Milk's level to 90 L in The Ingredient Tracker inside the _Main View_.
-
-<div style="page-break-after: always;"></div>
-
-Before the execution:
+Before the execution:<br>
 ![IngredientSetCommand](images/IngredientSetCommand.png)
 
 _Figure 6a. A screenshot showing the view before executing `i-set` command_
 
+<div style="page-break-after: always;"></div>
+
+Outcome:
+
+1. The _Result Display_ will show a success message.
+
 After the execution:<br>
 ![IngredientSetCommandResultDisplay](images/IngredientSetCommandResultDisplay.png)
 
-_Figure 6b. A screenshot showing the outcome of an `i-set` command_
+_Figure 6b. A screenshot showing the success message of an `i-set` command_
+
+2. You can now see that tCheck has updated Milk's level to 90 L in The Ingredient Tracker inside the _Main View_.
+
+After the execution:<br>
+![IngredientSetCommandUpdate](images/IngredientSetCommandUpdate.png)
+
+_Figure 6c. A screenshot showing the outcome of an `i-set` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.2.2. Setting all ingredients' levels to different specified amounts : `i-set-all`
+#### 4.2.2. Setting all ingredients' levels to different specified amounts : `i-set-all` <a name="i-set-all"></a>
 
 Sets all ingredients' levels to different specified amounts according to user inputs.
 
 Format: `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR`
 
 * Sets all ingredients' levels as such : Milk : `AMOUNT_FOR_MILK` L, Pearl : `AMOUNT_FOR_PEARL` KG, Boba : `AMOUNT_FOR_BOBA` KG, Black Tea : `AMOUNT_FOR_BLACK_TEA` L, Green Tea: `AMOUNT_FOR_GREEN_TEA`, Brown Sugar : `AMOUNT_FOR_BROWN_SUGAR` KG.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:** <br>
+
+Details of the step by step instructions are omitted because they are similar to the example given above.
+
+</div>
 
 Example:
 
@@ -408,7 +422,7 @@ _Figure 7b. A screenshot showing the outcome of an `i-set-all` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.2.3. Setting all ingredients to different levels : `i-set-default`
+#### 4.2.3. Setting all ingredients to different levels : `i-set-default` <a name="i-set-default"></a>
 
 Sets all ingredients' levels to their pre-determined default levels for a store.
 
@@ -1259,13 +1273,13 @@ Action | Format, Examples
 
 Action | Format, Examples
 -------|------------------------------
-**Set a single ingredient**  | `i-set i/INGREDIENT_NAME m/AMOUNT` <br> e.g., `i-set i/Milk m/20`
-**Set all ingredients**  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 L/50 G/20 S/100`
-**Set all ingredients to default**  | `i-set-default` <br> e.g., `i-set-default`
-**[List](#i-list)**| `i-list`
-**[Find](#i-find)**| `i-find KEYWORD [MORE_KEYWORDS]`  <br> e.g., `i-find milk sugar`
-**[Reset all ingredients' levels to zero](#i-reset-all)**| `i-reset-all`
-**[List all ingredients that the user should restock](#i-restock)**| `i-restock`
+[**Set a single ingredient**](#i-set)  | `i-set i/INGREDIENT_NAME m/AMOUNT` <br> e.g., `i-set i/Milk m/20`
+[**Set all ingredients**](#i-set-all)  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 L/50 G/20 S/100`
+[**Set all ingredients to default**](#i-set-default)  | `i-set-default` <br> e.g., `i-set-default`
+[**List**](#i-list)  | `i-list`
+[**Find**](#i-find)  | `i-find KEYWORD [MORE_KEYWORDS]`  <br> e.g., `i-find milk sugar`
+[**Reset all ingredients' levels to zero**](#i-reset-all)  | `i-reset-all`
+[**List all ingredients that the user should restock**](#i-restock)  | `i-restock`
 
 ### 6.3. Manpower Management
 
