@@ -146,7 +146,7 @@ on the appointments tab as `listapt` will sort appointments by chronological ord
 This section contains all the information about the features of **Homerce**. 
 You may enter a command into the _Command Box_ to use each feature or sub-feature.
 
-### 4.1 Client Manager
+### 4.1 Client Manager (Done by Chang Rui Feng)
 
 Homerce knows that managing the contacts of your clients is a must for any business.
 Thus, this feature allows you to keep track of all the relevant information needed about your clients.
@@ -352,7 +352,7 @@ Outcome :
 ![clearcli](images/clearcli.png) <br>
 _Figure 8 - GUI for `clearcli`_
 
-### 4.2. Service Manager
+### 4.2. Service Manager (Done by Hans Sebastian Tirtaputra)
 
 This feature allows you to manage the services that your home-based beauty salon provides. You can record the 
 following information about your services: `TITLE`, `DURATION` and `PRICE`.
@@ -556,7 +556,7 @@ Outcome:
 ![clearsvc](images/clearsvc.png) <br>
 *Figure 14 - GUI outcome for `clearsvc`*
 
-### 4.3. Appointment Manager
+### 4.3. Appointment Manager (Done by Khoong Wei Kit)
 
 Scheduling appointments is an essential part of your beauty salon and
 Homerce makes it easy to keep track of your appointments with
@@ -837,7 +837,7 @@ Outcome:
 ![clearapt](images/clearapt.png) <br>
 *Figure 22 - GUI outcome for `clearapt`*
 
-### 4.4. Revenue Tracker
+### 4.4. Revenue Tracker (Done by Galvin Leow)
 
 Homerce knows that revenue tracking is very important for your business.
 Thus, this feature allows you to track the revenue that you have generated effortlessly.
@@ -969,7 +969,7 @@ Outcome :
 ![clearrev](images/revenue/ClearRevenue.png) <br>
 *Figure 26 - GUI outcome for `clearrev`*
 
-### 4.5 Expense Tracker
+### 4.5 Expense Tracker (Done by Tan Yan Lyn)
 
 Homerce understands that expense tracking is essential in managing your business expenditure.
 Thus, this feature allows you to track your expenses seamlessly and with ease. <br><br>
@@ -1200,7 +1200,7 @@ Outcome :
 ![clearexp](images/clearexp.png) <br>
 *Figure 33 - GUI outcome for `clearexp`*
 
-### 4.6 Schedule Viewer
+### 4.6 Schedule Viewer (Done by Every Team Member)
 
 Homerce knows how useful it is to be able to view all your weekly appointments at a glance. Thus, this feature
 consolidates all your appointments on a weekly basis and allows you to see it at a glance.
@@ -1293,7 +1293,7 @@ Outcome :
 ![previousweek](images/previousweek.png) <br>
 *Figure 36 - GUI outcome for `previousweek`*
 
-### 4.7 Finance Tracker 
+### 4.7 Finance Tracker (Done by Every Team Member)
 
 Homerce knows that the financial information of your home-based business is important to you. Thus, this feature allows 
 you to view the monthly breakdown of your expenses and revenue, and calculate your profit for the month.
@@ -1340,7 +1340,7 @@ business brought in.
 ![breakdownfinance](images/breakdownfinance.png) <br>
 *Figure 37 - GUI for `breakdownfinance`*
 
-### 4.8 Others
+### 4.8 Others (Done by Every Team Member)
 
 This section provides an overview of the miscellaneous commands in Homerce. These commands include `undo`,
 `help`, and `exit`.
