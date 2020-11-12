@@ -1,0 +1,47 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Logic {
+
+package Parser {
+Class McGymmyParser
+Class PrimitiveCommandParser
+}
+
+Package MacroRunner as MacroPackage {
+Class MacroRunner
+}
+
+package Command as CommandPackage {
+Class XYZCommand
+Interface CommandExecutable <<Interface>>
+Class "{abstract}\nCommand" as Command
+}
+
+Class LogicManager
+}
+
+package Model{
+Class MacroList
+Class Macro
+}
+
+LogicManager --> McGymmyParser
+
+PrimitiveCommandParser -[hidden]u- McGymmyParser
+PrimitiveCommandParser ..> XYZCommand : creates >
+XYZCommand -up-|> Command
+Command .up.|> CommandExecutable
+
+MacroRunner --> PrimitiveCommandParser : uses >
+MacroRunner ..> CommandExecutable : creates >
+
+MacroList -down-> Macro
+
+McGymmyParser --> MacroList : has a >
+McGymmyParser ..> MacroRunner : uses >
+
+@enduml

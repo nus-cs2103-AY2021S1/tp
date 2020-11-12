@@ -1,0 +1,16 @@
+{
+  "food": [
+    {
+      "name": "Valid Food",
+      "protein": "424",
+      "fat": "333",
+      "carbs": "666"
+    },
+    {
+      "name": "Food With Invalid Protein Field",
+      "protein": "948asdf2424",
+      "fat": "333",
+      "carbs": "666"
+    }
+  ]
+}

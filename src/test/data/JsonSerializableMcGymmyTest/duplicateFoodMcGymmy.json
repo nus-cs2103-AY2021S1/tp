@@ -1,0 +1,21 @@
+{
+  "food": [
+    {
+      "name": "chicken rice",
+      "protein": "253",
+      "fat": "123",
+      "carbs": "456",
+      "date": "20 Apr 2020",
+      "tagged": [
+        "Lunch"
+      ]
+    },
+    {
+      "name": "chicken rice",
+      "protein": "253",
+      "fat": "123",
+      "carbs": "456",
+      "date": "20/04/2020"
+    }
+  ]
+}

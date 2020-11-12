@@ -1,0 +1,23 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title Command "delete 5", after deleting
+
+package History {
+    class State1 as "__copy0:ModelManager**__"
+    class State2 as "__copy1:ModelManager**__"
+    class State3 as "__copy2:ModelManager**__"
+}
+
+
+State1 -[hidden]up-> State2
+State2 -[hidden]up-> State3
+
+hide State2
+hide State3
+
+class ModelManager as "Updated ModelManager" #FFFFF
+ModelManager -[hidden]left-> State2
+@end

@@ -1,0 +1,10 @@
+{
+  "food": [
+    {
+      "name": "Nasi Alamak",
+      "protein": "424",
+      "fat": "invalid@fat!3e",
+      "carbs": "321"
+    }
+  ]
+}

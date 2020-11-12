@@ -1,0 +1,12 @@
+@startuml
+start
+:User executes command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+:  Copy the properties of
+ModelManager to History;
+:Change ModelManager;
+stop
+@enduml
