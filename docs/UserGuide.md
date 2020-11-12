@@ -150,7 +150,10 @@ please check that you have installed the correct driver in the _`chrome_driver`_
     
     <div style="page-break-after: always;"></div>
 
-   ![Jarvis](images/userguide/Jarvis.png)
+    <div style="text-align: center; padding-bottom: 2em">
+    <img src="images/userguide/Jarvis.png" width="115%" /> <br />
+    Figure 3a: <i>Jarvis start up page</i>
+    </div>
    
 1. For Mac users, you may see a security popup telling you that _`chrome_driver`_ is not authorized. To resolve this issue, right click on _`chromedriver_mac`_ and select `Open With Terminal`. Then proceed to start Jarvis again.
 
@@ -586,10 +589,10 @@ Shows the deadline for the current `Missions`.
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/userguide/viewMissionDeadline.png" width="115%" /> <br />
-Figure 6.6.3.a: <i>Viewing all current Missions</i>
+Figure 6.6.3a: <i>Viewing all current Missions</i>
 </div>
 
-As shown in Figure 6.6.3.a, once we key in the command `view -m`, a success message will be displayed and Jarvis
+As shown in Figure 6.6.3a, once we key in the command `view -m`, a success message will be displayed and Jarvis
 will auto switch to the `Missions` tab, and show all the current `Missions` and their deadlines.
 
 #### 6.6.4 Viewing ungraded `Missions` : `-um`
@@ -600,10 +603,10 @@ Shows the `Missions` that you have not yet graded.
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/userguide/viewUngradedMission.png" width="115%" /> <br />
-Figure 6.6.4.a: <i>Viewing all ungraded Missions</i>
+Figure 6.6.4a: <i>Viewing all ungraded Missions</i>
 </div>
 
-As shown in Figure 6.6.4.a, once we key in the command `view -um`, a success message will be displayed and Jarvis
+As shown in Figure 6.6.4a, once we key in the command `view -um`, a success message will be displayed and Jarvis
 will auto switch to the `Missions` tab, and show all the ungraded `Missions` and their deadlines.
 
 <div style="page-break-after: always;"></div>
