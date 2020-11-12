@@ -530,7 +530,7 @@ You can follow these instructions:
 
 1. Type ` i-reset-all` into the _Command Box_.
 
-    ![IngredientResetAllStep1](images/IngredientResetAllOutcome2.png)
+    ![IngredientResetAllStep1](images/IngredientResetAllStep1.png)
     
     _Figure 10a. A screenshot showing the entering of an `i-reset-all` command_
 
