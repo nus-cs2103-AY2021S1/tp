@@ -437,8 +437,8 @@ tCheck GUI behaves similarly to examples given in the previous command, except n
 
 </div>
 
-#### 4.2.4. Listing all ingredients' levels : `i-list`
-Lists the ingredient's levels of all ingredient types.
+#### 4.2.4. Listing all ingredients' levels : `i-list` <a name="i-list"></a>
+Shows a list of ingredient levels of all ingredient types.
 
 Format: `i-list`
 
@@ -448,7 +448,7 @@ Let's say you want to see the list of all the ingredients.
 You can follow these instructions:
 
 1. Type `i-list` into the _Command Box_.
-1. Press "Enter" to execute the command.
+2. Press "Enter" to execute the command.
 
 <div style="page-break-after: always;"></div>
 
@@ -462,7 +462,7 @@ Outcome:
 
 _Figure 8. A screenshot showing the outcome of an `i-list` command_
 
-#### 4.2.5. Finding ingredients by keywords : `i-find`
+#### 4.2.5. Finding ingredients by keywords : `i-find` <a name="i-find"></a>
 Finds all ingredients that contain one or more keywords in their names.
 
 Format: `i-find KEYWORD [MORE_KEYWORDS]`
@@ -503,32 +503,43 @@ After the execution:<br>
 
 _Figure 9b. A screenshot showing the outcome of an `i-find` command_
 
-#### 4.2.6. Resetting all ingredients' levels to zero : `i-reset-all`
-Resets the ingredient's levels of all ingredient types to zero.
+#### 4.2.6. Resetting all ingredients' levels to zero : `i-reset-all` <a name="i-reset-all"></a>
+Resets the ingredient level of all types of ingredients to zero.
 
 Format: `i-reset-all`
 
-Let's say you want to reset all ingredients' levels to zero when one or more ingredients have 
-nonzero ingredient's levels.
+Example:
+
+Let's say that you have found that all ingredients have been used up in the store.
+You now want to reset all ingredients' levels to zero in tCheck.
 You can follow these instructions:
 
 1. Type ` i-reset-all` into the _Command Box_.
+
+    ![IngredientResetAllStep1](images/IngredientResetAllOutcome2.png)
+    
+    _Figure 10a. A screenshot showing the entering of an `i-reset-all` command_
+
 2. Press "Enter" to execute the command.
 
 Outcome:
 
 1. The _Result Display_ will show a success message.
-2. You can now see that all ingredients' levels are zero in the Ingredient Tracker inside 
-the _Main View_.
 
+    ![IngredientResetAllOutcome1](images/IngredientResetAllOutcome1.png)
+    
+    _Figure 10b. A screenshot showing the success message_
+    
+2. You can now see that tCheck has reset the ingredient levels, or amounts, of all types of ingredients to zero in the Ingredient Tracker inside 
+the _Main View_. You may scroll down the list in the Ingredient Tracker to see all the ingredients and their current amounts.
+
+    ![IngredientResetAllOutcome2](images/IngredientResetAllOutcome2.png)
+
+    _Figure 10c. A screenshot showing the changes in the Ingredient Tracker_
 <div style="page-break-after: always;"></div>
 
-![IngredientResetAllCommandScreenshot](images/IngredientResetAllCommandScreenshot.png)
-
-_Figure 10. A screenshot showing the outcome of an `i-reset-all` command_
-
-#### 4.2.7. Listing all ingredients that the user should restock : `i-restock`
-Lists the ingredient's levels of all ingredient types that fall below their pre-determined default levels and require the user to 
+#### 4.2.7. Listing all ingredients that the user should restock : `i-restock` <a name="i-restock"></a>
+Lists the ingredient levels of all ingredient types that fall below their pre-determined default levels and require the user to 
 restock. The list also includes the amount needed for each ingredient to reach its pre-determined default level.
 
 Format: `i-restock`
@@ -553,7 +564,7 @@ You can follow these instructions:
 Outcome:
 
 1. The _Result Display_ will show a list of ingredients that the user should restock, including each ingredient's name, 
-its ingredient's level and the amount needed for the ingredient to reach its pre-determined default level.
+its ingredient level and the amount needed for the ingredient to reach its pre-determined default level.
 
 ![IngredientRestockCommandScreenshot](images/IngredientRestockCommandScreenshot.png)
 
@@ -1213,8 +1224,18 @@ tCheck also shows the calendar for the current month when you start the applicat
 **Q**: Why does tCheck ignore additional or extra input that I add after single-word commands, like `help`? <br>
 **A**: Any extra input after a single-word command, for example, the input `123` inside the input `c-list 123`, will 
 be ignored because extra input does not affect the operation conducted by `c-list`. These single-word commands 
-include: `s-list`, `i-set-default`, `i-list`, `i-reset-all`, `i-restock`, `c-list`, `c-today`, `c-tomorrow`,
-  `c-clear`, `c-archive-all`, `c-archive-list`, `help`, `exit`.
+include: [`s-list`](#412-listing-the-number-of-drinks-sold--s-list), 
+[`i-set-default`](#423-setting-all-ingredients-to-different-levels--i-set-default), 
+[`i-list`](#424-listing-all-ingredients-levels--i-list-a-namei-lista), 
+[`i-reset-all`](#426-resetting-all-ingredients-levels-to-zero--i-reset-all-a-namei-reset-alla), 
+[`i-restock`](#427-listing-all-ingredients-that-the-user-should-restock--i-restock-a-namei-restocka), 
+[`c-active-list`](#432-listing-all-employees-in-the-active-list-c-active-list), 
+[`c-today`](#436-locating-all-employees-who-are-available-to-work-today-c-today), 
+[`c-tomorrow`](#437-locating-all-employees-who-are-available-to-work-tomorrow-c-tomorrow), 
+[`c-clear`](#439-clearing-all-entries--c-clear), 
+[`c-archive-all`](#4311-archiving-all-employees--c-archive-all), 
+[`c-archive-list`](#4312-listing-all-archived-employees--c-archive-list), 
+[`help`](#441-viewing-help--help), [`exit`](#442-exiting-the-program--exit).
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install tCheck in another computer and overwrite the three data files it creates (saved in the folder named
@@ -1241,10 +1262,10 @@ Action | Format, Examples
 **Set a single ingredient**  | `i-set i/INGREDIENT_NAME m/AMOUNT` <br> e.g., `i-set i/Milk m/20`
 **Set all ingredients**  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 L/50 G/20 S/100`
 **Set all ingredients to default**  | `i-set-default` <br> e.g., `i-set-default`
-**List**| `i-list`
-**Find**| `i-find KEYWORD [MORE_KEYWORDS]`  <br> e.g., `i-find milk sugar`
-**Reset all ingredients' levels to zero**| `i-reset-all`
-**List all ingredients that the user should restock**| `i-restock`
+**[List](#i-list)**| `i-list`
+**[Find](#i-find)**| `i-find KEYWORD [MORE_KEYWORDS]`  <br> e.g., `i-find milk sugar`
+**[Reset all ingredients' levels to zero](#i-reset-all)**| `i-reset-all`
+**[List all ingredients that the user should restock](#i-restock)**| `i-restock`
 
 ### 6.3. Manpower Management
 
@@ -1268,5 +1289,5 @@ Action | Format, Examples
 
 Action | Format, Examples
 -------|------------------------------
-**Help** | `help`
-**Exit** | `exit`
+**[Help](#441-viewing-help--help)** | `help`
+**[Exit](#442-exiting-the-program--exit)** | `exit`
