@@ -3,21 +3,11 @@ layout: page
 title: User Guide
 ---
 * Table of Contents
-    * [Introduction](#introduction)
-    * [Quick start](#quick-start)
-    * [About This Document](#about)
-    * [Features](#features)
-        * [Commands - Sales Tracking](#commands-sales-tracking)
-        * [Commands - Ingredients Tracking](#commands-ingredients-tracking)
-        * [Commands - Manpower Management](#commands-manpower-management)
-        * [Commands - General](#commands-general)
-        * [Other Features](#other-features)
-    * [FAQ](#FAQ)
-    * [Command summary](#command-summary)
+{:toc}
 
 <div style="page-break-after: always;"></div>
 
-## Introduction <a name="introduction"></a>
+## 1. Introduction <a name="introduction"></a>
 
 <img src="images/tCheckLogo.png" width="200" height="200" />
 
@@ -38,7 +28,7 @@ You can start from the [Quick Start](#quick-start) section to learn how to obtai
 
 <div style="page-break-after: always;"></div>
 
-## Quick start <a name="quick-start"></a>
+## 2. Quick start <a name="quick-start"></a>
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -57,9 +47,11 @@ how the figure below shows some sample data.<br>
 1. Refer to the [Features](#features) for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## About this document <a name="about"></a>
+<div style="page-break-after: always;"></div>
 
-### 1. Structure of this document
+## 3. About this document <a name="about"></a>
+
+### 3.1. Structure of this document
 
 We have structured this User Guide in a way so that you can find what you need easily and quickly. In the next section,
 [Section 3.2 - Reading this document](#reading-this-document), you can find sevaral useful tips on how to read this guide. The following section,
@@ -73,12 +65,12 @@ We have structured this User Guide in a way so that you can find what you need e
 
    * Other General Features
 
-### 2. Reading this document <a name="reading-this-document"></a>
+### 3.2. Reading this document <a name="reading-this-document"></a>
 
 This section introduces you to some key technical terms, symbols and syntax that are used throughout this guide.
 You may want to familarise yourself with them before moving on to the next section.
 
-#### 2.1 Terminology related to the GUI
+#### 3.2.1. Terminology related to the GUI
 
 Figure 2 shows the GUI of **tCheck**, annotated with descriptions for all components of the GUI.
 
@@ -88,10 +80,9 @@ Figure 2 shows the GUI of **tCheck**, annotated with descriptions for all compon
 _Figure 2 - Annotated GUI of tCheck_
 
 
-#### 2.2 General Symbols and Syntax 
+#### 3.2.2. General Symbols and Syntax 
 
 The following table explains the general symbols and syntax used in this User Guide.
-<div style="page-break-after: always;"></div>
 
 | Syntax |  What it means |
 |----------|-------------|
@@ -99,7 +90,9 @@ The following table explains the general symbols and syntax used in this User Gu
 | _italics_ | Italicised text specifies the terms related to tCheck's GUI |
 |<div markdown="block" class="alert alert-info"> :information_source: </div>  | An exclamation mark indicates that the following text is a note|
 
-#### 2.3 Command Syntax and Usage
+<div style="page-break-after: always;"></div>
+
+#### 3.2.3. Command Syntax and Usage
 
 The following table explains the technical terms used in this user guide.
 
@@ -117,6 +110,8 @@ The following table explains the technical terms used in this user guide.
 * Prefixes - `n/`, `e/`, `p/`, `a/`, `t/`  <br>
 * Parameters - `NAME`, `PHONE_NUMBER`, `EMERGENCY_CONTACT`, `ADDRESS`, `TAG`
 
+<div style="page-break-after: always;"></div>
+
 The following points explain the format of a command. 
 
 * Words in `UPPER_CASE` are the parameters to be supplied.<br>
@@ -133,7 +128,8 @@ The following points explain the format of a command.
    e.g. If the command specifies `p/PHONE_NUMBER e/EMERGENCY_CONTACT`, `e/EMERGENCY_CONTACT p/PHONE_NUMBER` is also acceptable.
     
 
-#### 2.4 Prefix processing and usage
+
+#### 3.2.4. Prefix processing and usage
 
 The table below explains some important features of how prefix(es) are processed in tCheck to help you understand and use prefix(es) in commands.
 
@@ -142,6 +138,8 @@ Situation | What will happen
 Duplicate (2 or more) valid prefixes detected | Only the last prefix and its following parameter are accepted and processed as part of the command.
 Invalid prefix entered | tCheck will not recognise this "prefix" and thus it will be processed as part of the parameter for the nearest previous valid prefix, which may result in error for the parameter.
 Unexpected prefix(es) entered for commands which do not take in any parameter | tCheck will not accept or process these prefix(es) because all words entered after the command words will be ignored. 
+
+<div style="page-break-after: always;"></div>
 
 **Example 1:**
 `i-set i/Milk i/Boba m/90`
@@ -169,12 +167,13 @@ In this example, `help` is a command which does not take in any parameter. Hence
 Thus, tCheck will ignore all words come after the command word `help` and the command will be processed in the same way as `help`.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
-## Features <a name="features"></a>
+## 4. Features <a name="features"></a>
 
 This section provides the details and commands for all tCheck's features.
 
-### 1. Commands - Sales Tracking <a name="commands-sales-tracking"></a>
+### 4.1. Commands - Sales Tracking <a name="commands-sales-tracking"></a>
 The Sales Tracking features allows you to keep a record of the sales of the bubble tea drinks inside the
 Sales Tracker. You are able to view data related to sales tracking in the Sales Tracker inside the _Main View_.
 
@@ -195,7 +194,7 @@ Currently, there are 6 types of drinks that can be tracked by tCheck's Sales Tra
 </div>
 
 
-#### 1.1 Updating the number of drinks sold : `s-update`
+#### 4.1.1. Updating the number of drinks sold : `s-update`
 Updates the number of drinks sold for each drink type as given in the user input. The previous records will
 be overwritten.
 
@@ -205,6 +204,8 @@ Format: `s-update DRINK [MORE_DRINKS]`
     * `NUM` refers to the number of drinks sold. It should be a **non-negative unsigned integer** that is 
 less than or equal to 9,999,999.
 * The sales of at least one drink item should be recorded when using this command.
+
+<div style="page-break-after: always;"></div>
 
 Example: 
 
@@ -224,7 +225,9 @@ Outcome:
 
 _Figure 3. A screenshot showing the outcome of an `s-update` command_
 
-#### 1.2 Listing the number of drinks sold : `s-list`
+<div style="page-break-after: always;"></div>
+
+#### 4.1.2. Listing the number of drinks sold : `s-list`
 Shows a list of all types of drinks sold in the Sales Tracker. The list of drinks shown is 
 ordered in descending order (i.e. ranked from the most to least sales).
 
@@ -248,7 +251,9 @@ Outcome:
 
 _Figure 4. A screenshot showing the outcome of an `s-list` command_
 
-#### 1.3 Finds the number of drinks by keywords : `s-find`
+<div style="page-break-after: always;"></div>
+
+#### 4.1.3. Finds the number of drinks by keywords : `s-find`
 
 Finds all drinks where their abbreviated names match the KEYWORD(s).
 
@@ -272,20 +277,21 @@ Outcome:
 1. The _Result Display_ will show that how many drinks you find.
 2. All matching drink's sales data will be listed in the _Main View_.
 
-Before the execution:<br>
+<div style="page-break-after: always;"></div>
 
+Before the execution:<br>
 ![BeforeSalesFind](images/BeforeSalesFind.png)
 
 _Figure 5a. A screenshot showing the view before executing `s-find` command_
 
 After the execution:<br>
-
 ![SalesFindCommandScreenshot](images/SalesFindResult.png)
 
 _Figure 5b. A screenshot showing the outcome of an `s-find` command_
 
+<div style="page-break-after: always;"></div>
 
-### 2. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
+### 4.2. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
 
 The Ingredients Tracking features allows you to keep an inventory of the ingredients for a T-Sugar store inside the Ingredient Tracker.
 You are able to view data related to ingredients tracking in the Ingredient Tracker inside the _Main View_.
@@ -321,7 +327,9 @@ You are able to view data related to ingredients tracking in the Ingredient Trac
 
 </div>
 
-#### 2.1 Setting one ingredient's level : `i-set`
+<div style="page-break-after: always;"></div>
+
+#### 4.2.1. Setting one ingredient's level : `i-set`
 
 Sets the level of one single ingredient predefined in the ingredient book to the specified amount.
 
@@ -353,22 +361,21 @@ Outcome:
 1. The _Result Display_ will show a success message.
 2. You can now see that tCheck has updated Milk's level to 90 L in The Ingredient Tracker inside the _Main View_.
 
-Before the execution:
+<div style="page-break-after: always;"></div>
 
+Before the execution:
 ![IngredientSetCommand](images/IngredientSetCommand.png)
 
 _Figure 6a. A screenshot showing the view before executing `i-set` command_
 
 After the execution:<br>
-
 ![IngredientSetCommandResultDisplay](images/IngredientSetCommandResultDisplay.png)
 
 _Figure 6b. A screenshot showing the outcome of an `i-set` command_
 
-Note that the amount for Milk is updated in Ingredient Tracker section inside the _Main View_.
+<div style="page-break-after: always;"></div>
 
-
-#### 2.2 Setting all ingredients' levels to different specified amounts : `i-set-all`
+#### 4.2.2. Setting all ingredients' levels to different specified amounts : `i-set-all`
 
 Sets all ingredients' levels to different specified amounts according to user inputs.
 
@@ -389,6 +396,8 @@ Outcome:
 1. The _Result Display_ will show a success message.
 2. You can now see that tCheck has updated all ingredients' levels to the specified amounts in the Ingredient Tracker inside the _Main View_.
 
+<div style="page-break-after: always;"></div>
+
 Before the execution:<br>
 ![IngredientSetAllCommand](images/IngredientSetAllCommand.png)
 _Figure 7a. A screenshot showing the view before executing `i-set-all` command_
@@ -397,10 +406,9 @@ After the execution:<br>
 ![IngredientSetAllCommandResultDisplay](images/IngredientSetAllCommandResultDisplay.png)
 _Figure 7b. A screenshot showing the outcome of an `i-set-all` command_
 
-Note that all amounts for the ingredients are updated in Ingredient Tracker inside the _Main View_.
+<div style="page-break-after: always;"></div>
 
-
-#### 2.3 Setting all ingredients to different levels : `i-set-default`
+#### 4.2.3. Setting all ingredients to different levels : `i-set-default`
 
 Sets all ingredients' levels to their pre-determined default levels for a store.
 
@@ -429,7 +437,7 @@ tCheck GUI behaves similarly to examples given in the previous command, except n
 
 </div>
 
-#### 2.4 Listing all ingredients' levels : `i-list`
+#### 4.2.4. Listing all ingredients' levels : `i-list`
 Lists the ingredient's levels of all ingredient types.
 
 Format: `i-list`
@@ -442,16 +450,19 @@ You can follow these instructions:
 1. Type `i-list` into the _Command Box_.
 1. Press "Enter" to execute the command.
 
+<div style="page-break-after: always;"></div>
+
 Outcome:
 
 1. The _Result Display_ will show a success message.
 2. The Ingredient Tracker inside the _Main View_ will show the list of all the ingredients.
 
+
 ![IngredientListCommandScreenshot](images/IngredientListCommandScreenshot.png)
 
 _Figure 8. A screenshot showing the outcome of an `i-list` command_
 
-#### 2.5 Finding ingredients by keywords : `i-find`
+#### 4.2.5. Finding ingredients by keywords : `i-find`
 Finds all ingredients that contain one or more keywords in their names.
 
 Format: `i-find KEYWORD [MORE_KEYWORDS]`
@@ -462,6 +473,8 @@ Format: `i-find KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched. For example, `Mil` will not match `Milk`.<br>
 * Ingredients with names matching at least one keyword will be listed in the Ingredient Tracker inside the _Main View_ 
 (i.e. `OR` search). For example, `i-find Milk Boba` will find the ingredient `Milk` and the ingredient `Boba`.<br>
+
+<div style="page-break-after: always;"></div>
 
 Example: 
 
@@ -483,12 +496,14 @@ Before the execution:<br>
 
 _Figure 9a. A screenshot showing the view before executing `i-find` command_
 
+<div style="page-break-after: always;"></div>
+
 After the execution:<br>
 ![AfterIngredientFindCommandScreenshot](images/AfterIngredientFindCommandScreenshot.png)
 
 _Figure 9b. A screenshot showing the outcome of an `i-find` command_
 
-#### 2.6 Resetting all ingredients' levels to zero : `i-reset-all`
+#### 4.2.6. Resetting all ingredients' levels to zero : `i-reset-all`
 Resets the ingredient's levels of all ingredient types to zero.
 
 Format: `i-reset-all`
@@ -506,11 +521,13 @@ Outcome:
 2. You can now see that all ingredients' levels are zero in the Ingredient Tracker inside 
 the _Main View_.
 
+<div style="page-break-after: always;"></div>
+
 ![IngredientResetAllCommandScreenshot](images/IngredientResetAllCommandScreenshot.png)
 
 _Figure 10. A screenshot showing the outcome of an `i-reset-all` command_
 
-#### 2.7 Listing all ingredients that the user should restock : `i-restock`
+#### 4.2.7. Listing all ingredients that the user should restock : `i-restock`
 Lists the ingredient's levels of all ingredient types that fall below their pre-determined default levels and require the user to 
 restock. The list also includes the amount needed for each ingredient to reach its pre-determined default level.
 
@@ -522,6 +539,8 @@ Format: `i-restock`
 Refer to the [Notes about ingredients](#commands-ingredients-tracking-notes-about-ingredients)
 for details on the pre-determined default levels of different types of ingredients.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Example: 
 
@@ -547,7 +566,9 @@ Due to the limited size of the _Result Display_, only a part of the list of ingr
 is shown in the screenshot above. In the actual application, you can scroll down to see the entire list.
 </div>
 
-### 3. Commands - Manpower Management <a name="commands-manpower-management"></a>
+<div style="page-break-after: always;"></div>
+
+### 4.3. Commands - Manpower Management <a name="commands-manpower-management"></a>
 
 The Manpower Management features allows you to keep a record of your employees' data (i.e. employee's names,
 employee's phone numbers, tags that indicate what days the employee is available to work, etc) inside
@@ -575,7 +596,7 @@ Employee Directory. You are able to view data related to manpower in the Employe
  
 </div>
 
-#### 3.1 Adding an employee : `c-add`
+#### 4.3.1. Adding an employee : `c-add`
 
 Adds an employee to the Employee Directory.
 
@@ -585,6 +606,9 @@ Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...`
 * In tCheck, you may add an employee to the Employee Directory. When you add an employee, you need to provide his/her name, phone number, emergency contact, and address.
 * Tag is optional. Tags names should be alphanumeric. White space, characters are not allowed to be used in tags names. 
 
+
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:** <br>
@@ -592,6 +616,7 @@ Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...`
 PHONE_NUMBER and EMERGENCY_CONTACT must be 8-digit number and start with 8 or 9.<br>
 
 </div>
+
 
 Example: 
 
@@ -606,11 +631,17 @@ Outcome:
 1. The _Result Display_ will show that you add a new employee.
 2. All active employees will be listed in the Employee Directory inside the _Main View_.
 
+
+<div style="page-break-after: always;"></div>
+
 ![AddEmployeeCommandScreenshot](images/AddEmployeeCommandResult.png)
 
 _Figure 12. A screenshot showing the outcome of an `c-add` command_
 
-#### 3.2 Listing all employees in the active list: `c-active-list`
+
+<div style="page-break-after: always;"></div>
+
+#### 4.3.2. Listing all employees in the active list: `c-active-list`
 
 Lists all employees who are active. 
 
@@ -633,7 +664,9 @@ Outcome:
 
 _Figure 13. A screenshot showing the outcome of an `c-active-list` command_
 
-#### 3.3 Editing a person : `c-edit`
+<div style="page-break-after: always;"></div>
+
+#### 4.3.3. Editing a person : `c-edit`
 
 
 Edits the corresponding employee's information in the Employee Directory.
@@ -659,6 +692,8 @@ Outcome:
 1. The _Result Display_ will show that you edit the employee.
 2. All active employees will be listed in the _Main View_.
 
+<div style="page-break-after: always;"></div>
+
 Before the execution:<br>
 ![BeforeEditCommandScreenshot](images/BeforeEditCommand.png)
 
@@ -671,8 +706,9 @@ After the execution:<br>
 
 _Figure 14b. A screenshot showing the outcome of a `c-edit` command_
 
+<div style="page-break-after: always;"></div>
 
-#### 3.4 Locating persons by keywords: `c-find`
+#### 4.3.4. Locating persons by keywords: `c-find`
 
 Finds all active (unarchived) employees that contain the KEYWORD(s) in their names.
 
@@ -697,12 +733,14 @@ Outcome:
 1. The _Result Display_ will show how many employees' matching your find command
 2. Employees whose name contains "john" will be listed in the Employee Directory inside the _Main View_.
 
+<div style="page-break-after: always;"></div>
+
 ![EmployeeFindCommandScreenshot](images/EmployeeFindResult.png)
 
 _Figure 15. A screenshot showing the outcome of a `c-find` command_
 
 
-#### 3.5 Locating employees based on matching tags: `c-tag-find`
+#### 4.3.5. Locating employees based on matching tags: `c-tag-find`
 
 Finds all employees whose tags contain the one or more `KEYWORD(s)`.
 
@@ -715,6 +753,8 @@ Format: `c-tag-find KEYWORD [MORE_KEYWORDS]`
 * Employees whose tag(s) matching at least one keyword will be listed in the Employee
  Directory inside the _Main View_ (i.e. `OR` search).  For example, `c-tag-find Monday Friday` will find employees whose
   tags contain `Monday` or `Friday`.<br>
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -740,11 +780,16 @@ Outcome:
 
 2. Employees who are can work on `Monday` or `Friday` will be listed in the Employee Directory inside the _Main View_.
 
+
+<div style="page-break-after: always;"></div>
+
 ![FindByTagCommandScreenshot](images/FindByTagCommandScreenshot.png)
 
 _Figure 16. A screenshot showing the outcome of an `c-tag-find` command_
 
-#### 3.6 Locating all employees who are available to work today: `c-today`
+<div style="page-break-after: always;"></div>
+
+#### 4.3.6. Locating all employees who are available to work today: `c-today`
 
 Finds employees whose tags contain today's day (i.e. `Wednesday`, `Thursday`, etc).
 
@@ -783,11 +828,13 @@ Outcome:
     
 2. The available manpower for today will be listed in the Employee Directory inside the _Main View_.
 
+<div style="page-break-after: always;"></div>
+
 ![FindByTagTodayCommandScreenshot](images/FindByTagTodayCommandScreenshot.png)
 
 _Figure 17. A screenshot showing the outcome of an `c-today` command_
 
-#### 3.7 Locating all employees who are available to work tomorrow: `c-tomorrow`
+#### 4.3.7. Locating all employees who are available to work tomorrow: `c-tomorrow`
 
 Finds employees whose tags contain tomorrow's day (i.e. `Wednesday`, `Thursday`, etc).
 
@@ -805,6 +852,8 @@ In tCheck, if an employee contains a tag for a specific day, it means this emplo
 tag(s) by editing employee's information feature (refer to `c-edit` command).<br>
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Example:
 
@@ -825,11 +874,16 @@ Outcome:
     c. The success message.
 2. The available manpower for tomorrow will be listed in the Employee Directory inside the _Main View_.
 
+
+<div style="page-break-after: always;"></div>
+
 ![FindByTagTomorrowCommandScreenshot](images/FindByTagTomorrowCommandScreenshot.png)
 
 _Figure 18. A screenshot showing the outcome of an `c-tomorrow` command_
 
-#### 3.8 Deleting a person : `c-delete`
+<div style="page-break-after: always;"></div>
+
+#### 4.3.8. Deleting a person : `c-delete`
 
 Deletes the specified employee from the Employee Directory.
 
@@ -850,12 +904,15 @@ Outcome:
 1. The _Result Display_ will show deleted employee's information.
 2. Remaining employees will be listed in the Employee Directory inside the _Main View_.
 
+<div style="page-break-after: always;"></div>
+
 ![DeleteEmployeeCommandScreenshot](images/DeleteEmployeeResult.png)
 
 _Figure 19. A screenshot showing the outcome of a `c-delete` command_
 
+<div style="page-break-after: always;"></div>
 
-#### 3.9 Clearing all entries : `c-clear`
+#### 4.3.9. Clearing all entries : `c-clear`
 
 Clears all entries from the Employee Directory.
 
@@ -877,13 +934,15 @@ Before the execution:<br>
 
 _Figure 20a. A screenshot showing the view before executing `c-clear` command_
 
+<div style="page-break-after: always;"></div>
+
 After the execution:<br>
 ![ClearEmployeeCommandScreenshot](images/ClearEmployeeResult.png)
 
 _Figure 20b. A screenshot showing the outcome of a `c-clear` command_
 
 
-#### 3.10 Archiving an employee : `c-archive`
+#### 4.3.10. Archiving an employee : `c-archive`
 
 Archives the specified employee from tCheck.
 
@@ -895,6 +954,8 @@ Format: `c-archive INDEX`
 * The `INDEX` **should not be larger than** the total number of employees listed in the current 
 _Employee Directory_ pane. For example, there are 2 employees listed in the current Employee Directory inside the _Main
  View_. The `INDEX` should be less or equal to 2.<br>
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -924,6 +985,8 @@ Outcome:
 1. The _Result Display_ will show a success message with the employee's name that you have archived.
 2. Alex Yeoh's information will be removed from Employee Directory inside the _Main View_.
 
+<div style="page-break-after: always;"></div>
+
 Before the execution:<br>
 ![BeforeArchiveCommandScreenshot](images/BeforeArchiveCommandScreenshot.png)
 
@@ -934,7 +997,9 @@ After the execution:<br>
 
 _Figure 21b. Screenshot showing the outcome of an `c-archive` command_
 
-#### 3.11 Archiving all employees : `c-archive-all`
+<div style="page-break-after: always;"></div>
+
+#### 4.3.11. Archiving all employees : `c-archive-all`
 
 Archives all employees in the Employee Directory inside the _Main View_.
 
@@ -970,6 +1035,7 @@ Outcome:
 1. The _Result Display_ will show a success message.
 2. All employees will be removed from Employee Directory inside the _Main View_.
 
+<div style="page-break-after: always;"></div>
 
 Before the execution:<br>
 ![BeforeArchiveAllCommandScreenshot](images/BeforeArchiveAllCommandScreenshot.png)
@@ -981,7 +1047,8 @@ After the execution:<br>
 
 _Figure 22b. Screenshot showing the outcome of an `c-archive-all` command_
 
-#### 3.12 Listing all archived employees : `c-archive-list`
+
+#### 4.3.12. Listing all archived employees : `c-archive-list`
 
 Shows a list of all archived employees in Employee Directory inside the _Main View_.
 
@@ -1003,6 +1070,7 @@ Let's say you want to find an archived employee's information. You can follow th
 1. Type `c-archive-list` into the _Command Box_.
 2. Press "Enter" to execute.
 
+<div style="page-break-after: always;"></div>
 
 Outcome:
 
@@ -1013,7 +1081,7 @@ Outcome:
 
 _Figure 23. A screenshot showing the outcome of an `c-archive-list` command_
 
-#### 3.13 Unarchiving an employee : `c-unarchive`
+#### 4.3.13. Unarchiving an employee : `c-unarchive`
 Unarchives the specified employee from the archived employee list.
 
 Format: `c-unarchive INDEX`
@@ -1024,6 +1092,8 @@ Format: `c-unarchive INDEX`
 * The `INDEX` **should not be larger than** the total number of employees listed in the current
 Employee Directory inside the _Main View_. For example, there are 2 employees listed in the current Employee
  Directory inside the _Main View_. The `INDEX`should be less or equal to 2.<br>
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -1054,6 +1124,8 @@ Outcome:
 2. Alex Yeoh's information will be removed from the archived employee list shown in Employee Directory inside
  the _Main View_.
 
+<div style="page-break-after: always;"></div>
+
 Before the execution:<br>
 ![BeforeUnarchiveCommandScreenshot](images/BeforeUnarchiveCommandScreenshot.png)
 
@@ -1064,11 +1136,13 @@ After the execution:<br>
 
 _Figure 24b. Screenshot showing the outcome of an `c-unarchive` command_
 
-### 4. Commands - General <a name="commands-general"></a>
+<div style="page-break-after: always;"></div>
+
+### 4.4. Commands - General <a name="commands-general"></a>
 
 This section provides an overview of the general commands used in tCheck.
 
-#### 4.1 Viewing help : `help`
+#### 4.4.1. Viewing help : `help`
 
 Shows a message explaining how to access the help page, which is the tCheck User Guide.
 
@@ -1091,17 +1165,19 @@ Outcome:
 
 _Figure 25. A screenshot showing the outcome of a `help` command_
 
-#### 4.2 Exiting the program : `exit`
+<div style="page-break-after: always;"></div>
+
+#### 4.4.2. Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### 5. Other Features <a name="other-features"></a>
+### 4.5. Other Features <a name="other-features"></a>
 
 This section provides an overview of the other features of tCheck which do not use a command.
 
-#### 5.1 Saving the data :
+#### 4.5.1. Saving the data :
 
 All tCheck data (i.e. ingredient data, sales data, employees' data) are saved in the hard disk automatically after each
  command. There is no need to save manually.
@@ -1114,7 +1190,7 @@ User should not attempt to make any changes in all data files.<br>
 
 </div>
 
-#### 5.2 Calendar :
+#### 4.5.2. Calendar :
 
 tCheck also shows the calendar for the current month when you start the application. You may use it for planning your
  work.
@@ -1125,11 +1201,14 @@ tCheck also shows the calendar for the current month when you start the applicat
  Let's say today is 8-Nov-2020, when you start tCheck, the calendar inside _Main View_ will show November's calendar,
  and hightlight today's date.
  
+ 
+<div style="page-break-after: always;"></div>
+
  ![CalendarScreenshot](images/CalendarScreenshot.png)
  
  _Figure 26. Screenshots showing the calendar in tCheck_
 
-## FAQ <a name="FAQ"></a>
+## 5. FAQ <a name="FAQ"></a>
 
 **Q**: Why does tCheck ignore additional or extra input that I add after single-word commands, like `help`? <br>
 **A**: Any extra input after a single-word command, for example, the input `123` inside the input `c-list 123`, will 
@@ -1142,9 +1221,11 @@ include: `s-list`, `i-set-default`, `i-list`, `i-reset-all`, `i-restock`, `c-lis
  "data" in tCheck home folder) with the files that contain the data in your previous tCheck home folder.
 
 
-## Command summary <a name="command-summary"></a>
+<div style="page-break-after: always;"></div>
 
-### Sales Tracking
+## 6. Command Summary <a name="command-summary"></a>
+
+### 6.1. ales Tracking
 
 Action | Format, Examples
 -------|------------------------------
@@ -1152,7 +1233,8 @@ Action | Format, Examples
 **List**| `s-list`
 **Find**| `s-find KEYWORD [MORE_KEYWORDS]` <br> e.g., `s-find BSBM BSBBT`
 
-### Ingredients Tracking
+
+### 6.2. Ingredients Tracking
 
 Action | Format, Examples
 -------|------------------------------
@@ -1164,7 +1246,7 @@ Action | Format, Examples
 **Reset all ingredients' levels to zero**| `i-reset-all`
 **List all ingredients that the user should restock**| `i-restock`
 
-### Manpower Management
+### 6.3. Manpower Management
 
 Action | Format, Examples
 -------|------------------------------
@@ -1181,7 +1263,8 @@ Action | Format, Examples
 **List all archived employees** |  `c-archive-list`
 **Unarchive** | `c-unarchive INDEX`<br> e.g., `c-unarchive 1` 
 
-### General
+
+### 6.4. General
 
 Action | Format, Examples
 -------|------------------------------

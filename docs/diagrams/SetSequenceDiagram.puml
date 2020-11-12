@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":tCheckParser" as tCheckParser LOGIC_COLOR
+participant ":TCheckParser" as TCheckParser LOGIC_COLOR
 participant "s:SetCommand" as SetCommand LOGIC_COLOR
 
 end box
@@ -17,18 +17,18 @@ end box
 [-> LogicManager : execute(i-set i/Milk m/100)
 activate LogicManager
 
-LogicManager -> tCheckParser : parseCommand(i-set i/Milk m/100)
-activate tCheckParser
+LogicManager -> TCheckParser : parseCommand(i-set i/Milk m/100)
+activate TCheckParser
 
 create SetCommand
-tCheckParser -> SetCommand
+TCheckParser -> SetCommand
 activate SetCommand
 
-SetCommand --> tCheckParser
+SetCommand --> TCheckParser
 deactivate SetCommand
 
-tCheckParser --> LogicManager : s
-deactivate tCheckParser
+TCheckParser --> LogicManager : s
+deactivate TCheckParser
 
 LogicManager -> SetCommand : execute()
 activate SetCommand
