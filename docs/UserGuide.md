@@ -274,8 +274,6 @@ To log in, simply edit your login details with the following command:
 <br>✏️ Examples:
 * `edit -l u/nusstu\e1234567 p/testpassword`
 
-An example of the command being inputted:
-
 ### 5.2 Updated Details Summary
 Within the red rectangle box, Jarvis will notify you if the login was successful and the login information entered.
 The username, password and student names are covered with a red rectangle for this diagram only to protect the Avenger's account security.
