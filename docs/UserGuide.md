@@ -253,7 +253,7 @@ _Figure 4. A screenshot showing the outcome of an `s-list` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.1.3. Finds the number of drinks by keywords : `s-find`
+#### 4.1.3. Finds the number of drinks by keywords : `s-find` <a name="s-find"></a>
 
 Finds all drinks where their abbreviated names match the KEYWORD(s).
 
@@ -596,7 +596,7 @@ Employee Directory. You are able to view data related to manpower in the Employe
  
 </div>
 
-#### 4.3.1. Adding an employee : `c-add`
+#### 4.3.1. Adding an employee : `c-add` <a name="c-add"></a>
 
 Adds an employee to the Employee Directory.
 
@@ -666,7 +666,7 @@ _Figure 13. A screenshot showing the outcome of an `c-active-list` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.3.3. Editing a person : `c-edit`
+#### 4.3.3. Editing a person : `c-edit` <a name="c-edit"></a>
 
 
 Edits the corresponding employee's information in the Employee Directory.
@@ -708,7 +708,7 @@ _Figure 14b. A screenshot showing the outcome of a `c-edit` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.3.4. Locating persons by keywords: `c-find`
+#### 4.3.4. Locating persons by keywords: `c-find` <a name="c-find"></a>
 
 Finds all active (unarchived) employees that contain the KEYWORD(s) in their names.
 
@@ -883,7 +883,7 @@ _Figure 18. A screenshot showing the outcome of an `c-tomorrow` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.3.8. Deleting a person : `c-delete`
+#### 4.3.8. Deleting a person : `c-delete` <a name="c-delete"></a>
 
 Deletes the specified employee from the Employee Directory.
 
@@ -912,7 +912,7 @@ _Figure 19. A screenshot showing the outcome of a `c-delete` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.3.9. Clearing all entries : `c-clear`
+#### 4.3.9. Clearing all entries : `c-clear` <a name="c-clear"></a>
 
 Clears all entries from the Employee Directory.
 
