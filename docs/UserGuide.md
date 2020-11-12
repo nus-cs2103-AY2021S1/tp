@@ -240,10 +240,9 @@ this box.
    * Clicking on each tab will give you the information you require for that field.  
 
 <br>
- > ⚠️ The core features of Jarvis are based on `Students`, `Missions`, `Quests`, `Consultations`, `Mastery Checks` and
- > `Tasks`.
- >
- > ⚠️ Each core feature has a tab for the organisation of its information.
+⚠️ The core features of Jarvis are based on `Students`, `Missions`, `Quests`, `Consultations`, `Mastery Checks` and `Tasks`.
+ 
+⚠️ Each core feature has a tab for the organisation of its information.
 
 <div markdown="block" class="alert alert-info">
 
