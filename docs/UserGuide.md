@@ -171,8 +171,6 @@ This section shows features that deal with operation of tasks including
 creating, reading, updating and deleting a task. A task can be either a
 `event` or `deadline`.
 
-<br>
-
 ### 2.1 List all tasks : `list-task`
 
 (Done by: Beining)
@@ -197,6 +195,7 @@ To show all tasks currently stored in PlaNus, you can do the following:
 
 
 You can add a deadline to PlaNus.
+
 <br>
 
 A deadline is a task that has a compulsory deadline date and time.
@@ -278,8 +277,6 @@ you can do the following:
 
 ![add event result](images/AddEventCommandResult2.png)
 
-<br>
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes**<br>
@@ -335,7 +332,7 @@ you can do the following:
 
 ![mark_as_done_result](images/DoneCommandResult.png)
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ### 2.5 Edit a task : `edit-task`
 
@@ -372,7 +369,7 @@ Format: `edit-task INDEX ATTRIBUTE_1:NEW_VALUE ATTRIBUTE_2:NEW_VALUE ...`
     * `from:` edits the start time of the specified event
     * `to:` edits the end time of the specified event
 
-<br>
+<div style="page-break-after: always;"></div>
 
 Examples:
 
@@ -387,6 +384,8 @@ For example, if you want to change the start time of the sixth task to be an hou
 3) This changes the start time of the sixth task to 10:00 which is one hour earlier than the original start time. You can view the task with the updated information in the task list.
 
 ![edit task result](images/EditTaskCommandResult.png)
+
+<div style="page-break-after: always;"></div>
 
 4) If the task that is being edited is an event, the calendar view will also be updated with the information.
 
@@ -405,7 +404,7 @@ Other examples:
 * `edit-task 1 tag:CS2103T` 
   * Edits the first task in the results of the current displayed task list, changing its tag to "CS2103T".
 
-<br>
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
 
