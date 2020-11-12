@@ -592,8 +592,6 @@ To add a lesson with title "CS2101 Tutorial" under module "CS2101" that happens 
 
 </div>
 
-<br>
-
 ### 3.3 Edit a lesson : `edit-lesson`
 
 (Done by: Zijian)
@@ -689,14 +687,14 @@ Examples:
 To find all lessons with titles containing the phrase "tutorial" (case-insensitive), you just need the following steps:
 
 1) List all lessons by typing `list-lesson` in the command box:
-
+ 
+ <div style="page-break-after: always;"></div>
+ 
 2) Type the following command in the command box: 
 
    * `find-lesson title:tutorial` 
 
 3) This lists all lessons with a title including the phrase `tutorial`.
-
-  <div style="page-break-after: always;"></div>
 
 ![find lesson result](images/FindLessonCommandResult.png)
 
@@ -741,12 +739,13 @@ To delete the first two lessons, you can follow 3 simple steps:
 
 2) Type `delete-lesson 1 2` in the command box.
 
+ <div style="page-break-after: always;"></div>
+
 ![delete lesson](images/DeleteLessonCommand.png)
  
 3) This deletes the first and the second lesson from PlaNus.
 
 ![delete lesson result](images/DeleteLessonCommandResult.png)
-
 
 You can also delete lessons by **first finding the lessons of interest**, refer to [feature 3.4](#34-find-a-lesson--find-lesson)
 for more information. Sample usage:
@@ -780,6 +779,8 @@ Example:
 1) Type `calendar` into the command box.
 
 2) The **Calendar View** will appear as shown below.
+
+ <div style="page-break-after: always;"></div>
 
 ![calendar view month](images/CalendarViewMonth.png)
 
@@ -821,6 +822,8 @@ How does it work:
 * When an `event` has occurred, it contributes towards **time spent on tasks** for that module.
 * When a `lesson` has occurred, it contributes towards **time spent on a lesson** for that module.
 
+ <div style="page-break-after: always;"></div>
+ 
 Example:
 
 ![data analysis example](images/DataAnalysisExample.png)
@@ -857,9 +860,6 @@ Therefore, the **time analysis for the week** will show that the **time spent on
 * Deadline: Consists of the date and time which the deadline falls on.
 * Lesson: Consists of events that repeat every week for specified time period.
 
-
-<div style="page-break-after: always;"></div>
-
 ## Command summary
 
 ### General commands
@@ -870,7 +870,9 @@ Therefore, the **time analysis for the week** will show that the **time spent on
 | **Calendar View** | `calendar`                                                   |
 | **Clear all**     | `clear`                                                      |
 | **Exit**          | `exit`                                                       |
-
+ 
+ <div style="page-break-after: always;"></div>
+ 
 ### Task related commands
 
 | Action            | Format, Examples                                             |
