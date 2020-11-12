@@ -340,7 +340,7 @@ Shows a message explaining how to access the help page.
 <br>**Format: `help`**
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/userguide/helpCommand.png" width="80%" /> <br />
+<img src="images/userguide/helpCommand.png" width="50%" /> <br />
 Figure 6.2a: <i>Help Command</i>
 </div>
 
