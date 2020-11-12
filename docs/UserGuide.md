@@ -701,7 +701,7 @@ The image below shows what you would see after executing this example.
 We understand that the process of hiring new talent requires multiple stages and this can be tracked using the
 application status. You can use this command to change the status of any applicant at any time.
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Note:** <br>
 
