@@ -596,13 +596,17 @@ Employee Directory. You are able to view data related to manpower in the Employe
 * All employees who are currently working in the shop are active (unarchived) employees.
 
 * Employees who are no longer working in the shop can be deleted from the Employee Directory (refer to 
- `c-delete` command for details), or moved to the archived Employee Directory (refer to `c-archive` command for
+ [`c-delete`](#438-deleting-a-person--c-delete) command for details), or moved to the archived Employee Directory 
+ refer to [`c-archive`](#4310-archiving-an-employee--c-archive) command
+  for
   details).
 
-* All active (unarchived) employees' information is stored in the active Employee Directory (refer to `c-active-list
-` to view the active Employee Directory).
+* All active (unarchived) employees' information is stored in the active Employee Directory 
+(refer to [`c-active-list`](#432-listing-all-employees-in-the-active-list-c-active-list) 
+to view the active Employee Directory).
 
-* All archived employees' information is stored in the archived Employee Directory (refer to `c-archive-list`
+* All archived employees' information is stored in the archived Employee Directory (refer to 
+[`c-archive-list`](#4312-listing-all-archived-employees--c-archive-list)
  to view the archived Employee Directory).
 
 * The list shown in the Employee Directory inside the _Main View_ when the app is launched is always the active
@@ -635,7 +639,14 @@ PHONE_NUMBER and EMERGENCY_CONTACT must be 8-digit number and start with 8 or 9.
 Example: 
 
 Let's say you want to add an employee called John Doe to the Employee Directory. His phone number is 98765432. His
- emergency contact is 81234567. His address is Blk 123 ABC Road. Assume he is a part-time employee, and he only can work on Friday. So you want to indicate these two characteristics in tCheck. You can assign him two labels, "Friday" and "PartTime" so that you can use find-employees-by-tags features (refer to `c-tag-find` for more details) to find a group of employees by their tag(s). You can follow these instructions:
+ emergency contact is 81234567. His address is Blk 123 ABC Road. 
+ Assume he is a part-time employee, and he only can work on Friday. 
+ So you want to indicate these two characteristics in tCheck. 
+ You can assign him two labels, "Friday" and "PartTime" so that 
+ you can use find-employees-by-tags features (refer to 
+ [`c-tag-find`](#435-locating-employees-based-on-matching-tags-c-tag-find-a-namec-tag-finda)
+  for more details) to find a group of employees
+  by their tag(s). You can follow these instructions:
 
 1. Type `c-add n/John Doe p/98765432 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime` into the _Command Box_.
 1. Press "Enter" to execute.
@@ -754,7 +765,7 @@ Outcome:
 _Figure 15. A screenshot showing the outcome of a `c-find` command_
 
 
-#### 4.3.5. Locating employees based on matching tags: `c-tag-find`
+#### 4.3.5. Locating employees based on matching tags: `c-tag-find` <a name="c-tag-find"></a>
 
 Finds all employees whose tags contain the one or more `KEYWORD(s)`.
 
@@ -774,8 +785,8 @@ Format: `c-tag-find KEYWORD [MORE_KEYWORDS]`
 
 **:information_source: Notes:**<br>
 In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
-. You may set an employee's tags when adding the employee into tCheck (refer to `c-add` command), or edit the
-tag(s) by editing employee's information feature (refer to `c-edit` command).<br>
+. You may set an employee's tags when adding the employee into tCheck (refer to [`c-add`](#431-adding-an-employee--c-add) command), or edit the
+tag(s) by editing employee's information feature (refer to [`c-edit`](#433-editing-a-person--c-edit) command).<br>
 
 </div>
 
@@ -803,7 +814,7 @@ _Figure 16. A screenshot showing the outcome of an `c-tag-find` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.3.6. Locating all employees who are available to work today: `c-today`
+#### 4.3.6. Locating all employees who are available to work today: `c-today` <a name="c-today"></a>
 
 Finds employees whose tags contain today's day (i.e. `Wednesday`, `Thursday`, etc).
 
@@ -817,8 +828,8 @@ Format: `c-today`
 
 **:information_source: Notes:**<br>
 In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
-. You may set an employee's tags when adding the employee into tCheck (refer to `c-add` command), or edit the
-tag(s) by editing employee's information feature (refer to `c-edit` command).<br>
+. You may set an employee's tags when adding the employee into tCheck (refer to [`c-add`](#431-adding-an-employee--c-add) command), or edit the
+tag(s) by editing employee's information feature (refer to [`c-edit`](#433-editing-a-person--c-edit) command).<br>
 
 </div>
 
@@ -848,11 +859,11 @@ Outcome:
 
 _Figure 17. A screenshot showing the outcome of an `c-today` command_
 
-#### 4.3.7. Locating all employees who are available to work tomorrow: `c-tomorrow`
+#### 4.3.7. Locating all employees who are available to work tomorrow: `c-tomorrow` <a name="c-tomorrow"></a>
 
 Finds employees whose tags contain tomorrow's day (i.e. `Wednesday`, `Thursday`, etc).
 
-Format: `c-tomorrow`
+Format: `c-tomorrow` 
 
 * The search is case-insensitive. For example, `Friday` will match `friday`.<br>
 * The application will automatically get tomorrow's day based on the computer's current date.<br>
@@ -862,8 +873,8 @@ Format: `c-tomorrow`
 
 **:information_source: Notes:**<br>
 In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
-. You may set an employee's tags when adding the employee into tCheck (refer to `c-add` command), or edit the
-tag(s) by editing employee's information feature (refer to `c-edit` command).<br>
+. You may set an employee's tags when adding the employee into tCheck (refer to [`c-add`](#431-adding-an-employee--c-add) command), or edit the
+tag(s) by editing employee's information feature (refer to [`c-edit`](#433-editing-a-person--c-edit) command).<br>
 
 </div>
 
@@ -956,7 +967,7 @@ After the execution:<br>
 _Figure 20b. A screenshot showing the outcome of a `c-clear` command_
 
 
-#### 4.3.10. Archiving an employee : `c-archive`
+#### 4.3.10. Archiving an employee : `c-archive` <a name="c-archive"></a>
 
 Archives the specified employee from tCheck.
 
@@ -975,10 +986,14 @@ _Employee Directory_ pane. For example, there are 2 employees listed in the curr
 
 **:information_source: Notes about Employee Directory:**<br>
 
-If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
- color label, named as "[Archived]", in front of the name), command `c-active-list` needs to be used first to see a
-  list of all your employees. Then, `c-archive INDEX` can be used to archive a specified employee identified
+ * If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
+ color label, named as "[Archived]", in front of the name), command
+  [`c-active-list`](#432-listing-all-employees-in-the-active-list-c-active-list) needs to be used first to
+  see a list of all your employees. Then, `c-archive INDEX` can be used to archive a specified employee identified
   by `INDEX`.<br>
+  
+  * If you want to see all your archived employees, you can use command 
+  [`c-archive-list`](#4312-listing-all-archived-employees--c-archive-list-a-namec-archive-lista).
 </div>
 
 
@@ -991,29 +1006,31 @@ employee directory when he comes back to work again. To archive the first employ
 can follow these instructions:
  
 1. Type `c-archive 1` into the _Command Box_.
-2. Press "Enter" to execute.
 
+    ![ArchiveCommandStep1Screenshot](images/ArchiveCommandStep1Screenshot.png)
+    
+    _Figure 21a. Screenshot showing the view before executing `c-archive` command_
+    
+2. Press "Enter" to execute.
 
 Outcome:
 
 1. The _Result Display_ will show a success message with the employee's name that you have archived.
+
+    ![ArchiveCommandStep2Screenshot](images/ArchiveCommandStep2Screenshot.png)
+    
+    _Figure 21b. Screenshot showing the success message of an `c-archive` command_
+
 2. Alex Yeoh's information will be removed from Employee Directory inside the _Main View_.
+    
+    ![ArchiveCommandStep3Screenshot](images/ArchiveCommandStep3Screenshot.png)
+
+    _Figure 21c. Screenshot showing the outcome of an `c-archive` command_
 
 <div style="page-break-after: always;"></div>
 
-Before the execution:<br>
-![BeforeArchiveCommandScreenshot](images/BeforeArchiveCommandScreenshot.png)
 
-_Figure 21a. Screenshot showing the view before executing `c-archive` command_
-
-After the execution:<br>
-![AfterArchiveCommandScreenshot](images/AfterArchiveCommandScreenshot.png)
-
-_Figure 21b. Screenshot showing the outcome of an `c-archive` command_
-
-<div style="page-break-after: always;"></div>
-
-#### 4.3.11. Archiving all employees : `c-archive-all`
+#### 4.3.11. Archiving all employees : `c-archive-all` <a name="c-archive-all"></a>
 
 Archives all employees in the Employee Directory inside the _Main View_.
 
@@ -1023,14 +1040,17 @@ Format: `c-archive-all`
 
 **:information_source: Notes about Employee Directory:**<br>
 * All employees who are currently working in the shop are active/unarchived employees. They are stored in the active
-(unarchived) Employee Directory. You may refer to `c-active-list` to view the active (unarchived) Employee Directory
+(unarchived) Employee Directory. You may refer to [`c-active-list`](#432-listing-all-employees-in-the-active-list-c-active-list) to view the active (unarchived) Employee
+ Directory
 . <br>
 
-* All archived employees (refer to `c-archive` to see how to archive an employee) will be stored in the archived
- Employee Directory. You may refer to `c-archive-list` to view the archived Employee Directory.<br>
+* All archived employees (refer to [`c-archive`](#4310-archiving-an-employee--c-archive) to see how to archive an employee) will be stored in the
+ archived Employee Directory. You may refer to [`c-archive-list`](#4312-listing-all-archived-employees--c-archive-list) 
+ to view the archived Employee Directory.<br>
 
 * If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
- color label, named as "[Archived]", in front of their names), command `c-active-list` needs to be used first to see a
+ color label, named as "[Archived]", in front of their names), command [`c-archive-list`](#4312-listing-all-archived-employees--c-archive-list) 
+ needs to be used first to see a
   list of all your employees. Then, `c-archive-all` can be used to archive all employees.<br>
 
 </div>
@@ -1062,7 +1082,7 @@ After the execution:<br>
 _Figure 22b. Screenshot showing the outcome of an `c-archive-all` command_
 
 
-#### 4.3.12. Listing all archived employees : `c-archive-list`
+#### 4.3.12. Listing all archived employees : `c-archive-list` <a name="c-archive-list"></a>
 
 Shows a list of all archived employees in Employee Directory inside the _Main View_.
 
@@ -1095,7 +1115,7 @@ Outcome:
 
 _Figure 23. A screenshot showing the outcome of an `c-archive-list` command_
 
-#### 4.3.13. Unarchiving an employee : `c-unarchive`
+#### 4.3.13. Unarchiving an employee : `c-unarchive` <a name="c-unarchive"></a>
 Unarchives the specified employee from the archived employee list.
 
 Format: `c-unarchive INDEX`
@@ -1112,19 +1132,28 @@ Employee Directory inside the _Main View_. For example, there are 2 employees li
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about Employee Directory:**<br>
-* If _Employee Directory_ currently shows a list of active/unarchived employees (Archived employees are displayed with a
- red color label, named as "[Archived]", in front of their names. While employees in the active/unarchived employee list
-  don't have this red label.), command `c-archive-list` needs to be used first to see a list of all your archived
+* If _Employee Directory_ currently shows a list of active/unarchived employees, command 
+[`c-archive-list`](#4312-listing-all-archived-employees--c-archive-list) 
+  needs to be used first to see a list of all your archived
   employees. Then, `c-unarchive INDEX` can be used to unarchive a specified
    employee identified by `INDEX`.<br>
+   
+* Archived employees are displayed with a
+ red color label, named as "[Archived]", in front of their names. While employees in the active/unarchived employee list
+  don't have this red label.
+* To see the list of all archived employees, use command 
+[`c-archive-list`](#4312-listing-all-archived-employees--c-archive-list-a-namec-archive-lista).
 
+* To see the list of all active (unarchived) employees, use command
+[`c-active-list`](#432-listing-all-employees-in-the-active-list-c-active-list).
+   
 </div>
 
 Example:
 
 Let's say one of your ex-employees, Alex Yeoh, is now rehired to work in your bubble tea shop. Since he worked in
  the store before, and you archived his data when he left last time. Now, instead of typing his information again and
-  use `c-add` command to add him into your employee directory. You can just unarchive him
+  use [`c-add`](#431-adding-an-employee--c-add) command to add him into your employee directory. You can just unarchive him
  and move his data to your employee directory. You can follow these instructions:
 
 
@@ -1239,7 +1268,7 @@ include: `s-list`, `i-set-default`, `i-list`, `i-reset-all`, `i-restock`, `c-lis
 
 ## 6. Command Summary <a name="command-summary"></a>
 
-### 6.1. ales Tracking
+### 6.1. Sales Tracking
 
 Action | Format, Examples
 -------|------------------------------
@@ -1268,14 +1297,14 @@ Action | Format, Examples
 **List all active employees** |  `c-active-list` 
 **Edit** | `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG] ...`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
 **Find by name** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
-**Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-tag-find Friday Monday PartTime`
-**Find available manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
+[**Find by tag(s)**](#c-tag-find) | `c-tag-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-tag-find Friday Monday PartTime`
+**Find available manpower** | 1. [**For today:**](#c-today)  `c-today`<br>2. [**For the next day:**](#c-tomorrow)  `c-tomorrow` <br>
 **Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
 **Clear** | `c-clear`
-**Archive an employee** |  `c-archive INDEX`<br> e.g., `c-archive 1`  
-**Archive all employees** |  `c-archive-all` <br>
-**List all archived employees** |  `c-archive-list`
-**Unarchive** | `c-unarchive INDEX`<br> e.g., `c-unarchive 1` 
+[**Archive an employee**](#c-archive) |  `c-archive INDEX`<br> e.g., `c-archive 1`  
+[**Archive all employees**](#c-archive-all) |  `c-archive-all` <br>
+[**List all archived employees**](#c-archive-list) |  `c-archive-list`
+[**Unarchive**](#c-unarchive) | `c-unarchive INDEX`<br> e.g., `c-unarchive 1` 
 
 
 ### 6.4. General
