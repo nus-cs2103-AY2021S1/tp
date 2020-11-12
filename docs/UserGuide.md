@@ -3,17 +3,7 @@ layout: page
 title: User Guide
 ---
 * Table of Contents
-    * [Introduction](#introduction)
-    * [Quick start](#quick-start)
-    * [About This Document](#about)
-    * [Features](#features)
-        * [Commands - Sales Tracking](#commands-sales-tracking)
-        * [Commands - Ingredients Tracking](#commands-ingredients-tracking)
-        * [Commands - Manpower Management](#commands-manpower-management)
-        * [Commands - General](#commands-general)
-        * [Other Features](#other-features)
-    * [FAQ](#FAQ)
-    * [Command summary](#command-summary)
+{:toc}
 
 <div style="page-break-after: always;"></div>
 
