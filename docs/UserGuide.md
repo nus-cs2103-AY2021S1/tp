@@ -269,27 +269,15 @@ Example:
 
 Let's say you want to find BSBBT and BSBM's sales data, you can follow these instructions:
 
-1. Type `s-find BSBBT BSBM` into the _Command Box_.
-1. Press "Enter" to execute.
-
+1. Type `s-find BSBBT BSBM` into the _Command Box_, and Press "Enter" to execute.
+![BeforeSfindScreenshot](images/SalesFindStep1.png)
 
 Outcome:
 1. The _Result Display_ will show that how many drinks you find.
+
 2. All matching drink's sales data will be listed in the _Main View_.
 
-<div style="page-break-after: always;"></div>
-
-Before the execution:<br>
-![BeforeSalesFind](images/BeforeSalesFind.png)
-
-_Figure 5a. A screenshot showing the view before executing `s-find` command_
-
-After the execution:<br>
-![SalesFindCommandScreenshot](images/SalesFindResult.png)
-
-_Figure 5b. A screenshot showing the outcome of an `s-find` command_
-
-<div style="page-break-after: always;"></div>
+![AfterSfindScreenshot](images/SalesFindStep2.png)
 
 ### 4.2. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
 
