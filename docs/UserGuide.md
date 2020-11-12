@@ -1231,7 +1231,7 @@ Action | Format, Examples
 -------|------------------------------
 **Update**| `s-update DRINK [MORE_DRINKS]` <br> e.g., `s-update BSBM/100 BSBBT/120`
 **List**| `s-list`
-**Find**| `s-find KEYWORD [MORE_KEYWORDS]` <br> e.g., `s-find BSBM BSBBT`
+**Find**| [`s-find KEYWORD [MORE_KEYWORDS]`](#s-find) <br> e.g., `s-find BSBM BSBBT`
 
 
 ### 6.2. Ingredients Tracking
@@ -1250,14 +1250,14 @@ Action | Format, Examples
 
 Action | Format, Examples
 -------|------------------------------
-**Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime`
+**Add** | [`c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...`](#c-add)<br> e.g., `c-add n/James Ho p/22224444 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime`
 **List all active employees** |  `c-active-list` 
-**Edit** | `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG] ...`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
-**Find by name** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
+**Edit** | [`c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG] ...`](#c-edit)<br> e.g.,`c-edit 2 n/James Lee e/81234567`
+**Find by name** | [`c-find KEYWORD [MORE_KEYWORDS]`](#c-find)<br> e.g., `c-find James Jake`
 **Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-tag-find Friday Monday PartTime`
 **Find available manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
-**Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
-**Clear** | `c-clear`
+**Delete** | [`c-delete INDEX`](#c-delete)<br> e.g., `c-delete 3`
+**Clear** | [`c-clear`](#c-clear)
 **Archive an employee** |  `c-archive INDEX`<br> e.g., `c-archive 1`  
 **Archive all employees** |  `c-archive-all` <br>
 **List all archived employees** |  `c-archive-list`
