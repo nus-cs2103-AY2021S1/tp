@@ -8,7 +8,7 @@ Welcome to ProductiveNUS User Guide! :blue_book:
 
 **ProductiveNUS is a desktop application** made for you, **a School of Computing (SoC) student in National University of Singapore (NUS)**, to **manage and schedule your academic tasks more effectively**. It makes use of a **Graphical User Interface (GUI)**, which provides you with an intuitive interface and immediate visual feedback. ProductiveNUS uses a **Command Line Interface (CLI)**; this means that you operate the application by typing commands into a [Command Box](#gui-terminologies). If you are fast at typing, you can manage your academic tasks more efficiently.
 
-As a **student from the SoC in NUS**, you tend to have a **heavy workload**. ProductiveNUS helps **improve your productivity** by **enhancing your organisational skills**. Apart from simply **keeping track of your tasks**, ProductiveNUS is capable of **scheduling** them for you so you will never **miss any deadlines**. ProductiveNUS is also compatible with NUSMods, meaning all your **timetable information can be imported easily** into the application so all your academic tasks can be found in just one application.
+As a **student in NUS SoC**, you tend to have a **heavy workload**. ProductiveNUS helps **improve your productivity** by **enhancing your organisational skills**. Apart from simply **keeping track of your tasks**, ProductiveNUS is capable of **scheduling** them for you so you will never **miss any deadlines**. ProductiveNUS is also compatible with NUSMods. This means that your **timetable information can be easily imported** into the application and **all** your academic tasks can be found in just **one application**.
 
 <div style="page-break-after: always;"></div>
 
@@ -38,7 +38,7 @@ Wondering what each icon is used for? You can refer to the table below to find o
 
 ### Command syntax
 
-All commands and their examples are demarcated with `markups`. `Markups` appear as a grey box as shown.
+All the commands and their examples are formatted as `markups`.
 
 <div markdown="block" class="alert alert-info">
 
@@ -101,15 +101,14 @@ For example, 7:00 AM is `0700` while 7:00 PM is `1900`.
 Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT mod/MODULE_CODE_OF_ASSIGNMENT [p/PRIORITY_OF_ASSIGNMENT] 
 [remind]`
 
-You can add your assignments into your schedule so that you can manage all your assignments and
- academic tasks conveniently. 
+You can add assignments into your assignment list so that you can manage and keep track of all your assignments and academic tasks. 
 
 <div markdown="span" class="alert alert-success">
 **:bulb: Tip:**
 You can include `remind` when adding an assignment instead of using the `remind` command to set reminders after adding an assignment.
 </div>
 
-For example, to add a lab report assignment that is **due** on 23th April 2020 12.30pm and **associated** with the module CS2100, you can 
+For example, to add a lab report assignment that is **due on 23th April 2020 12.30pm** and **associated with the module CS2100**, you can 
 simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. All the information of the assignment will be displayed as shown in the labelled diagram below.
 
    ![UserGuideAddCommand](images/UserGuideAddCommand.PNG)
