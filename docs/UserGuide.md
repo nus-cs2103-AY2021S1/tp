@@ -232,7 +232,7 @@ Eva makes use of these staff commands to give you the ability to keep track of y
 
 **:information_source: Note:** <br>
 
-* All commands under staff can only be done on either staff list or staff profile panel except `adds`, which can be done on any panel.<br>
+* All commands under staff can only be done on either [`staff list`](#311-staff-list--staff-list-panel) or [`staff profile`](#312-staff-profile--staff-profile-panel) except `adds`, which can be done on any panel.<br>
  
 * On a staff profile, only the details of the profile that is being viewed can be changed.<br>
 
@@ -241,7 +241,7 @@ Eva makes use of these staff commands to give you the ability to keep track of y
 
 #### 3.3.1. List all staff : `list s-`
 
-The staff list panel serves as your primary tool to give you an overview of all the staffs in your company.
+The [`staff list panel`](#311-staff-list--staff-list-panel) panel serves as your primary tool to give you an overview of all the staffs in your company.
 
 This command changes the panel to the [`Staff List`](#31-eva-gui) and shows a list of all staffs in the Eva Database.
 
@@ -466,7 +466,7 @@ Please take note that this action is irreversible.**
 Format: `clear s-`
 
 The image below shows what you would see after using this command. Notice that there are no more records of staff in the
-Staff List.
+[`staff list`](#311-staff-list--staff-list-panel).
 
 ![clearStaff](images/ugimages/ClearStaff.png)
 
@@ -478,7 +478,7 @@ Applicant commands give you the ability to keep track of your applicants which h
 
 :information_source: **Note:**<br>
 
-* All commands under applicant can only be done on either applicant list or applicant profile except `adda`, 
+* All commands under applicant can only be done on either [`Applicant List`](#313-applicant-list--applicant-list-panel)  or [`Applicant Profile`](#314-applicant-profile--applicant-profile-panel)  except `adda`, 
  which can be done on any panel. <br>
  
 * While in profiles, only details of the profile that is being viewed can be changed.
@@ -515,8 +515,8 @@ An applicant record can contain the details listed below:
  - Tags
  - Comments
  - Interview Date
- - Application Status
  - Application
+ - Application Status
  
 The fields marked with a asterisk (*) are compulsory and have to be provided in the parameters below.
 Without any of these fields, Eva will not accept your input. <br> 
@@ -597,7 +597,7 @@ The image below shows what you would see after executing this example.
 #### 3.4.5. Delete an applicant: `dela`
 
 If you need to remove specific records of applicants, you may use this command. By providing the index of the 
-applicant you see on Applicant List, you can remove that applicant's record. 
+applicant you see on [`Applicant List`](#313-applicant-list--applicant-list-panel) , you can remove that applicant's record. 
 
 <div markdown="block" class="alert alert-danger">
 
@@ -706,6 +706,7 @@ application status. You can use this command to change the status of any applica
 **:information_source: Note:** <br>
 
 Application status can only be any one from the following: <br>
+
   - received
   - processing
   - accepted
@@ -741,7 +742,7 @@ Format: `clear a-`
 
 The image below shows what you would see after using this command. 
 Notice that there are no more records of applicants in the
-Applicant List.
+[`Applicant List`](#313-applicant-list--applicant-list-panel).
 
 ![clearApplicantDatabase](images/ugimages/ClearApplicant.png)
 
