@@ -258,7 +258,7 @@ If your assignment list is really long, this command comes in handy as it filter
 
 This is the table of prefixes used:
 
-| Prefix | Syntax | Examples |
+| Prefix | Syntax | Example |
 |-|-|-|
 | `n/` | n/NAME_OF_ASSIGNMENT [MORE_NAME_OF_ASSIGNMENT] | `n/Tutorial` |
 | `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT [MORE_MODULE_CODE_OF_ASSIGNMENT] | `mod/ST2334` |
