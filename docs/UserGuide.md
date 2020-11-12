@@ -270,11 +270,12 @@ Example:
 Let's say you want to find BSBBT and BSBM's sales data, you can follow these instructions:
 
 1. Type `s-find BSBBT BSBM` into the _Command Box_, and Press "Enter" to execute.
+
 ![BeforeSfindScreenshot](images/SalesFindStep1.png)
 
 Outcome:
-1. The _Result Display_ will show that how many drinks you find.
 
+1. The _Result Display_ will show that how many drinks you find.
 2. All matching drink's sales data will be listed in the _Main View_.
 
 ![AfterSfindScreenshot](images/SalesFindStep2.png)
