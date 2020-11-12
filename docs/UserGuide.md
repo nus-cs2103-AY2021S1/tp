@@ -1236,7 +1236,7 @@ include: `s-list`, `i-set-default`, `i-list`, `i-reset-all`, `i-restock`, `c-lis
 
 ## 6. Command Summary <a name="command-summary"></a>
 
-### 6.1. ales Tracking
+### 6.1. Sales Tracking
 
 Action | Format, Examples
 -------|------------------------------
