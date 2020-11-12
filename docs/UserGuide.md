@@ -136,7 +136,8 @@ please check that you have installed the correct driver in the _`chrome_driver`_
     1. Windows: chromedriver.exe
     1. MacOS: chromedriver_mac
     1. Linux: chromedriver_linux
-    
+
+<br>
 
 1. Copy both file and folder to the directory you want to use as the _home directory_ for your Jarvis.
 
@@ -172,9 +173,10 @@ please check that you have installed the correct driver in the _`chrome_driver`_
    * `edit -s STUDENT_ID: Edits Student's Name, Email, Telegram.`
    * `exit: Exits the app.`
 
+<br>
 
 1. Refer to the [Features](#6-features) below for details of each command.
-
+<br>
 
 1. Do note that the sample data displayed on initial startup of Jarvis will not be saved. This means that subsequent launches of Jarvis will only contain user-inputted data.
 
