@@ -37,7 +37,9 @@ It is optimized for use via a Command Line Interface (CLI) while still having th
         * [4.3.1 What is AddCommand](#431-what-is-addcommand)
         * [4.3.2 Structure of AddCommand](#432-structure-of-addcommand)
         * [4.3.3 Structure of AddXYZCommand](#433-structure-of-addxyzcommand)
-<div style="page-break-after: always;"></div>
+
+        <div style="page-break-after: always;"></div>
+
         * [4.3.4 Structure of AddCommandParser](#434-structure-of-addcommandparser)
         * [4.3.5 Path Diagram of AddTaskCommand](#435-path-diagram-of-addtaskcommand)
         * [4.3.6 Sequence Diagram of AddTaskCommand](#436-sequence-diagram-of-addtaskcommand)
@@ -140,7 +142,9 @@ Each of the five components,
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+
 <div style="page-break-after: always;"></div>
+
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
@@ -267,7 +271,9 @@ The following diagram shows the path execution from the user's perspective when 
 The login process is kickstarted whenever Jarvis is launched or the login details are edited.
 
 ![Path Diagram of login process](images/LoginPathDiagram.png)
+
 <div style="page-break-after: always;"></div>
+
 #### 4.1.4 Sequence Diagram of login process
 
 ![Sequence Diagram of startScraping()](images/LoginSequenceDiagram.png)
@@ -280,6 +286,7 @@ scraping for missions. This list could be of size 0 if there are no active missi
 * The greeting in the diagram refers to the name of the CS1101S Avenger which will also be fetched and displayed in Jarvis upon login.
 * `startScraping()` runs on a background thread, separate from the main thread. This ensures that the time-consuming task of fetching missions, quests and students do not delay the updating of the GUI.
 * In the event the login details are incorrect, Jarvis will resolve the problem by starting up with saved data (if it exists) or mock data (if it does not exist).
+
 <div style="page-break-after: always"></div>
 
 ### 4.2 View Command
@@ -290,6 +297,7 @@ the `ViewMissionDeadlineCommand` and other object classes.
 #### 4.2.1 What is ViewCommand
 `ViewCommand` is an abstract class encapsulating the different view commands for the following: `Student`,
 `Mission`, `Quest`, `Consultation`, `Mastery Check` and `Task`.
+
 <div style="page-break-after: always"></div>
 
 #### 4.2.2 Structure of ViewCommand
@@ -317,6 +325,7 @@ The following diagram shows the overview of the `ViewCommandParser` Class Diagra
 In the `ViewCommandParser` class, under the `parse()` method, we reference the `Flag` class which is a class that encapsulates
 the different flags that `ViewCommand` can parse. We use the `Flag` class to check for whether an input is valid and go on to parse
 the flag and return the correct `ViewCommand` object.
+
 <div style="page-break-after: always"></div>
 
 #### 4.2.4 Path Diagram of ViewMissionDeadlineCommand
@@ -327,6 +336,7 @@ The diagram below demonstrates the expected path execution of `ViewMissionDeadli
 The other `ViewCommand` subclasses will execute similarly.
 
 ![Path Diagram of ViewMisionDeadlineCommand](images/ViewMissionDeadlinePathDiagram.png)
+
 <div style="page-break-after: always"></div>
 
 #### 4.2.5 Sequence Diagram of ViewMissionDeadlineCommand
@@ -369,6 +379,7 @@ correct `Model` object (eg. `Student`, `Task`) will be added to the correspondin
 The abstract class `AddCommand` extends from the abstract class `Command`. In the `AddCommand` class, the abstract
 method `execute` takes in a `Model` object. As such, all add commands that extend from the `AddCommand` class will implement
 the `execute` method. Thus, all add command classes have a dependency on `Model`.
+
 <div style="page-break-after: always"></div>
 
 In the `AddCommand` class, there is a static message `MESSAGE_USAGE` for when user does not include a second argument since
@@ -386,6 +397,7 @@ The following diagram shows the overview of `AddCommand` detailed Class Diagram 
 * The class `AddCommand` contains 3 subclasses: `AddTaskCommand`, `AddConsultationCommand` and `AddMasteryCheckCommand`.
 * These `AddCommand` subclasses interacts with `Model` and the related class models each `AddCommand` is supposed to execute with.
 * Upon successful `AddCommand`, these subclasses communicates with `Model` to add `Task`, `Consultation` and `MasteryCheck` into `Model`.
+
 <div style="page-break-after: always"></div>
 
 #### 4.3.4 Structure of AddCommandParser
@@ -444,6 +456,7 @@ the `DeleteConsultationCommand` and other object classes.
 The following diagram shows the overview of the `DeleteCommand` Class Diagram:
 
 ![Class Diagram of DeleteCommand](images/DeleteCommandClassDiagram.png)
+
 <div style="page-break-after: always"></div>
 
 The abstract class `DeleteCommand` extends from the abstract class `Command`. In the `DeleteCommand` class, the abstract
@@ -469,6 +482,7 @@ the flag and return the correct `DeleteCommand` object.
 Additionally, under the same method, we reference the `Index` class which encapsulates
 the numerical indexes that `DeleteCommand` can parse. We use the `Index` class to check for whether the input is a non-zero unsigned integer
 and go on to parse the index and provide the parameter necessary to instantiate the aforementioned `DeleteCommand` object.
+
 <div style="page-break-after: always"></div>
 
 The `Index` only applies for `DeleteConsultationCommand` and `DeleteMasteryCheckCommand` as `DeleteTaskCommand` utilizes a `String` to store identifiers instead;
@@ -482,6 +496,7 @@ The diagram below demonstrates the expected path execution of `DeleteConsultatio
 The other `DeleteCommand` subclasses will execute similarly.
 
 ![Path Diagram of DeleteConsultationCommand](images/DeleteConsultationPathDiagram.png)
+
 <div style="page-break-after: always"></div>
 
 #### 4.4.5 Sequence Diagram of DeleteConsultationCommand
@@ -514,6 +529,7 @@ The following diagram shows the overview of the `EditCommand` Class Diagram:
 * Upon parsing user input to the correct `EditCommand` (ie. `EditXYZCommand`) which is done by the `EditCommandParser`, the
 correct `Model` object (eg. `Student`, `UserLogin`) will be added to the corresponding list in `Model` class.
 * Then, updated lists of data will be written to the `AddressBook`, and displayed on the GUI.
+
 <div style="page-break-after: always"></div>
 
 #### 4.5.3 Path Diagram of EditLoginCommand
@@ -524,6 +540,7 @@ There are 3 `EditCommand` subclasses - `EditStudentCommand`, `EditLoginCommand` 
 We will only use the `EditLoginCommand` as an example for the `EditCommand` path diagram and sequence diagram.
 The diagram below demonstrates the expected path execution of `EditLoginCommand`.
 The other `EditCommand` subclasses will execute similarly, less the calls to `ScraperManager` to re-scrape Source Academy.
+
 <div style="page-break-after: always"></div>
 
 #### 4.5.4 Sequence Diagram of EditLoginCommand
@@ -540,6 +557,7 @@ In this section we will explain how the `Automatic Tab Switching Feature` featur
 #### 4.6.1 What is Automatic Tab Switching
 `Automatic Tab Switching` is a feature where the displayed tab automatically changes to the relevant tab: `Student`,
 `Missions`, `Quests`, `Consultations`, `Mastery Checks` and `Tasks` for the user's input command.
+
 <div style="page-break-after: always"></div>
 
 #### 4.6.2 Sequence Diagram of the Automatic Tab Switching process
@@ -565,6 +583,7 @@ As such, the corresponding tab is selected after a user command is inputted.
 This feature works the same way for
 viewing `Students`, `Quests`, `Consultations`, `MasteryChecks` and `Tasks`. In each case, the
 corresponding `CommandTargetFeature` `Enum` is returned resulting in the corresponding tab selection.
+
 <div style="page-break-after: always"></div>
 
 ### 4.7 Summary Feature
