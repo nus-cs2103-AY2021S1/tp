@@ -180,7 +180,7 @@ Similar to the [`Staff List`](#311-staff-list--staff-list-panel), this is where 
 
 #### 3.1.4. Applicant Profile : `Applicant Profile Panel`
 
-This is also similar to the staff profile where you can zoom in on an individual applicant and view more information about them.
+This is also similar to the [`Staff Profile`](#312-staff-profile--staff-profile-panel) where you can zoom in on an individual applicant and view more information about them.
 
 However, notice how the placement of the comments section differs from the [`Staff List`](#311-staff-list--staff-list-panel).
 
@@ -234,7 +234,7 @@ Eva makes use of these staff commands to give you the ability to keep track of y
 
 * All commands under staff can only be done on either [`Staff List`](#311-staff-list--staff-list-panel) or [`Staff Profile`](#312-staff-profile--staff-profile-panel) except `adds`, which can be done on any panel.<br>
  
-* On a staff profile, only the details of the profile that is being viewed can be changed.<br>
+* On a [`Staff Profile`](#312-staff-profile--staff-profile-panel), only the details of the profile that is being viewed can be changed.<br>
 
 </div>
 
@@ -811,7 +811,7 @@ Edits the description of a comment on a staff/applicant.
 
 **:information_source: Note:** <br>
 
-Users can only view comment descriptions on staff or applicant profile panels.
+Users can only view comment descriptions on [`Staff Profile`](#312-staff-profile--staff-profile-panel) or [`Applicant Profile`](#314-applicant-profile--applicant-profile-panel) panels.
 
 </div>
 
