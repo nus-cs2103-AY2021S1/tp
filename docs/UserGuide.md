@@ -751,7 +751,7 @@ Format: `addc INDEX c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/DESCRIPTION`
 
 Example:
 * `addc 1 c/ ti/Working Ethics d/10/10/2010 desc/Good`
-* `addc 2 c/ ti/Punctuality d/10/10/2020 d/This applicant as a problem with punctuality`
+* `addc 2 c/ ti/Punctuality d/10/10/2020 desc/This applicant as a problem with punctuality`
 
 The image below shows what you would see after executing the last example given above.
 
@@ -778,9 +778,9 @@ The image below shows what you would see after executing the last example given 
 
 ![deleteComment](images/ugimages/DeleteComment.png)
 
-#### 3.5.3. Edit comment on a staff: `editc`
+#### 3.5.3. Edit comment on a staff/applicant: `editc`
 
-Edits the description of a comment on a staff.
+Edits the description of a comment on a staff/applicant.
 
 <div markdown="block" class="alert alert-info">
 
