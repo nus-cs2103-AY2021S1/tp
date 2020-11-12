@@ -2,8 +2,10 @@
 layout: page
 title: User Guide
 ---
-* Table of Contents
-{:toc}
+<div class="toc-no-bullet-points">
+  * Table of Contents
+  {:toc}
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -194,9 +196,9 @@ Currently, there are 6 types of drinks that can be tracked by tCheck's Sales Tra
 </div>
 
 
-#### 4.1.1. Updating the number of drinks sold : `s-update`
-Updates the number of drinks sold for each drink type as given in the user input. The previous records will
-be overwritten.
+#### 4.1.1. Updating the number of drinks sold : `s-update` <a name="s-update"></a>
+Updates the number of drinks sold for each drink type as given in the user input. The previous records for those
+ drinks will be overwritten.
 
 Format: `s-update DRINK [MORE_DRINKS]`
 * where `DRINK` is formatted as `A/NUM`
@@ -213,21 +215,30 @@ Let's say you want to update the sales of Brown Sugar Boba Milk, `BSBM`, to 100
 and Brown Sugar Boba Black Tea, `BSBBT`, to 120 in the Sales Tracker. You can follow these instructions:
 
 1. Type `s-update BSBM/100 BSBBT/120` into the _Command Box_.
+
+    ![SalesUpdateStep1](images/SalesUpdateStep1.png)
+    
+    _Figure 3a. A screenshot showing the entering of an `s-update` command_
+
 2. Press "Enter" to execute the command.
 
 Outcome:
-
 1. The _Result Display_ will show a success message.
+
+    ![SalesUpdateOutcome1](images/SalesUpdateOutcome1.png)
+
+    _Figure 3b. A screenshot showing the success message_
+
 2. You can now see that tCheck has updated the sales of the two drinks in the Sales
- Tracker inside the _Main View_. 
+ Tracker inside the _Main View_. You may need to scroll through the Sales Tracker to find the drinks.
+ 
+    ![SalesUpdateOutcome2](images/SalesUpdateOutcome2.png)
 
-![SalesUpdateCommandScreenshot](images/SalesUpdateCommandScreenshot.png)
-
-_Figure 3. A screenshot showing the outcome of an `s-update` command_
+    _Figure 3c. A screenshot showing the changes in the Sales Tracker_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.1.2. Listing the number of drinks sold : `s-list`
+#### 4.1.2. Listing the number of drinks sold : `s-list` <a name="s-list"></a>
 Shows a list of all types of drinks sold in the Sales Tracker. The list of drinks shown is 
 ordered in descending order (i.e. ranked from the most to least sales).
 
@@ -235,8 +246,8 @@ Format: `s-list`
 
 Example: 
 
-Let's say you want to see an ordered list of drink sales that have been recorded with `s-update`.
-You can follow these instructions:
+Let's say you have recorded some drink sales using the instructions given in the `s-update` command.
+ You now want to see an ordered list of drink sales that have been recorded. You can follow these instructions:
 
 1. Type `s-list` into the _Command Box_.
 2. Press "Enter" to execute the command.
@@ -253,7 +264,7 @@ _Figure 4. A screenshot showing the outcome of an `s-list` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.1.3. Finds the number of drinks by keywords : `s-find`
+#### 4.1.3. Finds the number of drinks by keywords : `s-find` <a name="s-find"></a>
 
 Finds all drinks where their abbreviated names match the KEYWORD(s).
 
@@ -270,26 +281,21 @@ Example:
 Let's say you want to find BSBBT and BSBM's sales data, you can follow these instructions:
 
 1. Type `s-find BSBBT BSBM` into the _Command Box_.
-1. Press "Enter" to execute.
 
+![BeforeSfindScreenshot](images/SalesFindStep1.png)
+
+_Figure 5a. A screenshot showing before  an `s-find` command_
+
+2. Press "Enter" to execute.
 
 Outcome:
+
 1. The _Result Display_ will show that how many drinks you find.
 2. All matching drink's sales data will be listed in the _Main View_.
 
-<div style="page-break-after: always;"></div>
+![AfterSfindScreenshot](images/SalesFindStep2.png)
 
-Before the execution:<br>
-![BeforeSalesFind](images/BeforeSalesFind.png)
-
-_Figure 5a. A screenshot showing the view before executing `s-find` command_
-
-After the execution:<br>
-![SalesFindCommandScreenshot](images/SalesFindResult.png)
-
-_Figure 5b. A screenshot showing the outcome of an `s-find` command_
-
-<div style="page-break-after: always;"></div>
+_Figure 5b. A screenshot showing the outcome after of an `s-find` command_
 
 ### 4.2. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
 
@@ -329,7 +335,7 @@ You are able to view data related to ingredients tracking in the Ingredient Trac
 
 <div style="page-break-after: always;"></div>
 
-#### 4.2.1. Setting one ingredient's level : `i-set`
+#### 4.2.1. Setting one ingredient's level : `i-set` <a name="i-set"></a>
 
 Sets the level of one single ingredient predefined in the ingredient book to the specified amount.
 
@@ -353,35 +359,49 @@ Example:
 Let's say you want to set the ingredient Milk's level to 90 L. 
 You can follow these instructions:
 
-1. Type `i-set i/Milk m/90` into the _Command Box_.
+1. Type `i-set i/Milk m/90` into the _Command Box_  
 2. Press "Enter" on your keyboard to execute the command.
 
-Outcome:
-
-1. The _Result Display_ will show a success message.
-2. You can now see that tCheck has updated Milk's level to 90 L in The Ingredient Tracker inside the _Main View_.
-
-<div style="page-break-after: always;"></div>
-
-Before the execution:
+Before the execution:<br>
 ![IngredientSetCommand](images/IngredientSetCommand.png)
 
 _Figure 6a. A screenshot showing the view before executing `i-set` command_
 
+<div style="page-break-after: always;"></div>
+
+Outcome:
+
+1. The _Result Display_ will show a success message.
+
 After the execution:<br>
 ![IngredientSetCommandResultDisplay](images/IngredientSetCommandResultDisplay.png)
 
-_Figure 6b. A screenshot showing the outcome of an `i-set` command_
+_Figure 6b. A screenshot showing the success message of an `i-set` command_
+
+2. You can now see that tCheck has updated Milk's level to 90 L in The Ingredient Tracker inside the _Main View_.
+
+After the execution:<br>
+![IngredientSetCommandUpdate](images/IngredientSetCommandUpdate.png)
+
+_Figure 6c. A screenshot showing the outcome of an `i-set` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.2.2. Setting all ingredients' levels to different specified amounts : `i-set-all`
+#### 4.2.2. Setting all ingredients' levels to different specified amounts : `i-set-all` <a name="i-set-all"></a>
 
 Sets all ingredients' levels to different specified amounts according to user inputs.
 
 Format: `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR`
 
 * Sets all ingredients' levels as such : Milk : `AMOUNT_FOR_MILK` L, Pearl : `AMOUNT_FOR_PEARL` KG, Boba : `AMOUNT_FOR_BOBA` KG, Black Tea : `AMOUNT_FOR_BLACK_TEA` L, Green Tea: `AMOUNT_FOR_GREEN_TEA`, Brown Sugar : `AMOUNT_FOR_BROWN_SUGAR` KG.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:** <br>
+
+Details of the step by step instructions are omitted because they are similar to the example given above.
+
+</div>
 
 Example:
 
@@ -408,7 +428,7 @@ _Figure 7b. A screenshot showing the outcome of an `i-set-all` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.2.3. Setting all ingredients to different levels : `i-set-default`
+#### 4.2.3. Setting all ingredients to different levels : `i-set-default` <a name="i-set-default"></a>
 
 Sets all ingredients' levels to their pre-determined default levels for a store.
 
@@ -437,8 +457,8 @@ tCheck GUI behaves similarly to examples given in the previous command, except n
 
 </div>
 
-#### 4.2.4. Listing all ingredients' levels : `i-list`
-Lists the ingredient's levels of all ingredient types.
+#### 4.2.4. Listing all ingredients' levels : `i-list` <a name="i-list"></a>
+Shows a list of ingredient levels of all ingredient types.
 
 Format: `i-list`
 
@@ -448,7 +468,7 @@ Let's say you want to see the list of all the ingredients.
 You can follow these instructions:
 
 1. Type `i-list` into the _Command Box_.
-1. Press "Enter" to execute the command.
+2. Press "Enter" to execute the command.
 
 <div style="page-break-after: always;"></div>
 
@@ -462,7 +482,7 @@ Outcome:
 
 _Figure 8. A screenshot showing the outcome of an `i-list` command_
 
-#### 4.2.5. Finding ingredients by keywords : `i-find`
+#### 4.2.5. Finding ingredients by keywords : `i-find` <a name="i-find"></a>
 Finds all ingredients that contain one or more keywords in their names.
 
 Format: `i-find KEYWORD [MORE_KEYWORDS]`
@@ -503,32 +523,43 @@ After the execution:<br>
 
 _Figure 9b. A screenshot showing the outcome of an `i-find` command_
 
-#### 4.2.6. Resetting all ingredients' levels to zero : `i-reset-all`
-Resets the ingredient's levels of all ingredient types to zero.
+#### 4.2.6. Resetting all ingredients' levels to zero : `i-reset-all` <a name="i-reset-all"></a>
+Resets the ingredient levels of all types of ingredients to zero.
 
 Format: `i-reset-all`
 
-Let's say you want to reset all ingredients' levels to zero when one or more ingredients have 
-nonzero ingredient's levels.
+Example:
+
+Let's say that you have found that all ingredients have been used up in the store.
+You now want to reset the ingredient levels of all types of ingredients to zero in tCheck.
 You can follow these instructions:
 
 1. Type ` i-reset-all` into the _Command Box_.
+
+    ![IngredientResetAllStep1](images/IngredientResetAllStep1.png)
+    
+    _Figure 10a. A screenshot showing the entering of an `i-reset-all` command_
+
 2. Press "Enter" to execute the command.
 
 Outcome:
 
 1. The _Result Display_ will show a success message.
-2. You can now see that all ingredients' levels are zero in the Ingredient Tracker inside 
-the _Main View_.
 
+    ![IngredientResetAllOutcome1](images/IngredientResetAllOutcome1.png)
+    
+    _Figure 10b. A screenshot showing the success message_
+    
+2. You can now see that tCheck has reset the ingredient levels, or amounts, of all types of ingredients to zero in the Ingredient Tracker inside 
+the _Main View_. You may scroll down the list in the Ingredient Tracker to see all the ingredients and their current amounts.
+
+    ![IngredientResetAllOutcome2](images/IngredientResetAllOutcome2.png)
+
+    _Figure 10c. A screenshot showing the changes in the Ingredient Tracker_
 <div style="page-break-after: always;"></div>
 
-![IngredientResetAllCommandScreenshot](images/IngredientResetAllCommandScreenshot.png)
-
-_Figure 10. A screenshot showing the outcome of an `i-reset-all` command_
-
-#### 4.2.7. Listing all ingredients that the user should restock : `i-restock`
-Lists the ingredient's levels of all ingredient types that fall below their pre-determined default levels and require the user to 
+#### 4.2.7. Listing all ingredients that the user should restock : `i-restock` <a name="i-restock"></a>
+Lists the ingredient levels of all ingredient types that fall below their pre-determined default levels and require the user to 
 restock. The list also includes the amount needed for each ingredient to reach its pre-determined default level.
 
 Format: `i-restock`
@@ -553,7 +584,7 @@ You can follow these instructions:
 Outcome:
 
 1. The _Result Display_ will show a list of ingredients that the user should restock, including each ingredient's name, 
-its ingredient's level and the amount needed for the ingredient to reach its pre-determined default level.
+its ingredient level and the amount needed for the ingredient to reach its pre-determined default level.
 
 ![IngredientRestockCommandScreenshot](images/IngredientRestockCommandScreenshot.png)
 
@@ -600,7 +631,7 @@ to view the active Employee Directory).
  
 </div>
 
-#### 4.3.1. Adding an employee : `c-add`
+#### 4.3.1. Adding an employee : `c-add` <a name="c-add"></a>
 
 Adds an employee to the Employee Directory.
 
@@ -652,7 +683,7 @@ _Figure 12. A screenshot showing the outcome of an `c-add` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.3.2. Listing all employees in the active list: `c-active-list`
+#### 4.3.2. Listing all employees in the active list: `c-active-list`<a name="c-active-list"></a>
 
 Lists all employees who are active. 
 
@@ -677,7 +708,7 @@ _Figure 13. A screenshot showing the outcome of an `c-active-list` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.3.3. Editing a person : `c-edit`
+#### 4.3.3. Editing a person : `c-edit` <a name="c-edit"></a>
 
 
 Edits the corresponding employee's information in the Employee Directory.
@@ -719,7 +750,7 @@ _Figure 14b. A screenshot showing the outcome of a `c-edit` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.3.4. Locating persons by keywords: `c-find`
+#### 4.3.4. Locating persons by keywords: `c-find` <a name="c-find"></a>
 
 Finds all active (unarchived) employees that contain the KEYWORD(s) in their names.
 
@@ -894,7 +925,7 @@ _Figure 18. A screenshot showing the outcome of an `c-tomorrow` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.3.8. Deleting a person : `c-delete`
+#### 4.3.8. Deleting a person : `c-delete` <a name="c-delete"></a>
 
 Deletes the specified employee from the Employee Directory.
 
@@ -923,7 +954,7 @@ _Figure 19. A screenshot showing the outcome of a `c-delete` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.3.9. Clearing all entries : `c-clear`
+#### 4.3.9. Clearing all entries : `c-clear` <a name="c-clear"></a>
 
 Clears all entries from the Employee Directory.
 
@@ -1171,7 +1202,7 @@ _Figure 24b. Screenshot showing the outcome of an `c-unarchive` command_
 
 This section provides an overview of the general commands used in tCheck.
 
-#### 4.4.1. Viewing help : `help`
+#### 4.4.1. Viewing help : `help` <a name="help"></a>
 
 Shows a message explaining how to access the help page, which is the tCheck User Guide.
 
@@ -1196,7 +1227,7 @@ _Figure 25. A screenshot showing the outcome of a `help` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.4.2. Exiting the program : `exit`
+#### 4.4.2. Exiting the program : `exit` <a name="exit"></a>
 
 Exits the program.
 
@@ -1242,8 +1273,18 @@ tCheck also shows the calendar for the current month when you start the applicat
 **Q**: Why does tCheck ignore additional or extra input that I add after single-word commands, like `help`? <br>
 **A**: Any extra input after a single-word command, for example, the input `123` inside the input `c-list 123`, will 
 be ignored because extra input does not affect the operation conducted by `c-list`. These single-word commands 
-include: `s-list`, `i-set-default`, `i-list`, `i-reset-all`, `i-restock`, `c-list`, `c-today`, `c-tomorrow`,
-  `c-clear`, `c-archive-all`, `c-archive-list`, `help`, `exit`.
+include: [`s-list`](#412-listing-the-number-of-drinks-sold--s-list), 
+[`i-set-default`](#423-setting-all-ingredients-to-different-levels--i-set-default), 
+[`i-list`](#424-listing-all-ingredients-levels--i-list-a-namei-lista), 
+[`i-reset-all`](#426-resetting-all-ingredients-levels-to-zero--i-reset-all-a-namei-reset-alla), 
+[`i-restock`](#427-listing-all-ingredients-that-the-user-should-restock--i-restock-a-namei-restocka), 
+[`c-active-list`](#432-listing-all-employees-in-the-active-list-c-active-list), 
+[`c-today`](#436-locating-all-employees-who-are-available-to-work-today-c-today), 
+[`c-tomorrow`](#437-locating-all-employees-who-are-available-to-work-tomorrow-c-tomorrow), 
+[`c-clear`](#439-clearing-all-entries--c-clear), 
+[`c-archive-all`](#4311-archiving-all-employees--c-archive-all), 
+[`c-archive-list`](#4312-listing-all-archived-employees--c-archive-list), 
+[`help`](#441-viewing-help--help), [`exit`](#442-exiting-the-program--exit).
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install tCheck in another computer and overwrite the three data files it creates (saved in the folder named
@@ -1258,35 +1299,34 @@ include: `s-list`, `i-set-default`, `i-list`, `i-reset-all`, `i-restock`, `c-lis
 
 Action | Format, Examples
 -------|------------------------------
-**Update**| `s-update DRINK [MORE_DRINKS]` <br> e.g., `s-update BSBM/100 BSBBT/120`
-**List**| `s-list`
-**Find**| `s-find KEYWORD [MORE_KEYWORDS]` <br> e.g., `s-find BSBM BSBBT`
-
+[**Update**](#s-update)| `s-update DRINK [MORE_DRINKS]` <br> e.g., `s-update BSBM/100 BSBBT/120`
+[**List**](#s-list)| `s-list`
+[**Find**](#s-find)| `s-find KEYWORD [MORE_KEYWORDS]` <br> e.g., `s-find BSBM BSBBT`
 
 ### 6.2. Ingredients Tracking
 
 Action | Format, Examples
 -------|------------------------------
-**Set a single ingredient**  | `i-set i/INGREDIENT_NAME m/AMOUNT` <br> e.g., `i-set i/Milk m/20`
-**Set all ingredients**  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 L/50 G/20 S/100`
-**Set all ingredients to default**  | `i-set-default` <br> e.g., `i-set-default`
-**List**| `i-list`
-**Find**| `i-find KEYWORD [MORE_KEYWORDS]`  <br> e.g., `i-find milk sugar`
-**Reset all ingredients' levels to zero**| `i-reset-all`
-**List all ingredients that the user should restock**| `i-restock`
+[**Set a single ingredient**](#i-set)  | `i-set i/INGREDIENT_NAME m/AMOUNT` <br> e.g., `i-set i/Milk m/20`
+[**Set all ingredients**](#i-set-all)  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 L/50 G/20 S/100`
+[**Set all ingredients to default**](#i-set-default)  | `i-set-default` <br> e.g., `i-set-default`
+[**List**](#i-list)  | `i-list`
+[**Find**](#i-find)  | `i-find KEYWORD [MORE_KEYWORDS]`  <br> e.g., `i-find milk sugar`
+[**Reset all ingredients' levels to zero**](#i-reset-all)  | `i-reset-all`
+[**List all ingredients that the user should restock**](#i-restock)  | `i-restock`
 
 ### 6.3. Manpower Management
 
 Action | Format, Examples
 -------|------------------------------
-**Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime`
-**List all active employees** |  `c-active-list` 
-**Edit** | `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG] ...`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
-**Find by name** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
+[**Add**](#c-add) | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...`<br> e.g., `c-add n/James Ho p/22224444 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime`
+[**List all active employees**](#c-active-list) |  `c-active-list` 
+[**Edit**](#c-edit) | `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG] ...`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
+[**Find by name**](#c-find) | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
 [**Find by tag(s)**](#c-tag-find) | `c-tag-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-tag-find Friday Monday PartTime`
 **Find available manpower** | 1. [**For today:**](#c-today)  `c-today`<br>2. [**For the next day:**](#c-tomorrow)  `c-tomorrow` <br>
-**Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
-**Clear** | `c-clear`
+[**Delete**](#c-delete) | `c-delete INDEX`<br> e.g., `c-delete 3`
+[**Clear**](#c-clear) | `c-clear`
 [**Archive an employee**](#c-archive) |  `c-archive INDEX`<br> e.g., `c-archive 1`  
 [**Archive all employees**](#c-archive-all) |  `c-archive-all` <br>
 [**List all archived employees**](#c-archive-list) |  `c-archive-list`
@@ -1297,5 +1337,5 @@ Action | Format, Examples
 
 Action | Format, Examples
 -------|------------------------------
-**Help** | `help`
-**Exit** | `exit`
+[**Help**](#help) | `help`
+[**Exit**](#exit) | `exit`
