@@ -575,7 +575,7 @@ To add a lesson with title "CS2101 Tutorial" under module "CS2101" that happens 
 
 2) This adds the corresponding lesson to PlaNus. You can then see the added lesson in the lesson list, calendar view and time analysis.
 
-    <div style="page-break-after: always;"></div>
+<div style="page-break-after: always;"></div>
 
 ![add lesson result](images/AddLessonCommandResult.png)
     
@@ -613,9 +613,6 @@ Format: `edit-lesson INDEX [title:TITLE] [tag:MODULE_CODE] [desc:DESCRIPTION] [d
 
 </div>
 
-* Edit a lesson in PlaNus,
-  * that changes the lesson's values to the **new values** specified in the `edit-lesson` command.
-
 Examples:
 
 To edit a lesson, you can do the following:
@@ -625,7 +622,7 @@ To edit a lesson, you can do the following:
 2) Choose the lesson you want to edit. Find its index which is displayed on the **top-left corner**.
 For example, if you want to change the first lesson to Tuesday, you can type `edit-lesson 1 day:Tuesday` in the command box.
 
-  <div style="page-break-after: always;"></div>
+<div style="page-break-after: always;"></div>
 
 ![edit lesson](images/EditLessonCommand.png)
 
@@ -633,7 +630,7 @@ For example, if you want to change the first lesson to Tuesday, you can type `ed
 
 ![edit lesson result](images/EditLessonCommandResult.png)
 
-  <div style="page-break-after: always;"></div>
+<div style="page-break-after: always;"></div>
 
 ![edit lesson result](images/EditLessonCommandResult2.png)
 
