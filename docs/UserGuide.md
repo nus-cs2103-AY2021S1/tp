@@ -1167,7 +1167,7 @@ _Figure 24b. Screenshot showing the outcome of an `c-unarchive` command_
 
 This section provides an overview of the general commands used in tCheck.
 
-#### 4.4.1. Viewing help : `help`
+#### 4.4.1. Viewing help : `help` <a name="help"></a>
 
 Shows a message explaining how to access the help page, which is the tCheck User Guide.
 
@@ -1192,7 +1192,7 @@ _Figure 25. A screenshot showing the outcome of a `help` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.4.2. Exiting the program : `exit`
+#### 4.4.2. Exiting the program : `exit` <a name="exit"></a>
 
 Exits the program.
 
@@ -1303,5 +1303,5 @@ Action | Format, Examples
 
 Action | Format, Examples
 -------|------------------------------
-**[Help](#441-viewing-help--help)** | `help`
-**[Exit](#442-exiting-the-program--exit)** | `exit`
+**[Help](#help)** | `help`
+**[Exit](#exit)** | `exit`
