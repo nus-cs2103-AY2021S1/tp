@@ -1,5 +1,6 @@
 ![PlanusLogo](images/PlanusLogo.png)
 ---
+
 User Guide v1.4
 ---
 
@@ -29,7 +30,7 @@ this [link](https://ay2021s1-cs2103t-t12-3.github.io/tp/).
     * [3.3. Edit a lesson: `edit-lesson`](#33-edit-a-lesson--edit-lesson)
     * [3.4. Find a lesson: `find-lesson`](#34-find-a-lesson--find-lesson)
     * [3.5. Delete a lesson: `delete-lesson`](#35-delete-a-lesson--delete-lesson)
-  * **[4. Calendar View: `calendar`](#4-calendar-view)**
+  * [**4. Calendar View:** `calendar`](#4-calendar-view)
   * **[5. Time Analysis](#5-time-analysis)**
 * **[Glossary](#glossary)**
 * **[Command summary](#command-summary)**
@@ -42,12 +43,7 @@ this [link](https://ay2021s1-cs2103t-t12-3.github.io/tp/).
 
 ## Introduction
 
-PlaNus is a **task managing desktop application** for students in NUS with many projects and deadlines, optimized for use via a Command Line Interface (CLI) with the benefits of Graphical 
-
-
-
-
-Interface (GUI). PlaNus reduces the time spent by students in task management as adding tasks and lessons is now simple and quick!
+PlaNus is a **desktop application that manages tasks** for students in NUS with **busy schedule**, optimized for use via a Command Line Interface (CLI) with the benefits of Graphical User Interface (GUI). PlaNus reduces the time spent by students in task management as adding tasks and lessons is simple and quick!
 
 Objectives of PlaNus:
 
@@ -62,24 +58,24 @@ Objectives of PlaNus:
 
 (Done by: Gabriella)
 
-1. Ensure you have Java version 11 or above installed in your computer.
+1. Ensure you have **Java version 11 or above** installed in your computer.
 
-2. Download the latest jar file from **[here](https://github.com/AY2021S1-CS2103T-T12-3/tp/releases/tag/v1.4)**.
+2. Download the **latest jar file** from **[here](https://github.com/AY2021S1-CS2103T-T12-3/tp/releases/tag/v1.4)**.
 
    ![setup](images/Setup.png)
 
-3. Copy the file to the folder you want to use as the home folder for PlaNus.
+3. **Copy the file to the folder** you want to use as the home folder for PlaNus.
 
-4. Double-click the file to start the app. Upon launching PlaNus, you should see the following 
+4. **Double-click** the file to start the app. Upon launching PlaNus, you should see the following 
 interface.
 
    ![sample PlaNus](images/SamplePlanus.png)
 
-5. Alternatively, in command prompt (for Windows) or terminal (in MacOS), go to the directory where planus.jar is stored and enter `java -jar planus.jar`.To open command prompt (for Windows) or terminal (in MacOS), simply search for them in your computer.
+5. Alternatively, in **command prompt** (for Windows) or **terminal** (in MacOS), go to the **directory** where planus.jar is stored and enter `java -jar planus.jar`.To open command prompt (for Windows) or terminal (in MacOS), simply search for them in your computer.
 
     <div style="page-break-after: always;"></div>
 
-6. You may try out some commands listed in the [command summary](#command-summary) to explore the app.
+6. You may **try out some commands** listed in the [command summary](#command-summary) to explore the app.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -267,6 +263,7 @@ Format: `event title:TITLE date:DATE from:START_TIME to:END_TIME [desc:DESCRIPTI
 * The added event will be tracked for time analysis if it has a tag.
 * Event must not overlap with existing events or lessons.
 
+<br>
 Examples:
 
 To add an event with title "Project meeting", and a date "07-11-2020" with start time of "09:00" and end time of "12:30" and with tag "CS2103T" to PlaNus,
@@ -317,11 +314,13 @@ Format: `done INDEX:TIME_TAKEN...`
 * After you have marked a deadline as done, you cannot edit the deadline or undo the done command anymore.
 
 </div>
+<br>
 
 Examples:
 
 * `list-task` followed by `done 2:30 3:60`
   * Marks the 2nd and 3rd tasks in the results of the `list` command status to be done, and records that you have spent 30 minutes to finish the 2nd task, and 60 minutes to finish the 3rd task.
+
 * `find-task title:homework` followed by `done 1:20`
   * Marks the 1st task in the results of the `find` command status to be done and record the time taken to complete the deadline as 20 minutes.
 
@@ -364,12 +363,16 @@ Format: `edit-task INDEX ATTRIBUTE_1:NEW_VALUE ATTRIBUTE_2:NEW_VALUE ...`
     * `title:` edits the title of the specified task
     * `desc:` edits the description of the specified task
     * `tag:` edits the tag of the specified task
+
   * Available attributes for **deadline only** in v1.4 include:
     * `datetime:` edits the date and time of the specified deadline
+
   * Available attributes for **event only** in v1.4 include:
     * `date:` edits the date of the specified event
     * `from:` edits the start time of the specified event
     * `to:` edits the end time of the specified event
+
+<br>
 
 Examples:
 
@@ -388,6 +391,8 @@ For example, if you want to change the start time of the sixth task to be an hou
 4) If the task that is being edited is an event, the calendar view will also be updated with the information.
 
 ![edit task result](images/EditTaskCommandResult2.png)
+
+<br>
 
 Other examples:
 
@@ -424,7 +429,6 @@ Format: `find-task ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...`
 
 <div markdown="block" class="alert alert-info">
 
-
 **:information_source: Notes**<br>
 
 * If you provide different attributes in the command, tasks that match all attributes will be displayed.
@@ -445,7 +449,7 @@ Examples:
 
 To find all tasks with a title containing the phrase "CS" (case-insensitive), you can do the following:
 
-1) List all tasks by typing `list-task` in the command box.
+1) List all tasks by typing `list-task` in the command box
 
 2) Type the following command in the command box: 
 
@@ -536,6 +540,7 @@ To show all lessons currently stored in PlaNus, you can do the following:
 
 ![List lesson](images/ListLesson.png)
 
+<br>
 
 ### 3.2 Add a lesson : `lesson`
 
@@ -567,7 +572,7 @@ To add a lesson with title "CS2101 Tutorial" under module "CS2101" that happens 
 
 * `lesson title:CS2101 Tutorial tag:CS2101 desc:Most exciting tutorial in NUS! day:Monday from:10:00 to:12:00 start:10-08-2020 end:10-12-2020`
 
-2) This adds the corresponding lesson to PlaNus. You can then see the added lesson in the lesson list,calendar view and time analysis.
+2) This adds the corresponding lesson to PlaNus. You can then see the added lesson in the lesson list, calendar view and time analysis.
 
 ![add lesson result](images/AddLessonCommandResult.png)
     
@@ -694,8 +699,7 @@ Other examples include:
 * `find-lesson date:01-01-2020` .
   * List all lessons happening on 01-01-2020.
 * `find-lesson title:dinner title:lunch`.
-  * List all
-    lessons with the title including either `dinner` or `lunch`.
+  * List all lessons with the title including either `dinner` or `lunch`.
 * `find-lesson datetime:01-01-2020 14:00` 
   * Lists all lessons happening on 01-01-2020 at 14:00.
 
