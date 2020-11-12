@@ -287,7 +287,9 @@ The image below shows what you would see after executing the last example given.
 
 #### 3.3.3. Find a staff : `find s-`
 
-Shows a list of staffs whose name contains one of the given names.
+The command serves as a tool to help you quickly find all the staffs with the given name in your company.
+
+This command changes the panel to the [`Staff List`](#31-eva-gui) to display the result.
 
 Format `find FIND_TYPE- KEYWORD`
 
@@ -466,6 +468,8 @@ Staff List.
 
 This is an essential command for you to use when you wish to see the records of all applicants or even make changes to them.
 
+This command changes the panel to the [`Applicant List`](#31-eva-gui) and shows a list of all applicants in the Eva Database.
+
 Format: `list a-`
 
 The image below shows what you would see when you execute this command.
@@ -524,7 +528,9 @@ The image below shows what you would see after executing the second command in t
 
 #### 3.4.3. Find an applicant : `find a-`
 
-Shows a list of staffs whose name contains one of the given names.
+The command can help you quickly find all the applicant records with the given name in your company.
+
+This command changes the panel to the [`Applicant List`](#31-eva-gui) to display the result.
 
 Format `find FIND_TYPE- KEYWORD`
 
@@ -781,10 +787,11 @@ The image below shows what you would see after executing the last example given.
 
 ### 3.6. Script Engine (Experimental)
 
-Eva has a built-in script to execute JavaScript that can be used to extend the features of Eva.
+Eva provides a built-in script to execute JavaScript that can be used to extend the features of Eva.
 
-Please refer to [Nashorn official website](https://www.oracle.com/technical-resources/articles/java/jf14-nashorn.html)
-for supported JavaScript features, and how to import Java classes to extend Eva features.
+To write a script to extend the features of Eva,
+please refer to [Nashorn official website](https://www.oracle.com/technical-resources/articles/java/jf14-nashorn.html)
+for supported JavaScript features, and learn how to import Java classes to extend Eva features.
 
 <div markdown="block" class="alert alert-danger">
 
@@ -855,3 +862,49 @@ Example Scenario:
 | **Delete Application** | `delapp INDEX` <br> e.g., `delapp 1`                                                       |
 | **Set AppStatus**      | `setas INDEX as/NEW_APPLICATION_STATUS` <br> e.g., `setas 1 as/processing`                               |
 | **Clear Applicant Database** | `clear a-`         |
+
+## Appendix: Distribution of Contribution
+
+* <span>1.</span> Introduction (Royce and Nikhila)
+* <span>2.</span> Getting Started (Ben)
+* <span>3.</span> Features (Ben and Nikhila)
+    * 3.1. Eva GUI (Ben)
+        * 3.1.1. Staff List : Staff List Panel (Ben)
+        * 3.1.2. Staff Profile : Staff Profile Panel (Ben)
+        * 3.1.3. Applicant List : Applicant List Panel (Ben)
+        * 3.1.4. Applicant Profile : Applicant Profile Panel (Ben)
+    * 3.2. System Commands
+        * 3.2.1. Open help window : help (Royce)
+        * 3.2.2. Exit the program : exit (Royce)
+    * 3.3. Staff commands (Ben)
+        * 3.3.1. List all staff : list s- (Hou Rui)
+        * 3.3.2. Add a staff : adds (Nikhila)
+        * 3.3.3. Find a staff : find s- (Hou Rui)
+        * 3.3.4. View : view (Ben)
+        * 3.3.5. Delete a staff: dels (Royce)
+        * 3.3.6. Edit a staff: edits (Isaac)
+        * 3.3.7. Record leave taken by staff: addl (Ben)
+        * 3.3.8. Delete leave taken by staff: dell (Ben)
+        * 3.3.9. Clear staff database : clear s- (Nikhila)
+    * 3.4. Applicant commands
+        * 3.4.1. List all applicants : list a- (Hou Rui)
+        * 3.4.2 Add an applicant: adda (Nikhila)
+        * 3.4.3. Find an applicant : find a- (Hou Rui)
+        * 3.4.4. View : view (Ben)
+        * 3.4.5. Delete an applicant: dela (Nikhila)
+        * 3.4.6. Edit an applicant: edita (Isaac)
+        * 3.4.7. Add an application: addapp (Royce)
+        * 3.4.8. Delete an application: delapp (Royce)
+        * 3.4.9. Set application status: setas (Nikhila)
+        * 3.4.10 Clear applicant database: clear a- (Nikhila)
+    * 3.5. Comment Commands
+        * 3.5.1 Add comment to a staff/applicant: addc (Isaac)
+        * 3.5.2 Delete comment from a staff/applicant: delc (Isaac)
+        * 3.5.3. Edit comment on a staff: editc (Isaac)
+    * 3.6. Script Engine (Experimental) (Hou Rui)
+        * 3.6.1. Load a JavaScript script: load
+* <span>4.</span> FAQ (Ben)
+* <span>5.</span> Command summary (Royce)
+    * 5.1. System
+    * 5.2. Staff
+    * 5.3. Applicant
