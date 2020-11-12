@@ -277,6 +277,8 @@ you can do the following:
 
 ![add event result](images/AddEventCommandResult2.png)
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes**<br>
@@ -444,6 +446,8 @@ Available attributes in v1.4 include:
 * `status:` finds all tasks with the given status
 * `tag:` finds all tasks related with the given module tag (case-insensitive)
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 
 To find all tasks with a title containing the phrase "CS" (case-insensitive), you can do the following:
@@ -469,7 +473,7 @@ Other examples:
 * `find-task title:dinner title:lunch`.
   * List all tasks with the title including either `dinner` or `lunch`.
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ### 2.7 Delete a task : `delete-task`
 
@@ -497,6 +501,8 @@ To delete the first task, you can do the following:
 
 ![delete task](images/DeleteTaskCommand.png)
  
+ <div style="page-break-after: always;"></div>
+ 
 3) This deletes the 1st task from PlaNus.
 
 ![delete task result](images/DeleteTaskCommandResult.png)
@@ -512,14 +518,11 @@ You can also delete tasks by first finding the tasks of interest, refer to [feat
 * `find-task title:homework` followed by `delete-task 1` 
   * Deletes the 1st task in the results of the `find-task` command.
 
-<br>
-
 <div style="page-break-after: always;"></div>
 
 ## 3. Create, Read, Update and Delete a Lesson
 
-This section shows features that you can use to manage lessons. A lesson happens in a 
-recurring manner that have a start and end time, and a start and end date.
+This section shows features that you can use to manage lessons. A lesson happens in a recurring manner that have a start and end time, and a start and end date.
 
 ### 3.1 List all lessons :`list-lesson`
 
@@ -531,15 +534,13 @@ Format: `list-lesson`
 
 To show all lessons currently stored in PlaNus, you can do the following:
 
-1) Type in the command box the following command:
-
-* `list-lesson`
+1) Type `list-lesson` in the command box.
 
 2) This displays all lessons in the lesson list.
 
 ![List lesson](images/ListLesson.png)
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ### 3.2 Add a lesson : `lesson`
 
@@ -573,11 +574,13 @@ To add a lesson with title "CS2101 Tutorial" under module "CS2101" that happens 
 
 2) This adds the corresponding lesson to PlaNus. You can then see the added lesson in the lesson list, calendar view and time analysis.
 
+    <div style="page-break-after: always;"></div>
+
 ![add lesson result](images/AddLessonCommandResult.png)
     
 ![add lesson result](images/AddLessonCommandResult2.png)
 
-<br>
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -623,12 +626,16 @@ To edit a lesson, you can do the following:
 2) Choose the lesson you want to edit. Find its index which is displayed on the **top-left corner**.
 For example, if you want to change the first lesson to Tuesday, you can type `edit-lesson 1 day:Tuesday` in the command box.
 
+  <div style="page-break-after: always;"></div>
+
 ![edit lesson](images/EditLessonCommand.png)
 
 3) This changes the day of the first lesson to every Tuesday. You can see that the Calendar View and time analysis is also updated.
 
 ![edit lesson result](images/EditLessonCommandResult.png)
-    
+
+  <div style="page-break-after: always;"></div>
+
 ![edit lesson result](images/EditLessonCommandResult2.png)
 
 <br>
@@ -643,7 +650,7 @@ For example, if you want to change the first lesson to Tuesday, you can type `ed
 
 </div>
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ### 3.4 Find a lesson : `find-lesson`
 
@@ -689,6 +696,8 @@ To find all lessons with titles containing the phrase "tutorial" (case-insensiti
 
 3) This lists all lessons with a title including the phrase `tutorial`.
 
+  <div style="page-break-after: always;"></div>
+
 ![find lesson result](images/FindLessonCommandResult.png)
 
 Other examples include:
@@ -702,7 +711,7 @@ Other examples include:
 * `find-lesson datetime:01-01-2020 14:00` 
   * Lists all lessons happening on 01-01-2020 at 14:00.
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ### 3.5 Delete a Lesson : `delete-lesson`
 
