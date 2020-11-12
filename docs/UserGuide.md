@@ -46,21 +46,22 @@ These messages are meant to alert you of certain consequences involved in the fe
 ------------------------------------------------------------------------------------------------------------------------
 
 ## 2. Getting Started
+Before you begin, here's a quick start guide on how to get Eva up and running on your computer!
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have [Java `11`](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) or above installed in your Computer.
 
-1. Download the latest `eva.jar` from [here](https://github.com/AY2021S1-CS2103T-W13-1/tp/releases).
+1. Download the latest `Eva.jar` from [here](https://github.com/AY2021S1-CS2103T-W13-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for Eva.
+1. Copy the downloaded jar file to the folder you want to use as the _home folder_ for Eva.
 
 1. Double-click the file to start the app. If you face any issues, refer to our [Frequently Asked Questions (FAQ) Section](#4-faq) 
-below. The GUI similar to the below should appear in a few seconds. 
-Note how the app contains some sample data.<br> 
+below. A GUI similar to the one below should appear in a few seconds. 
+Note how the app generate some sample data when you first launch it!<br> 
    ![Ui](images/Ui.png)
 
 1. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    
-   Some example commands you can try:
+   Here are some example commands you can try:
 
    * **`list a-`** : Lists all applicants, changes the panel to display the applicant list.
    
@@ -82,7 +83,7 @@ Note how the app contains some sample data.<br>
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#3-features) below for details of each command.
+1. That's it! Now, you can refer to the [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -162,17 +163,27 @@ As of `v1.4`, Eva currently has four different panels it can switch between:
 
 #### 3.1.1. Staff List : `Staff List Panel`
 
+This panel is where you can see all your staffs in a condensed list view.
+
 ![staffListPanel intro](images/ugimages/Intro1.png)
 
 #### 3.1.2. Staff Profile : `Staff Profile Panel`
+
+This is where you can zoom in on an individual staff and view more information about their leaves and comments.
 
 ![staffProfilePanel intro](images/ugimages/Intro2.png)
 
 #### 3.1.3. Applicant List : `Applicant List Panel`
 
+Similar to the staff list, this is where you can see all your applicants in a condensed list view.
+
 ![applicantListPanel intro](images/ugimages/Intro3.png)
 
 #### 3.1.4. Applicant Profile : `Applicant Profile Panel`
+
+This is also similar to the staff profile where you can zoom in on an individual applicant and view more information about them.
+
+However, notice how the placement of the comments section differs from the [`staff list`](#311-staff-list--staff-list-panel).
 
 ![applicantProfilePanel intro](images/ugimages/Intro4.png)
 
@@ -216,15 +227,15 @@ As mentioned earlier in [Features](#3-features), there is no need to manually sa
 
 ### 3.3. Staff commands
 
-Staff commands give you the ability to keep track of your staffs which help you make business and manpower decisions.
+Eva makes use of these staff commands to give you the ability to keep track of your staffs which help you make business and manpower decisions.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:** <br>
 
-* All commands under staff can only be done on either staff list or staff profile panel except `adds`, which can be done on any panel<br>
+* All commands under staff can only be done on either staff list or staff profile panel except `adds`, which can be done on any panel.<br>
  
-* While in staff profile, only details of the profile that is being viewed can be changed.<br>
+* On a staff profile, only the details of the profile that is being viewed can be changed.<br>
 
 </div>
 
@@ -312,9 +323,10 @@ The image below shows what you would see after executing the last example given.
 
 #### 3.3.4. View : `view`
 
-Want a more in depth and focused view of a staff? Use this command to open up their individual profile!
+To get to the [`Staff Profile Panel`](#312-staff-profile--staff-profile-panel) mentioned earlier, 
+use this command from the [`Staff List Panel`](#311-staff-list--staff-list-panel). Over here, you can take a closer look at the leaves and comments of a staff.
 
-This command changes the panel to the [`Staff Profile`](#31-eva-gui) and Brings you to the profile panel of the staff at the specified index. 
+This command brings you to the profile panel of the staff at the specified index. 
 
 Format: `view INDEX`
 
@@ -375,7 +387,8 @@ The image below shows what you would see after executing the last example given.
 
 #### 3.3.7. Record leave taken by staff: `addl`
 
-This command records the leave taken by a staff in the Eva Database. <br>
+In a company, it is important to keep track of your manpower and know who will be working on which day.
+As such, Eva allows you to record down the leaves taken by a staff and show you the total number of leaves taken as well.
 
 Format: `addl INDEX l/d/DATE [d/DATE] [l/d/DATE [d/DATE]]…​`
 
@@ -387,9 +400,9 @@ Format: `addl INDEX l/d/DATE [d/DATE] [l/d/DATE [d/DATE]]…​`
 
 * Dates can be input in any order. Eva will sort the leaves and dates according to which date comes first.<br>
 
-* Eva automatically tells you if a staff has either already taken the leave, is in the process of taking it or has not taken the leave. This can be seen on the [Staff Profile](#31-eva-gui). <br>
+* Eva automatically tells you if a staff has either already taken the leave, is in the process of taking it or has not taken the leave. This can be seen on the [Staff Profile](#312-staff-profile--staff-profile-panel). <br>
 
-* Eva also automatically tallies up the total number of leave days taken by a staff and displays the total below the leaves! This can be seen on the [Staff Profile](#31-eva-gui). <br>
+* Eva also automatically tallies up the total number of leave days taken by a staff and displays the total below the leaves! This can be seen on the [Staff Profile](#312-staff-profile--staff-profile-panel). <br>
 
 </div>
 
@@ -406,9 +419,10 @@ The image below shows what you would see after executing the last example given 
 
 #### 3.3.8. Delete leave taken by staff: `dell`
 
-Should a staff be unable to take their leave and cancels or postpones, Eva allows you to delete their recorded leaves!
+Sometimes a staff becomes unable to take their leave and cancels or postpones, 
+Eva allows you to delete their recorded leaves. The total leave taken count is also automatically updated.
 
-This command removes the record of leave taken by staff, specified by the date given.<br>
+This command removes the record of leave taken by a staff, specified by the date given.<br>
 
 <div markdown="block" class="alert alert-danger">
 
@@ -554,7 +568,10 @@ The image below shows what you would see after executing the last example given 
 
 #### 3.4.4. View : `view`
 
-Brings you to the profile panel of the applicant at the specified index. 
+To get to the [`Applicant Profile Panel`](#314-applicant-profile--applicant-profile-panel) mentioned earlier, 
+use this command from the [`Applicant List Panel`](#313-applicant-list--applicant-list-panel). Over here, you can take a closer look at the application and comments of an applicant.
+
+This command brings you to the profile panel of the applicant at the specified index. 
 
 Format: `view INDEX`
 
@@ -779,7 +796,7 @@ Edits the description of a comment on a staff.
 
 **:information_source: Note:** <br>
 
-Users can only view comment descriptions on staff or applicant profile pages.
+Users can only view comment descriptions on staff or applicant profile panels.
 
 </div>
 
@@ -827,8 +844,11 @@ Example Scenario:
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Eva home folder.
 
+**Q**: How do I find the data file?<br>
+**A**: The `data` folder is automatically generated in the same directory as your Eva.jar file. The `data` folder should contain the data you have saved inside some `.json` files.
+
 **Q**: I can't run the app by double clicking! What do I do?<br>
-**A**: Open terminal and traverse to the directory the `Eva.jar` file is in. Then type the command `java -jar Eva.jar`.
+**A**: Open terminal and [traverse](https://www.howtogeek.com/659411/how-to-change-directories-in-command-prompt-on-windows-10/) to the directory the `Eva.jar` file is in. Then type the command `java -jar Eva.jar`.
 
 --------------------------------------------------------------------------------------------------------------------
 
