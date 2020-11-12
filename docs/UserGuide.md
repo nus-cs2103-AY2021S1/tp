@@ -525,6 +525,7 @@ Format: `i-reset-all`
 Example:
 
 Let's say that you have found that all ingredients have been used up in the store.
+You now want to reset the ingredient levels of all types of ingredients to zero in tCheck.
 You can follow these instructions:
 
 1. Type ` i-reset-all` into the _Command Box_.
