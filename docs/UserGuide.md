@@ -625,7 +625,14 @@ PHONE_NUMBER and EMERGENCY_CONTACT must be 8-digit number and start with 8 or 9.
 Example: 
 
 Let's say you want to add an employee called John Doe to the Employee Directory. His phone number is 98765432. His
- emergency contact is 81234567. His address is Blk 123 ABC Road. Assume he is a part-time employee, and he only can work on Friday. So you want to indicate these two characteristics in tCheck. You can assign him two labels, "Friday" and "PartTime" so that you can use find-employees-by-tags features (refer to `c-tag-find` for more details) to find a group of employees by their tag(s). You can follow these instructions:
+ emergency contact is 81234567. His address is Blk 123 ABC Road. 
+ Assume he is a part-time employee, and he only can work on Friday. 
+ So you want to indicate these two characteristics in tCheck. 
+ You can assign him two labels, "Friday" and "PartTime" so that 
+ you can use find-employees-by-tags features (refer to 
+ [`c-tag-find`](#435-locating-employees-based-on-matching-tags-c-tag-find-a-namec-tag-finda)
+  for more details) to find a group of employees
+  by their tag(s). You can follow these instructions:
 
 1. Type `c-add n/John Doe p/98765432 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime` into the _Command Box_.
 1. Press "Enter" to execute.
@@ -984,11 +991,13 @@ permanently deleting his information, so that you can retrieve/move back his inf
 employee directory when he comes back to work again. To archive the first employee, Alex Yeoh, in the sample data, you
 can follow these instructions:
  
-1. Type `c-archive 1` into the _Command Box_, and press "Enter" to execute.
+1. Type `c-archive 1` into the _Command Box_.
 
     ![ArchiveCommandStep1Screenshot](images/ArchiveCommandStep1Screenshot.png)
     
     _Figure 21a. Screenshot showing the view before executing `c-archive` command_
+    
+2. Press "Enter" to execute.
 
 Outcome:
 
