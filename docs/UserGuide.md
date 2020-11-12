@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 McGymmy is a **desktop app for Software Engineers who need help managing their diet, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). While we are primarily targetting software engineers who are familiar with the CLI, those who spend a large amount of time at their desk can still benefit from this application by saving time as opposed to the more traditional caloric tracker applications. <br>
-If you can type fast, McGymmy can log your food intake faster than traditional GUI apps. McGymmy aims to help users track their caloric and macronutrient intake in an efficient way that does not interfere with one's workflow.
+If you can type fast, McGymmy can log your food intake faster than traditional GUI apps. McGymmy aims to help users track their caloric and macronutrient intake in an efficient way that does not interfere with one's workflow. For the best viewing experience, please visit [the online version of this User Guide]().
 
 This document aims to showcase all of McGymmy's commands.
 Open this document in a modern internet browser (Mozilla Firefox, Google Chrome, or Microsoft Edge).
@@ -437,9 +437,9 @@ For example, if the user calls the following commands in sequence:
 `add -n Burger`, `help edit`, `undo`, the undo command will undo the adding operation, not the help one.
 * All additional input after the *command word* `undo` will be ignored. E.g. `undo` and `undo 123` will have the same effect.
 
-![Undo command example](images/CommandImagesForUG/Undo.png)
-
 </div>
+
+![Undo command example](images/CommandImagesForUG/Undo.png)
 
 ### 5.13 Creating a macro command : `macro`
 
@@ -497,13 +497,13 @@ Examples:
 
 </div>
 
-![Macro command example](images/CommandImagesForUG/Macro.png)
-
 <div markdown="block" class="alert alert-info">
 
 :information_source: When using it with conjunction with the undo command, macro will only undo the commands one at a time within the chain of macro commands<br>
 
 </div>
+
+![Macro command example](images/CommandImagesForUG/Macro.png)
 
 ### 5.14 Listing all macros : `listmacro`
 
