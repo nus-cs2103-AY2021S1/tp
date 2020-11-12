@@ -1,6 +1,5 @@
 ![PlanusLogo](images/PlanusLogo.png)
 ---
-
 User Guide v1.4
 ---
 
