@@ -147,7 +147,7 @@ Format: `clear`
 
     ![clear success message](images/ClearSuccessMessage.png)
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ### 1.3 Exit the program : `exit`
 
@@ -173,8 +173,6 @@ creating, reading, updating and deleting a task. A task can be either a
 
 <br>
 
-<div style="page-break-after: always;"></div>
-
 ### 2.1 List all tasks : `list-task`
 
 (Done by: Beining)
@@ -191,7 +189,7 @@ To show all tasks currently stored in PlaNus, you can do the following:
 
 ![list tasks](images/ListTasks.png)
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ### 2.2 Add a deadline : `deadline`
 
@@ -224,11 +222,11 @@ you can do the following:
 
 2) This adds the corresponding deadline to PlaNus. You can see the added deadline in the task list.
 
+<div style="page-break-after: always;"></div>
+
 ![add deadline_result](images/AddDeadlineCommandResult.png)
 
 <br>
-
-<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -240,7 +238,7 @@ you can do the following:
 
 </div>
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ### 2.3 Add an event : `event`
 
@@ -273,6 +271,8 @@ you can do the following:
 * `event title:Project meeting date:07-11-2020 from:09:00 to:12:30 tag:CS2103T`
 
 2) This adds the corresponding event to PlaNus. You can see the added event in the task list and the calendar. The duration of the event will be recorded for time analysis.
+
+<div style="page-break-after: always;"></div>
 
 ![add event_result](images/AddEventCommandResult.png)
 
@@ -313,7 +313,8 @@ Format: `done INDEX:TIME_TAKEN...`
 * After you have marked a deadline as done, you cannot edit the deadline or undo the done command anymore.
 
 </div>
-<br>
+
+<div style="page-break-after: always;"></div>
 
 Examples:
 
