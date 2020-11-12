@@ -504,7 +504,7 @@ After the execution:<br>
 _Figure 9b. A screenshot showing the outcome of an `i-find` command_
 
 #### 4.2.6. Resetting all ingredients' levels to zero : `i-reset-all` <a name="i-reset-all"></a>
-Resets the ingredient level of all types of ingredients to zero.
+Resets the ingredient levels of all types of ingredients to zero.
 
 Format: `i-reset-all`
 
