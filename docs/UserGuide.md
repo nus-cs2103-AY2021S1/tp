@@ -744,7 +744,7 @@ Outcome:
 _Figure 15. A screenshot showing the outcome of a `c-find` command_
 
 
-#### 4.3.5. Locating employees based on matching tags: `c-tag-find`
+#### 4.3.5. Locating employees based on matching tags: `c-tag-find` <a name="c-tag-find"></a>
 
 Finds all employees whose tags contain the one or more `KEYWORD(s)`.
 
@@ -793,7 +793,7 @@ _Figure 16. A screenshot showing the outcome of an `c-tag-find` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.3.6. Locating all employees who are available to work today: `c-today`
+#### 4.3.6. Locating all employees who are available to work today: `c-today` <a name="c-today"></a>
 
 Finds employees whose tags contain today's day (i.e. `Wednesday`, `Thursday`, etc).
 
@@ -838,11 +838,11 @@ Outcome:
 
 _Figure 17. A screenshot showing the outcome of an `c-today` command_
 
-#### 4.3.7. Locating all employees who are available to work tomorrow: `c-tomorrow`
+#### 4.3.7. Locating all employees who are available to work tomorrow: `c-tomorrow` <a name="c-tomorrow"></a>
 
 Finds employees whose tags contain tomorrow's day (i.e. `Wednesday`, `Thursday`, etc).
 
-Format: `c-tomorrow`
+Format: `c-tomorrow` 
 
 * The search is case-insensitive. For example, `Friday` will match `friday`.<br>
 * The application will automatically get tomorrow's day based on the computer's current date.<br>
@@ -946,7 +946,7 @@ After the execution:<br>
 _Figure 20b. A screenshot showing the outcome of a `c-clear` command_
 
 
-#### 4.3.10. Archiving an employee : `c-archive`
+#### 4.3.10. Archiving an employee : `c-archive` <a name="c-archive"></a>
 
 Archives the specified employee from tCheck.
 
@@ -1004,7 +1004,7 @@ _Figure 21b. Screenshot showing the outcome of an `c-archive` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.3.11. Archiving all employees : `c-archive-all`
+#### 4.3.11. Archiving all employees : `c-archive-all` <a name="c-archive-all"></a>
 
 Archives all employees in the Employee Directory inside the _Main View_.
 
@@ -1056,7 +1056,7 @@ After the execution:<br>
 _Figure 22b. Screenshot showing the outcome of an `c-archive-all` command_
 
 
-#### 4.3.12. Listing all archived employees : `c-archive-list`
+#### 4.3.12. Listing all archived employees : `c-archive-list` <a name="c-archive-list"></a>
 
 Shows a list of all archived employees in Employee Directory inside the _Main View_.
 
@@ -1089,7 +1089,7 @@ Outcome:
 
 _Figure 23. A screenshot showing the outcome of an `c-archive-list` command_
 
-#### 4.3.13. Unarchiving an employee : `c-unarchive`
+#### 4.3.13. Unarchiving an employee : `c-unarchive` <a name="c-unarchive"></a>
 Unarchives the specified employee from the archived employee list.
 
 Format: `c-unarchive INDEX`
@@ -1263,14 +1263,14 @@ Action | Format, Examples
 **List all active employees** |  `c-active-list` 
 **Edit** | `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG] ...`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
 **Find by name** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
-**Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-tag-find Friday Monday PartTime`
-**Find available manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
+**Find by tag(s)** | [`c-tag-find KEYWORD [MORE_KEYWORDS]`](#c-tag-find)<br> e.g., `c-tag-find Friday Monday PartTime`
+**Find available manpower** | 1. **For today:**  [`c-today`](#c-today)<br>2. **For the next day:**  [`c-tomorrow`](#c-tomorrow) <br>
 **Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
 **Clear** | `c-clear`
-**Archive an employee** |  `c-archive INDEX`<br> e.g., `c-archive 1`  
-**Archive all employees** |  `c-archive-all` <br>
-**List all archived employees** |  `c-archive-list`
-**Unarchive** | `c-unarchive INDEX`<br> e.g., `c-unarchive 1` 
+**Archive an employee** |  [`c-archive INDEX`](#c-archive)br> e.g., `c-archive 1`  
+**Archive all employees** |  [`c-archive-all`](#c-archive-all) <br>
+**List all archived employees** |  [`c-archive-list`](#c-archive-list)
+**Unarchive** | [`c-unarchive INDEX`](#c-unarchive)<br> e.g., `c-unarchive 1` 
 
 
 ### 6.4. General
