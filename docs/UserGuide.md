@@ -141,7 +141,7 @@ More examples:
 
 Format: `delete INDEX [MORE_INDEXES]`
 
-You can delete **one or more** assignments from your assignment list by specifying the `INDEX` of assignments you want to delete as shown in your list.
+You can delete **one or more** assignments from your assignment list by specifying the `INDEX` of each assignment you want to delete as shown in your list.
 
 Here is an example with steps for you to follow:
 
@@ -153,7 +153,7 @@ Here is an example with steps for you to follow:
 
 2) You have successfully deleted both assignments from the assignment list, and they are no longer displayed.
 
-3) A "Deleted assignment(s)" message that includes the information of your deleted assignments will be displayed in the Message Box.
+3) A "Deleted Assignment(s)" message that includes the information of your deleted assignments will be displayed in the Message Box.
 
 ![DeleteCommand2](images/DeleteCommandDiagram2.png)
 *Figure 5: The displayed message and the updated list*
@@ -209,7 +209,7 @@ Another example:
 
 Format: `list [NUMBER_OF_DAYS]`
 
-You can list all your assignments with `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that fall within the current date and time and `NUMBER_OF_DAYS` later. `NUMBER_OF_DAYS` must be an index **from 1 to 50**.
+You can list all your assignments with `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that fall within `NUMBER_OF_DAYS` from the current date. `NUMBER_OF_DAYS` must be an index **from 1 to 50**.
 
 <div markdown="span" class="alert alert-success">
 
@@ -219,12 +219,12 @@ You can use the `NUMBER_OF_DAYS` index to quickly view assignments that you need
 
 Here is an example with steps for you to follow: 
 
-1) You can enter `list 3` as shown in the diagram below to list your assignments that are due within 3 days from the current date and time. 
+1) You can enter `list 3` as shown in the diagram below to list your assignments that are due within 3 days from the current date. 
 
 ![ListCommand1](images/ListCommandDiagram1.png)
 *Figure 8: `list 3` inputted by user*
 
-2) If the current date and time is 29/10/2020 1800, all assignments due within this date and time to 01/11/2020 1800 will be displayed in the assignment list. 
+2) Assignments found are displayed in the assignment list. 
 
 3) A message that indicates the number of assignments listed is displayed in the Message Box.
 
@@ -258,12 +258,12 @@ If your assignment list is really long, this command comes in handy as it filter
 
 This is the table of prefixes used:
 
-| Prefix | Syntax | Example |
+| Prefix | Syntax | Examples |
 |-|-|-|
-| `n/` | n/NAME_OF_ASSIGNMENT [MORE_NAME_OF_ASSIGNMENT] | - `n/Tutorial` |
-| `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT [MORE_MODULE_CODE_OF_ASSIGNMENT] | - `mod/ST2334` |
-| `d/` | d/DUE_DATE_OR_TIME_OF_ASSIGNMENT [MORE_DUE_DATE_OR_TIME_OF_ASSIGNMENT] | - `d/24-10-2020 1300` |
-| `p/` | p/PRIORITY_OF_ASSIGNMENT [MORE_PRIORITY_OF_ASSIGNMENT] | - `p/HIGH` |
+| `n/` | n/NAME_OF_ASSIGNMENT [MORE_NAME_OF_ASSIGNMENT] | `n/Tutorial` <br>`n/Tutorial Lab`|
+| `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT [MORE_MODULE_CODE_OF_ASSIGNMENT] | `mod/ST2334` <br>`mod/CS2100 CS2101` |
+| `d/` | d/DUE_DATE_OR_TIME_OF_ASSIGNMENT [MORE_DUE_DATE_OR_TIME_OF_ASSIGNMENT] | `d/24-10-2020 1300` <br>`d/13-10-2020 12-10-2020` |
+| `p/` | p/PRIORITY_OF_ASSIGNMENT [MORE_PRIORITY_OF_ASSIGNMENT] | `p/HIGH` <br>`p/high medium` |
 
 <div markdown="block" class="alert alert-primary">
 
