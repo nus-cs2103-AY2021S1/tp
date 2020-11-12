@@ -54,7 +54,7 @@ Objectives of PlaNus:
 
 <div style="page-break-after: always;"></div>
 
-## Set-up
+## Set-up 
 
 (Done by: Gabriella)
 
@@ -489,6 +489,8 @@ Format: `delete-task INDEX...`
 * The index **must be a positive integer** e.g. 1, 2, 3, ...
 * You can provide more than 1 index at the same time, e.g. `delete-task 1 2 3`.
   *  However, if one of the index is invalid, the whole command will not be executed and an error message will be shown.
+ 
+ <div style="page-break-after: always;"></div>
 
 Examples:
 
