@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 McGymmy is a **desktop app for Software Engineers who need help managing their diet, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). While we are primarily targetting software engineers who are familiar with the CLI, those who spend a large amount of time at their desk can still benefit from this application by saving time as opposed to the more traditional caloric tracker applications. <br>
-If you can type fast, McGymmy can log your food intake faster than traditional GUI apps. McGymmy aims to help users track their caloric and macronutrient intake in an efficient way that does not interfere with one's workflow.
+If you can type fast, McGymmy can log your food intake faster than traditional GUI apps. McGymmy aims to help users track their caloric and macronutrient intake in an efficient way that does not interfere with one's workflow. For the best viewing experience we recommend using the online version of this user guide here: [https://ay2021s1-cs2103t-w17-3.github.io/tp/UserGuide.html](https://ay2021s1-cs2103t-w17-3.github.io/tp/UserGuide.html).
 
 This document aims to showcase all of McGymmy's commands.
 Open this document in a modern internet browser (Mozilla Firefox, Google Chrome, or Microsoft Edge).
@@ -632,3 +632,40 @@ Format       | Example
 *dd/M/yyyy*  | 02/9/2020
 *d/M/yyyy*   | 2/9/2020
 *d MMM yyyy* | 2 Sep 2020
+
+## 9. Credits
+
+Sections with contributions from everyone:
+* Introduction
+* Quick start
+* Table of content
+* How to use this guide
+* Add, Delete, Edit, List, Help, Exit commands
+* Saving the Data
+* Command Summary
+* Notes about command format
+
+By Joey:
+* Macros command
+* Listmacros command
+* Remmacros command
+
+By Duong:
+* Appendix A
+* Undo command
+
+By Sean:
+* Clear command
+* Little note from developers
+
+By Kamil:
+* First paragraph for every command
+* Find Command
+
+By Junhua:
+* Import Command.
+* Export Command.
+* Tag command
+* Untag Command
+* Image Labelling.
+* FAQs 
