@@ -1,11 +1,13 @@
 ![PlanusLogo](images/PlanusLogo.png)
 ---
 
-User Guide v1.4
+PlaNus User Guide v1.4
 ---
 
 This user guide provides [set-up](#set-up) instructions, and a detailed description of all the [features](#features) available in the PlaNus application. You can also access this user guide on the application website with
 this [link](https://ay2021s1-cs2103t-t12-3.github.io/tp/).
+
+<div style="page-break-after: always;"></div>
 
 ## Table of Contents
 
@@ -50,9 +52,7 @@ Objectives of PlaNus:
 1. Provide students with a detailed breakdown of how much time they spend on their tasks and lessons in their respective modules.
 2. Allow students to have a calendar view of their schedule.
 
-
-
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Set-up
 
@@ -66,6 +66,8 @@ Objectives of PlaNus:
 
 3. **Copy the file to the folder** you want to use as the home folder for PlaNus.
 
+    <div style="page-break-after: always;"></div>
+
 4. **Double-click** the file to start the app. Upon launching PlaNus, you should see the following 
 interface.
 
@@ -73,11 +75,8 @@ interface.
 
 5. Alternatively, in **command prompt** (for Windows) or **terminal** (in MacOS), go to the **directory** where planus.jar is stored and enter `java -jar planus.jar`.To open command prompt (for Windows) or terminal (in MacOS), simply search for them in your computer.
 
-    <div style="page-break-after: always;"></div>
-
 6. You may **try out some commands** listed in the [command summary](#command-summary) to explore the app.
 
---------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
@@ -841,7 +840,6 @@ Therefore, the **time analysis for the week** will show that the **time spent on
 
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
 
@@ -850,7 +848,6 @@ Therefore, the **time analysis for the week** will show that the **time spent on
 * Deadline: Consists of the date and time which the deadline falls on.
 * Lesson: Consists of events that repeat every week for specified time period.
 
---------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
