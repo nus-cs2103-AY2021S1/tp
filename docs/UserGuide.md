@@ -1303,5 +1303,5 @@ Action | Format, Examples
 
 Action | Format, Examples
 -------|------------------------------
-**[Help](#help)** | `help`
-**[Exit](#exit)** | `exit`
+[**Help**](#help) | `help`
+[**Exit**](#exit) | `exit`
