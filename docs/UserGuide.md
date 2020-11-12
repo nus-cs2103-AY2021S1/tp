@@ -39,7 +39,7 @@ Jarvis is a desktop app for CS1101S Teaching Assistants (Avengers), optimized fo
     - [6.3 Adding Information : `add`](#63-adding-information--add)
         * [6.3.1 Adding Consultations : `add -c`](#631-adding-consultations---c)
         * [6.3.2 Adding Mastery Checks : `add -mc`](#632-adding-mastery-checks---mc)
-        * [6.3.3 Adding Todos : `add -t`](#633-adding-todos--t)
+        * [6.3.3 Adding Todos : `add -t`](#633-adding-todos---t)
         * [6.3.4 Adding Events : `add -e`](#634-adding-events---e)
         * [6.3.5 Adding Deadlines : `add -d`](#635-adding-deadlines---d)
     - [6.4 Editing Information : `edit`](#64-editing-information--edit)
@@ -62,7 +62,7 @@ Jarvis is a desktop app for CS1101S Teaching Assistants (Avengers), optimized fo
         * [6.6.9 Viewing upcoming Consultations: `view -cu`](#669-viewing-upcoming-consultations--cu)
         * [6.6.10 Viewing all Mastery Checks: `view -mc`](#6610-viewing-all-mastery-checks---mc)
         * [6.6.11 Viewing past Mastery Checks: `view -mcp`](#6611-viewing-past-mastery-checks---mcp)
-        * [6.6.12 Viewing upcoming Mastery Checks: `view -mcu`](#6612-viewing-upcoming-mastery-checks--mcu)
+        * [6.6.12 Viewing upcoming Mastery Checks: `view -mcu`](#6612-viewing-upcoming-mastery-checks---mcu)
         * [6.6.13 Viewing all Tasks: `view -t`](#6613-viewing-all-tasks---t)
         * [6.6.14 Viewing all Todos: `view -tt`](#6614-viewing-all-todos---tt)
         * [6.6.15 Viewing all Events: `view -te`](#6615-viewing-all-events---te)
@@ -109,6 +109,7 @@ We have highlighted several features below that we feel are reflective of our de
 1. Important information such as `Student`, `Mission`, `Quest`, etc will not be deleted when the user keys in the wrong login information. We wish to give users the benefit of doubt and not delete their information as we do believe accidents can happen.
 
 <div style="page-break-after: always;"></div>
+
 ## 2. About the User Guide
 This section aims to remind you of the important parts to take note of while reading the user guide.
 
@@ -122,6 +123,7 @@ Symbol | Meaning
  ✏️   | This symbol indicates that an example is provided.
 
 <div style="page-break-after: always;"></div>
+
 ## 3. Quick start
 
 1. Ensure you have Java 11 or above installed in your Computer.
@@ -544,6 +546,12 @@ Shows the deadline for the current `Missions`.
 
 ![ViewMissionDeadline](images/userguide/viewMissionDeadline.png)
 
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/userguide/viewMissionDeadline.png" width="115%" /> <br />
+Figure 6.6.3.a: <i>Viewing all current Missions</i>
+</div>
+
 #### 6.6.4 Viewing ungraded `Missions` : `-um`
 
 Shows the `Missions` that you have not yet graded.
@@ -693,7 +701,7 @@ are likely to change frequently and hence, will not need to be persisted.
 | -------- | --- | ---------------- |
 | Edit Login information | -l | edit -l [u/LUMINUS_USERNAME] [p/LUMINUS_PASSWORD] |
 | Edit `Student` information | -s | edit -s INDEX [n/NAME] [t/TELEGRAM] [e/EMAIL] |
-| Edit `Mastery Check` | -mc | edit -mc INDEX s/SCORE |
+| Edit `Mastery Check` | -mc  | edit -mc INDEX s/SCORE |
 
 ### 7.3 Delete Command Summary
 
