@@ -129,7 +129,7 @@ Symbol | Meaning
 
 1. Ensure you have Java 11 or above installed in your Computer.
 
-1. Download the latest _`[CS2103T-W11-2][Jarvis].jar`_ and the _`chrome_driver.zip`_ from [here](https://github.com/AY2021S1-CS2103T-W11-2/tp/releases/tag/v1.4).
+1. Download the latest _`jarvis.jar`_ and the _`chrome_driver.zip`_ from [here](https://github.com/AY2021S1-CS2103T-W11-2/tp/releases/tag/v1.4).
 If the file downloaded does not show as _`chrome_driver.zip`_, rename the file to _`chrome_driver.zip`_ before proceeding. Unzip the zip file. Place all 3 unzipped files into a folder called _`chrome_driver`_. 
 It is crucial to have the Chrome Driver in order for Jarvis to start up. If the GUI does not launch,
 please check that you have installed the correct driver in the _`chrome_driver`_ folder:
@@ -137,14 +137,12 @@ please check that you have installed the correct driver in the _`chrome_driver`_
     1. MacOS: chromedriver_mac
     1. Linux: chromedriver_linux
 
-<br>
-
 1. Copy both file and folder to the directory you want to use as the _home directory_ for your Jarvis.
 
 1. There are two options for launching Jarvis.
-    1. Double-click the `[CS2103T-W11-2][Jarvis].jar` file to start the app.
+    1. Double-click the `jarvis.jar` file to start the app.
     1. Launch Jarvis from the Windows Command Prompt or MacOS command line by navigating to the directory containing `[CS2103T-W11-2][Jarvis].jar`,
-    then typing the command `java -jar [CS2103T-W11-2][Jarvis].jar`
+    then typing the command `java -jar jarvis.jar`
 
     <br>
     
@@ -154,7 +152,7 @@ please check that you have installed the correct driver in the _`chrome_driver`_
 
    ![Jarvis](images/userguide/Jarvis.png)
    
-1. For Mac users, you may see a security popup telling you that _`chrome_driver`_ is not authorized. To resolve this issue, right click on _`chrome_driver`_ and select `Open With Terminal`. Then proceed to start Jarvis again. 
+1. For Mac users, you may see a security popup telling you that _`chrome_driver`_ is not authorized. To resolve this issue, right click on _`chromedriver_mac`_ and select `Open With Terminal`. Then proceed to start Jarvis again.
 
 1. Upon start up, you will be prompted to log in to unlock Jarvis's
  full set of features.
@@ -169,9 +167,9 @@ please check that you have installed the correct driver in the _`chrome_driver`_
    * `add -t DESCRIPTION: Adds a Todo task with specified description.`
    * `edit -s STUDENT_ID: Edits Student's Name, Email, Telegram.`
    * `exit: Exits the app.`
-<br/>
+
 1. Refer to the [Features](#6-features) below for details of each command.
-<br/>
+
 1. Do note that the sample data displayed on initial startup of Jarvis will not be saved. This means that subsequent launches of Jarvis will only contain user-inputted data.
 
 <div style="page-break-after: always;"></div>
@@ -578,6 +576,7 @@ Doe will be displayed.
 
 
 #### 6.6.3 Viewing deadline for `Missions` : `-m`
+(Wiline)
 
 Shows the deadline for the current `Missions`.
 
@@ -585,13 +584,13 @@ Shows the deadline for the current `Missions`.
 
 <div style="page-break-after: always;"></div>
 
-![ViewMissionDeadline](images/userguide/viewMissionDeadline.png)
-
-
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/userguide/viewMissionDeadline.png" width="115%" /> <br />
 Figure 6.6.3.a: <i>Viewing all current Missions</i>
 </div>
+
+As shown in Figure 6.6.3.a, once we key in the command `view -m`, a success message will be displayed and Jarvis
+will auto switch to the `Missions` tab, and show all the current `Missions` and their deadlines.
 
 #### 6.6.4 Viewing ungraded `Missions` : `-um`
 
@@ -599,17 +598,25 @@ Shows the `Missions` that you have not yet graded.
 
 <br>**Format: `view -um`**
 
-![ViewUngradedMissions](images/userguide/viewUngradedMission.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/userguide/viewUngradedMission.png" width="115%" /> <br />
+Figure 6.6.4.a: <i>Viewing all ungraded Missions</i>
+</div>
+
+As shown in Figure 6.6.4.a, once we key in the command `view -um`, a success message will be displayed and Jarvis
+will auto switch to the `Missions` tab, and show all the ungraded `Missions` and their deadlines.
 
 <div style="page-break-after: always;"></div>
 
 #### 6.6.5 Viewing deadline for `Quests` : `-q`
+(Wiline)
 
 Shows the deadline for the current `Quests`.
 
 <br>**Format: `view -q`**
 
 #### 6.6.6 Viewing ungraded `Quests` : `-uq`
+(Wiline)
 
 Shows the `Quests` that you have not yet graded.
 
