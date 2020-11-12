@@ -269,11 +269,13 @@ Example:
 
 Let's say you want to find BSBBT and BSBM's sales data, you can follow these instructions:
 
-1. Type `s-find BSBBT BSBM` into the _Command Box_, and Press "Enter" to execute.
+1. Type `s-find BSBBT BSBM` into the _Command Box_.
 
 ![BeforeSfindScreenshot](images/SalesFindStep1.png)
 
 _Figure 5a. A screenshot showing before  an `s-find` command_
+
+2. Press "Enter" to execute.
 
 Outcome:
 
