@@ -317,9 +317,9 @@ This is the table of prefixes used:
 
 | Prefix | Syntax | Example |
 |-|-|-|
-| `n/` | n/NAME_OF_ASSIGNMENT | - `n/Tutorial` |
-| `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT | - `mod/ST2334` |
-| `d/` | d/DEADLINE_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
+| `n/` | n/NAME_OF_ASSIGNMENT | `n/Tutorial` |
+| `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT | `mod/ST2334` |
+| `d/` | d/DEADLINE_OF_ASSIGNMENT | `d/24-10-2020 1300` |
 
 <div style="page-break-after: always;"></div>
 
@@ -339,7 +339,7 @@ Here is an example with steps for you to follow:
 
 More examples: 
 - `edit 3 mod/CS2100`
-- `edit 1 d/10-10-2020 1200`
+- `edit 1 d/10-10-2020 1200 mod/CS2106`
 
 <div markdown="block" class="alert alert-primary">
 
