@@ -25,44 +25,17 @@ regarding how to make use of these features. The following shows the home page o
 
 ![Ui](./images/Ui.png)
 
+<br>
 The following shows an example of a personalised Timetable when you click on the Timetable tab:
+<br>
 
-![Timetable View](./images/timetable_view.png)
+![Timetable View](./images/ui-timetable.png)
+
+--------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
-## 2. Additional Information
-
-Please note the following formatting and notations that you will encounter as you read on about fitNUS features:
-
-Formatting | Meaning | Examples
---------|-------|-----------
-e/EXAMPLE | The character before the forward slash ("/") is a prefix, and words in **UPPER_CASE** after the slash are the parameters to be supplied by you | In `exercise_add e/EXERCISE`, you can use `EXERCISE` as a parameter as such: `exercise_add e/Deadlift`
-[ x/X ] | Square brackets signify optional fields that you can consider using | `exercise_add e/EXERCISE [t/TAG]` can be used as `exercise_add e/Deadlift t/glutes` or `exercise_add e/Deadlift`
-`...` | Fields which are followed by `...` indicate that you can use them more than once | `[t/TAG]...` can be used as `t/first t/important t/form` etc.
-Order of parameters | You can provide valid parameters in any order unless one of the parameters is `INDEX`, in which case `INDEX` must be the first parameter | In `exercise_edit INDEX [e/EXERCISE] [t/TAG]...`, `exercise_edit INDEX [t/TAG]... [e/EXERCISE]` is also accepted. However, `exercise_edit [e/EXERCISE] INDEX [t/TAG]...` is not allowed
-`mark-up` | Grey highlight of a word signifies the actual input that you can use | You can type `exercise_delete 1` in the command box and press *Enter* to execute the command
-Call Outs | Red boxes are drawn up around areas of interest to show the comparison before you input a command and the result of a successful command outcome. Blue boxes are drawn up around commands you are expected to input to achieve those outcomes | -
-
-<div markdown="block" class="alert alert-primary">
-
-**:bulb: Tip:**<br>Check out the list below to get started on using this User Guide.
-
-* If this is your first time using fitNUS, refer to the [Quick Start](#3-quick-start) for step-by-step instructions on how
-to download and set up fitNUS on your Computer.
-
-* If you want to explore the different features of fitNUS, go to the [Commands](#4-commands) section.
-
-* If you are familiar with fitNUS or want to do a quick lookup of all the available commands, go to the
-[Command Summary](#5-command-summary) section.
-
-</div>
-
-
-
---------------------------------------------------------------------------------------------------------------------
-## 3. Quick Start
+## 2. Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -86,9 +59,9 @@ here are some sample commands you can try:
    * **`timetable_add_routine`**`r/Upper Body Session D/Monday T/1600-1800` : Adds the Routine "Upper Body Session"
    to your timetable on Monday at 1600HRS - 1800HRS.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-primary">
 
-**:information_source: Note:**<br>
+**:bulb: Tip:**<br>
 
  Now that fitNUS is running as expected, you can kick-start your fitness journey and start working towards your goals!
 Experience first-hand the convenience that fitNUS brings to your life by exploring the various commands yourself.
@@ -102,6 +75,21 @@ Experience first-hand the convenience that fitNUS brings to your life by explori
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+## 3. Additional Information
+
+Please note the following formatting and notations that you will encounter as you read on about fitNUS features:
+
+Formatting | Meaning | Examples
+--------|-------|-----------
+e/EXAMPLE | The character before the forward slash ("/") is a prefix, and words in **UPPER_CASE** after the slash are the parameters to be supplied by you | In `exercise_add e/EXERCISE`, you can use `EXERCISE` as a parameter as such: `exercise_add e/Deadlift`
+[ x/X ] | Square brackets signify optional fields that you can consider using | `exercise_add e/EXERCISE [t/TAG]` can be used as `exercise_add e/Deadlift t/glutes` or `exercise_add e/Deadlift`
+`...` | Fields which are followed by `...` indicate that you can use them more than once | `[t/TAG]...` can be used as `t/first t/important t/form` etc.
+Order of parameters | You can provide valid parameters in any order unless one of the parameters is `INDEX`, in which case `INDEX` must be the first parameter | In `exercise_edit INDEX [e/EXERCISE] [t/TAG]...`, `exercise_edit INDEX [t/TAG]... [e/EXERCISE]` is also accepted. However, `exercise_edit [e/EXERCISE] INDEX [t/TAG]...` is not allowed
+`mark-up` | Grey highlight of a word signifies the actual input that you can use | You can type `exercise_delete 1` in the command box and press *Enter* to execute the command
+Call Outs | Red boxes are drawn up around areas of interest to show the comparison before you input a command and the result of a successful command outcome. Blue boxes are drawn up around commands you are expected to input to achieve those outcomes | -
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## 4. Commands
 
 In this section, each command will be explained in greater depth. Illustrations are used to allow visual aid.
@@ -642,12 +630,12 @@ Note that you can view all the lessons again.
 
 You can add both Routines and Lessons to your timetable to get an overview of your week. You can navigate between the
 Timetable and Homepage display by clicking on the corresponding tabs found at the top left of the interface. The following
-image shows an example of a personalised Timetable when you click on the Timetable tab:
+image shows an annotated example of a personalised Timetable when you click on the Timetable tab, for your reference:
 
-![Timetable View](./images/timetable_view.png)
+![Timetable View](./images/ui-timetable.png)
 
 <br>
-Any changes made to existing routines or lessons that have already been added as a slot in the Timetable will be
+Any changes made to existing Routines or Lessons that have already been added as a slot in the Timetable will be
 reflected automatically on the Timetable. In this subsection, we will explore the Timetable feature and its related commands.
 
 #### 4.4.1 Add routine to timetable : `timetable_add_routine`
