@@ -21,9 +21,8 @@ Eva is a simple and lightweight desktop application that **handles HR related ad
 like managing your company staffs and recording details related to recruitment.<br>
 Eva comes with a Command Line Interface (CLI) which is faster than a typical mouse/GUI driven app after you or your staffs get used to it.<br>
 
-We hope that through our app, you and your company will be empowered and able to solve your basic HR needs.<br>
+We hope that through our app, you and your company will be empowered and able to solve your basic HR needs.<br><br>
 This user guide will take you through the basics of Eva and help you get moving straightaway.
-
 There are 3 types of messages you can look out for that will further enhance your experience in using Eva with this user guide. <br>
 
 <div markdown="block" class="alert alert-info">
@@ -254,7 +253,7 @@ The image below shows what you would see after executing this example.
 
 #### 3.3.2. Add a staff : `adds`
 
-This command enables you to add a staff record into Eva. 
+As storing staff records is a primary activity in Eva, you can use this command to add a staff record into Eva. 
 
 <div markdown="block" class="alert alert-info">
 
@@ -270,10 +269,12 @@ A staff record can contain the details listed below:
  - Leaves 
  
 The fields marked with a asterisk (*) are compulsory and have to be provided in the parameters below.
-Without any of these fields, Eva will not accept your input. Tags and comments can be added with this `adds` command as shown 
-in the examples. To manage leave records for each staff, please refer to the commands 
-[`addl`](#337-record-leave-taken-by-staff-addl) and [`dell`](#338-delete-leave-taken-by-staff-dell).
-
+Without any one of these fields, Eva will not accept your input. <br>
+Tags and comments can be added with this `adds` command as shown in the examples. <br>
+To manage leave records for each staff, please refer to the commands 
+[`addl`](#337-record-leave-taken-by-staff-addl) and [`dell`](#338-delete-leave-taken-by-staff-dell). <br>
+ 
+Below are some notes about the parameters you can add:
  - A staff can have any number of tags (including 0) <br>
  - A staff can have any number of comments (including 0) <br>
  - Each staff is uniquely identified by their name. In the event you wish to add 2 staff records with the same name,
@@ -498,7 +499,8 @@ The image below shows what you would see when you execute this command.
 
 #### 3.4.2 Add an applicant: `adda`
 
-This command enables you to add an applicant record into Eva. 
+Managing data of applicants is another main activity you might be involved in. Hence, this command is handy for you to 
+add an applicant record into Eva. 
 
 <div markdown="block" class="alert alert-info">
 
@@ -517,17 +519,19 @@ An applicant record can contain the details listed below:
  - Application
  
 The fields marked with a asterisk (*) are compulsory and have to be provided in the parameters below.
-Without any of these fields, Eva will not accept your input. Tags, comments, interview date can be added with this `adda` 
-command as shown in the examples. To manage application records for each applicant, please refer to the commands 
-[`addapp`](#347-add-an-application-addapp) and [`delapp`](#348-delete-an-application-delapp). To manage the application status,
-please refer to the command [`setas`](#349-set-application-status-setas).
+Without any of these fields, Eva will not accept your input. <br> 
+Tags, comments, interview date can be added with this `adda` command as shown in the examples. <br>
+To manage application records for each applicant, please refer to the commands 
+[`addapp`](#347-add-an-application-addapp) and [`delapp`](#348-delete-an-application-delapp). <br>
+To manage the application status, please refer to the command [`setas`](#349-set-application-status-setas). <br>
 
+Below are some notes about the parameters you can add:
  - An applicant can have any number of tags (including 0).
  - An applicant can have any number of comments (including 0).
  - Each applicant is uniquely identified by their name. In the event you wish to add 2 applicant records with the same name,
       please ensure that both their phone numbers and email addresses are different.
  - The interview date has to be in DD/MM/YYYY format.
- - Once you add an applicant the status would be automatically set as received, if you wish to change it, refer to the feature 
+ - Once you add an applicant the status will be automatically set as received, if you wish to change it, refer to the feature 
  [setting of application status](#349-set-application-status-setas) below.
  
 </div>
@@ -551,7 +555,8 @@ Examples:
 * To add an applicant with an interview date <br>
 `adda n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/22/11/2020`
 
-The image below shows what you would see after executing the last example given above.
+The image below shows what you would see after executing the last example given above. 
+Notice that John Doe is now recorded as an applicant in our database.
 
 ![addApplicant](images/ugimages/AddApplicant.png)
 
@@ -606,7 +611,8 @@ Format: `dela INDEX`
 Example:
 * `dela 1`
 
-The image below shows what you would see after executing this example. Notice how Bernice Yu is now at index 1.
+The image below shows what you would see after executing this example. Notice how Bernice Yu, previously at index 2,
+ is now at index 1.
 
 ![deleteApplicant](images/ugimages/DeleteApplicant.png)
 
@@ -699,7 +705,7 @@ application status. You can use this command to change the status of any applica
 
 **:information_source: Note:** <br>
 
-Application status can only be any one from the following: 
+Application status can only be any one from the following: <br>
   - received
   - processing
   - accepted
@@ -714,6 +720,7 @@ Example:
 * `setas 3 as/accepted`
 
 The image below shows what you would see after executing the last example given above.
+Notice that the application status of Li David has changed to accepted.
 
 ![setApplicationStatus](images/ugimages/SetApplicationStatus.png)
 
