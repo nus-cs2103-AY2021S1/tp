@@ -1014,7 +1014,8 @@ Format: `c-archive-all`
 
 **:information_source: Notes about Employee Directory:**<br>
 * All employees who are currently working in the shop are active/unarchived employees. They are stored in the active
-(unarchived) Employee Directory. You may refer to `c-active-list` to view the active (unarchived) Employee Directory
+(unarchived) Employee Directory. You may refer to [`c-active-list`](#432-listing-all-employees-in-the-active-list-c-active-list) to view the active (unarchived) Employee
+ Directory
 . <br>
 
 * All archived employees (refer to [`c-archive`](#4310-archiving-an-employee--c-archive) to see how to archive an employee) will be stored in the
@@ -1118,7 +1119,7 @@ Example:
 
 Let's say one of your ex-employees, Alex Yeoh, is now rehired to work in your bubble tea shop. Since he worked in
  the store before, and you archived his data when he left last time. Now, instead of typing his information again and
-  use `c-add` command to add him into your employee directory. You can just unarchive him
+  use [`c-add`](#431-adding-an-employee--c-add) command to add him into your employee directory. You can just unarchive him
  and move his data to your employee directory. You can follow these instructions:
 
 
