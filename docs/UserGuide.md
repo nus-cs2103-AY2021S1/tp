@@ -1270,14 +1270,14 @@ Outcome:
 
 _Figure 25. A screenshot showing the outcome of a `help` command_
 
-<div style="page-break-after: always;"></div>
-
 <a name="exit"></a>
 #### 4.4.2. Exiting the program : `exit` 
 
 Exits the program.
 
 Format: `exit`
+
+<div style="page-break-after: always;"></div>
 
 <a name="other-features"></a>
 ### 4.5. Other Features 
@@ -1297,7 +1297,6 @@ User should not attempt to make any changes in all data files.<br>
 
 </div>
 
-<div style="page-break-after: always;"></div>
 
 #### 4.5.2. Calendar 
 
