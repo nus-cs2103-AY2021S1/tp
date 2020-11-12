@@ -705,14 +705,14 @@ application status. You can use this command to change the status of any applica
 
 **:information_source: Note:** <br>
 
-Application status can only be any one from the following: <br>
+Application status can only be any one from the following:
 
-  - received <br>
-  - processing<br>
-  - accepted<br>
-  - rejected<br>
-  
-  </div>
+ - received
+ - processing
+ - accepted
+ - rejected
+
+</div>
   
 Format: `setas INDEX as/NEW_APPLICATION_STATUS`
 
