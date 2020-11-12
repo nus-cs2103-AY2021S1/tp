@@ -3,8 +3,6 @@
 
 title: User Guide
 ---
-## Table of Contents:
-
 <div class="toc-no-bullet-points">
   * Table of Contents
   {:toc}
@@ -1346,43 +1344,43 @@ include: [`s-list`](#s-list),
 
 Action | Format, Examples
 -------|------------------------------
-**Update** | `s-update DRINK [MORE_DRINKS]` <br> e.g., `s-update BSBM/100 BSBBT/120`
-**List** | `s-list`
-**Find** | `s-find KEYWORD [MORE_KEYWORDS]` <br> e.g., `s-find BSBM BSBBT`
+[**Update**](#s-update)| `s-update DRINK [MORE_DRINKS]` <br> e.g., `s-update BSBM/100 BSBBT/120`
+[**List**](#s-list)| `s-list`
+[**Find**](#s-find)| `s-find KEYWORD [MORE_KEYWORDS]` <br> e.g., `s-find BSBM BSBBT`
 
 ### 6.2. Ingredients Tracking
 
 Action | Format, Examples
 -------|------------------------------
-**Set a single ingredient**  | `i-set i/INGREDIENT_NAME m/AMOUNT` <br> e.g., `i-set i/Milk m/20`
-**Set all ingredients**  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 L/50 G/20 S/100`
-**Set all ingredients to default**  | `i-set-default` <br> e.g., `i-set-default`
-**List**  | `i-list`
-**Find**  | `i-find KEYWORD [MORE_KEYWORDS]`  <br> e.g., `i-find milk sugar`
-**Reset all ingredients' levels to zero** | `i-reset-all`
-**List all ingredients that the user should restock**  | `i-restock`
+[**Set a single ingredient**](#i-set)  | `i-set i/INGREDIENT_NAME m/AMOUNT` <br> e.g., `i-set i/Milk m/20`
+[**Set all ingredients**](#i-set-all)  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 L/50 G/20 S/100`
+[**Set all ingredients to default**](#i-set-default)  | `i-set-default` <br> e.g., `i-set-default`
+[**List**](#i-list)  | `i-list`
+[**Find**](#i-find)  | `i-find KEYWORD [MORE_KEYWORDS]`  <br> e.g., `i-find milk sugar`
+[**Reset all ingredients' levels to zero**](#i-reset-all)  | `i-reset-all`
+[**List all ingredients that the user should restock**](#i-restock)  | `i-restock`
 
 ### 6.3. Manpower Management
 
 Action | Format, Examples
 -------|------------------------------
-**Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...`<br> e.g., `c-add n/James Ho p/22224444 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime`
-**List all active employees** |  `c-active-list` 
-**Edit** | `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG] ...`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
-**Find by name** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
-**Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-tag-find Friday Monday PartTime`
-**Find available manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:** `c-tomorrow` <br>
-**Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
-**Clear** | `c-clear`
-**Archive an employee** |  `c-archive INDEX`<br> e.g., `c-archive 1`  
-**Archive all employees** |  `c-archive-all` <br>
-**List all archived employees** |  `c-archive-list`
-**Unarchive** | `c-unarchive INDEX`<br> e.g., `c-unarchive 1` 
+[**Add**](#c-add) | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...`<br> e.g., `c-add n/James Ho p/22224444 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime`
+[**List all active employees**](#c-active-list) |  `c-active-list` 
+[**Edit**](#c-edit) | `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG] ...`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
+[**Find by name**](#c-find) | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
+[**Find by tag(s)**](#c-tag-find) | `c-tag-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-tag-find Friday Monday PartTime`
+**Find available manpower** | 1. [**For today:**](#c-today)  `c-today`<br>2. [**For the next day:**](#c-tomorrow)  `c-tomorrow` <br>
+[**Delete**](#c-delete) | `c-delete INDEX`<br> e.g., `c-delete 3`
+[**Clear**](#c-clear) | `c-clear`
+[**Archive an employee**](#c-archive) |  `c-archive INDEX`<br> e.g., `c-archive 1`  
+[**Archive all employees**](#c-archive-all) |  `c-archive-all` <br>
+[**List all archived employees**](#c-archive-list) |  `c-archive-list`
+[**Unarchive**](#c-unarchive) | `c-unarchive INDEX`<br> e.g., `c-unarchive 1` 
 
 
 ### 6.4. General
 
 Action | Format, Examples
 -------|------------------------------
-**Help** | `help`
-**Exit** | `exit`
+[**Help**](#help) | `help`
+[**Exit**](#exit) | `exit`
