@@ -128,11 +128,11 @@ Valid scopes: all.
 
 ![before_leave_person](images/beforeLeavePersonDashboard.png)
 
-   *Figure 5: Before `leave`, a person named Alice Pauline shows on the person dashboard*
+   *Figure 3: Before `leave`, a person named Alice Pauline shows on the person dashboard*
 
 ![after_leave_person](images/afterLeavePersonDashboard.png)
 
-   *Figure 6: After `leave`, person dashboard is cleared*
+   *Figure 4: After `leave`, person dashboard is cleared*
 
 Format: `leave`
 - Leaves the current page (clear the right-most non-empty dashboard) and shifts the scoping status to the parent scope
@@ -146,7 +146,7 @@ Valid scopes: `PROJECT_LIST`, `PROJECT`, `TASK`, `TEAMMATE`, `PERSON_LIST`.
 
 ![list_projects](images/listProjects.png)
 
-   *Figure 3: List of projects shows up*
+   *Figure 5: List of projects shows up*
 
 Format: `listprojects`
 - Lists all projects if there are projects in the catalogue
@@ -161,7 +161,7 @@ Valid scopes: `PROJECT_LIST`, `PERSON_LIST`, `PERSON`.
 
 ![list_persons](images/listPersons.png)
 
-   *Figure 4: List of persons shows up*
+   *Figure 6: List of persons shows up*
 
 Format: `listpersons`
 - Lists all persons if there are persons in the catalogue
@@ -294,7 +294,7 @@ Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![add_task](images/addTask.png)
 
-   *Figure 13: The task named `Do User Guide` is added to the project `Aeroknotty`*
+   *Figure 12: The task named `Do User Guide` is added to the project `Aeroknotty`*
 
 Format: `addtask tn/TASK NAME tp/TASK PROGRESS td/TASK DEADLINE `
   - All fields above are required
@@ -313,7 +313,7 @@ Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![assign_task](images/assign.png)
 
-   *Figure 14: The task named `Do User Guide` is assigned to `LucasTai98`*
+   *Figure 13: The task named `Do User Guide` is assigned to `LucasTai98`*
 
 Format: `assign TASKINDEX TEAMMATE_GITHUB_USERNAME  `
 
@@ -331,7 +331,7 @@ Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![edit_task](images/editTask.png)
 
-   *Figure 15: The task 2 is edited*
+   *Figure 14: The task 2 is edited*
 
 Format: `edittask INDEX [n/TASK_NAME] [tp/TASK_PROGRESS] [td/TASK_DEADLINE] [d/TASK_DESCRIPTION]`
   - Edits the task at the specified index
@@ -354,7 +354,7 @@ Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![delete_task](images/deleteTask.png)
 
-   *Figure 16: The task named `Finish project` is deleted and removed from the task list*
+   *Figure 15: The task named `Finish project` is deleted and removed from the task list*
 
 Format: `deletetask INDEX`
 
@@ -375,7 +375,7 @@ Filter tasks in the task list by various task attributes:
 
 ![filter](images/filter.png)
 
-   *Figure 17: The task list is filtered by `ta/LucasTai98` and only the task assigned to `LucasTai98` is shown on filtered task list*
+   *Figure 16: The task list is filtered by `ta/LucasTai98` and only the task assigned to `LucasTai98` is shown on filtered task list*
 
 Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
@@ -413,7 +413,7 @@ Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![all_tasks](images/allTasks.png)
 
-   *Figure 18: The full task list is shown*
+   *Figure 17: The full task list is shown*
 
 Format: `alltasks `
 
@@ -438,11 +438,11 @@ Format: `sort (sa/)||(sd/) (td/)||(tp/)||(tn/)||(done/)`
 
 ![before_sort](images/beforeSort.png)
 
-   *Figure 19: Before `Sort`*
+   *Figure 18: Before `Sort`*
 
 ![after_sort](images/afterSort.png)
 
-   *Figure 20: After `Sort` by task name in ascending order*
+   *Figure 19: After `Sort` by task name in ascending order*
 
 Format: `sort (sa/)||(sd/) (td/)||((tp/)||(tn/)||(done/)` 
 
@@ -456,7 +456,7 @@ Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![view_task](images/viewTask.png)
 
-   *Figure 21: The task 1 is shown on the task dashboard*
+   *Figure 20: The task 1 is shown on the task dashboard*
 
 Format: `viewtask INDEX `
   - View all the information of the task specified by the INDEX
@@ -475,7 +475,7 @@ Valid scopes: all.
 
 ![add_teammate](images/addPerson.png)
 
-   *Figure 22: New teammate `Lucas` is added to the project and shown on the teammate list*
+   *Figure 21: New teammate `Lucas` is added to the project and shown on the teammate list*
 
 Format: `addperson mn/TEAMMATE_NAME mg/GITHUB_USERNAME mp/PHONE_NUMBER me/EMAIL ma/ADDRESS`
   - All fields are necessary to fill in
@@ -500,7 +500,7 @@ Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![add_part](images/addPart.png)
 
-   *Figure 23: The existing person named `Holsey Mood` is added to the project and shown on the teammate list*
+   *Figure 22: The existing person named `Holsey Mood` is added to the project and shown on the teammate list*
 
 Format: `addtoproject GITHUB_USERNAME`
 
@@ -514,11 +514,11 @@ Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![delete_part](images/deletePart.png)
 
-   *Figure 24: The teammate named `Holsey Mood` is deleted from the project and removed from the teammate list*
+   *Figure 23: The teammate named `Holsey Mood` is deleted from the project and removed from the teammate list*
 
 ![person_list_after_delete_part](images/listPersonsAfterDeletePart.png)
 
-   *Figure 25: The teammate named `Holsey Mood` is deleted from the project but not deleted from the person list*
+   *Figure 24: The teammate named `Holsey Mood` is deleted from the project but not deleted from the person list*
 
 Format: `deletefromproject GITHUB_USERNAME`
 
@@ -532,7 +532,7 @@ Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![edit_teammate](images/editTeammate.png)
 
-   *Figure 26: The teammate with github user name `LucasTai98` is edited*
+   *Figure 25: The teammate with github user name `LucasTai98` is edited*
 
 Format: `editteammate GITHUB_USERNAME [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]`
   - Any combination or number of fields can be filled in
@@ -552,7 +552,7 @@ Valid scopes: `PROJECT`, `TASK`, `TEAMMATE`.
 
 ![view_teammate](images/viewTeammate.png)
 
-   *Figure 27: The teammate with github user name `LucasTai98` is shown on the teammate dashboard*
+   *Figure 26: The teammate with github user name `LucasTai98` is shown on the teammate dashboard*
 
 Format: `viewteammate GITHUB_USERNAME`
 
@@ -566,11 +566,11 @@ Valid scopes: `PERSON_LIST`.
 
 ![delete_teammate](images/deletePerson.png)
 
-   *Figure 28: The teammate with github user name `Modi` is deleted from the teammate list*
+   *Figure 27: The teammate with github user name `Modi` is deleted from the teammate list*
 
 ![person_list_after_delete_teammate](images/listPersonsAfterDelete.png)
 
-   *Figure 29: The person with github user name `Modi` is also removed from the person list*
+   *Figure 28: The person with github user name `Modi` is also removed from the person list*
 
 Format: `deleteperson GITHUB_USERNAME`
 
@@ -585,7 +585,7 @@ Valid scopes: `PERSON_LIST`, `PERSON`.
 
 ![start_persom](images/startPerson.png)
 
-   *Figure 30: The first person on the person list is shown on person dashboard*
+   *Figure 29: The first person on the person list is shown on person dashboard*
 
 Format: `startperson INDEX`
 - Initialises the person at the specified INDEX
@@ -642,6 +642,6 @@ Action | Format, Examples | Scope: | `PROJECT_LIST` | `PERSON_LIST` | `PROJECT` 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **Scope**: The confines of when certain commands will work.
 * **Teammate**: A member of the user's team in a particular project.
-* **Person** A person that could be in any number of the user's team's projects.
-* **Project** A software project with at least a GitHub repository link and a deadline.
-* **Task** Something to be done for a project with a certain progress status.
+* **Person**: A person that could be in any number of the user's team's projects.
+* **Project**: A software project with at least a GitHub repository link and a deadline.
+* **Task**: Something to be done for a project with a certain progress status.
