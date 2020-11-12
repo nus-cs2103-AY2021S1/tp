@@ -1284,7 +1284,7 @@ Format: `exit`
 
 This section provides an overview of the other features of tCheck which do not use a command.
 
-#### 4.5.1. Saving the data :
+#### 4.5.1. Saving the data 
 
 All tCheck data (i.e. ingredient data, sales data, employees' data) are saved in the hard disk automatically after each
  command. There is no need to save manually.
@@ -1299,7 +1299,7 @@ User should not attempt to make any changes in all data files.<br>
 
 <div style="page-break-after: always;"></div>
 
-#### 4.5.2. Calendar :
+#### 4.5.2. Calendar 
 
 tCheck also shows the calendar for the current month when you start the application. You may use it for planning your
  work.
