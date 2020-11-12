@@ -234,7 +234,7 @@ Outcome:
 
     _Figure 3b. A screenshot showing the success message_
 
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
 
 2. You can now see that tCheck has updated the sales of the two drinks in the Sales
  Tracker inside the _Main View_. You may need to scroll through the Sales Tracker to find the drinks.
@@ -554,6 +554,8 @@ Let's say that you have found that all ingredients have been used up in the stor
 You now want to reset the ingredient levels of all types of ingredients to zero in tCheck.
 You can follow these instructions:
 
+<div style="page-break-after: always;"></div>
+
 1. Type ` i-reset-all` into the _Command Box_.
 
     ![IngredientResetAllStep1](images/IngredientResetAllStep1.png)
@@ -570,7 +572,7 @@ Outcome:
     
     _Figure 10b. A screenshot showing the success message_
     
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
 
 2. You can now see that tCheck has reset the ingredient levels, or amounts, of all types of ingredients to zero in the Ingredient Tracker inside 
 the _Main View_. You may scroll down the list in the Ingredient Tracker to see all the ingredients and their current amounts.
@@ -1071,7 +1073,7 @@ Outcome:
     
     _Figure 21b. Screenshot showing the success message of an `c-archive` command_
 
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
 
 2. Alex Yeoh's information will be removed from Employee Directory inside the _Main View_.
     
@@ -1262,6 +1264,8 @@ Outcome:
 1. The _Result Display_ will show a success message.
 2. A pop-up window will appear. The window contains a message explaining how to access the tCheck User Guide.
 
+<div style="page-break-after: always;"></div>
+
 ![HelpCommandScreenshot](images/HelpCommandScreenshot.png)
 
 _Figure 25. A screenshot showing the outcome of a `help` command_
@@ -1293,6 +1297,8 @@ User should not attempt to make any changes in all data files.<br>
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### 4.5.2. Calendar :
 
 tCheck also shows the calendar for the current month when you start the application. You may use it for planning your
@@ -1304,12 +1310,12 @@ tCheck also shows the calendar for the current month when you start the applicat
  Let's say today is 8-Nov-2020, when you start tCheck, the calendar inside _Main View_ will show November's calendar,
  and hightlight today's date.
  
- 
-<div style="page-break-after: always;"></div>
 
  ![CalendarScreenshot](images/CalendarScreenshot.png)
  
  _Figure 26. Screenshots showing the calendar in tCheck_
+
+<div style="page-break-after: always;"></div>
 
 <a name="FAQ"></a>
 ## 5. FAQ 
