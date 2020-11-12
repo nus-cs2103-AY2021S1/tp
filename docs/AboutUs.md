@@ -9,51 +9,53 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Zhou Zijian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bobbyzhouzijian.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](http://www.zijianzhou.com/)]
+[[github](https://github.com/BobbyZhouZijian)]
+[[portfolio](team/bobbyzhouzijian.md)]
 
-* Role: Project Advisor
+* Role: Tech Lead, Git Expert
+* Responsibilities: Scheduling and Tracking
 
-### Jane Doe
+### Marcus Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/marctzh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/marctzh)]
+[[portfolio](team/marctzh.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: UI and Testing
 
-### Jean Doe
+### Gabriella Teh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gabriellateh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/GabriellaTeh)]
+[[portfolio](team/gabriellateh.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation, deliverables and deadlines
+
+### Li Beining
+
+<img src="images/dearvae.png" width="200px">
+
+[[github](http://github.com/dearvae)]
+[[portfolio](team/dearvae.md)]
+
+* Role: Developer, Figma Expert
+* Responsibilities: Integration
+
+### Li Gangwei
+
+<img src="images/nuovonatura.png" width="200px">
+
+[[github](http://github.com/nuovonatura)]
+[[portfolio](team/nuovonatura.md)]
+
+* Role: Developer, JavaFX Expert
+* Responsibilities: UI and Code Quality

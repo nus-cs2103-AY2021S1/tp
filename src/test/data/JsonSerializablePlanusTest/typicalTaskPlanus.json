@@ -1,0 +1,59 @@
+{
+  "_comment": "Planus save file which contains the same Tasks values as in TypicalTasks#getTypicalPlanus()",
+  "deadlines" : [ {
+    "title" : "Submit Developer Guide",
+    "deadlineDateTime" : "01-01-2020 12:00",
+    "description" : "Submit through luminus",
+    "doneDateTime" : "01-01-1000 00:00",
+    "duration" : -1,
+    "tag" : "CS2103T",
+    "status" : "incomplete"
+  }, {
+    "title" : "Assignment 3",
+    "deadlineDateTime" : "02-02-2020 12:59",
+    "description" : "important",
+    "doneDateTime" : "24-10-2020 04:07",
+    "duration" : 20,
+    "tag" : "CS2102",
+    "status" : "complete"
+  }, {
+    "title" : "GEQ Readings",
+    "deadlineDateTime" : "01-01-1000 00:00",
+    "description" : "15 pages reading",
+    "doneDateTime" : "01-01-1000 00:00",
+    "duration" : -1,
+    "tag" : "GEQ1000",
+    "status" : "incomplete"
+  }, {
+    "title" : "Grade Mission",
+    "deadlineDateTime" : "04-04-2020 12:00",
+    "description" : "grading all student mission",
+    "doneDateTime" : "01-01-1000 00:00",
+    "duration" : -1,
+    "tag" : "CS1101S",
+    "status" : "incomplete"
+  } ],
+  "events" : [{
+      "title" : "Project meeting",
+      "startDateTime" : "05-05-2020 12:00",
+      "endDateTime" : "05-05-2020 14:00",
+      "description" : "discuss v1.3 content",
+      "isLesson" : false,
+      "tag" : "CS2103T"
+    }, {
+    "title" : "Project meeting2",
+    "startDateTime" : "05-05-2020 14:00",
+    "endDateTime" : "05-05-2020 16:00",
+    "description" : "discuss project database diagram",
+    "isLesson" : false,
+    "tag" : "CS2102"
+  }, {
+    "title" : "Project meeting3",
+    "startDateTime" : "05-05-2020 18:00",
+    "endDateTime" : "05-05-2020 20:00",
+    "description" : "discuss v1.3 content",
+    "isLesson" : false,
+    "tag" : "CS2103T"
+  }],
+  "lessons" : [ ]
+}

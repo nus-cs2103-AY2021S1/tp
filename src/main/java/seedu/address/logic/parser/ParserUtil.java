@@ -2,25 +2,30 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.lesson.Time;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Title;
+import seedu.address.model.task.deadline.DeadlineDateTime;
+import seedu.address.model.task.event.EndDateTime;
+import seedu.address.model.task.event.StartDateTime;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index is not a positive integer.";
+    public static final String MESSAGE_MISSING_INDEX = "Index is not supplied in the argument.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -36,63 +41,160 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code name} is invalid.
+     * Parses {@code oneBasedIndexes} into an {@code Index array} and returns it. Leading and trailing whitespaces will
+     * be trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+    public static Index[] parseVarargsIndex(String oneBasedIndexes) throws ParseException {
+        String trimmed = oneBasedIndexes.trim();
+        if (trimmed.equals("")) {
+            throw new ParseException(MESSAGE_MISSING_INDEX);
         }
-        return new Name(trimmedName);
+        String[] split = trimmed.split(" ");
+        int length = split.length;
+        Index[] indexes = new Index[length];
+        for (int i = 0; i < length; i++) {
+            if (!StringUtil.isNonZeroUnsignedInteger(split[i])) {
+                throw new ParseException(MESSAGE_INVALID_INDEX);
+            }
+            indexes[i] = Index.fromOneBased(Integer.parseInt(split[i]));
+        }
+        return indexes;
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String title} into a {@code Title}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code title} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static Title parseTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        if (!Title.isValidTitle(trimmedTitle)) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new Title(trimmedTitle);
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String dateTime} into a {@code DateTime}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code dateTime} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static DeadlineDateTime parseDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+        if (!DeadlineDateTime.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(DateTimeUtil.DATE_TIME_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new DeadlineDateTime(trimmedDateTime);
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String dateTime} into a {@code DateTime}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code dateTime} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static StartDateTime parseStartDateTime(String date, String time) throws ParseException {
+        requireNonNull(date, time);
+        String trimmedDate = date.trim();
+        String trimmedTime = time.trim();
+        if (!DateTimeUtil.isValidDate(trimmedDate)) {
+            throw new ParseException(DateTimeUtil.DATE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        if (!DateTimeUtil.isValidTime(trimmedTime)) {
+            throw new ParseException(DateTimeUtil.TIME_CONSTRAINTS);
+        }
+        return StartDateTime.createStartDateTime(trimmedDate, trimmedTime);
+    }
+
+    /**
+     * Parses a {@code String dateTime} into a {@code DateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateTime} is invalid.
+     */
+    public static EndDateTime parseEndDateTime(String date, String time) throws ParseException {
+        requireNonNull(date, time);
+        String trimmedDate = date.trim();
+        String trimmedTime = time.trim();
+        if (!DateTimeUtil.isValidDate(trimmedDate)) {
+            throw new ParseException(DateTimeUtil.DATE_CONSTRAINTS);
+        }
+        if (!DateTimeUtil.isValidTime(trimmedTime)) {
+            throw new ParseException(DateTimeUtil.TIME_CONSTRAINTS);
+        }
+        return EndDateTime.createEndDateTime(trimmedDate, trimmedTime);
+    }
+
+
+    /**
+     * Parses a {@code String time} into a {@code LocalTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code time} is invalid.
+     */
+    public static LocalTime parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedTime = time.trim();
+        DateTimeFormatter parser = DateTimeUtil.TIME_FORMATTER;
+        if (!Time.isValidTime(trimmedTime)) {
+            throw new ParseException(DateTimeUtil.TIME_CONSTRAINTS);
+        }
+        return LocalTime.parse(trimmedTime, parser);
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code LocalDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static LocalDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        DateTimeFormatter parser = DateTimeUtil.DATE_FORMATTER;
+        if (!DateTimeUtil.isValidDate(trimmedDate)) {
+            throw new ParseException(DateTimeUtil.DATE_CONSTRAINTS);
+        }
+        return LocalDate.parse(trimmedDate, parser);
+    }
+
+    /**
+     * Parses a {@code String day} into a {@code DayOfTheWeek}.
+     * Leading and trailing whitespaces will be trimmed, input is case-insensitive.
+     *
+     * @throws ParseException if the given {@code day} is invalid.
+     */
+    public static DayOfWeek parseDay(String day) throws ParseException {
+        requireNonNull(day);
+        String trimmedDay = day.trim();
+        String dayOfWeek = trimmedDay.toUpperCase();
+        DayOfWeek result; //Default value
+        try {
+            result = DayOfWeek.valueOf(dayOfWeek);
+        } catch (NullPointerException | IllegalArgumentException e) {
+            throw new ParseException(DateTimeUtil.DAY_MESSAGE_CONSTRAINTS);
+        }
+        return result;
+    }
+
+    /**
+     * Parses a {@code String description} into an {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
     }
 
     /**
@@ -108,17 +210,5 @@ public class ParserUtil {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
     }
 }

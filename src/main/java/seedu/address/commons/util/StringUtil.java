@@ -5,7 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Arrays;
 
 /**
  * Helper functions for handling strings.
@@ -14,28 +13,46 @@ public class StringUtil {
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
-     *   Ignores case, but a full word match is required.
+     *   Ignores case
      *   <br>examples:<pre>
-     *       containsWordIgnoreCase("ABc def", "abc") == true
-     *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       matchesWordIgnoreCase("ABc def", "abc", true) == true // a full match, ignore case
+     *       matchesWordIgnoreCase("ABc def", "ABadncbas") == false //not a match
      *       </pre>
      * @param sentence cannot be null
-     * @param word cannot be null, cannot be empty, must be a single word
+     * @param word cannot be null, cannot be empty
      */
-    public static boolean containsWordIgnoreCase(String sentence, String word) {
+    public static boolean matchesWordIgnoreCase(String sentence, String word) {
         requireNonNull(sentence);
         requireNonNull(word);
 
         String preppedWord = word.trim();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
 
-        String preppedSentence = sentence;
-        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+        return isMatched(sentence.toLowerCase(), preppedWord.toLowerCase());
+    }
 
-        return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(preppedWord::equalsIgnoreCase);
+    private static boolean isMatched(String sentence, String keyword) {
+        int keywordLength = keyword.length();
+        int taskLength = sentence.length();
+
+        // if keyword is longer or is empty, no match can be found
+        if (keywordLength > taskLength || keywordLength == 0) {
+            return false;
+        }
+
+        for (int i = 0; i <= taskLength - keywordLength; ++i) {
+            boolean matchFound = true;
+            for (int j = 0; j < keywordLength; ++j) {
+                if (sentence.charAt(i + j) != keyword.charAt(j)) {
+                    matchFound = false;
+                    break;
+                }
+            }
+            if (matchFound) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

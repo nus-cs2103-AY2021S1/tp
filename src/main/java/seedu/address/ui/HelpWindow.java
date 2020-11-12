@@ -15,9 +15,74 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://ay2021s1-cs2103t-t12-3.github.io/tp/UserGuide.html";
 
+    public static final String HELP_MESSAGE = "The following is the set of commands you can use:\n"
+            + " ____________________________________________________________________ \n"
+            + "|  [Command] |                 [Format, Examples]                    |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|    help    | help                                                  |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|    clear   | clear                                                 |\n"
+            + "|     all    |                                                       |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|    exit    | exit                                                  |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|    open    | calendar                                              |\n"
+            + "|   calendar |                                                       |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|    list    | list-task                                             |\n"
+            + "|    tasks   |                                                       |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|     add    | event title:TITLE [desc:DESCRIPTION] date:DATE        |\n"
+            + "|    event   | from:TIME to:TIME [tag:MODULE_CODE]                   |\n"
+            + "|            | e.g. event title:meeting date:23-10-2020 from:20:00   |\n"
+            + "|            | to:22:00 tag:CS2103T                                  |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|     add    | deadline title:TITLE [desc:DESCRIPTION]               |\n"
+            + "|  deadline  | datetime:DATETIME [tag:MODULE_CODE]                   |\n"
+            + "|            | e.g. deadline title:Assignment2 datetime:23-10-2020   |\n"
+            + "|            | 18:00 tag:CS2103T                                     |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|   delete   | delete-task INDEX...                                  |\n"
+            + "|   task     | e.g. delete-task 3, delete-task 3, 4, 5               |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|    done    | done INDEX:TIME_TAKEN...                              |\n"
+            + "|    task    | e.g. done 1:20, done 1:20 2:60 3:120                  |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|    find    | find-task ATTRIBUTE:SEARCH_PHRASE ...                 |\n"
+            + "|    task    | e.g.find-task title:tut date:02-02-2020 tag:CS2040    |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|    edit    | edit-task INDEX [title:TITLE] [date:DATE]             |\n"
+            + "|    task    | [desc:DESCRIPTION] [tag:MODULE_CODE]                  |\n"
+            + "|            | [datetime:DEADLINE (deadline only)] [date:EVENT DATE  |\n"
+            + "|            | (event only)] [from:EVENT START TIME (event only)]    |\n"
+            + "|            | [to:EVENT END TIME (event only)]                      |\n"
+            + "|            | e.g. edit-task 1 tag:CS2101                           |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|    list    | list-lesson                                           |\n"
+            + "|   lesson   |                                                       |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|    add     | lesson title:TITLE tag:MODULE_CODE                    |\n"
+            + "|   lesson   | [desc:DESCRIPTION] day:DAY from:TIME to:TIME          |\n"
+            + "|            | start:DATE end:DATE                                   |\n"
+            + "|            | e.g. lesson title:CS2103T tag:CS2103T desc: truly fun |\n"
+            + "|            | day:Mon from:12:00 to:14:00 start:01-01-2020          |\n"
+            + "|            | end:01-05-2020                                        |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|    edit    | edit-lesson INDEX [title:TITLE] [tag:MODULE_CODE]     |\n"
+            + "|   lesson   | [desc:DESCRIPTION] [day:DAY] [from:TIME] [to:TIME]    |\n"
+            + "|            | [start:DATE] [end:DATE]                               |\n"
+            + "|            | e.g. edit-lesson 1 tag:CS2101                         |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|    find    | find-lesson ATTRIBUTE:SEARCH_PHRASE ...               |\n"
+            + "|   lesson   | e.g.find-lesson title:tut tag:CS2040                  |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|   delete   | delete-lesson INDEX...                                |\n"
+            + "|   lesson   | e.g. delete-lesson 3, delete-lesson 3, 4, 5           |\n"
+            + " -------------------------------------------------------------------- \n";
+
+    public static final String URL_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
@@ -27,6 +92,9 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Label helpMessage;
 
+    @FXML
+    private Label urlMessage;
+
     /**
      * Creates a new HelpWindow.
      *
@@ -35,6 +103,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        urlMessage.setText(URL_MESSAGE);
     }
 
     /**

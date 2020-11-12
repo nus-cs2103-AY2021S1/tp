@@ -1,60 +1,88 @@
 package seedu.address.model.util;
 
-import java.util.Arrays;
-import java.util.Set;
-import java.util.stream.Collectors;
+import static seedu.address.commons.util.DateTimeUtil.DATE_FORMATTER;
+import static seedu.address.commons.util.DateTimeUtil.TIME_FORMATTER;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+import seedu.address.model.Planus;
+import seedu.address.model.ReadOnlyPlanus;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.Title;
+import seedu.address.model.task.deadline.Deadline;
+import seedu.address.model.task.deadline.DeadlineDateTime;
+import seedu.address.model.task.deadline.DoneDateTime;
+import seedu.address.model.task.deadline.Duration;
+import seedu.address.model.task.deadline.Status;
+import seedu.address.model.task.event.EndDateTime;
+import seedu.address.model.task.event.Event;
+import seedu.address.model.task.event.StartDateTime;
+
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Planus} with sample data.
  */
 public class SampleDataUtil {
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+    public static Task[] getSampleTasks() {
+        String event1Date = "20-11-2020";
+        String event2Date = "25-11-2020";
+        return new Task[] {
+            Deadline.createDeadline(new Title("Borrow books"), new DeadlineDateTime("25-11-2020 09:00"),
+                    Description.defaultDescription(), new Tag("CS1101S")), // incomplete deadline
+            new Deadline(new Title("Assignment 1"), new DeadlineDateTime("25-11-2020 09:00"),
+                    new Description("Programming Assignment 2 of CS3230, Very hard."),
+                    new Tag("CS3230"), Status.createCompleteStatus(),
+                    new Duration(20), DoneDateTime.createDoneNow()), // completed deadline
+            Event.createUserEvent(new Title("Source Academy Avenger Meeting"),
+                    new StartDateTime(event1Date + " 13:00"),
+                    new EndDateTime(event1Date + " 18:00"), Description.defaultDescription(),
+                    new Tag("CS1101S")), // event 1
+            Event.createUserEvent(new Title("CS2105 project"),
+                    new StartDateTime(event2Date + " 13:00"),
+                    new EndDateTime(event2Date + " 15:00"), Description.defaultDescription(),
+                    new Tag(("CS2105"))) // event 2
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
-        }
-        return sampleAb;
+    public static Lesson[] getSampleLessons() {
+        return new Lesson[] {
+            new Lesson(new Title("Tutorial"), new Tag("CS1101S"),
+                    new Description("I love functional programming!"), DayOfWeek.MONDAY,
+                    LocalTime.parse("12:00", TIME_FORMATTER), LocalTime.parse("14:00", TIME_FORMATTER),
+                    LocalDate.parse("01-08-2020", DATE_FORMATTER),
+                    LocalDate.parse("01-12-2020", DATE_FORMATTER)),
+            new Lesson(new Title("Lab"), new Tag("CS2100"), new Description("Logic Gates!"),
+                    DayOfWeek.THURSDAY, LocalTime.parse("16:00", TIME_FORMATTER),
+                    LocalTime.parse("17:00", TIME_FORMATTER),
+                    LocalDate.parse("01-08-2020", DATE_FORMATTER),
+                    LocalDate.parse("01-12-2020", DATE_FORMATTER)),
+            new Lesson(new Title("Lecture"), new Tag("CS2105"),
+                    new Description("Protocols"), DayOfWeek.MONDAY,
+                    LocalTime.parse("14:00", TIME_FORMATTER), LocalTime.parse("16:00", TIME_FORMATTER),
+                    LocalDate.parse("01-08-2020", DATE_FORMATTER),
+                    LocalDate.parse("01-12-2020", DATE_FORMATTER))
+        };
     }
 
-    /**
-     * Returns a tag set containing the list of strings given.
-     */
-    public static Set<Tag> getTagSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
+    public static ReadOnlyPlanus getSamplePlanus() {
+        Planus samplePlanus = new Planus();
+        for (Task sampleTask : getSampleTasks()) {
+            samplePlanus.addTask(sampleTask);
+            if (sampleTask instanceof Event) {
+                samplePlanus.addTaskToCalendar(sampleTask);
+            }
+        }
+        for (Lesson sampleLesson : getSampleLessons()) {
+            samplePlanus.addLesson(sampleLesson);
+        }
+        return samplePlanus;
     }
+
+
 
 }

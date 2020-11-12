@@ -11,19 +11,30 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
+    private final boolean showLists;
+
+    private final boolean showCalendar;
+
+    /**
+     * Shows help information to user.
+     */
     private final boolean showHelp;
 
-    /** The application should exit. */
+    /**
+     * Exits the application.
+     */
     private final boolean exit;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         boolean showLists, boolean showCalendar) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.showLists = showLists;
+        this.showCalendar = showCalendar;
     }
 
     /**
@@ -31,11 +42,19 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
+    }
+
+    public boolean isShowLists() {
+        return showLists;
+    }
+
+    public boolean isShowCalendar() {
+        return showCalendar;
     }
 
     public boolean isShowHelp() {
@@ -60,12 +79,14 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && showLists == otherCommandResult.showLists
+                && showCalendar == otherCommandResult.showCalendar;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, showLists, showCalendar);
     }
 
 }

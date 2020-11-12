@@ -11,34 +11,40 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.lesson.Lesson;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.deadline.Deadline;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the PlaNus data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final Planus planus;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Lesson> filteredLessons;
+    private final FilteredList<Task> filteredCalendar;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given planus and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyPlanus planus, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(planus, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with PlaNus: " + planus + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.planus = new Planus(planus);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTasks = new FilteredList<>(this.planus.getTaskList().filtered(PREDICATE_SHOW_ALL_TASKS));
+        filteredLessons = new FilteredList<>(this.planus.getLessonList());
+        filteredCalendar = new FilteredList<>(this.planus.getCalendarList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Planus(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,67 +72,150 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getPlanusFilePath() {
+        return userPrefs.gePlanusFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setPlanusFilePath(Path planusFilePath) {
+        requireNonNull(planusFilePath);
+        userPrefs.setPlanusFilePath(planusFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Planus ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setPlanus(ReadOnlyPlanus planus) {
+        this.planus.resetData(planus);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyPlanus getPlanus() {
+        return planus;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return planus.hasTask(task);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public boolean hasLesson(Lesson lesson) {
+        requireNonNull(lesson);
+        return planus.hasLesson(lesson);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public boolean hasCalendarTask(Task task) {
+        requireNonNull(task);
+        return planus.hasCalendarTask(task);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void deleteTask(Task[] targets) {
+        planus.removeTask(targets);
+    }
+
+    @Override
+    public void deleteLesson(Lesson[] targets) {
+        planus.removeLesson(targets);
+    }
+
+    @Override
+    public void deleteTaskInCalendar(Task[] targets) {
+        planus.removeTaskInCalendar(targets);
+    }
+
+    @Override
+    public void markAsDone(Deadline[] targets, int[] durations) {
+        planus.markAsDone(targets, durations);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        planus.addTask(task);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
+    public void addLesson(Lesson lesson) {
+        planus.addLesson(lesson);
+        updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
+    }
+
+    @Override
+    public void addTaskToCalendar(Task task) {
+        planus.addTaskToCalendar(task);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        updateFilteredCalendar(PREDICATE_SHOW_ALL_CALENDAR_TASKS);
+    }
+
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        planus.setTask(target, editedTask);
+    }
+
+    @Override
+    public void setLesson(Lesson target, Lesson editedLesson) {
+        requireAllNonNull(target, editedLesson);
+        deleteLesson(new Lesson[]{target});
+        addLesson(editedLesson);
+    }
+
+    @Override
+    public void setCalendarTasks(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+        planus.setCalendarTask(target, editedTask);
+    }
+
+    //=========== Filtered Task List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code versionedPlanus}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Lesson} backed by the internal list of
+     * {@code versionedPlanus}
+     */
+    @Override
+    public ObservableList<Lesson> getFilteredLessonList() {
+        return filteredLessons;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code versionedPlanus}
+     */
+    @Override
+    public ObservableList<Task> getFilteredCalendarList() {
+        return filteredCalendar;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredLessonList(Predicate<Lesson> predicate) {
+        requireNonNull(predicate);
+        filteredLessons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredCalendar(Predicate<Task> predicate) {
+        requireAllNonNull(predicate);
+        filteredCalendar.setPredicate(predicate);
     }
 
     @Override
@@ -143,9 +232,11 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return planus.equals(other.planus)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredTasks.equals(other.filteredTasks)
+                && filteredLessons.equals(other.filteredLessons)
+                && filteredCalendar.equals(other.filteredCalendar);
     }
 
 }
