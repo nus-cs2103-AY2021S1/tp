@@ -47,7 +47,7 @@ Now let’s set the breakpoint. First, double-click the item to reach the corres
 
 ## Tracing the execution path
 
-Recall from the User Guide that the `edit` command has the format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` For this tutorial we will be issuing the command `edit 1 n/Alice Yeoh`.
+Recall from the User Guide that the `edit` command has the format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [t/TAG]…​` For this tutorial we will be issuing the command `edit 1 n/Alice Yeoh`.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -56,20 +56,20 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. To start the debugging session, simply `Run` \> `Debug Main`
 
-1. Enter `edit 1 n/Alice Yeoh` into the command box and press `Enter`.
+2. Enter `edit 1 n/Alice Yeoh` into the command box and press `Enter`.
 
-1. The Debugger tool window should show up and look something like this:<br>
+3. The Debugger tool window should show up and look something like this:<br>
    ![DebuggerStep1](../images/tracing/DebuggerStep1.png)
 
-1. Use the `Show execution point` feature to jump to the line of code that we stopped at:<br>
+4. Use the `Show execution point` feature to jump to the line of code that we stopped at:<br>
    ![ShowExecutionPoint](../images/tracing/ShowExecutionPoint.png)
 
-1. `CommandResult commandResult = logic.execute(commandText);` is the line that you end up at.
+5. `CommandResult commandResult = logic.execute(commandText);` is the line that you end up at.
 
-1. We are interested in the `logic.execute(commandText)` portion of that line so let’s `Step in` into that method call:<br>
+6. We are interested in the `logic.execute(commandText)` portion of that line so let’s `Step in` into that method call:<br>
     ![StepInto](../images/tracing/StepInto.png)
 
-1. We end up in `LogicManager#execute()`. Let’s take a look at the body of the method and annotate what we can deduce.
+7. We end up in `LogicManager#execute()`. Let’s take a look at the body of the method and annotate what we can deduce.
 
    **LogicManager\#execute().**
 
@@ -99,11 +99,11 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
     }
    ```
 
-1. `LogicManager#execute()` appears to delegate most of the heavy lifting to other components. Let’s take a closer look at each one.
+8. `LogicManager#execute()` appears to delegate most of the heavy lifting to other components. Let’s take a closer look at each one.
 
-1. `Step over` the logging code since it is of no interest to us now. ![StepOver](../images/tracing/StepOver.png)
+9. `Step over` the logging code since it is of no interest to us now. ![StepOver](../images/tracing/StepOver.png)
 
-1. `Step into` the line where user input in parsed from a String to a Command.
+10. `Step into` the line where user input in parsed from a String to a Command.
 
     **`AddressBookParser\#parseCommand()`**
 
@@ -115,12 +115,12 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
        ...
    ```
 
-1. `Step over` until you reach the `switch` statement. The `Variables` window now shows the value of both `commandWord` and `arguments`:<br>
+11. `Step over` until you reach the `switch` statement. The `Variables` window now shows the value of both `commandWord` and `arguments`:<br>
     ![Variables](../images/tracing/Variables.png)
 
-1. We see that the value of `commandWord` is now `edit` but `arguments` is still not processed in any meaningful way.
+12. We see that the value of `commandWord` is now `edit` but `arguments` is still not processed in any meaningful way.
 
-1. Stepping into the `switch`, we obviously stop at **`AddressBookParser\#parseCommand()`.**
+13. Stepping into the `switch`, we obviously stop at **`AddressBookParser\#parseCommand()`.**
 
     ``` java
     ...
@@ -129,22 +129,22 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
     ...
     ```
 
-1. Let’s see what `EditCommandParser#parse()` does by stepping into it.
+14. Let’s see what `EditCommandParser#parse()` does by stepping into it.
 
-1. Stepping through the method shows that it calls `ArgumentTokenizer#tokenize()` and `ParserUtil#parseIndex()` to obtain the arguments and index required.
+15. Stepping through the method shows that it calls `ArgumentTokenizer#tokenize()` and `ParserUtil#parseIndex()` to obtain the arguments and index required.
 
    <div markdown="span" class="alert alert-primary">:bulb: **Tip:** Sometimes you might end up stepping into functions that are not of interest. Simply `step out` of them\!
    </div>
 
-1. The rest of the method seems to exhaustively check for the existence of each possible parameter of the `edit` command and store any possible changes in an `EditPersonDescriptor`. Recall that we can verify the contents of `editPersonDesciptor` through the `Variable` tool window.<br>
+16. The rest of the method seems to exhaustively check for the existence of each possible parameter of the `edit` command and store any possible changes in an `EditPersonDescriptor`. Recall that we can verify the contents of `editPersonDesciptor` through the `Variable` tool window.<br>
    ![EditCommand](../images/tracing/EditCommand.png)
 
-1. Let’s continue stepping through until we return to `LogicManager#execute()`.
+17. Let’s continue stepping through until we return to `LogicManager#execute()`.
 
     The sequence diagram below shows the details of the execution path through the Logic component. Does the execution path you traced in the code so far matches with the diagram?<br>
     ![Tracing an `edit` command through the Logic component](../images/tracing/LogicSequenceDiagram.png)
 
-1. Now let’s see what happens when we call `command#execute()`\!
+18. Now let’s see what happens when we call `command#execute()`\!
 
    **`EditCommand\#execute()`:**
 
@@ -163,12 +163,12 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    }
    ```
 
-1. As suspected, `command#execute()` does indeed make changes to `model`.
+19. As suspected, `command#execute()` does indeed make changes to `model`.
 
-1. We can a closer look at how storage works by repeatedly stepping into the code until we arrive at
+20. We can a closer look at how storage works by repeatedly stepping into the code until we arrive at
     `JsonAddressBook#saveAddressBook()`.
 
-1. Again, it appears that the heavy lifting is delegated. Let’s take a look at `JsonSerializableAddressBook`'s constructor.
+21. Again, it appears that the heavy lifting is delegated. Let’s take a look at `JsonSerializableAddressBook`'s constructor.
 
     **`JsonSerializableAddressBook\#JsonSerializableAddressBook()`:**
 
@@ -188,11 +188,11 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    }
    ```
 
-1. It appears that a `JsonAdaptedPerson` is created for each `Person` and then added to the `JsonSerializableAddressBook`.
+22. It appears that a `JsonAdaptedPerson` is created for each `Person` and then added to the `JsonSerializableAddressBook`.
 
-1. We can continue to step through until we return to `MainWindow#executeCommand()`.
+23. We can continue to step through until we return to `MainWindow#executeCommand()`.
 
-1. Stepping into `resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());`, we end up in:
+24. Stepping into `resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());`, we end up in:
 
     **`ResultDisplay\#setFeedbackToUser()`**
 
@@ -203,7 +203,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
     }
     ```
 
-1. Finally, we step through until we reach the end of
+25. Finally, we step through until we reach the end of
     `MainWindow#executeCommand()`.
 
 ## Conclusion

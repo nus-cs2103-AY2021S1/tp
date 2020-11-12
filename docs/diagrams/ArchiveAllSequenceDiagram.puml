@@ -1,0 +1,48 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TCheckParser" as TCheckParser LOGIC_COLOR
+participant ":ArchiveAllCommand" as ArchiveAllCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Person" as Person MODEL_COLOR
+end box
+[-> LogicManager : execute(archive)
+activate LogicManager
+
+LogicManager -> TCheckParser : parseCommand(archive)
+activate TCheckParser
+
+create ArchiveAllCommand
+TCheckParser -> ArchiveAllCommand
+activate ArchiveAllCommand
+
+ArchiveAllCommand --> TCheckParser
+deactivate ArchiveAllCommand
+
+TCheckParser --> LogicManager :
+deactivate TCheckParser
+
+LogicManager -> ArchiveAllCommand : execute()
+activate ArchiveAllCommand
+
+loop until all persons are archived
+    ArchiveAllCommand -> Person : archive()
+    activate Person
+
+    Person --> ArchiveAllCommand :archivedPerson
+    deactivate Person
+end
+
+ArchiveAllCommand --> LogicManager :commandResult
+deactivate ArchiveAllCommand
+
+ArchiveAllCommand -[hidden]-> LogicManager : result
+destroy ArchiveAllCommand
+
+[<--LogicManager : commandResult
+deactivate LogicManager
+@enduml

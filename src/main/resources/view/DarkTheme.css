@@ -116,30 +116,66 @@
     -fx-border-width: 1;
 }
 
-.list-cell .label {
+.list-cell {
     -fx-text-fill: white;
 }
 
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: white;
+}
+
+.cell_big_label-archived {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
+    -fx-text-fill: red;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: white;
+}
+
+.cell_small_label_italic {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 13px;
+    -fx-text-fill: white;
+    -fx-font-style: italic;
+}
+
+.calendar-label-mmyyyy {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 18px;
+    -fx-text-fill: derive(#d2691e, 10%);
+}
+
+.dayLabel {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: lightskyblue;
+    -fx-font-style: italic;
+}
+#leftBtn, #rightBtn{
+    -fx-border-width: 0;
+    -fx-background-color: #383838;
 }
 
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
 }
 
-.pane-with-border {
+.pane-with-border{
      -fx-background-color: derive(#1d1d1d, 20%);
      -fx-border-color: derive(#1d1d1d, 10%);
      -fx-border-top-width: 1px;
+}
+
+.pane-with-border-orange{
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-border-color: derive(#1d1d1d, 10%);
+    -fx-border-top-width: 9px;
+    -fx-border-color: derive(#d2691e, 20%);
 }
 
 .status-bar {
@@ -207,21 +243,24 @@
     -fx-background-color: black;
 }
 
+.list-panel-header {
+    -fx-text-fill: derive(#d2691e, 20%);
+    -fx-font-size: 17;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-opacity: 1;
+}
+
 /*
  * Metro style Push Button
  * Author: Pedro Duque Vieira
  * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
  */
 .button {
-    -fx-padding: 5 22 5 22;
-    -fx-border-color: #e2e2e2;
-    -fx-border-width: 2;
     -fx-background-radius: 0;
     -fx-background-color: #1d1d1d;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
-    -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
 .button:hover {
@@ -236,7 +275,6 @@
 .button:focused {
     -fx-border-color: white, white;
     -fx-border-width: 1, 1;
-    -fx-border-style: solid, segments(1, 1);
     -fx-border-radius: 0, 0;
     -fx-border-insets: 1 1 1 1, 0;
 }
@@ -270,11 +308,11 @@
     -fx-text-fill: white;
 }
 
-.dialog-pane:header *.header-panel {
+ *.header-panel {
     -fx-background-color: derive(#1d1d1d, 25%);
 }
 
-.dialog-pane:header *.header-panel *.label {
+*.header-panel *.label {
     -fx-font-size: 18px;
     -fx-font-style: italic;
     -fx-fill: white;
@@ -311,6 +349,11 @@
     -fx-background-color: transparent;
     -fx-border-width: 0;
 }
+
+#salesCardPane {
+     -fx-background-color: transparent;
+     -fx-border-width: 0;
+ }
 
 #commandTypeLabel {
     -fx-font-size: 11px;

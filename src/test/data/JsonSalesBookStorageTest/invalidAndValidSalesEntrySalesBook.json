@@ -1,0 +1,9 @@
+{
+  "salesRecordEntries" : [ {
+    "drink" : "BSBGT",
+    "numberSold" : "10"
+  }, {
+    "drink" : "Sales with invalid numberSold",
+    "numberSold" : "100aaa"
+  } ]
+}

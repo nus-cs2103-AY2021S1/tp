@@ -15,11 +15,12 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://ay2021s1-cs2103t-t12-2.github.io/tp/UserGuide.html";
+    public static final String HELP_MESSAGE = "Please refer to the User Guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
+
 
     @FXML
     private Button copyButton;
@@ -35,6 +36,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        //commandList.setText(BRIEF_COMMAND_EXPLANATION);
     }
 
     /**

@@ -29,15 +29,17 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private Label isArchived;
+    @FXML
     private Label name;
     @FXML
     private Label id;
     @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private Label emergency;
     @FXML
-    private Label email;
+    private Label address;
     @FXML
     private FlowPane tags;
 
@@ -48,10 +50,15 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
+        if (person.getArchiveStatus().archiveStatus) {
+            isArchived.setText("[Archived]");
+        } else {
+            isArchived.setText("");
+        }
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
+        emergency.setText(person.getEmergency().value);
         address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

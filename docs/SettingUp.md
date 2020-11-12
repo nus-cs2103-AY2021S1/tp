@@ -16,7 +16,18 @@ title: Setting up and getting started
 Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
 </div>
 
-First, **fork** this repo, and **clone** the fork into your computer.
+You will need to fork the repo if you wish to contribute code to the tCheck project. If you wish to only download the code without writing code, you can skip to the section for cloning the project.
+
+
+If you wish to fork the repo:
+1. Navigate to the [tCheck github repository](https://github.com/AY2021S1-CS2103T-T12-2/tp).
+2. Click "Fork" button on the top right of the page.
+3. You should be automatically redirected to the fork of your own account.
+
+If you wish to clone the repo:
+1. Install Git.
+1. On your page of your fork (or the [tCheck github repository](https://github.com/AY2021S1-CS2103T-T12-2/tp) if you did not fork the repo), click on the "Code" button to download ZIP of it or open it locally.
+
 
 If you plan to use Intellij IDEA (highly recommended):
 1. **Configure the JDK**: Follow the guide [_[se-edu/guides] IDEA: Configuring the JDK_](https://se-education.org/guides/tutorials/intellijJdk.html) to to ensure Intellij is configured to use **JDK 11**.
@@ -32,7 +43,7 @@ If you plan to use Intellij IDEA (highly recommended):
 
 1. **Configure the coding style**
 
-   If using IDEA, follow the guide [_[se-edu/guides] IDEA: Configuring the code style_](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to set up IDEA's coding style to match ours.
+   If using IDEA, follow the guide [_[se-edu/guides] IDEA: Configuring the code style_](https://se-education.org/guides/tutorials/checkstyle.html) to set up IDEA's coding style to match ours.
 
    <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
@@ -45,7 +56,7 @@ If you plan to use Intellij IDEA (highly recommended):
 
 1. **Learn the design**
 
-   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [AddressBook’s architecture](DeveloperGuide.md#architecture).
+   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [tCheck’s architecture](DeveloperGuide.md#architecture).
 
 1. **Do the tutorials**
    These tutorials will help you get acquainted with the codebase.

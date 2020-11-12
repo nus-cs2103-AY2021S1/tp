@@ -13,7 +13,12 @@ Class HelpWindow
 Class ResultDisplay
 Class PersonListPanel
 Class PersonCard
+Class IngredientListPanel
+Class IngredientCard
+Class SalesRecordListPanel
+Class SalesRecordEntryCard
 Class StatusBarFooter
+Class CalendarView
 Class CommandBox
 }
 
@@ -35,19 +40,31 @@ MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> PersonListPanel
 MainWindow *-down-> StatusBarFooter
+MainWindow *-down-> IngredientListPanel
+MainWindow *-down-> SalesRecordListPanel
+MainWindow *-down-> CalendarView
 
 PersonListPanel -down-> PersonCard
+IngredientListPanel -down-> IngredientCard
+SalesRecordListPanel -down-> SalesRecordEntryCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 PersonListPanel --|> UiPart
+IngredientListPanel --|> UiPart
+SalesRecordListPanel --|> UiPart
+CalendarView --|> UiPart
 PersonCard --|> UiPart
+SalesRecordEntryCard --|> UiPart
+IngredientCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
 PersonCard ..> Model
+IngredientCard ..> Model
+SalesRecordEntryCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
