@@ -260,10 +260,10 @@ This is the table of prefixes used:
 
 | Prefix | Syntax | Example |
 |-|-|-|
-| `n/` | n/NAME_OF_ASSIGNMENT [MORE_NAME_OF_ASSIGNMENT] | `n/Tutorial` |
-| `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT [MORE_MODULE_CODE_OF_ASSIGNMENT] | `mod/ST2334` |
-| `d/` | d/DUE_DATE_OR_TIME_OF_ASSIGNMENT [MORE_DUE_DATE_OR_TIME_OF_ASSIGNMENT] | `d/24-10-2020 1300` |
-| `p/` | p/PRIORITY_OF_ASSIGNMENT [MORE_PRIORITY_OF_ASSIGNMENT] | `p/HIGH` |
+| `n/` | n/NAME_OF_ASSIGNMENT [MORE_NAME_OF_ASSIGNMENT] | -`n/Tutorial` |
+| `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT [MORE_MODULE_CODE_OF_ASSIGNMENT] | -`mod/ST2334` |
+| `d/` | d/DUE_DATE_OR_TIME_OF_ASSIGNMENT [MORE_DUE_DATE_OR_TIME_OF_ASSIGNMENT] | -`d/24-10-2020 1300` |
+| `p/` | p/PRIORITY_OF_ASSIGNMENT [MORE_PRIORITY_OF_ASSIGNMENT] | -`p/HIGH` |
 
 <div markdown="block" class="alert alert-primary">
 
@@ -317,9 +317,9 @@ This is the table of prefixes used:
 
 | Prefix | Syntax | Example |
 |-|-|-|
-| `n/` | n/NAME_OF_ASSIGNMENT | `n/Tutorial` |
-| `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT | `mod/ST2334` |
-| `d/` | d/DEADLINE_OF_ASSIGNMENT | `d/24-10-2020 1300` |
+| `n/` | n/NAME_OF_ASSIGNMENT | -`n/Tutorial` |
+| `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT | -`mod/ST2334` |
+| `d/` | d/DEADLINE_OF_ASSIGNMENT | -`d/24-10-2020 1300` |
 
 <div style="page-break-after: always;"></div>
 
