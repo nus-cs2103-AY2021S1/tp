@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-## 1. Introduction
+## 1. Introduction (Luoyi)
 
 As the information age encroaches out lives, our digital footprint has become larger and larger.
 When we accumulate many files from work, school and daily lives,
@@ -16,12 +16,12 @@ This is where our solution, HelloFile, comes in.
 *HelloFile* is a desktop application for professionals who have to manage a lot of files, specifically **tech savvy CS2103T CS students**.
 It is optimised for use under Command Line Interface (CLI).
 By using our application, you can tag frequently used files/folders with a short nickname, and open them
-with a single command. We hope by using our application, you can manage your files easily. You can
+with a single command. We hope by using our application, you can manage your files easily. Moreover, you can
 make your life easier one file at a time, and free up your precious time to spend on things you truly enjoy.
 
 <div style="page-break-after: always;"></div>
 
-## 2. Table of Contents
+## 2. Table of Contents (Heinrich)
 * Table of Contents
 {:toc}
 
@@ -29,34 +29,34 @@ make your life easier one file at a time, and free up your precious time to spen
 
 <div style="page-break-after: always;"></div>
 
-## 3. Getting Started
+## 3. Getting Started (Luoyi)
 As a first time user, you might be overwhelmed by the many features that *HelloFile* offers.
 The following subsections will explain to you how to install and start using HelloFile quickly.
 
-### 3.1 Installation
+### 3.1 Installation (Li Shuo)
 1. Ensure you have [Java 11](https://www.java.com/en/download/) or above installed in your computer.
 2. Download the latest HelloFile.jar [here](https://github.com/AY2021S1-CS2103T-F12-1/tp/releases/).
 
-### 3.2 Quick start
+### 3.2 Quick start (Li Shuo)
 1. Move HelloFile.jar to the folder you intend to use as the home folder for HelloFile.
 2. Double-click the HelloFile.jar icon to start the application. Alternatively, run the command `java -jar HelloFile.jar` in the command line.
 3. Type `help` into the command box, followed by pressing the `Enter` key to view the supported features. Alternatively, click the help button in the menu bar to access our webpage.
 
 <div style="page-break-after: always;"></div>
 
-### 3.3 User Interface
+### 3.3 User Interface (Luoyi - Writing, Heinrich - Screenshot)
 ![Illustration](images/screenshots/Illustrations.PNG)
 
 This diagram shows our interface.
 1. The left panel is the *Tag Panel*. It contains the list of tags that you have created.
-2. The middle panel is the *Result Panel*, where you can see the result of your command.
+2. The middle panel is the *Result Box*, where you can see the result of your command.
 3. The right panel is the *File Explorer Panel*. It shows your current directory in HelloFile. You can either use command or click on a folder to navigate.
 4. Below the *Result Panel* is the *Command History*. It shows your last command entered.
 5. The *Command Box* at the bottom of the app window. You can type your commands here and hit enter to execute your command.
 
 <div style="page-break-after: always;"></div>
 
-### 3.4 Basic Workflow
+### 3.4 Basic Workflow (Li Shuo - Writing, Heinrich - Screenshot)
 To use HelloFile effectively, we recommend the following workflow.
 
 1. Tag important files with the `tag` command for ease of access.<br>
@@ -74,7 +74,7 @@ To use HelloFile effectively, we recommend the following workflow.
 
 <div style="page-break-after: always;"></div>
 
-## 4. Features
+## 4. Features (All members)
 
 There are many file management features in *HelloFile*.
 We will explain them in detail in this section.
@@ -116,7 +116,7 @@ Expressions without `...` at the end takes the last parameter as the argument wh
 
 <div style="page-break-after: always;"></div>
 
-### 4.1 Adding a tag: `tag`
+### 4.1 Adding a tag: `tag` (Anthony)
 
 Tags a file with a unique tag name and optionally, some labels.
 
@@ -148,7 +148,7 @@ You can tag a file without access permission. However, you will not be able to o
 
 <div style="page-break-after: always;"></div>
 
-### 4.2 Displaying information of a tagged file : `show`
+### 4.2 Displaying information of a tagged file : `show` (Anthony)
 
 Displays the information of the specified tag.
 
@@ -168,7 +168,7 @@ Alternatively, you can click on a specific tag in the tag panel to show its deta
 
 <div style="page-break-after: always;"></div>
 
-### 4.3 Accessing a tagged file: `open`
+### 4.3 Accessing a tagged file: `open` (Luoyi)
 
 Opens the file specified by the unique tag's nickname or label.
 
@@ -196,7 +196,7 @@ Alternatively, you can open all files tagged with the same label by specifying a
 
 <div style="page-break-after: always;"></div>
 
-### 4.4 Removing a tag: `untag`
+### 4.4 Removing a tag: `untag` (Anthony)
 
 Removes the specified tag from the list of tags.
 
@@ -214,7 +214,7 @@ Information about the tag will be completely deleted.
 
 <div style="page-break-after: always;"></div>
 
-### 4.5 Renaming a tag: `retag`
+### 4.5 Renaming a tag: `retag` (Anthony)
 
 Renames a tag.
 
@@ -233,7 +233,7 @@ Existing data will be carried over.
 
 <div style="page-break-after: always;"></div>
 
-### 4.6 Adding a label to a tag: `label`
+### 4.6 Adding a label to a tag: `label` (Anthony)
 
 Adds one or more labels to an existing tag.
 
@@ -257,7 +257,7 @@ Additionally, all tags with the same label can be opened simultaneously.
 
 <div style="page-break-after: always;"></div>
 
-### 4.7 Deleting multiple labels from a tag: `unlabel`
+### 4.7 Deleting multiple labels from a tag: `unlabel` (Anthony)
 
 Deletes one or more labels from a tag.
 
@@ -276,7 +276,7 @@ while the invalid ones will be shown to you for further action.
 
 <div style="page-break-after: always;"></div>
 
-### 4.8 Finding a tag: `find`
+### 4.8 Finding a tag: `find` (Heinrich)
 
 Finds a tag using one or more keywords.
 
@@ -297,7 +297,7 @@ If any of the keyword matches the tag name and/or label partially, it will be li
 
 <div style="page-break-after: always;"></div>
 
-### 4.9 Changing current directory: `cd`
+### 4.9 Changing current directory: `cd` (Heinrich)
 
 Changes the current directory of the HelloFile internal File Explorer.
 
@@ -327,7 +327,7 @@ Alternatively, you can click on the folder in the *File Explorer Panel* to navig
 
 <div style="page-break-after: always;"></div>
 
-### 4.10 Listing all tags: `ls`
+### 4.10 Listing all tags: `ls` (Anthony)
 
 Lists all added tags.
 
@@ -344,7 +344,7 @@ Shows all the tags saved in HelloFile in the *Tag Panel*. This command is useful
 
 <div style="page-break-after: always;"></div>
 
-### 4.11 Undoing command: `undo`
+### 4.11 Undoing command: `undo` (Luoyi)
 
 Undo a recently executed command.
 
@@ -367,7 +367,7 @@ You can undo these commands: `tag`, `retag`, `untag`, `label`, `unlabel`, `clear
 
 <div style="page-break-after: always;"></div>
 
-### 4.12 Redoing command: `redo`
+### 4.12 Redoing command: `redo` (Luoyi)
 
 Redo a recently executed command.
 
@@ -389,7 +389,7 @@ Redo is only available when undo has been executed.
 
 <div style="page-break-after: always;"></div>
 
-### 4.13 Clearing all tags: `clear`
+### 4.13 Clearing all tags: `clear` (Li Shuo)
 
 Clears the list of all tags.
 
@@ -406,13 +406,13 @@ Clears the list of all tags.
 
 <div style="page-break-after: always;"></div>
 
-### 4.14 Exiting the application: `exit`
+### 4.14 Exiting the application: `exit` (Li Shuo)
 
 Exits the application.
 
 **Format:** `exit`
 
-### 4.15 Viewing help: `help`
+### 4.15 Viewing help: `help` (Li Shuo)
 
 Displays help message for all or a certain command.
 
@@ -434,11 +434,11 @@ Displays help message for all or a certain command.
 
 <div style="page-break-after: always;"></div>
 
-## 5. Customisation
+## 5. Customisation (Luoyi)
 *HelloFile* supports user customisation such as themes.
 You can choose a theme from our theme library, so that you can personalise *HelloFile* to your liking.
 
-### 5.1 Changing themes
+### 5.1 Changing themes (Yueran)
 *HelloFile* comes with many themes. To change the theme, go to the *Toolbar* of the application
 and select `view`, followed by `theme`. A new pop up window will be shown with available themes along with a quick preview
 as illustrated below.
@@ -448,14 +448,14 @@ as illustrated below.
 
 <div style="page-break-after: always;"></div>
 
-### 5.2 Changing view sizes
+### 5.2 Changing view sizes (Yueran)
 *HelloFile* allows you to resize the view of each sub-components according to your need. You can simply
 drag each view to the size desired.
 ![Fig. 3. Resizing taskbar](images/screenshots/taskbar_resize.png)
 
 ![Fig. 4. Resizing filebar](images/screenshots/filebar_resize.png)
 
-### 5.3 Persistent customisation
+### 5.3 Persistent customisation (Yueran)
 Your customisation options (window size and theme) are saved and persist even when you close the application. HelloFile remembers your settings,
 so you can spend your time on more productive pursuits.
 
@@ -463,7 +463,7 @@ so you can spend your time on more productive pursuits.
 
 <div style="page-break-after: always;"></div>
 
-## 6. FAQ
+## 6. FAQ (Li Shuo, Anthony)
 **Q**: What if the name or the directory of the file I tagged is changed? Can I still access the file using HelloFile?<br>
 **A**: No. HelloFile is currently unable to track a file if you make changes to the file's name or directory.
 You will need to delete the old tag or retag the file.
@@ -485,7 +485,7 @@ from terminal to HelloFile to be as smooth as possible for our target users.
 
 <div style="page-break-after: always;"></div>
 
-## 7. Glossary
+## 7. Glossary (Heinrich)
 
 Terminology | Definition
 --------------|------------------
@@ -500,7 +500,7 @@ Terminology | Definition
 
 <div style="page-break-after: always;"></div>
 
-## 8. Command Summary
+## 8. Command Summary (Heinrich, Yueran)
 
 Action | Format | Examples
 --------|--------|----------
