@@ -219,9 +219,9 @@ you can do the following:
 
 * `deadline title:Return book datetime:02-01-2020 18:00`
 
-2) This adds the corresponding deadline to PlaNus. You can see the added deadline in the task list.
-
 <div style="page-break-after: always;"></div>
+
+2) This adds the corresponding deadline to PlaNus. You can see the added deadline in the task list.
 
 ![add deadline_result](images/AddDeadlineCommandResult.png)
 
@@ -269,9 +269,10 @@ you can do the following:
 
 * `event title:Project meeting date:07-11-2020 from:09:00 to:12:30 tag:CS2103T`
 
+<div style="page-break-after: always;"></div>
+
 2) This adds the corresponding event to PlaNus. You can see the added event in the task list and the calendar. The duration of the event will be recorded for time analysis.
 
-<div style="page-break-after: always;"></div>
 
 ![add event_result](images/AddEventCommandResult.png)
 
@@ -482,8 +483,6 @@ Other examples:
 You can delete the specified task from PlaNus.
 
 Format: `delete-task INDEX...`
-
-<div style="page-break-after: always;"></div>
 
 * Deletes the task(s) at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
@@ -737,15 +736,17 @@ To delete the first two lessons, you can follow 3 simple steps:
 
 1) Type `list-lesson` in the command box to display all lessons.
 
-2) Type `delete-lesson 1 2` in the command box.
+<div style="page-break-after: always;"></div>
 
- <div style="page-break-after: always;"></div>
+2) Type `delete-lesson 1 2` in the command box.
 
 ![delete lesson](images/DeleteLessonCommand.png)
  
 3) This deletes the first and the second lesson from PlaNus.
 
 ![delete lesson result](images/DeleteLessonCommandResult.png)
+
+<div style="page-break-after: always;"></div>
 
 You can also delete lessons by **first finding the lessons of interest**, refer to [feature 3.4](#34-find-a-lesson--find-lesson)
 for more information. Sample usage:
@@ -778,9 +779,9 @@ Example:
 
 1) Type `calendar` into the command box.
 
-2) The **Calendar View** will appear as shown below.
-
  <div style="page-break-after: always;"></div>
+
+2) The **Calendar View** will appear as shown below.
 
 ![calendar view month](images/CalendarViewMonth.png)
 
