@@ -1270,8 +1270,6 @@ Outcome:
 
 _Figure 25. A screenshot showing the outcome of a `help` command_
 
-<div style="page-break-after: always;"></div>
-
 <a name="exit"></a>
 #### 4.4.2. Exiting the program : `exit` 
 
@@ -1279,12 +1277,14 @@ Exits the program.
 
 Format: `exit`
 
+<div style="page-break-after: always;"></div>
+
 <a name="other-features"></a>
 ### 4.5. Other Features 
 
 This section provides an overview of the other features of tCheck which do not use a command.
 
-#### 4.5.1. Saving the data :
+#### 4.5.1. Saving the data 
 
 All tCheck data (i.e. ingredient data, sales data, employees' data) are saved in the hard disk automatically after each
  command. There is no need to save manually.
@@ -1297,9 +1297,8 @@ User should not attempt to make any changes in all data files.<br>
 
 </div>
 
-<div style="page-break-after: always;"></div>
 
-#### 4.5.2. Calendar :
+#### 4.5.2. Calendar 
 
 tCheck also shows the calendar for the current month when you start the application. You may use it for planning your
  work.
