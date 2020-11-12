@@ -103,31 +103,25 @@ Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT mod/MODULE_CODE_OF_AS
 
 You can add assignments into your assignment list so that you can manage and keep track of all your assignments and academic tasks. 
 
-<div markdown="span" class="alert alert-success">
-**:bulb: Tip:**
-You can include `remind` when adding an assignment instead of using the `remind` command to set reminders after adding an assignment.
-</div>
-
 For example, to add a lab report assignment that is **due on 23th April 2020 12.30pm** and **associated with the module CS2100**, you can 
-simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. All the information of the assignment will be displayed as shown in the labelled diagram below.
+simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. Once the assignment is added, it will appear in the assignment list and all its information will be displayed as shown in the figure below.
 
    ![UserGuideAddCommand](images/UserGuideAddCommand.PNG)
    *Figure 3: Information of the assignment added labelled*
 
 <div style="page-break-after: always;"></div>
 
+<div markdown="span" class="alert alert-success">
+**:bulb: Tip:**
+If the lab report assignment is very urgent, you can attach a **high priority tag** to it and enter `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH`.
+</div> 
+
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
-* `DEADLINE_OF_ASSIGNMENT` must be in the format dd-MM-yyyy and time in the format HHmm (24-hour).
-* `[remind]` has to be the last parameter. For example, `add n/Lab report d/23-04-2020 1230 mod/CS2100 remind p/HIGH` will not be accepted. Instead, you should enter `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH remind`.
-* The assignment that you are adding has to be unique and it cannot already exist in your assignment list. 
+* If you intend to set reminders to your assignment, `[remind]` has to be the **last parameter** entered. For example, `add n/Lab report d/23-04-2020 1230 mod/CS2100 remind p/HIGH` will not be accepted. Instead, you should enter `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH remind`.
+* You cannot add the same assignment twice. This means that you cannot add an assignment that already exist in your assignment list.
 </div>
-
-<div markdown="span" class="alert alert-success">
-**:bulb: Tip:**
-If the lab report assignment is of **high priority**, you can enter `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH`
-</div> 
 
 More examples:
 * `add n/Lab report d/23-04-2020 1230 mod/CS2100 remind`
@@ -462,36 +456,36 @@ For example, `unprioritize 1` will remove the priority tag, if present, of the f
 
 Format: `done INDEX [MORE_INDEXES]`
 
-You can keep track of your uncompleted assignments by marking assignments that you've completed as done.
+You can keep track of your completed assignments by marking the completed assignments as done.
 
-You can mark **one or more** assignments as done by specifiying the assignment(s) `INDEX` as shown in your list. 
+You can mark **one or multiple** assignments as done by specifiying the assignment(s) `INDEX` shown in your list. 
 
 Here is an example with steps for you to follow:
 
-1) To mark assignments with the name "Essay" and "Biology lab report" shown in the figure below as done, you can simply enter `done 2 3` into
-the command line based on the indexes labelled in the figure.
+1) To mark the assignments "Essay" and "Biology lab report" as done, you can simply enter `done 2 3` into
+the Command Box. `2 3` refers to the indexes of the assignments as shown in the figure below.
 
    ![UserGuideDoneCommandIndex](images/UserGuideDoneCommandIndex.PNG)
-   *Figure 22: `Indexes` of assignments labelled*
+   *Figure 22: Finding the `INDEX` of the assignments*
    
 <div style="page-break-after: always;"></div>
 
 2) The two assignments will be marked as done and each assignment will have a green tick displayed as labelled in the figure. 
 
    ![UserGuideDoneCommandTicksAdded](images/UserGuideDoneCommandTicks.PNG)
-   *Figure 23: Added ticks labelled*
+   *Figure 23: Ticks added to the completed assignments*
 
-3) A message that includes the information of the assignments marked as done will be displayed in the Command Box.
+3) A message containing the information of the assignments marked as done will also be displayed in the Message Box.
 
    ![UserGuideDoneCommandSuccess](images/UserGuideDoneCommandSuccess.PNG)
-   *Figure 24: Message shown in Command Box labelled*
+   *Figure 24: Message shown in Message Box*
    
 <div markdown="block" class="alert alert-primary">
   
  **:clipboard: Pointers to note:**<br>
-* At least one index must be present. For example, `done` without any index is invalid.
-* The indexes **must be found in your assignment list**.
-* The indexes **must not be duplicated**. For example, `done 4 4` is invalid.
+* You must include at least one `INDEX`. For example, entering `done` without any `INDEX` is invalid.
+* The `INDEX` that you include **must be found in your assignment list**.
+* If you're marking more than one assignment as done, the `INDEXES` **must not be duplicated**. For example, `done 4 4` or `done 1 2 1` is invalid.
 </div>
 
 
@@ -501,35 +495,36 @@ the command line based on the indexes labelled in the figure.
 
 Format: `undone INDEX`
 
-You can unmark assignments that you have previously marked as done by specifying the assignment `INDEX` as shown in your
- list.
+If you realised that you've an uncompleted assignment marked as done, you can mark the assignment as not done.
+    
+Similar to done, you can mark an assignment as not done by specifying the assignment's `INDEX` shown in your list.
 
-You can unmark `one` done assignment at a time. Here is an example with steps for you to follow:
+Here is an example with steps for you to follow:
 
-1) If you have **accidentally** marked the assignment with the name "Essay" as done,
-you can simply enter `undone 2` into the command line based on the index labelled in the figure.
+1) If you realised that the "Essay" assignment has been marked as done accidentally,
+you can simply enter `undone 2` into the Command Box. `2` refers to the `INDEX` of the assignment as shown in the figure below.
 
    ![UserGuideUndoneCommandIndex](images/UserGuideUndoneCommandIndex.PNG)
-   *Figure 25: `Index` of assignment labelled*
+   *Figure 25: Finding the `INDEX` of the assignment*
 
 <div style="page-break-after: always;"></div>
 
-2) The green tick associated to the assignment is no longer displayed as shown in the diagram below.
+2) The green tick associated to the assignment is no longer displayed as shown in the figure below.
 
    ![UserGuideUndoneCommandTickRemoval](images/UserGuideUndoneCommandTickRemoval.PNG)
-   *Figure 26: Deleted green tick labelled*
+   *Figure 26: Tick associated to assignment is no longer displayed*
 
-3) A message that includes the information of your assignment marked as not done will be displayed in the Command Box.
+3) A message containing the information of your assignment marked as not done will be displayed in the Message Box.
 
    ![UserGuideUndoneCommandSuccess](images/UserGuideUndoneCommandSuccess.PNG)
-   *Figure 27: Message shown in Command Box labelled*
+   *Figure 27: Message shown in Message Box*
    
 <div markdown="block" class="alert alert-primary">
   
  **:clipboard: Pointers to note:**<br>
-* Assignments are marked as **not done by default**.
-* The index must be present. For example, `undone` without any index is invalid.
-* The index **must be found in your assignment list**.
+* All your assignments are marked as **not done by default**.
+* You must include at least one `INDEX`. For example, entering `undone` without any `INDEX` is invalid.
+* The `INDEX` that you include **must be found in your assignment list**.
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -727,59 +722,61 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 ## FAQ
 
 **Q: How do I transfer my data to another Computer?**<br>
-**A:** 
-1. Install the app in your other computer and start the app.
-2. Notice that a data file named `addressbook.json` is created under the `/data` folder.
-3. Close the app in your other computer.
-4. Overwrite the newly created data file with the data file from your previous computer.
-5. All your existing data has been successfully transferred!
+**A:** <br>
+*A* refers to the computer that you are transferring your data **from**, *B* refers to the computer that you are transferring your data **to**.
 
-**Q: I am not free during the time that my assignment has been scheduled. How do I reschedule?**<br>
+1. Install ProductiveNUS in *B* and start the app.
+2. Notice that a data file named `productivenus.json` is created under the `/data` folder in *B*.
+3. Close ProductiveNUS in *B*.
+4. Overwrite the newly created data file in *B* with the `productivenus.json` data file from *A*.
+5. Start ProductiveNUS in *B* and you should see that all your existing data has been transferred!
+
+**Q: I am not free during the time my assignment has been scheduled. How do I reschedule?**<br>
 **A:**
-You can reschedule by using the schedule command on that assignment again.<br>
+You can reschedule by using the schedule command on the assignment again.<br>
 
-1. Type the schedule command into the Command Box with the index of the assignment that you want to reschedule. You can refer to the diagram below.<br>
+1. Type the schedule command into the Command Box with the index of the assignment that you want to reschedule. You can refer to the figure below.<br>
    ![UserGuideReschedule](images/UserGuideReschedule.PNG)
-   *Figure 38: Index of the assignment to reschedule labelled*
+   *Figure 38: Entering schedule command into Command Box*
    
-<div markdown="span" class="alert alert-success">
-**:bulb: Tip:**
-You can copy the entire command if you intend to reschedule the assignment more than once. 
-You can paste the command into the command box after step 2 and repeat step 1-2 until you have obtained your
- ideal schedule.
-</div>
+    <div markdown="span" class="alert alert-success">
+    **:bulb: Tip:**
+    You can select and copy the entire command if you intend to reschedule the assignment more than once. 
+    You can paste the command into the Command Box after step 2 and repeat step 1-2 until you have obtained your
+     ideal schedule.
+    </div>
 
-2. Press ENTER to reschedule your assignment and your assignment will be scheduled to another time or day as shown in the diagram below.<br>
+2. Press ENTER to reschedule your assignment and your assignment will be scheduled to another time or day as shown in the figure below.<br>
    ![UserGuideRescheduleSuccess](images/UserGuideRescheduleSuccess.PNG)
-   *Figure 39: New suggested time for assignment labelled*
+   *Figure 39: Assignment has been rescheduled successfully*
 <br>
 
 <div style="page-break-after: always;"></div>
 
-**Q: I double-clicked the productivenus.jar file but the app is not starting. What should I do?**<br>
+**Q: I double-clicked the `productivenus.jar` file but the app is not starting. What should I do?**<br>
 **A**: This is most likely caused by the *Security and Privacy Settings* of your operating system. You can either
 modify your *Security and Privacy Settings* (depends on your operating system) to accept
 anonymous files or run ProductiveNUS with the `Command Prompt`.
 
 Below are the instructions for using the `Command Prompt` to open ProductiveNUS for Windows Users.
-If your computer runs with Ubuntu or MacOS, the following instructions is applicable but in order to
+If your computer runs Ubuntu or MacOS, the following instructions is also applicable. However, in order to
 open the `Command Prompt`, you need to run the `Terminal` application.
 
 *For Windows Users:*
-1. Open the folder where you have downloaded and saved the productivenus.jar file.
+1. Open the folder where you have downloaded and saved the `productivenus.jar` file.
 2. Copy the file directory of the folder. You can refer to the labelled diagram below.<br>
    ![UserGuideLocateDirectory](images/UserGuideLocateDirectory.PNG)
-   *Figure 40: File directory labelled*
+   *Figure 40: Finding your file directory*
    
-3. Open your command prompt. To do so, press the Windows key on your keyboard, type in `cmd` and press ENTER.
-4. Your command prompt will start, and it should look something similar to the diagram below.<br>
+3. Open your `Command Prompt`. To do so, press the Windows key on your keyboard, type in `cmd` and press ENTER.
+4. Your `Command Prompt` will start, and it should look something similar to the diagram below.<br>
    ![UserGuideCommandPrompt](images/UserGuideCommandPrompt.PNG)
-   *Figure 41: Interface of Command Prompt*
+   *Figure 41: Starting the Command Prompt*
    
-4. In the command prompt, type `cd ` and paste the file directory that you have copied in step 2.
+4. In the `Command Prompt`, type `cd ` and paste the file directory that you have copied in step 2.
 <br>For example, `cd C:\Users\YourUserName\Desktop\ProductiveNUS`.
-5. Press ENTER and the file directory will be shown in the command prompt as shown in the diagram below.<br>
+5. Press ENTER and the file directory will be shown in the `Command Prompt` as shown in the diagram below.<br>
    ![UserGuideChangeDirectory](images/UserGuideChangeDirectory.PNG)
-   *Figure 42: After changing file directory in Command Prompt*
+   *Figure 42: Changing file directory in Command Prompt*
    
 6. Finally, type `java -jar productivenus.jar` and press ENTER to start the app.
