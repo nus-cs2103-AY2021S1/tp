@@ -45,7 +45,7 @@ title: User Guide
 
    5.12 [Exiting the program :  **`exit`**](#512-exiting-the-program--exit)
 
-   5.13 [Saving the data](#513-saving-the-data--automatically)
+   5.13 [Saving the data](#513-saving-the-data)
 
 6. [Command Summary](#6-command-summary)
 
