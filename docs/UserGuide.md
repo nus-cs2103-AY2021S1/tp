@@ -707,13 +707,13 @@ application status. You can use this command to change the status of any applica
 
 Application status can only be any one from the following: <br>
 
-* received
+* received <br>
 
-* processing
+* processing <br>
 
-* accepted
+* accepted <br>
 
-* rejected
+* rejected <br>
  
 </div>
 
