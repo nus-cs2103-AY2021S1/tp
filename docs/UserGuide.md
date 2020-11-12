@@ -45,7 +45,7 @@ title: User Guide
 
    5.12 [Exiting the program :  **`exit`**](#512-exiting-the-program--exit)
 
-   5.13 [Saving the data](#513-saving-the-data)
+   5.13 [Saving the data](#513-saving-the-data-)
 
 6. [Command Summary](#6-command-summary)
 
@@ -612,6 +612,7 @@ Format: `exit`
 </div>
 
 ### 5.13 Saving the data : 
+(by Phong)
 
 The app data is automatically saved at `./data/kanbugtracker.json` every time a change is made. You could also directly
 make changes to that file, but it may cause the data file to be unreadable so we **do not recommend** you to do this.
