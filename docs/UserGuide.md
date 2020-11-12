@@ -339,6 +339,13 @@ Shows a message explaining how to access the help page.
 
 <br>**Format: `help`**
 
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/userguide/helpCommand.png" width="115%" /> <br />
+Figure 6.2a: <i>Help Command</i>
+</div>
+
+Upon entering `help` in the command box, a pop up window, as shown in Figure 6.2a, will appear. Clicking on the "Open" button will bring you to this Jarvis user guide.
+
 <div style="page-break-after: always;"></div>
 
 ### 6.3 Adding Information : `add`
@@ -352,6 +359,11 @@ Adds a `Consultation` session with a `Student` at a specific date and time.
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/userguide/addConsultation.png" width="115%" /> <br />
 Figure 6.3.1a: <i>Adding a Consultation</i>
+</div>
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/userguide/viewMissionDeadline.png" width="115%" /> <br />
+Figure 6.6.3a: <i>Viewing all current Missions</i>
 </div>
 
 <br>✏️ Examples:
