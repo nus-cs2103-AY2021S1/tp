@@ -525,7 +525,6 @@ Format: `i-reset-all`
 Example:
 
 Let's say that you have found that all ingredients have been used up in the store.
-You now want to reset all ingredients' levels to zero in tCheck.
 You can follow these instructions:
 
 1. Type ` i-reset-all` into the _Command Box_.
@@ -1273,13 +1272,13 @@ Action | Format, Examples
 
 Action | Format, Examples
 -------|------------------------------
-[**Set a single ingredient**](#i-set)  | `i-set i/INGREDIENT_NAME m/AMOUNT` <br> e.g., `i-set i/Milk m/20`
-[**Set all ingredients**](#i-set-all)  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 L/50 G/20 S/100`
-[**Set all ingredients to default**](#i-set-default)  | `i-set-default` <br> e.g., `i-set-default`
-[**List**](#i-list)  | `i-list`
-[**Find**](#i-find)  | `i-find KEYWORD [MORE_KEYWORDS]`  <br> e.g., `i-find milk sugar`
-[**Reset all ingredients' levels to zero**](#i-reset-all)  | `i-reset-all`
-[**List all ingredients that the user should restock**](#i-restock)  | `i-restock`
+**Set a single ingredient**  | `i-set i/INGREDIENT_NAME m/AMOUNT` <br> e.g., `i-set i/Milk m/20`
+**Set all ingredients**  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 L/50 G/20 S/100`
+**Set all ingredients to default**  | `i-set-default` <br> e.g., `i-set-default`
+**[List](#i-list)**| `i-list`
+**[Find](#i-find)**| `i-find KEYWORD [MORE_KEYWORDS]`  <br> e.g., `i-find milk sugar`
+**[Reset all ingredients' levels to zero](#i-reset-all)**| `i-reset-all`
+**[List all ingredients that the user should restock](#i-restock)**| `i-restock`
 
 ### 6.3. Manpower Management
 
