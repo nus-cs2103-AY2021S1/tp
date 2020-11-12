@@ -147,7 +147,7 @@ please check that you have installed the correct driver in the _`chrome_driver`_
 
     <br>
     
-    A GUI similar to the screenshot below should appear in a few seconds.
+    A GUI similar to Figure 3a below should appear in a few seconds.
     
     <div style="page-break-after: always;"></div>
 
