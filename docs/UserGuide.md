@@ -217,7 +217,7 @@ and Brown Sugar Boba Black Tea, `BSBBT`, to 120 in the Sales Tracker. You can fo
 1. Type `s-update BSBM/100 BSBBT/120` into the _Command Box_.
 
     ![SalesUpdateStep1](images/SalesUpdateStep1.png)
-
+    
     _Figure 3a. A screenshot showing the entering of an `s-update` command_
 
 2. Press "Enter" to execute the command.
