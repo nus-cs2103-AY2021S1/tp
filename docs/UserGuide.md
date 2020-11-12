@@ -253,7 +253,7 @@ _Figure 4. A screenshot showing the outcome of an `s-list` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.1.3. Finds the number of drinks by keywords : `s-find`
+#### 4.1.3. Finds the number of drinks by keywords : `s-find` <a name="s-find"></a>
 
 Finds all drinks where their abbreviated names match the KEYWORD(s).
 
@@ -270,26 +270,21 @@ Example:
 Let's say you want to find BSBBT and BSBM's sales data, you can follow these instructions:
 
 1. Type `s-find BSBBT BSBM` into the _Command Box_.
-1. Press "Enter" to execute.
 
+![BeforeSfindScreenshot](images/SalesFindStep1.png)
+
+_Figure 5a. A screenshot showing before  an `s-find` command_
+
+2. Press "Enter" to execute.
 
 Outcome:
+
 1. The _Result Display_ will show that how many drinks you find.
 2. All matching drink's sales data will be listed in the _Main View_.
 
-<div style="page-break-after: always;"></div>
+![AfterSfindScreenshot](images/SalesFindStep2.png)
 
-Before the execution:<br>
-![BeforeSalesFind](images/BeforeSalesFind.png)
-
-_Figure 5a. A screenshot showing the view before executing `s-find` command_
-
-After the execution:<br>
-![SalesFindCommandScreenshot](images/SalesFindResult.png)
-
-_Figure 5b. A screenshot showing the outcome of an `s-find` command_
-
-<div style="page-break-after: always;"></div>
+_Figure 5b. A screenshot showing the outcome after of an `s-find` command_
 
 ### 4.2. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
 
@@ -614,7 +609,7 @@ to view the active Employee Directory).
  
 </div>
 
-#### 4.3.1. Adding an employee : `c-add`
+#### 4.3.1. Adding an employee : `c-add` <a name="c-add"></a>
 
 Adds an employee to the Employee Directory.
 
@@ -666,7 +661,7 @@ _Figure 12. A screenshot showing the outcome of an `c-add` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.3.2. Listing all employees in the active list: `c-active-list`
+#### 4.3.2. Listing all employees in the active list: `c-active-list`<a name="c-active-list"></a>
 
 Lists all employees who are active. 
 
@@ -691,7 +686,7 @@ _Figure 13. A screenshot showing the outcome of an `c-active-list` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.3.3. Editing a person : `c-edit`
+#### 4.3.3. Editing a person : `c-edit` <a name="c-edit"></a>
 
 
 Edits the corresponding employee's information in the Employee Directory.
@@ -733,7 +728,7 @@ _Figure 14b. A screenshot showing the outcome of a `c-edit` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.3.4. Locating persons by keywords: `c-find`
+#### 4.3.4. Locating persons by keywords: `c-find` <a name="c-find"></a>
 
 Finds all active (unarchived) employees that contain the KEYWORD(s) in their names.
 
@@ -908,7 +903,7 @@ _Figure 18. A screenshot showing the outcome of an `c-tomorrow` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.3.8. Deleting a person : `c-delete`
+#### 4.3.8. Deleting a person : `c-delete` <a name="c-delete"></a>
 
 Deletes the specified employee from the Employee Directory.
 
@@ -937,7 +932,7 @@ _Figure 19. A screenshot showing the outcome of a `c-delete` command_
 
 <div style="page-break-after: always;"></div>
 
-#### 4.3.9. Clearing all entries : `c-clear`
+#### 4.3.9. Clearing all entries : `c-clear` <a name="c-clear"></a>
 
 Clears all entries from the Employee Directory.
 
@@ -1274,7 +1269,7 @@ Action | Format, Examples
 -------|------------------------------
 **Update**| `s-update DRINK [MORE_DRINKS]` <br> e.g., `s-update BSBM/100 BSBBT/120`
 **List**| `s-list`
-**Find**| `s-find KEYWORD [MORE_KEYWORDS]` <br> e.g., `s-find BSBM BSBBT`
+[**Find**](#s-find)| `s-find KEYWORD [MORE_KEYWORDS]` <br> e.g., `s-find BSBM BSBBT`
 
 
 ### 6.2. Ingredients Tracking
@@ -1293,14 +1288,14 @@ Action | Format, Examples
 
 Action | Format, Examples
 -------|------------------------------
-**Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime`
-**List all active employees** |  `c-active-list` 
-**Edit** | `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG] ...`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
-**Find by name** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
+[**Add**](#c-add) | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG] ...`<br> e.g., `c-add n/James Ho p/22224444 e/81234567 a/Blk 123 ABC Road t/Friday t/PartTime`
+[**List all active employees**](#c-active-list) |  `c-active-list` 
+[**Edit**](#c-edit) | `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG] ...`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
+[**Find by name**](#c-find) | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
 [**Find by tag(s)**](#c-tag-find) | `c-tag-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-tag-find Friday Monday PartTime`
 **Find available manpower** | 1. [**For today:**](#c-today)  `c-today`<br>2. [**For the next day:**](#c-tomorrow)  `c-tomorrow` <br>
-**Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
-**Clear** | `c-clear`
+[**Delete**](#c-delete) | `c-delete INDEX`<br> e.g., `c-delete 3`
+[**Clear**](#c-clear) | `c-clear`
 [**Archive an employee**](#c-archive) |  `c-archive INDEX`<br> e.g., `c-archive 1`  
 [**Archive all employees**](#c-archive-all) |  `c-archive-all` <br>
 [**List all archived employees**](#c-archive-list) |  `c-archive-list`
