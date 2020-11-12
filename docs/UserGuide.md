@@ -582,13 +582,17 @@ Employee Directory. You are able to view data related to manpower in the Employe
 * All employees who are currently working in the shop are active (unarchived) employees.
 
 * Employees who are no longer working in the shop can be deleted from the Employee Directory (refer to 
- `c-delete` command for details), or moved to the archived Employee Directory (refer to `c-archive` command for
+ [`c-delete`](#438-deleting-a-person--c-delete) command for details), or moved to the archived Employee Directory 
+ refer to [`c-archive`](#4310-archiving-an-employee--c-archive) command
+  for
   details).
 
-* All active (unarchived) employees' information is stored in the active Employee Directory (refer to `c-active-list
-` to view the active Employee Directory).
+* All active (unarchived) employees' information is stored in the active Employee Directory 
+(refer to [`c-active-list`](#432-listing-all-employees-in-the-active-list-c-active-list) 
+to view the active Employee Directory).
 
-* All archived employees' information is stored in the archived Employee Directory (refer to `c-archive-list`
+* All archived employees' information is stored in the archived Employee Directory (refer to 
+[`c-archive-list`](#4312-listing-all-archived-employees--c-archive-list)
  to view the archived Employee Directory).
 
 * The list shown in the Employee Directory inside the _Main View_ when the app is launched is always the active
@@ -760,8 +764,8 @@ Format: `c-tag-find KEYWORD [MORE_KEYWORDS]`
 
 **:information_source: Notes:**<br>
 In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
-. You may set an employee's tags when adding the employee into tCheck (refer to `c-add` command), or edit the
-tag(s) by editing employee's information feature (refer to `c-edit` command).<br>
+. You may set an employee's tags when adding the employee into tCheck (refer to [`c-add`](#431-adding-an-employee--c-add) command), or edit the
+tag(s) by editing employee's information feature (refer to [`c-edit`](#433-editing-a-person--c-edit) command).<br>
 
 </div>
 
@@ -803,8 +807,8 @@ Format: `c-today`
 
 **:information_source: Notes:**<br>
 In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
-. You may set an employee's tags when adding the employee into tCheck (refer to `c-add` command), or edit the
-tag(s) by editing employee's information feature (refer to `c-edit` command).<br>
+. You may set an employee's tags when adding the employee into tCheck (refer to [`c-add`](#431-adding-an-employee--c-add) command), or edit the
+tag(s) by editing employee's information feature (refer to [`c-edit`](#433-editing-a-person--c-edit) command).<br>
 
 </div>
 
@@ -848,8 +852,8 @@ Format: `c-tomorrow`
 
 **:information_source: Notes:**<br>
 In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
-. You may set an employee's tags when adding the employee into tCheck (refer to `c-add` command), or edit the
-tag(s) by editing employee's information feature (refer to `c-edit` command).<br>
+. You may set an employee's tags when adding the employee into tCheck (refer to [`c-add`](#431-adding-an-employee--c-add) command), or edit the
+tag(s) by editing employee's information feature (refer to [`c-edit`](#433-editing-a-person--c-edit) command).<br>
 
 </div>
 
@@ -962,7 +966,8 @@ _Employee Directory_ pane. For example, there are 2 employees listed in the curr
 **:information_source: Notes about Employee Directory:**<br>
 
 If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
- color label, named as "[Archived]", in front of the name), command `c-active-list` needs to be used first to see a
+ color label, named as "[Archived]", in front of the name), command [`c-active-list`](#432-listing-all-employees-in-the-active-list-c-active-list) needs to be used first to
+  see a
   list of all your employees. Then, `c-archive INDEX` can be used to archive a specified employee identified
   by `INDEX`.<br>
 </div>
@@ -1012,11 +1017,13 @@ Format: `c-archive-all`
 (unarchived) Employee Directory. You may refer to `c-active-list` to view the active (unarchived) Employee Directory
 . <br>
 
-* All archived employees (refer to `c-archive` to see how to archive an employee) will be stored in the archived
- Employee Directory. You may refer to `c-archive-list` to view the archived Employee Directory.<br>
+* All archived employees (refer to [`c-archive`](#4310-archiving-an-employee--c-archive) to see how to archive an employee) will be stored in the
+ archived Employee Directory. You may refer to [`c-archive-list`](#4312-listing-all-archived-employees--c-archive-list) 
+ to view the archived Employee Directory.<br>
 
 * If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
- color label, named as "[Archived]", in front of their names), command `c-active-list` needs to be used first to see a
+ color label, named as "[Archived]", in front of their names), command [`c-archive-list`](#4312-listing-all-archived-employees--c-archive-list) 
+ needs to be used first to see a
   list of all your employees. Then, `c-archive-all` can be used to archive all employees.<br>
 
 </div>
@@ -1100,7 +1107,8 @@ Employee Directory inside the _Main View_. For example, there are 2 employees li
 **:information_source: Notes about Employee Directory:**<br>
 * If _Employee Directory_ currently shows a list of active/unarchived employees (Archived employees are displayed with a
  red color label, named as "[Archived]", in front of their names. While employees in the active/unarchived employee list
-  don't have this red label.), command `c-archive-list` needs to be used first to see a list of all your archived
+  don't have this red label.), command [`c-archive-list`](#4312-listing-all-archived-employees--c-archive-list) 
+  needs to be used first to see a list of all your archived
   employees. Then, `c-unarchive INDEX` can be used to unarchive a specified
    employee identified by `INDEX`.<br>
 
@@ -1225,7 +1233,7 @@ include: `s-list`, `i-set-default`, `i-list`, `i-reset-all`, `i-restock`, `c-lis
 
 ## 6. Command Summary <a name="command-summary"></a>
 
-### 6.1. ales Tracking
+### 6.1. Sales Tracking
 
 Action | Format, Examples
 -------|------------------------------
