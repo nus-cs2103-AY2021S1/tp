@@ -38,6 +38,9 @@ It is optimized for use via a Command Line Interface (CLI) while still having th
         * [4.3.2 Structure of AddCommand](#432-structure-of-addcommand)
            <div style="page-break-after: always;"></div>
         * [4.3.3 Structure of AddXYZCommand](#433-structure-of-addxyzcommand)
+
+        <div style="page-break-after: always;"></div>
+
         * [4.3.4 Structure of AddCommandParser](#434-structure-of-addcommandparser)
         * [4.3.5 Path Diagram of AddTaskCommand](#435-path-diagram-of-addtaskcommand)
         * [4.3.6 Sequence Diagram of AddTaskCommand](#436-sequence-diagram-of-addtaskcommand)
@@ -378,6 +381,7 @@ correct `Model` object (eg. `Student`, `Task`) will be added to the correspondin
 The abstract class `AddCommand` extends from the abstract class `Command`. In the `AddCommand` class, the abstract
 method `execute` takes in a `Model` object. As such, all add commands that extend from the `AddCommand` class will implement
 the `execute` method. Thus, all add command classes have a dependency on `Model`.
+
 <div style="page-break-after: always"></div>
 
 In the `AddCommand` class, there is a static message `MESSAGE_USAGE` for when user does not include a second argument since
@@ -395,6 +399,7 @@ The following diagram shows the overview of `AddCommand` detailed Class Diagram 
 * The class `AddCommand` contains 3 subclasses: `AddTaskCommand`, `AddConsultationCommand` and `AddMasteryCheckCommand`.
 * These `AddCommand` subclasses interacts with `Model` and the related class models each `AddCommand` is supposed to execute with.
 * Upon successful `AddCommand`, these subclasses communicates with `Model` to add `Task`, `Consultation` and `MasteryCheck` into `Model`.
+
 <div style="page-break-after: always"></div>
 
 #### 4.3.4 Structure of AddCommandParser
@@ -456,6 +461,7 @@ the `DeleteConsultationCommand` and other object classes.
 The following diagram shows the overview of the `DeleteCommand` Class Diagram:
 
 ![Class Diagram of DeleteCommand](images/DeleteCommandClassDiagram.png)
+
 <div style="page-break-after: always"></div>
 
 The abstract class `DeleteCommand` extends from the abstract class `Command`. In the `DeleteCommand` class, the abstract
@@ -481,6 +487,7 @@ the flag and return the correct `DeleteCommand` object.
 Additionally, under the same method, we reference the `Index` class which encapsulates
 the numerical indexes that `DeleteCommand` can parse. We use the `Index` class to check for whether the input is a non-zero unsigned integer
 and go on to parse the index and provide the parameter necessary to instantiate the aforementioned `DeleteCommand` object.
+
 <div style="page-break-after: always"></div>
 
 The `Index` only applies for `DeleteConsultationCommand` and `DeleteMasteryCheckCommand` as `DeleteTaskCommand` utilizes a `String` to store identifiers instead;
@@ -529,6 +536,7 @@ The following diagram shows the overview of the `EditCommand` Class Diagram:
 * Upon parsing user input to the correct `EditCommand` (ie. `EditXYZCommand`) which is done by the `EditCommandParser`, the
 correct `Model` object (eg. `Student`, `UserLogin`) will be added to the corresponding list in `Model` class.
 * Then, updated lists of data will be written to the `AddressBook`, and displayed on the GUI.
+
 <div style="page-break-after: always"></div>
 
 #### 4.5.3 Path Diagram of EditLoginCommand
@@ -539,6 +547,7 @@ There are 3 `EditCommand` subclasses - `EditStudentCommand`, `EditLoginCommand` 
 We will only use the `EditLoginCommand` as an example for the `EditCommand` path diagram and sequence diagram.
 The diagram below demonstrates the expected path execution of `EditLoginCommand`.
 The other `EditCommand` subclasses will execute similarly, less the calls to `ScraperManager` to re-scrape Source Academy.
+
 <div style="page-break-after: always"></div>
 
 #### 4.5.4 Sequence Diagram of EditLoginCommand
@@ -555,6 +564,7 @@ In this section we will explain how the `Automatic Tab Switching Feature` featur
 #### 4.6.1 What is Automatic Tab Switching
 `Automatic Tab Switching` is a feature where the displayed tab automatically changes to the relevant tab: `Student`,
 `Missions`, `Quests`, `Consultations`, `Mastery Checks` and `Tasks` for the user's input command.
+
 <div style="page-break-after: always"></div>
 
 #### 4.6.2 Sequence Diagram of the Automatic Tab Switching process
@@ -580,6 +590,7 @@ As such, the corresponding tab is selected after a user command is inputted.
 This feature works the same way for
 viewing `Students`, `Quests`, `Consultations`, `MasteryChecks` and `Tasks`. In each case, the
 corresponding `CommandTargetFeature` `Enum` is returned resulting in the corresponding tab selection.
+
 <div style="page-break-after: always"></div>
 
 ### 4.7 Summary Feature
