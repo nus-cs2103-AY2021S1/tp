@@ -325,6 +325,8 @@ Format: `exit`
 
 Patient commands help you make changes to the patient list.
 
+(Contributed by Moon)
+
 #### 5.2.1 Adding a patient: `add`
 
 Add a new patient to the patient list.
@@ -400,6 +402,8 @@ You want to add a profile picture to the 1st patient on the list.
 
 </div>
 
+(Contributed by Moon)
+
 #### 5.2.3 Editing a patient: `edit`
 
 Edit an existing patient in the patient list.
@@ -453,6 +457,8 @@ You want to edit the details of the 1st patient.
 * Color tags can be used for a variety of purposes. For example, you may color code patients at risk of terminal diseases as <span style="color:red">red</span>, for easier reference. Check out <a href="https://www.w3schools.com/colors/colors_names.asp">this link</a> for an extensive list of possible color tags.
 
 </div>
+
+(Contributed by Moon)
 
 #### 5.2.4 Deleting a patient: `delete`
 
@@ -797,6 +803,8 @@ You want to add an appointment with the 1st patient on the list.
 * You are highly recommended to use a duration of at least 60 minutes to optimise your experience with our CliniCal calendar feature.
 
 </div>
+
+(Contributed by Moon)
 
 #### 5.4.2 Editing an appointment: `editappt`
 
