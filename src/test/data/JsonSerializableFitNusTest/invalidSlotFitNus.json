@@ -1,0 +1,27 @@
+{
+  "exercises" : [ ],
+  "lessons" : [ {
+    "name" : "MA1101R",
+    "tagged" : [ ]
+  }, {
+    "name" : "MA1521",
+    "tagged" : [ ]
+  } ],
+  "routines" : [ {
+    "routineName" : "Leg Day",
+    "exercisesIncluded" : [ ]
+  } ],
+  "slots" : [ {
+    "activityName" : "Leg Day%%",
+    "type" : "routine",
+    "day" : "wednesday",
+    "duration" : "1600-1800",
+    "tagsForLesson" : [ ],
+    "exercisesForRoutine" : [ ]
+  } ],
+  "dailyCalories" : [ ],
+  "body" : {
+    "height" : 160.0,
+    "weight" : 45.0
+  }
+}

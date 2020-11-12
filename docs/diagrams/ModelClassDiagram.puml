@@ -5,26 +5,55 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyFitNus <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class FitNus
+Class ReadOnlyFitNus
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package Body {
+Class Body
+Class Height
+Class Weight
 }
 
-Package Tag {
+Package Calorie {
+Class Calorie
+Class CalorieLog
+Class DailyCalorie
+}
+
+Package Exercise {
+Class Exercise
+Class UniqueExerciseList
+}
+
+Package Routine {
+Class Routine
+Class UniqueRoutineList
+}
+
+
+Package Lesson {
+Class Lesson
+Class UniqueLessonList
+}
+
+Package Timetable {
+Class Timetable
+Class Slot
+Class UniqueSlotList
+Class "{abstract}\nActivity" as Activity
+Class Day
+Class Duration
+}
+
+Package Util {
+Class Name
 Class Tag
 }
 }
@@ -32,25 +61,44 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+FitNus .up.|> ReadOnlyFitNus
 
-ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager .up.|> Model
+ModelManager o--> "1" FitNus
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+FitNus *--> "1" Body
+FitNus *--> "1" CalorieLog
+FitNus *--> "1" UniqueExerciseList
+FitNus *--> "1" UniqueRoutineList
+FitNus *--> "1" UniqueLessonList
+FitNus *--> "1" Timetable
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Body *--> Height
+Body *--> Weight
 
-ModelManager -->"1" Person : filtered list
+CalorieLog o--> "0..7" DailyCalorie
+DailyCalorie .> Calorie
+
+UniqueExerciseList o--> "*" Exercise
+Exercise *--> Name
+Exercise *--> "*" Tag
+
+UniqueRoutineList o--> "*" Routine
+Routine --> "*" Exercise
+
+UniqueLessonList o--> "*" Lesson
+Lesson *--> Name
+Lesson *--> "*" Tag
+
+Timetable *--> "1" UniqueSlotList
+UniqueSlotList o--> "*" Slot
+Slot --> Activity
+Slot --> Day
+Slot --> Duration
+Routine -|> Activity
+Lesson -|> Activity
+
 @enduml

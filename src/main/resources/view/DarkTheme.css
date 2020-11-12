@@ -116,13 +116,18 @@
     -fx-border-width: 1;
 }
 
+.list-cell:filled:selected #routineCardPane {
+    -fx-border-color: #4b7b91;
+    -fx-border-width: 1;
+}
+
 .list-cell .label {
     -fx-text-fill: white;
 }
 
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 16px;
+    -fx-font-size: 15px;
     -fx-text-fill: #010504;
 }
 
@@ -300,16 +305,56 @@
 }
 
 .scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
-    -fx-padding: 1 8 1 8;
+    -fx-padding: 1 5 1 5;
 }
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
-    -fx-padding: 8 1 8 1;
+    -fx-padding: 5 1 5 1;
 }
 
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
+}
+
+#routineCardPane {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+#timetable {
+    -fx-background-color: #FFF000;
+}
+
+#calories {
+    -fx-background-color: #FFFFFF;
+}
+
+#sideBox {
+     -fx-background-color: #FF7F50;
+}
+
+#headers {
+    -fx-text-fill: #FFFFFF
+}
+
+#bmi1 {
+    -fx-background-color: #ADD8E6;
+    -fx-background-radius: 30;
+
+}
+
+#bmi2 {
+    -fx-background-color: #ADD8E6;
+    -fx-font-size: 18px;
+}
+
+#logo {
+    -fx-background-color: #FFF123;
+}
+
+#routineListPanel {
+    -fx-background-color: #FFFFFF;
 }
 
 #commandTypeLabel {

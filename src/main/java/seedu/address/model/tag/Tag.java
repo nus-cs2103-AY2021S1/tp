@@ -4,13 +4,17 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the address book.
+ * Represents a Tag in fitNUS.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS_CASE_SENSITIVE =
+            "Tags are case-sensitive! Please refrain from adding duplicates.";
+    public static final String MESSAGE_LIMIT = "Tags names should not be longer than 50 characters";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    private static final int CHARACTER_LIMIT = 50;
 
     public final String tagName;
 
@@ -31,6 +35,14 @@ public class Tag {
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
+
+    /**
+     * Returns true if a given string is not longer than 50 characters.
+     */
+    public static boolean isValidLength(String test) {
+        return test.length() <= CHARACTER_LIMIT;
+    }
+
 
     @Override
     public boolean equals(Object other) {

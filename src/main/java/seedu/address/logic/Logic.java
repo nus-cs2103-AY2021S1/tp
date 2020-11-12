@@ -7,8 +7,13 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyFitNus;
+import seedu.address.model.body.Body;
+import seedu.address.model.calorie.DailyCalorie;
+import seedu.address.model.exercise.Exercise;
+import seedu.address.model.lesson.Lesson;
+import seedu.address.model.routine.Routine;
+import seedu.address.model.timetable.Slot;
 
 /**
  * API of the Logic component
@@ -24,19 +29,34 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the fitNUS.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getFitNus()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyFitNus getFitNus();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of exercises */
+    ObservableList<Exercise> getFilteredExerciseList();
+
+    /** Returns an unmodifiable view of the filtered list of routines */
+    ObservableList<Routine> getFilteredRoutineList();
+
+    /** Returns an unmodifiable view of the filtered list of lessons */
+    ObservableList<Lesson> getFilteredLessonList();
+
+    /** Returns an unmodifiable view of the filtered list of slots, filtered by chosen day */
+    ObservableList<Slot> getFilteredSlotList(String day);
+
+    /** Returns an unmodifiable view of the filtered list of calorie logs */
+    ObservableList<DailyCalorie> getFilteredDailyCalorie();
+
+    /** Returns an unmodifiable view of the filtered list of body */
+    ObservableList<Body> getFilteredBody();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' fitNUS file path.
      */
-    Path getAddressBookFilePath();
+    Path getFitNusFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

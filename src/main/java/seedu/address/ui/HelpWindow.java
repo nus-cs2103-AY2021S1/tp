@@ -1,31 +1,41 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.HelpCommand;
 
 /**
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://ay2021s1-cs2103t-t09-2.github.io/tp/UserGuide.html";
+    public static final String HELP_MESSAGE = "Refer to the full user guide: " + USERGUIDE_URL + "\n"
+            + "A summarized version of the user guide with all the commands is displayed below.";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
+
+    private static final String summarizedGuide = HelpCommand.STANDARDIZED_HELP_MESSAGE;
 
     @FXML
     private Button copyButton;
 
     @FXML
     private Label helpMessage;
+
+    @FXML
+    private TextArea commandMessage;
 
     /**
      * Creates a new HelpWindow.
@@ -35,6 +45,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        commandMessage.setText(summarizedGuide);
     }
 
     /**
@@ -42,6 +53,12 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow() {
         this(new Stage());
+    }
+
+    @FXML
+    public void setGuide(String summarizedGuide) {
+        requireNonNull(summarizedGuide);
+        commandMessage.setText(summarizedGuide);
     }
 
     /**

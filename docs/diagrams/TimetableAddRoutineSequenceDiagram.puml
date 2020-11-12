@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FitNusParser" as FitNusParser LOGIC_COLOR
+participant ":TimetableAddRoutineCommandParser" as TimetableAddRoutineCommandParser LOGIC_COLOR
+participant "t:TimetableAddRoutineCommand" as TimetableAddRoutineCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("timetable_add_routine r/Leg Workout D/Monday T/1600-1700")
+activate LogicManager
+
+LogicManager -> FitNusParser : parseCommand("timetable_add_routine r/Leg Workout D/Monday T/1600-1700")
+activate FitNusParser
+
+create TimetableAddRoutineCommandParser
+FitNusParser -> TimetableAddRoutineCommandParser
+activate TimetableAddRoutineCommandParser
+
+TimetableAddRoutineCommandParser --> FitNusParser
+deactivate TimetableAddRoutineCommandParser
+
+FitNusParser -> TimetableAddRoutineCommandParser : parse("r/Leg Workout D/Monday T/1600-1700")
+activate TimetableAddRoutineCommandParser
+
+create TimetableAddRoutineCommand
+TimetableAddRoutineCommandParser -> TimetableAddRoutineCommand
+activate TimetableAddRoutineCommand
+
+TimetableAddRoutineCommand --> TimetableAddRoutineCommandParser : t
+deactivate TimetableAddRoutineCommand
+
+TimetableAddRoutineCommandParser --> FitNusParser : t
+deactivate TimetableAddRoutineCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TimetableAddRoutineCommandParser -[hidden]-> FitNusParser
+destroy TimetableAddRoutineCommandParser
+
+FitNusParser --> LogicManager : t
+deactivate FitNusParser
+
+LogicManager -> TimetableAddRoutineCommand : execute()
+activate TimetableAddRoutineCommand
+
+TimetableAddRoutineCommand -> Model : retrieveRoutine(r)
+activate Model
+
+Model --> TimetableAddRoutineCommand
+
+TimetableAddRoutineCommand -> Model : addSlotToTimetable(slot)
+
+Model --> TimetableAddRoutineCommand
+deactivate Model
+
+create CommandResult
+TimetableAddRoutineCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TimetableAddRoutineCommand
+deactivate CommandResult
+
+TimetableAddRoutineCommand --> LogicManager : result
+deactivate TimetableAddRoutineCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

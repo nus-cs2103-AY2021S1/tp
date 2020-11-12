@@ -1,0 +1,13 @@
+{
+  "exercises" : [ ],
+  "lessons" : [ {
+    "name": "Lesson with invalid name field: CS12!4"
+  } ],
+  "routines" : [ ],
+  "slots" : [ ],
+  "dailyCalories" : [ ],
+  "body" : {
+    "height" : 160.0,
+    "weight" : 45.0
+  }
+}

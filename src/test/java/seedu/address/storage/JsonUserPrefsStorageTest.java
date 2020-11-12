@@ -24,6 +24,11 @@ public class JsonUserPrefsStorageTest {
     public Path testFolder;
 
     @Test
+    public void constructorValid() {
+        JsonUserPrefsStorage prefs = new JsonUserPrefsStorage(TEST_DATA_FOLDER);
+        assertEquals(prefs.getUserPrefsFilePath(), TEST_DATA_FOLDER);
+    }
+    @Test
     public void readUserPrefs_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> readUserPrefs(null));
     }
@@ -73,7 +78,7 @@ public class JsonUserPrefsStorageTest {
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
-        userPrefs.setAddressBookFilePath(Paths.get("addressbook.json"));
+        userPrefs.setFitNusFilePath(Paths.get("fitnus.json"));
         return userPrefs;
     }
 

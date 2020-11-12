@@ -18,3 +18,11 @@
 .tooltip-text {
     -fx-text-fill: white;
 }
+
+.chart-title {
+ -fx-text-fill: #FFFFFF;
+}
+
+.axis-label {
+ -fx-text-fill: #FFFFFF;
+}

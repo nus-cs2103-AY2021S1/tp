@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<VBox maxWidth="Infinity" maxHeight="Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox maxWidth="Infinity" maxHeight="Infinity" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets top="5" right="50" bottom="5" left="15" />
+        </padding>
+        <HBox fx:id="graph" maxWidth="Infinity" maxHeight="Infinity" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+        </HBox>
+        <VBox prefHeight="350" prefWidth="610" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" fx:id="bmi1" alignment="CENTER">
+        </VBox>
+    </HBox>
+    <HBox prefWidth="450" prefHeight="50" maxHeight="Infinity" maxWidth="Infinity">
+        <children>
+            <VBox prefWidth="340" alignment="BOTTOM_CENTER" maxWidth="Infinity" maxHeight="Infinity" HBox.hgrow="ALWAYS">
+                <Label text="Exercises:" id="headers"/>
+            </VBox>
+            <VBox prefWidth="340" alignment="BOTTOM_CENTER" maxWidth="Infinity" maxHeight="Infinity" HBox.hgrow="ALWAYS">
+                <Label text="Routines:" id="headers"/>
+            </VBox>
+            <VBox prefWidth="340" alignment="BOTTOM_CENTER" maxWidth="Infinity" maxHeight="Infinity" HBox.hgrow="ALWAYS">
+                <Label text="Lessons:" id="headers"/>
+            </VBox>
+        </children>
+    </HBox>
+    <HBox prefHeight="350.0" prefWidth="200.0" maxWidth="Infinity" maxHeight="Infinity" VBox.vgrow="ALWAYS">
+        <children>
+            <VBox fx:id="exerciseList" minWidth="200" prefWidth="340" styleClass="pane-with-border" maxWidth="Infinity" maxHeight="Infinity" HBox.hgrow="ALWAYS">
+                <padding>
+                    <Insets bottom="10" left="10" right="10" top="10" />
+                </padding>
+                <StackPane fx:id="exerciseListPanelPlaceholder" VBox.vgrow="ALWAYS" maxWidth="Infinity" maxHeight="Infinity" HBox.hgrow="ALWAYS"/>
+            </VBox>
+
+            <VBox fx:id="routineList" minWidth="200" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS" maxWidth="Infinity" maxHeight="Infinity" HBox.hgrow="ALWAYS">
+                <padding>
+                    <Insets bottom="10" left="10" right="10" top="10" />
+                </padding>
+                <StackPane fx:id="routineListPanelPlaceholder" VBox.vgrow="ALWAYS" maxWidth="Infinity" maxHeight="Infinity"/>
+            </VBox>
+
+            <VBox fx:id="lessonList" minWidth="200" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS" maxWidth="Infinity" maxHeight="Infinity" HBox.hgrow="ALWAYS">
+                <padding>
+                    <Insets bottom="10" left="10" right="10" top="10" />
+                </padding>
+                <StackPane fx:id="lessonListPanelPlaceholder" VBox.vgrow="ALWAYS" maxWidth="Infinity" maxHeight="Infinity"/>
+            </VBox>
+        </children>
+    </HBox>
+
+</VBox>

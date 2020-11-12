@@ -2,22 +2,22 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.FitNus;
 import seedu.address.model.Model;
 
 /**
- * Clears the address book.
+ * Clears fitNUS.
  */
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "fitNUS has been cleared. You can start afresh now!";
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setFitNus(new FitNus());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

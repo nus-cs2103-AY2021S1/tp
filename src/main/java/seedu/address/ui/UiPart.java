@@ -25,6 +25,7 @@ public abstract class UiPart<T> {
      */
     public UiPart(URL fxmlFileUrl) {
         loadFxmlFile(fxmlFileUrl, null);
+        loadFxmlFile(fxmlFileUrl, null);
     }
 
     /**

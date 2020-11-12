@@ -1,0 +1,15 @@
+{
+  "exercises" : [ ],
+  "lessons" : [ {
+    "name": "CS1101S"
+  }, {
+    "name": "CS!101S"
+  } ],
+  "routines" : [ ],
+  "slots" : [ ],
+  "dailyCalories" : [ ],
+  "body" : {
+    "height" : 160.0,
+    "weight" : 45.0
+  }
+}

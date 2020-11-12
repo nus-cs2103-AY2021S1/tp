@@ -1,0 +1,36 @@
+.tab-pane {
+    -fx-margin: 0 -15 0 5;
+    -fx-padding: 0 0 0 5;
+    -fx-background-color: #313133;
+    -fx-alignment: CENTER;
+}
+
+.tab-header-background {
+    -fx-background-color: #383838;
+}
+
+.tab {
+    -fx-background-color: #383838;
+    -fx-padding: 11 0 13 0;
+    -fx-border-radius: 10 10 0 0;
+    -fx-border-width: 1px 1px 3px 1px;
+    -fx-border-color: #383838 #383838 #e0e0e0 #383838;
+    -fx-min-width: 100px;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-open-tab-animation: NONE;
+    -fx-close-tab-animation: NONE;
+}
+
+.tab-label {
+    -fx-text-fill: #8DBE6A;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 18;
+    -fx-alignment: center;
+    -fx-padding: 0px 5px 0px 5px;
+}
+
+.tab:selected {
+    -fx-border-width: 1px 1.5px 4px 1px;
+    -fx-border-color: #2AC3CB #2AC3CB salmon #2AC3CB;
+}

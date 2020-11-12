@@ -11,10 +11,20 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
+Class ExerciseListPanel
+Class RoutineListPanel
+Class LessonListPanel
+Class RoutineCard
+Class ExerciseCard
+Class LessonCard
 Class StatusBarFooter
 Class CommandBox
+Class HomePanel
+Class TimetablePanel
+Class SlotCard
+Class SlotListPanel
+Class CalorieGraph
+Class BmiBox
 }
 
 package Model <<Rectangle>> {
@@ -33,25 +43,50 @@ UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> PersonListPanel
 MainWindow *-down-> StatusBarFooter
-
-PersonListPanel -down-> PersonCard
+MainWindow *-down-> HomePanel
+MainWindow *-down-> TimetablePanel
+HomePanel *-down-> ExerciseListPanel
+HomePanel *-down-> RoutineListPanel
+HomePanel *-down-> LessonListPanel
+HomePanel *-down-> CalorieGraph
+HomePanel *-down-> BmiBox
+TimetablePanel *-down-> SlotListPanel
+ExerciseListPanel -down-> ExerciseCard
+RoutineListPanel -down-> RoutineCard
+LessonListPanel -down-> LessonCard
+SlotListPanel -down-> SlotCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+ExerciseCard --|> UiPart
+RoutineCard --|> UiPart
+LessonCard --|> UiPart
 StatusBarFooter --|> UiPart
+HomePanel --|> UiPart
+TimetablePanel --|> UiPart
+RoutineListPanel --|> UiPart
+ExerciseListPanel --|> UiPart
+LessonListPanel --|> UiPart
+SlotListPanel --|> UiPart
+SlotCard --|> UiPart
 HelpWindow -down-|> UiPart
 
-PersonCard ..> Model
+ExerciseCard ..> Model
+RoutineCard ..> Model
+LessonCard ..> Model
+BmiBox ..> Model
+CalorieGraph ..> Model
+BmiBox ..> Model
+SlotCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+ExerciseListPanel -[hidden]left- HelpWindow
+RoutineListPanel -[hidden]left- HelpWindow
+LessonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter

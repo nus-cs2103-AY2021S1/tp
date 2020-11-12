@@ -5,7 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Arrays;
 
 /**
  * Helper functions for handling strings.
@@ -13,29 +12,27 @@ import java.util.Arrays;
 public class StringUtil {
 
     /**
-     * Returns true if the {@code sentence} contains the {@code word}.
-     *   Ignores case, but a full word match is required.
+     * Returns true if the {@code sentence} contains the {@code charChain}.
+     *   Ignores case, a partial char match is required.
      *   <br>examples:<pre>
-     *       containsWordIgnoreCase("ABc def", "abc") == true
-     *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       containsCharIgnoreCase("ABc", "abc") == true
+     *       containsCharIgnoreCase("def", "DEF") == true
+     *       containsCharIgnoreCase("ABc", "AB") == true // a partial char match
      *       </pre>
      * @param sentence cannot be null
-     * @param word cannot be null, cannot be empty, must be a single word
+     * @param charChain cannot be null, cannot be empty, must be a single word
      */
-    public static boolean containsWordIgnoreCase(String sentence, String word) {
+    public static boolean containsCharIgnoreCase(String sentence, String charChain) {
         requireNonNull(sentence);
-        requireNonNull(word);
+        requireNonNull(charChain);
 
-        String preppedWord = word.trim();
-        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+        String preppedSentence = sentence.trim().toUpperCase();
+        String preppedCharChain = charChain.trim().toUpperCase();
+        checkArgument(!preppedCharChain.isEmpty(), "CharChain parameter cannot be empty");
+        checkArgument(preppedCharChain.split("\\s+").length == 1, "CharChain parameter should be a "
+                + "single word");
 
-        String preppedSentence = sentence;
-        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
-
-        return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(preppedWord::equalsIgnoreCase);
+        return preppedSentence.contains(preppedCharChain);
     }
 
     /**
@@ -65,4 +62,5 @@ public class StringUtil {
             return false;
         }
     }
+
 }

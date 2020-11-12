@@ -1,0 +1,33 @@
+@startuml
+start
+
+:User starts fitNUS;
+:User types `routine_create r/Chest Workout` into fitNUS;
+:FitNusParser receives the input and creates a RoutineCreateCommandParser;
+:RoutineCreateCommandParser checks validity of input;
+
+    if () then ([valid input format])
+        :ParserUtil parses user input using Routine prefix;
+
+            if () then ([valid Name format])
+                :RoutineCreateCommandParser returns a RoutineCreateCommand;
+                :RoutineCreateCommand checks Model if Routine already exists;
+
+                if () then ([does not exists])
+                :Add Routine to Model, updating UI;
+                :Return results;
+
+                else ([else])
+                :CommandException is thrown;
+                endif
+
+            else ([else])
+            :ParseException is thrown;
+            endif
+
+    else ([else])
+    :ParseException is thrown;
+    endif
+
+stop
+@enduml
