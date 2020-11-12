@@ -39,10 +39,9 @@ Choose a section from the table of contents below and start using UniSave.
     * [4. FAQ(Frequently Asked Question)](#4-faqfrequently-asked-question)
     * [5. Glossary](#5-glossary)
     * [6. Command Summary](#6-command-summary)
-
---------------------------------------------------------------------------------------------------------------------
+    
 <div style="page-break-after: always;"></div>
-
+--------------------------------------------------------------------------------------------------------------------
 ## 1. Overview
 UniSave is your desktop finance manager. 
 It is an application that helps you manage your finance by tracking your spending, 
@@ -53,8 +52,6 @@ UniSave targets university students who tend to incur a large amount of spending
 including tuition fees, housing fees, transport and so on. 
 It is catered especially for students who are more familiar with desktop applications and type fast.
 UniSave is available for the **Linux, Windows and Mac OS** operating systems.
-
-<div style="page-break-after: always;"></div>
 
 ## 2. Quick start
 
@@ -68,8 +65,6 @@ UniSave is available for the **Linux, Windows and Mac OS** operating systems.
 For MacOS user, open your terminal and set the directory to be the same as UniSave, enter `java -jar UniSave.jar`.
 In a few seconds, you should see a GUI similar to the diagram below. Note the app contains some sample data.<br>
    ![Ui](images/Ui.png)
-
-<div style="page-break-after: always;"></div>
 
 5. Type the command in the command box and press `Enter` to execute it.<br>
 
@@ -93,8 +88,8 @@ In a few seconds, you should see a GUI similar to the diagram below. Note the ap
    * **`exit`** : Exits the app.
 
 6. Refer to the [Features](#3-features) below for details of each command.
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
+--------------------------------------------------------------------------------------------------------------------
 
 ## 3. Features
 * [3.1 Clear data: `clear`](#31-clear-data-in-unisave--clear)
@@ -174,8 +169,6 @@ Example:
 
 Navigate back to the feature list: [Features](#3-features)
 
-<div style="page-break-after: always;"></div>
-
 #### 3.2 Set budget : `set-b`
 
 Set the budget for UniSave. Default budget is 0 Singapore Dollar (SGD). 
@@ -186,13 +179,9 @@ Format: `set-b BUDGET`
 Example:
 * `set-b 500`: Set the budget to 500.
 
-Below is a screenshot when executing `set-b` command.
-
 ![setBudget](images/setBudgetCommand.png)
 
-<div style="page-break-after: always;"></div>
-
-**Note** for `set-b` command:
+**Note** :
 1. You can change the Currency before setting budget with command `exchange cc/CURRENCY_CODE`, so that you can set your budget in another currency.
 to see a full list of supported currencies with their currency codes use command `show-codes`.
 2. Budget should only be positive numbers.
@@ -207,7 +196,7 @@ Add a new expense to UniSave.
 
 Format: `add a/AMOUNT c/CATEGORY [t/DATE] [d/description]`
 
-**Note** for `add` command:
+**Note** :
 1. The amount of an expense should only be **positive numbers**. <br>
 2. Date can be entered in one of these two forms:<br>
   i) Enter date as a **single integer**, corresponding to number of days ago. <br>
@@ -229,10 +218,6 @@ Examples:
 * `add a/50 c/entertainment t/2020-09-28 d/yayymovie!`
 * `add a/100 c/food`
 
-<div style="page-break-after: always;"></div>
-
-Below is a screenshot when executing `add` command.
-
 ![add](images/addExpenseCommand.png)
 
 Navigate back to the feature list: [Features](#3-features)
@@ -253,10 +238,6 @@ Format: `edit INDEX [a/AMOUNT] [c/CATEGORY] [t/DATE] [d/DESCRIPTION]`
 Examples:
 * `edit 1 a/10.2`: Edit amount of the first expense to 10.2.
 
-<div style="page-break-after: always;"></div>
-
-Below is a screenshot when executing `edit` command.
-
 ![Edit](images/EditCommand.png)
 
 Navigate back to the feature list: [Features](#3-features)
@@ -275,10 +256,6 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd expense in the expense list.
-
-<div style="page-break-after: always;"></div>
-
-Below is a screenshot when executing `delete` command.
 
 ![delete](images/deleteExpenseCommand.png)
 
@@ -299,10 +276,6 @@ Format: `view INDEX`
 Examples:
 * `view 3` views the `amount, category, date and description` of the third expense displayed in the list.
 
-<div style="page-break-after: always;"></div>
-
-Below is a screenshot when executing `view` command.
-
 ![view](images/viewCommand.png)
 
 Navigate back to the feature list: [Features](#3-features)
@@ -317,10 +290,6 @@ Format: `view-c`
 
 Examples:
 * `view-c`: View all types of categories saved for expenses.
-
-<div style="page-break-after: always;"></div>
-
-Below is a screenshot when executing `view-c` command.
 
 ![viewCategory](images/viewCategoryCommand.png)
 
@@ -344,10 +313,6 @@ Format: `add-d INDEX d/DESCRIPTION`
 Examples:
 * `add-d 3 d/movies`: Add the description field `movies` to the 3rd expense.
 
-<div style="page-break-after: always;"></div>
-
-Below is a screenshot when executing `add-d` command.
-
 ![add-d](images/addDescriptionCommand.png)
 
 Navigate back to the feature list: [Features](#3-features)
@@ -368,10 +333,6 @@ Format: `delete-d INDEX`
 Examples:
 `delete-d 6` Deletes the description field of the 6th expense.
 
-<div style="page-break-after: always;"></div>
-
-Below is a screenshot when executing `delete-d` command.
-
 ![delete-d](images/deleteDesCommand.png)
 
 Navigate back to the feature list: [Features](#3-features)
@@ -391,10 +352,6 @@ Format: `filter-c CATEGORY`
 Examples:
 * `filter-c entertainment`: Filter all the expenses under category `entertainment`.
 
-<div style="page-break-after: always;"></div>
-
-Below is a screenshot when executing `filter-c` command.
-
 ![filter-c](images/listByCategoryCommand.png)
 
 Navigate back to the feature list: [Features](#3-features)
@@ -413,10 +370,6 @@ Examples:
 * `filter-t 3`: filter all the expenses that are saved on 3 days ago from current day.
 * `filter-t 2020-10-23`: filter all the expenses that are saved on `2020-10-23`.
 
-<div style="page-break-after: always;"></div>
-
-Below is a screenshot when executing `filter-t` command.
-
 ![filter-t](images/listByDateCommand.png)
 
 Navigate back to the feature list: [Features](#3-features)
@@ -433,10 +386,6 @@ Format: `filter-d DESCRIPTION`
 Examples:
 * `filter-d movie`: filter all the expenses which description has the keyword `movie`.
 
-<div style="page-break-after: always;"></div>
-
-Below is a screenshot when executing `filter-d` command.
-
 ![filter-d](images/listByDescCommand.png)
 
 Navigate back to the feature list: [Features](#3-features)
@@ -452,10 +401,6 @@ Format: `list`
 Examples:
 * `list`: list all the expenses in UniSave.
 
-<div style="page-break-after: always;"></div>
-
-Below is a screenshot when executing `list` command.
-
 ![list](images/listCommand.png)
 
 Navigate back to the feature list: [Features](#3-features)
@@ -470,24 +415,21 @@ Sort the expense(s) based on the input command.
 
 Sort the expenses in specified order.
 
+
 Format: `sort-a descending`
         `sort-a ascending`
 
 **Note** : 
 * Only ascending or descending order is valid.
 
+
 Examples:
 * `sort-a ascending`: sort the expenses according to amount in ascending order.
-
-<div style="page-break-after: always;"></div>
-
-Below is a screenshot when executing `sort-a` command.
 
 ![sort by amount in ascending order](images/sortByAmount.png)
 
 Navigate back to the feature list: [Features](#3-features)
 
-<div style="page-break-after: always;"></div>
 
 ##### 3.12.2 Sort expenses by the date of each expense: `sort-t`
 
@@ -501,10 +443,6 @@ Format: `sort-t ascending`
 
 Examples:
 * `sort-t ascending`: sort the expenses according to date in ascending order (i.e. from past to present.).
-
-<div style="page-break-after: always;"></div>
-
-Below is a screenshot when executing `sort-t` command.
 
 ![sort by time in ascending order](images/sortByTimeAscending.png)
 
@@ -525,10 +463,6 @@ Format: `exchange cc/CURRENCY_CODE`
 
 Example: `exchange cc/CNY`: Change UniSave's current currency to CNY currency.
 
-<div style="page-break-after: always;"></div>
-
-Below is a screenshot when executing `exchange` command.
-
 ![exchange_after](images/ExchangeCommand-after.png)
 
 Navigate back to the feature list: [Features](#3-features)
@@ -541,7 +475,6 @@ Show a full list of supported currencies with their corresponding currency codes
 
 Format: `show-codes`
 
-Below is a screenshot when executing `show-codes` command.
 ![currency_codes](images/CurrencyCodes.png)
 
 Navigate back to the feature list: [Features](#3-features)
@@ -556,11 +489,8 @@ there may be a slight inaccuracy compared to current exchange rates.
 
 Format: `show-rates`
 
-<div style="page-break-after: always;"></div>
-
-Below is a screenshot when executing `show-rates` command.
-
 ![exchange_rates](images/ExchangeRates.png)
+
 Navigate back to the feature list: [Features](#3-features)
 
 <div style="page-break-after: always;"></div>
@@ -575,10 +505,6 @@ There are arranging in descending order in which the category that you spent the
 Format: `show-stats`
 
 Examples: `show-stats`
-
-<div style="page-break-after: always;"></div>
-
-Below are the pop-up windows for `show-stats` command.
 
 ![showStatistic](images/showStatisticCommand.png)
 ![showStatistic_table](images/showStatisticTable.png)
@@ -595,6 +521,8 @@ Format: `help`
 
 Navigate back to the feature list: [Features](#3-features)
 
+<div style="page-break-after: always;"></div>
+
 #### 3.18 Exit the program : `exit`
 
 Exits the program.
@@ -610,14 +538,16 @@ There is no need to save manually.
 
 Navigate back to the feature list: [Features](#3-features)
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## 4. FAQ(Frequently Asked Question)
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it 
 creates with the file that contains the data of your previous UniSave home folder. <br>
+--------------------------------------------------------------------------------------------------------------------
 
 ## 5. Glossary 
 
@@ -628,8 +558,9 @@ Term | Explanation
 **CLI** | A command-line interface (CLI) processes commands to a computer program in the form of lines of text.
 **GUI** | The graphical user interface is a form of user interface that allows users to interact with a computer program through graphical icons instead of text-based user interfaces or text navigation.
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## 6. Command Summary
 
