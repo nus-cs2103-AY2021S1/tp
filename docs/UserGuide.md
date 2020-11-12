@@ -612,6 +612,7 @@ Format: `exit`
 </div>
 
 ### 5.13 Saving the data : 
+(by Phong)
 
 The app data is automatically saved at `./data/kanbugtracker.json` every time a change is made. You could also directly
 make changes to that file, but it may cause the data file to be unreadable so we **do not recommend** you to do this.
