@@ -260,10 +260,10 @@ This is the table of prefixes used:
 
 | Prefix | Syntax | Examples |
 |-|-|-|
-| `n/` | n/NAME_OF_ASSIGNMENT [MORE_NAME_OF_ASSIGNMENT] | `n/Tutorial` <br>`n/Tutorial Lab`|
-| `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT [MORE_MODULE_CODE_OF_ASSIGNMENT] | `mod/ST2334` <br>`mod/CS2100 CS2101` |
-| `d/` | d/DUE_DATE_OR_TIME_OF_ASSIGNMENT [MORE_DUE_DATE_OR_TIME_OF_ASSIGNMENT] | `d/24-10-2020 1300` <br>`d/13-10-2020 12-10-2020` |
-| `p/` | p/PRIORITY_OF_ASSIGNMENT [MORE_PRIORITY_OF_ASSIGNMENT] | `p/HIGH` <br>`p/high medium` |
+| `n/` | n/NAME_OF_ASSIGNMENT [MORE_NAME_OF_ASSIGNMENT] | `n/Tutorial` |
+| `mod/` | mod/MODULE_CODE_OF_ASSIGNMENT [MORE_MODULE_CODE_OF_ASSIGNMENT] | `mod/ST2334` |
+| `d/` | d/DUE_DATE_OR_TIME_OF_ASSIGNMENT [MORE_DUE_DATE_OR_TIME_OF_ASSIGNMENT] | `d/24-10-2020 1300` |
+| `p/` | p/PRIORITY_OF_ASSIGNMENT [MORE_PRIORITY_OF_ASSIGNMENT] | `p/HIGH` |
 
 <div markdown="block" class="alert alert-primary">
 
