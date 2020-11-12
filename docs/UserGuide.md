@@ -590,7 +590,7 @@ Figure 6.6.3a: <i>Viewing all current Missions</i>
 </div>
 
 As shown in Figure 6.6.3a, once we key in the command `view -m`, a success message will be displayed and Jarvis
-will auto switch to the `Missions` tab, and show all the current `Missions` and their deadlines.
+will auto switch to the `Mission` tab, and show all the current `Missions` and their deadlines.
 
 #### 6.6.4 Viewing ungraded `Missions` : `-um`
 
@@ -604,7 +604,7 @@ Figure 6.6.4a: <i>Viewing all ungraded Missions</i>
 </div>
 
 As shown in Figure 6.6.4a, once we key in the command `view -um`, a success message will be displayed and Jarvis
-will auto switch to the `Missions` tab, and show all the ungraded `Missions` and their deadlines.
+will auto switch to the `Mission` tab, and show all the ungraded `Missions` and their deadlines.
 
 <div style="page-break-after: always;"></div>
 
