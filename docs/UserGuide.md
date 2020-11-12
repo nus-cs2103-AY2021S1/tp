@@ -349,11 +349,17 @@ Adds a `Consultation` session with a `Student` at a specific date and time.
 
 <br>**Format: `add -c NAME d/YYYY-MM-DD t/HH:MM`**
 
-![AddConsultations](images/userguide/addConsultation.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/userguide/addConsultation.png" width="115%" /> <br />
+Figure 6.3.1a: <i>Adding a Consultation</i>
+</div>
 
 <br>✏️ Examples:
 * `add -c John Doe d/2020-09-20 t/13:30`
 * `add -c Mary Jane d/2021-01-02 t/09:15`
+
+As shown in Figure 6.3.1a, once we key in the command `add -c NAME d/YYYY-MM-DD t/HH:MM`, a success message will be displayed and Jarvis
+will auto switch to the `Consultation` tab, and the new `Consultation` will be added to the list.
 
 <div style="page-break-after: always;"></div>
 
@@ -370,13 +376,19 @@ Adds a `Mastery Check` session with a `Student` at a specific `date` and `time`.
 
 <br>**Format: `add -mc NAME d/YYYY-MM-DD t/HH:MM`**
 
-![AddMasteryChecks](images/userguide/addMasteryCheck.png)
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/userguide/addMasteryCheck.png" width="115%" /> <br />
+Figure 6.3.2a: <i>Adding a Mastery Check</i>
+</div>
 
 <br>✏️ Examples:
 * `add -mc John Doe d/2020-09-20 t/13:30`
 * `add -mc Mary Jane d/2021-01-02 t/09:15`
 
 <div style="page-break-after: always;"></div>
+
+As shown in Figure 6.3.2a, once we key in the command `add -mc NAME d/YYYY-MM-DD t/HH:MM`, a success message will be displayed and Jarvis
+will auto switch to the `Mastery Check` tab, and the new `Mastery Check` will be added to the list.
 
 <div markdown="block" class="alert alert-info">
 * When you add a `Mastery Check` for a future date while displaying only past `Mastery Checks`, make sure to enter `view -mc` to view the complete list to check if the `Mastery Check` has been added correctly.
@@ -397,7 +409,8 @@ Adds your personal `Todo` with a `description`.
 * `add -t Return calculator to Mary`
 
 <div markdown="block" class="alert alert-info">
-* The way to input is similar to the screenshot of adding `Mastery Check` above, only without the date and time.
+
+* The way to input is similar to adding `Mastery Check` above, only without the date and time. You can refer to [Figure 6.3.2a](#632-adding-mastery-checks---mc) for clearer depiction.
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -413,7 +426,9 @@ Adds your personal `Event` with a `description`, to attend at a specific date an
 * `add -e CS2103T team meeting d/2020-09-27 t/10:30`
 
 <div markdown="block" class="alert alert-info">
-* An `Event` requires extra date and time specifications in order to create. The way to input is similar to the screenshot of adding `Mastery Check` above.
+* An `Event` requires extra date and time specifications in order to create. 
+
+* The way to input is similar to adding `Mastery Check` above. You can refer to [Figure 6.3.2a](#632-adding-mastery-checks---mc) for clearer depiction.
 </div>
 
 #### 6.3.5 Adding `Deadlines` : `-d`
@@ -427,7 +442,9 @@ Adds your personal `Deadline` with a `description`, to complete by a specific da
 * `add -d Research project report d/2020-10-05 t/10:30`
 
 <div markdown="block" class="alert alert-info">
-* Similar to `Event`, a `Deadline` requires extra date and time specifications in order to create. You can refer to the screenshot of adding `Mastery Check` above for a real-life example of how the command would look like.
+* Similar to `Event`, a `Deadline` requires extra date and time specifications in order to create.
+
+* The way to input is similar to adding `Mastery Check` above. You can refer to [Figure 6.3.2a](#632-adding-mastery-checks---mc) for clearer depiction.
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -590,7 +607,7 @@ Figure 6.6.3a: <i>Viewing all current Missions</i>
 </div>
 
 As shown in Figure 6.6.3a, once we key in the command `view -m`, a success message will be displayed and Jarvis
-will auto switch to the `Mission` tab, and show all the current `Missions` and their deadlines.
+will auto switch to the `Missions` tab, and show all the current `Missions` and their deadlines.
 
 #### 6.6.4 Viewing ungraded `Missions` : `-um`
 
