@@ -232,7 +232,7 @@ Eva makes use of these staff commands to give you the ability to keep track of y
 
 **:information_source: Note:** <br>
 
-* All commands under staff can only be done on either staff list or staff profile panel except `adds`, which can be done on any panel.<br>
+* All commands under staff can only be done on either [`staff list`](#311-staff-list--staff-list-panel) or [`staff profile`](#312-staff-profile--staff-profile-panel) except `adds`, which can be done on any panel.<br>
  
 * On a staff profile, only the details of the profile that is being viewed can be changed.<br>
 
@@ -241,7 +241,7 @@ Eva makes use of these staff commands to give you the ability to keep track of y
 
 #### 3.3.1. List all staff : `list s-`
 
-The staff list panel serves as your primary tool to give you an overview of all the staffs in your company.
+The [`staff list panel`](#311-staff-list--staff-list-panel) panel serves as your primary tool to give you an overview of all the staffs in your company.
 
 This command changes the panel to the [`Staff List`](#31-eva-gui) and shows a list of all staffs in the Eva Database.
 
@@ -466,7 +466,7 @@ Please take note that this action is irreversible.**
 Format: `clear s-`
 
 The image below shows what you would see after using this command. Notice that there are no more records of staff in the
-Staff List.
+[`staff list`](#311-staff-list--staff-list-panel).
 
 ![clearStaff](images/ugimages/ClearStaff.png)
 
