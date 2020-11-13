@@ -202,12 +202,11 @@ Figure 4.1a: <i>Ui Layout</i>
 </div>
 
 As seen in Figure 4.1a above, the user interface is split into five separate segments marked 1 to 5.
-1. **Top bar** - Displays passive information such as a summary for the user, greeting message, week number
-, academic topic for
+1. **Top bar** - Displays passive information such as a summary for the user, greeting message, week number, academic topic for
  the week and today's date. A more detailed explanation on each item can be found in the upcoming section
   [Top Bar](#411-top-bar)  
 1. **Command Box** - An input box for your commands to be keyed in. To execute the inputted command, hit the
- enter key on your keyboard after keying in your command.
+ Enter key on your keyboard after keying in your command.
 1. **Feedback Box** - The feedback shown to the you after your command has been executed.
 1. **Information Panel** - A list of cards showing details on the information stored within Jarvis. This
  includes the `Tasks` keyed in and your `Students` information.
@@ -249,7 +248,7 @@ the user interface segments 1 to 5 mentioned above.
 (Zhen Teng)
 
 A text input box for all user commands to be keyed in. You may refer to the [Features](#6-features) section for
-a detailed guide on the various commands available in Jarvis. Hit the enter key to execute the inputted command.
+a detailed guide on the various commands available in Jarvis. Hit the Enter key to execute the inputted command.
 
 <div style="page-break-after: always;"></div>
 
@@ -321,8 +320,8 @@ To log in, simply edit your login details with the following command:
 ### 5.2 Updated Details Summary
 (Peirong)
 
-Within the red rectangle box, Jarvis will notify you if the login was successful and the login information entered.
-The username, password and student names are covered with a red rectangle for this diagram only to protect the Avenger's account security.
+Within the command box marked as 3 in Figure 5.1a above, Jarvis will notify you if the login was successful and the login information entered.
+The username, password and student names are covered with a red rectangle for Figure 5.1a to protect the Avenger's account security.
 You will be able to see the login details you entered.
 
 <div style="page-break-after: always;"></div>
@@ -369,7 +368,7 @@ This section includes some general notes on Jarvis.
 #### 6.1.3 Notes about Tasks
 (Jun Jie)
 
-   * `Todo` is a `Task` without a completion time, `Event` is a `Task` that is required to be completed at a particular point of time and `Deadline is a `Task that is required to be completed by a prticular point of time. Hence, `Todo`, `Event` and `Deadline` are all variants of `Task`.
+   * `Todo` is a `Task` without a completion time, `Event` is a `Task` that is required to be completed at a particular point of time and `Deadline` is a `Task` that is required to be completed by a prticular point of time. Hence, `Todo`, `Event` and `Deadline` are all variants of `Task`.
    * Each `Task` you create, be it `Todo`, `Event` or `Deadline`, there will be an unique Task ID assigned to each of them, so
    that there will be no 2 of the same ID in your Task List at any point of time. The Task ID is reflected as eg. D1, E5, T21
    * The first alphabet "T", "E" and "D" refers to `Todo`, `Event`, and `Deadline` respectively, and the number followed
@@ -385,7 +384,7 @@ This section includes some general notes on Jarvis.
    the current time has passed the date and time of a `Consultation` or `Mastery Check`. Also, if a `Mission` or
    `Quest` is graded while Jarvis is open, the number of ungraded `Mission` and `Quests` will remain the same.
    * To obtain the updated values, simply re-start Jarvis or execute a command by keying in a command and hitting the
-    enter key on your keyboard.
+    Enter key on your keyboard.
    * The `Summary` feature will display all `Tasks` stored in Jarvis, regardless of a `Deadline` or `Event`'s date and
     time. This is in contrast to `Consultations` and `Mastery Checks` where only the upcoming ones are included in
     the count.
