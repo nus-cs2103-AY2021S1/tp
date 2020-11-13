@@ -62,6 +62,8 @@ The figure below is the GUI of **Bagel** with some annotations that we would lik
 
 ![AnnotatedUI](images/GUIGuidance.png) <br>
 
+<div style="page-break-after: always;"></div>
+
 Here is a table to better understand how to put our GUI into best use:
 
 | GUI Feature |  What will it do? / What is this for? |
