@@ -313,7 +313,7 @@ More examples:
 
 Format: `edit INDEX PREFIX/EDITED_FIELD [MORE_PREFIX/EDITED_FIELD]`
 
-You can specify an assignment's index to edit its fields. These fields are the name, module code and deadline of assignment.
+You can specify an assignment's index to edit its fields. These fields are the name, module code and deadline of an assignment.
 
 <div markdown="span" class="alert alert-success">
 
