@@ -2,6 +2,15 @@
 layout: page
 title: Developer Guide
 ---
+
+Welcome to Eva's Developer Guide! <br>
+This document is created by CS2101 G05 Team 1 <br>
+- Ben-Hanan Choong See Kaay
+- Hou Rui
+- Royce Ho Shou Yee
+- Tin Kah Ong Isaac
+- Udayagiri Nikhila Sai <br>
+
 * Table of Contents
 {:toc}
 
