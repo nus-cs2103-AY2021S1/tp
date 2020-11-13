@@ -18,6 +18,7 @@ It retains the benefits of a Graphical User Interface (GUI). If you can type fas
 This user-guide has been written with equivalent effort by all members of the TAsker development team. For
 
 ---
+<div style="page-break-before: always"></div>
 <p style="font-size: 2rem; color: #d62865">
 Table of Contents
 </p>
@@ -36,6 +37,7 @@ Table of Contents
 1. Copy the file to the folder you want to use as the _home folder_ for your TAsker.
 
 1. Double-click the file to start the app. The graphical user interface similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+    <div style="page-break-before: always"></div>
     <div markdown="span" class="alert alert-primary" style="margin-top: 1rem;">:bulb: **Note:**
     On newer macOS machines with stricter security settings from Apple, you might need to Ctrl-click on the file, then click on "Open" for your very first run of TAsker. This ensures that TAsker is trusted by your machine. You can then continue to double-click the file for your subsequent runs.
     </div>
@@ -53,7 +55,7 @@ Table of Contents
    - **`clear`** : Deletes all students from TAsker.
 
    - **`exit`** : Exits TAsker.
-
+    <div style="page-break-before: always"></div>
 3. Refer to [Navigating the User Inteface](#ui-intro) for details on how to navigate TAsker's interface.
 
 4. Refer to the [Features](#features) below for details of each command.
@@ -77,7 +79,9 @@ The user interface of TAsker comprises of the few main elements as shown in this
 1. **Command Box**
 
     Main location to interact with all of TAsker's features. Type all of TAsker's commands into this box.
-<br /><br />
+    <br><br>
+    <div style="page-break-before: always"></div>
+    
 1. **Result Display**
 
     The output of all commands run via the Command Box will be displayed here.
@@ -104,6 +108,7 @@ For example, a command like `add n/John Doe p/98765432 e/johnd@example.com t/joh
 - "A0123456B" as matriculation number
 
 In this case, the index is not needed as the `add` command does not manipulate existing students' data. The sections for each feature below will document the command needed, as well as it's associated mandatory and optional parameters.
+<div style="page-break-before: always"></div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -136,6 +141,7 @@ In this case, the index is not needed as the `add` command does not manipulate e
 
 </div>
 
+<div style="page-break-before: always"></div>
 ### Viewing help : `help`
 
 Shows a message explaining how to access the User Guide (this page).
@@ -170,6 +176,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL t/TELEGRAM m/MATRIC_NUMBER [tg/TAG]â€
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0). The rest of the parameters can **only** be inputted once.
 </div>
+<div style="page-break-before: always"></div>
 
 Examples:
 
@@ -213,7 +220,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TELEGRAM] [m/MATRIC_NUMBER] 
 - When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
 - You can remove all the studentâ€™s tags by typing `tg/` without
   specifying any tags after it.
-
+  
+<div style="page-break-before: always"></div>
 Examples:
 
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
@@ -261,6 +269,7 @@ Deletes the specified student from the address book.
 
 You may use this to remove incorrectly added students.
 
+<div style="page-break-before: always"></div>
 Format: `delete INDEX`
 
 - Deletes the student at the specified `INDEX`.
@@ -289,6 +298,7 @@ Shows the attendance for tutorial on a specified date.
 
 Format: `showatt INDEX d/DATE`
 
+<div style="page-break-before: always"></div>
 Examples:
 
 - `showatt 1 d/12/12/2020` checks if the first student
@@ -311,7 +321,9 @@ Marks the student as present for tutorial on a specified date.
 
 Format: `attend INDEX d/DATE`
 
+<div style="page-break-before: always"></div>
 **Expected Output**
+<img src="images/AddAttendance.png" class="diagram" />
 
 *Running `attend 1 d/12/12/2000`*
 
@@ -341,6 +353,7 @@ Examples:
 
 <img src="images/RemoveAttendance.png" class="diagram"/>
 
+<div style="page-break-before: always"></div>
 ### Adding a consultation : `add-consult`
 
 Adds a consultation to the address book.
@@ -394,6 +407,7 @@ Format: `list-consult`
   
 <img src="images/consultListResult.png" class="diagram" />
 
+<div style="page-break-before: always"></div>
 ### Archiving data files : `archive`
 
 Creates a copy of all current data, tagged with the current date and time.
@@ -420,6 +434,7 @@ Running this command will create a new csv file in your `/data` folder. Each col
 
 Format: `exportatt`
 
+<div style="page-break-before: always"></div>
 Example:
 
 - `exportatt` creates a csv file called `attendance_2020-11-09_2055.csv` as shown below.
@@ -436,8 +451,7 @@ Exits the program.
 
 Format: `exit`
 
----
-
+<div style="page-break-before: always"></div>
 ## Frequently Asked Questions (FAQs)
 
 **Q**: How do I start using TAsker?
@@ -470,8 +484,7 @@ Format: `exit`
 **A**: [Open an issue on our github repository](https://github.com/AY2021S1-CS2103T-F11-1/tp/issues).
 <br>
 
----
-
+<div style="page-break-before: always"></div>
 ## Command Summary
 
 | Action                   | Format, Examples                                                                                                                                                                                                           |
@@ -486,7 +499,7 @@ Format: `exit`
 | **Marking Attendance**   | `attend INDEX d/DATE`<br> e.g., `attend 1 d/12/12/2000`                                                                                                                                                                    |
 | **Unmarking Attendance** | `unattend INDEX d/DATE`<br> e.g., `unattend 1 d/12/12/2000`                                                                                                                                                                |
 | **Add Consultation**     | `add-consult n/NAME d/DATE tm/TIME a/LOCATION ty/TYPE`<br> e.g., `add-consult n/John Doe d/10/10/2020 tm/18:00 a/SOC Basement ty/personal`                                                                                 |
-| **Delete Consultation**  | `del-consult INDEX`<br> e.g., `del-consult 1`                                                                                                                                                                              |
+| **Delete Consultation**  | `del-consult INDEX`<br> e.g., `del-consult 1`  |
 | **List Consultation**    | `list-consult`                                                                                                                                                                                                             |
 | **Archive Data Files**   | `archive`                                                                                                                                                                                                                  |
 | **Export Attendance**    | `exportatt`                                                                                                                                                                                                                |
