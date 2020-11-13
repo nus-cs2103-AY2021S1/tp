@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide
+title: User Guide 0
 ---
 
 ForgetfulNUS is a desktop glossary app for students taking German 1 (LAG1201)
@@ -146,6 +146,8 @@ Example:
 After entering this command, your app should look like this:
 
 ![edit-screenshot](images/edit-screenshot.png)
+
+<div style="page-break-after: always;"></div>
 
 #### <a name="delete"></a>3.1.3. Delete a Flashcard : `delete` (Kenny)
 
