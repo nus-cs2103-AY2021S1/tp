@@ -146,7 +146,7 @@ You can delete **one or more** assignments from your [Assignment List](#gui-term
 
 Here is an example with steps for you to follow:
 
-1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the Command Box which corresponds to their indexes in the Assignment List.
+1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the [Command Box](#gui-terminologies) which corresponds to their indexes in the Assignment List.
 
 ![DeleteCommand1](images/DeleteCommandDiagram1.png)
 *Figure 4: `delete 1 3` inputted by user and location of assignment indexes*
@@ -154,7 +154,7 @@ Here is an example with steps for you to follow:
 
 2) You have successfully deleted both assignments from the Assignment List, and they are no longer displayed.
 
-3) A "Deleted Assignment(s)" message that includes the information of your deleted assignments will be displayed in the Message Box.
+3) A "Deleted Assignment(s)" message that includes the information of your deleted assignments will be displayed in the [Message Box](#gui-terminologies).
 
 ![DeleteCommand2](images/DeleteCommandDiagram2.png)
 *Figure 5: The displayed message and the updated list*
@@ -232,7 +232,7 @@ Here is an example with steps for you to follow:
 
 2) Assignments found are displayed in the [Assignment List](#gui-terminologies). 
 
-3) A message that indicates the number of assignments listed is displayed in the Message Box.
+3) A message that indicates the number of assignments listed is displayed in the [Message Box](#gui-terminologies).
 
 ![ListCommand2](images/ListCommandDiagram2.png)
 *Figure 9: The displayed message and the updated list*
@@ -291,7 +291,7 @@ Here is an example with steps for you to follow:
 
 2) Assignments from the modules CS2100 and ST2334 will appear in the Assignment List.
 
-3) A message that indicates the number of assignments found is displayed in the Message Box.
+3) A message that indicates the number of assignments found is displayed in the [Message Box](#gui-terminologies).
 
 ![FindCommand2](images/FindCommandDiagram2.png)
 *Figure 11: The displayed message and the updated list*
@@ -333,14 +333,14 @@ This is the table of prefixes used:
 
 Here is an example with steps for you to follow:
 
-1) To edit the name of the assignment with the first index in the [Assignment List](#gui-terminologies) to "Statistics Lab", you can simply key in `edit 1 n/Statistics Lab` in the Command Box. 
+1) To edit the name of the assignment with the first index in the [Assignment List](#gui-terminologies) to "Statistics Lab", you can simply key in `edit 1 n/Statistics Lab` in the [Command Box](#gui-terminologies). 
 
 ![EditCommand1](images/EditCommand1.png)
 *Figure 12: `edit 1 n/Statistics Lab` inputted by user and location of assignment index*
 
 2) The name of the assignment is changed to "Statistics Lab".
 
-3) A message that indicates details of the edited assignment is displayed in the Message Box.
+3) A message that indicates details of the edited assignment is displayed in the [Message Box](#gui-terminologies).
 
 ![EditCommand2](images/EditCommand2.png)
 *Figure 13: The displayed message and the edited assignment*
@@ -379,7 +379,7 @@ For example, `remind 1` will set reminders for the first assignment in your Assi
 
 You can set reminders for **multiple** assignments at a time as well. Here is an example with steps for you to follow:
 
-1) To set reminders for assignments "Essay" and "Assignment 3" (the second and fourth assignment respectively in your Assignment List as shown in Figure 17), you can simply enter `remind 2 4` into the Command Box.
+1) To set reminders for assignments "Essay" and "Assignment 3" (the second and fourth assignment respectively in your Assignment List as shown in Figure 17), you can simply enter `remind 2 4` into the [Command Box](#gui-terminologies).
 
    ![Remind24](images/Remind24.png)
    *Figure 17: Before "Essay" and "Assignment 3" are added into `Your reminders`*
@@ -492,7 +492,7 @@ You can mark **one or multiple** assignments as done by specifiying the assignme
 Here is an example with steps for you to follow:
 
 1) To mark the assignments "Essay" and "Biology lab report" as done, you can simply enter `done 2 3` into
-the Command Box. `2 3` refers to the indexes of the assignments as shown in the figure below.
+the [Command Box](#gui-terminologies). `2 3` refers to the indexes of the assignments as shown in the figure below.
 
    ![UserGuideDoneCommandIndex](images/UserGuideDoneCommandIndex.PNG)
    *Figure 22: Finding the `INDEX` of the assignments*
@@ -504,7 +504,7 @@ the Command Box. `2 3` refers to the indexes of the assignments as shown in the 
    ![UserGuideDoneCommandTicksAdded](images/UserGuideDoneCommandTicks.PNG)
    *Figure 23: Ticks added to the completed assignments*
 
-3) A message containing the information of the assignments marked as done will also be displayed in the Message Box.
+3) A message containing the information of the assignments marked as done will also be displayed in the [Message Box](#gui-terminologies).
 
    ![UserGuideDoneCommandSuccess](images/UserGuideDoneCommandSuccess.PNG)
    *Figure 24: Message shown in Message Box*
@@ -532,7 +532,7 @@ Similar to done, you can mark an assignment as not done by specifying the assign
 Here is an example with steps for you to follow:
 
 1) If you realised that the "Essay" assignment has been mistakenly marked as done,
-you can simply enter `undone 2` into the Command Box. `2` refers to the `INDEX` of the assignment as shown in the figure below.
+you can simply enter `undone 2` into the [Command Box](#gui-terminologies). `2` refers to the `INDEX` of the assignment as shown in the figure below.
 
    ![UserGuideUndoneCommandIndex](images/UserGuideUndoneCommandIndex.PNG)
    *Figure 25: Finding the `INDEX` of the assignment*
@@ -544,7 +544,7 @@ you can simply enter `undone 2` into the Command Box. `2` refers to the `INDEX` 
    ![UserGuideUndoneCommandTickRemoval](images/UserGuideUndoneCommandTickRemoval.PNG)
    *Figure 26: Tick associated to assignment is no longer displayed*
 
-3) A message containing the information of your assignment marked as not done will be displayed in the Message Box.
+3) A message containing the information of your assignment marked as not done will be displayed in the [Message Box](#gui-terminologies).
 
    ![UserGuideUndoneCommandSuccess](images/UserGuideUndoneCommandSuccess.PNG)
    *Figure 27: Message shown in Message Box*
@@ -590,7 +590,7 @@ and need to be done by a week from now (although the actual deadline is longer).
 
 3) The suggested time slot will be displayed in the assignment card.
     ![UserGuideScheduleCommandResult](images/UserGuideScheduleCommandResult.PNG)
-    *Figure 30: Message shown in Command Box and suggested schedule displayed in the assignment card*
+    *Figure 30: Message shown in [Command Box](#gui-terminologies) and suggested schedule displayed in the assignment card*
 
 <div style="page-break-after: always;"></div>
 
@@ -621,7 +621,7 @@ For example, `unschedule 3` will remove the suggested time slot of your third as
     ![UserGuideUnscheduleCommandInput](images/UserGuideUnscheduleCommandInput.PNG)
     *Figure 31: Assignment to remove the suggested schedule*
     ![UserGuideUnscheduleCommandResult](images/UserGuideUnscheduleCommandResult.PNG)
-    *Figure 32: Message shown in Command Box and suggested schedule removed*
+    *Figure 32: Message shown in [Command Box](#gui-terminologies) and suggested schedule removed*
        
 More examples:
 * `unschedule 1`
@@ -774,7 +774,7 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 **A:**
 You can reschedule by using the schedule command on the assignment again.<br>
 
-1. Type the schedule command into the Command Box with the index of the assignment that you want to reschedule. You can refer to the figure below.<br>
+1. Type the schedule command into the [Command Box](#gui-terminologies) with the index of the assignment that you want to reschedule. You can refer to the figure below.<br>
    ![UserGuideReschedule](images/UserGuideReschedule.PNG)
    *Figure 38: Entering schedule command into Command Box*
    
