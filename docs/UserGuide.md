@@ -108,10 +108,10 @@ For example, 7:00 AM is `0700` while 7:00 PM is `1900`.
 Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT mod/MODULE_CODE_OF_ASSIGNMENT [p/PRIORITY_OF_ASSIGNMENT] 
 [remind]`
 
-You can add assignments into your assignment list to manage and keep track of all your academic tasks. 
+You can add assignments into your Assignment List to manage and keep track of all your academic tasks. 
 
 For example, to add a lab report assignment that is **due on 23th April 2020 12.30pm** and **associated with the module CS2100**, you can 
-simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. Once the assignment is added, it will appear in the assignment list and all its information will be displayed as shown in the figure below.
+simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. Once the assignment is added, it will appear in the Assignment List and all its information will be displayed as shown in the figure below.
 
    ![UserGuideAddCommand](images/UserGuideAddCommand.PNG)
    *Figure 3: Information of the assignment added labelled*
@@ -142,17 +142,17 @@ More examples:
 
 Format: `delete INDEX [MORE_INDEXES]`
 
-You can delete **one or more** assignments from your assignment list by specifying the `INDEX` of each assignment you want to delete as shown in your list.
+You can delete **one or more** assignments from your Assignment List by specifying the `INDEX` of each assignment you want to delete as shown in your list.
 
 Here is an example with steps for you to follow:
 
-1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the Command Box which corresponds to their indexes in the assignment list.
+1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the Command Box which corresponds to their indexes in the Assignment List.
 
 ![DeleteCommand1](images/DeleteCommandDiagram1.png)
 *Figure 4: `delete 1 3` inputted by user and location of assignment indexes*
 
 
-2) You have successfully deleted both assignments from the assignment list, and they are no longer displayed.
+2) You have successfully deleted both assignments from the Assignment List, and they are no longer displayed.
 
 3) A "Deleted Assignment(s)" message that includes the information of your deleted assignments will be displayed in the Message Box.
 
@@ -168,7 +168,7 @@ More examples:
 
  **:clipboard: Pointers to note:**<br>
 * At least one index must be **present**. For example, `delete` without any index is invalid.
-* The indexes **must be found in your assignment list**.
+* The indexes **must be found in your Assignment List**.
 * The indexes **must not be duplicated**. For example, `delete 3 3` is invalid.
 </div>
 
@@ -230,7 +230,7 @@ Here is an example with steps for you to follow:
 ![ListCommand1](images/ListCommandDiagram1.png)
 *Figure 8: `list 3` inputted by user*
 
-2) Assignments found are displayed in the assignment list. 
+2) Assignments found are displayed in the Assignment List. 
 
 3) A message that indicates the number of assignments listed is displayed in the Message Box.
 
@@ -260,7 +260,7 @@ You can find your assignments based on keywords you enter. The types of keywords
 <div markdown="span" class="alert alert-success">
 
 **:bulb: Tip:**
-If your assignment list is really long, this command comes in handy as it filters the list based on assignments u want to see!
+If your Assignment List is really long, this command comes in handy as it filters the list based on assignments u want to see!
 </div>
 
 This is the table of prefixes used:
@@ -289,7 +289,7 @@ Here is an example with steps for you to follow:
 *Figure 10: `find mod/CS2100 ST2334` inputted by user*
 
 
-2) Assignments from the modules CS2100 and ST2334 will appear in the assignment list.
+2) Assignments from the modules CS2100 and ST2334 will appear in the Assignment List.
 
 3) A message that indicates the number of assignments found is displayed in the Message Box.
 
