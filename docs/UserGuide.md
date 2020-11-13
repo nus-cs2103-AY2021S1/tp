@@ -1,9 +1,19 @@
 ---
 layout: page
-title: User Guide
+title: TAsker User Guide
 ---
+{:refdef: style="width: 70%; margin: 2rem auto;"}
+![TAsker Logo](images/hero-image.png)
+{:refdef}
 
-TAsker is a **desktop app for Teaching Assistants (TAs) to manage student administration, optimized for use via a Command Line Interface (CLI)**. It still has the benefits of a Graphical User Interface (GUI). If you can type fast, TAsker can get your administrative tasks done faster than traditional GUI apps.
+TAsker is a **desktop app for Teaching Assistants (TAs) in the NUS School of Computing (SoC) to manage student administration**, optimized for use via a Command Line Interface (CLI).
+
+TAsker provides 3 main features to help you to manage student administration:
+1. Student Details Management
+1. Class Attendance Management
+1. Consultation Management
+
+It retains the benefits of a Graphical User Interface (GUI). If you can type fast, TAsker can get your administrative tasks done faster than traditional GUI apps.
 
 <!-- prettier-ignore -->
 - Table of Contents
