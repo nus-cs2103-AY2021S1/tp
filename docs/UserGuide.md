@@ -73,10 +73,10 @@ Jarvis is a desktop app for CS1101S Teaching Assistants (Avengers), optimized fo
     - [7.1 Add Command Summary](#71-add-command-summary)
     - [7.2 Edit Command Summary](#72-edit-command-summary)
     - [7.3 Delete Command Summary](#73-delete-command-summary)
-    - [7.4 View Command Summary](#74-view-command-summary)
     
     <div style="page-break-after: always;"></div>
     
+    - [7.4 View Command Summary](#74-view-command-summary)
     - [7.5 Exit Command Summary](#75-exit-command-summary)
     - [7.6 Help Command Summary](#76-help-command-summary)
 8. [Glossary](#8-glossary)
@@ -174,7 +174,7 @@ please check that you have installed the correct driver in the _`chrome_driver`_
  Do note that after editing your login details, exiting and relaunching the Jarvis User interface will take some time
  as Jarvis is attempting to log you into Source Academy.
 
-<div style="page-break-after: always;"></div>
+   <div style="page-break-after: always;"></div>
 
 1. Type the command in the command box and press Enter to execute it. E.g. typing help and pressing Enter will open the help window.
    Some example commands you can try:
@@ -246,7 +246,8 @@ the user interface segments 1 to 5 mentioned above.
          to do so.<br><br>
         1. **Weekly topic and today's date** - The week count in the semester, together with the academic topic for the
          week and today's date.<br><br>
-         <div style="page-break-after: always;"></div>
+         
+        <div style="page-break-after: always;"></div>
          
         1. **Shortcut icons** - These icons are positioned here for your convenience in quickly navigating to Source
          Academy via the blue diamond on the left, and Jarvis' user guide via the white book icon on the right.<br><br>
@@ -564,6 +565,7 @@ You can use tags to specify the field to be edited.
 
 At least one of the optional parameters must be provided.
 
+<div style="page-break-after: always;"></div>
 <div markdown="block" class="alert alert-info">
 
 * Do note that it takes a load time of around ~5 seconds after entering this command for the changes from Source Academy to be reflected in the GUI.
@@ -592,6 +594,8 @@ Edits the fields of a `Student`.
 You can refer to Figure 6.4.3a below for how the input will look like.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### 6.4.3 Editing `Mastery Checks` : `-mc`
 (Eryn)
 
@@ -604,6 +608,7 @@ Edits the score of a `Mastery Check` session with a `Student`.
 * `edit -mc 1 s/0`
 * `edit -mc 3 s/1`
 
+<div style="page-break-after: always;"></div>
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/userguide/editMasteryCheck.png" width="115%" /> <br />
 Figure 6.4.3a: <i>Editing a Mastery Check</i>
@@ -799,6 +804,8 @@ Shows all confirmed `Consultation` sessions, both past and upcoming.
 <br>:pencil2: Examples:
 * `view -c`
 
+<div style="page-break-after: always;"></div>
+
 #### 6.6.8 Viewing past `Consultations` : `-cp`
 (Eryn)
 
@@ -842,6 +849,8 @@ Shows all confirmed `Mastery Check` sessions, both past and upcoming.
 <br>:pencil2: Examples:
 * `view -mc`
 
+<div style="page-break-after: always;"></div>
+
 #### 6.6.11 Viewing past `Mastery Checks` : `-mcp`
 (Eryn)
 
@@ -871,6 +880,8 @@ Shows all upcoming `Mastery Check` sessions.
 
 * When the time of the `Mastery Check` displayed by `view -mcu` is earlier than the local time (to year, month, date, hour, and minute) and then caught up eventually, it is still considered as an upcoming `Mastery Check` when you enter `view -mcu`. This is to encourage the tutors to have this screen open while holding the `Mastery Check` session. When you switch to another command, such as `view -mc` or `view -mcp`, and then come back, you may see the updated `Mastery Check` list.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### 6.6.13 Viewing all `Tasks` : `-t`
 (Jun Jie)
