@@ -48,6 +48,7 @@ By: `Team W13-4` Since: `Aug 2020` License: `MIT`
 --------------------------------------------------------------------------------------------------------------------
 
 ## **1. Introduction** <a name="introduction"></a>
+(Contributed by Simon)
 
 **TrackIt@NUS** is a desktop application for managing modules, lessons, tasks, and contacts, tailored to the needs of
  NUS students. It focuses on the _Command Line Interface (CLI)_ while providing users with a simple and clean
@@ -80,6 +81,7 @@ The purpose of this Developer Guide is to help you understand the design and imp
  that you can get started on your contributions to the app.
 
 ## **2. Setting up, getting started** <a name="setup"></a>
+(Contributed by Simon)
 
 Refer to the guide [here](./SettingUp.md).
 
@@ -93,6 +95,7 @@ In this section, you will learn about the general design and structure TrackIt@N
    Pattern_](#command-p) in software design.
 
 ### **3.1 Architecture** <a name="architecture"></a>
+(Contributed by Long)
 
 <img src="images/ArchitectureDiagram.png" width="450"/>
 
@@ -145,6 +148,7 @@ The sections below give more details of each component.
 
 
 ### **3.2 UI Component** <a name="ui"></a>
+(Contributed by Wei Hong)
 
 The Class Diagram below shows how the `UI` components and sections interact with one another.
 
@@ -170,6 +174,7 @@ The UI component:
 * Listens for changes to `Model` data so that the UI can be updathed wit the modified data.
 
 #### **3.2.1. Upcoming Tab** <a name="upcoming-tab"></a>
+(Contributed by Tiffany)
 
 The *Class Diagram* below shows how the components in the `Upcoming Tab` interact with each other.
 ![UiUpcomingTabClassDiagram](images/UiUpcomingTabClassDiagram.png)
@@ -179,6 +184,7 @@ The *Class Diagram* below shows how the components in the `Upcoming Tab` interac
 ##### **Responsibilities**
 The `Upcoming Tab` consists of a list of an `UpcomingSectionCard` for the Overdue section, 7 `UpcomingSectionDayCards` to represent each day of the next week, and finally another `UpcomingSectionCard` for the Future section. Each `UpcomingSectionCard` comprises of a `TaskPanel` and each `UpcomingSectionDayCard` comprises of a `TaskPanel` and a `LessonPanel`.
 The *Sequence Diagram* below shows how the calendar feature in the Upcoming tab is populated.
+
 ![fillCalendarDiagram](images/fillCalendarDiagram.png)
 
 ##### **Flow of adding lessons**
@@ -189,6 +195,7 @@ When a user scrolls down the `Upcoming Tab` and reaches a date, the `UpcomingLes
 ![UiScrollActivityDiagram](images/UiScrollActivityDiagram.png)
 
 #### **3.2.2. Module Tab** <a name="module-tab"></a>
+(Contributed by Wei Hong)
 
 ![UiModuleTabClassDiagram.png](images/UiModuleTabClassDiagram.png)
 
@@ -202,6 +209,7 @@ This module tab consist of three panels (`LessonListPanel`, `TaskListPanel`, `Co
    consist of **1 single panel instead of 3**.
 
 ### **3.3. Logic Component** <a name="logic"></a>
+(Contributed by Long)
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -223,6 +231,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 </div>
 
 ### **3.4. Model Component** <a name="model"></a>
+(Contributed by Long)
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -241,6 +250,7 @@ The `Model`,
 * Does not depend on any of the other three components.
 
 ### **3.5. Storage Component** <a name="storage"></a>
+(Contributed by Long)
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -251,11 +261,14 @@ The `Storage` component,
 * can save the app's data in json format and read it back.
 
 ### **3.6. Common Classes** <a name="common"></a>
+(Contributed by Long)
 
 The `commons` package contains classes used by multiple other components in the `trackitnus.commons` package.
 
 
 #### **3.7 Code Design Considerations** <a name="code-des-cons"></a>
+(Contributed by Long)
+
 ----
 **All commands in TrackIt@NUS follow a similar execution flow.**
 
@@ -341,6 +354,7 @@ the Logic should only receive events and control the Model and the Model should 
 
 ----
 #### **3.8. Feature Design Considerations** <a name="feat-des-cons"></a>
+(Contributed by Long)
 
 The entire app follows a simple principle: the app should behave in the way most normal users expect it to behave. 
 
@@ -450,6 +464,7 @@ This will relieve our users from the mental burden of having to remember differe
 This section describes some noteworthy details on how certain features are implemented.
 
 ### 4.1 **Module Manager** <a name="module-manager"></a>
+(Contributed by Simon)
 
 TrackIt@NUS allows users to keep track of all modules that he/she is taking. Module (or more exactly module's code) is
  the link between Lesson, Task and Contact. The following diagram illustrates their relationship:
@@ -468,6 +483,7 @@ TrackIt@NUS allows users to keep track of all modules that he/she is taking. Mod
  
 
 #### 4.1.1 Current Implementation<a name="module-manager-implementation"></a>
+(Contributed by Simon)
 
 In this section, we will outline the key operations of the Module Manager, namely:
 * `AddModuleCommand`
@@ -554,6 +570,7 @@ The following Sequence Diagram will illustrate the above steps in greater detail
 ![Edit Module Sequence Diagram](images/EditModuleSequenceDiagram.png)
 
 ### **4.2. Lesson Manager** <a name="lesson-manager"></a>
+(Contributed by Minh)
 
 TrackIt@NUS allows users to keep track of their weekly lessons. The lesson manager is one of TrackIt@NUS's basic components.
 
@@ -567,6 +584,7 @@ TrackIt@NUS also gives users a better understanding of their lessons by allowing
 categories. Users can view lessons specific to a module and lessons on a specific day.
 
 #### 4.2.1 Rationale <a name="lesson-manager-rationale"></a>
+(Contributed by Minh)
  
 Lessons are an integral part of any student's day-to-day life. Hence, TrackIt@NUS includes a lesson manager for students to 
  keep track of their lessons. Each lesson must belong to a unique module. When users click into a specific module tab, 
@@ -576,6 +594,7 @@ Lessons are an integral part of any student's day-to-day life. Hence, TrackIt@NU
  `edit` commands will not work.
  
 #### 4.2.2 Current Implementation <a name="lesson-manager-implementation"></a>
+(Contributed by Minh)
  
  In this section, we will outline the key operations of the Lesson Manager, namely:
  * `AddLessonCommand`
@@ -643,6 +662,7 @@ Lessons are an integral part of any student's day-to-day life. Hence, TrackIt@NU
  ![Get Module Lessons Sequence Diagram](images/GetModuleLessonsSequenceDiagram.png)
 
 ### 4.3 **Task Manager** <a name="task-manager"></a>
+(Contributed by Simon)
 
 TrackIt@NUS allows users to keep track of his/her tasks. The task manager is one of TrackIt@NUS's basic components.
 
@@ -657,6 +677,7 @@ TrackIt@NUS also gives users a better understanding of their tasks by allowing u
   a week away), and specific module tasks.
  
 #### 4.3.1 Rationale <a name="task-manager-rationale"><a/>
+(Contributed by Simon)
  
  Tasks are an integral part of any student's day-to-day life. Hence, TrackIt@NUS includes a task manager for students to 
  keep track of all their tasks. To better support NUS students, a task can either belong to a module or not. When
@@ -672,6 +693,7 @@ TrackIt@NUS also gives users a better understanding of their tasks by allowing u
 :bulb: To remove a task from a module, simply type `T edit INDEX m/` (use the `m/` prefix but leave the `CODE` parameter empty).
 
 #### 4.3.2 Current Implementation <a name="task-manager-implementation"><a/>
+(Contributed by Simon)
 
 In this section, we will outline the key operations of the Task Manager, namely:
 * `AddTaskCommand`
@@ -742,7 +764,8 @@ This is the sequence diagram of `getModuleTasks`.
  only differences are the predicates used.
 
 #### 4.3.3 Design Considerations <a name="task-manager-design"><a/>
-
+(Contributed by Simon)
+   
 As mentioned, a task may or may not belong to a module. In the case it does not, we store the module code as
  null. A task also may or may not have a remark. In the case it does not, we store the remark as the empty
   string. These 2 optional fields made the `EditTaskCommand` more challenging to implement. We wanted the user to be
@@ -755,6 +778,7 @@ The original AB3 implementation of edit commands, which would default to the ori
   `isCodeChanged`, to know whether users wanted to remove the existing module code or remark.
  
 ### 4.4 **Contact Manager** <a name="contact-manager"></a>
+(Contributed by Minh)
 
 TrackIt@NUS allows users to manage their contacts. The contact manager is one of TrackIt@NUS's basic components.
 
@@ -767,6 +791,7 @@ The common commands for the contact manager include:
 We will also elaborate on one more key operation that is used in the module tabs, namely `getModuleContacts`.
  
 #### 4.4.1 Rationale <a name="contact-manager-rationale"></a>
+(Contributed by Minh)
  
  Managing contacts is an essential part of any student's life. Hence, TrackIt@NUS includes a contact manager for students to 
  keep track of all their contacts. To better support NUS students, a contact can hold any number (can be 0) of tags. If a tag matches 
@@ -775,6 +800,7 @@ We will also elaborate on one more key operation that is used in the module tabs
 :bulb: To remove all tags from a contact, simply type `C edit INDEX t/` (use the `t/` prefix but do not provide any tag).
 
 #### 4.4.2 Current Implementation <a name="contact-manager-implementation"></a>
+(Contributed by Minh)
 
 In this section, we will outline the key operations of the Contact Manager, namely:
 * `AddContactCommand`
@@ -840,6 +866,7 @@ This is the sequence diagram of `getModuleContacts`.
 ![Get Module Contacts Sequence Diagram](images/GetModuleContactsSequenceDiagram.png)
 
 #### 4.4.2 Design Considerations <a name="contact-manager-design"></a>
+(Contributed by Minh)
 
 A number of fields in a contact (namely phone number and e-mail address) are optional. In the case they are not specified, 
  we store them as null. Similar to tasks, we wanted users to be able to remove any optional field simply by 
@@ -852,6 +879,7 @@ The original AB3 implementation of edit commands, which would default to the ori
   `isEmailChanged`, to know whether users wanted to remove the existing phone number and/or e-mail address.
 
 ### 4.5 **Logging** <a name="logging"></a>
+(Contributed by Simon)
 
 * We are using `java.util.logging` package for logging.
 * The `LogsCenter` class is used to manage the logging levels and logging destinations
@@ -875,10 +903,12 @@ Certain properties of the application can be controlled (e.g user preferences fi
 --------------------------------------------------------------------------------------------------------------------
 
 ## **5. Documentation** <a name="documentation"></a>
+(Contributed by Simon)
 
 Refer to the guide [here](./Documentation.md)
 
 ## **6. Testing** <a name="testing"></a>
+(Contributed by Simon)
 
 Refer to the guide [here](./Testing.md)
 
@@ -889,6 +919,7 @@ Refer to the guide [here](./DevOps.md)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix A: Product Scope** <a name="appen-a"></a>
+(Contributed by Simon)
 
 **Target user profile**:
 
@@ -910,6 +941,7 @@ Refer to the guide [here](./DevOps.md)
 * TrackIt@NUS can manage your student life faster than the typical mouse/[GUI](#gui) app.
 
 ## **Appendix B: User stories** <a name="appen-b"></a>
+(Contributed by Tiffany and Wei Hong)
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -942,6 +974,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 ## **Appendix C: Use cases** <a name="appen-c"></a>
+(Contributed by Tiffany and Wei Hong)
 
 (For all use cases below, the **System** is the `TrackIt@NUS` application and the **Actor** is the `user`, unless specified otherwise)
 
@@ -1426,6 +1459,7 @@ Extensions:
       Use case ends.
 ```
 ## **Appendix D: Non-Functional Requirements** <a name="appen-d"></a>
+(Contributed by Long)
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  A user with **above average typing speed** for regular English text (i.e. not code, not system admin commands) should
@@ -1443,6 +1477,7 @@ Extensions:
 13. The app should be able to handle 150 tasks, lessons, contacts and modules in total without a noticeable performance degradation.
 
 ## **Appendix E: Glossary** <a name="appen-e"></a>
+(Contributed by Simon)
 
 | **Term** | **Explanation** |
 | --------- | --------------- |
@@ -1461,6 +1496,7 @@ Extensions:
 | **MSS** <a name="mss"></a> | Stands for "Main Success Scenario". This describes the given interaction for a given use case, assuming nothing goes wrong. |
 
 ## **Appendix F: Instructions for Manual Testing** <a name="appen-f"></a>
+(Contributed by Simon)
 
 Given below are instructions to test the app manually.
 
@@ -1701,6 +1737,7 @@ Given below are instructions to test the app manually.
     
 
 ## **Appendix G: Effort** <a name="appen-g"></a>
+(Contributed by Long)
 
 The team has put in a tremendous amount of effort to this project, with a single simple principle in mind: create an app
  that our targeted users will prefer over existing commercial apps, and do so while maintain a production-grade
