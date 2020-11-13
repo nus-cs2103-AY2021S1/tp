@@ -425,6 +425,7 @@ Figure 4.3.4a Expected outcome of performing the `findMod` command
 
 
 ### 4.4 Tutorial Group Features
+###### (written by: Tan Eu Zin)
 
 > - You should perform the following features while in the Tutorial Group view.
 > - Refer to Section 4.2 - Navigation for help getting to the correct view
@@ -486,7 +487,7 @@ Format: `editTG INDEX [tg/TG_CODE] [day/DAY_OF_WEEK] [start/START_TIME] [end/END
 
 Example:
 
-- Edits the third tutorial group to be _T04_, takes place every _TUE_ from _08:00_ to _10:00_.
+- Edits the first tutorial group to be _T03_, takes place every _MON_ from _11:00_ to _13:00_.
 
     - `editTG 1 tg/T03 day/MON start/11:00 end/13:00`
 
@@ -814,6 +815,7 @@ Command | Description | Compatible View
 
 
 ### 6.4 Tutorial Group Commands
+###### (written by: Tan Eu Zin)
 
 Command | Description | Compatible View
 --------|--------|--------

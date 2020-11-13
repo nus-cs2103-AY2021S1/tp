@@ -633,6 +633,7 @@ The following activity diagram summarizes how data from the Json file is read an
 ---
 
 ## **Appendix A - Product Scope**
+###### (written by: Tan Eu Zin)
 **Target user profile**:
 -   Teaching Assistants(TAs) across NUS
 -   Teaches multiple modules
@@ -652,6 +653,7 @@ The following activity diagram summarizes how data from the Json file is read an
 
 
 ## **Appendix B - User Stories**
+###### (written by: Tan Eu Zin)
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
