@@ -30,13 +30,13 @@ Taskmania (based off AB3) is a **desktop application for a project leader to man
    ![Ui](images/Ui.png)
    *Figure 1: A view of Taskmania at startup*
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+5. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will
  open the help window.<br>
    Some commands you can try:
 
-   * **`startproject 1`** : Opens the first project
+   * `startproject 1` : Opens the first project
 
-   * **`exit`** : Exits the app
+   * `exit` : Exits the app
 
 6. Refer to the Features below for details of each command.
 
