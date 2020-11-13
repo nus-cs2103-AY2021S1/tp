@@ -436,6 +436,7 @@ will auto switch to the `Consultation` tab, and the new `Consultation` will be a
 <div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
+    
 * When you add a `Consultation` for a future date while displaying only past `Consultations`, make sure to enter `view -c` to view the complete list to check if the `Consultation` has been added correctly.
 * Similarly, when you add a `Consultation` for a past date while displaying only future `Consultations`, make sure to enter `view -c`.
 * `NAME` does not have to correspond to an existing student; this is so that the tutor may freely use any nicknames or other identifiers as they see fit. However, it may not be left empty.
@@ -464,6 +465,7 @@ As shown in Figure 6.3.2a, once we key in the command `add -mc NAME d/YYYY-MM-DD
 will auto switch to the `Mastery Check` tab, and the new `Mastery Check` will be added to the list.
 
 <div markdown="block" class="alert alert-info">
+    
 * When you add a `Mastery Check` for a future date while displaying only past `Mastery Checks`, make sure to enter `view -mc` to view the complete list to check if the `Mastery Check` has been added correctly.
 * Similarly, when you add a `Mastery Check` for a past date while displaying only future `Mastery Check`, make sure to enter `view -mc`.
 * `NAME` does not have to correspond to an existing student; this is so that the tutor may freely use any nicknames or other identifiers as they see fit. However, it may not be left empty.
@@ -592,7 +594,7 @@ As shown in Figure 6.4.3a, once we key in the command `edit -mc 1 s/1`, a succes
 will auto switch to the `Mastery Check` tab, and the `Mastery Check` with index 1 (first Mastery Check in the list) will be marked as PASS rather than FAIL.
 <div style="page-break-after: always;"></div>
 
-<br><div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
     
 * Do note that `SCORE` can only be 0 or 1, according to the actual restrictions of `Mastery Check` pass/fail in CS1101S.
 * The `INDEX` should be a non-zero positive number that is a valid index currently displayed on the left side of the target `Mastery Check`.
@@ -620,7 +622,7 @@ Figure 6.5.1a: <i>Deleting a Consultation</i>
 As shown in Figure 6.5.1a, once we key in the command `delete -c 1`, a success message will be displayed and Jarvis
 will auto switch to the `Consultation` tab, and the `Consultation` with index 1 (first Consultation in the list) will be removed from the list.
 
-<br><div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
     
 * The `INDEX` should be a non-zero positive number that is a valid index currently displayed along with the target
  `Consultation`. You may find the index of the `Consultation` on the left side of the name of the student who requested the Consultation in the Infomation Panel.
@@ -641,7 +643,7 @@ Deletes a `Mastery Check` based on the `INDEX` you specify.
 You can refer to Figure 6.5.1a above for how the input will look like.
 </div>
 
-<br><div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
     
 * The `INDEX` should be a non-zero positive number that is a valid index currently displayed along with the target
  `Mastery Check`. You may find the index of the `Mastery Check` on the left side of the name of the student who requested the Mastery Check in the Infomation Panel.
@@ -788,7 +790,7 @@ Shows all past `Consultation` sessions.
 <br>:pencil2: Examples:
 * `view -cp`
 
-<br><div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
     
 * When the `Consultation` time is the same as the local time (year, month, date, hour, and minute all equal), it is considered to have occurred in the past.
 </div>
@@ -805,7 +807,7 @@ Shows all upcoming `Consultation` sessions.
 <br>:pencil2: Examples:
 * `view -cu`
 
-<br><div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 * When the time of the `Consultation` displayed by `view -cu` is earlier than the local time (to year, month, date, hour, and minute) and then caught up eventually, it is still considered as an upcoming `Consultation` when you enter `view -cu`. This is to encourage the tutors to have this screen open while holding the `Consultation` session. When you switch to another command, such as `view -c` or `view -cp`, and then come back, you may see the updated `Consultation` list.
 </div>
@@ -830,7 +832,7 @@ Shows all past `Mastery Check` sessions.
 <br>:pencil2: Examples:
 * `view -mcp`
 
-<br><div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 * When the `Mastery Check` time is the same as the local time (year, month, date, hour, and minute all equal), it is considered to have occurred in the past.
 </div>
@@ -845,7 +847,7 @@ Shows all upcoming `Mastery Check` sessions.
 <br>:pencil2: Examples:
 * `view -mcu`
 
-<br><div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 * When the time of the `Mastery Check` displayed by `view -mcu` is earlier than the local time (to year, month, date, hour, and minute) and then caught up eventually, it is still considered as an upcoming `Mastery Check` when you enter `view -mcu`. This is to encourage the tutors to have this screen open while holding the `Mastery Check` session. When you switch to another command, such as `view -mc` or `view -mcp`, and then come back, you may see the updated `Mastery Check` list.
 </div>
