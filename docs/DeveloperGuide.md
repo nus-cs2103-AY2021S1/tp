@@ -196,6 +196,7 @@ As per in the description above, can understand the scopes using the hierarchy a
     * `PERSON_LIST`
       * `PERSON`
       
+
 In most cases a command that is valid in a parent scope would be valid in any descendant scopes, but there may be some exceptions.
 
 The `Status` of `MainCatalogue` is open to be accessed in other `Model` components by a public getter. The `MainCatalogue` has a field `project` which is an `Optional` object of `Project`. 
@@ -255,7 +256,6 @@ calls `enter`, causing a switch of scoping status and assignment of `project` of
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The `startproject` command calls `enter` method in model, causing a switching of level and updates the project of focus.
-
 </div>
 The following sequence diagram shows the execution of startproject command.
 
@@ -362,13 +362,13 @@ The diagram below summarises the events above with the help of a sequence diagra
 ![AddTaskSequenceDiagramImage](images/AddTaskSequenceDiagram.png)
 
    *Figure 18: Sequence Diagram of the 'addtask' command*
-   
+
 The diagram below gives a short overview on what happens when a user's input is received:
 
 ![AddTaskActivityDiagramImage](images/AddTaskActivityDiagram.png)
 
    *Figure 19: Activity Diagram of the 'addtask' command*
-   
+
 #### Design consideration:
 
 ##### Aspect: Whether a Task object can be instantiated without filling up all of its attributes
@@ -420,7 +420,7 @@ Step 1. The user uses `startproject` to open a project called "Taskmania". Suppo
 
 Step 2. The user executes `filter ta/T-Fang` command to find all tasks that assigned to a "Tian Fang" whose Github username is "T-Fang". the command is eventually passed to `TaskFilterCommandParser` and the parser will identify the type of the filtering condition using the prefix entered and create the corresponding task predicate. In this case, `ta/` indicates that a predicate that filter tasks by their assignees' Github usernames should be created. 
 
-Step 3. The `LogicManager` executes the `TaskFilterCommand` returned by the parser. The `TaskFilterCommand` will get the current project ("Taskmania") from the `Model` and update the `taskFilter` predicate inside the "Taskmania" project. Therefore, the filtered task list of "Taskmania" will only contain `task1` and `task2`.
+Step 3. The `LogicManager` executes the `TaskFilterCommand` returned by the parser. The `TaskFilterCommand` will get the current project ("Taskmania") from the `Model` and update the `taskFilter` predicate inside the "Taskmania" project. Therefore, the filtered task list of "Taskmania" will only contain `task1` and `task2`. Note that the commands related to task indices such as `viewtask` now take in indecies with respect to the newly filtered list (e.g. `viewtask 3` will show an error message as there are only two tasks in the filtered task list ).
 
 ![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
 
@@ -463,11 +463,11 @@ The following activity diagram summarizes what happens when a user executes a ta
 ##### Aspect: Whether to clear filter when user re-enters the project
 
 * **Alternative 1 (current choice):** Keep the filter and display filtered tasks when the user re-enters the project
-  * Pros: Task list remains unchanged (e.g. the user don't have to filter everytime (s)he re-enters the same project if (s)he only wants to see tasks assigned to him/her ) .
-  * Cons: The user might not be able to see all the tasks when (s)he enters the project.
+  * Pros: Task list remains unchanged (e.g. users don't have to filter everytime they re-enter the same project if they only want to see tasks that are assigned to them) .
+  * Cons: Users might not be able to see all the tasks when they enter the project.
 * **Alternative 2:** Clear the filter when the user re-enters the project
-  * Pros: The user always gets to see all the tasks every time (s)he enters the project.
-  * Cons: The user have to filter everytime (s)he re-enters the same project if (s)he only wants to see tasks assigned to him/her.
+  * Pros: Users always gets to see all the tasks every time they enter the project.
+  * Cons: Users have to filter everytime they re-enters the same project if they only want to see tasks that are assigned to them.
 
 ### New Person feature
 
@@ -489,7 +489,7 @@ The New Teammate command has to be prefixed with `addperson` and include **all**
 
 The teammate can be created in any scope. However, if created in the project scope, it is added to that project to be
  come a teammate. The following explanation will detail `AddPerson` being executed in the project scope.
- 
+
  Once created in the project scope, the newly created person is added into that particular project.
  Further assignment of a user to other projects can be done in the scope of other projects.
 
@@ -566,7 +566,7 @@ The implementation of DeleteTeammate involves both the deleting of the teammate 
 The DeleteTeammate created is removed in the following places:
  - global static variable `allPeople` in the Person class 
  - within the project it added to, in the associated Participations.
- 
+
 The Delete Teammate command has to be prefixed with `deleteperson` and include the following field:
  - `mg/` prefix followed by the teammate's Github User Name
 
@@ -613,13 +613,14 @@ Within the `DeletePersonCommand` class, an instance of `DeletePersonCommand` is 
 
 LogicManager then calls the method `execute` of the DeletePersonCommand which deletes instances of itself in
  all instances of participation as well as in memory and storage.
- 
+
  ![DeletePersonActivityDiagram](images/DeletePersonActivityDiagram.png)
- 
+
+
 #### Design consideration:
- 
+
 ##### Aspect: Which scope deletion of a teammate should happen in.
- 
+
  * **Alternative 1 (current choice):** Deletion should happen in the listperson scope.
    * Pros: All teammates can be viewed at once, and one can be selected for deletion there.
    * Pros: Teammate can be deleted even if all associations deleted from all projects.
@@ -627,7 +628,7 @@ LogicManager then calls the method `execute` of the DeletePersonCommand which de
    
    (While it does indeed require the user to change scope to delete a teammate, deleting a teammate is not something
     the user will be doing regularly, and so we believe the pros outweigh the cons in this case.)
- 
+
  * **Alternative 2:** Deletion should happen in the project scope.
    * Pros: A teammate can be deleted quickly.
    * Cons: It would be impossible to delete a teammate if all associations are deleted.
@@ -743,8 +744,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | project team leader   | add a project                  |                      |
-| `* * *`  | project team leader | add a new person |                      |  
-| `* * *`  | project team leader | edit a person |  change details of a person                     |  
+| `* * *`  | project team leader | add a new person |                      |
+| `* * *`  | project team leader | edit a person |  change details of a person                     |
 | `* * *`  | project team leader | add a teammate to another project | have a teammate in multiple projects |
 | `* * *`  | project team leader | remove a teammate from a project | remove a teammate when he leaves a project   |
 | `* * *`  | project team leader | delete a person | remove a person that will never collaborates again |
@@ -1051,7 +1052,7 @@ testers are expected to do more *exploratory* testing.
 ### Adding a Teammate 
 
 1. Adding a teammate into a project while in a project scope
-   1. Prerequisites: Have a valid project created, and start with `startproject 1`. 
+   1. Prerequisites: Have a valid project created, and start it using `startproject`. 
 
    1. Test case: `addteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road `<br>
       Expected: A new teammmate is added to project 1.  "New Teammate added: LucasTai98" message is returned to the
@@ -1063,7 +1064,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `addteammate mn/%&`, `add teammate ...`,  where the input is incomplete
     or the command is incorrect. <br> Expected: Similar to previous.
-    
+   
 ### Deleting a Teammate from listpersons scope
 
 1. Deleting a teammate while in listpersons view
@@ -1078,7 +1079,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `deleteteammate`, `delete teammate ...`,  where the input is incomplete
     or the command is incorrect. <br> Expected: Similar to previous.
-    
+   
 ### Editing a Teammate from project scope
 
 1. Editing a teammate while in a project's view
@@ -1108,16 +1109,27 @@ testers are expected to do more *exploratory* testing.
 ### Adding a Task 
 
 1. Adding a task into a project while in a project scope
-   1. Prerequisites: Have a valid project created, and start with `startproject 1`. 
-
-   1. Test case: `addtask tn/Refactor Person class tp/0 `<br>
+   1. Prerequisites: Have a valid project created, and start it using `startproject`. 
+1. Test case: `addtask tn/Refactor Person class tp/0 `<br>
       Expected: A new task is added to project 1.  "New task added: [Refactor Person Class]" message is returned to the
        user.
-
    1. Test case: `addtask`<br>
-      Expected: No task added to the project. Error details about incorrect format shown to user.
+   Expected: No task added to the project. Error details about incorrect format shown to the user.
       .
-
    1. Other incorrect delete commands to try: `addtask tn/%&`, `add teammate ...`,  where the input is incomplete
     or the command is incorrect. <br> Expected: Similar to previous.
-    
+
+
+### Deleting a task
+
+1. Deleting a task while in a project
+
+   1. Prerequisites: Have a valid project created, and start it using `startproject`
+1. Test case: `deletetask 1`<br>
+      Expected: First task is deleted from the task list. Name of the deleted task shown to the user. 
+      If the user was viewing the task's details using `viewtask`, the task detail panel will close as the task is now deleted.
+   1. Test case: `deletetask 0`<br>
+   Expected: No project is deleted. Error details about incorrect format shown to the user.
+   1. Other incorrect delete commands to try: `deletetask`, `deletetask x`, `...` (where x is larger than the task list size)<br>
+      Expected: Similar to previous.
+

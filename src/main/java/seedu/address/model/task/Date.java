@@ -54,19 +54,23 @@ public class Date {
         boolean isValidMonth = month <= 12 && month >= 1;
         //year is always valid because it matches the regex as 4 digits of integers
         if (day == 29 && month == 2) {
-            if (year % 400 == 0) {
-                return true;
-            } else if (year % 100 == 0) {
-                return false;
-            } else {
-                return year % 4 == 0;
-            }
+            return isLeapYear(year);
         } else if ((day == 30 || day == 31) && month == 2) {
             return false;
         } else if (day == 31 && (month == 4 || month == 6 || month == 9 || month == 11)) {
             return false;
         } else {
             return isValidDay && isValidMonth;
+        }
+    }
+
+    private static boolean isLeapYear(int year) {
+        if (year % 400 == 0) {
+            return true;
+        } else if (year % 100 == 0) {
+            return false;
+        } else {
+            return year % 4 == 0;
         }
     }
     public boolean isBefore(Date other) {

@@ -13,7 +13,7 @@ public class ArgumentMultimapUtil {
      * @param prefixes prefixes to check.
      * @return true if all the prefixes are present in the given ArgumentMultimap, and false otherwise.
      */
-    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    public static boolean hasAllPrefixes(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
@@ -24,7 +24,7 @@ public class ArgumentMultimapUtil {
      * @param prefixes prefixes to check.
      * @return true if only one of the given prefixes is present.
      */
-    public static boolean isOnlyOneGivenPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    public static boolean hasOnlyOneGivenPrefix(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes)
                 .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
                 .count() == 1;
@@ -39,11 +39,11 @@ public class ArgumentMultimapUtil {
      * @return true if there is one and only one prefix in the argumentMultimap,
      *          and that prefix is one of the given prefixes.
      */
-    public static boolean isOnlyOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    public static boolean hasOnlyOnePrefix(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         if (argumentMultimap.numOfPrefixes() != 1) {
             return false;
         }
-        return isOnlyOneGivenPrefixPresent(argumentMultimap, prefixes);
+        return hasOnlyOneGivenPrefix(argumentMultimap, prefixes);
     }
     /**
      * Returns true if the given two prefixes are the only prefixes presented.
@@ -53,8 +53,8 @@ public class ArgumentMultimapUtil {
      * @param prefix2 the second prefix to check.
      * @return true if the given two prefixes are the only prefixes presented, and false otherwise.
      */
-    public static boolean areOnlyTheseTwoPrefixesPresent(ArgumentMultimap argumentMultimap,
-                                                         Prefix prefix1, Prefix prefix2) {
+    public static boolean hasOnlyTwoPrefixes(ArgumentMultimap argumentMultimap,
+                                             Prefix prefix1, Prefix prefix2) {
         if (argumentMultimap.numOfPrefixes() != 2) {
             return false;
         }

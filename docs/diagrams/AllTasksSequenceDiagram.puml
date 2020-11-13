@@ -2,7 +2,7 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
-participant "a:AllTasksCommand" as AllTasksCommand LOGIC_COLOR
+participant ":AllTasksCommand" as AllTasksCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1

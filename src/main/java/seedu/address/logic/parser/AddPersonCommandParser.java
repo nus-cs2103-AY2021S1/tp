@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.ArgumentMultimapUtil.arePrefixesPresent;
+import static seedu.address.logic.parser.ArgumentMultimapUtil.hasAllPrefixes;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_GIT_USERNAME;
@@ -34,7 +34,7 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
             ArgumentTokenizer.tokenize(args, PREFIX_PERSON_NAME, PREFIX_PERSON_GIT_USERNAME,
                 PREFIX_PERSON_PHONE, PREFIX_PERSON_EMAIL, PREFIX_PERSON_ADDRESS);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_PERSON_NAME, PREFIX_PERSON_GIT_USERNAME,
+        if (!hasAllPrefixes(argMultimap, PREFIX_PERSON_NAME, PREFIX_PERSON_GIT_USERNAME,
             PREFIX_PERSON_PHONE, PREFIX_PERSON_EMAIL, PREFIX_PERSON_ADDRESS)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand

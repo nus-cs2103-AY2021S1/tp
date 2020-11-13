@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.ArgumentMultimapUtil.arePrefixesPresent;
+import static seedu.address.logic.parser.ArgumentMultimapUtil.hasAllPrefixes;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
@@ -28,7 +28,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_TASK_NAME, PREFIX_TASK_PROGRESS,
                         PREFIX_TASK_DEADLINE, PREFIX_DESCRIPTION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TASK_NAME,
+        if (!hasAllPrefixes(argMultimap, PREFIX_TASK_NAME,
                 PREFIX_TASK_PROGRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
