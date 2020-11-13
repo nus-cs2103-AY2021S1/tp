@@ -396,11 +396,6 @@ Adds a `Consultation` session with a `Student` at a specific date and time.
 Figure 6.3.1a: <i>Adding a Consultation</i>
 </div>
 
-<div style="text-align: center; padding-bottom: 2em">
-<img src="images/userguide/viewMissionDeadline.png" width="115%" /> <br />
-Figure 6.6.3a: <i>Viewing all current Missions</i>
-</div>
-
 <br>✏️ Examples:
 * `add -c John Doe d/2020-09-20 t/13:30`
 * `add -c Mary Jane d/2021-01-02 t/09:15`
