@@ -2,9 +2,9 @@
 layout: page
 title: TAsker User Guide
 ---
-{:refdef: style="width: 70%; margin: 2rem auto;"}
-![TAsker Logo](images/hero-image.png)
-{:refdef}
+<div style="width: 70%; margin: 2rem auto;">
+<img src="images/hero-image.png" alt="TAsker Logo" />
+</div>
 
 TAsker is a **desktop app for Teaching Assistants (TAs) in the NUS School of Computing (SoC) to manage student administration**, optimized for use via a Command Line Interface (CLI).
 
@@ -15,6 +15,10 @@ TAsker provides 3 main features to help you to manage student administration:
 
 It retains the benefits of a Graphical User Interface (GUI). If you can type fast, TAsker can get your administrative tasks done faster than traditional GUI apps.
 
+---
+<p style="font-size: 2rem; color: #d62865">
+Table of Contents
+</p>
 <!-- prettier-ignore -->
 - Table of Contents
 {:toc}
@@ -183,7 +187,7 @@ Clears all entries from the list of students.
 
 Format: `clear`
 
-### Show Attendance: `showatt`
+### Checking for a student's attendance : `showatt`
 
 Shows the attendance for tutorial on a specified date.
 
@@ -205,7 +209,7 @@ Examples:
   John was absent on 2020-12-12
   ```
 
-### Marking Attendance : `attend`
+### Marking student's attendance : `attend`
 
 Marks the student as present for tutorial on a specified date.
 
@@ -220,7 +224,7 @@ Examples:
 - `attend 1 d/12/12/2000` Marks the student at index 1 as present on 12 December 2000.
 - `attend 2 d/12/01/2002` Marks the student at index 2 as present on 12 January 2002.
 
-### Unmarking Attendance : `unattend`
+### Unmarking student's attendance : `unattend`
 
 Marks the student as absent (default) for tutorial on a specified date.
 
@@ -311,7 +315,7 @@ Format: `exit`
 
 ---
 
-## FAQ
+## Frequently Asked Questions (FAQs)
 
 **Q**: How do I start using TAsker?
 <br>
