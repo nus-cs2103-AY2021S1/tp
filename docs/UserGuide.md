@@ -418,19 +418,19 @@ Action | Format, Examples
 
 ## Delegation of User Guide
 
-Introduction: Tan Jing Yi Jace
-Quick start: Liu Yuxi, Rachel Gina Abelarde, Tan Jing Yi Jace, Yong Shan Rong, Yuki Akizuki
-Features:
-Help: Rachel Gina Abelarde
-Add: Rachel Gina Abelarde
-Clear: Rachel Gina Abelarde
-Delete: Rachel Gina Abelarde
-Edit: Yong Shan Rong
-View: Liu Yuxi
-List: Tan Jing Yi Jace
-Flip: Yuki  Akizuki
-Search: Yuki  Akizuki
-Sort: Liu Yuxi
-FAQ: Liu Yuxi
-Glossary: Tan Jing Yi Jace
+Introduction: Tan Jing Yi Jace<br>
+Quick start: Liu Yuxi, Rachel Gina Abelarde, Tan Jing Yi Jace, Yong Shan Rong, Yuki Akizuki<br>
+Features:<br>
+Help: Rachel Gina Abelarde<br>
+Add: Rachel Gina Abelarde<br>
+Clear: Rachel Gina Abelarde<br>
+Delete: Rachel Gina Abelarde<br>
+Edit: Yong Shan Rong<br>
+View: Liu Yuxi<br>
+List: Tan Jing Yi Jace<br>
+Flip: Yuki  Akizuki<br>
+Search: Yuki  Akizuki<br>
+Sort: Liu Yuxi<br>
+FAQ: Liu Yuxi<br>
+Glossary: Tan Jing Yi Jace<br>
 Command Summary: Liu Yuxi, Rachel Gina Abelarde, Tan Jing Yi Jace, Yong Shan Rong, Yuki Akizuki
