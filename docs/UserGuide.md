@@ -274,7 +274,7 @@ These commands allow you to manipulate the glossary so you can find certain phra
 
 #### <a name="find"></a>3.3.1. Find a Flashcard : `find` (Harshini)
 
-Finds certain flashcard(s) according to the **German phrase** entered. You can enter more german phrases after the first phrase to search for more flashcards corresponding to your search parameters. **The full German phrase must be entered for each parameter**. To view the full Glossary again, see [List all Flashcards](#list) below.
+Finds certain flashcard(s) according to the **German phrase** entered. You can enter more German phrases after the first phrase to search for more flashcards corresponding to your search parameters. **The full German phrase must be entered for each parameter**. To view the full Glossary again, see [List all Flashcards](#list) below.
 
 Format: `find <GERMAN PHRASE> <OPTIONAL GERMAN PHRASE 1> <OPTIONAL GERMAN PHRASE 2>...`
 
