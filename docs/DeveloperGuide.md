@@ -276,9 +276,11 @@ This mechanism makes use of the modifiable `ObservableList` in `Bagel` itself, a
 The following sequence diagrams show how the sort operation works.
 
 ![Sequence Diagram for Sort Command in Logic Component Steps 1 - 4](images/SortSequenceDiagram.png)
-![Sequence Diagram for Sort Command in Logic Component Steps 5 - 8](images/SortSequenceDiagram2.png)
 
 <div style="page-break-after: always;"></div>
+
+![Sequence Diagram for Sort Command in Logic Component Steps 5 - 8](images/SortSequenceDiagram2.png)
+
 
 1. The user executes `sort r/tag` to sort flashcards by ascending alphabetical order of their titles.
 2. `BagelParser` creates an `SortCommandParser` and calls its parse method with the arguments passed in by the user.
@@ -288,6 +290,8 @@ The following sequence diagrams show how the sort operation works.
 6. The new sorted `ObservableList<Flashcard>` is set as `Bagel`'s `UniqueFlashcardList`.
 7. `Model` will update the displayed list as the inner list has been modified.
 8. The result of this command is returned.
+
+<div style="page-break-after: always;"></div>
 
 #### Design consideration
 
@@ -302,6 +306,8 @@ The following sequence diagrams show how the sort operation works.
 
 I chose alternative 2, as this would lead to better separation of responsibilities and also leads to reduced repetitive code.
 
+<div style="page-break-after: always;"></div>
+
 ### List feature
 
 #### Implementation
@@ -315,6 +321,8 @@ Its implementation is similar to that of the *Search* feature, with the differen
 The following sequence diagram shows how the list operation works with parameters.
 
 ![Sequence Diagram for List Command in Logic Component](images/ListSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Design consideration
 
@@ -341,6 +349,9 @@ The edit mechanism involves an additional `EditFlashcardDescriptor` class to pas
 The following sequence diagrams show how the edit operation works.
 
 ![Sequence Diagram for Edit Command in Logic Component Steps 1 - 5](images/EditSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
+
 ![Sequence Diagram for Edit Command in Logic Component Steps 6 - 9](images/EditSequenceDiagram2.png)
 
 <div style="page-break-after: always;"></div>
@@ -354,6 +365,8 @@ The following sequence diagrams show how the edit operation works.
 7. `EditCommand` creates a new `Flashcard` based on the `EditFlashcardDescriptor` and the `Flashcard` to be edited.
 8. This new `Flashcard` replaces the old `Flashcard` in `Model`.
 9. The result of this command is returned.
+
+<div style="page-break-after: always;"></div>
 
 #### Design consideration
 
@@ -610,6 +623,8 @@ Similar to UC04, except user enters relevant details for clear.
 9. Bagel is not expected to quiz the user.
 10. Bagel should be for a single user.
 
+<div style="page-break-after: always;"></div>
+
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -643,6 +658,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting a flashcard
 
