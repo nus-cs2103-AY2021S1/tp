@@ -391,6 +391,8 @@ You want to add a new patient with specific personal details.
 
 #### 5.2.2 Adding profile picture: `addpicture`
 
+(Contributed by Kenneth)
+
 Add a profile picture to the patient’s profile by specifying the image's filepath.
 If the person already has an existing profile picture, you can use this command to update the profile picture with a new picture.
 
@@ -605,6 +607,8 @@ Format: `list`
 </div>
 
 #### 5.2.8 Viewing patient profile: `profile`
+
+(Contributed by Kenneth)
 
 Display the patient's profile in a separate window.
 
