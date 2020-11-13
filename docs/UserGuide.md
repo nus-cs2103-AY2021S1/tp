@@ -71,6 +71,8 @@ Here is a table to better understand how to put our GUI into best use:
 | Buttons for Sets | These buttons will appear and disappear automatically when you add a new set or delete all your flashcards in an existing set. This is a feature for point-and-click navigation, just in case you simply opened Bagel to revise and not make any changes! |
 | Flashcard Display List | This list will display your selected list of flashcards (i.e. filtered or not). It will even show you a specific flashcard with all its details when you want it to (i.e. View Command). |
 
+<div style="page-break-after: always;"></div>
+
 #### Bagel's Symbols and Syntax
 
 The table below will guide you through the general symbols and specific technical terms used in our guide:
