@@ -37,6 +37,8 @@ This table below illustrates what each formatting means.
 | `[g/ALLERGY]…` | Words with `…` after them| Parameters that can be input multiple times including 0 times|`g/sulfa g/zyrtec` or `g/levocetirizine `|
 | [**Blue underline**](#2-about-this-document)| Bold blue words that show underline on mouse-over| A clickable hyperlink, to either an external webpage or other parts of this User Guide|[**1. Introduction**](#1-introduction)|
 
+(Contributed by Tae Kwon)
+
 <div markdown="block" class="alert alert-warning">
 * These sections give examples of how you can use the features of CliniCal.
 
@@ -70,6 +72,8 @@ You want to list all the patient data that was entered into CliniCal.
 </div>
 
 ## 3. Getting started
+
+(Contributed by Tae Kwon)
 
 You can follow the steps below to get CliniCal up and running:
 
@@ -216,7 +220,10 @@ General commands help enhance your general user experience while using CliniCal.
 
 #### 5.1.1 Viewing help: `help`
 
-Access help page by referring to the link provided in the message pop-up.
+(Contributed by Tae Kwon)
+
+Access the user guide using an URL link.
+ * You can copy and paste the link to access the User Guide of CliniCal.
 
 Format: `help`
 
@@ -234,7 +241,9 @@ Format: `help`
 
 #### 5.1.2 Retrieving past commands: `history`
 
-View a list of past commands that you had used during the session.
+(Contributed by Tae Kwon)
+
+View a list of the most recent changes you have made to the list of patients and appointments.
 
 Format: `history`
 
@@ -244,7 +253,17 @@ Format: `history`
     <em style="color:#CC5500">Figure 7. Example of History Command</em>
 </p>
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+ * Your history is erased when you close and reopen the app. Do not close the app if you have anything in the history that you need to refer to later!
+
+</div>
+
 #### 5.1.3 Clearing command history: `clearhistory`
+
+(Contributed by Tae Kwon)
 
 Clear the command history.
 
@@ -316,6 +335,8 @@ You want to restore Alex Yeoh's patient details right after accidentally using `
 </div>
 
 #### 5.1.6 Exiting the program: `exit`
+
+(Contributed by Tae Kwon)
 
 Exit the program.
 
@@ -915,6 +936,8 @@ CliniCal data is saved in your hard disk automatically after any command that ch
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. FAQ
+
+(Contributed by Tae Kwon)
 
 **Q**: What are the minimum system requirements for this application?<br>
 **A**: If your computer runs any of the Operating Systems found in [this link](https://www.oracle.com/java/technologies/javase/products-doc-jdk11certconfig.html), you will be able to run CliniCal. 
