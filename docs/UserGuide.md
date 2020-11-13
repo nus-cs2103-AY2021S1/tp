@@ -28,6 +28,7 @@ Choose a topic from the [Table of Contents](#table-of-contents) below.
   * [2.1 Using this User Guide](#21-using-this-user-guide)
   * [2.2 Symbols and Syntax](#22-symbols-and-syntax)
   * [2.3 Command Format](#23-command-format)
+  * [2.4 Interface](#24-interface)
 - [3. Getting Started](#3-getting-started)
   * [3.1 Downloading and opening the application](#31-downloading-and-opening-the-application)
   * [3.2 General Usage](#32-general-usage)
@@ -42,21 +43,21 @@ Choose a topic from the [Table of Contents](#table-of-contents) below.
     + [4.2.3 Deleting a daily record](#423-deleting-a-daily-record---delete-index-)
   * [4.3 Calorie Level Data Entry Commands](#43-calorie-level-data-entry-commands)
     + [4.3.1 Adding Calorie](#431-adding-calorie)
-      - [4.3.1.1 Adding a calorie input](#4311-adding-a-calorie-input----calorie-tp-in-)
-      - [4.3.1.2 Adding a calorie output ](#4312-adding-a-calorie-output----calorie-tp-out-)
+      - [Adding a calorie input](#adding-a-calorie-input----calorie-tp-in-)
+      - [Adding a calorie output ](#adding-a-calorie-output----calorie-tp-out-)
     + [4.3.2 Removing Calorie](#432-removing-calorie)
-      - [4.3.2.1 Removing a calorie output](#4321-removing-a-calorie-output----remove-tp-out-)
-      - [4.3.2.2 Removing a calorie input ](#4322-removing-a-calorie-input----remove-tp-in-)
+      - [Removing a calorie output](removing-a-calorie-output----remove-tp-out-)
+      - [Removing a calorie input ](#removing-a-calorie-input----remove-tp-in-)
     + [4.3.3 Change Calorie](#433-change-calorie)
-      - [4.3.3.1 Changing a calorie input](#4331-changing-a-calorie-input----change-tp-in-)
-      - [4.3.3.2 Changing a calorie output](#4332-changing-a-calorie-output----change-tp-out-)
+      - [Changing a calorie input](#changing-a-calorie-input----change-tp-in-)
+      - [Changing a calorie output](#changing-a-calorie-output----change-tp-out-)
   * [4.4 Data Visualization](#44-data-visualization)
     + [4.4.1 View all calorie inputs and outputs of a day](#441-view-all-calorie-inputs-and-outputs-of-a-day---view-)
     + [4.4.2 View Statistics](#442-view-statistics---stats-)
     + [4.4.3 Personal related data visualisation:](#443-personal-related-data-visualisation-)
-      - [4.4.3.1 Current BMI](#4431-current-bmi)
-      - [4.4.3.1 Calorie Budget](#4431-calorie-budget)
-      - [4.4.3.1 Progress Bar](#4431-progress-bar)
+      - [Current BMI](#current-bmi)
+      - [Calorie Budget](#calorie-budget)
+      - [Progress Bar](#progress-bar)
   * [4.5 General commands](#45-general-commands)
     + [4.5.1 Viewing help ](#451-viewing-help----help-)
     + [4.5.2 Clearing all entries](#452-clearing-all-entries----clear-)
@@ -70,6 +71,7 @@ Choose a topic from the [Table of Contents](#table-of-contents) below.
   * [5.2 Transferring Data](#52-transferring-data)
   * [5.3 Viewing calorie lists](#53-viewing-calorie-lists)
 - [6. Command summary](#6-command-summary)
+- [7. Glossary](#7-glossary)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -99,17 +101,17 @@ We have also implemented a commander's version that would allow commanders to ha
 This User Guide has been structured such that users can easily find and understand what they need.  
 [Section 2](#2-about) contains useful tips and information on reading this document.  
 [Section 3](#3-getting-started) consists of instructions to set up this application  
-[Section 4](#4-features) includes the details of the 4 main features of My Fitness Buddy which are:
+[Section 4](#4-features) includes the details of the 5 main features of My Fitness Buddy which are:
 
 * Profile page
-* List of days
+* Days
 * Calorie input and output
 * Statistics
 * Features for commanders
 
-[Section 5](#5-faq) shows all frequently asked questions (FAQ)
-
-[Section 6](#6-command-summary) provides a command summary table
+[Section 5](#5-faq) shows all frequently asked questions (FAQ)  
+[Section 6](#6-command-summary) provides a command summary table  
+[Section 7](#7-glossary) explains some common used terms  
 
 ### 2.2 Symbols and Syntax
 
@@ -130,6 +132,14 @@ All commands in the following sections follow the same format.
 	* Example: in `add d/DATE w/WEIGHT`, `DATE` and `WEIGHT` are parameters to be replaced by the user. 
 	 e.g. `add d/2020-10-25 w/70`
 	
+### 2.4 Interface
+(Contributed by Hope)   
+
+You can refer to the diagram below to understand how My Fitness Buddy looks like:
+![Interface](images/interface.png)   
+
+
+​	
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -156,14 +166,22 @@ Thank you for using My Fitness Buddy! Here's a quick start guide to get you star
     
 ### 3.2 General Usage
 (Contributed by Hope)  
-When you open our application for the first time, the application starts up with some sample data that allows users to test the features. Here
-are some general usage scenarios of our application that you can try when getting started.
+When you open our application for the first time, the application starts up with some sample data that allows users to test the features.   
+
+Here are some general usage scenarios of our application that you can try when getting started.
+
 * From sample data :
 1. `login 1` : Login to the first profile in the list
+
 1. `add d/2020-10-26 w/70` : Create a daily record with the specified date and weight.
+
 1. `calorie d/2020-10-26 tp/in t/1200 f/laksa c/290` : Adds a calorie input entry with the specified date.
+
 1. `stats v/all` : View both calorie and weight charts in a pop-up window.
-1. `login 2` : Login to the second profile in the list  
+
+1. `login 2` : Login to the second profile in the list   
+
+   
 
 * After `clear` command :
 1. `create n/John id/1201 h/170 w/68` : Create a new profile with the specified information
@@ -322,7 +340,7 @@ Prefix | Meaning
 
 
 #### 4.3.1 Adding Calorie
-##### 4.3.1.1 Adding a calorie input : `calorie tp/in`
+##### Adding a calorie input : `calorie tp/in`
 
 Add calorie input to the calorie tracker.
 
@@ -339,7 +357,7 @@ exceed 2,147,483,647._
 
 ![Add_input](images/calorieImages/Add_Input.png)
 
-##### 4.3.1.2 Adding a calorie output : `calorie tp/out`
+##### Adding a calorie output : `calorie tp/out`
 Add calorie output to the calorie tracker.
 
 Format: `calorie tp/out d/DATE t/TIME e/EXERCISE c/CALORIE COUNT`
@@ -357,7 +375,7 @@ exceed 2,147,483,647._
 
 Examples:`remove 3 tp/out i/3` 
 #### 4.3.2 Removing Calorie
-##### 4.3.2.1 Removing a calorie output : `remove tp/out`
+##### Removing a calorie output : `remove tp/out`
 
 Removes a wrong calorie Output entry from the calorie tracker.
 
@@ -379,7 +397,7 @@ number of records for each category_
 `After removing`
 ![remove_output_after](images/calorieImages/remove_output_after.png)
 
-##### 4.3.2.2 Removing a calorie input : `remove tp/in`
+##### Removing a calorie input : `remove tp/in`
 
 Removes a wrong calorie input entry from the calorie tracker.
 
@@ -402,7 +420,7 @@ representation.
 Examples:`remove 3 tp/out i/3` 
 
 #### 4.3.3 Change Calorie
-##### 4.3.3.1 Changing a calorie input : `change tp/in`
+##### Changing a calorie input : `change tp/in`
 Change a calorie input entry with details recorded wrongly
 
 Format: `change d/DATE tp/in i/INDEX [Updated Details]`
@@ -428,7 +446,7 @@ _:warning: Calorie Count must be a positive integer and cannot exceed 2,147,483,
 
 Examples:`change 3 tp/out i/3 c/123`
 
-##### 4.3.3.2 Changing a calorie output : `change tp/out`
+##### Changing a calorie output : `change tp/out`
 
 Change a calorie out entry with details recorded wrongly
 
@@ -517,13 +535,13 @@ _:bulb:TIP: Charts can be viewed alternatively by going to the menu bar, click o
 
 On top of the various data analytical tools to visualize the various statistic over the training period, we also
 have a number of indicators and diagrams to help the user get a better grasp on their current fitness level
-##### 4.4.3.1 Current BMI
+##### Current BMI
 ![BMI](images/calorieImages/BMI.png)
 
 In the current profile, we have a small BMI label which will indicate the current BMI level of the user. 
 It will update accordingly to the user's latest weight entry and give them their most updated BMI reading.
 
-##### 4.4.3.1 Calorie Budget
+##### Calorie Budget
 ![calorie_budget](images/calorieImages/calorie_budget.png)
 
 As shown in the diagram , each day entry will indicate the calorie budget for the day. (The amount of calorie the
@@ -541,10 +559,10 @@ However when there is negative calorie budget, the users cannot afford to consum
 weight, a red cross will be shown at the top right corner of the day entry.
 
 
-##### 4.4.3.1 Progress Bar
+##### Progress Bar
 
-The progress bar indicates how close the users are towards the healthy Bmi range. When the user lose weight and
-have a healthier bmi, the blue bar will move towards the right. When the progress bar is completely filled,it
+The progress bar indicates how close the users are towards the healthy BMI range. When the user lose weight and
+have a healthier BMI, the blue bar will move towards the right. When the progress bar is completely filled,it
 indicates that the user has reached the healthy BMI range.
 
 ![progress_bar](images/calorieImages/progress_bar.png)
@@ -610,7 +628,7 @@ Meaning: Filters the list to show profiles that with more than or equal to BMI o
 
 ![find_bmi](images/find_bmi.png)
 
-_:bulb:TIP: Use `list` command to show all profiles after executing `find bmi/` command._
+_:bulb: TIP: Use `list` command to show all profiles after executing `find bmi/` command._
 
 ### 4.7 Saving the data
 (Contributed by Ethan)
@@ -652,6 +670,7 @@ your data.
 **A**: Make sure that you have added calories for that day. If the calorie lists are empty,
 the lists will not show anything. The status bar will still update informing you that you are 
 viewing that particular day. 
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -679,6 +698,18 @@ Action | Format
 **Clear entries** | `clear`
 **Help** | `help`
 **Exit** | `exit`
+
+## 7. Glossary
+(Contributed by Hope)  
+Below are some common terms used in My Fitness Buddy and the User Guide.  
+**Command Line Interface (CLI)**: Text interface to interact with the application by typing in various commands.  
+**Graphical User Interface (GUI)**: Visual interface to interact with the application.  
+**Physical Employment Standard (PES)**: A measure of a soldier's fitness level.  
+**PES B pending (PES BP)**: PES BP is given to recruits who are have a BMI of over 27 and will have to enter 20 weeks of BMT where their main goal is to lose weight.
+**Body Mass Index (BMI)**: A measure of body fat based on height and weight.
+**Basic Military Training (BMT)**: An initiation to army for new soldiers where they undergo basic fitness training and learn about fundamental soldier skills.  
+**Recruits**: New soldiers who have just entered the army and are undergoing Basic Military Training.  
+**Commanders**: Soldiers who oversee Basic Military Training and are responsible for the safety, training and welfare of the recruits. 
 
 
 
