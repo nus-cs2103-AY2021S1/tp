@@ -116,7 +116,7 @@ Valid scopes: all.
 
 Format: `help`
 
-### 2.1.2 Exit application : `exit`
+### 2.1.2 Exit application : `exit` 
 
 Closes the application for the user.
 
@@ -124,7 +124,7 @@ Valid scopes: all.
 
 Format: `exit`
 
-### 2.1.3 Leave a current page `leave`
+### 2.1.3 Leave a current page `leave` (Jiayu)
 
 Leaves the current page and go back to the parent scope (one level up).
 
@@ -142,7 +142,7 @@ Format: `leave`
 - Leaves the current page (clear the right-most non-empty dashboard) and shifts the scoping status to the parent scope
 - If the app is already in the `PERSON_LIST` or `PROJECT_LIST` scope, the command takes no effect
 
-### 2.1.4 List all projects in the catalogue `listprojects`
+### 2.1.4 List all projects in the catalogue `listprojects` (Jiayu)
 
 Lists all projects currently in the catalogue.
 
@@ -156,7 +156,7 @@ Format: `listprojects`
 - Lists all projects without filter
 - If the scope is `PERSON_LIST` when the command is executed, the scope will be changed to `PROJECT_LIST` 
 
-### 2.1.5 List all persons in the catalogue `listpersons`
+### 2.1.5 List all persons in the catalogue `listpersons` (Jiayu)
 
 Lists all persons currently in the catalogue.
 
@@ -172,7 +172,7 @@ Format: `listpersons`
 
 ## 2.2 Projects management
 
-### 2.2.1 Start work on an existing project `startproject`
+### 2.2.1 Start work on an existing project `startproject` (Jiayu)
 
 Starts the view of the project specified to work on it specifically.
 
@@ -189,7 +189,7 @@ Format: `startproject INDEX`
 
 Examples: `startproject 2` starts the second project in the project list displayed in the left panel.
 
-### 2.2.2 Add a new project to the catalogue `add`
+### 2.2.2 Add a new project to the catalogue `add` (Jiayu)
 
 Adds a project to the project list.
 
@@ -306,7 +306,7 @@ Format: `addtask tn/TASK NAME td/TASK DEADLINE [tp/TASK PROGRESS] [d/TASK DESCRI
 
 Example: `addtask tn/Do User Guide tp/30 td/29-02-2020 00:00:00` creates a task named Do User Guide, 30% completed, and has a deadline of 29th Feb 2020, midnight.
 
-### 2.3.2 Assign a task to a teammate `assign`
+### 2.3.2 Assign a task to a teammate `assign` (Jiayu)
 
 Assigns a task to a teammate within a project.
 
@@ -450,7 +450,7 @@ Format: `sort (sa/)||(sd/) (td/)||((tp/)||(tn/)||(done/)`
 
 Example: `sort sa/ td/` sorts the task list by task deadline in ascending order. Then the tasks on the top of the task list are those with imminent deadlines.
 
-### 2.3.8 View details of a task `viewtask`
+### 2.3.8 View details of a task `viewtask` (Jiayu)
 
 Views all the details of a task, beyond the little information given in the project view.
 
@@ -579,7 +579,7 @@ Format: `deleteperson GITHUB_USERNAME`
 Example: `deleteperson Lucas97` deletes the teammate with Github username Lucas97, and removes him from any project he
  was in.
 
-### 2.4.7 Start work on an existing person `startperson` 
+### 2.4.7 Start work on an existing person `startperson` (Jiayu)
 
 Starts the view of the person specified to work on it specifically.
 
