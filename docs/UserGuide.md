@@ -246,9 +246,7 @@ the user interface segments 1 to 5 mentioned above.
          to do so.<br><br>
         1. **Weekly topic and today's date** - The week count in the semester, together with the academic topic for the
          week and today's date.<br><br>
-         
-        <div style="page-break-after: always;"></div>
-         
+        <div style="page-break-after: always;"></div> 
         1. **Shortcut icons** - These icons are positioned here for your convenience in quickly navigating to Source
          Academy via the blue diamond on the left, and Jarvis' user guide via the white book icon on the right.<br><br>
         1. **Jarvis logo** - This is the application icon of Jarvis.
@@ -547,6 +545,7 @@ Adds your personal [`Deadline`](#613-notes-about-tasks) with a `description`, to
 <div style="page-break-after: always;"></div>
 
 ### 6.4 Editing Information : `edit`
+(Zhen Teng)
 In the following subsections, we will explain how the commands for editing information work. Please take note of the
 command inputted into the command box to understand how the respective commands are keyed in.
 
@@ -626,13 +625,15 @@ will auto switch to the `Mastery Check` tab, and the `Mastery Check` with index 
 </div>
 
 ### 6.5 Deleting Information : `delete`
+(Jun Jie)
+
 In the following subsections, we will explain how the commands for deleting information work. Please take note of the
 command inputted into the command box to understand how the respective commands are keyed in.
 
 #### 6.5.1 Deleting `Consultations` : `-c`
 (Eryn)
 
-Deletes a `Task` based on the `INDEX` you specify.
+Deletes a `Consultation` based on the `INDEX` you specify.
 
 <br>**Format: `delete -c INDEX`**
 
@@ -698,11 +699,16 @@ will delete that `Task` away and then auto switch to the `Task` tab, showing all
 * The Index for `Consultation` and `Mastery Check` is not unique and they will change according to the GUI's displayed list, which is unlike the TASK_ID for `Tasks`.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### 6.6 Viewing Information : `view`
+(Zhen Teng)
 In the following subsections, we will explain how the commands for viewing information work. Please take note of the
 command inputted into the command box to understand how the respective commands are keyed in.
 
 Certain commands are similar to one another and hence we have excluded screenshots from those sections.
+
+<div style="page-break-after: always;"></div>
 
 #### 6.6.1 Viewing a list of all `Students` : `-s`
 (Zhen Teng)
@@ -920,6 +926,8 @@ Exits the program.
 
 <br>**Format: `exit`**
 
+<div style="page-break-after: always;"></div>
+
 ### 6.8 Saving the data
 (Wiline)
 
@@ -935,6 +943,7 @@ are likely to change frequently and hence, will not need to be persisted.
 ## 7. Command Summary
 
 ### 7.1 Add Command Summary
+(Eryn)
 
 | Function            | Tag | Format, Examples                        |
 | ------------------- | --- | --------------------------------------- |
@@ -944,7 +953,10 @@ are likely to change frequently and hence, will not need to be persisted.
 | Add `Event`         | -e  | add -e DESCRIPTION d/YYYY-MM-DD t/HH:MM |
 | Add `Deadline`      | -d  | add -d DESCRIPTION d/YYYY-MM-DD t/HH:MM |
 
+<div style="page-break-after: always;"></div>
+
 ### 7.2 Edit Command Summary
+(Zhen Teng)
 
 | Function                   | Tag &nbsp; | Format, Examples                                  |
 | -------------------------- | --- | ------------------------------------------------- |
@@ -952,15 +964,16 @@ are likely to change frequently and hence, will not need to be persisted.
 | Edit `Student` information | -s  | edit -s INDEX [n/NAME] [t/TELEGRAM] [e/EMAIL]     |
 | Edit `Mastery Check`       | -mc | edit -mc INDEX s/SCORE                            |
 
-<div style="page-break-after: always;"></div>
-
 ### 7.3 Delete Command Summary
+(Jun Jie)
 
 | Function               | Tag | Format, Examples                       |
 | ---------------------- | --- | -------------------------------------- |
 | Delete `Consultation`  | -c  | delete -c INDEX <br>E.g. delete -c 2   |
 | Delete `Mastery Check` | -mc | delete -mc INDEX <br>E.g. delete -mc 2 |
 | Delete `Task`          | -t  | delete -t TASK_ID                      |
+
+<div style="page-break-after: always;"></div>
 
 ### 7.4 View Command Summary
 (Wiline)
@@ -978,22 +991,23 @@ are likely to change frequently and hence, will not need to be persisted.
 | View upcoming `Consultations`      | -cu  | view -cu        |
 | View all `Mastery Checks`          | -mc  | view -mc        |
 | View past `Mastery Checks`         | -mcp | view -mcp       |
-
-<div style="page-break-after: always;"></div>
-
 | View all upcoming `Mastery Checks` | -mcu | view -mcu       |
 | View all `Tasks`                   | -t   | view -t         |
 | View all `Todos`                   | -tt  | view -tt        |
 | View all `Events`                  | -te  | view -te        |
 | View all `Deadlines`               | -td  | view -td        |
 
+<div style="page-break-after: always;"></div>
+
 ### 7.5 Exit Command Summary
+(Peirong)
 
 | Function      | Format, Examples |
 | ------------- | ---------------- |
 | Exits program | `exit`           |
 
 ### 7.6 Help Command Summary
+(Peirong)
 
 | Function                           | Format, Examples |
 | ---------------------------------- | ---------------- |
