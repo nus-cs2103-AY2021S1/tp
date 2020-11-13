@@ -1,0 +1,59 @@
+@startuml
+skinparam backgroundColor #ffffff
+skinparam classAttributeIconSize 0
+hide circle
+
+abstract class "{abstract}\nCommand" {
+    + {abstract} execute(model : Model) : CommandResult
+}
+
+class Model <<Interface>> {
+    /' Methods '/
+    + updateFilteredPersonList(Predicate<Student> predicate) : void
+    + updateMissionsList(Predicate<Mission> predicate) : void
+    + updateQuestsList(Predicate<Quest> predicate) : void
+    + updateFilteredConsultationList() : void
+    + updateFilteredMasteryCheckList() : void
+    + updateFilteredTaskList(Predicate<Task> predicate) : void
+}
+
+class ModelManager {
+    /' Methods '/
+}
+
+hide ModelManager attributes
+hide ModelManager methods
+
+abstract class "{abstract}\nDeleteCommand"{
+    /' Attributes '/
+    + {static} MESSAGE_USAGE: String
+
+    /' Methods '/
+    + {abstract} execute(model : Model) : CommandResult
+}
+
+class DeleteXYZCommand {
+    /' Attributes '/
+    + {static} MESSAGE_SUCCESS: String
+    + {static} index: Index
+
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+}
+
+
+note as N1
+  <size: 11><u>DeleteXYZCommand:</size>
+  <size: 11>DeleteTaskCommand (has a String as the index),</size>
+  <size: 11>DeleteMasteryCheckCommand, etc.</size>
+end note
+
+N1 .up. DeleteXYZCommand
+
+"{abstract}\nDeleteCommand" ..> Model
+"{abstract}\nDeleteCommand" --up|> "{abstract}\nCommand"
+DeleteXYZCommand -> "{abstract}\nDeleteCommand"
+"DeleteXYZCommand" ..> Model
+ModelManager --up|> Model
+@enduml

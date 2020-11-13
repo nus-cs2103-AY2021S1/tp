@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "v:ViewMissionDeadlineCommand" as ViewMissionDeadlineCommand LOGIC_COLOR
+participant "c:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("view -m")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("view -m")
+activate AddressBookParser
+
+create ViewCommandParser
+AddressBookParser -> ViewCommandParser
+activate ViewCommandParser
+
+ViewCommandParser --> AddressBookParser
+deactivate ViewCommandParser
+
+AddressBookParser -> ViewCommandParser : parse("-m")
+activate ViewCommandParser
+
+ViewCommandParser -> ParserUtil : parseFlag("-m")
+activate ParserUtil
+
+ParserUtil --> ViewCommandParser : commandFlag
+deactivate ParserUtil
+
+create ViewMissionDeadlineCommand
+ViewCommandParser -> ViewMissionDeadlineCommand
+activate ViewMissionDeadlineCommand
+
+ViewMissionDeadlineCommand --> ViewCommandParser : v
+deactivate ViewMissionDeadlineCommand
+
+ViewCommandParser --> AddressBookParser : v
+deactivate ViewCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ViewCommandParser -[hidden]-> AddressBookParser
+destroy ViewCommandParser
+
+AddressBookParser --> LogicManager : v
+deactivate AddressBookParser
+
+LogicManager -> ViewMissionDeadlineCommand : execute()
+activate ViewMissionDeadlineCommand
+
+ViewMissionDeadlineCommand -> Model : updateMissionsList(PREDICATE_SHOW_ALL_MISSIONS)
+activate Model
+
+deactivate Model
+
+create CommandResult
+ViewMissionDeadlineCommand -> CommandResult : MESSAGE_SUCCESS
+activate CommandResult
+
+CommandResult --> ViewMissionDeadlineCommand : c
+deactivate CommandResult
+
+ViewMissionDeadlineCommand --> LogicManager : c
+deactivate ViewMissionDeadlineCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -7,6 +7,7 @@ skinparam classBackgroundColor LOGIC_COLOR
 package Logic {
 
 package Parser {
+
 Interface Parser <<Interface>>
 Class AddressBookParser
 Class XYZCommandParser
@@ -53,7 +54,7 @@ LogicManager .left.> Command : executes >
 
 LogicManager --> Model
 Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+note right of XYZCommand: XYZCommand = AddCommand, \nViewCommand, EditCommand etc.
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult

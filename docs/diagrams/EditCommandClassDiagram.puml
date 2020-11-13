@@ -1,0 +1,51 @@
+@startuml
+skinparam backgroundColor #ffffff
+skinparam classAttributeIconSize 0
+hide circle
+
+abstract class "{abstract}\nCommand" {
+    + {abstract} execute(model : Model) : CommandResult
+}
+
+class Model <<Interface>> {
+    /' Methods '/
+    + updateFilteredPersonList(Predicate<Student> predicate) : void
+    + updateMissionsList(Predicate<Mission> predicate) : void
+    + updateQuestsList(Predicate<Quest> predicate) : void
+    + updateFilteredConsultationList() : void
+    + updateFilteredMasteryCheckList() : void
+    + updateFilteredTaskList(Predicate<Task> predicate) : void
+}
+
+class ModelManager {
+}
+
+hide ModelManager attributes
+hide ModelManager methods
+
+abstract class "{abstract}\nEditCommand"{
+    /' Attributes '/
+
+    /' Methods '/
+    + {abstract} execute(model : Model) : CommandResult
+}
+
+class EditXYZCommand
+hide EditXYZCommand attributes
+hide EditXYZCommand methods
+
+note as N1
+  <size: 11><u>EditXYZCommand:</size>
+  <size: 11>EditStudentCommand,</size>
+  <size: 11>EditLoginCommand,</size>
+  <size: 11>EditMasteryCheckCommand</size>
+end note
+
+N1 .up. EditXYZCommand
+
+"{abstract}\nEditCommand" ..> Model
+"{abstract}\nEditCommand" --up|> "{abstract}\nCommand"
+EditXYZCommand -> "{abstract}\nEditCommand"
+"EditXYZCommand" ..> Model
+ModelManager --up|> Model
+@enduml

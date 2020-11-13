@@ -1,0 +1,81 @@
+@startuml
+skinparam backgroundColor #ffffff
+skinparam classAttributeIconSize 0
+hide circle
+
+class AddXYZCommand {
+    /' Attributes '/
+    <u>+ MESSAGE_SUCCESS: String
+    <u>+ MESSAGE_INVALID: String
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+}
+
+abstract class "{abstract}\nCommand" {
+    + {abstract} execute(model : Model) : CommandResult
+}
+
+class Model <<Interface>> {
+    /' Methods '/
+    + hasXYZ(xyz) : boolean
+    + addXYZ(xyz) : void
+}
+
+class ModelManager {
+    /' Methods '/
+    + hasXYZ(xyz) : boolean
+    + addXYZ(xyz) : void
+}
+
+class ReadOnlyAddressBook <<Interface>> {
+    + getMissionList() : ObservableList<Mission>
+    + getQuestList() : ObservableList<Quest>
+    + getStudentList() : ObservableList<Student>
+    + getTaskList() : ObservableList<Task>
+    + getConsultationList() : ObservableList<Consultation>
+    + getMasteryCheckList() : ObservableList<MasteryCheck>
+}
+
+abstract class "{abstract}\nAddCommand"{
+    /' Attributes '/
+    <u>+ MESSAGE_SUCCESS: String
+    /' Methods '/
+    + {abstract} execute(model : Model) : CommandResult
+}
+
+"{abstract}\nAddCommand" -up-|> "{abstract}\nCommand"
+
+"{abstract}\nAddCommand" .down.> Model
+
+AddXYZCommand -right-|> "{abstract}\nAddCommand"
+AddXYZCommand ..> Model
+
+ModelManager -up-|> Model
+ModelManager .down.> ReadOnlyAddressBook
+
+note as N1
+  <size: 12><u>Note:</u>
+  <size: 11>ModelManager first checks if ReadOnlyAddressBook
+  <size: 11>has duplicate item using <u>hasXYZ(xyz)</u> before storing
+  <size: 11> storing the item to ReadOnlyAddressBook using
+  <size: 11> <u>addXYZ(xyz)</u>.
+end note
+
+note as N2
+    <size: 11><u>AddXYZCommand:</u>
+    <size: 11>AddConsultationCommand,
+    <size: 11>AddTaskCommand, etc
+end note
+
+note as N3
+    <size: 11><u>addXYZ(xyz):</u>
+    <size: 11>addConsultation(Consultation),
+    <size: 11>addTodo(Todo), etc
+end note
+
+N1 .right. ModelManager
+N2 .up. AddXYZCommand
+N3 .left. ModelManager
+
+@enduml

@@ -1,0 +1,28 @@
+@startuml
+start
+If () then ([user starts Jarvis])
+    else ([user edits login details])
+endif
+
+:Calls startScraping();
+: Calls authenticate();
+
+If () then ([login information does not exist])
+    :Exits program;
+
+    else ([login information exists])
+
+
+    If () then ([user is not authenticated])
+    :Authenticates through LumiNUS;
+
+    else ([user is authenticated])
+        endif
+    :Fetches user's name on SA;
+    :Navigates to Assessments page on SA;
+    :Fetches information of all open Missions and Quests;
+    :Navigates to Student page on SA;
+    :Fetches all student details;
+    endif
+stop
+@enduml

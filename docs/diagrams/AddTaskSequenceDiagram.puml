@@ -1,0 +1,85 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant ":TaskCommandParser" as TaskCommandParser LOGIC_COLOR
+participant "a:AddTaskCommand" as AddTaskCommand LOGIC_COLOR
+participant "c:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as ModelManager MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add -e ...")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("add -e ...")
+activate AddressBookParser
+
+create AddCommandParser
+AddressBookParser -> AddCommandParser : AddCommandParser()
+activate AddCommandParser
+
+AddCommandParser --> AddressBookParser
+deactivate AddCommandParser
+
+AddressBookParser -> AddCommandParser : parse("-e ...")
+activate AddCommandParser
+
+AddCommandParser -> ParserUtil : parseFlag("-e")
+activate ParserUtil
+
+ParserUtil --> AddCommandParser : commandFlag
+deactivate ParserUtil
+
+AddCommandParser -> TaskCommandParser : parseEvent("...")
+activate TaskCommandParser
+
+TaskCommandParser --> AddCommandParser : event
+deactivate TaskCommandParser
+
+create AddTaskCommand
+AddCommandParser -> AddTaskCommand : AddTaskCommand(event)
+activate AddTaskCommand
+
+AddTaskCommand --> AddCommandParser : a
+deactivate AddTaskCommand
+
+AddCommandParser --> AddressBookParser : a
+deactivate AddCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddTaskCommand : execute()
+activate AddTaskCommand
+
+AddTaskCommand -> ModelManager : hasEvent(event)
+activate ModelManager
+
+ModelManager --> AddTaskCommand : boolean = false
+deactivate ModelManager
+
+AddTaskCommand -> ModelManager : addEvent(event)
+activate ModelManager
+
+deactivate ModelManager
+
+create CommandResult
+AddTaskCommand -> CommandResult : MESSAGE_SUCCESS
+activate CommandResult
+CommandResult --> AddTaskCommand : c
+deactivate CommandResult
+
+LogicManager <-- AddTaskCommand : c
+deactivate AddTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

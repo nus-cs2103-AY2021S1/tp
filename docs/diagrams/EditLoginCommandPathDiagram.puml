@@ -1,0 +1,11 @@
+@startuml
+start
+:User inputs EditLoginCommand;
+:EditParserCommand parses the login fields to be edited;
+:EditLoginCommand retrieves current UserLogin object from model;
+:EditLoginCommand edits current UserLogin object with parsed user's input;
+:EditLoginCommand saves edited UserLogin to model;
+:ScraperManager is invoked to fetch from Source Academy with edited login details;
+:GUI updates with new information;
+stop
+@enduml

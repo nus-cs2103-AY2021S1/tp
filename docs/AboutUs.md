@@ -5,55 +5,60 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `jarvis@comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Associate Professor Damith Chatura Rajapakse
 
-<img src="images/johndoe.png" width="200px">
+* Role: Lecturer, Tutor
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Wu Peirong
 
-* Role: Project Advisor
+<img src="images/peironggg.png" width="200px">
 
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/peironggg)]
+[[portfolio](team/peironggg.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: API + Student Features
 
-### Jean Doe
+### Seo Yeryeon
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wireseo.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/wireseo)]
+[[portfolio](team/wireseo.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: GUI + Consultation and Mastery Check Features
+
+### Wiline Tan
+
+<img src="images/wilinetan.png" width="200px">
+
+[[github](http://github.com/wilinetan)]
+[[portfolio](team/wilinetan.md)]
+
+* Role: Developer
+* Responsibilities: Mission and Quest Features + GUI
+
+### Ng Zhen Teng
+
+<img src="images/ngzhenteng.png" width="200px">
+
+[[github](http://github.com/ngzhenteng)]
+[[portfolio](team/ngzhenteng.md)]
+
+* Role: Developer
+* Responsibilities: Student Features + Testing
+
+### Lim Jun Jie
+
+<img src="images/asuraxsoul.png" width="200px">
+
+[[github](http://github.com/asuraxsoul)]
+[[portfolio](team/asuraxsoul.md)]
+
+* Role: Developer
+* Responsibilities: Tutor Task Features

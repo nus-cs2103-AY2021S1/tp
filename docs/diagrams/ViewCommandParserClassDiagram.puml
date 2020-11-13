@@ -1,0 +1,22 @@
+@startuml
+skinparam backgroundColor #ffffff
+skinparam classAttributeIconSize 0
+hide circle
+
+class ViewCommandParser implements Parser {
+    /' Methods '/
+    + parse(args : String) : ViewCommand
+}
+
+interface Parser<T> <<interface>> {
+    parse(userInput : String) : ViewCommand
+}
+
+class Flag {
+    + getFlag(): String
+    + isValidFlag(): boolean
+}
+
+ViewCommandParser ..> Flag
+
+@enduml

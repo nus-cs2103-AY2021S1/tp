@@ -1,0 +1,101 @@
+@startuml
+skinparam backgroundColor #ffffff
+skinparam classAttributeIconSize 0
+hide circle
+
+abstract class AddCommand {
+    /' Attributes '/
+    <u>+ COMMAND_WORD : String = "add"
+
+    /' Methods '/
+    + {abstract} execute(model : Model) : CommandResult
+}
+
+class AddTaskCommand extends AddCommand {
+    /' Attributes '/
+    <u>+ MESSAGE_SUCCESS : String
+    <u>+ MESSAGE_INVALID : String
+    <u>+ MESSAGE_DUPLICATE : String
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+}
+
+class AddConsultationCommand extends AddCommand {
+    /' Attributes '/
+    <u>+ MESSAGE_SUCCESS : String
+    <u>+ MESSAGE_DUPLICATE : String
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+}
+
+class AddMasteryCheckCommand extends AddCommand {
+    /' Attributes '/
+    <u>+ MESSAGE_SUCCESS : String
+    <u>+ MESSAGE_DUPLICATE : String
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+}
+
+interface Model {
+    /' Methods '/
+    + hasConsultation(consultation : Consultation) : boolean
+    + hasMasteryCheck(masteryCheck : MasteryCheck) : boolean
+    + hasTodo(todo : Todo) : boolean
+    + hasEvent(event : Event) : boolean
+    + hasDeadline(deadline : Deadline) : boolean
+    + addConsultation(consultation : Consultation)
+    + addMasteryCheck(masteryCheck : MasteryCheck)
+    + addTodo(todo : Todo)
+    + addEvent(event : Event)
+    + addDeadline(deadline : Deadline)
+}
+
+abstract class Task {
+    <u>- taskNum: int
+    + generateTaskId() : String
+}
+
+class Todo {
+    - taskId : String
+    - description : String
+}
+
+class Event {
+    - taskId : String
+    - description : String
+    - dateTime : LocalDateTime
+}
+
+class Deadline {
+    - taskId : String
+    - description : String
+    - dateTime : LocalDateTime
+}
+
+class Consultation {
+    - studentName : String
+    - dateAndTime : LocalDateTime
+}
+
+class MasteryCheck extends Consultation {
+    - hasPassed : boolean
+}
+AddCommand .left.> Model
+AddTaskCommand ..> Model
+AddConsultationCommand ..> Model
+AddMasteryCheckCommand ..> Model
+
+AddTaskCommand ..> Task
+
+Task <|-- Todo
+Task <|-- Event
+Task <|-- Deadline
+
+AddConsultationCommand ..> Consultation
+
+AddMasteryCheckCommand ..> MasteryCheck
+
+@enduml

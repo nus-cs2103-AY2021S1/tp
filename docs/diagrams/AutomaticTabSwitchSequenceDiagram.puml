@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":CommandBox" as CommandBox UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> MainWindow : fillInnerParts()
+activate MainWindow
+
+create CommandBox
+MainWindow -> CommandBox : CommandBox(MainWindow.executeCommand("view -m"))
+activate CommandBox
+
+CommandBox -> MainWindow : executeCommand("view -m")
+deactivate CommandBox
+
+MainWindow -> LogicManager : execute("view -m")
+activate LogicManager
+
+create CommandResult
+LogicManager -> CommandResult
+activate CommandResult
+
+CommandResult --> LogicManager : commandResult
+deactivate CommandResult
+
+LogicManager --> MainWindow : commandResult
+deactivate LogicManager
+
+MainWindow -> CommandResult : commandResult.getCommandTargetFeature()
+activate CommandResult
+
+CommandResult --> MainWindow : CommandTargetFeature.Missions
+deactivate CommandResult
+
+MainWindow -> MainWindow : tabSelector.select(missionTab)
+activate MainWindow
+
+MainWindow --> MainWindow
+deactivate MainWindow
+
+[<--MainWindow
+deactivate MainWindow
+
+@enduml

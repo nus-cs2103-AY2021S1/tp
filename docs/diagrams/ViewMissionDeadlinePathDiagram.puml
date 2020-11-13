@@ -1,0 +1,16 @@
+@startuml
+start
+:User inputs ViewMissionDeadline Command;
+
+if () then ([Mission List is empty])
+    : GUI displays "No Missions";
+else ([Mission List is not empty])
+    : Mission List is filtered to get all current Missions;
+    if () then ([Filtered Mission List is empty])
+        : GUI displays "No Missions";
+    else ([Filtered Mission List is not empty])
+        : GUI displays all current Mission deadlines;
+    endif
+endif
+stop
+@enduml

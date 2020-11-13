@@ -1,0 +1,106 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "v:EditLoginCommand" as EditLoginCommand LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "c:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box Scraper SCRAPER_COLOR_T1
+participant ":Scraper" as Scraper SCRAPER_COLOR
+end box
+
+[-> LogicManager : execute("edit -l")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("edit -l")
+activate AddressBookParser
+
+create EditCommandParser
+AddressBookParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser -> AddressBookParser
+deactivate EditCommandParser
+
+AddressBookParser -> EditCommandParser : parse("-l")
+activate EditCommandParser
+
+EditCommandParser -> ParserUtil : parseFlag("-l")
+activate ParserUtil
+
+ParserUtil --> EditCommandParser : commandFlag
+deactivate ParserUtil
+
+EditCommandParser -> ParserUtil : parseUsername("u/")
+activate ParserUtil
+
+ParserUtil --> EditCommandParser : username
+
+deactivate ParserUtil
+
+EditCommandParser -> ParserUtil : parsePassword("p/")
+activate ParserUtil
+
+ParserUtil --> EditCommandParser : password
+
+deactivate ParserUtil
+
+EditCommandParser --> AddressBookParser
+
+create EditLoginCommand
+EditCommandParser -> EditLoginCommand
+activate EditLoginCommand
+
+EditLoginCommand --> EditCommandParser : v
+deactivate EditLoginCommand
+
+EditCommandParser --> AddressBookParser : v
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> AddressBookParser
+
+deactivate EditCommandParser
+
+destroy EditCommandParser
+
+AddressBookParser --> LogicManager : v
+deactivate AddressBookParser
+
+LogicManager -> EditLoginCommand : execute()
+activate EditLoginCommand
+
+EditLoginCommand -> Model : setUserLogin(editedUserLogin)
+activate Model
+
+Model -[hidden]-> EditLoginCommand
+
+
+Model -> Scraper : startScraping()
+activate Scraper
+
+deactivate Scraper
+
+deactivate Model
+
+create CommandResult
+EditLoginCommand -> CommandResult : MESSAGE_SUCCESS
+activate CommandResult
+
+CommandResult --> EditLoginCommand : c
+deactivate CommandResult
+
+EditLoginCommand --> LogicManager : c
+deactivate EditLoginCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

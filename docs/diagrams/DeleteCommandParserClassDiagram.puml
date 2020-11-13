@@ -1,0 +1,30 @@
+@startuml
+skinparam backgroundColor #ffffff
+skinparam classAttributeIconSize 0
+hide circle
+
+class DeleteCommandParser implements Parser {
+    /' Methods '/
+    + parse(args : String) : DeleteCommand
+}
+
+interface Parser<T> <<interface>> {
+    parse(userInput : String) : DeleteCommand
+}
+
+class Flag {
+    + getFlag(): String
+    + isValidFlag(): boolean
+}
+
+class Index {
+    + getZeroBased(): int
+    + getOneBased(): int
+    <u>+fromZeroBased(): Index
+    <u>+fromOneBased(): Index
+}
+
+DeleteCommandParser ..> Flag
+DeleteCommandParser ..> Index
+
+@enduml

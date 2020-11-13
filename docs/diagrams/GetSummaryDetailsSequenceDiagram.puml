@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+participant ":Summary" as Summary MODEL_COLOR
+end box
+
+[-> LogicManager : getSummary()
+activate LogicManager
+
+LogicManager -> ModelManager : updateAllSummaryDetails()
+activate ModelManager
+
+ModelManager --> LogicManager
+
+LogicManager -> ModelManager : getSummary()
+
+ModelManager -> AddressBook : getSummary()
+activate AddressBook
+
+AddressBook -> Summary : getSummaryDetails()
+activate Summary
+
+Summary --> AddressBook : summaryDetails
+deactivate Summary
+
+AddressBook --> ModelManager : summaryDetails
+deactivate AddressBook
+
+ModelManager --> LogicManager : summaryDetails
+deactivate ModelManager
+
+[<--LogicManager : summaryDetails
+deactivate LogicManager
+@enduml

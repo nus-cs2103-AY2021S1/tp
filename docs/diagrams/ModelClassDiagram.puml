@@ -13,20 +13,44 @@ Class ReadOnlyAddressBook
 Class Model
 Class ModelManager
 Class UserPrefs
+Class UserLogin
 Class ReadOnlyUserPrefs
+Class ReadOnlyUserLogin
 
-Package Person {
-Class Person
-Class Address
+Package Student {
+Class Student
 Class Email
 Class Name
-Class Phone
-Class UniquePersonList
+Class Telegram
+Class UniqueStudentList
 }
 
-Package Tag {
-Class Tag
+Package Mission {
+Class Mission
+Class MissionList
 }
+
+Package Quest {
+Class Quest
+Class QuestList
+}
+
+Package Consultation {
+Class Consultation
+Class ConsultationList
+}
+
+Package MasteryCheck {
+Class MasteryCheck
+Class MasteryCheckList
+}
+
+Package Task {
+Class Task
+Class Todo
+Class Event
+Class Deadline
+Class UniqueTasksList
 }
 
 Class HiddenOutside #FFFFFF
@@ -36,21 +60,37 @@ AddressBook .up.|> ReadOnlyAddressBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
+ModelManager --> "1" AddressBook
+ModelManager -left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
+ModelManager -right-> "1" UserLogin
+UserLogin .up.|> ReadOnlyUserLogin
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AddressBook *--> "1" UniqueStudentList
+UniqueStudentList --> "*" Student
+Student *--> Name
+Student *--> Telegram
+Student *--> Email
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Name -[hidden]right-> Telegram
 
-ModelManager -->"1" Person : filtered list
+AddressBook *--> "1" UniqueTasksList
+UniqueTasksList --> "*" Task
+Todo -up-|> Task
+Deadline -up-|> Task
+Event -up-|> Task
+
+AddressBook *--> "1" MasteryCheckList
+MasteryCheckList --> "*" MasteryCheck
+MasteryCheck -up-|> Consultation
+
+AddressBook *--> "1" ConsultationList
+ConsultationList --> "*" Consultation
+
+AddressBook *--> "1" QuestList
+QuestList --> "*" Quest
+
+AddressBook *--> "1" MissionList
+MissionList --> "*" Mission
+
 @enduml

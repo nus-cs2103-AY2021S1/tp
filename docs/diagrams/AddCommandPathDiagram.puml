@@ -1,0 +1,24 @@
+@startuml
+start
+: User inputs AddCommand to add an Item;
+: Jarvis attempts to add the Item to jarvis.json file;
+
+if() then ([Invalid AddCommand])
+: Item is not saved to jarvis.json file;
+: GUI displays specific error message;
+
+else ([Valid AddCommand])
+: Jarvis checks if the Item is a duplicate;
+
+if() then ([Duplicate Item])
+: GUI displays "duplicate" error message;
+
+else ([Unique Item])
+: Jarvis saves the Item to jarvis.json file;
+: GUI displays success message with the
+new Item displayed in the respective GUI tab;
+endif
+
+endif
+stop
+@enduml

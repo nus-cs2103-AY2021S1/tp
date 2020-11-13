@@ -1,0 +1,53 @@
+@startuml
+skinparam backgroundColor #ffffff
+skinparam classAttributeIconSize 0
+hide circle
+
+interface Parser<T> <<interface>> {
+    parse(userInput : String) : AddCommand
+}
+
+class TaskCommandParser {
+    /' Attributes '/
+    <u>+ DATE_FORMAT : String
+
+    /' Methods '/
+    + parseTodo(String[], int)  : Todo
+    + parseEvent(String[], int) : Event
+    + parseDeadline(String[], int) : Deadline
+}
+
+class ConsultationMasteryCheckCommandParser {
+    /' Attributes '/
+   <u> + DATE_FORMAT : String
+
+    /' Methods '/
+    + parseConsultation(String[], int)  : Consultation
+    + parseMasteryCheck(String[], int) : MasteryCheck
+}
+
+class Flag {
+    + getFlag(): String
+    + isValidFlag(): boolean
+}
+
+class AddCommandParser implements Parser {
+    /' Methods '/
+    + parse(args : String) : AddCommand
+}
+
+AddCommandParser .right.> TaskCommandParser
+AddCommandParser .right.> ConsultationMasteryCheckCommandParser
+AddCommandParser .down.> Flag
+
+note as N1
+    <size: 12><u>Note:</u>
+    <size: 11>Both the above 2 parser classes are
+    <size: 11>specialised in parsing user input date
+    <size: 11>and time entries as LocalDateTime.
+end note
+
+N1 .up. ConsultationMasteryCheckCommandParser
+N1 .up. TaskCommandParser
+
+@enduml

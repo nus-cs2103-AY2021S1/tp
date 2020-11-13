@@ -30,7 +30,7 @@
 }
 
 .tab-pane {
-    -fx-padding: 0 0 0 1;
+    -fx-padding: 0 0 0 0;
 }
 
 .tab-pane .tab-header-area {
@@ -149,8 +149,8 @@
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-font-size: 14pt;
+    -fx-text-fill: black;
 }
 
 .result-display .label {
@@ -307,6 +307,10 @@
     -fx-padding: 8 1 8 1;
 }
 
+#infoBar {
+    -fx-padding: 2 14 2 14;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
@@ -320,12 +324,14 @@
 #commandTextField {
     -fx-background-color: transparent #383838 transparent #383838;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
+    -fx-border-color: #4cc3a8;;
     -fx-border-insets: 0;
-    -fx-border-width: 1;
+    -fx-border-width: 2;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: #4cc3a8;
+    -fx-padding: 5px;
+    -fx-prompt-text-fill: #4cc3a8;
 }
 
 #filterField, #personListPanel, #personWebpage {
@@ -333,8 +339,13 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: #4cc3a8;
     -fx-background-radius: 0;
+    -fx-border-color: #4cc3a8;
+}
+
+#resultDisplay {
+    -fx-padding: 3px;
 }
 
 #tags {
@@ -349,4 +360,45 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+.tab-pane .tab-header-area .tab {
+    -fx-pref-height: 160;
+    -fx-pref-width: 40;
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-text-fill: #4cc3a8;
+}
+
+.tab-pane *.tab-header-background {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-text-fill: #4cc3a8;
+}
+
+.tab-label {
+    -fx-text-fill: #4cc3a8;
+}
+
+#tabPane .tab:selected {
+    -fx-border-color: #c3c525;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+#tabPane .tab:selected .tab-label {
+    -fx-text-fill: #c3c525;
+}
+
+.date_label {
+    -fx-text-fill: #4cc3a8;
+    -fx-font-size: 11pt;
+}
+
+.greeting_message {
+    -fx-text-fill: #4cc3a8;
+    -fx-font-size: 13pt;
+}
+
+.topic_label {
+    -fx-text-fill: #c3c525;
+    -fx-font-size: 11pt;
 }

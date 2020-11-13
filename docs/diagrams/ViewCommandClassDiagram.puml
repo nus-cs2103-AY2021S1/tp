@@ -1,0 +1,57 @@
+@startuml
+skinparam backgroundColor #ffffff
+skinparam classAttributeIconSize 0
+hide circle
+
+abstract class "{abstract}\nCommand" {
+    + {abstract} execute(model : Model) : CommandResult
+}
+
+class Model <<Interface>> {
+    /' Methods '/
+    + updateFilteredPersonList(Predicate<Student> predicate) : void
+    + updateMissionsList(Predicate<Mission> predicate) : void
+    + updateQuestsList(Predicate<Quest> predicate) : void
+    + updateFilteredConsultationList() : void
+    + updateFilteredMasteryCheckList() : void
+    + updateFilteredTaskList(Predicate<Task> predicate) : void
+}
+
+class ModelManager {
+    /' Methods '/
+}
+
+hide ModelManager attributes
+hide ModelManager methods
+
+abstract class "{abstract}\nViewCommand"{
+    /' Attributes '/
+    + {static} MESSAGE_USAGE: String
+
+    /' Methods '/
+    + {abstract} execute(model : Model) : CommandResult
+}
+
+class ViewXYZCommand {
+    /' Attributes '/
+    + {static} MESSAGE_SUCCESS: String
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+}
+
+
+note as N1
+  <size: 11><u>ViewXYZCommand:</size>
+  <size: 11>ViewMissionDeadlineCommand,</size>
+  <size: 11>ViewAllStudentsCommand, etc</size>
+end note
+
+N1 .up. ViewXYZCommand
+
+"{abstract}\nViewCommand" ..> Model
+"{abstract}\nViewCommand" --up|> "{abstract}\nCommand"
+ViewXYZCommand -> "{abstract}\nViewCommand"
+"ViewXYZCommand" ..> Model
+ModelManager --up|> Model
+@enduml

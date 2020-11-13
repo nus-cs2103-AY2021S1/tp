@@ -1,0 +1,15 @@
+@startuml
+start
+:User inputs DeleteConsultation Command;
+
+if () then ([Index is not a non-zero unsigned integer])
+    : GUI displays error message;
+else ([Index is a non-zero unsigned integer])
+    if () then ([Index is out of range of the list of Consultations])
+        : GUI displays error message;
+    else (Index is in the range of the list of Consultations])
+        : Consultation is removed from Jarvis;
+    endif
+endif
+stop
+@enduml

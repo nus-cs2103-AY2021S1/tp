@@ -1,5 +1,11 @@
 ﻿Some code adapted from http://code.makery.ch/library/javafx-8-tutorial/ by Marco Jakob
 
+Copyright by icons8 - https://www.visualpharm.com/free-icons/user%20manual-595b40b85ba036ed117dad4e
+- user_guide.png
+
+Copyright by Source Academy - https://sourceacademy.nus.edu.sg/favicon.ico
+- source_academy.png
+
 Copyright by Susumu Yoshida - http://www.mcdodesign.com/
 - address_book_32.png
 - AddressApp.ico

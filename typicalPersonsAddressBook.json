@@ -1,0 +1,74 @@
+{
+  "students": [ {
+    "name": "Alice Pauline",
+    "telegram": "94351253",
+    "email": "alice@gmail.com"
+  }, {
+    "name": "Benson Meier",
+    "telegram": "98765432",
+    "email": "johnd@example.com"
+  }, {
+    "name": "Carl Kurz",
+    "telegram": "95352563",
+    "email": "heinz@example.com"
+  }, {
+    "name": "Daniel Meier",
+    "telegram": "87652533",
+    "email": "cornelia@example.com"
+  }, {
+    "name": "Elle Meyer",
+    "telegram": "9482224",
+    "email": "werner@example.com"
+  }, {
+    "name": "Fiona Kunz",
+    "telegram": "9482427",
+    "email": "lydia@example.com"
+  }, {
+    "name": "George Best",
+    "telegram": "9482442",
+    "email": "anna@example.com"
+  } ],
+  "missions": [ {
+    "title": "Fractal Dimensions",
+    "deadline": "Due: 16th October, 23:59",
+    "isGraded": false
+  }, {
+    "title": "Musical Notes",
+    "deadline": "Due: 25th October, 23:59",
+    "isGraded": true
+  }, {
+    "title": "Reuse Pairs",
+    "deadline": "Due: 1st November, 23:59",
+    "isGraded": false
+  }, {
+    "title": "Streams",
+    "deadline": "Due: 9th November, 23:59",
+    "isGraded": false
+  }, {
+    "title": "Stream Anomaly",
+    "deadline": "Deadline is over",
+    "isGraded": false
+  } ],
+  "quests": [ {
+    "title": "Runic Carpets",
+    "deadline": "Due: 26th August, 23:59",
+    "isGraded": false
+  }, {
+    "title": "Colorful Carpets",
+    "deadline": "Due: 3rd October, 23:59",
+    "isGraded": true
+  }, {
+    "title": "Functional Expressionism",
+    "deadline": "Due: 10th October, 23:59\"",
+    "isGraded": true
+  }, {
+    "title": "Cardioid Arrest",
+    "deadline": "Due: 20th October, 23:59",
+    "isGraded": false
+  }, {
+    "title": "Curvaceous Wizardry",
+    "deadline": "Deadline is over",
+    "isGraded": false
+  } ],
+  "tasks": [ ]
+}
