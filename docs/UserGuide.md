@@ -672,7 +672,7 @@ These visitation logs store the following as a short summary of a patient's visi
 
 (Contributed by Kenneth)
 
-Displays a new window to add a new visitation log for the specified patient.
+Display a new window to add a new visitation log for the specified patient.
 
 Format: `addvisit INDEX [vd/VISIT_DATE]`
 
@@ -718,7 +718,7 @@ You want to add a visitation log with date 23/10/2020 to the 1st patient on the 
 
 (Contributed by Eugene)
 
-Displays a new window to edit the visitation log for a specified patient.
+Display a new window to edit the visitation log for a specified patient.
 
 Format: `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]`
 
@@ -1019,7 +1019,7 @@ CliniCal data is saved in your hard disk automatically after any command that ch
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER ic/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…​` <br> e.g. `add n/James Ho p/22224444 ic/S2686887R e/jamesho@example.com a/123, Clementi Rd, 1234665 s/M b/B+ g/sulfa g/aspirin`
-**Add profile picture** | `addpicture 1 f/data/stock_picture.png`
+**Add profile picture** | `addpicture INDEX f/FILE_PATH` <br> e.g. `addpicture 1 f/data/stock_picture.png`
 **Add Visit** | `addvisit INDEX [vd/VISIT_DATE]` <br> e.g. `addvisit 1 vd/01/01/2020`
 **Add Appointment** | `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION` <br> e.g., `addappt 1 st/27/12/2020 14:00 d/60`
 **Clear** | `clear`
