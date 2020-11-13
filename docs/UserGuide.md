@@ -353,14 +353,14 @@ More examples:
 
 Format: `remind INDEX [MORE_INDEXES]`
 
-You can set reminders for specific assignments which will be displayed in `Your reminders` (Highlighted in red in the figure below) for your easy referral.
+You can set reminders for specific assignments which will be displayed in `Your reminders` (Highlighted in red in the Figure 14) for your easy referral.
 
    ![YourReminders](images/YourReminders.png)
    *Figure 14: `Your reminders` highlighted in red*
 
 You can use the `INDEX` of the assignment as shown in your assignment list to set reminders for that assignment. 
 
-For example, `remind 1` will set reminders for the first assignment in your assignment list ("Statistics tutorial" as shown in the Figure X) and adds it to `Your reminders` (Figure X).
+For example, `remind 1` will set reminders for the first assignment in your assignment list ("Statistics tutorial" as shown in the Figure 15) and adds it to `Your reminders` (Figure 16).
 
    ![Remind1](images/Remind1.png)
    *Figure 15: Before "Statistics tutorial" is added into `Your reminders`*
@@ -368,14 +368,14 @@ For example, `remind 1` will set reminders for the first assignment in your assi
    ![Remind1InYourReminders](images/Remind1InYourReminders.png)
    *Figure 16: "Statistics tutorial" (highlighted in red) is added into `Your reminders`*
 
-You can set reminders for **more than one** assignment at a time as well. Here is an example with steps for you to follow:
+You can set reminders for **multiple** assignments at a time as well. Here is an example with steps for you to follow:
 
-1) To set reminders for assignments "Essay" and "Assignment 3" (the second and fourth assignment respectively in your assignment list as shown in Figure X), you can simply enter `remind 2 4` into the Command Box.
+1) To set reminders for assignments "Essay" and "Assignment 3" (the second and fourth assignment respectively in your assignment list as shown in Figure 17), you can simply enter `remind 2 4` into the Command Box.
 
    ![Remind24](images/Remind24.png)
    *Figure 17: Before "Essay" and "Assignment 3" are added into `Your reminders`*
 
-2) You have successfully set reminders for both assignments, and they can now be found under `Your reminders`.
+2) You have successfully set reminders for both assignments, and they can now be found under `Your reminders` (Figure 18).
 
    ![Remind24InYourReminders](images/Remind24InYourReminders.png)
    *Figure 18: "Essay" and "Assignment 3" (highlighted in red) are added into `Your reminders`*
@@ -397,7 +397,7 @@ Format: `unremind INDEX`
 
 You can remove your reminded assignments from `Your reminders` by specifying the `INDEX` of the assignment as shown in `Your reminders`. 
 
-For example, `unremind 1` will remove the first assignment in `Your reminders` ("CS2106 Lab" as shown in the figure below).
+For example, `unremind 1` will remove the first assignment in `Your reminders` ("Statistics tutorial" as shown in the Figure 19).
 
    ![Unemind1](images/Unremind1.png)
    *Figure 19: Before "Statistics tutorial" (highlighted in red) is removed from `Your reminders`*
@@ -674,7 +674,7 @@ As such, you do not need to worry about manually updating your `Upcoming tasks` 
 
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
-Only assignments with deadlines **before** the current time and lessons with end time **before** the current time if displayed in `Upcoming tasks`. For example, if the deadline of an assignment has time `2359`, when the current time changes from `2358` to `2359`, the assignment will automatically be removed from `Upcoming tasks`.
+Only assignments with deadlines **before** the current time and lessons with end time **before** the current time are displayed in `Upcoming tasks`. For example, if the deadline of an assignment has time `2359`, when the current time changes from `2358` to `2359`, the assignment will automatically be removed from `Upcoming tasks`.
 </div>
 
 #### Remarks on deadline of assignments and start time of lessons
