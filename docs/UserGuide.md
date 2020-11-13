@@ -271,6 +271,10 @@ Meaning:`adds a new day, 09 November 2020, with a weight of 78kg`
 
 _:warning: Always add a day before adding a calorie information._
 
+_:warning: You cannot add a day that is before the date you created your profile!_
+
+_:warning: You cannot add a day that is in the future!_
+
 ![AddDay](images/AddDay.png)
 
 #### 4.2.2 Editing a daily weight record : `edit INDEX w/WEIGHT`
@@ -409,8 +413,11 @@ _:warning: The index to indicate both the day and calorie must be a positive int
 number of records for each category_
 
 `Before removing`
+
 ![remove_output_before](images/calorieImages/remove_output_before.png)
+
 `After removing`
+
 ![remove_output_after](images/calorieImages/remove_output_after.png)
 
 #### 4.3.3 Change Calorie
@@ -425,8 +432,11 @@ Meaning:`change the calorie count of an input calorie in the log from October 26
 input list to 123` 
 
 `Before changing`
+
 ![change_before](images/calorieImages/change_before.png)
+
 `After changing`
+
 ![change_after](images/calorieImages/change_after.png)
 
 
@@ -528,7 +538,8 @@ _:bulb:TIP: Charts can be viewed alternatively by going to the menu bar, click o
 (Contributed by Wa Wai)
 
 On top of the various data analytical tools to visualize the various statistic over the training period, we also
-have a number of indicators and diagrams to help the user get a better grasp on their current fitness level
+have a number of indicators and diagrams to help the user get a better grasp on their current fitness level.
+
 ##### Current BMI
 ![BMI](images/calorieImages/BMI.png)
 
@@ -684,7 +695,7 @@ Action | Format
 **Remove input** | `remove tp/in d/DATE i/INDEX` 
 **Remove output** | `remove tp/out d/DATE i/INDEX` 
 **Change input** | `change d/DATE tp/in i/INDEX [Updated Details]`
-**Change output** | `change d/DATE tp/out i/INDEX [Updated Details` 
+**Change output** | `change d/DATE tp/out i/INDEX [Updated Details]` 
 **View calories of a day** | `view INDEX`
 **View statistics** | `stats v/CHART_TO_BE_VIEWED`
 **View overall BMI progress of recruits for commanders** | `stats v/commander`
