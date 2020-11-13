@@ -280,7 +280,6 @@ Marks the student as absent (default) for tutorial on a specified date.
 
 Format: `unattend INDEX d/DATE`
 
-<img src="images/RemoveAttendance.png" class="diagram" />
 
 For: `unattend 1 d/12/12/2000` (This **particular** illustration requires `attend 1 d/12/12/2000` to be ran first)
 
@@ -289,7 +288,7 @@ Examples:
 - `unattend 2 d/12/01/2002` Marks the student at index 2 as absent on 12 January 2002.
 
   *For: `unattend 1 d/12/12/2000` (This **particular** illustration requires `attend 1 d/12/12/2000` to be ran first)*
-  ![Unattend](images/RemoveAttendance.png)
+  <img src="images/RemoveAttendance.png" class="diagram" /
 
 ### Adding a consultation : `add-consult`
 
