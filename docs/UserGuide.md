@@ -104,7 +104,7 @@ effectively.
 (Peirong)
 
 Our design philosophy that has guided us through the development of Jarvis is to place the user experience at the core of all considerations.
-As such, you will find throughout the User Guide small features and language that we have deliberately chosen to enhance usability and improve the user-centered experience of our product.
+As such, you will find throughout the user guide small features and language that we have deliberately chosen to enhance usability and improve the user-centered experience of our product.
 We have highlighted several features below that we feel are reflective of our design philosophy.
 
 1. You can toggle between your past and future commands entered by using the up and down arrows respectively.
@@ -392,7 +392,7 @@ This section includes some general notes on Jarvis.
 ### 6.2 Viewing help : `help`
 (Jun Jie)
 
-Shows a message explaining how to access the help page.
+Opens a pop up window with the link to this Jarvis user guide.
 
 <br>**Format: `help`**
 
