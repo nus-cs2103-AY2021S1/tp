@@ -119,6 +119,7 @@ Commands you provide in the command line follow specific rules. These are the ru
 
 
 ## 3. Getting Started
+###### (written by: Sean Tay)
 
 ### 3.1 Setting Up
 Get started by installing __Trackr__ with the following steps:
@@ -162,6 +163,7 @@ Figure 3.3c Student view
 ## 4. Features
 
 ### 4.1 General Features
+###### (written by: Sean Tay)
 
 #### 4.1.1 View help: `help`
 Shows a message explaining how to access the user guide.
@@ -211,6 +213,7 @@ Format: `exit`
 Example: `exit`
 
 ### 4.2 Navigation Features
+###### (written by: Sean Tay)
 
 #### 4.2.1 List all modules in Trackr: `listMod`
 
@@ -324,6 +327,7 @@ Example: `prevView`
 Figure 4.2.6a Expected outcome of performing the `prevView` command
 
 ### 4.3 Module Features
+###### (written by: Juan Davin Lie)
 
 > You should perform the following features while in the Module view.
 
@@ -516,6 +520,7 @@ Expected Outcome:
 Figure 4.4.4a Expected outcome of performing the `findTG` command
 
 ### 4.5 Student Features
+###### (written by: Jian Fanmin)
 
 > You should perform the following features while in the Student view.
 
@@ -798,6 +803,7 @@ Command | Description | Compatible View
 
 
 ### 6.3 Module Commands
+###### (written by: Juan Davin Lie)
 
 Command | Description | Compatible View
 --------|--------|--------
@@ -818,6 +824,7 @@ Command | Description | Compatible View
 
 
 ### 6.5 Student Commands
+###### (written by: Jian Fanmin)
 
 Command | Description | Compatible View
 --------|--------|--------
